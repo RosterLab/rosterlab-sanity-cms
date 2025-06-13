@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* HubSpot Form Styling */
+.hubspot-form .hs-form {
+  max-width: 100%;
+}
+
+.hubspot-form .hs-form-field {
+  margin-bottom: 1rem;
+}
+
+.hubspot-form .hs-form-field > label {
+  font-weight: 500;
+  color: rgb(64 64 64);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.hubspot-form .hs-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgb(209 213 219);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.hubspot-form .hs-input:focus {
+  outline: none;
+  border-color: rgb(59 130 246);
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
+}
+
+.hubspot-form .hs-button {
+  background-color: rgb(59 130 246);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.hubspot-form .hs-button:hover {
+  background-color: rgb(37 99 235);
+}
+
+.hubspot-form .hs-error-msgs {
+  color: rgb(239 68 68);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Hero Section Responsive Styles */
+@media only screen and (max-width: 1200px) {
+  .hero-section {
+    padding: 150px 20px 100px 20px !important;
+  }
+  
+  .hero-container {
+    max-width: 1000px !important;
+  }
+  
+  .hero-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 30px !important;
+  }
+  
+  .hero-left,
+  .hero-right {
+    flex: 1 !important;
+    min-height: auto !important;
+  }
+  
+  .hero-left {
+    padding: 10px 20px !important;
+  }
+  
+  .hero-image {
+    max-width: 750px !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .hero-subheading {
+    font-size: 1rem !important;
+  }
+  
+  .hero-heading {
+    font-size: 2rem !important;
+  }
+  
+  .hero-buttons {
+    gap: 15px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .hero-section {
+    padding: 120px 20px 50px 20px !important;
+  }
+  
+  .hero-heading {
+    font-size: 1.7rem !important;
+  }
+  
+  .hero-left {
+    padding: 0 !important;
+  }
+  
+  .hero-buttons {
+    margin-top: 10px !important;
+    gap: 5px !important;
+  }
+}
