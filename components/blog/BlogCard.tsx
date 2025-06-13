@@ -9,11 +9,11 @@ interface BlogCardProps {
     title: string
     slug: { current: string }
     excerpt?: string
-    mainImage?: any
+    mainImage?: { asset: { _ref: string }; alt?: string }
     publishedAt: string
     author: {
       name: string
-      image?: any
+      image?: { asset: { _ref: string }; alt?: string }
     }
     categories?: Array<{
       title: string

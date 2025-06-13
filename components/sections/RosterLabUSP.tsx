@@ -40,10 +40,10 @@ export default function RosterLabUSP() {
               There can be <span className="bg-cyan-300 font-bold">over 10^1000 roster possibilities</span> to a standard flexible rostering problem that <span className="bg-cyan-300 font-bold">scales exponentially</span> based on the number of possible shifts, tasks, days, and employees that must be considered.
             </p>
             <p>
-              The RosterLab AI uses <span className="bg-cyan-300 font-bold">award-winning</span> operations research techniques, created a scalable solution that's <span className="bg-cyan-300 font-bold">easy to implement</span> for any complex rosters.
+              The RosterLab AI uses <span className="bg-cyan-300 font-bold">award-winning</span> operations research techniques, created a scalable solution that&apos;s <span className="bg-cyan-300 font-bold">easy to implement</span> for any complex rosters.
             </p>
             <p>
-              <span className="bg-cyan-300 font-bold">We've tackled</span> one of the most complex rostering problem - <span className="bg-cyan-300 font-bold">healthcare</span> 24/7 - the needs to consider different modalities, tasks, skills mix, and more.
+              <span className="bg-cyan-300 font-bold">We&apos;ve tackled</span> one of the most complex rostering problem - <span className="bg-cyan-300 font-bold">healthcare</span> 24/7 - the needs to consider different modalities, tasks, skills mix, and more.
             </p>
             <p className="text-blue-600 font-bold">
               Optimise your workforce today with RosterLab!

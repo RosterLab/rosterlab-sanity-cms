@@ -1,18 +1,6 @@
 import Image from 'next/image'
 import Button from '@/components/ui/Button'
 
-interface HeroProps {
-  heading: string
-  subheading?: string
-  primaryButton?: {
-    text: string
-    link: string
-  }
-  secondaryButton?: {
-    text: string
-    link: string
-  }
-}
 
 export default function Hero() {
   return (

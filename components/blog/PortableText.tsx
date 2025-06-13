@@ -4,56 +4,56 @@ import { urlFor } from '@/sanity/lib/client'
 
 const components = {
   block: {
-    h1: ({ children }: any) => (
+    h1: ({ children }: { children: React.ReactNode }) => (
       <h1 className="text-4xl font-bold mb-6 text-neutral-900">{children}</h1>
     ),
-    h2: ({ children }: any) => (
+    h2: ({ children }: { children: React.ReactNode }) => (
       <h2 className="text-3xl font-bold mb-4 text-neutral-900">{children}</h2>
     ),
-    h3: ({ children }: any) => (
+    h3: ({ children }: { children: React.ReactNode }) => (
       <h3 className="text-2xl font-bold mb-3 text-neutral-900">{children}</h3>
     ),
-    h4: ({ children }: any) => (
+    h4: ({ children }: { children: React.ReactNode }) => (
       <h4 className="text-xl font-bold mb-2 text-neutral-900">{children}</h4>
     ),
-    normal: ({ children }: any) => (
+    normal: ({ children }: { children: React.ReactNode }) => (
       <p className="mb-4 text-neutral-700 leading-relaxed">{children}</p>
     ),
-    blockquote: ({ children }: any) => (
+    blockquote: ({ children }: { children: React.ReactNode }) => (
       <blockquote className="border-l-4 border-primary-500 pl-6 py-2 mb-4 italic text-neutral-600 bg-neutral-50 rounded-r-lg">
         {children}
       </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }: { children: React.ReactNode }) => (
       <ul className="list-disc list-inside mb-4 space-y-2 text-neutral-700">
         {children}
       </ul>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }: { children: React.ReactNode }) => (
       <ol className="list-decimal list-inside mb-4 space-y-2 text-neutral-700">
         {children}
       </ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: any) => <li className="ml-4">{children}</li>,
-    number: ({ children }: any) => <li className="ml-4">{children}</li>,
+    bullet: ({ children }: { children: React.ReactNode }) => <li className="ml-4">{children}</li>,
+    number: ({ children }: { children: React.ReactNode }) => <li className="ml-4">{children}</li>,
   },
   marks: {
-    strong: ({ children }: any) => (
+    strong: ({ children }: { children: React.ReactNode }) => (
       <strong className="font-semibold text-neutral-900">{children}</strong>
     ),
-    em: ({ children }: any) => (
+    em: ({ children }: { children: React.ReactNode }) => (
       <em className="italic">{children}</em>
     ),
-    code: ({ children }: any) => (
+    code: ({ children }: { children: React.ReactNode }) => (
       <code className="bg-neutral-100 text-neutral-800 px-1 py-0.5 rounded text-sm font-mono">
         {children}
       </code>
     ),
-    link: ({ value, children }: any) => {
+    link: ({ value, children }: { value: { href: string; blank?: boolean }; children: React.ReactNode }) => {
       const target = value?.blank ? '_blank' : undefined
       return (
         <a
@@ -68,7 +68,7 @@ const components = {
     },
   },
   types: {
-    image: ({ value }: any) => {
+    image: ({ value }: { value: { asset?: { _ref: string }; alt?: string } }) => {
       if (!value?.asset?._ref) {
         return null
       }
@@ -90,7 +90,7 @@ const components = {
         </div>
       )
     },
-    youtube: ({ value }: any) => {
+    youtube: ({ value }: { value: { url: string } }) => {
       const { url } = value
       if (!url) return null
       
@@ -115,7 +115,13 @@ const components = {
 }
 
 interface PortableTextProps {
-  value: any
+  value: Array<{
+    _type: string;
+    children?: Array<{ text: string; marks?: string[] }>;
+    markDefs?: Array<{ _key: string; _type: string; href?: string }>;
+    style?: string;
+    listItem?: string;
+  }>
 }
 
 export default function PortableText({ value }: PortableTextProps) {

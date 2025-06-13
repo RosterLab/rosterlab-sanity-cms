@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <header className="mb-12 text-center">
           {post.categories && post.categories.length > 0 && (
             <div className="flex justify-center flex-wrap gap-2 mb-4">
-              {post.categories.map((category: any) => (
+              {post.categories.map((category: { title: string; slug: { current: string } }) => (
                 <span
                   key={category.slug.current}
                   className="inline-block bg-primary-100 text-primary-800 text-sm px-3 py-1 rounded-full"

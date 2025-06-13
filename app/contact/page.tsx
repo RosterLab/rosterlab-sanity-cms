@@ -17,7 +17,7 @@ export default function ContactPage() {
             Book a demo with our expert team 📆
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            See how RosterLab's AI-powered rostering can save your healthcare team 90% of scheduling time and improve staff satisfaction.
+            See how RosterLab&apos;s AI-powered rostering can save your healthcare team 90% of scheduling time and improve staff satisfaction.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export default function ContactPage() {
               Book Your Demo
             </h2>
             <p className="text-neutral-600 mb-6">
-              Fill out the form below and our team will reach out to schedule a personalized demo of RosterLab's AI-powered rostering platform.
+              Fill out the form below and our team will reach out to schedule a personalized demo of RosterLab&apos;s AI-powered rostering platform.
             </p>
             <HubSpotForm 
               formId="77e5a8c4-4303-4681-8c92-afa7b070380c"
@@ -78,7 +78,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-neutral-900 mb-1">Email</h3>
                     <p className="text-neutral-600">hello@rosterlab.com</p>
-                    <p className="text-sm text-neutral-500">We'll respond within 24 hours</p>
+                    <p className="text-sm text-neutral-500">We&apos;ll respond within 24 hours</p>
                   </div>
                 </div>
 
@@ -143,7 +143,7 @@ export default function ContactPage() {
                     Can you integrate with our existing systems?
                   </h3>
                   <p className="text-neutral-600 text-sm">
-                    RosterLab integrates with most HR and payroll systems. We'll assess your current setup during our consultation.
+                    RosterLab integrates with most HR and payroll systems. We&apos;ll assess your current setup during our consultation.
                   </p>
                 </div>
               </div>

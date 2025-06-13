@@ -17,7 +17,7 @@ export default function AboutPage() {
             About RosterLab
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're revolutionizing workforce management with AI-powered scheduling solutions that save time, reduce costs, and improve staff satisfaction.
+            We&apos;re revolutionizing workforce management with AI-powered scheduling solutions that save time, reduce costs, and improve staff satisfaction.
           </p>
         </div>
       </Container>
@@ -66,7 +66,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Innovation</h3>
               <p className="text-gray-600">
-                We push the boundaries of what's possible with cutting-edge AI and optimization algorithms.
+                We push the boundaries of what&apos;s possible with cutting-edge AI and optimization algorithms.
               </p>
             </div>
             <div className="text-center">

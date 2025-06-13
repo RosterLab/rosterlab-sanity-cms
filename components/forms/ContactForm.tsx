@@ -68,7 +68,7 @@ export default function ContactForm() {
           Thank you for your message!
         </h3>
         <p className="text-green-700">
-          We'll get back to you within 24 hours.
+          We&apos;ll get back to you within 24 hours.
         </p>
         <Button
           onClick={() => setIsSubmitted(false)}
