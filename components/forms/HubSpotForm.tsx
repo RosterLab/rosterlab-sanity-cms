@@ -19,7 +19,9 @@ declare global {
           region: string;
           portalId: string;
           formId: string;
-          target: string;
+          target: string | HTMLElement;
+          onFormReady?: () => void;
+          onFormSubmit?: () => void;
         }) => void;
       };
     }

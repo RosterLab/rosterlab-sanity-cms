@@ -4,7 +4,7 @@ export const sanityConfig = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'development',
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
-  token: process.env.SANITY_API_TOKEN,
+  token: process.env.SANITY_API_TOKEN && process.env.SANITY_API_TOKEN !== 'your_read_token' ? process.env.SANITY_API_TOKEN : undefined,
 }
 
 // Validate required environment variables
