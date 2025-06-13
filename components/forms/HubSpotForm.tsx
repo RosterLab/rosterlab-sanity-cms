@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 
 interface HubSpotFormProps {
   formId: string
@@ -28,69 +28,71 @@ declare global {
   }
 }
 
+let scriptLoaded = false
+let scriptLoading = false
+
 export default function HubSpotForm({
   formId,
   region = 'na1',
-  portalId = '20646833', // RosterLab's HubSpot portal ID
+  portalId = '20646833',
   className = '',
   onSubmit,
   onReady,
 }: HubSpotFormProps) {
   const formRef = useRef<HTMLDivElement>(null)
+  const formCreatedRef = useRef(false)
+
+  const createForm = useCallback(() => {
+    if (window.hbspt && formRef.current && !formCreatedRef.current) {
+      formCreatedRef.current = true
+      
+      window.hbspt.forms.create({
+        region,
+        portalId,
+        formId,
+        target: formRef.current,
+        onFormReady: onReady,
+        onFormSubmit: onSubmit,
+      })
+    }
+  }, [formId, region, portalId, onReady, onSubmit])
 
   useEffect(() => {
-    // Load HubSpot script if not already loaded
-    const script = document.createElement('script')
-    script.src = '//js.hsforms.net/forms/embed/v2.js'
-    script.charset = 'utf-8'
-    script.defer = true
+    const currentFormRef = formRef.current
     
-    script.onload = () => {
-      if (window.hbspt && formRef.current) {
-        window.hbspt.forms.create({
-          region,
-          portalId,
-          formId,
-          target: formRef.current,
-          onFormReady: () => {
-            if (onReady) onReady()
-          },
-          onFormSubmit: () => {
-            if (onSubmit) onSubmit()
-          },
-        })
+    const loadScript = () => {
+      if (scriptLoading || scriptLoaded) return
+
+      scriptLoading = true
+      const script = document.createElement('script')
+      script.src = '//js.hsforms.net/forms/embed/v2.js'
+      script.async = true
+      script.onload = () => {
+        scriptLoaded = true
+        scriptLoading = false
+        createForm()
       }
+      script.onerror = () => {
+        scriptLoading = false
+      }
+      document.head.appendChild(script)
     }
 
-    // Check if script already exists
-    const existingScript = document.querySelector('script[src="//js.hsforms.net/forms/embed/v2.js"]')
-    if (!existingScript) {
-      document.head.appendChild(script)
+    if (window.hbspt) {
+      createForm()
+    } else if (scriptLoaded) {
+      createForm()
     } else {
-      // Script already loaded, create form immediately
-      if (window.hbspt && formRef.current) {
-        window.hbspt.forms.create({
-          region,
-          portalId,
-          formId,
-          target: formRef.current,
-          onFormReady: () => {
-            if (onReady) onReady()
-          },
-          onFormSubmit: () => {
-            if (onSubmit) onSubmit()
-          },
-        })
-      }
+      loadScript()
     }
 
     return () => {
-      // Cleanup if needed
-      if (formRef.current) {
-        formRef.current.innerHTML = ''
+      if (currentFormRef) {
+        currentFormRef.innerHTML = ''
       }
+      formCreatedRef.current = false
     }
-  }, [formId, region, portalId, onSubmit, onReady])
+  }, [createForm])
 
   return <div ref={formRef} className={className} />
 }
