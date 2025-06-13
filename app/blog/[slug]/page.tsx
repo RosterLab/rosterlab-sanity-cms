@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { client, urlFor } from '@/sanity/lib/client'
+import { getClient, client, urlFor } from '@/sanity/lib/client'
 import { postQuery, postPathsQuery } from '@/sanity/lib/queries'
+import { token } from '@/sanity/lib/token'
 import { formatDate } from '@/lib/utils'
 import Container from '@/components/ui/Container'
 import PortableText from '@/components/blog/PortableText'
+import { draftMode } from 'next/headers'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -20,7 +22,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
-  const post = await client.fetch(postQuery, { slug })
+  const { isEnabled } = await draftMode()
+  const clientToUse = getClient(isEnabled ? { token } : undefined)
+  const post = await clientToUse.fetch(postQuery, { slug })
   
   if (!post) {
     return {
@@ -42,7 +46,9 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
-  const post = await client.fetch(postQuery, { slug })
+  const { isEnabled } = await draftMode()
+  const clientToUse = getClient(isEnabled ? { token } : undefined)
+  const post = await clientToUse.fetch(postQuery, { slug })
 
   if (!post) {
     notFound()

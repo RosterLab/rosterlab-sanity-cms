@@ -1,7 +1,9 @@
-import { client } from '@/sanity/lib/client'
+import { getClient } from '@/sanity/lib/client'
 import { postsQuery } from '@/sanity/lib/queries'
+import { token } from '@/sanity/lib/token'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
+import { draftMode } from 'next/headers'
 
 export const metadata = {
   title: 'Blog - RosterLab',
@@ -9,6 +11,8 @@ export const metadata = {
 }
 
 export default async function BlogPage() {
+  const { isEnabled } = await draftMode()
+  const client = getClient(isEnabled ? { token } : undefined)
   const posts = await client.fetch(postsQuery)
 
   return (

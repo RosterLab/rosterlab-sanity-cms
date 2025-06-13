@@ -1,3 +1,4 @@
+import SiteLayout from '@/components/layout/SiteLayout'
 import Hero from '@/components/sections/Hero'
 import TrustedBy from '@/components/sections/TrustedBy'
 import RosterLabUSP from '@/components/sections/RosterLabUSP'
@@ -9,7 +10,7 @@ import FinalCTA from '@/components/sections/FinalCTA'
 
 export default function Home() {
   return (
-    <>
+    <SiteLayout>
       <Hero />
       
       <TrustedBy />
@@ -19,6 +20,6 @@ export default function Home() {
       <IndustrySolutions />
       <Testimonials />
       <FinalCTA />
-    </>
+    </SiteLayout>
   )
 }

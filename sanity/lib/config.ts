@@ -1,14 +1,14 @@
 // Environment configuration for Sanity
 export const sanityConfig = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'development',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'el2jjtjd',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_API_TOKEN && process.env.SANITY_API_TOKEN !== 'your_read_token' ? process.env.SANITY_API_TOKEN : undefined,
 }
 
 // Validate required environment variables
-if (!sanityConfig.projectId) {
+if (!sanityConfig.projectId || sanityConfig.projectId === 'your_project_id') {
   throw new Error('Missing required environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID')
 }
 

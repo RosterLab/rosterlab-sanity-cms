@@ -6,17 +6,21 @@ import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import Intercom from "@/components/analytics/Intercom";
 import Datadog from "@/components/analytics/Datadog";
 import StructuredData from "@/components/seo/StructuredData";
+import { VisualEditing } from "next-sanity";
+import { draftMode } from "next/headers";
 
 export const metadata: Metadata = {
   title: "RosterLab - Workforce Management Solutions",
   description: "Simplifying workforce management with intelligent scheduling solutions.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isEnabled } = await draftMode()
+  
   return (
     <html lang="en">
       <head>
@@ -31,11 +35,8 @@ export default function RootLayout({
           service="rosterlab-nextjs"
           env="production"
         />
-        <Header />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        {children}
+        {isEnabled && <VisualEditing />}
       </body>
     </html>
   );
