@@ -3,6 +3,7 @@ import { postsQuery } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { draftMode } from 'next/headers'
 
 export const metadata = {
@@ -12,11 +13,12 @@ export const metadata = {
 
 export default async function BlogPage() {
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token } : undefined)
+  const client = getClient(isEnabled && token ? { token } : undefined)
   const posts = await client.fetch(postsQuery)
 
   return (
-    <div className="py-16 bg-neutral-50 min-h-screen">
+    <SiteLayout>
+      <div className="py-16 bg-neutral-50 min-h-screen">
       <Container>
         {/* Header */}
         <div className="text-center mb-12">
@@ -55,6 +57,7 @@ export default async function BlogPage() {
           </div>
         )}
       </Container>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

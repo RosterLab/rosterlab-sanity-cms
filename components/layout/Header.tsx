@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi'
@@ -71,9 +72,11 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               {logo ? (
-                <img
+                <Image
                   src={logo.src}
                   alt={logo.alt}
+                  width={100}
+                  height={32}
                   className="h-8 w-auto"
                 />
               ) : (

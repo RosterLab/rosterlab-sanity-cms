@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+import SiteLayout from '@/components/layout/SiteLayout'
 
 export const metadata = {
   title: 'About Us - RosterLab',
@@ -9,7 +10,8 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="py-16">
+    <SiteLayout>
+      <div className="py-16">
       {/* Hero Section */}
       <Container>
         <div className="text-center mb-16">
@@ -144,5 +146,6 @@ export default function AboutPage() {
         </Container>
       </div>
     </div>
+    </SiteLayout>
   )
 }

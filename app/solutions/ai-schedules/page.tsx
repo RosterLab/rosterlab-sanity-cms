@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers } from 'react-icons/hi'
 
 export const metadata = {
@@ -39,7 +40,8 @@ const features = [
 
 export default function AISchedulesPage() {
   return (
-    <div>
+    <SiteLayout>
+      <div>
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
         <Container>
@@ -195,6 +197,7 @@ export default function AISchedulesPage() {
           </div>
         </Container>
       </div>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

@@ -1,4 +1,4 @@
-import HubSpotForm from '@/components/forms/HubSpotForm'
+import ContactForm from '@/components/forms/HubSpotForm'
 import Container from '@/components/ui/Container'
 import { HiClock, HiTrendingUp, HiUsers } from 'react-icons/hi'
 
@@ -55,10 +55,7 @@ export default function FinalCTA() {
             <h3 className="text-2xl font-bold text-neutral-900 mb-6">
               Get Started Today
             </h3>
-            <HubSpotForm 
-              formId="77e5a8c4-4303-4681-8c92-afa7b070380c"
-              className="hubspot-form"
-            />
+            <ContactForm className="final-cta-form" />
           </div>
         </div>
       </Container>

@@ -1,5 +1,6 @@
 import Container from '@/components/ui/Container'
-import HubSpotForm from '@/components/forms/HubSpotForm'
+import ContactForm from '@/components/forms/HubSpotForm'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { HiMail, HiPhone, HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
 
 export const metadata = {
@@ -9,7 +10,8 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="py-16 bg-neutral-50 min-h-screen">
+    <SiteLayout>
+      <div className="py-16 bg-neutral-50 min-h-screen">
       <Container>
         {/* Header */}
         <div className="text-center mb-12">
@@ -55,10 +57,7 @@ export default function ContactPage() {
             <p className="text-neutral-600 mb-6">
               Fill out the form below and our team will reach out to schedule a personalized demo of RosterLab&apos;s AI-powered rostering platform.
             </p>
-            <HubSpotForm 
-              formId="77e5a8c4-4303-4681-8c92-afa7b070380c"
-              className="hubspot-form"
-            />
+            <ContactForm className="contact-form" />
           </div>
 
           {/* Contact Information */}
@@ -151,6 +150,7 @@ export default function ContactPage() {
           </div>
         </div>
       </Container>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

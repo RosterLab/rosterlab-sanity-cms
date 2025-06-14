@@ -7,6 +7,7 @@ import { token } from '@/sanity/lib/token'
 import { formatDate } from '@/lib/utils'
 import Container from '@/components/ui/Container'
 import PortableText from '@/components/blog/PortableText'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { draftMode } from 'next/headers'
 
 interface BlogPostPageProps {
@@ -23,7 +24,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token } : undefined)
+  const clientToUse = getClient(isEnabled && token ? { token } : undefined)
   const post = await clientToUse.fetch(postQuery, { slug })
   
   if (!post) {
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token } : undefined)
+  const clientToUse = getClient(isEnabled && token ? { token } : undefined)
   const post = await clientToUse.fetch(postQuery, { slug })
 
   if (!post) {
@@ -55,7 +56,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <article className="py-16 bg-white">
+    <SiteLayout>
+      <article className="py-16 bg-white">
       <Container>
         {/* Breadcrumb */}
         <nav className="mb-8">
@@ -176,6 +178,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </div>
       </Container>
-    </article>
+      </article>
+    </SiteLayout>
   )
 }

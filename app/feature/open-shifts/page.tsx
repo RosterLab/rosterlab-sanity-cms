@@ -1,7 +1,6 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
-import Image from 'next/image'
-import Link from 'next/link'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { HiCheck, HiClock, HiUsers, HiCalendar, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
 
 export const metadata = {
@@ -63,7 +62,8 @@ const features = [
 
 export default function OpenShiftsPage() {
   return (
-    <div>
+    <SiteLayout>
+      <div>
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
         <Container>
@@ -77,11 +77,11 @@ export default function OpenShiftsPage() {
                 unfilled shifts instantly, while maintaining fairness and compliance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/demo">See It In Action</Link>
+                <Button size="lg" href="/demo">
+                  See It In Action
                 </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/pricing">View Pricing</Link>
+                <Button variant="outline" size="lg" href="/pricing">
+                  View Pricing
                 </Button>
               </div>
             </div>
@@ -211,16 +211,17 @@ export default function OpenShiftsPage() {
               Join thousands of teams who fill shifts faster and keep employees happier with RosterLab.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/demo">Book a Demo</Link>
+              <Button size="lg" variant="secondary" href="/demo">
+                Book a Demo
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 text-white border-white hover:bg-white/20" asChild>
-                <Link href="/contact">Contact Sales</Link>
+              <Button size="lg" variant="outline" className="bg-white/10 text-white border-white hover:bg-white/20" href="/contact">
+                Contact Sales
               </Button>
             </div>
           </div>
         </Container>
       </div>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

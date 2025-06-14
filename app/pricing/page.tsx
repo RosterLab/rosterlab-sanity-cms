@@ -1,5 +1,6 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { HiCheck, HiMinus } from 'react-icons/hi'
 
 export const metadata = {
@@ -153,7 +154,8 @@ const features = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <SiteLayout>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Hero Section */}
       <div className="py-20">
         <Container>
@@ -319,6 +321,7 @@ export default function PricingPage() {
           </div>
         </Container>
       </div>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }
