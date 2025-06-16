@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa'
+import { FaFacebook, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 interface FooterLink {
   title: string
@@ -18,7 +18,6 @@ interface FooterProps {
 }
 
 const socialIcons = {
-  twitter: FaTwitter,
   facebook: FaFacebook,
   linkedin: FaLinkedin,
   instagram: FaInstagram,
@@ -33,9 +32,9 @@ export default function Footer({ copyright, links = [], socialLinks = [] }: Foot
   ]
 
   const defaultSocialLinks: SocialLink[] = [
-    { platform: 'twitter', url: '#' },
-    { platform: 'linkedin', url: '#' },
-    { platform: 'facebook', url: '#' },
+    { platform: 'linkedin', url: 'https://www.linkedin.com/company/rosterlab/' },
+    { platform: 'facebook', url: 'https://www.facebook.com/p/RosterLab-100084645549356/' },
+    { platform: 'instagram', url: 'https://www.instagram.com/RosterLab/' },
   ]
 
   const footerLinks = links.length > 0 ? links : defaultLinks

@@ -198,7 +198,7 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/demo"
+                                href="/staff-rostering-interactive-demo"
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -243,14 +243,15 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/demo"
+              href="/staff-rostering-interactive-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
             >
               Book a Demo
             </Link>
             <Link
-              href="/signup"
+              href="https://app.rosterlab.com"
               className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              target="_blank"
             >
               Start for free
             </Link>
@@ -329,16 +330,17 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/demo"
+              href="/staff-rostering-interactive-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Book a Demo
             </Link>
             <Link
-              href="/signup"
+              href="https://app.rosterlab.com"
               className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsMenuOpen(false)}
+              target="_blank"
             >
               Start for free
             </Link>
