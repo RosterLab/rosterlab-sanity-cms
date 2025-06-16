@@ -94,7 +94,7 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
               {navigation.map((item) => (
                 <div
                   key={item.title}
-                  className="relative"
+                  className="relative group"
                   onMouseEnter={() => item.subItems && setActiveDropdown(item.title)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
@@ -112,10 +112,15 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
                     </button>
                   )}
                   
+                  {/* Invisible bridge to maintain hover */}
+                  {item.subItems && activeDropdown === item.title && (
+                    <div className="absolute top-full left-0 right-0 h-4" />
+                  )}
+                  
                   {/* Dropdown Menu */}
                   {item.subItems && activeDropdown === item.title && (
                     <div className={cn(
-                      "absolute top-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50",
+                      "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-50",
                       item.title === 'Solutions' ? 'left-0 w-[600px]' : 'left-0 w-64'
                     )}>
                       {item.title === 'Solutions' ? (

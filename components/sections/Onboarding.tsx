@@ -3,33 +3,33 @@ import Container from '@/components/ui/Container'
 const onboardingSteps = [
   {
     number: '1',
-    title: 'Natural-language rules engine',
-    description: 'Define your rostering requirements in plain English'
+    title: 'Set rules & demands',
+    description: 'Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.'
   },
   {
     number: '2', 
-    title: 'Roster simulation',
-    description: 'AI simulates thousands of possible roster combinations'
+    title: 'Collect requests & preferences',
+    description: 'Using the mobile app, staff can submit leave requests and preferences, ready for you to review and incorporate into the roster planning.'
   },
   {
     number: '3',
-    title: 'Collect employee requests',
-    description: 'Gather shift preferences and availability from your team'
+    title: 'Automatically generate a roster',
+    description: 'Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.'
   },
   {
     number: '4',
-    title: 'Generate rosters with one click',
-    description: 'Create optimized rosters in minutes, not hours'
+    title: 'Share your schedule',
+    description: 'Publish rosters to staff via mobile app with calendar sync. Share live rosters with other departments like payroll for seamless integration.'
   },
   {
     number: '5',
-    title: 'Review changes',
-    description: 'Make final adjustments and review the proposed roster'
+    title: 'Manage shift swaps & requests',
+    description: 'Automatically approve routine swaps while flagging critical changes. Stay in control of shifts that impact coverage, skills, or compliance.'
   },
   {
     number: '6',
-    title: 'Publish and send',
-    description: 'Distribute the final roster to your entire team'
+    title: 'Simulate different scenarios',
+    description: 'Run hypothetical roster scenarios to assess feasibility of changes without impacting your live roster - perfect for planning and optimization.'
   }
 ]
 
