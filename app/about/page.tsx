@@ -44,8 +44,8 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="/images/founders.webp"
-                alt="RosterLab founders"
+                src="https://rosterlab.com/hubfs/Group%20533.png"
+                alt="RosterLab mission"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"
@@ -116,10 +116,10 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">Dr. Sarah Chen</h4>
-                  <p className="text-blue-600 font-medium mb-3">Co-Founder & CEO</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-1">Dr Isaac Cleeland</h4>
+                  <p className="text-blue-600 font-medium mb-3">Creator & Founder</p>
                   <p className="text-sm text-gray-600">
-                    PhD in Operations Research from MIT. 15+ years experience in healthcare optimization and AI-driven scheduling solutions.
+                    Visionary leader in workforce optimization and AI-driven scheduling solutions for healthcare organizations.
                   </p>
                 </div>
               </div>
@@ -131,10 +131,10 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">Michael Rodriguez</h4>
-                  <p className="text-blue-600 font-medium mb-3">Co-Founder & CTO</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-1">Sunny Feng</h4>
+                  <p className="text-blue-600 font-medium mb-3">Co-Founder & Head of Product</p>
                   <p className="text-sm text-gray-600">
-                    Former Google engineer with expertise in distributed systems and machine learning. Built scheduling systems for Fortune 500 companies.
+                    Product visionary with deep expertise in healthcare operations and user-centered design for complex scheduling systems.
                   </p>
                 </div>
               </div>
@@ -146,10 +146,10 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">Emma Thompson</h4>
-                  <p className="text-blue-600 font-medium mb-3">Chief Operating Officer</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-1">Daniel Ge</h4>
+                  <p className="text-blue-600 font-medium mb-3">Co-Founder & Rostering Architect</p>
                   <p className="text-sm text-gray-600">
-                    20+ years in healthcare administration. Led workforce transformation initiatives at major hospital networks across Australia.
+                    Expert architect of advanced rostering algorithms and optimization strategies for complex workforce scheduling challenges.
                   </p>
                 </div>
               </div>
@@ -162,30 +162,30 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full mx-auto mb-4"></div>
-                <h4 className="font-semibold text-gray-900 mb-1">James Park</h4>
-                <p className="text-sm text-blue-600 mb-2">Head of Engineering</p>
-                <p className="text-xs text-gray-600">Full-stack architect with expertise in scalable cloud solutions</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Jason Ko</h4>
+                <p className="text-sm text-blue-600 mb-2">Core Team Member</p>
+                <p className="text-xs text-gray-600">Key contributor to RosterLab's innovative scheduling solutions</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4"></div>
-                <h4 className="font-semibold text-gray-900 mb-1">Dr. Lisa Wang</h4>
-                <p className="text-sm text-blue-600 mb-2">Head of Data Science</p>
-                <p className="text-xs text-gray-600">AI researcher specializing in constraint optimization</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Ryan Green</h4>
+                <p className="text-sm text-blue-600 mb-2">Core Team Member</p>
+                <p className="text-xs text-gray-600">Key contributor to RosterLab's technical excellence</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto mb-4"></div>
-                <h4 className="font-semibold text-gray-900 mb-1">Alex Kumar</h4>
-                <p className="text-sm text-blue-600 mb-2">Head of Product</p>
-                <p className="text-xs text-gray-600">Product strategist with deep healthcare industry knowledge</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Clemen Sun</h4>
+                <p className="text-sm text-blue-600 mb-2">Core Team Member</p>
+                <p className="text-xs text-gray-600">Key contributor to RosterLab's product innovation</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full mx-auto mb-4"></div>
-                <h4 className="font-semibold text-gray-900 mb-1">Rachel Green</h4>
-                <p className="text-sm text-blue-600 mb-2">Head of Customer Success</p>
-                <p className="text-xs text-gray-600">Healthcare workforce expert with nursing background</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Gary Kessell</h4>
+                <p className="text-sm text-blue-600 mb-2">Core Team Member</p>
+                <p className="text-xs text-gray-600">Key contributor to RosterLab's operational success</p>
               </div>
             </div>
           </div>

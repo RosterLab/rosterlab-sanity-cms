@@ -19,13 +19,9 @@ interface NavItem {
 
 interface HeaderProps {
   navItems?: NavItem[]
-  logo?: {
-    src: string
-    alt: string
-  }
 }
 
-export default function Header({ navItems = [], logo }: HeaderProps) {
+export default function Header({ navItems = [] }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
@@ -43,8 +39,8 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
       title: 'Industries',
       subItems: [
         { title: 'Healthcare', link: '/industries/healthcare' },
-        { title: 'ICU/ED', link: '/industries/healthcare/icu-ed' },
-        { title: 'Aged Care', link: '/industries/healthcare/aged-care' },
+        { title: 'ICU/ED', link: '/industries/healthcare/edicu' },
+        { title: 'Aged Care', link: '/industries/healthcare/agedcare' },
         { title: 'Radiology', link: '/industries/healthcare/radiology' },
         { title: 'See All Industries', link: '/industries' },
       ]
@@ -68,23 +64,18 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              {logo ? (
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={100}
-                  height={32}
-                  className="h-8 w-auto"
-                />
-              ) : (
-                <span className="text-xl font-bold text-blue-600">
-                  RosterLab
-                </span>
-              )}
+              <Image
+                src="/images/rosterlab-logo.png"
+                alt="RosterLab"
+                width={180}
+                height={48}
+                className="h-10 w-auto"
+                priority
+              />
             </Link>
           </div>
 
@@ -203,7 +194,7 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/staff-rostering-interactive-demo"
+                                href="/book-a-demo"
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -248,7 +239,7 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/staff-rostering-interactive-demo"
+              href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
             >
               Book a Demo
@@ -335,7 +326,7 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/staff-rostering-interactive-demo"
+              href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsMenuOpen(false)}
             >

@@ -5,7 +5,7 @@ const trustedLogos = [
   { src: '/images/logos/whanganui.png', alt: 'Whanganui', width: 120, height: 60 },
   { src: '/images/logos/western.png', alt: 'Western Health', width: 140, height: 60 },
   { src: '/images/logos/dargaville.png', alt: 'Dargaville', width: 100, height: 60 },
-  { src: '/images/logos/spectrum.png', alt: 'Spectrum', width: 120, height: 60 },
+  { src: 'https://rosterlab.com/hs-fs/hubfs/logos/Clients%20Logo/RPA.png?width=320&height=84&name=RPA.png', alt: 'RPA', width: 120, height: 60 },
   { src: '/images/logos/peticare.png', alt: 'Peticare', width: 140, height: 60 },
 ]
 

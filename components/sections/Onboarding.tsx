@@ -39,7 +39,7 @@ export default function Onboarding() {
       <Container>
         <div className="text-center mb-16">
           <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
-            ONBOARDING
+            FEATURES
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mt-2 mb-4">
             Six Key Steps to Perfect Rosters
