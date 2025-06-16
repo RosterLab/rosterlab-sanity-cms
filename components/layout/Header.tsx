@@ -114,16 +114,112 @@ export default function Header({ navItems = [], logo }: HeaderProps) {
                   
                   {/* Dropdown Menu */}
                   {item.subItems && activeDropdown === item.title && (
-                    <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
-                      {item.subItems.map((subItem) => (
-                        <Link
-                          key={subItem.link}
-                          href={subItem.link}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
+                    <div className={cn(
+                      "absolute top-full mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50",
+                      item.title === 'Solutions' ? 'left-0 w-[600px]' : 'left-0 w-64'
+                    )}>
+                      {item.title === 'Solutions' ? (
+                        // Enhanced Solutions Dropdown Layout
+                        <div className="p-6">
+                          <div className="grid grid-cols-2 gap-6">
+                            {/* Core Solutions Column */}
+                            <div>
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Core Solutions
+                              </h3>
+                              <div className="space-y-1">
+                                <Link
+                                  href="/solutions/ai-schedules"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    AI-Powered Scheduling
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Automated schedules optimized for your team
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/solutions/manual-scheduling"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Manual Digital Scheduling
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Free digital scheduling tools
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+
+                            {/* Features Column */}
+                            <div>
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Features
+                              </h3>
+                              <div className="space-y-1">
+                                <Link
+                                  href="/solutions/self-scheduling"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Self-Scheduling
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Empower staff to manage their shifts
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/solutions/shift-swaps"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Shift Swaps
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Easy shift trading between team members
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Call to Action */}
+                          <div className="mt-6 pt-6 border-t border-gray-200">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href="/solutions"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                              >
+                                View all solutions
+                                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </Link>
+                              <Link
+                                href="/demo"
+                                className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                              >
+                                Get a demo
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        // Standard dropdown for other menu items
+                        <div className="py-2">
+                          {item.subItems.map((subItem) => (
+                            <Link
+                              key={subItem.link}
+                              href={subItem.link}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
