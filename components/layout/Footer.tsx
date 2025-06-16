@@ -80,6 +80,11 @@ export default function Footer({ copyright, links = [], socialLinks = [] }: Foot
                 </Link>
               </li>
               <li>
+                <Link href="/roi-calculator" className="text-neutral-400 hover:text-white transition-colors">
+                  ROI Calculator
+                </Link>
+              </li>
+              <li>
                 <Link href="/blog" className="text-neutral-400 hover:text-white transition-colors">
                   Blog
                 </Link>
