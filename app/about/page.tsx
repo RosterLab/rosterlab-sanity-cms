@@ -110,10 +110,13 @@ export default function AboutPage() {
             <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Leadership</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="aspect-square bg-gradient-to-br from-blue-400 to-blue-600 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 bg-white/20 rounded-full"></div>
-                  </div>
+                <div className="aspect-square relative">
+                  <Image
+                    src="/images/team/Headshot isaac.jpg"
+                    alt="Dr Isaac Cleeland"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-1">Dr Isaac Cleeland</h4>
