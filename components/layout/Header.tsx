@@ -31,6 +31,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: 'AI-generated optimised schedules', link: '/solutions/ai-schedules' },
         { title: 'Free For Manual Digital Scheduling', link: '/solutions/manual-scheduling' },
+        { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
         { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
         { title: 'Shift Swaps', link: '/feature/shift-swaps' },
       ]
@@ -146,6 +147,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     Free digital scheduling tools
                                   </div>
                                 </Link>
+                                <Link
+                                  href="/solutions/staff-roster-mobile-app"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Employee Mobile App
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Mobile roster access for staff
+                                  </div>
+                                </Link>
                               </div>
                             </div>
 
@@ -157,9 +169,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-1">
                                 <Link
                                   href="/feature/self-scheduling"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                  className="group block p-3 rounded-lg hover:bg-pink-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 mb-1">
                                     Self-Scheduling
                                   </div>
                                   <div className="text-sm text-gray-600">
@@ -168,9 +180,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </Link>
                                 <Link
                                   href="/feature/shift-swaps"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                  className="group block p-3 rounded-lg hover:bg-pink-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 mb-1">
                                     Shift Swaps
                                   </div>
                                   <div className="text-sm text-gray-600">
@@ -185,10 +197,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
                               <Link
-                                href="/solutions"
+                                href="/contact"
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
-                                View all solutions
+                                Speak to our team
                                 <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
