@@ -1,5 +1,4 @@
 import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import { HiExternalLink, HiMail, HiLocationMarker, HiLightningBolt, HiUserGroup, HiGlobeAlt } from 'react-icons/hi'
 
@@ -10,20 +9,20 @@ export const metadata = {
 
 const openPositions = [
   {
-    title: 'Senior Software Engineer - AI/ML',
-    location: 'Auckland, New Zealand (Remote OK)',
+    title: 'Software Engineer - React/Node',
+    location: 'Auckland, New Zealand (Hybrid OK)',
     type: 'Full-time',
     department: 'Engineering',
     linkedinUrl: 'https://www.linkedin.com/jobs/view/4250149920',
-    description: 'Lead the development of our AI-powered scheduling algorithms and optimization engine.'
+    description: 'Build and maintain our full-stack web application using React, Node.js, and modern web technologies.'
   },
   {
-    title: 'Product Designer',
-    location: 'Auckland, New Zealand (Remote OK)',
+    title: 'Sales Account Executive',
+    location: 'Auckland, New Zealand (Hybrid OK)',
     type: 'Full-time',
-    department: 'Design',
+    department: 'Sales',
     linkedinUrl: 'https://www.linkedin.com/jobs/view/4250122963',
-    description: 'Design intuitive interfaces that make complex scheduling simple for healthcare teams.'
+    description: 'Drive revenue growth by identifying and closing new business opportunities in the healthcare sector.'
   }
 ]
 
@@ -84,9 +83,9 @@ export default function CareersPage() {
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <HiGlobeAlt className="w-8 h-8 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Remote-First</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">People First</h3>
               <p className="text-gray-600">
-                Work from anywhere while staying connected with regular team events and collaboration.
+                We prioritize our team's wellbeing with flexible work arrangements and a culture that values work-life balance.
               </p>
             </div>
           </div>
@@ -235,8 +234,8 @@ export default function CareersPage() {
                   <div>
                     <p className="font-semibold text-gray-900">RosterLab Headquarters</p>
                     <p className="text-gray-600">
-                      Level 1, 22 The Strand<br />
-                      Parnell, Auckland 1010<br />
+                      314/380 Khyber Pass Road<br />
+                      Newmarket, Auckland 1023<br />
                       New Zealand
                     </p>
                   </div>
@@ -295,12 +294,14 @@ export default function CareersPage() {
               Join us in our mission to give healthcare workers more time to focus on what matters most - patient care.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                href="#open-positions" 
-                className="bg-white text-blue-600 hover:bg-gray-100"
+              <a 
+                href="https://www.linkedin.com/company/rosterlab/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors"
               >
-                View Open Positions
-              </Button>
+                Follow us on LinkedIn
+              </a>
               <a
                 href="mailto:careers@rosterlab.com"
                 className="inline-flex items-center justify-center bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md font-medium transition-colors"
