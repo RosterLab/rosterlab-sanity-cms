@@ -320,13 +320,14 @@ Savings Breakdown:
                 >
                   Get a Custom Quote
                 </Button>
-                <Button 
+                <a 
                   href="https://app.rosterlab.com" 
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
+                  className="inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Start Free Trial
-                </Button>
+                </a>
               </div>
             </div>
           </div>
