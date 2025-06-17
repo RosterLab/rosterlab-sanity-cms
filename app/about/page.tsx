@@ -161,28 +161,36 @@ export default function AboutPage() {
             <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Core Team</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-black">JK</span>
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Jason Ko</h4>
                 <p className="text-sm text-blue-600 mb-2">Full Stack Software Developer</p>
                 <p className="text-xs text-gray-600">Building robust features across our entire tech stack to support smarter rostering.</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-black">RG</span>
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Ryan Green</h4>
                 <p className="text-sm text-blue-600 mb-2">Marketing Manager</p>
                 <p className="text-xs text-gray-600">Leading growth strategies and driving awareness of our staff scheduling tool.</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-black">CS</span>
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Clemen Sun</h4>
                 <p className="text-sm text-blue-600 mb-2">Software Engineer</p>
                 <p className="text-xs text-gray-600">Focusing on backend systems that power our AI-driven scheduling engine.</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full mx-auto mb-4"></div>
+                <div className="w-24 h-24 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-black">GK</span>
+                </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Gary Kessel</h4>
                 <p className="text-sm text-blue-600 mb-2">Roster Optimisation Specialist</p>
                 <p className="text-xs text-gray-600">Working closely with clients to fine-tune rosters and ensure real-world success.</p>
