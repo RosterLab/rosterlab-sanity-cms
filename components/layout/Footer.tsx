@@ -166,6 +166,11 @@ export default function Footer() {
                   Help Center
                 </Link>
               </li>
+              <li>
+                <Link href="/free-rostering-template" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Free Excel Spreadsheet
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

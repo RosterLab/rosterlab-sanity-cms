@@ -103,8 +103,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-neutral-900 mb-1">Headquarters</h3>
                     <p className="text-neutral-600">
-                      Level 1, 22 The Strand<br />
-                      Parnell, Auckland 1010<br />
+                      314/380 Khyber Pass Road<br />
+                      Newmarket, Auckland 1023<br />
                       New Zealand
                     </p>
                   </div>
