@@ -31,8 +31,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: 'AI-generated optimised schedules', link: '/solutions/ai-schedules' },
         { title: 'Free For Manual Digital Scheduling', link: '/solutions/manual-scheduling' },
-        { title: 'Self-Scheduling', link: '/solutions/self-scheduling' },
-        { title: 'Shift Swaps', link: '/solutions/shift-swaps' },
+        { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
+        { title: 'Shift Swaps', link: '/feature/shift-swaps' },
       ]
     },
     {
@@ -156,7 +156,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1">
                                 <Link
-                                  href="/solutions/self-scheduling"
+                                  href="/feature/self-scheduling"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -167,7 +167,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   </div>
                                 </Link>
                                 <Link
-                                  href="/solutions/shift-swaps"
+                                  href="/feature/shift-swaps"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">

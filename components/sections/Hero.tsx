@@ -35,7 +35,7 @@ export default function Hero() {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
           <Button
-            href="/staff-rostering-interactive-demo"
+            href="/book-a-demo"
             className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
           >
             Book a Demo

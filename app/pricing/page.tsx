@@ -21,7 +21,7 @@ const pricingPlans = [
       'Employee mobile apps'
     ],
     cta: 'SIGN UP FOR FREE',
-    ctaLink: '/signup',
+    ctaLink: 'https://app.rosterlab.com',
     highlighted: false
   },
   {
@@ -306,7 +306,7 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/signup" 
+                href="https://app.rosterlab.com" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
               >
                 Start Free Forever Plan
