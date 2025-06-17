@@ -10,7 +10,7 @@ export const metadata = {
 const openPositions = [
   {
     title: 'Software Engineer - React/Node',
-    location: 'Auckland, New Zealand (Hybrid OK)',
+    location: 'Auckland, New Zealand (Hybrid)',
     type: 'Full-time',
     department: 'Engineering',
     linkedinUrl: 'https://www.linkedin.com/jobs/view/4250149920',
@@ -18,7 +18,7 @@ const openPositions = [
   },
   {
     title: 'Sales Account Executive',
-    location: 'Auckland, New Zealand (Hybrid OK)',
+    location: 'Auckland, New Zealand (Hybrid)',
     type: 'Full-time',
     department: 'Sales',
     linkedinUrl: 'https://www.linkedin.com/jobs/view/4250122963',
@@ -42,6 +42,85 @@ export default function CareersPage() {
             <p className="text-xl text-gray-600 mb-8">
               Be part of a team that's making a real difference in healthcare by solving one of the industry's most complex challenges.
             </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* Team Culture Collage */}
+      <section className="py-16 bg-gray-50">
+        <Container>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            {/* Team lunch */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=Team+Lunch" 
+                alt="Team enjoying lunch together" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Office collaboration */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/10B981/FFFFFF?text=Collaboration" 
+                alt="Team collaborating in office" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Team outing */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Team+Outing" 
+                alt="Team outdoor activity" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Celebration */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Celebration" 
+                alt="Team celebrating success" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Game night */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/EC4899/FFFFFF?text=Game+Night" 
+                alt="Team game night" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Workshop */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/14B8A6/FFFFFF?text=Workshop" 
+                alt="Team learning workshop" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Coffee break */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/6366F1/FFFFFF?text=Coffee+Break" 
+                alt="Team coffee break" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            
+            {/* Team building */}
+            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
+              <img 
+                src="https://via.placeholder.com/400x300/F97316/FFFFFF?text=Team+Building" 
+                alt="Team building activity" 
+                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
           </div>
         </Container>
       </section>
@@ -197,11 +276,11 @@ export default function CareersPage() {
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-2">•</span>
-                  Software engineers with experience in AI/ML, optimization algorithms, or healthcare tech
+                  Software engineers with experience in React/Node
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-2">•</span>
-                  Product managers who understand enterprise SaaS and healthcare workflows
+                  Product marketeers who understand enterprise SaaS and B2B
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 mr-2">•</span>
@@ -227,7 +306,7 @@ export default function CareersPage() {
                   Our Office
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  While we're a remote-first company, our headquarters is located in beautiful Auckland, New Zealand. Team members are welcome to work from our office or remotely.
+                  Our headquarters is located in beautiful Auckland, New Zealand. Team members are welcome to work hybrid with a mix of in-person team days & off-site.
                 </p>
                 <div className="flex items-start">
                   <HiLocationMarker className="w-6 h-6 text-blue-600 mt-1 mr-3 flex-shrink-0" />
@@ -262,13 +341,13 @@ export default function CareersPage() {
                     <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Professional development budget
+                    Professional development
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Health and wellness programs
+                    Health and wellness focus
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
