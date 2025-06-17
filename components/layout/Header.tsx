@@ -113,7 +113,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   {item.subItems && activeDropdown === item.title && (
                     <div className={cn(
                       "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-50",
-                      item.title === 'Solutions' ? 'left-0 w-[600px]' : 'left-0 w-64'
+                      item.title === 'Solutions' || item.title === 'Industries' ? 'left-0 w-[600px]' : 'left-0 w-64'
                     )}>
                       {item.title === 'Solutions' ? (
                         // Enhanced Solutions Dropdown Layout
@@ -171,22 +171,16 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   href="/feature/self-scheduling"
                                   className="group block p-3 rounded-lg hover:bg-pink-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600">
                                     Self-Scheduling
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Empower staff to manage their shifts
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/shift-swaps"
                                   className="group block p-3 rounded-lg hover:bg-pink-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600">
                                     Shift Swaps
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Easy shift trading between team members
                                   </div>
                                 </Link>
                               </div>
@@ -201,6 +195,91 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
                                 Speak to our team
+                                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </Link>
+                              <Link
+                                href="/book-a-demo"
+                                className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                              >
+                                Get a demo
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      ) : item.title === 'Industries' ? (
+                        // Enhanced Industries Dropdown Layout
+                        <div className="p-6">
+                          <div className="grid grid-cols-2 gap-6">
+                            {/* Healthcare Solutions Column */}
+                            <div>
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Healthcare Sectors
+                              </h3>
+                              <div className="space-y-1">
+                                <Link
+                                  href="/industries/healthcare"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Healthcare
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    General healthcare scheduling solutions
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/industries/healthcare/edicu"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    ICU/ED
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Critical care and emergency departments
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+
+                            {/* Specialized Care Column */}
+                            <div>
+                              <div className="space-y-1 mt-8">
+                                <Link
+                                  href="/industries/healthcare/agedcare"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Aged Care
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Residential and home care facilities
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/industries/healthcare/radiology"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Radiology
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Medical imaging departments
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Call to Action */}
+                          <div className="mt-6 pt-6 border-t border-gray-200">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href="/industries"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                              >
+                                View all industries
                                 <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
