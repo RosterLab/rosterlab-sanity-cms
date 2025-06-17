@@ -15,7 +15,7 @@ const testimonials = [
     quote: "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical rosters!",
     author: "Peter",
     company: "Senior Registrar ICU, Western Australia", 
-    logo: "/images/logos/western.png"
+    logo: null
   },
   {
     quote: "RosterLab has been a pleasure to work with, and we highly recommend it to other medical practices and businesses.",
@@ -57,14 +57,16 @@ export default function Testimonials() {
                 </blockquote>
                 
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-20 h-12 relative">
-                    <Image
-                      src={testimonials[currentIndex].logo}
-                      alt={testimonials[currentIndex].company}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  {testimonials[currentIndex].logo && (
+                    <div className="w-20 h-12 relative">
+                      <Image
+                        src={testimonials[currentIndex].logo}
+                        alt={testimonials[currentIndex].company}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                   <div>
                     <p className="font-semibold text-neutral-900">
                       {testimonials[currentIndex].author}
@@ -92,6 +94,7 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
+
       </Container>
     </section>
   )

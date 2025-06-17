@@ -42,7 +42,7 @@ export default function Onboarding() {
             FEATURES
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mt-2 mb-4">
-            Six Key Steps to Perfect Rosters
+            Six Steps to Building Perfect Rosters
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Our streamlined process takes you from complex scheduling challenges to optimized rosters in just six simple steps.
