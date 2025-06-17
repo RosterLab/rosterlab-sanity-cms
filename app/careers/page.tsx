@@ -46,85 +46,6 @@ export default function CareersPage() {
         </Container>
       </section>
 
-      {/* Team Culture Collage */}
-      <section className="py-16 bg-gray-50">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {/* Team lunch */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/3B82F6/FFFFFF?text=Team+Lunch" 
-                alt="Team enjoying lunch together" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Office collaboration */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/10B981/FFFFFF?text=Collaboration" 
-                alt="Team collaborating in office" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Team outing */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/8B5CF6/FFFFFF?text=Team+Outing" 
-                alt="Team outdoor activity" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Celebration */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/F59E0B/FFFFFF?text=Celebration" 
-                alt="Team celebrating success" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Game night */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/EC4899/FFFFFF?text=Game+Night" 
-                alt="Team game night" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Workshop */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/14B8A6/FFFFFF?text=Workshop" 
-                alt="Team learning workshop" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Coffee break */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/6366F1/FFFFFF?text=Coffee+Break" 
-                alt="Team coffee break" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {/* Team building */}
-            <div className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow">
-              <img 
-                src="https://via.placeholder.com/400x300/F97316/FFFFFF?text=Team+Building" 
-                alt="Team building activity" 
-                className="w-full h-48 md:h-56 object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Why RosterLab */}
       <section className="py-20 bg-white">
         <Container>
@@ -135,6 +56,31 @@ export default function CareersPage() {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We're not just building software - we're transforming how healthcare organizations manage their most valuable asset: their people.
             </p>
+          </div>
+
+          {/* Mini photo collage */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
+            <div className="relative overflow-hidden rounded-lg shadow-md">
+              <img 
+                src="/images/collage bank/Collage 2.jpg" 
+                alt="Team culture" 
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-lg shadow-md">
+              <img 
+                src="/images/collage bank/collage 3.jpg" 
+                alt="Team activities" 
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-lg shadow-md">
+              <img 
+                src="/images/collage bank/collage 5.jpg" 
+                alt="Team collaboration" 
+                className="w-full h-48 object-cover"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">

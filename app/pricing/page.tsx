@@ -18,7 +18,7 @@ const pricingPlans = [
       'Simple rule violations check', 
       'Dynamic statistics counts',
       'Color coding by shifts',
-      'Employee mobile apps'
+      'Employee mobile app'
     ],
     cta: 'SIGN UP FOR FREE',
     ctaLink: 'https://app.rosterlab.com',
@@ -85,7 +85,7 @@ const features = [
     enterprise: true,
   },
   {
-    name: "Employee mobile apps",
+    name: "Employee mobile app",
     digital: true,
     ai: true,
     enterprise: true,
@@ -161,10 +161,10 @@ export default function PricingPage() {
         <Container>
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              OPTIMISE YOUR STAFFING
+              Optimise your staffing
             </h1>
             <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-8">
-              FROM TODAY
+              from today
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Choose the perfect plan for your organization. Start with our free digital rostering platform or unlock the power of AI optimization.
@@ -249,13 +249,16 @@ export default function PricingPage() {
                     Features
                   </th>
                   <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    Digital Rostering
+                    Digital Rostering<br />
+                    <span className="text-sm font-normal text-gray-600">Free Forever</span>
                   </th>
                   <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    AI Optimised
+                    AI Optimised<br />
+                    <span className="text-sm font-normal text-gray-600">$20 per person</span>
                   </th>
                   <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    Enterprise
+                    Enterprise<br />
+                    <span className="text-sm font-normal text-gray-600">Contact Us</span>
                   </th>
                 </tr>
               </thead>

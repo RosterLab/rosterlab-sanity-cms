@@ -2,6 +2,8 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
+import { HiMail } from 'react-icons/hi'
+import { FaLinkedin } from 'react-icons/fa'
 
 export const metadata = {
   title: 'About Us - RosterLab',
@@ -121,39 +123,99 @@ export default function AboutPage() {
                 <div className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-1">Dr Isaac Cleeland</h4>
                   <p className="text-blue-600 font-medium mb-3">Creator & Founder</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 mb-4">
                     Visionary leader in workforce optimization and AI-driven scheduling solutions for healthcare organizations.
                   </p>
+                  <div className="flex items-center justify-center gap-4">
+                    <a
+                      href="mailto:isaac@rosterlab.com"
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      aria-label="Email Isaac"
+                    >
+                      <HiMail className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/isaac-cleland-01652387/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      aria-label="Isaac's LinkedIn"
+                    >
+                      <FaLinkedin className="w-5 h-5" />
+                    </a>
+                  </div>
                 </div>
               </div>
               
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="aspect-square bg-gradient-to-br from-green-400 to-green-600 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 bg-white/20 rounded-full"></div>
-                  </div>
+                <div className="aspect-square relative">
+                  <Image
+                    src="/images/team/Sunny Headshot.jpg"
+                    alt="Sunny Feng"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-1">Sunny Feng</h4>
                   <p className="text-blue-600 font-medium mb-3">Co-Founder & Head of Product</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 mb-4">
                     Product visionary with deep expertise in healthcare operations and user-centered design for complex scheduling systems.
                   </p>
+                  <div className="flex items-center justify-center gap-4">
+                    <a
+                      href="mailto:sunny@rosterlab.com"
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      aria-label="Email Sunny"
+                    >
+                      <HiMail className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/sunny-feng-042085b4/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      aria-label="Sunny's LinkedIn"
+                    >
+                      <FaLinkedin className="w-5 h-5" />
+                    </a>
+                  </div>
                 </div>
               </div>
               
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="aspect-square bg-gradient-to-br from-purple-400 to-purple-600 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 bg-white/20 rounded-full"></div>
-                  </div>
+                <div className="aspect-square relative">
+                  <Image
+                    src="/images/team/Headshot daniel.jpg"
+                    alt="Daniel Ge"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h4 className="text-xl font-bold text-gray-900 mb-1">Daniel Ge</h4>
                   <p className="text-blue-600 font-medium mb-3">Co-Founder & Rostering Architect</p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 mb-4">
                     Expert architect of advanced rostering algorithms and optimization strategies for complex workforce scheduling challenges.
                   </p>
+                  <div className="flex items-center justify-center gap-4">
+                    <a
+                      href="mailto:daniel@rosterlab.com"
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      aria-label="Email Daniel"
+                    >
+                      <HiMail className="w-5 h-5" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/daniel-ge-a177ba158/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-blue-600 transition-colors"
+                      aria-label="Daniel's LinkedIn"
+                    >
+                      <FaLinkedin className="w-5 h-5" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
