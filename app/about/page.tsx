@@ -46,7 +46,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="https://rosterlab.com/hubfs/Group%20533.png"
+                src="/images/team/rosterlab-scaled-e1652151163143.jpg"
                 alt="RosterLab mission"
                 width={600}
                 height={400}
@@ -294,75 +294,63 @@ export default function AboutPage() {
               {/* Vertical line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-300"></div>
 
-              {/* Milestone 1 */}
+              {/* Milestone 1 - PhD Research */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <h3 className="text-xl font-bold text-gray-900">Company Founded</h3>
-                  <p className="text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. The journey begins with a vision to transform healthcare scheduling.</p>
+                  <h3 className="text-xl font-bold text-gray-900">The Idea Began</h3>
+                  <p className="text-gray-600 mt-2">The idea began with Isaac's PhD research in roster optimisation at the University of Auckland, where he explored how algorithms could dramatically improve workforce scheduling.</p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <p className="text-lg font-semibold text-blue-600">January 2019</p>
+                  <p className="text-lg font-semibold text-gray-700">University Research</p>
                 </div>
               </div>
 
-              {/* Milestone 2 */}
+              {/* Milestone 2 - Company Founded */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <p className="text-lg font-semibold text-green-600">August 2019</p>
+                  <p className="text-lg font-semibold text-gray-700">Company Founded</p>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <h3 className="text-xl font-bold text-gray-900">First Hospital Partnership</h3>
-                  <p className="text-gray-600 mt-2">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Our first major healthcare client validates our approach.</p>
+                  <h3 className="text-xl font-bold text-gray-900">RosterLab Founded</h3>
+                  <p className="text-gray-600 mt-2">RosterLab was founded by Daniel, Sunny, and Isaac - a team united by a shared mission to fix broken rostering systems in complex industries like healthcare.</p>
                 </div>
               </div>
 
-              {/* Milestone 3 */}
+              {/* Milestone 3 - Velocity Competition */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <h3 className="text-xl font-bold text-gray-900">AI Engine Launch</h3>
-                  <p className="text-gray-600 mt-2">Ut enim ad minim veniam, quis nostrud exercitation. Revolutionary AI-powered scheduling algorithm goes live.</p>
+                  <h3 className="text-xl font-bold text-gray-900">Velocity Innovation Competition Winners</h3>
+                  <p className="text-gray-600 mt-2">We won first place in the Velocity Innovation competition hosted by the University Of Auckland in 2020.</p>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <p className="text-lg font-semibold text-purple-600">March 2020</p>
+                  <p className="text-lg font-semibold text-gray-700">2020</p>
                 </div>
               </div>
 
-              {/* Milestone 4 */}
+              {/* Milestone 4 - World Champions */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <p className="text-lg font-semibold text-orange-600">November 2021</p>
+                  <p className="text-lg font-semibold text-gray-700">International Recognition</p>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <h3 className="text-xl font-bold text-gray-900">International Expansion</h3>
-                  <p className="text-gray-600 mt-2">Duis aute irure dolor in reprehenderit. Expanding beyond New Zealand to serve healthcare organizations globally.</p>
+                  <h3 className="text-xl font-bold text-gray-900">World Champions In Automatic Rostering</h3>
+                  <p className="text-gray-600 mt-2">Our technology won first place at the International Nurse Rostering Competition by providing the best solution.</p>
                 </div>
               </div>
 
-              {/* Milestone 5 */}
-              <div className="relative flex items-center justify-between mb-16">
-                <div className="w-5/12 text-right pr-8">
-                  <h3 className="text-xl font-bold text-gray-900">Mobile App Release</h3>
-                  <p className="text-gray-600 mt-2">Excepteur sint occaecat cupidatat non proident. Launch of iOS and Android apps for staff on-the-go access.</p>
-                </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-pink-600 rounded-full border-4 border-white shadow-lg"></div>
-                <div className="w-5/12 pl-8">
-                  <p className="text-lg font-semibold text-pink-600">June 2022</p>
-                </div>
-              </div>
-
-              {/* Milestone 6 */}
+              {/* Milestone 5 - Shared Mission */}
               <div className="relative flex items-center justify-between">
                 <div className="w-5/12 text-right pr-8">
-                  <p className="text-lg font-semibold text-indigo-600">December 2023</p>
+                  <h3 className="text-xl font-bold text-gray-900">Our Mission Crystallized</h3>
+                  <p className="text-gray-600 mt-2">What started as an academic project quickly turned into a shared mission: to take the pain out of scheduling and give time back to frontline staff.</p>
                 </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <h3 className="text-xl font-bold text-gray-900">1000+ Healthcare Teams</h3>
-                  <p className="text-gray-600 mt-2">Lorem ipsum dolor sit amet. Milestone achievement serving over 1000 healthcare teams worldwide.</p>
+                  <p className="text-lg font-semibold text-gray-700">Today</p>
                 </div>
               </div>
             </div>

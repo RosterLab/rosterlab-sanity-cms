@@ -20,7 +20,9 @@ export default function HealthcarePage() {
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Solutions for{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-500">
+                <span className="text-transparent bg-clip-text" style={{
+                  backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+                }}>
                   Healthcare
                 </span>
               </h1>

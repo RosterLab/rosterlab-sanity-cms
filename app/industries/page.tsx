@@ -17,10 +17,7 @@ export default function IndustriesPage() {
         <Container>
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Smart AI Rostering Software for{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-                All Industries
-              </span>
+              AI Rostering Software for Industries with Complex Schedules
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               Whether you're managing nurses, teachers, call center agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
@@ -127,10 +124,13 @@ export default function IndustriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Education */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
-                <svg className="w-24 h-24 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
+              <div className="h-48 relative">
+                <Image
+                  src="https://rosterlab.com/hubfs/industry_1.webp"
+                  alt="Education industry scheduling"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Education</h3>
@@ -162,10 +162,13 @@ export default function IndustriesPage() {
 
             {/* Call Centers */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
-                <svg className="w-24 h-24 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
+              <div className="h-48 relative">
+                <Image
+                  src="https://rosterlab.com/hubfs/industry_2.webp"
+                  alt="Call centers industry scheduling"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Call Centers</h3>
@@ -197,13 +200,16 @@ export default function IndustriesPage() {
 
             {/* Transportation */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
-                <svg className="w-24 h-24 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10h3m5-13h2m-2 0v2m0 10h.01" />
-                </svg>
+              <div className="h-48 relative">
+                <Image
+                  src="https://rosterlab.com/hubfs/industry_3.webp"
+                  alt="Transportation industry scheduling"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Transportation & Logistics</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Transportation</h3>
                 <p className="text-gray-600 mb-4">
                   Schedule drivers, pilots, and crew while managing hours of service, route qualifications, and regulatory compliance.
                 </p>
@@ -232,10 +238,13 @@ export default function IndustriesPage() {
 
             {/* Hospitality */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center">
-                <svg className="w-24 h-24 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
+              <div className="h-48 relative">
+                <Image
+                  src="https://rosterlab.com/hubfs/industry_4.webp"
+                  alt="Hospitality industry scheduling"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Hospitality</h3>
@@ -267,13 +276,16 @@ export default function IndustriesPage() {
 
             {/* Manufacturing */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-gray-600 to-gray-700 flex items-center justify-center">
-                <svg className="w-24 h-24 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                </svg>
+              <div className="h-48 relative">
+                <Image
+                  src="https://rosterlab.com/hubfs/industry_5.webp"
+                  alt="Manufacturing & logistics industry scheduling"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Manufacturing</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Manufacturing & Logistics</h3>
                 <p className="text-gray-600 mb-4">
                   Manage shift patterns, skill requirements, and production line coverage while maintaining safety and efficiency standards.
                 </p>
@@ -302,10 +314,13 @@ export default function IndustriesPage() {
 
             {/* Airports */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center">
-                <svg className="w-24 h-24 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+              <div className="h-48 relative">
+                <Image
+                  src="https://rosterlab.com/hubfs/industry_6.webp"
+                  alt="Airports industry scheduling"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Airports</h3>
