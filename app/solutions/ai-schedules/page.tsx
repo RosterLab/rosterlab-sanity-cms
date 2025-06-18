@@ -2,11 +2,12 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
+import GenerateRosterButton from '@/components/ui/GenerateRosterButton'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Unlock the full power of AI - RosterLab',
-  description: 'Make rostering faster than ever before with AI-powered optimization that creates perfect schedules automatically.',
+  title: 'Make rostering faster than ever before - RosterLab',
+  description: 'Unlock the full power of AI with AI-powered optimization that creates perfect schedules automatically.',
 }
 
 export default function AISchedulesPage() {
@@ -17,27 +18,13 @@ export default function AISchedulesPage() {
         <Container>
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Unlock the full power of AI
+              Make rostering faster than ever before
             </h1>
             <p className="text-2xl text-gray-600 mb-12">
-              Make rostering faster than ever before
+              Unlock the full power of AI
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Button href="/demo" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
-                Book a Demo
-              </Button>
-              <Button href="/contact" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg">
-                Contact Us
-              </Button>
-            </div>
-            <div className="max-w-3xl mx-auto">
-              <Image
-                src="/images/generating.webp"
-                alt="AI generating optimized schedules"
-                width={800}
-                height={500}
-                className="rounded-lg shadow-xl"
-              />
+            <div className="flex justify-center mb-16">
+              <GenerateRosterButton />
             </div>
           </div>
         </Container>
@@ -69,7 +56,7 @@ export default function AISchedulesPage() {
                     <HiTrendingUp className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimized Efficiency</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
                     <p className="text-gray-600">Mathematical optimization ensures the most efficient staff allocation and resource utilization</p>
                   </div>
                 </div>
@@ -85,13 +72,9 @@ export default function AISchedulesPage() {
               </div>
             </div>
             <div>
-              <Image
-                src="/images/optimise-your-workforce-with-ai.png"
-                alt="AI workforce optimization dashboard"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-lg"
-              />
+              <div className="bg-gray-200 rounded-lg shadow-lg flex items-center justify-center" style={{ width: '600px', height: '500px' }}>
+                <span className="text-gray-500 text-xl">Placeholder Image</span>
+              </div>
             </div>
           </div>
         </Container>

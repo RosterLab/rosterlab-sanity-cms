@@ -62,7 +62,7 @@ export default function ManualSchedulingPage() {
     <SiteLayout>
       <>
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-100 via-purple-50 to-green-100 py-20 relative overflow-hidden">
+      <div className="bg-white py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -124,20 +124,16 @@ export default function ManualSchedulingPage() {
               </div>
             </div>
             <div className="relative">
-              <Image
-                src="/images/free product/Free digital product.png"
-                alt="Digital scheduling illustration with people working on devices and circular sync icons"
-                width={600}
-                height={400}
-                className="relative z-10"
-              />
+              <div className="bg-gray-200 rounded-lg flex items-center justify-center" style={{ width: '600px', height: '400px' }}>
+                <span className="text-gray-500 text-xl">Placeholder Image</span>
+              </div>
             </div>
           </div>
         </Container>
       </div>
 
       {/* Pain Points Section */}
-      <div className="bg-red-50 py-20">
+      <div className="bg-gray-50 py-20">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -149,8 +145,8 @@ export default function ManualSchedulingPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {painPoints.map((point, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="text-xl font-bold text-red-600 mb-3">
+              <div key={index} className="bg-white rounded-lg p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {point.title}
                 </h3>
                 <p className="text-gray-600">
@@ -163,8 +159,8 @@ export default function ManualSchedulingPage() {
       </div>
 
       {/* Benefits Section */}
-      <Container>
-        <div className="py-20">
+      <div className="bg-white py-20">
+        <Container>
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             The Smart Solution
           </h2>
@@ -179,8 +175,8 @@ export default function ManualSchedulingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-6">
+                  <benefit.icon className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {benefit.title}
@@ -191,8 +187,8 @@ export default function ManualSchedulingPage() {
               </div>
             ))}
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
 
       {/* Features Section */}
       <div className="bg-gray-50 py-20">
@@ -228,14 +224,14 @@ export default function ManualSchedulingPage() {
       </div>
 
       {/* How It Works Section */}
-      <Container>
-        <div className="py-20">
+      <div className="bg-white py-20">
+        <Container>
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             How Smart Manual Scheduling Works
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 1
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Setup Your Rules</h3>
@@ -244,7 +240,7 @@ export default function ManualSchedulingPage() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 2
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Create with Guidance</h3>
@@ -253,7 +249,7 @@ export default function ManualSchedulingPage() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                 3
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Monitor & Adjust</h3>
@@ -262,11 +258,11 @@ export default function ManualSchedulingPage() {
               </p>
             </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
 
       {/* Trusted By Section */}
-      <div className="bg-blue-50 py-20">
+      <div className="bg-white py-20">
         <Container>
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -277,12 +273,12 @@ export default function ManualSchedulingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-8 items-center justify-center">
               <div className="bg-white rounded-lg p-6 shadow-sm">
-                <HiShieldCheck className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+                <HiShieldCheck className="w-8 h-8 text-green-600 mx-auto mb-3" />
                 <div className="text-2xl font-bold text-gray-900">Healthcare</div>
                 <div className="text-sm text-gray-600">Specialized</div>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-sm">
-                <HiUsers className="w-8 h-8 text-green-600 mx-auto mb-3" />
+                <HiUsers className="w-8 h-8 text-blue-600 mx-auto mb-3" />
                 <div className="text-2xl font-bold text-gray-900">1000+</div>
                 <div className="text-sm text-gray-600">Staff Scheduled</div>
               </div>
@@ -308,25 +304,30 @@ export default function ManualSchedulingPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-green-600 to-blue-500 py-20">
+      <div 
+        className="py-20 relative"
+        style={{
+          background: 'linear-gradient(to right, rgba(0, 69, 189, 0.4) 2%, rgba(2, 158, 191, 0.4) 50%, rgba(4, 246, 192, 0.4) 100%)'
+        }}
+      >
         <Container>
-          <div className="text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-gray-900">
               Ready to Simplify Your Scheduling?
             </h2>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-gray-700">
               Start with our free digital scheduling tool and transform your workforce management today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 href="https://app.rosterlab.com" 
-                className="bg-white text-green-600 hover:bg-gray-100 px-8 py-4"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4"
               >
                 Start for Free
               </Button>
               <Button 
                 href="/demo" 
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-600 px-8 py-4"
+                className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4"
               >
                 Book a Demo
               </Button>
