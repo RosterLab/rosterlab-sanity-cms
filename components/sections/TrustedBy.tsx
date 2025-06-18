@@ -18,7 +18,7 @@ export default function TrustedBy() {
           <h2 className="text-2xl font-semibold text-neutral-700 mb-8">
             Trusted by leading healthcare organizations
           </h2>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
             {trustedLogos.map((logo, index) => (
               <div key={index} className="flex items-center justify-center transition-all duration-300">
                 <Image
@@ -26,7 +26,7 @@ export default function TrustedBy() {
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
-                  className="max-w-full h-auto"
+                  className="max-w-full h-auto opacity-80 hover:opacity-100"
                 />
               </div>
             ))}

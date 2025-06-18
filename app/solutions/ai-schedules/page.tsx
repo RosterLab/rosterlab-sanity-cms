@@ -3,12 +3,40 @@ import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
 import GenerateRosterButton from '@/components/ui/GenerateRosterButton'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck } from 'react-icons/hi'
 
 export const metadata = {
   title: 'Make rostering faster than ever before - RosterLab',
   description: 'Unlock the full power of AI with AI-powered optimization that creates perfect schedules automatically.',
 }
+
+const faqItems = [
+  {
+    question: "How does AI-powered scheduling actually work?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our AI algorithms analyze historical data, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+  },
+  {
+    question: "How long does it take to implement RosterLab's AI scheduling?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
+  },
+  {
+    question: "Can the AI handle complex compliance and union rules?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
+  },
+  {
+    question: "What happens if we need to make manual adjustments to AI-generated schedules?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing. The AI learns from these adjustments to improve future recommendations."
+  },
+  {
+    question: "How much time and cost savings can we expect?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. Actual savings depend on your current processes and organization size."
+  },
+  {
+    question: "Is our data secure with cloud-based AI scheduling?",
+    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. We use enterprise-grade security with end-to-end encryption, SOC 2 compliance, and regular security audits. Your data is stored in secure, geographically distributed data centers with automatic backups and disaster recovery."
+  }
+]
 
 export default function AISchedulesPage() {
   return (
@@ -199,6 +227,21 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-white py-20">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Everything you need to know about AI-powered scheduling
+            </p>
+            <FAQAccordion items={faqItems} />
           </div>
         </Container>
       </div>

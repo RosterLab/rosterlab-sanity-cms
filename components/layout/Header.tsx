@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi'
+import { HiMenu, HiX, HiChevronDown, HiUser } from 'react-icons/hi'
 
 interface SubMenuItem {
   title: string
@@ -32,13 +32,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: 'AI-generated optimised schedules', link: '/solutions/ai-schedules' },
         { title: 'Free For Manual Digital Scheduling', link: '/solutions/manual-scheduling' },
         { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
+        { title: 'Preferences & Rules', link: '/feature/preferences-rules' },
+        { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
         { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
+        { title: 'Leave Requests', link: '/feature/leave-requests' },
         { title: 'Shift Swaps', link: '/feature/shift-swaps' },
         { title: 'Open Shifts', link: '/feature/open-shifts' },
-        { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
         { title: 'Re-Rostering', link: '/feature/re-rostering' },
-        { title: 'Leave Requests', link: '/feature/leave-requests' },
-        { title: 'Preferences & Rules', link: '/feature/preferences-rules' },
         { title: 'Payroll Integration', link: '/feature/payroll-integration' },
       ]
     },
@@ -150,7 +150,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     Manual Digital Scheduling
                                   </div>
                                   <div className="text-sm text-gray-600">
-                                    Free digital scheduling tools
+                                    Free digital scheduling tool
                                   </div>
                                 </Link>
                                 <Link
@@ -174,11 +174,35 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1 max-h-80 overflow-y-auto">
                                 <Link
+                                  href="/feature/preferences-rules"
+                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                    Preferences & Rules
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/auto-roster-generation"
+                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                    Auto Roster Generation
+                                  </div>
+                                </Link>
+                                <Link
                                   href="/feature/self-scheduling"
                                   className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
                                     Self-Scheduling
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/leave-requests"
+                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                    Leave Requests
                                   </div>
                                 </Link>
                                 <Link
@@ -198,35 +222,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   </div>
                                 </Link>
                                 <Link
-                                  href="/feature/auto-roster-generation"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
-                                    Auto Roster Generation
-                                  </div>
-                                </Link>
-                                <Link
                                   href="/feature/re-rostering"
                                   className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
                                     Re-Rostering
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/leave-requests"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
-                                    Leave Requests
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/preferences-rules"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
-                                    Preferences & Rules
                                   </div>
                                 </Link>
                                 <Link
@@ -376,11 +376,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
             >
               Contact Us
             </Link>
+            <div className="w-px h-6 bg-gray-300 mx-2" />
             <Link
               href="https://app.rosterlab.com"
-              className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+              className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center"
               target="_blank"
             >
+              <HiUser className="w-4 h-4 mr-1" />
               Login
             </Link>
             <Link
