@@ -69,10 +69,10 @@ export default function ContactPage() {
           {/* HubSpot Demo Form */}
           <div className="bg-white rounded-lg shadow-sm p-8">
             <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-              Book Your Demo
+              Speak to us about your rostering challenges
             </h2>
             <p className="text-neutral-600 mb-6">
-              Fill out the form below and our team will reach out to schedule a personalized demo of RosterLab&apos;s AI-powered rostering platform.
+              Fill out the form below and our team will be in touch to discuss how we can help you create the perfect roster for your team.
             </p>
             <ContactForm className="contact-form" />
           </div>

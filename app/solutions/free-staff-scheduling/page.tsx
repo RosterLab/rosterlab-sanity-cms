@@ -5,8 +5,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiShieldCheck } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Smart Manual Scheduling - RosterLab',
-  description: 'Simplify your workforce management with intelligent manual scheduling tools. Move from spreadsheets to smart digital scheduling.',
+  title: 'Free Staff Scheduling Platform - No More Spreadsheets!',
+  description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
 }
 
 const benefits = [
@@ -110,7 +110,7 @@ export default function ManualSchedulingPage() {
                 <Button href="https://app.rosterlab.com" className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 rounded-full font-semibold">
                   Start for Free
                 </Button>
-                <Button href="/book-a-demo" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold">
+                <Button href="/solutions/ai-schedules" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold">
                   Discover AI Rosters
                 </Button>
               </div>

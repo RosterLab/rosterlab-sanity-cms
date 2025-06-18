@@ -2,39 +2,35 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
-import GenerateRosterButton from '@/components/ui/GenerateRosterButton'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Make rostering faster than ever before - RosterLab',
-  description: 'Unlock the full power of AI with AI-powered optimization that creates perfect schedules automatically.',
+  title: 'AI Staff Scheduling Solution - 90% Time Reduction',
+  description: 'Reduce staff scheduling admin by up to 90% with our AI-powered solution. Automate rosters, boost coverage accuracy, & free managers to focus on what matters.',
 }
 
 const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our AI algorithms analyze historical data, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+    answer: "Our AI algorithms analyze historical data, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
+    answer: "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
   },
   {
     question: "Can the AI handle complex compliance and union rules?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
+    answer: "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
   },
   {
     question: "What happens if we need to make manual adjustments to AI-generated schedules?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing. The AI learns from these adjustments to improve future recommendations."
+    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing. The AI learns from these adjustments to improve future recommendations."
   },
   {
     question: "How much time and cost savings can we expect?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. Actual savings depend on your current processes and organization size."
-  },
-  {
-    question: "Is our data secure with cloud-based AI scheduling?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. We use enterprise-grade security with end-to-end encryption, SOC 2 compliance, and regular security audits. Your data is stored in secure, geographically distributed data centers with automatic backups and disaster recovery."
+    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. Actual savings depend on your current processes and organization size."
   }
 ]
 
@@ -49,10 +45,21 @@ export default function AISchedulesPage() {
               Make rostering faster than ever before
             </h1>
             <p className="text-2xl text-gray-600 mb-12">
-              Unlock the full power of AI
+              Unlock the full power of AI roster creation
             </p>
-            <div className="flex justify-center mb-16">
-              <GenerateRosterButton />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+              <Button 
+                href="/demo" 
+                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
+              >
+                Book a Demo
+              </Button>
+              <Button 
+                href="/example" 
+                className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
+              >
+                See an Example
+              </Button>
             </div>
           </div>
         </Container>
@@ -99,10 +106,8 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
-            <div>
-              <div className="bg-gray-200 rounded-lg shadow-lg flex items-center justify-center" style={{ width: '600px', height: '500px' }}>
-                <span className="text-gray-500 text-xl">Placeholder Image</span>
-              </div>
+            <div className="w-full max-w-[600px]">
+              <RosterLoadingBar />
             </div>
           </div>
         </Container>

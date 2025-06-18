@@ -30,7 +30,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
       title: 'Solutions',
       subItems: [
         { title: 'AI-generated optimised schedules', link: '/solutions/ai-schedules' },
-        { title: 'Free For Manual Digital Scheduling', link: '/solutions/manual-scheduling' },
+        { title: 'Free For Manual Digital Scheduling', link: '/solutions/free-staff-scheduling' },
         { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
         { title: 'Preferences & Rules', link: '/feature/preferences-rules' },
         { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
@@ -143,7 +143,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   </div>
                                 </Link>
                                 <Link
-                                  href="/solutions/manual-scheduling"
+                                  href="/solutions/free-staff-scheduling"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">

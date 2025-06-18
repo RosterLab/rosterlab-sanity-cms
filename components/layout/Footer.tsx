@@ -91,7 +91,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/manual-scheduling" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/solutions/free-staff-scheduling" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Free digital scheduling tool
                 </Link>
               </li>
