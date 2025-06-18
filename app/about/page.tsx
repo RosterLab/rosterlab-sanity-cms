@@ -6,16 +6,16 @@ import { HiMail, HiLightBulb, HiScale, HiTrendingUp } from 'react-icons/hi'
 import { FaLinkedin } from 'react-icons/fa'
 
 export const metadata = {
-  title: 'About Us - RosterLab',
-  description: 'Learn about RosterLab\'s mission to revolutionize workforce scheduling with AI-powered optimization solutions.',
+  title: 'About Us - Meet the Team Behind RosterLab',
+  description: 'Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.',
 }
 
 export default function AboutPage() {
   return (
     <SiteLayout>
-      <div className="py-16">
       {/* Hero Section */}
-      <Container>
+      <div className="py-16">
+        <Container>
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             About RosterLab
@@ -24,7 +24,8 @@ export default function AboutPage() {
             We&apos;re revolutionizing workforce management with AI-powered scheduling solutions that save time, reduce costs, and improve staff satisfaction.
           </p>
         </div>
-      </Container>
+        </Container>
+      </div>
 
       {/* Mission Section */}
       <div className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
@@ -46,8 +47,8 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="/images/team/rosterlab-scaled-e1652151163143.jpg"
-                alt="RosterLab mission"
+                src="/images/team/rosterlab team photo.jpg"
+                alt="RosterLab team"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"
@@ -88,7 +89,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Impact</h3>
               <p className="text-gray-600">
-                We measure success by the time saved, stress reduced, and lives improved through better scheduling.
+                We measure success by time saved, stress reduced & lives improved through better scheduling.
               </p>
             </div>
           </div>
@@ -226,8 +227,8 @@ export default function AboutPage() {
             <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Core Team</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-indigo-200 to-indigo-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-indigo-800">JK</span>
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-blue-800">JK</span>
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Jason Ko</h4>
                 <p className="text-sm text-blue-600 mb-2">Full Stack Software Developer</p>
@@ -235,8 +236,8 @@ export default function AboutPage() {
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-pink-800">RG</span>
+                <div className="w-24 h-24 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-slate-800">RG</span>
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Ryan Green</h4>
                 <p className="text-sm text-blue-600 mb-2">Marketing Manager</p>
@@ -244,8 +245,8 @@ export default function AboutPage() {
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-amber-800">CS</span>
+                <div className="w-24 h-24 bg-gradient-to-br from-sky-100 to-sky-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-sky-800">CS</span>
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Clemen Sun</h4>
                 <p className="text-sm text-blue-600 mb-2">Software Engineer</p>
@@ -253,8 +254,8 @@ export default function AboutPage() {
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-teal-200 to-teal-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-teal-800">GK</span>
+                <div className="w-24 h-24 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-indigo-800">GK</span>
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Gary Kessel</h4>
                 <p className="text-sm text-blue-600 mb-2">Roster Optimisation Specialist</p>
@@ -343,14 +344,26 @@ export default function AboutPage() {
               </div>
 
               {/* Milestone 5 - Shared Mission */}
-              <div className="relative flex items-center justify-between">
+              <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
                   <h3 className="text-xl font-bold text-gray-900">Our Mission Crystallized</h3>
                   <p className="text-gray-600 mt-2">What started as an academic project quickly turned into a shared mission: to take the pain out of scheduling and give time back to frontline staff.</p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
+                  <p className="text-lg font-semibold text-gray-700">2024</p>
+                </div>
+              </div>
+
+              {/* Milestone 6 - Real-World Impact */}
+              <div className="relative flex items-center justify-between">
+                <div className="w-5/12 text-right pr-8">
                   <p className="text-lg font-semibold text-gray-700">Today</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <h3 className="text-xl font-bold text-gray-900">Real-World Impact</h3>
+                  <p className="text-gray-600 mt-2">Today, our staff scheduling software is used by hundreds of clients in healthcare and other industries, helping solve some of the most complex rostering problems.</p>
                 </div>
               </div>
             </div>
@@ -385,7 +398,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
-    </div>
     </SiteLayout>
   )
 }

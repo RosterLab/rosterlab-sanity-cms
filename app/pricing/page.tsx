@@ -4,8 +4,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import { HiCheck, HiMinus } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Pricing - RosterLab',
-  description: 'OPTIMISE YOUR STAFFING FROM TODAY. Choose from Digital Rostering (Free), AI Optimised Rostering ($20/month), or Enterprise Solution.',
+  title: 'Pricing - Affordable AI Staff Scheduling Software',
+  description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
 }
 
 const pricingPlans = [

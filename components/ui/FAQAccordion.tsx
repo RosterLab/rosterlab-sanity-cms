@@ -47,9 +47,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
               openIndex === index ? "py-4 pb-6" : "max-h-0"
             )}
           >
-            <p className="text-gray-600 leading-relaxed">
-              {item.answer}
-            </p>
+            <p className="text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.answer }} />
           </div>
         </div>
       ))}
