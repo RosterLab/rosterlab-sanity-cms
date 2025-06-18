@@ -159,49 +159,7 @@ export default function ShiftSwapsPage() {
                   <div className="p-6">
                     {/* Swap Request Cards */}
                     <div className="space-y-3">
-                      {/* Request 1 - Auto-approved */}
-                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-sm">
-                              <span className="text-sm font-bold text-white">SJ</span>
-                            </div>
-                            <div>
-                              <p className="font-semibold text-gray-900">Sarah Johnson</p>
-                              <p className="text-sm text-gray-600">Registered Nurse • Ward 3B</p>
-                            </div>
-                          </div>
-                          <div className="bg-green-50 border border-green-200 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1">
-                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                            Auto-Approved
-                          </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-lg p-3 mb-3 border border-gray-200">
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Current Shift</p>
-                              <p className="text-sm font-semibold text-gray-900">Monday 14 Oct</p>
-                              <p className="text-sm text-gray-600">07:00 - 15:00</p>
-                            </div>
-                            <div>
-                              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Requested Shift</p>
-                              <p className="text-sm font-semibold text-gray-900">Tuesday 15 Oct</p>
-                              <p className="text-sm text-gray-600">07:00 - 15:00</p>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-xs text-gray-600">
-                            <HiShieldCheck className="w-4 h-4 text-green-600" />
-                            <span className="font-medium">All compliance checks passed</span>
-                          </div>
-                          <span className="text-xs text-gray-500">2 mins ago</span>
-                        </div>
-                      </div>
-
-                      {/* Request 2 - Needs review */}
+                      {/* Request - Needs review */}
                       <div className={`rounded-lg p-4 border transition-all duration-300 ${
                         isApproved 
                           ? 'bg-gray-50 border-gray-100' 
@@ -510,8 +468,189 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Audit Trail Visualization</span>
+                <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">Shift Swap Audit Log</h3>
+                        <p className="text-sm text-blue-100 mt-1">Complete history and compliance tracking</p>
+                      </div>
+                      <button className="bg-white/20 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                        </svg>
+                        Export Report
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    {/* Filter Tabs */}
+                    <div className="flex gap-2 mb-6 border-b border-gray-200">
+                      <button className="px-4 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600">
+                        All Activity
+                      </button>
+                      <button className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                        Approved
+                      </button>
+                      <button className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                        Rejected
+                      </button>
+                      <button className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                        Compliance Flags
+                      </button>
+                    </div>
+                    
+                    {/* Audit Trail Entries */}
+                    <div className="space-y-3">
+                      {/* Entry 1 - Recent Approval */}
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-100 hover:shadow-sm transition-shadow">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                              <HiCheck className="w-5 h-5 text-green-600" />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-gray-900 text-sm">Swap Approved (Manager Override)</p>
+                              <p className="text-xs text-gray-600 mt-1">Michael Roberts ↔ Emma Wilson</p>
+                              <p className="text-xs text-gray-500">Wed 16 Oct (15:00-23:00) → Thu 17 Oct (23:00-07:00)</p>
+                            </div>
+                          </div>
+                          <span className="text-xs text-gray-500 whitespace-nowrap">2 mins ago</span>
+                        </div>
+                        <div className="ml-13 space-y-2">
+                          <div className="flex items-center gap-2 text-xs">
+                            <span className="font-medium text-gray-700">Approved by:</span>
+                            <span className="text-gray-600">Sarah Chen (Nurse Manager)</span>
+                          </div>
+                          <div className="flex items-start gap-2 text-xs">
+                            <span className="font-medium text-gray-700">Reason:</span>
+                            <span className="text-gray-600">Weekly hours limit override granted for critical ICU coverage</span>
+                          </div>
+                          <div className="flex items-center gap-4 text-xs">
+                            <span className="flex items-center gap-1 text-amber-600">
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                              </svg>
+                              Compliance Note: 48hr week exceeded
+                            </span>
+                            <span className="text-gray-500">IP: 192.168.1.42</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Entry 2 - Auto-approved */}
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-100 hover:shadow-sm transition-shadow">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                              <HiShieldCheck className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-gray-900 text-sm">Swap Auto-Approved</p>
+                              <p className="text-xs text-gray-600 mt-1">Sarah Johnson ↔ David Lee</p>
+                              <p className="text-xs text-gray-500">Mon 14 Oct (07:00-15:00) → Tue 15 Oct (07:00-15:00)</p>
+                            </div>
+                          </div>
+                          <span className="text-xs text-gray-500 whitespace-nowrap">1 hour ago</span>
+                        </div>
+                        <div className="ml-13 space-y-2">
+                          <div className="flex items-center gap-2 text-xs">
+                            <span className="font-medium text-gray-700">System:</span>
+                            <span className="text-gray-600">Automated approval - all compliance checks passed</span>
+                          </div>
+                          <div className="flex items-center gap-4 text-xs">
+                            <span className="text-green-600">✓ Skills match</span>
+                            <span className="text-green-600">✓ Hours compliant</span>
+                            <span className="text-green-600">✓ Rest periods met</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Entry 3 - Rejected */}
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-100 hover:shadow-sm transition-shadow">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                              <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </div>
+                            <div>
+                              <p className="font-semibold text-gray-900 text-sm">Swap Request Rejected</p>
+                              <p className="text-xs text-gray-600 mt-1">Lisa Thompson ↔ Mark Davis</p>
+                              <p className="text-xs text-gray-500">Fri 18 Oct (23:00-07:00) → Sat 19 Oct (23:00-07:00)</p>
+                            </div>
+                          </div>
+                          <span className="text-xs text-gray-500 whitespace-nowrap">3 hours ago</span>
+                        </div>
+                        <div className="ml-13 space-y-2">
+                          <div className="flex items-center gap-2 text-xs">
+                            <span className="font-medium text-gray-700">Rejected by:</span>
+                            <span className="text-gray-600">System (Auto-rejection)</span>
+                          </div>
+                          <div className="flex items-start gap-2 text-xs">
+                            <span className="font-medium text-gray-700">Reason:</span>
+                            <span className="text-gray-600">Insufficient rest period between shifts (6 hours, minimum 8 required)</span>
+                          </div>
+                          <div className="flex items-center gap-4 text-xs">
+                            <span className="text-red-600">✗ Labor law violation</span>
+                            <span className="text-gray-500">Ref: LAB-2024-1847</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Entry 4 - Modification */}
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-100 hover:shadow-sm transition-shadow">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                              <HiRefresh className="w-5 h-5 text-amber-600" />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-gray-900 text-sm">Swap Modified & Approved</p>
+                              <p className="text-xs text-gray-600 mt-1">James Wilson ↔ Anna Chen</p>
+                              <p className="text-xs text-gray-500">Original: Full shift swap → Modified: Partial shift (4 hours)</p>
+                            </div>
+                          </div>
+                          <span className="text-xs text-gray-500 whitespace-nowrap">Yesterday</span>
+                        </div>
+                        <div className="ml-13 space-y-2">
+                          <div className="flex items-center gap-2 text-xs">
+                            <span className="font-medium text-gray-700">Modified by:</span>
+                            <span className="text-gray-600">John Smith (Department Head)</span>
+                          </div>
+                          <div className="flex items-start gap-2 text-xs">
+                            <span className="font-medium text-gray-700">Note:</span>
+                            <span className="text-gray-600">Partial swap approved to maintain minimum staffing levels</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Summary Stats */}
+                    <div className="mt-6 pt-4 border-t border-gray-200">
+                      <div className="grid grid-cols-4 gap-4 text-center">
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">247</p>
+                          <p className="text-xs text-gray-600">Total Swaps</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-green-600">89%</p>
+                          <p className="text-xs text-gray-600">Approved</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-blue-600">73%</p>
+                          <p className="text-xs text-gray-600">Auto-approved</p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-amber-600">100%</p>
+                          <p className="text-xs text-gray-600">Compliant</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
@@ -541,11 +680,11 @@ export default function ShiftSwapsPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-green-600 to-blue-600">
+        <div className="py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                The Numbers Speak for Themselves
+                No more rostering headaches!
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -584,7 +723,7 @@ export default function ShiftSwapsPage() {
                 </Button>
                 <Button 
                   href="/pricing" 
-                  className="bg-gray-900 text-white hover:bg-gray-800 px-8 py-4 text-lg font-semibold"
+                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
                 </Button>

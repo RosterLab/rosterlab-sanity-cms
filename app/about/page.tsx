@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
-import { HiMail } from 'react-icons/hi'
+import { HiMail, HiLightBulb, HiScale, HiTrendingUp } from 'react-icons/hi'
 import { FaLinkedin } from 'react-icons/fa'
 
 export const metadata = {
@@ -66,7 +66,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-8 h-8 bg-blue-600 rounded-full"></div>
+                <HiLightBulb className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Innovation</h3>
               <p className="text-gray-600">
@@ -75,7 +75,7 @@ export default function AboutPage() {
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-8 h-8 bg-green-600 rounded-full"></div>
+                <HiScale className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
               <p className="text-gray-600">
@@ -84,7 +84,7 @@ export default function AboutPage() {
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <div className="w-8 h-8 bg-purple-600 rounded-full"></div>
+                <HiTrendingUp className="w-8 h-8 text-purple-600" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Impact</h3>
               <p className="text-gray-600">
