@@ -58,32 +58,7 @@ export default function CareersPage() {
             </p>
           </div>
 
-          {/* Mini photo collage */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-12">
-            <div className="relative overflow-hidden rounded-lg shadow-md">
-              <img 
-                src="/images/collage bank/Collage 2.jpg" 
-                alt="Team culture" 
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            <div className="relative overflow-hidden rounded-lg shadow-md">
-              <img 
-                src="/images/collage bank/collage 3.jpg" 
-                alt="Team activities" 
-                className="w-full h-48 object-cover"
-              />
-            </div>
-            <div className="relative overflow-hidden rounded-lg shadow-md">
-              <img 
-                src="/images/collage bank/collage 5.jpg" 
-                alt="Team collaboration" 
-                className="w-full h-48 object-cover"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <HiLightningBolt className="w-8 h-8 text-blue-600" />
@@ -112,6 +87,31 @@ export default function CareersPage() {
               <p className="text-gray-600">
                 We prioritize our team's wellbeing with flexible work arrangements and a culture that values work-life balance.
               </p>
+            </div>
+          </div>
+
+          {/* Mini photo collage */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-12">
+            <div className="relative overflow-hidden rounded-lg shadow-md">
+              <img 
+                src="/images/collage bank/Collage 2.jpg" 
+                alt="Team culture" 
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-lg shadow-md">
+              <img 
+                src="/images/collage bank/collage 3.jpg" 
+                alt="Team activities" 
+                className="w-full h-48 object-cover"
+              />
+            </div>
+            <div className="relative overflow-hidden rounded-lg shadow-md">
+              <img 
+                src="/images/collage bank/collage 5.jpg" 
+                alt="Team collaboration" 
+                className="w-full h-48 object-cover"
+              />
             </div>
           </div>
         </Container>

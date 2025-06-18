@@ -96,6 +96,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/solutions/staff-roster-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Staff Mobile App
+                </Link>
+              </li>
+              <li>
                 <Link href="/demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Product Tour
                 </Link>
@@ -110,6 +115,11 @@ export default function Footer() {
               <li>
                 <Link href="/about" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Careers
                 </Link>
               </li>
               <li>
@@ -144,6 +154,11 @@ export default function Footer() {
                   Case Studies
                 </Link>
               </li>
+              <li>
+                <Link href="/help" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Help Center
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -159,11 +174,6 @@ export default function Footer() {
               <li>
                 <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/help" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Help Center
                 </Link>
               </li>
               <li>

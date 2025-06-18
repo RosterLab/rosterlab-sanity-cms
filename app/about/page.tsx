@@ -276,6 +276,100 @@ export default function AboutPage() {
         </Container>
       </div>
 
+      {/* Milestones Timeline Section */}
+      <div className="py-20 bg-white">
+        <Container>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Our Journey
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              From a simple idea to revolutionizing healthcare scheduling, here are the key milestones in our story.
+            </p>
+          </div>
+
+          {/* Timeline */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-300"></div>
+
+              {/* Milestone 1 */}
+              <div className="relative flex items-center justify-between mb-16">
+                <div className="w-5/12 text-right pr-8">
+                  <h3 className="text-xl font-bold text-gray-900">Company Founded</h3>
+                  <p className="text-gray-600 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. The journey begins with a vision to transform healthcare scheduling.</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <p className="text-lg font-semibold text-blue-600">January 2019</p>
+                </div>
+              </div>
+
+              {/* Milestone 2 */}
+              <div className="relative flex items-center justify-between mb-16">
+                <div className="w-5/12 text-right pr-8">
+                  <p className="text-lg font-semibold text-green-600">August 2019</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-green-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <h3 className="text-xl font-bold text-gray-900">First Hospital Partnership</h3>
+                  <p className="text-gray-600 mt-2">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Our first major healthcare client validates our approach.</p>
+                </div>
+              </div>
+
+              {/* Milestone 3 */}
+              <div className="relative flex items-center justify-between mb-16">
+                <div className="w-5/12 text-right pr-8">
+                  <h3 className="text-xl font-bold text-gray-900">AI Engine Launch</h3>
+                  <p className="text-gray-600 mt-2">Ut enim ad minim veniam, quis nostrud exercitation. Revolutionary AI-powered scheduling algorithm goes live.</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <p className="text-lg font-semibold text-purple-600">March 2020</p>
+                </div>
+              </div>
+
+              {/* Milestone 4 */}
+              <div className="relative flex items-center justify-between mb-16">
+                <div className="w-5/12 text-right pr-8">
+                  <p className="text-lg font-semibold text-orange-600">November 2021</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-orange-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <h3 className="text-xl font-bold text-gray-900">International Expansion</h3>
+                  <p className="text-gray-600 mt-2">Duis aute irure dolor in reprehenderit. Expanding beyond New Zealand to serve healthcare organizations globally.</p>
+                </div>
+              </div>
+
+              {/* Milestone 5 */}
+              <div className="relative flex items-center justify-between mb-16">
+                <div className="w-5/12 text-right pr-8">
+                  <h3 className="text-xl font-bold text-gray-900">Mobile App Release</h3>
+                  <p className="text-gray-600 mt-2">Excepteur sint occaecat cupidatat non proident. Launch of iOS and Android apps for staff on-the-go access.</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-pink-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <p className="text-lg font-semibold text-pink-600">June 2022</p>
+                </div>
+              </div>
+
+              {/* Milestone 6 */}
+              <div className="relative flex items-center justify-between">
+                <div className="w-5/12 text-right pr-8">
+                  <p className="text-lg font-semibold text-indigo-600">December 2023</p>
+                </div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow-lg"></div>
+                <div className="w-5/12 pl-8">
+                  <h3 className="text-xl font-bold text-gray-900">1000+ Healthcare Teams</h3>
+                  <p className="text-gray-600 mt-2">Lorem ipsum dolor sit amet. Milestone achievement serving over 1000 healthcare teams worldwide.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-blue-600 to-green-500 py-20">
         <Container>

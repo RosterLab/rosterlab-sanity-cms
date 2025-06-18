@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import RosterGenerator from "@/components/ui/RosterGenerator";
 
 export default function Hero() {
   return (
@@ -49,17 +50,8 @@ export default function Hero() {
           </Button>
         </div>
 
-        {/* Hero Image/Illustration */}
-        <div className="relative">
-          <Image
-            src="https://rosterlab.com/hubfs/Group%204178%20(1).png"
-            alt="RosterLab AI-powered rostering interface showing roster generation process"
-            width={800}
-            height={500}
-            className="mx-auto rounded-lg shadow-lg"
-            priority
-          />
-        </div>
+        {/* Interactive Roster Generator */}
+        <RosterGenerator />
       </div>
 
       {/* Decorative Background Elements */}
