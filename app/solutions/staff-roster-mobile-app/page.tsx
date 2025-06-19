@@ -5,6 +5,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
 import RosterPublishingMobile from '@/components/ui/RosterPublishingMobile'
+import AnimatedSpeechBubbles from '@/components/ui/AnimatedSpeechBubbles'
 import { HiDeviceMobile, HiCalendar, HiBell, HiUserGroup, HiClock, HiCheckCircle, HiCheck, HiUsers, HiTrendingUp, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
 
 export const metadata = {
@@ -250,14 +251,12 @@ export default function EmployeeMobileAppPage() {
       <div className="bg-gray-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="bg-gray-200 rounded-lg flex items-center justify-center" style={{ width: '600px', height: '500px' }}>
-                <span className="text-gray-500 text-xl">Placeholder Image</span>
-              </div>
+            <div className="w-full" style={{ height: '500px' }}>
+              <AnimatedSpeechBubbles />
             </div>
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Staff input made easier
+                Increased Staff Satisfaction
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Empower your team to communicate their availability and preferences directly through the app, making roster planning more collaborative and efficient.
@@ -265,27 +264,15 @@ export default function EmployeeMobileAppPage() {
               <div className="space-y-4">
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">24/7 Automatic roster generation</span>
+                  <span className="text-gray-700">Send shift swap requests</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Complex constraint handling</span>
+                  <span className="text-gray-700">Syncs to your personal calendar</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Real-time optimization and adjustments</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Multiple shift patterns and rotations</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Legal compliance checking</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Scenario simulation and planning</span>
+                  <span className="text-gray-700">Share your preferences and leave request</span>
                 </div>
               </div>
             </div>
@@ -310,8 +297,8 @@ export default function EmployeeMobileAppPage() {
                     <HiShieldCheck className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Regulatory Compliance</h3>
-                    <p className="text-gray-600">Automatic adherence to healthcare regulations and industry standards</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No more back and forth communication</h3>
+                    <p className="text-gray-600">All shift requests and responses handled seamlessly in one place</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -319,8 +306,8 @@ export default function EmployeeMobileAppPage() {
                     <HiAcademicCap className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Skills Matching</h3>
-                    <p className="text-gray-600">Ensures qualified staff are scheduled for appropriate roles and responsibilities</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No more email spam</h3>
+                    <p className="text-gray-600">Clean, organized notifications only for what matters to each team member</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -328,34 +315,30 @@ export default function EmployeeMobileAppPage() {
                     <HiCog className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Rules Engine</h3>
-                    <p className="text-gray-600">Configure organization-specific rules and policies for perfect compliance</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Streamline communication</h3>
+                    <p className="text-gray-600">Instant updates and centralized messaging for the entire team</p>
                   </div>
                 </div>
               </div>
             </div>
             <div>
               <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Compliance Features</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Communication Features</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Fatigue Management</span>
+                    <span className="text-gray-700">Push notifications</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Union Agreement Rules</span>
+                    <span className="text-gray-700">Shift swap requests</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Minimum Rest Periods</span>
-                    <HiCheck className="w-5 h-5 text-green-500" />
-                  </div>
-                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Maximum Work Hours</span>
+                    <span className="text-gray-700">Team announcements</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">Skills & Certifications</span>
+                    <span className="text-gray-700">Calendar integration</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>

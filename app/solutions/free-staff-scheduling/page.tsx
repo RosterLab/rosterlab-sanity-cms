@@ -97,6 +97,9 @@ export default function ManualSchedulingPage() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Your free digital scheduling tool
               </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Create intelligent rosters in minutes, not hours. Our free scheduling platform helps you manage shifts, track compliance, and keep your team happy.
+              </p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-3">
                   <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -132,10 +135,10 @@ export default function ManualSchedulingPage() {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="https://app.rosterlab.com" className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 rounded-full font-semibold">
+                <Button href="https://app.rosterlab.com" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
                   Start for Free
                 </Button>
-                <Button href="/solutions/ai-schedules" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-full font-semibold">
+                <Button href="/solutions/ai-schedules" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg">
                   Discover AI Rosters
                 </Button>
               </div>
@@ -149,9 +152,9 @@ export default function ManualSchedulingPage() {
               </div>
             </div>
             <div className="relative flex justify-center items-end">
-              <div className="w-full max-w-xl translate-y-40">
+              <div className="w-full max-w-lg translate-y-[60px]">
                 <Image
-                  src="/images/illustration/test6.svg"
+                  src="/images/illustration/test5 copy.svg"
                   alt="Free Staff Scheduling Illustration"
                   width={600}
                   height={400}
