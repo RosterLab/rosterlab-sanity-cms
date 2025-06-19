@@ -14,10 +14,10 @@ export default function HealthcarePage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 pt-20 pb-0 overflow-hidden">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+            <div className="pb-20">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Solutions for{" "}
                 <span className="text-transparent bg-clip-text" style={{
@@ -44,7 +44,7 @@ export default function HealthcarePage() {
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className=""
+                className="block w-full h-auto"
               />
             </div>
           </div>
