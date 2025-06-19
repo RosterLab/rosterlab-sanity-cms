@@ -47,7 +47,7 @@ export default function AISchedulesPage() {
             <p className="text-2xl text-gray-600 mb-12">
               Unlock the full power of AI roster creation
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button 
                 href="/demo" 
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
@@ -60,6 +60,15 @@ export default function AISchedulesPage() {
               >
                 See an Example
               </Button>
+            </div>
+            <div className="flex justify-center mb-16">
+              <Image
+                src="/images/illustration/test3.svg"
+                alt="AI Scheduling Illustration"
+                width={600}
+                height={400}
+                className=""
+              />
             </div>
           </div>
         </Container>

@@ -2,7 +2,9 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
-import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiShieldCheck } from 'react-icons/hi'
+import FAQAccordion from '@/components/ui/FAQAccordion'
+import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
+import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
 
 export const metadata = {
   title: 'Free Staff Scheduling Platform - No More Spreadsheets!',
@@ -38,9 +40,32 @@ const features = [
   'Visual scheduling interface'
 ]
 
+const faqItems = [
+  {
+    question: "How does AI-powered scheduling actually work?",
+    answer: "Our AI algorithms analyze historical data, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+  },
+  {
+    question: "How long does it take to implement RosterLab's AI scheduling?",
+    answer: "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
+  },
+  {
+    question: "Can the AI handle complex compliance and union rules?",
+    answer: "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
+  },
+  {
+    question: "What happens if we need to make manual adjustments to AI-generated schedules?",
+    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing. The AI learns from these adjustments to improve future recommendations."
+  },
+  {
+    question: "How much time and cost savings can we expect?",
+    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. Actual savings depend on your current processes and organization size."
+  }
+]
+
 const painPoints = [
   {
-    title: 'Manual Spreadsheet Chaos',
+    title: 'No More Spreadsheet Chaos',
     description: 'Multiple versions, lost updates, and formula errors making scheduling a nightmare'
   },
   {
@@ -62,10 +87,10 @@ export default function ManualSchedulingPage() {
     <SiteLayout>
       <>
       {/* Hero Section */}
-      <div className="bg-white py-20">
+      <div className="bg-white pt-16 pb-0">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="pb-8 lg:pb-12">
               <div className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
                 SMART DIGITAL SCHEDULING
               </div>
@@ -123,9 +148,15 @@ export default function ManualSchedulingPage() {
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-gray-200 rounded-lg flex items-center justify-center" style={{ width: '600px', height: '400px' }}>
-                <span className="text-gray-500 text-xl">Placeholder Image</span>
+            <div className="relative flex justify-center items-end">
+              <div className="w-full max-w-xl translate-y-40">
+                <Image
+                  src="/images/illustration/test6.svg"
+                  alt="Free Staff Scheduling Illustration"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -158,151 +189,191 @@ export default function ManualSchedulingPage() {
         </Container>
       </div>
 
-      {/* Benefits Section */}
+      {/* Intelligent Scheduling Section */}
       <div className="bg-white py-20">
         <Container>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            The Smart Solution
-          </h2>
-          
-          {/* Image Placeholder */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <div className="bg-gray-200 rounded-lg aspect-video flex items-center justify-center">
-              <span className="text-gray-400 text-lg">Image Placeholder</span>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                  <benefit.icon className="w-8 h-8 text-blue-600" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Intelligent Scheduling
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Our AI algorithms analyze thousands of variables to create optimal schedules that balance staff preferences, operational requirements, and compliance needs. Experience the future of workforce management.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <HiClock className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Time Reduction</h3>
+                    <p className="text-gray-600">Generate complex rosters in minutes instead of days with our advanced AI algorithms</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600">
-                  {benefit.description}
-                </p>
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <HiTrendingUp className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
+                    <p className="text-gray-600">Mathematical optimization ensures the most efficient staff allocation and resource utilization</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <HiUsers className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Staff Satisfaction</h3>
+                    <p className="text-gray-600">Fair and balanced schedules improve work-life balance and increase staff retention</p>
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+            <div className="w-full max-w-[600px]">
+              <RosterLoadingBar />
+            </div>
           </div>
         </Container>
       </div>
 
-      {/* Features Section */}
+      {/* Advanced AI Capabilities Section */}
       <div className="bg-gray-50 py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Intelligent Manual Control
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Keep full control over your scheduling while getting intelligent assistance and real-time guidance.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center">
-                    <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <Image
-                src="/images/optimise-your-workforce-with-ai.png"
-                alt="Smart manual scheduling interface"
-                width={500}
-                height={400}
+                src="/images/generating.webp"
+                alt="Advanced AI features in action"
+                width={600}
+                height={500}
                 className="rounded-lg shadow-lg"
               />
             </div>
-          </div>
-        </Container>
-      </div>
-
-      {/* How It Works Section */}
-      <div className="bg-white py-20">
-        <Container>
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            How Smart Manual Scheduling Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                1
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Setup Your Rules</h3>
-              <p className="text-gray-600">
-                Define staff skills, seniority levels, and scheduling constraints once
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Advanced AI Capabilities
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Our award-winning algorithms handle the most complex scheduling challenges with ease, ensuring compliance and optimization across all scenarios.
               </p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Create with Guidance</h3>
-              <p className="text-gray-600">
-                Build rosters manually with real-time warnings and smart suggestions
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Monitor & Adjust</h3>
-              <p className="text-gray-600">
-                Track compliance, workload balance, and staff satisfaction in real-time
-              </p>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      {/* Trusted By Section */}
-      <div className="bg-white py-20">
-        <Container>
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Trusted by Healthcare Leaders
-            </h2>
-            <p className="text-lg text-gray-600 mb-12">
-              Join Te Whatu Ora, Western Health, Bupa and other leading healthcare organizations
-            </p>
-            <div className="flex flex-col sm:flex-row gap-8 items-center justify-center">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <HiShieldCheck className="w-8 h-8 text-green-600 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-gray-900">Healthcare</div>
-                <div className="text-sm text-gray-600">Specialized</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <HiUsers className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-gray-900">1000+</div>
-                <div className="text-sm text-gray-600">Staff Scheduled</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <HiClock className="w-8 h-8 text-purple-600 mx-auto mb-3" />
-                <div className="text-2xl font-bold text-gray-900">24/7</div>
-                <div className="text-sm text-gray-600">Support</div>
-              </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="flex justify-center mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">24/7 Automatic roster generation</span>
                 </div>
-                <div className="text-2xl font-bold text-gray-900">5.0</div>
-                <div className="text-sm text-gray-600">Google Reviews</div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Complex constraint handling</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Real-time optimization and adjustments</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Multiple shift patterns and rotations</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Legal compliance checking</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Scenario simulation and planning</span>
+                </div>
               </div>
             </div>
           </div>
         </Container>
       </div>
 
+      {/* Compliance Section */}
+      <div className="bg-gray-50 py-20">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Built-in Compliance
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Stay compliant with complex healthcare regulations and union agreements automatically. Our AI understands and enforces all relevant rules and constraints.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <HiShieldCheck className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Regulatory Compliance</h3>
+                    <p className="text-gray-600">Automatic adherence to healthcare regulations and industry standards</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <HiAcademicCap className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Skills Matching</h3>
+                    <p className="text-gray-600">Ensures qualified staff are scheduled for appropriate roles and responsibilities</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <HiCog className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Rules Engine</h3>
+                    <p className="text-gray-600">Configure organization-specific rules and policies for perfect compliance</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Compliance Features</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-700">Fatigue Management</span>
+                    <HiCheck className="w-5 h-5 text-green-500" />
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-700">Union Agreement Rules</span>
+                    <HiCheck className="w-5 h-5 text-green-500" />
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-700">Minimum Rest Periods</span>
+                    <HiCheck className="w-5 h-5 text-green-500" />
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-700">Maximum Work Hours</span>
+                    <HiCheck className="w-5 h-5 text-green-500" />
+                  </div>
+                  <div className="flex items-center justify-between py-3">
+                    <span className="text-gray-700">Skills & Certifications</span>
+                    <HiCheck className="w-5 h-5 text-green-500" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-white py-20">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Everything you need to know about AI-powered scheduling
+            </p>
+            <FAQAccordion items={faqItems} />
+          </div>
+        </Container>
+      </div>
       {/* CTA Section */}
       <div 
         className="py-20 relative"

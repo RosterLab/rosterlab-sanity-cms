@@ -40,11 +40,11 @@ export default function HealthcarePage() {
             </div>
             <div className="relative">
               <Image
-                src="https://rosterlab.com/hubfs/healthcare-hero.png"
+                src="/images/doctors.svg"
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className="rounded-lg shadow-xl"
+                className=""
               />
             </div>
           </div>
