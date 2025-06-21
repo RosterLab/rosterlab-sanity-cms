@@ -7,21 +7,27 @@ import Container from '@/components/ui/Container'
 const testimonials = [
   {
     quote: "Rostering would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
-    author: "Mike, Associate Clinical Manager Radiology",
-    company: "Whanganui Hospital",
+    author: "Mike",
+    company: "Associate Clinical Manager Radiology",
     logo: "/images/logos/whanganui.png"
   },
   {
-    quote: "RosterLab has revolutionized our scheduling process. What used to take our managers 8 hours now takes 30 minutes.",
-    author: "Sarah Chen",
-    company: "Auckland Hospital", 
-    logo: "/images/logos/te-whatu-ora.png"
+    quote: "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical rosters!",
+    author: "Peter",
+    company: "Senior Registrar ICU, Western Australia", 
+    logo: null
   },
   {
-    quote: "The AI optimization is incredible. Our staff satisfaction has improved significantly with fairer shift distribution.",
-    author: "Dr. James Wilson",
-    company: "Western Health",
-    logo: "/images/logos/western-health.png"
+    quote: "RosterLab has been a pleasure to work with, and we highly recommend it to other medical practices and businesses.",
+    author: "Practice Manager",
+    company: "Dargaville Hospital",
+    logo: "/images/logos/dargaville.png"
+  },
+  {
+    quote: "If Rosterlab can help with our complicated rostering needs, we are confident it will work for anyone.",
+    author: "Judy Harris",
+    company: "Practice Manager, Dargaville Hospital",
+    logo: "/images/logos/dargaville.png"
   }
 ]
 
@@ -51,14 +57,16 @@ export default function Testimonials() {
                 </blockquote>
                 
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="w-20 h-12 relative">
-                    <Image
-                      src={testimonials[currentIndex].logo}
-                      alt={testimonials[currentIndex].company}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  {testimonials[currentIndex].logo && (
+                    <div className="w-20 h-12 relative">
+                      <Image
+                        src={testimonials[currentIndex].logo}
+                        alt={testimonials[currentIndex].company}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                   <div>
                     <p className="font-semibold text-neutral-900">
                       {testimonials[currentIndex].author}
@@ -86,6 +94,7 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
+
       </Container>
     </section>
   )

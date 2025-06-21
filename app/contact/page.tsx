@@ -1,23 +1,42 @@
 import Container from '@/components/ui/Container'
-import HubSpotForm from '@/components/forms/HubSpotForm'
+import ContactForm from '@/components/forms/HubSpotForm'
+import SiteLayout from '@/components/layout/SiteLayout'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 import { HiMail, HiPhone, HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
+import { FaWhatsapp } from 'react-icons/fa'
 
 export const metadata = {
   title: 'Contact Us - RosterLab',
-  description: 'Get in touch with RosterLab for AI-powered rostering solutions. Book a demo and see how we can help your healthcare team.',
+  description: 'Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.',
 }
+
+const faqItems = [
+  {
+    question: "How quickly can we get started?",
+    answer: "Most implementations can be completed within 1-2 weeks, depending on your specific requirements."
+  },
+  {
+    question: "Do you offer training?",
+    answer: "Yes! We provide comprehensive training for all users and ongoing support to ensure success."
+  },
+  {
+    question: "Can you integrate with our existing systems?",
+    answer: "RosterLab integrates with most HR and <a href='/feature/payroll-integration' class='text-blue-600 hover:text-blue-700 underline'>payroll systems</a>. We'll assess your current setup during our consultation."
+  }
+]
 
 export default function ContactPage() {
   return (
-    <div className="py-16 bg-neutral-50 min-h-screen">
+    <SiteLayout>
+      <div className="py-16 bg-neutral-50 min-h-screen">
       <Container>
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-neutral-900 mb-4">
-            Book a demo with our expert team 📆
+            Speak to a rostering expert
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            See how RosterLab&apos;s AI-powered rostering can save your healthcare team 90% of scheduling time and improve staff satisfaction.
+            We&apos;re here to help you solve your complex challenges and requirements.
           </p>
         </div>
 
@@ -34,8 +53,8 @@ export default function ContactPage() {
             <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
               <HiCheck className="w-6 h-6 text-blue-600" />
             </div>
-            <h3 className="font-semibold text-blue-800 mb-1">10% Better Efficiency</h3>
-            <p className="text-blue-700 text-sm">Optimize staff allocation automatically</p>
+            <h3 className="font-semibold text-blue-800 mb-1">100% Compliant</h3>
+            <p className="text-blue-700 text-sm">Guaranteed to meet union and contract obligations</p>
           </div>
           <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
             <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -50,15 +69,12 @@ export default function ContactPage() {
           {/* HubSpot Demo Form */}
           <div className="bg-white rounded-lg shadow-sm p-8">
             <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-              Book Your Demo
+              Speak to us about your rostering challenges
             </h2>
             <p className="text-neutral-600 mb-6">
-              Fill out the form below and our team will reach out to schedule a personalized demo of RosterLab&apos;s AI-powered rostering platform.
+              Fill out the form below and our team will be in touch to discuss how we can help you create the perfect roster for your team.
             </p>
-            <HubSpotForm 
-              formId="77e5a8c4-4303-4681-8c92-afa7b070380c"
-              className="hubspot-form"
-            />
+            <ContactForm className="contact-form" />
           </div>
 
           {/* Contact Information */}
@@ -90,8 +106,19 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-neutral-900 mb-1">Phone</h3>
-                    <p className="text-neutral-600">+64 9 307 4778</p>
-                    <p className="text-sm text-neutral-500">Mon-Fri 9am-6pm NZST</p>
+                    <p className="text-neutral-600">+64 276366388</p>
+                    <div className="flex items-center gap-3 mt-2">
+                      <p className="text-sm text-neutral-500">Mon-Fri 9am-6pm NZST</p>
+                      <a 
+                        href="https://wa.me/64276366388" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-green-600 hover:text-green-700 text-sm font-medium"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                        WhatsApp
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -104,8 +131,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-neutral-900 mb-1">Headquarters</h3>
                     <p className="text-neutral-600">
-                      Level 1, 22 The Strand<br />
-                      Parnell, Auckland 1010<br />
+                      314/380 Khyber Pass Road<br />
+                      Newmarket, Auckland 1023<br />
                       New Zealand
                     </p>
                   </div>
@@ -119,38 +146,12 @@ export default function ContactPage() {
                 Frequently Asked Questions
               </h2>
               
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">
-                    How quickly can we get started?
-                  </h3>
-                  <p className="text-neutral-600 text-sm">
-                    Most implementations can be completed within 1-2 weeks, depending on your specific requirements.
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">
-                    Do you offer training?
-                  </h3>
-                  <p className="text-neutral-600 text-sm">
-                    Yes! We provide comprehensive training for all users and ongoing support to ensure success.
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">
-                    Can you integrate with our existing systems?
-                  </h3>
-                  <p className="text-neutral-600 text-sm">
-                    RosterLab integrates with most HR and payroll systems. We&apos;ll assess your current setup during our consultation.
-                  </p>
-                </div>
-              </div>
+              <FAQAccordion items={faqItems} />
             </div>
           </div>
         </div>
       </Container>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

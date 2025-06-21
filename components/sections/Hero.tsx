@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import RosterGenerator from "@/components/ui/RosterGenerator";
 
 export default function Hero() {
   return (
@@ -35,38 +36,33 @@ export default function Hero() {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-12">
           <Button
-            href="/demo"
-            className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+            href="/book-a-demo"
+            className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
           >
             Book a Demo
           </Button>
 
           <Button
-            href="/example"
-            className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition-colors"
+            href="/demo"
+            className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
           >
             See An Example
           </Button>
         </div>
 
-        {/* Hero Image/Illustration */}
-        <div className="relative">
-          <Image
-            src="/images/illustration/smaller-team.webp"
-            alt="RosterLab complex rostering solutions"
-            width={800}
-            height={500}
-            className="mx-auto"
-            priority
-          />
-        </div>
+        {/* Interactive Roster Generator */}
+        <RosterGenerator />
       </div>
 
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
-          className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-20"
-          style={{ background: "linear-gradient(45deg, #2D3BEA, #03D5AB)" }}
+          className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30 animate-bounce"
+          style={{ 
+            background: "linear-gradient(135deg, rgba(45, 59, 234, 0.6) 0%, rgba(3, 213, 171, 0.6) 100%)",
+            animationDuration: "3s",
+            animationDelay: "0s"
+          }}
         />
         <div
           className="absolute bottom-20 right-10 w-24 h-24 rounded-full opacity-20"

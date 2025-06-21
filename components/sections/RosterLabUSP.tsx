@@ -23,14 +23,20 @@ export default function RosterLabUSP() {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Fast, AI optimised rosters at the click of a button
+          </h2>
+        </div>
+        
         <div className="max-w-4xl ml-auto text-right">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8">
             <span className="block">We Are The </span>
             <span className="text-blue-600">Only Solution</span>
             <span className="block">That Actually </span>
             <span className="text-blue-600">Generates</span>
             <span className="block">You A Complex Roster From Scratch Within Minutes</span>
-          </h2>
+          </h3>
           
           <div className="text-lg leading-relaxed space-y-4 mb-8">
             <p>

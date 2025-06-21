@@ -1,5 +1,6 @@
 import Button from '@/components/ui/Button'
 import Container from '@/components/ui/Container'
+import Link from 'next/link'
 
 export default function IndustrySolutions() {
   return (
@@ -20,7 +21,7 @@ export default function IndustrySolutions() {
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-blue-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 0a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1V8z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-blue-900 mb-2">
@@ -32,21 +33,21 @@ export default function IndustrySolutions() {
             </div>
             
             <div className="space-y-4 mb-8">
-              <div className="bg-white rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-1">ICU/ED</h4>
+              <Link href="/industries/healthcare/edicu" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
+                <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">ICU/ED</h4>
                 <p className="text-sm text-blue-700">Critical care scheduling with skill-based matching</p>
-              </div>
-              <div className="bg-white rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-1">Aged Care</h4>
+              </Link>
+              <Link href="/industries/healthcare/agedcare" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
+                <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">Aged Care</h4>
                 <p className="text-sm text-blue-700">Long-term care rostering with continuity focus</p>
-              </div>
-              <div className="bg-white rounded-lg p-4">
-                <h4 className="font-semibold text-blue-900 mb-1">Radiology</h4>
+              </Link>
+              <Link href="/industries/healthcare/radiology" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
+                <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">Radiology</h4>
                 <p className="text-sm text-blue-700">Specialized imaging department scheduling</p>
-              </div>
+              </Link>
             </div>
             
-            <Button href="/healthcare" className="w-full bg-blue-600 hover:bg-blue-700">
+            <Button href="/industries/healthcare" className="w-full bg-blue-600 hover:bg-blue-700">
               Learn About Healthcare Solutions
             </Button>
           </div>
@@ -56,7 +57,7 @@ export default function IndustrySolutions() {
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-green-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
+                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1h2v2H7V5zm6 0h-2v2h2V5zM7 9h2v2H7V9zm6 0h-2v2h2V9zm-6 4h2v2H7v-2zm6 0h-2v2h2v-2z" clipRule="evenodd" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-green-900 mb-2">

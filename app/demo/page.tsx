@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
-import HubSpotForm from '@/components/forms/HubSpotForm'
+import ContactForm from '@/components/forms/HubSpotForm'
 import Button from '@/components/ui/Button'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { HiPlay, HiClock, HiShieldCheck, HiTrendingUp, HiUsers } from 'react-icons/hi'
 
 export const metadata = {
@@ -10,7 +11,8 @@ export const metadata = {
 
 export default function DemoPage() {
   return (
-    <div className="py-16 bg-gradient-to-br from-blue-50 to-primary-50 min-h-screen">
+    <SiteLayout>
+      <div className="py-16 bg-gradient-to-br from-blue-50 to-primary-50 min-h-screen">
       <Container>
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -111,11 +113,8 @@ export default function DemoPage() {
               </li>
             </ul>
 
-            {/* HubSpot Form */}
-            <HubSpotForm 
-              formId="77e5a8c4-4303-4681-8c92-afa7b070380c"
-              className="hubspot-form"
-            />
+            {/* Contact Form */}
+            <ContactForm className="demo-form" />
           </div>
 
           {/* Additional Information */}
@@ -178,6 +177,7 @@ export default function DemoPage() {
           </div>
         </div>
       </Container>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }

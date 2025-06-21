@@ -1,10 +1,11 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
+import SiteLayout from '@/components/layout/SiteLayout'
 import { HiCheck, HiMinus } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Pricing - RosterLab',
-  description: 'OPTIMISE YOUR STAFFING FROM TODAY. Choose from Digital Rostering (Free), AI Optimised Rostering ($20/month), or Enterprise Solution.',
+  title: 'Pricing - Affordable AI Staff Scheduling Software',
+  description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
 }
 
 const pricingPlans = [
@@ -17,10 +18,10 @@ const pricingPlans = [
       'Simple rule violations check', 
       'Dynamic statistics counts',
       'Color coding by shifts',
-      'Employee mobile apps'
+      'Employee mobile app'
     ],
     cta: 'SIGN UP FOR FREE',
-    ctaLink: '/signup',
+    ctaLink: 'https://app.rosterlab.com',
     highlighted: false
   },
   {
@@ -84,7 +85,7 @@ const features = [
     enterprise: true,
   },
   {
-    name: "Employee mobile apps",
+    name: "Employee mobile app",
     digital: true,
     ai: true,
     enterprise: true,
@@ -153,16 +154,17 @@ const features = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <SiteLayout>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Hero Section */}
       <div className="py-20">
         <Container>
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              OPTIMISE YOUR STAFFING
+              Optimise your staffing
             </h1>
             <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-8">
-              FROM TODAY
+              from today
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Choose the perfect plan for your organization. Start with our free digital rostering platform or unlock the power of AI optimization.
@@ -247,13 +249,16 @@ export default function PricingPage() {
                     Features
                   </th>
                   <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    Digital Rostering
+                    Digital Rostering<br />
+                    <span className="text-sm font-normal text-gray-600">Free Forever</span>
                   </th>
                   <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    AI Optimised
+                    AI Optimised<br />
+                    <span className="text-sm font-normal text-gray-600">$20 per person</span>
                   </th>
                   <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    Enterprise
+                    Enterprise<br />
+                    <span className="text-sm font-normal text-gray-600">Contact Us</span>
                   </th>
                 </tr>
               </thead>
@@ -304,7 +309,7 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/signup" 
+                href="https://app.rosterlab.com" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
               >
                 Start Free Forever Plan
@@ -319,6 +324,7 @@ export default function PricingPage() {
           </div>
         </Container>
       </div>
-    </div>
+      </div>
+    </SiteLayout>
   )
 }
