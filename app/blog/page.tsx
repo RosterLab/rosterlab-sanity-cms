@@ -3,7 +3,6 @@ import { blogPostsOnlyQuery } from '@/sanity/lib/queries'
 import { validatedToken } from '@/sanity/lib/token'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
-import SiteLayout from '@/components/layout/SiteLayout'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 
@@ -18,8 +17,7 @@ export default async function BlogPage() {
   const posts = await client.fetch(blogPostsOnlyQuery)
 
   return (
-    <SiteLayout>
-      <div className="py-16 bg-neutral-50 min-h-screen">
+    <div className="py-16 bg-neutral-50 min-h-screen">
       <Container>
         {/* Header */}
         <div className="text-center mb-12">
@@ -80,7 +78,6 @@ export default async function BlogPage() {
           </div>
         )}
       </Container>
-      </div>
-    </SiteLayout>
+    </div>
   )
 }
