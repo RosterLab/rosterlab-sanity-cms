@@ -1,18 +1,8 @@
-import Header from "./Header"
-import Footer from "./Footer"
-
 export default function SiteLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <>
-      <Header />
-      <main className="flex-1">
-        {children}
-      </main>
-      <Footer />
-    </>
-  )
+  // Header and Footer are now rendered in the root layout
+  return <>{children}</>
 }
