@@ -35,7 +35,11 @@ export default async function RootLayout({
           service="rosterlab-nextjs"
           env="production"
         />
-        {children}
+        <Header />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
         {isEnabled && <VisualEditing />}
       </body>
     </html>

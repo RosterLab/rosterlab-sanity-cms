@@ -5,18 +5,34 @@ import { urlFor } from '@/sanity/lib/client'
 
 const components = {
   block: {
-    h1: ({ children }: any) => (
-      <h1 className="text-4xl font-bold mb-6 text-neutral-900">{children}</h1>
-    ),
-    h2: ({ children }: any) => (
-      <h2 className="text-3xl font-bold mb-4 text-neutral-900">{children}</h2>
-    ),
-    h3: ({ children }: any) => (
-      <h3 className="text-2xl font-bold mb-3 text-neutral-900">{children}</h3>
-    ),
-    h4: ({ children }: any) => (
-      <h4 className="text-xl font-bold mb-2 text-neutral-900">{children}</h4>
-    ),
+    h1: ({ children, value }: any) => {
+      const text = Array.isArray(children) ? children.join('') : children
+      const id = value?._key || (typeof text === 'string' ? text.toLowerCase().replace(/\s+/g, '-') : '')
+      return (
+        <h1 id={id} className="text-4xl font-bold mb-6 mt-8 text-neutral-900 scroll-mt-24">{children}</h1>
+      )
+    },
+    h2: ({ children, value }: any) => {
+      const text = Array.isArray(children) ? children.join('') : children
+      const id = value?._key || (typeof text === 'string' ? text.toLowerCase().replace(/\s+/g, '-') : '')
+      return (
+        <h2 id={id} className="text-3xl font-bold mb-4 mt-8 text-neutral-900 scroll-mt-24">{children}</h2>
+      )
+    },
+    h3: ({ children, value }: any) => {
+      const text = Array.isArray(children) ? children.join('') : children
+      const id = value?._key || (typeof text === 'string' ? text.toLowerCase().replace(/\s+/g, '-') : '')
+      return (
+        <h3 id={id} className="text-2xl font-bold mb-3 mt-6 text-neutral-900 scroll-mt-24">{children}</h3>
+      )
+    },
+    h4: ({ children, value }: any) => {
+      const text = Array.isArray(children) ? children.join('') : children
+      const id = value?._key || (typeof text === 'string' ? text.toLowerCase().replace(/\s+/g, '-') : '')
+      return (
+        <h4 id={id} className="text-xl font-bold mb-2 mt-4 text-neutral-900 scroll-mt-24">{children}</h4>
+      )
+    },
     normal: ({ children }: any) => (
       <p className="mb-4 text-neutral-700 leading-relaxed">{children}</p>
     ),

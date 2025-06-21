@@ -1,12 +1,14 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { getClient, client, urlFor } from '@/sanity/lib/client'
 import { postQuery, postPathsQuery } from '@/sanity/lib/queries'
-import { token } from '@/sanity/lib/token'
+import { validatedToken } from '@/sanity/lib/token'
 import { formatDate } from '@/lib/utils'
 import Container from '@/components/ui/Container'
+import Breadcrumb from '@/components/ui/Breadcrumb'
 import PortableText from '@/components/blog/PortableText'
+import TableOfContents from '@/components/blog/TableOfContents'
+import ShareButtons from '@/components/blog/ShareButtons'
 import { draftMode } from 'next/headers'
 
 interface BlogPostPageProps {
@@ -23,7 +25,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token } : undefined)
+  const clientToUse = getClient(isEnabled ? { token: validatedToken } : undefined)
   const post = await clientToUse.fetch(postQuery, { slug })
   
   if (!post) {
@@ -47,135 +49,172 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token } : undefined)
+  const clientToUse = getClient(isEnabled ? { token: validatedToken } : undefined)
   const post = await clientToUse.fetch(postQuery, { slug })
 
   if (!post) {
     notFound()
   }
 
+
+  // Calculate reading time
+  const calculateReadingTime = (text: any[]) => {
+    const wordsPerMinute = 200
+    const textContent = text
+      ?.map((block: any) => block.children?.map((child: any) => child.text).join(' '))
+      .join(' ') || ''
+    const wordCount = textContent.split(/\s+/).length
+    const readingTime = Math.ceil(wordCount / wordsPerMinute)
+    return `${readingTime} mins read`
+  }
+
+  const readingTime = calculateReadingTime(post.body)
+
   return (
-    <article className="py-16 bg-white">
-      <Container>
-        {/* Breadcrumb */}
-        <nav className="mb-8">
-          <ol className="flex items-center space-x-2 text-sm text-neutral-500">
-            <li>
-              <Link href="/" className="hover:text-neutral-700">
-                Home
-              </Link>
-            </li>
-            <li>/</li>
-            <li>
-              <Link href="/blog" className="hover:text-neutral-700">
-                Blog
-              </Link>
-            </li>
-            <li>/</li>
-            <li className="text-neutral-700">{post.title}</li>
-          </ol>
-        </nav>
-
-        {/* Article Header */}
-        <header className="mb-12 text-center">
-          {post.categories && post.categories.length > 0 && (
-            <div className="flex justify-center flex-wrap gap-2 mb-4">
-              {post.categories.map((category: { title: string; slug: { current: string } }) => (
-                <span
-                  key={category.slug.current}
-                  className="inline-block bg-primary-100 text-primary-800 text-sm px-3 py-1 rounded-full"
-                >
-                  {category.title}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6 max-w-4xl mx-auto">
-            {post.title}
-          </h1>
-
-          {post.excerpt && (
-            <p className="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
-              {post.excerpt}
-            </p>
-          )}
-
-          {/* Author and Date */}
-          <div className="flex items-center justify-center space-x-4 text-neutral-500">
-            {post.author.image && (
-              <div className="relative w-10 h-10">
-                <Image
-                  src={urlFor(post.author.image).width(40).height(40).url()}
-                  alt={post.author.name}
-                  fill
-                  className="rounded-full object-cover"
-                />
-              </div>
-            )}
-            <div className="text-left">
-              <p className="font-medium text-neutral-700">{post.author.name}</p>
-              <time className="text-sm">{formatDate(post.publishedAt)}</time>
+    <article>
+      {/* Purple Gradient Header */}
+      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white">
+        <div className="absolute inset-0 bg-black/10" />
+        <Container className="relative">
+          <div className="py-20">
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
+              {post.title}
+            </h1>
+            
+            {/* Author and Meta */}
+            <div className="flex items-center gap-6">
+              <span className="font-medium">RosterLab</span>
+              <span className="text-purple-200">•</span>
+              <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
+              <span className="text-purple-200">•</span>
+              <span className="text-purple-200">{readingTime}</span>
             </div>
           </div>
-        </header>
+        </Container>
+        
+        {/* Decorative circles */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
+      </div>
 
-        {/* Featured Image */}
-        {post.mainImage && (
-          <div className="mb-12">
-            <div className="relative w-full h-96 md:h-[500px] rounded-lg overflow-hidden">
-              <Image
-                src={urlFor(post.mainImage).width(1200).height(600).url()}
-                alt={post.mainImage.alt || post.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+      {/* Breadcrumb below header */}
+      <div className="bg-gray-50 border-b">
+        <Container>
+          <div className="py-4">
+            <Breadcrumb 
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'RosterLab Blog', href: '/blog' },
+                { label: post.title }
+              ]} 
+            />
           </div>
-        )}
+        </Container>
+      </div>
 
-        {/* Article Content */}
-        <div className="max-w-3xl mx-auto">
-          <div className="prose prose-lg max-w-none">
-            <PortableText value={post.body} />
-          </div>
-
-          {/* Author Bio */}
-          {post.author.bio && (
-            <div className="mt-12 p-6 bg-neutral-50 rounded-lg">
-              <div className="flex items-start space-x-4">
-                {post.author.image && (
-                  <div className="relative w-16 h-16 flex-shrink-0">
-                    <Image
-                      src={urlFor(post.author.image).width(64).height(64).url()}
-                      alt={post.author.name}
-                      fill
-                      className="rounded-full object-cover"
-                    />
-                  </div>
-                )}
-                <div>
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                    About {post.author.name}
-                  </h3>
-                  <p className="text-neutral-600">{post.author.bio}</p>
+      {/* Main Content Area */}
+      <div className="bg-white">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12">
+            {/* Left Sidebar - Table of Contents */}
+            <aside className="lg:col-span-3">
+              <div className="lg:sticky lg:top-8">
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">TABLE OF CONTENTS</h3>
+                  <TableOfContents />
                 </div>
               </div>
-            </div>
-          )}
+            </aside>
 
-          {/* Back to Blog */}
-          <div className="mt-12 text-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
-            >
-              ← Back to Blog
-            </Link>
+            {/* Main Article Content */}
+            <main className="lg:col-span-6">
+              {/* Introduction text */}
+              {post.excerpt && (
+                <div className="mb-8 text-lg text-gray-700 leading-relaxed">
+                  {post.excerpt}
+                </div>
+              )}
+
+              {/* Article Body */}
+              <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
+                <PortableText value={post.body} />
+              </div>
+
+              {/* Bottom CTA */}
+              <div className="mt-16 p-8 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Workforce Management?</h3>
+                <p className="mb-6 text-lg opacity-90">Join thousands using RosterLab to streamline rostering.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Link
+                    href="/demo"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-purple-700 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                  >
+                    Book a Demo
+                  </Link>
+                  <Link
+                    href="/pricing"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-purple-800 text-white font-semibold rounded-lg hover:bg-purple-900 transition-all"
+                  >
+                    Start Free Trial
+                  </Link>
+                </div>
+              </div>
+            </main>
+
+            {/* Right Sidebar - Newsletter */}
+            <aside className="lg:col-span-3">
+              <div className="lg:sticky lg:top-8 space-y-6">
+                {/* Newsletter Signup */}
+                <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Subscribe for more insights and product updates</h3>
+                  <form className="space-y-3">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email*</label>
+                      <input
+                        type="email"
+                        id="email"
+                        placeholder="isaac@rosterlab.com"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First name</label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        placeholder="Isaac"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last name</label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        placeholder="Cleland"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full py-2 bg-teal-600 text-white font-semibold rounded-md hover:bg-teal-700 transition-colors"
+                    >
+                      Subscribe
+                    </button>
+                  </form>
+                </div>
+
+                {/* Share Buttons */}
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <ShareButtons title={post.title} />
+                </div>
+              </div>
+            </aside>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </article>
   )
 }

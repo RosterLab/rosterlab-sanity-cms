@@ -21,6 +21,27 @@ export const postsQuery = groq`
   }
 `
 
+// Blog posts only (excluding case studies and newsroom)
+export const blogPostsOnlyQuery = groq`
+  *[_type == "post" && (!defined(categories) || (count(categories) == 0) || (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)))] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{
+      name,
+      slug,
+      image
+    },
+    categories[]->{
+      title,
+      slug
+    }
+  }
+`
+
 export const postQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
@@ -82,5 +103,20 @@ export const categoriesQuery = groq`
     title,
     slug,
     description
+  }
+`
+
+// Related posts query
+export const relatedPostsQuery = groq`
+  *[_type == "post" && _id != $currentId && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...4] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{
+      name
+    }
   }
 `

@@ -69,7 +69,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         
         <div className="flex items-center justify-between text-sm text-neutral-500">
           <div className="flex items-center space-x-2">
-            {post.author.image && (
+            {post.author?.image && (
               <div className="relative w-6 h-6">
                 <Image
                   src={urlFor(post.author.image).width(24).height(24).url()}
@@ -79,7 +79,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                 />
               </div>
             )}
-            <span>{post.author.name}</span>
+            <span>{post.author?.name || 'Unknown Author'}</span>
           </div>
           <time>{formatDate(post.publishedAt)}</time>
         </div>
