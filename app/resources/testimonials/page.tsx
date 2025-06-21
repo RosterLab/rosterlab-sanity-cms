@@ -16,6 +16,18 @@ interface Testimonial {
   industry: string
 }
 
+interface CaseStudy {
+  _id: string
+  title: string
+  slug: {
+    current: string
+  }
+  excerpt: string
+  categories?: Array<{
+    title: string
+  }>
+}
+
 // Query for case studies
 const caseStudiesQuery = groq`
   *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc) [0...2] {
@@ -95,10 +107,10 @@ export default async function TestimonialsPage() {
   const client = getClient(isEnabled ? { token: validatedToken } : undefined)
   
   // Fetch case studies from Sanity
-  const caseStudies = await client.fetch(caseStudiesQuery)
+  const caseStudies = await client.fetch<CaseStudy[]>(caseStudiesQuery)
   
   // If no case studies found, use fallback data
-  const displayCaseStudies = caseStudies.length > 0 ? caseStudies : [
+  const displayCaseStudies: CaseStudy[] = caseStudies.length > 0 ? caseStudies : [
     {
       _id: '1',
       title: 'Whanganui Radiography Department Embraces AI Rostering',
@@ -214,13 +226,13 @@ export default async function TestimonialsPage() {
             Case Studies
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {displayCaseStudies.map((study) => (
+            {displayCaseStudies.map((study: CaseStudy) => (
               <div
                 key={study._id}
                 className="border-2 border-[#03d5ab] rounded-lg p-10 hover:shadow-2xl transition-all duration-300 bg-white"
               >
                 <div className="flex flex-wrap gap-3 mb-6">
-                  {study.categories?.map((category: any, index: number) => (
+                  {study.categories?.map((category, index) => (
                     <span
                       key={index}
                       className="inline-block bg-gray-100 text-[#323232] px-6 py-2 rounded-full text-base font-semibold"
