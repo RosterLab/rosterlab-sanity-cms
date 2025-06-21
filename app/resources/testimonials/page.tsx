@@ -1,10 +1,10 @@
-'use client'
-
 import Link from 'next/link'
-import { useState } from 'react'
 import { HiArrowRight, HiArrowUp } from 'react-icons/hi'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import { getClient } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
+import { validatedToken } from '@/sanity/lib/token'
+import { draftMode } from 'next/headers'
+import ContactForm from './ContactForm'
 
 interface Testimonial {
   id: string
@@ -16,15 +16,18 @@ interface Testimonial {
   industry: string
 }
 
-interface CaseStudy {
-  id: string
-  title: string
-  subtitle: string
-  quote: string
-  link: string
-  tags: string[]
-  industry: string
-}
+// Query for case studies
+const caseStudiesQuery = groq`
+  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc) [0...2] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    categories[]->{
+      title
+    }
+  }
+`
 
 const testimonials: Testimonial[] = [
   {
@@ -77,26 +80,6 @@ const testimonials: Testimonial[] = [
   }
 ]
 
-const caseStudies: CaseStudy[] = [
-  {
-    id: '1',
-    title: 'Whanganui Hospital',
-    subtitle: 'Healthcare',
-    quote: '"Where Previously Rostering Would Take 7-8 Days, Now It Takes 2-3 Hours Instead"',
-    link: '/case-studies/whanganui-hospital',
-    tags: ['Healthcare', 'Radiography rosters'],
-    industry: 'Healthcare'
-  },
-  {
-    id: '2',
-    title: 'Whanganui Hospital',
-    subtitle: 'Healthcare',
-    quote: '"Where Previously Rostering Would Take 7-8 Days, Now It Takes 2-3 Hours Instead"',
-    link: '/case-studies/whanganui-hospital-icu',
-    tags: ['Healthcare', 'ICU Rosters'],
-    industry: 'Healthcare'
-  }
-]
 
 // Company logos
 const companyLogos = [
@@ -107,31 +90,33 @@ const companyLogos = [
   { name: 'GP Care', logo: '/logos/gp-care.png' },
 ]
 
-export default function TestimonialsPage() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    company: '',
-    message: ''
-  })
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-  }
+export default async function TestimonialsPage() {
+  const { isEnabled } = await draftMode()
+  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  
+  // Fetch case studies from Sanity
+  const caseStudies = await client.fetch(caseStudiesQuery)
+  
+  // If no case studies found, use fallback data
+  const displayCaseStudies = caseStudies.length > 0 ? caseStudies : [
+    {
+      _id: '1',
+      title: 'Whanganui Radiography Department Embraces AI Rostering',
+      slug: { current: 'whanganui-radiography-department-embraces-ai-rostering' },
+      excerpt: 'Where Previously Rostering Would Take 7-8 Days, Now It Takes 2-3 Hours Instead',
+      categories: [{ title: 'Healthcare' }]
+    },
+    {
+      _id: '2',
+      title: 'Case Study: ICU in Western Australia',
+      slug: { current: 'icu-unit-western-australia' },
+      excerpt: 'Where Previously Rostering Would Take 7-8 Days, Now It Takes 2-3 Hours Instead',
+      categories: [{ title: 'Healthcare' }]
+    }
+  ]
 
   return (
     <div className="min-h-screen bg-[#f7f7f7]">
-      {/* Header */}
-      <Header />
       {/* Hero Section with decorative background */}
       <section className="relative bg-white pt-32 pb-20 overflow-visible">
         {/* Decorative elements */}
@@ -229,21 +214,18 @@ export default function TestimonialsPage() {
             Case Studies
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {caseStudies.map((study) => (
+            {displayCaseStudies.map((study) => (
               <div
-                key={study.id}
+                key={study._id}
                 className="border-2 border-[#03d5ab] rounded-lg p-10 hover:shadow-2xl transition-all duration-300 bg-white"
               >
                 <div className="flex flex-wrap gap-3 mb-6">
-                  <span className="inline-block bg-gray-100 text-[#323232] px-6 py-2 rounded-full text-base font-semibold">
-                    {study.subtitle}
-                  </span>
-                  {study.tags.slice(1).map((tag, index) => (
+                  {study.categories?.map((category: any, index: number) => (
                     <span
                       key={index}
-                      className="inline-block bg-gray-50 text-[#323232] px-6 py-2 rounded-full text-base"
+                      className="inline-block bg-gray-100 text-[#323232] px-6 py-2 rounded-full text-base font-semibold"
                     >
-                      {tag}
+                      {category.title}
                     </span>
                   ))}
                 </div>
@@ -251,11 +233,11 @@ export default function TestimonialsPage() {
                   {study.title}
                 </h3>
                 <p className="text-2xl text-[#323232] mb-10">
-                  {study.quote}
+                  "{study.excerpt}"
                 </p>
                 <div className="flex justify-end">
                   <Link
-                    href={study.link}
+                    href={`/blog/${study.slug.current}`}
                     className="inline-flex items-center text-[#323232] hover:text-[#2d3bea] font-medium text-lg transition-colors"
                   >
                     <HiArrowRight className="text-2xl" />
@@ -360,73 +342,7 @@ export default function TestimonialsPage() {
                 </div>
               </div>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-b-2 border-gray-300 focus:border-[#2d3bea] outline-none transition-colors text-lg"
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-b-2 border-gray-300 focus:border-[#2d3bea] outline-none transition-colors text-lg"
-                    required
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-b-2 border-gray-300 focus:border-[#2d3bea] outline-none transition-colors text-lg"
-                    required
-                  />
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-4 border-b-2 border-gray-300 focus:border-[#2d3bea] outline-none transition-colors text-lg"
-                    required
-                  />
-                </div>
-                <input
-                  type="text"
-                  name="company"
-                  placeholder="Company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-4 border-b-2 border-gray-300 focus:border-[#2d3bea] outline-none transition-colors text-lg"
-                  required
-                />
-                <textarea
-                  name="message"
-                  placeholder="Message (optional)"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-4 border-b-2 border-gray-300 focus:border-[#2d3bea] outline-none transition-colors resize-none text-lg"
-                />
-                <div className="text-center pt-8">
-                  <button
-                    type="submit"
-                    className="px-12 py-4 bg-[#24d9dc] text-white font-bold text-xl rounded-full hover:bg-[#1ec5c8] transition-all duration-300 transform hover:scale-105"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>
@@ -454,8 +370,6 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <Footer />
     </div>
   )
 }
