@@ -37,11 +37,11 @@ export default function AgedCarePage() {
             </div>
             <div className="relative">
               <Image
-                src="https://rosterlab.com/hubfs/aged-care-hero.png"
+                src="/images/illustration/aged-care.svg"
                 alt="Aged care rostering dashboard"
                 width={600}
                 height={400}
-                className="rounded-lg shadow-xl"
+                className="block w-full h-auto"
               />
             </div>
           </div>

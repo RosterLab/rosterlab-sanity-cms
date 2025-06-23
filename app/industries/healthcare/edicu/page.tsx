@@ -18,7 +18,7 @@ export default function ICUEDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Generate your roster in{" "}
+                Generate your ED staff roster in{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-500">
                   minutes
                 </span>
@@ -37,11 +37,11 @@ export default function ICUEDPage() {
             </div>
             <div className="relative">
               <Image
-                src="https://rosterlab.com/hubfs/Group%204178%20(1).png"
+                src="/images/illustration/ed-icu.svg"
                 alt="ICU/ED rostering dashboard"
                 width={600}
                 height={400}
-                className="rounded-lg shadow-xl"
+                className="block w-full h-auto"
               />
             </div>
           </div>
@@ -91,9 +91,9 @@ export default function ICUEDPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Fair Distribution</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Continuity of care</h3>
               <p className="text-gray-600">
-                Equitably distribute night shifts, weekends, and on-call duties while respecting staff preferences.
+                Maintain consistent patient-nurse assignments to improve outcomes and staff satisfaction.
               </p>
             </div>
           </div>
@@ -220,9 +220,9 @@ export default function ICUEDPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Analytics Dashboard</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Fatigue Management</h3>
               <p className="text-sm text-gray-600">
-                Track overtime, compliance, and staffing patterns in real-time.
+                Monitor and prevent staff burnout with intelligent shift pattern analysis.
               </p>
             </div>
 
@@ -232,9 +232,9 @@ export default function ICUEDPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">System Integration</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Fair shift allocation</h3>
               <p className="text-sm text-gray-600">
-                Seamlessly connect with HR, payroll, and patient management systems.
+                Equitably distribute night shifts, weekends, and on-call duties automatically.
               </p>
             </div>
           </div>

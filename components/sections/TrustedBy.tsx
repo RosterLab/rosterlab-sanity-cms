@@ -1,12 +1,19 @@
 import Image from 'next/image'
 import Container from '@/components/ui/Container'
 
-const trustedLogos = [
+interface TrustedLogo {
+  src: string
+  alt: string
+  width: number
+  height: number
+  needsBackground?: boolean
+}
+
+const trustedLogos: TrustedLogo[] = [
   { src: '/images/logos/whanganui.png', alt: 'Whanganui', width: 120, height: 60 },
   { src: '/images/logos/western.png', alt: 'Western Health', width: 140, height: 60 },
   { src: '/images/logos/dargaville.png', alt: 'Dargaville', width: 100, height: 60 },
   { src: 'https://rosterlab.com/hs-fs/hubfs/logos/Clients%20Logo/RPA.png?width=320&height=84&name=RPA.png', alt: 'RPA', width: 160, height: 80 },
-  { src: '/images/logos/peticare.png', alt: 'Peticare', width: 140, height: 60 },
   { src: 'https://rosterlab.com/hs-fs/hubfs/logos/Clients%20Logo/HawkesBay.png?width=240&height=74&name=HawkesBay.png', alt: 'Hawkes Bay', width: 160, height: 50 },
 ]
 
@@ -20,13 +27,20 @@ export default function TrustedBy() {
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
             {trustedLogos.map((logo, index) => (
-              <div key={index} className="flex items-center justify-center transition-all duration-300">
+              <div 
+                key={index} 
+                className={`flex items-center justify-center transition-all duration-300 ${
+                  logo.needsBackground ? 'bg-gray-100 rounded-lg p-4' : ''
+                }`}
+              >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
-                  className="max-w-full h-auto opacity-80 hover:opacity-100"
+                  className={`max-w-full h-auto opacity-80 hover:opacity-100 ${
+                    logo.needsBackground ? 'filter invert' : ''
+                  }`}
                 />
               </div>
             ))}
