@@ -190,7 +190,7 @@ export default function BookADemoPage() {
                   Email Us
                 </a>
                 <a
-                  href="/demo"
+                  href="/staff-rostering-interactive-demo"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md font-medium transition-colors"
                 >
                   Explore our interactive demo

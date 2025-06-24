@@ -43,7 +43,7 @@ export default function Hero() {
           </Button>
 
           <Button
-            href="/demo"
+            href="/staff-rostering-interactive-demo"
             className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
           >
             See An Example

@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 import { HiCheck, HiMinus } from 'react-icons/hi'
 
 export const metadata = {
@@ -152,6 +153,41 @@ const features = [
   },
 ]
 
+const faqItems = [
+  {
+    question: "What's included in the free Digital Rostering plan?",
+    answer: "Our free plan includes manual scheduling capabilities, rule violation checking, dynamic statistics, color-coded shifts, and a mobile app for employees. It's perfect for small teams who want to digitize their scheduling process without the AI optimization features."
+  },
+  {
+    question: "How is the AI Optimised plan priced?",
+    answer: "The AI Optimised plan is $20 per person per month. This includes all features from the free plan plus 24/7 automatic scheduling, multiple sessions per shift, dynamic re-rostering, compliance checking, resource optimization, and scenario simulation. There are no setup fees or hidden costs."
+  },
+  {
+    question: "Can I switch between plans?",
+    answer: "Yes! You can upgrade from the free Digital Rostering plan to AI Optimised at any time. When you upgrade, you'll immediately get access to all AI features. You can also downgrade if needed, though you'll lose access to the AI optimization features."
+  },
+  {
+    question: "What's different about the Enterprise solution?",
+    answer: "Enterprise solutions are customized for large organizations with complex needs. This includes API access for integrations, dedicated workforce scheduling consulting, custom rule development, priority support, and the option for on-premise deployment. Pricing is based on your specific requirements."
+  },
+  {
+    question: "Is there a minimum number of users?",
+    answer: "No minimum for the free Digital Rostering plan. For AI Optimised, we recommend at least 10 users to get the full benefit of the optimization algorithms, but there's no enforced minimum. Enterprise solutions are typically for organizations with 100+ employees."
+  },
+  {
+    question: "Do you offer discounts for annual payment?",
+    answer: "Yes, we offer a 15% discount for annual payments on the AI Optimised plan. This brings the cost down to $17 per person per month when paid annually. Contact us for enterprise pricing options."
+  },
+  {
+    question: "Can I try the AI features before committing?",
+    answer: "Absolutely! We offer a 30-day free trial of the AI Optimised plan with no credit card required. You can also book a demo to see the features in action before starting your trial."
+  },
+  {
+    question: "What kind of support is included?",
+    answer: "All plans include email support and access to our knowledge base. AI Optimised customers get priority email support with faster response times. Enterprise customers receive dedicated support including phone support and a assigned customer success manager."
+  }
+]
+
 export default function PricingPage() {
   return (
     <SiteLayout>
@@ -224,7 +260,9 @@ export default function PricingPage() {
                 className={`w-full py-4 text-lg font-semibold ${
                   plan.highlighted
                     ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : 'bg-gray-900 text-white hover:bg-gray-800'
+                    : plan.name === 'Digital Rostering' 
+                      ? 'bg-green-600 text-white hover:bg-green-700'
+                      : 'bg-gray-500 text-white hover:bg-gray-600'
                 }`}
               >
                 {plan.cta}
@@ -297,32 +335,42 @@ export default function PricingPage() {
         </Container>
       </div>
 
-      {/* CTA Section */}
-      <div className="py-20">
+      {/* FAQ Section */}
+      <div className="bg-gray-50 py-20">
         <Container>
-          <div className="text-center bg-gradient-to-r from-blue-600 to-green-500 rounded-3xl p-12 text-white">
-            <h2 className="text-4xl font-bold mb-4">
-              Ready to Transform Your Scheduling?
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
+              Frequently Asked Questions
             </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Join healthcare organizations already optimizing their workforce with RosterLab
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                href="https://app.rosterlab.com" 
-                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
-              >
-                Start Free Forever Plan
-              </Button>
-              <Button 
-                href="/demo" 
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
-              >
-                Book a Demo
-              </Button>
-            </div>
+            <FAQAccordion items={faqItems} />
           </div>
         </Container>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-gradient-to-r from-blue-600 to-green-500 pt-20">
+        <div className="text-center p-12 text-white">
+          <h2 className="text-4xl font-bold mb-4">
+            Ready to Transform Your Scheduling?
+          </h2>
+          <p className="text-xl mb-8 opacity-90">
+            Join healthcare organizations already optimizing their workforce with RosterLab
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              href="https://app.rosterlab.com" 
+              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
+            >
+              Start Free Forever Plan
+            </Button>
+            <Button 
+              href="/staff-rostering-interactive-demo" 
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
+            >
+              Book a Demo
+            </Button>
+          </div>
+        </div>
       </div>
       </div>
     </SiteLayout>

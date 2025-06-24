@@ -101,7 +101,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/staff-rostering-interactive-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Product Tour
                 </Link>
               </li>
