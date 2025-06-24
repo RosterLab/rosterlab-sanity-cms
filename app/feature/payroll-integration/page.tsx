@@ -4,6 +4,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck, HiClock, HiDownload, HiRefresh, HiLink, HiDocument } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import ShareRosterModule from './ShareRosterModule'
 
 export const metadata = {
   title: 'Integrate Roster & Timesheet Data With Payroll - RosterLab',
@@ -103,9 +104,13 @@ export default function PayrollIntegrationPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Export Feature Interface</span>
-                </div>
+                <Image
+                  src="/images/illustration/Folder-pana.svg"
+                  alt="Payroll export and folder management illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -116,8 +121,103 @@ export default function PayrollIntegrationPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">API Sync Visualization</span>
+                <div className="bg-gray-100 rounded-lg p-4">
+                  {/* Browser Window Chrome */}
+                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    {/* Browser Header */}
+                    <div className="bg-gray-200 px-4 py-2 flex items-center space-x-2">
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      </div>
+                      <div className="flex-1 ml-4">
+                        <div className="bg-white rounded px-3 py-1 text-xs text-gray-600 font-mono">
+                          https://app.rosterlab.com/api/sync
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Browser Content */}
+                    <div className="p-6 bg-gray-50">
+                      <div className="flex flex-col items-center justify-center">
+                        {/* RosterLab System */}
+                        <div className="bg-green-50 rounded-lg p-3 border border-green-200 w-full max-w-xs mb-6">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center space-x-2">
+                              <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
+                                <span className="text-white font-bold text-xs">RL</span>
+                              </div>
+                              <span className="font-semibold text-gray-900 text-sm">RosterLab</span>
+                            </div>
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          </div>
+                          <div className="space-y-1">
+                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600 font-mono">roster_data.json</div>
+                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600 font-mono">timesheets.csv</div>
+                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600 font-mono">employees.xml</div>
+                          </div>
+                        </div>
+                        
+                        {/* Sync Arrows Animation */}
+                        <div className="relative w-full max-w-xs h-14 mb-6">
+                          {/* Downward arrow */}
+                          <div className="absolute left-1/4 top-0 transform -translate-x-1/2">
+                            <svg className="w-6 h-14 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                            </svg>
+                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-14 overflow-hidden">
+                              <div className="w-full h-4 bg-gradient-to-b from-green-600 to-transparent animate-[slide-down_3s_ease-in-out_0.5s_both]"></div>
+                            </div>
+                          </div>
+                          
+                          {/* Upward arrow */}
+                          <div className="absolute right-1/4 top-0 transform translate-x-1/2">
+                            <svg className="w-6 h-14 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                            </svg>
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-14 overflow-hidden">
+                              <div className="w-full h-4 bg-gradient-to-t from-blue-600 to-transparent animate-[slide-up_3s_ease-in-out_1.5s_both]"></div>
+                            </div>
+                          </div>
+                          
+                          {/* RosterLab API Label */}
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full px-3 py-1 shadow-md border border-gray-200">
+                            <span className="text-xs font-semibold text-gray-700">RosterLab API</span>
+                          </div>
+                        </div>
+                        
+                        {/* Payroll System */}
+                        <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 w-full max-w-xs">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center space-x-2">
+                              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                                <span className="text-white font-bold text-xs">PR</span>
+                              </div>
+                              <span className="font-semibold text-gray-900 text-sm">Payroll System</span>
+                            </div>
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                          </div>
+                          <div className="space-y-1">
+                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600 font-mono">hours_worked.dat</div>
+                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600 font-mono">pay_rates.sql</div>
+                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600 font-mono">deductions.txt</div>
+                          </div>
+                        </div>
+                        
+                        {/* Status Bar */}
+                        <div className="mt-4 w-full max-w-xs">
+                          <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+                            <div className="bg-green-500 h-full w-full animate-[progress_3s_ease-in-out_both]"></div>
+                          </div>
+                          <div className="mt-2 text-center">
+                            <p className="text-xs text-gray-600 font-mono">Status: Connected</p>
+                            <p className="text-xs text-green-600 font-medium mt-1">✓ Last synced: 2 minutes ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
@@ -173,9 +273,7 @@ export default function PayrollIntegrationPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Live Roster Link Interface</span>
-                </div>
+                <ShareRosterModule />
               </div>
             </div>
           </Container>
@@ -186,8 +284,14 @@ export default function PayrollIntegrationPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Smart Timesheet Dashboard</span>
+                <div className="relative">
+                  <Image
+                    src="/images/illustration/Transfer files-pana.svg"
+                    alt="Smart timesheet transfer illustration"
+                    width={600}
+                    height={600}
+                    className="w-full h-auto"
+                  />
                 </div>
               </div>
               <div className="order-1 lg:order-2">

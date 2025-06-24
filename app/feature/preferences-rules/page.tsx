@@ -89,22 +89,93 @@ export default function PreferencesRulesPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Intuitive preference collection interface</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Weighted preferences (preferred, available, unavailable)</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Recurring patterns and one-off exceptions</span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Preference Collection Interface</span>
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="font-semibold text-gray-900">Set Your Preferences</h3>
+                    <span className="text-xs bg-[#4a9288] text-white px-3 py-1 rounded-full">AI-Powered</span>
+                  </div>
+                  
+                  {/* Preference Input */}
+                  <div className="space-y-4 mb-6">
+                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-medium text-gray-700">Availability Preferences</span>
+                        <HiCog className="w-4 h-4 text-gray-400" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
+                          <span className="text-sm text-gray-600">Monday - Thursday</span>
+                          <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Available</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-white rounded-lg border-2 border-[#4a9288] animate-pulse">
+                          <span className="text-sm font-medium text-gray-900">Friday Nights</span>
+                          <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded font-medium">Can't Work</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
+                          <span className="text-sm text-gray-600">Weekends</span>
+                          <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Flexible</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* AI Processing Visualization */}
+                  <div className="relative mb-6">
+                    <div className="flex items-center justify-center py-2">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
+                        <div className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
+                        <div className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+                      </div>
+                      <span className="ml-3 text-xs text-gray-500">AI analyzing preferences...</span>
+                    </div>
+                  </div>
+                  
+                  {/* Generated Roster Preview */}
+                  <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-gray-700">Your Schedule</span>
+                      <HiCheck className="w-4 h-4 text-[#4a9288]" />
+                    </div>
+                    <div className="grid grid-cols-5 gap-1 text-xs">
+                      <div className="text-center">
+                        <p className="font-medium text-gray-600 mb-1">Mon</p>
+                        <div className="bg-[#4a9288] text-white rounded py-1">Day</div>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-medium text-gray-600 mb-1">Tue</p>
+                        <div className="bg-[#4a9288] text-white rounded py-1">Day</div>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-medium text-gray-600 mb-1">Wed</p>
+                        <div className="bg-[#4a9288] text-white rounded py-1">Eve</div>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-medium text-gray-600 mb-1">Thu</p>
+                        <div className="bg-[#4a9288] text-white rounded py-1">Day</div>
+                      </div>
+                      <div className="text-center">
+                        <p className="font-medium text-gray-600 mb-1">Fri</p>
+                        <div className="bg-gray-300 text-gray-500 rounded py-1">Off</div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-green-600 mt-3 text-center">✓ No Friday night shifts assigned</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,9 +187,13 @@ export default function PreferencesRulesPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Rule Configuration Engine</span>
-                </div>
+                <Image
+                  src="/images/illustration/Rocket research-pana.svg"
+                  alt="Advanced rule engine illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -129,15 +204,15 @@ export default function PreferencesRulesPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Drop-down menu rule builder interface</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Custom logic for organization-specific needs</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Powered by AI to handle complexity</span>
                   </li>
                 </ul>
@@ -159,15 +234,15 @@ export default function PreferencesRulesPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Multi-objective optimization algorithms</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Fairness tracking and equitable distribution</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Continuous learning from staff feedback</span>
                   </li>
                 </ul>
@@ -199,15 +274,15 @@ export default function PreferencesRulesPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic conflict detection and alerts</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Priority-based resolution algorithms</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Manager escalation for complex situations</span>
                   </li>
                 </ul>
@@ -229,7 +304,7 @@ export default function PreferencesRulesPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
