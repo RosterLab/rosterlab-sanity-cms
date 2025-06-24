@@ -1,5 +1,5 @@
 import Container from '@/components/ui/Container'
-import ContactForm from '@/components/forms/HubSpotForm'
+import HubSpotEmbedForm from '@/components/forms/HubSpotEmbedForm'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import { HiMail, HiPhone, HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
@@ -74,7 +74,7 @@ export default function ContactPage() {
             <p className="text-neutral-600 mb-6">
               Fill out the form below and our team will be in touch to discuss how we can help you create the perfect roster for your team.
             </p>
-            <ContactForm className="contact-form" />
+            <HubSpotEmbedForm />
           </div>
 
           {/* Contact Information */}
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-neutral-900 mb-1">Email</h3>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-1">Email</h3>
                     <p className="text-neutral-600">hello@rosterlab.com</p>
                     <p className="text-sm text-neutral-500">We&apos;ll respond within 24 hours</p>
                   </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-neutral-900 mb-1">Phone</h3>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-1">Phone</h3>
                     <p className="text-neutral-600">+64 276366388</p>
                     <div className="flex items-center gap-3 mt-2">
                       <p className="text-sm text-neutral-500">Mon-Fri 9am-6pm NZST</p>
@@ -129,7 +129,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-neutral-900 mb-1">Headquarters</h3>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-1">Headquarters</h3>
                     <p className="text-neutral-600">
                       314/380 Khyber Pass Road<br />
                       Newmarket, Auckland 1023<br />
@@ -147,6 +147,17 @@ export default function ContactPage() {
               </h2>
               
               <FAQAccordion items={faqItems} />
+            </div>
+
+            {/* Additional Form Section */}
+            <div className="bg-white rounded-lg shadow-sm p-8">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-6">
+                Get Started Today
+              </h2>
+              <p className="text-neutral-600 mb-6">
+                Ready to transform your rostering? Fill out the form below for a personalized consultation.
+              </p>
+              <HubSpotEmbedForm />
             </div>
           </div>
         </div>
