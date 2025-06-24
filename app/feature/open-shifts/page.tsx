@@ -66,23 +66,27 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Push notifications to mobile devices and email alerts</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Skills-based matching ensures qualified staff are notified</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Availability filters prevent unnecessary notifications</span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Real-Time Notification Interface</span>
-                </div>
+                <Image
+                  src="/images/illustration/Push notifications-pana-2.svg"
+                  alt="Real-time push notifications illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -93,8 +97,83 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Compliance Checking Visualization</span>
+                <div className="bg-gray-100 rounded-lg p-6">
+                  <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                    {/* Alert Center Header */}
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="font-semibold text-gray-900">Compliance Alert Center</h3>
+                      <div className="relative">
+                        <HiBell className="w-6 h-6 text-gray-600" />
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Alert Notifications */}
+                    <div className="space-y-3">
+                      {/* Overtime Alert */}
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 transform transition-all hover:scale-105 animate-[slide-in_0.5s_ease-out]">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <HiClock className="w-5 h-5 text-yellow-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-900 text-sm">Overtime Warning</p>
+                            <p className="text-xs text-gray-600 mt-1">John would exceed 40 hrs/week</p>
+                            <div className="mt-2 flex items-center space-x-2">
+                              <span className="text-xs bg-yellow-200 text-yellow-800 px-2 py-1 rounded">Auto-blocked</span>
+                              <span className="text-xs text-gray-500">2 min ago</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Rest Period Alert */}
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4 transform transition-all hover:scale-105 animate-[slide-in_0.7s_ease-out]">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 animate-[shake_2s_ease-in-out_infinite]">
+                            <HiShieldCheck className="w-5 h-5 text-red-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-900 text-sm">Rest Period Violation</p>
+                            <p className="text-xs text-gray-600 mt-1">Less than 8 hrs between shifts</p>
+                            <div className="mt-2 flex items-center space-x-2">
+                              <span className="text-xs bg-red-200 text-red-800 px-2 py-1 rounded">Prevented</span>
+                              <span className="text-xs text-gray-500">5 min ago</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Fair Distribution Alert */}
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 transform transition-all hover:scale-105 animate-[slide-in_0.9s_ease-out]">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <HiUserGroup className="w-5 h-5 text-blue-600" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium text-gray-900 text-sm">Fair Distribution Check</p>
+                            <p className="text-xs text-gray-600 mt-1">Sarah has fewer weekend shifts</p>
+                            <div className="mt-2 flex items-center space-x-2">
+                              <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">Priority given</span>
+                              <span className="text-xs text-gray-500">Just now</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Alert Summary */}
+                    <div className="mt-6 pt-4 border-t border-gray-200">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Compliance checks today</span>
+                        <span className="font-semibold text-[#4a9288]">147 passed</span>
+                      </div>
+                      <div className="mt-2 bg-gray-200 rounded-full h-2">
+                        <div className="bg-[#4a9288] h-2 rounded-full" style={{width: '92%'}}></div>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2 text-center">92% compliance rate</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
@@ -106,15 +185,15 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic overtime and fatigue management checks</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Compliance alerts for union rules and regulations</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Fair distribution algorithms prevent favoritism</span>
                   </li>
                 </ul>
@@ -136,23 +215,27 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time validation against existing schedules</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic detection of double-bookings</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Minimum rest period enforcement</span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Conflict Detection Interface</span>
-                </div>
+                <Image
+                  src="/images/illustration/Computer troubleshooting-pana-2.svg"
+                  alt="Automatic conflict checking illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -163,8 +246,107 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Audit Trail Dashboard</span>
+                <div className="bg-gray-100 rounded-lg p-4">
+                  {/* Browser Window Chrome */}
+                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    {/* Browser Header */}
+                    <div className="bg-gray-200 px-4 py-2 flex items-center space-x-2">
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      </div>
+                      <div className="flex-1 ml-4">
+                        <div className="bg-white rounded px-3 py-1 text-xs text-gray-600 font-mono">
+                          https://app.rosterlab.com/audit-trail
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Browser Content */}
+                    <div className="p-6 bg-gray-50">
+                      {/* Timeline Events */}
+                      <div className="relative">
+                      {/* Timeline Line */}
+                      <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+                      
+                      {/* Timeline Items */}
+                      <div className="space-y-4">
+                        {/* Event 1 */}
+                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                          <div className="absolute left-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform"></div>
+                          <div className="ml-10 flex-1">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm font-medium text-gray-900">Shift Published</p>
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:47 PM</span>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">ICU Night Shift - 8 hrs</p>
+                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <span className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">By: Manager Sarah</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Event 2 */}
+                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                          <div className="absolute left-2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform"></div>
+                          <div className="ml-10 flex-1">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm font-medium text-gray-900">12 Staff Notified</p>
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:47 PM</span>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Based on skills & availability</p>
+                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <div className="flex -space-x-2">
+                                <div className="w-6 h-6 bg-gray-300 rounded-full border-2 border-white"></div>
+                                <div className="w-6 h-6 bg-gray-400 rounded-full border-2 border-white"></div>
+                                <div className="w-6 h-6 bg-gray-500 rounded-full border-2 border-white"></div>
+                                <div className="w-6 h-6 bg-gray-600 rounded-full border-2 border-white flex items-center justify-center text-xs text-white">+9</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Event 3 */}
+                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                          <div className="absolute left-2 w-6 h-6 bg-yellow-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform"></div>
+                          <div className="ml-10 flex-1">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm font-medium text-gray-900">3 Viewed</p>
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:52 PM</span>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Emma, John, Mike</p>
+                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Response pending</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Event 4 */}
+                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                          <div className="absolute left-2 w-6 h-6 bg-[#4a9288] rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform animate-pulse"></div>
+                          <div className="ml-10 flex-1">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm font-medium text-gray-900">Shift Accepted</p>
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:58 PM</span>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Emma Wilson accepted</p>
+                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <span className="text-xs bg-[#4a9288] text-white px-2 py-1 rounded">Compliance verified</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                      
+                      {/* View Full History */}
+                      <div className="mt-6 text-center">
+                        <button className="text-sm text-[#4a9288] hover:text-[#3a7268] font-medium transition-colors">
+                          View Full History →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
@@ -176,15 +358,15 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Complete history of all shift activities</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Detailed notification and response tracking</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Compliance reporting and documentation</span>
                   </li>
                 </ul>
@@ -194,7 +376,7 @@ export default function OpenShiftsPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600">
+        <div className="py-20 bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
