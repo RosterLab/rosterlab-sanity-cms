@@ -26,8 +26,8 @@ export default function IndustriesPage() {
               <Button href="/demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
                 Book a Demo
               </Button>
-              <Button href="/contact" className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50">
-                Find Your Solution
+              <Button href="/roi-calculator" className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50">
+                ROI Calculator
               </Button>
             </div>
           </div>
@@ -372,7 +372,7 @@ export default function IndustriesPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Instant Scheduling</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Automatic Scheduling</h3>
               <p className="text-gray-600">
                 Create optimal schedules in minutes, not days or weeks
               </p>
@@ -479,6 +479,12 @@ export default function IndustriesPage() {
                 </div>
               </div>
             </div>
+            
+            <div className="text-center mt-12">
+              <Button href="/demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+                See an Example
+              </Button>
+            </div>
           </div>
         </Container>
       </section>
@@ -488,12 +494,11 @@ export default function IndustriesPage() {
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <blockquote className="text-2xl md:text-3xl text-gray-800 font-light italic mb-8">
-              "RosterLab transformed our scheduling from a weekly nightmare to a 30-minute task. The AI understands our complex requirements perfectly."
+              "We are beyond ecstatic with Rosterlab. The rostering requirements for our staff are an absolute nightmare, with multiple staff each having their own unique needs, e.g. days and hours they can work, along with multiple skill sets/roles that the practice needs to be fulfilled on a daily basis."
             </blockquote>
             <div className="flex items-center justify-center">
               <div>
-                <p className="font-semibold text-gray-900">Maria Rodriguez</p>
-                <p className="text-gray-600">Operations Director, Global Manufacturing Corp</p>
+                <p className="font-semibold text-gray-900">Rostering Client</p>
               </div>
             </div>
           </div>

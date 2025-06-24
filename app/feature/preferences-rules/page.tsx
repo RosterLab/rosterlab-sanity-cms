@@ -3,11 +3,35 @@ import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck, HiCog, HiShieldCheck, HiUsers, HiClipboardList, HiAdjustments } from 'react-icons/hi'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
-  title: 'Preferences & Rules - RosterLab',
-  description: 'Powerful preference collection and rule management. Balance staff preferences with operational requirements through intelligent constraint handling.',
+  title: 'Shift Preferences & Fairness Rules - RosterLab',
+  description: 'Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.',
 }
+
+const faqItems = [
+  {
+    question: "How do staff set their shift preferences?",
+    answer: "Staff can easily set preferences through our mobile app or web portal. They can mark shifts as preferred, available, or unavailable, set recurring patterns (like 'no weekends'), and specify one-off exceptions. The interface is intuitive with visual calendars and simple toggles for different preference types."
+  },
+  {
+    question: "What fairness rules can I configure?",
+    answer: "You can set rules for: equal distribution of desirable shifts (weekends, holidays), maximum consecutive days worked, minimum rest periods between shifts, fair rotation of on-call duties, seniority-based preferences, and custom rules specific to your organization. The system automatically enforces these while creating schedules."
+  },
+  {
+    question: "How does the system balance conflicting preferences?",
+    answer: "Our AI uses multi-objective optimization to find the best compromise. It considers preference weights, historical allocation, fairness metrics, and operational requirements. When perfect satisfaction isn't possible, it distributes compromises fairly across the team and tracks satisfaction scores to ensure long-term equity."
+  },
+  {
+    question: "Can I override preferences when necessary?",
+    answer: "Yes, managers can override preferences for critical operational needs. However, the system tracks all overrides and their reasons, helping you minimize them over time. It also suggests alternatives that might meet operational needs while better respecting preferences, and notifies affected staff with explanations."
+  },
+  {
+    question: "How does this improve staff retention?",
+    answer: "By respecting preferences and ensuring fairness, staff feel heard and valued. Our clients report 40-60% reduction in turnover after implementing preference-based scheduling. The system's transparency about fairness rules and tracking also builds trust between staff and management."
+  }
+]
 
 export default function PreferencesRulesPage() {
   return (
@@ -40,81 +64,13 @@ export default function PreferencesRulesPage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <div className="space-y-4">
-                    <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-gray-900">Staff Preferences</span>
-                        <span className="text-sm bg-green-100 text-green-600 px-2 py-1 rounded-full font-medium">85% Satisfied</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="bg-white rounded p-3">
-                          <div className="flex justify-between items-center mb-2">
-                            <p className="font-medium text-gray-900">Sarah Johnson</p>
-                            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Day shifts preferred</span>
-                          </div>
-                          <div className="text-xs text-gray-500 grid grid-cols-7 gap-1">
-                            <div className="text-center">
-                              <p className="font-medium">M</p>
-                              <div className="h-2 bg-green-400 rounded mt-1"></div>
-                            </div>
-                            <div className="text-center">
-                              <p className="font-medium">T</p>
-                              <div className="h-2 bg-green-400 rounded mt-1"></div>
-                            </div>
-                            <div className="text-center">
-                              <p className="font-medium">W</p>
-                              <div className="h-2 bg-yellow-400 rounded mt-1"></div>
-                            </div>
-                            <div className="text-center">
-                              <p className="font-medium">T</p>
-                              <div className="h-2 bg-green-400 rounded mt-1"></div>
-                            </div>
-                            <div className="text-center">
-                              <p className="font-medium">F</p>
-                              <div className="h-2 bg-green-400 rounded mt-1"></div>
-                            </div>
-                            <div className="text-center">
-                              <p className="font-medium">S</p>
-                              <div className="h-2 bg-red-400 rounded mt-1"></div>
-                            </div>
-                            <div className="text-center">
-                              <p className="font-medium">S</p>
-                              <div className="h-2 bg-red-400 rounded mt-1"></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded p-3">
-                          <div className="flex justify-between items-center mb-2">
-                            <p className="font-medium text-gray-900">Active Rules</p>
-                            <span className="text-xs text-indigo-600">12 configured</span>
-                          </div>
-                          <div className="space-y-1">
-                            <div className="text-xs flex justify-between">
-                              <span>Max consecutive days: 5</span>
-                              <HiShieldCheck className="w-3 h-3 text-green-500" />
-                            </div>
-                            <div className="text-xs flex justify-between">
-                              <span>Min rest between shifts: 12h</span>
-                              <HiShieldCheck className="w-3 h-3 text-green-500" />
-                            </div>
-                            <div className="text-xs flex justify-between">
-                              <span>Weekend distribution: Fair</span>
-                              <HiShieldCheck className="w-3 h-3 text-green-500" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="w-full mt-4 bg-indigo-600 text-white rounded-lg py-3 font-semibold hover:bg-indigo-700 transition-colors">
-                        Manage Preferences & Rules
-                      </button>
-                    </div>
-                    <div className="text-center text-sm text-gray-500">
-                      <HiAdjustments className="w-5 h-5 inline mr-1 text-indigo-500" />
-                      Intelligent preference balancing
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/illustration/team checklist-pana.svg"
+                  alt="Team preferences and rules illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -174,15 +130,15 @@ export default function PreferencesRulesPage() {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Drag-and-drop rule builder interface</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Pre-built templates for common scenarios</span>
+                    <span className="text-gray-700">Drop-down menu rule builder interface</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Custom logic for organization-specific needs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Powered by AI to handle complexity</span>
                   </li>
                 </ul>
               </div>
@@ -256,6 +212,18 @@ export default function PreferencesRulesPage() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion items={faqItems} />
             </div>
           </Container>
         </div>

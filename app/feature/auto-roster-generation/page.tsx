@@ -3,11 +3,35 @@ import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck, HiCog, HiLightningBolt, HiShieldCheck, HiUsers, HiCalendar } from 'react-icons/hi'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
-  title: 'Auto Roster Generation - RosterLab',
-  description: 'Generate perfect rosters automatically with AI-powered optimization. Save hours of manual work while ensuring fairness and compliance.',
+  title: 'AI Auto Roster Generation - RosterLab',
+  description: 'Generate fully optimized rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
 }
+
+const faqItems = [
+  {
+    question: "How fast is the auto-generation process?",
+    answer: "RosterLab can generate a complete month's roster for 100+ staff in under 2 minutes. The speed depends on complexity - simple rosters take seconds, while those with many constraints may take a few minutes. The AI processes millions of possible combinations to find the optimal solution quickly."
+  },
+  {
+    question: "What factors does the AI consider when generating rosters?",
+    answer: "The AI considers: staffing requirements by shift and location, employee skills and certifications, staff preferences and availability, fairness metrics (equal distribution of weekends, nights, etc.), labor laws and compliance rules, budget constraints and overtime limits, and historical patterns. It balances all these factors simultaneously to create optimal schedules."
+  },
+  {
+    question: "Can I modify the auto-generated roster?",
+    answer: "Absolutely! The auto-generated roster is a starting point that you can refine. You can make manual adjustments, and the system will highlight any rule violations your changes might cause. You can also regenerate specific parts of the roster while keeping other sections locked, giving you full control over the final schedule."
+  },
+  {
+    question: "How does it ensure fairness across the team?",
+    answer: "The AI tracks fairness metrics like weekend distribution, night shift allocation, and preference satisfaction across all staff. It uses advanced algorithms to ensure equitable distribution over time, not just within a single roster period. The system also provides transparency reports showing how shifts were distributed and why certain decisions were made."
+  },
+  {
+    question: "What happens if no perfect solution exists?",
+    answer: "When constraints conflict (e.g., everyone wants the same day off), the AI finds the best possible compromise. It shows you exactly which constraints couldn't be fully satisfied and why, suggests alternative solutions, and can even recommend policy adjustments that would make scheduling easier in the future. You always see the trade-offs clearly."
+  }
+]
 
 export default function AutoRosterGenerationPage() {
   return (
@@ -40,49 +64,13 @@ export default function AutoRosterGenerationPage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <div className="space-y-4">
-                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-gray-900">Auto-Generated Roster</span>
-                        <span className="text-sm bg-green-100 text-green-600 px-2 py-1 rounded-full font-medium">✓ Optimized</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="bg-white rounded p-3 flex justify-between items-center">
-                          <div>
-                            <p className="font-medium text-gray-900">October 2024 Schedule</p>
-                            <p className="text-sm text-gray-500">45 staff • 672 shifts • 100% coverage</p>
-                          </div>
-                          <div className="text-right">
-                            <HiLightningBolt className="w-5 h-5 text-purple-500 mb-1" />
-                            <p className="text-xs text-purple-600">Generated in 2 minutes</p>
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                          <div className="bg-green-100 text-green-700 p-2 rounded">
-                            <p className="font-medium">Fairness Score</p>
-                            <p className="text-lg font-bold">98%</p>
-                          </div>
-                          <div className="bg-blue-100 text-blue-700 p-2 rounded">
-                            <p className="font-medium">Compliance</p>
-                            <p className="text-lg font-bold">100%</p>
-                          </div>
-                          <div className="bg-yellow-100 text-yellow-700 p-2 rounded">
-                            <p className="font-medium">Satisfaction</p>
-                            <p className="text-lg font-bold">94%</p>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="w-full mt-4 bg-purple-600 text-white rounded-lg py-3 font-semibold hover:bg-purple-700 transition-colors">
-                        Generate New Roster
-                      </button>
-                    </div>
-                    <div className="text-center text-sm text-gray-500">
-                      <HiCog className="w-5 h-5 inline mr-1 text-purple-500" />
-                      AI-powered optimization engine
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/illustration/auto-roster.svg"
+                  alt="Auto roster generation illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -249,6 +237,18 @@ export default function AutoRosterGenerationPage() {
                   <p className="text-xl opacity-90">Average generation time</p>
                 </div>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion items={faqItems} />
             </div>
           </Container>
         </div>

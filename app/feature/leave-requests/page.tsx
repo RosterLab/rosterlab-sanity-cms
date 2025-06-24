@@ -1,12 +1,13 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 import Image from 'next/image'
 import { HiCheck, HiCalendar, HiClock, HiUserGroup, HiShieldCheck, HiBell } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Leave Requests - RosterLab',
-  description: 'Streamlined leave request management with automatic coverage analysis and intelligent approval workflows.',
+  title: 'Employee Leave Request Tracking - RosterLab',
+  description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
 }
 
 export default function LeaveRequestsPage() {
@@ -38,6 +39,45 @@ export default function LeaveRequestsPage() {
                     Contact Us
                   </Button>
                 </div>
+              </div>
+              <div className="relative">
+                <Image
+                  src="/images/illustration/A day off-pana.svg"
+                  alt="Leave request management illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Feature 1: Automatic Coverage Analysis */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Automatic Coverage Analysis
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  When staff request leave, the system automatically analyzes impact on coverage, identifies available replacement options, and flags potential issues before they become problems.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Real-time coverage impact assessment</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Automatic identification of replacement staff</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Skills and availability matching for coverage</span>
+                  </li>
+                </ul>
               </div>
               <div className="relative">
                 <div className="bg-white rounded-2xl shadow-xl p-6">
@@ -90,41 +130,6 @@ export default function LeaveRequestsPage() {
                       Smart leave balance tracking
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* Feature 1: Automatic Coverage Analysis */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automatic Coverage Analysis
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  When staff request leave, the system automatically analyzes impact on coverage, identifies available replacement options, and flags potential issues before they become problems.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Real-time coverage impact assessment</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic identification of replacement staff</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Skills and availability matching for coverage</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Coverage Analysis Interface</span>
                 </div>
               </div>
             </div>
@@ -257,6 +262,53 @@ export default function LeaveRequestsPage() {
                   <p className="text-xl opacity-90">Self-service availability</p>
                 </div>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion
+                items={[
+                  {
+                    question: "How does the automatic coverage analysis work?",
+                    answer: "When an employee submits a leave request, RosterLab instantly analyzes your roster to identify coverage gaps and available replacement staff. The system considers staff skills, availability, overtime rules, and minimum coverage requirements to provide managers with a complete impact assessment before approving requests."
+                  },
+                  {
+                    question: "Can employees check their leave balances on mobile?",
+                    answer: "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones."
+                  },
+                  {
+                    question: "What types of leave can the system handle?",
+                    answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organization's policies."
+                  },
+                  {
+                    question: "How are leave accruals calculated?",
+                    answer: "Leave accruals are automatically calculated based on your configured policies, considering factors like employment type, hours worked, and tenure. The system tracks balances in real-time, handles pro-rata calculations for part-time staff, and can manage complex scenarios like leave loading and different accrual rates."
+                  },
+                  {
+                    question: "Can we set up automatic approval rules?",
+                    answer: "Absolutely! You can configure automatic approval rules based on various criteria such as leave type, duration, advance notice, and coverage availability. For example, single-day leave requests with 2+ weeks notice and available coverage can be auto-approved, while longer periods or short-notice requests require manager review."
+                  },
+                  {
+                    question: "How does the system handle leave conflicts?",
+                    answer: "RosterLab prevents leave conflicts by checking existing approved leave, minimum coverage requirements, and blackout periods before allowing requests. The system alerts both employees and managers to potential conflicts, suggests alternative dates, and can enforce rules like maximum simultaneous leave per department."
+                  },
+                  {
+                    question: "What happens to leave requests if coverage isn't available?",
+                    answer: "When coverage gaps are identified, the system doesn't automatically reject the request. Instead, it provides managers with options like: finding qualified replacement staff, adjusting nearby shifts, offering overtime to available staff, or temporarily adjusting service levels. Managers can make informed decisions based on operational priorities."
+                  },
+                  {
+                    question: "Can we integrate with our existing HR systems?",
+                    answer: "Yes, RosterLab offers robust integration capabilities with popular HR and payroll systems. Leave balances, approvals, and usage data can be synchronized automatically, ensuring your records stay consistent across all systems while eliminating duplicate data entry."
+                  }
+                ]}
+              />
             </div>
           </Container>
         </div>

@@ -58,7 +58,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: 'Blog', link: '/blog' },
         { title: 'Case Studies', link: '/case-studies' },
-        { title: 'Testimonials', link: '/resources/testimonials' },
         { title: 'Newsroom', link: '/newsroom' },
         { title: 'Schedge', link: '/schedge' },
       ]

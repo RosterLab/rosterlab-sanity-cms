@@ -40,55 +40,13 @@ export default function SelfSchedulingPage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <div className="space-y-4">
-                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-gray-900">Open Shifts This Week</span>
-                        <span className="text-sm text-purple-600 font-medium">12 Available</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="bg-white rounded p-3 flex justify-between items-center hover:shadow-sm transition-shadow cursor-pointer">
-                          <div>
-                            <p className="font-medium text-gray-900">ICU - Morning Shift</p>
-                            <p className="text-sm text-gray-500">Mon, Oct 14</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm font-medium text-purple-600">7:00 AM - 3:00 PM</p>
-                            <p className="text-xs text-gray-500">2 spots left</p>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded p-3 flex justify-between items-center hover:shadow-sm transition-shadow cursor-pointer">
-                          <div>
-                            <p className="font-medium text-gray-900">Ward 3B - Night Shift</p>
-                            <p className="text-sm text-gray-500">Tue, Oct 15</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm font-medium text-purple-600">11:00 PM - 7:00 AM</p>
-                            <p className="text-xs text-gray-500">1 spot left</p>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded p-3 flex justify-between items-center hover:shadow-sm transition-shadow cursor-pointer">
-                          <div>
-                            <p className="font-medium text-gray-900">Emergency - Afternoon</p>
-                            <p className="text-sm text-gray-500">Wed, Oct 16</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm font-medium text-purple-600">3:00 PM - 11:00 PM</p>
-                            <p className="text-xs text-gray-500">3 spots left</p>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="w-full mt-4 bg-purple-600 text-white rounded-lg py-3 font-semibold hover:bg-purple-700 transition-colors">
-                        View All Available Shifts
-                      </button>
-                    </div>
-                    <div className="text-center text-sm text-gray-500">
-                      <HiShieldCheck className="w-5 h-5 inline mr-1 text-purple-500" />
-                      Smart matching based on your skills & preferences
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/illustration/Work life balance-pana.svg"
+                  alt="Self-scheduling work life balance illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>

@@ -3,10 +3,11 @@ import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck, HiClock, HiBell, HiShieldCheck, HiEye, HiUserGroup } from 'react-icons/hi'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
-  title: 'Re-Rostering - RosterLab',
-  description: 'Dynamic re-rostering for unexpected changes. Automatically adjust schedules when staff call in sick or situations change, maintaining coverage and compliance.',
+  title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
+  description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',
 }
 
 export default function ReRosteringPage() {
@@ -40,57 +41,13 @@ export default function ReRosteringPage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <div className="space-y-4">
-                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-gray-900">Re-Rostering Alert</span>
-                        <span className="text-sm bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">Action Needed</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="bg-white rounded p-3 border-l-4 border-red-500">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <p className="font-medium text-gray-900">Sarah called in sick</p>
-                              <p className="text-sm text-gray-500">ICU Night Shift - Tonight 11PM-7AM</p>
-                            </div>
-                            <div className="text-right">
-                              <HiClock className="w-5 h-5 text-red-500 mb-1" />
-                              <p className="text-xs text-red-600">Coverage needed</p>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Critical coverage</span>
-                            <span className="text-xs text-gray-500">5 solutions found</span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded p-3 border-l-4 border-green-500">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <p className="font-medium text-gray-900">Auto-suggested solution</p>
-                              <p className="text-sm text-gray-500">Move John from Ward 3B + overtime for Lisa</p>
-                            </div>
-                            <div className="text-right">
-                              <HiBell className="w-5 h-5 text-green-500 mb-1" />
-                              <p className="text-xs text-green-600">AI recommended</p>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">✓ Compliant</span>
-                            <span className="text-xs text-gray-500">Impact: minimal</span>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="w-full mt-4 bg-orange-600 text-white rounded-lg py-3 font-semibold hover:bg-orange-700 transition-colors">
-                        Apply Re-Rostering Solution
-                      </button>
-                    </div>
-                    <div className="text-center text-sm text-gray-500">
-                      <HiEye className="w-5 h-5 inline mr-1 text-orange-500" />
-                      Intelligent re-rostering in real-time
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/illustration/Events-pana.svg"
+                  alt="Re-rostering events management illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -257,6 +214,48 @@ export default function ReRosteringPage() {
                   <p className="text-xl opacity-90">Reduction in manual re-scheduling</p>
                 </div>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Learn more about how re-rostering and scenario planning work
+                </p>
+              </div>
+              <FAQAccordion items={[
+                {
+                  question: "How quickly can RosterLab generate re-rostering solutions?",
+                  answer: "RosterLab's AI can generate multiple re-rostering solutions in under 30 seconds. The system analyzes all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimize disruption while maintaining full coverage."
+                },
+                {
+                  question: "What happens when multiple staff call in sick at the same time?",
+                  answer: "Our system can handle multiple simultaneous absences by running complex scenario analysis. It evaluates the cumulative impact and generates solutions that address all gaps while considering factors like overtime limits, skill requirements, and staff preferences. You'll see all affected areas and can approve changes in bulk or individually."
+                },
+                {
+                  question: "Can I test different scenarios before implementing changes?",
+                  answer: "Yes! Our scenario planning feature allows you to test 'what-if' situations without affecting the live roster. You can simulate different staffing scenarios, compare costs and coverage impacts, and save multiple scenarios for future reference. This helps with contingency planning and budget forecasting."
+                },
+                {
+                  question: "How does the system ensure compliance when re-rostering?",
+                  answer: "Every re-rostering solution is automatically validated against your configured compliance rules including minimum rest periods, maximum working hours, skill requirements, and union agreements. Non-compliant options are filtered out, and any borderline cases are clearly flagged with specific warnings."
+                },
+                {
+                  question: "Will staff be automatically notified of roster changes?",
+                  answer: "Yes, once you approve a re-rostering solution, all affected staff receive instant notifications via their preferred communication method (app, SMS, or email). The notification includes their new shift details, the reason for the change, and requires acknowledgment to ensure they're aware of the update."
+                },
+                {
+                  question: "Can the system learn from our re-rostering decisions?",
+                  answer: "Absolutely! RosterLab's AI learns from every re-rostering decision you make, understanding your preferences for certain solutions and staff combinations. Over time, it becomes more accurate at predicting your preferred solutions and can even auto-apply changes for routine scenarios based on your historical choices."
+                }
+              ]} />
             </div>
           </Container>
         </div>

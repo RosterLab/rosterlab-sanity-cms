@@ -2,11 +2,12 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 import { HiCheck, HiClock, HiBell, HiShieldCheck, HiEye, HiUserGroup } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Open Shifts Management - RosterLab',
-  description: 'Manage open shifts with less effort. Instantly alert staff when new shifts become available with smart matching and compliance checks.',
+  title: 'Open Shifts Management & Smart Matching - RosterLab',
+  description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
 }
 
 export default function OpenShiftsPage() {
@@ -40,57 +41,13 @@ export default function OpenShiftsPage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-xl p-6">
-                  <div className="space-y-4">
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-gray-900">Available Open Shifts</span>
-                        <span className="text-sm bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium">Urgent</span>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="bg-white rounded p-3 border-l-4 border-blue-500">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <p className="font-medium text-gray-900">ICU - Night Shift</p>
-                              <p className="text-sm text-gray-500">Tonight, 11:00 PM - 7:00 AM</p>
-                            </div>
-                            <div className="text-right">
-                              <HiBell className="w-5 h-5 text-blue-500 mb-1" />
-                              <p className="text-xs text-blue-600">Auto-notified 12 eligible staff</p>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">✓ Skills Match</span>
-                            <span className="text-xs text-gray-500">2 responses so far</span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded p-3 border-l-4 border-orange-500">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <p className="font-medium text-gray-900">Ward 3B - Day Shift</p>
-                              <p className="text-sm text-gray-500">Tomorrow, 7:00 AM - 3:00 PM</p>
-                            </div>
-                            <div className="text-right">
-                              <HiShieldCheck className="w-5 h-5 text-green-500 mb-1" />
-                              <p className="text-xs text-green-600">Compliance checked</p>
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Available for all</span>
-                            <span className="text-xs text-gray-500">8 eligible staff</span>
-                          </div>
-                        </div>
-                      </div>
-                      <button className="w-full mt-4 bg-blue-600 text-white rounded-lg py-3 font-semibold hover:bg-blue-700 transition-colors">
-                        Manage All Open Shifts
-                      </button>
-                    </div>
-                    <div className="text-center text-sm text-gray-500">
-                      <HiEye className="w-5 h-5 inline mr-1 text-blue-500" />
-                      Full audit trail and visibility for all shifts
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/illustration/schedule calendar-pana.svg"
+                  alt="Open shifts calendar management illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -257,6 +214,43 @@ export default function OpenShiftsPage() {
                   <p className="text-xl opacity-90">Compliance checking</p>
                 </div>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion items={[
+                {
+                  question: "How does the smart matching system determine which staff to notify?",
+                  answer: "Our AI-powered system analyzes multiple factors including staff qualifications, certifications, availability patterns, recent work hours, and compliance requirements. It automatically matches open shifts with the most suitable staff members, ensuring only qualified and available personnel receive notifications."
+                },
+                {
+                  question: "Can managers control who gets notified about specific open shifts?",
+                  answer: "Yes, managers have full control over notification rules. You can set preferences for specific shifts, create priority lists, exclude certain staff members, or even manually select who should be notified. The system provides both automated smart matching and manual override options."
+                },
+                {
+                  question: "How quickly do staff receive open shift notifications?",
+                  answer: "Notifications are sent instantly through multiple channels including push notifications to mobile devices, SMS, and email. Staff typically receive alerts within seconds of a shift being published. The system also tracks delivery and read receipts to ensure notifications are received."
+                },
+                {
+                  question: "What happens if no one accepts an open shift?",
+                  answer: "The system includes escalation protocols that you can customize. If initial notifications don't result in coverage, it can automatically expand the notification pool, alert managers, or trigger backup staffing procedures. You'll always have visibility into the status and can intervene manually at any time."
+                },
+                {
+                  question: "How does the system prevent overtime and fatigue violations?",
+                  answer: "Before notifying any staff member, the system automatically checks their current schedule against your overtime rules, maximum hour limits, and minimum rest period requirements. Staff who would violate these rules by accepting the shift are automatically excluded from notifications, ensuring 100% compliance."
+                },
+                {
+                  question: "Can staff set preferences for which types of shifts they want to be notified about?",
+                  answer: "Absolutely. Staff can set their notification preferences including preferred departments, shift times, locations, and even minimum notice periods. This reduces notification fatigue and ensures staff only receive relevant opportunities they're likely to accept."
+                }
+              ]} />
             </div>
           </Container>
         </div>
