@@ -20,7 +20,7 @@ const benefitTabs: BenefitTab[] = [
     title: 'Generate rosters automatically in minutes',
     description: 'Our AI-powered system creates optimized rosters in minutes, not days. Automated roster generation handles complex constraints while you focus on what matters most.',
     highlights: ['Automated Roster Generation', 'Smart Constraint Handling', '90% Time Reduction'],
-    image: '/images/reclaim-precious-time.png'
+    image: '/images/illustration/Events-pana.svg'
   },
   {
     id: 'optimization',
@@ -28,7 +28,7 @@ const benefitTabs: BenefitTab[] = [
     title: 'Optimize your workforce with AI',
     description: 'Mathematical optimization algorithms ensure the most efficient staff allocation while meeting all operational requirements and compliance standards.',
     highlights: ['Mathematical Optimization', 'Efficient Staff Allocation', 'Minimize Costs'],
-    image: '/images/optimise-your-workforce-with-ai.png'
+    image: '/images/illustration/auto-roster.svg'
   },
   {
     id: 'turnover',
@@ -36,7 +36,7 @@ const benefitTabs: BenefitTab[] = [
     title: 'Improve staff satisfaction and retention',
     description: 'Fair and flexible rosters improve work-life balance, leading to higher staff satisfaction and reduced turnover rates.',
     highlights: ['Improved Work-Life Balance', 'Reduced Staff Turnover', 'Higher Satisfaction'],
-    image: '/images/empower-your-team.png'
+    image: '/images/illustration/Manage money-pana.svg'
   },
   {
     id: 'safety',
@@ -44,7 +44,7 @@ const benefitTabs: BenefitTab[] = [
     title: 'Ensure compliance and equity',
     description: 'Built-in compliance checks and fair distribution algorithms ensure all rosters meet regulatory requirements and equitable shift distribution.',
     highlights: ['Compliance Monitoring', 'Equitable Distribution', 'Risk Reduction'],
-    image: '/images/ensure-safer-and-fair-rosters.png'
+    image: '/images/illustration/Programmer-pana-2.svg'
   }
 ]
 

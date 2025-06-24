@@ -98,10 +98,10 @@ export default function IndustriesPage() {
                     <h3 className="font-semibold text-gray-900 mb-1">Radiology</h3>
                     <p className="text-sm text-gray-600">Imaging optimization</p>
                   </Link>
-                  <div className="bg-white rounded-lg p-4 opacity-75">
+                  <Link href="/industries/healthcare" className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow block">
                     <h3 className="font-semibold text-gray-900 mb-1">More...</h3>
                     <p className="text-sm text-gray-600">All departments</p>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
