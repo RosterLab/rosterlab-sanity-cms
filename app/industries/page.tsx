@@ -17,7 +17,10 @@ export default function IndustriesPage() {
         <Container>
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              AI Rostering Software for Industries with Complex Schedules
+              AI Rostering Software for Industries with{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+                Complex Schedules
+              </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
               Whether you're managing nurses, teachers, call center agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
@@ -29,6 +32,17 @@ export default function IndustriesPage() {
               <Button href="/roi-calculator" className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50">
                 ROI Calculator
               </Button>
+            </div>
+            
+            {/* Manufacturing Process Illustration */}
+            <div className="flex justify-center mt-12">
+              <Image
+                src="/images/illustration/Manufacturing Process-pana.svg"
+                alt="Manufacturing process illustration"
+                width={600}
+                height={400}
+                className="w-full max-w-2xl h-auto"
+              />
             </div>
           </div>
         </Container>
@@ -489,21 +503,6 @@ export default function IndustriesPage() {
         </Container>
       </section>
 
-      {/* Testimonial */}
-      <section className="py-20 bg-gradient-to-br from-indigo-50 to-purple-50">
-        <Container>
-          <div className="max-w-4xl mx-auto text-center">
-            <blockquote className="text-2xl md:text-3xl text-gray-800 font-light italic mb-8">
-              "We are beyond ecstatic with Rosterlab. The rostering requirements for our staff are an absolute nightmare, with multiple staff each having their own unique needs, e.g. days and hours they can work, along with multiple skill sets/roles that the practice needs to be fulfilled on a daily basis."
-            </blockquote>
-            <div className="flex items-center justify-center">
-              <div>
-                <p className="font-semibold text-gray-900">Rostering Client</p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
@@ -532,6 +531,7 @@ export default function IndustriesPage() {
           </div>
         </Container>
       </section>
+
     </SiteLayout>
   )
 }

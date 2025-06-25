@@ -18,11 +18,35 @@ export default function AboutPage() {
         <Container>
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            About RosterLab
+            About{" "}
+            <span className="text-transparent bg-clip-text" style={{
+              backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+            }}>
+              RosterLab
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             We&apos;re revolutionizing workforce management with AI-powered scheduling solutions that save time, reduce costs, and improve staff satisfaction.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/careers" className="bg-blue-600 text-white hover:bg-blue-700">
+              View Open Positions
+            </Button>
+            <Button href="/contact" className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50">
+              Contact Us
+            </Button>
+          </div>
+        </div>
+
+        {/* Timeline Illustration */}
+        <div className="flex justify-center mb-16">
+          <Image
+            src="/images/illustration/Timeline-pana.svg"
+            alt="Timeline illustration"
+            width={600}
+            height={400}
+            className="w-full max-w-2xl h-auto"
+          />
         </div>
         </Container>
       </div>
@@ -398,6 +422,7 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
+
     </SiteLayout>
   )
 }
