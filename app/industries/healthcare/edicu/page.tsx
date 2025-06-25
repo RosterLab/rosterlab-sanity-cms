@@ -5,8 +5,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
 
 export const metadata = {
-  title: 'ICU/ED Rostering Solutions - RosterLab',
-  description: 'Optimize critical care staffing with AI-powered rostering. Reduce scheduling time by 90% while ensuring proper skill mix and coverage for ICU and Emergency Department teams.',
+  title: 'ED & ICU Staff Scheduling Software - RosterLab',
+  description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
 }
 
 export default function ICUEDPage() {

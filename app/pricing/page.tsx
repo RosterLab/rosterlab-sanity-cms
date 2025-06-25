@@ -155,20 +155,20 @@ const features = [
 
 const faqItems = [
   {
-    question: "Is there a minimum number of users?",
-    answer: "No minimum for the free Digital Rostering plan. For AI Optimised, we recommend at least 10 users to get the full benefit of the optimization algorithms, but there's no enforced minimum. Enterprise solutions are typically for organizations with 100+ employees."
+    question: "How much time and money will I save?",
+    answer: "Use our <a href='/roi-calculator' class='text-blue-600 hover:underline'>ROI calculator</a> to see an approximate estimation based on the size of your roster."
   },
   {
     question: "Can I switch between plans?",
-    answer: "Yes! You can upgrade from the free Digital Rostering plan to AI Optimised at any time. When you upgrade, you'll immediately get access to all AI features. You can also downgrade if needed, though you'll lose access to the AI optimization features."
+    answer: "Yes! You can upgrade from the free Digital Rostering plan to <a href='/pricing#ai-optimised' class='text-blue-600 hover:underline'>AI Optimised plan</a> at any time. When you upgrade, you'll immediately get access to all AI features. You can also downgrade if needed, though you'll lose access to the AI optimization features."
   },
   {
     question: "What kind of support is included?",
-    answer: "All plans include email support and access to our knowledge base. AI Optimised customers get priority email support with faster response times. Enterprise customers receive dedicated support including phone support and a assigned customer success manager."
+    answer: "All plans include email support and access to our knowledge base. Paying customers get priority email support with faster response times. Enterprise customers receive dedicated support including phone support and a assigned customer success manager."
   },
   {
     question: "Can I try the AI features before committing?",
-    answer: "Absolutely! We offer a 30-day free trial of the AI Optimised plan with no credit card required. You can also book a demo to see the features in action before starting your trial."
+    answer: "Absolutely! We can help set this up for you if you <a href='/demo' class='text-blue-600 hover:underline'>book a demo</a> with us."
   }
 ]
 

@@ -5,8 +5,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
 
 export const metadata = {
-  title: 'Aged Care Rostering Solutions - RosterLab',
-  description: 'Optimize aged care facility staffing with AI-powered scheduling. Achieve 5% efficiency gains, ensure compliance, and improve resident care quality.',
+  title: 'Aged Care Staff Scheduling Software - RosterLab',
+  description: 'Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.',
 }
 
 export default function AgedCarePage() {

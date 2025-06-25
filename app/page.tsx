@@ -6,6 +6,11 @@ import IndustrySolutions from '@/components/sections/IndustrySolutions'
 import Testimonials from '@/components/sections/Testimonials'
 import FinalCTA from '@/components/sections/FinalCTA'
 
+export const metadata = {
+  title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
+  description: 'Automate complex staff rosters in minutes with RosterLab\'s AI scheduling software. Boost fairness, cut admin time, and keep teams fully staffed.',
+}
+
 export default function Home() {
   return (
     <>

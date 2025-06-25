@@ -83,7 +83,7 @@ export default function IndustrySolutions() {
               </div>
             </div>
             
-            <Button href="/industries" className="w-full bg-green-600 hover:bg-green-700">
+            <Button href="/industries" className="w-full bg-green-700 hover:bg-green-800 text-white">
               Explore All Industries
             </Button>
           </div>

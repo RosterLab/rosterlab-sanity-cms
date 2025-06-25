@@ -81,12 +81,12 @@ export default function Testimonials() {
           </div>
 
           {/* Navigation Dots */}
-          <div className="flex justify-center space-x-2 mt-8">
+          <div className="flex justify-center space-x-3 mt-8 py-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors ${
+                className={`w-3 h-3 rounded-full transition-colors p-3 -m-3 ${
                   index === currentIndex ? 'bg-blue-600' : 'bg-neutral-300'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}

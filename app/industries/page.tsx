@@ -5,8 +5,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Industries We Serve - RosterLab',
-  description: 'AI-powered scheduling solutions for healthcare, education, call centers, transportation, hospitality, manufacturing, and airports. Transform your workforce management today.',
+  title: 'Smart AI Rostering Software for All Industries - RosterLab',
+  description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
 }
 
 export default function IndustriesPage() {

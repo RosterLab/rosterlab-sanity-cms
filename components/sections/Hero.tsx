@@ -14,13 +14,16 @@ export default function Hero() {
     >
       <div className="max-w-4xl mx-auto">
         {/* Main Heading */}
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight" style={{ fontDisplay: 'swap' }}>
           Complex rostering solutions made{" "}
           <span
+            className="inline-block"
             style={{
               background: "linear-gradient(to right, #2D3BEA, #03D5AB)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              color: "transparent",
             }}
           >
             easy
@@ -55,18 +58,22 @@ export default function Hero() {
       </div>
 
       {/* Decorative Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div
-          className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30 animate-bounce"
+          className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30"
           style={{ 
             background: "linear-gradient(135deg, rgba(45, 59, 234, 0.6) 0%, rgba(3, 213, 171, 0.6) 100%)",
-            animationDuration: "3s",
-            animationDelay: "0s"
+            animation: "float-slow 6s ease-in-out infinite",
+            animationDelay: "2s"
           }}
         />
         <div
           className="absolute bottom-20 right-10 w-24 h-24 rounded-full opacity-20"
-          style={{ background: "linear-gradient(45deg, #03D5AB, #2D3BEA)" }}
+          style={{ 
+            background: "linear-gradient(45deg, #03D5AB, #2D3BEA)",
+            animation: "float-medium 5s ease-in-out infinite",
+            animationDelay: "2.5s"
+          }}
         />
       </div>
     </section>

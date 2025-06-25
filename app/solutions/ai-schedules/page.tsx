@@ -7,8 +7,8 @@ import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'AI Staff Scheduling Solution - 90% Time Reduction',
-  description: 'Reduce staff scheduling admin by up to 90% with our AI-powered solution. Automate rosters, boost coverage accuracy, & free managers to focus on what matters.',
+  title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
+  description: 'Generate fair, optimized shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
 }
 
 const faqItems = [

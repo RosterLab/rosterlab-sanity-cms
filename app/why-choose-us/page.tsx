@@ -5,8 +5,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import { HiLightBulb, HiUserGroup, HiShieldCheck, HiClock, HiChartBar, HiSupport } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Why Choose RosterLab - Leading Healthcare Scheduling Solution',
-  description: 'Discover why healthcare organizations choose RosterLab for their workforce scheduling needs. Industry-leading AI, proven results, and dedicated support.',
+  title: 'Why Choose Us - RosterLab',
+  description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
 }
 
 const reasons = [
