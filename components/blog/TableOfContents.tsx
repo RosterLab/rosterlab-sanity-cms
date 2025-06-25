@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
 interface Heading {
   id: string
   text: string
-  level: number
 }
 
 export default function TableOfContents() {
@@ -18,18 +17,21 @@ export default function TableOfContents() {
     const article = document.querySelector('article')
     if (!article) return
 
-    const headingElements = article.querySelectorAll('h2, h3')
+    const headingElements = article.querySelectorAll('h2')
     const headingData: Heading[] = []
 
     headingElements.forEach((heading) => {
-      const id = heading.id || heading.textContent?.toLowerCase().replace(/\s+/g, '-') || ''
-      heading.id = id
+      const text = heading.textContent?.trim() || ''
+      const id = heading.id || text.toLowerCase().replace(/\s+/g, '-') || ''
       
-      headingData.push({
-        id,
-        text: heading.textContent || '',
-        level: parseInt(heading.tagName[1])
-      })
+      // Only add non-empty headings
+      if (text) {
+        heading.id = id
+        headingData.push({
+          id,
+          text
+        })
+      }
     })
 
     setHeadings(headingData)
@@ -70,7 +72,6 @@ export default function TableOfContents() {
           href={`#${heading.id}`}
           className={cn(
             'block text-sm transition-colors duration-200 py-1',
-            heading.level === 3 && 'ml-4',
             activeId === heading.id
               ? 'text-purple-700 font-medium'
               : 'text-gray-600 hover:text-gray-900'
