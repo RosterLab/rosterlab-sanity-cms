@@ -5,8 +5,8 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
 
 export const metadata = {
-  title: 'Radiology Department Scheduling - RosterLab',
-  description: 'Transform radiology scheduling from 7-8 days to 2-3 hours. Optimize radiologist, technologist, and equipment allocation with AI-powered rostering.',
+  title: 'Radiology Staff Scheduling Software - RosterLab',
+  description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
 }
 
 export default function RadiologyPage() {

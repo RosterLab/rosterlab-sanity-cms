@@ -13,11 +13,11 @@ export default function TableOfContents() {
   const [activeId, setActiveId] = useState<string>('')
 
   useEffect(() => {
-    // Get all headings from the article content
-    const article = document.querySelector('article')
-    if (!article) return
+    // Get all headings from the main article content only (excluding related posts section)
+    const mainContent = document.querySelector('main .prose')
+    if (!mainContent) return
 
-    const headingElements = article.querySelectorAll('h2')
+    const headingElements = mainContent.querySelectorAll('h2')
     const headingData: Heading[] = []
 
     headingElements.forEach((heading) => {

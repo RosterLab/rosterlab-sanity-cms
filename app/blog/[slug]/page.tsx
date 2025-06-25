@@ -88,7 +88,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </h1>
             
             {/* Author and Meta */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
               <span className="font-medium">RosterLab</span>
               <span className="text-purple-200">•</span>
               <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Breadcrumb below header */}
       <div className="bg-gray-50 border-b">
         <Container>
-          <div className="py-4">
+          <div className="py-2">
             <Breadcrumb 
               items={[
                 { label: 'Home', href: '/' },
@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
 
                 {/* Share Buttons */}
-                <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="hidden lg:block bg-gray-50 p-6 rounded-lg">
                   <ShareButtons title={post.title} />
                 </div>
               </div>
