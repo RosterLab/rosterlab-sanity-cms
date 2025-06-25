@@ -18,7 +18,9 @@ export default function IndustriesPage() {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               AI Rostering Software for Industries with{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+              <span className="text-transparent bg-clip-text" style={{
+                backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+              }}>
                 Complex Schedules
               </span>
             </h1>
@@ -26,7 +28,7 @@ export default function IndustriesPage() {
               Whether you're managing nurses, teachers, call center agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+              <Button href="/book-a-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
                 Book a Demo
               </Button>
               <Button href="/roi-calculator" className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50">
@@ -381,8 +383,8 @@ export default function IndustriesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
@@ -393,8 +395,8 @@ export default function IndustriesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
@@ -405,8 +407,8 @@ export default function IndustriesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -417,8 +419,8 @@ export default function IndustriesPage() {
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-10 h-10 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -436,10 +438,10 @@ export default function IndustriesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              One Platform, Any Industry
+              Your Path to Perfect Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our AI adapts to your specific requirements while maintaining a simple, intuitive workflow.
+              Our streamlined process takes you from complex scheduling challenges to optimized rosters in just a few simple steps.
             </p>
           </div>
 
@@ -450,9 +452,9 @@ export default function IndustriesPage() {
                   1
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Configure Your Rules</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Set rules & demands</h3>
                   <p className="text-gray-600">
-                    Set up your industry-specific requirements, compliance rules, and operational constraints once.
+                    Configure industry-specific rules, compliance requirements, skill mix, and coverage demands to ensure complete roster compliance.
                   </p>
                 </div>
               </div>
@@ -462,9 +464,9 @@ export default function IndustriesPage() {
                   2
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Import Your Data</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Collect requests & preferences</h3>
                   <p className="text-gray-600">
-                    Upload staff details, skills, certifications, and preferences. Integrate with existing systems.
+                    Staff submit leave requests and shift preferences through the <Link href="/solutions/staff-roster-mobile-app" className="text-blue-600 hover:underline">mobile app</Link>, ready for review and roster planning.
                   </p>
                 </div>
               </div>
@@ -474,9 +476,9 @@ export default function IndustriesPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Generate Optimal Schedules</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Automatically generate rosters</h3>
                   <p className="text-gray-600">
-                    Our AI creates compliant, fair schedules in minutes, considering all your constraints.
+                    Our AI creates optimal, compliant schedules that balance operational needs with staff preferences automatically.
                   </p>
                 </div>
               </div>
@@ -486,16 +488,16 @@ export default function IndustriesPage() {
                   4
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Publish & Manage</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Share and manage schedules</h3>
                   <p className="text-gray-600">
-                    Share schedules instantly, handle changes dynamically, and track everything in real-time.
+                    Publish rosters via <Link href="/solutions/staff-roster-mobile-app" className="text-blue-600 hover:underline">mobile app</Link>, manage shift swaps, and integrate with payroll - all in real-time.
                   </p>
                 </div>
               </div>
             </div>
             
             <div className="text-center mt-12">
-              <Button href="/demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+              <Button href="/staff-rostering-interactive-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
                 See an Example
               </Button>
             </div>
@@ -505,7 +507,9 @@ export default function IndustriesPage() {
 
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
+      <section className="py-20" style={{
+        background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+      }}>
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -516,14 +520,14 @@ export default function IndustriesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
-                className="bg-white text-indigo-600 hover:bg-gray-100"
+                href="/book-a-demo" 
+                className="bg-white text-blue-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button 
                 href="/contact" 
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-indigo-600"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600"
               >
                 Discuss Your Industry
               </Button>
