@@ -155,36 +155,20 @@ const features = [
 
 const faqItems = [
   {
-    question: "What's included in the free Digital Rostering plan?",
-    answer: "Our free plan includes manual scheduling capabilities, rule violation checking, dynamic statistics, color-coded shifts, and a mobile app for employees. It's perfect for small teams who want to digitize their scheduling process without the AI optimization features."
-  },
-  {
-    question: "How is the AI Optimised plan priced?",
-    answer: "The AI Optimised plan is $20 per person per month. This includes all features from the free plan plus 24/7 automatic scheduling, multiple sessions per shift, dynamic re-rostering, compliance checking, resource optimization, and scenario simulation. There are no setup fees or hidden costs."
+    question: "Is there a minimum number of users?",
+    answer: "No minimum for the free Digital Rostering plan. For AI Optimised, we recommend at least 10 users to get the full benefit of the optimization algorithms, but there's no enforced minimum. Enterprise solutions are typically for organizations with 100+ employees."
   },
   {
     question: "Can I switch between plans?",
     answer: "Yes! You can upgrade from the free Digital Rostering plan to AI Optimised at any time. When you upgrade, you'll immediately get access to all AI features. You can also downgrade if needed, though you'll lose access to the AI optimization features."
   },
   {
-    question: "What's different about the Enterprise solution?",
-    answer: "Enterprise solutions are customized for large organizations with complex needs. This includes API access for integrations, dedicated workforce scheduling consulting, custom rule development, priority support, and the option for on-premise deployment. Pricing is based on your specific requirements."
-  },
-  {
-    question: "Is there a minimum number of users?",
-    answer: "No minimum for the free Digital Rostering plan. For AI Optimised, we recommend at least 10 users to get the full benefit of the optimization algorithms, but there's no enforced minimum. Enterprise solutions are typically for organizations with 100+ employees."
-  },
-  {
-    question: "Do you offer discounts for annual payment?",
-    answer: "Yes, we offer a 15% discount for annual payments on the AI Optimised plan. This brings the cost down to $17 per person per month when paid annually. Contact us for enterprise pricing options."
+    question: "What kind of support is included?",
+    answer: "All plans include email support and access to our knowledge base. AI Optimised customers get priority email support with faster response times. Enterprise customers receive dedicated support including phone support and a assigned customer success manager."
   },
   {
     question: "Can I try the AI features before committing?",
     answer: "Absolutely! We offer a 30-day free trial of the AI Optimised plan with no credit card required. You can also book a demo to see the features in action before starting your trial."
-  },
-  {
-    question: "What kind of support is included?",
-    answer: "All plans include email support and access to our knowledge base. AI Optimised customers get priority email support with faster response times. Enterprise customers receive dedicated support including phone support and a assigned customer success manager."
   }
 ]
 
@@ -283,48 +267,48 @@ export default function PricingPage() {
             <table className="w-full bg-white rounded-lg shadow-lg">
               <thead>
                 <tr className="bg-gray-50 border-b border-gray-200">
-                  <th className="text-left py-6 px-6 font-bold text-gray-900">
+                  <th className="text-left py-4 px-2 sm:py-6 sm:px-6 font-bold text-gray-900 text-xs sm:text-base">
                     Features
                   </th>
-                  <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    Digital Rostering<br />
-                    <span className="text-sm font-normal text-gray-600">Free Forever</span>
+                  <th className="text-center py-4 px-2 sm:py-6 sm:px-6 font-bold text-gray-900 text-xs sm:text-base">
+                    Digital<br />
+                    <span className="text-xs font-normal text-gray-600">Free</span>
                   </th>
-                  <th className="text-center py-6 px-6 font-bold text-gray-900">
-                    AI Optimised<br />
-                    <span className="text-sm font-normal text-gray-600">$20 per person</span>
+                  <th className="text-center py-4 px-2 sm:py-6 sm:px-6 font-bold text-gray-900 text-xs sm:text-base">
+                    AI<br />
+                    <span className="text-xs font-normal text-gray-600">$20/user</span>
                   </th>
-                  <th className="text-center py-6 px-6 font-bold text-gray-900">
+                  <th className="text-center py-4 px-2 sm:py-6 sm:px-6 font-bold text-gray-900 text-xs sm:text-base">
                     Enterprise<br />
-                    <span className="text-sm font-normal text-gray-600">Contact Us</span>
+                    <span className="text-xs font-normal text-gray-600">Custom</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {features.map((feature, index) => (
                   <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-4 px-6 text-gray-700 font-medium">
+                    <td className="py-3 px-2 sm:py-4 sm:px-6 text-gray-700 font-medium text-xs sm:text-base">
                       {feature.name}
                     </td>
-                    <td className="py-4 px-6 text-center">
+                    <td className="py-3 px-2 sm:py-4 sm:px-6 text-center">
                       {feature.digital ? (
-                        <HiCheck className="w-6 h-6 text-green-500 mx-auto" />
+                        <HiCheck className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
                       ) : (
-                        <HiMinus className="w-6 h-6 text-gray-300 mx-auto" />
+                        <HiMinus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 mx-auto" />
                       )}
                     </td>
                     <td className="py-4 px-6 text-center">
                       {feature.ai ? (
-                        <HiCheck className="w-6 h-6 text-green-500 mx-auto" />
+                        <HiCheck className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
                       ) : (
-                        <HiMinus className="w-6 h-6 text-gray-300 mx-auto" />
+                        <HiMinus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 mx-auto" />
                       )}
                     </td>
                     <td className="py-4 px-6 text-center">
                       {feature.enterprise ? (
-                        <HiCheck className="w-6 h-6 text-green-500 mx-auto" />
+                        <HiCheck className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto" />
                       ) : (
-                        <HiMinus className="w-6 h-6 text-gray-300 mx-auto" />
+                        <HiMinus className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 mx-auto" />
                       )}
                     </td>
                   </tr>

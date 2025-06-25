@@ -116,10 +116,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   
                   {/* Dropdown Menu */}
                   {item.subItems && activeDropdown === item.title && (
-                    <div className={cn(
-                      "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-50",
-                      item.title === 'Solutions' || item.title === 'Industries' ? 'left-0 w-[600px]' : 'left-0 w-64'
-                    )}>
+                    <div 
+                      className={cn(
+                        "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100]",
+                        item.title === 'Solutions' || item.title === 'Industries' ? 'left-0 w-[600px]' : 'left-0 w-64'
+                      )}
+                      onMouseEnter={() => setActiveDropdown(item.title)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
                       {item.title === 'Solutions' ? (
                         // Enhanced Solutions Dropdown Layout
                         <div className="p-6">

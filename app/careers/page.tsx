@@ -61,12 +61,12 @@ export default function CareersPage() {
                 Follow for updates (LinkedIn)
               </a>
             </div>
-            {/* Placeholder Image */}
+            {/* Team Illustration */}
             <div className="mt-12 max-w-3xl mx-auto">
               <img 
-                src="https://via.placeholder.com/800x400" 
+                src="/images/illustration/Team-pana.svg" 
                 alt="Join our team" 
-                className="w-full rounded-lg shadow-lg"
+                className="w-full rounded-lg"
               />
             </div>
           </div>
