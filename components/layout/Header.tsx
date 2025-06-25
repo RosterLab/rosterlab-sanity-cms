@@ -416,12 +416,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
         </div>
       </nav>
 
+      {/* Mobile menu backdrop */}
+      {isMenuOpen && (
+        <div 
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-20"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+      
       {/* Mobile menu */}
       <div className={cn(
-        'lg:hidden transition-all duration-300 ease-in-out',
-        isMenuOpen ? 'max-h-screen' : 'max-h-0 overflow-hidden'
+        'lg:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40',
+        isMenuOpen ? 'block' : 'hidden'
       )}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg h-full overflow-y-auto">
           {navigation.map((item) => (
             <div key={item.title}>
               {item.link ? (
@@ -439,16 +447,45 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   </div>
                   {item.subItems && (
                     <div className="pl-6 space-y-1">
-                      {item.subItems.map((subItem) => (
-                        <Link
-                          key={subItem.link}
-                          href={subItem.link}
-                          className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {subItem.title}
-                        </Link>
-                      ))}
+                      {item.title === 'Solutions' ? (
+                        <>
+                          {/* Core Solutions */}
+                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1">Core Solutions</div>
+                          {item.subItems.slice(0, 3).map((subItem) => (
+                            <Link
+                              key={subItem.link}
+                              href={subItem.link}
+                              className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                          {/* Features */}
+                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mt-3">Features</div>
+                          {item.subItems.slice(3).map((subItem) => (
+                            <Link
+                              key={subItem.link}
+                              href={subItem.link}
+                              className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                        </>
+                      ) : (
+                        item.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.link}
+                            href={subItem.link}
+                            className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {subItem.title}
+                          </Link>
+                        ))
+                      )}
                     </div>
                   )}
                 </>

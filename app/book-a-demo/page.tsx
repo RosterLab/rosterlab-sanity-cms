@@ -73,8 +73,8 @@ export default function BookADemoPage() {
             <div className="meetings-iframe-container" data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"></div>
           </div>
 
-          {/* Demo Information Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+          {/* Demo Information Grid - Hidden on mobile/tablet */}
+          <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
               {/* What to Expect */}
               <div className="bg-white rounded-lg shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -160,8 +160,8 @@ export default function BookADemoPage() {
 
           </div>
 
-          {/* Testimonial - Full Width Below */}
-          <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500 mb-12 text-center">
+          {/* Testimonial - Hidden on mobile/tablet */}
+          <div className="hidden lg:block bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500 mb-12 text-center">
             <blockquote className="text-gray-700 italic mb-3">
               "The demo was eye-opening. We saw immediate ways RosterLab could save us 20+ hours per week on scheduling alone."
             </blockquote>

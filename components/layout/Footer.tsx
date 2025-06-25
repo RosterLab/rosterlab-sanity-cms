@@ -26,16 +26,16 @@ export default function Footer() {
             </div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 mb-6 items-center lg:items-start">
+            <div className="flex flex-row gap-3 mb-6 justify-center lg:justify-start lg:flex-col">
               <Link
                 href="/book-a-demo"
-                className="inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors text-sm"
+                className="flex-1 lg:flex-none inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors text-sm"
               >
                 Book a demo
               </Link>
               <Link
                 href="https://app.rosterlab.com"
-                className="inline-flex items-center justify-center bg-white text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-300 text-sm"
+                className="flex-1 lg:flex-none inline-flex items-center justify-center bg-white text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-300 text-sm"
                 target="_blank"
               >
                 Login
