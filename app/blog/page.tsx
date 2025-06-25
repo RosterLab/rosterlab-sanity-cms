@@ -5,8 +5,8 @@ import BlogPageContent from '@/components/blog/BlogPageContent'
 import { draftMode } from 'next/headers'
 
 export const metadata = {
-  title: 'Blog - RosterLab',
-  description: 'Insights, tips, and updates on workforce management and employee scheduling.',
+  title: 'RosterLab Blog - AI Rostering & Scheduling Tips',
+  description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
 }
 
 export default async function BlogPage() {

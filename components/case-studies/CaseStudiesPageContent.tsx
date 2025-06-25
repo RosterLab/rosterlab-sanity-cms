@@ -53,7 +53,7 @@ export default function CaseStudiesPageContent({ posts }: CaseStudiesPageContent
             Case Studies
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            See how healthcare organizations are transforming their workforce management with RosterLab.
+            See how global organizations are transforming their workforce management with RosterLab.
           </p>
         </div>
 

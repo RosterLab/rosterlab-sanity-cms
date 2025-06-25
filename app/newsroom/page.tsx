@@ -5,8 +5,8 @@ import NewsroomPageContent from '@/components/newsroom/NewsroomPageContent'
 import { draftMode } from 'next/headers'
 
 export const metadata = {
-  title: 'Newsroom - RosterLab',
-  description: 'Latest news, announcements, and updates from RosterLab.',
+  title: 'RosterLab Newsroom - Press Releases & Updates',
+  description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
 }
 
 const newsroomQuery = groq`

@@ -1,9 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
 import { formatDate } from '@/lib/utils'
 
-interface RelatedPost {
+interface Post {
   _id: string
   title: string
   slug: {
@@ -15,56 +14,80 @@ interface RelatedPost {
   author?: {
     name: string
   }
+  categories?: Array<{
+    title: string
+  }>
 }
 
 interface RelatedPostsProps {
-  posts: RelatedPost[]
-  currentPostId?: string
+  posts: Post[]
+  currentPostId: string
+  currentPostDate: string
 }
 
-export default function RelatedPosts({ posts, currentPostId }: RelatedPostsProps) {
-  // Filter out the current post and limit to 3
-  const relatedPosts = posts
+export default function RelatedPosts({ posts, currentPostId, currentPostDate }: RelatedPostsProps) {
+  // Find next and previous posts based on date
+  const sortedPosts = posts
     .filter(post => post._id !== currentPostId)
-    .slice(0, 3)
+    .sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime())
+  
+  const currentDate = new Date(currentPostDate).getTime()
+  
+  // Find the previous post (older than current)
+  const previousPost = sortedPosts
+    .filter(post => new Date(post.publishedAt).getTime() < currentDate)
+    .pop() // Get the last one (most recent of the older posts)
+  
+  // Find the next post (newer than current)
+  const nextPost = sortedPosts
+    .find(post => new Date(post.publishedAt).getTime() > currentDate)
+  
+  // Combine posts, filtering out undefined values
+  const relatedPosts = [previousPost, nextPost].filter(Boolean) as Post[]
 
   if (relatedPosts.length === 0) return null
 
   return (
-    <div className="mt-16">
-      <h3 className="text-2xl font-bold text-neutral-900 mb-8">Related Articles</h3>
-      <div className="grid gap-8 md:grid-cols-3">
+    <section className="mt-16 mb-8">
+      <h2 className="text-3xl font-bold text-gray-900 mb-8">You might also be interested in</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {relatedPosts.map((post) => (
           <article key={post._id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
             <Link href={`/blog/${post.slug.current}`}>
               {post.mainImage && (
-                <div className="relative w-full h-48 mb-4 rounded-t-lg overflow-hidden">
-                  <Image
-                    src={urlFor(post.mainImage).width(400).height(300).url()}
+                <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                  <img
+                    src={urlFor(post.mainImage).width(400).height(225).url()}
                     alt={post.title}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
               )}
               <div className="p-6">
-                <h4 className="text-lg font-semibold text-neutral-900 mb-2 line-clamp-2 hover:text-primary-600 transition-colors">
-                  {post.title}
-                </h4>
-                {post.excerpt && (
-                  <p className="text-neutral-600 mb-4 line-clamp-2">
-                    {post.excerpt}
+                {post.categories && post.categories.length > 0 && (
+                  <p className="text-sm text-purple-600 font-medium mb-2">
+                    {post.categories[0].title}
                   </p>
                 )}
-                <div className="flex items-center justify-between text-sm text-neutral-500">
-                  <span>{post.author?.name || 'RosterLab Team'}</span>
-                  <time>{formatDate(post.publishedAt)}</time>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-purple-600 transition-colors">
+                  {post.title}
+                </h3>
+                <div className="flex items-center text-sm text-gray-500">
+                  {post.author?.name && (
+                    <>
+                      <span>{post.author.name}</span>
+                      <span className="mx-2">·</span>
+                    </>
+                  )}
+                  <time dateTime={post.publishedAt}>
+                    {formatDate(post.publishedAt)}
+                  </time>
                 </div>
               </div>
             </Link>
           </article>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

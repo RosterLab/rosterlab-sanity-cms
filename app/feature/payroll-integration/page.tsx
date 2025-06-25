@@ -14,23 +14,15 @@ export const metadata = {
 const faqItems = [
   {
     question: "Which payroll systems does RosterLab integrate with?",
-    answer: "RosterLab integrates with most major payroll systems including ADP, Paychex, Workday, SAP, Oracle, and many others. We support multiple integration methods including API sync, file exports (CSV, Excel, XML), and direct database connections. If your payroll system isn't listed, our team can create a custom integration."
-  },
-  {
-    question: "How does the automatic data sync work?",
-    answer: "Our API-based sync continuously monitors your roster data for changes and automatically pushes updates to your payroll system. You can configure sync frequency (real-time, hourly, or daily), set up approval workflows, and define which data fields to sync. The system includes conflict detection and resolution to ensure data integrity."
+    answer: "RosterLab can create integrations with most major payroll systems including ADP, Paychex, Workday, SAP, Oracle, and many others. We support multiple integration methods including API sync and file exports (CSV, Excel, XML)."
   },
   {
     question: "Can I review timesheet data before it goes to payroll?",
-    answer: "Yes! RosterLab includes a comprehensive approval workflow. Managers can review and approve timesheets before they're sent to payroll. You can set up multi-level approvals, bulk approve timesheets, and handle exceptions. The system flags any anomalies like excessive overtime or missing clock-ins for review."
-  },
-  {
-    question: "How secure is the payroll data transfer?",
-    answer: "We take security seriously. All data transfers use bank-level encryption (256-bit SSL/TLS). API connections require OAuth 2.0 authentication, and we support IP whitelisting. Our platform is SOC 2 Type II certified and complies with GDPR, HIPAA, and other data protection regulations. All data is encrypted at rest and in transit."
+    answer: "Yes! RosterLab includes a comprehensive approval workflow. Managers can review and approve timesheets before they're sent to payroll."
   },
   {
     question: "What happens if there's a sync error?",
-    answer: "Our system includes comprehensive error handling and recovery. If a sync fails, you'll receive immediate notifications via email or SMS. The system automatically retries failed syncs and maintains a detailed audit log. Our support team is available 24/7 to help resolve any integration issues quickly."
+    answer: "Our system includes comprehensive error handling and recovery. If a sync fails, you'll receive a notification. Our <a href='/contact' class='text-green-600 hover:text-green-700 underline'>support team</a> is available 24/7 to help resolve any integration issues quickly."
   }
 ]
 
@@ -54,7 +46,7 @@ export default function PayrollIntegrationPage() {
                     href="/book-a-demo" 
                     className="bg-green-600 text-white hover:bg-green-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book a Demo
                   </Button>
                   <Button 
                     href="/contact" 
@@ -90,15 +82,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Multiple export formats (CSV, Excel, XML, JSON)</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Automated file transfers via our API</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Custom field mapping for any payroll system</span>
                   </li>
                 </ul>
@@ -229,15 +221,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Real-time bidirectional data synchronization</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Automatic conflict detection and resolution</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Secure API connections with authentication</span>
                   </li>
                 </ul>
@@ -259,15 +251,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Secure, time-limited access links</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Real-time roster data always current</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Role-based access controls and permissions</span>
                   </li>
                 </ul>
@@ -303,15 +295,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Auto-generated timesheets from roster data</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Bulk approval and exception handling</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
                     <span className="text-gray-700">Overtime calculations and pay rate handling</span>
                   </li>
                 </ul>

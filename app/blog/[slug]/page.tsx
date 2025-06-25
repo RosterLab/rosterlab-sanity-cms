@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getClient, client, urlFor } from '@/sanity/lib/client'
-import { postQuery, postPathsQuery } from '@/sanity/lib/queries'
+import { postQuery, postPathsQuery, blogPostsOnlyQuery } from '@/sanity/lib/queries'
 import { validatedToken } from '@/sanity/lib/token'
 import { formatDate } from '@/lib/utils'
 import Container from '@/components/ui/Container'
@@ -10,6 +10,7 @@ import PortableText from '@/components/blog/PortableText'
 import TableOfContents from '@/components/blog/TableOfContents'
 import ShareButtons from '@/components/blog/ShareButtons'
 import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
+import RelatedPosts from '@/components/blog/RelatedPosts'
 import { draftMode } from 'next/headers'
 
 interface BlogPostPageProps {
@@ -56,6 +57,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) {
     notFound()
   }
+
+  // Fetch all blog posts for the related posts section
+  const allPosts = await clientToUse.fetch(blogPostsOnlyQuery)
 
 
   // Calculate reading time
@@ -141,6 +145,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
                 <PortableText value={post.body} />
               </div>
+
+              {/* Related Posts */}
+              {allPosts.length > 0 && (
+                <RelatedPosts posts={allPosts} currentPostId={post._id} currentPostDate={post.publishedAt} />
+              )}
 
               {/* Bottom CTA */}
               <div className="mt-16 p-8 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-lg text-center">

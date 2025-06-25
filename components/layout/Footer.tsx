@@ -9,22 +9,24 @@ export default function Footer() {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
           {/* Section 1: Logo and Social */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-4">
-              <Image
-                src="/images/rosterlab-logo.png"
-                alt="RosterLab"
-                width={150}
-                height={40}
-                className="h-10 w-auto"
-              />
-            </Link>
-            <p className="text-sm text-gray-600 mb-6">
-              Simplifying workforce management with intelligent scheduling solutions.
-            </p>
+          <div className="lg:col-span-1 col-span-full lg:col-start-auto">
+            <div className="text-center lg:text-left">
+              <Link href="/" className="inline-block mb-4">
+                <Image
+                  src="/images/rosterlab-logo.png"
+                  alt="RosterLab"
+                  width={150}
+                  height={40}
+                  className="h-10 w-auto mx-auto lg:mx-0"
+                />
+              </Link>
+              <p className="text-sm text-gray-600 mb-6">
+                Simplifying workforce management with intelligent scheduling solutions.
+              </p>
+            </div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-3 mb-6">
+            <div className="flex flex-col gap-3 mb-6 items-center lg:items-start">
               <Link
                 href="/book-a-demo"
                 className="inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors text-sm"
@@ -41,7 +43,7 @@ export default function Footer() {
             </div>
             
             {/* Social Icons */}
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 justify-center lg:justify-start">
               <a
                 href="https://www.linkedin.com/company/rosterlab/"
                 target="_blank"
@@ -82,7 +84,7 @@ export default function Footer() {
           </div>
 
           {/* Section 2: Product */}
-          <div>
+          <div className="hidden lg:block">
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Product</h4>
             <ul className="space-y-3">
               <li>
@@ -109,7 +111,7 @@ export default function Footer() {
           </div>
 
           {/* Section 3: Company */}
-          <div>
+          <div className="hidden lg:block">
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Company</h4>
             <ul className="space-y-3">
               <li>
@@ -136,7 +138,7 @@ export default function Footer() {
           </div>
 
           {/* Section 4: Customer Success */}
-          <div>
+          <div className="hidden lg:block">
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Customer Success</h4>
             <ul className="space-y-3">
               <li>
@@ -168,7 +170,7 @@ export default function Footer() {
           </div>
 
           {/* Section 5: Resources */}
-          <div>
+          <div className="hidden lg:block">
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Resources</h4>
             <ul className="space-y-3">
               <li>
