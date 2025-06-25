@@ -14,7 +14,19 @@ const components = {
     },
     h2: ({ children, value }: any) => {
       const text = Array.isArray(children) ? children.join('') : children
-      const id = value?._key || (typeof text === 'string' ? text.toLowerCase().replace(/\s+/g, '-') : '')
+      const textString = typeof text === 'string' ? text : ''
+      const id = value?._key || (textString.toLowerCase().replace(/\s+/g, '-') || '')
+      
+      // Debug: Log H2 rendering
+      console.log('[PortableText] Rendering H2:', {
+        children: children,
+        text: text,
+        textString: textString,
+        id: id,
+        value: value,
+        hasEmptyText: !textString || textString.trim() === ''
+      })
+      
       return (
         <h2 id={id} className="text-3xl font-bold mb-4 mt-8 text-neutral-900 scroll-mt-24">{children}</h2>
       )

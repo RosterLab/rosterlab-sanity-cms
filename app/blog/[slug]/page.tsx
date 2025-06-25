@@ -9,6 +9,7 @@ import Breadcrumb from '@/components/ui/Breadcrumb'
 import PortableText from '@/components/blog/PortableText'
 import TableOfContents from '@/components/blog/TableOfContents'
 import ShareButtons from '@/components/blog/ShareButtons'
+import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
 import { draftMode } from 'next/headers'
 
 interface BlogPostPageProps {
@@ -168,42 +169,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {/* Newsletter Signup */}
                 <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Subscribe for more insights and product updates</h3>
-                  <form className="space-y-3">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email*</label>
-                      <input
-                        type="email"
-                        id="email"
-                        placeholder="isaac@rosterlab.com"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First name</label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        placeholder="Isaac"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last name</label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        placeholder="Cleland"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full py-2 bg-teal-600 text-white font-semibold rounded-md hover:bg-teal-700 transition-colors"
-                    >
-                      Subscribe
-                    </button>
-                  </form>
+                  <NewsletterFormWrapper />
                 </div>
 
                 {/* Share Buttons */}

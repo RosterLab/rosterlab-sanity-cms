@@ -1,9 +1,9 @@
 import Container from '@/components/ui/Container'
-import HubSpotEmbedForm from '@/components/forms/HubSpotEmbedForm'
+import ContactFormWrapper from '@/components/forms/ContactFormWrapper'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
-import { HiMail, HiPhone, HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
-import { FaWhatsapp } from 'react-icons/fa'
+import { HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
+import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 export const metadata = {
   title: 'Contact Us - RosterLab',
@@ -74,7 +74,7 @@ export default function ContactPage() {
             <p className="text-neutral-600 mb-6">
               Fill out the form below and our team will be in touch to discuss how we can help you create the perfect roster for your team.
             </p>
-            <HubSpotEmbedForm />
+            <ContactFormWrapper />
           </div>
 
           {/* Contact Information */}
@@ -85,43 +85,6 @@ export default function ContactPage() {
               </h2>
               
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <HiMail className="w-5 h-5 text-primary-600" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-1">Email</h3>
-                    <p className="text-neutral-600">hello@rosterlab.com</p>
-                    <p className="text-sm text-neutral-500">We&apos;ll respond within 24 hours</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <HiPhone className="w-5 h-5 text-primary-600" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-neutral-900 mb-1">Phone</h3>
-                    <p className="text-neutral-600">+64 276366388</p>
-                    <div className="flex items-center gap-3 mt-2">
-                      <p className="text-sm text-neutral-500">Mon-Fri 9am-6pm NZST</p>
-                      <a 
-                        href="https://wa.me/64276366388" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-green-600 hover:text-green-700 text-sm font-medium"
-                      >
-                        <FaWhatsapp className="w-4 h-4" />
-                        WhatsApp
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
@@ -137,6 +100,46 @@ export default function ContactPage() {
                     </p>
                   </div>
                 </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <h3 className="text-xl font-bold text-neutral-900 mb-3">Follow Us</h3>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <a 
+                    href="https://www.linkedin.com/company/rosterlab" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                  >
+                    <FaLinkedin className="w-5 h-5 text-primary-600" />
+                  </a>
+                  <a 
+                    href="https://twitter.com/rosterlab" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                  >
+                    <FaTwitter className="w-5 h-5 text-primary-600" />
+                  </a>
+                  <a 
+                    href="https://facebook.com/rosterlab" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                  >
+                    <FaFacebook className="w-5 h-5 text-primary-600" />
+                  </a>
+                  <a 
+                    href="https://instagram.com/rosterlab" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                  >
+                    <FaInstagram className="w-5 h-5 text-primary-600" />
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -147,17 +150,6 @@ export default function ContactPage() {
               </h2>
               
               <FAQAccordion items={faqItems} />
-            </div>
-
-            {/* Additional Form Section */}
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-                Get Started Today
-              </h2>
-              <p className="text-neutral-600 mb-6">
-                Ready to transform your rostering? Fill out the form below for a personalized consultation.
-              </p>
-              <HubSpotEmbedForm />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import ContactForm from '@/components/forms/HubSpotForm'
+import ContactFormWrapper from '@/components/forms/ContactFormWrapper'
 import Container from '@/components/ui/Container'
 import { HiClock, HiTrendingUp, HiUsers } from 'react-icons/hi'
 
@@ -83,7 +83,7 @@ export default function FinalCTA() {
             <h3 className="text-2xl font-bold text-neutral-900 mb-6">
               Get Started Today
             </h3>
-            <ContactForm className="final-cta-form" />
+            <ContactFormWrapper />
           </div>
         </div>
       </Container>
