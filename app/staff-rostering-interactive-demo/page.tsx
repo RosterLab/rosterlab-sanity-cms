@@ -44,8 +44,6 @@ export default function DemoPage() {
                 title="Rosterlab interactive media" 
                 loading="lazy" 
                 className="w-full h-full"
-                webkitallowfullscreen="true" 
-                mozallowfullscreen="true" 
                 allowFullScreen
                 src="https://demo.arcade.software/qKV5GmMinypq2yXM19Xi?embed"
               />

@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from 'react'
 
-declare global {
-  interface Window {
-    hbspt: any
-  }
-}
-
 let isScriptLoaded = false
 let isScriptLoading = false
 const callbacks: (() => void)[] = []
@@ -78,7 +72,7 @@ export default function HubSpotEmbedForm() {
           portalId: "20646833",
           formId: "7a140682-3e29-470f-a3b0-10c8d97beb02",
           region: "na1",
-          target: containerRef.current
+          target: "#hubspot-form-embed"
         })
       }
     })
@@ -92,5 +86,5 @@ export default function HubSpotEmbedForm() {
     }
   }, [])
 
-  return <div ref={containerRef} className="hubspot-form-wrapper" />
+  return <div ref={containerRef} id="hubspot-form-embed" className="hubspot-form-wrapper" />
 }
