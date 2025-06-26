@@ -5,10 +5,8 @@ import RosterGenerator from "@/components/ui/RosterGenerator";
 export default function Hero() {
   return (
     <section
-      className="relative flex flex-col items-center text-center py-20 px-4"
+      className="relative flex flex-col items-center text-center py-20 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50"
       style={{
-        background:
-          "linear-gradient(135deg, rgba(45, 59, 234, 0.1) 0%, rgba(3, 213, 171, 0.1) 100%)",
         minHeight: "80vh",
       }}
     >
@@ -19,7 +17,7 @@ export default function Hero() {
           <span
             className="inline-block"
             style={{
-              background: "linear-gradient(to right, #2D3BEA, #03D5AB)",
+              background: "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

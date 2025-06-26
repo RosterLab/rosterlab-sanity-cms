@@ -5,7 +5,7 @@ import { HiClock, HiTrendingUp, HiUsers } from 'react-icons/hi'
 export default function FinalCTA() {
   return (
     <section className="py-20 relative overflow-hidden" style={{
-      background: 'linear-gradient(to right, #0045BD 0%, #0045BD 40%, #029EBF 50%, #029EBF 90%, #04F6C0 100%)'
+      background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
     }}>
 
       <Container className="relative z-10">
