@@ -32,8 +32,13 @@ export default function ContactPage() {
       <Container>
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-neutral-900 mb-4">
-            Speak to a rostering expert
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            Speak to a rostering{" "}
+            <span className="text-transparent bg-clip-text" style={{
+              backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+            }}>
+              expert
+            </span>
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             We&apos;re here to help you solve your complex challenges and requirements.

@@ -183,7 +183,9 @@ export default function PricingPage() {
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Optimise your staffing
             </h1>
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-600 mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text" style={{
+              backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+            }}>
               from today
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -332,7 +334,9 @@ export default function PricingPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-green-500 pt-20">
+      <div className="pt-20" style={{
+        background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+      }}>
         <div className="text-center p-12 text-white">
           <h2 className="text-4xl font-bold mb-4">
             Ready to Transform Your Scheduling?

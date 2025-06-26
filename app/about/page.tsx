@@ -396,7 +396,9 @@ export default function AboutPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-green-500 py-20">
+      <div className="py-20" style={{
+        background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+      }}>
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl font-bold mb-4">
