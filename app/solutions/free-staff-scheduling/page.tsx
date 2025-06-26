@@ -378,30 +378,25 @@ export default function ManualSchedulingPage() {
         </Container>
       </div>
       {/* CTA Section */}
-      <div 
-        className="py-20 relative"
-        style={{
-          background: 'linear-gradient(to right, rgba(0, 69, 189, 0.4) 2%, rgba(2, 158, 191, 0.4) 50%, rgba(4, 246, 192, 0.4) 100%)'
-        }}
-      >
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-20">
         <Container>
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900">
+          <div className="text-center text-white">
+            <h2 className="text-4xl font-bold mb-6">
               Ready to Simplify Your Scheduling?
             </h2>
-            <p className="text-xl mb-8 text-gray-700">
+            <p className="text-xl mb-8 opacity-90">
               Start with our free digital scheduling tool and transform your workforce management today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 href="https://app.rosterlab.com" 
-                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
               >
                 Start for Free
               </Button>
               <Button 
                 href="/demo" 
-                className="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4"
+                className="bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white/30 px-8 py-4 text-lg font-semibold"
               >
                 Book a Demo
               </Button>

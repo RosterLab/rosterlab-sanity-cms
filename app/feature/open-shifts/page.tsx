@@ -376,7 +376,7 @@ export default function OpenShiftsPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500">
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">

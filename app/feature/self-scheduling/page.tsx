@@ -193,7 +193,7 @@ export default function SelfSchedulingPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800">
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
@@ -230,7 +230,7 @@ export default function SelfSchedulingPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   href="/book-a-demo" 
-                  className="bg-purple-600 text-white hover:bg-purple-700 px-8 py-4 text-lg font-semibold"
+                  className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>

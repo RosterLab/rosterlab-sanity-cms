@@ -17,13 +17,13 @@ const reasons = [
   },
   {
     icon: HiUserGroup,
-    title: 'Healthcare Expertise',
-    description: 'Built specifically for healthcare with deep understanding of complex scheduling requirements and regulations.'
+    title: 'Industry Expertise',
+    description: 'Proven across healthcare, manufacturing, retail, and service industries with deep understanding of sector-specific scheduling challenges.'
   },
   {
     icon: HiShieldCheck,
     title: 'Proven Track Record',
-    description: 'Trusted by leading healthcare organizations across Australia and New Zealand with exceptional customer satisfaction.'
+    description: 'Trusted by leading organizations across Australia and New Zealand with exceptional customer satisfaction.'
   },
   {
     icon: HiClock,
@@ -48,17 +48,16 @@ const differentiators = [
     points: [
       'International Nurse Rostering Competition winners',
       'PhD-level research in optimization algorithms',
-      'Continuous AI improvements and updates',
-      'Cloud-based with 99.9% uptime guarantee'
+      'Continuous AI improvements and updates'
     ]
   },
   {
-    title: 'Healthcare Focus',
+    title: 'Handles Complexity',
     points: [
-      'Purpose-built for healthcare scheduling',
+      'Purpose-built for complex scheduling',
       'Understands complex compliance requirements',
       'Handles multiple departments and skill sets',
-      'Integrates with existing healthcare systems'
+      'Integrates with existing systems'
     ]
   },
   {
@@ -119,7 +118,7 @@ export default function WhyChooseUsPage() {
               Six Reasons to Choose Us
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We combine cutting-edge technology with deep healthcare expertise to deliver unmatched value.
+              We combine cutting-edge technology with deep industry expertise to deliver unmatched value.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -194,8 +193,8 @@ export default function WhyChooseUsPage() {
               <div className="text-gray-600">Customer Satisfaction</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-500 mb-2">25%</div>
-              <div className="text-gray-600">Reduction in Overtime</div>
+              <div className="text-4xl font-bold text-blue-500 mb-2">100%</div>
+              <div className="text-gray-600">Compliant with Rules</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-blue-400 mb-2">4.9/5</div>
@@ -215,10 +214,10 @@ export default function WhyChooseUsPage() {
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
             </svg>
             <blockquote className="text-2xl font-medium mb-6">
-              "RosterLab has transformed how we manage our workforce. What used to take days now takes hours, and our staff are happier with fairer schedules. The ROI was evident within the first month."
+              "If Rosterlab can help with our complicated rostering needs, we are confident it will work for anyone."
             </blockquote>
             <cite className="text-lg opacity-90">
-              — Sarah Mitchell, Director of Operations, Regional Health Network
+              — Judy Harris, Practice Manager, Dargaville Hospital
             </cite>
           </div>
         </Container>
@@ -286,7 +285,7 @@ export default function WhyChooseUsPage() {
               Ready to Join RosterLab?
             </h2>
             <p className="text-xl mb-12 opacity-90">
-              See why healthcare organizations trust RosterLab to transform their workforce management.
+              See why organizations trust RosterLab to transform their workforce management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

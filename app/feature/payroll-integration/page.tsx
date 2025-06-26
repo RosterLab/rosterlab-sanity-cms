@@ -4,7 +4,6 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck, HiClock, HiDownload, HiRefresh, HiLink, HiDocument } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
-import ShareRosterModule from './ShareRosterModule'
 
 export const metadata = {
   title: 'Integrate Roster & Timesheet Data With Payroll - RosterLab',
@@ -123,7 +122,7 @@ export default function PayrollIntegrationPage() {
                         <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                         <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                       </div>
-                      <div className="flex-1 ml-4">
+                      <div className="flex-1 ml-4 hidden sm:block">
                         <div className="bg-white rounded px-3 py-1 text-xs text-gray-600 font-mono">
                           https://app.rosterlab.com/api/sync
                         </div>
@@ -252,7 +251,7 @@ export default function PayrollIntegrationPage() {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Secure, time-limited access links</span>
+                    <span className="text-gray-700">Secure access links</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -265,7 +264,13 @@ export default function PayrollIntegrationPage() {
                 </ul>
               </div>
               <div className="relative">
-                <ShareRosterModule />
+                <Image
+                  src="/images/illustration/Share-link-pana.svg"
+                  alt="Shareable links to live roster"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -324,6 +329,31 @@ export default function PayrollIntegrationPage() {
           </Container>
         </div>
 
+        {/* Stats Section */}
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
+          <Container>
+            <div className="text-center text-white">
+              <h2 className="text-4xl font-bold mb-12">
+                Payroll Integration Impact
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <p className="text-5xl font-bold mb-2">99.9%</p>
+                  <p className="text-xl opacity-90">Payroll accuracy rate</p>
+                </div>
+                <div>
+                  <p className="text-5xl font-bold mb-2">8 hrs</p>
+                  <p className="text-xl opacity-90">Saved per payroll cycle</p>
+                </div>
+                <div>
+                  <p className="text-5xl font-bold mb-2">Zero</p>
+                  <p className="text-xl opacity-90">Manual data entry errors</p>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </div>
+
         {/* CTA Section */}
         <div className="py-20">
           <Container>
@@ -337,13 +367,13 @@ export default function PayrollIntegrationPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   href="/book-a-demo" 
-                  className="bg-green-600 text-white hover:bg-green-700 px-8 py-4 text-lg font-semibold"
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
                 <Button 
                   href="/pricing" 
-                  className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50 px-8 py-4 text-lg font-semibold"
+                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
                 </Button>

@@ -261,7 +261,7 @@ export default function AISchedulesPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-blue-600 py-20">
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-20">
         <Container>
           <div className="text-center text-white max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">
