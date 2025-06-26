@@ -80,18 +80,32 @@ export default function WhyChooseUsPage() {
         <Container>
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Healthcare Leaders Choose RosterLab
+              Why Teams Choose{" "}
+              <span className="text-transparent bg-clip-text" style={{
+                backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+              }}>
+                RosterLab
+              </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Join hundreds of healthcare organizations that have transformed their workforce management with our proven scheduling solution.
+              Join hundreds of teams that have transformed their workforce management with our proven scheduling solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="/demo" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
+              <Button href="/staff-rostering-interactive-demo" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
                 See RosterLab in Action
               </Button>
               <Button href="/contact" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg">
                 Talk to Our Team
               </Button>
+            </div>
+            <div className="mt-12">
+              <Image
+                src="/images/illustration/Light bulb-pana.svg"
+                alt="Innovation and Ideas"
+                width={400}
+                height={300}
+                className="mx-auto max-w-full h-auto"
+              />
             </div>
           </div>
         </Container>
@@ -102,7 +116,7 @@ export default function WhyChooseUsPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Six Reasons to Choose RosterLab
+              Six Reasons to Choose Us
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We combine cutting-edge technology with deep healthcare expertise to deliver unmatched value.
@@ -172,19 +186,19 @@ export default function WhyChooseUsPage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">90%</div>
+              <div className="text-4xl font-bold text-blue-500 mb-2">90%</div>
               <div className="text-gray-600">Time Saved on Scheduling</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-green-600 mb-2">98%</div>
+              <div className="text-4xl font-bold text-blue-400 mb-2">98%</div>
               <div className="text-gray-600">Customer Satisfaction</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-purple-600 mb-2">25%</div>
+              <div className="text-4xl font-bold text-blue-500 mb-2">25%</div>
               <div className="text-gray-600">Reduction in Overtime</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-600 mb-2">4.9/5</div>
+              <div className="text-4xl font-bold text-blue-400 mb-2">4.9/5</div>
               <div className="text-gray-600">Average User Rating</div>
             </div>
           </div>
@@ -192,7 +206,9 @@ export default function WhyChooseUsPage() {
       </div>
 
       {/* Customer Quote Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-green-500 py-20">
+      <div className="py-20" style={{
+        backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
+      }}>
         <Container>
           <div className="text-center text-white max-w-4xl mx-auto">
             <svg className="w-12 h-12 mx-auto mb-6 opacity-50" fill="currentColor" viewBox="0 0 24 24">
@@ -225,8 +241,8 @@ export default function WhyChooseUsPage() {
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Dedicated Success Manager</h3>
-                    <p className="text-gray-600">Your personal guide through implementation and beyond</p>
+                    <h3 className="text-sm font-semibold text-gray-900 mb-1">Dedicated Success Manager</h3>
+                    <p className="text-sm text-gray-600">Your personal guide through implementation and beyond</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -234,8 +250,8 @@ export default function WhyChooseUsPage() {
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Ongoing Optimization</h3>
-                    <p className="text-gray-600">Regular reviews to ensure you're getting maximum value</p>
+                    <h3 className="text-sm font-semibold text-gray-900 mb-1">Ongoing Optimization</h3>
+                    <p className="text-sm text-gray-600">Regular reviews to ensure you're getting maximum value</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -243,14 +259,20 @@ export default function WhyChooseUsPage() {
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">Continuous Innovation</h3>
-                    <p className="text-gray-600">Regular updates and new features based on customer feedback</p>
+                    <h3 className="text-sm font-semibold text-gray-900 mb-1">Continuous Innovation</h3>
+                    <p className="text-sm text-gray-600">Regular updates and new features based on customer feedback</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-200 rounded-lg aspect-video flex items-center justify-center">
-              <span className="text-gray-400 text-lg">Partnership Image</span>
+            <div className="rounded-lg overflow-hidden">
+              <Image
+                src="/images/why choose us/partnership.jpeg"
+                alt="RosterLab Partnership Approach"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
         </Container>
@@ -261,7 +283,7 @@ export default function WhyChooseUsPage() {
         <Container>
           <div className="text-center text-white max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">
-              Ready to Join the RosterLab Family?
+              Ready to Join RosterLab?
             </h2>
             <p className="text-xl mb-12 opacity-90">
               See why healthcare organizations trust RosterLab to transform their workforce management.

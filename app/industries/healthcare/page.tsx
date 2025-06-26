@@ -6,8 +6,8 @@ import TrustedBy from '@/components/sections/TrustedBy'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Healthcare Scheduling Solutions - RosterLab',
-  description: 'Transform healthcare workforce management with AI-powered scheduling. Reduce admin time by 90%, ensure compliance, and improve staff satisfaction across all departments.',
+  title: 'Rostering Software for Healthcare - RosterLab',
+  description: 'Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.',
 }
 
 export default function HealthcarePage() {
@@ -232,6 +232,38 @@ export default function HealthcarePage() {
                 </div>
                 <h4 className="font-semibold text-gray-900">Allied Health</h4>
               </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Medical Clinics</h4>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Dental Chains</h4>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Veterinary Clinics</h4>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Mental Health Services</h4>
+              </div>
             </div>
           </div>
         </Container>
@@ -389,6 +421,10 @@ export default function HealthcarePage() {
                   <div className="text-4xl font-bold text-cyan-600 mb-2">Zero violations</div>
                   <p className="text-gray-600">Compliance breaches eliminated</p>
                 </div>
+              </div>
+
+              <div className="text-center mb-8">
+                <div className="text-4xl font-bold text-green-600 mb-2">Better patient care, happier staff.</div>
               </div>
 
               <blockquote className="text-lg text-gray-700 italic text-center">

@@ -60,7 +60,7 @@ export default function ShiftSwapsContent() {
             </div>
           </div>
           <div className="text-center text-sm text-gray-500">
-            <HiShieldCheck className="w-5 h-5 inline mr-1 text-green-500" />
+            <HiShieldCheck className="w-5 h-5 inline mr-1 text-[#4a9288]" />
             Automatically checked for compliance
           </div>
         </div>

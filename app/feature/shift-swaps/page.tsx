@@ -90,23 +90,27 @@ export default function ShiftSwapsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Instant approval for routine swaps</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Smart detection of critical shifts</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Reduce management workload by 92%</span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Feature Illustration</span>
-                </div>
+                <Image
+                  src="/images/illustration/Customer relationship management-pana.svg"
+                  alt="Automatic Routine Swap Approval"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -128,15 +132,15 @@ export default function ShiftSwapsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Highlights potential rule violations</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">One-click approval or rejection</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Clear explanations of conflicts</span>
                   </li>
                 </ul>
@@ -158,15 +162,15 @@ export default function ShiftSwapsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Mobile app swap requests</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Push notifications to relevant staff</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time roster updates</span>
                   </li>
                 </ul>
@@ -500,15 +504,15 @@ export default function ShiftSwapsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Complete swap history</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Approval timestamps and reasons</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Compliance documentation</span>
                   </li>
                 </ul>

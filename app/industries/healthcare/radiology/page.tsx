@@ -30,9 +30,23 @@ export default function RadiologyPage() {
                 <Button href="/demo" className="bg-teal-600 text-white hover:bg-teal-700">
                   Book a Demo
                 </Button>
-                <Button href="/contact" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
+                <Button href="https://app.rosterlab.com/l" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
                   Get Started
                 </Button>
+              </div>
+              <div className="mt-6 space-y-2">
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Free digital scheduling forever
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  No credit card required
+                </p>
               </div>
             </div>
             <div className="relative">
@@ -325,7 +339,9 @@ export default function RadiologyPage() {
       </section>
 
       {/* Trusted By */}
-      <TrustedBy />
+      <section className="py-20 bg-gray-50">
+        <TrustedBy />
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
