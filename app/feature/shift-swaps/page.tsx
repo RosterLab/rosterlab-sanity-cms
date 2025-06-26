@@ -37,7 +37,7 @@ const faqItems = [
 export default function ShiftSwapsPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -52,13 +52,13 @@ export default function ShiftSwapsPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-green-600 text-white hover:bg-green-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     See It In Action
                   </Button>
                   <Button 
                     href="/contact" 
-                    className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Contact Us
                   </Button>
@@ -502,7 +502,7 @@ export default function ShiftSwapsPage() {
                 <p className="text-lg text-gray-600 mb-6">
                   Track who swapped, when, and why. Complete documentation helps resolve disputes and demonstrate compliance with labor regulations.
                 </p>
-                <ul className="space-y-4">
+                <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Complete swap history</span>
@@ -516,6 +516,15 @@ export default function ShiftSwapsPage() {
                     <span className="text-gray-700">Compliance documentation</span>
                   </li>
                 </ul>
+                <div className="relative">
+                  <Image
+                    src="/images/illustration/Transfer files-pana.svg"
+                    alt="Comprehensive audit trail and documentation"
+                    width={400}
+                    height={400}
+                    className="w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
           </Container>

@@ -36,7 +36,7 @@ const faqItems = [
 export default function PreferencesRulesPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -51,13 +51,13 @@ export default function PreferencesRulesPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     See It In Action
                   </Button>
                   <Button 
                     href="/contact" 
-                    className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Contact Us
                   </Button>
@@ -248,9 +248,13 @@ export default function PreferencesRulesPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Balancing Algorithm Dashboard</span>
-                </div>
+                <Image
+                  src="/images/illustration/Business ethics-pana-2.svg"
+                  alt="Intelligent preference balancing illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -261,9 +265,13 @@ export default function PreferencesRulesPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Conflict Resolution Engine</span>
-                </div>
+                <Image
+                  src="/images/illustration/Choose-pana.svg"
+                  alt="Automatic rule conflict resolution illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">

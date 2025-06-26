@@ -23,7 +23,7 @@ const reasons = [
   {
     icon: HiShieldCheck,
     title: 'Proven Track Record',
-    description: 'Trusted by leading healthcare organizations across Australia and New Zealand with 98% customer satisfaction.'
+    description: 'Trusted by leading healthcare organizations across Australia and New Zealand with exceptional customer satisfaction.'
   },
   {
     icon: HiClock,
@@ -33,7 +33,7 @@ const reasons = [
   {
     icon: HiChartBar,
     title: 'Measurable ROI',
-    description: 'Average 70% reduction in scheduling time and 25% decrease in overtime costs within the first year.'
+    description: 'Significant reduction in scheduling time and substantial decrease in overtime costs within the first year.'
   },
   {
     icon: HiSupport,

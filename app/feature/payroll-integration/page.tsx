@@ -29,7 +29,7 @@ const faqItems = [
 export default function PayrollIntegrationPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -44,13 +44,13 @@ export default function PayrollIntegrationPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-green-600 text-white hover:bg-green-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     Book a Demo
                   </Button>
                   <Button 
                     href="/contact" 
-                    className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Contact Us
                   </Button>
@@ -82,15 +82,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Multiple export formats (CSV, Excel, XML, JSON)</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automated file transfers via our API</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Custom field mapping for any payroll system</span>
                   </li>
                 </ul>
@@ -221,15 +221,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time bidirectional data synchronization</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic conflict detection and resolution</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Secure API connections with authentication</span>
                   </li>
                 </ul>
@@ -251,15 +251,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Secure, time-limited access links</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time roster data always current</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Role-based access controls and permissions</span>
                   </li>
                 </ul>
@@ -295,15 +295,15 @@ export default function PayrollIntegrationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Auto-generated timesheets from roster data</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Bulk approval and exception handling</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 mr-3 mt-0.5 flex-shrink-0" style={{ color: '#4a9288' }} />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Overtime calculations and pay rate handling</span>
                   </li>
                 </ul>

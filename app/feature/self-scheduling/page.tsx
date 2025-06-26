@@ -12,7 +12,7 @@ export const metadata = {
 export default function SelfSchedulingPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -27,13 +27,13 @@ export default function SelfSchedulingPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-purple-600 text-white hover:bg-purple-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     See It In Action
                   </Button>
                   <Button 
                     href="/contact" 
-                    className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Contact Us
                   </Button>
@@ -65,15 +65,15 @@ export default function SelfSchedulingPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Visual calendar interface for easy selection</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Mobile-friendly for on-the-go submissions</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Preference weighting (preferred, available, unavailable)</span>
                   </li>
                 </ul>
@@ -105,15 +105,15 @@ export default function SelfSchedulingPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Balances preferences with operational needs</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Ensures fair distribution of desirable shifts</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Respects skill requirements and certifications</span>
                   </li>
                 </ul>
@@ -135,15 +135,15 @@ export default function SelfSchedulingPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Instant notifications for available shifts</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">First-come, first-served or priority-based allocation</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic overtime and compliance checks</span>
                   </li>
                 </ul>
@@ -175,15 +175,15 @@ export default function SelfSchedulingPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Lock specific shifts or staff assignments</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Set minimum experience requirements</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Review and approve before publishing</span>
                   </li>
                 </ul>

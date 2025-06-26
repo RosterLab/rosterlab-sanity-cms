@@ -13,7 +13,7 @@ export const metadata = {
 export default function ReRosteringPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -28,13 +28,13 @@ export default function ReRosteringPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-orange-600 text-white hover:bg-orange-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     See It In Action
                   </Button>
                   <Button 
                     href="/contact" 
-                    className="bg-white text-orange-600 border-2 border-orange-600 hover:bg-orange-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Contact Us
                   </Button>
@@ -66,15 +66,15 @@ export default function ReRosteringPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time impact assessment across all departments</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Multiple solution options ranked by effectiveness</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Minimal disruption analysis for existing schedules</span>
                   </li>
                 </ul>
@@ -106,15 +106,15 @@ export default function ReRosteringPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Multiple solution scenarios generated instantly</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Skills and availability matching for replacements</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Auto-apply mode for critical situations</span>
                   </li>
                 </ul>
@@ -136,15 +136,15 @@ export default function ReRosteringPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic compliance validation for all solutions</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Rest period and maximum hours enforcement</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Skill and certification requirement matching</span>
                   </li>
                 </ul>
@@ -176,15 +176,15 @@ export default function ReRosteringPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Instant notifications to all affected staff</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Detailed change information and reasoning</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Acknowledgment tracking and confirmation</span>
                   </li>
                 </ul>

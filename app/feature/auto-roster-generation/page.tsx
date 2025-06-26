@@ -36,7 +36,7 @@ const faqItems = [
 export default function AutoRosterGenerationPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -51,13 +51,13 @@ export default function AutoRosterGenerationPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-purple-600 text-white hover:bg-purple-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     See It In Action
                   </Button>
                   <Button 
                     href="/contact" 
-                    className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Contact Us
                   </Button>
@@ -89,15 +89,15 @@ export default function AutoRosterGenerationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Considers 50+ variables simultaneously</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Balances preferences with operational needs</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Learns from historical patterns and feedback</span>
                   </li>
                 </ul>
@@ -129,15 +129,15 @@ export default function AutoRosterGenerationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic compliance with all regulations</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Fair distribution of desirable and undesirable shifts</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Respects minimum rest periods and maximum hours</span>
                   </li>
                 </ul>
@@ -159,15 +159,15 @@ export default function AutoRosterGenerationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Adjustable optimization weights and priorities</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Custom rules and constraints configuration</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Multiple generation scenarios for comparison</span>
                   </li>
                 </ul>
@@ -199,15 +199,15 @@ export default function AutoRosterGenerationPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Comprehensive quality scoring and metrics</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Historical trend analysis and reporting</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Predictive analytics for future optimization</span>
                   </li>
                 </ul>
@@ -216,8 +216,20 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
+        {/* FAQ Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion items={faqItems} />
+            </div>
+          </Container>
+        </div>
+
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600">
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
@@ -241,18 +253,6 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
-        {/* FAQ Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                Frequently Asked Questions
-              </h2>
-              <FAQAccordion items={faqItems} />
-            </div>
-          </Container>
-        </div>
-
         {/* CTA Section */}
         <div className="py-20">
           <Container>
@@ -266,13 +266,13 @@ export default function AutoRosterGenerationPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   href="/book-a-demo" 
-                  className="bg-purple-600 text-white hover:bg-purple-700 px-8 py-4 text-lg font-semibold"
+                  className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
                 <Button 
                   href="/pricing" 
-                  className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50 px-8 py-4 text-lg font-semibold"
+                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
                 </Button>

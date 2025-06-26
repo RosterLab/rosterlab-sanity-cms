@@ -178,65 +178,65 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-1 max-h-80 overflow-y-auto">
                                 <Link
                                   href="/feature/preferences-rules"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Preferences & Rules
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/auto-roster-generation"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Auto Roster Generation
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/self-scheduling"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Self-Scheduling
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/leave-requests"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Leave Requests
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/shift-swaps"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Shift Swaps
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/open-shifts"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Open Shifts
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/re-rostering"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Re-Rostering
                                   </div>
                                 </Link>
                                 <Link
                                   href="/feature/payroll-integration"
-                                  className="group block p-2 rounded-lg hover:bg-pink-50 transition-colors"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-pink-600 text-sm">
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Payroll Integration
                                   </div>
                                 </Link>

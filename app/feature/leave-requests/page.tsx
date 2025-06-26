@@ -321,9 +321,13 @@ export default function LeaveRequestsPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Leave Balance Dashboard</span>
-                </div>
+                <Image
+                  src="/images/illustration/Business ethics-pana-2.svg"
+                  alt="Smart leave balance management illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -403,10 +407,6 @@ export default function LeaveRequestsPage() {
               <FAQAccordion
                 items={[
                   {
-                    question: "How does the automatic coverage analysis work?",
-                    answer: "When an employee submits a leave request, RosterLab instantly analyzes your roster to identify coverage gaps and available replacement staff. The system considers staff skills, availability, overtime rules, and minimum coverage requirements to provide managers with a complete impact assessment before approving requests."
-                  },
-                  {
                     question: "Can employees check their leave balances on mobile?",
                     answer: "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones."
                   },
@@ -415,24 +415,8 @@ export default function LeaveRequestsPage() {
                     answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organization's policies."
                   },
                   {
-                    question: "How are leave accruals calculated?",
-                    answer: "Leave accruals are automatically calculated based on your configured policies, considering factors like employment type, hours worked, and tenure. The system tracks balances in real-time, handles pro-rata calculations for part-time staff, and can manage complex scenarios like leave loading and different accrual rates."
-                  },
-                  {
                     question: "Can we set up automatic approval rules?",
                     answer: "Absolutely! You can configure automatic approval rules based on various criteria such as leave type, duration, advance notice, and coverage availability. For example, single-day leave requests with 2+ weeks notice and available coverage can be auto-approved, while longer periods or short-notice requests require manager review."
-                  },
-                  {
-                    question: "How does the system handle leave conflicts?",
-                    answer: "RosterLab prevents leave conflicts by checking existing approved leave, minimum coverage requirements, and blackout periods before allowing requests. The system alerts both employees and managers to potential conflicts, suggests alternative dates, and can enforce rules like maximum simultaneous leave per department."
-                  },
-                  {
-                    question: "What happens to leave requests if coverage isn't available?",
-                    answer: "When coverage gaps are identified, the system doesn't automatically reject the request. Instead, it provides managers with options like: finding qualified replacement staff, adjusting nearby shifts, offering overtime to available staff, or temporarily adjusting service levels. Managers can make informed decisions based on operational priorities."
-                  },
-                  {
-                    question: "Can we integrate with our existing HR systems?",
-                    answer: "Yes, RosterLab offers robust integration capabilities with popular HR and payroll systems. Leave balances, approvals, and usage data can be synchronized automatically, ensuring your records stay consistent across all systems while eliminating duplicate data entry."
                   }
                 ]}
               />
