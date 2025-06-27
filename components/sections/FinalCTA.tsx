@@ -21,26 +21,32 @@ export default function FinalCTA() {
 
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center mx-auto mb-2">
+              <div className="flex items-center gap-3 md:flex-col md:text-center">
+                <div className="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
                   <HiClock className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-2xl font-bold">90%</div>
-                <div className="text-sm text-white/80">time saving</div>
+                <div>
+                  <div className="text-2xl font-bold">90%</div>
+                  <div className="text-sm text-white/80">time saving</div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-blue-400 rounded-lg flex items-center justify-center mx-auto mb-2">
+              <div className="flex items-center gap-3 md:flex-col md:text-center">
+                <div className="w-12 h-12 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
                   <HiTrendingUp className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-2xl font-bold">100%</div>
-                <div className="text-sm text-white/80">guaranteed compliance</div>
+                <div>
+                  <div className="text-2xl font-bold">100%</div>
+                  <div className="text-sm text-white/80">guaranteed compliance</div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-purple-400 rounded-lg flex items-center justify-center mx-auto mb-2">
+              <div className="flex items-center gap-3 md:flex-col md:text-center">
+                <div className="w-12 h-12 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
                   <HiUsers className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-lg font-bold">Better</div>
-                <div className="text-sm text-white/80">staff satisfaction</div>
+                <div>
+                  <div className="text-lg font-bold">Better</div>
+                  <div className="text-sm text-white/80">staff satisfaction</div>
+                </div>
               </div>
             </div>
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
-import RosterGenerator from "@/components/ui/RosterGenerator";
+// import RosterGenerator from "@/components/ui/RosterGenerator";
+import WeeklyRosterCalendar from "@/components/ui/WeeklyRosterCalendar";
 
 export default function Hero() {
   return (
@@ -47,7 +48,7 @@ export default function Hero() {
               </Button>
 
               <Button
-                href="/solutions/free-staff-scheduling"
+                href="https://app.rosterlab.com"
                 className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
               >
                 Start for Free
@@ -55,25 +56,17 @@ export default function Hero() {
             </div>
 
             {/* Free tier benefits */}
-            <div className="mt-6 flex items-center gap-6 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Free digital rostering forever</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span>No credit card required</span>
-              </div>
+            <div className="mt-6 flex items-center gap-2 text-sm text-gray-600">
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              <span className="whitespace-nowrap">Free digital rostering forever • No credit card</span>
             </div>
           </div>
 
           {/* Right side - Interactive Roster Generator */}
           <div className="flex justify-center lg:justify-end">
-            <RosterGenerator />
+            <WeeklyRosterCalendar />
           </div>
         </div>
       </div>
