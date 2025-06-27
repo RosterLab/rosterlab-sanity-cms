@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Container from '@/components/ui/Container'
+import Button from '@/components/ui/Button'
 
 interface BenefitTab {
   id: string
@@ -114,6 +115,19 @@ export default function Benefits() {
                 />
               </div>
             </div>
+          </div>
+          
+          {/* CTA Button */}
+          <div className="text-center mt-12">
+            <Button
+              href="/solutions/ai-schedules"
+              className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+            >
+              Learn more about AI rostering
+              <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Button>
           </div>
         </div>
       </Container>

@@ -32,8 +32,8 @@ export default function FinalCTA() {
                 <div className="w-12 h-12 bg-blue-400 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <HiTrendingUp className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-2xl font-bold">10%</div>
-                <div className="text-sm text-white/80">improve on efficiency</div>
+                <div className="text-2xl font-bold">100%</div>
+                <div className="text-sm text-white/80">guaranteed compliance</div>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-400 rounded-lg flex items-center justify-center mx-auto mb-2">
@@ -45,7 +45,7 @@ export default function FinalCTA() {
             </div>
 
             {/* Google Reviews */}
-            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mt-8 max-w-sm border border-white/20">
+            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mt-8 border border-white/20">
               <div className="flex items-center justify-center mb-3">
                 <div className="flex items-center">
                   <svg className="w-5 h-5 text-white/90 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -67,22 +67,17 @@ export default function FinalCTA() {
                 </div>
                 <span className="ml-2 text-sm font-bold text-white">5.0</span>
               </div>
-              <p className="text-center text-white/80 text-xs">
-                Based on 24 reviews
-              </p>
-              <div className="mt-3 text-center">
-                <button className="text-white/90 hover:text-white text-xs font-medium underline">
-                  Read our reviews →
-                </button>
-              </div>
             </div>
           </div>
 
           {/* Right side - Form */}
           <div className="bg-white rounded-2xl p-8 shadow-xl">
-            <h3 className="text-2xl font-bold text-neutral-900 mb-6">
-              Get Started Today
+            <h3 className="text-2xl font-bold text-neutral-900 mb-2">
+              Talk to us about your staff schedule!
             </h3>
+            <p className="text-gray-600 mb-6">
+              Struggling with the challenges that comes with managing a complex staff schedule? Our team are here to help you.
+            </p>
             <ContactFormWrapper />
           </div>
         </div>

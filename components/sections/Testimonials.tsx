@@ -39,59 +39,73 @@ export default function Testimonials() {
       <Container>
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-            Loved by our Users
+            Loved by our users
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {/* Speech Bubble Background */}
-            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-                <div className="w-8 h-8 bg-white transform rotate-45"></div>
-              </div>
-              
-              <div className="text-center">
-                <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed">
-                  &ldquo;{testimonials[currentIndex].quote}&rdquo;
-                </blockquote>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image placeholder */}
+            <div className="order-2 lg:order-1 flex items-center justify-center">
+              <Image
+                src="/images/illustration/Doctor.svg"
+                alt="Healthcare professional illustration"
+                width={400}
+                height={400}
+                className="w-full h-auto max-w-md"
+              />
+            </div>
+            
+            {/* Speech Bubble */}
+            <div className="relative order-1 lg:order-2">
+              {/* Speech Bubble Background */}
+              <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-lg">
+                <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-white transform rotate-45"></div>
+                </div>
                 
-                <div className="flex flex-col items-center space-y-4">
-                  {testimonials[currentIndex].logo && (
-                    <div className="w-20 h-12 relative">
-                      <Image
-                        src={testimonials[currentIndex].logo}
-                        alt={testimonials[currentIndex].company}
-                        fill
-                        className="object-contain"
-                      />
+                <div className="text-center">
+                  <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed">
+                    &ldquo;{testimonials[currentIndex].quote}&rdquo;
+                  </blockquote>
+                  
+                  <div className="flex flex-col items-center space-y-4">
+                    {testimonials[currentIndex].logo && (
+                      <div className="w-20 h-12 relative">
+                        <Image
+                          src={testimonials[currentIndex].logo}
+                          alt={testimonials[currentIndex].company}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <p className="font-semibold text-neutral-900">
+                        {testimonials[currentIndex].author}
+                      </p>
+                      <p className="text-neutral-600">
+                        {testimonials[currentIndex].company}
+                      </p>
                     </div>
-                  )}
-                  <div>
-                    <p className="font-semibold text-neutral-900">
-                      {testimonials[currentIndex].author}
-                    </p>
-                    <p className="text-neutral-600">
-                      {testimonials[currentIndex].company}
-                    </p>
                   </div>
                 </div>
               </div>
+              
+              {/* Navigation Dots */}
+              <div className="flex justify-center space-x-3 mt-8 py-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-colors p-3 -m-3 ${
+                      index === currentIndex ? 'bg-blue-600' : 'bg-neutral-300'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center space-x-3 mt-8 py-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-colors p-3 -m-3 ${
-                  index === currentIndex ? 'bg-blue-600' : 'bg-neutral-300'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
           </div>
         </div>
 

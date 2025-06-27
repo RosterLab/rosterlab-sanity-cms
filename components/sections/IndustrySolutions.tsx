@@ -1,6 +1,7 @@
 import Button from '@/components/ui/Button'
 import Container from '@/components/ui/Container'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function IndustrySolutions() {
   return (
@@ -10,12 +11,23 @@ export default function IndustrySolutions() {
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
             Tailored Solutions for Your Industry
           </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
             RosterLab adapts to your specific industry requirements with specialized features and configurations.
           </p>
+          
+          {/* Image placeholder */}
+          <div className="max-w-6xl mx-auto mb-0">
+            <Image
+              src="/images/illustration/test2.svg"
+              alt="Industry solutions illustration"
+              width={1200}
+              height={300}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto -mt-1">
           {/* Healthcare Organizations */}
           <div className="bg-blue-50 rounded-2xl p-8">
             <div className="text-center mb-8">
