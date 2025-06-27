@@ -30,7 +30,7 @@ export default function HealthcarePage() {
                 From ICU to aged care, radiology to emergency departments - optimize staffing across your entire healthcare organization with one intelligent platform.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/demo" className="bg-blue-600 text-white hover:bg-blue-700">
+                <Button href="/book-a-demo" className="bg-blue-600 text-white hover:bg-blue-700">
                   Book a Demo
                 </Button>
                 <Button href="/contact" className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50">
@@ -455,7 +455,7 @@ export default function HealthcarePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white text-blue-600 hover:bg-gray-100"
               >
                 Book a Demo

@@ -39,7 +39,7 @@ const pricingPlans = [
       'Scenario simulation'
     ],
     cta: 'BOOK A DEMO',
-    ctaLink: '/demo',
+    ctaLink: '/book-a-demo',
     highlighted: true
   },
   {
@@ -168,7 +168,7 @@ const faqItems = [
   },
   {
     question: "Can I try the AI features before committing?",
-    answer: "Absolutely! We can help set this up for you if you <a href='/demo' class='text-blue-600 hover:underline'>book a demo</a> with us."
+    answer: "Absolutely! We can help set this up for you if you <a href='/book-a-demo' class='text-blue-600 hover:underline'>book a demo</a> with us."
   }
 ]
 

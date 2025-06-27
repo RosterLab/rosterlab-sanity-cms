@@ -1,15 +1,9 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
-
-declare global {
-  interface Window {
-    hbspt: any
-  }
-}
 
 export default function ROICalculatorClient() {
   // Input states
@@ -22,14 +16,7 @@ export default function ROICalculatorClient() {
   
   // Form states
   const [showReportForm, setShowReportForm] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    marketingConsent: false
-  })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [pdfData, setPdfData] = useState<any>(null)
   const formContainerRef = useRef<HTMLDivElement>(null)
   
   // Calculations
@@ -53,7 +40,7 @@ export default function ROICalculatorClient() {
   const roi = ((totalAnnualSavings / 30000) * 100).toFixed(0) // Assuming $30k annual cost
   const paybackMonths = (30000 / (totalAnnualSavings / 12)).toFixed(1)
 
-  const generatePDF = async (companyName: string = '') => {
+  const generatePDF = useCallback(async (companyName: string = '') => {
     try {
       // Dynamically import jsPDF to avoid SSR issues
       const { default: jsPDF } = await import('jspdf')
@@ -239,7 +226,7 @@ Savings Breakdown:
       
       return false
     }
-  }
+  }, [totalAnnualSavings, roi, paybackMonths, employees, avgHourlyWage, hoursPerWeek, schedulingHours, overtimePercentage, turnoverRate, schedulingSavingsHours, schedulingSavingsCost, currentOvertimeCost, overtimeSavings, turnoverCost, turnoverSavings])
 
   // Load HubSpot form when modal opens
   useEffect(() => {
@@ -338,10 +325,6 @@ Savings Breakdown:
     }
   }, [showReportForm, generatePDF])
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // This function is no longer needed as HubSpot handles the form submission
-  }
 
   return (
     <>
@@ -358,7 +341,7 @@ Savings Breakdown:
               <Button href="/pricing" className="bg-blue-600 text-white hover:bg-blue-700">
                 View Pricing
               </Button>
-              <Button href="/demo" className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50">
+              <Button href="/book-a-demo" className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50">
                 Book a Demo
               </Button>
             </div>

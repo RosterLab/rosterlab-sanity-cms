@@ -395,7 +395,7 @@ export default function ManualSchedulingPage() {
                 Start for Free
               </Button>
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white/30 px-8 py-4 text-lg font-semibold"
               >
                 Book a Demo

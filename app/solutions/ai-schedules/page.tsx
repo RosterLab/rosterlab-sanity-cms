@@ -49,13 +49,13 @@ export default function AISchedulesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
               >
                 Book a Demo
               </Button>
               <Button 
-                href="/example" 
+                href="/book-a-demo" 
                 className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
               >
                 See an Example
@@ -272,7 +272,7 @@ export default function AISchedulesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
               >
                 Book a Demo

@@ -65,7 +65,7 @@ export default function AboutPage() {
               <p className="text-lg text-gray-600 mb-8">
                 We believe that fair, efficient, and optimized rosters are the foundation of happy teams and successful organizations.
               </p>
-              <Button href="/demo" className="bg-blue-600 text-white hover:bg-blue-700">
+              <Button href="/book-a-demo" className="bg-blue-600 text-white hover:bg-blue-700">
                 See How We Do It
               </Button>
             </div>
@@ -409,7 +409,7 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4"
               >
                 Book a Demo

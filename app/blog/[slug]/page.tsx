@@ -103,8 +103,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
       </div>
 
-      {/* Breadcrumb below header */}
-      <div className="bg-gray-50 border-b">
+      {/* Breadcrumb below header - Hidden on mobile and tablet */}
+      <div className="bg-gray-50 border-b hidden lg:block">
         <Container>
           <div className="py-2">
             <Breadcrumb 
@@ -152,19 +152,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               )}
 
               {/* Bottom CTA */}
-              <div className="mt-16 p-8 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-lg text-center">
+              <div className="mt-16 p-8 text-white rounded-lg text-center" style={{ background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)' }}>
                 <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Workforce Management?</h3>
                 <p className="mb-6 text-lg opacity-90">Join thousands using RosterLab to streamline rostering.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
-                    href="/demo"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-purple-700 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                    href="/book-a-demo"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
                   >
                     Book a Demo
                   </Link>
                   <Link
                     href="/pricing"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-purple-800 text-white font-semibold rounded-lg hover:bg-purple-900 transition-all"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
                   >
                     Start Free Trial
                   </Link>

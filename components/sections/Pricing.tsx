@@ -39,7 +39,7 @@ export default function Pricing({
         "Shift templates"
       ],
       buttonText: "Start Free Trial",
-      buttonLink: "/demo"
+      buttonLink: "/book-a-demo"
     },
     {
       name: "Professional",
@@ -57,7 +57,7 @@ export default function Pricing({
       ],
       highlighted: true,
       buttonText: "Start Free Trial",
-      buttonLink: "/demo"
+      buttonLink: "/book-a-demo"
     },
     {
       name: "Enterprise",
@@ -148,7 +148,7 @@ export default function Pricing({
 
                 {/* CTA Button */}
                 <Button
-                  href={plan.buttonLink || '/demo'}
+                  href={plan.buttonLink || '/book-a-demo'}
                   variant={plan.highlighted ? 'primary' : 'outline'}
                   className="w-full"
                 >

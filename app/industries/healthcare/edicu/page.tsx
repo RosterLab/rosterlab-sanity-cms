@@ -28,7 +28,7 @@ export default function ICUEDPage() {
                 Cut roster creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff wellbeing.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/demo" className="bg-teal-600 text-white hover:bg-teal-700">
+                <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700">
                   Book a Demo
                 </Button>
                 <Button href="https://app.rosterlab.com/l" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
@@ -285,7 +285,7 @@ export default function ICUEDPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo

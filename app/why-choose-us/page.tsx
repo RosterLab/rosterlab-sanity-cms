@@ -289,7 +289,7 @@ export default function WhyChooseUsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
               >
                 Book a Demo

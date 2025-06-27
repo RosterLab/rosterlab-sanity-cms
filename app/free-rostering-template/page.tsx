@@ -245,7 +245,7 @@ export default function FreeRosteringTemplatePage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/demo"
+                href="/book-a-demo"
                 className="inline-flex items-center justify-center bg-white text-blue-600 px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition-colors"
               >
                 See RosterLab in Action

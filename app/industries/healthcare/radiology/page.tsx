@@ -27,7 +27,7 @@ export default function RadiologyPage() {
                 Reduce rostering time by 92%. Optimize radiologist coverage, equipment utilization, and patient throughput with intelligent scheduling.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/demo" className="bg-teal-600 text-white hover:bg-teal-700">
+                <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700">
                   Book a Demo
                 </Button>
                 <Button href="https://app.rosterlab.com/l" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
@@ -355,7 +355,7 @@ export default function RadiologyPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="/demo" 
+                href="/book-a-demo" 
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action

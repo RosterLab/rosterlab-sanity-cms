@@ -150,7 +150,7 @@ export default async function TestimonialsPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/demo"
+                href="/book-a-demo"
                 className="inline-flex items-center px-8 py-3 border-2 border-[#2d3bea] text-[#2d3bea] font-bold rounded-full hover:bg-[#2d3bea] hover:text-white transition-all duration-300 transform hover:scale-105"
               >
                 Book a Demo
@@ -366,7 +366,7 @@ export default async function TestimonialsPage() {
           <div className="text-center">
             <div className="flex flex-wrap justify-center gap-6">
               <Link
-                href="/demo"
+                href="/book-a-demo"
                 className="inline-flex items-center px-10 py-4 bg-[#2d3bea] text-white font-medium text-2xl rounded-full hover:bg-[#2533cc] transition-all duration-300 transform hover:scale-105"
               >
                 Book A Demo
