@@ -43,7 +43,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                  Generate perfect rosters automatically
+                  Generate perfect rosters <br className="hidden md:block" />automatically
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let AI create optimal schedules in minutes while ensuring fairness, compliance, and staff satisfaction.
@@ -53,13 +53,13 @@ export default function AutoRosterGenerationPage() {
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book A Demo
                   </Button>
                   <Button 
-                    href="/contact" 
+                    href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Contact Us
+                    Try it for free
                   </Button>
                 </div>
               </div>
@@ -103,9 +103,13 @@ export default function AutoRosterGenerationPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">AI Optimization Interface</span>
-                </div>
+                <Image
+                  src="/images/illustration/Rocket research-pana.svg"
+                  alt="AI-Powered Optimization Engine"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -116,9 +120,13 @@ export default function AutoRosterGenerationPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Compliance Dashboard</span>
-                </div>
+                <Image
+                  src="/images/illustration/Programmer-pana-2.svg"
+                  alt="Built-in Compliance & Fairness"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">

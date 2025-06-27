@@ -16,10 +16,6 @@ const faqItems = [
     answer: "Staff can easily set preferences through our mobile app or web portal. They can mark shifts as preferred, available, or unavailable, set recurring patterns (like 'no weekends'), and specify one-off exceptions. The interface is intuitive with visual calendars and simple toggles for different preference types."
   },
   {
-    question: "What fairness rules can I configure?",
-    answer: "You can set rules for: equal distribution of desirable shifts (weekends, holidays), maximum consecutive days worked, minimum rest periods between shifts, fair rotation of on-call duties, seniority-based preferences, and custom rules specific to your organization. The system automatically enforces these while creating schedules."
-  },
-  {
     question: "How does the system balance conflicting preferences?",
     answer: "Our AI uses multi-objective optimization to find the best compromise. It considers preference weights, historical allocation, fairness metrics, and operational requirements. When perfect satisfaction isn't possible, it distributes compromises fairly across the team and tracks satisfaction scores to ensure long-term equity."
   },
@@ -27,10 +23,6 @@ const faqItems = [
     question: "Can I override preferences when necessary?",
     answer: "Yes, managers can override preferences for critical operational needs. However, the system tracks all overrides and their reasons, helping you minimize them over time. It also suggests alternatives that might meet operational needs while better respecting preferences, and notifies affected staff with explanations."
   },
-  {
-    question: "How does this improve staff retention?",
-    answer: "By respecting preferences and ensuring fairness, staff feel heard and valued. Our clients report 40-60% reduction in turnover after implementing preference-based scheduling. The system's transparency about fairness rules and tracking also builds trust between staff and management."
-  }
 ]
 
 export default function PreferencesRulesPage() {
@@ -43,7 +35,7 @@ export default function PreferencesRulesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                  Powerful preference collection and rule management
+                  Powerful preference collection and rule&nbsp;management
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Balance staff preferences with operational requirements through intelligent constraint handling and flexible rule configuration.
@@ -53,13 +45,13 @@ export default function PreferencesRulesPage() {
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book A Demo
                   </Button>
                   <Button 
-                    href="/contact" 
+                    href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Contact Us
+                    Try it for free
                   </Button>
                 </div>
               </div>
@@ -316,7 +308,7 @@ export default function PreferencesRulesPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                Preference & Rule Management Results
+                Streamline preference and rules with ease
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -325,11 +317,11 @@ export default function PreferencesRulesPage() {
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Rule compliance maintained</p>
+                  <p className="text-xl opacity-90">Happy staff</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">60%</p>
-                  <p className="text-xl opacity-90">Reduction in scheduling complaints</p>
+                  <p className="text-xl opacity-90">Reduction in admin time</p>
                 </div>
               </div>
             </div>

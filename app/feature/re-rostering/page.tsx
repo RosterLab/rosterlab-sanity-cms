@@ -30,13 +30,13 @@ export default function ReRosteringPage() {
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book A Demo
                   </Button>
                   <Button 
-                    href="/contact" 
+                    href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Contact Us
+                    Try it for free
                   </Button>
                 </div>
               </div>
@@ -80,9 +80,13 @@ export default function ReRosteringPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Impact Analysis Dashboard</span>
-                </div>
+                <Image
+                  src="/images/illustration/Programmer-pana-2.svg"
+                  alt="Intelligent Impact Analysis illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -93,9 +97,13 @@ export default function ReRosteringPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Solution Generation Engine</span>
-                </div>
+                <Image
+                  src="/images/illustration/Customer relationship management-pana.svg"
+                  alt="Automated Solution Generation illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -150,9 +158,13 @@ export default function ReRosteringPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Compliance Validation</span>
-                </div>
+                <Image
+                  src="/images/illustration/Computer troubleshooting-pana-2.svg"
+                  alt="Compliance Preservation illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -163,9 +175,13 @@ export default function ReRosteringPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Notification System</span>
-                </div>
+                <Image
+                  src="/images/illustration/Push notifications-pana-2.svg"
+                  alt="Real-Time Notifications & Updates illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -210,7 +226,7 @@ export default function ReRosteringPage() {
                   <p className="text-xl opacity-90">Compliance maintained</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">85%</p>
+                  <p className="text-5xl font-bold mb-2">95%</p>
                   <p className="text-xl opacity-90">Reduction in manual re-scheduling</p>
                 </div>
               </div>
@@ -236,24 +252,12 @@ export default function ReRosteringPage() {
                   answer: "RosterLab's AI can generate multiple re-rostering solutions in under 30 seconds. The system analyzes all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimize disruption while maintaining full coverage."
                 },
                 {
-                  question: "What happens when multiple staff call in sick at the same time?",
-                  answer: "Our system can handle multiple simultaneous absences by running complex scenario analysis. It evaluates the cumulative impact and generates solutions that address all gaps while considering factors like overtime limits, skill requirements, and staff preferences. You'll see all affected areas and can approve changes in bulk or individually."
-                },
-                {
                   question: "Can I test different scenarios before implementing changes?",
                   answer: "Yes! Our scenario planning feature allows you to test 'what-if' situations without affecting the live roster. You can simulate different staffing scenarios, compare costs and coverage impacts, and save multiple scenarios for future reference. This helps with contingency planning and budget forecasting."
                 },
                 {
-                  question: "How does the system ensure compliance when re-rostering?",
-                  answer: "Every re-rostering solution is automatically validated against your configured compliance rules including minimum rest periods, maximum working hours, skill requirements, and union agreements. Non-compliant options are filtered out, and any borderline cases are clearly flagged with specific warnings."
-                },
-                {
                   question: "Will staff be automatically notified of roster changes?",
                   answer: "Yes, once you approve a re-rostering solution, all affected staff receive instant notifications via their preferred communication method (app, SMS, or email). The notification includes their new shift details, the reason for the change, and requires acknowledgment to ensure they're aware of the update."
-                },
-                {
-                  question: "Can the system learn from our re-rostering decisions?",
-                  answer: "Absolutely! RosterLab's AI learns from every re-rostering decision you make, understanding your preferences for certain solutions and staff combinations. Over time, it becomes more accurate at predicting your preferred solutions and can even auto-apply changes for routine scenarios based on your historical choices."
                 }
               ]} />
             </div>
@@ -273,13 +277,13 @@ export default function ReRosteringPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   href="/book-a-demo" 
-                  className="bg-orange-600 text-white hover:bg-orange-700 px-8 py-4 text-lg font-semibold"
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
                 <Button 
                   href="/pricing" 
-                  className="bg-white text-orange-600 border-2 border-orange-600 hover:bg-orange-50 px-8 py-4 text-lg font-semibold"
+                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
                 </Button>

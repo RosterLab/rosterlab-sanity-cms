@@ -98,7 +98,7 @@ export default function ManualSchedulingPage() {
                 Your free digital scheduling tool
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create intelligent rosters in minutes, not hours. Our free scheduling platform helps you manage shifts, track compliance, and keep your team happy.
+                Our free scheduling platform helps you manage shifts, track compliance, and keep your team happy.
               </p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-3">

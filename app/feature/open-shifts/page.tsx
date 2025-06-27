@@ -30,13 +30,13 @@ export default function OpenShiftsPage() {
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book A Demo
                   </Button>
                   <Button 
-                    href="/contact" 
+                    href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Contact Us
+                    Try it for free
                   </Button>
                 </div>
               </div>
@@ -97,16 +97,25 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-6">
-                  <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                    {/* Alert Center Header */}
-                    <div className="flex items-center justify-between mb-6">
-                      <h3 className="font-semibold text-gray-900">Compliance Alert Center</h3>
-                      <div className="relative">
-                        <HiBell className="w-6 h-6 text-gray-600" />
-                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                <div className="bg-gray-100 rounded-lg p-4">
+                  {/* Browser Window Chrome */}
+                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                    {/* Browser Header */}
+                    <div className="bg-gray-200 px-4 py-2 flex items-center space-x-2">
+                      <div className="flex space-x-2">
+                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      </div>
+                      <div className="flex-1 ml-4">
+                        <div className="bg-white rounded px-3 py-1 text-xs text-gray-600 font-mono">
+                          https://app.rosterlab.com/compliance-checks
+                        </div>
                       </div>
                     </div>
+                    
+                    {/* Browser Content */}
+                    <div className="p-6 bg-gray-50">
                     
                     {/* Alert Notifications */}
                     <div className="space-y-3">
@@ -172,6 +181,7 @@ export default function OpenShiftsPage() {
                         <div className="bg-[#4a9288] h-2 rounded-full" style={{width: '92%'}}></div>
                       </div>
                       <p className="text-xs text-gray-500 mt-2 text-center">92% compliance rate</p>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -409,28 +419,16 @@ export default function OpenShiftsPage() {
               </h2>
               <FAQAccordion items={[
                 {
-                  question: "How does the smart matching system determine which staff to notify?",
-                  answer: "Our AI-powered system analyzes multiple factors including staff qualifications, certifications, availability patterns, recent work hours, and compliance requirements. It automatically matches open shifts with the most suitable staff members, ensuring only qualified and available personnel receive notifications."
+                  question: "How does the system prevent overtime?",
+                  answer: "Before notifying any staff member, the system automatically checks their current schedule against your overtime rules, maximum hour limits, and minimum rest period requirements. Staff who would violate these rules by accepting the shift are automatically excluded from notifications, ensuring 100% compliance."
                 },
                 {
-                  question: "Can managers control who gets notified about specific open shifts?",
-                  answer: "Yes, managers have full control over notification rules. You can set preferences for specific shifts, create priority lists, exclude certain staff members, or even manually select who should be notified. The system provides both automated smart matching and manual override options."
+                  question: "Can staff set preferences?",
+                  answer: "Absolutely. Staff can set their notification preferences including preferred departments, shift times, locations, and even minimum notice periods. This reduces notification fatigue and ensures staff only receive relevant opportunities they're likely to accept."
                 },
                 {
                   question: "How quickly do staff receive open shift notifications?",
                   answer: "Notifications are sent instantly through multiple channels including push notifications to mobile devices, SMS, and email. Staff typically receive alerts within seconds of a shift being published. The system also tracks delivery and read receipts to ensure notifications are received."
-                },
-                {
-                  question: "What happens if no one accepts an open shift?",
-                  answer: "The system includes escalation protocols that you can customize. If initial notifications don't result in coverage, it can automatically expand the notification pool, alert managers, or trigger backup staffing procedures. You'll always have visibility into the status and can intervene manually at any time."
-                },
-                {
-                  question: "How does the system prevent overtime and fatigue violations?",
-                  answer: "Before notifying any staff member, the system automatically checks their current schedule against your overtime rules, maximum hour limits, and minimum rest period requirements. Staff who would violate these rules by accepting the shift are automatically excluded from notifications, ensuring 100% compliance."
-                },
-                {
-                  question: "Can staff set preferences for which types of shifts they want to be notified about?",
-                  answer: "Absolutely. Staff can set their notification preferences including preferred departments, shift times, locations, and even minimum notice periods. This reduces notification fatigue and ensures staff only receive relevant opportunities they're likely to accept."
                 }
               ]} />
             </div>

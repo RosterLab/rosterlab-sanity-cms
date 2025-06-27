@@ -161,11 +161,6 @@ export default function Footer() {
                   Case Studies
                 </Link>
               </li>
-              <li>
-                <Link href="/help" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Help Center
-                </Link>
-              </li>
             </ul>
           </div>
 

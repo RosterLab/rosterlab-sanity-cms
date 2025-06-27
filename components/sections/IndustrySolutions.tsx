@@ -16,7 +16,7 @@ export default function IndustrySolutions() {
           </p>
           
           {/* Image placeholder */}
-          <div className="max-w-6xl mx-auto mb-0">
+          <div className="max-w-6xl mx-auto">
             <Image
               src="/images/illustration/test2.svg"
               alt="Industry solutions illustration"
@@ -27,7 +27,7 @@ export default function IndustrySolutions() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto -mt-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto -mt-17">
           {/* Healthcare Organizations */}
           <div className="bg-blue-50 rounded-2xl p-8">
             <div className="text-center mb-8">

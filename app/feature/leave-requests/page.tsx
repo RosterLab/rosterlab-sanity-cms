@@ -30,13 +30,13 @@ export default function LeaveRequestsPage() {
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book A Demo
                   </Button>
                   <Button 
-                    href="/contact" 
+                    href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Contact Us
+                    Try it for free
                   </Button>
                 </div>
               </div>

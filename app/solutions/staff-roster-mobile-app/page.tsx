@@ -6,6 +6,7 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
 import RosterPublishingMobile from '@/components/ui/RosterPublishingMobile'
 import AnimatedSpeechBubbles from '@/components/ui/AnimatedSpeechBubbles'
+import Link from 'next/link'
 import { HiDeviceMobile, HiCalendar, HiBell, HiUserGroup, HiClock, HiCheckCircle, HiCheck, HiUsers, HiTrendingUp, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
 
 export const metadata = {
@@ -46,29 +47,33 @@ const appFeatures = [
   {
     title: 'Personal Schedule View',
     description: 'See your upcoming shifts, breaks, and days off in an easy-to-read calendar format',
-    icon: HiCalendar
+    icon: HiCalendar,
+    href: '/feature/self-scheduling'
   },
   {
-    title: 'Smart Notifications',
-    description: 'Get alerts for new rosters, shift changes, and important updates',
-    icon: HiBell
+    title: 'Open Shifts',
+    description: 'Browse and claim available shifts that match your skills and availability',
+    icon: HiBell,
+    href: '/feature/open-shifts'
   },
   {
     title: 'Leave Management',
     description: 'Submit leave requests and track approval status directly from your phone',
-    icon: HiCheckCircle
+    icon: HiCheckCircle,
+    href: '/feature/leave-requests'
   },
   {
     title: 'Shift Trading',
     description: 'Find colleagues to swap shifts with, subject to manager approval',
-    icon: HiUserGroup
+    icon: HiUserGroup,
+    href: '/feature/shift-swaps'
   }
 ]
 
 const faqItems = [
   {
     question: "How do staff members download and access the mobile app?",
-    answer: "Staff members can download the RosterLab mobile app from the Apple App Store or Google Play Store. Once downloaded, they'll receive login credentials from their administrator to access their personal roster and scheduling features."
+    answer: "Staff members can download the RosterLab mobile app from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>Apple App Store</a> or <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>Google Play Store</a>. Once downloaded, they'll receive login credentials from their administrator to access their personal roster and scheduling features."
   },
   {
     question: "Can staff request time off directly through the app?",
@@ -81,10 +86,6 @@ const faqItems = [
   {
     question: "What devices are supported by the mobile app?",
     answer: "The RosterLab mobile app is compatible with iOS devices (iPhone and iPad) running iOS 12 or later, and Android devices running Android 7.0 or later. We regularly update the app to support the latest operating systems."
-  },
-  {
-    question: "How secure is the mobile app for sensitive employee data?",
-    answer: "Security is our top priority. The app uses enterprise-grade encryption, secure authentication, and complies with healthcare data protection standards including HIPAA. All data is encrypted both in transit and at rest."
   }
 ]
 
@@ -178,21 +179,23 @@ export default function EmployeeMobileAppPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {appFeatures.map((feature, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {feature.description}
-                    </p>
+              <Link key={index} href={feature.href} className="block">
+                <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </Container>
@@ -241,7 +244,13 @@ export default function EmployeeMobileAppPage() {
               </div>
             </div>
             <div className="w-full max-w-[600px]">
-              <RosterPublishingMobile />
+              <Image
+                src="/images/illustration/Push notifications-pana-2 copy.svg"
+                alt="Publish roster to mobile app"
+                width={600}
+                height={600}
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </Container>

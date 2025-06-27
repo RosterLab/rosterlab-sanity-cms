@@ -29,13 +29,13 @@ export default function SelfSchedulingPage() {
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    See It In Action
+                    Book A Demo
                   </Button>
                   <Button 
-                    href="/contact" 
+                    href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Contact Us
+                    Try it for free
                   </Button>
                 </div>
               </div>
@@ -58,7 +58,7 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Staff Preference Collection
+                  Easily Meet Your Staffing Needs
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Let your team indicate their shift preferences weeks in advance. Our intuitive interface makes it easy for staff to select preferred days, times, and locations while viewing their existing commitments.
@@ -79,9 +79,13 @@ export default function SelfSchedulingPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Feature Illustration</span>
-                </div>
+                <Image
+                  src="/images/illustration/Events-pana.svg"
+                  alt="Easily meet your staffing needs illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -92,9 +96,13 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">AI Matching Visualization</span>
-                </div>
+                <Image
+                  src="/images/illustration/Customer relationship management-pana.svg"
+                  alt="AI-Optimized Matching illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -149,9 +157,13 @@ export default function SelfSchedulingPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Marketplace Interface</span>
-                </div>
+                <Image
+                  src="/images/illustration/Chatting-pana.svg"
+                  alt="Real-Time Shift Marketplace illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -162,9 +174,13 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Manager Dashboard</span>
-                </div>
+                <Image
+                  src="/images/illustration/Mobile inbox-pana.svg"
+                  alt="Manager Override Controls illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -201,16 +217,16 @@ export default function SelfSchedulingPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                  <p className="text-5xl font-bold mb-2">87%</p>
-                  <p className="text-xl opacity-90">Higher staff satisfaction scores</p>
+                  <p className="text-5xl font-bold mb-2">90%</p>
+                  <p className="text-xl opacity-90">Reduction in admin time</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">65%</p>
-                  <p className="text-xl opacity-90">Reduction in scheduling conflicts</p>
+                  <p className="text-5xl font-bold mb-2">0</p>
+                  <p className="text-xl opacity-90">Manual errors or mistakes</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">4.8/5</p>
-                  <p className="text-xl opacity-90">Average staff rating</p>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Compliance</p>
                 </div>
               </div>
             </div>
@@ -230,7 +246,7 @@ export default function SelfSchedulingPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   href="/book-a-demo" 
-                  className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>

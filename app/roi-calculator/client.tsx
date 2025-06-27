@@ -1,9 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+
+declare global {
+  interface Window {
+    hbspt: any
+  }
+}
 
 export default function ROICalculatorClient() {
   // Input states
@@ -23,6 +29,8 @@ export default function ROICalculatorClient() {
     marketingConsent: false
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [pdfData, setPdfData] = useState<any>(null)
+  const formContainerRef = useRef<HTMLDivElement>(null)
   
   // Calculations
   const weeklyPayroll = employees * avgHourlyWage * hoursPerWeek
@@ -45,34 +53,160 @@ export default function ROICalculatorClient() {
   const roi = ((totalAnnualSavings / 30000) * 100).toFixed(0) // Assuming $30k annual cost
   const paybackMonths = (30000 / (totalAnnualSavings / 12)).toFixed(1)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // Here you would normally send the data to your backend
-    // For now, we'll just simulate a submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // Generate and download report
-    const reportData = {
-      employees,
-      avgHourlyWage,
-      hoursPerWeek,
-      schedulingHours,
-      overtimePercentage,
-      turnoverRate,
-      totalAnnualSavings,
-      roi,
-      paybackMonths,
-      schedulingSavingsCost,
-      overtimeSavings,
-      turnoverSavings
-    }
-    
-    // Create a simple text report (in production, you'd generate a PDF)
-    const report = `
+  const generatePDF = async (companyName: string = '') => {
+    try {
+      // Dynamically import jsPDF to avoid SSR issues
+      const { default: jsPDF } = await import('jspdf')
+      
+      const doc = new jsPDF()
+      
+      // Set font sizes and colors
+      const primaryColor: [number, number, number] = [41, 98, 255] // RosterLab blue
+      const textColor: [number, number, number] = [51, 51, 51]
+      const lightGray: [number, number, number] = [128, 128, 128]
+      
+      // Add RosterLab logo
+      try {
+        // Convert logo to base64
+        const logoUrl = '/images/rosterlab-logo.png'
+        const logoResponse = await fetch(logoUrl)
+        const logoBlob = await logoResponse.blob()
+        const logoBase64 = await new Promise<string>((resolve) => {
+          const reader = new FileReader()
+          reader.onloadend = () => resolve(reader.result as string)
+          reader.readAsDataURL(logoBlob)
+        })
+        
+        // Add logo with better aspect ratio (adjust width to maintain proportions)
+        doc.addImage(logoBase64, 'PNG', 20, 10, 45, 12)
+      } catch (logoError) {
+        // Fallback if logo fails to load
+        doc.setFontSize(24)
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+        doc.text('RosterLab ROI Report', 20, 25)
+      }
+      
+      // Date only
+      doc.setFontSize(11)
+      doc.setTextColor(lightGray[0], lightGray[1], lightGray[2])
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 35)
+      
+      // Draw a line
+      doc.setLineWidth(0.5)
+      doc.setDrawColor(lightGray[0], lightGray[1], lightGray[2])
+      doc.line(20, 40, 190, 40)
+      
+      // ROI Report Title
+      doc.setFontSize(20)
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.text('ROI Report', 20, 52)
+      
+      // Executive Summary
+      doc.setFontSize(16)
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.text('Executive Summary', 20, 65)
+      
+      doc.setFontSize(14)
+      doc.setTextColor(textColor[0], textColor[1], textColor[2])
+      doc.text(`Total Annual Savings: $${totalAnnualSavings.toLocaleString()}`, 20, 75)
+      doc.text(`ROI in Year 1: ${roi}%`, 20, 83)
+      doc.text(`Payback Period: ${paybackMonths} months`, 20, 91)
+      
+      // Your Organization Details
+      doc.setFontSize(16)
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.text('Your Organization', 20, 105)
+      
+      doc.setFontSize(11)
+      doc.setTextColor(textColor[0], textColor[1], textColor[2])
+      doc.text(`Number of Employees: ${employees}`, 20, 115)
+      doc.text(`Average Hourly Wage: $${avgHourlyWage}`, 20, 122)
+      doc.text(`Average Hours per Week: ${hoursPerWeek}`, 20, 129)
+      doc.text(`Current Time Spent Scheduling: ${schedulingHours} hours/week`, 20, 136)
+      doc.text(`Current Overtime Rate: ${overtimePercentage}%`, 20, 143)
+      doc.text(`Current Turnover Rate: ${turnoverRate}%`, 20, 150)
+      
+      // Savings Breakdown
+      doc.setFontSize(16)
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.text('Detailed Savings Breakdown', 20, 165)
+      
+      // Time Savings
+      doc.setFontSize(12)
+      doc.setTextColor(textColor[0], textColor[1], textColor[2])
+      doc.setFont('helvetica', 'bold')
+      doc.text('1. Administrative Time Savings', 20, 175)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(11)
+      doc.text(`Hours saved annually: ${schedulingSavingsHours.toFixed(0)} hours`, 25, 182)
+      doc.text(`Cost savings: $${schedulingSavingsCost.toLocaleString()}`, 25, 189)
+      
+      // Overtime Reduction
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text('2. Overtime Reduction', 20, 200)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(11)
+      doc.text(`Current overtime cost: $${currentOvertimeCost.toLocaleString()}`, 25, 207)
+      doc.text(`Projected savings (40% reduction): $${overtimeSavings.toLocaleString()}`, 25, 214)
+      
+      // Turnover Reduction
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text('3. Turnover Cost Reduction', 20, 225)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(11)
+      doc.text(`Current turnover cost: $${turnoverCost.toLocaleString()}`, 25, 232)
+      doc.text(`Projected savings (20% reduction): $${turnoverSavings.toLocaleString()}`, 25, 239)
+      
+      // Next Steps section
+      doc.setFontSize(14)
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.text('Next Steps', 20, 255)
+      
+      doc.setFontSize(11)
+      doc.setTextColor(textColor[0], textColor[1], textColor[2])
+      
+      // First step with link - all in one line
+      const step1Start = '1. Schedule a '
+      const step1End = ' with our team'
+      doc.text(step1Start, 20, 265)
+      const step1Width = doc.getTextWidth(step1Start)
+      
+      // Add clickable link for "personalized demo"
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.textWithLink('personalized demo', 20 + step1Width, 265, { url: 'https://www.rosterlab.com/book-a-demo' })
+      const linkWidth = doc.getTextWidth('personalized demo')
+      
+      doc.setTextColor(textColor[0], textColor[1], textColor[2])
+      doc.text(step1End, 20 + step1Width + linkWidth, 265)
+      
+      doc.text('2. Get a custom implementation plan for your organization', 20, 272)
+      doc.text('3. Start your free trial and see immediate results', 20, 279)
+      
+      // Contact Information
+      doc.setFontSize(11)
+      doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
+      doc.text('Contact Us:', 20, 289)
+      doc.setTextColor(textColor[0], textColor[1], textColor[2])
+      doc.text('Email: hello@rosterlab.com  |  Website: www.rosterlab.com', 60, 289)
+      
+      // Footer
+      doc.setFontSize(8)
+      doc.setTextColor(lightGray[0], lightGray[1], lightGray[2])
+      doc.text('This ROI calculation is based on industry averages and your provided inputs. Actual results may vary.', 20, 297)
+      
+      // Save the PDF
+      doc.save(`RosterLab-ROI-Report-${companyName.replace(/[^a-z0-9]/gi, '_')}.pdf`)
+      
+      return true
+      
+    } catch (error) {
+      console.error('Error generating PDF:', error)
+      // Fallback to text download if PDF generation fails
+      const report = `
 RosterLab ROI Report
-Generated for: ${formData.company}
+Generated for: ${companyName}
 
 Your Inputs:
 - Employees: ${employees}
@@ -91,22 +225,122 @@ Savings Breakdown:
 - Time Savings: $${schedulingSavingsCost.toLocaleString()}
 - Overtime Reduction: $${overtimeSavings.toLocaleString()}
 - Turnover Reduction: $${turnoverSavings.toLocaleString()}
-    `
-    
-    // Download the report
-    const blob = new Blob([report], { type: 'text/plain' })
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'rosterlab-roi-report.txt'
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    window.URL.revokeObjectURL(url)
-    
-    setIsSubmitting(false)
-    setShowReportForm(false)
-    alert('Your ROI report has been downloaded!')
+      `
+      
+      const blob = new Blob([report], { type: 'text/plain' })
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'rosterlab-roi-report.txt'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      window.URL.revokeObjectURL(url)
+      
+      return false
+    }
+  }
+
+  // Load HubSpot form when modal opens
+  useEffect(() => {
+    if (showReportForm) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        // Check if HubSpot is already loaded
+        if (window.hbspt) {
+          window.hbspt.forms.create({
+            portalId: "20646833",
+            formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",
+            region: "na1",
+            target: '#hubspot-form-container',
+            onFormSubmitted: async (formData: any) => {
+              // Hide the form immediately after submission
+              const formContainer = document.getElementById('hubspot-form-container')
+              if (formContainer) {
+                formContainer.style.display = 'none'
+              }
+              
+              // Get the company name from the form submission
+              const companyField = formData.submissionValues?.company || ''
+              
+              // Generate and download the PDF
+              setIsSubmitting(true)
+              const success = await generatePDF(companyField)
+              setIsSubmitting(false)
+              
+              if (success) {
+                // Close the modal after a short delay
+                setTimeout(() => {
+                  setShowReportForm(false)
+                  alert('Your personalized ROI report has been downloaded!')
+                }, 1000)
+              }
+            }
+          })
+          return
+        }
+        
+        // Load HubSpot forms script
+        const script = document.createElement('script')
+        script.src = 'https://js.hsforms.net/forms/embed/v2.js'
+        script.charset = 'utf-8'
+        script.type = 'text/javascript'
+        
+        script.onload = () => {
+          if (window.hbspt && window.hbspt.forms) {
+            window.hbspt.forms.create({
+              portalId: "20646833",
+              formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",
+              region: "na1",
+              target: '#hubspot-form-container',
+              onFormSubmitted: async (formData: any) => {
+                // Hide the form immediately after submission
+                const formContainer = document.getElementById('hubspot-form-container')
+                if (formContainer) {
+                  formContainer.style.display = 'none'
+                }
+                
+                // Get the company name from the form submission
+                const companyField = formData.submissionValues?.company || 'Your Company'
+                
+                // Generate and download the PDF
+                setIsSubmitting(true)
+                const success = await generatePDF(companyField)
+                setIsSubmitting(false)
+                
+                if (success) {
+                  // Close the modal after a short delay
+                  setTimeout(() => {
+                    setShowReportForm(false)
+                    alert('Your personalized ROI report has been downloaded!')
+                  }, 1000)
+                }
+              }
+            })
+          }
+        }
+        
+        document.body.appendChild(script)
+      }, 100) // 100ms delay to ensure DOM is ready
+      
+      // Cleanup function
+      return () => {
+        // Clear the timer
+        clearTimeout(timer)
+        
+        // Remove the form container's content when unmounting
+        const formContainer = document.getElementById('hubspot-form-container')
+        if (formContainer) {
+          formContainer.innerHTML = ''
+          formContainer.style.display = 'block' // Reset display property
+        }
+      }
+    }
+  }, [showReportForm, generatePDF])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // This function is no longer needed as HubSpot handles the form submission
   }
 
   return (
@@ -326,7 +560,7 @@ Savings Breakdown:
       </div>
 
       {/* Full Width CTA Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-green-500 py-16 text-white">
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-16 text-white">
         <Container>
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-4">
@@ -364,79 +598,26 @@ Savings Breakdown:
               Get a personalized ROI report showing your potential savings with RosterLab.
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+            {/* HubSpot Form Container */}
+            <div id="hubspot-form-container" ref={formContainerRef} style={{ minHeight: '100px' }}>
+              <p className="text-sm text-gray-500 text-center">Loading form...</p>
+            </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Work Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
+            {isSubmitting && (
+              <div className="text-center py-4">
+                <p className="text-gray-600">Generating your report...</p>
               </div>
+            )}
 
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                  Company *
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  required
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-
-              <div className="flex items-start">
-                <input
-                  type="checkbox"
-                  id="marketingConsent"
-                  checked={formData.marketingConsent}
-                  onChange={(e) => setFormData({ ...formData, marketingConsent: e.target.checked })}
-                  className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="marketingConsent" className="ml-2 text-sm text-gray-600">
-                  I'd like to receive occasional updates about RosterLab products and services
-                </label>
-              </div>
-
-              <div className="flex gap-3 pt-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex-1 bg-blue-600 text-white hover:bg-blue-700 py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? 'Generating...' : 'Download Report'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowReportForm(false)}
-                  className="flex-1 bg-gray-200 text-gray-700 hover:bg-gray-300 py-2 px-4 rounded-md font-medium transition-colors"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
+            <div className="mt-4">
+              <button
+                type="button"
+                onClick={() => setShowReportForm(false)}
+                className="w-full bg-gray-200 text-gray-700 hover:bg-gray-300 py-2 px-4 rounded-md font-medium transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
