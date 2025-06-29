@@ -13,14 +13,36 @@ export async function GET(request: Request) {
   }
 
   // Check if the document exists
+  let redirectUrl = `/${slug || ''}`
+  
   if (slug && type) {
     const document = await client.fetch(
-      `*[_type == $type && slug.current == $slug][0]`,
+      `*[_type == $type && slug.current == $slug][0]{
+        ...,
+        categories[]->
+      }`,
       { type, slug }
     )
 
     if (!document) {
       return new Response('Document not found', { status: 404 })
+    }
+
+    // Determine the correct URL based on categories for posts
+    if (type === 'post' && document.categories) {
+      const categorySlug = document.categories.find((cat: any) => 
+        cat.slug?.current === 'case-studies' || cat.slug?.current === 'newsroom'
+      )?.slug?.current
+
+      if (categorySlug === 'case-studies') {
+        redirectUrl = `/case-studies/${slug}`
+      } else if (categorySlug === 'newsroom') {
+        redirectUrl = `/newsroom/${slug}`
+      } else {
+        redirectUrl = `/blog/${slug}`
+      }
+    } else if (type === 'post') {
+      redirectUrl = `/blog/${slug}`
     }
   }
 
@@ -29,6 +51,5 @@ export async function GET(request: Request) {
   response.headers.set('Set-Cookie', 'sanity-preview=true; Path=/; HttpOnly; SameSite=Strict')
 
   // Redirect to the path from the fetched document
-  const redirectUrl = type === 'post' ? `/blog/${slug}` : `/${slug || ''}`
   return redirect(redirectUrl)
 }

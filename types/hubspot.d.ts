@@ -6,6 +6,7 @@ interface Window {
         portalId: string
         formId: string
         target: string
+        onFormSubmitted?: (formData: any) => void
       }) => void
     }
   }

@@ -16,6 +16,9 @@ interface Post {
   }
   categories?: Array<{
     title: string
+    slug: {
+      current: string
+    }
   }>
 }
 
@@ -26,6 +29,16 @@ interface RelatedPostsProps {
 }
 
 export default function RelatedPosts({ posts, currentPostId, currentPostDate }: RelatedPostsProps) {
+  // Helper function to determine the correct URL path based on categories
+  const getPostUrl = (post: Post) => {
+    if (post.categories?.some(cat => cat.slug.current === 'case-studies')) {
+      return `/case-studies/${post.slug.current}`
+    } else if (post.categories?.some(cat => cat.slug.current === 'newsroom')) {
+      return `/newsroom/${post.slug.current}`
+    }
+    return `/blog/${post.slug.current}`
+  }
+
   // Find next and previous posts based on date
   const sortedPosts = posts
     .filter(post => post._id !== currentPostId)
@@ -53,7 +66,7 @@ export default function RelatedPosts({ posts, currentPostId, currentPostDate }: 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {relatedPosts.map((post) => (
           <article key={post._id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-            <Link href={`/blog/${post.slug.current}`}>
+            <Link href={getPostUrl(post)}>
               {post.mainImage && (
                 <div className="aspect-video relative overflow-hidden rounded-t-lg">
                   <img

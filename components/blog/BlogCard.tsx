@@ -23,10 +23,22 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  // Determine the correct URL path based on categories
+  const getPostUrl = () => {
+    if (post.categories?.some(cat => cat.slug.current === 'case-studies')) {
+      return `/case-studies/${post.slug.current}`
+    } else if (post.categories?.some(cat => cat.slug.current === 'newsroom')) {
+      return `/newsroom/${post.slug.current}`
+    }
+    return `/blog/${post.slug.current}`
+  }
+
+  const postUrl = getPostUrl()
+
   return (
     <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       {post.mainImage && (
-        <Link href={`/blog/${post.slug.current}`}>
+        <Link href={postUrl}>
           <div className="relative h-48 w-full">
             <Image
               src={urlFor(post.mainImage).width(400).height(200).url()}
@@ -54,7 +66,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         
         <h2 className="text-xl font-bold mb-3 line-clamp-2">
           <Link 
-            href={`/blog/${post.slug.current}`}
+            href={postUrl}
             className="hover:text-primary-600 transition-colors"
           >
             {post.title}

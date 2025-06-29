@@ -25,6 +25,9 @@ interface CaseStudy {
   excerpt: string
   categories?: Array<{
     title: string
+    slug: {
+      current: string
+    }
   }>
 }
 
@@ -36,7 +39,8 @@ const caseStudiesQuery = groq`
     slug,
     excerpt,
     categories[]->{
-      title
+      title,
+      slug
     }
   }
 `
@@ -116,14 +120,14 @@ export default async function TestimonialsPage() {
       title: 'Whanganui Radiography Department Embraces AI Rostering',
       slug: { current: 'whanganui-radiography-department-embraces-ai-rostering' },
       excerpt: 'Where Previously Rostering Would Take 7-8 Days, Now It Takes 2-3 Hours Instead',
-      categories: [{ title: 'Healthcare' }]
+      categories: [{ title: 'Healthcare', slug: { current: 'healthcare' } }]
     },
     {
       _id: '2',
       title: 'Case Study: ICU in Western Australia',
       slug: { current: 'icu-unit-western-australia' },
       excerpt: 'Where Previously Rostering Would Take 7-8 Days, Now It Takes 2-3 Hours Instead',
-      categories: [{ title: 'Healthcare' }]
+      categories: [{ title: 'Healthcare', slug: { current: 'healthcare' } }]
     }
   ]
 
@@ -249,7 +253,7 @@ export default async function TestimonialsPage() {
                 </p>
                 <div className="flex justify-end">
                   <Link
-                    href={`/blog/${study.slug.current}`}
+                    href={`/case-studies/${study.slug.current}`}
                     className="inline-flex items-center text-[#323232] hover:text-[#2d3bea] font-medium text-lg transition-colors"
                   >
                     <HiArrowRight className="text-2xl" />
