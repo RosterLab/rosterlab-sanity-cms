@@ -2,6 +2,7 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
+import SchedgeGame from '@/components/games/SchedgeGame'
 
 export const metadata = {
   title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
@@ -58,14 +59,18 @@ export default function SchedgePage() {
               <h2 className="text-4xl font-bold text-gray-900 mb-12">
                 Can you solve the roster?
               </h2>
-              <div className="bg-gray-100 rounded-lg shadow-lg p-12 max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Isaacs Schedge Code Here
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  This section is reserved for Schedge integration.
-                </p>
-              </div>
+              <SchedgeGame 
+                initialGrid={[
+                  ["A", "", "", "", "", ""],
+                  ["", "B", "", "", "", ""],
+                  ["", "", "C", "", "", ""],
+                  ["", "", "", "D", "", ""],
+                  ["", "", "", "", "E", ""],
+                  ["", "", "", "", "", ""],
+                  ["", "", "", "", "", ""]
+                ]}
+                heading="Schedge - The Scheduling Puzzle"
+              />
             </div>
           </Container>
         </div>
