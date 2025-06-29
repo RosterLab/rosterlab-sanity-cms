@@ -69,6 +69,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Required environment variables: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN`
 - Next.js configuration includes Sanity CDN domains for image optimization
 
+### Deployment & Hosting
+- **AWS Amplify** hosts the production application
+- Amplify configuration in `amplify.yml` handles build, caching, and security headers
+- Next.js redirects are automatically respected by Amplify during builds
+- Static assets served from `.next` build directory with optimized caching
+
 ### Development Workflow
 - Start both Next.js (`npm run dev`) and Sanity Studio (`npm run sanity`) for full development environment
 - Use `npm run sanity:seed` to populate development data
