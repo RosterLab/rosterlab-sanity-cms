@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow Sanity Studio
+Disallow: /studio/
+
+# Disallow test pages
+Disallow: /test-2/
+Disallow: /schedge/
+
+# Sitemap
+Sitemap: https://rosterlab.com/sitemap.xml

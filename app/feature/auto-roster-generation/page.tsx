@@ -13,14 +13,6 @@ export const metadata = {
 
 const faqItems = [
   {
-    question: "What is automatic roster generation?",
-    answer: "Automatic roster generation is an AI-powered feature that creates complete staff schedules automatically. It considers all your staffing requirements, employee preferences, skills, compliance rules, and fairness metrics to generate optimal rosters in minutes instead of hours or days of manual work."
-  },
-  {
-    question: "How fast is the auto-generation process?",
-    answer: "The speed depends on complexity - simple rosters take seconds, while those with many constraints may take less than 60 minutes. The AI processes millions of possible combinations to find the optimal solution quickly."
-  },
-  {
     question: "What factors does the AI consider when generating rosters?",
     answer: "The AI considers: staffing requirements by shift and location, employee skills and certifications, staff preferences and availability, fairness metrics (equal distribution of weekends, nights, etc.), labor laws and compliance rules, budget constraints and overtime limits, and historical patterns. It balances all these factors simultaneously to create optimal schedules."
   },
@@ -159,7 +151,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Customizable Generation Parameters
+                  Optimise staffing coverage
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Fine-tune the generation process to match your organization's priorities. Adjust the balance between cost optimization, staff satisfaction, coverage requirements, and other key metrics.
@@ -180,42 +172,50 @@ export default function AutoRosterGenerationPage() {
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Parameter Configuration</span>
-                </div>
+                <Image
+                  src="/images/illustration/team checklist-pana.svg"
+                  alt="Optimise staffing coverage"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
         </div>
 
-        {/* Feature 4: Quality Metrics & Analytics */}
+        {/* Feature 4: Reduce scheduling from days to minutes */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
-                  <span className="text-gray-400 text-xl">Quality Analytics Dashboard</span>
-                </div>
+                <Image
+                  src="/images/illustration/time flies-pana.svg"
+                  alt="Reduce scheduling from days to minutes"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Quality Metrics & Analytics
+                  Reduce scheduling from days to minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Get detailed insights into roster quality with comprehensive metrics on fairness, efficiency, compliance, and staff satisfaction. Track improvements over time and identify optimization opportunities.
+                  Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Eliminate manual scheduling bottlenecks and free up your team to focus on strategic workforce management.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Comprehensive quality scoring and metrics</span>
+                    <span className="text-gray-700">Generate complete rosters in under 5 minutes</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Historical trend analysis and reporting</span>
+                    <span className="text-gray-700">Instant re-optimization when changes occur</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Predictive analytics for future optimization</span>
+                    <span className="text-gray-700">Save 20+ hours per roster period</span>
                   </li>
                 </ul>
               </div>
@@ -248,12 +248,12 @@ export default function AutoRosterGenerationPage() {
                   <p className="text-xl opacity-90">Time savings vs manual scheduling</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">98%</p>
-                  <p className="text-xl opacity-90">Average fairness score</p>
+                  <p className="text-5xl font-bold mb-2">0</p>
+                  <p className="text-xl opacity-90">Human errors</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">2 min</p>
-                  <p className="text-xl opacity-90">Average generation time</p>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Compliant</p>
                 </div>
               </div>
             </div>
