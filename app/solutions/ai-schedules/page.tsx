@@ -68,7 +68,7 @@ export default function AISchedulesPage() {
             </div>
             <div className="flex justify-center lg:justify-end">
               <Image
-                src="/images/illustration/test3.svg"
+                src="/images/illustration/Version control-pana.svg"
                 alt="AI Scheduling Illustration"
                 width={600}
                 height={400}

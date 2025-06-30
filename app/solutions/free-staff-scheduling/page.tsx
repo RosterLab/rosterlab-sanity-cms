@@ -42,20 +42,8 @@ const features = [
 
 const faqItems = [
   {
-    question: "How does AI-powered scheduling actually work?",
-    answer: "Our AI algorithms analyze shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
-  },
-  {
-    question: "How long does it take to implement RosterLab's AI scheduling?",
-    answer: "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
-  },
-  {
-    question: "Can the AI handle complex compliance and union rules?",
-    answer: "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
-  },
-  {
-    question: "What happens if we need to make manual adjustments to AI-generated schedules?",
-    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing."
+    question: "Is the AI generator included in the free product?",
+    answer: "The AI generator is only available for the paid version of the platform, however if you're looking for a free digital scheduling solution we still offer great features that are better than using manual spreadsheets."
   },
   {
     question: "How much time and cost savings can we expect?",
@@ -66,19 +54,19 @@ const faqItems = [
 const painPoints = [
   {
     title: 'No More Spreadsheet Chaos',
-    description: 'Multiple versions, lost updates, and formula errors making scheduling a nightmare'
+    description: 'Multiple versions, lost updates, and formula errors making scheduling a nightmare. Try digital scheduling - it\'s free forever.'
   },
   {
-    title: 'Compliance Risks',
-    description: 'Missing regulatory requirements and overtime rules without proper tracking'
+    title: '100% Compliant',
+    description: 'Ensure all schedules meet regulatory requirements and overtime rules with automatic compliance checking'
   },
   {
-    title: 'Communication Gaps',
-    description: 'Staff not aware of schedule changes or unable to request time off easily'
+    title: 'Seamless Communication',
+    description: 'Keep your team informed with real-time updates and easy shift swapping through our mobile app'
   },
   {
-    title: 'Time Consuming',
-    description: 'Hours spent each week manually creating and adjusting complex rosters'
+    title: 'Reduce admin by 95%',
+    description: 'Transform hours of manual scheduling into minutes with our intelligent digital platform'
   }
 ]
 
@@ -179,7 +167,7 @@ export default function ManualSchedulingPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {painPoints.map((point, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-lg">
+              <div key={index} className="bg-white rounded-lg p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 cursor-pointer">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {point.title}
                 </h3>
@@ -292,7 +280,7 @@ export default function ManualSchedulingPage() {
       </div>
 
       {/* Compliance Section */}
-      <div className="bg-gray-50 py-20">
+      <div className="bg-white py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -364,14 +352,14 @@ export default function ManualSchedulingPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-white py-20">
+      <div className="bg-gray-50 py-20">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Everything you need to know about AI-powered scheduling
+              Everything you need to know about our free digital scheduling tool
             </p>
             <FAQAccordion items={faqItems} />
           </div>
