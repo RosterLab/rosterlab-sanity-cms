@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   httpAgentOptions: {
     keepAlive: true,
   },
+  experimental: {
+    optimizeCss: true,
+  },
+  swcMinify: true,
 };
 
 export default nextConfig;
