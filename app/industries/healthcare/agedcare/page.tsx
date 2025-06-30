@@ -218,65 +218,71 @@ export default function AgedCarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="relative">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link href="/feature/preferences-rules" className="relative group">
+              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="text-3xl font-bold text-gray-400 mb-3">01</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Set Care Requirements</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-3">
                   Define staffing ratios, skill requirements, and care levels for each unit or wing.
                 </p>
+                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
               </div>
-            </div>
+            </Link>
 
-            <div className="relative">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link href="/feature/self-scheduling" className="relative group">
+              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="text-3xl font-bold text-gray-400 mb-3">02</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Collect Preferences</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-3">
                   Staff submit availability and shift preferences through the mobile app.
                 </p>
+                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
               </div>
-            </div>
+            </Link>
 
-            <div className="relative">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link href="/feature/auto-roster-generation" className="relative group">
+              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="text-3xl font-bold text-gray-400 mb-3">03</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Generate Optimal Roster</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-3">
                   AI creates compliant schedules balancing all requirements in minutes.
                 </p>
+                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
               </div>
-            </div>
+            </Link>
 
-            <div className="relative">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link href="/solutions/staff-roster-mobile-app" className="relative group">
+              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="text-3xl font-bold text-gray-400 mb-3">04</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Publish & Notify</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-3">
                   Share rosters instantly with automatic notifications and calendar sync.
                 </p>
+                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
               </div>
-            </div>
+            </Link>
 
-            <div className="relative">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link href="/feature/shift-swaps" className="relative group">
+              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="text-3xl font-bold text-gray-400 mb-3">05</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Manage Changes</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-3">
                   Handle sick leave, swaps, and emergencies while maintaining compliance.
                 </p>
+                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
               </div>
-            </div>
+            </Link>
 
-            <div className="relative">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link href="/feature/payroll-integration" className="relative group">
+              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <div className="text-3xl font-bold text-gray-400 mb-3">06</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Export to Payroll</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-3">
                   Seamlessly integrate with payroll systems for accurate, timely processing.
                 </p>
+                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>

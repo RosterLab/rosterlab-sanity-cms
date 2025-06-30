@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 const testimonials = [
@@ -9,25 +10,36 @@ const testimonials = [
     quote: "Rostering would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
     author: "Mike",
     company: "Associate Clinical Manager Radiology",
-    logo: "/images/logos/whanganui.png"
+    logo: "/images/logos/whanganui.png",
+    caseStudyLink: null
   },
   {
     quote: "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical rosters!",
     author: "Peter",
     company: "Senior Registrar ICU, Western Australia", 
-    logo: null
-  },
-  {
-    quote: "RosterLab has been a pleasure to work with, and we highly recommend it to other medical practices and businesses.",
-    author: "Practice Manager",
-    company: "Dargaville Hospital",
-    logo: "/images/logos/dargaville.png"
+    logo: null,
+    caseStudyLink: "/case-studies/icu-unit-western-australia"
   },
   {
     quote: "If Rosterlab can help with our complicated rostering needs, we are confident it will work for anyone.",
     author: "Judy Harris",
     company: "Practice Manager, Dargaville Hospital",
-    logo: "/images/logos/dargaville.png"
+    logo: null,
+    caseStudyLink: "/case-studies/dargaville-medical-centre-new-zealand"
+  },
+  {
+    quote: "We wanted more continuity of care built into the rosters, and RosterLab was easily able to incorporate that into the rosters they generated for us.",
+    author: "Rebecca",
+    company: "Staff Specialist Neonatologist, RPA Newborn Care",
+    logo: null,
+    caseStudyLink: null
+  },
+  {
+    quote: "Since using RosterLab, I've felt that the rosters are better for my circadian rhythm, with less up-and-down cycling.",
+    author: "Anthea",
+    company: "MIT, Hawke's Bay Hospital",
+    logo: null,
+    caseStudyLink: null
   }
 ]
 
@@ -87,18 +99,26 @@ export default function Testimonials() {
                       <p className="text-neutral-600">
                         {testimonials[currentIndex].company}
                       </p>
+                      {testimonials[currentIndex].caseStudyLink && (
+                        <Link 
+                          href={testimonials[currentIndex].caseStudyLink} 
+                          className="inline-block mt-2 text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                        >
+                          Read case study →
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
               
               {/* Navigation Dots */}
-              <div className="flex justify-center space-x-3 mt-8 py-2">
+              <div className="flex justify-center gap-2 mt-8">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-colors p-3 -m-3 ${
+                    className={`w-3 h-3 rounded-full transition-colors ${
                       index === currentIndex ? 'bg-blue-600' : 'bg-neutral-300'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}

@@ -14,7 +14,7 @@ export const metadata = {
 const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
-    answer: "Our AI algorithms analyze historical data, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+    answer: "Our AI algorithms analyze shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
@@ -26,11 +26,11 @@ const faqItems = [
   },
   {
     question: "What happens if we need to make manual adjustments to AI-generated schedules?",
-    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing. The AI learns from these adjustments to improve future recommendations."
+    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing."
   },
   {
     question: "How much time and cost savings can we expect?",
-    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. Actual savings depend on your current processes and organization size."
+    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organization size."
   }
 ]
 
@@ -38,36 +38,41 @@ export default function AISchedulesPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <div className="bg-white py-20">
+      <div className="bg-white pt-16 pb-0">
         <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Make rostering faster than ever before
-            </h1>
-            <p className="text-2xl text-gray-600 mb-12">
-              Unlock the full power of AI roster creation
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
-                href="/book-a-demo" 
-                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
-              >
-                Book a Demo
-              </Button>
-              <Button 
-                href="/book-a-demo" 
-                className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-              >
-                See an Example
-              </Button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="pb-8 lg:pb-12">
+              <div className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
+                AI-POWERED SCHEDULING
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Make rostering faster than ever before
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Unlock the full power of AI roster creation to save time and optimize staff allocation
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Button 
+                  href="/book-a-demo" 
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
+                >
+                  Book a Demo
+                </Button>
+                <Button 
+                  href="/book-a-demo" 
+                  className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
+                >
+                  See an Example
+                </Button>
+              </div>
             </div>
-            <div className="flex justify-center mb-16">
+            <div className="flex justify-center lg:justify-end">
               <Image
                 src="/images/illustration/test3.svg"
                 alt="AI Scheduling Illustration"
                 width={600}
                 height={400}
-                className=""
+                className="w-full max-w-[600px] h-auto"
               />
             </div>
           </div>
@@ -91,7 +96,7 @@ export default function AISchedulesPage() {
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Time Reduction</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Admin Time Reduction</h3>
                     <p className="text-gray-600">Generate complex rosters in minutes instead of days with our advanced AI algorithms</p>
                   </div>
                 </div>
@@ -109,7 +114,7 @@ export default function AISchedulesPage() {
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Staff Satisfaction</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Increased Staff Satisfaction</h3>
                     <p className="text-gray-600">Fair and balanced schedules improve work-life balance and increase staff retention</p>
                   </div>
                 </div>

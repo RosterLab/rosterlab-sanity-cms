@@ -14,7 +14,7 @@ export const metadata = {
 const benefits = [
   {
     icon: HiClock,
-    title: '90% Time Saving',
+    title: '90% Admin Time Reduction',
     description: 'Create rosters faster with intelligent setup and visual compliance warnings'
   },
   {
@@ -24,7 +24,7 @@ const benefits = [
   },
   {
     icon: HiUsers,
-    title: 'Better Staff Satisfaction',
+    title: 'Increased Staff Satisfaction',
     description: 'Fair scheduling and easy shift management improve team morale'
   }
 ]
@@ -43,7 +43,7 @@ const features = [
 const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
-    answer: "Our AI algorithms analyze historical data, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+    answer: "Our AI algorithms analyze shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
@@ -55,11 +55,11 @@ const faqItems = [
   },
   {
     question: "What happens if we need to make manual adjustments to AI-generated schedules?",
-    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing. The AI learns from these adjustments to improve future recommendations."
+    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing."
   },
   {
     question: "How much time and cost savings can we expect?",
-    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. Actual savings depend on your current processes and organization size."
+    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organization size."
   }
 ]
 
@@ -152,7 +152,7 @@ export default function ManualSchedulingPage() {
               </div>
             </div>
             <div className="relative flex justify-center items-end">
-              <div className="w-full max-w-lg translate-y-[60px]">
+              <div className="w-full max-w-lg translate-y-[40px]">
                 <Image
                   src="/images/illustration/test5 copy.svg"
                   alt="Free Staff Scheduling Illustration"
@@ -174,7 +174,7 @@ export default function ManualSchedulingPage() {
               Having a headache making rosters for shift workers?
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              You&apos;re not alone. Healthcare managers waste hours each week struggling with outdated scheduling methods.
+              You&apos;re not alone. Teams waste hours each week struggling with outdated scheduling methods.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
