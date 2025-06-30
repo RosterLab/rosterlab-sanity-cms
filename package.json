@@ -14,7 +14,9 @@
     "sanity:build": "sanity build",
     "sanity:deploy": "sanity deploy",
     "sanity:seed": "tsx sanity/scripts/seed.ts",
-    "sanity:reset": "tsx sanity/scripts/reset.ts"
+    "sanity:reset": "tsx sanity/scripts/reset.ts",
+    "sanity:import-images": "tsx sanity/scripts/import-images.ts",
+    "sanity:quick-import": "tsx sanity/scripts/quick-image-import.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

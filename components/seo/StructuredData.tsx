@@ -16,7 +16,7 @@ export default function StructuredData({
           name: "RosterLab",
           legalName: "ROSTERLAB LIMITED",
           url: "https://www.rosterlab.com",
-          logo: "https://www.rosterlab.com/favicon.png",
+          logo: "https://www.rosterlab.com/images/favicon.png",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Level 1, 22 The Strand",

@@ -226,6 +226,9 @@ export default function Footer() {
           <p className="text-gray-600 text-sm">
             © {new Date().getFullYear()} All rights reserved to RosterLab
           </p>
+          <p className="text-gray-400 text-[10px] mt-1">
+            Illustrations by Storyset
+          </p>
         </div>
       </div>
     </footer>

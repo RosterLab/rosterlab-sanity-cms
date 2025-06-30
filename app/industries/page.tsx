@@ -142,7 +142,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="https://rosterlab.com/hubfs/industry_1.webp"
+                  src="/images/Education.webp"
                   alt="Education industry scheduling"
                   fill
                   className="object-cover"
@@ -180,7 +180,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="https://rosterlab.com/hubfs/industry_2.webp"
+                  src="/images/call center.webp"
                   alt="Call centers industry scheduling"
                   fill
                   className="object-cover"
@@ -218,7 +218,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="https://rosterlab.com/hubfs/industry_3.webp"
+                  src="/images/transportation.webp"
                   alt="Transportation industry scheduling"
                   fill
                   className="object-cover"
@@ -256,7 +256,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="https://rosterlab.com/hubfs/industry_4.webp"
+                  src="/images/hospitality.webp"
                   alt="Hospitality industry scheduling"
                   fill
                   className="object-cover"
@@ -294,7 +294,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="https://rosterlab.com/hubfs/industry_5.webp"
+                  src="/images/logistics.webp"
                   alt="Manufacturing & logistics industry scheduling"
                   fill
                   className="object-cover"
@@ -332,7 +332,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="https://rosterlab.com/hubfs/industry_6.webp"
+                  src="/images/airports.webp"
                   alt="Airports industry scheduling"
                   fill
                   className="object-cover"
