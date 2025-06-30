@@ -4,6 +4,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck, HiCog, HiLightningBolt, HiShieldCheck, HiUsers, HiCalendar } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import AIOptimizationModule from '@/components/feature/AIOptimizationModule'
 
 export const metadata = {
   title: 'AI Auto Roster Generation - RosterLab',
@@ -12,8 +13,12 @@ export const metadata = {
 
 const faqItems = [
   {
+    question: "What is automatic roster generation?",
+    answer: "Automatic roster generation is an AI-powered feature that creates complete staff schedules automatically. It considers all your staffing requirements, employee preferences, skills, compliance rules, and fairness metrics to generate optimal rosters in minutes instead of hours or days of manual work."
+  },
+  {
     question: "How fast is the auto-generation process?",
-    answer: "RosterLab can generate a complete month's roster for 100+ staff in under 2 minutes. The speed depends on complexity - simple rosters take seconds, while those with many constraints may take a few minutes. The AI processes millions of possible combinations to find the optimal solution quickly."
+    answer: "The speed depends on complexity - simple rosters take seconds, while those with many constraints may take less than 60 minutes. The AI processes millions of possible combinations to find the optimal solution quickly."
   },
   {
     question: "What factors does the AI consider when generating rosters?",
@@ -25,11 +30,11 @@ const faqItems = [
   },
   {
     question: "How does it ensure fairness across the team?",
-    answer: "The AI tracks fairness metrics like weekend distribution, night shift allocation, and preference satisfaction across all staff. It uses advanced algorithms to ensure equitable distribution over time, not just within a single roster period. The system also provides transparency reports showing how shifts were distributed and why certain decisions were made."
+    answer: "The AI tracks fairness metrics like weekend distribution, night shift allocation, and preference satisfaction across all staff. It uses advanced algorithms to ensure equitable distribution over time, not just within a single roster period."
   },
   {
     question: "What happens if no perfect solution exists?",
-    answer: "When constraints conflict (e.g., everyone wants the same day off), the AI finds the best possible compromise. It shows you exactly which constraints couldn't be fully satisfied and why, suggests alternative solutions, and can even recommend policy adjustments that would make scheduling easier in the future. You always see the trade-offs clearly."
+    answer: "When constraints conflict (e.g., everyone wants the same day off), the AI finds the best possible compromise. It shows you exactly which constraints couldn't be fully satisfied and why, suggests alternative solutions. You always see the trade-offs clearly."
   }
 ]
 
@@ -103,13 +108,7 @@ export default function AutoRosterGenerationPage() {
                 </ul>
               </div>
               <div className="relative">
-                <Image
-                  src="/images/illustration/Rocket research-pana.svg"
-                  alt="AI-Powered Optimization Engine"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
+                <AIOptimizationModule />
               </div>
             </div>
           </Container>
@@ -121,7 +120,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/Programmer-pana-2.svg"
+                  src="/images/illustration/Computer troubleshooting-pana-2.svg"
                   alt="Built-in Compliance & Fairness"
                   width={600}
                   height={600}
