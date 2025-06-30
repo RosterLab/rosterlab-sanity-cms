@@ -253,11 +253,11 @@ export default function ReRosteringPage() {
                 },
                 {
                   question: "Can I test different scenarios before implementing changes?",
-                  answer: "Yes! Our scenario planning feature allows you to test 'what-if' situations without affecting the live roster. You can simulate different staffing scenarios, compare costs and coverage impacts, and save multiple scenarios for future reference. This helps with contingency planning and budget forecasting."
+                  answer: "Yes! Our scenario planning feature allows you to test 'what-if' situations without affecting the live roster. You can run hypothetical roster scenarios to assess the feasibility of the changes you and your team need to make without impacting your live roster. Compare costs and coverage impacts, and save multiple scenarios for future reference. This helps with contingency planning and budget forecasting."
                 },
                 {
                   question: "Will staff be automatically notified of roster changes?",
-                  answer: "Yes, once you approve a re-rostering solution, all affected staff receive instant notifications via their preferred communication method (app, SMS, or email). The notification includes their new shift details, the reason for the change, and requires acknowledgment to ensure they're aware of the update."
+                  answer: "Yes, once you approve a re-rostering solution, all affected staff receive instant notifications via the app."
                 }
               ]} />
             </div>

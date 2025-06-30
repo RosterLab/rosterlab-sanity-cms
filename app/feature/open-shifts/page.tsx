@@ -256,105 +256,115 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-4">
-                  {/* Browser Window Chrome */}
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Browser Header */}
-                    <div className="bg-gray-200 px-4 py-2 flex items-center space-x-2">
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                      </div>
-                      <div className="flex-1 ml-4">
-                        <div className="bg-white rounded px-3 py-1 text-xs text-gray-600 font-mono">
-                          https://app.rosterlab.com/audit-trail
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Browser Content */}
-                    <div className="p-6 bg-gray-50">
-                      {/* Timeline Events */}
-                      <div className="relative">
-                      {/* Timeline Line */}
-                      <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                  <div className="flex flex-col items-center justify-center">
+                    {/* Timeline Events */}
+                    <div className="relative w-full max-w-md">
+                      {/* Timeline Line - Positioned to the left of center */}
+                      <div className="absolute left-24 top-0 bottom-0 w-0.5 bg-gray-300"></div>
                       
                       {/* Timeline Items */}
-                      <div className="space-y-4">
+                      <div className="space-y-6">
                         {/* Event 1 */}
-                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
-                          <div className="absolute left-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform"></div>
-                          <div className="ml-10 flex-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-medium text-gray-900">Shift Published</p>
-                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:47 PM</span>
+                        <div className="relative group">
+                          <div className="flex items-center">
+                            {/* Time on left */}
+                            <div className="w-16 text-right">
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">2:47 PM</span>
                             </div>
-                            <p className="text-xs text-gray-600 mt-1">ICU Night Shift - 8 hrs</p>
-                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <span className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">By: Manager Sarah</span>
+                            {/* Circle - positioned on the timeline */}
+                            <div className="relative mx-4">
+                              <div className="w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-green-600 transition-all z-10"></div>
+                            </div>
+                            {/* Content on right */}
+                            <div className="flex-1 bg-gray-50 group-hover:bg-green-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                              <p className="text-sm font-medium text-gray-900">Shift Published</p>
+                              <p className="text-xs text-gray-600 mt-1">ICU Night Shift - 8 hrs</p>
+                              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="text-xs bg-green-200 text-green-700 px-2 py-1 rounded">By: Manager Sarah</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                         
                         {/* Event 2 */}
-                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
-                          <div className="absolute left-2 w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform"></div>
-                          <div className="ml-10 flex-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-medium text-gray-900">12 Staff Notified</p>
-                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:47 PM</span>
+                        <div className="relative group">
+                          <div className="flex items-center">
+                            {/* Time on left */}
+                            <div className="w-16 text-right">
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">2:47 PM</span>
                             </div>
-                            <p className="text-xs text-gray-600 mt-1">Based on skills & availability</p>
-                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <div className="flex -space-x-2">
-                                <div className="w-6 h-6 bg-gray-300 rounded-full border-2 border-white"></div>
-                                <div className="w-6 h-6 bg-gray-400 rounded-full border-2 border-white"></div>
-                                <div className="w-6 h-6 bg-gray-500 rounded-full border-2 border-white"></div>
-                                <div className="w-6 h-6 bg-gray-600 rounded-full border-2 border-white flex items-center justify-center text-xs text-white">+9</div>
+                            {/* Circle - positioned on the timeline */}
+                            <div className="relative mx-4">
+                              <div className="w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-blue-600 transition-all z-10"></div>
+                            </div>
+                            {/* Content on right */}
+                            <div className="flex-1 bg-gray-50 group-hover:bg-blue-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                              <p className="text-sm font-medium text-gray-900">12 Staff Notified</p>
+                              <p className="text-xs text-gray-600 mt-1">Based on skills & availability</p>
+                              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="flex -space-x-2">
+                                  <div className="w-6 h-6 bg-gray-300 rounded-full border-2 border-white"></div>
+                                  <div className="w-6 h-6 bg-gray-400 rounded-full border-2 border-white"></div>
+                                  <div className="w-6 h-6 bg-gray-500 rounded-full border-2 border-white"></div>
+                                  <div className="w-6 h-6 bg-gray-600 rounded-full border-2 border-white flex items-center justify-center text-xs text-white">+9</div>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                         
                         {/* Event 3 */}
-                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
-                          <div className="absolute left-2 w-6 h-6 bg-yellow-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform"></div>
-                          <div className="ml-10 flex-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-medium text-gray-900">3 Viewed</p>
-                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:52 PM</span>
+                        <div className="relative group">
+                          <div className="flex items-center">
+                            {/* Time on left */}
+                            <div className="w-16 text-right">
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">2:52 PM</span>
                             </div>
-                            <p className="text-xs text-gray-600 mt-1">Emma, John, Mike</p>
-                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Response pending</span>
+                            {/* Circle - positioned on the timeline */}
+                            <div className="relative mx-4">
+                              <div className="w-6 h-6 bg-yellow-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-yellow-600 transition-all z-10"></div>
+                            </div>
+                            {/* Content on right */}
+                            <div className="flex-1 bg-gray-50 group-hover:bg-yellow-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                              <p className="text-sm font-medium text-gray-900">3 Viewed</p>
+                              <p className="text-xs text-gray-600 mt-1">Emma, John, Mike</p>
+                              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Response pending</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                         
                         {/* Event 4 */}
-                        <div className="relative flex items-start group hover:bg-gray-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
-                          <div className="absolute left-2 w-6 h-6 bg-[#4a9288] rounded-full border-4 border-white shadow-sm group-hover:scale-110 transition-transform animate-pulse"></div>
-                          <div className="ml-10 flex-1">
-                            <div className="flex items-center justify-between">
-                              <p className="text-sm font-medium text-gray-900">Shift Accepted</p>
-                              <span className="text-xs text-gray-500 group-hover:text-gray-700">2:58 PM</span>
+                        <div className="relative group">
+                          <div className="flex items-center">
+                            {/* Time on left */}
+                            <div className="w-16 text-right">
+                              <span className="text-xs text-gray-500 group-hover:text-gray-700 transition-colors">2:58 PM</span>
                             </div>
-                            <p className="text-xs text-gray-600 mt-1">Emma Wilson accepted</p>
-                            <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                              <span className="text-xs bg-[#4a9288] text-white px-2 py-1 rounded">Compliance verified</span>
+                            {/* Circle - positioned on the timeline */}
+                            <div className="relative mx-4">
+                              <div className="w-6 h-6 bg-[#4a9288] rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-[#3a7268] transition-all animate-pulse z-10"></div>
+                            </div>
+                            {/* Content on right */}
+                            <div className="flex-1 bg-gray-50 group-hover:bg-teal-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                              <p className="text-sm font-medium text-gray-900">Shift Accepted</p>
+                              <p className="text-xs text-gray-600 mt-1">Emma Wilson accepted</p>
+                              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="text-xs bg-[#4a9288] text-white px-2 py-1 rounded">Compliance verified</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      </div>
-                      
-                      {/* View Full History */}
-                      <div className="mt-6 text-center">
-                        <button className="text-sm text-[#4a9288] hover:text-[#3a7268] font-medium transition-colors">
-                          View Full History →
-                        </button>
-                      </div>
+                    </div>
+                    
+                    {/* View Full History - Centered */}
+                    <div className="mt-8">
+                      <button className="text-sm text-[#4a9288] hover:text-[#3a7268] font-medium transition-colors hover:underline">
+                        View Full History →
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -419,16 +429,16 @@ export default function OpenShiftsPage() {
               </h2>
               <FAQAccordion items={[
                 {
-                  question: "How does the system prevent overtime?",
-                  answer: "Before notifying any staff member, the system automatically checks their current schedule against your overtime rules, maximum hour limits, and minimum rest period requirements. Staff who would violate these rules by accepting the shift are automatically excluded from notifications, ensuring 100% compliance."
-                },
-                {
                   question: "Can staff set preferences?",
                   answer: "Absolutely. Staff can set their notification preferences including preferred departments, shift times, locations, and even minimum notice periods. This reduces notification fatigue and ensures staff only receive relevant opportunities they're likely to accept."
                 },
                 {
                   question: "How quickly do staff receive open shift notifications?",
-                  answer: "Notifications are sent instantly through multiple channels including push notifications to mobile devices, SMS, and email. Staff typically receive alerts within seconds of a shift being published. The system also tracks delivery and read receipts to ensure notifications are received."
+                  answer: "Notifications are sent instantly through push notifications to mobile devices. Staff typically receive alerts within seconds of a shift being published."
+                },
+                {
+                  question: "Why are open shifts important?",
+                  answer: "Open shifts are crucial for maintaining adequate staffing levels and operational efficiency. They enable organizations to quickly fill unexpected gaps due to absences, handle surge demand, and provide flexible work opportunities for staff. By efficiently managing open shifts, businesses can reduce overtime costs, improve staff satisfaction, and ensure consistent service delivery."
                 }
               ]} />
             </div>
