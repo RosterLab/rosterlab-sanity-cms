@@ -1,7 +1,6 @@
 import Button from "@/components/ui/Button";
 // import RosterGenerator from "@/components/ui/RosterGenerator";
-// import WeeklyRosterCalendar from "@/components/ui/WeeklyRosterCalendar";
-import LazyRosterLabCalendar from "@/components/ui/LazyRosterLabCalendar";
+import WeeklyRosterCalendar from "@/components/ui/WeeklyRosterCalendar";
 
 export default function Hero() {
   return (
@@ -11,10 +10,10 @@ export default function Hero() {
         minHeight: "90vh",
       }}
     >
-      <div className="max-w-[1400px] mx-auto w-full">
-        <div className="grid lg:grid-cols-5 gap-8 items-center">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Text and CTAs */}
-          <div className="text-left lg:col-span-2">
+          <div className="text-left">
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Complex rostering made{" "}
@@ -65,8 +64,8 @@ export default function Hero() {
           </div>
 
           {/* Right side - Interactive Roster Generator */}
-          <div className="lg:col-span-3">
-            <LazyRosterLabCalendar />
+          <div className="flex justify-center lg:justify-end">
+            <WeeklyRosterCalendar />
           </div>
         </div>
       </div>
