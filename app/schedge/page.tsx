@@ -69,7 +69,7 @@ export default function SchedgePage() {
                   ["", "", "", "", "", ""],
                   ["", "", "", "", "", ""]
                 ]}
-                heading="Schedge - The Scheduling Puzzle"
+                heading=""
               />
             </div>
           </Container>

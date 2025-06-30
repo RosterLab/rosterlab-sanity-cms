@@ -3,7 +3,6 @@
 import styles from "./SchedgeGame.module.css";
 import { useCallback, useEffect, useState } from "react";
 import Modal from "@/components/ui/Modal";
-import Image from "next/image";
 import ReactConfetti from "react-confetti";
 
 const SHIFTS = ["A", "B", "C", "D", "E"];
@@ -145,14 +144,13 @@ const getEmployeeRulesBroken = (grid: string[][]): Problem[] => {
 
 export default function SchedgeGame({
   initialGrid,
-  heading,
 }: {
   initialGrid: string[][];
-  heading: string;
+  heading?: string;
 }) {
   const [state, setState] = useState<GameState>(initialState(initialGrid));
   const [showCongratulatoryModal, setShowCongratulatoryModal] = useState(false);
-  const [showInfoModal, setShowInfoModal] = useState(true);
+  const [showInfoModal, setShowInfoModal] = useState(false);
   const [showAIModal, setShowAIModal] = useState(false);
   const [hasShownModal, setHasShownModal] = useState(false);
 
@@ -391,23 +389,6 @@ export default function SchedgeGame({
         </Modal>
       )}
       <div className={styles.innerContainer}>
-        <h1 className={styles.heading}>
-          {heading}
-          <a
-            href="https://www.rosterlab.com"
-            target="_blank"
-            rel="noreferrer noopener"
-            className={styles.logoLink}
-          >
-            <Image 
-              className={styles["logo"]} 
-              src="/images/logo_colored.png" 
-              alt="RosterLab"
-              width={150}
-              height={50}
-            />
-          </a>
-        </h1>
         <table className={styles["puzzleTable"]}>
           <tbody>
             <tr>

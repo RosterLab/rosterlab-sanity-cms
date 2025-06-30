@@ -40,6 +40,9 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://widget.intercom.io" />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <StructuredData type="organization" />
       </head>
       <body className="min-h-screen bg-white text-neutral-900 antialiased" suppressHydrationWarning={true}>

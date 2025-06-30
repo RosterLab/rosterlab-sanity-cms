@@ -1,20 +1,20 @@
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 // import RosterGenerator from "@/components/ui/RosterGenerator";
-import WeeklyRosterCalendar from "@/components/ui/WeeklyRosterCalendar";
+// import WeeklyRosterCalendar from "@/components/ui/WeeklyRosterCalendar";
+import LazyRosterLabCalendar from "@/components/ui/LazyRosterLabCalendar";
 
 export default function Hero() {
   return (
     <section
       className="relative flex items-center py-20 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50"
       style={{
-        minHeight: "80vh",
+        minHeight: "90vh",
       }}
     >
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1400px] mx-auto w-full">
+        <div className="grid lg:grid-cols-5 gap-8 items-center">
           {/* Left side - Text and CTAs */}
-          <div className="text-left">
+          <div className="text-left lg:col-span-2">
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Complex rostering made{" "}
@@ -65,8 +65,8 @@ export default function Hero() {
           </div>
 
           {/* Right side - Interactive Roster Generator */}
-          <div className="flex justify-center lg:justify-end">
-            <WeeklyRosterCalendar />
+          <div className="lg:col-span-3">
+            <LazyRosterLabCalendar />
           </div>
         </div>
       </div>

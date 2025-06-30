@@ -94,6 +94,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   className="relative group"
                   onMouseEnter={() => item.subItems && setActiveDropdown(item.title)}
                   onMouseLeave={() => setActiveDropdown(null)}
+                  onClick={() => item.subItems && setActiveDropdown(activeDropdown === item.title ? null : item.title)}
                 >
                   {item.link ? (
                     <Link
@@ -103,7 +104,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                       {item.title}
                     </Link>
                   ) : (
-                    <button className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center">
+                    <button 
+                      className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveDropdown(activeDropdown === item.title ? null : item.title);
+                      }}
+                    >
                       {item.title}
                       {item.subItems && <HiChevronDown className="ml-1 h-4 w-4" />}
                     </button>
@@ -118,7 +125,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   {item.subItems && activeDropdown === item.title && (
                     <div 
                       className={cn(
-                        "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100]",
+                        "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === 'Solutions' || item.title === 'Industries' ? 'left-0 w-[600px]' : 'left-0 w-64'
                       )}
                       onMouseEnter={() => setActiveDropdown(item.title)}
