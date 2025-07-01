@@ -35,8 +35,7 @@ export default defineType({
               {
                 title: 'URL',
                 name: 'href',
-                type: 'string',
-                description: 'Enter any URL or path',
+                type: 'url',
               },
               {
                 title: 'Open in new tab',
