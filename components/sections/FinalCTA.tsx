@@ -76,7 +76,7 @@ export default function FinalCTA() {
             </div>
 
             {/* Feature Points */}
-            <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+            <div className="mt-6 flex flex-wrap lg:flex-nowrap gap-x-4 gap-y-2 lg:whitespace-nowrap">
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -87,13 +87,13 @@ export default function FinalCTA() {
                 <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-sm text-white/90">Handles modern day complexities with ease</span>
+                <span className="text-sm text-white/90">Handles complexities</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-sm text-white/90">User-friendly and simple to use</span>
+                <span className="text-sm text-white/90">User-friendly & simple to use</span>
               </div>
             </div>
           </div>

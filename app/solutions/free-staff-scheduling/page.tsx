@@ -15,7 +15,7 @@ export const metadata = {
 const faqItems = [
   {
     question: "Is the AI generator included in the free product?",
-    answer: "The AI generator is only available for the paid version of the platform, however if you're looking for a free digital scheduling solution we still offer great features that are better than using manual spreadsheets."
+    answer: "The <a href='/solutions/ai-schedules' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform, however if you're looking for a free digital scheduling solution we still offer great features that are better than using manual spreadsheets."
   },
   {
     question: "How much time and cost savings can we expect?",
@@ -158,10 +158,10 @@ export default function ManualSchedulingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Intelligent Scheduling
+                Say Goodbye to Spreadsheets
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our AI algorithms analyze thousands of variables to create optimal schedules that balance staff preferences, operational requirements, and compliance needs. Experience the future of workforce management.
+                Our digital platform transforms manual scheduling into an efficient process that balances staff preferences, operational requirements, and compliance needs. Experience smarter workforce management without the spreadsheet hassle.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -170,7 +170,7 @@ export default function ManualSchedulingPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Time Reduction</h3>
-                    <p className="text-gray-600">Generate complex rosters in minutes instead of days with our advanced AI algorithms</p>
+                    <p className="text-gray-600">Generate complex rosters in minutes instead of days with our digital scheduling platform</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -187,7 +187,7 @@ export default function ManualSchedulingPage() {
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Staff Satisfaction</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Increased Staff Satisfaction</h3>
                     <p className="text-gray-600">Fair and balanced schedules improve work-life balance and increase staff retention</p>
                   </div>
                 </div>
@@ -206,46 +206,181 @@ export default function ManualSchedulingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="order-1 lg:order-1">
               <Image
-                src="/images/generating.webp"
-                alt="Advanced AI features in action"
+                src="/images/illustration/Push notifications-pana-2 copy.svg"
+                alt="Free Employee Mobile App"
                 width={600}
                 height={500}
-                className="rounded-lg shadow-lg"
+                className="w-full h-auto"
               />
             </div>
             <div className="order-2 lg:order-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Advanced AI Capabilities
+                Free Employee Mobile App
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our award-winning algorithms handle the most complex scheduling challenges with ease, ensuring compliance and optimization across all scenarios.
+                Keep your team connected with our free mobile app. Staff can view schedules, swap shifts, and receive important updates anytime, anywhere.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">24/7 Automatic roster generation</span>
+                  <span className="text-gray-700">Real-time push notifications</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Complex constraint handling</span>
+                  <span className="text-gray-700">View schedules on the go</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Real-time optimization and adjustments</span>
+                  <span className="text-gray-700">Easy shift swapping</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Multiple shift patterns and rotations</span>
+                  <span className="text-gray-700">Leave requests and availability</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Legal compliance checking</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Scenario simulation and planning</span>
+                  <span className="text-gray-700">Available on <a href="https://apps.apple.com/nz/app/rosterlab/id6448819917" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.rosterlab.app" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Android</a></span>
                 </div>
               </div>
+              <div className="mt-8">
+                <Button href="/solutions/staff-roster-mobile-app" className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3">
+                  Learn More About Mobile App
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Six Steps Section */}
+      <div className="bg-gradient-to-b from-white to-gray-50 py-20">
+        <Container>
+          <div className="text-center mb-12">
+            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              GETTING STARTED
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
+              Six Steps to Build Your Free Staff Schedule
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Get started with digital scheduling in minutes. Our simple process helps you transition from spreadsheets to smart scheduling.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            {/* Steps displayed as a vertical timeline on mobile, horizontal cards on desktop */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Step 1 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Import your team
+                    </h3>
+                    <p className="text-gray-600">
+                      Upload your staff list and set up departments, roles, and skills. Define your shifts and working patterns.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Configure your rules
+                    </h3>
+                    <p className="text-gray-600">
+                      Set minimum staffing levels, maximum hours, and rest requirements to ensure compliance.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Build your schedule
+                    </h3>
+                    <p className="text-gray-600">
+                      Create schedules using our drag-and-drop interface. Copy patterns from previous weeks to save time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">4</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Publish to your team
+                    </h3>
+                    <p className="text-gray-600">
+                      Share schedules instantly via the mobile app. Staff receive notifications and can sync to their calendars.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">5</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Handle changes easily
+                    </h3>
+                    <p className="text-gray-600">
+                      Process leave requests and shift swaps digitally. No more phone calls or sticky notes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 6 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">6</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Track and improve
+                    </h3>
+                    <p className="text-gray-600">
+                      Monitor attendance, track hours, and identify patterns to continuously improve your scheduling.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-6">
+                Ready to upgrade to AI-powered scheduling?
+              </p>
+              <Button href="/solutions/ai-schedules" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3">
+                Explore AI Features
+              </Button>
             </div>
           </div>
         </Container>
@@ -260,7 +395,7 @@ export default function ManualSchedulingPage() {
                 Built-in Compliance
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Stay compliant with complex healthcare regulations and union agreements automatically. Our AI understands and enforces all relevant rules and constraints.
+                Stay compliant with complex healthcare regulations and union agreements automatically. Our platform understands and enforces all relevant rules and constraints.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -356,7 +491,7 @@ export default function ManualSchedulingPage() {
               </Button>
               <Button 
                 href="/book-a-demo" 
-                className="bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white/30 px-8 py-4 text-lg font-semibold"
+                className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold transition-colors"
               >
                 Book a Demo
               </Button>
