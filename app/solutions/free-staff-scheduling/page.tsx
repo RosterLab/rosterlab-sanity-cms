@@ -204,7 +204,7 @@ export default function ManualSchedulingPage() {
       <div className="bg-gray-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="order-1 lg:order-1">
+            <div className="order-2 lg:order-1">
               <Image
                 src="/images/illustration/Push notifications-pana-2 copy.svg"
                 alt="Free Employee Mobile App"
@@ -213,7 +213,7 @@ export default function ManualSchedulingPage() {
                 className="w-full h-auto"
               />
             </div>
-            <div className="order-2 lg:order-2">
+            <div className="order-1 lg:order-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Free Employee Mobile App
               </h2>

@@ -120,7 +120,7 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
-            <div className="w-full max-w-[600px] mx-auto order-1 lg:order-2">
+            <div className="w-full max-w-[600px] mx-auto order-2 lg:order-2">
               <RosterLoadingBar />
             </div>
           </div>
@@ -131,7 +131,7 @@ export default function AISchedulesPage() {
       <div className="bg-white py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="order-1 lg:order-1">
+            <div className="order-2 lg:order-1">
               <Image
                 src="/images/generating.webp"
                 alt="Advanced AI features in action"
@@ -140,7 +140,7 @@ export default function AISchedulesPage() {
                 className="rounded-lg shadow-lg"
               />
             </div>
-            <div className="order-2 lg:order-2">
+            <div className="order-1 lg:order-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Advanced AI Capabilities
               </h2>
