@@ -167,6 +167,11 @@ const nextConfig: NextConfig = {
         destination: '/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
         permanent: true,
       },
+      {
+        source: '/industries/others',
+        destination: '/industries',
+        permanent: true,
+      },
     ]
   },
 };
