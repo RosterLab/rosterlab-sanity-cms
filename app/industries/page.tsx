@@ -16,7 +16,7 @@ export default function IndustriesPage() {
       <section className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20">
         <Container>
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               AI Rostering Software for Industries with{" "}
               <span className="text-transparent bg-clip-text" style={{
                 backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'

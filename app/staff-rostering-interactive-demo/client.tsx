@@ -106,7 +106,7 @@ export default function StaffRosteringInteractiveDemoClient() {
           <p className="text-neutral-600 mb-6">
             Get a personalized walkthrough of RosterLab tailored to your healthcare facility's specific needs.
           </p>
-          <div className="meetings-iframe-container" data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"></div>
+          <div className="meetings-iframe-container overflow-x-auto max-w-full" data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"></div>
         </div>
       </Container>
       </div>

@@ -45,7 +45,7 @@ export default function AISchedulesPage() {
               <div className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
                 AI-POWERED SCHEDULING
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Make rostering faster than ever before
               </h1>
               <p className="text-xl text-gray-600 mb-8">
@@ -82,8 +82,8 @@ export default function AISchedulesPage() {
       {/* AI Benefits Section */}
       <div className="bg-gray-50 py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Intelligent Scheduling
               </h2>
@@ -120,7 +120,7 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
-            <div className="w-full max-w-[600px]">
+            <div className="w-full max-w-[600px] mx-auto order-1 lg:order-2">
               <RosterLoadingBar />
             </div>
           </div>
@@ -130,8 +130,8 @@ export default function AISchedulesPage() {
       {/* Advanced Features Section */}
       <div className="bg-white py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-1 lg:order-1">
               <Image
                 src="/images/generating.webp"
                 alt="Advanced AI features in action"
@@ -140,7 +140,7 @@ export default function AISchedulesPage() {
                 className="rounded-lg shadow-lg"
               />
             </div>
-            <div>
+            <div className="order-2 lg:order-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Advanced AI Capabilities
               </h2>

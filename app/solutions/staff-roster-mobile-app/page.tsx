@@ -101,7 +101,7 @@ export default function EmployeeMobileAppPage() {
               <div className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
                 EMPLOYEE MOBILE APP
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Your roster in your pocket
               </h1>
               <p className="text-xl text-gray-600 mb-8">
@@ -180,7 +180,7 @@ export default function EmployeeMobileAppPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {appFeatures.map((feature, index) => (
               <Link key={index} href={feature.href} className="block">
-                <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <feature.icon className="w-6 h-6 text-blue-600" />
@@ -189,9 +189,15 @@ export default function EmployeeMobileAppPage() {
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 mb-4">
                         {feature.description}
                       </p>
+                      <span className="text-blue-600 font-medium inline-flex items-center group">
+                        Read more 
+                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
                     </div>
                   </div>
                 </div>

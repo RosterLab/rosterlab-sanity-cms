@@ -88,6 +88,28 @@ h3 {
   margin-top: 0.25rem;
 }
 
+/* HubSpot Meetings Iframe Container */
+.meetings-iframe-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.meetings-iframe-container iframe {
+  max-width: 100%;
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .meetings-iframe-container {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .meetings-iframe-container iframe {
+    min-width: 320px;
+  }
+}
+
 /* Hero Section Responsive Styles */
 @media only screen and (max-width: 1200px) {
   .hero-section {

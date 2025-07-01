@@ -17,7 +17,7 @@ export default function RadiologyPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Scheduling your shifts just got a{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   whole lot easier
@@ -179,7 +179,7 @@ export default function RadiologyPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-8">
+              <div className="mt-8 text-center lg:text-left">
                 <Button href="/blog/whanganui-radiography-department-embraces-ai-rostering" className="bg-teal-600 text-white hover:bg-teal-700">
                   Read case study
                 </Button>

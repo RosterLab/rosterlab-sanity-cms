@@ -70,7 +70,7 @@ export default function BookADemoClient() {
             </p>
             
             {/* HubSpot Meeting Scheduler Embed */}
-            <div className="meetings-iframe-container" data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"></div>
+            <div className="meetings-iframe-container overflow-x-auto max-w-full" data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"></div>
           </div>
 
           {/* Demo Information Grid - Hidden on mobile/tablet */}
