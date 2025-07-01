@@ -74,6 +74,28 @@ export default function FinalCTA() {
                 <span className="ml-2 text-sm font-bold text-white">5.0</span>
               </div>
             </div>
+
+            {/* Feature Points */}
+            <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2">
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm text-white/90">Award-Winning AI algorithm</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm text-white/90">Handles modern day complexities with ease</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="text-sm text-white/90">User-friendly and simple to use</span>
+              </div>
+            </div>
           </div>
 
           {/* Right side - Form */}

@@ -1,6 +1,5 @@
 import Button from "@/components/ui/Button";
-// import RosterGenerator from "@/components/ui/RosterGenerator";
-import WeeklyRosterCalendar from "@/components/ui/WeeklyRosterCalendar";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -63,9 +62,16 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right side - Interactive Roster Generator */}
+          {/* Right side - Timeline Illustration */}
           <div className="flex justify-center lg:justify-end">
-            <WeeklyRosterCalendar />
+            <Image
+              src="/images/illustration/Timeline-pana.svg"
+              alt="Timeline illustration"
+              width={600}
+              height={600}
+              priority
+              className="w-full max-w-lg lg:max-w-xl"
+            />
           </div>
         </div>
       </div>

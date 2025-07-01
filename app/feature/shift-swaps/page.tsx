@@ -77,13 +77,13 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
 
-        {/* Automatic Routine Swap Approval Section */}
+        {/* Automatic Routine Approvals Section */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automatic Routine Swap Approval
+                  Automatic Routine Approvals
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   AI automatically approves standard shift swaps between qualified staff members. Only swaps that impact critical coverage, skills mix, or compliance require manager review.
@@ -116,7 +116,7 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
 
-        {/* Rule-Based Swap Review Section */}
+        {/* Review Swaps that Break the Rules Section */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -125,7 +125,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Rule-Based Swap Review
+                  Review Swaps that Break the Rules
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   When a swap might break staffing rules or affect critical coverage, managers get a clear, one-click review process with explanations of potential conflicts.

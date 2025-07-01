@@ -68,6 +68,18 @@ const onboardingSteps = [
     ),
     description: 'Run hypothetical roster scenarios to assess feasibility of changes without impacting your live roster - perfect for planning and optimization.',
     link: '/feature/re-rostering'
+  },
+  {
+    number: '7',
+    title: '7) Integrates with your payroll systems',
+    icon: (
+      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    description: 'Sync your staff roster directly to payroll - ensuring accurate hours, streamlined reporting, and fewer errors.',
+    link: '/feature/payroll-integration',
+    fullWidth: true
   }
 ]
 
@@ -87,30 +99,58 @@ export default function Onboarding() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {onboardingSteps.map((step, index) => (
-            <Link 
-              key={index} 
-              href={step.link}
-              className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center cursor-pointer hover:-translate-y-1"
-            >
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                {step.icon}
-              </div>
-              <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors">
-                {step.title}
-              </h3>
-              <p className="text-neutral-600 mb-4">
-                {step.description}
-              </p>
-              <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
-                Learn more
-                <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </Link>
-          ))}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {onboardingSteps.slice(0, 6).map((step, index) => (
+              <Link 
+                key={index} 
+                href={step.link}
+                className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center cursor-pointer hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  {step.icon}
+                </div>
+                <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-neutral-600 mb-4">
+                  {step.description}
+                </p>
+                <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
+                  Learn more
+                  <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
+            ))}
+          </div>
+          
+          {/* Full-width 7th box */}
+          {onboardingSteps[6] && (
+            <div className="mt-8">
+              <Link 
+                href={onboardingSteps[6].link}
+                className="group bg-white rounded-lg p-4 shadow-sm hover:shadow-lg transition-all text-center cursor-pointer hover:-translate-y-1 block"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3 mx-auto">
+                  {onboardingSteps[6].icon}
+                </div>
+                <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-blue-600 transition-colors">
+                  {onboardingSteps[6].title}
+                </h3>
+                <p className="text-neutral-600 mb-3 max-w-2xl mx-auto">
+                  {onboardingSteps[6].description}
+                </p>
+                <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
+                  Learn more
+                  <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
+            </div>
+          )}
         </div>
       </Container>
     </section>

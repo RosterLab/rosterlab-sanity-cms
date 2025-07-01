@@ -28,7 +28,7 @@ const benefitTabs: BenefitTab[] = [
     label: 'Workforce Optimization', 
     title: 'Optimize your workforce with AI',
     description: 'Mathematical optimization algorithms ensure the most efficient staff allocation while meeting all operational requirements and compliance standards.',
-    highlights: ['Mathematical Optimization', 'Efficient Staff Allocation', 'Minimize Costs'],
+    highlights: ['Optimise Skill Mix', 'Efficient Staff Allocation', 'Minimize Costs'],
     image: '/images/illustration/auto-roster.svg'
   },
   {
@@ -44,7 +44,7 @@ const benefitTabs: BenefitTab[] = [
     label: 'Safer & Fairer',
     title: 'Ensure compliance and equity',
     description: 'Built-in compliance checks and fair distribution algorithms ensure all rosters meet regulatory requirements and equitable shift distribution.',
-    highlights: ['Compliance Monitoring', 'Equitable Distribution', 'Risk Reduction'],
+    highlights: ['Compliance Monitoring', 'Equitable Distribution', 'Risk Reduction & Clinical Safety', 'Fatigue Management'],
     image: '/images/illustration/Programmer-pana-2.svg'
   }
 ]

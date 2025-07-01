@@ -217,7 +217,7 @@ export default function ICUEDPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Shift Swaps</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Shift Swaps & Trades</h3>
                 <p className="text-sm text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval workflows.
                 </p>
