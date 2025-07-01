@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
+import Pagination from '@/components/ui/Pagination'
 
 interface BlogPost {
   _id: string
@@ -17,10 +18,12 @@ interface BlogPost {
 
 interface BlogPageContentProps {
   posts: BlogPost[]
+  currentPage?: number
 }
 
-export default function BlogPageContent({ posts }: BlogPageContentProps) {
+export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
+  const postsPerPage = 12
 
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
@@ -43,6 +46,12 @@ export default function BlogPageContent({ posts }: BlogPageContentProps) {
       return false
     })
   }, [posts, searchQuery])
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
+  const startIndex = (currentPage - 1) * postsPerPage
+  const endIndex = startIndex + postsPerPage
+  const paginatedPosts = searchQuery ? filteredPosts : filteredPosts.slice(startIndex, endIndex)
 
   return (
     <div className="py-16 bg-neutral-50 min-h-screen">
@@ -100,12 +109,22 @@ export default function BlogPageContent({ posts }: BlogPageContentProps) {
         </div>
 
         {/* Blog Posts Grid */}
-        {filteredPosts && filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
-              <BlogCard key={post._id} post={post} />
-            ))}
-          </div>
+        {paginatedPosts && paginatedPosts.length > 0 ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {paginatedPosts.map((post) => (
+                <BlogCard key={post._id} post={post} />
+              ))}
+            </div>
+            {/* Pagination - only show when not searching and there's more than 1 page */}
+            {!searchQuery && totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                basePath="/blog"
+              />
+            )}
+          </>
         ) : (
           <div className="text-center py-12">
             <h2 className="text-2xl font-semibold text-neutral-600 mb-4">

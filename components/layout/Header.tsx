@@ -86,7 +86,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <div className="ml-10 flex items-center space-x-8">
               {navigation.map((item) => (
                 <div
@@ -379,7 +379,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           </div>
 
           {/* Header Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4">
             <Link
               href="/contact"
               className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
@@ -411,7 +411,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
@@ -430,14 +430,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
       {/* Mobile menu backdrop */}
       {isMenuOpen && (
         <div 
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-20"
+          className="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-20"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
       
       {/* Mobile menu */}
       <div className={cn(
-        'lg:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40',
+        'xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40',
         isMenuOpen ? 'block' : 'hidden'
       )}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg h-full overflow-y-auto">
