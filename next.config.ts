@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/blog/Roster more effectively with Excel Ep2: Sleep Days after Night Shifts',
+        source: '/blog/Roster%20more%20effectively%20with%20Excel%20Ep2%3A%20Sleep%20Days%20after%20Night%20Shifts',
         destination: '/rosterlab-blog/blog/roster-more-effectively-with-excel-ep2-sleep-days-after-night-shifts',
         permanent: true,
       },
