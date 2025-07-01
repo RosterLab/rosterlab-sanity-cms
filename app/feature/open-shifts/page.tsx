@@ -97,91 +97,99 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-gray-100 rounded-lg p-4">
-                  {/* Browser Window Chrome */}
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    {/* Browser Header */}
-                    <div className="bg-gray-200 px-4 py-2 flex items-center space-x-2">
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                  <div className="flex flex-col items-center justify-center">
+                    {/* Open Shift Input */}
+                    <div className="bg-teal-50 rounded-lg p-3 border border-teal-200 w-full max-w-xs mb-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-teal-600 rounded flex items-center justify-center">
+                            <HiClock className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="font-semibold text-gray-900 text-sm">Open Shift</span>
+                        </div>
+                        <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
                       </div>
-                      <div className="flex-1 ml-4">
-                        <div className="bg-white rounded px-3 py-1 text-xs text-gray-600 font-mono">
-                          https://app.rosterlab.com/compliance-checks
+                      <div className="space-y-1">
+                        <div className="bg-white rounded px-2 py-1 text-xs text-gray-600">
+                          <span className="font-medium">Department:</span> Emergency
+                        </div>
+                        <div className="bg-white rounded px-2 py-1 text-xs text-gray-600">
+                          <span className="font-medium">Shift:</span> Night (8 hrs)
+                        </div>
+                        <div className="bg-white rounded px-2 py-1 text-xs text-gray-600">
+                          <span className="font-medium">Skills Required:</span> ACLS, Trauma
                         </div>
                       </div>
                     </div>
                     
-                    {/* Browser Content */}
-                    <div className="p-6 bg-gray-50">
-                    
-                    {/* Alert Notifications */}
-                    <div className="space-y-3">
-                      {/* Overtime Alert */}
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 transform transition-all hover:scale-105 animate-[slide-in_0.5s_ease-out]">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <HiClock className="w-5 h-5 text-yellow-600" />
+                    {/* Smart Matching Engine */}
+                    <div className="relative w-full max-w-xs h-32 mb-6">
+                      {/* Central Processing Hub */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg px-4 py-2 shadow-md border border-gray-200 z-20">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center animate-spin">
+                            <HiUserGroup className="w-4 h-4 text-white" />
                           </div>
-                          <div className="flex-1">
-                            <p className="font-medium text-gray-900 text-sm">Overtime Warning</p>
-                            <p className="text-xs text-gray-600 mt-1">John would exceed 40 hrs/week</p>
-                            <div className="mt-2 flex items-center space-x-2">
-                              <span className="text-xs bg-yellow-200 text-yellow-800 px-2 py-1 rounded">Auto-blocked</span>
-                              <span className="text-xs text-gray-500">2 min ago</span>
-                            </div>
+                          <span className="text-xs font-semibold text-gray-700">Smart Matching Engine</span>
+                        </div>
+                      </div>
+                      
+                      {/* Checking Rules - Animated */}
+                      <div className="absolute top-0 left-0 w-full">
+                        <div className="flex justify-between px-2">
+                          <div className="bg-green-100 rounded-lg px-2 py-1 text-xs text-[#4a9288] animate-pulse">
+                            ✓ Skills Match
+                          </div>
+                          <div className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse" style={{animationDelay: '0.5s'}}>
+                            ✓ Available
                           </div>
                         </div>
                       </div>
                       
-                      {/* Rest Period Alert */}
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-4 transform transition-all hover:scale-105 animate-[slide-in_0.7s_ease-out]">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 animate-[shake_2s_ease-in-out_infinite]">
-                            <HiShieldCheck className="w-5 h-5 text-red-600" />
+                      <div className="absolute bottom-0 left-0 w-full">
+                        <div className="flex justify-between px-2">
+                          <div className="bg-yellow-100 rounded-lg px-2 py-1 text-xs text-yellow-700 animate-pulse" style={{animationDelay: '1s'}}>
+                            ⚠ Overtime Check
                           </div>
-                          <div className="flex-1">
-                            <p className="font-medium text-gray-900 text-sm">Rest Period Violation</p>
-                            <p className="text-xs text-gray-600 mt-1">Less than 8 hrs between shifts</p>
-                            <div className="mt-2 flex items-center space-x-2">
-                              <span className="text-xs bg-red-200 text-red-800 px-2 py-1 rounded">Prevented</span>
-                              <span className="text-xs text-gray-500">5 min ago</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Fair Distribution Alert */}
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 transform transition-all hover:scale-105 animate-[slide-in_0.9s_ease-out]">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <HiUserGroup className="w-5 h-5 text-blue-600" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-medium text-gray-900 text-sm">Fair Distribution Check</p>
-                            <p className="text-xs text-gray-600 mt-1">Sarah has fewer weekend shifts</p>
-                            <div className="mt-2 flex items-center space-x-2">
-                              <span className="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">Priority given</span>
-                              <span className="text-xs text-gray-500">Just now</span>
-                            </div>
+                          <div className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse" style={{animationDelay: '1.5s'}}>
+                            ✓ Rest Period OK
                           </div>
                         </div>
                       </div>
                     </div>
                     
-                    {/* Alert Summary */}
-                    <div className="mt-6 pt-4 border-t border-gray-200">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-500">Compliance checks today</span>
-                        <span className="font-semibold text-[#4a9288]">147 passed</span>
+                    {/* Matching Results */}
+                    <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 w-full max-w-xs animate-[fade-in_0.5s_ease-in-out_2s_both]">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                            <HiShieldCheck className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="font-semibold text-gray-900 text-sm">12 Staff Matched</span>
+                        </div>
                       </div>
-                      <div className="mt-2 bg-gray-200 rounded-full h-2">
-                        <div className="bg-[#4a9288] h-2 rounded-full" style={{width: '92%'}}></div>
+                      <div className="space-y-1 text-xs">
+                        <div className="flex items-center justify-between bg-white rounded px-2 py-1">
+                          <span className="text-gray-600">Eligible & Available:</span>
+                          <span className="font-medium text-[#4a9288]">8</span>
+                        </div>
+                        <div className="flex items-center justify-between bg-white rounded px-2 py-1">
+                          <span className="text-gray-600">Blocked (Overtime):</span>
+                          <span className="font-medium text-yellow-600">3</span>
+                        </div>
+                        <div className="flex items-center justify-between bg-white rounded px-2 py-1">
+                          <span className="text-gray-600">Missing Skills:</span>
+                          <span className="font-medium text-gray-500">1</span>
+                        </div>
                       </div>
-                      <p className="text-xs text-gray-500 mt-2 text-center">92% compliance rate</p>
                     </div>
+                    
+                    {/* Status Bar */}
+                    <div className="mt-4 w-full max-w-xs">
+                      <div className="text-center">
+                        <p className="text-xs text-gray-500">Notifications sent to 8 eligible staff</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -258,6 +266,9 @@ export default function OpenShiftsPage() {
               <div className="order-2 lg:order-1">
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
                   <div className="flex flex-col items-center justify-center">
+                    {/* Header */}
+                    <h3 className="text-lg font-semibold text-gray-900 mb-6">Roster History</h3>
+                    
                     {/* Timeline Events */}
                     <div className="relative w-full max-w-md">
                       {/* Timeline Line - Positioned to the left of center */}
@@ -274,14 +285,14 @@ export default function OpenShiftsPage() {
                             </div>
                             {/* Circle - positioned on the timeline */}
                             <div className="relative mx-4">
-                              <div className="w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-green-600 transition-all z-10"></div>
+                              <div className="w-6 h-6 bg-blue-400 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-blue-500 transition-all z-10"></div>
                             </div>
                             {/* Content on right */}
-                            <div className="flex-1 bg-gray-50 group-hover:bg-green-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                            <div className="flex-1 bg-gray-50 group-hover:bg-blue-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
                               <p className="text-sm font-medium text-gray-900">Shift Published</p>
                               <p className="text-xs text-gray-600 mt-1">ICU Night Shift - 8 hrs</p>
                               <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <span className="text-xs bg-green-200 text-green-700 px-2 py-1 rounded">By: Manager Sarah</span>
+                                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">By: Manager Sarah</span>
                               </div>
                             </div>
                           </div>
@@ -296,10 +307,10 @@ export default function OpenShiftsPage() {
                             </div>
                             {/* Circle - positioned on the timeline */}
                             <div className="relative mx-4">
-                              <div className="w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-blue-600 transition-all z-10"></div>
+                              <div className="w-6 h-6 bg-slate-400 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-slate-500 transition-all z-10"></div>
                             </div>
                             {/* Content on right */}
-                            <div className="flex-1 bg-gray-50 group-hover:bg-blue-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                            <div className="flex-1 bg-gray-50 group-hover:bg-slate-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
                               <p className="text-sm font-medium text-gray-900">12 Staff Notified</p>
                               <p className="text-xs text-gray-600 mt-1">Based on skills & availability</p>
                               <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -323,14 +334,14 @@ export default function OpenShiftsPage() {
                             </div>
                             {/* Circle - positioned on the timeline */}
                             <div className="relative mx-4">
-                              <div className="w-6 h-6 bg-yellow-500 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-yellow-600 transition-all z-10"></div>
+                              <div className="w-6 h-6 bg-blue-300 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-blue-400 transition-all z-10"></div>
                             </div>
                             {/* Content on right */}
-                            <div className="flex-1 bg-gray-50 group-hover:bg-yellow-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                            <div className="flex-1 bg-gray-50 group-hover:bg-blue-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
                               <p className="text-sm font-medium text-gray-900">3 Viewed</p>
                               <p className="text-xs text-gray-600 mt-1">Emma, John, Mike</p>
                               <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Response pending</span>
+                                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Response pending</span>
                               </div>
                             </div>
                           </div>
@@ -345,14 +356,14 @@ export default function OpenShiftsPage() {
                             </div>
                             {/* Circle - positioned on the timeline */}
                             <div className="relative mx-4">
-                              <div className="w-6 h-6 bg-[#4a9288] rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-[#3a7268] transition-all animate-pulse z-10"></div>
+                              <div className="w-6 h-6 bg-indigo-400 rounded-full border-4 border-white shadow-sm group-hover:scale-110 group-hover:bg-indigo-500 transition-all animate-pulse z-10"></div>
                             </div>
                             {/* Content on right */}
-                            <div className="flex-1 bg-gray-50 group-hover:bg-teal-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
+                            <div className="flex-1 bg-gray-50 group-hover:bg-indigo-50 p-3 rounded-lg transition-all duration-200 cursor-pointer">
                               <p className="text-sm font-medium text-gray-900">Shift Accepted</p>
                               <p className="text-xs text-gray-600 mt-1">Emma Wilson accepted</p>
                               <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <span className="text-xs bg-[#4a9288] text-white px-2 py-1 rounded">Compliance verified</span>
+                                <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">Compliance verified</span>
                               </div>
                             </div>
                           </div>

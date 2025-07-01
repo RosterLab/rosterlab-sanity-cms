@@ -130,16 +130,16 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Real-Time Shift Marketplace */}
+        {/* Feature 3: Real-Time Shift Bidding */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Real-Time Shift Marketplace
+                  Real-Time Shift Bidding
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Create a dynamic marketplace where staff can pick up extra shifts or offer their assigned shifts to colleagues. Everything happens within your compliance rules and approval workflows.
+                  Create a dynamic shift bidding system where staff can pick up extra shifts or offer their assigned shifts to colleagues. Everything happens within your compliance rules and approval workflows.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -159,7 +159,7 @@ export default function SelfSchedulingPage() {
               <div className="relative">
                 <Image
                   src="/images/illustration/Chatting-pana.svg"
-                  alt="Real-Time Shift Marketplace illustration"
+                  alt="Real-Time Shift Bidding illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"

@@ -7,17 +7,14 @@ export default function LeaveRequestDemo() {
     <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
       <div className="flex flex-col items-center justify-center">
         {/* Header Section */}
-        <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 w-full max-w-xs mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center space-x-2">
+        <div className="w-full max-w-xs mb-6">
+          <div className="flex flex-col items-center">
+            <div className="flex items-center space-x-2 mb-2">
               <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
                 <HiBell className="w-4 h-4 text-white" />
               </div>
               <span className="font-semibold text-gray-900 text-sm">Leave Requests Queue</span>
             </div>
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-          </div>
-          <div className="flex justify-end">
             <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium">3 Pending</span>
           </div>
         </div>
