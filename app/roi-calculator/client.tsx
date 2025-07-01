@@ -66,7 +66,7 @@ export default function ROICalculatorClient() {
         
         // Add logo with better aspect ratio (adjust width to maintain proportions)
         doc.addImage(logoBase64, 'PNG', 20, 10, 45, 12)
-      } catch (logoError) {
+      } catch {
         // Fallback if logo fails to load
         doc.setFontSize(24)
         doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])

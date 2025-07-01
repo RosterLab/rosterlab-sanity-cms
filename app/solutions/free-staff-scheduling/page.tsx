@@ -11,34 +11,6 @@ export const metadata = {
   description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
 }
 
-const benefits = [
-  {
-    icon: HiClock,
-    title: '90% Admin Time Reduction',
-    description: 'Create rosters faster with intelligent setup and visual compliance warnings'
-  },
-  {
-    icon: HiTrendingUp,
-    title: 'Improved Efficiency',
-    description: 'Smart statistics and workload balancing help optimize staff allocation'
-  },
-  {
-    icon: HiUsers,
-    title: 'Increased Staff Satisfaction',
-    description: 'Fair scheduling and easy shift management improve team morale'
-  }
-]
-
-const features = [
-  'Cloud-based digital scheduling',
-  'Skill and seniority-based rostering',
-  'Real-time compliance warnings',
-  'Staff request tracking',
-  'Mobile app access',
-  'Fair workload balancing',
-  'Long and short-term integration',
-  'Visual scheduling interface'
-]
 
 const faqItems = [
   {

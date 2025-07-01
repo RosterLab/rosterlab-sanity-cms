@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { HiCheck, HiRefresh, HiShieldCheck, HiBell } from 'react-icons/hi'
+import { HiCheck, HiShieldCheck } from 'react-icons/hi'
 
 export default function ShiftSwapsContent() {
   const [isApproved, setIsApproved] = useState(false)
@@ -24,10 +24,6 @@ export default function ShiftSwapsContent() {
     }
   }, [isGenerating, progress])
   
-  const startGeneration = () => {
-    setIsGenerating(true)
-    setProgress(0)
-  }
 
   return (
     <>

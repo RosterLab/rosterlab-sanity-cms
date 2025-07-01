@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
-  swcMinify: true,
 };
 
 export default nextConfig;

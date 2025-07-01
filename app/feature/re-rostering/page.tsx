@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
-import { HiCheck, HiClock, HiBell, HiShieldCheck, HiEye, HiUserGroup } from 'react-icons/hi'
+import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {

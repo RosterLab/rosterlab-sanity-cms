@@ -8,6 +8,14 @@ import Datadog from "@/components/analytics/Datadog";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
 
 export const metadata: Metadata = {
   title: "RosterLab - Workforce Management Solutions",
@@ -35,17 +43,14 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode()
   
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.variable}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <StructuredData type="organization" />
       </head>
-      <body className="min-h-screen bg-white text-neutral-900 antialiased" suppressHydrationWarning={true}>
+      <body className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`} suppressHydrationWarning={true}>
         <GoogleAnalytics gaId="G-KCZHPS54K5" />
         <Intercom appId="vs4gs8pu" />
         <Datadog 

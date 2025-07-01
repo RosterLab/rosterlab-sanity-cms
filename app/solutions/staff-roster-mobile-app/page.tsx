@@ -3,8 +3,6 @@ import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
-import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
-import RosterPublishingMobile from '@/components/ui/RosterPublishingMobile'
 import AnimatedSpeechBubbles from '@/components/ui/AnimatedSpeechBubbles'
 import Link from 'next/link'
 import { HiDeviceMobile, HiCalendar, HiBell, HiUserGroup, HiClock, HiCheckCircle, HiCheck, HiUsers, HiTrendingUp, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
@@ -14,34 +12,6 @@ export const metadata = {
   description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
 }
 
-const benefits = [
-  {
-    icon: HiDeviceMobile,
-    title: 'Access Anywhere',
-    description: 'View rosters, request leave, and manage shifts from any mobile device'
-  },
-  {
-    icon: HiClock,
-    title: 'Real-time Updates',
-    description: 'Instant notifications for schedule changes and shift reminders'
-  },
-  {
-    icon: HiUserGroup,
-    title: 'Better Work-Life Balance',
-    description: 'Easy shift swapping and leave requests improve staff satisfaction'
-  }
-]
-
-const features = [
-  'View personal rosters anytime',
-  'Request time off with one tap',
-  'Swap shifts with colleagues',
-  'Push notifications for changes',
-  'Calendar sync integration',
-  'Team communication tools',
-  'Availability preferences',
-  'Mobile clock in/out'
-]
 
 const appFeatures = [
   {

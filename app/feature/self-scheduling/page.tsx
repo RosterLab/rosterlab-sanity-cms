@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
-import { HiCheck, HiClock, HiUserGroup, HiCalendar, HiShieldCheck, HiBell } from 'react-icons/hi'
+import { HiCheck } from 'react-icons/hi'
 
 export const metadata = {
   title: 'Self-Scheduling - RosterLab',

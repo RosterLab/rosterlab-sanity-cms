@@ -3,7 +3,7 @@ import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import FAQAccordion from '@/components/ui/FAQAccordion'
-import { HiCheck, HiClock, HiBell, HiShieldCheck, HiEye, HiUserGroup } from 'react-icons/hi'
+import { HiCheck, HiClock, HiShieldCheck, HiUserGroup } from 'react-icons/hi'
 
 export const metadata = {
   title: 'Open Shifts Management & Smart Matching - RosterLab',

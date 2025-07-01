@@ -2,7 +2,7 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
-import { HiCheck, HiCog, HiLightningBolt, HiShieldCheck, HiUsers, HiCalendar } from 'react-icons/hi'
+import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import AIOptimizationModule from '@/components/feature/AIOptimizationModule'
 

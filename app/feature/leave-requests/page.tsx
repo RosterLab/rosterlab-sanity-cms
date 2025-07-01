@@ -4,7 +4,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import Image from 'next/image'
 import LeaveRequestDemo from './LeaveRequestDemo'
-import { HiCheck, HiCalendar, HiClock, HiUserGroup, HiShieldCheck, HiBell } from 'react-icons/hi'
+import { HiCheck, HiCalendar, HiClock } from 'react-icons/hi'
 
 export const metadata = {
   title: 'Employee Leave Request Tracking - RosterLab',

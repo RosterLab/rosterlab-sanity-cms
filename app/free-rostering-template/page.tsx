@@ -1,6 +1,5 @@
 import Container from '@/components/ui/Container'
 import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
 import { HiDownload, HiClock, HiTemplate, HiUserGroup, HiCheckCircle, HiArrowRight } from 'react-icons/hi'
 
 export const metadata = {
