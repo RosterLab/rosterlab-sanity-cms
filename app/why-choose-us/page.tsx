@@ -266,7 +266,7 @@ export default function WhyChooseUsPage() {
             </div>
             <div className="rounded-lg overflow-hidden">
               <Image
-                src="/images/why choose us/partnership.jpeg"
+                src="/images/why choose us/partnership.webp"
                 alt="RosterLab Partnership Approach"
                 width={600}
                 height={400}

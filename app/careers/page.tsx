@@ -207,21 +207,21 @@ export default function CareersPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
               <div className="relative overflow-hidden rounded-lg shadow-md">
                 <img 
-                  src="/images/collage bank/Collage 2.jpg" 
+                  src="/images/collage bank/Collage 2.webp" 
                   alt="Team culture" 
                   className="w-full h-48 object-cover"
                 />
               </div>
               <div className="relative overflow-hidden rounded-lg shadow-md">
                 <img 
-                  src="/images/collage bank/collage 3.jpg" 
+                  src="/images/collage bank/collage 3.webp" 
                   alt="Team activities" 
                   className="w-full h-48 object-cover"
                 />
               </div>
               <div className="relative overflow-hidden rounded-lg shadow-md">
                 <img 
-                  src="/images/collage bank/collage 5.jpg" 
+                  src="/images/collage bank/collage 5.webp" 
                   alt="Team collaboration" 
                   className="w-full h-48 object-cover"
                 />

@@ -8,6 +8,9 @@ import { FaLinkedin } from 'react-icons/fa'
 export const metadata = {
   title: 'About Us - Meet the Team Behind RosterLab',
   description: 'Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.',
+  other: {
+    'link': '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />'
+  }
 }
 
 export default function AboutPage() {
@@ -40,13 +43,19 @@ export default function AboutPage() {
 
         {/* Timeline Illustration */}
         <div className="flex justify-center mb-16">
-          <Image
-            src="/images/illustration/Timeline-pana.svg"
-            alt="Timeline illustration"
-            width={600}
-            height={400}
-            className="w-full max-w-2xl h-auto"
-          />
+          <div className="w-full max-w-2xl relative" style={{ aspectRatio: '600/400' }}>
+            <Image
+              src="/images/illustration/Timeline-pana.svg"
+              alt="Timeline illustration"
+              width={600}
+              height={400}
+              className="w-full h-auto"
+              priority
+              fetchPriority="high"
+              placeholder="empty"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+            />
+          </div>
         </div>
         </Container>
       </div>
@@ -71,7 +80,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="/images/team/rosterlab team photo.jpg"
+                src="/images/team/rosterlab team photo.webp"
                 alt="RosterLab team"
                 width={600}
                 height={400}
@@ -139,7 +148,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/Headshot isaac.jpg"
+                    src="/images/team/Headshot isaac.webp"
                     alt="Dr Isaac Cleeland"
                     fill
                     className="object-cover"
@@ -175,7 +184,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/Sunny Headshot.jpg"
+                    src="/images/team/Sunny Headshot.webp"
                     alt="Sunny Feng"
                     fill
                     className="object-cover"
@@ -211,7 +220,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/Headshot daniel.jpg"
+                    src="/images/team/Headshot daniel.webp"
                     alt="Daniel Ge"
                     fill
                     className="object-cover"
