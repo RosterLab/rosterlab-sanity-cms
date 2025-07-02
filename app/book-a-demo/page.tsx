@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import BookADemoClient from './client'
 
 export const metadata: Metadata = {
-  title: 'RosterLab - Book a Demo',
-  description: 'Book a live RosterLab demo to see AI rostering cut scheduling time by 90%, boost shift coverage, and keep teams compliant, healthier and happier.',
+  title: 'Book a Demo - Talk to Us About Your Scheduling Challenges',
+  description: 'Book a live demo with RosterLab to see how AI-powered rostering slashes admin time, balances shifts, and fixes your toughest scheduling challenges.',
 }
 
 export default function BookADemoPage() {

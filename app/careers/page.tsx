@@ -4,7 +4,7 @@ import { HiExternalLink, HiMail, HiLocationMarker, HiLightningBolt, HiUserGroup,
 
 export const metadata = {
   title: 'Careers - Join our talented team at RosterLab',
-  description: 'Join RosterLab\'s talented team and shape the future of AI staff scheduling—flexible roles, real growth opportunities, and a mission-driven culture await.',
+  description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
 }
 
 const openPositions = [

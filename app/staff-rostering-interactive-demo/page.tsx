@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import StaffRosteringInteractiveDemoClient from './client'
 
 export const metadata: Metadata = {
-  title: 'RosterLab - Staff Rostering Interactive Demo',
-  description: 'Try RosterLab\'s interactive demo to see AI-powered staff rostering build fair, compliant schedules in minutes—boost productivity and cut costs.',
+  title: 'Staff Rostering Interactive Demo - RosterLab',
+  description: 'Try RosterLab\'s interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
 }
 
 export default function StaffRosteringInteractiveDemo() {

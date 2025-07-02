@@ -6,7 +6,7 @@ import { HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
 import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 export const metadata = {
-  title: 'Contact Us - RosterLab',
+  title: 'Contact Us - Get Help with Your Team Scheduling',
   description: 'Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.',
 }
 

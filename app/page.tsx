@@ -8,7 +8,7 @@ import FinalCTA from '@/components/sections/FinalCTA'
 
 export const metadata = {
   title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-  description: 'Automate complex staff rosters in minutes with RosterLab\'s AI scheduling software. Boost fairness, cut admin time, and keep teams fully staffed.',
+  description: 'AI staff scheduling software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
 }
 
 export default function Home() {

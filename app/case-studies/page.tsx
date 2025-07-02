@@ -5,8 +5,8 @@ import CaseStudiesPageContent from '@/components/case-studies/CaseStudiesPageCon
 import { draftMode } from 'next/headers'
 
 export const metadata = {
-  title: 'RosterLab Case Studies - Real-World Results',
-  description: 'Explore our rostering success stories. See how RosterLab\'s AI cuts scheduling time and lifts staff satisfaction for industries worldwide.',
+  title: 'RosterLab Case Studies - Better Rosters, Impactful Results',
+  description: 'Explore real-world case studies showing how RosterLab\'s AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.',
 }
 
 const caseStudiesQuery = groq`
