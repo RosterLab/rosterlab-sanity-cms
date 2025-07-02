@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+import Link from 'next/link'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
@@ -51,6 +52,48 @@ export default function AISchedulesPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Unlock the full power of AI roster creation to save time and optimize staff allocation
               </p>
+              <div className="space-y-3 mb-8">
+                <div className="flex items-start space-x-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Reduce scheduling from days to minutes</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Comply with union rules and requirements</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Easily identify your staffing needs for each day</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Manage employee timesheets digitally</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <span className="text-gray-700 font-medium">Keep all your data and knowledge in one place</span>
+                </div>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button 
                   href="/book-a-demo" 
@@ -64,6 +107,24 @@ export default function AISchedulesPage() {
                 >
                   See an Example
                 </Button>
+              </div>
+              
+              {/* Feature ticks below CTA */}
+              <div className="mt-6">
+                <div className="flex items-center justify-center sm:justify-start gap-6 text-sm text-gray-600">
+                  <span className="font-medium flex items-center">
+                    <svg className="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Automatic roster generation
+                  </span>
+                  <span className="font-medium flex items-center">
+                    <svg className="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    </svg>
+                    Staff mobile app
+                  </span>
+                </div>
               </div>
             </div>
             <div className="flex justify-center lg:justify-end">
@@ -127,8 +188,116 @@ export default function AISchedulesPage() {
         </Container>
       </div>
 
-      {/* Advanced Features Section */}
+      {/* Key Features Section */}
       <div className="bg-white py-20">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Everything your team needs, powered by AI
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Empower your staff with AI-generated schedules that are accessible anywhere, enable smart shift management, and seamlessly integrate with your mobile app.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Link href="/feature/auto-roster-generation" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <HiClock className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      AI-Optimized Schedules
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      Automatically generate fair rosters that balance staff preferences, skills, and compliance requirements
+                    </p>
+                    <span className="text-blue-600 font-medium inline-flex items-center group">
+                      Learn more 
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link href="/feature/shift-swaps" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <HiTrendingUp className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Shift Swaps
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      Enable staff to easily swap shifts with AI ensuring coverage and compliance requirements are maintained
+                    </p>
+                    <span className="text-blue-600 font-medium inline-flex items-center group">
+                      Learn more 
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link href="/feature/re-rostering" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <HiShieldCheck className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Automated Compliance
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      AI ensures every schedule meets regulatory requirements and union rules without manual checking
+                    </p>
+                    <span className="text-blue-600 font-medium inline-flex items-center group">
+                      Learn more 
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link href="/feature/preferences-rules" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <HiUsers className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">
+                      Smart Staff Matching
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      AI matches the right staff to the right shifts based on skills, experience, and availability
+                    </p>
+                    <span className="text-blue-600 font-medium inline-flex items-center group">
+                      Learn more 
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </Container>
+      </div>
+
+      {/* Advanced Features Section */}
+      <div className="bg-gray-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">

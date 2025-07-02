@@ -111,11 +111,6 @@ const components = {
             height={400}
             className="rounded-lg shadow-md w-full h-auto"
           />
-          {value.alt && (
-            <p className="text-center text-sm text-neutral-500 mt-2">
-              {value.alt}
-            </p>
-          )}
         </div>
       )
     },
