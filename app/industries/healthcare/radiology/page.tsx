@@ -179,7 +179,7 @@ export default function RadiologyPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-8 text-center lg:text-left">
+              <div className="mt-8 text-center">
                 <Button href="/blog/whanganui-radiography-department-embraces-ai-rostering" className="bg-teal-600 text-white hover:bg-teal-700">
                   Read case study
                 </Button>
@@ -223,53 +223,89 @@ export default function RadiologyPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6">
+            <a href="/feature/preferences-rules" className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
               <div className="text-3xl font-bold text-teal-600 mb-3">01</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Define Coverage Needs</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Set modality requirements, reading room assignments, and subspecialty coverage targets.
               </p>
-            </div>
+              <span className="text-teal-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
+                Read more 
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
 
-            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg p-6">
+            <a href="/feature/preferences-rules" className="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
               <div className="text-3xl font-bold text-cyan-600 mb-3">02</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Input Constraints</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Add radiologist certifications, preferences, CME schedules, and equipment availability.
               </p>
-            </div>
+              <span className="text-cyan-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
+                Read more 
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+            <a href="/feature/auto-roster-generation" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
               <div className="text-3xl font-bold text-blue-600 mb-3">03</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Generate Schedule</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 AI creates optimal monthly schedules balancing all requirements in minutes.
               </p>
-            </div>
+              <span className="text-blue-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
+                Read more 
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
 
-            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6">
+            <a href="/feature/re-rostering" className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
               <div className="text-3xl font-bold text-indigo-600 mb-3">04</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Review & Adjust</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Fine-tune assignments, preview impact of changes, and approve final schedules.
               </p>
-            </div>
+              <span className="text-indigo-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
+                Read more 
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+            <a href="/feature/payroll-integration" className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
               <div className="text-3xl font-bold text-purple-600 mb-3">05</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Publish & Sync</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Share schedules with PACS, RIS, and calendar systems automatically.
               </p>
-            </div>
+              <span className="text-purple-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
+                Read more 
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
 
-            <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-6">
+            <a href="/solutions/ai-schedules" className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
               <div className="text-3xl font-bold text-pink-600 mb-3">06</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Monitor & Optimize</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Track workload distribution, turnaround times, and continuously improve.
               </p>
-            </div>
+              <span className="text-pink-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
+                Read more 
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
           </div>
         </Container>
       </section>
@@ -279,13 +315,12 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              
+              Modern Cloud Platform for Radiology Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              
+              Secure, accessible, and integrated with your existing systems.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
@@ -339,7 +374,7 @@ export default function RadiologyPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <TrustedBy />
       </section>
 
