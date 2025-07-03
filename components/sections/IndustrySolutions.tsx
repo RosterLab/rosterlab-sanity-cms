@@ -55,20 +55,20 @@ export default function IndustrySolutions() {
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
-              <Link href="/industries/healthcare/agedcare" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">Aged Care</h4>
-                    <p className="text-sm text-blue-700">Long-term care rostering with continuity focus</p>
-                  </div>
-                  <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
               <Link href="/industries/healthcare/radiology" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">Radiology</h4>
                     <p className="text-sm text-blue-700">Specialized imaging department scheduling</p>
+                  </div>
+                  <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+              <Link href="/industries/healthcare/agedcare" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">Aged Care</h4>
+                    <p className="text-sm text-blue-700">Long-term care rostering with continuity focus</p>
                   </div>
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
                 </div>

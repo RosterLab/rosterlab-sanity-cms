@@ -102,7 +102,7 @@ export default function AISchedulesPage() {
                   Book a Demo
                 </Button>
                 <Button 
-                  href="/book-a-demo" 
+                  href="/staff-rostering-interactive-demo" 
                   className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
                 >
                   See an Example

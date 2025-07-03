@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import Image from "next/image";
+import RosterGenerator from "@/components/ui/RosterGenerator";
 
 export default function Hero() {
   return (
@@ -46,36 +46,19 @@ export default function Hero() {
               </Button>
 
               <Button
-                href="https://app.rosterlab.com"
+                href="/staff-rostering-interactive-demo"
                 className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
               >
-                Start for Free
+                See an Example
               </Button>
-            </div>
-
-            {/* Free tier benefits */}
-            <div className="mt-6 flex items-center gap-2 text-sm text-gray-600">
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Free digital rostering forever</span>
-              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-              <span>No credit card</span>
             </div>
           </div>
 
-          {/* Right side - Timeline Illustration */}
+          {/* Right side - Roster Generation Module */}
           <div className="flex justify-center lg:justify-end">
-            <Image
-              src="/images/illustration/Timeline-pana.svg"
-              alt="Timeline illustration"
-              width={600}
-              height={600}
-              priority
-              className="w-full max-w-lg lg:max-w-xl"
-            />
+            <div className="w-full max-w-[600px]">
+              <RosterGenerator />
+            </div>
           </div>
         </div>
       </div>

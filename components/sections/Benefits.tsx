@@ -17,18 +17,18 @@ interface BenefitTab {
 const benefitTabs: BenefitTab[] = [
   {
     id: 'time',
-    label: 'Reclaim Precious Time',
+    label: 'Save Time',
     title: 'Generate rosters automatically in minutes',
-    description: 'Our AI-powered system creates optimized rosters in minutes, not days. Automated roster generation handles complex constraints while you focus on what matters most.',
-    highlights: ['Automated Roster Generation', 'Smart Constraint Handling', '90% Time Reduction'],
+    description: 'Our AI-powered system creates optimised rosters in minutes, not days. Automated roster generation handles complex constraints while you focus on what matters most.',
+    highlights: ['Generate Rosters Automatically', 'Handle Complex Constraints', 'Reduce Admin by 90%'],
     image: '/images/illustration/Events-pana.svg'
   },
   {
     id: 'optimization',
-    label: 'Workforce Optimization', 
-    title: 'Optimize your workforce with AI',
-    description: 'Mathematical optimization algorithms ensure the most efficient staff allocation while meeting all operational requirements and compliance standards.',
-    highlights: ['Optimise Skill Mix', 'Efficient Staff Allocation', 'Minimize Costs'],
+    label: 'Optimise Workforce', 
+    title: 'Optimise your workforce with AI',
+    description: 'Mathematical optimisation algorithms ensure the most efficient staff allocation while meeting all operational requirements and compliance standards.',
+    highlights: ['Optimise Skill Mix', 'Allocate Staff Efficiently', 'Minimise Costs'],
     image: '/images/illustration/auto-roster.svg'
   },
   {
@@ -36,15 +36,15 @@ const benefitTabs: BenefitTab[] = [
     label: 'Reduce Turnover',
     title: 'Improve staff satisfaction and retention',
     description: 'Fair and flexible rosters improve work-life balance, leading to higher staff satisfaction and reduced turnover rates.',
-    highlights: ['Improved Work-Life Balance', 'Reduced Staff Turnover', 'Higher Satisfaction'],
-    image: '/images/illustration/Manage money-pana.svg'
+    highlights: ['Improve Work-Life Balance', 'Reduce Staff Turnover', 'Increase Satisfaction'],
+    image: '/images/illustration/team-satisfaction-heart.svg'
   },
   {
     id: 'safety',
-    label: 'Safer & Fairer',
+    label: 'Ensure Safety & Fairness',
     title: 'Ensure compliance and equity',
-    description: 'Built-in compliance checks and fair distribution algorithms ensure all rosters meet regulatory requirements and equitable shift distribution.',
-    highlights: ['Compliance Monitoring', 'Equitable Distribution', 'Risk Reduction & Clinical Safety', 'Fatigue Management'],
+    description: 'Built-in compliance automation and fair distribution algorithms ensure all rosters meet regulatory requirements while maintaining equitable shift distribution.',
+    highlights: ['Automate Compliance', 'Distribute Shifts Fairly', 'Reduce Clinical Risk', 'Manage Fatigue Proactively'],
     image: '/images/illustration/Programmer-pana-2.svg'
   }
 ]

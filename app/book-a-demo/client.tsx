@@ -163,11 +163,15 @@ export default function BookADemoClient() {
           {/* Testimonial - Hidden on mobile/tablet */}
           <div className="hidden lg:block bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500 mb-12 text-center">
             <blockquote className="text-gray-700 italic mb-3">
-              "The demo was eye-opening. We saw immediate ways RosterLab could save us 20+ hours per week on scheduling alone."
+              "RosterLab has saved me countless hours... I have recommended this service to everyone I know"
             </blockquote>
-            <cite className="text-gray-600 text-sm font-medium">
-              - Sarah Chen, Director of Nursing
+            <cite className="text-gray-600 text-sm font-medium block">
+              Peter<br />
+              Senior Registrar ICU, Western Australia
             </cite>
+            <a href="/case-studies" className="inline-block mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
+              Read case study
+            </a>
           </div>
 
         </Container>
