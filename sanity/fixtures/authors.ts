@@ -55,7 +55,7 @@ export const authorFixtures: Omit<Author, '_id' | '_createdAt' | '_updatedAt' | 
         children: [
           {
             _type: 'span',
-            text: 'Technical Lead specializing in AI-powered scheduling solutions.',
+            text: 'Technical Lead specialising in AI-powered scheduling solutions.',
           },
         ],
       },

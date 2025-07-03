@@ -9,21 +9,21 @@ import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShield
 
 export const metadata = {
   title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
-  description: 'Generate fair, optimized shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
+  description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
 }
 
 const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
-    answer: "Our AI algorithms analyze shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+    answer: "Our AI algorithms analyse shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
-    answer: "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
+    answer: "Implementation typically takes 2-4 weeks depending on your organisation's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
   },
   {
     question: "Can the AI handle complex compliance and union rules?",
-    answer: "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
+    answer: "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organisational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
   },
   {
     question: "What happens if we need to make manual adjustments to AI-generated schedules?",
@@ -31,7 +31,7 @@ const faqItems = [
   },
   {
     question: "How much time and cost savings can we expect?",
-    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organization size."
+    answer: "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size."
   }
 ]
 
@@ -50,7 +50,7 @@ export default function AISchedulesPage() {
                 Make rostering faster than ever before
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Unlock the full power of AI roster creation to save time and optimize staff allocation
+                Unlock the full power of AI roster creation to save time and optimise staff allocation
               </p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-3">
@@ -149,7 +149,7 @@ export default function AISchedulesPage() {
                 Intelligent Scheduling
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our AI algorithms analyze thousands of variables to create optimal schedules that balance staff preferences, operational requirements, and compliance needs. Experience the future of workforce management.
+                Our AI algorithms analyse thousands of variables to create optimal schedules that balance staff preferences, operational requirements, and compliance needs. Experience the future of workforce management.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -167,7 +167,7 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
-                    <p className="text-gray-600">Mathematical optimization ensures the most efficient staff allocation and resource utilization</p>
+                    <p className="text-gray-600">Mathematical optimisation ensures the most efficient staff allocation and resource utilisation</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -208,7 +208,7 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      AI-Optimized Schedules
+                      AI-Optimised Schedules
                     </h3>
                     <p className="text-gray-600 mb-4">
                       Automatically generate fair rosters that balance staff preferences, skills, and compliance requirements
@@ -314,7 +314,7 @@ export default function AISchedulesPage() {
                 Advanced AI Capabilities
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our award-winning algorithms handle the most complex scheduling challenges with ease, ensuring compliance and optimization across all scenarios.
+                Our award-winning algorithms handle the most complex scheduling challenges with ease, ensuring compliance and optimisation across all scenarios.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center">
@@ -327,7 +327,7 @@ export default function AISchedulesPage() {
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Real-time optimization and adjustments</span>
+                  <span className="text-gray-700">Real-time optimisation and adjustments</span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
@@ -383,7 +383,7 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Rules Engine</h3>
-                    <p className="text-gray-600">Configure organization-specific rules and policies for perfect compliance</p>
+                    <p className="text-gray-600">Configure organisation-specific rules and policies for perfect compliance</p>
                   </div>
                 </div>
               </div>
@@ -442,7 +442,7 @@ export default function AISchedulesPage() {
               Ready to unlock the power of AI?
             </h2>
             <p className="text-xl mb-12 opacity-90">
-              Join hundreds of healthcare organizations already using AI to transform their workforce management.
+              Join hundreds of healthcare organisations already using AI to transform their workforce management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

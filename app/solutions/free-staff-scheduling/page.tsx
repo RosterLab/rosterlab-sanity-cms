@@ -19,7 +19,7 @@ const faqItems = [
   },
   {
     question: "How much time and cost savings can we expect?",
-    answer: "Most organizations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimization. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organization size."
+    answer: "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size."
   }
 ]
 
@@ -179,7 +179,7 @@ export default function ManualSchedulingPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
-                    <p className="text-gray-600">Mathematical optimization ensures the most efficient staff allocation and resource utilization</p>
+                    <p className="text-gray-600">Mathematical optimisation ensures the most efficient staff allocation and resource utilisation</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -422,7 +422,7 @@ export default function ManualSchedulingPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Rules Engine</h3>
-                    <p className="text-gray-600">Configure organization-specific rules and policies for perfect compliance</p>
+                    <p className="text-gray-600">Configure organisation-specific rules and policies for perfect compliance</p>
                   </div>
                 </div>
               </div>

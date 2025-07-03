@@ -25,7 +25,7 @@ export default function IndustriesPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              Whether you're managing nurses, teachers, call center agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
+              Whether you're managing nurses, teachers, call centre agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button href="/book-a-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
@@ -65,7 +65,7 @@ export default function IndustriesPage() {
                 Healthcare Workforce Excellence
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                From ICU to aged care facilities, optimize staffing while ensuring compliance, skill mix requirements, and staff wellbeing. Our AI understands the complexities of 24/7 healthcare operations.
+                From ICU to aged care facilities, optimise staffing while ensuring compliance, skill mix requirements, and staff wellbeing. Our AI understands the complexities of 24/7 healthcare operations.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="flex items-center">
@@ -84,7 +84,7 @@ export default function IndustriesPage() {
                   <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">Skill mix optimization</span>
+                  <span className="text-gray-700">Skill mix optimisation</span>
                 </div>
                 <div className="flex items-center">
                   <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,7 +127,7 @@ export default function IndustriesPage() {
                       </svg>
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-1">Radiology</h3>
-                    <p className="text-sm text-gray-600">Imaging optimization</p>
+                    <p className="text-sm text-gray-600">Imaging optimisation</p>
                   </Link>
                   <Link href="/industries/healthcare" className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow block relative group">
                     <div className="absolute top-2 right-2">
@@ -201,7 +201,7 @@ export default function IndustriesPage() {
               <div className="h-48 relative">
                 <Image
                   src="/images/call center.webp"
-                  alt="Call centers industry scheduling"
+                  alt="Call centres industry scheduling"
                   fill
                   className="object-cover"
                 />
@@ -216,7 +216,7 @@ export default function IndustriesPage() {
                     <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Service level optimization
+                    Service level optimisation
                   </li>
                   <li className="flex items-start">
                     <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -330,7 +330,7 @@ export default function IndustriesPage() {
                     <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    Production line optimization
+                    Production line optimisation
                   </li>
                   <li className="flex items-start">
                     <svg className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -434,7 +434,7 @@ export default function IndustriesPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Cost Optimization</h3>
               <p className="text-gray-600">
-                Reduce overtime, minimize agency costs, optimize coverage
+                Reduce overtime, minimise agency costs, optimise coverage
               </p>
             </div>
 
@@ -461,7 +461,7 @@ export default function IndustriesPage() {
               Your Path to Perfect Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our streamlined process takes you from complex scheduling challenges to optimized rosters in just a few simple steps.
+              Our streamlined process takes you from complex scheduling challenges to optimised rosters in just a few simple steps.
             </p>
           </div>
 
@@ -536,7 +536,7 @@ export default function IndustriesPage() {
               Ready to Transform Your Workforce Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join thousands of organizations saving time and money with intelligent scheduling.
+              Join thousands of organisations saving time and money with intelligent scheduling.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

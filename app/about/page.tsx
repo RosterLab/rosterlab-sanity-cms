@@ -194,7 +194,7 @@ export default function AboutPage() {
                   <h4 className="text-xl font-bold text-gray-900 mb-1">Sunny Feng</h4>
                   <p className="text-blue-600 font-medium mb-3">Co-Founder & Head of Product</p>
                   <p className="text-sm text-gray-600 mb-4">
-                    Product visionary with deep expertise in healthcare operations and user-centered design for complex scheduling systems.
+                    Product visionary with deep expertise in healthcare operations and user-centred design for complex scheduling systems.
                   </p>
                   <div className="flex items-center justify-center gap-4">
                     <a

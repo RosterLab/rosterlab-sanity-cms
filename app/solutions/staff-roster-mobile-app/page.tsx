@@ -205,7 +205,7 @@ export default function EmployeeMobileAppPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
-                    <p className="text-gray-600">Mathematical optimization ensures the most efficient staff allocation and resource utilization</p>
+                    <p className="text-gray-600">Mathematical optimisation ensures the most efficient staff allocation and resource utilisation</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -292,7 +292,7 @@ export default function EmployeeMobileAppPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">No more email spam</h3>
-                    <p className="text-gray-600">Clean, organized notifications only for what matters to each team member</p>
+                    <p className="text-gray-600">Clean, organised notifications only for what matters to each team member</p>
                   </div>
                 </div>
                 <div className="flex items-start">

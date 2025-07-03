@@ -249,7 +249,7 @@ export default function ReRosteringPage() {
               <FAQAccordion items={[
                 {
                   question: "How quickly can RosterLab generate re-rostering solutions?",
-                  answer: "RosterLab's AI can generate multiple re-rostering solutions in under 30 seconds. The system analyzes all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimize disruption while maintaining full coverage."
+                  answer: "RosterLab's AI can generate multiple re-rostering solutions in under 30 seconds. The system analyses all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimise disruption while maintaining full coverage."
                 },
                 {
                   question: "Can I test different scenarios before implementing changes?",

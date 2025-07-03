@@ -107,7 +107,7 @@ export default function RadiologyPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Optimized Throughput</h3>
               <p className="text-gray-600">
-                Balance workload across teams while maximizing scanner utilization and minimizing patient wait times.
+                Balance workload across teams while maximising scanner utilisation and minimising patient wait times.
               </p>
             </div>
           </div>
@@ -351,7 +351,7 @@ export default function RadiologyPage() {
               Transform Your Radiology Department Scheduling
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading imaging centers saving days of scheduling time every month.
+              Join leading imaging centres saving days of scheduling time every month.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

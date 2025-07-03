@@ -324,7 +324,7 @@ export default function AgedCarePage() {
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Automate Rostering</h3>
                 <p className="text-sm text-gray-600 mb-3">
-                  Create compliant schedules in minutes with AI-powered optimization.
+                  Create compliant schedules in minutes with AI-powered optimisation.
                 </p>
                 <span className="text-cyan-600 text-sm font-medium hover:text-cyan-700">Learn more →</span>
               </div>

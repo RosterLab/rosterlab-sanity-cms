@@ -21,7 +21,7 @@ const faqItems = [
   },
   {
     question: "Can I override preferences when necessary?",
-    answer: "Yes, managers can override preferences for critical operational needs. However, the system tracks all overrides and their reasons, helping you minimize them over time. It also suggests alternatives that might meet operational needs while better respecting preferences, and notifies affected staff with explanations."
+    answer: "Yes, managers can override preferences for critical operational needs. However, the system tracks all overrides and their reasons, helping you minimise them over time. It also suggests alternatives that might meet operational needs while better respecting preferences, and notifies affected staff with explanations."
   },
 ]
 

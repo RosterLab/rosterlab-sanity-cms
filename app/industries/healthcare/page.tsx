@@ -27,7 +27,7 @@ export default function HealthcarePage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                From ICU to aged care, radiology to emergency departments - optimize staffing across your entire healthcare organization with one intelligent platform.
+                From ICU to aged care, radiology to emergency departments - optimise staffing across your entire healthcare organisation with one intelligent platform.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/book-a-demo" className="bg-blue-600 text-white hover:bg-blue-700">
@@ -125,7 +125,7 @@ export default function HealthcarePage() {
                     ICU & Emergency Departments
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    24/7 critical care coverage with skill mix optimization and surge capacity planning.
+                    24/7 critical care coverage with skill mix optimisation and surge capacity planning.
                   </p>
                   <div className="flex items-center text-blue-600 font-medium">
                     Learn more
@@ -181,7 +181,7 @@ export default function HealthcarePage() {
                     Radiology Departments
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    Subspecialty coverage with equipment coordination and reading room optimization.
+                    Subspecialty coverage with equipment coordination and reading room optimisation.
                   </p>
                   <div className="flex items-center text-teal-600 font-medium">
                     Learn more
@@ -459,7 +459,7 @@ export default function HealthcarePage() {
               Ready to Transform Your Healthcare Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading healthcare organizations optimizing their workforce with RosterLab.
+              Join leading healthcare organisations optimising their workforce with RosterLab.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

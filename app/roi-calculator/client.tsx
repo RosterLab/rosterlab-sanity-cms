@@ -99,10 +99,10 @@ export default function ROICalculatorClient() {
       doc.text(`ROI in Year 1: ${roi}%`, 20, 83)
       doc.text(`Payback Period: ${paybackMonths} months`, 20, 91)
       
-      // Your Organization Details
+      // Your Organisation Details
       doc.setFontSize(16)
       doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-      doc.text('Your Organization', 20, 105)
+      doc.text('Your Organisation', 20, 105)
       
       doc.setFontSize(11)
       doc.setTextColor(textColor[0], textColor[1], textColor[2])
@@ -160,15 +160,15 @@ export default function ROICalculatorClient() {
       doc.text(step1Start, 20, 265)
       const step1Width = doc.getTextWidth(step1Start)
       
-      // Add clickable link for "personalized demo"
+      // Add clickable link for "personalised demo"
       doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-      doc.textWithLink('personalized demo', 20 + step1Width, 265, { url: 'https://www.rosterlab.com/book-a-demo' })
-      const linkWidth = doc.getTextWidth('personalized demo')
+      doc.textWithLink('personalised demo', 20 + step1Width, 265, { url: 'https://www.rosterlab.com/book-a-demo' })
+      const linkWidth = doc.getTextWidth('personalised demo')
       
       doc.setTextColor(textColor[0], textColor[1], textColor[2])
       doc.text(step1End, 20 + step1Width + linkWidth, 265)
       
-      doc.text('2. Get a custom implementation plan for your organization', 20, 272)
+      doc.text('2. Get a custom implementation plan for your organisation', 20, 272)
       doc.text('3. Start your free trial and see immediate results', 20, 279)
       
       // Contact Information
@@ -259,7 +259,7 @@ Savings Breakdown:
                 // Close the modal after a short delay
                 setTimeout(() => {
                   setShowReportForm(false)
-                  alert('Your personalized ROI report has been downloaded!')
+                  alert('Your personalised ROI report has been downloaded!')
                 }, 1000)
               }
             }
@@ -299,7 +299,7 @@ Savings Breakdown:
                   // Close the modal after a short delay
                   setTimeout(() => {
                     setShowReportForm(false)
-                    alert('Your personalized ROI report has been downloaded!')
+                    alert('Your personalised ROI report has been downloaded!')
                   }, 1000)
                 }
               }
@@ -335,7 +335,7 @@ Savings Breakdown:
               ROI Calculator
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Discover how much time and money RosterLab can save your organization with intelligent scheduling automation.
+              Discover how much time and money RosterLab can save your organisation with intelligent scheduling automation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button href="/pricing" className="bg-blue-600 text-white hover:bg-blue-700">
@@ -360,7 +360,7 @@ Savings Breakdown:
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Calculator Inputs */}
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Organization</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Organisation</h2>
                 
                 <div className="space-y-6">
                   <div>
@@ -550,7 +550,7 @@ Savings Breakdown:
               Ready to Start Saving?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join hundreds of organizations already optimizing their scheduling with RosterLab
+              Join hundreds of organisations already optimising their scheduling with RosterLab
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -578,7 +578,7 @@ Savings Breakdown:
               Download Your ROI Report
             </h3>
             <p className="text-gray-600 mb-6">
-              Get a personalized ROI report showing your potential savings with RosterLab.
+              Get a personalised ROI report showing your potential savings with RosterLab.
             </p>
 
             {/* HubSpot Form Container */}
