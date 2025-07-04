@@ -2,6 +2,7 @@
 
 import Container from '@/components/ui/Container'
 import SiteLayout from '@/components/layout/SiteLayout'
+import Link from 'next/link'
 import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
 import { useEffect } from 'react'
 
@@ -169,9 +170,9 @@ export default function BookADemoClient() {
               Peter<br />
               Senior Registrar ICU, Western Australia
             </cite>
-            <a href="/case-studies" className="inline-block mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
+            <Link href="/case-studies" className="inline-block mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
               Read case study
-            </a>
+            </Link>
           </div>
 
         </Container>
