@@ -19,7 +19,7 @@ const trustedLogos: TrustedLogo[] = [
 
 export default function TrustedBy() {
   return (
-    <section className="py-16 bg-white">
+    <section className="pt-8 pb-12 bg-white">
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-2xl font-semibold text-neutral-700 mb-8">
