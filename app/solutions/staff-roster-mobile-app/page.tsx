@@ -5,7 +5,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import AnimatedSpeechBubbles from '@/components/ui/AnimatedSpeechBubbles'
 import Link from 'next/link'
-import { HiDeviceMobile, HiCalendar, HiBell, HiUserGroup, HiClock, HiCheckCircle, HiCheck, HiUsers, HiTrendingUp, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
+import { HiCalendar, HiBell, HiUserGroup, HiClock, HiCheckCircle, HiCheck, HiUsers, HiTrendingUp, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
 
 export const metadata = {
   title: 'Employee Mobile App - RosterLab',

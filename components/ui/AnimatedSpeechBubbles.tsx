@@ -33,7 +33,7 @@ export default function AnimatedSpeechBubbles() {
       timers.forEach(timer => clearTimeout(timer))
       clearTimeout(resetTimer)
     }
-  }, [key])
+  }, [key, messages])
 
   return (
     <div className="relative h-full w-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg overflow-hidden">

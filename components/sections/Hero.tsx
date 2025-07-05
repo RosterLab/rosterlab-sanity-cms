@@ -66,7 +66,7 @@ export default function Hero() {
       {/* Wave separator */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
         <svg
-          className="relative block w-full h-16"
+          className="relative block w-full h-3 lg:h-16"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 80"
           preserveAspectRatio="none"

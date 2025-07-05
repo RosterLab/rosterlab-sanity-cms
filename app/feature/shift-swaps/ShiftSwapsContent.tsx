@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { HiCheck, HiShieldCheck } from 'react-icons/hi'
+import { HiShieldCheck } from 'react-icons/hi'
 
 export default function ShiftSwapsContent() {
   const [isApproved, setIsApproved] = useState(false)

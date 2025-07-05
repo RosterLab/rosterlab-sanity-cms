@@ -19,10 +19,10 @@ const trustedLogos: TrustedLogo[] = [
 
 export default function TrustedBy() {
   return (
-    <section className="pt-8 pb-12 bg-white">
+    <section className="pt-1.5 lg:pt-8 pb-12 bg-white">
       <Container>
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-semibold text-neutral-700 mb-8">
+          <h2 className="font-semibold text-neutral-700 mb-8" style={{ fontSize: '23px' }}>
             Trusted by leading healthcare organizations
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
