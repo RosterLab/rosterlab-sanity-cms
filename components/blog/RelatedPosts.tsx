@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
 import { formatDate } from '@/lib/utils'
 
@@ -69,9 +70,11 @@ export default function RelatedPosts({ posts, currentPostId, currentPostDate }: 
             <Link href={getPostUrl(post)}>
               {post.mainImage && (
                 <div className="aspect-video relative overflow-hidden rounded-t-lg">
-                  <img
+                  <Image
                     src={urlFor(post.mainImage).width(400).height(225).url()}
                     alt={post.title}
+                    width={400}
+                    height={225}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>

@@ -96,7 +96,7 @@ export default async function CaseStudiesPaginationPage({ params }: Props) {
   }
   
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(caseStudiesQuery)
   
   const postsPerPage = 12

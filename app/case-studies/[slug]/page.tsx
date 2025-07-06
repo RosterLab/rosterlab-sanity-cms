@@ -76,7 +76,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: CaseStudyPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const post = await clientToUse.fetch(caseStudyQuery, { slug })
   
   if (!post) {
@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const post = await clientToUse.fetch(caseStudyQuery, { slug })
 
   if (!post) {

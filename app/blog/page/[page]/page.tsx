@@ -76,7 +76,7 @@ export default async function BlogPaginationPage({ params }: Props) {
   }
   
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(blogPostsOnlyQuery)
   
   const postsPerPage = 12

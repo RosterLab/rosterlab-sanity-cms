@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
 import SiteLayout from '@/components/layout/SiteLayout'
 import { HiExternalLink, HiMail, HiLocationMarker, HiLightningBolt, HiUserGroup, HiGlobeAlt } from 'react-icons/hi'
+import Image from 'next/image'
 
 export const metadata = {
   title: 'Careers - Join our talented team at RosterLab',
@@ -63,9 +64,11 @@ export default function CareersPage() {
             </div>
             {/* Team Illustration */}
             <div className="mt-12 max-w-3xl mx-auto">
-              <img 
+              <Image 
                 src="/images/illustration/Team-pana.svg" 
                 alt="Join our team" 
+                width={768}
+                height={576}
                 className="w-full rounded-lg"
               />
             </div>
@@ -206,23 +209,29 @@ export default function CareersPage() {
             {/* Photo collage moved here */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mb-8">
               <div className="relative overflow-hidden rounded-lg shadow-md">
-                <img 
+                <Image 
                   src="/images/collage bank/Collage 2.webp" 
                   alt="Team culture" 
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
                 />
               </div>
               <div className="relative overflow-hidden rounded-lg shadow-md">
-                <img 
+                <Image 
                   src="/images/collage bank/collage 3.webp" 
                   alt="Team activities" 
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
                 />
               </div>
               <div className="relative overflow-hidden rounded-lg shadow-md">
-                <img 
+                <Image 
                   src="/images/collage bank/collage 5.webp" 
                   alt="Team collaboration" 
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
                 />
               </div>

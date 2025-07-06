@@ -4,9 +4,9 @@ import RosterGenerator from "@/components/ui/RosterGenerator";
 export default function Hero() {
   return (
     <section
-      className="relative flex items-center py-20 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50"
+      className="relative flex items-center py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 pb-20"
       style={{
-        minHeight: "90vh",
+        minHeight: "70vh",
       }}
     >
       <div className="max-w-7xl mx-auto w-full">
@@ -14,7 +14,7 @@ export default function Hero() {
           {/* Left side - Text and CTAs */}
           <div className="text-left">
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Complex rostering made{" "}
               <span
                 className="inline-block"
@@ -63,25 +63,25 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Decorative Background Elements - Commented out for future use */}
-      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div
-          className="absolute top-20 left-10 w-32 h-32 rounded-full opacity-30"
-          style={{ 
-            background: "linear-gradient(135deg, rgba(45, 59, 234, 0.6) 0%, rgba(3, 213, 171, 0.6) 100%)",
-            animation: "float-slow 6s ease-in-out infinite",
-            animationDelay: "2s"
-          }}
-        />
-        <div
-          className="absolute bottom-20 right-10 w-24 h-24 rounded-full opacity-20"
-          style={{ 
-            background: "linear-gradient(45deg, #03D5AB, #2D3BEA)",
-            animation: "float-medium 5s ease-in-out infinite",
-            animationDelay: "2.5s"
-          }}
-        />
-      </div> */}
+      {/* Wave separator */}
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
+        <svg
+          className="relative block w-full h-3 lg:h-16"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="#ffffff"
+            d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
+            opacity="0.5"
+          />
+          <path
+            fill="#ffffff"
+            d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
+          />
+        </svg>
+      </div>
     </section>
   );
 }

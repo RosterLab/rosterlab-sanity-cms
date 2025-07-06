@@ -5,7 +5,7 @@ import Link from 'next/link'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
-import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck } from 'react-icons/hi'
+import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck, HiSwitchHorizontal } from 'react-icons/hi'
 
 export const metadata = {
   title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
@@ -211,7 +211,7 @@ export default function AISchedulesPage() {
                       AI-Optimised Schedules
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      Automatically generate fair rosters that balance staff preferences, skills, and compliance requirements
+                      Assigns the right staff with the right skills to each shift, balancing preferences, availability, and compliance
                     </p>
                     <span className="text-blue-600 font-medium inline-flex items-center group">
                       Learn more 
@@ -227,11 +227,11 @@ export default function AISchedulesPage() {
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <HiTrendingUp className="w-6 h-6 text-blue-600" />
+                    <HiSwitchHorizontal className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      Shift Swaps
+                      Smart Shift Swaps
                     </h3>
                     <p className="text-gray-600 mb-4">
                       Enable staff to easily swap shifts with AI ensuring coverage and compliance requirements are maintained
@@ -277,10 +277,10 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      Smart Staff Matching
+                      Dynamic Re-Roster
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      AI matches the right staff to the right shifts based on skills, experience, and availability
+                      Adapt to changes with ease, ensuring your department remains fully operational and responsive to any unexpected shifts
                     </p>
                     <span className="text-blue-600 font-medium inline-flex items-center group">
                       Learn more 

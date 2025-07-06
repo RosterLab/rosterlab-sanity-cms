@@ -5,6 +5,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
 import { useEffect } from 'react'
+import Link from 'next/link'
 
 export default function BookADemoClient() {
   useEffect(() => {
