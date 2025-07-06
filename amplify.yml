@@ -8,9 +8,13 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: .next
+    baseDirectory: .
     files:
-      - '**/*'
+      - '.next/**/*'
+      - 'public/**/*'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.env.production'
   cache:
     paths:
       - .next/cache/**/*

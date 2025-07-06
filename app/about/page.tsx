@@ -83,7 +83,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="/images/team/rosterlab team photo.JPG"
+                src="/images/team/rosterlab-team-photo.jpg"
                 alt="RosterLab founders"
                 width={600}
                 height={400}
@@ -151,7 +151,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/Headshot Isaac.jpg"
+                    src="/images/team/headshot-isaac.jpg"
                     alt="Isaac Cleland, PhD"
                     fill
                     className="object-cover"
@@ -187,7 +187,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/Sunny Headshot.webp"
+                    src="/images/team/sunny-headshot.webp"
                     alt="Sunny Feng"
                     fill
                     className="object-cover"
@@ -223,7 +223,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/Headshot Daniel.jpg"
+                    src="/images/team/headshot-daniel.jpg"
                     alt="Daniel Ge"
                     fill
                     className="object-cover"
