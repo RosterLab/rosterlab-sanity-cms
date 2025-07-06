@@ -11,7 +11,7 @@ export const metadata = {
 
 export default async function BlogPage() {
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(blogPostsOnlyQuery)
 
   return <BlogPageContent posts={posts} />

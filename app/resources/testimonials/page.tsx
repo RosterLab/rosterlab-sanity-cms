@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { HiArrowRight, HiArrowUp } from 'react-icons/hi'
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
-import { validatedToken } from '@/sanity/lib/token'
+import { token } from '@/sanity/lib/token'
 import { draftMode } from 'next/headers'
 import ContactForm from './ContactForm'
 
@@ -108,7 +108,7 @@ const companyLogos = [
 
 export default async function TestimonialsPage() {
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && token ? { token } : undefined)
   
   // Fetch case studies from Sanity
   const caseStudies = await client.fetch<CaseStudy[]>(caseStudiesQuery)

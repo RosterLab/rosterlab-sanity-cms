@@ -96,7 +96,7 @@ export default async function NewsroomPaginationPage({ params }: Props) {
   }
   
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(newsroomQuery)
   
   const postsPerPage = 12

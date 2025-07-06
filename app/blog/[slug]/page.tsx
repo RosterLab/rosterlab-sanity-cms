@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const post = await clientToUse.fetch(postQuery, { slug })
   
   if (!post) {
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const post = await clientToUse.fetch(postQuery, { slug })
 
   if (!post) {

@@ -31,7 +31,7 @@ const newsroomQuery = groq`
 
 export default async function NewsroomPage() {
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(newsroomQuery)
 
   return <NewsroomPageContent posts={posts} />

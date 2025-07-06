@@ -31,7 +31,7 @@ const caseStudiesQuery = groq`
 
 export default async function CaseStudiesPage() {
   const { isEnabled } = await draftMode()
-  const client = getClient(isEnabled ? { token: validatedToken } : undefined)
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(caseStudiesQuery)
 
   return <CaseStudiesPageContent posts={posts} />
