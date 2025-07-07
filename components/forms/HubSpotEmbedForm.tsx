@@ -77,9 +77,10 @@ export default function HubSpotEmbedForm() {
       }
     })
 
+    // Store ref value in cleanup function
+    const container = containerRef.current
     return () => {
       // Clear the form container on unmount
-      const container = containerRef.current
       if (container) {
         container.innerHTML = ''
       }
