@@ -259,8 +259,8 @@ export default function AboutPage() {
           </div>
           
           {/* Core Team */}
-          <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Advisors & Board Members</h3>
+          <div className="mb-16">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Core Team</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -296,6 +296,37 @@ export default function AboutPage() {
                 <h4 className="font-semibold text-gray-900 mb-1">Gary Kessel</h4>
                 <p className="text-sm text-blue-600 mb-2">Roster Optimisation Specialist</p>
                 <p className="text-xs text-gray-600">Working closely with clients to fine-tune rosters and ensure real-world success.</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Board Members & Advisors */}
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Board Members & Advisors</h3>
+            <div className="bg-gray-100 rounded-lg p-8 text-center">
+              <p className="text-gray-600 max-w-3xl mx-auto">
+                RosterLab is supported by an experienced board of directors and advisors from our key investors including Matū, UniServices, and Quidnet Ventures. 
+                Our board provides strategic guidance on healthcare innovation, technology commercialization, and global market expansion.
+              </p>
+              <div className="flex flex-wrap justify-center gap-8 mt-8">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-md">
+                    <img src="/images/investor-logos/matu-logo.png" alt="Matū" className="w-16 h-16 object-contain" />
+                  </div>
+                  <p className="text-sm font-semibold text-gray-700">Matū</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-md">
+                    <img src="/images/investor-logos/uniservices-logo.png" alt="UniServices" className="w-16 h-16 object-contain" />
+                  </div>
+                  <p className="text-sm font-semibold text-gray-700">UniServices</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-md">
+                    <img src="/images/investor-logos/quidnet-logo.png" alt="Quidnet Ventures" className="w-16 h-16 object-contain" />
+                  </div>
+                  <p className="text-sm font-semibold text-gray-700">Quidnet Ventures</p>
+                </div>
               </div>
             </div>
           </div>
