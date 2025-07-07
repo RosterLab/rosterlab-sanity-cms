@@ -74,8 +74,8 @@ export default function AboutPage() {
               <p className="text-lg text-gray-600 mb-6">
                 To solve one of the most complex organizational challenges - workforce scheduling - through innovative AI and mathematical optimization algorithms.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
-                We believe that fair, efficient, and optimized rosters are the foundation of happy teams and successful organizations.
+              <p className="text-lg text-gray-600 mb-8 text-center italic">
+                "We believe that fair, efficient, and optimized rosters are the foundation of happy teams and successful organizations."
               </p>
               <Button href="/book-a-demo" className="bg-blue-600 text-white hover:bg-blue-700">
                 See How We Do It
@@ -269,8 +269,8 @@ export default function AboutPage() {
                   <Image
                     src="/images/investor logos/Movac-Primary-RGB-72-Transparent_150402.png"
                     alt="Movac"
-                    width={120}
-                    height={60}
+                    width={160}
+                    height={80}
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
@@ -278,8 +278,8 @@ export default function AboutPage() {
                   <Image
                     src="/images/investor logos/Pacific-Channel-Logo-RGB-Stacked-Black-Text.png"
                     alt="Pacific Channel"
-                    width={120}
-                    height={60}
+                    width={200}
+                    height={100}
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
@@ -287,8 +287,8 @@ export default function AboutPage() {
                   <Image
                     src="/images/investor logos/QV_Primary_RGB.png"
                     alt="Quay Ventures"
-                    width={120}
-                    height={60}
+                    width={160}
+                    height={80}
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
@@ -296,8 +296,8 @@ export default function AboutPage() {
                   <Image
                     src="/images/investor logos/footer-logo-left.png"
                     alt="University of Auckland"
-                    width={140}
-                    height={60}
+                    width={200}
+                    height={100}
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
@@ -305,49 +305,49 @@ export default function AboutPage() {
                   <Image
                     src="/images/investor logos/Primary-logo.png"
                     alt="Primary Ventures"
-                    width={120}
-                    height={60}
+                    width={160}
+                    height={80}
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-800">JK</span>
+                  <span className="text-2xl font-bold text-blue-800">MN</span>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Jason Ko</h4>
-                <p className="text-sm text-blue-600 mb-2">Full Stack Software Developer</p>
-                <p className="text-xs text-gray-600">Building robust features across our entire tech stack to support smarter rostering.</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Mohan Nair</h4>
+                <p className="text-sm text-blue-600 mb-2">Independent Board Chair</p>
+                <p className="text-xs text-gray-600 mb-3">Providing strategic leadership and governance oversight to guide RosterLab's growth.</p>
+                <a
+                  href="https://www.linkedin.com/in/mohanemerge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors"
+                  aria-label="Mohan's LinkedIn"
+                >
+                  <FaLinkedin className="w-5 h-5" />
+                </a>
               </div>
               
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-slate-800">RG</span>
+                  <span className="text-2xl font-bold text-slate-800">DB</span>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Ryan Green</h4>
-                <p className="text-sm text-blue-600 mb-2">Marketing Manager</p>
-                <p className="text-xs text-gray-600">Leading growth strategies and driving awareness of our staff scheduling tool.</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-sky-100 to-sky-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-sky-800">CS</span>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Clemen Sun</h4>
-                <p className="text-sm text-blue-600 mb-2">Software Engineer</p>
-                <p className="text-xs text-gray-600">Focusing on backend systems that power our AI-driven scheduling engine.</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-indigo-800">GK</span>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Gary Kessel</h4>
-                <p className="text-sm text-blue-600 mb-2">Roster Optimisation Specialist</p>
-                <p className="text-xs text-gray-600">Working closely with clients to fine-tune rosters and ensure real-world success.</p>
+                <h4 className="font-semibold text-gray-900 mb-1">David Beard</h4>
+                <p className="text-sm text-blue-600 mb-2">Board Member</p>
+                <p className="text-xs text-gray-600 mb-3">Bringing extensive industry expertise to help shape RosterLab's strategic direction.</p>
+                <a
+                  href="https://www.linkedin.com/in/david-beard-99110216/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors"
+                  aria-label="David's LinkedIn"
+                >
+                  <FaLinkedin className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -463,7 +463,7 @@ export default function AboutPage() {
       <div className="py-16 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <div className="p-8 bg-gray-50 rounded-lg shadow-lg border-l-4 border-blue-500">
+            <div className="p-8 bg-gray-50 rounded-lg shadow-lg border-l-4 border-blue-500 text-center">
               <p className="text-xl text-gray-800 italic mb-4">"RosterLab has become integral to our operations planning, we can't imagine reverting to manual rostering."</p>
               <p className="text-gray-600 font-medium">— Duty Manager, MoM Singapore</p>
             </div>
