@@ -261,6 +261,58 @@ export default function AboutPage() {
           {/* Core Team */}
           <div>
             <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Advisors & Board Members</h3>
+            
+            {/* Investor Logos */}
+            <div className="mb-12">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/investor logos/Movac-Primary-RGB-72-Transparent_150402.png"
+                    alt="Movac"
+                    width={120}
+                    height={60}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/investor logos/Pacific-Channel-Logo-RGB-Stacked-Black-Text.png"
+                    alt="Pacific Channel"
+                    width={120}
+                    height={60}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/investor logos/QV_Primary_RGB.png"
+                    alt="Quay Ventures"
+                    width={120}
+                    height={60}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/investor logos/footer-logo-left.png"
+                    alt="University of Auckland"
+                    width={140}
+                    height={60}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/investor logos/Primary-logo.png"
+                    alt="Primary Ventures"
+                    width={120}
+                    height={60}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+              </div>
+            </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
