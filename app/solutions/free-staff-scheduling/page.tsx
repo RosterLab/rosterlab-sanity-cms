@@ -3,7 +3,6 @@ import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
-import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
 
 export const metadata = {
@@ -194,7 +193,14 @@ export default function ManualSchedulingPage() {
               </div>
             </div>
             <div className="w-full max-w-[600px]">
-              <RosterLoadingBar />
+              <Image
+                src="/images/free product/Group 6526.webp"
+                alt="Say Goodbye to Spreadsheets"
+                width={600}
+                height={400}
+                className="w-full h-auto"
+                priority
+              />
             </div>
           </div>
         </Container>

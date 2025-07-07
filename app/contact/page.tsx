@@ -3,7 +3,7 @@ import ContactFormWrapper from '@/components/forms/ContactFormWrapper'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import { HiLocationMarker, HiClock, HiCheck } from 'react-icons/hi'
-import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 export const metadata = {
   title: 'Contact Us - Get Help with Your Team Scheduling',
@@ -121,15 +121,7 @@ export default function ContactPage() {
                     <FaLinkedin className="w-5 h-5 text-primary-600" />
                   </a>
                   <a 
-                    href="https://twitter.com/rosterlab" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
-                  >
-                    <FaTwitter className="w-5 h-5 text-primary-600" />
-                  </a>
-                  <a 
-                    href="https://facebook.com/rosterlab" 
+                    href="https://facebook.com/p/RosterLab-100084645549356/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
