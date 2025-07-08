@@ -136,7 +136,7 @@ export default function AboutPage() {
               </h3>
               <p className="text-gray-600">
                 We push the boundaries of what&apos;s possible with cutting-edge
-                AI and optimization algorithms.
+                AI and optimisation algorithms.
               </p>
             </div>
             <div className="text-center">
@@ -475,7 +475,7 @@ export default function AboutPage() {
               Our Journey
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From a simple idea to revolutionizing healthcare scheduling, here
+              From a simple idea to revolutionising healthcare scheduling, here
               are the key milestones in our story.
             </p>
           </div>
@@ -569,7 +569,7 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-gray-600 mt-2">
                     Our technology is used across multiple countries, changing
-                    how organizations build and manage rosters.
+                    how organisations build and manage rosters.
                   </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
@@ -632,7 +632,7 @@ export default function AboutPage() {
               Ready to Transform Your Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join the healthcare organizations already optimizing their
+              Join the healthcare organisations already optimising their
               workforce with RosterLab.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
