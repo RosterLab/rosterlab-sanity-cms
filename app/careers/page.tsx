@@ -59,7 +59,7 @@ export default function CareersPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-6 py-3 rounded-md font-medium transition-colors"
               >
-                Follow for updates (LinkedIn)
+                Follow for updates
               </a>
             </div>
             {/* Team Illustration */}
