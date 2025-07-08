@@ -4,11 +4,23 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
   title: 'ED & ICU Staff Scheduling Software - RosterLab',
   description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
 }
+
+const faqItems = [
+  {
+    question: "Where is my roster stored?",
+    answer: "Good rostering requires good information management. RosterLab's cloud-based platform keeps all your roster information available to your department wherever you have internet access."
+  },
+  {
+    question: "How do I share my roster?",
+    answer: "Staff leave requests and preferences are collated via the RosterLab iOS/Android app, ready for the AI to interpret. When you publish your roster, it is automatically pushed to everyone who needs to see it in the best format for them:\n\n• Shift-based rosters for switchboard and managers.\n• Individually personalised rosters for each person are integrated into their personal calendars."
+  }
+]
 
 export default function ICUEDPage() {
   return (
@@ -94,7 +106,7 @@ export default function ICUEDPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">90% Time Reduction</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">90% Admin Reduction</h3>
               <p className="text-gray-600">
                 Create compliant rosters in minutes instead of days. Spend more time on patient care, less on scheduling.
               </p>
@@ -179,26 +191,14 @@ export default function ICUEDPage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">By the Numbers</h3>
-              <div className="space-y-4">
-                <div className="border-b pb-4">
-                  <div className="text-3xl font-bold text-teal-600">90%</div>
-                  <div className="text-gray-600">Reduction in scheduling time</div>
-                </div>
-                <div className="border-b pb-4">
-                  <div className="text-3xl font-bold text-cyan-600">100%</div>
-                  <div className="text-gray-600">Compliance with staffing ratios</div>
-                </div>
-                <div className="border-b pb-4">
-                  <div className="text-3xl font-bold text-blue-600">85%</div>
-                  <div className="text-gray-600">Staff satisfaction improvement</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-indigo-600">50%</div>
-                  <div className="text-gray-600">Fewer last-minute call-ins</div>
-                </div>
-              </div>
+            <div className="relative">
+              <Image
+                src="/images/placeholder.jpg"
+                alt="ED & ICU scheduling benefits"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-xl w-full h-auto"
+              />
             </div>
           </div>
         </Container>
@@ -281,6 +281,21 @@ export default function ICUEDPage() {
                 <span className="text-indigo-600 text-sm font-medium hover:text-indigo-700">Learn more →</span>
               </div>
             </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Common questions about ED & ICU scheduling
+            </p>
+            <FAQAccordion items={faqItems} />
           </div>
         </Container>
       </section>
