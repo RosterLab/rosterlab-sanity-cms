@@ -28,6 +28,7 @@ export default function AnimationsPage() {
             <SchedulingModule />
           </div>
 
+
           {/* Feature Callouts */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <div className="bg-white rounded-lg p-6 shadow-md text-center">

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import StaffingEnvelopeChart from '@/components/ui/StaffingEnvelopeChart'
 
 export const metadata = {
   title: 'Aged Care Staff Scheduling Software - RosterLab',
@@ -90,7 +91,7 @@ export default function AgedCarePage() {
       {/* Key Benefits */}
       <section className="py-20 bg-white">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Compassionate Care Starts with Smart Scheduling
             </h2>
@@ -99,15 +100,9 @@ export default function AgedCarePage() {
             </p>
           </div>
 
-          {/* Line Graph */}
-          <div className="max-w-4xl mx-auto mt-12">
-            <Image
-              src="/images/Screenshot 2025-07-09 at 9.23.24 am.png"
-              alt="Aged care efficiency metrics line graph"
-              width={800}
-              height={400}
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
+          {/* Staffing Envelope Chart */}
+          <div className="mb-16 max-w-3xl mx-auto">
+            <StaffingEnvelopeChart />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -117,9 +112,9 @@ export default function AgedCarePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">5% Efficiency Gains</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Optimise Staffing</h3>
               <p className="text-gray-600">
-                Optimize staff utilization and reduce costs while maintaining high-quality care standards.
+                Intelligently balance staff allocation across all shifts to ensure optimal coverage while managing costs effectively.
               </p>
             </div>
 
@@ -141,7 +136,7 @@ export default function AgedCarePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Open Shift Management</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Easily Fill Open Shifts</h3>
               <p className="text-gray-600">
                 Fill gaps quickly with smart notifications and preference-based shift allocation.
               </p>
@@ -209,6 +204,22 @@ export default function AgedCarePage() {
                     </p>
                   </div>
                 </div>
+
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Reduce Scheduling Mistakes</h3>
+                    <p className="text-gray-600">
+                      Eliminate double-bookings and understaffing with automated validation and real-time conflict detection.
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -368,7 +379,7 @@ export default function AgedCarePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Staff Preferences & Rules</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Preferences & Rules</h3>
                 <p className="text-sm text-gray-600 mb-3">
                   Configure staff preferences and organizational rules for optimal scheduling.
                 </p>
