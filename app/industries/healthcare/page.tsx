@@ -14,11 +14,11 @@ export default function HealthcarePage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
                 Solutions for{" "}
                 <span className="text-transparent bg-clip-text" style={{
                   backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
@@ -26,8 +26,8 @@ export default function HealthcarePage() {
                   Healthcare
                 </span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                From ICU to aged care, radiology to emergency departments - optimise staffing across your entire healthcare organisation with one intelligent platform.
+              <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
+                We specialise in all types of medical rosters, no matter how complex it is.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/book-a-demo" className="bg-blue-600 text-white hover:bg-blue-700">
@@ -38,13 +38,13 @@ export default function HealthcarePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative mt-6 lg:mt-0">
               <Image
                 src="/images/doctors.svg"
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
               />
             </div>
           </div>
