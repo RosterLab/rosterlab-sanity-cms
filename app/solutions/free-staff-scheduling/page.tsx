@@ -3,6 +3,7 @@ import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import TrustedBy from '@/components/sections/TrustedBy'
 import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiShieldCheck, HiCog, HiAcademicCap } from 'react-icons/hi'
 
 export const metadata = {
@@ -19,6 +20,18 @@ const faqItems = [
   {
     question: "How do I install the employee mobile app?",
     answer: "The RosterLab employee mobile app is available for free on both iOS and Android devices. You can download it directly from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>App Store</a> for iPhone/iPad or from the <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>Google Play Store</a> for Android devices. Once installed, staff can log in with their credentials to access schedules, submit preferences, and receive notifications."
+  },
+  {
+    question: "How do I keep my teams notified and engaged?",
+    answer: "Team members can see their published rosters on the RosterLab app, allowing them to stay updated with their work schedules. They are also able to communicate their preferred shift patterns. This information is integrated into the scheduler view simplifying the communication process. Gone is the search for ambiguous emails and handwritten notes with each person's requests and availability."
+  },
+  {
+    question: "What roster statistics can I view?",
+    answer: "Easily see all the figures you could want to see, such as requests met, hours worked, weekends worked, skill mix on each shift and many more. Set the acceptable range for each day and each person, and the RosterLab app will highlight when you have too few or too many people assigned to each shift or day."
+  },
+  {
+    question: "How does RosterLab help reduce scheduling mistakes?",
+    answer: "With the RosterLab rules engine, you can have a record of all the rules and how they apply to each and every individual staff member. Then when you write the next schedule, see in real time each time you give too many shifts in a row or don't meet someone's minimum contractual hours. See a visual reminder of every person's request before you change their roster."
   }
 ]
 
@@ -91,13 +104,6 @@ export default function ManualSchedulingPage() {
                 </Button>
               </div>
               
-              {/* Free forever notice */}
-              <div className="mt-6">
-                <div className="flex items-center justify-center sm:justify-start gap-4 text-sm text-gray-600">
-                  <span className="font-medium">✓ Free forever</span>
-                  <span className="font-medium">✓ No credit card required</span>
-                </div>
-              </div>
             </div>
             <div className="relative flex justify-center items-center">
               <div className="w-full max-w-lg">
@@ -132,8 +138,8 @@ export default function ManualSchedulingPage() {
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Reduced Rostering Mistakes</h3>
-                    <p className="text-gray-600">Eliminate double-bookings, understaffing, and compliance errors with automated validation and smart conflict detection</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Reduce Rostering Mistakes</h3>
+                    <p className="text-gray-600">Intelligently set up all your staff requirements, rules and individual requests so that the information is at your fingertips.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -141,7 +147,7 @@ export default function ManualSchedulingPage() {
                     <HiTrendingUp className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimise Staffing Coverage</h3>
                     <p className="text-gray-600">Mathematical optimisation ensures the most efficient staff allocation and resource utilisation</p>
                   </div>
                 </div>
@@ -150,7 +156,7 @@ export default function ManualSchedulingPage() {
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Increased Staff Satisfaction</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Increase Staff Satisfaction</h3>
                     <p className="text-gray-600">Fair and balanced schedules improve work-life balance and increase staff retention</p>
                   </div>
                 </div>
@@ -350,23 +356,23 @@ export default function ManualSchedulingPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Features</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-700">Collect staff preferences</span>
+                    <HiCheck className="w-5 h-5 text-green-500" />
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
                     <span className="text-gray-700">Create and distribute rosters online</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Store your data in the cloud</span>
+                    <span className="text-gray-700">Check Roster Statistics (requests met, hours worked, skill mix etc.)</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Access anywhere, anytime</span>
-                    <HiCheck className="w-5 h-5 text-green-500" />
-                  </div>
-                  <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Check Roster Statistics</span>
+                    <span className="text-gray-700">Compliant with union & contractual agreements</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">Collect staff preferences</span>
+                    <span className="text-gray-700">Access anywhere, anytime in the cloud</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
@@ -424,8 +430,15 @@ export default function ManualSchedulingPage() {
         </Container>
       </div>
 
+      {/* Trusted By Section */}
+      <div className="bg-gray-50">
+        <div className="[&>section]:bg-gray-50">
+          <TrustedBy />
+        </div>
+      </div>
+
       {/* FAQ Section */}
-      <div className="bg-gray-50 py-20">
+      <div className="bg-white py-20">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
