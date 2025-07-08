@@ -171,6 +171,17 @@ const nextConfig: NextConfig = {
         destination: '/industries',
         permanent: true,
       },
+      // Healthcare industry redirects
+      {
+        source: '/industries/healthcare/edicu',
+        destination: '/industries/healthcare/ed-icu',
+        permanent: true,
+      },
+      {
+        source: '/industries/healthcare/agedcare',
+        destination: '/industries/healthcare/aged-care',
+        permanent: true,
+      },
     ]
   },
 };

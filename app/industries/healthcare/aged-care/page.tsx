@@ -4,11 +4,23 @@ import Image from 'next/image'
 import Link from 'next/link'
 import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
   title: 'Aged Care Staff Scheduling Software - RosterLab',
   description: 'Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.',
 }
+
+const faqItems = [
+  {
+    question: "What devices can the platform be used on?",
+    answer: "Your schedules are stored safely in the cloud which means you and your teams can access your rosters from anywhere in the world and distribute the published rosters digitally on any device."
+  },
+  {
+    question: "How does the platform help reduce scheduling mistakes?",
+    answer: "With the highly flexible RosterLab Rules Engine, you can create the constraints for your specific schedule and feel safe knowing that the A.I. will never break any hard rules you set. The A.I. will always consider every staff member's skillset and availability, so you won't schedule someone onto a shift they can't work."
+  }
+]
 
 export default function AgedCarePage() {
   return (
@@ -25,7 +37,7 @@ export default function AgedCarePage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Deliver better care with smart rostering. Achieve 5% efficiency gains while eliminating scheduling errors and ensuring full compliance.
+                Deliver better care with smart rostering. Achieve 5% efficiency gains while reducing scheduling errors and ensuring full compliance.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -50,15 +62,15 @@ export default function AgedCarePage() {
                   <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  Easily Fill Open Shifts
+                  Easily fill open shifts
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700">
                   Book a Demo
                 </Button>
-                <Button href="https://app.rosterlab.com/l" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
-                  Get Started
+                <Button href="/contact" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
+                  Contact Us
                 </Button>
               </div>
             </div>
@@ -87,6 +99,17 @@ export default function AgedCarePage() {
             </p>
           </div>
 
+          {/* Line Graph */}
+          <div className="max-w-4xl mx-auto mt-12">
+            <Image
+              src="/images/Screenshot 2025-07-09 at 9.23.24 am.png"
+              alt="Aged care efficiency metrics line graph"
+              width={800}
+              height={400}
+              className="w-full h-auto rounded-lg shadow-lg"
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -106,7 +129,7 @@ export default function AgedCarePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Zero Errors</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Reduce Scheduling Errors</h3>
               <p className="text-gray-600">
                 Eliminate double-bookings, understaffing, and compliance breaches with automated validation.
               </p>
@@ -132,38 +155,13 @@ export default function AgedCarePage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <div className="bg-white rounded-lg shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Proven Results</h3>
-                <div className="space-y-6">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-xl font-bold text-teal-600">100%</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Compliant</h4>
-                      <p className="text-sm text-gray-600">Meet all regulatory requirements automatically</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-2xl font-bold text-cyan-600">95%</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Time Saved</h4>
-                      <p className="text-sm text-gray-600">On roster creation and management</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-xl font-bold text-blue-600">100%</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Fairer Schedules</h4>
-                      <p className="text-sm text-gray-600">Equitable distribution of shifts and workload</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Image
+                src="/images/illustration/Push notifications-pana-2 copy.svg"
+                alt="Aged care scheduling illustration"
+                width={600}
+                height={400}
+                className="block w-full h-auto rounded-lg"
+              />
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -221,7 +219,10 @@ export default function AgedCarePage() {
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              COMPLETE WORKFLOW
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
               Your Complete Aged Care Rostering Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -229,72 +230,120 @@ export default function AgedCarePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Link href="/feature/preferences-rules" className="relative group">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="text-3xl font-bold text-gray-400 mb-3">01</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Set Care Requirements</h3>
-                <p className="text-gray-600 mb-3">
-                  Define staffing ratios, skill requirements, and care levels for each unit or wing.
-                </p>
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Step 1 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Set Care Requirements
+                    </h3>
+                    <p className="text-gray-600">
+                      Define staffing ratios, skill requirements, and care levels for each unit or wing.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Link>
 
-            <Link href="/feature/self-scheduling" className="relative group">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="text-3xl font-bold text-gray-400 mb-3">02</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Collect Preferences</h3>
-                <p className="text-gray-600 mb-3">
-                  Staff submit availability and shift preferences through the mobile app.
-                </p>
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+              {/* Step 2 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Collect Preferences
+                    </h3>
+                    <p className="text-gray-600">
+                      Staff submit availability and shift preferences through the mobile app.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Link>
 
-            <Link href="/feature/auto-roster-generation" className="relative group">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="text-3xl font-bold text-gray-400 mb-3">03</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Generate Optimal Roster</h3>
-                <p className="text-gray-600 mb-3">
-                  AI creates compliant schedules balancing all requirements in minutes.
-                </p>
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+              {/* Step 3 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Generate Optimal Roster
+                    </h3>
+                    <p className="text-gray-600">
+                      AI creates compliant schedules balancing all requirements in minutes.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Link>
 
-            <Link href="/solutions/staff-roster-mobile-app" className="relative group">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="text-3xl font-bold text-gray-400 mb-3">04</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Publish & Notify</h3>
-                <p className="text-gray-600 mb-3">
-                  Share rosters instantly with automatic notifications and calendar sync.
-                </p>
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+              {/* Step 4 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">4</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Publish & Notify
+                    </h3>
+                    <p className="text-gray-600">
+                      Share rosters instantly with automatic notifications and calendar sync.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Link>
 
-            <Link href="/feature/shift-swaps" className="relative group">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="text-3xl font-bold text-gray-400 mb-3">05</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Manage Changes</h3>
-                <p className="text-gray-600 mb-3">
-                  Handle sick leave, swaps, and emergencies while maintaining compliance.
-                </p>
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+              {/* Step 5 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">5</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Manage Changes
+                    </h3>
+                    <p className="text-gray-600">
+                      Handle sick leave, swaps, and emergencies while maintaining compliance.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Link>
 
-            <Link href="/feature/payroll-integration" className="relative group">
-              <div className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="text-3xl font-bold text-gray-400 mb-3">06</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Export to Payroll</h3>
-                <p className="text-gray-600 mb-3">
-                  Seamlessly integrate with payroll systems for accurate, timely processing.
-                </p>
-                <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+              {/* Step 6 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">6</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Export to Payroll
+                    </h3>
+                    <p className="text-gray-600">
+                      Seamlessly integrate with payroll systems for accurate, timely processing.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Link>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-6">
+                Ready to streamline your aged care scheduling?
+              </p>
+              <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3">
+                See How It Works
+              </Button>
+            </div>
           </div>
         </Container>
       </section>
@@ -312,25 +361,40 @@ export default function AgedCarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/shift-swaps" className="block">
+            <Link href="/feature/preferences-rules" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Shift Swaps</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">Staff Preferences & Rules</h3>
                 <p className="text-sm text-gray-600 mb-3">
-                  Enable staff to easily swap shifts with automated approval workflows.
+                  Configure staff preferences and organizational rules for optimal scheduling.
                 </p>
                 <span className="text-teal-600 text-sm font-medium hover:text-teal-700">Learn more →</span>
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Shift Swaps & Trades</h3>
+                <p className="text-sm text-gray-600 mb-3">
+                  Enable staff to easily swap shifts with automated approval workflows.
+                </p>
+                <span className="text-cyan-600 text-sm font-medium hover:text-cyan-700">Learn more →</span>
+              </div>
+            </Link>
+
+            <Link href="/feature/auto-roster-generation" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                   </svg>
                 </div>
@@ -338,24 +402,10 @@ export default function AgedCarePage() {
                 <p className="text-sm text-gray-600 mb-3">
                   Create compliant schedules in minutes with AI-powered optimisation.
                 </p>
-                <span className="text-cyan-600 text-sm font-medium hover:text-cyan-700">Learn more →</span>
-              </div>
-            </Link>
-
-            <Link href="/solutions/staff-roster-mobile-app" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Available on Mobile</h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  Access rosters, swap shifts, and manage schedules from any device.
-                </p>
                 <span className="text-blue-600 text-sm font-medium hover:text-blue-700">Learn more →</span>
               </div>
             </Link>
+
 
             <Link href="/feature/re-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
@@ -378,6 +428,21 @@ export default function AgedCarePage() {
       {/* Trusted By */}
       <section className="py-20 bg-white">
         <TrustedBy />
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Common questions about aged care scheduling
+            </p>
+            <FAQAccordion items={faqItems} />
+          </div>
+        </Container>
       </section>
 
       {/* CTA Section */}

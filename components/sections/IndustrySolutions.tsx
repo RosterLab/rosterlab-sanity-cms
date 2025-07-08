@@ -46,7 +46,7 @@ export default function IndustrySolutions() {
             </div>
             
             <div className="space-y-4 mb-8">
-              <Link href="/industries/healthcare/edicu" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
+              <Link href="/industries/healthcare/ed-icu" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">ICU/ED</h4>
@@ -64,7 +64,7 @@ export default function IndustrySolutions() {
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
-              <Link href="/industries/healthcare/agedcare" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
+              <Link href="/industries/healthcare/aged-care" className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">Aged Care</h4>

@@ -46,8 +46,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
       title: 'Industries',
       subItems: [
         { title: 'Healthcare', link: '/industries/healthcare' },
-        { title: 'ICU/ED', link: '/industries/healthcare/edicu' },
-        { title: 'Aged Care', link: '/industries/healthcare/agedcare' },
+        { title: 'ICU/ED', link: '/industries/healthcare/ed-icu' },
+        { title: 'Aged Care', link: '/industries/healthcare/aged-care' },
         { title: 'Radiology', link: '/industries/healthcare/radiology' },
         { title: 'See All Industries', link: '/industries' },
       ]
@@ -294,7 +294,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   </div>
                                 </Link>
                                 <Link
-                                  href="/industries/healthcare/edicu"
+                                  href="/industries/healthcare/ed-icu"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -311,7 +311,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             <div>
                               <div className="space-y-1 mt-8">
                                 <Link
-                                  href="/industries/healthcare/agedcare"
+                                  href="/industries/healthcare/aged-care"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">

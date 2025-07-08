@@ -110,7 +110,7 @@ export default function HealthcarePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* ICU/ED Card */}
-            <Link href="/industries/healthcare/edicu" className="group">
+            <Link href="/industries/healthcare/ed-icu" className="group">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
                 <div className="h-48 relative overflow-hidden">
                   <Image
@@ -138,7 +138,7 @@ export default function HealthcarePage() {
             </Link>
 
             {/* Aged Care Card */}
-            <Link href="/industries/healthcare/agedcare" className="group">
+            <Link href="/industries/healthcare/aged-care" className="group">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
                 <div className="h-48 relative overflow-hidden">
                   <Image
