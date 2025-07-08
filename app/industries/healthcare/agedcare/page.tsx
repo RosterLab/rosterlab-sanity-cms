@@ -27,6 +27,32 @@ export default function AgedCarePage() {
               <p className="text-xl text-gray-600 mb-8">
                 Deliver better care with smart rostering. Achieve 5% efficiency gains while eliminating scheduling errors and ensuring full compliance.
               </p>
+              <div className="mb-8 space-y-2">
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  More efficiently allocate staffing hours
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Eliminate costly scheduling errors
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Digitise your rostering practices
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  Easily Fill Open Shifts
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700">
                   Book a Demo
@@ -34,20 +60,6 @@ export default function AgedCarePage() {
                 <Button href="https://app.rosterlab.com/l" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
                   Get Started
                 </Button>
-              </div>
-              <div className="mt-6 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Free digital scheduling forever
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  No credit card required
-                </p>
               </div>
             </div>
             <div className="relative">

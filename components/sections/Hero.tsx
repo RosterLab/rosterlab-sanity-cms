@@ -1,5 +1,6 @@
 import Button from "@/components/ui/Button";
 import RosterGenerator from "@/components/ui/RosterGenerator";
+import { HiCheck } from 'react-icons/hi';
 
 export default function Hero() {
   return (
@@ -37,7 +38,7 @@ export default function Hero() {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <Button
                 href="/book-a-demo"
                 className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
@@ -51,6 +52,18 @@ export default function Hero() {
               >
                 See an Example
               </Button>
+            </div>
+
+            {/* Feature ticks */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <div className="flex items-center gap-2">
+                <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <span className="text-sm text-gray-700">Made for healthcare and complex industries</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <span className="text-sm text-gray-700">Free staff mobile app</span>
+              </div>
             </div>
           </div>
 

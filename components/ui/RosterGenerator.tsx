@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { HiCheck, HiRefresh } from 'react-icons/hi'
+import { HiCheck, HiRefresh, HiPlus } from 'react-icons/hi'
+import Link from 'next/link'
 
 export default function RosterGenerator() {
   const [progress, setProgress] = useState(0)
@@ -30,7 +31,12 @@ export default function RosterGenerator() {
   
   return (
     <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden max-w-2xl mx-auto">
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 relative">
+        <div className="absolute top-4 right-4">
+          <div className="bg-white/20 rounded-lg p-2">
+            <HiPlus className="w-5 h-5 text-white" />
+          </div>
+        </div>
         <h3 className="text-lg font-semibold text-white">AI Roster Generator</h3>
         <p className="text-sm text-blue-100 mt-1">Automated scheduling with swap optimization</p>
       </div>
@@ -78,7 +84,7 @@ export default function RosterGenerator() {
             </div>
             <div className="bg-green-50 rounded-lg p-3 text-center">
               <p className="text-2xl font-bold text-green-600">336</p>
-              <p className="text-xs text-gray-600 mt-1">Shifts to Fill</p>
+              <p className="text-xs text-gray-600 mt-1">Rules & Preferences Met</p>
             </div>
             <div className="bg-purple-50 rounded-lg p-3 text-center">
               <p className="text-2xl font-bold text-purple-600">12</p>
@@ -97,7 +103,7 @@ export default function RosterGenerator() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              Generate Roster
+              Generate Healthcare Roster
             </button>
           ) : isGenerating ? (
             <button
@@ -111,10 +117,12 @@ export default function RosterGenerator() {
             </button>
           ) : (
             <>
-              <button className="flex-1 bg-green-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
-                <HiCheck className="w-4 h-4" />
-                View Roster
-              </button>
+              <Link href="/book-a-demo" className="flex-1">
+                <button className="w-full bg-green-600 text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
+                  <HiCheck className="w-4 h-4" />
+                  View Roster
+                </button>
+              </Link>
               <button
                 onClick={() => setProgress(0)}
                 className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"

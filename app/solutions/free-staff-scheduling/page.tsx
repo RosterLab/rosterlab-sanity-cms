@@ -17,8 +17,8 @@ const faqItems = [
     answer: "The <a href='/solutions/ai-schedules' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform, however if you're looking for a free digital scheduling solution we still offer great features that are better than using manual spreadsheets."
   },
   {
-    question: "How much time and cost savings can we expect?",
-    answer: "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size."
+    question: "How do I install the employee mobile app?",
+    answer: "The RosterLab employee mobile app is available for free on both iOS and Android devices. You can download it directly from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>App Store</a> for iPhone/iPad or from the <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>Google Play Store</a> for Android devices. Once installed, staff can log in with their credentials to access schedules, submit preferences, and receive notifications."
   }
 ]
 
@@ -28,16 +28,16 @@ const painPoints = [
     description: 'Multiple versions, lost updates, and formula errors making scheduling a nightmare. Try digital scheduling - it\'s free forever.'
   },
   {
-    title: '100% Compliant',
-    description: 'Ensure all schedules meet regulatory requirements and overtime rules with automatic compliance checking'
+    title: 'Free forever',
+    description: 'No hidden fees, no credit card required. Get started with digital scheduling at no cost and stay free forever'
   },
   {
     title: 'Seamless Communication',
     description: 'Keep your team informed with real-time updates and easy shift swapping through our mobile app'
   },
   {
-    title: 'Reduce admin by 95%',
-    description: 'Transform hours of manual scheduling into minutes with our intelligent digital platform'
+    title: 'On the go mobile app',
+    description: 'Staff can view schedules, swap shifts, and request leave from anywhere with our free iOS and Android apps'
   }
 ]
 
@@ -50,9 +50,6 @@ export default function ManualSchedulingPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="pb-8 lg:pb-12">
-              <div className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
-                SMART DIGITAL SCHEDULING
-              </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Your free digital scheduling tool
               </h1>
@@ -61,35 +58,27 @@ export default function ManualSchedulingPage() {
               </p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
+                  <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
                   <span className="text-gray-700 font-medium">Skill and seniority rostering</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
+                  <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
                   <span className="text-gray-700 font-medium">Seamlessly integrate your long and short term rosters</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
+                  <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
                   <span className="text-gray-700 font-medium">Fair workload balancing from the get go</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
+                  <svg className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
                   <span className="text-gray-700 font-medium">Move away from spreadsheets and into the cloud</span>
                 </div>
               </div>
@@ -125,39 +114,14 @@ export default function ManualSchedulingPage() {
         </Container>
       </div>
 
-      {/* Pain Points Section */}
-      <div className="bg-gray-50 py-20">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Having a headache making rosters for shift workers?
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              You&apos;re not alone. Teams waste hours each week struggling with outdated scheduling methods.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {painPoints.map((point, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 hover:-translate-y-1 cursor-pointer">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {point.title}
-                </h3>
-                <p className="text-gray-600">
-                  {point.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </div>
 
       {/* Intelligent Scheduling Section */}
-      <div className="bg-white py-20">
+      <div className="bg-gray-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Say Goodbye to Spreadsheets
+                Your Dedicated Rostering App
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Our digital platform transforms manual scheduling into an efficient process that balances staff preferences, operational requirements, and compliance needs. Experience smarter workforce management without the spreadsheet hassle.
@@ -168,8 +132,8 @@ export default function ManualSchedulingPage() {
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Time Reduction</h3>
-                    <p className="text-gray-600">Generate complex rosters in minutes instead of days with our digital scheduling platform</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Reduced Rostering Mistakes</h3>
+                    <p className="text-gray-600">Eliminate double-bookings, understaffing, and compliance errors with automated validation and smart conflict detection</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -194,7 +158,7 @@ export default function ManualSchedulingPage() {
             </div>
             <div className="w-full max-w-[600px]">
               <Image
-                src="/images/free product/Group 6526.webp"
+                src="/images/illustration/Devices-pana.svg"
                 alt="Say Goodbye to Spreadsheets"
                 width={600}
                 height={400}
@@ -206,60 +170,8 @@ export default function ManualSchedulingPage() {
         </Container>
       </div>
 
-      {/* Advanced AI Capabilities Section */}
-      <div className="bg-gray-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="order-2 lg:order-1">
-              <Image
-                src="/images/illustration/Push notifications-pana-2 copy.svg"
-                alt="Free Employee Mobile App"
-                width={600}
-                height={500}
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Free Employee Mobile App
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Keep your team connected with our free mobile app. Staff can view schedules, swap shifts, and receive important updates anytime, anywhere.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Real-time push notifications</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">View schedules on the go</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Easy shift swapping</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Leave requests and availability</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Available on <a href="https://apps.apple.com/nz/app/rosterlab/id6448819917" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.rosterlab.app" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Android</a></span>
-                </div>
-              </div>
-              <div className="mt-8">
-                <Button href="/solutions/staff-roster-mobile-app" className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3">
-                  Learn More About Mobile App
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div>
-
       {/* Six Steps Section */}
-      <div className="bg-gradient-to-b from-white to-gray-50 py-20">
+      <div className="bg-white py-20">
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
@@ -321,7 +233,7 @@ export default function ManualSchedulingPage() {
                       Build your schedule
                     </h3>
                     <p className="text-gray-600">
-                      Create schedules using our drag-and-drop interface. Copy patterns from previous weeks to save time.
+                      Create schedules using our simple and intuitive interface.
                     </p>
                   </div>
                 </div>
@@ -393,12 +305,12 @@ export default function ManualSchedulingPage() {
       </div>
 
       {/* Compliance Section */}
-      <div className="bg-white py-20">
+      <div className="bg-gray-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Built-in Compliance
+                Say Goodbye to Spreadsheets
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Stay compliant with complex healthcare regulations and union agreements automatically. Our platform understands and enforces all relevant rules and constraints.
@@ -435,29 +347,77 @@ export default function ManualSchedulingPage() {
             </div>
             <div>
               <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Compliance Features</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Features</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Fatigue Management</span>
+                    <span className="text-gray-700">Create and distribute rosters online</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Union Agreement Rules</span>
+                    <span className="text-gray-700">Store your data in the cloud</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Minimum Rest Periods</span>
+                    <span className="text-gray-700">Access anywhere, anytime</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-700">Maximum Work Hours</span>
+                    <span className="text-gray-700">Check Roster Statistics</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">Skills & Certifications</span>
+                    <span className="text-gray-700">Collect staff preferences</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Advanced AI Capabilities Section */}
+      <div className="bg-white py-20">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <Image
+                src="/images/illustration/free-staff-mobile.svg"
+                alt="Free Employee Mobile App"
+                width={600}
+                height={500}
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Free Employee Mobile App
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Keep your team connected with our free mobile app. Staff can view schedules, share their preferences, and receive important updates anytime, anywhere.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Real-time push notifications</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">View schedules on the go</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Share Staff Preferences</span>
+                </div>
+                <div className="flex items-center">
+                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">Available on <a href="https://apps.apple.com/nz/app/rosterlab/id6448819917" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.rosterlab.app" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Android</a></span>
+                </div>
+              </div>
+              <div className="mt-8">
+                <Button href="/solutions/staff-roster-mobile-app" className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3">
+                  Learn More About Mobile App
+                </Button>
               </div>
             </div>
           </div>

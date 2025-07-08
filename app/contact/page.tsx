@@ -17,7 +17,7 @@ const faqItems = [
   },
   {
     question: "Do you offer training?",
-    answer: "Yes! We provide comprehensive training for all users and ongoing support to ensure success."
+    answer: "Yes! We provide comprehensive training for paid users and ongoing support to ensure success."
   },
   {
     question: "Can you integrate with our existing systems?",
