@@ -1,17 +1,18 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import Image from 'next/image'
-import SiteLayout from '@/components/layout/SiteLayout'
-import { HiMail, HiLightBulb, HiScale, HiTrendingUp } from 'react-icons/hi'
-import { FaLinkedin } from 'react-icons/fa'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+import SiteLayout from "@/components/layout/SiteLayout";
+import { HiMail, HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
+import { FaLinkedin } from "react-icons/fa";
 
 export const metadata = {
-  title: 'About Us - Meet the Team Behind RosterLab',
-  description: 'Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.',
+  title: "About Us - Meet the Team Behind RosterLab",
+  description:
+    "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
   other: {
-    'link': '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />'
-  }
-}
+    link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
+  },
+};
 
 export default function AboutPage() {
   return (
@@ -24,20 +25,32 @@ export default function AboutPage() {
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 About{" "}
-                <span className="text-transparent bg-clip-text" style={{
-                  backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
-                }}>
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  }}
+                >
                   RosterLab
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                We&apos;re revolutionizing workforce management with AI-powered scheduling solutions that save time, reduce costs, and improve staff satisfaction.
+                We&apos;re revolutionizing workforce management with AI-powered
+                scheduling solutions that save time, reduce costs, and improve
+                staff satisfaction.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="/careers" className="bg-blue-600 text-white hover:bg-blue-700">
+                <Button
+                  href="/careers"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
+                >
                   View Open Positions
                 </Button>
-                <Button href="/contact" className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50">
+                <Button
+                  href="/contact"
+                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
+                >
                   Contact Us
                 </Button>
               </div>
@@ -45,7 +58,10 @@ export default function AboutPage() {
 
             {/* Timeline Illustration */}
             <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-2xl relative" style={{ aspectRatio: '600/400' }}>
+              <div
+                className="w-full max-w-2xl relative"
+                style={{ aspectRatio: "600/400" }}
+              >
                 <Image
                   src="/images/illustration/Timeline-pana.svg"
                   alt="Timeline illustration"
@@ -72,12 +88,18 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                To solve one of the most complex organizational challenges - workforce scheduling - through innovative AI and mathematical optimization algorithms.
+                To solve one of the most complex organizational challenges -
+                workforce scheduling - through innovative AI and mathematical
+                optimization algorithms.
               </p>
               <p className="text-lg text-gray-600 mb-8 text-center italic">
-                "We believe that fair, efficient, and optimized rosters are the foundation of happy teams and successful organizations."
+                "We believe that fair, efficient, and optimized rosters are the
+                foundation of happy teams and successful organizations."
               </p>
-              <Button href="/book-a-demo" className="bg-blue-600 text-white hover:bg-blue-700">
+              <Button
+                href="/book-a-demo"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
                 See How We Do It
               </Button>
             </div>
@@ -105,9 +127,12 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <HiLightBulb className="w-8 h-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Innovation</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Innovation
+              </h3>
               <p className="text-gray-600">
-                We push the boundaries of what&apos;s possible with cutting-edge AI and optimization algorithms.
+                We push the boundaries of what&apos;s possible with cutting-edge
+                AI and optimization algorithms.
               </p>
             </div>
             <div className="text-center">
@@ -116,7 +141,8 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
               <p className="text-gray-600">
-                Every solution we build prioritizes equitable treatment and work-life balance for all staff.
+                Every solution we build prioritizes equitable treatment and
+                work-life balance for all staff.
               </p>
             </div>
             <div className="text-center">
@@ -125,7 +151,8 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Impact</h3>
               <p className="text-gray-600">
-                We measure success by time saved, stress reduced & lives improved through better scheduling.
+                We measure success by time saved, stress reduced & lives
+                improved through better scheduling.
               </p>
             </div>
           </div>
@@ -139,14 +166,18 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Meet the Team
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our diverse team combines expertise in AI, healthcare operations, and workforce management to deliver innovative scheduling solutions.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              Our diverse team combines expertise in optimisation, AI,
+              healthcare operations, and workforce management to deliver
+              innovative rostering solutions.
             </p>
           </div>
-          
+
           {/* Leadership Team */}
           <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">The Founding Team</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+              The Founding Team
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
@@ -158,10 +189,18 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">Isaac Cleland, PhD</h4>
-                  <p className="text-blue-600 font-medium mb-3">Founder & CEO</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-1">
+                    Isaac Cleland, PhD
+                  </h4>
+                  <p className="text-blue-600 font-medium mb-3">
+                    Founder & CEO
+                  </p>
                   <p className="text-sm text-gray-600 mb-4">
-                    Visionary leader in workforce optimization and AI-driven scheduling solutions for healthcare organizations.
+                    Isaac is the brain behind our AI rostering engine. With a
+                    PhD in workforce optimisation, he leads the development of
+                    our core algorithms and technology. As the CEO, he brings
+                    vision to the impact that RosterLab delivers for healthcare
+                    teams.
                   </p>
                   <div className="flex items-center justify-center gap-4">
                     <a
@@ -183,7 +222,7 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
@@ -194,10 +233,18 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">Sunny Feng</h4>
-                  <p className="text-blue-600 font-medium mb-3">Co-Founder - Product & Marketing</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-1">
+                    Sunny Feng
+                  </h4>
+                  <p className="text-blue-600 font-medium mb-3">
+                    Co-Founder - Product & Marketing
+                  </p>
                   <p className="text-sm text-gray-600 mb-4">
-                    Product visionary with deep expertise in healthcare operations and user-centred design for complex scheduling systems.
+                    Sunny leads our product and marketing strategy, shaping the
+                    vision behind what we build and how we bring it to the
+                    world. She's passionate about creating intuitive, impactful
+                    tools that are user-centric and truly support healthcare
+                    teams and the people who rely on them.
                   </p>
                   <div className="flex items-center justify-center gap-4">
                     <a
@@ -219,7 +266,7 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
@@ -230,10 +277,17 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">Daniel Ge</h4>
-                  <p className="text-blue-600 font-medium mb-3">Co-Founder - Sales & Implementation</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-1">
+                    Daniel Ge
+                  </h4>
+                  <p className="text-blue-600 font-medium mb-3">
+                    Co-Founder - Sales & Implementation
+                  </p>
                   <p className="text-sm text-gray-600 mb-4">
-                    Expert architect of advanced rostering algorithms and optimization strategies for complex workforce scheduling challenges.
+                    Daniel works closely with customers, bringing a deep
+                    understanding of healthcare rostering challenges. He ensures
+                    our solutions meet real-world needs and make a difference
+                    from day one.
                   </p>
                   <div className="flex items-center justify-center gap-4">
                     <a
@@ -257,11 +311,13 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Core Team */}
           <div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">Our Advisors & Board Members</h3>
-            
+            <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
+              Our Advisors & Board Members
+            </h3>
+
             {/* Investor Logos */}
             <div className="mb-12">
               <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
@@ -312,15 +368,20 @@ export default function AboutPage() {
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <span className="text-2xl font-bold text-blue-800">MN</span>
                 </div>
                 <h4 className="font-semibold text-gray-900 mb-1">Mohan Nair</h4>
-                <p className="text-sm text-blue-600 mb-2">Independent Board Chair</p>
-                <p className="text-xs text-gray-600 mb-3">Providing strategic leadership and governance oversight to guide RosterLab's growth.</p>
+                <p className="text-sm text-blue-600 mb-2">
+                  Independent Board Chair
+                </p>
+                <p className="text-xs text-gray-600 mb-3">
+                  Providing strategic leadership and governance oversight to
+                  guide RosterLab's growth.
+                </p>
                 <a
                   href="https://www.linkedin.com/in/mohanemerge"
                   target="_blank"
@@ -331,14 +392,19 @@ export default function AboutPage() {
                   <FaLinkedin className="w-5 h-5" />
                 </a>
               </div>
-              
+
               <div className="bg-white rounded-lg p-6 text-center">
                 <div className="w-24 h-24 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <span className="text-2xl font-bold text-slate-800">DB</span>
                 </div>
-                <h4 className="font-semibold text-gray-900 mb-1">David Beard</h4>
+                <h4 className="font-semibold text-gray-900 mb-1">
+                  David Beard
+                </h4>
                 <p className="text-sm text-blue-600 mb-2">Board Member</p>
-                <p className="text-xs text-gray-600 mb-3">Bringing extensive industry expertise to help shape RosterLab's strategic direction.</p>
+                <p className="text-xs text-gray-600 mb-3">
+                  Bringing extensive industry expertise to help shape
+                  RosterLab's strategic direction.
+                </p>
                 <a
                   href="https://www.linkedin.com/in/david-beard-99110216/"
                   target="_blank"
@@ -351,14 +417,21 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          
+
           {/* Join Us CTA */}
           <div className="mt-16 text-center bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Join Our Growing Team</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Join Our Growing Team
+            </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              We're always looking for talented individuals passionate about solving complex scheduling challenges and improving healthcare operations.
+              We're always looking for talented individuals passionate about
+              solving complex scheduling challenges and improving healthcare
+              operations.
             </p>
-            <Button href="/careers" className="bg-blue-600 text-white hover:bg-blue-700">
+            <Button
+              href="/careers"
+              className="bg-blue-600 text-white hover:bg-blue-700"
+            >
               View Open Positions
             </Button>
           </div>
@@ -373,12 +446,13 @@ export default function AboutPage() {
               Our Journey
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From a simple idea to revolutionizing healthcare scheduling, here are the key milestones in our story.
+              From a simple idea to revolutionizing healthcare scheduling, here
+              are the key milestones in our story.
             </p>
           </div>
 
           {/* Timeline */}
-          <div className="mx-auto" style={{ maxWidth: '1200px' }}>
+          <div className="mx-auto" style={{ maxWidth: "1200px" }}>
             <div className="relative">
               {/* Vertical line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-300"></div>
@@ -386,32 +460,53 @@ export default function AboutPage() {
               {/* Milestone 1 - PhD Research */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <h3 className="text-xl font-bold text-gray-900">The Idea Began</h3>
-                  <p className="text-gray-600 mt-2">The idea began with Isaac's PhD research in roster optimisation at the University of Auckland, where he explored how algorithms could dramatically improve healthcare rostering.</p>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    The Idea Began
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    The idea began with Isaac's PhD research in roster
+                    optimisation at the University of Auckland, where he
+                    explored how algorithms could dramatically improve
+                    healthcare rostering.
+                  </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <p className="text-lg font-semibold text-gray-700">University Research</p>
+                  <p className="text-lg font-semibold text-gray-700">
+                    University Research
+                  </p>
                 </div>
               </div>
 
               {/* Milestone 2 - World Champions */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <p className="text-lg font-semibold text-gray-700">International Recognition</p>
+                  <p className="text-lg font-semibold text-gray-700">
+                    International Recognition
+                  </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <h3 className="text-xl font-bold text-gray-900">World Champions In Automatic Rostering</h3>
-                  <p className="text-gray-600 mt-2">Our underlying technology has found the most optimal solution to the International Nurse Rostering Competition.</p>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    World Champions In Automatic Rostering
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    Our underlying technology has found the most optimal
+                    solution to the International Nurse Rostering Competition.
+                  </p>
                 </div>
               </div>
 
               {/* Milestone 3 - Velocity Competition */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <h3 className="text-xl font-bold text-gray-900">Velocity Innovation Competition Winners</h3>
-                  <p className="text-gray-600 mt-2">We won first place in the Velocity Innovation competition hosted by the University Of Auckland in 2020.</p>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Velocity Innovation Competition Winners
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    We won first place in the Velocity Innovation competition
+                    hosted by the University Of Auckland in 2020.
+                  </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
@@ -426,16 +521,27 @@ export default function AboutPage() {
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <h3 className="text-xl font-bold text-gray-900">RosterLab Founded</h3>
-                  <p className="text-gray-600 mt-2">RosterLab was founded by Daniel, Sunny, and Isaac - a team united by a shared mission to fix broken rostering systems in complex industries like healthcare.</p>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    RosterLab Founded
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    RosterLab was founded by Daniel, Sunny, and Isaac - a team
+                    united by a shared mission to fix broken rostering systems
+                    in complex industries like healthcare.
+                  </p>
                 </div>
               </div>
 
               {/* Milestone 5 - Global Expansion */}
               <div className="relative flex items-center justify-between mb-16">
                 <div className="w-5/12 text-right pr-8">
-                  <h3 className="text-xl font-bold text-gray-900">Bringing Solutions to the World</h3>
-                  <p className="text-gray-600 mt-2">Our technology is used across multiple countries, changing how organizations build and manage rosters.</p>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Bringing Solutions to the World
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    Our technology is used across multiple countries, changing
+                    how organizations build and manage rosters.
+                  </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
@@ -450,8 +556,15 @@ export default function AboutPage() {
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
                 <div className="w-5/12 pl-8">
-                  <h3 className="text-xl font-bold text-gray-900">Real-World Impact</h3>
-                  <p className="text-gray-600 mt-2">Today, our staff rostering software is used by hundreds of shift-working professionals across healthcare and other industries, transforming the way people work and fostering a safer, happier workplace culture.</p>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Real-World Impact
+                  </h3>
+                  <p className="text-gray-600 mt-2">
+                    Today, our staff rostering software is used by hundreds of
+                    shift-working professionals across healthcare and other
+                    industries, transforming the way people work and fostering a
+                    safer, happier workplace culture.
+                  </p>
                 </div>
               </div>
             </div>
@@ -464,34 +577,44 @@ export default function AboutPage() {
         <Container>
           <div className="max-w-4xl mx-auto">
             <div className="p-8 bg-gray-50 rounded-lg shadow-lg border-l-4 border-blue-500 text-center">
-              <p className="text-xl text-gray-800 italic mb-4">"RosterLab has become integral to our operations planning, we can't imagine reverting to manual rostering."</p>
-              <p className="text-gray-600 font-medium">— Duty Manager, MoM Singapore</p>
+              <p className="text-xl text-gray-800 italic mb-4">
+                "RosterLab has become integral to our operations planning, we
+                can't imagine reverting to manual rostering."
+              </p>
+              <p className="text-gray-600 font-medium">
+                — Duty Manager, MoM Singapore
+              </p>
             </div>
           </div>
         </Container>
       </div>
 
       {/* CTA Section */}
-      <div className="py-20" style={{
-        background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
-      }}>
+      <div
+        className="py-20"
+        style={{
+          background:
+            "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+        }}
+      >
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl font-bold mb-4">
               Ready to Transform Your Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join the healthcare organizations already optimizing their workforce with RosterLab.
+              Join the healthcare organizations already optimizing their
+              workforce with RosterLab.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                href="/book-a-demo" 
+              <Button
+                href="/book-a-demo"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4"
               >
                 Book a Demo
               </Button>
-              <Button 
-                href="/contact" 
+              <Button
+                href="/contact"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4"
               >
                 Contact Us
@@ -500,7 +623,6 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
-
     </SiteLayout>
-  )
+  );
 }
