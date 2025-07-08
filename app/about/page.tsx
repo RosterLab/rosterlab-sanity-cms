@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
-import { HiMail, HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
+import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
 
 export const metadata = {
@@ -24,7 +24,7 @@ export default function AboutPage() {
             {/* Text Content */}
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                About{" "}
+                The RosterLab{" "}
                 <span
                   className="text-transparent bg-clip-text"
                   style={{
@@ -32,13 +32,12 @@ export default function AboutPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  RosterLab
+                  Story
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                We&apos;re revolutionizing workforce management with AI-powered
-                scheduling solutions that save time, reduce costs, and improve
-                staff satisfaction.
+                We transform the way rostering works, making it faster, safer,
+                and more efficient.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -85,16 +84,21 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Our Mission
+                Our Company
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                To solve one of the most complex organizational challenges -
-                workforce scheduling - through innovative AI and mathematical
-                optimization algorithms.
+                Safer and more flexible schedules for healthcare professionals
+                are essential. But the intricacies and amount of information
+                that a human needs to handle is far more overwhelming. It is
+                crucial that business requirements are met, but also that staff
+                are working safely while still having a balance between work and
+                life.
               </p>
-              <p className="text-lg text-gray-600 mb-8 text-center italic">
-                "We believe that fair, efficient, and optimized rosters are the
-                foundation of happy teams and successful organizations."
+              <p className="text-lg text-gray-600 mb-8">
+                That's why we are here. We automate the rostering process using
+                world-leading technology that no one else can match, allowing
+                your team to spend less time rostering and more time on what
+                truly matters.
               </p>
               <Button
                 href="/book-a-demo"
@@ -141,8 +145,8 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
               <p className="text-gray-600">
-                Every solution we build prioritizes equitable treatment and
-                work-life balance for all staff.
+                The solution we build prioritises workplace safety, staff
+                equity, and operational efficiency.
               </p>
             </div>
             <div className="text-center">
@@ -152,7 +156,7 @@ export default function AboutPage() {
               <h3 className="text-xl font-bold text-gray-900 mb-4">Impact</h3>
               <p className="text-gray-600">
                 We measure success by time saved, stress reduced & lives
-                improved through better scheduling.
+                improved through better rostering.
               </p>
             </div>
           </div>
@@ -189,27 +193,10 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">
-                    Isaac Cleland, PhD
-                  </h4>
-                  <p className="text-blue-600 font-medium mb-3">
-                    Founder & CEO
-                  </p>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Isaac is the brain behind our AI rostering engine. With a
-                    PhD in workforce optimisation, he leads the development of
-                    our core algorithms and technology. As the CEO, he brings
-                    vision to the impact that RosterLab delivers for healthcare
-                    teams.
-                  </p>
-                  <div className="flex items-center justify-center gap-4">
-                    <a
-                      href="mailto:isaac@rosterlab.com"
-                      className="text-gray-600 hover:text-blue-600 transition-colors"
-                      aria-label="Email Isaac"
-                    >
-                      <HiMail className="w-5 h-5" />
-                    </a>
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="text-xl font-bold text-gray-900">
+                      Isaac Cleland, PhD
+                    </h4>
                     <a
                       href="https://www.linkedin.com/in/isaac-cleland-01652387/"
                       target="_blank"
@@ -220,6 +207,15 @@ export default function AboutPage() {
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                   </div>
+                  <p className="text-blue-600 font-medium mb-3">
+                    Founder & CEO
+                  </p>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Isaac is the brain behind our AI engine. With a PhD in
+                    rostering optimisation, he leads the development of our core
+                    algorithms and technology. As the CEO, he brings vision to
+                    the impact that RosterLab delivers for healthcare teams.
+                  </p>
                 </div>
               </div>
 
@@ -233,27 +229,10 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">
-                    Sunny Feng
-                  </h4>
-                  <p className="text-blue-600 font-medium mb-3">
-                    Co-Founder - Product & Marketing
-                  </p>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Sunny leads our product and marketing strategy, shaping the
-                    vision behind what we build and how we bring it to the
-                    world. She's passionate about creating intuitive, impactful
-                    tools that are user-centric and truly support healthcare
-                    teams and the people who rely on them.
-                  </p>
-                  <div className="flex items-center justify-center gap-4">
-                    <a
-                      href="mailto:sunny@rosterlab.com"
-                      className="text-gray-600 hover:text-blue-600 transition-colors"
-                      aria-label="Email Sunny"
-                    >
-                      <HiMail className="w-5 h-5" />
-                    </a>
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="text-xl font-bold text-gray-900">
+                      Sunny Feng
+                    </h4>
                     <a
                       href="https://www.linkedin.com/in/sunny-feng-042085b4/"
                       target="_blank"
@@ -264,6 +243,15 @@ export default function AboutPage() {
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                   </div>
+                  <p className="text-blue-600 font-medium mb-3">
+                    Co-Founder - Product & Marketing
+                  </p>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Sunny leads our product and marketing strategy, shaping the
+                    vision behind what we build and how we bring it to the
+                    world. She's passionate about creating user-centric tools
+                    and truly support the people who rely on them.
+                  </p>
                 </div>
               </div>
 
@@ -277,26 +265,10 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-xl font-bold text-gray-900 mb-1">
-                    Daniel Ge
-                  </h4>
-                  <p className="text-blue-600 font-medium mb-3">
-                    Co-Founder - Sales & Implementation
-                  </p>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Daniel works closely with customers, bringing a deep
-                    understanding of healthcare rostering challenges. He ensures
-                    our solutions meet real-world needs and make a difference
-                    from day one.
-                  </p>
-                  <div className="flex items-center justify-center gap-4">
-                    <a
-                      href="mailto:daniel@rosterlab.com"
-                      className="text-gray-600 hover:text-blue-600 transition-colors"
-                      aria-label="Email Daniel"
-                    >
-                      <HiMail className="w-5 h-5" />
-                    </a>
+                  <div className="flex items-center justify-between mb-1">
+                    <h4 className="text-xl font-bold text-gray-900">
+                      Daniel Ge
+                    </h4>
                     <a
                       href="https://www.linkedin.com/in/daniel-ge-a177ba158/"
                       target="_blank"
@@ -307,6 +279,15 @@ export default function AboutPage() {
                       <FaLinkedin className="w-5 h-5" />
                     </a>
                   </div>
+                  <p className="text-blue-600 font-medium mb-3">
+                    Co-Founder - Sales & Implementation
+                  </p>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Daniel works closely with customers, bringing a deep
+                    understanding of healthcare rostering challenges. He ensures
+                    our solutions meet real-world needs and make a difference
+                    from day one.
+                  </p>
                 </div>
               </div>
             </div>
@@ -315,21 +296,108 @@ export default function AboutPage() {
           {/* Core Team */}
           <div>
             <h3 className="text-2xl font-semibold text-gray-900 mb-8 text-center">
-              Our Advisors & Board Members
+              Our Board Members & Advisors
             </h3>
 
-            {/* Investor Logos */}
-            <div className="mb-12">
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
-                <div className="flex items-center justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="bg-white rounded-lg p-6 text-center">
+                <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
-                    src="/images/investor logos/Movac-Primary-RGB-72-Transparent_150402.png"
-                    alt="Movac"
-                    width={160}
-                    height={80}
-                    className="max-w-full h-auto grayscale"
+                    src="/images/team/mohan.jpeg"
+                    alt="Mohan Nair"
+                    fill
+                    className="object-cover rounded-full"
                   />
                 </div>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <h4 className="font-semibold text-gray-900">Mohan Nair</h4>
+                  <a
+                    href="https://www.linkedin.com/in/mohanemerge"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    aria-label="Mohan's LinkedIn"
+                  >
+                    <FaLinkedin className="w-4 h-4" />
+                  </a>
+                </div>
+                <p className="text-sm text-blue-600 mb-2 text-center">
+                  Independent Board Chair
+                </p>
+                <p className="text-xs text-gray-600 text-left">
+                  Mohan is an expert in transforming AI digital solutions for
+                  healthcare, providing strategic leadership and governance
+                  oversight to guide RosterLab's growth and expansion.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 text-center">
+                <div className="w-24 h-24 relative mx-auto mb-4">
+                  <Image
+                    src="/images/team/david.jpeg"
+                    alt="David Beard"
+                    fill
+                    className="object-cover rounded-full"
+                  />
+                </div>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <h4 className="font-semibold text-gray-900">David Beard</h4>
+                  <a
+                    href="https://www.linkedin.com/in/david-beard-99110216/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    aria-label="David's LinkedIn"
+                  >
+                    <FaLinkedin className="w-4 h-4" />
+                  </a>
+                </div>
+                <p className="text-sm text-blue-600 mb-2 text-center">
+                  Board Member & Investor
+                </p>
+                <p className="text-xs text-gray-600 text-left">
+                  David brings deep experience in the commercialisation of
+                  world-leading innovations, with a proven track record across
+                  investment, business development and corporate strategy for
+                  technology companies.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 text-center">
+                <div className="w-24 h-24 relative mx-auto mb-4">
+                  <Image
+                    src="/images/team/cathal.jpeg"
+                    alt="Cathal McCloy"
+                    fill
+                    className="object-cover rounded-full"
+                  />
+                </div>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <h4 className="font-semibold text-gray-900">Cathal McCloy</h4>
+                  <a
+                    href="https://www.linkedin.com/in/cathal-mccloy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    aria-label="Cathal's LinkedIn"
+                  >
+                    <FaLinkedin className="w-4 h-4" />
+                  </a>
+                </div>
+                <p className="text-sm text-blue-600 mb-2 text-center">
+                  Medical Advisor
+                </p>
+                <p className="text-xs text-gray-600 text-left">
+                  Cathal is a General Medical Physician and Geriatrician with
+                  broad experience across hospital and locum roles, bringing
+                  clinical leadership and a strong focus on staff well-being.
+                </p>
+              </div>
+            </div>
+
+            {/* Investor Logos */}
+            <div className="mt-12">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
                 <div className="flex items-center justify-center">
                   <Image
                     src="/images/investor logos/Pacific-Channel-Logo-RGB-Stacked-Black-Text.png"
@@ -341,10 +409,19 @@ export default function AboutPage() {
                 </div>
                 <div className="flex items-center justify-center">
                   <Image
-                    src="/images/investor logos/QV_Primary_RGB.png"
-                    alt="Quay Ventures"
+                    src="/images/investor logos/Movac-Primary-RGB-72-Transparent_150402.png"
+                    alt="Movac"
                     width={160}
                     height={80}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/investor logos/QV_Primary_RGB.png"
+                    alt="Quay Ventures"
+                    width={120}
+                    height={60}
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
@@ -354,7 +431,7 @@ export default function AboutPage() {
                     alt="University of Auckland"
                     width={200}
                     height={100}
-                    className="max-w-full h-auto grayscale"
+                    className="max-w-full h-auto grayscale ml-4"
                   />
                 </div>
                 <div className="flex items-center justify-center">
@@ -366,54 +443,6 @@ export default function AboutPage() {
                     className="max-w-full h-auto grayscale"
                   />
                 </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-              <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-800">MN</span>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Mohan Nair</h4>
-                <p className="text-sm text-blue-600 mb-2">
-                  Independent Board Chair
-                </p>
-                <p className="text-xs text-gray-600 mb-3">
-                  Providing strategic leadership and governance oversight to
-                  guide RosterLab's growth.
-                </p>
-                <a
-                  href="https://www.linkedin.com/in/mohanemerge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors"
-                  aria-label="Mohan's LinkedIn"
-                >
-                  <FaLinkedin className="w-5 h-5" />
-                </a>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-slate-100 to-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-slate-800">DB</span>
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">
-                  David Beard
-                </h4>
-                <p className="text-sm text-blue-600 mb-2">Board Member</p>
-                <p className="text-xs text-gray-600 mb-3">
-                  Bringing extensive industry expertise to help shape
-                  RosterLab's strategic direction.
-                </p>
-                <a
-                  href="https://www.linkedin.com/in/david-beard-99110216/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-gray-600 hover:text-blue-600 transition-colors"
-                  aria-label="David's LinkedIn"
-                >
-                  <FaLinkedin className="w-5 h-5" />
-                </a>
               </div>
             </div>
           </div>
@@ -466,7 +495,7 @@ export default function AboutPage() {
                   <p className="text-gray-600 mt-2">
                     The idea began with Isaac's PhD research in roster
                     optimisation at the University of Auckland, where he
-                    explored how algorithms could dramatically improve
+                    explored how operations research could dramatically improve
                     healthcare rostering.
                   </p>
                 </div>
