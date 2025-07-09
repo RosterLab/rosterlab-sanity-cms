@@ -317,7 +317,7 @@ export default function HealthcarePage() {
             </Link>
 
             <Link
-              href="/feature/payroll-integration"
+              href="/solutions/ai-schedules"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
