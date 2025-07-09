@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  compiler: {
+    // Remove unused JavaScript
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Disable SWC minifier's legacy browser support
+  swcMinify: true,
   async redirects() {
     return [
       // Product redirects
