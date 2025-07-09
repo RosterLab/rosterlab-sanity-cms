@@ -290,8 +290,8 @@ export default function LeaveRequestsPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                  <p className="text-5xl font-bold mb-2">70%</p>
-                  <p className="text-xl opacity-90">Reduction in approval processing time</p>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Happier Teams</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">95%</p>

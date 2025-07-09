@@ -312,15 +312,15 @@ export default function PreferencesRulesPage() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                  <p className="text-5xl font-bold mb-2">89%</p>
-                  <p className="text-xl opacity-90">Average preference satisfaction rate</p>
+                  <p className="text-5xl font-bold mb-2">5%</p>
+                  <p className="text-xl opacity-90">Efficiency Increase</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
                   <p className="text-xl opacity-90">Happy staff</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">60%</p>
+                  <p className="text-5xl font-bold mb-2">90%</p>
                   <p className="text-xl opacity-90">Reduction in admin time</p>
                 </div>
               </div>
