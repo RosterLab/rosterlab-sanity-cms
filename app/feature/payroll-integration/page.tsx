@@ -13,7 +13,7 @@ export const metadata = {
     description: 'Connect your staff schedule to payroll with ease. RosterLab supports live feeds, exports, automation, and full API sync - ensuring error free payroll.',
     images: [
       {
-        url: '/images/og%20images/Feature%20-%20%20Payroll%20Integration.png',
+        url: '/images/og images/FeaturePayrollIntegration.png',
         width: 1200,
         height: 630,
       },
@@ -23,7 +23,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Integrate Roster & Timesheet Data With Payroll - RosterLab',
     description: 'Connect your staff schedule to payroll with ease. RosterLab supports live feeds, exports, automation, and full API sync - ensuring error free payroll.',
-    images: ['/images/og%20images/Feature%20-%20%20Payroll%20Integration.png'],
+    images: ['/images/og images/FeaturePayrollIntegration.png'],
   },
 }
 

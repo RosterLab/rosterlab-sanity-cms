@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Explore real-world case studies showing how RosterLab\'s AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.',
     images: [
       {
-        url: '/images/og%20images/Case%20Studies.png',
+        url: '/images/og images/CaseStudies.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'RosterLab Case Studies - Better Rosters, Impactful Results',
     description: 'Explore real-world case studies showing how RosterLab\'s AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.',
-    images: ['/images/og%20images/Case%20Studies.png'],
+    images: ['/images/og images/CaseStudies.png'],
   },
 }
 

@@ -11,7 +11,7 @@ export const metadata = {
     description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
     images: [
       {
-        url: '/images/og%20images/Careers.png',
+        url: '/images/og images/Careers.png',
         width: 1200,
         height: 630,
       },
@@ -21,7 +21,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Careers - Join our talented team at RosterLab',
     description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
-    images: ['/images/og%20images/Careers.png'],
+    images: ['/images/og images/Careers.png'],
   },
 }
 

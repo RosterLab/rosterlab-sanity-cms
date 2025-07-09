@@ -15,7 +15,7 @@ export const metadata = {
     description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
     images: [
       {
-        url: '/images/og%20images/Solution%20-%20Mobile%20App.png',
+        url: '/images/og images/SolutionMobileApp.png',
         width: 1200,
         height: 630,
         alt: 'Employee Mobile App',
@@ -26,7 +26,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Employee Mobile App - RosterLab',
     description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
-    images: ['/images/og%20images/Solution%20-%20Mobile%20App.png'],
+    images: ['/images/og images/SolutionMobileApp.png'],
   },
 }
 

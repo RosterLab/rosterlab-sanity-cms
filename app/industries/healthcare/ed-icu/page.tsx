@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
     images: [
       {
-        url: '/images/og%20images/Industry%20-%20ICU_ED.png',
+        url: '/images/og images/IndustryICUED.png',
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'ED & ICU Staff Scheduling Software - RosterLab',
     description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
-    images: ['/images/og%20images/Industry%20-%20ICU_ED.png'],
+    images: ['/images/og images/IndustryICUED.png'],
   },
 }
 

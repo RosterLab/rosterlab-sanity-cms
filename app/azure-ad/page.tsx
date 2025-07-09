@@ -10,7 +10,7 @@ export const metadata = {
     description: 'Your Microsoft Entra ID (Azure AD) has been successfully connected with RosterLab.',
     images: [
       {
-        url: '/images/og%20images/AD%20Azure.png',
+        url: '/images/og images/ADAzure.png',
         width: 1200,
         height: 630,
         alt: 'Azure AD Registration Success',
@@ -21,7 +21,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Azure AD Registration Success - RosterLab',
     description: 'Your Microsoft Entra ID (Azure AD) has been successfully connected with RosterLab.',
-    images: ['/images/og%20images/AD%20Azure.png'],
+    images: ['/images/og images/ADAzure.png'],
   },
 }
 

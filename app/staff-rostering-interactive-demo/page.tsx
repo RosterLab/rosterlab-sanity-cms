@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: 'Try RosterLab\'s interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
     images: [
       {
-        url: '/images/og%20images/Interactive%20Demo.png',
+        url: '/images/og images/InteractiveDemo.png',
         width: 1200,
         height: 630,
       },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Staff Rostering Interactive Demo - RosterLab',
     description: 'Try RosterLab\'s interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
-    images: ['/images/og%20images/Interactive%20Demo.png'],
+    images: ['/images/og images/InteractiveDemo.png'],
   },
 }
 

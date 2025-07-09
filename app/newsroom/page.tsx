@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
     images: [
       {
-        url: '/images/og%20images/Newsroom.png',
+        url: '/images/og images/Newsroom.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'RosterLab Newsroom - Press Releases & Updates',
     description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
-    images: ['/images/og%20images/Newsroom.png'],
+    images: ['/images/og images/Newsroom.png'],
   },
 }
 

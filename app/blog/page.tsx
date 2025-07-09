@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
     images: [
       {
-        url: '/images/og%20images/Blog.png',
+        url: '/images/og images/Blog.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Blog - AI Staff Rostering and Scheduling Guides',
     description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
-    images: ['/images/og%20images/Blog.png'],
+    images: ['/images/og images/Blog.png'],
   },
 }
 

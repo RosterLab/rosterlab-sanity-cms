@@ -13,7 +13,7 @@ export const metadata = {
     description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
     images: [
       {
-        url: '/images/og%20images/Feature%20-%20%20Open%20Shifts.png',
+        url: '/images/og images/FeatureOpenShifts.png',
         width: 1200,
         height: 630,
       },
@@ -23,7 +23,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Open Shifts Management & Smart Matching - RosterLab',
     description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
-    images: ['/images/og%20images/Feature%20-%20%20Open%20Shifts.png'],
+    images: ['/images/og images/FeatureOpenShifts.png'],
   },
 }
 

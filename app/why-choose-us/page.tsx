@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
     images: [
       {
-        url: '/images/og%20images/Why%20Choose%20Us.png',
+        url: '/images/og images/WhyChooseUs.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Why Choose Us - RosterLab',
     description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
-    images: ['/images/og%20images/Why%20Choose%20Us.png'],
+    images: ['/images/og images/WhyChooseUs.png'],
   },
 }
 

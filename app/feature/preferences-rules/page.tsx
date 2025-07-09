@@ -13,7 +13,7 @@ export const metadata = {
     description: 'Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.',
     images: [
       {
-        url: '/images/og%20images/Feature%20-%20Preferences%20%26%20Rules.png',
+        url: '/images/og images/FeaturePreferencesRules.png',
         width: 1200,
         height: 630,
       },
@@ -23,7 +23,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Shift Preferences & Fairness Rules - RosterLab',
     description: 'Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.',
-    images: ['/images/og%20images/Feature%20-%20Preferences%20%26%20Rules.png'],
+    images: ['/images/og images/FeaturePreferencesRules.png'],
   },
 }
 
