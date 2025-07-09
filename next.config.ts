@@ -25,6 +25,18 @@ const nextConfig: NextConfig = {
   },
   // Disable SWC minifier's legacy browser support
   swcMinify: true,
+  // Exclude polyfills for modern browsers
+  webpack: (config, { isServer }) => {
+    // Skip polyfills for modern JavaScript features
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'core-js': false,
+        'core-js-pure': false,
+      };
+    }
+    return config;
+  },
   async headers() {
     return [
       {

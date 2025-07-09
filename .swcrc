@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "dynamicImport": true,
+      "decorators": false
+    },
+    "transform": {
+      "react": {
+        "runtime": "automatic"
+      }
+    },
+    "target": "es2022",
+    "loose": false,
+    "externalHelpers": false,
+    "keepClassNames": true
+  },
+  "module": {
+    "type": "es6",
+    "noInterop": false
+  },
+  "minify": true,
+  "env": {
+    "targets": {
+      "chrome": "80",
+      "edge": "80",
+      "firefox": "75",
+      "safari": "14"
+    },
+    "mode": "usage",
+    "coreJs": false
+  }
+}

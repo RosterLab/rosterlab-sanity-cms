@@ -75,3 +75,21 @@ img {
     animation-delay: 0.5s;
   }
 }
+
+/* Override third-party font loading */
+@font-face {
+  font-display: swap !important;
+}
+
+/* HubSpot font optimization */
+[src*="hsappstatic"] {
+  font-display: swap !important;
+}
+
+/* Ensure text visibility during font load */
+.meetings-iframe-container,
+.hs-form,
+iframe[src*="hubspot"] {
+  font-display: swap !important;
+  font-synthesis: style weight;
+}

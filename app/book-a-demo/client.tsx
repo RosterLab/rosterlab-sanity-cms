@@ -5,20 +5,51 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
 import { useEffect } from 'react'
+import '@/styles/hubspot-fonts.css'
 
 export default function BookADemoClient() {
   useEffect(() => {
+    // Add preconnect hints for HubSpot resources
+    const preconnect1 = document.createElement('link')
+    preconnect1.rel = 'preconnect'
+    preconnect1.href = 'https://static.hsappstatic.net'
+    document.head.appendChild(preconnect1)
+
+    const preconnect2 = document.createElement('link')
+    preconnect2.rel = 'preconnect'
+    preconnect2.href = 'https://meetings.rosterlab.com'
+    document.head.appendChild(preconnect2)
+
+    // Add font preload hints
+    const fontPreload = document.createElement('link')
+    fontPreload.rel = 'preload'
+    fontPreload.as = 'font'
+    fontPreload.type = 'font/woff2'
+    fontPreload.href = 'https://static.hsappstatic.net/fonts/LexendDeca-Light.woff2'
+    fontPreload.crossOrigin = 'anonymous'
+    document.head.appendChild(fontPreload)
+
     // Load HubSpot meetings embed script
     const script = document.createElement('script')
     script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js'
     script.async = true
+    script.defer = true
     document.body.appendChild(script)
 
+    // Mark fonts as loaded after a delay
+    const timer = setTimeout(() => {
+      document.querySelector('.meetings-iframe-container')?.classList.add('fonts-loaded')
+    }, 1000)
+
     return () => {
-      // Cleanup script on unmount
+      // Cleanup
+      clearTimeout(timer)
       if (document.body.contains(script)) {
         document.body.removeChild(script)
       }
+      document.head.removeChild(preconnect1)
+      document.head.removeChild(preconnect2)
+      document.head.removeChild(fontPreload)
     }
   }, [])
 

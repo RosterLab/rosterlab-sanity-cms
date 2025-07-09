@@ -1,0 +1,43 @@
+/* Override HubSpot font loading to use font-display: swap */
+
+/* Target all @font-face rules from HubSpot */
+@font-face {
+  font-family: 'LexendDeca-Light';
+  font-display: swap !important;
+}
+
+@font-face {
+  font-family: 'LexendDeca-Regular';
+  font-display: swap !important;
+}
+
+@font-face {
+  font-family: 'LexendDeca-Medium';
+  font-display: swap !important;
+}
+
+@font-face {
+  font-family: 'LexendDeca';
+  font-display: swap !important;
+}
+
+/* Fallback font stack for HubSpot content */
+.meetings-iframe-container *,
+.hs-form *,
+iframe[src*="hubspot"] * {
+  font-family: 'LexendDeca', var(--font-poppins), system-ui, -apple-system, sans-serif !important;
+  font-display: swap !important;
+}
+
+/* Preload critical fonts */
+@supports (font-display: swap) {
+  .meetings-iframe-container {
+    font-synthesis: style weight;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Ensure text remains visible during font load */
+.meetings-iframe-container:not(.fonts-loaded) {
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif !important;
+}
