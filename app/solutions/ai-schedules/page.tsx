@@ -50,6 +50,14 @@ const faqItems = [
   {
     question: "How much time and cost savings can we expect?",
     answer: "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size."
+  },
+  {
+    question: "Why is it important to keep all your data and knowledge digitally?",
+    answer: "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimizes human error but also saves time spent recalling minor details and enhances the efficiency of communications."
+  },
+  {
+    question: "Do you offer digital timesheets?",
+    answer: "Yes! Transform from chaotic paper timesheets to digital timesheets! Simply put the actual start and end time and we will automatically calculate the payroll hours for you. Managers can approve timesheets individually or in bulk. You can also easily export all the timesheet data with a click of button, making it easier to integrate with payroll."
   }
 ]
 
@@ -363,7 +371,7 @@ export default function AISchedulesPage() {
       </div>
 
       {/* Compliance Section */}
-      <div className="bg-gray-50 py-20">
+      <div className="bg-white py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -435,7 +443,7 @@ export default function AISchedulesPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-white py-20">
+      <div className="bg-gray-50 py-20">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">

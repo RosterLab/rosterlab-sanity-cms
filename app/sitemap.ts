@@ -1,43 +1,60 @@
 import { MetadataRoute } from 'next'
 import { groq } from 'next-sanity'
 import { client } from '@/sanity/lib/client'
+import { readdirSync, statSync } from 'fs'
+import { join } from 'path'
 
 // Base URL for the site
 const baseUrl = 'https://rosterlab.com'
 
-// Static routes
-const staticRoutes = [
-  '',
-  '/about',
-  '/pricing',
-  '/book-a-demo',
-  '/contact',
-  '/careers',
-  '/why-choose-us',
-  '/free-rostering-template',
-  '/roi-calculator',
-  '/staff-rostering-interactive-demo',
-  '/industries',
-  '/industries/healthcare',
-  '/industries/healthcare/agedcare',
-  '/industries/healthcare/edicu',
-  '/industries/healthcare/radiology',
-  '/solutions/ai-schedules',
-  '/solutions/free-staff-scheduling',
-  '/solutions/staff-roster-mobile-app',
-  '/feature/auto-roster-generation',
-  '/feature/leave-requests',
-  '/feature/open-shifts',
-  '/feature/payroll-integration',
-  '/feature/preferences-rules',
-  '/feature/re-rostering',
-  '/feature/self-scheduling',
-  '/feature/shift-swaps',
-  '/resources/testimonials',
-  '/blog',
-  '/case-studies',
-  '/newsroom',
+// Pages to exclude from sitemap
+const excludedPaths = [
+  '/studio', // Sanity Studio
+  '/api',    // API routes
 ]
+
+// Function to recursively find all page.tsx files
+function findPages(dir: string, basePath: string = ''): string[] {
+  const pages: string[] = []
+  
+  try {
+    const files = readdirSync(dir)
+    
+    for (const file of files) {
+      const filePath = join(dir, file)
+      const stat = statSync(filePath)
+      
+      if (stat.isDirectory()) {
+        // Skip excluded directories
+        const currentPath = basePath + '/' + file
+        if (excludedPaths.some(excluded => currentPath.startsWith(excluded))) {
+          continue
+        }
+        
+        // Handle dynamic routes
+        if (file.startsWith('[') && file.endsWith(']')) {
+          // Skip dynamic route folders for static sitemap
+          continue
+        }
+        
+        // Recursively search subdirectories
+        pages.push(...findPages(filePath, currentPath))
+      } else if (file === 'page.tsx' && basePath !== '') {
+        // Add the route (basePath already has leading /)
+        pages.push(basePath)
+      }
+    }
+    
+    // Add root page if we're at the app directory
+    if (basePath === '' && files.includes('page.tsx')) {
+      pages.push('')
+    }
+  } catch (error) {
+    console.error(`Error reading directory ${dir}:`, error)
+  }
+  
+  return pages
+}
 
 // Query for dynamic content - only posts exist in Sanity
 const postQuery = groq`*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
@@ -50,6 +67,13 @@ const postQuery = groq`*[_type == "post" && !(_id in path("drafts.**"))] | order
 }`
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Dynamically find all pages
+  const appDir = join(process.cwd(), 'app')
+  const staticRoutes = findPages(appDir)
+  
+  // Sort routes for consistency
+  staticRoutes.sort()
+  
   // Fetch dynamic content from Sanity
   const posts = await client.fetch(postQuery)
 
@@ -122,10 +146,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
+  // Add individual post pages for case studies and newsroom
+  const caseStudyEntries = caseStudies?.map((post: any) => ({
+    url: `${baseUrl}/case-studies/${post.slug}`,
+    lastModified: new Date(post._updatedAt || post.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  })) || []
+
+  const newsroomEntries = newsroomPosts?.map((post: any) => ({
+    url: `${baseUrl}/newsroom/${post.slug}`,
+    lastModified: new Date(post._updatedAt || post.publishedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  })) || []
+
   // Combine all entries
   return [
     ...staticEntries,
     ...postEntries,
+    ...caseStudyEntries,
+    ...newsroomEntries,
     ...paginationEntries,
   ]
 }
