@@ -10,6 +10,24 @@ import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShield
 export const metadata = {
   title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
   description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
+  openGraph: {
+    title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
+    description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
+    images: [
+      {
+        url: '/images/og images/Solution - AI Gen.png',
+        width: 1200,
+        height: 630,
+        alt: 'AI Staff Roster Generator',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
+    description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
+    images: ['/images/og images/Solution - AI Gen.png'],
+  },
 }
 
 const faqItems = [

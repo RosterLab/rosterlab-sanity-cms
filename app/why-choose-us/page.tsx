@@ -7,6 +7,23 @@ import { HiLightBulb, HiUserGroup, HiShieldCheck, HiClock, HiChartBar, HiSupport
 export const metadata = {
   title: 'Why Choose Us - RosterLab',
   description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
+  openGraph: {
+    title: 'Why Choose Us - RosterLab',
+    description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
+    images: [
+      {
+        url: '/images/og images/Why Choose Us.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Why Choose Us - RosterLab',
+    description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
+    images: ['/images/og images/Why Choose Us.png'],
+  },
 }
 
 const reasons = [

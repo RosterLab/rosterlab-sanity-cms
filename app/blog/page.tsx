@@ -7,6 +7,23 @@ import { draftMode } from 'next/headers'
 export const metadata = {
   title: 'Blog - AI Rostering & Scheduling Tips',
   description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
+  openGraph: {
+    title: 'Blog - AI Rostering & Scheduling Tips',
+    description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
+    images: [
+      {
+        url: '/images/og images/Blog.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog - AI Rostering & Scheduling Tips',
+    description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
+    images: ['/images/og images/Blog.png'],
+  },
 }
 
 export default async function BlogPage() {

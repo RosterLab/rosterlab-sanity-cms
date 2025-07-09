@@ -7,6 +7,23 @@ import { HiCheck, HiMinus } from 'react-icons/hi'
 export const metadata = {
   title: 'Pricing - Affordable AI Staff Scheduling Software',
   description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
+  openGraph: {
+    title: 'Pricing - Affordable AI Staff Scheduling Software',
+    description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
+    images: [
+      {
+        url: '/images/og images/Pricing.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pricing - Affordable AI Staff Scheduling Software',
+    description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
+    images: ['/images/og images/Pricing.png'],
+  },
 }
 
 const pricingPlans = [

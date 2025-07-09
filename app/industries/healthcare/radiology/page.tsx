@@ -9,6 +9,23 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 export const metadata = {
   title: 'Radiology Staff Scheduling Software - RosterLab',
   description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
+  openGraph: {
+    title: 'Radiology Staff Scheduling Software - RosterLab',
+    description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
+    images: [
+      {
+        url: '/images/og images/Industry - Radiology.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Radiology Staff Scheduling Software - RosterLab',
+    description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
+    images: ['/images/og images/Industry - Radiology.png'],
+  },
 }
 
 const faqItems = [

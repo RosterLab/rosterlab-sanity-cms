@@ -8,6 +8,23 @@ import { HiCheck, HiClock, HiShieldCheck, HiUserGroup } from 'react-icons/hi'
 export const metadata = {
   title: 'Open Shifts Management & Smart Matching - RosterLab',
   description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
+  openGraph: {
+    title: 'Open Shifts Management & Smart Matching - RosterLab',
+    description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
+    images: [
+      {
+        url: '/images/og images/Feature -  Open Shifts.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Open Shifts Management & Smart Matching - RosterLab',
+    description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
+    images: ['/images/og images/Feature -  Open Shifts.png'],
+  },
 }
 
 export default function OpenShiftsPage() {

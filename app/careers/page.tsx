@@ -6,6 +6,23 @@ import Image from 'next/image'
 export const metadata = {
   title: 'Careers - Join our talented team at RosterLab',
   description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
+  openGraph: {
+    title: 'Careers - Join our talented team at RosterLab',
+    description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
+    images: [
+      {
+        url: '/images/og images/Careers.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Careers - Join our talented team at RosterLab',
+    description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
+    images: ['/images/og images/Careers.png'],
+  },
 }
 
 const openPositions = [

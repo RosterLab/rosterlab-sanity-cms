@@ -7,6 +7,23 @@ import { draftMode } from 'next/headers'
 export const metadata = {
   title: 'RosterLab Newsroom - Press Releases & Updates',
   description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
+  openGraph: {
+    title: 'RosterLab Newsroom - Press Releases & Updates',
+    description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
+    images: [
+      {
+        url: '/images/og images/Newsroom.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RosterLab Newsroom - Press Releases & Updates',
+    description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
+    images: ['/images/og images/Newsroom.png'],
+  },
 }
 
 const newsroomQuery = groq`

@@ -8,6 +8,23 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 export const metadata = {
   title: 'Shift Preferences & Fairness Rules - RosterLab',
   description: 'Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.',
+  openGraph: {
+    title: 'Shift Preferences & Fairness Rules - RosterLab',
+    description: 'Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.',
+    images: [
+      {
+        url: '/images/og images/Feature - Preferences & Rules.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shift Preferences & Fairness Rules - RosterLab',
+    description: 'Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.',
+    images: ['/images/og images/Feature - Preferences & Rules.png'],
+  },
 }
 
 const faqItems = [

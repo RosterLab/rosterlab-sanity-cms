@@ -8,6 +8,23 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 export const metadata = {
   title: 'Integrate Roster & Timesheet Data With Payroll - RosterLab',
   description: 'Connect your staff schedule to payroll with ease. RosterLab supports live feeds, exports, automation, and full API sync - ensuring error free payroll.',
+  openGraph: {
+    title: 'Integrate Roster & Timesheet Data With Payroll - RosterLab',
+    description: 'Connect your staff schedule to payroll with ease. RosterLab supports live feeds, exports, automation, and full API sync - ensuring error free payroll.',
+    images: [
+      {
+        url: '/images/og images/Feature -  Payroll Integration.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Integrate Roster & Timesheet Data With Payroll - RosterLab',
+    description: 'Connect your staff schedule to payroll with ease. RosterLab supports live feeds, exports, automation, and full API sync - ensuring error free payroll.',
+    images: ['/images/og images/Feature -  Payroll Integration.png'],
+  },
 }
 
 const faqItems = [

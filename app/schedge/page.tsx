@@ -7,6 +7,23 @@ import SchedgeGame from '@/components/games/SchedgeGame'
 export const metadata = {
   title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
   description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
+  openGraph: {
+    title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
+    description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
+    images: [
+      {
+        url: '/images/og images/Schedge.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
+    description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
+    images: ['/images/og images/Schedge.png'],
+  },
 }
 
 export default function SchedgePage() {

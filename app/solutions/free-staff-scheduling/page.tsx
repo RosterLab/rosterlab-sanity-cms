@@ -9,6 +9,24 @@ import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiShieldCheck, HiCog, HiAcadem
 export const metadata = {
   title: 'Free Staff Scheduling Platform - No More Spreadsheets!',
   description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
+  openGraph: {
+    title: 'Free Staff Scheduling Platform - No More Spreadsheets!',
+    description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
+    images: [
+      {
+        url: '/images/og images/Solution - Free.png',
+        width: 1200,
+        height: 630,
+        alt: 'Free Staff Scheduling Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Staff Scheduling Platform - No More Spreadsheets!',
+    description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
+    images: ['/images/og images/Solution - Free.png'],
+  },
 }
 
 

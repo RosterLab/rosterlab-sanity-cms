@@ -9,6 +9,25 @@ export const metadata = {
   title: "Rostering Software for Healthcare - RosterLab",
   description:
     "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+  openGraph: {
+    title: "Rostering Software for Healthcare - RosterLab",
+    description:
+      "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+    images: [
+      {
+        url: '/images/og images/Industry - Healthcare.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Rostering Software for Healthcare - RosterLab",
+    description:
+      "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+    images: ['/images/og images/Industry - Healthcare.png'],
+  },
 };
 
 export default function HealthcarePage() {

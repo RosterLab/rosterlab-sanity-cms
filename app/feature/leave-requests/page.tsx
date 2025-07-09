@@ -9,6 +9,23 @@ import { HiCheck, HiCalendar, HiClock } from 'react-icons/hi'
 export const metadata = {
   title: 'Employee Leave Request Tracking - RosterLab',
   description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
+  openGraph: {
+    title: 'Employee Leave Request Tracking - RosterLab',
+    description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
+    images: [
+      {
+        url: '/images/og images/Feature-  Leave Request.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Employee Leave Request Tracking - RosterLab',
+    description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
+    images: ['/images/og images/Feature-  Leave Request.png'],
+  },
 }
 
 export default function LeaveRequestsPage() {

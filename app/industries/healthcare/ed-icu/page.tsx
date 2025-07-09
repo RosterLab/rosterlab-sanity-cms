@@ -9,6 +9,23 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 export const metadata = {
   title: 'ED & ICU Staff Scheduling Software - RosterLab',
   description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
+  openGraph: {
+    title: 'ED & ICU Staff Scheduling Software - RosterLab',
+    description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
+    images: [
+      {
+        url: '/images/og images/Industry - ICU_ED.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ED & ICU Staff Scheduling Software - RosterLab',
+    description: 'Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.',
+    images: ['/images/og images/Industry - ICU_ED.png'],
+  },
 }
 
 const faqItems = [

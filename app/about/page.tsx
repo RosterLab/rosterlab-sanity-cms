@@ -12,6 +12,24 @@ export const metadata = {
   other: {
     link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
   },
+  openGraph: {
+    title: "About Us - Meet the Team Behind RosterLab",
+    description: "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    images: [
+      {
+        url: '/images/og images/About.png',
+        width: 1200,
+        height: 630,
+        alt: 'About RosterLab',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "About Us - Meet the Team Behind RosterLab",
+    description: "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    images: ['/images/og images/About.png'],
+  },
 };
 
 export default function AboutPage() {

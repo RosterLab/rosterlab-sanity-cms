@@ -7,6 +7,23 @@ import Link from 'next/link'
 export const metadata = {
   title: 'Smart AI Rostering Software for All Industries - RosterLab',
   description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+  openGraph: {
+    title: 'Smart AI Rostering Software for All Industries - RosterLab',
+    description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+    images: [
+      {
+        url: '/images/og images/Industry.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Smart AI Rostering Software for All Industries - RosterLab',
+    description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+    images: ['/images/og images/Industry.png'],
+  },
 }
 
 export default function IndustriesPage() {

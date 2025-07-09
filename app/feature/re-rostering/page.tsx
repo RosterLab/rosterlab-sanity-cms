@@ -8,6 +8,23 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 export const metadata = {
   title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
   description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',
+  openGraph: {
+    title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
+    description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',
+    images: [
+      {
+        url: '/images/og images/Feature -  Re Rostering.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
+    description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',
+    images: ['/images/og images/Feature -  Re Rostering.png'],
+  },
 }
 
 export default function ReRosteringPage() {

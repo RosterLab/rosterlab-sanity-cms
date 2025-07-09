@@ -10,6 +10,24 @@ import { HiCalendar, HiBell, HiUserGroup, HiClock, HiCheckCircle, HiCheck, HiUse
 export const metadata = {
   title: 'Employee Mobile App - RosterLab',
   description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
+  openGraph: {
+    title: 'Employee Mobile App - RosterLab',
+    description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
+    images: [
+      {
+        url: '/images/og images/Solution - Mobile App.png',
+        width: 1200,
+        height: 630,
+        alt: 'Employee Mobile App',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Employee Mobile App - RosterLab',
+    description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
+    images: ['/images/og images/Solution - Mobile App.png'],
+  },
 }
 
 
