@@ -1,13 +1,22 @@
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+import Link from 'next/link'
 import SiteLayout from '@/components/layout/SiteLayout'
 import TrustedBy from '@/components/sections/TrustedBy'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
   title: 'Radiology Staff Scheduling Software - RosterLab',
   description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
 }
+
+const faqItems = [
+  {
+    question: "How does long-term roster planning work in radiology?",
+    answer: "RosterLab's radiology scheduling supports both long-term and short-term roster creation. You can plan quarterly or annual schedules considering subspecialty rotations, vacation blocks, conference attendance, and equipment maintenance windows. The system automatically ensures continuous coverage for all modalities while respecting radiologist preferences and certification requirements. Changes in long-term plans automatically cascade to daily schedules, maintaining consistency across all time horizons."
+  }
+]
 
 export default function RadiologyPage() {
   return (
@@ -24,7 +33,7 @@ export default function RadiologyPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Reduce rostering time by 92%. Optimize radiologist coverage, equipment utilization, and patient throughput with intelligent scheduling.
+                Reduce rostering time by 90%. Optimize radiologist coverage, equipment utilization, and patient throughput with intelligent scheduling.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -93,7 +102,7 @@ export default function RadiologyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">95% Time Reduction</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">90% Admin Time Reduction</h3>
               <p className="text-gray-600">
                 Create monthly schedules in hours, not days. Automate complex subspecialty and equipment matching.
               </p>
@@ -226,98 +235,131 @@ export default function RadiologyPage() {
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Streamlined Radiology Scheduling Process
+            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              COMPLETE WORKFLOW
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
+              Your Complete Radiology Rostering Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               From long-term planning to daily adjustments, manage every aspect of your imaging department.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <a href="/feature/preferences-rules" className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
-              <div className="text-3xl font-bold text-teal-600 mb-3">01</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Define Coverage Needs</h3>
-              <p className="text-gray-600 mb-3">
-                Set modality requirements, reading room assignments, and subspecialty coverage targets.
-              </p>
-              <span className="text-teal-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
-                Read more 
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Step 1 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Define Coverage Needs
+                    </h3>
+                    <p className="text-gray-600">
+                      Set modality requirements, reading room assignments, and subspecialty coverage targets.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <a href="/feature/preferences-rules" className="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
-              <div className="text-3xl font-bold text-cyan-600 mb-3">02</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Input Constraints</h3>
-              <p className="text-gray-600 mb-3">
-                Add radiologist certifications, preferences, CME schedules, and equipment availability.
-              </p>
-              <span className="text-cyan-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
-                Read more 
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+              {/* Step 2 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Input Constraints
+                    </h3>
+                    <p className="text-gray-600">
+                      Add radiologist certifications, preferences, CME schedules, and equipment availability.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <a href="/feature/auto-roster-generation" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
-              <div className="text-3xl font-bold text-blue-600 mb-3">03</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Generate Schedule</h3>
-              <p className="text-gray-600 mb-3">
-                AI creates optimal monthly schedules balancing all requirements in minutes.
-              </p>
-              <span className="text-blue-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
-                Read more 
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+              {/* Step 3 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Generate Schedule
+                    </h3>
+                    <p className="text-gray-600">
+                      AI creates optimal monthly schedules balancing all requirements in minutes.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <a href="/feature/re-rostering" className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
-              <div className="text-3xl font-bold text-indigo-600 mb-3">04</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Review & Adjust</h3>
-              <p className="text-gray-600 mb-3">
-                Fine-tune assignments, preview impact of changes, and approve final schedules.
-              </p>
-              <span className="text-indigo-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
-                Read more 
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+              {/* Step 4 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">4</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Review & Adjust
+                    </h3>
+                    <p className="text-gray-600">
+                      Fine-tune assignments, preview impact of changes, and approve final schedules.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <a href="/feature/payroll-integration" className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
-              <div className="text-3xl font-bold text-purple-600 mb-3">05</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Publish & Sync</h3>
-              <p className="text-gray-600 mb-3">
-                Share schedules with PACS, RIS, and calendar systems automatically.
-              </p>
-              <span className="text-purple-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
-                Read more 
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+              {/* Step 5 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">5</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Publish & Sync
+                    </h3>
+                    <p className="text-gray-600">
+                      Share schedules with PACS, RIS, and calendar systems automatically.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <a href="/solutions/ai-schedules" className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-6 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 group block">
-              <div className="text-3xl font-bold text-pink-600 mb-3">06</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Monitor & Optimize</h3>
-              <p className="text-gray-600 mb-3">
-                Track workload distribution, turnaround times, and continuously improve.
+              {/* Step 6 */}
+              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">6</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Monitor & Optimize
+                    </h3>
+                    <p className="text-gray-600">
+                      Track workload distribution, turnaround times, and continuously improve.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-6">
+                Ready to streamline your radiology scheduling?
               </p>
-              <span className="text-pink-600 font-medium inline-flex items-center group-hover:translate-x-1 transition-transform">
-                Read more 
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
+              <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3">
+                See How It Works
+              </Button>
+            </div>
           </div>
         </Container>
       </section>
@@ -334,53 +376,65 @@ export default function RadiologyPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                </svg>
+            <Link href="/feature/preferences-rules" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Optimise for skill mix</h3>
+                <p className="text-base text-gray-600 mb-3">
+                  Automatically match radiologists to modalities and subspecialties for optimal coverage.
+                </p>
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700">Learn more →</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Optimise for skill mix</h3>
-              <p className="text-sm text-gray-600">
-                Automatically match radiologists to modalities and subspecialties for optimal coverage.
-              </p>
-            </div>
+            </Link>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <Link href="/feature/shift-swaps" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Compliant with unions</h3>
+                <p className="text-base text-gray-600 mb-3">
+                  Ensure all schedules meet union agreements and regulatory requirements automatically.
+                </p>
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">Learn more →</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Compliant with unions</h3>
-              <p className="text-sm text-gray-600">
-                Ensure all schedules meet union agreements and regulatory requirements automatically.
-              </p>
-            </div>
+            </Link>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
+            <Link href="/feature/auto-roster-generation" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Fairer shift allocation</h3>
+                <p className="text-base text-gray-600 mb-3">
+                  Distribute shifts, on-call duties, and workload equitably across your team.
+                </p>
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">Learn more →</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Fairer shift allocation</h3>
-              <p className="text-sm text-gray-600">
-                Distribute shifts, on-call duties, and workload equitably across your team.
-              </p>
-            </div>
+            </Link>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+            <Link href="/feature/leave-requests" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                  <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Streamline staff requests</h3>
+                <p className="text-base text-gray-600 mb-3">
+                  Manage leave requests, shift swaps, and preferences efficiently in one system.
+                </p>
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">Learn more →</span>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Streamline staff requests</h3>
-              <p className="text-sm text-gray-600">
-                Manage leave requests, shift swaps, and preferences efficiently in one system.
-              </p>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>
@@ -388,6 +442,21 @@ export default function RadiologyPage() {
       {/* Trusted By */}
       <section className="py-20 bg-white">
         <TrustedBy />
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Common questions about radiology scheduling
+            </p>
+            <FAQAccordion items={faqItems} />
+          </div>
+        </Container>
       </section>
 
       {/* CTA Section */}
