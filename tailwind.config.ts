@@ -47,7 +47,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['var(--font-poppins)', 'system-ui', '-apple-system', 'sans-serif'],
       },
       container: {
         center: true,

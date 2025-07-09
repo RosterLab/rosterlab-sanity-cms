@@ -1,0 +1,59 @@
+/* Performance optimizations to reduce forced reflows */
+
+/* Apply CSS containment to sections that update independently */
+section {
+  contain: layout style;
+}
+
+/* Optimize hover animations by using transforms instead of position changes */
+.hover\:shadow-lg,
+.hover\:-translate-y-0\.5 {
+  will-change: transform, box-shadow;
+}
+
+/* Optimize the roster generator progress bar */
+.transition-all {
+  will-change: width;
+}
+
+/* Optimize animated buttons */
+button {
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Optimize the wave SVG animation */
+svg {
+  will-change: transform;
+}
+
+/* Prevent layout shifts from image loading */
+img {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Optimize tab transitions in Benefits section */
+.transition-colors {
+  will-change: background-color, color;
+}
+
+/* Isolate components that might cause reflows */
+.bg-white.rounded-xl.shadow-xl {
+  contain: layout;
+  transform: translateZ(0);
+}
+
+/* Optimize progress animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: opacity;
+}
+
+/* Reduce reflows from animated spinners */
+.animate-spin {
+  will-change: transform;
+}

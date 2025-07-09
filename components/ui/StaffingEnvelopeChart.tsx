@@ -1,20 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '@/components/ui/Button'
 
 export default function StaffingEnvelopeChart() {
   const [isOptimized, setIsOptimized] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
-  // Chart dimensions
-  const width = 800
-  const height = 400
-  const padding = { top: 40, right: 60, bottom: 60, left: 60 }
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Chart dimensions - responsive
+  const width = isMobile ? 350 : 800
+  const height = isMobile ? 300 : 400
+  const padding = { 
+    top: 40, 
+    right: isMobile ? 30 : 60, 
+    bottom: 60, 
+    left: isMobile ? 40 : 60 
+  }
   const chartWidth = width - padding.left - padding.right
   const chartHeight = height - padding.top - padding.bottom
 
-  // Days data
-  const days = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+  // Days data - fewer on mobile
+  const days = isMobile 
+    ? [5, 20, 40, 55]
+    : [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
   
   // Staffing data
   const baseMinStaff = 25
@@ -76,9 +94,9 @@ export default function StaffingEnvelopeChart() {
     .join(' ')
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="flex flex-col items-center">
-        <svg width={width} height={height} className="block">
+    <div className="w-full flex justify-center overflow-x-auto">
+      <div className="flex flex-col items-center min-w-fit">
+        <svg width={width} height={height} className="block max-w-full">
           <g transform={`translate(${padding.left}, ${padding.top})`}>
             {/* Grid lines */}
             {[15, 20, 25, 30, 35, 40].map((value) => (
@@ -167,27 +185,27 @@ export default function StaffingEnvelopeChart() {
               x={chartWidth * 0.15}
               y={yScale(38)}
               textAnchor="middle"
-              className="text-sm font-medium fill-pink-700"
+              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-pink-700`}
             >
-              OVERSTAFFED
+              {isMobile ? 'OVER' : 'OVERSTAFFED'}
             </text>
             
             <text
               x={chartWidth * 0.15}
               y={yScale(27.5)}
               textAnchor="middle"
-              className="text-sm font-medium fill-gray-700"
+              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-gray-700`}
             >
-              IDEAL STAFFING RANGE
+              {isMobile ? 'IDEAL' : 'IDEAL STAFFING RANGE'}
             </text>
             
             <text
               x={chartWidth * 0.15}
               y={yScale(18)}
               textAnchor="middle"
-              className="text-sm font-medium fill-blue-700"
+              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-blue-700`}
             >
-              UNDERSTAFFED
+              {isMobile ? 'UNDER' : 'UNDERSTAFFED'}
             </text>
 
             {/* X-axis labels */}
@@ -233,9 +251,11 @@ export default function StaffingEnvelopeChart() {
               isOptimized 
                 ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 
                 : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-            } px-6 py-2 rounded-lg text-sm font-medium transition-colors border border-gray-300`}
+            } ${isMobile ? 'px-4 py-2 text-xs' : 'px-6 py-2 text-sm'} rounded-lg font-medium transition-colors border border-gray-300`}
           >
-            {isOptimized ? '← View Before Optimization' : 'View After Optimization →'}
+            {isOptimized 
+              ? isMobile ? '← Before' : '← View Before Optimization' 
+              : isMobile ? 'After →' : 'View After Optimization →'}
           </button>
         </div>
       </div>

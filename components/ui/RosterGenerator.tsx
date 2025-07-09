@@ -30,7 +30,7 @@ export default function RosterGenerator() {
   }
   
   return (
-    <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden max-w-2xl mx-auto">
+    <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden max-w-2xl mx-auto" style={{ contain: 'layout' }}>
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 relative">
         <div className="absolute top-4 right-4">
           <div className="bg-white/20 rounded-lg p-2">
@@ -53,7 +53,11 @@ export default function RosterGenerator() {
           <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
             <div 
               className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-300 ease-out relative overflow-hidden"
-              style={{ width: `${progress}%` }}
+              style={{ 
+                width: `${progress}%`,
+                transform: 'translateZ(0)', // Force GPU acceleration
+                willChange: 'width' // Hint browser about what will change
+              }}
             >
               {isGenerating && (
                 <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
