@@ -176,7 +176,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/Push notifications-pana-2.svg"
+                  src="/images/illustration/Push notifications-pana-2 copy.svg"
                   alt="Real-Time Notifications & Updates illustration"
                   width={600}
                   height={600}

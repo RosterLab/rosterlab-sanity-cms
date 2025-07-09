@@ -99,7 +99,7 @@ export default function ShiftSwapsPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Reduce management workload by 92%</span>
+                    <span className="text-gray-700">Reduce administrative workload</span>
                   </li>
                 </ul>
               </div>
@@ -249,11 +249,11 @@ export default function ShiftSwapsPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <p className="text-5xl font-bold mb-2">90%</p>
-                  <p className="text-xl opacity-90">Reduction in manager time on shift changes</p>
+                  <p className="text-xl opacity-90">Reduction in admin</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">0</p>
-                  <p className="text-xl opacity-90">Human or manual errors</p>
+                  <p className="text-5xl font-bold mb-2">5%</p>
+                  <p className="text-xl opacity-90">Efficiency Gains</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
