@@ -95,7 +95,7 @@ export default function Onboarding() {
             Six Steps to Building Perfect Rosters
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-            Our streamlined process takes you from complex scheduling challenges to optimized rosters in just six simple steps.
+            Our streamlined platform takes you from complex scheduling challenges to optimized rosters in just six simple steps.
           </p>
         </div>
 

@@ -300,7 +300,7 @@ export default function AboutPage() {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="bg-white rounded-lg p-6 text-center">
+              <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
                     src="/images/team/mohan.jpeg"
@@ -331,7 +331,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white rounded-lg p-6 text-center">
+              <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
                     src="/images/team/david.jpeg"
@@ -363,7 +363,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white rounded-lg p-6 text-center">
+              <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
                     src="/images/team/cathal.jpeg"
