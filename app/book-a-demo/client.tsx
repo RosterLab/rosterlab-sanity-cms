@@ -71,7 +71,10 @@ export default function BookADemoClient() {
             </p>
             
             {/* HubSpot Meeting Scheduler Embed */}
-            <div className="meetings-iframe-container overflow-x-auto max-w-full" data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"></div>
+            {/* Start of Meetings Embed Script */}
+            <div className="meetings-iframe-container overflow-x-auto max-w-full" 
+              data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"></div>
+            {/* End of Meetings Embed Script */}
           </div>
 
           {/* Demo Information Grid - Hidden on mobile/tablet */}
@@ -155,6 +158,30 @@ export default function BookADemoClient() {
                   <div className="flex items-center">
                     <HiChartBar className="w-5 h-5 text-purple-500 mr-2" />
                     <span className="text-gray-700 text-sm">Industry compliance rules</span>
+                  </div>
+                  <div className="flex items-center">
+                    <HiLightningBolt className="w-5 h-5 text-orange-500 mr-2" />
+                    <span className="text-gray-700 text-sm">Handles complexity</span>
+                  </div>
+                  <div className="flex items-center">
+                    <HiShieldCheck className="w-5 h-5 text-indigo-500 mr-2" />
+                    <span className="text-gray-700 text-sm">Fairer shift allocation</span>
+                  </div>
+                  <div className="flex items-center">
+                    <HiUserGroup className="w-5 h-5 text-pink-500 mr-2" />
+                    <span className="text-gray-700 text-sm">Meet more staff preferences</span>
+                  </div>
+                  <div className="flex items-center">
+                    <HiShieldCheck className="w-5 h-5 text-teal-500 mr-2" />
+                    <span className="text-gray-700 text-sm">Safer & healthier teams</span>
+                  </div>
+                  <div className="flex items-center">
+                    <HiClock className="w-5 h-5 text-red-500 mr-2" />
+                    <span className="text-gray-700 text-sm">Manage fatigue</span>
+                  </div>
+                  <div className="flex items-center">
+                    <HiChartBar className="w-5 h-5 text-cyan-500 mr-2" />
+                    <span className="text-gray-700 text-sm">Save time and money</span>
                   </div>
                 </div>
               </div>

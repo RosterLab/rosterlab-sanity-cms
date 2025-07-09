@@ -379,11 +379,11 @@ export default function AgedCarePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Preferences & Rules</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Preferences & Rules</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Configure staff preferences and organizational rules for optimal scheduling.
                 </p>
-                <span className="text-teal-600 text-sm font-medium hover:text-teal-700">Learn more →</span>
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700">Learn more →</span>
               </div>
             </Link>
 
@@ -394,11 +394,11 @@ export default function AgedCarePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Shift Swaps & Trades</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Shift Swaps & Trades</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval workflows.
                 </p>
-                <span className="text-cyan-600 text-sm font-medium hover:text-cyan-700">Learn more →</span>
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">Learn more →</span>
               </div>
             </Link>
 
@@ -409,11 +409,11 @@ export default function AgedCarePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Automate Rostering</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Automate Rostering</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Create compliant schedules in minutes with AI-powered optimisation.
                 </p>
-                <span className="text-blue-600 text-sm font-medium hover:text-blue-700">Learn more →</span>
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">Learn more →</span>
               </div>
             </Link>
 
@@ -425,11 +425,11 @@ export default function AgedCarePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Re-roster Changes</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Re-roster Changes</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Handle unexpected changes with intelligent re-rostering algorithms.
                 </p>
-                <span className="text-indigo-600 text-sm font-medium hover:text-indigo-700">Learn more →</span>
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">Learn more →</span>
               </div>
             </Link>
           </div>

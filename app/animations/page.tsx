@@ -1,6 +1,7 @@
 import Container from '@/components/ui/Container'
 import SiteLayout from '@/components/layout/SiteLayout'
 import SchedulingModule from '@/components/ui/SchedulingModule'
+import ShiftSwapModule from '@/components/sections/animations/ShiftSwapModule'
 import Image from 'next/image'
 
 export const metadata = {
@@ -28,6 +29,10 @@ export default function AnimationsPage() {
             <SchedulingModule />
           </div>
 
+          {/* Shift Swap Animation */}
+          <div className="mb-16">
+            <ShiftSwapModule />
+          </div>
 
           {/* Feature Callouts */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">

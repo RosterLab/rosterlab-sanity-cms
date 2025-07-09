@@ -13,6 +13,14 @@ export const metadata = {
 
 const faqItems = [
   {
+    question: "How quickly can I generate my emergency department staff roster?",
+    answer: "The time it takes the Rosterlab AI to generate a schedule for your staff is measured in minutes, not hours or days. With our dynamic statistics, you can quickly check over the AI-generated schedules. It will highlight when there are gaps in coverage and you can easily verify that the rosters are fair and equitable for all staff members."
+  },
+  {
+    question: "How does the platform automate my ICU roster?",
+    answer: "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Set up to have a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised schedules for your staff."
+  },
+  {
     question: "Where is my roster stored?",
     answer: "Good rostering requires good information management. RosterLab's cloud-based platform keeps all your roster information available to your department wherever you have internet access."
   },
@@ -193,10 +201,10 @@ export default function ICUEDPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/placeholder.jpg"
+                src="/images/generating.webp"
                 alt="ED & ICU scheduling benefits"
                 width={600}
-                height={400}
+                height={500}
                 className="rounded-lg shadow-xl w-full h-auto"
               />
             </div>
@@ -229,11 +237,11 @@ export default function ICUEDPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">Shift Swaps & Trades</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Shift Swaps & Trades</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval workflows.
                 </p>
-                <span className="text-teal-600 text-sm font-medium hover:text-teal-700">Learn more →</span>
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700">Learn more →</span>
               </div>
             </Link>
 
@@ -244,11 +252,11 @@ export default function ICUEDPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">Mobile Access</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Staff Mobile Access</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Staff can view schedules and swap shifts from any device.
                 </p>
-                <span className="text-cyan-600 text-sm font-medium hover:text-cyan-700">Learn more →</span>
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">Learn more →</span>
               </div>
             </Link>
 
@@ -259,11 +267,11 @@ export default function ICUEDPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">Fatigue Management</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Fatigue Management</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Monitor and prevent staff burnout with intelligent shift pattern analysis.
                 </p>
-                <span className="text-blue-600 text-sm font-medium hover:text-blue-700">Learn more →</span>
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">Learn more →</span>
               </div>
             </Link>
 
@@ -274,11 +282,11 @@ export default function ICUEDPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                   </svg>
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-2">Fair shift allocation</h3>
-                <p className="text-sm text-gray-600 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Fair shift allocation</h3>
+                <p className="text-base text-gray-600 mb-3">
                   Equitably distribute night shifts, weekends, and on-call duties automatically.
                 </p>
-                <span className="text-indigo-600 text-sm font-medium hover:text-indigo-700">Learn more →</span>
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">Learn more →</span>
               </div>
             </Link>
           </div>

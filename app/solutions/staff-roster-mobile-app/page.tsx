@@ -68,9 +68,6 @@ export default function EmployeeMobileAppPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="pb-8 lg:pb-12">
-              <div className="text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
-                EMPLOYEE MOBILE APP
-              </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Your roster in your pocket
               </h1>

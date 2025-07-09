@@ -41,8 +41,8 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Work life balance-pana.svg"
-                  alt="Self-scheduling work life balance illustration"
+                  src="/images/illustration/Events-pana.svg"
+                  alt="Self-scheduling illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -80,7 +80,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/illustration/Devices-pana.svg"
                   alt="Easily meet your staffing needs illustration"
                   width={600}
                   height={600}
@@ -91,14 +91,14 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
 
-        {/* Feature 2: AI-Optimized Matching */}
+        {/* Feature 2: AI-Optimized Compliant Rosters */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/Customer relationship management-pana.svg"
-                  alt="AI-Optimized Matching illustration"
+                  src="/images/product/quality.webp"
+                  alt="AI-Optimized Compliant Rosters illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -106,7 +106,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  AI-Optimized Matching
+                  AI-Optimized and Compliant
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Our advanced algorithm considers staff preferences, skills, seniority, and fairness to create schedules that work for everyone. Get optimal coverage while maximizing staff satisfaction.
@@ -130,36 +130,36 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Real-Time Shift Bidding */}
+        {/* Feature 3: Self-Roster The Way You Want To */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Real-Time Shift Bidding
+                  Self-Roster The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Create a dynamic shift bidding system where staff can pick up extra shifts or offer their assigned shifts to colleagues. Everything happens within your compliance rules and approval workflows.
+                  Give your team the flexibility to create their own schedules within your defined parameters. Staff can select shifts that work for their life while ensuring all coverage requirements are met automatically.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Instant notifications for available shifts</span>
+                    <span className="text-gray-700">Choose from available shifts that match your skills</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">First-come, first-served or priority-based allocation</span>
+                    <span className="text-gray-700">Build your ideal work pattern week by week</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic overtime and compliance checks</span>
+                    <span className="text-gray-700">Real-time visibility of shift availability</span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
                 <Image
                   src="/images/illustration/Chatting-pana.svg"
-                  alt="Real-Time Shift Bidding illustration"
+                  alt="Self-roster flexibility illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -221,8 +221,8 @@ export default function SelfSchedulingPage() {
                   <p className="text-xl opacity-90">Reduction in admin time</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">0</p>
-                  <p className="text-xl opacity-90">Manual errors or mistakes</p>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Empowered staff</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>

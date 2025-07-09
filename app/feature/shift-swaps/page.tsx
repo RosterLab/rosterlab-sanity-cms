@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import ShiftSwapsContent from './ShiftSwapsContent'
+import ShiftSwapModule from '@/components/sections/animations/ShiftSwapModule'
 
 export const metadata = {
   title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
@@ -104,13 +105,7 @@ export default function ShiftSwapsPage() {
                 </ul>
               </div>
               <div className="relative">
-                <Image
-                  src="/images/illustration/Customer relationship management-pana.svg"
-                  alt="Automatic Routine Swap Approval"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
-                />
+                <ShiftSwapModule />
               </div>
             </div>
           </Container>
