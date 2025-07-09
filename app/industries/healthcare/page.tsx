@@ -13,9 +13,9 @@ export const metadata = {
 
 export default function HealthcarePage() {
   return (
-    <SiteLayout className="select-text">
+    <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16 select-all">
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             <div>
