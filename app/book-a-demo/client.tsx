@@ -4,12 +4,16 @@ import Container from '@/components/ui/Container'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import '@/styles/hubspot-fonts.css'
 
 export default function BookADemoClient() {
+  const [shouldLoadHubSpot, setShouldLoadHubSpot] = useState(false)
+  const meetingsContainerRef = useRef<HTMLDivElement>(null)
+  const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false)
+
   useEffect(() => {
-    // Add preconnect hints for HubSpot resources
+    // Only add preconnect hints initially
     const preconnect1 = document.createElement('link')
     preconnect1.rel = 'preconnect'
     preconnect1.href = 'https://static.hsappstatic.net'
@@ -20,6 +24,36 @@ export default function BookADemoClient() {
     preconnect2.href = 'https://meetings.rosterlab.com'
     document.head.appendChild(preconnect2)
 
+    // Set up Intersection Observer for lazy loading
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !shouldLoadHubSpot) {
+            setShouldLoadHubSpot(true)
+          }
+        })
+      },
+      {
+        rootMargin: '100px', // Start loading 100px before visible
+        threshold: 0.01
+      }
+    )
+
+    if (meetingsContainerRef.current) {
+      observer.observe(meetingsContainerRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+      document.head.removeChild(preconnect1)
+      document.head.removeChild(preconnect2)
+    }
+  }, [shouldLoadHubSpot])
+
+  // Load HubSpot only when needed
+  useEffect(() => {
+    if (!shouldLoadHubSpot || isHubSpotLoaded) return
+
     // Add font preload hints
     const fontPreload = document.createElement('link')
     fontPreload.rel = 'preload'
@@ -29,29 +63,41 @@ export default function BookADemoClient() {
     fontPreload.crossOrigin = 'anonymous'
     document.head.appendChild(fontPreload)
 
-    // Load HubSpot meetings embed script
+    // Load HubSpot meetings embed script with lower priority
     const script = document.createElement('script')
     script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js'
     script.async = true
     script.defer = true
-    document.body.appendChild(script)
+    
+    // Use requestIdleCallback if available
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        document.body.appendChild(script)
+        setIsHubSpotLoaded(true)
+      }, { timeout: 2000 })
+    } else {
+      // Fallback to setTimeout
+      setTimeout(() => {
+        document.body.appendChild(script)
+        setIsHubSpotLoaded(true)
+      }, 100)
+    }
 
     // Mark fonts as loaded after a delay
     const timer = setTimeout(() => {
       document.querySelector('.meetings-iframe-container')?.classList.add('fonts-loaded')
-    }, 1000)
+    }, 1500)
 
     return () => {
-      // Cleanup
       clearTimeout(timer)
       if (document.body.contains(script)) {
         document.body.removeChild(script)
       }
-      document.head.removeChild(preconnect1)
-      document.head.removeChild(preconnect2)
-      document.head.removeChild(fontPreload)
+      if (document.head.contains(fontPreload)) {
+        document.head.removeChild(fontPreload)
+      }
     }
-  }, [])
+  }, [shouldLoadHubSpot, isHubSpotLoaded])
 
   return (
     <SiteLayout>
@@ -103,8 +149,20 @@ export default function BookADemoClient() {
             
             {/* HubSpot Meeting Scheduler Embed */}
             {/* Start of Meetings Embed Script */}
-            <div className="meetings-iframe-container overflow-x-auto max-w-full" 
-              data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"></div>
+            <div 
+              ref={meetingsContainerRef}
+              className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative" 
+              data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"
+            >
+              {!isHubSpotLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading calendar...</p>
+                  </div>
+                </div>
+              )}
+            </div>
             {/* End of Meetings Embed Script */}
           </div>
 

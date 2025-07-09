@@ -41,3 +41,19 @@ iframe[src*="hubspot"] * {
 .meetings-iframe-container:not(.fonts-loaded) {
   font-family: var(--font-poppins), system-ui, -apple-system, sans-serif !important;
 }
+
+/* Loading state styles */
+.meetings-iframe-container {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.meetings-iframe-container:empty,
+.meetings-iframe-container:not(.loaded) {
+  opacity: 0.8;
+}
+
+/* Optimize iframe rendering */
+.meetings-iframe-container iframe {
+  transform: translateZ(0);
+  will-change: transform;
+}
