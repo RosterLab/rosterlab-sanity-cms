@@ -15,7 +15,7 @@ export const metadata = {
     description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
     images: [
       {
-        url: '/images/og images/Feature -  Shift Swaps.png',
+        url: '/images/og%20images/Feature%20-%20%20Shift%20Swaps.png',
         width: 1200,
         height: 630,
       },
@@ -25,7 +25,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
     description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
-    images: ['/images/og images/Feature -  Shift Swaps.png'],
+    images: ['/images/og%20images/Feature%20-%20%20Shift%20Swaps.png'],
   },
 }
 

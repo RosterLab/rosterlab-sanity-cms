@@ -17,7 +17,7 @@ export const metadata = {
     description: "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
     images: [
       {
-        url: '/images/og images/About.png',
+        url: '/images/og%20images/About.png',
         width: 1200,
         height: 630,
         alt: 'About RosterLab',
@@ -28,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: "About Us - Meet the Team Behind RosterLab",
     description: "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    images: ['/images/og images/About.png'],
+    images: ['/images/og%20images/About.png'],
   },
 };
 

@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
     images: [
       {
-        url: '/images/og images/Industry.png',
+        url: '/images/og%20images/Industry.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Smart AI Rostering Software for All Industries - RosterLab',
     description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
-    images: ['/images/og images/Industry.png'],
+    images: ['/images/og%20images/Industry.png'],
   },
 }
 

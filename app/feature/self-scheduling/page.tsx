@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.',
     images: [
       {
-        url: '/images/og images/Self Scheduling.png',
+        url: '/images/og%20images/Self%20Scheduling.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Self-Scheduling - RosterLab',
     description: 'Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.',
-    images: ['/images/og images/Self Scheduling.png'],
+    images: ['/images/og%20images/Self%20Scheduling.png'],
   },
 }
 

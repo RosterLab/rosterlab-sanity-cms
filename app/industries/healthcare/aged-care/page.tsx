@@ -15,7 +15,7 @@ export const metadata = {
     description: 'Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.',
     images: [
       {
-        url: '/images/og images/Industry - Aged Care.png',
+        url: '/images/og%20images/Industry%20-%20Aged%20Care.png',
         width: 1200,
         height: 630,
       },
@@ -25,7 +25,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Aged Care Staff Scheduling Software - RosterLab',
     description: 'Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.',
-    images: ['/images/og images/Industry - Aged Care.png'],
+    images: ['/images/og%20images/Industry%20-%20Aged%20Care.png'],
   },
 }
 

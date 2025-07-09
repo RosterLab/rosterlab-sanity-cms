@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
     images: [
       {
-        url: '/images/og images/Schedge.png',
+        url: '/images/og%20images/Schedge.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
     description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
-    images: ['/images/og images/Schedge.png'],
+    images: ['/images/og%20images/Schedge.png'],
   },
 }
 

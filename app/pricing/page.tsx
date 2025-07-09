@@ -12,7 +12,7 @@ export const metadata = {
     description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
     images: [
       {
-        url: '/images/og images/Pricing.png',
+        url: '/images/og%20images/Pricing.png',
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Pricing - Affordable AI Staff Scheduling Software',
     description: 'Explore RosterLab\'s flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.',
-    images: ['/images/og images/Pricing.png'],
+    images: ['/images/og%20images/Pricing.png'],
   },
 }
 

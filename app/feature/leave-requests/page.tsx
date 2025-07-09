@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
     images: [
       {
-        url: '/images/og images/Feature-  Leave Request.png',
+        url: '/images/og%20images/Feature-%20%20Leave%20Request.png',
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Employee Leave Request Tracking - RosterLab',
     description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
-    images: ['/images/og images/Feature-  Leave Request.png'],
+    images: ['/images/og%20images/Feature-%20%20Leave%20Request.png'],
   },
 }
 

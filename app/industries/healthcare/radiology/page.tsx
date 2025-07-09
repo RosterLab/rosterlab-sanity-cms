@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
     images: [
       {
-        url: '/images/og images/Industry - Radiology.png',
+        url: '/images/og%20images/Industry%20-%20Radiology.png',
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Radiology Staff Scheduling Software - RosterLab',
     description: 'Learn how our rostering software simplifies complex staff scheduling in Radiology. Build fair, compliant rosters that are flexible & helps save time.',
-    images: ['/images/og images/Industry - Radiology.png'],
+    images: ['/images/og%20images/Industry%20-%20Radiology.png'],
   },
 }
 

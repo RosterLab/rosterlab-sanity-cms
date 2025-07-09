@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
     images: [
       {
-        url: '/images/og images/Solution - Free.png',
+        url: '/images/og%20images/Solution%20-%20Free.png',
         width: 1200,
         height: 630,
         alt: 'Free Staff Scheduling Platform',
@@ -25,7 +25,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Free Staff Scheduling Platform - No More Spreadsheets!',
     description: 'Free staff-scheduling tool that automates rosters, slashes admin time, and keeps shifts compliant—plan smarter, faster, no credit card required.',
-    images: ['/images/og images/Solution - Free.png'],
+    images: ['/images/og%20images/Solution%20-%20Free.png'],
   },
 }
 

@@ -9,7 +9,7 @@ export const metadata = {
     description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
     images: [
       {
-        url: '/images/og images/ROI Calc.png',
+        url: '/images/og%20images/ROI%20Calc.png',
         width: 1200,
         height: 630,
       },
@@ -19,7 +19,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'ROI Calculator - Optimise your time and money with RosterLab',
     description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
-    images: ['/images/og images/ROI Calc.png'],
+    images: ['/images/og%20images/ROI%20Calc.png'],
   },
 }
 

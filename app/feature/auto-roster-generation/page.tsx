@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Generate fully optimized rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
     images: [
       {
-        url: '/images/og images/Auto Roster Generation.png',
+        url: '/images/og%20images/Auto%20Roster%20Generation.png',
         width: 1200,
         height: 630,
       },
@@ -24,7 +24,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'AI Auto Roster Generation - RosterLab',
     description: 'Generate fully optimized rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
-    images: ['/images/og images/Auto Roster Generation.png'],
+    images: ['/images/og%20images/Auto%20Roster%20Generation.png'],
   },
 }
 
