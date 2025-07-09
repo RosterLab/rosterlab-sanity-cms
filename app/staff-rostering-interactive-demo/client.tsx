@@ -185,7 +185,7 @@ export default function StaffRosteringInteractiveDemoClient() {
           <div 
             ref={meetingsContainerRef}
             className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative" 
-            data-src="https://meetings.rosterlab.com/meetings/daniel-ge/meeting?embed=true"
+            data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"
           >
             {!isHubSpotLoaded && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
