@@ -24,6 +24,9 @@ export const metadata = {
     description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
     images: ['/images/og images/Schedge.png'],
   },
+  other: {
+    'link:0': '<link rel="preload" href="/images/illustration/Choose-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
+  }
 }
 
 export default function SchedgePage() {

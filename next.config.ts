@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['cdn.sanity.io', 'rosterlab.com'],
     formats: ['image/webp'],
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days in seconds
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'inline',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   compress: true,
   poweredByHeader: false,
@@ -13,6 +17,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    optimizePackageImports: ['react-icons', 'react-confetti'],
   },
   compiler: {
     // Remove unused JavaScript
@@ -20,6 +25,68 @@ const nextConfig: NextConfig = {
   },
   // Disable SWC minifier's legacy browser support
   swcMinify: true,
+  async headers() {
+    return [
+      {
+        source: '/_next/image(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, stale-while-revalidate=86400', // 7 days cache, 1 day stale
+          },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days cache, 1 day stale
+          },
+        ],
+      },
+      {
+        source: '/(.*).svg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
+          },
+          {
+            key: 'Content-Type',
+            value: 'image/svg+xml',
+          },
+        ],
+      },
+      {
+        source: '/(.*).png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
+          },
+        ],
+      },
+      {
+        source: '/(.*).jpg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
+          },
+        ],
+      },
+      {
+        source: '/(.*).webp',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       // Product redirects

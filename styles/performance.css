@@ -57,3 +57,21 @@ img {
 .animate-spin {
   will-change: transform;
 }
+
+/* Optimize CSS module loading */
+[class*="module"] {
+  contain: layout style;
+}
+
+/* Preload optimization for game components */
+.cellInput {
+  contain: layout;
+  transform: translateZ(0);
+}
+
+/* Defer non-critical animations */
+@media (prefers-reduced-motion: no-preference) {
+  .modalText *, .video {
+    animation-delay: 0.5s;
+  }
+}
