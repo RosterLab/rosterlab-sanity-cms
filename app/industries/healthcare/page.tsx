@@ -15,18 +15,18 @@ export const metadata = {
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
     images: [
       {
-        url: '/images/og images/IndustryHealthcare.png',
+        url: "/images/og images/IndustryHealthcare.png",
         width: 1200,
         height: 630,
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "Rostering Software for Healthcare - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    images: ['/images/og images/IndustryHealthcare.png'],
+    images: ["/images/og images/IndustryHealthcare.png"],
   },
 };
 
@@ -51,8 +51,9 @@ export default function HealthcarePage() {
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time care for patients. We specialise
-                in all types of medical rosters, no matter how complex it is.
+                Less time rostering, more time caring for patients. We
+                specialise in all types of healthcare rosters, no matter how
+                complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -251,8 +252,8 @@ export default function HealthcarePage() {
                 Mobile Access & Notifications
               </h3>
               <p className="text-gray-600 mb-3">
-                Staff can view schedules, request shifts, and manage swaps from
-                any device.
+                Staff can view schedules, make preferences, request leave,
+                accept open shifts and manage swaps from any device.
               </p>
               <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
                 Learn more
@@ -339,8 +340,8 @@ export default function HealthcarePage() {
                 Higher Staff Retention
               </h3>
               <p className="text-gray-600 mb-3">
-                Better-quality rosters, reduced bias perception, and better
-                work-life balance.
+                Better-quality rosters, self rostering, reduced bias perception,
+                and better work-life balance.
               </p>
               <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
                 Learn more
@@ -509,7 +510,7 @@ export default function HealthcarePage() {
                     </h3>
                     <p className="text-gray-600 text-sm">
                       Better utilise ordinary hours to reduce unnecessary
-                      overtime and locums, ensuring higher skill coverage.
+                      overtime and locums, and ensure higher skill coverage.
                       Optimise your current staffing with better efficiency.
                     </p>
                   </div>
