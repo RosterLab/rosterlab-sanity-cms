@@ -210,8 +210,8 @@ export default function EmployeeMobileAppPage() {
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Time Reduction</h3>
-                    <p className="text-gray-600">Generate complex rosters in minutes instead of days with our advanced AI algorithms</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">AI-Powered Preferences</h3>
+                    <p className="text-gray-600">Staff preferences and leave requests submitted through the app are automatically considered by our AI when generating optimal rosters</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -219,8 +219,8 @@ export default function EmployeeMobileAppPage() {
                     <HiTrendingUp className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
-                    <p className="text-gray-600">Mathematical optimisation ensures the most efficient staff allocation and resource utilisation</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Shift Swaps</h3>
+                    <p className="text-gray-600">AI can auto-approve shift swaps that meet compliance rules, reducing admin workload while maintaining roster integrity</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -228,8 +228,8 @@ export default function EmployeeMobileAppPage() {
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Staff Satisfaction</h3>
-                    <p className="text-gray-600">Fair and balanced schedules improve work-life balance and increase staff retention</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Real-Time Updates</h3>
+                    <p className="text-gray-600">Instant push notifications for schedule changes, ensuring your team always has the latest roster information</p>
                   </div>
                 </div>
               </div>
