@@ -100,3 +100,12 @@ h3 {
   }
 }
 
+/* Custom shimmer animation - one pass with long pause */
+@keyframes shimmer {
+  0%, 20%, 100% {
+    transform: translateX(-100%);
+  }
+  10% {
+    transform: translateX(100%);
+  }
+}
