@@ -88,7 +88,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Product</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/solutions/ai-schedules" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/solutions/ai-staff-scheduling" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   AI Scheduling
                 </Link>
               </li>

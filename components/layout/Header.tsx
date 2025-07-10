@@ -29,7 +29,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: 'Solutions',
       subItems: [
-        { title: 'AI-generated optimised schedules', link: '/solutions/ai-schedules' },
+        { title: 'AI-generated optimised schedules', link: '/solutions/ai-staff-scheduling' },
         { title: 'Free For Manual Digital Scheduling', link: '/solutions/free-staff-scheduling' },
         { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
         { title: 'Preferences & Rules', link: '/feature/preferences-rules' },
@@ -142,7 +142,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1">
                                 <Link
-                                  href="/solutions/ai-schedules"
+                                  href="/solutions/ai-staff-scheduling"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">

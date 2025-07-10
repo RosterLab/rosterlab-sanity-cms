@@ -560,7 +560,7 @@ Savings Breakdown:
                 Contact Us
               </Button>
               <Button 
-                href="/solutions/ai-schedules" 
+                href="/solutions/ai-staff-scheduling" 
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
               >
                 Learn More

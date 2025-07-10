@@ -104,7 +104,12 @@ const nextConfig: NextConfig = {
       // Product redirects
       {
         source: '/product/rosterlab-ai',
-        destination: '/solutions/ai-schedules',
+        destination: '/solutions/ai-staff-scheduling',
+        permanent: true,
+      },
+      {
+        source: '/solutions/ai-schedules',
+        destination: '/solutions/ai-staff-scheduling',
         permanent: true,
       },
       {

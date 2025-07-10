@@ -33,7 +33,7 @@ export const metadata = {
 const faqItems = [
   {
     question: "Is the AI generator included in the free product?",
-    answer: "The <a href='/solutions/ai-schedules' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform, however if you're looking for a free digital scheduling solution we still offer great features that are better than using manual spreadsheets."
+    answer: "The <a href='/solutions/ai-staff-scheduling' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform, however if you're looking for a free digital scheduling solution we still offer great features that are better than using manual spreadsheets."
   },
   {
     question: "How do I install the employee mobile app?",
@@ -117,7 +117,7 @@ export default function ManualSchedulingPage() {
                 <Button href="https://app.rosterlab.com" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
                   Start for Free
                 </Button>
-                <Button href="/solutions/ai-schedules" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg">
+                <Button href="/solutions/ai-staff-scheduling" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg">
                   Discover AI Rosters
                 </Button>
               </div>
@@ -320,7 +320,7 @@ export default function ManualSchedulingPage() {
               <p className="text-gray-600 mb-6">
                 Ready to upgrade to AI-powered scheduling?
               </p>
-              <Button href="/solutions/ai-schedules" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3">
+              <Button href="/solutions/ai-staff-scheduling" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3">
                 Explore AI Features
               </Button>
             </div>

@@ -317,7 +317,7 @@ export default function HealthcarePage() {
             </Link>
 
             <Link
-              href="/solutions/ai-schedules"
+              href="/solutions/ai-staff-scheduling"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -524,7 +524,7 @@ export default function HealthcarePage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/solutions/ai-schedules"
+                  href="/solutions/ai-staff-scheduling"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -591,7 +591,7 @@ export default function HealthcarePage() {
 
             <div className="mt-16 text-center">
               <Button
-                href="/solutions/ai-schedules"
+                href="/solutions/ai-staff-scheduling"
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
                 Explore AI Rostering Features
@@ -1062,7 +1062,7 @@ export default function HealthcarePage() {
                   Schedule a Healthcare Demo
                 </Button>
                 <Button
-                  href="/solutions/ai-schedules"
+                  href="/solutions/ai-staff-scheduling"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
                 >
                   Learn more about AI rostering

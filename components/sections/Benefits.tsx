@@ -120,7 +120,7 @@ export default function Benefits() {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <Button
-              href="/solutions/ai-schedules"
+              href="/solutions/ai-staff-scheduling"
               className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
             >
               Learn more about AI rostering

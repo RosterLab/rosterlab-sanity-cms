@@ -277,7 +277,7 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/solutions/ai-schedules" className="block">
+            <Link href="/solutions/ai-staff-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
