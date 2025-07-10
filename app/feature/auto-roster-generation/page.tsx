@@ -8,10 +8,10 @@ import AIOptimizationModule from '@/components/feature/AIOptimizationModule'
 
 export const metadata = {
   title: 'AI Auto Roster Generation - RosterLab',
-  description: 'Generate fully optimized rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
+  description: 'Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
   openGraph: {
     title: 'AI Auto Roster Generation - RosterLab',
-    description: 'Generate fully optimized rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
+    description: 'Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
     images: [
       {
         url: '/images/og images/AutoRosterGeneration.png',
@@ -23,7 +23,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'AI Auto Roster Generation - RosterLab',
-    description: 'Generate fully optimized rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
+    description: 'Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
     images: ['/images/og images/AutoRosterGeneration.png'],
   },
 }
@@ -98,7 +98,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  AI-Powered Optimization Engine
+                  AI-Powered Optimisation Engine
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Our advanced algorithms consider thousands of variables including staff preferences, skills, availability, compliance rules, and fairness metrics to create optimal schedules automatically.

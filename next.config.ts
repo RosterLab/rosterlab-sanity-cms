@@ -23,8 +23,6 @@ const nextConfig: NextConfig = {
     // Remove unused JavaScript
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Disable SWC minifier's legacy browser support
-  swcMinify: true,
   // Exclude polyfills for modern browsers
   webpack: (config, { isServer }) => {
     // Skip polyfills for modern JavaScript features

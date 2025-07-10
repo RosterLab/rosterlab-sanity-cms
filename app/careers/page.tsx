@@ -101,7 +101,7 @@ export default function CareersPage() {
               Why Join RosterLab?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're not just building software - we're transforming how healthcare organizations manage their most valuable asset: their people.
+              We're not just building software - we're transforming how healthcare organisations manage their most valuable asset: their people.
             </p>
           </div>
 

@@ -204,7 +204,7 @@ export default function LeaveRequestsPage() {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Customizable approval rules and criteria</span>
+                    <span className="text-gray-700">Customisable approval rules and criteria</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />

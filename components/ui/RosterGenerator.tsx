@@ -142,7 +142,7 @@ export default function RosterGenerator() {
           <div className="mt-4 space-y-2">
             <div className={`flex items-center gap-2 text-xs ${progress > 0 ? 'text-green-600' : 'text-gray-400'}`}>
               <div className={`w-1.5 h-1.5 rounded-full ${progress > 0 ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-              <span>Analyzing staff availability</span>
+              <span>Analysing staff availability</span>
             </div>
             <div className={`flex items-center gap-2 text-xs ${progress > 30 ? 'text-green-600' : 'text-gray-400'}`}>
               <div className={`w-1.5 h-1.5 rounded-full ${progress > 30 ? 'bg-green-500' : 'bg-gray-300'}`}></div>

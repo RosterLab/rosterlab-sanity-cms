@@ -76,7 +76,7 @@ const onboardingSteps = [
   },
   {
     number: "4",
-    title: "4. Share your schedule",
+    title: "4. Share your roster",
     icon: (
       <svg
         className="w-6 h-6 text-blue-600"
@@ -142,7 +142,7 @@ const onboardingSteps = [
   },
   {
     number: "7",
-    title: "7. Integrates with your payroll systems",
+    title: "Integrates with your payroll systems",
     icon: (
       <svg
         className="w-6 h-6 text-blue-600"
@@ -159,7 +159,7 @@ const onboardingSteps = [
       </svg>
     ),
     description:
-      "Sync your staff roster directly to payroll - ensuring accurate hours, streamlined reporting, and fewer errors.",
+      "We currently integrate with Trendcare. Others upon request, depending on your business.",
     link: "/feature/payroll-integration",
     fullWidth: true,
   },
@@ -174,11 +174,11 @@ export default function Onboarding() {
             FEATURES
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mt-2 mb-4">
-            Six Steps to Building Perfect Rosters
+            Seven Steps to Building Perfect Rosters
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-            Our streamlined platform takes you from complex scheduling
-            challenges to optimized rosters in just six simple steps.
+            Our streamlined platform takes you from complex rostering challenges
+            to optimised rosters in just seven simple steps.
           </p>
         </div>
 
@@ -220,17 +220,20 @@ export default function Onboarding() {
           {/* Full-width 7th box */}
           {onboardingSteps[6] && (
             <div className="mt-8">
-              <div className="bg-white rounded-lg p-4 shadow-sm text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3 mx-auto">
+              <Link
+                href={onboardingSteps[6].link}
+                className="group block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center cursor-pointer hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {onboardingSteps[6].icon}
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2">
+                <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors">
                   {onboardingSteps[6].title}
                 </h3>
-                <p className="text-neutral-600 max-w-2xl mx-auto">
+                <p className="text-neutral-600 max-w-4xl mx-auto">
                   {onboardingSteps[6].description}
                 </p>
-              </div>
+              </Link>
             </div>
           )}
         </div>

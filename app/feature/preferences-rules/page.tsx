@@ -151,7 +151,7 @@ export default function PreferencesRulesPage() {
                         <div className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
                         <div className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
                       </div>
-                      <span className="ml-3 text-xs text-gray-500">AI analyzing preferences...</span>
+                      <span className="ml-3 text-xs text-gray-500">AI analysing preferences...</span>
                     </div>
                   </div>
                   

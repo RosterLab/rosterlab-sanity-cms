@@ -27,7 +27,7 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
         children: [
           {
             _type: 'span',
-            text: 'Traditional scheduling methods are time-consuming and often lead to suboptimal results. Our new AI-powered optimisation engine changes that by analyzing historical data, employee preferences, and business constraints to create perfect schedules in minutes.',
+            text: 'Traditional scheduling methods are time-consuming and often lead to suboptimal results. Our new AI-powered optimisation engine changes that by analysing historical data, employee preferences, and business constraints to create perfect schedules in minutes.',
           },
         ],
       },

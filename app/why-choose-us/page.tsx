@@ -40,7 +40,7 @@ const reasons = [
   {
     icon: HiShieldCheck,
     title: 'Proven Track Record',
-    description: 'Trusted by leading organizations across Australia and New Zealand with exceptional customer satisfaction.'
+    description: 'Trusted by leading organisations across Australia and New Zealand with exceptional customer satisfaction.'
   },
   {
     icon: HiClock,
@@ -302,7 +302,7 @@ export default function WhyChooseUsPage() {
               Ready to Join RosterLab?
             </h2>
             <p className="text-xl mb-12 opacity-90">
-              See why organizations trust RosterLab to transform their workforce management.
+              See why organisations trust RosterLab to transform their workforce management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
