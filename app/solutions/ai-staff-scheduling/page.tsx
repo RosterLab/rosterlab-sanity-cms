@@ -1,65 +1,81 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import Image from 'next/image'
-import Link from 'next/link'
-import SiteLayout from '@/components/layout/SiteLayout'
-import FAQAccordion from '@/components/ui/FAQAccordion'
-import RosterLoadingBar from '@/components/ui/RosterLoadingBar'
-import { HiCheck, HiClock, HiTrendingUp, HiUsers, HiCog, HiAcademicCap, HiShieldCheck, HiSwitchHorizontal } from 'react-icons/hi'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
+import SiteLayout from "@/components/layout/SiteLayout";
+import FAQAccordion from "@/components/ui/FAQAccordion";
+import RosterLoadingBar from "@/components/ui/RosterLoadingBar";
+import {
+  HiCheck,
+  HiClock,
+  HiTrendingUp,
+  HiUsers,
+  HiCog,
+  HiAcademicCap,
+  HiShieldCheck,
+  HiSwitchHorizontal,
+} from "react-icons/hi";
 
 export const metadata = {
-  title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
-  description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
+  title: "AI Staff Roster Generator for Scheduling Complex Shifts",
+  description:
+    "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
   openGraph: {
-    title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
-    description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
+    title: "AI Staff Roster Generator for Scheduling Complex Shifts",
+    description:
+      "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
     images: [
       {
-        url: '/images/og images/SolutionAIGen.png',
+        url: "/images/og images/SolutionAIGen.png",
         width: 1200,
         height: 630,
-        alt: 'AI Staff Roster Generator',
+        alt: "AI Staff Roster Generator",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'AI Staff Roster Generator for Scheduling Complex Shifts',
-    description: 'Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.',
-    images: ['/images/og images/SolutionAIGen.png'],
+    card: "summary_large_image",
+    title: "AI Staff Roster Generator for Scheduling Complex Shifts",
+    description:
+      "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+    images: ["/images/og images/SolutionAIGen.png"],
   },
-}
+};
 
 const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
-    answer: "Our AI algorithms analyse shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules. The system learns from patterns and continuously improves its recommendations based on feedback and outcomes."
+    answer:
+      "Our AI algorithms analyse shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules.",
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
-    answer: "Implementation typically takes 2-4 weeks depending on your organisation's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements."
+    answer:
+      "Implementation typically takes 2-4 weeks depending on your organisation's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements.",
   },
   {
     question: "Can the AI handle complex compliance and union rules?",
-    answer: "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organisational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant."
+    answer:
+      "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organisational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant.",
   },
   {
-    question: "What happens if we need to make manual adjustments to AI-generated schedules?",
-    answer: "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing."
+    question:
+      "What happens if we need to make manual adjustments to AI-generated schedules?",
+    answer:
+      "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing.",
   },
   {
     question: "How much time and cost savings can we expect?",
-    answer: "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size."
+    answer:
+      "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size.",
   },
   {
-    question: "Why is it important to keep all your data and knowledge digitally?",
-    answer: "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimises human error but also saves time spent recalling minor details and enhances the efficiency of communications."
+    question:
+      "Why is it important to keep all your data and knowledge digitally?",
+    answer:
+      "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimises human error but also saves time spent recalling minor details and enhances the efficiency of communications.",
   },
-  {
-    question: "Do you offer digital timesheets?",
-    answer: "Yes! Transform from chaotic paper timesheets to digital timesheets! Simply put the actual start and end time and we will automatically calculate the payroll hours for you. Managers can approve timesheets individually or in bulk. You can also easily export all the timesheet data with a click of button, making it easier to integrate with payroll."
-  }
-]
+];
 
 export default function AISchedulesPage() {
   return (
@@ -73,77 +89,126 @@ export default function AISchedulesPage() {
                 Make rostering faster than ever before
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Unlock the full power of AI roster creation to save time and optimise staff allocation
+                Unlock the full power of AI roster creation to save time and
+                optimise staff allocation
               </p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-3">
                   <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">Reduce scheduling from days to minutes</span>
+                  <span className="text-gray-700 font-medium">
+                    Reduce scheduling from days to minutes
+                  </span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">Comply with union rules and requirements</span>
+                  <span className="text-gray-700 font-medium">
+                    Comply with union rules and requirements
+                  </span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">Easily identify your staffing needs for each day</span>
+                  <span className="text-gray-700 font-medium">
+                    Easily identify your staffing needs for each day
+                  </span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <svg
+                      className="w-3 h-3 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
-                  <span className="text-gray-700 font-medium">Manage employee timesheets digitally</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                    </svg>
-                  </div>
-                  <span className="text-gray-700 font-medium">Keep all your data and knowledge in one place</span>
+                  <span className="text-gray-700 font-medium">
+                    Keep all your rostering data and knowledge in one place
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button 
-                  href="/book-a-demo" 
+                <Button
+                  href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
                 >
                   Book a Demo
                 </Button>
-                <Button 
-                  href="/staff-rostering-interactive-demo" 
+                <Button
+                  href="/staff-rostering-interactive-demo"
                   className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
                 >
                   See an Example
                 </Button>
               </div>
-              
+
               {/* Feature ticks below CTA */}
               <div className="mt-6">
                 <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-6 text-sm text-gray-600">
                   <span className="font-medium flex items-center">
-                    <svg className="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <svg
+                      className="w-4 h-4 text-gray-500 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     Automatic roster generation
                   </span>
                   <span className="font-medium flex items-center">
-                    <svg className="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <svg
+                      className="w-4 h-4 text-gray-500 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     Staff mobile app
                   </span>
@@ -172,7 +237,10 @@ export default function AISchedulesPage() {
                 Intelligent Scheduling
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our AI algorithms analyse thousands of variables to create optimal schedules that balance staff preferences, operational requirements, and compliance needs. Experience the future of workforce management.
+                Our AI algorithms analyse thousands of variables to create
+                optimal schedules that balance staff preferences, operational
+                requirements, and compliance needs. Experience the future of
+                workforce management.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -180,8 +248,13 @@ export default function AISchedulesPage() {
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">90% Admin Time Reduction</h3>
-                    <p className="text-gray-600">Generate complex rosters in minutes instead of days with our advanced AI algorithms</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      90% Admin Time Reduction
+                    </h3>
+                    <p className="text-gray-600">
+                      Generate complex rosters in minutes instead of days with
+                      our advanced AI algorithms
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -189,8 +262,13 @@ export default function AISchedulesPage() {
                     <HiTrendingUp className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Optimised Staffing Coverage</h3>
-                    <p className="text-gray-600">Mathematical optimisation ensures the most efficient staff allocation and resource utilisation</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Optimised Staffing Coverage
+                    </h3>
+                    <p className="text-gray-600">
+                      Mathematical optimisation ensures the most efficient staff
+                      allocation and resource utilisation
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -198,8 +276,13 @@ export default function AISchedulesPage() {
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Increased Staff Satisfaction</h3>
-                    <p className="text-gray-600">Fair and balanced schedules improve work-life balance and increase staff retention</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Increased Staff Satisfaction
+                    </h3>
+                    <p className="text-gray-600">
+                      Fair and balanced schedules improve work-life balance and
+                      increase staff retention
+                    </p>
                   </div>
                 </div>
               </div>
@@ -219,7 +302,9 @@ export default function AISchedulesPage() {
               Everything your team needs, powered by AI
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Empower your staff with AI-generated schedules that are accessible anywhere, enable smart shift management, and seamlessly integrate with your mobile app.
+              Empower your staff with AI-generated schedules that are accessible
+              anywhere, enable smart shift management, and seamlessly integrate
+              with your mobile app.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -234,12 +319,23 @@ export default function AISchedulesPage() {
                       AI-Optimised Schedules
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      Assigns the right staff with the right skills to each shift, balancing preferences, availability, and compliance
+                      Assigns the right staff with the right skills to each
+                      shift, balancing preferences, availability, and compliance
                     </p>
                     <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more 
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
@@ -257,12 +353,23 @@ export default function AISchedulesPage() {
                       Smart Shift Swaps
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      Enable staff to easily swap shifts with AI ensuring coverage and compliance requirements are maintained
+                      Enable staff to easily swap shifts with AI ensuring
+                      coverage and compliance requirements are maintained
                     </p>
                     <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more 
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
@@ -280,12 +387,23 @@ export default function AISchedulesPage() {
                       Automated Compliance
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      AI ensures every schedule meets regulatory requirements and union rules without manual checking
+                      AI ensures every schedule meets regulatory requirements
+                      and union rules without manual checking
                     </p>
                     <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more 
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
@@ -303,12 +421,24 @@ export default function AISchedulesPage() {
                       Dynamic Re-Roster
                     </h3>
                     <p className="text-gray-600 mb-4">
-                      Adapt to changes with ease, ensuring your department remains fully operational and responsive to any unexpected shifts
+                      Adapt to changes with ease, ensuring your department
+                      remains fully operational and responsive to any unexpected
+                      shifts
                     </p>
                     <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more 
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
@@ -337,32 +467,40 @@ export default function AISchedulesPage() {
                 Advanced AI Capabilities
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our award-winning algorithms handle the most complex scheduling challenges with ease, ensuring compliance and optimisation across all scenarios.
+                Our award-winning algorithms handle the most complex scheduling
+                challenges with ease, ensuring compliance and optimisation
+                across all scenarios.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">24/7 Automatic roster generation</span>
+                  <span className="text-gray-700">
+                    24/7 Automatic roster generation
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Complex constraint handling</span>
+                  <span className="text-gray-700">
+                    Complex constraint handling
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Real-time optimisation and adjustments</span>
+                  <span className="text-gray-700">
+                    Real-time optimisation and adjustments
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Multiple shift patterns and rotations</span>
+                  <span className="text-gray-700">
+                    Legal compliance checking
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Legal compliance checking</span>
-                </div>
-                <div className="flex items-center">
-                  <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">Scenario simulation and planning</span>
+                  <span className="text-gray-700">
+                    Scenario simulation and planning
+                  </span>
                 </div>
               </div>
             </div>
@@ -379,7 +517,9 @@ export default function AISchedulesPage() {
                 Built-in Compliance
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Stay compliant with complex healthcare regulations and union agreements automatically. Our AI understands and enforces all relevant rules and constraints.
+                Stay compliant with complex healthcare regulations and union
+                agreements automatically. Our AI understands and enforces all
+                relevant rules and constraints.
               </p>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -387,8 +527,13 @@ export default function AISchedulesPage() {
                     <HiShieldCheck className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Regulatory Compliance</h3>
-                    <p className="text-gray-600">Automatic adherence to healthcare regulations and industry standards</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Regulatory Compliance
+                    </h3>
+                    <p className="text-gray-600">
+                      Automatic adherence to healthcare regulations and industry
+                      standards
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -396,8 +541,13 @@ export default function AISchedulesPage() {
                     <HiAcademicCap className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Skills Matching</h3>
-                    <p className="text-gray-600">Ensures qualified staff are scheduled for appropriate roles and responsibilities</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Skills Matching
+                    </h3>
+                    <p className="text-gray-600">
+                      Ensures qualified staff are scheduled for appropriate
+                      roles and responsibilities
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -405,15 +555,22 @@ export default function AISchedulesPage() {
                     <HiCog className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Custom Rules Engine</h3>
-                    <p className="text-gray-600">Configure organisation-specific rules and policies for perfect compliance</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Custom Rules Engine
+                    </h3>
+                    <p className="text-gray-600">
+                      Configure organisation-specific rules and policies for
+                      perfect compliance
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             <div>
               <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Compliance Features</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Compliance Features
+                </h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between py-3 border-b border-gray-200">
                     <span className="text-gray-700">Fatigue Management</span>
@@ -432,7 +589,9 @@ export default function AISchedulesPage() {
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">Skills & Certifications</span>
+                    <span className="text-gray-700">
+                      Skills & Certifications
+                    </span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
@@ -465,17 +624,18 @@ export default function AISchedulesPage() {
               Ready to unlock the power of AI?
             </h2>
             <p className="text-xl mb-12 opacity-90">
-              Join hundreds of healthcare organisations already using AI to transform their workforce management.
+              Join hundreds of healthcare organisations already using AI to
+              transform their workforce management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                href="/book-a-demo" 
+              <Button
+                href="/book-a-demo"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
               >
                 Book a Demo
               </Button>
-              <Button 
-                href="/contact" 
+              <Button
+                href="/contact"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
               >
                 Contact Us
@@ -485,5 +645,5 @@ export default function AISchedulesPage() {
         </Container>
       </div>
     </SiteLayout>
-  )
+  );
 }
