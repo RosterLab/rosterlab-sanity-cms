@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import GoogleTagManager, { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import Intercom from "@/components/analytics/Intercom";
 import Datadog from "@/components/analytics/Datadog";
 import StructuredData from "@/components/seo/StructuredData";
@@ -51,7 +51,7 @@ export default async function RootLayout({
         {/* Critical resource hints */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         {/* Preload critical font */}
@@ -65,13 +65,14 @@ export default async function RootLayout({
         <StructuredData type="organization" />
       </head>
       <body className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`} suppressHydrationWarning={true}>
-        <GoogleAnalytics gaId="G-KCZHPS54K5" />
-        <Intercom appId="vs4gs8pu" />
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+        <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+        <Intercom appId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!} />
         <Datadog 
-          clientToken="pubc393580843174a26b699611ed717139a"
-          applicationId="e3a1fc1f-9fba-491e-9f35-1860b9208e73"
-          service="rosterlab-nextjs"
-          env="production"
+          clientToken={process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN!}
+          applicationId={process.env.NEXT_PUBLIC_DATADOG_APPLICATION_ID!}
+          service={process.env.NEXT_PUBLIC_DATADOG_SERVICE!}
+          env={process.env.NEXT_PUBLIC_DATADOG_ENV!}
         />
         <Header />
         <main className="flex-grow">
