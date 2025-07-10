@@ -14,21 +14,23 @@ export const metadata = {
   },
   openGraph: {
     title: "About Us - Meet the Team Behind RosterLab",
-    description: "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    description:
+      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
     images: [
       {
-        url: '/images/og images/About.png',
+        url: "/images/og images/About.png",
         width: 1200,
         height: 630,
-        alt: 'About RosterLab',
+        alt: "About RosterLab",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "About Us - Meet the Team Behind RosterLab",
-    description: "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    images: ['/images/og images/About.png'],
+    description:
+      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    images: ["/images/og images/About.png"],
   },
 };
 
@@ -105,12 +107,9 @@ export default function AboutPage() {
                 Our Company
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                Safer and more flexible schedules for healthcare professionals
-                are essential. But the intricacies and amount of information
-                that a human needs to handle is far more overwhelming. It is
-                crucial that business requirements are met, but also that staff
-                are working safely while still having a balance between work and
-                life.
+                RosterLab was born from a love of mathematics and a deep respect
+                for the voices of healthcare leaders - those constantly pulled
+                away from critical clinical work to manage rosters.
               </p>
               <p className="text-lg text-gray-600 mb-8">
                 That's why we are here. We automate the rostering process using
@@ -268,7 +267,7 @@ export default function AboutPage() {
                     Sunny leads our product and marketing strategy, shaping the
                     vision behind what we build and how we bring it to the
                     world. She's passionate about creating user-centric tools
-                    and truly support the people who rely on them.
+                    and truly supports the people who rely on them.
                   </p>
                 </div>
               </div>
@@ -343,9 +342,12 @@ export default function AboutPage() {
                   Independent Board Chair
                 </p>
                 <p className="text-xs text-gray-600 text-left">
-                  Mohan is an expert in transforming AI digital solutions for
-                  healthcare, providing strategic leadership and governance
-                  oversight to guide RosterLab's growth and expansion.
+                  A serial corporate innovator and former Chief Innovation
+                  Officer at Cambia Health Solutions, Mohan has launched seven
+                  corporate start-ups, achieved two entrepreneurial exits and
+                  authored three books on transformation. As Chair of
+                  RosterLab’s board, he channels his AI and healthcare insight
+                  to sharpen our strategy and drive international expansion.
                 </p>
               </div>
 
@@ -374,10 +376,12 @@ export default function AboutPage() {
                   Board Member & Investor
                 </p>
                 <p className="text-xs text-gray-600 text-left">
-                  David brings deep experience in the commercialisation of
-                  world-leading innovations, with a proven track record across
-                  investment, business development and corporate strategy for
-                  technology companies.
+                  General Partner at Movac, New Zealand’s leading deep-tech
+                  venture firm, David has overseen investments in more than 50
+                  technology companies and landmark exits such as PowerbyProxi’s
+                  sale to Apple. His scale-up experience and investor
+                  perspective reinforce RosterLab’s board as we grow from seed
+                  stage to global leader in AI rostering.
                 </p>
               </div>
 
@@ -406,9 +410,12 @@ export default function AboutPage() {
                   Medical Advisor
                 </p>
                 <p className="text-xs text-gray-600 text-left">
-                  Cathal is a General Medical Physician and Geriatrician with
-                  broad experience across hospital and locum roles, bringing
-                  clinical leadership and a strong focus on staff well-being.
+                  A Wellington-based general physician and geriatrician, IMSANZ
+                  Council member and long-time advocate for safer clinician
+                  hours, Cathal serves as RosterLab’s medical advisor. His
+                  frontline insights ensure our algorithms embed clinical-safety
+                  and fatigue-management principles, turning real-world ward
+                  challenges into smarter, fairer rosters.
                 </p>
               </div>
             </div>

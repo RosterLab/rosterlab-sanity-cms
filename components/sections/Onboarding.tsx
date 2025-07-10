@@ -98,7 +98,7 @@ const onboardingSteps = [
   },
   {
     number: "5",
-    title: "5. Manage shift swaps & requests",
+    title: "5. Manage shift swaps & open shifts",
     icon: (
       <svg
         className="w-6 h-6 text-blue-600"
@@ -115,7 +115,7 @@ const onboardingSteps = [
       </svg>
     ),
     description:
-      "Automatically approve routine swaps while flagging critical changes. Stay in control of shifts that impact coverage, skills, or compliance.",
+      "Automatically approve routine swaps while flagging critical changes. Open shifts to your staff to fill gaps.",
     link: "/feature/shift-swaps",
   },
   {
@@ -142,7 +142,7 @@ const onboardingSteps = [
   },
   {
     number: "7",
-    title: "Integrates with your payroll systems",
+    title: "Integrate with your other systems",
     icon: (
       <svg
         className="w-6 h-6 text-blue-600"
@@ -158,8 +158,7 @@ const onboardingSteps = [
         />
       </svg>
     ),
-    description:
-      "We currently integrate with Trendcare. Others upon request, depending on your business.",
+    description: "We currently integrate with Trendcare. Others upon request.",
     link: "/feature/payroll-integration",
     fullWidth: true,
   },
@@ -174,7 +173,7 @@ export default function Onboarding() {
             FEATURES
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mt-2 mb-4">
-            Seven Steps to Building Perfect Rosters
+            Six Steps to Building Perfect Rosters
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Our streamlined platform takes you from complex rostering challenges

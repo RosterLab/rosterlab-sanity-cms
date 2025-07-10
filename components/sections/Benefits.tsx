@@ -66,7 +66,7 @@ const benefitTabs: BenefitTab[] = [
     description:
       "Ensure clinical safety and fairness with every roster. By embedding equity and fatigue-management rules into our AI, you eliminate favoritism, reduce staff fatigue, and create safer, more inclusive rosters that build trust and improve care delivery.",
     highlights: [
-      "Elminate Favoritism",
+      "Eliminate Favoritism",
       "Distribute Shifts Fairly",
       "Reduce Clinical Risks",
       "Reduce Fatigue",
