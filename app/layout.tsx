@@ -9,6 +9,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
+import { LazyStyles } from "@/components/layout/LazyStyles";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -47,11 +48,20 @@ export default async function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <head>
+        {/* Critical resource hints */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+        {/* Preload critical font */}
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecg.woff2"
+          crossOrigin="anonymous"
+        />
         <StructuredData type="organization" />
       </head>
       <body className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`} suppressHydrationWarning={true}>
@@ -69,6 +79,7 @@ export default async function RootLayout({
         </main>
         <Footer />
         {isEnabled && <VisualEditing />}
+        <LazyStyles />
       </body>
     </html>
   );

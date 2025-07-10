@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['react-icons', 'react-confetti'],
+    optimizePackageImports: ['react-icons', 'react-confetti', '@heroicons/react'],
   },
   compiler: {
     // Remove unused JavaScript
