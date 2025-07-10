@@ -24,10 +24,10 @@
   "minify": true,
   "env": {
     "targets": {
-      "chrome": "80",
-      "edge": "80",
-      "firefox": "75",
-      "safari": "14"
+      "chrome": "92",
+      "edge": "92",
+      "firefox": "90",
+      "safari": "15.4"
     },
     "mode": "usage",
     "coreJs": false
