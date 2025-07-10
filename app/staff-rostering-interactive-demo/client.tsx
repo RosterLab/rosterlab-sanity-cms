@@ -2,9 +2,10 @@
 
 import Container from '@/components/ui/Container'
 import SiteLayout from '@/components/layout/SiteLayout'
-import { HiClock, HiShieldCheck, HiUsers } from 'react-icons/hi'
+import HiClock from '@/components/icons/HiClock'
+import HiShieldCheck from '@/components/icons/HiShieldCheck'
+import HiUsers from '@/components/icons/HiUsers'
 import { useEffect, useState, useRef } from 'react'
-import '@/styles/hubspot-fonts.css'
 
 export default function StaffRosteringInteractiveDemoClient() {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false)
@@ -20,6 +21,25 @@ export default function StaffRosteringInteractiveDemoClient() {
 
     checkDevice()
     window.addEventListener('resize', checkDevice)
+
+    // Load non-critical CSS asynchronously
+    const loadAsyncCSS = () => {
+      const hubspotFontsLink = document.createElement('link')
+      hubspotFontsLink.rel = 'stylesheet'
+      hubspotFontsLink.href = '/styles/hubspot-fonts.css'
+      hubspotFontsLink.media = 'print'
+      hubspotFontsLink.onload = function() {
+        (this as any).media = 'all'
+      }
+      document.head.appendChild(hubspotFontsLink)
+    }
+
+    // Load CSS after initial render
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadAsyncCSS)
+    } else {
+      setTimeout(loadAsyncCSS, 1)
+    }
 
     return () => window.removeEventListener('resize', checkDevice)
   }, [])

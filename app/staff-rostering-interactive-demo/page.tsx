@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import StaffRosteringInteractiveDemoClient from './client'
+import PageWrapper from './PageWrapper'
 
 export const metadata: Metadata = {
   title: 'Staff Rostering Interactive Demo - RosterLab',
@@ -24,5 +25,9 @@ export const metadata: Metadata = {
 }
 
 export default function StaffRosteringInteractiveDemo() {
-  return <StaffRosteringInteractiveDemoClient />
+  return (
+    <PageWrapper>
+      <StaffRosteringInteractiveDemoClient />
+    </PageWrapper>
+  )
 }
