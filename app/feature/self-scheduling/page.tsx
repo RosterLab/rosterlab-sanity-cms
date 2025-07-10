@@ -1,30 +1,33 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import { HiCheck } from 'react-icons/hi'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Image from "next/image";
+import { HiCheck } from "react-icons/hi";
 
 export const metadata = {
-  title: 'Self-Scheduling - RosterLab',
-  description: 'Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.',
+  title: "Self-Scheduling - RosterLab",
+  description:
+    "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
   openGraph: {
-    title: 'Self-Scheduling - RosterLab',
-    description: 'Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.',
+    title: "Self-Scheduling - RosterLab",
+    description:
+      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
     images: [
       {
-        url: '/images/og images/SelfScheduling.png',
+        url: "/images/og images/SelfScheduling.png",
         width: 1200,
         height: 630,
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Self-Scheduling - RosterLab',
-    description: 'Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.',
-    images: ['/images/og images/SelfScheduling.png'],
+    card: "summary_large_image",
+    title: "Self-Scheduling - RosterLab",
+    description:
+      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+    images: ["/images/og images/SelfScheduling.png"],
   },
-}
+};
 
 export default function SelfSchedulingPage() {
   return (
@@ -36,20 +39,22 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Empowered staff, optimized schedules
+                  AI-powered self-scheduling for your team
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Give your team shift flexibility while maintaining coverage.
+                  Let staff request their preferred shifts, tasks and days off -
+                  our AI optimizes to meet 90%+ of preferences while ensuring
+                  coverage.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    href="/book-a-demo" 
+                  <Button
+                    href="/book-a-demo"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     Book A Demo
                   </Button>
-                  <Button 
-                    href="/solutions/free-staff-scheduling" 
+                  <Button
+                    href="/solutions/free-staff-scheduling"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Try it for free
@@ -78,20 +83,30 @@ export default function SelfSchedulingPage() {
                   Easily Meet Your Staffing Needs
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Let your team indicate their shift preferences weeks in advance. Our intuitive interface makes it easy for staff to select preferred days, times, and locations while viewing their existing commitments.
+                  Let your team indicate their shift preferences weeks in
+                  advance. Our intuitive interface makes it easy for staff to
+                  select preferred days, times, and locations while viewing
+                  their existing commitments.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Visual calendar interface for easy selection</span>
+                    <span className="text-gray-700">
+                      Visual calendar interface for easy selection
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Mobile-friendly for on-the-go submissions</span>
+                    <span className="text-gray-700">
+                      Mobile-friendly for on-the-go submissions
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Preference weighting (preferred, available, unavailable)</span>
+                    <span className="text-gray-700">
+                      Request specific shifts, groups of shifts, days off, or
+                      tasks with priority weighting
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -126,20 +141,29 @@ export default function SelfSchedulingPage() {
                   AI-Optimized and Compliant
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Our advanced algorithm considers staff preferences, skills, seniority, and fairness to create schedules that work for everyone. Get optimal coverage while maximizing staff satisfaction.
+                  Our advanced algorithm considers staff preferences, skills,
+                  seniority, and fairness to create schedules that work for
+                  everyone. Get optimal coverage while maximizing staff
+                  satisfaction.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Balances preferences with operational needs</span>
+                    <span className="text-gray-700">
+                      Balances preferences with operational needs
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Ensures fair distribution of desirable shifts</span>
+                    <span className="text-gray-700">
+                      Ensures fair distribution of desirable shifts
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Respects skill requirements and certifications</span>
+                    <span className="text-gray-700">
+                      Respects skill requirements and certifications
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -153,23 +177,27 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Self-Roster The Way You Want To
+                  Submit Your Preferences, Get Your Ideal Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Give your team the flexibility to create their own schedules within your defined parameters. Staff can select shifts that work for their life while ensuring all coverage requirements are met automatically.
+                  Staff submit detailed preferences for shifts, days, locations,
+                  and tasks - with importance weighting. Our AI processes all
+                  requests to create schedules that meet the majority of
+                  preferences while maintaining full coverage.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Choose from available shifts that match your skills</span>
+                    <span className="text-gray-700">
+                      Request specific shifts, shift patterns, or days off with
+                      priority levels
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Build your ideal work pattern week by week</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Real-time visibility of shift availability</span>
+                    <span className="text-gray-700">
+                      AI optimisation promotes satisfaction across the team
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -204,20 +232,28 @@ export default function SelfSchedulingPage() {
                   Manager Override Controls
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Maintain full control when needed. Managers can set blackout dates, lock critical shifts, and make manual adjustments while the system handles the routine scheduling automatically.
+                  Maintain full control when needed. Managers can set blackout
+                  dates, lock critical shifts, and make manual adjustments while
+                  the system handles the routine scheduling automatically.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Lock specific shifts or staff assignments</span>
+                    <span className="text-gray-700">
+                      Lock specific shifts or staff assignments
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Set minimum experience requirements</span>
+                    <span className="text-gray-700">
+                      Set minimum experience requirements
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Review and approve before publishing</span>
+                    <span className="text-gray-700">
+                      Review and approve before publishing
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -258,17 +294,18 @@ export default function SelfSchedulingPage() {
                 Ready to Empower Your Team?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Give your staff the flexibility they want while maintaining the coverage you need.
+                Give your staff the flexibility they want while maintaining the
+                coverage you need.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  href="/book-a-demo" 
+                <Button
+                  href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
-                <Button 
-                  href="/pricing" 
+                <Button
+                  href="/pricing"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
@@ -279,5 +316,5 @@ export default function SelfSchedulingPage() {
         </div>
       </div>
     </SiteLayout>
-  )
+  );
 }
