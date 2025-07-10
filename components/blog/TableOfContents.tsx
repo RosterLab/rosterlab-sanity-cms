@@ -79,7 +79,7 @@ export default function TableOfContents() {
           onClick={(e) => {
             e.preventDefault()
             document.getElementById(heading.id)?.scrollIntoView({
-              behaviour: 'smooth',
+              behavior: 'smooth',
               block: 'start'
             })
           }}

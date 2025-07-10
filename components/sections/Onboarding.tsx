@@ -1,87 +1,169 @@
-import Container from '@/components/ui/Container'
-import Link from 'next/link'
+import Container from "@/components/ui/Container";
+import Link from "next/link";
 
 const onboardingSteps = [
   {
-    number: '1',
-    title: '1) Set rules & demands',
+    number: "1",
+    title: "1. Set rules & demands",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+        />
       </svg>
     ),
-    description: 'Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.',
-    link: '/feature/preferences-rules'
+    description:
+      "Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.",
+    link: "/feature/preferences-rules",
   },
   {
-    number: '2', 
-    title: '2) Collect requests & preferences',
+    number: "2",
+    title: "2. Collect requests & preferences",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
       </svg>
     ),
-    description: 'Using the mobile app, staff can submit leave requests and preferences, ready for you to review and incorporate into the roster planning.',
-    link: '/feature/leave-requests'
+    description:
+      "Using the mobile app, staff can submit leave requests and preferences, ready for you to review and incorporate into the roster planning.",
+    link: "/feature/leave-requests",
   },
   {
-    number: '3',
-    title: '3) Auto generate a roster',
+    number: "3",
+    title: "3. Auto generate a roster",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+        />
       </svg>
     ),
-    description: 'Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.',
-    link: '/feature/auto-roster-generation'
+    description:
+      "Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.",
+    link: "/feature/auto-roster-generation",
   },
   {
-    number: '4',
-    title: '4) Share your schedule',
+    number: "4",
+    title: "4. Share your schedule",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+        />
       </svg>
     ),
-    description: 'Publish rosters to staff via mobile app with calendar sync. Share live rosters with other departments like payroll for seamless integration.',
-    link: '/solutions/staff-roster-mobile-app'
+    description:
+      "Publish rosters to staff via mobile app with calendar sync. Share live rosters with other departments like payroll for seamless integration.",
+    link: "/solutions/staff-roster-mobile-app",
   },
   {
-    number: '5',
-    title: '5) Manage shift swaps & requests',
+    number: "5",
+    title: "5. Manage shift swaps & requests",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+        />
       </svg>
     ),
-    description: 'Automatically approve routine swaps while flagging critical changes. Stay in control of shifts that impact coverage, skills, or compliance.',
-    link: '/feature/shift-swaps'
+    description:
+      "Automatically approve routine swaps while flagging critical changes. Stay in control of shifts that impact coverage, skills, or compliance.",
+    link: "/feature/shift-swaps",
   },
   {
-    number: '6',
-    title: '6) Simulate different scenarios',
+    number: "6",
+    title: "6. Simulate different scenarios",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+        />
       </svg>
     ),
-    description: 'Run hypothetical roster scenarios to assess feasibility of changes without impacting your live roster - perfect for planning and optimisation.',
-    link: '/feature/re-rostering'
+    description:
+      "Run hypothetical roster scenarios to assess feasibility of changes without impacting your live roster - perfect for planning and optimisation.",
+    link: "/feature/re-rostering",
   },
   {
-    number: '7',
-    title: '7) Integrates with your payroll systems',
+    number: "7",
+    title: "7. Integrates with your payroll systems",
     icon: (
-      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
       </svg>
     ),
-    description: 'Sync your staff roster directly to payroll - ensuring accurate hours, streamlined reporting, and fewer errors.',
-    link: '/feature/payroll-integration',
-    fullWidth: true
-  }
-]
+    description:
+      "Sync your staff roster directly to payroll - ensuring accurate hours, streamlined reporting, and fewer errors.",
+    link: "/feature/payroll-integration",
+    fullWidth: true,
+  },
+];
 
 export default function Onboarding() {
   return (
@@ -95,15 +177,16 @@ export default function Onboarding() {
             Six Steps to Building Perfect Rosters
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-            Our streamlined platform takes you from complex scheduling challenges to optimized rosters in just six simple steps.
+            Our streamlined platform takes you from complex scheduling
+            challenges to optimized rosters in just six simple steps.
           </p>
         </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {onboardingSteps.slice(0, 6).map((step, index) => (
-              <Link 
-                key={index} 
+              <Link
+                key={index}
                 href={step.link}
                 className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center cursor-pointer hover:-translate-y-1"
               >
@@ -113,46 +196,45 @@ export default function Onboarding() {
                 <h3 className="text-lg font-bold text-neutral-900 mb-3 group-hover:text-blue-600 transition-colors">
                   {step.title}
                 </h3>
-                <p className="text-neutral-600 mb-4">
-                  {step.description}
-                </p>
+                <p className="text-neutral-600 mb-4">{step.description}</p>
                 <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
                   Learn more
-                  <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </Link>
             ))}
           </div>
-          
+
           {/* Full-width 7th box */}
           {onboardingSteps[6] && (
             <div className="mt-8">
-              <Link 
-                href={onboardingSteps[6].link}
-                className="group bg-white rounded-lg p-4 shadow-sm hover:shadow-lg transition-all text-center cursor-pointer hover:-translate-y-1 block"
-              >
+              <div className="bg-white rounded-lg p-4 shadow-sm text-center">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3 mx-auto">
                   {onboardingSteps[6].icon}
                 </div>
-                <h3 className="text-lg font-bold text-neutral-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-bold text-neutral-900 mb-2">
                   {onboardingSteps[6].title}
                 </h3>
-                <p className="text-neutral-600 mb-3 max-w-2xl mx-auto">
+                <p className="text-neutral-600 max-w-2xl mx-auto">
                   {onboardingSteps[6].description}
                 </p>
-                <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
-                  Learn more
-                  <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </Link>
+              </div>
             </div>
           )}
         </div>
       </Container>
     </section>
-  )
+  );
 }
