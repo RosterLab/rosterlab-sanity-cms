@@ -22,9 +22,9 @@ export default function StaffingEnvelopeChart() {
   const height = isMobile ? 300 : 400
   const padding = { 
     top: 40, 
-    right: isMobile ? 30 : 60, 
+    right: isMobile ? 20 : 60, 
     bottom: 60, 
-    left: isMobile ? 40 : 60 
+    left: isMobile ? 50 : 60 
   }
   const chartWidth = width - padding.left - padding.right
   const chartHeight = height - padding.top - padding.bottom
@@ -232,12 +232,12 @@ export default function StaffingEnvelopeChart() {
             </text>
             <text
               x={-chartHeight / 2}
-              y={-40}
+              y={isMobile ? -35 : -40}
               textAnchor="middle"
               transform="rotate(-90)"
-              className="text-sm font-medium fill-gray-700"
+              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-gray-700`}
             >
-              Staffing Numbers
+              {isMobile ? 'Staff' : 'Staffing Numbers'}
             </text>
           </g>
 
