@@ -26,6 +26,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
         <div
           key={index}
           className="bg-white border border-gray-200 rounded-lg overflow-hidden"
+          style={{ contain: 'layout' }}
         >
           <button
             onClick={() => toggleItem(index)}
@@ -42,12 +43,16 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
             />
           </button>
           <div
-            className={cn(
-              "px-6 overflow-hidden transition-all duration-200",
-              openIndex === index ? "py-4 pb-6" : "max-h-0"
-            )}
+            className="overflow-hidden"
+            style={{
+              maxHeight: openIndex === index ? '300px' : '0',
+              transition: 'max-height 0.2s ease-in-out',
+              willChange: openIndex === index ? 'max-height' : 'auto'
+            }}
           >
-            <p className="text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.answer }} />
+            <div className="px-6 py-4 pb-6">
+              <p className="text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.answer }} />
+            </div>
           </div>
         </div>
       ))}

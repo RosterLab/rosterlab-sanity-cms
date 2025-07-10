@@ -30,7 +30,13 @@ export default function ShiftSwapModule() {
 
       <div className="relative max-w-2xl mx-auto">
         {/* Doctor 1 */}
-        <div className={`absolute left-0 top-1/2 -translate-y-1/2 transition-all duration-1000 ${isSwapping ? 'translate-x-[400px]' : ''}`}>
+        <div 
+          className="absolute left-0 top-1/2 -translate-y-1/2 transition-transform duration-1000"
+          style={{
+            transform: `translateY(-50%) translateX(${isSwapping ? '400px' : '0'})`,
+            willChange: isSwapping ? 'transform' : 'auto'
+          }}
+        >
           <div className="bg-blue-100 rounded-lg p-6 text-center">
             <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
               <HiUser className="w-10 h-10 text-white" />
@@ -42,7 +48,13 @@ export default function ShiftSwapModule() {
         </div>
 
         {/* Doctor 2 */}
-        <div className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-1000 ${isSwapping ? '-translate-x-[400px]' : ''}`}>
+        <div 
+          className="absolute right-0 top-1/2 -translate-y-1/2 transition-transform duration-1000"
+          style={{
+            transform: `translateY(-50%) translateX(${isSwapping ? '-400px' : '0'})`,
+            willChange: isSwapping ? 'transform' : 'auto'
+          }}
+        >
           <div className="bg-teal-100 rounded-lg p-6 text-center">
             <div className="w-20 h-20 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
               <HiUser className="w-10 h-10 text-white" />
@@ -55,7 +67,13 @@ export default function ShiftSwapModule() {
 
         {/* Center Swap Icon */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className={`transition-all duration-500 ${isSwapping ? 'scale-150 rotate-180' : 'scale-100'}`}>
+          <div 
+            className="transition-transform duration-500"
+            style={{
+              transform: isSwapping ? 'scale(1.5) rotate(180deg)' : 'scale(1) rotate(0deg)',
+              willChange: isSwapping ? 'transform' : 'auto'
+            }}
+          >
             <HiSwitchHorizontal className="w-16 h-16 text-gray-400" />
           </div>
         </div>

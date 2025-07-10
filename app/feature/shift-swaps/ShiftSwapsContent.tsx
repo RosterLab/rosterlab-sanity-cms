@@ -1,28 +1,44 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { HiShieldCheck } from 'react-icons/hi'
 
 export default function ShiftSwapsContent() {
   const [isApproved, setIsApproved] = useState(false)
   const [progress, setProgress] = useState(0)
   const [isGenerating, setIsGenerating] = useState(false)
+  const animationFrameRef = useRef<number | null>(null)
   
   useEffect(() => {
     if (isGenerating && progress < 100) {
-      const timer = setTimeout(() => {
-        setProgress(prev => {
-          const increment = Math.random() * 15 + 5
-          return Math.min(prev + increment, 100)
-        })
-      }, 300)
-      return () => clearTimeout(timer)
-    } else if (progress >= 100) {
-      setTimeout(() => {
-        setIsGenerating(false)
-      }, 1000)
+      // Use requestAnimationFrame for smoother animations and to avoid forced reflows
+      const startTime = performance.now()
+      const duration = 3000 // 3 seconds total animation
+      
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime
+        const newProgress = Math.min((elapsed / duration) * 100, 100)
+        
+        setProgress(newProgress)
+        
+        if (newProgress < 100) {
+          animationFrameRef.current = requestAnimationFrame(animate)
+        } else {
+          setTimeout(() => {
+            setIsGenerating(false)
+          }, 1000)
+        }
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(animate)
+      
+      return () => {
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current)
+        }
+      }
     }
-  }, [isGenerating, progress])
+  }, [isGenerating])
   
 
   return (
@@ -46,7 +62,7 @@ export default function ShiftSwapsContent() {
           {/* Swap Request Cards */}
           <div className="space-y-3">
             {/* Request - Needs review */}
-            <div className={`rounded-lg p-4 border transition-all duration-300 ${
+            <div className={`rounded-lg p-4 border transition-colors duration-300 ${
               isApproved 
                 ? 'bg-gray-50 border-gray-100' 
                 : 'bg-amber-50 border-amber-200'

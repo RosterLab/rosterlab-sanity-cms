@@ -93,3 +93,26 @@ iframe[src*="hubspot"] {
   font-display: swap !important;
   font-synthesis: style weight;
 }
+
+/* Optimize shift swaps animations */
+.shift-swap-card {
+  contain: layout style;
+  transform: translateZ(0);
+}
+
+/* Prevent reflows during state changes */
+.approval-status {
+  contain: layout;
+  will-change: background-color, border-color;
+}
+
+/* Optimize accordion performance */
+.faq-accordion-item {
+  contain: layout;
+}
+
+/* Batch DOM reads/writes */
+.progress-animation {
+  will-change: width;
+  transform: translateZ(0);
+}
