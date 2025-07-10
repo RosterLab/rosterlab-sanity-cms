@@ -50,14 +50,20 @@ export default function StaffingEnvelopeChartSmall() {
   }))
 
   // Generate actual staffing data (before and after optimisation)
+  // Using deterministic pseudo-random based on day for consistent server/client rendering
+  const pseudoRandom = (seed: number) => {
+    const x = Math.sin(seed * 12.9898) * 43758.5453
+    return x - Math.floor(x)
+  }
+
   const beforeData = days.map((day) => ({
     day,
-    value: Math.min(40, idealStaff + (Math.sin(day / 10) * 12) + (Math.random() * 8 - 4))
+    value: Math.min(40, idealStaff + (Math.sin(day / 10) * 12) + (pseudoRandom(day) * 8 - 4))
   }))
 
   const afterData = days.map((day) => ({
     day,
-    value: idealStaff + (Math.sin(day / 30) * 1.5) + (Math.random() * 1 - 0.5)
+    value: idealStaff + (Math.sin(day / 30) * 1.5) + (pseudoRandom(day + 100) * 1 - 0.5)
   }))
 
   const currentData = isOptimized ? afterData : beforeData
