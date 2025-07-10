@@ -116,3 +116,25 @@ iframe[src*="hubspot"] {
   will-change: width;
   transform: translateZ(0);
 }
+
+/* Optimize case studies page */
+.case-studies-grid {
+  contain: layout;
+}
+
+.blog-card {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Optimize search input */
+.search-input {
+  contain: layout;
+  will-change: auto;
+}
+
+/* Prevent reflows during search */
+.search-results {
+  contain: layout style;
+  min-height: 400px;
+}

@@ -106,6 +106,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/case-studies',
+        headers: [
+          {
+            key: 'Link',
+            value: '</styles/non-critical.css>; rel=preload; as=style',
+          },
+        ],
+      },
     ];
   },
   async redirects() {

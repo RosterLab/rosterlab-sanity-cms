@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
 import Pagination from '@/components/ui/Pagination'
@@ -24,6 +24,27 @@ interface CaseStudiesPageContentProps {
 export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseStudiesPageContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const postsPerPage = 12
+  
+  // Load non-critical CSS asynchronously
+  useEffect(() => {
+    const loadAsyncCSS = () => {
+      // Load any additional non-critical styles
+      const nonCriticalLink = document.createElement('link')
+      nonCriticalLink.rel = 'stylesheet'
+      nonCriticalLink.href = '/styles/non-critical.css'
+      nonCriticalLink.media = 'print'
+      nonCriticalLink.onload = function() {
+        (this as any).media = 'all'
+      }
+      document.head.appendChild(nonCriticalLink)
+    }
+
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(loadAsyncCSS)
+    } else {
+      setTimeout(loadAsyncCSS, 1)
+    }
+  }, [])
 
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
