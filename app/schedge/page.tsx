@@ -66,6 +66,8 @@ export default function SchedgePage() {
                   width={600}
                   height={600}
                   className="w-full h-auto"
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </div>
             </div>
