@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -21,7 +21,7 @@ const benefitTabs: BenefitTab[] = [
     label: "Optimise Workforce",
     title: "Optimise your workforce with AI",
     description:
-      "Harness advanced mathematical optimisation engine to allocate staff efficiently. Make smarter operational decisions by reducing penalty costs, improving coverage, and planning ahead with confidence.",
+      "Harness our advanced mathematical optimisation engine to allocate staff efficiently. Reduce penalty costs, improving coverage, and plan ahead with confidence.",
     highlights: [
       "Optimise Skill Mix",
       "Allocate Staff Efficiently",
@@ -35,12 +35,12 @@ const benefitTabs: BenefitTab[] = [
     label: "Save Time",
     title: "Generated rosters in minutes",
     description:
-      "Let the AI handles complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes by re-rostering, open shifts, and auto-swap based on predefined rules.",
+      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
     highlights: [
       "Generate Rosters Automatically",
       "Handle Complex Rules and Staffing Requirements",
-      "Reduced Admin for Last-minute Changes",
-      "Dynamic Re-roster",
+      "Reduce Admin for Last-minute Changes",
+      "Dynamically re-roster staff",
     ],
     image: "/images/illustration/save_time.svg",
   },
@@ -53,7 +53,7 @@ const benefitTabs: BenefitTab[] = [
       "Empower your team to plan ahead and take control of their rosters, while staying aligned with business needs. Fewer shift swaps, lower absenteeism, and more matched preferences boost staff engagement and improve patient outcomes.",
     highlights: [
       "Improve Work-Life Balance and Staff Satisfaction",
-      "Met High Percentage of Preference",
+      "Meet a High Percentage of Preference",
       "Reduce Unnecessary Sick Leave",
       "Reduce Staff Turnover",
     ],
@@ -79,16 +79,6 @@ export default function Benefits() {
   const [activeTab, setActiveTab] = useState("optimisation");
   const currentTab =
     benefitTabs.find((tab) => tab.id === activeTab) || benefitTabs[0];
-
-  // Preload all images on component mount
-  useEffect(() => {
-    benefitTabs.forEach((tab) => {
-      if (tab.image) {
-        const img = new window.Image();
-        img.src = tab.image;
-      }
-    });
-  }, []);
 
   return (
     <section className="py-8 md:py-10 lg:py-12 bg-neutral-50">
@@ -147,19 +137,31 @@ export default function Benefits() {
               </div>
               <div className="order-1 lg:order-2 lg:pl-0 mb-6 md:mb-0 flex items-center justify-center">
                 <div className="relative w-full max-w-md mx-auto lg:max-w-none min-h-[280px] lg:min-h-[320px] flex items-center justify-center">
-                  {currentTab.id === "optimisation" ? (
+                  {/* Render all images but only show the active one */}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === "optimisation" ? "opacity-100" : "opacity-0"}`}
+                  >
                     <StaffingEnvelopeChartSmall />
-                  ) : (
-                    <Image
-                      src={currentTab.image}
-                      alt={currentTab.title}
-                      width={400}
-                      height={320}
-                      className="w-full h-auto rounded-lg scale-100 sm:scale-105 lg:scale-110 object-contain"
-                      priority
-                      quality={90}
-                      loading="eager"
-                    />
+                  </div>
+                  {benefitTabs.map(
+                    (tab) =>
+                      tab.id !== "optimisation" && (
+                        <div
+                          key={tab.id}
+                          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === tab.id ? "opacity-100" : "opacity-0"}`}
+                        >
+                          <Image
+                            src={tab.image}
+                            alt={tab.title}
+                            width={400}
+                            height={320}
+                            className="w-full h-auto rounded-lg scale-100 sm:scale-105 lg:scale-110 object-contain"
+                            priority
+                            quality={90}
+                            loading="eager"
+                          />
+                        </div>
+                      )
                   )}
                 </div>
               </div>

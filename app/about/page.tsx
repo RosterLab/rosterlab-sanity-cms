@@ -127,7 +127,7 @@ export default function AboutPage() {
             </div>
             <div>
               <Image
-                src="/images/team/rosterlab-team-photo.jpg"
+                src="/images/team/rosterlab-team-photo.webp"
                 alt="RosterLab founders"
                 width={600}
                 height={400}
@@ -204,7 +204,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/headshot-isaac.jpg"
+                    src="/images/team/headshot-isaac.webp"
                     alt="Isaac Cleland, PhD"
                     fill
                     className="object-cover"
@@ -276,7 +276,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/headshot-daniel.jpg"
+                    src="/images/team/headshot-daniel.webp"
                     alt="Daniel Ge"
                     fill
                     className="object-cover"
@@ -321,7 +321,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
-                    src="/images/team/mohan.jpeg"
+                    src="/images/team/mohan.webp"
                     alt="Mohan Nair"
                     fill
                     className="object-cover rounded-full"
@@ -352,7 +352,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
-                    src="/images/team/david.jpeg"
+                    src="/images/team/david.webp"
                     alt="David Beard"
                     fill
                     className="object-cover rounded-full"
@@ -384,7 +384,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg p-6 text-center">
                 <div className="w-24 h-24 relative mx-auto mb-4">
                   <Image
-                    src="/images/team/cathal.jpeg"
+                    src="/images/team/cathal.webp"
                     alt="Cathal McCloy"
                     fill
                     className="object-cover rounded-full"
