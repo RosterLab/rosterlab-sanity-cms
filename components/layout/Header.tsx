@@ -388,7 +388,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </Link>
             <div className="w-px h-6 bg-gray-300 mx-2" />
             <Link
-              href="https://app.rosterlab.com"
+              href="https://app.rosterlab.com/sign-in"
               className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center"
               target="_blank"
             >
@@ -402,7 +402,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Book a Demo
             </Link>
             <Link
-              href="https://app.rosterlab.com"
+              href="https://app.rosterlab.com/sign-up"
               className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               target="_blank"
             >
@@ -512,7 +512,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Contact Us
             </Link>
             <Link
-              href="https://app.rosterlab.com"
+              href="https://app.rosterlab.com/sign-in"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsMenuOpen(false)}
               target="_blank"
@@ -527,7 +527,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Book a Demo
             </Link>
             <Link
-              href="https://app.rosterlab.com"
+              href="https://app.rosterlab.com/sign-up"
               className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => setIsMenuOpen(false)}
               target="_blank"

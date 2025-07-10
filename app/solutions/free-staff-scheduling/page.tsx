@@ -114,7 +114,7 @@ export default function ManualSchedulingPage() {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button href="https://app.rosterlab.com" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
+                <Button href="https://app.rosterlab.com/sign-up" className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg">
                   Start for Free
                 </Button>
                 <Button href="/solutions/ai-staff-scheduling" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg">
@@ -481,7 +481,7 @@ export default function ManualSchedulingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                href="https://app.rosterlab.com" 
+                href="https://app.rosterlab.com/sign-up" 
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
               >
                 Start for Free

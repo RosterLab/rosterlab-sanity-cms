@@ -44,7 +44,7 @@ const pricingPlans = [
       "Employee mobile app",
     ],
     cta: "Sign up for free",
-    ctaLink: "https://app.rosterlab.com",
+    ctaLink: "https://app.rosterlab.com/sign-up",
     highlighted: false,
   },
   {
@@ -250,7 +250,7 @@ const faqItems = [
   {
     question: "Which plan suits me the best?",
     answer:
-      "We strongly recommend <a href='/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're rostering for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise rosters, <a href='/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
+      "We strongly recommend <a href='/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're rostering for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com/sign-up' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise rosters, <a href='/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
   },
   {
     question: "What is my ROI choosing RosterLab",
@@ -524,7 +524,7 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="https://app.rosterlab.com"
+                href="https://app.rosterlab.com/sign-up"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
               >
                 Sign up for free

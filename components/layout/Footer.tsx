@@ -34,7 +34,7 @@ export default function Footer() {
                 Book a demo
               </Link>
               <Link
-                href="https://app.rosterlab.com"
+                href="https://app.rosterlab.com/sign-in"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-white text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-300 text-sm"
                 target="_blank"
               >

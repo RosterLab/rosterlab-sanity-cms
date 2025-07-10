@@ -94,7 +94,7 @@ export default function ICUEDPage() {
                 <Button href="/book-a-demo" className="bg-teal-600 text-white hover:bg-teal-700">
                   Book a Demo
                 </Button>
-                <Button href="https://app.rosterlab.com/l" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
+                <Button href="https://app.rosterlab.com/sign-up" className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50">
                   Get Started
                 </Button>
               </div>
