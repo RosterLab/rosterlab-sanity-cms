@@ -202,13 +202,13 @@ const features = [
         enterprise: true,
       },
       {
-        name: "Preferences requests",
-        digital: false,
+        name: "Preferences",
+        digital: true,
         ai: true,
         enterprise: true,
       },
       {
-        name: "Leave management",
+        name: "Leave requests",
         digital: false,
         ai: true,
         enterprise: true,
