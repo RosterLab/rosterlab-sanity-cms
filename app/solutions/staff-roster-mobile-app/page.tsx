@@ -251,10 +251,12 @@ export default function EmployeeMobileAppPage() {
       <div className="bg-gray-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="w-full" style={{ height: '500px' }}>
+            {/* Animation module - order-2 on mobile, order-1 on desktop */}
+            <div className="w-full order-2 lg:order-1" style={{ height: '500px' }}>
               <AnimatedSpeechBubbles />
             </div>
-            <div>
+            {/* Content - order-1 on mobile, order-2 on desktop */}
+            <div className="order-1 lg:order-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Increased Staff Satisfaction
               </h2>
