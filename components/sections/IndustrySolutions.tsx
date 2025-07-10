@@ -107,7 +107,7 @@ export default function IndustrySolutions() {
               </div>
               <div className="bg-white rounded-lg p-4">
                 <h4 className="font-semibold text-green-900 mb-1">Manufacturing</h4>
-                <p className="text-sm text-green-700">Shift work optimization for production lines</p>
+                <p className="text-sm text-green-700">Shift work optimisation for production lines</p>
               </div>
             </div>
             

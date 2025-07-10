@@ -34,7 +34,7 @@ const faqItems = [
   },
   {
     question: "How does the system balance conflicting preferences?",
-    answer: "Our AI uses multi-objective optimization to find the best compromise. It considers preference weights, historical allocation, fairness metrics, and operational requirements. When perfect satisfaction isn't possible, it distributes compromises fairly across the team and tracks satisfaction scores to ensure long-term equity."
+    answer: "Our AI uses multi-objective optimisation to find the best compromise. It considers preference weights, historical allocation, fairness metrics, and operational requirements. When perfect satisfaction isn't possible, it distributes compromises fairly across the team and tracks satisfaction scores to ensure long-term equity."
   },
   {
     question: "Can I override preferences when necessary?",
@@ -218,7 +218,7 @@ export default function PreferencesRulesPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Custom logic for organization-specific needs</span>
+                    <span className="text-gray-700">Custom logic for organisation-specific needs</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -244,7 +244,7 @@ export default function PreferencesRulesPage() {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Multi-objective optimization algorithms</span>
+                    <span className="text-gray-700">Multi-objective optimisation algorithms</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />

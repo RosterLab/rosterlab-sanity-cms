@@ -206,7 +206,7 @@ export default function BookADemoClient() {
                     <div>
                       <h3 className="font-medium text-gray-900 text-sm mb-1">ROI Analysis</h3>
                       <p className="text-gray-600 text-xs">
-                        Calculate potential time and cost savings for your organization
+                        Calculate potential time and cost savings for your organisation
                       </p>
                     </div>
                   </div>

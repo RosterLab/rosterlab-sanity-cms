@@ -31,7 +31,7 @@ export const metadata = {
 const faqItems = [
   {
     question: "What factors does the AI consider when generating rosters?",
-    answer: "The AI considers: staffing requirements by shift and location, employee skills and certifications, staff preferences and availability, fairness metrics (equal distribution of weekends, nights, etc.), labor laws and compliance rules, budget constraints and overtime limits, and historical patterns. It balances all these factors simultaneously to create optimal schedules."
+    answer: "The AI considers: staffing requirements by shift and location, employee skills and certifications, staff preferences and availability, fairness metrics (equal distribution of weekends, nights, etc.), labour laws and compliance rules, budget constraints and overtime limits, and historical patterns. It balances all these factors simultaneously to create optimal schedules."
   },
   {
     question: "Can I modify the auto-generated roster?",
@@ -173,12 +173,12 @@ export default function AutoRosterGenerationPage() {
                   Optimise staffing coverage
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Fine-tune the generation process to match your organization's priorities. Adjust the balance between cost optimization, staff satisfaction, coverage requirements, and other key metrics.
+                  Fine-tune the generation process to match your organisation's priorities. Adjust the balance between cost optimisation, staff satisfaction, coverage requirements, and other key metrics.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Adjustable optimization weights and priorities</span>
+                    <span className="text-gray-700">Adjustable optimisation weights and priorities</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -230,7 +230,7 @@ export default function AutoRosterGenerationPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Instant re-optimization when changes occur</span>
+                    <span className="text-gray-700">Instant re-optimisation when changes occur</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -287,7 +287,7 @@ export default function AutoRosterGenerationPage() {
                 Ready to Automate Your Roster Generation?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Transform hours of manual scheduling into minutes of automated optimization with AI-powered roster generation.
+                Transform hours of manual scheduling into minutes of automated optimisation with AI-powered roster generation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 

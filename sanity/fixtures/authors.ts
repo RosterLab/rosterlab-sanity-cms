@@ -35,7 +35,7 @@ export const authorFixtures: Omit<Author, '_id' | '_createdAt' | '_updatedAt' | 
         children: [
           {
             _type: 'span',
-            text: 'Head of Marketing at RosterLab, passionate about helping businesses optimize their workforce.',
+            text: 'Head of Marketing at RosterLab, passionate about helping businesses optimise their workforce.',
           },
         ],
       },

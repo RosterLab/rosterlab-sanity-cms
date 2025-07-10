@@ -79,7 +79,7 @@ export default function ReRosteringPage() {
                   Intelligent Impact Analysis
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  When changes occur, our system immediately analyzes the impact on coverage, compliance, and staff. Get multiple solution options ranked by effectiveness and minimal disruption to existing schedules.
+                  When changes occur, our system immediately analyses the impact on coverage, compliance, and staff. Get multiple solution options ranked by effectiveness and minimal disruption to existing schedules.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

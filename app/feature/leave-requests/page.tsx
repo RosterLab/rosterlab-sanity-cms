@@ -80,7 +80,7 @@ export default function LeaveRequestsPage() {
                   Automatic Coverage Analysis
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  When staff request leave, the system automatically analyzes impact on coverage, identifies available replacement options, and flags potential issues before they become problems.
+                  When staff request leave, the system automatically analyses impact on coverage, identifies available replacement options, and flags potential issues before they become problems.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -338,7 +338,7 @@ export default function LeaveRequestsPage() {
                   },
                   {
                     question: "What types of leave can the system handle?",
-                    answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organization's policies."
+                    answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies."
                   },
                   {
                     question: "Can we set up automatic approval rules?",

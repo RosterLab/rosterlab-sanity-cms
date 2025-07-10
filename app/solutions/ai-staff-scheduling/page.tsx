@@ -53,7 +53,7 @@ const faqItems = [
   },
   {
     question: "Why is it important to keep all your data and knowledge digitally?",
-    answer: "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimizes human error but also saves time spent recalling minor details and enhances the efficiency of communications."
+    answer: "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimises human error but also saves time spent recalling minor details and enhances the efficiency of communications."
   },
   {
     question: "Do you offer digital timesheets?",

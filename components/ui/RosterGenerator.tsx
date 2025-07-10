@@ -38,7 +38,7 @@ export default function RosterGenerator() {
           </div>
         </div>
         <h3 className="text-lg font-semibold text-white">AI Roster Generator</h3>
-        <p className="text-sm text-blue-100 mt-1">Automated scheduling with swap optimization</p>
+        <p className="text-sm text-blue-100 mt-1">Automated scheduling with swap optimisation</p>
       </div>
       
       <div className="p-6">

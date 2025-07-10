@@ -48,7 +48,7 @@ export default function Pricing({
       description: "Advanced features for hospitals and clinics with complex rostering needs.",
       features: [
         "Up to 200 staff members",
-        "Advanced AI optimization",
+        "Advanced AI optimisation",
         "Skills-based matching",
         "Leave management",
         "Priority support",

@@ -509,7 +509,7 @@ Savings Breakdown:
                   </div>
                   <h3 className="font-semibold text-gray-900 mb-2">Improved Compliance</h3>
                   <p className="text-gray-600 text-sm">
-                    Automatic enforcement of labor laws, union agreements, and internal policies
+                    Automatic enforcement of labour laws, union agreements, and internal policies
                   </p>
                 </div>
                 

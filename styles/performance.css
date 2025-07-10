@@ -1,27 +1,27 @@
-/* Performance optimizations to reduce forced reflows */
+/* Performance optimisations to reduce forced reflows */
 
 /* Apply CSS containment to sections that update independently */
 section {
   contain: layout style;
 }
 
-/* Optimize hover animations by using transforms instead of position changes */
+/* Optimise hover animations by using transforms instead of position changes */
 .hover\:shadow-lg,
 .hover\:-translate-y-0\.5 {
   will-change: transform, box-shadow;
 }
 
-/* Optimize the roster generator progress bar */
+/* Optimise the roster generator progress bar */
 .transition-all {
   will-change: width;
 }
 
-/* Optimize animated buttons */
+/* Optimise animated buttons */
 button {
   transform: translateZ(0); /* Force hardware acceleration */
 }
 
-/* Optimize the wave SVG animation */
+/* Optimise the wave SVG animation */
 svg {
   will-change: transform;
 }
@@ -31,7 +31,7 @@ img {
   aspect-ratio: attr(width) / attr(height);
 }
 
-/* Optimize tab transitions in Benefits section */
+/* Optimise tab transitions in Benefits section */
 .transition-colors {
   will-change: background-color, color;
 }
@@ -42,7 +42,7 @@ img {
   transform: translateZ(0);
 }
 
-/* Optimize progress animations */
+/* Optimise progress animations */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -58,12 +58,12 @@ img {
   will-change: transform;
 }
 
-/* Optimize CSS module loading */
+/* Optimise CSS module loading */
 [class*="module"] {
   contain: layout style;
 }
 
-/* Preload optimization for game components */
+/* Preload optimisation for game components */
 .cellInput {
   contain: layout;
   transform: translateZ(0);
@@ -81,7 +81,7 @@ img {
   font-display: swap !important;
 }
 
-/* HubSpot font optimization */
+/* HubSpot font optimisation */
 [src*="hsappstatic"] {
   font-display: swap !important;
 }

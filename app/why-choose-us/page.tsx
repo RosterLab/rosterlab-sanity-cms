@@ -30,7 +30,7 @@ const reasons = [
   {
     icon: HiLightBulb,
     title: 'Industry-Leading AI Technology',
-    description: 'Our award-winning optimization algorithms create schedules 90% faster while ensuring fairness and compliance.'
+    description: 'Our award-winning optimisation algorithms create schedules 90% faster while ensuring fairness and compliance.'
   },
   {
     icon: HiUserGroup,
@@ -64,7 +64,7 @@ const differentiators = [
     title: 'World-Class Technology',
     points: [
       'International Nurse Rostering Competition winners',
-      'PhD-level research in optimization algorithms',
+      'PhD-level research in optimisation algorithms',
       'Continuous AI improvements and updates'
     ]
   },
@@ -81,7 +81,7 @@ const differentiators = [
     title: 'Customer Success',
     points: [
       'Dedicated onboarding specialists',
-      'Ongoing optimization consultancy',
+      'Ongoing optimisation consultancy',
       'Regular training and best practices',
       'Active user community and resources'
     ]
@@ -164,7 +164,7 @@ export default function WhyChooseUsPage() {
               What Sets RosterLab Apart
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We're not just another scheduling software – we're your partner in workforce optimization.
+              We're not just another scheduling software – we're your partner in workforce optimisation.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

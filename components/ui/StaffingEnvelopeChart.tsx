@@ -50,10 +50,10 @@ export default function StaffingEnvelopeChart() {
     value: baseMaxStaff + (Math.sin(day / 25) * 1) + (Math.cos(day / 18) * 0.5)
   }))
 
-  // Generate actual staffing data (before and after optimization)
+  // Generate actual staffing data (before and after optimisation)
   const beforeData = days.map((day) => ({
     day,
-    value: idealStaff + (Math.sin(day / 10) * 12) + (Math.random() * 8 - 4)
+    value: Math.min(40, idealStaff + (Math.sin(day / 10) * 12) + (Math.random() * 8 - 4))
   }))
 
   const afterData = days.map((day) => ({
@@ -182,30 +182,30 @@ export default function StaffingEnvelopeChart() {
 
             {/* Area labels */}
             <text
-              x={chartWidth * 0.15}
+              x={chartWidth * 0.12}
               y={yScale(38)}
               textAnchor="middle"
               className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-pink-700`}
             >
-              {isMobile ? 'OVER' : 'OVERSTAFFED'}
+              OVERSTAFFED
             </text>
             
             <text
-              x={chartWidth * 0.15}
+              x={chartWidth * 0.12}
               y={yScale(27.5)}
               textAnchor="middle"
               className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-gray-700`}
             >
-              {isMobile ? 'IDEAL' : 'IDEAL STAFFING RANGE'}
+              IDEAL RANGE
             </text>
             
             <text
-              x={chartWidth * 0.15}
+              x={chartWidth * 0.12}
               y={yScale(18)}
               textAnchor="middle"
               className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-blue-700`}
             >
-              {isMobile ? 'UNDER' : 'UNDERSTAFFED'}
+              UNDERSTAFFED
             </text>
 
             {/* X-axis labels */}

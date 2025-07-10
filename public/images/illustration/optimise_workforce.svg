@@ -1,0 +1,93 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#fafafa"/>
+  
+  <!-- Left side - Unoptimised -->
+  <g transform="translate(50, 100)">
+    <!-- Label -->
+    <text x="150" y="30" font-family="Poppins, system-ui, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#525252">Before</text>
+    
+    <!-- Staff bars showing inefficiency -->
+    <g transform="translate(50, 50)">
+      <!-- Inefficient allocation bars -->
+      <rect x="0" y="0" width="40" height="120" fill="#ef4444" opacity="0.8"/>
+      <rect x="50" y="0" width="40" height="80" fill="#ef4444" opacity="0.8"/>
+      <rect x="100" y="0" width="40" height="150" fill="#ef4444" opacity="0.8"/>
+      <rect x="150" y="0" width="40" height="60" fill="#ef4444" opacity="0.8"/>
+      
+      <!-- Skill mismatch indicators -->
+      <circle cx="20" cy="140" r="15" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+      <text x="20" y="145" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="600" text-anchor="middle" fill="#171717">!</text>
+      
+      <circle cx="120" cy="170" r="15" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+      <text x="120" y="175" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="600" text-anchor="middle" fill="#171717">!</text>
+    </g>
+    
+    <!-- Cost indicator -->
+    <g transform="translate(50, 250)">
+      <rect x="0" y="0" width="200" height="40" fill="#fee2e2" stroke="#ef4444" stroke-width="2" rx="5"/>
+      <text x="100" y="25" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="#dc2626">High Costs</text>
+    </g>
+  </g>
+  
+  <!-- Center arrow -->
+  <g transform="translate(350, 200)">
+    <path d="M 0 0 L 60 0 L 45 -15 M 60 0 L 45 15" stroke="#3b82f6" stroke-width="3" fill="none"/>
+    <text x="30" y="-25" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" text-anchor="middle" fill="#2563eb">AI Optimisation</text>
+  </g>
+  
+  <!-- Right side - Optimised -->
+  <g transform="translate(450, 100)">
+    <!-- Label -->
+    <text x="150" y="30" font-family="Poppins, system-ui, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#525252">After</text>
+    
+    <!-- Staff bars showing efficiency -->
+    <g transform="translate(50, 50)">
+      <!-- Efficient allocation bars -->
+      <rect x="0" y="0" width="40" height="100" fill="#10b981" opacity="0.8"/>
+      <rect x="50" y="0" width="40" height="100" fill="#10b981" opacity="0.8"/>
+      <rect x="100" y="0" width="40" height="100" fill="#10b981" opacity="0.8"/>
+      <rect x="150" y="0" width="40" height="100" fill="#10b981" opacity="0.8"/>
+      
+      <!-- Skill match indicators -->
+      <circle cx="20" cy="120" r="15" fill="#10b981" stroke="#059669" stroke-width="2"/>
+      <text x="20" y="125" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" text-anchor="middle" fill="#fff">✓</text>
+      
+      <circle cx="70" cy="120" r="15" fill="#10b981" stroke="#059669" stroke-width="2"/>
+      <text x="70" y="125" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" text-anchor="middle" fill="#fff">✓</text>
+      
+      <circle cx="120" cy="120" r="15" fill="#10b981" stroke="#059669" stroke-width="2"/>
+      <text x="120" y="125" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" text-anchor="middle" fill="#fff">✓</text>
+      
+      <circle cx="170" cy="120" r="15" fill="#10b981" stroke="#059669" stroke-width="2"/>
+      <text x="170" y="125" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" text-anchor="middle" fill="#fff">✓</text>
+    </g>
+    
+    <!-- Cost indicator -->
+    <g transform="translate(50, 250)">
+      <rect x="0" y="0" width="200" height="40" fill="#d1fae5" stroke="#10b981" stroke-width="2" rx="5"/>
+      <text x="100" y="25" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="500" text-anchor="middle" fill="#059669">Minimised Costs</text>
+    </g>
+  </g>
+  
+  <!-- Key benefits at bottom -->
+  <g transform="translate(100, 460)">
+    <text x="0" y="0" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="600" fill="#171717">Key Benefits:</text>
+    
+    <!-- Benefit 1 -->
+    <g transform="translate(0, 30)">
+      <circle cx="10" cy="-5" r="5" fill="#3b82f6"/>
+      <text x="25" y="0" font-family="Poppins, system-ui, sans-serif" font-size="16" fill="#525252">Optimised Staffing Coverage</text>
+    </g>
+    
+    <!-- Benefit 2 -->
+    <g transform="translate(280, 30)">
+      <circle cx="10" cy="-5" r="5" fill="#3b82f6"/>
+      <text x="25" y="0" font-family="Poppins, system-ui, sans-serif" font-size="16" fill="#525252">Minimised Locum, Overtime &amp; Penalty Costs</text>
+    </g>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="700" cy="100" r="40" fill="#dbeafe" opacity="0.5"/>
+  <circle cx="720" cy="120" r="25" fill="#bfdbfe" opacity="0.5"/>
+</svg>

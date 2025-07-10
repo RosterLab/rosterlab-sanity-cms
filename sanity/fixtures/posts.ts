@@ -5,7 +5,7 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
     _type: 'post',
     title: 'Introducing AI-Powered Schedule Optimization',
     slug: {
-      current: 'ai-powered-schedule-optimization',
+      current: 'ai-powered-schedule-optimisation',
       _type: 'slug',
     },
     publishedAt: '2024-12-01T10:00:00Z',
@@ -27,7 +27,7 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
         children: [
           {
             _type: 'span',
-            text: 'Traditional scheduling methods are time-consuming and often lead to suboptimal results. Our new AI-powered optimization engine changes that by analyzing historical data, employee preferences, and business constraints to create perfect schedules in minutes.',
+            text: 'Traditional scheduling methods are time-consuming and often lead to suboptimal results. Our new AI-powered optimisation engine changes that by analyzing historical data, employee preferences, and business constraints to create perfect schedules in minutes.',
           },
         ],
       },
@@ -47,14 +47,14 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
         children: [
           {
             _type: 'span',
-            text: '• 75% reduction in scheduling time\n• Improved employee satisfaction\n• Better compliance with labor laws\n• Reduced labor costs',
+            text: '• 75% reduction in scheduling time\n• Improved employee satisfaction\n• Better compliance with labour laws\n• Reduced labour costs',
           },
         ],
       },
     ],
     seo: {
-      title: 'AI-Powered Schedule Optimization | RosterLab',
-      description: 'Reduce scheduling time by 75% with our new AI optimization engine. Improve fairness, compliance, and employee satisfaction.',
+      title: 'AI-Powered Schedule Optimisation | RosterLab',
+      description: 'Reduce scheduling time by 75% with our new AI optimisation engine. Improve fairness, compliance, and employee satisfaction.',
       keywords: ['AI scheduling', 'workforce optimization', 'automated scheduling'],
     },
   },
@@ -141,7 +141,7 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
         children: [
           {
             _type: 'span',
-            text: 'With RosterLab\'s automated scheduling and optimization features, Bupa now creates optimal schedules in just 8 hours per week.',
+            text: 'With RosterLab\'s automated scheduling and optimisation features, Bupa now creates optimal schedules in just 8 hours per week.',
           },
         ],
       },

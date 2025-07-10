@@ -46,7 +46,7 @@ export default function AzureADSuccessPage() {
               {/* Main Message */}
               <div className="mb-8">
                 <p className="text-gray-700 mb-6">
-                  Thanks for connecting your Microsoft Entra ID (Azure AD) with RosterLab. Your organization has now been successfully registered.
+                  Thanks for connecting your Microsoft Entra ID (Azure AD) with RosterLab. Your organisation has now been successfully registered.
                 </p>
                 
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">

@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {}
   }
 
-  // De-optimize title and description for pages beyond 1
+  // De-optimise title and description for pages beyond 1
   const title = pageNumber === 1 
     ? 'RosterLab Newsroom - Press Releases & Updates' 
     : `RosterLab Newsroom - Page ${pageNumber}`

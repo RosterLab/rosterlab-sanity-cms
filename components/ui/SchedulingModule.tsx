@@ -117,7 +117,7 @@ export default function SchedulingModule() {
     setOptimizationProgress(0)
     setAnimatingCells(new Set())
 
-    // Simulate optimization progress
+    // Simulate optimisation progress
     const progressInterval = setInterval(() => {
       setOptimizationProgress(prev => {
         if (prev >= 100) {
