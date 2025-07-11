@@ -112,7 +112,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Devices-pana.svg"
+                  src="/images/self-scheduling/needs.webp"
                   alt="Easily meet your staffing needs illustration"
                   width={600}
                   height={600}
@@ -138,31 +138,28 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  AI-Optimized and Compliant
+                  Ensure High-Quality and Compliant Rosters
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Our advanced algorithm considers staff preferences, skills,
-                  seniority, and fairness to create schedules that work for
-                  everyone. Get optimal coverage while maximizing staff
-                  satisfaction.
+                  RosterLab AI handles complex constraints including contractual hours, union agreements, and staff availability. Create parameterized rules for each person to ensure fair shift assignments and never worry about compliance again.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Balances preferences with operational needs
+                      Enforces contractual hours and union agreements
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Ensures fair distribution of desirable shifts
+                      Customizable rules for individual staff members
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Respects skill requirements and certifications
+                      Adapts to evolving compliance requirements
                     </span>
                   </li>
                 </ul>
@@ -177,34 +174,36 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Submit Your Preferences, Get Your Ideal Schedule
+                  Simplify The Collection of Everyone's Preferred Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff submit detailed preferences for shifts, days, locations,
-                  and tasks - with importance weighting. Our AI processes all
-                  requests to create schedules that meet the majority of
-                  preferences while maintaining full coverage.
+                  Every staff member can enter their preferred roster through web, iOS, or Android. The intuitive interface makes it fast to submit preferences and set priorities. All submissions are stored in the cloud and automatically synced with RosterLab AI for roster creation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Request specific shifts, shift patterns, or days off with
-                      priority levels
+                      Access via web browser, iOS, or Android app
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      AI optimisation promotes satisfaction across the team
+                      Set priority levels for different preferences
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Cloud storage with automatic AI synchronization
                     </span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Chatting-pana.svg"
-                  alt="Self-roster flexibility illustration"
+                  src="/images/self-scheduling/preference.webp"
+                  alt="Preference collection illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -220,8 +219,8 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
-                  alt="Manager Override Controls illustration"
+                  src="/images/self-scheduling/self-roster.webp"
+                  alt="Self-Roster The Way You Want To illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -229,30 +228,28 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Manager Override Controls
+                  Self-Roster The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Maintain full control when needed. Managers can set blackout
-                  dates, lock critical shifts, and make manual adjustments while
-                  the system handles the routine scheduling automatically.
+                  Plan your ideal roster by specifying preferred shifts, days off, and weekend availability. Whether you want full control or just the essentials, RosterLab AI creates fair, equitable schedules that maximize everyone's preferences.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Lock specific shifts or staff assignments
+                      Choose your preferred shifts and days off
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Set minimum experience requirements
+                      Indicate weekend availability preferences
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Review and approve before publishing
+                      AI ensures fair and equitable distribution
                     </span>
                   </li>
                 </ul>
