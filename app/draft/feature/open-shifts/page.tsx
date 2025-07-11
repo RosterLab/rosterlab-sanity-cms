@@ -8,6 +8,10 @@ import { HiCheck, HiClock, HiShieldCheck, HiUserGroup } from 'react-icons/hi'
 export const metadata = {
   title: 'Open Shifts Management & Smart Matching - RosterLab',
   description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'Open Shifts Management & Smart Matching - RosterLab',
     description: 'Publish open shifts instantly; AI matches qualified staff, automates offers, and fills gaps fast while controlling overtime and fatigue.',

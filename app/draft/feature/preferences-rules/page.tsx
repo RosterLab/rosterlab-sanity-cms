@@ -9,6 +9,10 @@ export const metadata = {
   title: "Shift Preferences & Fairness Rules - RosterLab",
   description:
     "Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.",
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: "Shift Preferences & Fairness Rules - RosterLab",
     description:

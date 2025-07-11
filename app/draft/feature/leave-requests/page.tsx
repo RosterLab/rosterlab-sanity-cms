@@ -9,6 +9,10 @@ import { HiCheck, HiCalendar, HiClock } from 'react-icons/hi'
 export const metadata = {
   title: 'Employee Leave Request Tracking - RosterLab',
   description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'Employee Leave Request Tracking - RosterLab',
     description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',

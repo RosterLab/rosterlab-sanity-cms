@@ -9,6 +9,10 @@ import AIOptimizationModule from '@/components/feature/AIOptimizationModule'
 export const metadata = {
   title: 'AI Auto Roster Generation - RosterLab',
   description: 'Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'AI Auto Roster Generation - RosterLab',
     description: 'Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',

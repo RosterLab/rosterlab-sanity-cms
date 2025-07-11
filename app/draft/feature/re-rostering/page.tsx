@@ -8,6 +8,10 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 export const metadata = {
   title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
   description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
     description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',

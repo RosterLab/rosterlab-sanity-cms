@@ -5,6 +5,10 @@ import Link from 'next/link'
 export const metadata = {
   title: 'Azure AD Registration Success - RosterLab',
   description: 'Your Microsoft Entra ID (Azure AD) has been successfully connected with RosterLab.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'Azure AD Registration Success - RosterLab',
     description: 'Your Microsoft Entra ID (Azure AD) has been successfully connected with RosterLab.',
