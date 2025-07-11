@@ -397,7 +397,7 @@ export default function AboutPage() {
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <h4 className="font-semibold text-gray-900">Cathal McCloy</h4>
                   <a
-                    href="https://www.linkedin.com/in/cathal-mccloy"
+                    href="https://www.linkedin.com/in/cathal-mccloy-21a760238/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-600 hover:text-blue-600 transition-colors"

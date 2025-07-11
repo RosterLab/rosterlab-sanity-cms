@@ -23,6 +23,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "RosterLab - Workforce Management Solutions",
   description: "Simplifying workforce management with intelligent scheduling solutions.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'),
 };
 
 export default async function RootLayout({
