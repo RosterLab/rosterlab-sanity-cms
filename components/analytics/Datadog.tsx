@@ -13,17 +13,18 @@ export default function Datadog({
   service = 'rosterlab-nextjs',
   env = 'production'
 }: DatadogProps) {
+  // Only render if we have the required tokens
+  if (!clientToken || !applicationId) {
+    return null
+  }
+
   return (
-    <>
-      <Script
-        strategy="afterInteractive"
-        src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
-      />
-      <Script
-        id="datadog-rum"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+    <Script
+      id="datadog-rum"
+      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{
+        __html: `
+          if (!window.DD_RUM) {
             (function(h,o,u,n,d) {
               h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
               d=o.createElement(u);d.async=1;d.src=n
@@ -42,9 +43,9 @@ export default function Datadog({
                 defaultPrivacyLevel: 'mask-user-input',
               });
             })
-          `,
-        }}
-      />
-    </>
+          }
+        `,
+      }}
+    />
   )
 }

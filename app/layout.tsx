@@ -41,14 +41,6 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        {/* Preload critical font */}
-        <link
-          rel="preload"
-          as="font"
-          type="font/woff2"
-          href="https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecg.woff2"
-          crossOrigin="anonymous"
-        />
         <StructuredData type="organization" />
       </head>
       <body className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`} suppressHydrationWarning={true}>

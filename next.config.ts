@@ -95,24 +95,6 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: '/staff-rostering-interactive-demo',
-        headers: [
-          {
-            key: 'Link',
-            value: '</styles/hubspot-fonts.css>; rel=preload; as=style',
-          },
-        ],
-      },
-      {
-        source: '/case-studies',
-        headers: [
-          {
-            key: 'Link',
-            value: '</styles/non-critical.css>; rel=preload; as=style',
-          },
-        ],
-      },
     ];
   },
   async redirects() {
