@@ -5,7 +5,6 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
 import { useEffect, useState, useRef } from 'react'
-import '@/styles/hubspot-fonts.css'
 
 export default function BookADemoClient() {
   const [shouldLoadHubSpot, setShouldLoadHubSpot] = useState(false)
@@ -13,6 +12,12 @@ export default function BookADemoClient() {
   const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false)
 
   useEffect(() => {
+    // Load HubSpot fonts CSS immediately
+    const hubspotFontsLink = document.createElement('link')
+    hubspotFontsLink.rel = 'stylesheet'
+    hubspotFontsLink.href = '/styles/hubspot-fonts.css'
+    document.head.appendChild(hubspotFontsLink)
+
     // Only add preconnect hints initially
     const preconnect1 = document.createElement('link')
     preconnect1.rel = 'preconnect'
@@ -45,8 +50,9 @@ export default function BookADemoClient() {
 
     return () => {
       observer.disconnect()
-      document.head.removeChild(preconnect1)
-      document.head.removeChild(preconnect2)
+      if (document.head.contains(preconnect1)) document.head.removeChild(preconnect1)
+      if (document.head.contains(preconnect2)) document.head.removeChild(preconnect2)
+      if (document.head.contains(hubspotFontsLink)) document.head.removeChild(hubspotFontsLink)
     }
   }, [shouldLoadHubSpot])
 
