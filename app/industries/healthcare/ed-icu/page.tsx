@@ -36,22 +36,22 @@ const faqItems = [
     question:
       "How quickly can I generate my emergency department staff roster?",
     answer:
-      "The time it takes the Rosterlab AI to generate a schedule for your staff is measured in minutes, not hours or days. With our dynamic statistics, you can quickly check over the AI-generated schedules. It will highlight when there are gaps in coverage and you can easily verify that the rosters are fair and equitable for all staff members.",
+      "The time it takes RosterLab’s AI to generate a roster depends on the complexity of your departments. It scales with department size and the number of rules and requirements. For a typical ED or ICU ward, it takes about 10–20 minutes to solve.",
   },
   {
     question: "How does the platform automate my ICU roster?",
     answer:
-      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Set up to have a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised schedules for your staff.",
+      "With Rosterlab, you can set the AI to generate rosters for your staff the same way you would. Set up to have a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised rosters for your staff.",
   },
   {
     question: "Where is my roster stored?",
     answer:
-      "Good rostering requires good information management. RosterLab's cloud-based platform keeps all your roster information available to your department wherever you have internet access.",
+      "RosterLab is a cloud-based platform that keeps all your roster information stored securely. It is available to your department wherever you have internet access.",
   },
   {
     question: "How do I share my roster?",
     answer:
-      "Staff leave requests and preferences are collated via the RosterLab iOS/Android app, ready for the AI to interpret. When you publish your roster, it is automatically pushed to everyone who needs to see it in the best format for them:\n\n• Shift-based rosters for switchboard and managers.\n• Individually personalised rosters for each person are integrated into their personal calendars.",
+      "Staff leave requests and preferences are collated via the RosterLab iOS/Android app, ready for the AI to interpret. When you publish your roster, it is automatically pushed to everyone who needs to see it. You could also share a controlled version with different departments or various groups of people in the best format for them:\n\n• Shift-based rosters for switchboard and managers.\n• Individually personalised rosters for each person are integrated into their personal calendars.",
   },
 ];
 
@@ -175,7 +175,7 @@ export default function ICUEDPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Critical Care Rostering Solved
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               Emergency departments and ICUs require precise skill mix, 24/7
               coverage, and rapid response capabilities. Our AI ensures you
               always have the right team in place.
@@ -200,11 +200,12 @@ export default function ICUEDPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                90% Admin Reduction
+                Long Hours Shift Management
               </h3>
               <p className="text-gray-600">
-                Create compliant rosters in minutes instead of days. Spend more
-                time on patient care, less on rostering.
+                Intelligently roster long intensive shifts while preventing
+                burnout. Let AI balances workload distribution and mandatory
+                rest periods.
               </p>
             </div>
 
@@ -225,11 +226,12 @@ export default function ICUEDPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Always Safe Staffing
+                Enhanced Continuity of Care
               </h3>
               <p className="text-gray-600">
-                Maintain critical skill mix requirements and nurse-to-patient
-                ratios automatically across all shifts.
+                Ensure at least one team member from previous shifts continues
+                caring for each patient, minimising handover errors and
+                improving outcomes.
               </p>
             </div>
 
@@ -250,11 +252,12 @@ export default function ICUEDPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Continuity of care
+                Optimal Staff-to-Patient Ratios
               </h3>
               <p className="text-gray-600">
-                Maintain consistent patient-nurse assignments to improve
-                outcomes and staff satisfaction.
+                Automatically maintain critical staff-to-patient ratios required
+                for intensive care, enforcing safe and effective patient
+                monitoring.
               </p>
             </div>
           </div>
@@ -270,34 +273,6 @@ export default function ICUEDPage() {
                 Built for Critical Care Complexity
               </h2>
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Multi-Skill Matching
-                    </h3>
-                    <p className="text-gray-600">
-                      Automatically match staff with required certifications:
-                      ACLS, PALS, trauma, ventilator management, and specialty
-                      skills.
-                    </p>
-                  </div>
-                </div>
-
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
@@ -316,11 +291,39 @@ export default function ICUEDPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Surge Capacity Planning
+                      Fair Distribution of Challenging Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Model different scenarios and maintain flexible staffing
-                      pools for emergency response and patient surges.
+                      Automatically distribute nights, weekends, and holidays
+                      equitably. Prevent excessive consecutive shifts and ensure
+                      balanced workloads.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-teal-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      AI That Understands ED & ICU Needs
+                    </h3>
+                    <p className="text-gray-600">
+                      Our AI takes your department’s unique requirements into
+                      account: skill sets, training levels, and both soft and
+                      hard constraints for shift assignments.
                     </p>
                   </div>
                 </div>
@@ -343,11 +346,13 @@ export default function ICUEDPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      24/7 Coverage Optimization
+                      From Spreadsheets to Smart Rostering
                     </h3>
                     <p className="text-gray-600">
-                      Ensure seamless handovers and maintain continuity of care
-                      with intelligent shift patterns and overlap management.
+                      Replace error-prone manual processes with a cloud-based
+                      solution that creates optimal rosters in minutes. Keep
+                      your rostering knowledge stored digitally to ensure
+                      consistent, high-quality rosters over time.
                     </p>
                   </div>
                 </div>
@@ -402,7 +407,7 @@ export default function ICUEDPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Shift Swaps & Trades
+                  Smart Shift Swaps
                 </h3>
                 <p className="text-base text-gray-600">
                   Enable staff to easily swap shifts with automated approval
@@ -431,8 +436,9 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Staff Mobile Access
                 </h3>
-                <p className="text-base text-gray-600">
-                  Staff can view schedules and swap shifts from any device.
+                <p className="text-base text-gray-600 mb-3">
+                  Staff can view rosters, open shifts, and swap shifts from any
+                  device.
                 </p>
               </div>
             </Link>
@@ -457,9 +463,9 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fatigue Management
                 </h3>
-                <p className="text-base text-gray-600">
-                  Monitor and prevent staff burnout with intelligent shift
-                  pattern analysis.
+                <p className="text-base text-gray-600 mb-3">
+                  Build fatigue management rules to prevent staff burnout with
+                  ease.
                 </p>
               </div>
             </Link>
