@@ -117,6 +117,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Author and test redirects to blog
+      {
+        source: '/author/:path*',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/test/:path*',
+        destination: '/blog',
+        permanent: true,
+      },
       // Product redirects
       {
         source: '/product/rosterlab-ai',

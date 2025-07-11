@@ -188,7 +188,7 @@ export default function StaffingEnvelopeChart() {
 
             {/* Area labels */}
             <text
-              x={chartWidth * 0.12}
+              x={chartWidth * (isMobile ? 0.20 : 0.12)}
               y={yScale(38)}
               textAnchor="middle"
               className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-pink-700`}
@@ -197,7 +197,7 @@ export default function StaffingEnvelopeChart() {
             </text>
             
             <text
-              x={chartWidth * 0.12}
+              x={chartWidth * (isMobile ? 0.20 : 0.12)}
               y={yScale(27.5)}
               textAnchor="middle"
               className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-gray-700`}
@@ -206,7 +206,7 @@ export default function StaffingEnvelopeChart() {
             </text>
             
             <text
-              x={chartWidth * 0.12}
+              x={chartWidth * (isMobile ? 0.20 : 0.12)}
               y={yScale(18)}
               textAnchor="middle"
               className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-blue-700`}

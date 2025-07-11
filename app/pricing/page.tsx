@@ -279,16 +279,16 @@ const faqItems = [
 export default function PricingPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-x-hidden">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
             <div className="text-center mb-16">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
                 Optimise your staffing
               </h1>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text"
+                className="text-3xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text"
                 style={{
                   backgroundImage:
                     "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
