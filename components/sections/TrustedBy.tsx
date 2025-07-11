@@ -12,9 +12,9 @@ interface TrustedLogo {
 const trustedLogos: TrustedLogo[] = [
   { src: '/images/logos/whanganui.png', alt: 'Whanganui', width: 120, height: 60 },
   { src: '/images/logos/western.png', alt: 'Western Health', width: 140, height: 60 },
-  { src: 'https://rosterlab.com/hs-fs/hubfs/logos/Clients%20Logo/RPA.png?width=320&height=84&name=RPA.png', alt: 'RPA', width: 160, height: 80 },
-  { src: 'https://rosterlab.com/hs-fs/hubfs/logos/Clients%20Logo/HawkesBay.png?width=240&height=74&name=HawkesBay.png', alt: 'Hawkes Bay', width: 160, height: 50 },
-  { src: 'https://rosterlab.com/hs-fs/hubfs/logos/Clients%20Logo/NSW%20South%20Eastern.png?width=304&height=80&name=NSW%20South%20Eastern.png', alt: 'NSW South Eastern', width: 152, height: 40 },
+  { src: '/images/logos/rpa.png', alt: 'RPA', width: 160, height: 80 },
+  { src: '/images/logos/hawkesbay.png', alt: 'Hawkes Bay', width: 160, height: 50 },
+  { src: '/images/logos/nsw-south-eastern.png', alt: 'NSW South Eastern', width: 152, height: 40 },
 ]
 
 export default function TrustedBy() {
