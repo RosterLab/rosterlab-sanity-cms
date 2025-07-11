@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import GoogleTagManager, { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
+import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
+import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import Intercom from "@/components/analytics/Intercom";
 import Datadog from "@/components/analytics/Datadog";
 import StructuredData from "@/components/seo/StructuredData";
@@ -43,9 +44,9 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <StructuredData type="organization" />
+        <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
       <body className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`} suppressHydrationWarning={true}>
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <Intercom appId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!} />
         <Datadog 

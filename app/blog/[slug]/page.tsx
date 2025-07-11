@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   }
 
   return {
-    title: post.seo?.metaTitle || `${post.title} - RosterLab Blog`,
+    title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
     openGraph: {
       title: post.seo?.metaTitle || post.title,

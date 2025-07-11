@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   }
 
   return {
-    title: post.seo?.metaTitle || `${post.title} - RosterLab Case Studies`,
+    title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
     openGraph: {
       title: post.seo?.metaTitle || post.title,
