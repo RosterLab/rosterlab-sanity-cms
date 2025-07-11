@@ -12,8 +12,8 @@ export interface SanityDocument {
 
 // SEO interface
 export interface SEO {
-  title?: string
-  description?: string
+  metaTitle?: string
+  metaDescription?: string
   keywords?: string[]
   ogImage?: SanityImageObject
   noIndex?: boolean

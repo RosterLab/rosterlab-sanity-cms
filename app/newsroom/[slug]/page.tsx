@@ -29,7 +29,11 @@ const newsroomPostQuery = groq`
     body,
     mainImage,
     publishedAt,
-    seo,
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage
+    },
     author->{
       name,
       slug,
@@ -91,6 +95,8 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
     openGraph: {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
+      type: "article",
+      url: `https://rosterlab.com/newsroom/${slug}`,
       images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 
               post.mainImage ? [urlFor(post.mainImage).url()] : undefined,
     },

@@ -24,6 +24,8 @@ export const metadata = {
     title: "AI Staff Roster Generator for Scheduling Complex Shifts",
     description:
       "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+    type: "website",
+    url: "https://rosterlab.com/solutions/ai-staff-scheduling",
     images: [
       {
         url: "/images/og images/SolutionAIGen.png",

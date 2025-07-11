@@ -11,6 +11,8 @@ export const metadata = {
   openGraph: {
     title: 'Contact Us - Get Help with Your Team Scheduling',
     description: 'Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.',
+    type: 'website',
+    url: 'https://rosterlab.com/contact',
     images: [
       {
         url: '/images/og images/Contact.png',

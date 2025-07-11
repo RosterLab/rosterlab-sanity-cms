@@ -10,6 +10,8 @@ export const metadata = {
   openGraph: {
     title: 'Smart AI Rostering Software for All Industries - RosterLab',
     description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+    type: 'website',
+    url: 'https://rosterlab.com/industries',
     images: [
       {
         url: '/images/og images/Industry.png',

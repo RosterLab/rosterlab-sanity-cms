@@ -13,6 +13,8 @@ export const metadata = {
   openGraph: {
     title: 'Employee Mobile App - RosterLab',
     description: 'Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.',
+    type: 'website',
+    url: 'https://rosterlab.com/solutions/staff-roster-mobile-app',
     images: [
       {
         url: '/images/og images/SolutionMobileApp.png',

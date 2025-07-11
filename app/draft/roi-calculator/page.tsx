@@ -11,6 +11,8 @@ export const metadata = {
   openGraph: {
     title: 'ROI Calculator - Optimise your time and money with RosterLab',
     description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
+    type: 'website',
+    url: 'https://rosterlab.com/draft/roi-calculator',
     images: [
       {
         url: '/images/og images/ROICalc.png',

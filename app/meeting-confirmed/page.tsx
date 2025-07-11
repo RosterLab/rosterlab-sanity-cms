@@ -14,6 +14,8 @@ export const metadata = {
   openGraph: {
     title: 'Meeting Confirmed - RosterLab',
     description: 'Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.',
+    type: 'website',
+    url: 'https://rosterlab.com/meeting-confirmed',
     images: [
       {
         url: '/images/og images/InteractiveDemo.png',

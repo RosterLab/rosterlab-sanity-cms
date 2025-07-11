@@ -11,6 +11,8 @@ export const metadata = {
   openGraph: {
     title: 'RosterLab Case Studies - Better Rosters, Impactful Results',
     description: 'Explore real-world case studies showing how RosterLab\'s AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.',
+    type: 'website',
+    url: 'https://rosterlab.com/case-studies',
     images: [
       {
         url: '/images/og images/CaseStudies.png',

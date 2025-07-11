@@ -12,6 +12,8 @@ export const metadata = {
   openGraph: {
     title: 'Azure AD Registration Success - RosterLab',
     description: 'Your Microsoft Entra ID (Azure AD) has been successfully connected with RosterLab.',
+    type: 'website',
+    url: 'https://rosterlab.com/azure-ad',
     images: [
       {
         url: '/images/og images/ADAzure.png',

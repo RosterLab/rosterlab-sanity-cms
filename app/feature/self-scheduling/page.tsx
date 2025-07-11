@@ -12,6 +12,8 @@ export const metadata = {
     title: "Self-Scheduling - RosterLab",
     description:
       "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+    type: "website",
+    url: "https://rosterlab.com/feature/self-scheduling",
     images: [
       {
         url: "/images/og images/SelfScheduling.png",
