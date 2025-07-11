@@ -2,7 +2,7 @@ import { groq } from 'next-sanity'
 
 // Blog queries
 export const postsQuery = groq`
-  *[_type == "post"] | order(publishedAt desc) {
+  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -23,7 +23,7 @@ export const postsQuery = groq`
 
 // Blog posts only (excluding case studies and newsroom)
 export const blogPostsOnlyQuery = groq`
-  *[_type == "post" && (!defined(categories) || (count(categories) == 0) || (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)))] | order(publishedAt desc) {
+  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && (!defined(categories) || (count(categories) == 0) || (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)))] | order(publishedAt desc) {
     _id,
     title,
     slug,
