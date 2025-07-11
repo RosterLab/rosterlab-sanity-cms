@@ -203,7 +203,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/shift swaps/shift swap 3.webp"
+                  src="/images/shift swaps/Shift Swap 3.webp"
                   alt="Automated Notifications"
                   width={500}
                   height={500}

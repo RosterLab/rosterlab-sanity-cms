@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { groq } from 'next-sanity'
 import { client } from '@/sanity/lib/client'
-import { readdirSync, statSync } from 'fs'
+import { readdirSync, statSync, readFileSync } from 'fs'
 import { join } from 'path'
 
 // Base URL for the site
@@ -9,9 +9,38 @@ const baseUrl = 'https://rosterlab.com'
 
 // Pages to exclude from sitemap
 const excludedPaths = [
-  '/studio', // Sanity Studio
-  '/api',    // API routes
+  '/studio',   // Sanity Studio - has noindex
+  '/api',      // API routes
+  '/draft',    // Draft pages - have noindex
+  '/azure-ad', // Azure AD - has noindex
 ]
+
+// Function to check if a page or its layout has noindex robots meta
+function hasNoIndex(pagePath: string): boolean {
+  try {
+    // Check the page.tsx file
+    const pageContent = readFileSync(pagePath, 'utf8')
+    if (pageContent.includes('robots:') && pageContent.includes('index: false')) {
+      return true
+    }
+    
+    // Also check if there's a layout.tsx in the same directory
+    const dir = pagePath.substring(0, pagePath.lastIndexOf('/'))
+    const layoutPath = join(dir, 'layout.tsx')
+    try {
+      const layoutContent = readFileSync(layoutPath, 'utf8')
+      if (layoutContent.includes('robots:') && layoutContent.includes('index: false')) {
+        return true
+      }
+    } catch {
+      // No layout file or can't read it, continue
+    }
+    
+    return false
+  } catch (error) {
+    return false
+  }
+}
 
 // Function to recursively find all page.tsx files
 function findPages(dir: string, basePath: string = ''): string[] {
@@ -40,8 +69,11 @@ function findPages(dir: string, basePath: string = ''): string[] {
         // Recursively search subdirectories
         pages.push(...findPages(filePath, currentPath))
       } else if (file === 'page.tsx' && basePath !== '') {
-        // Add the route (basePath already has leading /)
-        pages.push(basePath)
+        // Check if the page has noindex metadata
+        if (!hasNoIndex(filePath)) {
+          // Add the route (basePath already has leading /)
+          pages.push(basePath)
+        }
       }
     }
     

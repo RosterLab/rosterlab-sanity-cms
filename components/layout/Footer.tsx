@@ -173,6 +173,11 @@ export default function Footer() {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link href="/schedge" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Schedge
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

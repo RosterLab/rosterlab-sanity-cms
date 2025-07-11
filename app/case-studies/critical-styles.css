@@ -1,8 +1,8 @@
 /* Critical CSS for case studies page */
 /* Inline to prevent render blocking */
 
-/* Base reset */
-* {
+/* Base reset - excluding navigation elements */
+*:not(nav):not(nav *) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

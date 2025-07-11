@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
   }
 
   return {
-    title: post.seo?.metaTitle || `${post.title} - RosterLab Newsroom`,
+    title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
     openGraph: {
       title: post.seo?.metaTitle || post.title,

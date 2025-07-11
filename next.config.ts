@@ -128,46 +128,6 @@ const nextConfig: NextConfig = {
       },
       // Blog redirects
       {
-        source: '/blog/Excel Series',
-        destination: '/rosterlab-blog/blog/excel-series',
-        permanent: true,
-      },
-      {
-        source: '/blog/Why RosterLab Free',
-        destination: '/rosterlab-blog/blog/why-rosterlab-free',
-        permanent: true,
-      },
-      {
-        source: '/blog/Roster%20more%20effectively%20with%20Excel%20Ep2%3A%20Sleep%20Days%20after%20Night%20Shifts',
-        destination: '/rosterlab-blog/blog/roster-more-effectively-with-excel-ep2-sleep-days-after-night-shifts',
-        permanent: true,
-      },
-      {
-        source: '/blog/CaseStudy_DargavilleMedicalCentre',
-        destination: '/rosterlab-blog/blog/casestudy_dargavillemedicalcentre',
-        permanent: true,
-      },
-      {
-        source: '/blog/four-levels-of-staffing-optimisation',
-        destination: '/rosterlab-blog/blog/four-levels-of-staffing-optimisation',
-        permanent: true,
-      },
-      {
-        source: '/blog/trade-offs',
-        destination: '/rosterlab-blog/blog/trade-offs',
-        permanent: true,
-      },
-      {
-        source: '/blog/guide-to-rostering',
-        destination: '/rosterlab-blog/blog/guide-to-rostering',
-        permanent: true,
-      },
-      {
-        source: '/blog/rosterball',
-        destination: '/rosterlab-blog/blog/rosterball',
-        permanent: true,
-      },
-      {
         source: '/blog/wdhbradiographyimplementation',
         destination: '/newsroom/whanganui-radiography-department-embraces-ai-rostering',
         permanent: true,
