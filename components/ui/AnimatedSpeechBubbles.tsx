@@ -7,9 +7,9 @@ export default function AnimatedSpeechBubbles() {
   const [key, setKey] = useState(0)
 
   const messages = useMemo(() => [
-    { id: 1, text: "Can you trade shifts with me?", position: "left", delay: 0 },
+    { id: 1, text: "Can you swap shift with me?", position: "left", delay: 0 },
     { id: 2, text: "Sure, what time are you thinking?", position: "right", delay: 1500 },
-    { id: 3, text: "Monday 5pm", position: "left", delay: 3000 },
+    { id: 3, text: "Night shift next Thursday.", position: "left", delay: 3000 },
     { id: 4, text: "Perfect, I'll swap with you!", position: "right", delay: 4500 },
     { id: 5, text: "Amazing, thank you!!! I've sent the swap on RosterLab ❤️", position: "left", delay: 6000 }
   ], [])
