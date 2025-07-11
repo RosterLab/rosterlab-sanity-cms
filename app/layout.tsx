@@ -3,13 +3,13 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GoogleTagManager, { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
-import Intercom from "@/components/analytics/Intercom";
 import Datadog from "@/components/analytics/Datadog";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
+import ClientProviders from "@/components/layout/ClientProviders";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -46,20 +46,21 @@ export default async function RootLayout({
       <body className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`} suppressHydrationWarning={true}>
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
-        <Intercom appId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!} />
-        <Datadog 
-          clientToken={process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN!}
-          applicationId={process.env.NEXT_PUBLIC_DATADOG_APPLICATION_ID!}
-          service={process.env.NEXT_PUBLIC_DATADOG_SERVICE!}
-          env={process.env.NEXT_PUBLIC_DATADOG_ENV!}
-        />
-        <Header />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
-        {isEnabled && <VisualEditing />}
-        <LazyStyles />
+        <ClientProviders intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}>
+          <Datadog 
+            clientToken={process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN!}
+            applicationId={process.env.NEXT_PUBLIC_DATADOG_APPLICATION_ID!}
+            service={process.env.NEXT_PUBLIC_DATADOG_SERVICE!}
+            env={process.env.NEXT_PUBLIC_DATADOG_ENV!}
+          />
+          <Header />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+          {isEnabled && <VisualEditing />}
+          <LazyStyles />
+        </ClientProviders>
       </body>
     </html>
   );
