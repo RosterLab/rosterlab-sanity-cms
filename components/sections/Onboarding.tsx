@@ -139,6 +139,29 @@ const onboardingSteps = [
       "Run hypothetical roster scenarios to assess feasibility of changes without impacting your live roster - perfect for planning and optimisation.",
     link: "/feature/re-rostering",
   },
+  {
+    number: "7",
+    title: "Integrates with your payroll systems",
+    icon: (
+      <svg
+        className="w-6 h-6 text-blue-600"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+    ),
+    description:
+      "We currently integrate with Trendcare. Others upon request, depending on your business.",
+    link: "/feature/payroll-integration",
+    fullWidth: true,
+  },
 ];
 
 export default function Onboarding() {
@@ -154,7 +177,7 @@ export default function Onboarding() {
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Our streamlined platform takes you from complex rostering challenges
-            to optimised rosters in just seven simple steps.
+            to optimised rosters in just six simple steps.
           </p>
         </div>
 
@@ -179,9 +202,7 @@ export default function Onboarding() {
           {/* Full-width 7th box */}
           {onboardingSteps[6] && (
             <div className="mt-8">
-              <div
-                className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1"
-              >
+              <div className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {onboardingSteps[6].icon}
                 </div>
