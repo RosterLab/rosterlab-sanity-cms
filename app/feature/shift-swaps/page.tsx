@@ -124,7 +124,13 @@ export default function ShiftSwapsPage() {
                 </ul>
               </div>
               <div className="relative">
-                <ShiftSwapModule />
+                <Image
+                  src="/images/shift swaps/Test 5 copy.webp"
+                  alt="Automatic Routine Approvals"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto scale-90"
+                />
               </div>
             </div>
           </Container>
@@ -135,7 +141,13 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <ShiftSwapsContent />
+                <Image
+                  src="/images/shift swaps/Group 391 copy.webp"
+                  alt="Review Swaps that Break the Rules"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto scale-90"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -195,7 +207,7 @@ export default function ShiftSwapsPage() {
                   alt="Automated Notifications"
                   width={500}
                   height={500}
-                  className="w-full h-auto"
+                  className="w-full h-auto scale-90"
                 />
               </div>
             </div>
@@ -207,7 +219,13 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <AuditTrailModule />
+                <Image
+                  src="/images/shift swaps/Group 390 copy.webp"
+                  alt="Comprehensive Audit Trail"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto scale-90"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">

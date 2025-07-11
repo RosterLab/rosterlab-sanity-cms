@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { HiCheck, HiRefresh, HiPlus } from "react-icons/hi";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function RosterGenerator() {
   const [progress, setProgress] = useState(0);
@@ -35,7 +36,16 @@ export default function RosterGenerator() {
       style={{ contain: "layout" }}
     >
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 relative">
-        <div className="absolute top-4 right-4">
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          <div className="bg-white/20 rounded-lg p-2">
+            <Image
+              src="/images/icon/RosterLab_Icon_White.svg"
+              alt="RosterLab"
+              width={20}
+              height={20}
+              className="w-5 h-5"
+            />
+          </div>
           <div className="bg-white/20 rounded-lg p-2">
             <HiPlus className="w-5 h-5 text-white" />
           </div>

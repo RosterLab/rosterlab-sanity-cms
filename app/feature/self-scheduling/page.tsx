@@ -206,7 +206,7 @@ export default function SelfSchedulingPage() {
                   alt="Preference collection illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto scale-[0.8]"
                 />
               </div>
             </div>
