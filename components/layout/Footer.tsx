@@ -142,11 +142,6 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Customer Success</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/why-choose-us" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Why Choose Us
-                </Link>
-              </li>
-              <li>
                 <Link href="/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Industries
                 </Link>
@@ -176,11 +171,6 @@ export default function Footer() {
               <li>
                 <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/roi-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  ROI Calculator
                 </Link>
               </li>
             </ul>

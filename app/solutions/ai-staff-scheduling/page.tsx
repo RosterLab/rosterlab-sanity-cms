@@ -67,7 +67,7 @@ const faqItems = [
   {
     question: "How much time and cost savings can we expect?",
     answer:
-      "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. <a href='/roi-calculator' style='color: #2563eb; text-decoration: underline;'>Actual savings</a> depend on your current processes and organisation size.",
+      "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. Actual savings depend on your current processes and organisation size.",
   },
   {
     question:
@@ -308,7 +308,7 @@ export default function AISchedulesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Link href="/feature/auto-roster-generation" className="block">
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -318,30 +318,14 @@ export default function AISchedulesPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       AI-Optimised Schedules
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600">
                       Assigns the right staff with the right skills to each
                       shift, balancing preferences, availability, and compliance
                     </p>
-                    <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more
-                      <svg
-                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
             <Link href="/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
@@ -352,31 +336,15 @@ export default function AISchedulesPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Smart Shift Swaps
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600">
                       Enable staff to easily swap shifts with AI ensuring
                       coverage and compliance requirements are maintained
                     </p>
-                    <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more
-                      <svg
-                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
                   </div>
                 </div>
               </div>
             </Link>
-            <Link href="/feature/re-rostering" className="block">
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -386,31 +354,15 @@ export default function AISchedulesPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Automated Compliance
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600">
                       AI ensures every schedule meets regulatory requirements
                       and union rules without manual checking
                     </p>
-                    <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more
-                      <svg
-                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
                   </div>
                 </div>
               </div>
-            </Link>
-            <Link href="/feature/preferences-rules" className="block">
+            </div>
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -420,31 +372,15 @@ export default function AISchedulesPage() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Dynamic Re-Roster
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600">
                       Adapt to changes with ease, ensuring your department
                       remains fully operational and responsive to any unexpected
                       shifts
                     </p>
-                    <span className="text-blue-600 font-medium inline-flex items-center group">
-                      Learn more
-                      <svg
-                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         </Container>
       </div>

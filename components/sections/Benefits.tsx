@@ -5,6 +5,7 @@ import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
+import WeekendRotationModule from "@/app/feature/shift-swaps/WeekendRotationModule";
 
 interface BenefitTab {
   id: string;
@@ -135,35 +136,41 @@ export default function Benefits() {
                   ))}
                 </ul>
               </div>
-              <div className="order-1 lg:order-2 lg:pl-0 mb-6 md:mb-0 flex items-center justify-center">
-                <div className="relative w-full max-w-md mx-auto lg:max-w-none min-h-[280px] lg:min-h-[320px] flex items-center justify-center">
-                  {/* Render all images but only show the active one */}
-                  <div
-                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === "optimisation" ? "opacity-100" : "opacity-0"}`}
-                  >
-                    <StaffingEnvelopeChartSmall />
+              <div className="order-1 lg:order-2 lg:pl-0 mb-6 md:mb-0 flex flex-col items-center justify-center">
+                {activeTab === "safety" ? (
+                  <div className="w-full">
+                    <WeekendRotationModule />
                   </div>
-                  {benefitTabs.map(
-                    (tab) =>
-                      tab.id !== "optimisation" && (
-                        <div
-                          key={tab.id}
-                          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === tab.id ? "opacity-100" : "opacity-0"}`}
-                        >
-                          <Image
-                            src={tab.image}
-                            alt={tab.title}
-                            width={400}
-                            height={320}
-                            className="w-full h-auto rounded-lg scale-100 sm:scale-105 lg:scale-110 object-contain"
-                            priority
-                            quality={90}
-                            loading="eager"
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
+                ) : (
+                  <div className="relative w-full max-w-md mx-auto lg:max-w-none min-h-[280px] lg:min-h-[320px] flex items-center justify-center">
+                    {/* Render all images but only show the active one */}
+                    <div
+                      className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === "optimisation" ? "opacity-100 z-10" : "opacity-0 pointer-events-none"}`}
+                    >
+                      <StaffingEnvelopeChartSmall />
+                    </div>
+                    {benefitTabs.map(
+                      (tab) =>
+                        tab.id !== "optimisation" && tab.id !== "safety" && (
+                          <div
+                            key={tab.id}
+                            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === tab.id ? "opacity-100 z-10" : "opacity-0 pointer-events-none"}`}
+                          >
+                            <Image
+                              src={tab.image}
+                              alt={tab.title}
+                              width={400}
+                              height={320}
+                              className="w-full h-auto rounded-lg scale-100 sm:scale-105 lg:scale-110 object-contain"
+                              priority
+                              quality={90}
+                              loading="eager"
+                            />
+                          </div>
+                        )
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

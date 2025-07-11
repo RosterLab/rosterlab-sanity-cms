@@ -575,7 +575,7 @@ export default function AgedCarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/preferences-rules" className="block">
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -595,15 +595,12 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Preferences & Rules
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Configure staff preferences and organisational rules for
                   optimal scheduling.
                 </p>
-                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
-                  Learn more →
-                </span>
               </div>
-            </Link>
+            </div>
 
             <Link href="/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
@@ -625,17 +622,14 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Smart Shift Swaps
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Enable staff to easily swap shifts with automated approval
                   workflows.
                 </p>
-                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
-                  Learn more →
-                </span>
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -655,17 +649,14 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Automate Rostering
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Create compliant schedules in minutes with AI-powered
                   optimisation.
                 </p>
-                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
-                  Learn more →
-                </span>
               </div>
-            </Link>
+            </div>
 
-            <Link href="/feature/re-rostering" className="block">
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -685,15 +676,12 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Re-roster Changes
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Handle unexpected changes with intelligent re-rostering
                   algorithms.
                 </p>
-                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
-                  Learn more →
-                </span>
               </div>
-            </Link>
+            </div>
           </div>
         </Container>
       </section>
@@ -729,18 +717,12 @@ export default function AgedCarePage() {
               Join aged care providers achieving better outcomes with smarter
               scheduling.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button
                 href="/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
-              </Button>
-              <Button
-                href="/roi-calculator"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
-              >
-                Calculate Your ROI
               </Button>
             </div>
           </div>

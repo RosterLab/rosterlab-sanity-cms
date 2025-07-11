@@ -44,12 +44,9 @@ export default function IndustriesPage() {
             <p className="text-xl text-gray-600 mb-8">
               Whether you're managing nurses, teachers, call centre agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button href="/book-a-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
                 Book a Demo
-              </Button>
-              <Button href="/roi-calculator" className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50">
-                ROI Calculator
               </Button>
             </div>
             

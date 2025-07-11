@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { HiMenu, HiX, HiChevronDown, HiUser } from 'react-icons/hi'
+import { HiMenu, HiX, HiChevronDown, HiChevronRight, HiUser } from 'react-icons/hi'
 
 interface SubMenuItem {
   title: string
@@ -24,6 +24,7 @@ interface HeaderProps {
 export default function Header({ navItems = [] }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null)
 
   const defaultNavItems: NavItem[] = [
     {
@@ -32,14 +33,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: 'AI-generated optimised schedules', link: '/solutions/ai-staff-scheduling' },
         { title: 'Free For Manual Digital Scheduling', link: '/solutions/free-staff-scheduling' },
         { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
-        { title: 'Preferences & Rules', link: '/feature/preferences-rules' },
-        { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
         { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
-        { title: 'Leave Requests', link: '/feature/leave-requests' },
         { title: 'Shift Swaps', link: '/feature/shift-swaps' },
-        { title: 'Open Shifts', link: '/feature/open-shifts' },
-        { title: 'Re-Rostering', link: '/feature/re-rostering' },
-        { title: 'Payroll Integration', link: '/feature/payroll-integration' },
       ]
     },
     {
@@ -184,22 +179,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1 max-h-80 overflow-y-auto">
                                 <Link
-                                  href="/feature/preferences-rules"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Preferences & Rules
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/auto-roster-generation"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Auto Roster Generation
-                                  </div>
-                                </Link>
-                                <Link
                                   href="/feature/self-scheduling"
                                   className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
@@ -208,43 +187,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   </div>
                                 </Link>
                                 <Link
-                                  href="/feature/leave-requests"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Leave Requests
-                                  </div>
-                                </Link>
-                                <Link
                                   href="/feature/shift-swaps"
                                   className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Shift Swaps
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/open-shifts"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Open Shifts
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/re-rostering"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Re-Rostering
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/payroll-integration"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Payroll Integration
                                   </div>
                                 </Link>
                               </div>
@@ -290,7 +237,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     Healthcare
                                   </div>
                                   <div className="text-sm text-gray-600">
-                                    General healthcare scheduling solutions
+                                    General healthcare solutions that handle complex workforces and frontline workers
                                   </div>
                                 </Link>
                                 <Link
@@ -301,7 +248,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     ICU/ED
                                   </div>
                                   <div className="text-sm text-gray-600">
-                                    Critical care and emergency departments
+                                    Build ICU/ED rosters that support better continuity of care for patients
                                   </div>
                                 </Link>
                               </div>
@@ -318,7 +265,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     Aged Care
                                   </div>
                                   <div className="text-sm text-gray-600">
-                                    Residential and home care facilities
+                                    Make better use of staffing hours with rosters for aged care facilities
                                   </div>
                                 </Link>
                                 <Link
@@ -329,7 +276,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     Radiology
                                   </div>
                                   <div className="text-sm text-gray-600">
-                                    Medical imaging departments
+                                    Balance your teams with the right skill mix with compliant radiology rosters
                                   </div>
                                 </Link>
                               </div>
@@ -453,37 +400,52 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 </Link>
               ) : (
                 <>
-                  <div className="px-3 py-2 text-base font-medium text-neutral-900">
+                  <button
+                    onClick={() => setMobileDropdown(mobileDropdown === item.title ? null : item.title)}
+                    className="w-full text-left text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 px-3 py-2 rounded-md text-base font-medium flex items-center"
+                  >
                     {item.title}
-                  </div>
-                  {item.subItems && (
-                    <div className="pl-6 space-y-1">
+                    <HiChevronDown className={cn(
+                      "h-4 w-4 ml-1 transition-transform duration-200",
+                      mobileDropdown === item.title ? "rotate-180" : ""
+                    )} />
+                  </button>
+                  {item.subItems && mobileDropdown === item.title && (
+                    <div className="pl-6 space-y-1 mt-1">
                       {item.title === 'Solutions' ? (
                         <>
                           {/* Core Solutions */}
-                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1">Core Solutions</div>
-                          {item.subItems.slice(0, 3).map((subItem) => (
-                            <Link
-                              key={subItem.link}
-                              href={subItem.link}
-                              className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {subItem.title}
-                            </Link>
-                          ))}
+                          <div className="mb-4">
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">Core Solutions</div>
+                            <div className="space-y-1">
+                              {item.subItems.slice(0, 3).map((subItem) => (
+                                <Link
+                                  key={subItem.link}
+                                  href={subItem.link}
+                                  className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  {subItem.title}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                           {/* Features */}
-                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mt-3">Features</div>
-                          {item.subItems.slice(3).map((subItem) => (
-                            <Link
-                              key={subItem.link}
-                              href={subItem.link}
-                              className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {subItem.title}
-                            </Link>
-                          ))}
+                          <div className="border-t border-gray-200 pt-3">
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">Features</div>
+                            <div className="space-y-1">
+                              {item.subItems.slice(3).map((subItem) => (
+                                <Link
+                                  key={subItem.link}
+                                  href={subItem.link}
+                                  className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  {subItem.title}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
                         </>
                       ) : (
                         item.subItems.map((subItem) => (

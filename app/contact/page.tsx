@@ -38,7 +38,7 @@ const faqItems = [
   },
   {
     question: "Can you integrate with our existing systems?",
-    answer: "RosterLab integrates with most HR and <a href='/feature/payroll-integration' class='text-blue-600 hover:text-blue-700 underline'>payroll systems</a>. We'll assess your current setup during our consultation."
+    answer: "RosterLab integrates with most HR and payroll systems. We'll assess your current setup during our consultation."
   }
 ]
 

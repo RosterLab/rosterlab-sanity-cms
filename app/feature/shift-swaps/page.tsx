@@ -6,6 +6,8 @@ import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import ShiftSwapsContent from './ShiftSwapsContent'
 import ShiftSwapModule from '@/components/sections/animations/ShiftSwapModule'
+import AuditTrailModule from './AuditTrailModule'
+import WeekendRotationModule from './WeekendRotationModule'
 
 export const metadata = {
   title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
@@ -189,7 +191,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
+                  src="/images/shift swaps/shift swap 3.webp"
                   alt="Automated Notifications"
                   width={500}
                   height={500}
@@ -205,13 +207,7 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/Transfer files-pana.svg"
-                  alt="Comprehensive audit trail and documentation"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
-                />
+                <AuditTrailModule />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">

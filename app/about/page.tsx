@@ -341,7 +341,7 @@ export default function AboutPage() {
                 <p className="text-sm text-blue-600 mb-2 text-center">
                   Independent Board Chair
                 </p>
-                <p className="text-xs text-gray-600 text-left">
+                <p className="text-sm text-gray-600 text-left">
                   A serial corporate innovator and former Chief Innovation
                   Officer at Cambia Health Solutions, Mohan has launched seven
                   corporate start-ups, achieved two entrepreneurial exits and
@@ -375,7 +375,7 @@ export default function AboutPage() {
                 <p className="text-sm text-blue-600 mb-2 text-center">
                   Board Member & Investor
                 </p>
-                <p className="text-xs text-gray-600 text-left">
+                <p className="text-sm text-gray-600 text-left">
                   General Partner at Movac, New Zealand’s leading deep-tech
                   venture firm, David has overseen investments in more than 50
                   technology companies and landmark exits such as PowerbyProxi’s
@@ -409,7 +409,7 @@ export default function AboutPage() {
                 <p className="text-sm text-blue-600 mb-2 text-center">
                   Medical Advisor
                 </p>
-                <p className="text-xs text-gray-600 text-left">
+                <p className="text-sm text-gray-600 text-left">
                   A Wellington-based general physician and geriatrician, IMSANZ
                   Council member and long-time advocate for safer clinician
                   hours, Cathal serves as RosterLab’s medical advisor. His

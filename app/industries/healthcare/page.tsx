@@ -97,9 +97,8 @@ export default function HealthcarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Link
-              href="/feature/auto-roster-generation"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+            <div
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -119,31 +118,14 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Automatically Generate Rosters
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600">
                 Create optimal schedules in minutes using AI that balances all
                 requirements.
               </p>
-              <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
-                Learn more
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </Link>
+            </div>
 
-            <Link
-              href="/feature/preferences-rules"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+            <div
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
             >
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -163,27 +145,11 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Union Compliant
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600">
                 Automatically enforce union rules, skill mix, and fairness
                 requirements.
               </p>
-              <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
-                Learn more
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </Link>
+            </div>
 
             <Link
               href="/feature/shift-swaps"
@@ -207,26 +173,10 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Better Staffing Coverage
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600">
                 Optimise all the staffing intricacies for better coverage for
                 your hospitals.
               </p>
-              <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
-                Learn more
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
             </Link>
 
             <Link
@@ -251,31 +201,14 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Mobile Access & Notifications
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600">
                 Staff can view schedules, make preferences, request leave,
                 accept open shifts and manage swaps from any device.
               </p>
-              <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
-                Learn more
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
             </Link>
 
-            <Link
-              href="/feature/re-rostering"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+            <div
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -295,27 +228,11 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Re-rostering
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600">
                 Handle last-minute changes with minimal disruption during sick
                 calls or emergencies.
               </p>
-              <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
-                Learn more
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-            </Link>
+            </div>
 
             <Link
               href="/solutions/ai-staff-scheduling"
@@ -339,26 +256,10 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Higher Staff Retention
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600">
                 Better-quality rosters, self rostering, reduced bias perception,
                 and better work-life balance.
               </p>
-              <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform">
-                Learn more
-                <svg
-                  className="w-4 h-4 ml-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
             </Link>
           </div>
         </Container>
@@ -644,26 +545,10 @@ export default function HealthcarePage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     ICU & Emergency Departments
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600">
                     24/7 critical care coverage with skill mix optimisation and
                     surge capacity planning.
                   </p>
-                  <div className="flex items-center text-blue-600 font-medium">
-                    Learn more
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
             </Link>
@@ -683,7 +568,7 @@ export default function HealthcarePage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">
                     Radiology Departments
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600">
                     Subspecialty coverage with equipment coordination and
                     reading room optimisation.
                   </p>
@@ -722,7 +607,7 @@ export default function HealthcarePage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
                     Aged Care Facilities
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600">
                     Resident-focused scheduling with care level matching and
                     compliance assurance.
                   </p>

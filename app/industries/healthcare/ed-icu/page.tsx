@@ -404,13 +404,10 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Shift Swaps & Trades
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Enable staff to easily swap shifts with automated approval
                   workflows.
                 </p>
-                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
-                  Learn more →
-                </span>
               </div>
             </Link>
 
@@ -434,12 +431,9 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Staff Mobile Access
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Staff can view schedules and swap shifts from any device.
                 </p>
-                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
-                  Learn more →
-                </span>
               </div>
             </Link>
 
@@ -463,17 +457,14 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fatigue Management
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Monitor and prevent staff burnout with intelligent shift
                   pattern analysis.
                 </p>
-                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
-                  Learn more →
-                </span>
               </div>
             </Link>
 
-            <Link href="/feature/preferences-rules" className="block">
+            <div className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -493,15 +484,12 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fair shift allocation
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600">
                   Equitably distribute night shifts, weekends, and on-call
                   duties automatically.
                 </p>
-                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
-                  Learn more →
-                </span>
               </div>
-            </Link>
+            </div>
           </div>
         </Container>
       </section>
