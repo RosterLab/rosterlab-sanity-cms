@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { HiArrowUp, HiArrowDown } from 'react-icons/hi'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 export default function WeekendRotationModule() {
   const [isOptimized, setIsOptimized] = useState(false)
@@ -31,8 +32,9 @@ export default function WeekendRotationModule() {
   ]
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 sm:p-8 relative">
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
+    <div className="w-full px-4 sm:px-6 md:px-8">
+      <div className="max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
         {/* Left side - Staff profiles and schedules */}
         <div className="flex-[3] w-full">
           <div className="space-y-4 sm:space-y-6">
@@ -56,11 +58,13 @@ export default function WeekendRotationModule() {
                         key={week}
                         className={`flex-1 flex items-center justify-center font-medium text-xs sm:text-sm transition-all duration-500 ${
                           profile.weekendsOff.includes(week)
-                            ? 'bg-gray-300 text-gray-700'
-                            : 'text-gray-700'
+                            ? 'text-gray-700'
+                            : 'bg-gray-300 text-gray-700'
                         }`}
                         style={{
-                          backgroundColor: profile.weekendsOff.includes(week) ? undefined : '#80e7d0'
+                          backgroundColor: profile.weekendsOff.includes(week) 
+                            ? isOptimized ? '#80e7d0' : '#FCA5A5'
+                            : undefined
                         }}
                       >
                         <span className="text-center">{profile.weekendsOff.includes(week) ? `Week ${week}` : ''}</span>
@@ -72,31 +76,21 @@ export default function WeekendRotationModule() {
             ))}
           </div>
 
-          {/* Optimization Button */}
-          <div className="flex justify-center mt-6">
-            <button
-              onClick={() => setIsOptimized(!isOptimized)}
-              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 text-xs rounded-lg font-medium transition-colors border border-gray-300"
-            >
-              {isOptimized ? '← View Before Optimization' : 'View After Optimization →'}
-            </button>
-          </div>
-
           {/* Legend - desktop only */}
           <div className="hidden lg:flex gap-6 mt-6 text-sm justify-center">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-gray-300 rounded" />
+              <div className="w-4 h-4 rounded" style={{ backgroundColor: isOptimized ? '#80e7d0' : '#FCA5A5' }} />
               <span className="text-gray-700">Weekend Off</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: '#80e7d0' }} />
+              <div className="w-4 h-4 bg-gray-300 rounded" />
               <span className="text-gray-700">Weekend On</span>
             </div>
           </div>
         </div>
 
         {/* Benefits - positioned below on mobile */}
-        <div className={`rounded-lg p-4 sm:p-5 flex-[1.2] w-full lg:w-auto transition-all duration-500 ${
+        <div className={`rounded-lg p-3 sm:p-4 md:p-5 flex-1 lg:flex-[1.2] w-full lg:w-auto transition-all duration-500 ${
           isOptimized ? 'bg-gray-50' : 'bg-gray-100'
         }`}>
           <h4 className={`font-semibold mb-3 sm:mb-4 text-sm sm:text-base transition-colors duration-500 ${
@@ -118,17 +112,48 @@ export default function WeekendRotationModule() {
             })}
           </div>
         </div>
-      </div>
+        </div>
       
-      {/* Legend - mobile only, positioned after benefits */}
+        {/* Legend - mobile only, positioned after benefits */}
       <div className="flex lg:hidden gap-4 sm:gap-6 mt-6 text-xs sm:text-sm justify-center">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-gray-300 rounded" />
+          <div className="w-4 h-4 rounded" style={{ backgroundColor: isOptimized ? '#80e7d0' : '#FCA5A5' }} />
           <span className="text-gray-700">Weekend Off</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded" style={{ backgroundColor: '#80e7d0' }} />
+          <div className="w-4 h-4 rounded" style={{ backgroundColor: isOptimized ? '#D1D5DB' : '#EF4444' }} />
           <span className="text-gray-700">Weekend On</span>
+        </div>
+        </div>
+      
+        {/* Optimisation Button - moved after legend */}
+        <div className="flex justify-center mt-4 sm:mt-6">
+        <motion.button
+          onClick={() => setIsOptimized(!isOptimized)}
+          className="px-4 py-3 sm:px-6 sm:py-2.5 text-xs sm:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md min-h-[44px] sm:min-h-0"
+          style={{
+            backgroundColor: '#24D9DC',
+            color: '#323232'
+          }}
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, -5, 5, -5, 5, 0],
+          }}
+          transition={{
+            duration: 0.8,
+            repeat: Infinity,
+            repeatDelay: 3.2,
+            ease: "easeInOut"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#5AE4E7';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#24D9DC';
+          }}
+        >
+          {isOptimized ? '← View Before Optimisation' : 'View After Optimisation →'}
+        </motion.button>
         </div>
       </div>
     </div>

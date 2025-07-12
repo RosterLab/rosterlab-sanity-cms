@@ -6,6 +6,8 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 import WeekendRotationModule from "@/app/feature/shift-swaps/WeekendRotationModule";
+import MobileAppPreferencesModule from "@/components/sections/animations/MobileAppPreferencesModule";
+import RosterGenerationModule from "@/components/sections/animations/RosterGenerationModule";
 
 interface BenefitTab {
   id: string;
@@ -32,21 +34,6 @@ const benefitTabs: BenefitTab[] = [
     image: "/images/illustration/optimise_workforce.svg",
   },
   {
-    id: "time",
-    label: "Save Time",
-    title: "Generated rosters in minutes",
-    description:
-      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
-    highlights: [
-      "Generate Rosters Automatically",
-      "Handle Complex Rules and Staffing Requirements",
-      "Reduce Admin for Last-minute Changes",
-      "Dynamically re-roster staff",
-    ],
-    image: "/images/illustration/save_time.svg",
-  },
-
-  {
     id: "turnover",
     label: "Reduce Turnover",
     title: "Improve staff retention",
@@ -59,6 +46,20 @@ const benefitTabs: BenefitTab[] = [
       "Reduce Staff Turnover",
     ],
     image: "/images/illustration/reduce_turnover.svg",
+  },
+  {
+    id: "time",
+    label: "Save Time",
+    title: "Generated rosters in minutes",
+    description:
+      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
+    highlights: [
+      "Generate Rosters Automatically",
+      "Handle Complex Rules and Staffing Requirements",
+      "Reduce Admin for Last-minute Changes",
+      "Dynamically re-roster staff",
+    ],
+    image: "/images/illustration/save_time.svg",
   },
   {
     id: "safety",
@@ -188,6 +189,14 @@ export default function Benefits() {
                   <div className="w-full">
                     <WeekendRotationModule />
                   </div>
+                ) : activeTab === "turnover" ? (
+                  <div className="w-full">
+                    <MobileAppPreferencesModule />
+                  </div>
+                ) : activeTab === "time" ? (
+                  <div className="w-full">
+                    <RosterGenerationModule />
+                  </div>
                 ) : (
                   <div className="relative w-full max-w-md mx-auto lg:max-w-none min-h-[280px] lg:min-h-[320px] flex items-center justify-center">
                     {/* Render all images but only show the active one */}
@@ -198,7 +207,7 @@ export default function Benefits() {
                     </div>
                     {benefitTabs.map(
                       (tab) =>
-                        tab.id !== "optimisation" && tab.id !== "safety" && (
+                        tab.id !== "optimisation" && tab.id !== "safety" && tab.id !== "turnover" && tab.id !== "time" && (
                           <div
                             key={tab.id}
                             className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === tab.id ? "opacity-100 z-10" : "opacity-0 pointer-events-none"}`}

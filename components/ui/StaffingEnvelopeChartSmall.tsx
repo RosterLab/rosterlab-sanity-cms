@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 
 export default function StaffingEnvelopeChartSmall() {
   const [isOptimized, setIsOptimized] = useState(false)
@@ -16,9 +17,33 @@ export default function StaffingEnvelopeChartSmall() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Chart dimensions - smaller for home page
-  const width = isMobile ? 336 : 588
-  const height = isMobile ? 252 : 294
+  // Chart dimensions - responsive for all devices
+  const getResponsiveDimensions = () => {
+    if (typeof window === 'undefined') return { width: 588, height: 294 }
+    const screenWidth = window.innerWidth
+    
+    if (screenWidth < 640) { // Mobile
+      return { width: Math.min(screenWidth - 48, 336), height: 252 }
+    } else if (screenWidth < 768) { // Tablet
+      return { width: 480, height: 280 }
+    } else { // Desktop
+      return { width: 588, height: 294 }
+    }
+  }
+  
+  const [dimensions, setDimensions] = useState(getResponsiveDimensions())
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions(getResponsiveDimensions())
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+  
+  const width = dimensions.width
+  const height = dimensions.height
   const padding = { 
     top: 25, 
     right: isMobile ? 15 : 25, 
@@ -100,8 +125,19 @@ export default function StaffingEnvelopeChartSmall() {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="flex flex-col items-center w-full">
-        <svg width={width} height={height} className="block w-full" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+      <div className="flex flex-col items-center w-full px-4 sm:px-0">
+        <div className="w-full max-w-[588px] mx-auto">
+          <svg width={width} height={height} className="block w-full h-auto" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+          <style>
+            {`
+              .animated-line {
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+              }
+              .animated-point {
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+              }
+            `}
+          </style>
           <g transform={`translate(${padding.left}, ${padding.top})`}>
             {/* Grid lines */}
             {[15, 20, 25, 30, 35, 40].map((value) => (
@@ -168,6 +204,7 @@ export default function StaffingEnvelopeChartSmall() {
 
             {/* Actual staffing line */}
             <path
+              className="animated-line"
               d={linePath}
               fill="none"
               stroke="#000000"
@@ -177,6 +214,7 @@ export default function StaffingEnvelopeChartSmall() {
             {/* Data points */}
             {currentData.map((point) => (
               <circle
+                className="animated-point"
                 key={point.day}
                 cx={xScale(point.day)}
                 cy={yScale(point.value)}
@@ -246,22 +284,39 @@ export default function StaffingEnvelopeChartSmall() {
             </text>
           </g>
 
-        </svg>
+          </svg>
+        </div>
 
         {/* Optimization Button */}
-        <div className="mt-3 text-center">
-          <button
+        <div className="mt-3 sm:mt-4 md:mt-6 text-center">
+          <motion.button
             onClick={() => setIsOptimized(!isOptimized)}
-            className={`${
-              isOptimized 
-                ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-            } ${isMobile ? 'px-3 py-1.5 text-[10px]' : 'px-4 py-2 text-xs'} rounded-lg font-medium transition-colors border border-gray-300`}
+            className={`${isMobile ? 'px-4 py-3 text-xs min-h-[44px]' : 'px-6 py-2.5 text-sm'} rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md`}
+            style={{
+              backgroundColor: '#24D9DC',
+              color: '#323232'
+            }}
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, -5, 5, -5, 5, 0],
+            }}
+            transition={{
+              duration: 0.8,
+              repeat: Infinity,
+              repeatDelay: 3.2,
+              ease: "easeInOut"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#5AE4E7';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#24D9DC';
+            }}
           >
             {isOptimized 
-              ? isMobile ? '← Before' : '← View Before Optimization' 
-              : isMobile ? 'After →' : 'View After Optimization →'}
-          </button>
+              ? isMobile ? '← View Before' : '← View Before Optimisation' 
+              : isMobile ? 'View After →' : 'View After Optimisation →'}
+          </motion.button>
         </div>
       </div>
     </div>
