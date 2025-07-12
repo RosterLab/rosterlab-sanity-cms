@@ -287,7 +287,7 @@ export default function RosterGenerationModule() {
         </div>
 
         {/* Toggle Button */}
-        <div className="flex justify-center mt-8 sm:mt-10 md:mt-12">
+        <div className="flex justify-center mt-12 sm:mt-10 md:mt-12">
         <motion.button
           onClick={() => {
             setIsGenerated(!isGenerated);
