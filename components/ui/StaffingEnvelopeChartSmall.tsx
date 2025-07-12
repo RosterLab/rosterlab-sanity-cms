@@ -292,7 +292,7 @@ export default function StaffingEnvelopeChartSmall() {
         </div>
 
         {/* Optimization Button */}
-        <div className="mt-3 sm:mt-4 md:mt-6 text-center">
+        <div className="mt-1 sm:mt-4 md:mt-6 text-center">
           <motion.button
             onClick={() => setIsOptimized(!isOptimized)}
             className={`${isMobile ? 'px-4 py-3 text-xs min-h-[44px]' : 'px-6 py-2.5 text-sm'} rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md`}
