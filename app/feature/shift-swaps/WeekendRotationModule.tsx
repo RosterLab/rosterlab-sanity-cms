@@ -93,9 +93,6 @@ export default function WeekendRotationModule() {
         <div className={`rounded-lg p-3 sm:p-4 md:p-5 flex-1 lg:flex-[1.2] w-full lg:w-auto transition-all duration-500 ${
           isOptimized ? 'bg-gray-50' : 'bg-gray-100'
         }`}>
-          <h4 className={`font-semibold mb-3 sm:mb-4 text-sm sm:text-base transition-colors duration-500 ${
-            isOptimized ? 'text-gray-900' : 'text-gray-500'
-          }`}>Benefits</h4>
           <div className="space-y-2 sm:space-y-3">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon
