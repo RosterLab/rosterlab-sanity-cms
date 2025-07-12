@@ -121,7 +121,7 @@ export default function WeekendRotationModule() {
           <span className="text-gray-700">Weekend Off</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded" style={{ backgroundColor: isOptimized ? '#D1D5DB' : '#EF4444' }} />
+          <div className="w-4 h-4 bg-gray-300 rounded" />
           <span className="text-gray-700">Weekend On</span>
         </div>
         </div>
