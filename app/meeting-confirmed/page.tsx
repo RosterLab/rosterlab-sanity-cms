@@ -14,6 +14,8 @@ export const metadata = {
   openGraph: {
     title: 'Meeting Confirmed - RosterLab',
     description: 'Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.',
+    type: 'website',
+    url: 'https://rosterlab.com/meeting-confirmed',
     images: [
       {
         url: '/images/og images/InteractiveDemo.png',
@@ -50,7 +52,7 @@ export default function MeetingConfirmedPage() {
             {/* Placeholder Image */}
             <div className="relative w-full h-64 md:h-96 mb-12 bg-gray-100 rounded-2xl overflow-hidden">
               <Image
-                src="/images/illustration/success-illustration.svg"
+                src="/images/illustration/Team-pana.svg"
                 alt="Meeting confirmed illustration"
                 fill
                 className="object-contain p-8"

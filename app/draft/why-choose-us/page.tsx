@@ -14,6 +14,8 @@ export const metadata = {
   openGraph: {
     title: 'Why Choose Us - RosterLab',
     description: 'Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.',
+    type: 'website',
+    url: 'https://rosterlab.com/draft/why-choose-us',
     images: [
       {
         url: '/images/og images/WhyChooseUs.png',

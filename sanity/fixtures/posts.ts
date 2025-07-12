@@ -53,8 +53,8 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
       },
     ],
     seo: {
-      title: 'AI-Powered Schedule Optimisation | RosterLab',
-      description: 'Reduce scheduling time by 75% with our new AI optimisation engine. Improve fairness, compliance, and employee satisfaction.',
+      metaTitle: 'AI-Powered Schedule Optimisation | RosterLab',
+      metaDescription: 'Reduce scheduling time by 75% with our new AI optimisation engine. Improve fairness, compliance, and employee satisfaction.',
       keywords: ['AI scheduling', 'workforce optimization', 'automated scheduling'],
     },
   },
@@ -90,8 +90,8 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
       },
     ],
     seo: {
-      title: 'Healthcare Scheduling for Patient Safety | RosterLab',
-      description: 'Discover how proper healthcare scheduling improves patient outcomes and reduces staff burnout.',
+      metaTitle: 'Healthcare Scheduling for Patient Safety | RosterLab',
+      metaDescription: 'Discover how proper healthcare scheduling improves patient outcomes and reduces staff burnout.',
       keywords: ['healthcare scheduling', 'patient safety', 'nurse scheduling'],
     },
   },
@@ -147,8 +147,8 @@ export const postFixtures: Omit<Post, '_id' | '_createdAt' | '_updatedAt' | '_re
       },
     ],
     seo: {
-      title: 'Bupa Case Study: 80% Scheduling Time Reduction | RosterLab',
-      description: 'Learn how Bupa transformed their scheduling process with RosterLab, saving 32 hours per week.',
+      metaTitle: 'Bupa Case Study: 80% Scheduling Time Reduction | RosterLab',
+      metaDescription: 'Learn how Bupa transformed their scheduling process with RosterLab, saving 32 hours per week.',
       keywords: ['case study', 'Bupa', 'scheduling efficiency', 'healthcare'],
     },
   },

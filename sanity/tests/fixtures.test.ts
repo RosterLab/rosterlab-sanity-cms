@@ -64,8 +64,8 @@ describe('Fixture Data Validation', () => {
         }
         
         if (post.seo) {
-          expect(post.seo.title).toBeTruthy()
-          expect(post.seo.description).toBeTruthy()
+          expect(post.seo.metaTitle).toBeTruthy()
+          expect(post.seo.metaDescription).toBeTruthy()
         }
       })
     })

@@ -24,6 +24,8 @@ export const metadata = {
     title: "AI Staff Roster Generator for Scheduling Complex Shifts",
     description:
       "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+    type: "website",
+    url: "https://rosterlab.com/solutions/ai-staff-scheduling",
     images: [
       {
         url: "/images/og images/SolutionAIGen.png",
@@ -46,28 +48,28 @@ const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      "Our AI algorithms analyse shift rules, staff preferences, skill requirements, and compliance rules to generate optimal schedules.",
+      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters.",
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
     answer:
-      "Implementation typically takes 2-4 weeks depending on your organisation's size and complexity. This includes data migration, system configuration, staff training, and initial AI model calibration to match your specific requirements.",
+      "Implementation typically takes 2-4 weeks depending on your organisation's size and complexity. This includes data migration, system configuration, app handover and training, and initial AI model calibration to achieve your specific requirements.",
   },
   {
     question: "Can the AI handle complex compliance and union rules?",
     answer:
-      "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organisational policies. You can configure custom rules and the system will ensure all generated schedules are fully compliant.",
+      "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organisational policies. You can configure custom rules in-app and the system will ensure all generated rosters are fully compliant.",
   },
   {
     question:
       "What happens if we need to make manual adjustments to AI-generated schedules?",
     answer:
-      "You maintain full control over the scheduling process. Managers can easily review and modify AI-generated schedules before publishing.",
+      "You maintain full control over the rostering process. Managers can easily review and modify AI-generated schedules before publishing.",
   },
   {
     question: "How much time and cost savings can we expect?",
     answer:
-      "Most organisations see 70-90% reduction in time spent on scheduling, along with 15-30% reduction in overtime costs through better optimisation. Actual savings depend on your current processes and organisation size.",
+      "Most organisations see a 70–90% reduction in time spent on rostering, along with up to a 10% improvement in rostering efficiency, such as reduced overtime costs and improved staff retention through better optimisation. Actual savings depend on your current processes and organisation size.",
   },
   {
     question:
@@ -478,11 +480,11 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      Skills Matching
+                      Handles Skills Mix
                     </h3>
                     <p className="text-gray-600">
-                      Ensures qualified staff are scheduled for appropriate
-                      roles and responsibilities
+                      Ensures qualified staff are rosters for appropriate roles
+                      and responsibilities
                     </p>
                   </div>
                 </div>
@@ -495,8 +497,9 @@ export default function AISchedulesPage() {
                       Custom Rules Engine
                     </h3>
                     <p className="text-gray-600">
-                      Configure organisation-specific rules and policies for
-                      perfect compliance
+                      Our natural language engine helps you convert
+                      organisation-specific rules and policies into app
+                      functionality to ensure perfect compliance.
                     </p>
                   </div>
                 </div>
@@ -525,9 +528,7 @@ export default function AISchedulesPage() {
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">
-                      Skills & Certifications
-                    </span>
+                    <span className="text-gray-700">Fair Distributions</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>

@@ -13,6 +13,8 @@ export const metadata = {
     title: "Pricing - Affordable AI Staff Scheduling Software",
     description:
       "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.",
+    type: "website",
+    url: "https://rosterlab.com/pricing",
     images: [
       {
         url: "/images/og images/Pricing.png",
@@ -69,6 +71,7 @@ const pricingPlans = [
     price: "Contact us",
     description: "Custom solutions for large organisations",
     features: [
+      "SSO",
       "API access",
       "Workforce scheduling consulting",
       "Integrations",
@@ -164,6 +167,12 @@ const features = [
         name: "Re-rostering (reschedule a subset of your roster)",
         digital: false,
         ai: true,
+        enterprise: true,
+      },
+      {
+        name: "SSO",
+        digital: false,
+        ai: false,
         enterprise: true,
       },
       {

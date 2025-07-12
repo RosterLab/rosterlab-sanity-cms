@@ -13,6 +13,8 @@ export const metadata = {
     title: "Rostering Software for Healthcare - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+    type: "website",
+    url: "https://rosterlab.com/industries/healthcare",
     images: [
       {
         url: "/images/og images/IndustryHealthcare.png",

@@ -9,6 +9,8 @@ export const metadata = {
   openGraph: {
     title: 'Careers - Join our talented team at RosterLab',
     description: 'Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.',
+    type: 'website',
+    url: 'https://rosterlab.com/careers',
     images: [
       {
         url: '/images/og images/Careers.png',
@@ -52,7 +54,7 @@ export default function CareersPage() {
         <Container>
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Join Us in Revolutionizing{" "}
+              Join Us in Revolutionising{" "}
               <br />
               <span className="text-transparent bg-clip-text" style={{
                 backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
@@ -132,7 +134,7 @@ export default function CareersPage() {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">People First</h3>
               <p className="text-gray-600">
-                We prioritize our team's wellbeing with flexible work arrangements and a culture that values work-life balance.
+                We prioritise our team's wellbeing with flexible work arrangements and a culture that values work-life balance.
               </p>
             </div>
           </div>

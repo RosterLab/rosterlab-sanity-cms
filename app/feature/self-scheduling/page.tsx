@@ -12,6 +12,8 @@ export const metadata = {
     title: "Self-Scheduling - RosterLab",
     description:
       "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+    type: "website",
+    url: "https://rosterlab.com/feature/self-scheduling",
     images: [
       {
         url: "/images/og images/SelfScheduling.png",
@@ -43,7 +45,7 @@ export default function SelfSchedulingPage() {
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
-                  our AI optimizes to meet 90%+ of preferences while ensuring
+                  our AI optimises to meet 90%+ of preferences while ensuring
                   coverage.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -123,14 +125,14 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
 
-        {/* Feature 2: AI-Optimized Compliant Rosters */}
+        {/* Feature 2: AI-Optimised Compliant Rosters */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
                   src="/images/product/quality.webp"
-                  alt="AI-Optimized Compliant Rosters illustration"
+                  alt="AI-Optimised Compliant Rosters illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -141,7 +143,7 @@ export default function SelfSchedulingPage() {
                   Ensure High-Quality and Compliant Rosters
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  RosterLab AI handles complex constraints including contractual hours, union agreements, and staff availability. Create parameterized rules for each person to ensure fair shift assignments and never worry about compliance again.
+                  RosterLab AI handles complex constraints including contractual hours, union agreements, and staff availability. Create parameterised rules for each person to ensure fair shift assignments and never worry about compliance again.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -153,7 +155,7 @@ export default function SelfSchedulingPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Customizable rules for individual staff members
+                      Customisable rules for individual staff members
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -195,7 +197,7 @@ export default function SelfSchedulingPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Cloud storage with automatic AI synchronization
+                      Cloud storage with automatic AI synchronisation
                     </span>
                   </li>
                 </ul>
@@ -231,7 +233,7 @@ export default function SelfSchedulingPage() {
                   Self-Roster The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Plan your ideal roster by specifying preferred shifts, days off, and weekend availability. Whether you want full control or just the essentials, RosterLab AI creates fair, equitable schedules that maximize everyone's preferences.
+                  Plan your ideal roster by specifying preferred shifts, days off, and weekend availability. Whether you want full control or just the essentials, RosterLab AI creates fair, equitable schedules that maximise everyone's preferences.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

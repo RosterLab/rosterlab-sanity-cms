@@ -10,6 +10,8 @@ export const metadata = {
   openGraph: {
     title: 'RosterLab Newsroom - Press Releases & Updates',
     description: 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.',
+    type: 'website',
+    url: 'https://rosterlab.com/newsroom',
     images: [
       {
         url: '/images/og images/Newsroom.png',

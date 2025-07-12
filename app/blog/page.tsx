@@ -10,6 +10,8 @@ export const metadata = {
   openGraph: {
     title: 'Blog - AI Staff Rostering and Scheduling Guides',
     description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
+    type: 'website',
+    url: 'https://rosterlab.com/blog',
     images: [
       {
         url: '/images/og images/Blog.png',

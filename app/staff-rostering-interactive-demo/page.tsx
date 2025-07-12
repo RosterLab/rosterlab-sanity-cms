@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Staff Rostering Interactive Demo - RosterLab',
     description: 'Try RosterLab\'s interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
+    type: 'website',
+    url: 'https://rosterlab.com/staff-rostering-interactive-demo',
     images: [
       {
         url: '/images/og images/InteractiveDemo.png',

@@ -16,6 +16,8 @@ export const metadata = {
     title: "About Us - Meet the Team Behind RosterLab",
     description:
       "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    type: "website",
+    url: "https://rosterlab.com/about",
     images: [
       {
         url: "/images/og images/About.png",
@@ -239,7 +241,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/sunny-headshot.webp"
+                    src="/images/team/headshot-sunny.webp"
                     alt="Sunny Feng"
                     fill
                     className="object-cover"

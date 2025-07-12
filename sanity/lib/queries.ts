@@ -61,7 +61,11 @@ export const postQuery = groq`
       title,
       slug
     },
-    seo
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage
+    }
   }
 `
 
@@ -76,7 +80,11 @@ export const pageQuery = groq`
     title,
     slug,
     pageBuilder,
-    seo
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage
+    }
   }
 `
 

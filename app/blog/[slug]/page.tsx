@@ -42,6 +42,8 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     openGraph: {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
+      type: "article",
+      url: `https://rosterlab.com/blog/${slug}`,
       images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 
               post.mainImage ? [urlFor(post.mainImage).url()] : undefined,
     },

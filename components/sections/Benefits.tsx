@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 import WeekendRotationModule from "@/app/feature/shift-swaps/WeekendRotationModule";
+import MobileAppPreferencesModule from "@/components/sections/animations/MobileAppPreferencesModule";
+import RosterGenerationModule from "@/components/sections/animations/RosterGenerationModule";
 
 interface BenefitTab {
   id: string;
@@ -32,21 +34,6 @@ const benefitTabs: BenefitTab[] = [
     image: "/images/illustration/optimise_workforce.svg",
   },
   {
-    id: "time",
-    label: "Save Time",
-    title: "Generated rosters in minutes",
-    description:
-      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
-    highlights: [
-      "Generate Rosters Automatically",
-      "Handle Complex Rules and Staffing Requirements",
-      "Reduce Admin for Last-minute Changes",
-      "Dynamically re-roster staff",
-    ],
-    image: "/images/illustration/save_time.svg",
-  },
-
-  {
     id: "turnover",
     label: "Reduce Turnover",
     title: "Improve staff retention",
@@ -59,6 +46,20 @@ const benefitTabs: BenefitTab[] = [
       "Reduce Staff Turnover",
     ],
     image: "/images/illustration/reduce_turnover.svg",
+  },
+  {
+    id: "time",
+    label: "Save Time",
+    title: "Generated rosters in minutes",
+    description:
+      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
+    highlights: [
+      "Generate Rosters Automatically",
+      "Handle Complex Rules and Staffing Requirements",
+      "Reduce Admin for Last-minute Changes",
+      "Dynamically re-roster staff",
+    ],
+    image: "/images/illustration/save_time.svg",
   },
   {
     id: "safety",
@@ -78,8 +79,37 @@ const benefitTabs: BenefitTab[] = [
 
 export default function Benefits() {
   const [activeTab, setActiveTab] = useState("optimisation");
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  
   const currentTab =
     benefitTabs.find((tab) => tab.id === activeTab) || benefitTabs[0];
+  const currentTabIndex = benefitTabs.findIndex((tab) => tab.id === activeTab);
+
+  // Handle swipe gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && currentTabIndex < benefitTabs.length - 1) {
+      setActiveTab(benefitTabs[currentTabIndex + 1].id);
+    }
+    if (isRightSwipe && currentTabIndex > 0) {
+      setActiveTab(benefitTabs[currentTabIndex - 1].id);
+    }
+  };
 
   return (
     <section className="py-8 md:py-10 lg:py-12 bg-neutral-50">
@@ -98,13 +128,13 @@ export default function Benefits() {
         </div>
 
         <div className="max-w-10xl mx-auto">
-          {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8 px-4">
+          {/* Tab Navigation - 2x2 grid on mobile, horizontal on desktop */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8 px-4">
             {benefitTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-3.5 text-sm sm:text-base md:text-lg rounded-lg font-semibold transition-colors ${
+                className={`px-3 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-3.5 text-sm sm:text-base md:text-lg rounded-lg font-semibold transition-colors ${
                   activeTab === tab.id
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-700 hover:bg-gray-100"
@@ -115,10 +145,28 @@ export default function Benefits() {
             ))}
           </div>
 
-          {/* Active Tab Content */}
-          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-16 mx-4 md:mx-0 min-h-[450px] lg:min-h-[380px] transition-all duration-150">
+          {/* Active Tab Content with swipe support */}
+          <div 
+            ref={contentRef}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-16 mx-4 md:mx-0 min-h-[450px] lg:min-h-[380px] transition-all duration-150 relative overflow-hidden"
+          >
+            {/* Mobile swipe indicators */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:hidden">
+              {benefitTabs.map((tab, index) => (
+                <div
+                  key={tab.id}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    currentTabIndex === index ? "bg-blue-600" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+            
             <div className="grid lg:grid-cols-[5.6fr,7fr] gap-6 md:gap-8 lg:gap-12 items-start h-full">
-              <div className="order-2 lg:order-1 lg:pt-0">
+              <div className="order-2 lg:order-1 lg:pt-0 pb-12 sm:pb-0">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
                   {currentTab.title}
                 </h3>
@@ -141,6 +189,14 @@ export default function Benefits() {
                   <div className="w-full">
                     <WeekendRotationModule />
                   </div>
+                ) : activeTab === "turnover" ? (
+                  <div className="w-full">
+                    <MobileAppPreferencesModule />
+                  </div>
+                ) : activeTab === "time" ? (
+                  <div className="w-full">
+                    <RosterGenerationModule />
+                  </div>
                 ) : (
                   <div className="relative w-full max-w-md mx-auto lg:max-w-none min-h-[280px] lg:min-h-[320px] flex items-center justify-center">
                     {/* Render all images but only show the active one */}
@@ -151,7 +207,7 @@ export default function Benefits() {
                     </div>
                     {benefitTabs.map(
                       (tab) =>
-                        tab.id !== "optimisation" && tab.id !== "safety" && (
+                        tab.id !== "optimisation" && tab.id !== "safety" && tab.id !== "turnover" && tab.id !== "time" && (
                           <div
                             key={tab.id}
                             className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === tab.id ? "opacity-100 z-10" : "opacity-0 pointer-events-none"}`}

@@ -10,6 +10,8 @@ export const metadata = {
   openGraph: {
     title: 'Smart AI Rostering Software for All Industries - RosterLab',
     description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+    type: 'website',
+    url: 'https://rosterlab.com/industries',
     images: [
       {
         url: '/images/og images/Industry.png',
@@ -221,9 +223,9 @@ export default function IndustriesPage() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Call Centers</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Call Centres</h3>
                 <p className="text-gray-600 mb-4">
-                  Optimize agent scheduling to meet service levels while managing breaks, training, and multi-skill routing requirements.
+                  Optimise agent scheduling to meet service levels while managing breaks, training, and multi-skill routing requirements.
                 </p>
                 <ul className="text-sm text-gray-600 space-y-2">
                   <li className="flex items-start">

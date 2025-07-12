@@ -14,6 +14,8 @@ export const metadata = {
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software simplifies complex staff rostering in Radiology. Build fair, compliant rosters that are flexible & helps save time.",
+    type: "website",
+    url: "https://rosterlab.com/industries/healthcare/radiology",
     images: [
       {
         url: "/images/og images/IndustryRadiology.png",
