@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function RosterGenerationModule() {
@@ -228,10 +228,17 @@ export default function RosterGenerationModule() {
                               transition={{ duration: 0.3 }}
                               className="fixed z-50 bg-white rounded-lg shadow-xl border-2 border-gray-200 p-2"
                               style={{
-                                left: window.innerWidth - cellElement?.getBoundingClientRect().right < 150 
-                                  ? `${cellElement?.getBoundingClientRect().left - 120}px`
-                                  : `${cellElement?.getBoundingClientRect().right + 10}px`,
-                                top: `${Math.min(cellElement?.getBoundingClientRect().bottom - 5, window.innerHeight - 200)}px`,
+                                left: (() => {
+                                  if (!cellElement) return '0px';
+                                  const rect = cellElement.getBoundingClientRect();
+                                  if (window.innerWidth - rect.right < 150) {
+                                    return `${rect.left - 120}px`;
+                                  }
+                                  return `${rect.right + 10}px`;
+                                })(),
+                                top: cellElement 
+                                  ? `${Math.min(cellElement.getBoundingClientRect().bottom - 5, window.innerHeight - 200)}px`
+                                  : '0px',
                               }}
                             >
                               {shifts.map((s, idx) => {
