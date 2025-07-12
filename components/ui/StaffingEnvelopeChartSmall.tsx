@@ -19,7 +19,7 @@ export default function StaffingEnvelopeChartSmall() {
 
   // Chart dimensions - responsive for all devices
   const getResponsiveDimensions = () => {
-    if (typeof window === 'undefined') return { width: 588, height: 294 }
+    if (typeof window === 'undefined') return { width: 336, height: 252 } // Default to mobile size for SSR
     const screenWidth = window.innerWidth
     
     if (screenWidth < 640) { // Mobile
@@ -31,12 +31,16 @@ export default function StaffingEnvelopeChartSmall() {
     }
   }
   
-  const [dimensions, setDimensions] = useState(getResponsiveDimensions())
+  const [dimensions, setDimensions] = useState(() => {
+    // Start with mobile dimensions for SSR, will update on client
+    return { width: 336, height: 252 }
+  })
   
   useEffect(() => {
     const handleResize = () => {
       setDimensions(getResponsiveDimensions())
     }
+    // Immediately set correct dimensions on mount
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -126,8 +130,8 @@ export default function StaffingEnvelopeChartSmall() {
   return (
     <div className="w-full flex justify-center">
       <div className="flex flex-col items-center w-full px-4 sm:px-0">
-        <div className="w-full max-w-[588px] mx-auto">
-          <svg width={width} height={height} className="block w-full h-auto" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+        <div className="w-full max-w-[336px] sm:max-w-[480px] md:max-w-[588px] mx-auto" style={{ minHeight: `${height}px` }}>
+          <svg width={width} height={height} className="block w-full h-auto max-w-full" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
           <style>
             {`
               .animated-line {
