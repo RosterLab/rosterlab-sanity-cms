@@ -133,9 +133,9 @@ export default function RosterGenerationModule() {
           {/* Roster Interface */}
           <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative">
         {/* Header */}
-        <div className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 border-b flex items-center" style={{ backgroundColor: "#219BC6" }}>
-          <div className="w-20 sm:w-24 flex items-center justify-start pl-2">
-            <div className="w-5 h-5 sm:w-6 sm:h-6 relative">
+        <div className="px-2 sm:px-4 md:px-5 py-1 sm:py-2 md:py-2.5 border-b flex items-center" style={{ backgroundColor: "#219BC6" }}>
+          <div className="w-16 sm:w-24 flex items-center justify-start pl-1 sm:pl-2">
+            <div className="w-4 h-4 sm:w-6 sm:h-6 relative">
               <Image
                 src="/images/icon/RosterLab_Icon_White.svg"
                 alt="RosterLab"
@@ -144,14 +144,17 @@ export default function RosterGenerationModule() {
               />
             </div>
           </div>
-          <h3 className="flex-1 text-center text-sm sm:text-base md:text-lg font-semibold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <h3 className="flex-1 text-center text-xs sm:text-base md:text-lg font-semibold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Hospital Roster
           </h3>
-          <div className="w-20 sm:w-24 flex items-center justify-end pr-2">
+          <div className="w-16 sm:w-24 flex items-center justify-end pr-1 sm:pr-2">
             {isGenerated ? (
-              <span className="text-[10px] sm:text-xs text-green-100 font-medium whitespace-nowrap">✓ Generated</span>
+              <span className="text-[9px] sm:text-xs text-green-100 font-medium whitespace-nowrap">✓ Generated</span>
             ) : (
-              <span className="text-[10px] sm:text-xs text-yellow-200 font-medium whitespace-nowrap">Manual Allocate</span>
+              <span className="text-[9px] sm:text-xs text-yellow-200 font-medium whitespace-nowrap">
+                <span className="sm:hidden">Manual</span>
+                <span className="hidden sm:inline">Manual Allocate</span>
+              </span>
             )}
           </div>
         </div>
@@ -226,13 +229,13 @@ export default function RosterGenerationModule() {
                               animate={{ opacity: 1, scale: 1, y: 0 }}
                               exit={{ opacity: 0, scale: 0.8 }}
                               transition={{ duration: 0.3 }}
-                              className="absolute z-50 bg-white rounded-lg shadow-xl border-2 border-gray-200 p-2"
+                              className="absolute z-50 bg-white rounded-md sm:rounded-lg shadow-xl border sm:border-2 border-gray-200 p-1 sm:p-2"
                               style={{
                                 left: '50%',
                                 transform: 'translateX(-50%)',
                                 top: '100%',
-                                marginTop: '4px',
-                                minWidth: '120px'
+                                marginTop: '2px',
+                                minWidth: '80px'
                               }}
                             >
                               {shifts.map((s, idx) => {
@@ -247,8 +250,8 @@ export default function RosterGenerationModule() {
                                       backgroundColor: isSelected ? getShiftColor(s).split(' ')[0] : undefined
                                     }}
                                     transition={{ delay: idx * 0.15 }}
-                                    className={`px-3 py-2 mb-1 text-[10px] sm:text-xs rounded cursor-pointer ${getShiftColor(s)} ${
-                                      isSelected ? 'ring-2 ring-[#24D9DC]' : ''
+                                    className={`px-2 sm:px-3 py-1 sm:py-2 mb-0.5 sm:mb-1 text-[9px] sm:text-xs rounded cursor-pointer ${getShiftColor(s)} ${
+                                      isSelected ? 'ring-1 sm:ring-2 ring-[#24D9DC]' : ''
                                     } transition-all duration-300`}
                                   >
                                     {s}
