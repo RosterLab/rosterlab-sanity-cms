@@ -148,7 +148,7 @@ export default function ICUEDPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="https://app.rosterlab.com/sign-up"
+                  href="https://app.rosterlab.com/signup"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
                   Get Started
