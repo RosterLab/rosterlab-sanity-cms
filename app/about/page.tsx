@@ -241,7 +241,7 @@ export default function AboutPage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="aspect-square relative">
                   <Image
-                    src="/images/team/sunny-headshot.webp"
+                    src="/images/team/headshot-sunny.webp"
                     alt="Sunny Feng"
                     fill
                     className="object-cover"

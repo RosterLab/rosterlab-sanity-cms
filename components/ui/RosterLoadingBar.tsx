@@ -57,7 +57,7 @@ export default function RosterLoadingBar() {
                 Auto-Generating Optimal Roster
               </h3>
               <p className="text-gray-600 text-sm">
-                AI analyzing thousands of variables...
+                AI analysing thousands of variables...
               </p>
             </div>
             
@@ -91,7 +91,7 @@ export default function RosterLoadingBar() {
               Roster Generated!
             </h3>
             <p className="text-gray-600 mb-6">
-              Your optimized roster is ready with 100% compliance
+              Your optimised roster is ready with 100% compliance
             </p>
             <div className="space-y-3 text-sm text-gray-600">
               <div className="flex items-center justify-center space-x-2">

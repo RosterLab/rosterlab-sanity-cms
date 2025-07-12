@@ -112,7 +112,7 @@ export default function BookADemoClient() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Book Your Personalized Demo
+              Book Your Personalised Demo
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               See how RosterLab's AI-powered scheduling can transform your workforce management in just 30 minutes.
