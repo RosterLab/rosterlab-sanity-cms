@@ -160,8 +160,8 @@ export default function RosterGenerationModule() {
         </div>
 
         {/* Roster Grid */}
-        <div className="flex-1 p-1.5 sm:p-2.5 md:p-3.5 pb-0">
-          <div className="w-full h-full pb-0">
+        <div className="flex-1 p-1.5 sm:p-2.5 md:p-3.5">
+          <div className="w-full h-full">
             <table className="w-full table-fixed text-[10px] sm:text-xs">
               <thead>
                 <tr>
@@ -181,7 +181,7 @@ export default function RosterGenerationModule() {
               <tbody>
                 {staff.map((name, staffIndex) => (
                   <tr key={staffIndex}>
-                    <td className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 px-1 sm:px-2 py-0.5 sm:py-1 truncate">
+                    <td className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 px-1 sm:px-2 py-0 sm:py-1 truncate">
                       {name}
                     </td>
                     {dates.map((_, dateIndex) => {
@@ -190,14 +190,14 @@ export default function RosterGenerationModule() {
                       const isSelected = selectedCell === key;
 
                       return (
-                        <td key={dateIndex} className="p-0.5 sm:p-1">
+                        <td key={dateIndex} className="p-0.5">
                           <div className="relative">
                           <motion.div
                             id={`cell-${key}`}
                             className={`
                               rounded text-center flex items-center justify-center
                               text-[9px] sm:text-[10px] md:text-xs font-medium
-                              min-h-[32px] h-8 sm:h-8 md:h-9 w-full mx-auto
+                              min-h-[28px] h-7 sm:h-8 md:h-9 w-full mx-auto
                               ${shift ? getShiftColor(shift) : "bg-gray-50"}
                               ${!isGenerated && !shift ? "border-2 border-dashed border-gray-300" : ""}
                               ${selectedCell === key ? "ring-2 ring-[#24D9DC] ring-offset-2" : ""}
