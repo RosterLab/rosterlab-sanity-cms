@@ -127,11 +127,11 @@ export default function RosterGenerationModule() {
   }, [isGenerated, isAnimating, animationCount]);
 
   return (
-    <div className="relative w-full px-4 sm:px-0" style={{ overflow: 'visible' }}>
+    <div className="relative w-full px-4 sm:px-0">
       <div className="max-w-lg sm:max-w-xl md:max-w-2xl mx-auto">
         <div className="relative min-h-[240px] h-[240px] sm:h-[270px] md:h-[320px] lg:h-[340px] flex flex-col">
           {/* Roster Interface */}
-          <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative" style={{ overflow: 'visible' }}>
+          <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative">
         {/* Header */}
         <div className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 border-b flex items-center" style={{ backgroundColor: "#219BC6" }}>
           <div className="w-20 sm:w-24 flex items-center justify-start pl-2">
@@ -226,19 +226,13 @@ export default function RosterGenerationModule() {
                               animate={{ opacity: 1, scale: 1, y: 0 }}
                               exit={{ opacity: 0, scale: 0.8 }}
                               transition={{ duration: 0.3 }}
-                              className="fixed z-50 bg-white rounded-lg shadow-xl border-2 border-gray-200 p-2"
+                              className="absolute z-50 bg-white rounded-lg shadow-xl border-2 border-gray-200 p-2"
                               style={{
-                                left: (() => {
-                                  if (!cellElement) return '0px';
-                                  const rect = cellElement.getBoundingClientRect();
-                                  if (window.innerWidth - rect.right < 150) {
-                                    return `${rect.left - 120}px`;
-                                  }
-                                  return `${rect.right + 10}px`;
-                                })(),
-                                top: cellElement 
-                                  ? `${Math.min(cellElement.getBoundingClientRect().bottom - 5, window.innerHeight - 200)}px`
-                                  : '0px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                top: '100%',
+                                marginTop: '4px',
+                                minWidth: '120px'
                               }}
                             >
                               {shifts.map((s, idx) => {

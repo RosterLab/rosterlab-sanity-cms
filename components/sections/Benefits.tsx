@@ -90,6 +90,7 @@ export default function Benefits() {
   // Handle swipe gestures
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(0); // Reset touchEnd
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -109,6 +110,10 @@ export default function Benefits() {
     if (isRightSwipe && currentTabIndex > 0) {
       setActiveTab(benefitTabs[currentTabIndex - 1].id);
     }
+    
+    // Reset touch values
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   return (
@@ -129,12 +134,16 @@ export default function Benefits() {
 
         <div className="max-w-10xl mx-auto">
           {/* Tab Navigation - 2x2 grid on mobile, horizontal on desktop */}
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8 px-4">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8 px-4 relative z-20">
             {benefitTabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-3 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-3.5 text-sm sm:text-base md:text-lg rounded-lg font-semibold transition-colors ${
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setActiveTab(tab.id);
+                }}
+                className={`px-3 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-3.5 text-sm sm:text-base md:text-lg rounded-lg font-semibold transition-colors touch-manipulation ${
                   activeTab === tab.id
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-700 hover:bg-gray-100"
@@ -151,7 +160,8 @@ export default function Benefits() {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-16 mx-4 md:mx-0 min-h-[450px] lg:min-h-[380px] transition-all duration-150 relative overflow-hidden"
+            className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-16 mx-4 md:mx-0 min-h-[450px] lg:min-h-[380px] transition-all duration-150 relative z-10"
+            style={{ isolation: 'isolate' }}
           >
             {/* Mobile swipe indicators */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:hidden">
@@ -184,17 +194,17 @@ export default function Benefits() {
                   ))}
                 </ul>
               </div>
-              <div className="order-1 lg:order-2 lg:pl-0 mb-6 md:mb-0 flex flex-col items-center justify-center">
+              <div className="order-1 lg:order-2 lg:pl-0 mb-6 md:mb-0 flex flex-col items-center justify-center relative z-0">
                 {activeTab === "safety" ? (
-                  <div className="w-full">
+                  <div className="w-full relative z-0">
                     <WeekendRotationModule />
                   </div>
                 ) : activeTab === "turnover" ? (
-                  <div className="w-full">
+                  <div className="w-full relative z-0">
                     <MobileAppPreferencesModule />
                   </div>
                 ) : activeTab === "time" ? (
-                  <div className="w-full">
+                  <div className="w-full relative z-0">
                     <RosterGenerationModule />
                   </div>
                 ) : (
