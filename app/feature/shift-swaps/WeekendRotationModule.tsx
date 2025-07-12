@@ -25,10 +25,10 @@ export default function WeekendRotationModule() {
   const profiles = isOptimized ? profilesAfter : profilesBefore
 
   const benefits = [
-    { label: 'Fatigue', direction: 'down', icon: HiArrowDown, color: 'text-purple-600' },
-    { label: 'Staff Engagement', direction: 'up', icon: HiArrowUp, color: 'text-green-600' },
-    { label: 'Clinical Safety', direction: 'up', icon: HiArrowUp, color: 'text-green-600' },
-    { label: 'Patient Outcomes', direction: 'up', icon: HiArrowUp, color: 'text-green-600' },
+    { label: 'Fatigue', direction: 'down', icon: HiArrowDown, color: 'text-purple-600', oppositeIcon: HiArrowUp },
+    { label: 'Staff Engagement', direction: 'up', icon: HiArrowUp, color: 'text-green-600', oppositeIcon: HiArrowDown },
+    { label: 'Clinical Safety', direction: 'up', icon: HiArrowUp, color: 'text-green-600', oppositeIcon: HiArrowDown },
+    { label: 'Patient Outcomes', direction: 'up', icon: HiArrowUp, color: 'text-green-600', oppositeIcon: HiArrowDown },
   ]
 
   return (
@@ -95,14 +95,14 @@ export default function WeekendRotationModule() {
         }`}>
           <div className="space-y-2 sm:space-y-3">
             {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
+              const Icon = isOptimized ? benefit.icon : benefit.oppositeIcon
               return (
                 <div key={index} className="flex items-center justify-between">
-                  <span className={`text-sm sm:text-base transition-colors duration-500 ${
-                    isOptimized ? 'text-gray-700' : 'text-gray-400'
-                  }`}>{benefit.label}</span>
+                  <span className="text-sm sm:text-base text-gray-700 transition-colors duration-500">
+                    {benefit.label}
+                  </span>
                   <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-500 ${
-                    isOptimized ? benefit.color : 'text-gray-400'
+                    isOptimized ? benefit.color : 'text-red-600'
                   }`} />
                 </div>
               )
