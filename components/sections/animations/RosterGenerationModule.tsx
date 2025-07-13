@@ -329,7 +329,7 @@ export default function RosterGenerationModule() {
             e.currentTarget.style.backgroundColor = "#24D9DC";
           }}
         >
-          {isGenerated ? "← View Manual Process" : "Generate Roster →"}
+          {isGenerated ? "← Before RosterLab" : "After RosterLab →"}
         </motion.button>
         </div>
       </div>

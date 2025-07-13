@@ -318,8 +318,8 @@ export default function StaffingEnvelopeChartSmall() {
             }}
           >
             {isOptimized 
-              ? isMobile ? '← View Before' : '← View Before Optimisation' 
-              : isMobile ? 'View After →' : 'View After Optimisation →'}
+              ? '← Before RosterLab' 
+              : 'After RosterLab →'}
           </motion.button>
         </div>
       </div>

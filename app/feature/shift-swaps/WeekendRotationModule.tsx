@@ -149,7 +149,7 @@ export default function WeekendRotationModule() {
             e.currentTarget.style.backgroundColor = '#24D9DC';
           }}
         >
-          {isOptimized ? '← View Before Optimisation' : 'View After Optimisation →'}
+          {isOptimized ? '← Before RosterLab' : 'After RosterLab →'}
         </motion.button>
         </div>
       </div>
