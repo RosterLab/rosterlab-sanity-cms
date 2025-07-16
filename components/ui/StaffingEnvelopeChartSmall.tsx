@@ -19,7 +19,7 @@ export default function StaffingEnvelopeChartSmall() {
 
   // Chart dimensions - responsive for all devices
   const getResponsiveDimensions = () => {
-    if (typeof window === 'undefined') return { width: 588, height: 294 }
+    if (typeof window === 'undefined') return { width: 336, height: 252 } // Default to mobile size for SSR
     const screenWidth = window.innerWidth
     
     if (screenWidth < 640) { // Mobile
@@ -31,12 +31,16 @@ export default function StaffingEnvelopeChartSmall() {
     }
   }
   
-  const [dimensions, setDimensions] = useState(getResponsiveDimensions())
+  const [dimensions, setDimensions] = useState(() => {
+    // Start with mobile dimensions for SSR, will update on client
+    return { width: 336, height: 252 }
+  })
   
   useEffect(() => {
     const handleResize = () => {
       setDimensions(getResponsiveDimensions())
     }
+    // Immediately set correct dimensions on mount
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
@@ -126,8 +130,8 @@ export default function StaffingEnvelopeChartSmall() {
   return (
     <div className="w-full flex justify-center">
       <div className="flex flex-col items-center w-full px-4 sm:px-0">
-        <div className="w-full max-w-[588px] mx-auto">
-          <svg width={width} height={height} className="block w-full h-auto" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
+        <div className="w-full max-w-[336px] sm:max-w-[480px] md:max-w-[588px] mx-auto" style={{ minHeight: `${height}px` }}>
+          <svg width={width} height={height} className="block w-full h-auto max-w-full" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet">
           <style>
             {`
               .animated-line {
@@ -288,7 +292,7 @@ export default function StaffingEnvelopeChartSmall() {
         </div>
 
         {/* Optimization Button */}
-        <div className="mt-3 sm:mt-4 md:mt-6 text-center">
+        <div className="mt-0 sm:mt-4 md:mt-6 text-center">
           <motion.button
             onClick={() => setIsOptimized(!isOptimized)}
             className={`${isMobile ? 'px-4 py-3 text-xs min-h-[44px]' : 'px-6 py-2.5 text-sm'} rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md`}
@@ -314,8 +318,8 @@ export default function StaffingEnvelopeChartSmall() {
             }}
           >
             {isOptimized 
-              ? isMobile ? '← View Before' : '← View Before Optimisation' 
-              : isMobile ? 'View After →' : 'View After Optimisation →'}
+              ? '← Before RosterLab' 
+              : 'After RosterLab →'}
           </motion.button>
         </div>
       </div>

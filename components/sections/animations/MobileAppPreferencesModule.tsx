@@ -221,7 +221,7 @@ export default function MobileAppPreferencesModule() {
             e.currentTarget.style.backgroundColor = '#24D9DC';
           }}
         >
-          {showAfter ? "← Manual Roster" : "AI Handles Preferences →"}
+          {showAfter ? "← Before RosterLab" : "After RosterLab →"}
         </motion.button>
         </div>
       </div>

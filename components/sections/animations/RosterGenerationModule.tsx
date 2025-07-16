@@ -127,15 +127,15 @@ export default function RosterGenerationModule() {
   }, [isGenerated, isAnimating, animationCount]);
 
   return (
-    <div className="relative w-full px-4 sm:px-0" style={{ overflow: 'visible' }}>
+    <div className="relative w-full px-4 sm:px-0">
       <div className="max-w-lg sm:max-w-xl md:max-w-2xl mx-auto">
         <div className="relative min-h-[240px] h-[240px] sm:h-[270px] md:h-[320px] lg:h-[340px] flex flex-col">
           {/* Roster Interface */}
-          <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative" style={{ overflow: 'visible' }}>
+          <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative">
         {/* Header */}
-        <div className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 border-b flex items-center" style={{ backgroundColor: "#219BC6" }}>
-          <div className="w-20 sm:w-24 flex items-center justify-start pl-2">
-            <div className="w-5 h-5 sm:w-6 sm:h-6 relative">
+        <div className="px-2 sm:px-4 md:px-5 py-1 sm:py-2 md:py-2.5 border-b flex items-center" style={{ backgroundColor: "#219BC6" }}>
+          <div className="w-16 sm:w-24 flex items-center justify-start pl-1 sm:pl-2">
+            <div className="w-4 h-4 sm:w-6 sm:h-6 relative">
               <Image
                 src="/images/icon/RosterLab_Icon_White.svg"
                 alt="RosterLab"
@@ -144,21 +144,24 @@ export default function RosterGenerationModule() {
               />
             </div>
           </div>
-          <h3 className="flex-1 text-center text-sm sm:text-base md:text-lg font-semibold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <h3 className="flex-1 text-center text-xs sm:text-base md:text-lg font-semibold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Hospital Roster
           </h3>
-          <div className="w-20 sm:w-24 flex items-center justify-end pr-2">
+          <div className="w-16 sm:w-24 flex items-center justify-end pr-1 sm:pr-2">
             {isGenerated ? (
-              <span className="text-[10px] sm:text-xs text-green-100 font-medium whitespace-nowrap">✓ Generated</span>
+              <span className="text-[9px] sm:text-xs text-green-100 font-medium whitespace-nowrap">✓ Generated</span>
             ) : (
-              <span className="text-[10px] sm:text-xs text-yellow-200 font-medium whitespace-nowrap">Manual Allocate</span>
+              <span className="text-[9px] sm:text-xs text-yellow-200 font-medium whitespace-nowrap">
+                <span className="sm:hidden">Manual</span>
+                <span className="hidden sm:inline">Manual Allocate</span>
+              </span>
             )}
           </div>
         </div>
 
         {/* Roster Grid */}
-        <div className="flex-1 p-1.5 sm:p-2.5 md:p-3.5 pb-0">
-          <div className="w-full h-full pb-0">
+        <div className="flex-1 p-1.5 sm:p-2.5 md:p-3.5">
+          <div className="w-full h-full">
             <table className="w-full table-fixed text-[10px] sm:text-xs">
               <thead>
                 <tr>
@@ -178,7 +181,7 @@ export default function RosterGenerationModule() {
               <tbody>
                 {staff.map((name, staffIndex) => (
                   <tr key={staffIndex}>
-                    <td className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 px-1 sm:px-2 py-0.5 sm:py-1 truncate">
+                    <td className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-700 px-1 sm:px-2 py-0 sm:py-1 truncate">
                       {name}
                     </td>
                     {dates.map((_, dateIndex) => {
@@ -187,14 +190,14 @@ export default function RosterGenerationModule() {
                       const isSelected = selectedCell === key;
 
                       return (
-                        <td key={dateIndex} className="p-0.5 sm:p-1">
+                        <td key={dateIndex} className="p-0.5">
                           <div className="relative">
                           <motion.div
                             id={`cell-${key}`}
                             className={`
                               rounded text-center flex items-center justify-center
                               text-[9px] sm:text-[10px] md:text-xs font-medium
-                              min-h-[32px] h-8 sm:h-8 md:h-9 w-full mx-auto
+                              min-h-[28px] h-7 sm:h-8 md:h-9 w-full mx-auto
                               ${shift ? getShiftColor(shift) : "bg-gray-50"}
                               ${!isGenerated && !shift ? "border-2 border-dashed border-gray-300" : ""}
                               ${selectedCell === key ? "ring-2 ring-[#24D9DC] ring-offset-2" : ""}
@@ -226,19 +229,13 @@ export default function RosterGenerationModule() {
                               animate={{ opacity: 1, scale: 1, y: 0 }}
                               exit={{ opacity: 0, scale: 0.8 }}
                               transition={{ duration: 0.3 }}
-                              className="fixed z-50 bg-white rounded-lg shadow-xl border-2 border-gray-200 p-2"
+                              className="absolute z-50 bg-white rounded-md sm:rounded-lg shadow-xl border sm:border-2 border-gray-200 p-1 sm:p-2"
                               style={{
-                                left: (() => {
-                                  if (!cellElement) return '0px';
-                                  const rect = cellElement.getBoundingClientRect();
-                                  if (window.innerWidth - rect.right < 150) {
-                                    return `${rect.left - 120}px`;
-                                  }
-                                  return `${rect.right + 10}px`;
-                                })(),
-                                top: cellElement 
-                                  ? `${Math.min(cellElement.getBoundingClientRect().bottom - 5, window.innerHeight - 200)}px`
-                                  : '0px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                top: '100%',
+                                marginTop: '2px',
+                                minWidth: '80px'
                               }}
                             >
                               {shifts.map((s, idx) => {
@@ -253,8 +250,8 @@ export default function RosterGenerationModule() {
                                       backgroundColor: isSelected ? getShiftColor(s).split(' ')[0] : undefined
                                     }}
                                     transition={{ delay: idx * 0.15 }}
-                                    className={`px-3 py-2 mb-1 text-[10px] sm:text-xs rounded cursor-pointer ${getShiftColor(s)} ${
-                                      isSelected ? 'ring-2 ring-[#24D9DC]' : ''
+                                    className={`px-2 sm:px-3 py-1 sm:py-2 mb-0.5 sm:mb-1 text-[9px] sm:text-xs rounded cursor-pointer ${getShiftColor(s)} ${
+                                      isSelected ? 'ring-1 sm:ring-2 ring-[#24D9DC]' : ''
                                     } transition-all duration-300`}
                                   >
                                     {s}
@@ -293,7 +290,7 @@ export default function RosterGenerationModule() {
         </div>
 
         {/* Toggle Button */}
-        <div className="flex justify-center mt-8 sm:mt-10 md:mt-12">
+        <div className="flex justify-center mt-12 sm:mt-10 md:mt-12">
         <motion.button
           onClick={() => {
             setIsGenerated(!isGenerated);
@@ -332,7 +329,7 @@ export default function RosterGenerationModule() {
             e.currentTarget.style.backgroundColor = "#24D9DC";
           }}
         >
-          {isGenerated ? "← View Manual Process" : "Generate Roster →"}
+          {isGenerated ? "← Before RosterLab" : "After RosterLab →"}
         </motion.button>
         </div>
       </div>

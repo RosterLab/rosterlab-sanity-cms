@@ -25,10 +25,10 @@ export default function WeekendRotationModule() {
   const profiles = isOptimized ? profilesAfter : profilesBefore
 
   const benefits = [
-    { label: 'Fatigue', direction: 'down', icon: HiArrowDown, color: 'text-purple-600' },
-    { label: 'Staff Engagement', direction: 'up', icon: HiArrowUp, color: 'text-green-600' },
-    { label: 'Clinical Safety', direction: 'up', icon: HiArrowUp, color: 'text-green-600' },
-    { label: 'Patient Outcomes', direction: 'up', icon: HiArrowUp, color: 'text-green-600' },
+    { label: 'Fatigue', direction: 'down', icon: HiArrowDown, color: 'text-purple-600', oppositeIcon: HiArrowUp },
+    { label: 'Staff Engagement', direction: 'up', icon: HiArrowUp, color: 'text-green-600', oppositeIcon: HiArrowDown },
+    { label: 'Clinical Safety', direction: 'up', icon: HiArrowUp, color: 'text-green-600', oppositeIcon: HiArrowDown },
+    { label: 'Patient Outcomes', direction: 'up', icon: HiArrowUp, color: 'text-green-600', oppositeIcon: HiArrowDown },
   ]
 
   return (
@@ -93,19 +93,16 @@ export default function WeekendRotationModule() {
         <div className={`rounded-lg p-3 sm:p-4 md:p-5 flex-1 lg:flex-[1.2] w-full lg:w-auto transition-all duration-500 ${
           isOptimized ? 'bg-gray-50' : 'bg-gray-100'
         }`}>
-          <h4 className={`font-semibold mb-3 sm:mb-4 text-sm sm:text-base transition-colors duration-500 ${
-            isOptimized ? 'text-gray-900' : 'text-gray-500'
-          }`}>Benefits</h4>
           <div className="space-y-2 sm:space-y-3">
             {benefits.map((benefit, index) => {
-              const Icon = benefit.icon
+              const Icon = isOptimized ? benefit.icon : benefit.oppositeIcon
               return (
                 <div key={index} className="flex items-center justify-between">
-                  <span className={`text-sm sm:text-base transition-colors duration-500 ${
-                    isOptimized ? 'text-gray-700' : 'text-gray-400'
-                  }`}>{benefit.label}</span>
+                  <span className="text-sm sm:text-base text-gray-700 transition-colors duration-500">
+                    {benefit.label}
+                  </span>
                   <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-500 ${
-                    isOptimized ? benefit.color : 'text-gray-400'
+                    isOptimized ? benefit.color : 'text-red-600'
                   }`} />
                 </div>
               )
@@ -121,7 +118,7 @@ export default function WeekendRotationModule() {
           <span className="text-gray-700">Weekend Off</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded" style={{ backgroundColor: isOptimized ? '#D1D5DB' : '#EF4444' }} />
+          <div className="w-4 h-4 bg-gray-300 rounded" />
           <span className="text-gray-700">Weekend On</span>
         </div>
         </div>
@@ -152,7 +149,7 @@ export default function WeekendRotationModule() {
             e.currentTarget.style.backgroundColor = '#24D9DC';
           }}
         >
-          {isOptimized ? '← View Before Optimisation' : 'View After Optimisation →'}
+          {isOptimized ? '← Before RosterLab' : 'After RosterLab →'}
         </motion.button>
         </div>
       </div>
