@@ -4,17 +4,22 @@ import { assetBySlugQuery } from '@/sanity/lib/queries'
 import { getAssetUrl } from '@/sanity/lib/imageUrl'
 
 export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
+  _request: Request,
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const asset = await client.fetch(assetBySlugQuery, { slug: params.slug })
+    const { slug } = await params
+    const asset = await client.fetch(assetBySlugQuery, { slug })
     
     if (!asset) {
       return NextResponse.json({ error: 'Asset not found' }, { status: 404 })
     }
     
     const imageUrl = getAssetUrl(asset)
+    
+    if (!imageUrl) {
+      return NextResponse.json({ error: 'Failed to generate image URL' }, { status: 500 })
+    }
     
     // Redirect to the Sanity CDN URL with caching
     return NextResponse.redirect(imageUrl, {
