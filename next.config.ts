@@ -122,6 +122,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/solution/ai-schedule',
+        destination: '/solutions/ai-staff-scheduling',
+        permanent: true,
+      },
+      {
         source: '/product/rosterlab-free',
         destination: '/solutions/free-staff-scheduling',
         permanent: true,
