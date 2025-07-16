@@ -13,7 +13,7 @@ async function resetData() {
     console.log('🗑️ Starting data reset...')
 
     // Get all document types to delete
-    const documentTypes = ['post', 'author', 'category', 'page', 'siteSettings']
+    const documentTypes = ['post', 'author', 'category']
 
     for (const type of documentTypes) {
       console.log(`🧹 Deleting all ${type} documents...`)

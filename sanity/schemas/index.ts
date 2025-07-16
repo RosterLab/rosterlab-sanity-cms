@@ -2,8 +2,7 @@
 import author from './documents/author'
 import category from './documents/category'
 import post from './documents/post'
-import page from './documents/page'
-import siteSettings from './documents/siteSettings'
+import asset from './documents/asset'
 
 // Object types
 import seo from './objects/seo'
@@ -18,8 +17,7 @@ export const schemaTypes = [
   author,
   category,
   post,
-  page,
-  siteSettings,
+  asset,
   // Objects
   seo,
   hero,

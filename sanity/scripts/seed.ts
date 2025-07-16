@@ -2,7 +2,6 @@ import { createClient } from '@sanity/client'
 import { authorFixtures } from '../fixtures/authors'
 import { categoryFixtures } from '../fixtures/categories'
 import { postFixtures } from '../fixtures/posts'
-import { siteSettingsFixture } from '../fixtures/siteSettings'
 import { sanityConfig } from '../lib/config'
 
 // Create a write client
@@ -58,18 +57,12 @@ async function seedData() {
     const createdPosts = await Promise.all(postPromises)
     console.log(`✅ Created ${createdPosts.length} posts`)
 
-    // Seed site settings
-    console.log('⚙️ Creating site settings...')
-    const siteSettings = await writeClient.create(siteSettingsFixture)
-    console.log(`✅ Created site settings`)
-
     console.log('🎉 Seed process completed successfully!')
     console.log(`
 📊 Summary:
 - Authors: ${createdAuthors.length}
 - Categories: ${createdCategories.length}
 - Posts: ${createdPosts.length}
-- Site Settings: 1
     `)
 
   } catch (error) {

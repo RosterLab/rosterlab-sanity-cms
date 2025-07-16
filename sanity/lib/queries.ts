@@ -73,37 +73,6 @@ export const postPathsQuery = groq`
   *[_type == "post" && defined(slug.current)][].slug.current
 `
 
-// Page queries
-export const pageQuery = groq`
-  *[_type == "page" && slug.current == $slug][0] {
-    _id,
-    title,
-    slug,
-    pageBuilder,
-    seo {
-      metaTitle,
-      metaDescription,
-      ogImage
-    }
-  }
-`
-
-export const pagePathsQuery = groq`
-  *[_type == "page" && defined(slug.current)][].slug.current
-`
-
-// Site settings
-export const settingsQuery = groq`
-  *[_type == "siteSettings"][0] {
-    title,
-    description,
-    logo,
-    mainNav,
-    footer,
-    socialLinks
-  }
-`
-
 // Categories
 export const categoriesQuery = groq`
   *[_type == "category"] | order(title asc) {
@@ -126,5 +95,42 @@ export const relatedPostsQuery = groq`
     author->{
       name
     }
+  }
+`
+
+// Asset queries
+export const assetsQuery = groq`
+  *[_type == "asset"] | order(title asc) {
+    _id,
+    title,
+    slug,
+    category,
+    image,
+    description,
+    tags
+  }
+`
+
+export const assetBySlugQuery = groq`
+  *[_type == "asset" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    category,
+    image,
+    description,
+    tags
+  }
+`
+
+export const assetsByCategoryQuery = groq`
+  *[_type == "asset" && category == $category] | order(title asc) {
+    _id,
+    title,
+    slug,
+    category,
+    image,
+    description,
+    tags
   }
 `
