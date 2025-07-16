@@ -47,6 +47,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.'
     : `Browse page ${pageNumber} of our news and press releases.`
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rosterlab.com'
+  
   return {
     title,
     description,
@@ -55,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       follow: true,
     },
     alternates: {
-      canonical: pageNumber === 1 ? '/newsroom' : `/newsroom/page/${pageNumber}`,
+      canonical: pageNumber === 1 ? `${baseUrl}/newsroom` : `${baseUrl}/newsroom/page/${pageNumber}`,
     },
   }
 }
