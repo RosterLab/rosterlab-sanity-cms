@@ -56,6 +56,25 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Case studies pages should have shorter cache
+      {
+        source: '/case-studies',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+          },
+        ],
+      },
+      {
+        source: '/case-studies/:slug*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+          },
+        ],
+      },
       {
         source: '/_next/image(.*)',
         headers: [
