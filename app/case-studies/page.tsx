@@ -3,7 +3,6 @@ import { groq } from 'next-sanity'
 import { validatedToken } from '@/sanity/lib/token'
 import CaseStudiesPageContent from '@/components/case-studies/CaseStudiesPageContent'
 import { draftMode } from 'next/headers'
-import PageWrapper from './PageWrapper'
 
 export const metadata = {
   title: 'RosterLab Case Studies - Better Rosters, Impactful Results',
@@ -54,9 +53,5 @@ export default async function CaseStudiesPage() {
   const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   const posts = await client.fetch(caseStudiesQuery)
 
-  return (
-    <PageWrapper>
-      <CaseStudiesPageContent posts={posts} />
-    </PageWrapper>
-  )
+  return <CaseStudiesPageContent posts={posts} />
 }
