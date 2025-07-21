@@ -26,6 +26,14 @@ frontend:
           value: '1; mode=block'
         - key: 'Referrer-Policy'
           value: 'same-origin'
+    - pattern: 'case-studies'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, s-maxage=60, stale-while-revalidate=30'
+    - pattern: 'case-studies/**'
+      headers:
+        - key: 'Cache-Control'
+          value: 'public, s-maxage=60, stale-while-revalidate=30'
     - pattern: '**/*.@(jpg|jpeg|gif|png|svg|webp|ico)'
       headers:
         - key: 'Cache-Control'
