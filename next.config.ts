@@ -37,6 +37,25 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // Blog pages should have shorter cache
+      {
+        source: '/blog',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+          },
+        ],
+      },
+      {
+        source: '/blog/page/:page',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+          },
+        ],
+      },
       {
         source: '/_next/image(.*)',
         headers: [

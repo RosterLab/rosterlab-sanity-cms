@@ -4,6 +4,8 @@ import { validatedToken } from '@/sanity/lib/token'
 import BlogPageContent from '@/components/blog/BlogPageContent'
 import { draftMode } from 'next/headers'
 
+export const revalidate = 300 // Revalidate every 5 minutes
+
 export const metadata = {
   title: 'Blog - AI Staff Rostering and Scheduling Guides',
   description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',

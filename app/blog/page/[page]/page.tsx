@@ -6,6 +6,8 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 
+export const revalidate = 300 // Revalidate every 5 minutes
+
 interface Props {
   params: Promise<{ page: string }>
 }
