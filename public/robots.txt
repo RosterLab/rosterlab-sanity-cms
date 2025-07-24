@@ -9,5 +9,32 @@ Disallow: /studio/
 Disallow: /test-2/
 Disallow: /schedge/
 
+# Disallow favicon indexing
+Disallow: /favicon.ico
+
+# Disallow image and media indexing
+Disallow: /images/
+Disallow: /assets/
+Disallow: /_next/image/
+Disallow: /*.jpg
+Disallow: /*.jpeg
+Disallow: /*.png
+Disallow: /*.gif
+Disallow: /*.webp
+Disallow: /*.svg
+Disallow: /*.mp4
+Disallow: /*.webm
+Disallow: /*.pdf
+
+# Block image crawlers specifically
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Googlebot-Image/1.0
+Disallow: /
+
+User-agent: MSNBot-Media/1.1
+Disallow: /
+
 # Sitemap
 Sitemap: https://rosterlab.com/sitemap.xml
