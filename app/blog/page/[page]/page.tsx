@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.'
     : `Browse page ${pageNumber} of our blog posts about staff rostering and scheduling.`
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rosterlab.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
   return {
     title,

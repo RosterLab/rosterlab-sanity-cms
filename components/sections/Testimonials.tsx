@@ -116,16 +116,22 @@ export default function Testimonials() {
               </div>
               
               {/* Navigation Dots */}
-              <div className="flex justify-center gap-2 mt-8">
+              <div className="flex justify-center gap-3 mt-8">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === currentIndex ? 'bg-blue-600' : 'bg-neutral-300'
+                    className={`relative p-3 transition-colors ${
+                      index === currentIndex ? '' : ''
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
-                  />
+                  >
+                    <span
+                      className={`block w-3 h-3 rounded-full transition-colors ${
+                        index === currentIndex ? 'bg-blue-600' : 'bg-neutral-300'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </div>
