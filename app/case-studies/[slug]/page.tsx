@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getClient, client, urlFor } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { validatedToken } from '@/sanity/lib/token'
@@ -132,22 +133,43 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   return (
     <article>
       {/* Purple Gradient Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white">
+      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />
         <Container className="relative">
           <div className="py-20">
-            {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
-              {post.title}
-            </h1>
-            
-            {/* Author and Meta */}
-            <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-              <span className="font-medium">RosterLab</span>
-              <span className="text-purple-200">•</span>
-              <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
-              <span className="text-purple-200">•</span>
-              <span className="text-purple-200">{readingTime}</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left side - Title and Meta */}
+              <div className="lg:col-span-7">
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+                  {post.title}
+                </h1>
+                
+                {/* Author and Meta */}
+                <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
+                  <span className="font-medium">RosterLab</span>
+                  <span className="text-purple-200">•</span>
+                  <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
+                  <span className="text-purple-200">•</span>
+                  <span className="text-purple-200">{readingTime}</span>
+                </div>
+              </div>
+              
+              {/* Right side - Hero Image */}
+              {post.mainImage && (
+                <div className="lg:col-span-5 relative hidden lg:block">
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                    <Image
+                      src={urlFor(post.mainImage).width(500).height(350).url()}
+                      alt={post.title}
+                      width={500}
+                      height={350}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </Container>
