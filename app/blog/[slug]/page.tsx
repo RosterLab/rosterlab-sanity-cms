@@ -85,11 +85,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="absolute inset-0 bg-black/10" />
         <Container className="relative">
           <div className="py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left side - Title and Meta */}
-              <div>
+              <div className="lg:col-span-8">
                 {/* Title */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
                   {post.title}
                 </h1>
                 
@@ -105,13 +105,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               
               {/* Right side - Hero Image */}
               {post.mainImage && (
-                <div className="relative hidden lg:block">
+                <div className="lg:col-span-4 relative hidden lg:block">
                   <div className="relative rounded-lg overflow-hidden shadow-2xl">
                     <Image
-                      src={urlFor(post.mainImage).width(600).height(400).url()}
+                      src={urlFor(post.mainImage).width(400).height(300).url()}
                       alt={post.title}
-                      width={600}
-                      height={400}
+                      width={400}
+                      height={300}
                       className="w-full h-auto object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
