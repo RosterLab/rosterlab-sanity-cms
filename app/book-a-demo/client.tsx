@@ -200,7 +200,7 @@ export default function BookADemoClient() {
                     <div>
                       <h3 className="font-medium text-gray-900 text-sm mb-1">Live Platform Demonstration</h3>
                       <p className="text-gray-600 text-xs">
-                        See RosterLab in action with scenarios relevant to your industry
+                        See RosterLab in action with scenarios relevant to your <Link href="/industries" className="text-blue-600 hover:text-blue-700 underline">industry</Link>
                       </p>
                     </div>
                   </div>

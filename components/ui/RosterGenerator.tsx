@@ -50,9 +50,9 @@ export default function RosterGenerator() {
             <HiPlus className="w-5 h-5 text-white" />
           </div>
         </div>
-        <h3 className="text-lg font-semibold text-white">
+        <p className="text-lg font-semibold text-white">
           AI Roster Generator
-        </h3>
+        </p>
         <p className="text-sm text-blue-100 mt-1 mb-0 sm:mb-0 pb-6 sm:pb-0">
           Automated rostering with all requirements optimised
         </p>

@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? 'Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.'
     : `Browse page ${pageNumber} of our news and press releases.`
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rosterlab.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
   return {
     title,

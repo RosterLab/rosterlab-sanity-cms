@@ -1,45 +1,44 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { getClient, client, urlFor } from "@/sanity/lib/client";
-import {
-  postQuery,
-  postPathsQuery,
-  blogPostsOnlyQuery,
-} from "@/sanity/lib/queries";
-import { validatedToken } from "@/sanity/lib/token";
-import { formatDate } from "@/lib/utils";
-import Container from "@/components/ui/Container";
-import Breadcrumb from "@/components/ui/Breadcrumb";
-import PortableText from "@/components/blog/PortableText";
-import TableOfContents from "@/components/blog/TableOfContents";
-import ShareButtons from "@/components/blog/ShareButtons";
-import NewsletterFormWrapper from "@/components/forms/NewsletterFormWrapper";
-import RelatedPosts from "@/components/blog/RelatedPosts";
-import { draftMode } from "next/headers";
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
+import { getClient, client, urlFor } from '@/sanity/lib/client'
+import { postQuery, postPathsQuery, blogPostsOnlyQuery } from '@/sanity/lib/queries'
+import { validatedToken } from '@/sanity/lib/token'
+import { formatDate } from '@/lib/utils'
+import Container from '@/components/ui/Container'
+import Breadcrumb from '@/components/ui/Breadcrumb'
+import PortableText from '@/components/blog/PortableText'
+import TableOfContents from '@/components/blog/TableOfContents'
+import ShareButtons from '@/components/blog/ShareButtons'
+import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
+import RelatedPosts from '@/components/blog/RelatedPosts'
+import { draftMode } from 'next/headers'
 
 interface BlogPostPageProps {
   params: Promise<{
-    slug: string;
-  }>;
+    slug: string
+  }>
 }
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(postPathsQuery);
-  return slugs.map((slug: string) => ({ slug }));
+  const slugs = await client.fetch(postPathsQuery)
+  console.log('All post slugs:', slugs)
+  return slugs.map((slug: string) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const { isEnabled } = await draftMode();
-  const clientToUse = getClient(
-    isEnabled && validatedToken ? { token: validatedToken } : undefined
-  );
-  const post = await clientToUse.fetch(postQuery, { slug: slug.trim() });
+export const dynamicParams = true // Allow pages not in generateStaticParams
+export const revalidate = 60 // Revalidate every 60 seconds
 
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const { slug } = await params
+  const { isEnabled } = await draftMode()
+  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
+  const post = await clientToUse.fetch(postQuery, { slug: slug.trim() })
+  
   if (!post) {
     return {
-      title: "Post Not Found",
-    };
+      title: 'Post Not Found',
+    }
   }
 
   return {
@@ -50,76 +49,88 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
       description: post.seo?.metaDescription || post.excerpt,
       type: "article",
       url: `https://rosterlab.com/blog/${slug}`,
-      images: post.seo?.ogImage
-        ? [urlFor(post.seo.ogImage).url()]
-        : post.mainImage
-          ? [urlFor(post.mainImage).url()]
-          : undefined,
+      images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 
+              post.mainImage ? [urlFor(post.mainImage).url()] : undefined,
     },
-  };
+  }
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const { isEnabled } = await draftMode();
-  const clientToUse = getClient(
-    isEnabled && validatedToken ? { token: validatedToken } : undefined
-  );
-
+  const { slug } = await params
+  const { isEnabled } = await draftMode()
+  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
+  
   // Debug: Log the slug to check for spaces
-  console.log("Slug from URL:", JSON.stringify(slug));
-  console.log("Slug length:", slug.length);
-
-  const post = await clientToUse.fetch(postQuery, { slug: slug.trim() });
+  console.log('Slug from URL:', JSON.stringify(slug))
+  console.log('Slug length:', slug.length)
+  
+  const post = await clientToUse.fetch(postQuery, { slug: slug.trim() })
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   // Fetch all blog posts for the related posts section
-  const allPosts = await clientToUse.fetch(blogPostsOnlyQuery);
+  const allPosts = await clientToUse.fetch(blogPostsOnlyQuery)
+
 
   // Calculate reading time
   const calculateReadingTime = (text: any[]) => {
-    const wordsPerMinute = 200;
-    const textContent =
-      text
-        ?.map((block: any) =>
-          block.children?.map((child: any) => child.text).join(" ")
-        )
-        .join(" ") || "";
-    const wordCount = textContent.split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / wordsPerMinute);
-    return `${readingTime} mins read`;
-  };
+    const wordsPerMinute = 200
+    const textContent = text
+      ?.map((block: any) => block.children?.map((child: any) => child.text).join(' '))
+      .join(' ') || ''
+    const wordCount = textContent.split(/\s+/).length
+    const readingTime = Math.ceil(wordCount / wordsPerMinute)
+    return `${readingTime} mins read`
+  }
 
-  const readingTime = calculateReadingTime(post.body);
+  const readingTime = calculateReadingTime(post.body)
 
   return (
     <article>
       {/* Purple Gradient Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white">
+      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />
         <Container className="relative">
           <div className="py-20">
-            {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
-              {post.title}
-            </h1>
-
-            {/* Author and Meta */}
-            <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-              <span className="font-medium">RosterLab</span>
-              <span className="text-purple-200">•</span>
-              <time className="text-purple-200">
-                {formatDate(post.publishedAt)}
-              </time>
-              <span className="text-purple-200">•</span>
-              <span className="text-purple-200">{readingTime}</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left side - Title and Meta */}
+              <div className="lg:col-span-7">
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+                  {post.title}
+                </h1>
+                
+                {/* Author and Meta */}
+                <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
+                  <span className="font-medium">RosterLab</span>
+                  <span className="text-purple-200">•</span>
+                  <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
+                  <span className="text-purple-200">•</span>
+                  <span className="text-purple-200">{readingTime}</span>
+                </div>
+              </div>
+              
+              {/* Right side - Hero Image */}
+              {post.mainImage && (
+                <div className="lg:col-span-5 relative hidden lg:block">
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                    <Image
+                      src={urlFor(post.mainImage).width(500).height(350).url()}
+                      alt={post.title}
+                      width={500}
+                      height={350}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </Container>
-
+        
         {/* Decorative circles */}
         <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
@@ -129,12 +140,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="bg-gray-50 border-b hidden lg:block">
         <Container>
           <div className="py-2">
-            <Breadcrumb
+            <Breadcrumb 
               items={[
-                { label: "Home", href: "/" },
-                { label: "RosterLab Blog", href: "/blog" },
-                { label: post.title },
-              ]}
+                { label: 'Home', href: '/' },
+                { label: 'RosterLab Blog', href: '/blog' },
+                { label: post.title }
+              ]} 
             />
           </div>
         </Container>
@@ -148,9 +159,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <aside className="lg:col-span-3">
               <div className="lg:sticky lg:top-8">
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">
-                    TABLE OF CONTENTS
-                  </h3>
+                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">TABLE OF CONTENTS</h3>
                   <TableOfContents />
                 </div>
               </div>
@@ -172,27 +181,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Related Posts */}
               {allPosts.length > 0 && (
-                <RelatedPosts
-                  posts={allPosts}
-                  currentPostId={post._id}
-                  currentPostDate={post.publishedAt}
-                />
+                <RelatedPosts posts={allPosts} currentPostId={post._id} currentPostDate={post.publishedAt} />
               )}
 
               {/* Bottom CTA */}
-              <div
-                className="mt-16 p-8 text-white rounded-lg text-center"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                <h3 className="text-2xl font-bold mb-4">
-                  Ready to Transform Your Workforce Management?
-                </h3>
-                <p className="mb-6 text-lg opacity-90">
-                  Join thousands using RosterLab to streamline rostering.
-                </p>
+              <div className="mt-16 p-8 text-white rounded-lg text-center" style={{ background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)' }}>
+                <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Workforce Management?</h3>
+                <p className="mb-6 text-lg opacity-90">Join thousands using RosterLab to streamline rostering.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/book-a-demo"
@@ -215,9 +210,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="lg:sticky lg:top-8 space-y-6">
                 {/* Newsletter Signup */}
                 <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Subscribe for more insights and product updates
-                  </h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Subscribe for more insights and product updates</h3>
                   <NewsletterFormWrapper />
                 </div>
 
@@ -231,5 +224,5 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </Container>
       </div>
     </article>
-  );
+  )
 }

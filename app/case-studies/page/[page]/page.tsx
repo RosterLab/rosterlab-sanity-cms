@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? 'Explore our rostering success stories. See how RosterLab\'s AI cuts scheduling time and lifts staff satisfaction for industries worldwide.'
     : `Browse page ${pageNumber} of our case studies showcasing real-world rostering success stories.`
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rosterlab.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
   return {
     title,

@@ -15,8 +15,8 @@ export default function StructuredData({
           "@type": "Organization",
           name: "RosterLab",
           legalName: "ROSTERLAB LIMITED",
-          url: "https://www.rosterlab.com",
-          logo: "https://www.rosterlab.com/images/favicon.png",
+          url: "https://rosterlab.com",
+          logo: "https://rosterlab.com/images/favicon.png",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Level 1, 22 The Strand",
@@ -50,7 +50,7 @@ export default function StructuredData({
           "@context": "http://schema.org",
           "@type": "WebSite",
           name: "RosterLab",
-          url: "https://www.rosterlab.com",
+          url: "https://rosterlab.com",
           description:
             "Complex solutions made easy with AI-powered scheduling for healthcare teams",
           publisher: {

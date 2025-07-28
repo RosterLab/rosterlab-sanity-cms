@@ -190,6 +190,11 @@ const nextConfig: NextConfig = {
         destination: '/blog/manage-night-shift-planning-wellbeing-effectively',
         permanent: true,
       },
+      {
+        source: '/blog/self-scheduling',
+        destination: '/blog/how-to-implement-self-scheduling',
+        permanent: true,
+      },
       // Case studies redirects
       {
         source: '/case-studies/blog/casestudy_dargavillemedicalcentre',
