@@ -134,6 +134,7 @@ export default function StaffSchedulingPersonalityQuizPage() {
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
+  const [linkCopied, setLinkCopied] = useState(false)
   const [personalityScores, setPersonalityScores] = useState<Record<string, number>>({
     spreadsheet: 0,
     social: 0,
@@ -225,8 +226,8 @@ export default function StaffSchedulingPersonalityQuizPage() {
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.origin + '/tools/staff-scheduling-personality-quiz')
       .then(() => {
-        console.log('Link copied!')
-        // You could add a toast notification here
+        setLinkCopied(true)
+        setTimeout(() => setLinkCopied(false), 2000)
       })
       .catch(err => console.error('Failed to copy:', err))
   }
@@ -269,10 +270,16 @@ export default function StaffSchedulingPersonalityQuizPage() {
                   onClick={handleCopyLink}
                   className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm border border-white/30 px-6 py-3 text-sm font-medium text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200"
                 >
-                  <span>Share this link</span>
-                  <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
+                  <span>{linkCopied ? 'Link copied to clipboard' : 'Share this link'}</span>
+                  {linkCopied ? (
+                    <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  )}
                 </button>
               </div>
             </div>
@@ -291,22 +298,27 @@ export default function StaffSchedulingPersonalityQuizPage() {
       {/* About the rostering quiz Section */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">
                 About the rostering quiz
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="text-lg text-gray-600 mb-6">
                 Based on research and testing, this quiz aims to open up new perspectives for you – about yourself, your roster, your redeeming hero-like qualities to get that roster done.
               </p>
+              <div className="space-y-4 text-gray-600">
+                <p>
+                  Have you ever noticed how teams have such different approaches to staff rostering? Our relationship with rostering isn't just about getting the roster done, it's about the problem-solving we do and the people we help too. If you're curious about yourself and the way you approach staff scheduling, this will be time well spent.
+                </p>
+                <p>
+                  Developed in conjunction with roster creators, this rostering tool is based on extensive research and insights into team dynamics. As more and more people take the quiz, we'll continue to refine it to bring you ever more insight into our work scheduling styles.
+                </p>
+              </div>
             </div>
-            <div className="space-y-6 text-gray-600">
-              <p>
-                Have you ever noticed how teams have such different approaches to staff rostering? Our relationship with rostering isn't just about getting the roster done, it's about the problem-solving we do and the people we help too. If you're curious about yourself and the way you approach staff scheduling, this will be time well spent.
-              </p>
-              <p>
-                Developed in conjunction with roster creators, this rostering tool is based on extensive research and insights into team dynamics. As more and more people take the quiz, we'll continue to refine it to bring you ever more insight into our work scheduling styles.
-              </p>
+            <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-gray-500">Rostering Quiz Image Placeholder</span>
+              </div>
             </div>
           </div>
         </div>
@@ -321,44 +333,44 @@ export default function StaffSchedulingPersonalityQuizPage() {
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {/* First row - 3 boxes */}
-            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The Spreadsheet Sorcerer</h3>
+            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Spreadsheet Sorcerer</h3>
               <p className="text-gray-600">
                 Detail-oriented, loves formulas, color codes everything.
               </p>
             </div>
             
-            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The Social Butterfly</h3>
+            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Social Butterfly</h3>
               <p className="text-gray-600">
                 Focuses on fairness, vibes, and keeping everyone happy (even if the maths suffers).
               </p>
             </div>
 
-            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The Last-Minute Magician</h3>
+            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Last-Minute Magician</h3>
               <p className="text-gray-600">
                 Thrives under pressure, makes the schedule the night before - and somehow it works.
               </p>
             </div>
 
             {/* Second row - 3 boxes */}
-            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The Rules Robot</h3>
+            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Rules Robot</h3>
               <p className="text-gray-600">
                 Obsessed with compliance, laws, break times, and documentation. Follows compliance like it's scripture.
               </p>
             </div>
 
-            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The Peacekeeper Panda</h3>
+            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Peacekeeper Panda</h3>
               <p className="text-gray-600">
                 Mediator type. Tries to balance personalities, time-off requests, and drama with a zen-like calm.
               </p>
             </div>
 
-            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">The No Hope Karen</h3>
+            <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The No Hope Karen</h3>
               <p className="text-gray-600">
                 Pessimistic planner who expects the worst. Creates backup rosters for the backup rosters.
               </p>
@@ -370,6 +382,32 @@ export default function StaffSchedulingPersonalityQuizPage() {
             <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
               <span className="text-gray-500">Personality Types Image Placeholder</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rostering still a headache for you? Let's chat Section */}
+      <section className="py-16 md:py-24 bg-primary-600">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
+            Rostering still a headache for you? Let's chat
+          </h2>
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Whether you're a Spreadsheet Sorcerer or a Last-Minute Magician, RosterLab can help streamline your scheduling process and give you back your time.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/book-a-demo"
+              className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-primary-600 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 transition-colors duration-200"
+            >
+              Book a demo
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-md bg-primary-700 px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 transition-colors duration-200"
+            >
+              Get in touch
+            </Link>
           </div>
         </div>
       </section>
