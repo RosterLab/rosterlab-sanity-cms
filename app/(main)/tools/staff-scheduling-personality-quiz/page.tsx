@@ -135,6 +135,8 @@ export default function StaffSchedulingPersonalityQuizPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
   const [linkCopied, setLinkCopied] = useState(false)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [analyzeText, setAnalyzeText] = useState('Analyzing your traits...')
   const [personalityScores, setPersonalityScores] = useState<Record<string, number>>({
     spreadsheet: 0,
     social: 0,
@@ -216,9 +218,41 @@ export default function StaffSchedulingPersonalityQuizPage() {
       if (currentQuestion < quizQuestions.length - 1) {
         setCurrentQuestion(currentQuestion + 1)
       } else {
-        // Quiz complete - redirect to result
-        const resultUrl = calculateResult()
-        window.location.href = resultUrl
+        // Quiz complete - show analyzing screen
+        setIsAnalyzing(true)
+        
+        // All possible messages
+        const allMessages = [
+          'Analyzing your traits...',
+          'Rostering your personality...',
+          'Quizzing your shift management...',
+          'Calculating compliance levels...',
+          'Measuring your scheduling style...',
+          'Evaluating your roster approach...',
+          'Processing your answers...',
+          'Decoding your management DNA...'
+        ]
+        
+        // Randomly select 3 messages
+        const shuffled = [...allMessages].sort(() => Math.random() - 0.5)
+        const selectedMessages = shuffled.slice(0, 3)
+        
+        let messageIndex = 0
+        setAnalyzeText(selectedMessages[0])
+        
+        const messageInterval = setInterval(() => {
+          messageIndex++
+          if (messageIndex < selectedMessages.length) {
+            setAnalyzeText(selectedMessages[messageIndex])
+          }
+        }, 1500) // 1.5 seconds per message
+        
+        // After 4.5 seconds (3 messages x 1.5s), redirect to result
+        setTimeout(() => {
+          clearInterval(messageInterval)
+          const resultUrl = calculateResult()
+          window.location.href = resultUrl
+        }, 4500)
       }
     }
   }
@@ -315,10 +349,13 @@ export default function StaffSchedulingPersonalityQuizPage() {
                 </p>
               </div>
             </div>
-            <div className="relative h-96 bg-gray-100 rounded-lg overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-gray-500">Rostering Quiz Image Placeholder</span>
-              </div>
+            <div className="relative h-96 rounded-lg overflow-hidden">
+              <Image
+                src="/images/quiz/test4.png"
+                alt="Rostering quiz characters"
+                fill
+                className="object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>
@@ -328,7 +365,7 @@ export default function StaffSchedulingPersonalityQuizPage() {
       <section className="bg-gray-50 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12">
-            The six rostering personalities
+            Discover your rostering personality type
           </h2>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -376,18 +413,21 @@ export default function StaffSchedulingPersonalityQuizPage() {
               </p>
             </div>
           </div>
-
-          {/* Placeholder image */}
-          <div className="mt-16 relative h-64 md:h-96 rounded-lg overflow-hidden">
-            <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-              <span className="text-gray-500">Personality Types Image Placeholder</span>
-            </div>
+          
+          {/* CTA below personality cards */}
+          <div className="mt-12 text-center">
+            <button
+              onClick={handleStartQuiz}
+              className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
+            >
+              Take the quiz
+            </button>
           </div>
         </div>
       </section>
 
       {/* Rostering still a headache for you? Let's chat Section */}
-      <section className="py-16 md:py-24 bg-primary-600">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-[#0a1929] to-[#1e3a5f]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
             Rostering still a headache for you? Let's chat
@@ -404,7 +444,7 @@ export default function StaffSchedulingPersonalityQuizPage() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-md bg-primary-700 px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 transition-colors duration-200"
+              className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-colors duration-200"
             >
               Get in touch
             </Link>
@@ -424,6 +464,16 @@ export default function StaffSchedulingPersonalityQuizPage() {
               height={40}
               className="brightness-0 invert"
             />
+          </div>
+
+          {/* Back to quiz link in top right corner */}
+          <div className="fixed top-8 right-12 z-50">
+            <button
+              onClick={handleCloseQuiz}
+              className="text-white/90 hover:text-white transition-colors duration-200 font-medium"
+            >
+              Back to quiz page
+            </button>
           </div>
 
           <div className="min-h-screen flex items-center justify-center p-4">
@@ -456,45 +506,67 @@ export default function StaffSchedulingPersonalityQuizPage() {
                 </svg>
               </button>
 
-              {/* Title */}
-              <h2 className="text-2xl font-bold text-white text-center mb-8 mt-8">
-                What's your rostering personality type?
-              </h2>
+              {isAnalyzing ? (
+                /* Analyzing Screen */
+                <div className="text-center py-16">
+                  <div className="mb-8">
+                    <div className="relative inline-flex">
+                      <div className="w-24 h-24 rounded-full border-4 border-white/20"></div>
+                      <div className="absolute top-0 left-0 w-24 h-24 rounded-full border-4 border-white border-t-transparent animate-spin"></div>
+                    </div>
+                  </div>
+                  <h2 className="text-2xl font-bold text-white mb-4">
+                    {analyzeText}
+                  </h2>
+                  <p className="text-white/70">
+                    Discovering your rostering personality...
+                  </p>
+                </div>
+              ) : (
+                <>
+                  {/* Title */}
+                  <h2 className="text-2xl font-bold text-white text-center mb-8 mt-8">
+                    What's your rostering personality type?
+                  </h2>
 
-              {/* Question */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-white/80 mb-2">
-                  Question {currentQuestion + 1} of {quizQuestions.length}
-                </h3>
-                <p className="text-xl text-white/90">
-                  {quizQuestions[currentQuestion].question}
-                </p>
-              </div>
+                  {/* Question */}
+                  <div className="mb-8">
+                    <h3 className="text-lg font-semibold text-white/80 mb-2">
+                      Question {currentQuestion + 1} of {quizQuestions.length}
+                    </h3>
+                    <p className="text-xl text-white/90">
+                      {quizQuestions[currentQuestion].question}
+                    </p>
+                  </div>
 
-              {/* Answer Options */}
-              <div className="space-y-3">
-                {quizQuestions[currentQuestion].answers.map((answer) => (
-                  <button
-                    key={answer.id}
-                    onClick={() => handleAnswer(answer.id)}
-                    className="w-full text-left p-4 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-200 border border-white/10 hover:border-white/20"
-                  >
-                    <span className="text-white/90">{answer.text}</span>
-                  </button>
-                ))}
-              </div>
+                  {/* Answer Options */}
+                  <div className="space-y-3">
+                    {quizQuestions[currentQuestion].answers.map((answer, index) => (
+                      <button
+                        key={answer.id}
+                        onClick={() => handleAnswer(answer.id)}
+                        className="w-full text-left p-4 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-200 border border-white/10 hover:border-white/20"
+                      >
+                        <span className="text-white/90">
+                          <span className="font-semibold">{String.fromCharCode(65 + index)})</span> {answer.text}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
 
-              {/* Progress indicator */}
-              <div className="mt-8 flex justify-center space-x-2">
-                {quizQuestions.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`h-2 w-2 rounded-full ${
-                      index <= currentQuestion ? 'bg-white' : 'bg-white/30'
-                    }`}
-                  />
-                ))}
-              </div>
+                  {/* Progress indicator */}
+                  <div className="mt-8 flex justify-center space-x-2">
+                    {quizQuestions.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`h-2 w-2 rounded-full ${
+                          index <= currentQuestion ? 'bg-white' : 'bg-white/30'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
