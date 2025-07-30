@@ -3,10 +3,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useCallback } from 'react'
-import dynamic from 'next/dynamic'
-
-// Dynamically import jsPDF to avoid SSR issues
-const jsPDF = dynamic(() => import('jspdf').then(mod => mod.jsPDF), { ssr: false })
 
 // Star component for background animation
 function Star({ style }: { style: React.CSSProperties }) {
@@ -84,11 +80,9 @@ export default function RulesRobotPage() {
 
   const generatePDF = useCallback(async (name: string, email: string, company: string) => {
     try {
-      // @ts-expect-error - jsPDF is dynamically imported
-      const PDF = await jsPDF
-      if (!PDF) return
-
-      const doc = new PDF()
+      // Dynamically import jsPDF to avoid SSR issues
+      const { jsPDF } = await import('jspdf')
+      const doc = new jsPDF()
       
       // Colors
       const primaryColor = [14, 165, 233] // primary-500
