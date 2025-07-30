@@ -250,7 +250,7 @@ export default function StaffSchedulingPersonalityQuizPage() {
         setTimeout(() => {
           clearInterval(messageInterval)
           const resultUrl = calculateResult()
-          window.location.href = resultUrl
+          window.location.replace(resultUrl)
         }, 4500)
       }
     }
