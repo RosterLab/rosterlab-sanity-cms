@@ -422,7 +422,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       </div>
 
       {/* Celebrity Style Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[5] lg:mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[5] lg:mb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
             If your rostering style was a celebrity you'd be…
@@ -485,7 +485,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       </section>
 
       {/* Breakfast Style Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-[6] lg:mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-[6] lg:mb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-12">
             If your rostering style were a breakfast...
@@ -513,7 +513,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       </section>
 
       {/* Song Lyric Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[7] lg:mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[7] lg:mb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-12">
             If your weekly staff scheduling style was a song lyric…
@@ -553,7 +553,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       </section>
 
       {/* Tools Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-10 lg:mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-10 lg:mb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Tools a Rules Robot needs to grow!
@@ -634,7 +634,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       </section>
 
       {/* Recommendations Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-20 lg:mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-20 lg:mb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Recommended reading for Rules Robots
@@ -680,6 +680,19 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
                 </Link>
               </article>
             ))}
+          </div>
+          
+          {/* View all blogs CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
+            >
+              View all blogs
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
