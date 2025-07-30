@@ -495,9 +495,13 @@ export default function RulesRobotPage() {
           <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-2xl shadow-lg p-12">
               <div className="w-64 h-64 mx-auto mb-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                  <span className="text-gray-500 text-sm">Breakfast Image</span>
-                </div>
+                <Image
+                  src="/images/quiz/eggs2.png"
+                  alt="Eggs Benedict - The Rules Robot breakfast"
+                  width={256}
+                  height={256}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 A carefully portioned eggs Benedict with perfect hollandaise symmetry.
@@ -511,21 +515,26 @@ export default function RulesRobotPage() {
       </section>
 
       {/* Song Lyric Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-gradient-to-b from-[#0a1929] to-[#1e3a5f] sticky top-0 z-[7] mb-96">
+      <section className="min-h-screen flex items-center bg-white sticky top-0 z-[7] mb-96">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
-          <h2 className="text-4xl font-bold text-white mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12">
             If your weekly staff scheduling style was a song lyric…
           </h2>
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg p-12 border border-white/20">
+            <div className="bg-gray-50 rounded-2xl shadow-lg p-12 border border-gray-200">
               <div className="mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                  <div className="w-full h-full bg-gray-300 flex items-center justify-center">
+                    <span className="text-gray-500 text-sm">Song Image</span>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Song: "Sound of da Police" by KRS-One
                 </h3>
-                <p className="text-xl text-white/90 italic mb-6">
+                <p className="text-xl text-gray-700 italic mb-6">
                   [A classic hip-hop track about authority and oversight]
                 </p>
-                <p className="text-lg text-white mb-8">
+                <p className="text-lg text-gray-800 mb-8">
                   📋 You don't just follow rules—you are the rules.
                 </p>
               </div>
@@ -533,7 +542,7 @@ export default function RulesRobotPage() {
                 href="https://www.youtube.com/watch?v=8Odt6a_Fzk0&list=RD8Odt6a_Fzk0&start_radio=1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-[#0a1929] shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] transition-colors duration-200"
+                className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>

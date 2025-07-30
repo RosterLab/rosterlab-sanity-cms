@@ -120,14 +120,14 @@ const quizQuestions = [
   }
 ]
 
-// Personality URLs mapping
+// Personality URLs mapping - TEMPORARILY all going to rules-robot
 const personalityUrls: Record<string, string> = {
-  'spreadsheet': '/tools/staff-scheduling-personality-quiz/spreadsheet-sorcerer',
-  'peacekeeper': '/tools/staff-scheduling-personality-quiz/peacekeeper-panda',
-  'social': '/tools/staff-scheduling-personality-quiz/social-butterfly',
-  'rules': '/tools/staff-scheduling-personality-quiz/rules-robot', // Note: The user didn't provide this URL, using rules-robot
-  'lastminute': '/tools/staff-scheduling-personality-quiz/last-minute-magician',
-  'nohope': '/tools/staff-scheduling-personality-quiz/no-hope-karen'
+  'spreadsheet': '/tools/staff-scheduling-personality-quiz/rules-robot',
+  'peacekeeper': '/tools/staff-scheduling-personality-quiz/rules-robot',
+  'social': '/tools/staff-scheduling-personality-quiz/rules-robot',
+  'rules': '/tools/staff-scheduling-personality-quiz/rules-robot',
+  'lastminute': '/tools/staff-scheduling-personality-quiz/rules-robot',
+  'nohope': '/tools/staff-scheduling-personality-quiz/rules-robot'
 }
 
 export default function StaffSchedulingPersonalityQuizPage() {
