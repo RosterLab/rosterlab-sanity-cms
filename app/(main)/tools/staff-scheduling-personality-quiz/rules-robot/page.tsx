@@ -653,11 +653,13 @@ export default function RulesRobotPage() {
             {/* Blog Post 1 */}
             <article className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
               <Link href="/blog/manage-night-shift-planning-wellbeing-effectively" className="block">
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-400">Blog Image</span>
+                <div className="relative h-48 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
+                    <svg className="w-24 h-24 text-white/20" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-primary-600 transition-colors line-clamp-2">
@@ -679,11 +681,13 @@ export default function RulesRobotPage() {
             {/* Blog Post 2 */}
             <article className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
               <Link href="/blog/fairer-scheduling-at-work-reducing-shift-bias" className="block">
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-400">Blog Image</span>
+                <div className="relative h-48 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary-500 to-secondary-700 flex items-center justify-center">
+                    <svg className="w-24 h-24 text-white/20" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-primary-600 transition-colors line-clamp-2">
@@ -705,11 +709,13 @@ export default function RulesRobotPage() {
             {/* Blog Post 3 */}
             <article className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
               <Link href="/blog/staff-rostering-to-payroll-the-right-way-to-do-it" className="block">
-                <div className="relative h-48 overflow-hidden">
-                  <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-400">Blog Image</span>
+                <div className="relative h-48 overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-600 to-secondary-600 flex items-center justify-center">
+                    <svg className="w-24 h-24 text-white/20" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1.93.66 1.64 2.08 1.64 1.51 0 2.1-.71 2.1-1.65 0-.97-.59-1.44-2.24-1.88-2.14-.58-3.51-1.51-3.51-3.39 0-1.75 1.39-2.9 3.08-3.29V4.23h2.67v1.95c1.86.45 2.79 1.66 2.85 3.39h-1.98c-.05-.94-.45-1.64-1.91-1.64-1.31 0-1.91.7-1.91 1.59 0 .91.7 1.36 2.3 1.82 2.22.61 3.45 1.59 3.45 3.42.01 1.87-1.5 3.11-3.3 3.33z"/>
+                    </svg>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-primary-600 transition-colors line-clamp-2">
