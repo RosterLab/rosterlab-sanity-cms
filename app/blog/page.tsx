@@ -9,6 +9,9 @@ export const revalidate = 300 // Revalidate every 5 minutes
 export const metadata = {
   title: 'Blog - AI Staff Rostering and Scheduling Guides',
   description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',
+  alternates: {
+    canonical: 'https://rosterlab.com/blog',
+  },
   openGraph: {
     title: 'Blog - AI Staff Rostering and Scheduling Guides',
     description: 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.',

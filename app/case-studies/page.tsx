@@ -10,6 +10,9 @@ export const dynamic = 'force-dynamic'
 export const metadata = {
   title: 'RosterLab Case Studies - Better Rosters, Impactful Results',
   description: 'Explore real-world case studies showing how RosterLab\'s AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.',
+  alternates: {
+    canonical: 'https://rosterlab.com/case-studies',
+  },
   openGraph: {
     title: 'RosterLab Case Studies - Better Rosters, Impactful Results',
     description: 'Explore real-world case studies showing how RosterLab\'s AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.',

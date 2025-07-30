@@ -9,6 +9,9 @@ export const metadata = {
   title: "Pricing - Affordable AI Staff Scheduling Software",
   description:
     "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.",
+  alternates: {
+    canonical: 'https://rosterlab.com/pricing',
+  },
   openGraph: {
     title: "Pricing - Affordable AI Staff Scheduling Software",
     description:

@@ -18,6 +18,9 @@ export const metadata = {
   title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
   description:
     "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+  alternates: {
+    canonical: 'https://rosterlab.com/solutions/free-staff-scheduling',
+  },
   openGraph: {
     title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
     description:

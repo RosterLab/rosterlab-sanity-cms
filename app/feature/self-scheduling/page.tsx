@@ -8,6 +8,9 @@ export const metadata = {
   title: "Self-Scheduling - RosterLab",
   description:
     "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+  alternates: {
+    canonical: 'https://rosterlab.com/feature/self-scheduling',
+  },
   openGraph: {
     title: "Self-Scheduling - RosterLab",
     description:

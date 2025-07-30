@@ -23,6 +23,9 @@ export const metadata = {
   title: "Employee Mobile App - RosterLab",
   description:
     "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
+  alternates: {
+    canonical: 'https://rosterlab.com/solutions/staff-roster-mobile-app',
+  },
   openGraph: {
     title: "Employee Mobile App - RosterLab",
     description:

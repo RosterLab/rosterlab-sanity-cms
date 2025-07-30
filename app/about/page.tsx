@@ -9,6 +9,9 @@ export const metadata = {
   title: "About Us - Meet the Team Behind RosterLab",
   description:
     "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+  alternates: {
+    canonical: 'https://rosterlab.com/about',
+  },
   other: {
     link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
   },

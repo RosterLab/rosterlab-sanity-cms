@@ -90,9 +90,14 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
     }
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
+  
   return {
     title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
+    alternates: {
+      canonical: `${baseUrl}/newsroom/${slug}`,
+    },
     openGraph: {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,

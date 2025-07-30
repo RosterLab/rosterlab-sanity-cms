@@ -90,9 +90,14 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
     }
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
+  
   return {
     title: post.seo?.metaTitle || post.title,
     description: post.seo?.metaDescription || post.excerpt,
+    alternates: {
+      canonical: `${baseUrl}/case-studies/${slug}`,
+    },
     openGraph: {
       title: post.seo?.metaTitle || post.title,
       description: post.seo?.metaDescription || post.excerpt,
