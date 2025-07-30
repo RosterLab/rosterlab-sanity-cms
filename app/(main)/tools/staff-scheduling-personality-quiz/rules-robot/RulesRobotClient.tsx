@@ -259,165 +259,159 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
                 </div>
               </section>
 
-      {/* Main Content Grid */}
-      <div className="relative">
-        <div className="grid lg:grid-cols-2">
-          {/* Left Column - Content */}
-          <div>
-            {/* As the Rules Robot Section */}
-            <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-10 lg:mb-96">
-              <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 lg:pl-12 py-16 lg:py-0">
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  As the Rules Robot…
-                </h2>
-                
-                <div className="prose prose-lg text-gray-700 mb-8">
-                  <p>
-                    You approach staff scheduling with the precision of a Swiss watch and the reliability of atomic time. 
-                    While others might cut corners or rely on gut feelings, you build rosters on a foundation of compliance, 
-                    process, and systematic perfection.
+              {/* As the Rules Robot Section - Full Screen */}
+              <section className="min-h-[80vh] lg:min-h-screen flex items-center relative py-8 lg:py-0">
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                    As the Rules Robot…
+                  </h2>
+                  <p className="text-lg text-gray-600 mb-8">
+                    You navigate the complex world of staff scheduling with precision and an unwavering commitment to compliance. Your methodical approach ensures every roster is legally sound and audit-ready.
                   </p>
-                  <p>
-                    Your spreadsheets are legendary, your documentation impeccable, and your ability to spot a compliance 
-                    issue from a mile away has saved your organization countless times. You're not just following rules – 
-                    you're mastering them.
-                  </p>
-                </div>
-                
-                <div className="space-y-4 mb-8">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">Your Key Characteristics</h3>
                   
-                  <div className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Efficiency Expert:</span> Creates optimal schedules that balance coverage, costs, and compliance requirements
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Process Perfectionist:</span> Systematic approaches that eliminate guesswork and reduce errors
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Risk Minimizer:</span> Proactively identifies and addresses potential compliance issues before they arise
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <p className="text-gray-700">
-                      <span className="font-semibold">Detail-Oriented:</span> Nothing escapes your careful review, from overtime calculations to break requirements
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Download Results CTA */}
-                <div className="mt-8 text-center">
-                  <button 
-                    onClick={() => setShowDownloadForm(true)}
-                    className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
-                  >
-                    Download my results
-                  </button>
-                </div>
-              </div>
-              
-              {/* Confetti Celebration */}
-              {showCelebration && (
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {[...Array(30)].map((_, i) => {
-                    const colors = ['#0284c7', '#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd', '#075985', '#0369a1']
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)]
-                    const randomLeft = Math.random() * 100
-                    const randomDelay = Math.random() * 0.5
-                    const randomDuration = 2 + Math.random() * 1
+                  {/* Key Characteristics */}
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Master of Compliance:</span> Encyclopedic knowledge of labor laws, regulations, and company policies
+                      </p>
+                    </div>
                     
-                    return (
-                      <div
-                        key={i}
-                        className="absolute w-3 h-3"
-                        style={{
-                          left: `${randomLeft}%`,
-                          top: '-20px',
-                          backgroundColor: randomColor,
-                          animation: `confettiFall ${randomDuration}s ease-out ${randomDelay}s forwards`,
-                          transform: `rotate(${Math.random() * 360}deg)`
-                        }}
-                      />
-                    )
-                  })}
-                  <style jsx>{`
-                    @keyframes confettiFall {
-                      0% {
-                        transform: translateY(0) rotate(0deg);
-                        opacity: 1;
-                      }
-                      100% {
-                        transform: translateY(100vh) rotate(720deg);
-                        opacity: 0;
-                      }
-                    }
-                  `}</style>
-                </div>
-              )}
-            </section>
-          </div>
-
-          {/* Right Column - Sticky Card that spans both sections - hidden on mobile */}
-          <div className="relative hidden lg:block">
-            <div className="sticky top-32 min-h-screen flex items-center">
-              {/* Card container with 3D flip effect */}
-              <div className="relative w-96 h-[28rem] mx-auto" style={{ perspective: '1000px' }}>
-                <div 
-                  className="absolute inset-0 w-full h-full transition-transform duration-700"
-                  style={{ 
-                    transformStyle: 'preserve-3d',
-                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-                  }}
-                >
-                  {/* Front of card */}
-                  <div 
-                    className="absolute inset-0 w-full h-full"
-                    style={{ backfaceVisibility: 'hidden' }}
-                  >
-                    <div className="relative w-full h-full transform rotate-3 transition-transform duration-300 hover:rotate-0">
-                      <Image
-                        src="/images/quiz/test2.png"
-                        alt="The Rules Robot"
-                        fill
-                        className="object-contain"
-                      />
+                    <div className="flex items-start">
+                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Documentation Champion:</span> Every decision has a paper trail, creating bulletproof audit records
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Process Perfectionist:</span> Systematic approaches that eliminate guesswork and reduce errors
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Risk Minimizer:</span> Proactively identifies and addresses potential compliance issues before they arise
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <p className="text-gray-700">
+                        <span className="font-semibold">Detail-Oriented:</span> Nothing escapes your careful review, from overtime calculations to break requirements
+                      </p>
                     </div>
                   </div>
                   
-                  {/* Back of card */}
+                  {/* Download Results CTA */}
+                  <div className="mt-8 text-center">
+                    <button 
+                      onClick={() => setShowDownloadForm(true)}
+                      className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
+                    >
+                      Download my results
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Confetti Celebration */}
+                {showCelebration && (
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    {[...Array(30)].map((_, i) => {
+                      const colors = ['#0284c7', '#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd', '#075985', '#0369a1']
+                      const randomColor = colors[Math.floor(Math.random() * colors.length)]
+                      const randomLeft = Math.random() * 100
+                      const randomDelay = Math.random() * 0.5
+                      const randomDuration = 2 + Math.random() * 1
+                      
+                      return (
+                        <div
+                          key={i}
+                          className="absolute w-3 h-3"
+                          style={{
+                            left: `${randomLeft}%`,
+                            top: '-20px',
+                            backgroundColor: randomColor,
+                            animation: `confettiFall ${randomDuration}s ease-out ${randomDelay}s forwards`,
+                            transform: `rotate(${Math.random() * 360}deg)`
+                          }}
+                        />
+                      )
+                    })}
+                    <style jsx>{`
+                      @keyframes confettiFall {
+                        0% {
+                          transform: translateY(0) rotate(0deg);
+                          opacity: 1;
+                        }
+                        100% {
+                          transform: translateY(100vh) rotate(720deg);
+                          opacity: 0;
+                        }
+                      }
+                    `}</style>
+                  </div>
+                )}
+              </section>
+            </div>
+
+            {/* Right Column - Sticky Card that spans both sections - hidden on mobile */}
+            <div className="relative hidden lg:block">
+              <div className="sticky top-32 min-h-screen flex items-center">
+                {/* Card container with 3D flip effect */}
+                <div className="relative w-96 h-[28rem] mx-auto" style={{ perspective: '1000px' }}>
                   <div 
-                    className="absolute inset-0 w-full h-full"
+                    className="absolute inset-0 w-full h-full transition-transform duration-700"
                     style={{ 
-                      backfaceVisibility: 'hidden',
-                      transform: 'rotateY(180deg)'
+                      transformStyle: 'preserve-3d',
+                      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
                     }}
                   >
-                    <div className="relative w-full h-full transform rotate-3 transition-transform duration-300 hover:rotate-0">
-                      <Image
-                        src="/images/quiz/test3.png"
-                        alt="The Rules Robot - Back"
-                        fill
-                        className="object-contain"
-                      />
+                    {/* Front of card */}
+                    <div 
+                      className="absolute inset-0 w-full h-full"
+                      style={{ backfaceVisibility: 'hidden' }}
+                    >
+                      <div className="relative w-full h-full transform rotate-3 transition-transform duration-300 hover:rotate-0">
+                        <Image
+                          src="/images/quiz/test2.png"
+                          alt="The Rules Robot"
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Back of card */}
+                    <div 
+                      className="absolute inset-0 w-full h-full"
+                      style={{ 
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)'
+                      }}
+                    >
+                      <div className="relative w-full h-full transform rotate-3 transition-transform duration-300 hover:rotate-0">
+                        <Image
+                          src="/images/quiz/test3.png"
+                          alt="The Rules Robot - Back"
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
