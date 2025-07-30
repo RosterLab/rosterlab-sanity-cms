@@ -197,7 +197,7 @@ export default function RulesRobotPage() {
             {/* Left Column - Content for both sections */}
             <div>
               {/* Hero Section - Full Screen */}
-              <section className="min-h-screen flex items-center">
+              <section className="min-h-[80vh] lg:min-h-screen flex items-center py-8 lg:py-0">
                 <div className="text-center lg:text-left">
                   <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl mb-6">
                     It sounds like you best fit:<br />
@@ -206,6 +206,19 @@ export default function RulesRobotPage() {
                   <p className="text-lg text-gray-600 mb-8">
                     You're the guardian of compliance, the protector of protocols. Your roster isn't just a schedule—it's a legally sound document that could withstand any audit.
                   </p>
+                  
+                  {/* Mobile Card - shown only on mobile */}
+                  <div className="lg:hidden mb-8">
+                    <div className="relative w-64 h-80 mx-auto">
+                      <Image
+                        src="/images/quiz/test2.png"
+                        alt="The Rules Robot"
+                        width={256}
+                        height={320}
+                        className="object-contain rounded-lg shadow-lg"
+                      />
+                    </div>
+                  </div>
                   <div className="flex flex-wrap gap-4">
                     <button
                       onClick={handleCopyLink}
@@ -256,7 +269,7 @@ export default function RulesRobotPage() {
               </section>
 
               {/* As the Rules Robot Section - Full Screen */}
-              <section className="min-h-screen flex items-center relative">
+              <section className="min-h-[80vh] lg:min-h-screen flex items-center relative py-8 lg:py-0">
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">
                     As the Rules Robot…
@@ -365,7 +378,7 @@ export default function RulesRobotPage() {
               </section>
             </div>
 
-            {/* Right Column - Sticky Card that spans both sections */}
+            {/* Right Column - Sticky Card that spans both sections - hidden on mobile */}
             <div className="relative hidden lg:block">
               <div className="sticky top-32 min-h-screen flex items-center">
                 {/* Card container with 3D flip effect */}
@@ -418,7 +431,7 @@ export default function RulesRobotPage() {
       </div>
 
       {/* Celebrity Style Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-white sticky top-0 z-[5] mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[5] lg:mb-96">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
             If your rostering style was a celebrity you'd be…
@@ -481,7 +494,7 @@ export default function RulesRobotPage() {
       </section>
 
       {/* Breakfast Style Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-gray-50 sticky top-0 z-[6] mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-[6] lg:mb-96">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-12">
             If your rostering style were a breakfast...
@@ -509,7 +522,7 @@ export default function RulesRobotPage() {
       </section>
 
       {/* Song Lyric Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-white sticky top-0 z-[7] mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[7] lg:mb-96">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-12">
             If your weekly staff scheduling style was a song lyric…
@@ -526,10 +539,10 @@ export default function RulesRobotPage() {
                   Song: "Sound of da Police" by KRS-One
                 </h3>
                 <p className="text-xl text-gray-700 italic mb-6">
-                  [A classic hip-hop track about authority and oversight]
+                  A classic hip-hop track about authority and oversight
                 </p>
                 <p className="text-lg text-gray-800 mb-8">
-                  📋 You don't just follow rules—you are the rules.
+                  "Woop-woop! That's the sound of da police! Woop-woop! That's the sound of the beast!"
                 </p>
               </div>
               <a
@@ -549,7 +562,7 @@ export default function RulesRobotPage() {
       </section>
 
       {/* Tools Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-white sticky top-0 z-10 mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-10 lg:mb-96">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Tools a Rules Robot needs to grow!
@@ -630,7 +643,7 @@ export default function RulesRobotPage() {
       </section>
 
       {/* Recommendations Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-gray-50 sticky top-0 z-20 mb-96">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-20 lg:mb-96">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Recommended reading for Rules Robots
@@ -719,7 +732,7 @@ export default function RulesRobotPage() {
       </section>
 
       {/* Need help with your roster? Section - Full Screen */}
-      <section className="min-h-screen flex items-center bg-gradient-to-b from-[#0a1929] to-[#1e3a5f] relative z-30 overflow-hidden">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gradient-to-b from-[#0a1929] to-[#1e3a5f] relative z-30 overflow-hidden">
         {/* Animated stars background */}
         <div className="absolute inset-0">
           {stars.map((star) => (
