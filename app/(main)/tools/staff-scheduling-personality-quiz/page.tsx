@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 // export const metadata: Metadata = {
@@ -156,6 +156,22 @@ export default function StaffSchedulingPersonalityQuizPage() {
     animationDuration: `${3 + Math.random() * 4}s`
   }))
 
+  // Reset quiz state when component mounts (e.g., when returning via back button)
+  useEffect(() => {
+    setIsQuizActive(false)
+    setCurrentQuestion(0)
+    setAnswers({})
+    setIsAnalyzing(false)
+    setPersonalityScores({
+      spreadsheet: 0,
+      social: 0,
+      lastminute: 0,
+      rules: 0,
+      peacekeeper: 0,
+      nohope: 0
+    })
+  }, [])
+
   const handleStartQuiz = () => {
     setIsQuizActive(true)
     setCurrentQuestion(0)
@@ -252,7 +268,7 @@ export default function StaffSchedulingPersonalityQuizPage() {
         setTimeout(() => {
           clearInterval(messageInterval)
           const resultUrl = calculateResult()
-          // Use router.replace to replace current history entry
+          // Use router.push and replace current history entry to fix back button behavior
           router.replace(resultUrl)
         }, 4500)
       }

@@ -80,6 +80,20 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isFlipped, showCelebration])
 
+  // Handle back button navigation to ensure users return to quiz start page
+  useEffect(() => {
+    const handlePopstate = (event: PopStateEvent) => {
+      // If user navigates back, redirect to the quiz start page
+      window.location.href = '/tools/staff-scheduling-personality-quiz'
+    }
+
+    // Push a new state when the component mounts
+    window.history.pushState({ from: 'rules-robot' }, '', window.location.href)
+    
+    window.addEventListener('popstate', handlePopstate)
+    return () => window.removeEventListener('popstate', handlePopstate)
+  }, [])
+
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsGeneratingPDF(true)
@@ -259,8 +273,8 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
                 </div>
               </section>
 
-              {/* As the Rules Robot Section - Full Screen */}
-              <section className="min-h-[80vh] lg:min-h-screen flex items-center relative py-8 lg:py-0">
+              {/* As the Rules Robot Section */}
+              <section className="flex items-center relative py-8">
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">
                     As the Rules Robot…
@@ -422,7 +436,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       </div>
 
       {/* Celebrity Style Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[5] lg:mb-32">
+      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[5]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
             If your rostering style was a celebrity you'd be…
@@ -522,9 +536,13 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
             <div className="bg-gray-50 rounded-2xl shadow-lg p-12 border border-gray-200">
               <div className="mb-8">
                 <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                  <div className="w-full h-full bg-gray-300 flex items-center justify-center">
-                    <span className="text-gray-500 text-sm">Song Image</span>
-                  </div>
+                  <Image
+                    src="/images/quiz/siren.png"
+                    alt="Police siren"
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Song: "Sound of da Police" by KRS-One
