@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 // export const metadata: Metadata = {
 //   title: 'Staff Scheduling Personality Quiz | RosterLab',
@@ -130,6 +131,7 @@ const personalityUrls: Record<string, string> = {
 }
 
 export default function StaffSchedulingPersonalityQuizPage() {
+  const router = useRouter()
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
@@ -250,7 +252,8 @@ export default function StaffSchedulingPersonalityQuizPage() {
         setTimeout(() => {
           clearInterval(messageInterval)
           const resultUrl = calculateResult()
-          window.location.replace(resultUrl)
+          // Use router.replace to replace current history entry
+          router.replace(resultUrl)
         }, 4500)
       }
     }
