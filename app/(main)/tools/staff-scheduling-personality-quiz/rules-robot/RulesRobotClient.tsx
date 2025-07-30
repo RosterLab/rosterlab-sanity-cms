@@ -60,10 +60,10 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const scrollPosition = window.scrollY
       const windowHeight = window.innerHeight
       
-      // Flip the card when user scrolls past 200px
-      if (scrollPosition > 200 && !isFlipped) {
+      // Flip the card when user scrolls past 300px
+      if (scrollPosition > 300) {
         setIsFlipped(true)
-      } else if (scrollPosition <= 200 && isFlipped) {
+      } else {
         setIsFlipped(false)
       }
       
