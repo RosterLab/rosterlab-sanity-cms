@@ -84,7 +84,7 @@ export default function RulesRobotPage() {
 
   const generatePDF = useCallback(async (name: string, email: string, company: string) => {
     try {
-      // @ts-ignore - jsPDF is dynamically imported
+      // @ts-expect-error - jsPDF is dynamically imported
       const PDF = await jsPDF
       if (!PDF) return
 
