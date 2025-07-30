@@ -298,6 +298,9 @@ export default function StaffSchedulingPersonalityQuizPage() {
                   className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-[#0a1929] shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] transition-colors duration-200"
                 >
                   Start the quiz
+                  <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
                 <button
                   onClick={handleCopyLink}
@@ -420,6 +423,9 @@ export default function StaffSchedulingPersonalityQuizPage() {
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
             >
               Take the quiz
+              <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
@@ -455,7 +461,7 @@ export default function StaffSchedulingPersonalityQuizPage() {
       {isQuizActive && (
         <div className="fixed inset-0 z-50 overflow-y-auto">
           {/* Logo in top left corner of the screen */}
-          <div className="fixed top-8 left-12 z-50">
+          <div className="fixed top-4 left-4 md:top-8 md:left-12 z-50">
             <Image
               src="/images/rosterlab-logo.png"
               alt="RosterLab"
@@ -465,8 +471,8 @@ export default function StaffSchedulingPersonalityQuizPage() {
             />
           </div>
 
-          {/* Back to quiz link in top right corner */}
-          <div className="fixed top-8 right-12 z-50">
+          {/* Back to quiz link in top right corner - hidden on mobile */}
+          <div className="hidden md:block fixed top-8 right-12 z-50">
             <button
               onClick={handleCloseQuiz}
               className="text-white/90 hover:text-white transition-colors duration-200 font-medium"
@@ -492,12 +498,12 @@ export default function StaffSchedulingPersonalityQuizPage() {
             </div>
 
             {/* Quiz Content */}
-            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-8 max-w-2xl w-full shadow-2xl">
+            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-8 max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto">
 
               {/* Close button */}
               <button
                 onClick={handleCloseQuiz}
-                className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors"
+                className="absolute top-2 right-2 md:top-4 md:right-4 text-white/70 hover:text-white transition-colors"
                 aria-label="Close quiz"
               >
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -524,29 +530,29 @@ export default function StaffSchedulingPersonalityQuizPage() {
               ) : (
                 <>
                   {/* Title */}
-                  <h2 className="text-2xl font-bold text-white text-center mb-8 mt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6 md:mb-8 mt-8">
                     What's your rostering personality type?
                   </h2>
 
                   {/* Question */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-white/80 mb-2">
+                  <div className="mb-6 md:mb-8">
+                    <h3 className="text-base md:text-lg font-semibold text-white/80 mb-2">
                       Question {currentQuestion + 1} of {quizQuestions.length}
                     </h3>
-                    <p className="text-xl text-white/90">
+                    <p className="text-lg md:text-xl text-white/90">
                       {quizQuestions[currentQuestion].question}
                     </p>
                   </div>
 
                   {/* Answer Options */}
-                  <div className="space-y-3">
+                  <div className="space-y-2 md:space-y-3">
                     {quizQuestions[currentQuestion].answers.map((answer, index) => (
                       <button
                         key={answer.id}
                         onClick={() => handleAnswer(answer.id)}
-                        className="w-full text-left p-4 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-200 border border-white/10 hover:border-white/20"
+                        className="w-full text-left p-3 md:p-4 rounded-lg bg-white/20 hover:bg-white/30 transition-colors duration-200 border border-white/10 hover:border-white/20"
                       >
-                        <span className="text-white/90">
+                        <span className="text-sm md:text-base text-white/90">
                           <span className="font-semibold">{String.fromCharCode(65 + index)})</span> {answer.text}
                         </span>
                       </button>
