@@ -180,94 +180,84 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
   }, [])
 
   return (
-    <div className="relative">
-      {/* Hero Section - Full Screen with Animated Stars */}
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#0a1929] to-[#1e3a5f]">
-        {/* Animated stars background */}
-        <div className="absolute inset-0">
-          {stars.map((star) => (
-            <Star
-              key={star.id}
-              style={{
-                left: star.left,
-                top: star.top,
-                animationDelay: star.animationDelay,
-                animationDuration: star.animationDuration,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 min-h-screen">
-          <div className="grid lg:grid-cols-2 gap-8 h-full">
-            {/* Left Column - Hero Content */}
-            <div className="flex flex-col justify-center px-4 sm:px-6 lg:px-8 lg:pl-12 min-h-screen">
-              <Link 
-                href="/tools/staff-scheduling-personality-quiz" 
-                className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to quiz
-              </Link>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                You're the<br />
-                Rules Robot
-              </h1>
-              
-              <p className="text-lg text-white/90 mb-8 max-w-lg">
-                Precision. Process. Perfection. You're the guardian of compliance, 
-                ensuring every roster meets requirements while maintaining peak efficiency.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={handleCopyLink}
-                  className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm border border-white/30 px-6 py-3 text-base font-medium text-white hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200"
-                >
-                  <span className="mr-2">{copied ? 'Link copied!' : 'Share the quiz'}</span>
-                  {copied ? (
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-              
-              {/* Mobile Card - shown only on mobile */}
-              <div className="lg:hidden mt-8">
-                <div className="relative w-64 h-80 mx-auto">
-                  <Image
-                    src="/images/quiz/test2.png"
-                    alt="The Rules Robot"
-                    width={256}
-                    height={320}
-                    className="object-contain rounded-lg shadow-lg"
-                  />
+    <div className="bg-white relative">
+      {/* Wrapper for Hero and As Rules Robot sections with sticky card */}
+      <div className="relative z-30">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Column - Content for both sections */}
+            <div>
+              {/* Hero Section - Full Screen */}
+              <section className="min-h-[80vh] lg:min-h-screen flex items-center py-8 lg:py-0">
+                <div className="text-center lg:text-left">
+                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl mb-6">
+                    It sounds like you best fit:<br />
+                    <span className="text-primary-600">The Rules Robot</span>
+                  </h1>
+                  <p className="text-lg text-gray-600 mb-8">
+                    You're the guardian of compliance, the protector of protocols. Your roster isn't just a schedule—it's a legally sound document that could withstand any audit.
+                  </p>
+                  
+                  {/* Mobile Card - shown only on mobile */}
+                  <div className="lg:hidden mb-8">
+                    <div className="relative w-64 h-80 mx-auto">
+                      <Image
+                        src="/images/quiz/test2.png"
+                        alt="The Rules Robot"
+                        width={256}
+                        height={320}
+                        className="object-contain rounded-lg shadow-lg"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-4">
+                    <button
+                      onClick={handleCopyLink}
+                      className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                    >
+                      <svg 
+                        className="h-5 w-5" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" 
+                        />
+                      </svg>
+                      {copied ? 'Copied to clipboard!' : 'Share your results'}
+                    </button>
+                    <Link
+                      href="/tools/staff-scheduling-personality-quiz"
+                      className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                    >
+                      Take the Quiz
+                    </Link>
+                  </div>
+                  
+                  {/* Scroll Down Arrow */}
+                  <div className="mt-12 flex justify-center">
+                    <div className="w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center animate-bounce">
+                      <svg 
+                        className="w-6 h-6 text-gray-400" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Scroll indicator */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 lg:left-8 lg:translate-x-0">
-                <div className="animate-bounce">
-                  <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Empty space for card to scroll into */}
-            <div className="hidden lg:block"></div>
-          </div>
-        </div>
-      </div>
+              </section>
 
       {/* Main Content Grid */}
       <div className="relative">
