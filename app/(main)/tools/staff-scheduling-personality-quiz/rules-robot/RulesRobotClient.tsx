@@ -34,10 +34,10 @@ interface RulesRobotClientProps {
 
 export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientProps) {
   const [copied, setCopied] = useState(false)
-  const [isFlipped, setIsFlipped] = useState(false)
   const [showCelebration, setShowCelebration] = useState(false)
   const [showDownloadForm, setShowDownloadForm] = useState(false)
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null)
 
   // Generate random stars
   const stars = Array.from({ length: 50 }, (_, i) => ({
@@ -60,13 +60,6 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const scrollPosition = window.scrollY
       const windowHeight = window.innerHeight
       
-      // Flip the card when user scrolls past 300px
-      if (scrollPosition > 300) {
-        setIsFlipped(true)
-      } else {
-        setIsFlipped(false)
-      }
-      
       // Show celebration when the "As the Rules Robot" section is fully visible
       // This happens when we've scrolled past one full viewport height
       if (scrollPosition > windowHeight && scrollPosition < windowHeight * 2 && !showCelebration) {
@@ -78,7 +71,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isFlipped, showCelebration])
+  }, [showCelebration])
 
   // Handle back button navigation to ensure users return to quiz start page
   useEffect(() => {
@@ -120,323 +113,312 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const primaryColor = [14, 165, 233] // primary-500
       const textColor = [31, 41, 55] // gray-800
       const lightGray = [156, 163, 175] // gray-400
+      const rosterLabBlue = [3, 105, 161] // #0369A1
 
-      // Header
-      doc.setFillColor(10, 25, 41) // Dark blue background
+      // Extract first name
+      const firstName = name.split(' ')[0]
+      
+      // Page 1
+      // Header with RosterLab blue
+      doc.setFillColor(...rosterLabBlue as [number, number, number])
       doc.rect(0, 0, 210, 40, 'F')
       
+      // Add RosterLab text instead of logo to avoid image loading issues
       doc.setTextColor(255, 255, 255)
-      doc.setFontSize(24)
-      doc.text('Your Rostering Personality', 20, 20)
-      doc.setFontSize(18)
-      doc.text('The Rules Robot', 20, 30)
+      doc.setFontSize(14)
+      doc.setFont(undefined, 'bold')
+      doc.text('ROSTERLAB', 20, 15)
       
-      // Personal info section
-      doc.setTextColor(...textColor as [number, number, number])
-      doc.setFontSize(12)
-      doc.text(`Name: ${name}`, 20, 55)
-      doc.text(`Email: ${email}`, 20, 65)
-      if (company) {
-        doc.text(`Company: ${company}`, 20, 75)
-      }
+      doc.setFont(undefined, 'normal')
+      doc.setFontSize(20)
+      doc.text(`${firstName}'s Rostering Personality`, 20, 28)
+      doc.setFontSize(16)
+      doc.text('The Rules Robot', 20, 36)
+      
+      // Start content directly after header
+      let currentY = 50
       
       // Main content
-      doc.setFontSize(16)
+      doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Your Personality Type: Rules Robot', 20, 95)
+      doc.text('It sounds like you best fit: The Rules Robot', 20, currentY)
       
-      doc.setFontSize(12)
+      currentY += 10
+      doc.setFontSize(11)
       doc.setTextColor(...textColor as [number, number, number])
-      const description = 'As a Rules Robot, you are the guardian of compliance and process in staff scheduling. Your systematic approach ensures every roster meets legal requirements while maintaining operational efficiency.'
-      const lines = doc.splitTextToSize(description, 170)
-      doc.text(lines, 20, 110)
+      const description = "You're the guardian of compliance, the protector of protocols. Your roster isn't just a schedule—it's a legally sound document that could withstand any audit."
+      const lines = doc.splitTextToSize(description, 110)
+      doc.text(lines, 20, currentY)
+      currentY += lines.length * 5 + 8
+      
+      // Celebrity matches section
+      currentY += 8
+      doc.setFontSize(13)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text("If your rostering style was a celebrity you'd be...", 20, currentY)
+      
+      currentY += 12
+      doc.setFontSize(10)
+      doc.setTextColor(...textColor as [number, number, number])
+      
+      // Create boxes for celebrities with text
+      // Celebrity 1
+      doc.setFillColor(249, 250, 251)
+      doc.rect(20, currentY - 5, 55, 15, 'F')
+      doc.text('Serena Shift-Williams', 22, currentY + 2)
+      doc.text('Serves up rosters with precision', 22, currentY + 7)
+      
+      // Celebrity 2
+      doc.rect(80, currentY - 5, 60, 15, 'F')
+      doc.text('Dwayne "The Roster" Johnson', 82, currentY + 2)
+      doc.text('Strong, dependable, unbreakable', 82, currentY + 7)
+      
+      // Celebrity 3
+      doc.rect(145, currentY - 5, 50, 15, 'F')
+      doc.text('Robocopliance', 147, currentY + 2)
+      doc.text('Sweet adherence to policy', 147, currentY + 7)
+      
+      currentY += 20
+      
+      // As the Rules Robot section
+      currentY += 5
+      doc.setFontSize(13)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('As the Rules Robot...', 20, currentY)
+      
+      currentY += 10
+      doc.setFontSize(10)
+      doc.setTextColor(...textColor as [number, number, number])
+      const robotDesc = 'You navigate the complex world of staff scheduling with precision and an unwavering commitment to compliance.'
+      const robotLines = doc.splitTextToSize(robotDesc, 170)
+      doc.text(robotLines, 20, currentY)
+      currentY += robotLines.length * 4 + 5
       
       // Key characteristics
-      doc.setFontSize(14)
-      doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Your Key Characteristics:', 20, 140)
-      
-      doc.setFontSize(11)
-      doc.setTextColor(...textColor as [number, number, number])
       const characteristics = [
-        '• Detail-Oriented: Nothing escapes your careful review',
+        '• Master of Compliance: Encyclopedic knowledge of labor laws',
+        '• Documentation Champion: Every decision has a paper trail',
         '• Process Perfectionist: Systematic approaches eliminate guesswork',
         '• Risk Minimizer: Proactively addresses compliance issues',
-        '• Efficiency Expert: Streamlines complex scheduling requirements'
+        '• Detail-Oriented: Nothing escapes your careful review'
       ]
       
-      let yPos = 155
+      doc.setFontSize(10)
       characteristics.forEach(char => {
-        doc.text(char, 25, yPos)
-        yPos += 10
+        if (currentY > 270) {
+          doc.addPage()
+          currentY = 20
+        }
+        doc.text(char, 25, currentY)
+        currentY += 7
       })
       
-      // Celebrity match
+      // Check if we need page 2
+      if (currentY > 180) {
+        doc.addPage()
+        currentY = 20
+      }
+      
+      // Pie Chart Section
+      currentY += 10
       doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Your Celebrity Match:', 20, 200)
+      doc.text('Your Rules Robot DNA', 105, currentY, { align: 'center' })
+      
+      // Draw simple representation of pie chart using stacked bars
+      const chartY = currentY + 10
+      const barWidth = 50
+      const barX = 80
+      
+      // Draw five stacked rectangles to represent the data
+      // Master of Compliance - 30%
+      doc.setFillColor(14, 165, 233)
+      doc.rect(barX, chartY, barWidth, 12, 'F')
+      
+      // Documentation Champion - 25%
+      doc.setFillColor(2, 132, 199)
+      doc.rect(barX, chartY + 14, barWidth, 10, 'F')
+      
+      // Process Perfectionist - 20%
+      doc.setFillColor(3, 105, 161)
+      doc.rect(barX, chartY + 26, barWidth, 8, 'F')
+      
+      // Risk Minimizer - 15%
+      doc.setFillColor(7, 89, 133)
+      doc.rect(barX, chartY + 36, barWidth, 6, 'F')
+      
+      // Detail-Oriented - 10%
+      doc.setFillColor(22, 78, 99)
+      doc.rect(barX, chartY + 44, barWidth, 4, 'F')
+      
+      // Legend with adjusted position
+      const legendY = chartY + 50
+      doc.setFontSize(8)
+      
+      // Master of Compliance
+      doc.setFillColor(14, 165, 233)
+      doc.rect(50, legendY, 4, 4, 'F')
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('Master of Compliance (30%)', 56, legendY + 3)
+      
+      // Documentation Champion
+      doc.setFillColor(2, 132, 199)
+      doc.rect(50, legendY + 7, 4, 4, 'F')
+      doc.text('Documentation Champion (25%)', 56, legendY + 10)
+      
+      // Process Perfectionist
+      doc.setFillColor(3, 105, 161)
+      doc.rect(50, legendY + 14, 4, 4, 'F')
+      doc.text('Process Perfectionist (20%)', 56, legendY + 17)
+      
+      // Risk Minimizer
+      doc.setFillColor(7, 89, 133)
+      doc.rect(50, legendY + 21, 4, 4, 'F')
+      doc.text('Risk Minimizer (15%)', 56, legendY + 24)
+      
+      // Detail-Oriented
+      doc.setFillColor(22, 78, 99)
+      doc.rect(50, legendY + 28, 4, 4, 'F')
+      doc.text('Detail-Oriented (10%)', 56, legendY + 31)
+      
+      // Tools section
+      currentY = legendY + 40
+      doc.setFontSize(13)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('Tools a Rules Robot needs to grow!', 20, currentY)
       
       doc.setFontSize(11)
       doc.setTextColor(...textColor as [number, number, number])
-      doc.text('Dwayne "The Roster" Johnson - Strong, dependable, and unbreakable', 25, 215)
+      const tools = [
+        '• Employee Mobile App: Empower your team with compliant mobile access',
+        '• Shift Swaps: Automated swapping that maintains compliance',
+        '• AI Roster Generator: Generate compliant rosters in seconds'
+      ]
       
-      // Footer
+      currentY += 10
+      doc.setFontSize(9)
+      tools.forEach(tool => {
+        doc.text(tool, 25, currentY)
+        currentY += 8
+      })
+      
+      // Check if we need page 2 for remaining content
+      if (currentY > 200) {
+        doc.addPage()
+        currentY = 20
+      }
+      
+      // Recommended reading
+      currentY += 10
+      doc.setFontSize(13)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('Recommended reading for Rules Robots', 20, currentY)
+      
+      currentY += 10
+      doc.setFontSize(9)
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('• Manage Night Shift Planning & Wellbeing Effectively', 25, currentY)
+      doc.text('• Fairer Scheduling at Work: Reducing Shift Bias', 25, currentY + 8)
+      doc.text('• Staff Rostering to Payroll: The Right Way to Do It', 25, currentY + 16)
+      currentY += 25
+      
+      // Need help section
+      currentY += 10
+      doc.setFontSize(13)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('Need help with your roster?', 20, currentY)
+      
+      currentY += 10
       doc.setFontSize(10)
+      doc.setTextColor(...textColor as [number, number, number])
+      const helpText = 'Let RosterLab handle the complex calculations and regulations while you focus on strategic decisions.'
+      const helpLines = doc.splitTextToSize(helpText, 170)
+      doc.text(helpLines, 20, currentY)
+      currentY += helpLines.length * 5
+      
+      // Footer at bottom of current page
+      const pageHeight = 297 // A4 height in mm
+      doc.setFontSize(9)
       doc.setTextColor(...lightGray as [number, number, number])
-      doc.text('Generated by RosterLab - AI-Powered Staff Scheduling', 105, 280, { align: 'center' })
+      doc.text('Generated by RosterLab - AI-Powered Staff Scheduling', 105, pageHeight - 15, { align: 'center' })
+      doc.text('Visit rosterlab.com to learn more', 105, pageHeight - 10, { align: 'center' })
       
       // Save the PDF
       doc.save(`RosterLab-Rules-Robot-${name.replace(/\s+/g, '-')}.pdf`)
     } catch (error) {
       console.error('Error generating PDF:', error)
-      alert('There was an error generating your PDF. Please try again.')
+      if (error instanceof Error) {
+        console.error('Error message:', error.message)
+        console.error('Error stack:', error.stack)
+      }
+      alert('There was an error generating your PDF. Please check the console for details.')
     }
   }, [])
 
   return (
     <div className="bg-white relative">
-      {/* Wrapper for Hero and As Rules Robot sections with sticky card */}
-      <div className="relative z-30">
+      {/* Hero Section */}
+      <section className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left Column - Content for both sections */}
-            <div>
-              {/* Hero Section - Full Screen */}
-              <section className="min-h-[80vh] lg:min-h-screen flex items-center py-8 lg:py-0">
-                <div className="text-center lg:text-left">
-                  <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl mb-6">
-                    It sounds like you best fit:<br />
-                    <span className="text-primary-600">The Rules Robot</span>
-                  </h1>
-                  <p className="text-lg text-gray-600 mb-8">
-                    You're the guardian of compliance, the protector of protocols. Your roster isn't just a schedule—it's a legally sound document that could withstand any audit.
-                  </p>
-                  
-                  {/* Mobile Card - shown only on mobile */}
-                  <div className="lg:hidden mb-8">
-                    <div className="relative w-64 h-80 mx-auto">
-                      <Image
-                        src="/images/quiz/test2.png"
-                        alt="The Rules Robot"
-                        width={256}
-                        height={320}
-                        className="object-contain rounded-lg shadow-lg"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-4">
-                    <button
-                      onClick={handleCopyLink}
-                      className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                    >
-                      <svg 
-                        className="h-5 w-5" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          strokeWidth={2} 
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" 
-                        />
-                      </svg>
-                      {copied ? 'Copied to clipboard!' : 'Share your results'}
-                    </button>
-                    <Link
-                      href="/tools/staff-scheduling-personality-quiz"
-                      className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                    >
-                      Take the Quiz
-                    </Link>
-                  </div>
-                  
-                  {/* Scroll Down Arrow */}
-                  <div className="mt-12 flex justify-center">
-                    <div className="w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center animate-bounce">
-                      <svg 
-                        className="w-6 h-6 text-gray-400" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          strokeWidth={2} 
-                          d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* As the Rules Robot Section */}
-              <section className="flex items-center relative py-8">
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                    As the Rules Robot…
-                  </h2>
-                  <p className="text-lg text-gray-600 mb-8">
-                    You navigate the complex world of staff scheduling with precision and an unwavering commitment to compliance. Your methodical approach ensures every roster is legally sound and audit-ready.
-                  </p>
-                  
-                  {/* Key Characteristics */}
-                  <div className="space-y-4">
-                    <div className="flex items-start">
-                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-gray-700">
-                        <span className="font-semibold">Master of Compliance:</span> Encyclopedic knowledge of labor laws, regulations, and company policies
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-gray-700">
-                        <span className="font-semibold">Documentation Champion:</span> Every decision has a paper trail, creating bulletproof audit records
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-gray-700">
-                        <span className="font-semibold">Process Perfectionist:</span> Systematic approaches that eliminate guesswork and reduce errors
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-gray-700">
-                        <span className="font-semibold">Risk Minimizer:</span> Proactively identifies and addresses potential compliance issues before they arise
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-gray-700">
-                        <span className="font-semibold">Detail-Oriented:</span> Nothing escapes your careful review, from overtime calculations to break requirements
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Download Results CTA */}
-                  <div className="mt-8 text-center">
-                    <button 
-                      onClick={() => setShowDownloadForm(true)}
-                      className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
-                    >
-                      Download my results
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Confetti Celebration */}
-                {showCelebration && (
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    {[...Array(30)].map((_, i) => {
-                      const colors = ['#0284c7', '#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd', '#075985', '#0369a1']
-                      const randomColor = colors[Math.floor(Math.random() * colors.length)]
-                      const randomLeft = Math.random() * 100
-                      const randomDelay = Math.random() * 0.5
-                      const randomDuration = 2 + Math.random() * 1
-                      
-                      return (
-                        <div
-                          key={i}
-                          className="absolute w-3 h-3"
-                          style={{
-                            left: `${randomLeft}%`,
-                            top: '-20px',
-                            backgroundColor: randomColor,
-                            animation: `confettiFall ${randomDuration}s ease-out ${randomDelay}s forwards`,
-                            transform: `rotate(${Math.random() * 360}deg)`
-                          }}
-                        />
-                      )
-                    })}
-                    <style jsx>{`
-                      @keyframes confettiFall {
-                        0% {
-                          transform: translateY(0) rotate(0deg);
-                          opacity: 1;
-                        }
-                        100% {
-                          transform: translateY(100vh) rotate(720deg);
-                          opacity: 0;
-                        }
-                      }
-                    `}</style>
-                  </div>
-                )}
-              </section>
-            </div>
-
-            {/* Right Column - Sticky Card that spans both sections - hidden on mobile */}
-            <div className="relative hidden lg:block">
-              <div className="sticky top-32 min-h-screen flex items-center">
-                {/* Card container with 3D flip effect */}
-                <div className="relative w-96 h-[28rem] mx-auto" style={{ perspective: '1000px' }}>
-                  <div 
-                    className="absolute inset-0 w-full h-full transition-transform duration-700"
-                    style={{ 
-                      transformStyle: 'preserve-3d',
-                      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
-                    }}
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+            {/* Left Column - Content */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl mb-6">
+                It sounds like you best fit:<br />
+                <span className="text-primary-600">The Rules Robot</span>
+              </h1>
+              <p className="text-lg text-gray-600 mb-8">
+                You're the guardian of compliance, the protector of protocols. Your roster isn't just a schedule—it's a legally sound document that could withstand any audit.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <button
+                  onClick={handleCopyLink}
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >
+                  <svg 
+                    className="h-5 w-5" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
                   >
-                    {/* Front of card */}
-                    <div 
-                      className="absolute inset-0 w-full h-full"
-                      style={{ backfaceVisibility: 'hidden' }}
-                    >
-                      <div className="relative w-full h-full transform rotate-3 transition-transform duration-300 hover:rotate-0">
-                        <Image
-                          src="/images/quiz/test2.png"
-                          alt="The Rules Robot"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* Back of card */}
-                    <div 
-                      className="absolute inset-0 w-full h-full"
-                      style={{ 
-                        backfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
-                      }}
-                    >
-                      <div className="relative w-full h-full transform rotate-3 transition-transform duration-300 hover:rotate-0">
-                        <Image
-                          src="/images/quiz/test3.png"
-                          alt="The Rules Robot - Back"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" 
+                    />
+                  </svg>
+                  {copied ? 'Copied to clipboard!' : 'Share your results'}
+                </button>
+                <Link
+                  href="/tools/staff-scheduling-personality-quiz"
+                  className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                >
+                  Take the Quiz
+                </Link>
+              </div>
+            </div>
+            
+            {/* Right Column - Tarot Card */}
+            <div className="order-first lg:order-last">
+              <div className="relative w-full max-w-xs mx-auto lg:mx-0 lg:ml-auto">
+                <div className="relative w-full h-[22rem] transform rotate-3 transition-transform duration-300 hover:rotate-0">
+                  <Image
+                    src="/images/quiz/test2.png"
+                    alt="The Rules Robot"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Celebrity Style Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[5]">
+      {/* Celebrity Style Section */}
+      <section id="celebrity-section" className="bg-gray-50 py-8 md:py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
             If your rostering style was a celebrity you'd be…
@@ -498,87 +480,300 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
         </div>
       </section>
 
-      {/* Breakfast Style Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-[6] lg:mb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">
-            If your rostering style were a breakfast...
+      {/* As the Rules Robot Section */}
+      <section id="as-rules-robot-section" className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            As the Rules Robot…
           </h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg p-12">
-              <div className="w-64 h-64 mx-auto mb-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/images/quiz/eggs2.png"
-                  alt="Eggs Benedict - The Rules Robot breakfast"
-                  width={256}
-                  height={256}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                A carefully portioned eggs Benedict with perfect hollandaise symmetry.
-              </h3>
-              <p className="text-lg text-gray-600">
-                Every element precisely measured, timed to perfection, and plated according to the highest standards of breakfast protocol.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Song Lyric Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-[7] lg:mb-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12">
-            If your weekly staff scheduling style was a song lyric…
-          </h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-gray-50 rounded-2xl shadow-lg p-12 border border-gray-200">
-              <div className="mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-                  <Image
-                    src="/images/quiz/siren.png"
-                    alt="Police siren"
-                    width={128}
-                    height={128}
-                    className="w-full h-full object-cover"
-                  />
+          <p className="text-lg text-gray-600 mb-8">
+            You navigate the complex world of staff scheduling with precision and an unwavering commitment to compliance. Your methodical approach ensures every roster is legally sound and audit-ready.
+          </p>
+          
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Left Column - Content (full width on mobile) */}
+            <div>
+              {/* Key Characteristics */}
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Master of Compliance:</span> Encyclopedic knowledge of labor laws, regulations, and company policies
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Song: "Sound of da Police" by KRS-One
-                </h3>
-                <p className="text-xl text-gray-700 italic mb-6">
-                  A classic hip-hop track about authority and oversight
-                </p>
-                <p className="text-lg text-gray-800 mb-8">
-                  "Woop-woop! That's the sound of da police! Woop-woop! That's the sound of the beast!"
-                </p>
+                
+                <div className="flex items-start">
+                  <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Documentation Champion:</span> Every decision has a paper trail, creating bulletproof audit records
+                  </p>
+                </div>
+                
+                <div className="flex items-start">
+                  <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Process Perfectionist:</span> Systematic approaches that eliminate guesswork and reduce errors
+                  </p>
+                </div>
+                
+                <div className="flex items-start">
+                  <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Risk Minimizer:</span> Proactively identifies and addresses potential compliance issues before they arise
+                  </p>
+                </div>
+                
+                <div className="flex items-start">
+                  <svg className="w-6 h-6 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-gray-700">
+                    <span className="font-semibold">Detail-Oriented:</span> Nothing escapes your careful review, from overtime calculations to break requirements
+                  </p>
+                </div>
               </div>
-              <a
-                href="https://www.youtube.com/watch?v=8Odt6a_Fzk0&list=RD8Odt6a_Fzk0&start_radio=1"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
-              >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                Listen on YouTube
-              </a>
+              
+              {/* Download Results CTA */}
+              <div className="mt-8 text-center lg:text-left">
+                <button 
+                  onClick={() => setShowDownloadForm(true)}
+                  className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
+                >
+                  Download my results
+                </button>
+              </div>
+            </div>
+            
+            {/* Right Column - Pie Chart (shows below on mobile) */}
+            <div className="relative mt-12 lg:mt-0">
+              <div className="relative w-full flex flex-col items-center">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">Your Rules Robot DNA</h3>
+                
+                {/* Pie Chart */}
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+                  <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
+                    {/* Master of Compliance - 30% */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#0ea5e9"
+                      strokeWidth={hoveredSection === 'compliance' ? '24' : '20'}
+                      strokeDasharray="75.36 251.2"
+                      strokeDashoffset="0"
+                      className="transition-all duration-300 cursor-pointer"
+                      style={{ opacity: hoveredSection && hoveredSection !== 'compliance' ? 0.5 : 1 }}
+                      onMouseEnter={() => setHoveredSection('compliance')}
+                      onMouseLeave={() => setHoveredSection(null)}
+                    />
+                    
+                    {/* Documentation Champion - 25% */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#0284c7"
+                      strokeWidth={hoveredSection === 'documentation' ? '24' : '20'}
+                      strokeDasharray="62.8 251.2"
+                      strokeDashoffset="-75.36"
+                      className="transition-all duration-300 cursor-pointer"
+                      style={{ opacity: hoveredSection && hoveredSection !== 'documentation' ? 0.5 : 1 }}
+                      onMouseEnter={() => setHoveredSection('documentation')}
+                      onMouseLeave={() => setHoveredSection(null)}
+                    />
+                    
+                    {/* Process Perfectionist - 20% */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#0369a1"
+                      strokeWidth={hoveredSection === 'process' ? '24' : '20'}
+                      strokeDasharray="50.24 251.2"
+                      strokeDashoffset="-138.16"
+                      className="transition-all duration-300 cursor-pointer"
+                      style={{ opacity: hoveredSection && hoveredSection !== 'process' ? 0.5 : 1 }}
+                      onMouseEnter={() => setHoveredSection('process')}
+                      onMouseLeave={() => setHoveredSection(null)}
+                    />
+                    
+                    {/* Risk Minimizer - 15% */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#075985"
+                      strokeWidth={hoveredSection === 'risk' ? '24' : '20'}
+                      strokeDasharray="37.68 251.2"
+                      strokeDashoffset="-188.4"
+                      className="transition-all duration-300 cursor-pointer"
+                      style={{ opacity: hoveredSection && hoveredSection !== 'risk' ? 0.5 : 1 }}
+                      onMouseEnter={() => setHoveredSection('risk')}
+                      onMouseLeave={() => setHoveredSection(null)}
+                    />
+                    
+                    {/* Detail-Oriented - 10% */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#164e63"
+                      strokeWidth={hoveredSection === 'detail' ? '24' : '20'}
+                      strokeDasharray="25.12 251.2"
+                      strokeDashoffset="-226.08"
+                      className="transition-all duration-300 cursor-pointer"
+                      style={{ opacity: hoveredSection && hoveredSection !== 'detail' ? 0.5 : 1 }}
+                      onMouseEnter={() => setHoveredSection('detail')}
+                      onMouseLeave={() => setHoveredSection(null)}
+                    />
+                  </svg>
+                  
+                  {/* Center circle */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-white rounded-full flex items-center justify-center">
+                      {hoveredSection && (
+                        <div className="text-center animate-fade-in p-2">
+                          <div className="text-2xl sm:text-3xl font-bold text-gray-900">
+                            {hoveredSection === 'compliance' && '30%'}
+                            {hoveredSection === 'documentation' && '25%'}
+                            {hoveredSection === 'process' && '20%'}
+                            {hoveredSection === 'risk' && '15%'}
+                            {hoveredSection === 'detail' && '10%'}
+                          </div>
+                          <div className="text-xs sm:text-sm text-gray-600 whitespace-pre-line">
+                            {hoveredSection === 'compliance' && 'Master of\nCompliance'}
+                            {hoveredSection === 'documentation' && 'Documentation\nChampion'}
+                            {hoveredSection === 'process' && 'Process\nPerfectionist'}
+                            {hoveredSection === 'risk' && 'Risk\nMinimizer'}
+                            {hoveredSection === 'detail' && 'Detail-\nOriented'}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Legend */}
+                <div className="mt-8 space-y-2">
+                  <div 
+                    className={`flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                      hoveredSection === 'compliance' ? 'scale-105 font-semibold' : ''
+                    } ${hoveredSection && hoveredSection !== 'compliance' ? 'opacity-50' : ''}`}
+                    onMouseEnter={() => setHoveredSection('compliance')}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    <div className="w-4 h-4 bg-[#0ea5e9] rounded-sm"></div>
+                    <span className="text-gray-700">Master of Compliance (30%)</span>
+                  </div>
+                  <div 
+                    className={`flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                      hoveredSection === 'documentation' ? 'scale-105 font-semibold' : ''
+                    } ${hoveredSection && hoveredSection !== 'documentation' ? 'opacity-50' : ''}`}
+                    onMouseEnter={() => setHoveredSection('documentation')}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    <div className="w-4 h-4 bg-[#0284c7] rounded-sm"></div>
+                    <span className="text-gray-700">Documentation Champion (25%)</span>
+                  </div>
+                  <div 
+                    className={`flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                      hoveredSection === 'process' ? 'scale-105 font-semibold' : ''
+                    } ${hoveredSection && hoveredSection !== 'process' ? 'opacity-50' : ''}`}
+                    onMouseEnter={() => setHoveredSection('process')}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    <div className="w-4 h-4 bg-[#0369a1] rounded-sm"></div>
+                    <span className="text-gray-700">Process Perfectionist (20%)</span>
+                  </div>
+                  <div 
+                    className={`flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                      hoveredSection === 'risk' ? 'scale-105 font-semibold' : ''
+                    } ${hoveredSection && hoveredSection !== 'risk' ? 'opacity-50' : ''}`}
+                    onMouseEnter={() => setHoveredSection('risk')}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    <div className="w-4 h-4 bg-[#075985] rounded-sm"></div>
+                    <span className="text-gray-700">Risk Minimizer (15%)</span>
+                  </div>
+                  <div 
+                    className={`flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                      hoveredSection === 'detail' ? 'scale-105 font-semibold' : ''
+                    } ${hoveredSection && hoveredSection !== 'detail' ? 'opacity-50' : ''}`}
+                    onMouseEnter={() => setHoveredSection('detail')}
+                    onMouseLeave={() => setHoveredSection(null)}
+                  >
+                    <div className="w-4 h-4 bg-[#164e63] rounded-sm"></div>
+                    <span className="text-gray-700">Detail-Oriented (10%)</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          
+          {/* Confetti Celebration */}
+          {showCelebration && (
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    {[...Array(30)].map((_, i) => {
+                      const colors = ['#0284c7', '#0ea5e9', '#38bdf8', '#7dd3fc', '#bae6fd', '#075985', '#0369a1']
+                      const randomColor = colors[Math.floor(Math.random() * colors.length)]
+                      const randomLeft = Math.random() * 100
+                      const randomDelay = Math.random() * 0.5
+                      const randomDuration = 2 + Math.random() * 1
+                      
+                      return (
+                        <div
+                          key={i}
+                          className="absolute w-3 h-3"
+                          style={{
+                            left: `${randomLeft}%`,
+                            top: '-20px',
+                            backgroundColor: randomColor,
+                            animation: `confettiFall ${randomDuration}s ease-out ${randomDelay}s forwards`,
+                            transform: `rotate(${Math.random() * 360}deg)`
+                          }}
+                        />
+                      )
+                    })}
+                    <style jsx>{`
+                      @keyframes confettiFall {
+                        0% {
+                          transform: translateY(0) rotate(0deg);
+                          opacity: 1;
+                        }
+                        100% {
+                          transform: translateY(100vh) rotate(720deg);
+                          opacity: 0;
+                        }
+                      }
+                    `}</style>
+                  </div>
+          )}
         </div>
       </section>
 
-      {/* Tools Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-white lg:sticky lg:top-0 lg:z-10 lg:mb-32">
+
+      {/* Tools Section */}
+      <section className="bg-gray-50 py-8 md:py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Tools a Rules Robot needs to grow!
           </h2>
           
           <div className="grid gap-8 md:grid-cols-3 mb-12">
-            <Link href="/solutions/mobile-app" className="block">
+            <Link href="/solutions/staff-roster-mobile-app" className="block">
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg className="w-24 h-24 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -598,7 +793,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
               </div>
             </Link>
             
-            <Link href="/features/shift-swapping" className="block">
+            <Link href="/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg className="w-24 h-24 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -651,8 +846,8 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
         </div>
       </section>
 
-      {/* Recommendations Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gray-50 lg:sticky lg:top-0 lg:z-20 lg:mb-32">
+      {/* Recommendations Section */}
+      <section className="bg-white py-8 md:py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Recommended reading for Rules Robots
@@ -715,8 +910,8 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
         </div>
       </section>
 
-      {/* Need help with your roster? Section - Full Screen */}
-      <section className="min-h-[80vh] lg:min-h-screen flex items-center bg-gradient-to-b from-[#0a1929] to-[#1e3a5f] relative z-30 overflow-hidden">
+      {/* Need help with your roster? Section */}
+      <section className="bg-gradient-to-b from-[#0a1929] to-[#1e3a5f] relative overflow-hidden py-8 md:py-10 lg:py-12">
         {/* Animated stars background */}
         <div className="absolute inset-0">
           {stars.map((star) => (
