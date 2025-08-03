@@ -92,15 +92,29 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
+  // Ensure meta description is between 120-155 characters
+  let metaDescription = post.seo?.metaDescription || post.excerpt || ''
+  
+  // Special handling for Whanganui post
+  if (slug === 'whanganui-radiography-department-embraces-ai-rostering') {
+    metaDescription = 'Whanganui DHB radiography department successfully implements AI-powered rostering, improving staff satisfaction and work-life balance.'
+  } else if (metaDescription.length < 120) {
+    // If description is too short, enhance it
+    metaDescription = `${metaDescription} Read the full story on RosterLab's newsroom for healthcare workforce management insights.`.slice(0, 155)
+  } else if (metaDescription.length > 155) {
+    // If description is too long, truncate it properly
+    metaDescription = metaDescription.slice(0, 152) + '...'
+  }
+  
   return {
     title: post.seo?.metaTitle || post.title,
-    description: post.seo?.metaDescription || post.excerpt,
+    description: metaDescription,
     alternates: {
       canonical: `${baseUrl}/newsroom/${slug}`,
     },
     openGraph: {
       title: post.seo?.metaTitle || post.title,
-      description: post.seo?.metaDescription || post.excerpt,
+      description: metaDescription,
       type: "article",
       url: `https://rosterlab.com/newsroom/${slug}`,
       images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 

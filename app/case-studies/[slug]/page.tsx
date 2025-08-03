@@ -92,15 +92,29 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
+  // Ensure meta description is between 120-155 characters
+  let metaDescription = post.seo?.metaDescription || post.excerpt || ''
+  
+  // Special handling for ICU unit case study
+  if (slug === 'icu-unit-western-australia') {
+    metaDescription = 'Western Australian ICU transforms staff rostering with RosterLab, achieving significant time savings and improved staff satisfaction.'
+  } else if (metaDescription.length < 120) {
+    // If description is too short, enhance it
+    metaDescription = `${metaDescription} Read the full case study on how RosterLab transforms healthcare workforce management.`.slice(0, 155)
+  } else if (metaDescription.length > 155) {
+    // If description is too long, truncate it properly
+    metaDescription = metaDescription.slice(0, 152) + '...'
+  }
+  
   return {
     title: post.seo?.metaTitle || post.title,
-    description: post.seo?.metaDescription || post.excerpt,
+    description: metaDescription,
     alternates: {
       canonical: `${baseUrl}/case-studies/${slug}`,
     },
     openGraph: {
       title: post.seo?.metaTitle || post.title,
-      description: post.seo?.metaDescription || post.excerpt,
+      description: metaDescription,
       type: "article",
       url: `https://rosterlab.com/case-studies/${slug}`,
       images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 

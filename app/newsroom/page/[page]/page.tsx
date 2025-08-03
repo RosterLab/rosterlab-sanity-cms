@@ -53,11 +53,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     robots: {
-      index: true,
+      index: false,  // Pagination pages should not be indexed
       follow: true,
     },
     alternates: {
       canonical: pageNumber === 1 ? `${baseUrl}/newsroom` : `${baseUrl}/newsroom/page/${pageNumber}`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `${baseUrl}/newsroom/page/${pageNumber}`,
+      images: [
+        {
+          url: '/images/og images/Newsroom.png',
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/og images/Newsroom.png'],
     },
   }
 }
