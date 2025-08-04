@@ -174,10 +174,10 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.text(`${firstName}'s Rostering Personality`, 20, 32)
       doc.setFontSize(16)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('The Rules Robot', 20, 40)
+      doc.text('The Rules Robot', 20, 42)
       
-      // Start content directly after header
-      let currentY = 50
+      // Start content with more spacing
+      let currentY = 58
       
       // Main content with tarot card image
       doc.setFontSize(14)
