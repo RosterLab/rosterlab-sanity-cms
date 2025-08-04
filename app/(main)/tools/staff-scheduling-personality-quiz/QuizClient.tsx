@@ -475,13 +475,13 @@ export default function QuizClient() {
       {isQuizActive && (
         <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain">
           {/* Logo in top left corner of the screen */}
-          <div className="fixed top-4 left-4 md:top-8 md:left-12 z-50">
+          <div className="absolute top-4 left-4 md:fixed md:top-8 md:left-12 z-50">
             <Image
               src="/images/rosterlab-logo.png"
               alt="RosterLab"
-              width={160}
-              height={40}
-              className="brightness-0 invert"
+              width={120}
+              height={30}
+              className="brightness-0 invert md:w-[160px] md:h-[40px]"
             />
           </div>
 
@@ -512,7 +512,7 @@ export default function QuizClient() {
             </div>
 
             {/* Quiz Content */}
-            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-8 max-w-2xl w-full shadow-2xl">
+            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-4 pt-16 md:p-8 max-w-2xl w-full shadow-2xl">
 
               {/* Close button */}
               <button
@@ -544,16 +544,16 @@ export default function QuizClient() {
               ) : (
                 <>
                   {/* Title */}
-                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-6 mt-4 md:mt-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-6 mt-2 md:mt-6">
                     What's your rostering personality type?
                   </h2>
 
                   {/* Question */}
-                  <div className="mb-6 md:mb-8">
-                    <h3 className="text-base md:text-lg font-semibold text-white/80 mb-2">
+                  <div className="mb-4 md:mb-8">
+                    <h3 className="text-sm md:text-lg font-semibold text-white/80 mb-2">
                       Question {currentQuestion + 1} of {quizQuestions.length}
                     </h3>
-                    <p className="text-lg md:text-xl text-white/90">
+                    <p className="text-base md:text-xl text-white/90">
                       {quizQuestions[currentQuestion].question}
                     </p>
                   </div>
