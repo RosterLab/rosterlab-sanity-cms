@@ -158,28 +158,35 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text("If your rostering style was a celebrity you'd be...", 20, currentY)
       
-      currentY += 12
-      doc.setFontSize(10)
+      currentY += 10
+      doc.setFontSize(11)
+      doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Create boxes for celebrities with text
       // Celebrity 1
-      doc.setFillColor(249, 250, 251)
-      doc.rect(20, currentY - 5, 55, 15, 'F')
-      doc.text('Dalai Shiftma', 22, currentY + 2)
-      doc.text('Finding inner peace in rosters', 22, currentY + 7)
+      doc.text('• Dalai Shiftma', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Finding inner peace in rosters', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 2
-      doc.rect(80, currentY - 5, 60, 15, 'F')
-      doc.text('Sir Roster Attenborough', 82, currentY + 2)
-      doc.text('Narrating workplace harmony', 82, currentY + 7)
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Sir Roster Attenborough', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Narrating workplace harmony', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 3
-      doc.rect(145, currentY - 5, 50, 15, 'F')
-      doc.text('Zendaya Zen-roster', 147, currentY + 2)
-      doc.text('Balancing with grace', 147, currentY + 7)
-      
-      currentY += 20
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Zendaya Zen-roster', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Balancing with grace', 25, currentY + 5)
+      currentY += 15
       
       // As the Peacekeeper Panda section
       currentY += 5

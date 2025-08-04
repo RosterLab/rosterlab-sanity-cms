@@ -158,28 +158,35 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text("If your rostering style was a celebrity you'd be...", 20, currentY)
       
-      currentY += 12
-      doc.setFontSize(10)
+      currentY += 10
+      doc.setFontSize(11)
+      doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Create boxes for celebrities with text
       // Celebrity 1
-      doc.setFillColor(249, 250, 251)
-      doc.rect(20, currentY - 5, 55, 15, 'F')
-      doc.text('Serena Shift-Williams', 22, currentY + 2)
-      doc.text('Serves up rosters with precision', 22, currentY + 7)
+      doc.text('• Serena Shift-Williams', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Serves up rosters with precision', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 2
-      doc.rect(80, currentY - 5, 60, 15, 'F')
-      doc.text('Dwayne "The Roster" Johnson', 82, currentY + 2)
-      doc.text('Strong, dependable, unbreakable', 82, currentY + 7)
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Dwayne "The Roster" Johnson', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Strong, dependable, unbreakable', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 3
-      doc.rect(145, currentY - 5, 50, 15, 'F')
-      doc.text('Robocopliance', 147, currentY + 2)
-      doc.text('Sweet adherence to policy', 147, currentY + 7)
-      
-      currentY += 20
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Robocopliance', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Sweet adherence to policy', 25, currentY + 5)
+      currentY += 15
       
       // As the Rules Robot section
       currentY += 5

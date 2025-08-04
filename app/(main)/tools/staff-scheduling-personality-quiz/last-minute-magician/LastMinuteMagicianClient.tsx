@@ -158,28 +158,35 @@ export default function LastMinuteMagicianClient({ recommendedPosts }: LastMinut
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text("If your rostering style was a celebrity you'd be...", 20, currentY)
       
-      currentY += 12
-      doc.setFontSize(10)
+      currentY += 10
+      doc.setFontSize(11)
+      doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Create boxes for celebrities with text
       // Celebrity 1
-      doc.setFillColor(249, 250, 251)
-      doc.rect(20, currentY - 5, 55, 15, 'F')
-      doc.text('Harry Cell-er', 22, currentY + 2)
-      doc.text('Magic spells for last-minute shifts', 22, currentY + 7)
+      doc.text('• Harry Cell-er', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Magic spells for last-minute shifts', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 2
-      doc.rect(80, currentY - 5, 60, 15, 'F')
-      doc.text('Benedict Cumber-batch-Roster', 82, currentY + 2)
-      doc.text('Solves impossible roster mysteries', 82, currentY + 7)
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Benedict Cumber-batch-Roster', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Solves impossible roster mysteries', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 3
-      doc.rect(145, currentY - 5, 50, 15, 'F')
-      doc.text('Steve Job Swap', 147, currentY + 2)
-      doc.text('Innovates under pressure', 147, currentY + 7)
-      
-      currentY += 20
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Steve Job Swap', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Innovates under pressure', 25, currentY + 5)
+      currentY += 15
       
       // As the Last-Minute Magician section
       currentY += 5

@@ -150,25 +150,35 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     doc.setTextColor(...primaryColor as [number, number, number])
     doc.text("If your rostering style was a celebrity you'd be...", 20, currentY)
     
-    currentY += 12
-    doc.setFontSize(10)
+    currentY += 10
+    doc.setFontSize(11)
+    doc.setFont('helvetica', 'bold')
     doc.setTextColor(...textColor as [number, number, number])
     
-    // Create boxes for celebrities
-    doc.setFillColor(249, 250, 251)
-    doc.rect(20, currentY - 5, 55, 15, 'F')
-    doc.text('Post-Shift Malone', 22, currentY + 2)
-    doc.text('Covered in conditional formatting', 22, currentY + 7)
+    // Celebrity 1
+    doc.text('• Post-Shift Malone', 25, currentY)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(10)
+    doc.text('  Covered in conditional formatting', 25, currentY + 5)
+    currentY += 12
     
-    doc.rect(80, currentY - 5, 60, 15, 'F')
-    doc.text('Chris Excelsworth', 82, currentY + 2)
-    doc.text('Strong formulas, stronger eyebrows', 82, currentY + 7)
+    // Celebrity 2
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(11)
+    doc.text('• Chris Excelsworth', 25, currentY)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(10)
+    doc.text('  Strong formulas, stronger eyebrows', 25, currentY + 5)
+    currentY += 12
     
-    doc.rect(145, currentY - 5, 50, 15, 'F')
-    doc.text('Hermione Cell-ranger', 147, currentY + 2)
-    doc.text('Knows every shortcut', 147, currentY + 7)
-    
-    currentY += 20
+    // Celebrity 3
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(11)
+    doc.text('• Hermione Cell-ranger', 25, currentY)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(10)
+    doc.text('  Knows every shortcut', 25, currentY + 5)
+    currentY += 15
     
     // As the Spreadsheet Sorcerer section
     currentY += 5

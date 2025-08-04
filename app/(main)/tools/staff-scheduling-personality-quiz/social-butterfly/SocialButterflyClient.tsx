@@ -158,28 +158,35 @@ export default function SocialButterflyClient({ recommendedPosts }: SocialButter
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text("If your rostering style was a celebrity you'd be...", 20, currentY)
       
-      currentY += 12
-      doc.setFontSize(10)
+      currentY += 10
+      doc.setFontSize(11)
+      doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Create boxes for celebrities with text
       // Celebrity 1
-      doc.setFillColor(249, 250, 251)
-      doc.rect(20, currentY - 5, 55, 15, 'F')
-      doc.text('Drew Fairymore', 22, currentY + 2)
-      doc.text('Everyone gets a fair shift', 22, currentY + 7)
+      doc.text('• Drew Fairymore', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Everyone gets a fair shift', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 2
-      doc.rect(80, currentY - 5, 60, 15, 'F')
-      doc.text('Taylor Shift', 82, currentY + 2)
-      doc.text('Creates perfect team harmony', 82, currentY + 7)
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Taylor Shift', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Creates perfect team harmony', 25, currentY + 5)
+      currentY += 12
       
       // Celebrity 3
-      doc.rect(145, currentY - 5, 50, 15, 'F')
-      doc.text('Bruno Time-Off Mars', 147, currentY + 2)
-      doc.text('Makes scheduling fun', 147, currentY + 7)
-      
-      currentY += 20
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(11)
+      doc.text('• Bruno Time-Off Mars', 25, currentY)
+      doc.setFont('helvetica', 'normal')
+      doc.setFontSize(10)
+      doc.text('  Makes scheduling fun', 25, currentY + 5)
+      currentY += 15
       
       // As the Social Butterfly section
       currentY += 5
