@@ -114,6 +114,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const textColor = [31, 41, 55] // gray-800
       const lightGray = [156, 163, 175] // gray-400
       const rosterLabBlue = [3, 105, 161] // #0369A1
+      const linkBlue = [0, 102, 204] // #0066CC for hyperlinks
 
       // Extract first name
       const firstName = name.split(' ')[0]
@@ -126,10 +127,10 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       // Add RosterLab text instead of logo to avoid image loading issues
       doc.setTextColor(255, 255, 255)
       doc.setFontSize(14)
-      doc.setFont(undefined, 'bold')
+      doc.setFont('helvetica', 'bold')
       doc.text('ROSTERLAB', 20, 15)
       
-      doc.setFont(undefined, 'normal')
+      doc.setFont('helvetica', 'normal')
       doc.setFontSize(20)
       doc.text(`${firstName}'s Rostering Personality`, 20, 28)
       doc.setFontSize(16)
@@ -227,29 +228,83 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       
       // Draw simple representation of pie chart using stacked bars
       const chartY = currentY + 10
-      const barWidth = 50
-      const barX = 80
       
-      // Draw five stacked rectangles to represent the data
-      // Master of Compliance - 30%
-      doc.setFillColor(14, 165, 233)
-      doc.rect(barX, chartY, barWidth, 12, 'F')
+      // Helper function to draw a pie chart segment
+      const drawPieSegment = (
+        centerX: number, 
+        centerY: number, 
+        radius: number, 
+        startAngle: number, 
+        endAngle: number, 
+        color: [number, number, number]
+      ) => {
+        doc.setFillColor(...color)
+        
+        // Convert angles to radians
+        const startRad = (startAngle - 90) * Math.PI / 180
+        const endRad = (endAngle - 90) * Math.PI / 180
+        
+        // Draw the segment using lines
+        const steps = Math.ceil(Math.abs(endAngle - startAngle) / 5)
+        const angleStep = (endRad - startRad) / steps
+        
+        // Start from center
+        const points: Array<[number, number]> = [[centerX, centerY]]
+        
+        // Add arc points
+        for (let i = 0; i <= steps; i++) {
+          const angle = startRad + (i * angleStep)
+          const x = centerX + radius * Math.cos(angle)
+          const y = centerY + radius * Math.sin(angle)
+          points.push([x, y])
+        }
+        
+        // Close the path back to center
+        points.push([centerX, centerY])
+        
+        // Draw the filled polygon
+        doc.setFillColor(...color)
+        const lines = points.map((point, index) => {
+          if (index === 0) return null
+          return [points[index - 1], point] as [[number, number], [number, number]]
+        }).filter(Boolean) as Array<[[number, number], [number, number]]>
+        
+        lines.forEach(line => {
+          doc.line(line[0][0], line[0][1], line[1][0], line[1][1])
+        })
+        
+        // Fill the segment using triangles from center
+        for (let i = 1; i < points.length - 1; i++) {
+          doc.triangle(
+            centerX, centerY,
+            points[i][0], points[i][1],
+            points[i + 1][0], points[i + 1][1],
+            'F'
+          )
+        }
+      }
       
-      // Documentation Champion - 25%
-      doc.setFillColor(2, 132, 199)
-      doc.rect(barX, chartY + 14, barWidth, 10, 'F')
+      // Draw circular pie chart
+      const pieX = 105 // Center X
+      const pieY = chartY + 25 // Center Y
+      const pieRadius = 25 // Radius in mm
       
-      // Process Perfectionist - 20%
-      doc.setFillColor(3, 105, 161)
-      doc.rect(barX, chartY + 26, barWidth, 8, 'F')
+      // Define segments with percentages and colors
+      const segments = [
+        { percent: 30, color: [14, 165, 233] as [number, number, number], label: 'Master of Compliance' },
+        { percent: 25, color: [2, 132, 199] as [number, number, number], label: 'Documentation Champion' },
+        { percent: 20, color: [3, 105, 161] as [number, number, number], label: 'Process Perfectionist' },
+        { percent: 15, color: [7, 89, 133] as [number, number, number], label: 'Risk Minimizer' },
+        { percent: 10, color: [22, 78, 99] as [number, number, number], label: 'Detail-Oriented' }
+      ]
       
-      // Risk Minimizer - 15%
-      doc.setFillColor(7, 89, 133)
-      doc.rect(barX, chartY + 36, barWidth, 6, 'F')
-      
-      // Detail-Oriented - 10%
-      doc.setFillColor(22, 78, 99)
-      doc.rect(barX, chartY + 44, barWidth, 4, 'F')
+      // Draw the pie chart
+      let currentAngle = 0
+      segments.forEach(segment => {
+        const sweepAngle = (segment.percent / 100) * 360
+        drawPieSegment(pieX, pieY, pieRadius, currentAngle, currentAngle + sweepAngle, segment.color)
+        currentAngle += sweepAngle
+      })
       
       // Legend with adjusted position
       const legendY = chartY + 50
@@ -287,20 +342,44 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Tools a Rules Robot needs to grow!', 20, currentY)
       
-      doc.setFontSize(11)
-      doc.setTextColor(...textColor as [number, number, number])
-      const tools = [
-        '• Employee Mobile App: Empower your team with compliant mobile access',
-        '• Shift Swaps: Automated swapping that maintains compliance',
-        '• AI Roster Generator: Generate compliant rosters in seconds'
-      ]
-      
       currentY += 10
       doc.setFontSize(9)
-      tools.forEach(tool => {
-        doc.text(tool, 25, currentY)
-        currentY += 8
-      })
+      
+      // Tool 1: Employee Mobile App
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('• ', 25, currentY)
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const tool1Text = 'Employee Mobile App'
+      const tool1Width = doc.getTextWidth(tool1Text)
+      doc.text(tool1Text, 28, currentY)
+      doc.link(28, currentY - 3, tool1Width, 4, {url: 'https://rosterlab.com/solutions/staff-roster-mobile-app'})
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(': Empower your team with compliant mobile access', 28 + tool1Width, currentY)
+      currentY += 8
+      
+      // Tool 2: Shift Swaps
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('• ', 25, currentY)
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const tool2Text = 'Shift Swaps'
+      const tool2Width = doc.getTextWidth(tool2Text)
+      doc.text(tool2Text, 28, currentY)
+      doc.link(28, currentY - 3, tool2Width, 4, {url: 'https://rosterlab.com/feature/shift-swaps'})
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(': Automated swapping that maintains compliance', 28 + tool2Width, currentY)
+      currentY += 8
+      
+      // Tool 3: AI Roster Generator
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('• ', 25, currentY)
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const tool3Text = 'AI Roster Generator'
+      const tool3Width = doc.getTextWidth(tool3Text)
+      doc.text(tool3Text, 28, currentY)
+      doc.link(28, currentY - 3, tool3Width, 4, {url: 'https://rosterlab.com/solutions/ai-staff-scheduling'})
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(': Generate compliant rosters in seconds', 28 + tool3Width, currentY)
+      currentY += 8
       
       // Check if we need page 2 for remaining content
       if (currentY > 200) {
@@ -316,11 +395,36 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       
       currentY += 10
       doc.setFontSize(9)
+      
+      // Blog 1
       doc.setTextColor(...textColor as [number, number, number])
-      doc.text('• Manage Night Shift Planning & Wellbeing Effectively', 25, currentY)
-      doc.text('• Fairer Scheduling at Work: Reducing Shift Bias', 25, currentY + 8)
-      doc.text('• Staff Rostering to Payroll: The Right Way to Do It', 25, currentY + 16)
-      currentY += 25
+      doc.text('• ', 25, currentY)
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const blog1Text = 'Manage Night Shift Planning & Wellbeing Effectively'
+      const blog1Width = doc.getTextWidth(blog1Text)
+      doc.text(blog1Text, 28, currentY)
+      doc.link(28, currentY - 3, blog1Width, 4, {url: 'https://rosterlab.com/blog/manage-night-shift-planning-wellbeing-effectively'})
+      currentY += 8
+      
+      // Blog 2
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('• ', 25, currentY)
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const blog2Text = 'Fairer Scheduling at Work: Reducing Shift Bias'
+      const blog2Width = doc.getTextWidth(blog2Text)
+      doc.text(blog2Text, 28, currentY)
+      doc.link(28, currentY - 3, blog2Width, 4, {url: 'https://rosterlab.com/blog/fairer-scheduling-at-work-reducing-shift-bias'})
+      currentY += 8
+      
+      // Blog 3
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text('• ', 25, currentY)
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const blog3Text = 'Staff Rostering to Payroll: The Right Way to Do It'
+      const blog3Width = doc.getTextWidth(blog3Text)
+      doc.text(blog3Text, 28, currentY)
+      doc.link(28, currentY - 3, blog3Width, 4, {url: 'https://rosterlab.com/blog/staff-rostering-to-payroll-the-right-way-to-do-it'})
+      currentY += 17
       
       // Need help section
       currentY += 10
@@ -341,7 +445,12 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setFontSize(9)
       doc.setTextColor(...lightGray as [number, number, number])
       doc.text('Generated by RosterLab - AI-Powered Staff Scheduling', 105, pageHeight - 15, { align: 'center' })
-      doc.text('Visit rosterlab.com to learn more', 105, pageHeight - 10, { align: 'center' })
+      doc.setTextColor(...linkBlue as [number, number, number])
+      const footerText = 'Visit rosterlab.com to learn more'
+      const footerWidth = doc.getTextWidth(footerText)
+      const footerX = 105 - (footerWidth / 2)
+      doc.text(footerText, 105, pageHeight - 10, { align: 'center' })
+      doc.link(footerX, pageHeight - 13, footerWidth, 4, {url: 'https://rosterlab.com'})
       
       // Save the PDF
       doc.save(`RosterLab-Rules-Robot-${name.replace(/\s+/g, '-')}.pdf`)
@@ -483,10 +592,10 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       {/* As the Rules Robot Section */}
       <section id="as-rules-robot-section" className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
             As the Rules Robot…
           </h2>
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">
             You navigate the complex world of staff scheduling with precision and an unwavering commitment to compliance. Your methodical approach ensures every roster is legally sound and audit-ready.
           </p>
           
@@ -542,7 +651,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
               </div>
               
               {/* Download Results CTA */}
-              <div className="mt-8 text-center lg:text-left">
+              <div className="mt-8 text-center">
                 <button 
                   onClick={() => setShowDownloadForm(true)}
                   className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"

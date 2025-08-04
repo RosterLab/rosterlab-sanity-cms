@@ -62,7 +62,7 @@ const quizQuestions = [
       { id: 'c', text: "Sigh and do it in the morning.", personality: 'lastminute' },
       { id: 'd', text: "Ask them to submit it formally in writing.", personality: 'rules' },
       { id: 'e', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
-      { id: 'f', text: "Karen - assemble!", personality: 'nohope' }
+      { id: 'f', text: "Nancy - assemble!", personality: 'nohope' }
     ]
   },
   {
@@ -115,14 +115,14 @@ const quizQuestions = [
   }
 ]
 
-// Personality URLs mapping - TEMPORARILY all going to rules-robot
+// Personality URLs mapping
 const personalityUrls: Record<string, string> = {
-  'spreadsheet': '/tools/staff-scheduling-personality-quiz/rules-robot',
-  'peacekeeper': '/tools/staff-scheduling-personality-quiz/rules-robot',
-  'social': '/tools/staff-scheduling-personality-quiz/rules-robot',
+  'spreadsheet': '/tools/staff-scheduling-personality-quiz/spreadsheet-sorcerer',
+  'peacekeeper': '/tools/staff-scheduling-personality-quiz/peacekeeper-panda',
+  'social': '/tools/staff-scheduling-personality-quiz/social-butterfly',
   'rules': '/tools/staff-scheduling-personality-quiz/rules-robot',
-  'lastminute': '/tools/staff-scheduling-personality-quiz/rules-robot',
-  'nohope': '/tools/staff-scheduling-personality-quiz/rules-robot'
+  'lastminute': '/tools/staff-scheduling-personality-quiz/last-minute-magician',
+  'nohope': '/tools/staff-scheduling-personality-quiz/chaos-nancy'
 }
 
 export default function QuizClient() {
@@ -423,7 +423,7 @@ export default function QuizClient() {
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The No Hope Karen</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Chaos Nancy</h3>
               <p className="text-gray-600">
                 Pessimistic planner who expects the worst. Creates backup rosters for the backup rosters.
               </p>

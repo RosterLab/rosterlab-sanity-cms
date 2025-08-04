@@ -11,6 +11,26 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true
+  },
+  openGraph: {
+    title: 'The Rules Robot - Your Rostering Personality',
+    description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
+    images: [
+      {
+        url: '/images/quiz/og/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'RosterLab Personality Quiz - Rules Robot'
+      }
+    ],
+    type: 'website',
+    url: '/tools/staff-scheduling-personality-quiz/rules-robot'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Rules Robot - Your Rostering Personality',
+    description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
+    images: ['/images/quiz/og/og.png']
   }
 }
 
