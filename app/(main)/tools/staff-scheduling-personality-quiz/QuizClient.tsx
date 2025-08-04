@@ -473,7 +473,7 @@ export default function QuizClient() {
 
       {/* Quiz Overlay */}
       {isQuizActive && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
+        <div className="fixed inset-0 z-50 overflow-y-auto overscroll-contain">
           {/* Logo in top left corner of the screen */}
           <div className="fixed top-4 left-4 md:top-8 md:left-12 z-50">
             <Image
@@ -495,7 +495,7 @@ export default function QuizClient() {
             </button>
           </div>
 
-          <div className="min-h-screen flex items-center justify-center p-4">
+          <div className="min-h-screen flex items-center justify-center p-4 py-20 md:py-4">
             {/* Background with stars */}
             <div className="fixed inset-0 bg-gradient-to-b from-[#0a1929] to-[#1e3a5f]">
               {stars.map((star) => (
@@ -512,7 +512,7 @@ export default function QuizClient() {
             </div>
 
             {/* Quiz Content */}
-            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-8 max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-8 max-w-2xl w-full shadow-2xl">
 
               {/* Close button */}
               <button
@@ -544,7 +544,7 @@ export default function QuizClient() {
               ) : (
                 <>
                   {/* Title */}
-                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-6 md:mb-8 mt-8">
+                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-6 mt-4 md:mt-6">
                     What's your rostering personality type?
                   </h2>
 
@@ -574,7 +574,7 @@ export default function QuizClient() {
                   </div>
 
                   {/* Progress indicator */}
-                  <div className="mt-8 flex justify-center space-x-2">
+                  <div className="mt-6 md:mt-8 flex justify-center space-x-2">
                     {quizQuestions.map((_, index) => (
                       <div
                         key={index}
