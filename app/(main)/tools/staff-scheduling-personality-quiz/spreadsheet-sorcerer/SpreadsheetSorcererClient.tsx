@@ -98,11 +98,39 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
   }
 
   const generatePDF = useCallback(async (name: string, email: string, company: string) => {
-    // Dynamically import jsPDF
-    const jsPDF = (await import('jspdf')).default
-    
-    const doc = new jsPDF()
-    const firstName = name.split(' ')[0]
+    try {
+      // Dynamically import jsPDF
+      const { jsPDF } = await import('jspdf')
+      const doc = new jsPDF()
+      
+      // Helper function to load images as base64
+      const loadImage = async (url: string): Promise<string> => {
+        try {
+          const response = await fetch(url)
+          const blob = await response.blob()
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result as string)
+            reader.onerror = reject
+            reader.readAsDataURL(blob)
+          })
+        } catch (error) {
+          console.error('Error loading image:', url, error)
+          return ''
+        }
+      }
+      
+      // Load images
+      const [logoImage, tarotImage, postImage, chrisImage, hermioneImage, toolsIllustration] = await Promise.all([
+        loadImage('/images/rosterlab-logo.png'),
+        loadImage('/images/quiz/sorcerer/sorcerer.png'),
+        loadImage('/images/quiz/sorcerer/post.png'),
+        loadImage('/images/quiz/sorcerer/chris.png'),
+        loadImage('/images/quiz/sorcerer/wizzard.png'),
+        loadImage('/images/illustration/pdfimage.png')
+      ])
+      
+      const firstName = name.split(' ')[0]
     
     // Colors
     const primaryColor = [59, 130, 246] // blue-500
@@ -112,29 +140,51 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     const linkBlue = [0, 102, 204] // #0066CC for hyperlinks
     
     // Page 1
-    // Header with RosterLab blue
-    doc.setFillColor(...rosterLabBlue as [number, number, number])
-    doc.rect(0, 0, 210, 40, 'F')
-    
-    // Add RosterLab text
-    doc.setTextColor(255, 255, 255)
-    doc.setFontSize(14)
-    doc.setFont('helvetica', 'bold')
-    doc.text('ROSTERLAB', 20, 15)
+    // Header without background color
+    // Add RosterLab logo
+    if (logoImage) {
+      try {
+        doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+      } catch (error) {
+        console.error('Error adding logo:', error)
+        // Fallback to text if image fails
+        doc.setTextColor(...textColor as [number, number, number])
+        doc.setFontSize(14)
+        doc.setFont('helvetica', 'bold')
+        doc.text('ROSTERLAB', 20, 15)
+      }
+    } else {
+      // Fallback to text if image not loaded
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.setFontSize(14)
+      doc.setFont('helvetica', 'bold')
+      doc.text('ROSTERLAB', 20, 15)
+    }
     
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(20)
-    doc.text(`${firstName}'s Rostering Personality`, 20, 28)
+    doc.setTextColor(...textColor as [number, number, number])
+    doc.text(`${firstName}'s Rostering Personality`, 20, 32)
     doc.setFontSize(16)
-    doc.text('The Spreadsheet Sorcerer', 20, 36)
+    doc.setTextColor(...primaryColor as [number, number, number])
+    doc.text('The Spreadsheet Sorcerer', 20, 42)
     
-    // Start content
-    let currentY = 50
+    // Start content with more spacing
+    let currentY = 58
     
-    // Main content
+    // Main content with tarot card image
     doc.setFontSize(14)
     doc.setTextColor(...primaryColor as [number, number, number])
     doc.text('It sounds like you best fit: The Spreadsheet Sorcerer', 20, currentY)
+    
+    // Add tarot card image on the right
+    if (tarotImage) {
+      try {
+        doc.addImage(tarotImage, 'PNG', 140, currentY - 5, 50, 70)
+      } catch (error) {
+        console.error('Error adding tarot image:', error)
+      }
+    }
     
     currentY += 10
     doc.setFontSize(11)

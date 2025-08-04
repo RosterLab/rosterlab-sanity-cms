@@ -109,6 +109,33 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       const { jsPDF } = await import('jspdf')
       const doc = new jsPDF()
       
+      // Helper function to load images as base64
+      const loadImage = async (url: string): Promise<string> => {
+        try {
+          const response = await fetch(url)
+          const blob = await response.blob()
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result as string)
+            reader.onerror = reject
+            reader.readAsDataURL(blob)
+          })
+        } catch (error) {
+          console.error('Error loading image:', url, error)
+          return ''
+        }
+      }
+      
+      // Load images
+      const [logoImage, tarotImage, leoImage, dionImage, violaImage, toolsIllustration] = await Promise.all([
+        loadImage('/images/rosterlab-logo.png'),
+        loadImage('/images/quiz/nancy/nancy.png'),
+        loadImage('/images/quiz/nancy/leo.png'),
+        loadImage('/images/quiz/nancy/dion.png'),
+        loadImage('/images/quiz/nancy/viola.png'),
+        loadImage('/images/illustration/pdfimage.png')
+      ])
+      
       // Colors
       const primaryColor = [14, 165, 233] // primary-500
       const textColor = [31, 41, 55] // gray-800
@@ -120,29 +147,51 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       const firstName = name.split(' ')[0]
       
       // Page 1
-      // Header with RosterLab blue
-      doc.setFillColor(...rosterLabBlue as [number, number, number])
-      doc.rect(0, 0, 210, 40, 'F')
-      
-      // Add RosterLab text instead of logo to avoid image loading issues
-      doc.setTextColor(255, 255, 255)
-      doc.setFontSize(14)
-      doc.setFont('helvetica', 'bold')
-      doc.text('ROSTERLAB', 20, 15)
+      // Header without background color
+      // Add RosterLab logo
+      if (logoImage) {
+        try {
+          doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+        } catch (error) {
+          console.error('Error adding logo:', error)
+          // Fallback to text if image fails
+          doc.setTextColor(...textColor as [number, number, number])
+          doc.setFontSize(14)
+          doc.setFont('helvetica', 'bold')
+          doc.text('ROSTERLAB', 20, 15)
+        }
+      } else {
+        // Fallback to text if image not loaded
+        doc.setTextColor(...textColor as [number, number, number])
+        doc.setFontSize(14)
+        doc.setFont('helvetica', 'bold')
+        doc.text('ROSTERLAB', 20, 15)
+      }
       
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(20)
-      doc.text(`${firstName}'s Rostering Personality`, 20, 28)
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(`${firstName}'s Rostering Personality`, 20, 32)
       doc.setFontSize(16)
-      doc.text('Chaos Nancy', 20, 36)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('Chaos Nancy', 20, 42)
       
-      // Start content directly after header
-      let currentY = 50
+      // Start content with more spacing
+      let currentY = 58
       
-      // Main content
+      // Main content with tarot card image
       doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('It sounds like you best fit: Chaos Nancy', 20, currentY)
+      
+      // Add tarot card image on the right
+      if (tarotImage) {
+        try {
+          doc.addImage(tarotImage, 'PNG', 140, currentY - 5, 50, 70)
+        } catch (error) {
+          console.error('Error adding tarot image:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(11)
@@ -163,14 +212,14 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Celebrity 1
+      // Celebrity 1 text
       doc.text('• Leave Me Alone DiCaprio', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Always expects the worst', 25, currentY + 5)
       currentY += 12
       
-      // Celebrity 2
+      // Celebrity 2 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Complain Dion', 25, currentY)
@@ -179,7 +228,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       doc.text('  My shifts will go wrong', 25, currentY + 5)
       currentY += 12
       
-      // Celebrity 3
+      // Celebrity 3 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Viola Complaindis', 25, currentY)
@@ -187,6 +236,39 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       doc.setFontSize(10)
       doc.text('  Drama in every schedule', 25, currentY + 5)
       currentY += 15
+      
+      // Celebrity images in a row below the text
+      if (leoImage || dionImage || violaImage) {
+        const imageY = currentY
+        const imageSize = 25
+        const imageSpacing = 30
+        
+        if (leoImage) {
+          try {
+            doc.addImage(leoImage, 'PNG', 25, imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Leo image:', error)
+          }
+        }
+        
+        if (dionImage) {
+          try {
+            doc.addImage(dionImage, 'PNG', 25 + imageSpacing, imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Dion image:', error)
+          }
+        }
+        
+        if (violaImage) {
+          try {
+            doc.addImage(violaImage, 'PNG', 25 + (imageSpacing * 2), imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Viola image:', error)
+          }
+        }
+        
+        currentY += imageSize + 10
+      }
       
       // As Chaos Nancy section
       currentY += 5
@@ -313,35 +395,33 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
         currentAngle += sweepAngle
       })
       
-      // Legend with adjusted position
-      const legendY = chartY + 50
+      // Legend centered below pie chart
+      const legendY = pieY + pieRadius + 10
       doc.setFontSize(8)
-      
-      // Risk Anticipator
-      doc.setFillColor(14, 165, 233)
-      doc.rect(50, legendY, 4, 4, 'F')
       doc.setTextColor(...textColor as [number, number, number])
-      doc.text('Risk Anticipator (30%)', 56, legendY + 3)
       
-      // Backup Planner
-      doc.setFillColor(2, 132, 199)
-      doc.rect(50, legendY + 7, 4, 4, 'F')
-      doc.text('Backup Planner (25%)', 56, legendY + 10)
+      // Calculate legend items positioning for centering
+      const legendItems = [
+        { color: [14, 165, 233], text: 'Risk Anticipator (30%)' },
+        { color: [2, 132, 199], text: 'Backup Planner (25%)' },
+        { color: [3, 105, 161], text: 'Worst-Case Strategist (20%)' },
+        { color: [7, 89, 133], text: 'Crisis Preparer (15%)' },
+        { color: [22, 78, 99], text: 'Reality Checker (10%)' }
+      ]
       
-      // Worst-Case Strategist
-      doc.setFillColor(3, 105, 161)
-      doc.rect(50, legendY + 14, 4, 4, 'F')
-      doc.text('Worst-Case Strategist (20%)', 56, legendY + 17)
-      
-      // Crisis Preparer
-      doc.setFillColor(7, 89, 133)
-      doc.rect(50, legendY + 21, 4, 4, 'F')
-      doc.text('Crisis Preparer (15%)', 56, legendY + 24)
-      
-      // Reality Checker
-      doc.setFillColor(22, 78, 99)
-      doc.rect(50, legendY + 28, 4, 4, 'F')
-      doc.text('Reality Checker (10%)', 56, legendY + 31)
+      // Draw legend items centered
+      legendItems.forEach((item, index) => {
+        const boxX = pieX - 40 // Center the legend items under the pie
+        const itemY = legendY + (index * 7)
+        
+        // Draw colored box
+        doc.setFillColor(...item.color as [number, number, number])
+        doc.rect(boxX, itemY - 3, 4, 4, 'F')
+        
+        // Draw text
+        doc.setTextColor(...textColor as [number, number, number])
+        doc.text(item.text, boxX + 6, itemY)
+      })
       
       // Tools section
       currentY = legendY + 40
@@ -391,14 +471,32 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       // Check if we need page 2 for remaining content
       if (currentY > 200) {
         doc.addPage()
-        currentY = 20
+        // Add logo to new page
+        if (logoImage) {
+          try {
+            doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+          } catch (error) {
+            console.error('Error adding logo to new page:', error)
+          }
+        }
+        currentY = 30
       }
       
-      // Recommended reading
+      // Recommended reading with illustration
       currentY += 10
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Recommended reading for Chaos Nancy', 20, currentY)
+      
+      // Add illustration on the right
+      if (toolsIllustration) {
+        try {
+          // Use wider aspect ratio to prevent squishing
+          doc.addImage(toolsIllustration, 'PNG', 130, currentY - 10, 65, 40)
+        } catch (error) {
+          console.error('Error adding reading illustration:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(9)
