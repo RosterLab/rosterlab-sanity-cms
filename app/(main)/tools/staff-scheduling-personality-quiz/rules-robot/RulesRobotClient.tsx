@@ -109,6 +109,31 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const { jsPDF } = await import('jspdf')
       const doc = new jsPDF()
       
+      // Helper function to load images as base64
+      const loadImage = async (url: string): Promise<string> => {
+        try {
+          const response = await fetch(url)
+          const blob = await response.blob()
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result as string)
+            reader.onerror = reject
+            reader.readAsDataURL(blob)
+          })
+        } catch (error) {
+          console.error('Error loading image:', url, error)
+          return ''
+        }
+      }
+      
+      // Load images
+      const [tarotImage, serenaImage, dwayneImage, roboImage] = await Promise.all([
+        loadImage('/images/quiz/rulebot.png'),
+        loadImage('/images/quiz/SERENA.png'),
+        loadImage('/images/quiz/DWAYNE1.png'),
+        loadImage('/images/quiz/ROBO.png')
+      ])
+      
       // Colors
       const primaryColor = [14, 165, 233] // primary-500
       const textColor = [31, 41, 55] // gray-800
@@ -139,10 +164,19 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       // Start content directly after header
       let currentY = 50
       
-      // Main content
+      // Main content with tarot card image
       doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('It sounds like you best fit: The Rules Robot', 20, currentY)
+      
+      // Add tarot card image on the right
+      if (tarotImage) {
+        try {
+          doc.addImage(tarotImage, 'PNG', 140, currentY - 5, 50, 70)
+        } catch (error) {
+          console.error('Error adding tarot image:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(11)
@@ -163,30 +197,51 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Celebrity 1
+      // Celebrity 1 with image
       doc.text('• Serena Shift-Williams', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Serves up rosters with precision', 25, currentY + 5)
-      currentY += 12
+      if (serenaImage) {
+        try {
+          doc.addImage(serenaImage, 'PNG', 160, currentY - 5, 25, 25)
+        } catch (error) {
+          console.error('Error adding Serena image:', error)
+        }
+      }
+      currentY += 30
       
-      // Celebrity 2
+      // Celebrity 2 with image
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Dwayne "The Roster" Johnson', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Strong, dependable, unbreakable', 25, currentY + 5)
-      currentY += 12
+      if (dwayneImage) {
+        try {
+          doc.addImage(dwayneImage, 'PNG', 160, currentY - 5, 25, 25)
+        } catch (error) {
+          console.error('Error adding Dwayne image:', error)
+        }
+      }
+      currentY += 30
       
-      // Celebrity 3
+      // Celebrity 3 with image
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Robocopliance', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Sweet adherence to policy', 25, currentY + 5)
-      currentY += 15
+      if (roboImage) {
+        try {
+          doc.addImage(roboImage, 'PNG', 160, currentY - 5, 25, 25)
+        } catch (error) {
+          console.error('Error adding Robo image:', error)
+        }
+      }
+      currentY += 30
       
       // As the Rules Robot section
       currentY += 5
