@@ -127,12 +127,13 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       }
       
       // Load images
-      const [logoImage, tarotImage, serenaImage, dwayneImage, roboImage] = await Promise.all([
+      const [logoImage, tarotImage, serenaImage, dwayneImage, roboImage, toolsIllustration] = await Promise.all([
         loadImage('/images/rosterlab-logo.png'),
         loadImage('/images/quiz/rulebot.png'),
         loadImage('/images/quiz/SERENA.png'),
         loadImage('/images/quiz/DWAYNE1.png'),
-        loadImage('/images/quiz/ROBO.png')
+        loadImage('/images/quiz/ROBO.png'),
+        loadImage('/images/illustration/Timeline-pana.svg')
       ])
       
       // Colors
@@ -146,25 +147,22 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const firstName = name.split(' ')[0]
       
       // Page 1
-      // Header with RosterLab blue
-      doc.setFillColor(...rosterLabBlue as [number, number, number])
-      doc.rect(0, 0, 210, 40, 'F')
-      
+      // Header without background color
       // Add RosterLab logo
       if (logoImage) {
         try {
-          doc.addImage(logoImage, 'PNG', 20, 8, 45, 12)
+          doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
         } catch (error) {
           console.error('Error adding logo:', error)
           // Fallback to text if image fails
-          doc.setTextColor(255, 255, 255)
+          doc.setTextColor(...textColor as [number, number, number])
           doc.setFontSize(14)
           doc.setFont('helvetica', 'bold')
           doc.text('ROSTERLAB', 20, 15)
         }
       } else {
         // Fallback to text if image not loaded
-        doc.setTextColor(255, 255, 255)
+        doc.setTextColor(...textColor as [number, number, number])
         doc.setFontSize(14)
         doc.setFont('helvetica', 'bold')
         doc.text('ROSTERLAB', 20, 15)
@@ -172,9 +170,11 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(20)
-      doc.text(`${firstName}'s Rostering Personality`, 20, 28)
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(`${firstName}'s Rostering Personality`, 20, 32)
       doc.setFontSize(16)
-      doc.text('The Rules Robot', 20, 36)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('The Rules Robot', 20, 40)
       
       // Start content directly after header
       let currentY = 50
@@ -423,11 +423,20 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
         doc.text(item.text, boxX + 6, itemY)
       })
       
-      // Tools section
+      // Tools section with illustration
       currentY = legendY + 40
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Tools a Rules Robot needs to grow!', 20, currentY)
+      
+      // Add tools illustration on the right
+      if (toolsIllustration) {
+        try {
+          doc.addImage(toolsIllustration, 'SVG', 140, currentY - 5, 50, 50)
+        } catch (error) {
+          console.error('Error adding tools illustration:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(9)
