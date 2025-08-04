@@ -205,14 +205,14 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     doc.setFont('helvetica', 'bold')
     doc.setTextColor(...textColor as [number, number, number])
     
-    // Celebrity 1
+    // Celebrity 1 text
     doc.text('• Post-Shift Malone', 25, currentY)
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(10)
     doc.text('  Covered in conditional formatting', 25, currentY + 5)
     currentY += 12
     
-    // Celebrity 2
+    // Celebrity 2 text
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(11)
     doc.text('• Chris Excelsworth', 25, currentY)
@@ -221,7 +221,7 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     doc.text('  Strong formulas, stronger eyebrows', 25, currentY + 5)
     currentY += 12
     
-    // Celebrity 3
+    // Celebrity 3 text
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(11)
     doc.text('• Hermione Cell-ranger', 25, currentY)
@@ -229,6 +229,39 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     doc.setFontSize(10)
     doc.text('  Knows every shortcut', 25, currentY + 5)
     currentY += 15
+    
+    // Celebrity images in a row below the text
+    if (postImage || chrisImage || hermioneImage) {
+      const imageY = currentY
+      const imageSize = 25
+      const imageSpacing = 30
+      
+      if (postImage) {
+        try {
+          doc.addImage(postImage, 'PNG', 25, imageY, imageSize, imageSize)
+        } catch (error) {
+          console.error('Error adding Post image:', error)
+        }
+      }
+      
+      if (chrisImage) {
+        try {
+          doc.addImage(chrisImage, 'PNG', 25 + imageSpacing, imageY, imageSize, imageSize)
+        } catch (error) {
+          console.error('Error adding Chris image:', error)
+        }
+      }
+      
+      if (hermioneImage) {
+        try {
+          doc.addImage(hermioneImage, 'PNG', 25 + (imageSpacing * 2), imageY, imageSize, imageSize)
+        } catch (error) {
+          console.error('Error adding Hermione image:', error)
+        }
+      }
+      
+      currentY += imageSize + 10
+    }
     
     // As the Spreadsheet Sorcerer section
     currentY += 5
@@ -257,7 +290,15 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     characteristics.forEach(char => {
       if (currentY > 270) {
         doc.addPage()
-        currentY = 20
+        // Add logo to new page
+        if (logoImage) {
+          try {
+            doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+          } catch (error) {
+            console.error('Error adding logo to page 2:', error)
+          }
+        }
+        currentY = 30
       }
       doc.text(char, 25, currentY)
       currentY += 7
@@ -266,7 +307,15 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     // Check if we need page 2
     if (currentY > 180) {
       doc.addPage()
-      currentY = 20
+      // Add logo to page 2
+      if (logoImage) {
+        try {
+          doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+        } catch (error) {
+          console.error('Error adding logo to page 2:', error)
+        }
+      }
+      currentY = 30
     }
     
     // Pie Chart Section
@@ -355,35 +404,33 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
       currentAngle += sweepAngle
     })
     
-    // Legend with adjusted position
-    const legendY = chartY + 50
+    // Legend centered below pie chart
+    const legendY = pieY + pieRadius + 10
     doc.setFontSize(8)
-    
-    // Formula Master
-    doc.setFillColor(59, 130, 246)
-    doc.rect(50, legendY, 4, 4, 'F')
     doc.setTextColor(...textColor as [number, number, number])
-    doc.text('Formula Master (30%)', 56, legendY + 3)
     
-    // Data Visualizer
-    doc.setFillColor(37, 99, 235)
-    doc.rect(50, legendY + 7, 4, 4, 'F')
-    doc.text('Data Visualizer (25%)', 56, legendY + 10)
+    // Calculate legend items positioning for centering
+    const legendItems = [
+      { color: [59, 130, 246], text: 'Formula Master (30%)' },
+      { color: [37, 99, 235], text: 'Data Visualizer (25%)' },
+      { color: [29, 78, 216], text: 'Automation Expert (20%)' },
+      { color: [30, 64, 175], text: 'Pattern Recognizer (15%)' },
+      { color: [30, 58, 138], text: 'Efficiency Optimizer (10%)' }
+    ]
     
-    // Automation Expert
-    doc.setFillColor(29, 78, 216)
-    doc.rect(50, legendY + 14, 4, 4, 'F')
-    doc.text('Automation Expert (20%)', 56, legendY + 17)
-    
-    // Pattern Recognizer
-    doc.setFillColor(30, 64, 175)
-    doc.rect(50, legendY + 21, 4, 4, 'F')
-    doc.text('Pattern Recognizer (15%)', 56, legendY + 24)
-    
-    // Efficiency Optimizer
-    doc.setFillColor(30, 58, 138)
-    doc.rect(50, legendY + 28, 4, 4, 'F')
-    doc.text('Efficiency Optimizer (10%)', 56, legendY + 31)
+    // Draw legend items centered
+    legendItems.forEach((item, index) => {
+      const boxX = pieX - 40 // Center the legend items under the pie
+      const itemY = legendY + (index * 7)
+      
+      // Draw colored box
+      doc.setFillColor(...item.color as [number, number, number])
+      doc.rect(boxX, itemY - 3, 4, 4, 'F')
+      
+      // Draw text
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(item.text, boxX + 6, itemY)
+    })
     
     // Tools section
     currentY = legendY + 40
@@ -433,14 +480,32 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     // Check if we need page 2 for remaining content
     if (currentY > 200) {
       doc.addPage()
-      currentY = 20
+      // Add logo to new page
+      if (logoImage) {
+        try {
+          doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+        } catch (error) {
+          console.error('Error adding logo to new page:', error)
+        }
+      }
+      currentY = 30
     }
     
-    // Recommended reading
+    // Recommended reading with illustration
     currentY += 10
     doc.setFontSize(13)
     doc.setTextColor(...primaryColor as [number, number, number])
     doc.text('Recommended reading for Spreadsheet Sorcerers', 20, currentY)
+    
+    // Add illustration on the right
+    if (toolsIllustration) {
+      try {
+        // Use wider aspect ratio to prevent squishing
+        doc.addImage(toolsIllustration, 'PNG', 130, currentY - 10, 65, 40)
+      } catch (error) {
+        console.error('Error adding reading illustration:', error)
+      }
+    }
     
     currentY += 10
     doc.setFontSize(9)
@@ -503,6 +568,14 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     
     // Save the PDF
     doc.save(`RosterLab-Spreadsheet-Sorcerer-${name.replace(/\s+/g, '-')}.pdf`)
+    } catch (error) {
+      console.error('Error generating PDF:', error)
+      if (error instanceof Error) {
+        console.error('Error message:', error.message)
+        console.error('Error stack:', error.stack)
+      }
+      alert('There was an error generating your PDF. Please check the console for details.')
+    }
   }, [])
 
   return (

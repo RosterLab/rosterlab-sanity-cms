@@ -109,6 +109,33 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       const { jsPDF } = await import('jspdf')
       const doc = new jsPDF()
       
+      // Helper function to load images as base64
+      const loadImage = async (url: string): Promise<string> => {
+        try {
+          const response = await fetch(url)
+          const blob = await response.blob()
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result as string)
+            reader.onerror = reject
+            reader.readAsDataURL(blob)
+          })
+        } catch (error) {
+          console.error('Error loading image:', url, error)
+          return ''
+        }
+      }
+      
+      // Load images
+      const [logoImage, tarotImage, dalaiImage, davidImage, zendayaImage, toolsIllustration] = await Promise.all([
+        loadImage('/images/rosterlab-logo.png'),
+        loadImage('/images/quiz/panda/peacekeeper.png'),
+        loadImage('/images/quiz/panda/dalai.png'),
+        loadImage('/images/quiz/panda/david.png'),
+        loadImage('/images/quiz/panda/zendaya.png'),
+        loadImage('/images/illustration/pdfimage.png')
+      ])
+      
       // Colors
       const primaryColor = [14, 165, 233] // primary-500
       const textColor = [31, 41, 55] // gray-800
@@ -120,29 +147,51 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       const firstName = name.split(' ')[0]
       
       // Page 1
-      // Header with RosterLab blue
-      doc.setFillColor(...rosterLabBlue as [number, number, number])
-      doc.rect(0, 0, 210, 40, 'F')
-      
-      // Add RosterLab text instead of logo to avoid image loading issues
-      doc.setTextColor(255, 255, 255)
-      doc.setFontSize(14)
-      doc.setFont('helvetica', 'bold')
-      doc.text('ROSTERLAB', 20, 15)
+      // Header without background color
+      // Add RosterLab logo
+      if (logoImage) {
+        try {
+          doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+        } catch (error) {
+          console.error('Error adding logo:', error)
+          // Fallback to text if image fails
+          doc.setTextColor(...textColor as [number, number, number])
+          doc.setFontSize(14)
+          doc.setFont('helvetica', 'bold')
+          doc.text('ROSTERLAB', 20, 15)
+        }
+      } else {
+        // Fallback to text if image not loaded
+        doc.setTextColor(...textColor as [number, number, number])
+        doc.setFontSize(14)
+        doc.setFont('helvetica', 'bold')
+        doc.text('ROSTERLAB', 20, 15)
+      }
       
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(20)
-      doc.text(`${firstName}'s Rostering Personality`, 20, 28)
+      doc.setTextColor(...textColor as [number, number, number])
+      doc.text(`${firstName}'s Rostering Personality`, 20, 32)
       doc.setFontSize(16)
-      doc.text('The Peacekeeper Panda', 20, 36)
+      doc.setTextColor(...primaryColor as [number, number, number])
+      doc.text('The Peacekeeper Panda', 20, 42)
       
-      // Start content directly after header
-      let currentY = 50
+      // Start content with more spacing
+      let currentY = 58
       
-      // Main content
+      // Main content with tarot card image
       doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('It sounds like you best fit: The Peacekeeper Panda', 20, currentY)
+      
+      // Add tarot card image on the right
+      if (tarotImage) {
+        try {
+          doc.addImage(tarotImage, 'PNG', 140, currentY - 5, 50, 70)
+        } catch (error) {
+          console.error('Error adding tarot image:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(11)
@@ -163,14 +212,14 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Celebrity 1
+      // Celebrity 1 text
       doc.text('• Dalai Shiftma', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Finding inner peace in rosters', 25, currentY + 5)
       currentY += 12
       
-      // Celebrity 2
+      // Celebrity 2 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Sir Roster Attenborough', 25, currentY)
@@ -179,7 +228,7 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       doc.text('  Narrating workplace harmony', 25, currentY + 5)
       currentY += 12
       
-      // Celebrity 3
+      // Celebrity 3 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Zendaya Zen-roster', 25, currentY)
@@ -187,6 +236,39 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       doc.setFontSize(10)
       doc.text('  Balancing with grace', 25, currentY + 5)
       currentY += 15
+      
+      // Celebrity images in a row below the text
+      if (dalaiImage || davidImage || zendayaImage) {
+        const imageY = currentY
+        const imageSize = 25
+        const imageSpacing = 30
+        
+        if (dalaiImage) {
+          try {
+            doc.addImage(dalaiImage, 'PNG', 25, imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Dalai image:', error)
+          }
+        }
+        
+        if (davidImage) {
+          try {
+            doc.addImage(davidImage, 'PNG', 25 + imageSpacing, imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding David image:', error)
+          }
+        }
+        
+        if (zendayaImage) {
+          try {
+            doc.addImage(zendayaImage, 'PNG', 25 + (imageSpacing * 2), imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Zendaya image:', error)
+          }
+        }
+        
+        currentY += imageSize + 10
+      }
       
       // As the Peacekeeper Panda section
       currentY += 5
@@ -215,7 +297,15 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       characteristics.forEach(char => {
         if (currentY > 270) {
           doc.addPage()
-          currentY = 20
+          // Add logo to new page
+          if (logoImage) {
+            try {
+              doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+            } catch (error) {
+              console.error('Error adding logo to page 2:', error)
+            }
+          }
+          currentY = 30
         }
         doc.text(char, 25, currentY)
         currentY += 7
@@ -224,7 +314,15 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       // Check if we need page 2
       if (currentY > 180) {
         doc.addPage()
-        currentY = 20
+        // Add logo to page 2
+        if (logoImage) {
+          try {
+            doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+          } catch (error) {
+            console.error('Error adding logo to page 2:', error)
+          }
+        }
+        currentY = 30
       }
       
       // Pie Chart Section
@@ -313,35 +411,33 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
         currentAngle += sweepAngle
       })
       
-      // Legend with adjusted position
-      const legendY = chartY + 50
+      // Legend centered below pie chart
+      const legendY = pieY + pieRadius + 10
       doc.setFontSize(8)
-      
-      // Conflict Resolver
-      doc.setFillColor(16, 185, 129)
-      doc.rect(50, legendY, 4, 4, 'F')
       doc.setTextColor(...textColor as [number, number, number])
-      doc.text('Conflict Resolver (30%)', 56, legendY + 3)
       
-      // Empathy Expert
-      doc.setFillColor(5, 150, 105)
-      doc.rect(50, legendY + 7, 4, 4, 'F')
-      doc.text('Empathy Expert (25%)', 56, legendY + 10)
+      // Calculate legend items positioning for centering
+      const legendItems = [
+        { color: [16, 185, 129], text: 'Conflict Resolver (30%)' },
+        { color: [5, 150, 105], text: 'Empathy Expert (25%)' },
+        { color: [4, 120, 87], text: 'Balance Keeper (20%)' },
+        { color: [6, 95, 70], text: 'Harmony Creator (15%)' },
+        { color: [6, 78, 59], text: 'Diplomatic Negotiator (10%)' }
+      ]
       
-      // Balance Keeper
-      doc.setFillColor(4, 120, 87)
-      doc.rect(50, legendY + 14, 4, 4, 'F')
-      doc.text('Balance Keeper (20%)', 56, legendY + 17)
-      
-      // Harmony Creator
-      doc.setFillColor(6, 95, 70)
-      doc.rect(50, legendY + 21, 4, 4, 'F')
-      doc.text('Harmony Creator (15%)', 56, legendY + 24)
-      
-      // Diplomatic Negotiator
-      doc.setFillColor(6, 78, 59)
-      doc.rect(50, legendY + 28, 4, 4, 'F')
-      doc.text('Diplomatic Negotiator (10%)', 56, legendY + 31)
+      // Draw legend items centered
+      legendItems.forEach((item, index) => {
+        const boxX = pieX - 40 // Center the legend items under the pie
+        const itemY = legendY + (index * 7)
+        
+        // Draw colored box
+        doc.setFillColor(...item.color as [number, number, number])
+        doc.rect(boxX, itemY - 3, 4, 4, 'F')
+        
+        // Draw text
+        doc.setTextColor(...textColor as [number, number, number])
+        doc.text(item.text, boxX + 6, itemY)
+      })
       
       // Tools section
       currentY = legendY + 40
@@ -391,14 +487,32 @@ export default function PeacekeeperPandaClient({ recommendedPosts }: Peacekeeper
       // Check if we need page 2 for remaining content
       if (currentY > 200) {
         doc.addPage()
-        currentY = 20
+        // Add logo to new page
+        if (logoImage) {
+          try {
+            doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+          } catch (error) {
+            console.error('Error adding logo to new page:', error)
+          }
+        }
+        currentY = 30
       }
       
-      // Recommended reading
+      // Recommended reading with illustration
       currentY += 10
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Recommended reading for Peacekeeper Pandas', 20, currentY)
+      
+      // Add illustration on the right
+      if (toolsIllustration) {
+        try {
+          // Use wider aspect ratio to prevent squishing
+          doc.addImage(toolsIllustration, 'PNG', 130, currentY - 10, 65, 40)
+        } catch (error) {
+          console.error('Error adding reading illustration:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(9)
