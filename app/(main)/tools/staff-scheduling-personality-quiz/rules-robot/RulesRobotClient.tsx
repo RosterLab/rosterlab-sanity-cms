@@ -297,7 +297,15 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       characteristics.forEach(char => {
         if (currentY > 270) {
           doc.addPage()
-          currentY = 20
+          // Add logo to new page
+          if (logoImage) {
+            try {
+              doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+            } catch (error) {
+              console.error('Error adding logo to page 2:', error)
+            }
+          }
+          currentY = 30
         }
         doc.text(char, 25, currentY)
         currentY += 7
@@ -306,7 +314,15 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       // Check if we need page 2
       if (currentY > 180) {
         doc.addPage()
-        currentY = 20
+        // Add logo to page 2
+        if (logoImage) {
+          try {
+            doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+          } catch (error) {
+            console.error('Error adding logo to page 2:', error)
+          }
+        }
+        currentY = 30
       }
       
       // Pie Chart Section
@@ -481,7 +497,15 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       // Check if we need page 2 for remaining content
       if (currentY > 200) {
         doc.addPage()
-        currentY = 20
+        // Add logo to new page
+        if (logoImage) {
+          try {
+            doc.addImage(logoImage, 'PNG', 20, 10, 45, 12)
+          } catch (error) {
+            console.error('Error adding logo to new page:', error)
+          }
+        }
+        currentY = 30
       }
       
       // Recommended reading
