@@ -127,12 +127,13 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       }
       
       // Load images
-      const [logoImage, tarotImage, serenaImage, dwayneImage, roboImage] = await Promise.all([
+      const [logoImage, tarotImage, serenaImage, dwayneImage, roboImage, toolsIllustration] = await Promise.all([
         loadImage('/images/rosterlab-logo.png'),
         loadImage('/images/quiz/rulebot.png'),
         loadImage('/images/quiz/SERENA.png'),
         loadImage('/images/quiz/DWAYNE1.png'),
-        loadImage('/images/quiz/ROBO.png')
+        loadImage('/images/quiz/ROBO.png'),
+        loadImage('/images/illustration/pdfimage.png')
       ])
       
       // Colors
@@ -422,35 +423,20 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
         doc.text(item.text, boxX + 6, itemY)
       })
       
-      // Tools section with decorative element
+      // Tools section with illustration
       currentY = legendY + 40
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Tools a Rules Robot needs to grow!', 20, currentY)
       
-      // Add a decorative clock/timeline element on the right
-      // Draw a simple timeline illustration
-      const illustrationX = 150
-      const illustrationY = currentY - 5
-      
-      // Draw clock circle
-      doc.setDrawColor(...primaryColor as [number, number, number])
-      doc.setLineWidth(0.5)
-      doc.circle(illustrationX + 15, illustrationY + 10, 8)
-      
-      // Draw clock hands
-      doc.line(illustrationX + 15, illustrationY + 10, illustrationX + 15, illustrationY + 5)
-      doc.line(illustrationX + 15, illustrationY + 10, illustrationX + 19, illustrationY + 10)
-      
-      // Draw timeline dots
-      doc.setFillColor(...primaryColor as [number, number, number])
-      doc.circle(illustrationX + 5, illustrationY + 25, 2, 'F')
-      doc.circle(illustrationX + 15, illustrationY + 25, 2, 'F')
-      doc.circle(illustrationX + 25, illustrationY + 25, 2, 'F')
-      
-      // Connect timeline dots
-      doc.setLineWidth(0.3)
-      doc.line(illustrationX + 7, illustrationY + 25, illustrationX + 23, illustrationY + 25)
+      // Add tools illustration on the right
+      if (toolsIllustration) {
+        try {
+          doc.addImage(toolsIllustration, 'PNG', 140, currentY - 5, 50, 50)
+        } catch (error) {
+          console.error('Error adding tools illustration:', error)
+        }
+      }
       
       currentY += 10
       doc.setFontSize(9)
