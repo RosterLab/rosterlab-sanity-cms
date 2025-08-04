@@ -127,7 +127,8 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       }
       
       // Load images
-      const [tarotImage, serenaImage, dwayneImage, roboImage] = await Promise.all([
+      const [logoImage, tarotImage, serenaImage, dwayneImage, roboImage] = await Promise.all([
+        loadImage('/images/rosterlab-logo.png'),
         loadImage('/images/quiz/rulebot.png'),
         loadImage('/images/quiz/SERENA.png'),
         loadImage('/images/quiz/DWAYNE1.png'),
@@ -149,11 +150,25 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setFillColor(...rosterLabBlue as [number, number, number])
       doc.rect(0, 0, 210, 40, 'F')
       
-      // Add RosterLab text instead of logo to avoid image loading issues
-      doc.setTextColor(255, 255, 255)
-      doc.setFontSize(14)
-      doc.setFont('helvetica', 'bold')
-      doc.text('ROSTERLAB', 20, 15)
+      // Add RosterLab logo
+      if (logoImage) {
+        try {
+          doc.addImage(logoImage, 'PNG', 20, 8, 45, 12)
+        } catch (error) {
+          console.error('Error adding logo:', error)
+          // Fallback to text if image fails
+          doc.setTextColor(255, 255, 255)
+          doc.setFontSize(14)
+          doc.setFont('helvetica', 'bold')
+          doc.text('ROSTERLAB', 20, 15)
+        }
+      } else {
+        // Fallback to text if image not loaded
+        doc.setTextColor(255, 255, 255)
+        doc.setFontSize(14)
+        doc.setFont('helvetica', 'bold')
+        doc.text('ROSTERLAB', 20, 15)
+      }
       
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(20)
@@ -197,51 +212,63 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setFont('helvetica', 'bold')
       doc.setTextColor(...textColor as [number, number, number])
       
-      // Celebrity 1 with image
+      // Celebrity 1 text
       doc.text('• Serena Shift-Williams', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Serves up rosters with precision', 25, currentY + 5)
-      if (serenaImage) {
-        try {
-          doc.addImage(serenaImage, 'PNG', 160, currentY - 5, 25, 25)
-        } catch (error) {
-          console.error('Error adding Serena image:', error)
-        }
-      }
-      currentY += 30
+      currentY += 12
       
-      // Celebrity 2 with image
+      // Celebrity 2 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Dwayne "The Roster" Johnson', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Strong, dependable, unbreakable', 25, currentY + 5)
-      if (dwayneImage) {
-        try {
-          doc.addImage(dwayneImage, 'PNG', 160, currentY - 5, 25, 25)
-        } catch (error) {
-          console.error('Error adding Dwayne image:', error)
-        }
-      }
-      currentY += 30
+      currentY += 12
       
-      // Celebrity 3 with image
+      // Celebrity 3 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
       doc.text('• Robocopliance', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Sweet adherence to policy', 25, currentY + 5)
-      if (roboImage) {
-        try {
-          doc.addImage(roboImage, 'PNG', 160, currentY - 5, 25, 25)
-        } catch (error) {
-          console.error('Error adding Robo image:', error)
+      currentY += 15
+      
+      // Celebrity images in a row below the text
+      if (serenaImage || dwayneImage || roboImage) {
+        const imageY = currentY
+        const imageSize = 25
+        const imageSpacing = 30
+        
+        if (serenaImage) {
+          try {
+            doc.addImage(serenaImage, 'PNG', 25, imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Serena image:', error)
+          }
         }
+        
+        if (dwayneImage) {
+          try {
+            doc.addImage(dwayneImage, 'PNG', 25 + imageSpacing, imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Dwayne image:', error)
+          }
+        }
+        
+        if (roboImage) {
+          try {
+            doc.addImage(roboImage, 'PNG', 25 + (imageSpacing * 2), imageY, imageSize, imageSize)
+          } catch (error) {
+            console.error('Error adding Robo image:', error)
+          }
+        }
+        
+        currentY += imageSize + 10
       }
-      currentY += 30
       
       // As the Rules Robot section
       currentY += 5
@@ -368,35 +395,33 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
         currentAngle += sweepAngle
       })
       
-      // Legend with adjusted position
-      const legendY = chartY + 50
+      // Legend centered below pie chart
+      const legendY = pieY + pieRadius + 10
       doc.setFontSize(8)
-      
-      // Master of Compliance
-      doc.setFillColor(14, 165, 233)
-      doc.rect(50, legendY, 4, 4, 'F')
       doc.setTextColor(...textColor as [number, number, number])
-      doc.text('Master of Compliance (30%)', 56, legendY + 3)
       
-      // Documentation Champion
-      doc.setFillColor(2, 132, 199)
-      doc.rect(50, legendY + 7, 4, 4, 'F')
-      doc.text('Documentation Champion (25%)', 56, legendY + 10)
+      // Calculate legend items positioning for centering
+      const legendItems = [
+        { color: [14, 165, 233], text: 'Master of Compliance (30%)' },
+        { color: [2, 132, 199], text: 'Documentation Champion (25%)' },
+        { color: [3, 105, 161], text: 'Process Perfectionist (20%)' },
+        { color: [7, 89, 133], text: 'Risk Minimizer (15%)' },
+        { color: [22, 78, 99], text: 'Detail-Oriented (10%)' }
+      ]
       
-      // Process Perfectionist
-      doc.setFillColor(3, 105, 161)
-      doc.rect(50, legendY + 14, 4, 4, 'F')
-      doc.text('Process Perfectionist (20%)', 56, legendY + 17)
-      
-      // Risk Minimizer
-      doc.setFillColor(7, 89, 133)
-      doc.rect(50, legendY + 21, 4, 4, 'F')
-      doc.text('Risk Minimizer (15%)', 56, legendY + 24)
-      
-      // Detail-Oriented
-      doc.setFillColor(22, 78, 99)
-      doc.rect(50, legendY + 28, 4, 4, 'F')
-      doc.text('Detail-Oriented (10%)', 56, legendY + 31)
+      // Draw legend items centered
+      legendItems.forEach((item, index) => {
+        const boxX = pieX - 40 // Center the legend items under the pie
+        const itemY = legendY + (index * 7)
+        
+        // Draw colored box
+        doc.setFillColor(...item.color as [number, number, number])
+        doc.rect(boxX, itemY - 3, 4, 4, 'F')
+        
+        // Draw text
+        doc.setTextColor(...textColor as [number, number, number])
+        doc.text(item.text, boxX + 6, itemY)
+      })
       
       // Tools section
       currentY = legendY + 40
