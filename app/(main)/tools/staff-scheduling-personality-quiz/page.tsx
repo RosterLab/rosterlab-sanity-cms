@@ -2,15 +2,15 @@ import { Metadata } from 'next'
 import QuizClient from './QuizClient'
 
 export const metadata: Metadata = {
-  title: "What's your rostering personality?",
-  description: 'Take our fun personality quiz to discover your rostering style. Are you a Spreadsheet Sorcerer who loves formulas, a Rules Robot obsessed with compliance, or a Last-Minute Magician who thrives under pressure?',
+  title: "What's Your Rostering Personality? | RosterLab",
+  description: 'Discover your staff scheduling personality type. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
   robots: {
     index: true,
     follow: true
   },
   openGraph: {
-    title: "What's your rostering personality?",
-    description: 'Take our fun personality quiz to discover your rostering style. Are you a Spreadsheet Sorcerer who loves formulas, a Rules Robot obsessed with compliance, or a Last-Minute Magician who thrives under pressure?',
+    title: "What's Your Rostering Personality? | RosterLab",
+    description: 'Discover your staff scheduling personality type. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
     images: [
       {
         url: '/images/quiz/og/og.png',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "What's your rostering personality?",
-    description: 'Take our fun personality quiz to discover your rostering style.',
+    title: "What's Your Rostering Personality? | RosterLab",
+    description: 'Discover your staff scheduling personality type. Take our fun 2-minute quiz!',
     images: ['/images/quiz/og/og.png']
   }
 }
