@@ -429,10 +429,11 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Tools a Rules Robot needs to grow!', 20, currentY)
       
-      // Add tools illustration on the right
+      // Add tools illustration on the right with proper aspect ratio
       if (toolsIllustration) {
         try {
-          doc.addImage(toolsIllustration, 'PNG', 140, currentY - 5, 50, 50)
+          // Use wider aspect ratio to prevent squishing
+          doc.addImage(toolsIllustration, 'PNG', 130, currentY - 10, 65, 40)
         } catch (error) {
           console.error('Error adding tools illustration:', error)
         }
