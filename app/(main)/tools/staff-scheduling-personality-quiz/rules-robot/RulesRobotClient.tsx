@@ -635,7 +635,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
               <div className="relative w-full max-w-xs mx-auto lg:mx-0 lg:ml-auto">
                 <div className="relative w-full h-[22rem] transform rotate-3 transition-transform duration-300 hover:rotate-0">
                   <Image
-                    src="/images/quiz/test2.png"
+                    src="/images/quiz/rulebot.png"
                     alt="The Rules Robot"
                     fill
                     className="object-contain"
