@@ -132,7 +132,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
         loadImage('/images/quiz/carla/carla.png'),
         loadImage('/images/quiz/carla/leo.png'),
         loadImage('/images/quiz/carla/dion.png'),
-        loadImage('/images/quiz/carla/viola.png'),
+        loadImage('/images/quiz/carla/cryonce.png'),
         loadImage('/images/illustration/pdfimage.png')
       ])
       
@@ -231,7 +231,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       // Celebrity 3 text
       doc.setFont('helvetica', 'bold')
       doc.setFontSize(11)
-      doc.text('• Viola Complaindis', 25, currentY)
+      doc.text('• Cryoncé', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
       doc.text('  Drama in every schedule', 25, currentY + 5)
@@ -263,7 +263,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
           try {
             doc.addImage(violaImage, 'PNG', 25 + (imageSpacing * 2), imageY, imageSize, imageSize)
           } catch (error) {
-            console.error('Error adding Viola image:', error)
+            console.error('Error adding Cryonce image:', error)
           }
         }
         
@@ -674,18 +674,18 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
               </p>
             </div>
             
-            {/* Viola Complaindis */}
+            {/* Cryoncé */}
             <div className="text-center">
               <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/quiz/carla/viola.png"
-                  alt="Viola Complaindis"
+                  src="/images/quiz/carla/cryonce.png"
+                  alt="Cryoncé"
                   width={192}
                   height={192}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Viola Complaindis</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Cryoncé</h3>
               <p className="text-gray-600 max-w-xs mx-auto">
                 Finds drama in every schedule and prepares for the worst.
               </p>
