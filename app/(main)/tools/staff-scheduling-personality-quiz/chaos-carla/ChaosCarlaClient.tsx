@@ -107,7 +107,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
   }, [])
 
   // Move generatePDF before createHubSpotForm
-  const generatePDF = useCallback(async (name: string, email: string, company: string) => {
+  const generatePDF = useCallback(async () => {
     try {
       // Dynamically import jsPDF to avoid SSR issues
       const { jsPDF } = await import('jspdf')
@@ -147,9 +147,6 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       const rosterLabBlue = [3, 105, 161] // #0369A1
       const linkBlue = [0, 102, 204] // #0066CC for hyperlinks
 
-      // Extract first name
-      const firstName = name.split(' ')[0]
-      
       // Page 1
       // Header without background color
       // Add RosterLab logo
@@ -175,7 +172,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(20)
       doc.setTextColor(...textColor as [number, number, number])
-      doc.text(`${firstName}'s Rostering Personality`, 20, 32)
+      doc.text('Your Rostering Personality', 20, 32)
       doc.setFontSize(16)
       doc.setTextColor(...primaryColor as [number, number, number])
       doc.text('Chaos Carla', 20, 42)
@@ -200,7 +197,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       currentY += 10
       doc.setFontSize(11)
       doc.setTextColor(...textColor as [number, number, number])
-      const description = "Pessimistic planner who expects the worst and creates backup rosters for the backup rosters. Your cautious approach ensures you're prepared for any scheduling disaster."
+      const description = "You navigate scheduling chaos like a pro - often found hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering 'I knew this would happen' at least once a week. Known to vent, but only after saving the day."
       const lines = doc.splitTextToSize(description, 110)
       doc.text(lines, 20, currentY)
       currentY += lines.length * 5 + 8
@@ -562,7 +559,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       doc.link(footerX, pageHeight - 13, footerWidth, 4, {url: 'https://rosterlab.com'})
       
       // Save the PDF
-      doc.save(`RosterLab-Chaos-Carla-${name.replace(/\s+/g, '-')}.pdf`)
+      doc.save('Your Results - Chaos Carla - RosterLab.pdf')
     } catch (error) {
       console.error('Error generating PDF:', error)
       if (error instanceof Error) {
@@ -587,15 +584,8 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
           }
           setIsGeneratingPDF(true)
           
-          // Extract form data
-          const firstName = formData.submissionValues?.firstname || 'Quiz Taker'
-          const lastName = formData.submissionValues?.lastname || ''
-          const name = `${firstName} ${lastName}`.trim()
-          const email = formData.submissionValues?.email || ''
-          const company = formData.submissionValues?.company || ''
-          
           // Generate and download PDF
-          await generatePDF(name, email, company)
+          await generatePDF()
           
           // Close modal after a short delay
           setTimeout(() => {
