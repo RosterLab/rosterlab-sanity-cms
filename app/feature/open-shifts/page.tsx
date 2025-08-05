@@ -199,7 +199,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Devices-pana.svg"
+                  src="/images/illustration/free-staff-mobile.svg"
                   alt="Mobile Notifications"
                   width={500}
                   height={500}
