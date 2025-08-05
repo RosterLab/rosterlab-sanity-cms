@@ -86,7 +86,7 @@ const quizQuestions = [
       { id: 'c', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
       { id: 'd', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
       { id: 'e', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' },
-      { id: 'f', text: "Me not having the responsibility to do it", personality: 'nohope' }
+      { id: 'f', text: "Someone else doing the rostering instead of me", personality: 'nohope' }
     ]
   },
   {
