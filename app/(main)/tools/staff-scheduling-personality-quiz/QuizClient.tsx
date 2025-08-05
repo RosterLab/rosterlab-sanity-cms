@@ -426,7 +426,7 @@ export default function QuizClient() {
             <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
               <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Chaos Carla</h3>
               <p className="text-gray-600">
-                Navigates scheduling chaos while hiding under their desk. Masters at duct-taping gaps and smoothing swaps while muttering "I knew this would happen."
+                Hides under desk while duct-taping chaos. Saves the day muttering "I knew this would happen."
               </p>
             </div>
           </div>
