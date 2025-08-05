@@ -234,7 +234,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       doc.text('• Cryoncé', 25, currentY)
       doc.setFont('helvetica', 'normal')
       doc.setFontSize(10)
-      doc.text('  Drama in every schedule', 25, currentY + 5)
+      doc.text('  Who runs the world? My staff schedule', 25, currentY + 5)
       currentY += 15
       
       // Celebrity images in a row below the text
@@ -687,7 +687,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Cryoncé</h3>
               <p className="text-gray-600 max-w-xs mx-auto">
-                Finds drama in every schedule and prepares for the worst.
+                Who runs the world? My staff schedule. And it's running me into the ground.
               </p>
             </div>
           </div>
