@@ -792,7 +792,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
                 
                 {/* Pie Chart */}
                 <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 overflow-visible">
-                  <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
+                  <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90 overflow-visible">
                     {/* Master of Compliance - 30% */}
                     <circle
                       cx="50"
