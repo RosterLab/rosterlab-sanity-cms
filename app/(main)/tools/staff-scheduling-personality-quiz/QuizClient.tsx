@@ -57,28 +57,16 @@ const quizQuestions = [
     id: 4,
     question: "Someone messages at 9pm asking for a change. What do you do?",
     answers: [
-      { id: 'a', text: "Update the roster in the cloud.", personality: 'spreadsheet' },
+      { id: 'a', text: "Check if my formulas can handle the swap automatically.", personality: 'spreadsheet' },
       { id: 'b', text: "Say yes and move things around.", personality: 'social' },
       { id: 'c', text: "Sigh and do it in the morning.", personality: 'lastminute' },
       { id: 'd', text: "Ask them to submit it formally in writing.", personality: 'rules' },
       { id: 'e', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
-      { id: 'f', text: "Nancy - assemble!", personality: 'nohope' }
+      { id: 'f', text: "Pretend I didn't see the message.", personality: 'nohope' }
     ]
   },
   {
     id: 5,
-    question: "What tool do you prefer to use for rostering?",
-    answers: [
-      { id: 'a', text: "Excel or Google Sheets with conditional formatting.", personality: 'spreadsheet' },
-      { id: 'b', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
-      { id: 'c', text: "Whatever's quickest right now.", personality: 'lastminute' },
-      { id: 'd', text: "Award-compliant rostering software.", personality: 'rules' },
-      { id: 'e', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
-      { id: 'f', text: "A good ol fashion pen and paper", personality: 'nohope' }
-    ]
-  },
-  {
-    id: 6,
     question: "What do you care about most in a roster?",
     answers: [
       { id: 'a', text: "Efficiency and optimization.", personality: 'spreadsheet' },
@@ -90,19 +78,19 @@ const quizQuestions = [
     ]
   },
   {
-    id: 7,
+    id: 6,
     question: "Your ideal team roster looks like...",
     answers: [
       { id: 'a', text: "A perfect balance of shifts, breaks, and responsibilities.", personality: 'spreadsheet' },
       { id: 'b', text: "Everyone has the shifts they wanted.", personality: 'social' },
       { id: 'c', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
-      { id: 'd', text: "Fully documented, legally sound, and signed.", personality: 'rules' },
+      { id: 'd', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
       { id: 'e', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' },
       { id: 'f', text: "Me not having the responsibility to do it", personality: 'nohope' }
     ]
   },
   {
-    id: 8,
+    id: 7,
     question: "When things go wrong, your first move is to...",
     answers: [
       { id: 'a', text: "Diagnose the spreadsheet.", personality: 'spreadsheet' },
@@ -111,6 +99,18 @@ const quizQuestions = [
       { id: 'd', text: "Escalate to management with records.", personality: 'rules' },
       { id: 'e', text: "Calm the waters and realign the team.", personality: 'peacekeeper' },
       { id: 'f', text: "Cry in a quiet corner for a while", personality: 'nohope' }
+    ]
+  },
+  {
+    id: 8,
+    question: "What tool do you prefer to use for rostering?",
+    answers: [
+      { id: 'a', text: "Excel or Google Sheets with conditional formatting.", personality: 'spreadsheet' },
+      { id: 'b', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
+      { id: 'c', text: "Whatever's quickest right now.", personality: 'lastminute' },
+      { id: 'd', text: "Award-compliant rostering software.", personality: 'rules' },
+      { id: 'e', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
+      { id: 'f', text: "A good ol fashion pen and paper", personality: 'nohope' }
     ]
   }
 ]

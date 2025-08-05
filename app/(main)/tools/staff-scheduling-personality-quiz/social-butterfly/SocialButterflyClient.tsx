@@ -791,7 +791,7 @@ export default function SocialButterflyClient({ recommendedPosts }: SocialButter
                 <h3 className="text-xl font-semibold text-gray-900 mb-6">Your Social Butterfly DNA</h3>
                 
                 {/* Pie Chart */}
-                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80">
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 overflow-visible">
                   <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
                     {/* Relationship Builder - 30% */}
                     <circle
