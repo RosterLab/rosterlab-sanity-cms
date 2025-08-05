@@ -356,6 +356,15 @@ export default function QuizClient() {
               <p className="text-lg text-gray-600 mb-6">
                 Based on research and testing, our personality quiz aims to open up new perspectives for you – about yourself, your roster, and your redeeming hero-like qualities to get that roster done.
               </p>
+              <button
+                onClick={handleStartQuiz}
+                className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
+              >
+                Start the quiz
+                <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
               <Image
