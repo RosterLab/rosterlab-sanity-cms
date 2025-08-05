@@ -2,8 +2,25 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { urlFor } from '@/sanity/lib/client'
+
+// Add HubSpot type declaration
+declare global {
+  interface Window {
+    hbspt?: {
+      forms: {
+        create: (config: {
+          region: string
+          portalId: string
+          formId: string
+          target: string
+          onFormSubmitted?: (formData: any) => void
+        }) => void
+      }
+    }
+  }
+}
 
 // Star component for background animation
 function Star({ style }: { style: React.CSSProperties }) {
@@ -38,6 +55,8 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
   const [showDownloadForm, setShowDownloadForm] = useState(false)
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
   const [hoveredSection, setHoveredSection] = useState<string | null>(null)
+  const [isLoadingForm, setIsLoadingForm] = useState(false)
+  const formContainerRef = useRef<HTMLDivElement>(null)
 
   // Generate random stars
   const stars = Array.from({ length: 50 }, (_, i) => ({
@@ -87,22 +106,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
     return () => window.removeEventListener('popstate', handlePopstate)
   }, [])
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsGeneratingPDF(true)
-
-    const formData = new FormData(e.currentTarget)
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const company = formData.get('company') as string || ''
-
-    // Generate PDF
-    await generatePDF(name, email, company)
-    
-    setIsGeneratingPDF(false)
-    setShowDownloadForm(false)
-  }
-
+  // Move generatePDF before createHubSpotForm
   const generatePDF = useCallback(async (name: string, email: string, company: string) => {
     try {
       // Dynamically import jsPDF to avoid SSR issues
@@ -568,6 +572,73 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       alert('There was an error generating your PDF. Please check the console for details.')
     }
   }, [])
+
+  const createHubSpotForm = useCallback(() => {
+    if (window.hbspt && formContainerRef.current) {
+      window.hbspt.forms.create({
+        region: "na1",
+        portalId: "20646833",
+        formId: "d6b9c588-9eb1-44ba-bbe2-1d3aa362e5b1",
+        target: '#hubspot-form-container',
+        onFormSubmitted: async (formData: any) => {
+          // Hide form and show generating message
+          if (formContainerRef.current) {
+            formContainerRef.current.style.display = 'none'
+          }
+          setIsGeneratingPDF(true)
+          
+          // Extract form data
+          const firstName = formData.submissionValues?.firstname || 'Quiz Taker'
+          const lastName = formData.submissionValues?.lastname || ''
+          const name = `${firstName} ${lastName}`.trim()
+          const email = formData.submissionValues?.email || ''
+          const company = formData.submissionValues?.company || ''
+          
+          // Generate and download PDF
+          await generatePDF(name, email, company)
+          
+          // Close modal after a short delay
+          setTimeout(() => {
+            setIsGeneratingPDF(false)
+            setShowDownloadForm(false)
+          }, 1000)
+        }
+      })
+      setIsLoadingForm(false)
+    }
+  }, [generatePDF])
+
+  // Load HubSpot form when modal opens
+  useEffect(() => {
+    if (showDownloadForm) {
+      setIsLoadingForm(true)
+      
+      // Load HubSpot script if not already loaded
+      if (!window.hbspt) {
+        const script = document.createElement('script')
+        script.src = 'https://js.hsforms.net/forms/embed/v2.js'
+        script.charset = 'utf-8'
+        script.type = 'text/javascript'
+        script.async = true
+        script.onload = () => {
+          // Small delay to ensure script is fully loaded
+          setTimeout(() => {
+            createHubSpotForm()
+          }, 100)
+        }
+        document.body.appendChild(script)
+      } else {
+        createHubSpotForm()
+      }
+    }
+    
+    return () => {
+      // Clean up form when modal closes
+      if (formContainerRef.current) {
+        formContainerRef.current.innerHTML = ''
+      }
+    }
+  }, [showDownloadForm, createHubSpotForm])
 
   return (
     <div className="bg-white relative">
@@ -1180,68 +1251,34 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
               Get your personalized rostering personality report as a PDF.
             </p>
 
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                  Company (optional)
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                />
-              </div>
-
-              {isGeneratingPDF && (
+            {/* HubSpot Form Container */}
+            <div 
+              id="hubspot-form-container" 
+              ref={formContainerRef}
+              className="mb-4"
+            >
+              {isLoadingForm && (
                 <div className="text-center py-4">
-                  <p className="text-gray-600">Generating your personality report...</p>
+                  <p className="text-gray-600">Loading form...</p>
                 </div>
               )}
+            </div>
 
-              <div className="pt-4 space-y-3">
-                <button
-                  type="submit"
-                  disabled={isGeneratingPDF}
-                  className="w-full bg-primary-600 text-white hover:bg-primary-700 py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Download PDF Report
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowDownloadForm(false)}
-                  className="w-full bg-gray-200 text-gray-700 hover:bg-gray-300 py-2 px-4 rounded-md font-medium transition-colors"
-                >
-                  Cancel
-                </button>
+            {isGeneratingPDF && (
+              <div className="text-center py-4">
+                <p className="text-gray-600">Generating your personality report...</p>
               </div>
-            </form>
+            )}
+
+            {!isGeneratingPDF && (
+              <button
+                type="button"
+                onClick={() => setShowDownloadForm(false)}
+                className="w-full bg-gray-200 text-gray-700 hover:bg-gray-300 py-2 px-4 rounded-md font-medium transition-colors"
+              >
+                Cancel
+              </button>
+            )}
           </div>
         </div>
       )}
