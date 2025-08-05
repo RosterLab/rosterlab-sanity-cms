@@ -130,9 +130,9 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       const [logoImage, tarotImage, leoImage, dionImage, violaImage, toolsIllustration] = await Promise.all([
         loadImage('/images/rosterlab-logo.png'),
         loadImage('/images/quiz/carla/carla.png'),
-        loadImage('/images/quiz/nancy/leo.png'),
-        loadImage('/images/quiz/nancy/dion.png'),
-        loadImage('/images/quiz/nancy/viola.png'),
+        loadImage('/images/quiz/carla/leo.png'),
+        loadImage('/images/quiz/carla/dion.png'),
+        loadImage('/images/quiz/carla/viola.png'),
         loadImage('/images/illustration/pdfimage.png')
       ])
       
@@ -643,7 +643,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
             <div className="text-center">
               <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/quiz/nancy/leo.png"
+                  src="/images/quiz/carla/leo.png"
                   alt="Leave Me Alone DiCaprio"
                   width={192}
                   height={192}
@@ -660,7 +660,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
             <div className="text-center">
               <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/quiz/nancy/dion.png"
+                  src="/images/quiz/carla/dion.png"
                   alt="Complain Dion"
                   width={192}
                   height={192}
@@ -678,7 +678,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
             <div className="text-center">
               <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/images/quiz/nancy/viola.png"
+                  src="/images/quiz/carla/viola.png"
                   alt="Viola Complaindis"
                   width={192}
                   height={192}
