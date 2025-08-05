@@ -47,7 +47,7 @@ const quizQuestions = [
     answers: [
       { id: 'a', text: "Oh no—will that upset anyone?", personality: 'social' },
       { id: 'b', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
-      { id: 'c', text: "I knew this would happen *fixes it anyway*", personality: 'nohope' },
+      { id: 'c', text: "*Retreats under desk* but emerges to fix it", personality: 'nohope' },
       { id: 'd', text: "I already built formulas to catch that.", personality: 'spreadsheet' },
       { id: 'e', text: "Didn't see that. We'll survive.", personality: 'lastminute' },
       { id: 'f', text: "Let me see who's affected and talk to them.", personality: 'peacekeeper' }
