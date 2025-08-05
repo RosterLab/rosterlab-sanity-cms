@@ -122,7 +122,7 @@ const personalityUrls: Record<string, string> = {
   'social': '/tools/staff-scheduling-personality-quiz/social-butterfly',
   'rules': '/tools/staff-scheduling-personality-quiz/rules-robot',
   'lastminute': '/tools/staff-scheduling-personality-quiz/last-minute-magician',
-  'nohope': '/tools/staff-scheduling-personality-quiz/chaos-nancy'
+  'nohope': '/tools/staff-scheduling-personality-quiz/chaos-carla'
 }
 
 export default function QuizClient() {
@@ -415,7 +415,7 @@ export default function QuizClient() {
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Chaos Nancy</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Chaos Carla</h3>
               <p className="text-gray-600">
                 Pessimistic planner who expects the worst. Creates backup rosters for the backup rosters.
               </p>

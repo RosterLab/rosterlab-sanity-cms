@@ -28,11 +28,11 @@ interface BlogPost {
   }
 }
 
-interface ChaosNancyClientProps {
+interface ChaosCarlaClientProps {
   recommendedPosts: BlogPost[]
 }
 
-export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientProps) {
+export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientProps) {
   const [copied, setCopied] = useState(false)
   const [showCelebration, setShowCelebration] = useState(false)
   const [showDownloadForm, setShowDownloadForm] = useState(false)
@@ -60,7 +60,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       const scrollPosition = window.scrollY
       const windowHeight = window.innerHeight
       
-      // Show celebration when the "As Chaos Nancy" section is fully visible
+      // Show celebration when the "As Chaos Carla" section is fully visible
       // This happens when we've scrolled past one full viewport height
       if (scrollPosition > windowHeight && scrollPosition < windowHeight * 2 && !showCelebration) {
         setShowCelebration(true)
@@ -81,7 +81,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
     }
 
     // Push a new state when the component mounts
-    window.history.pushState({ from: 'chaos-nancy' }, '', window.location.href)
+    window.history.pushState({ from: 'chaos-carla' }, '', window.location.href)
     
     window.addEventListener('popstate', handlePopstate)
     return () => window.removeEventListener('popstate', handlePopstate)
@@ -129,7 +129,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       // Load images
       const [logoImage, tarotImage, leoImage, dionImage, violaImage, toolsIllustration] = await Promise.all([
         loadImage('/images/rosterlab-logo.png'),
-        loadImage('/images/quiz/nancy/nancy.png'),
+        loadImage('/images/quiz/carla/carla.png'),
         loadImage('/images/quiz/nancy/leo.png'),
         loadImage('/images/quiz/nancy/dion.png'),
         loadImage('/images/quiz/nancy/viola.png'),
@@ -174,7 +174,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       doc.text(`${firstName}'s Rostering Personality`, 20, 32)
       doc.setFontSize(16)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Chaos Nancy', 20, 42)
+      doc.text('Chaos Carla', 20, 42)
       
       // Start content with more spacing
       let currentY = 58
@@ -182,7 +182,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       // Main content with tarot card image
       doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('It sounds like you best fit: Chaos Nancy', 20, currentY)
+      doc.text('It sounds like you best fit: Chaos Carla', 20, currentY)
       
       // Add tarot card image on the right
       if (tarotImage) {
@@ -270,11 +270,11 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
         currentY += imageSize + 10
       }
       
-      // As Chaos Nancy section
+      // As Chaos Carla section
       currentY += 5
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('As Chaos Nancy...', 20, currentY)
+      doc.text('As Chaos Carla...', 20, currentY)
       
       currentY += 10
       doc.setFontSize(10)
@@ -313,7 +313,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       currentY += 10
       doc.setFontSize(14)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Your Chaos Nancy DNA', 105, currentY, { align: 'center' })
+      doc.text('Your Chaos Carla DNA', 105, currentY, { align: 'center' })
       
       // Draw simple representation of pie chart using stacked bars
       const chartY = currentY + 10
@@ -427,7 +427,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       currentY = legendY + 40
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Tools Chaos Nancy needs to grow!', 20, currentY)
+      doc.text('Tools Chaos Carla needs to grow!', 20, currentY)
       
       currentY += 10
       doc.setFontSize(9)
@@ -486,7 +486,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       currentY += 10
       doc.setFontSize(13)
       doc.setTextColor(...primaryColor as [number, number, number])
-      doc.text('Recommended reading for Chaos Nancy', 20, currentY)
+      doc.text('Recommended reading for Chaos Carla', 20, currentY)
       
       // Add illustration on the right
       if (toolsIllustration) {
@@ -558,7 +558,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       doc.link(footerX, pageHeight - 13, footerWidth, 4, {url: 'https://rosterlab.com'})
       
       // Save the PDF
-      doc.save(`RosterLab-Chaos-Nancy-${name.replace(/\s+/g, '-')}.pdf`)
+      doc.save(`RosterLab-Chaos-Carla-${name.replace(/\s+/g, '-')}.pdf`)
     } catch (error) {
       console.error('Error generating PDF:', error)
       if (error instanceof Error) {
@@ -579,7 +579,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl mb-6">
                 It sounds like you best fit:<br />
-                <span className="text-primary-600">Chaos Nancy</span>
+                <span className="text-primary-600">Chaos Carla</span>
               </h1>
               <p className="text-lg text-gray-600 mb-8">
                 Pessimistic planner who expects the worst and creates backup rosters for the backup rosters. Your cautious approach ensures you're prepared for any scheduling disaster.
@@ -619,8 +619,8 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
               <div className="relative w-full max-w-xs mx-auto lg:mx-0 lg:ml-auto">
                 <div className="relative w-full h-[22rem] transform rotate-3 transition-transform duration-300 hover:rotate-0">
                   <Image
-                    src="/images/quiz/nancy/nancy.png"
-                    alt="Chaos Nancy"
+                    src="/images/quiz/carla/carla.png"
+                    alt="Chaos Carla"
                     fill
                     className="object-contain"
                   />
@@ -694,11 +694,11 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
         </div>
       </section>
 
-      {/* As Chaos Nancy Section */}
-      <section id="as-chaos-nancy-section" className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
+      {/* As Chaos Carla Section */}
+      <section id="as-chaos-carla-section" className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-            As Chaos Nancy…
+            As Chaos Carla…
           </h2>
           <p className="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">
             You prepare for every possible worst-case scenario, creating contingency plans for your contingency plans. Your cautious pessimism keeps operations running when everything inevitably goes wrong.
@@ -772,7 +772,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
             {/* Right Column - Pie Chart (shows below on mobile) */}
             <div className="relative mt-12 lg:mt-0">
               <div className="relative w-full flex flex-col items-center">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6">Your Chaos Nancy DNA</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">Your Chaos Carla DNA</h3>
                 
                 {/* Pie Chart */}
                 <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 overflow-visible">
@@ -986,7 +986,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       <section className="bg-gray-50 py-8 md:py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Tools Chaos Nancy needs to grow!
+            Tools Chaos Carla needs to grow!
           </h2>
           
           <div className="grid gap-8 md:grid-cols-3 mb-12">
@@ -1067,7 +1067,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
       <section className="bg-white py-8 md:py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Recommended reading for Chaos Nancy
+            Recommended reading for Chaos Carla
           </h2>
           
           <div className="grid gap-8 md:grid-cols-3">
@@ -1149,7 +1149,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
             Need help with your roster?
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-            As Chaos Nancy, you know everything that can go wrong will go wrong. Let RosterLab handle the chaos with automated backup plans and real-time adjustments when disaster strikes.
+            As Chaos Carla, you know everything that can go wrong will go wrong. Let RosterLab handle the chaos with automated backup plans and real-time adjustments when disaster strikes.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1174,7 +1174,7 @@ export default function ChaosNancyClient({ recommendedPosts }: ChaosNancyClientP
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-md w-full p-6">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Download Your Chaos Nancy Results
+              Download Your Chaos Carla Results
             </h3>
             <p className="text-gray-600 mb-6">
               Get your personalized rostering personality report as a PDF.
