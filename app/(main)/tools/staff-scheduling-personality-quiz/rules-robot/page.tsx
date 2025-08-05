@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'The Rules Robot - Your Rostering Personality',
   description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
   robots: {
-    index: true,
+    index: false,
     follow: true
   },
   openGraph: {
