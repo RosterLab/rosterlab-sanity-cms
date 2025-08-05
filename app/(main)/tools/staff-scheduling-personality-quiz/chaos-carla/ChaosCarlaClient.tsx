@@ -279,18 +279,18 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
       currentY += 10
       doc.setFontSize(10)
       doc.setTextColor(...textColor as [number, number, number])
-      const nancyDesc = 'You prepare for every possible worst-case scenario, creating contingency plans for your contingency plans. Your cautious pessimism keeps operations running when everything goes wrong.'
-      const nancyLines = doc.splitTextToSize(nancyDesc, 170)
-      doc.text(nancyLines, 20, currentY)
-      currentY += nancyLines.length * 4 + 5
+      const carlaDesc = 'You navigate scheduling chaos like a pro - often found hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" at least once a week. Known to vent, but only after saving the day.'
+      const carlaLines = doc.splitTextToSize(carlaDesc, 170)
+      doc.text(carlaLines, 20, currentY)
+      currentY += carlaLines.length * 4 + 5
       
       // Key characteristics
       const characteristics = [
-        '• Risk Anticipator: Sees potential problems before they arise',
-        '• Backup Planner: Creates multiple contingency rosters',
-        '• Worst-Case Strategist: Plans for every possible disaster',
-        '• Crisis Preparer: Always ready for the inevitable chaos',
-        '• Reality Checker: Keeps expectations grounded and realistic'
+        '• Chaos Navigator: Expert at duct-taping gaps when everything falls apart',
+        '• Swap Smoother: Masters the art of last-minute shift changes',
+        '• Under-Desk Hider: Knows when to retreat and regroup',
+        '• Day Saver: Always pulls through despite the chaos',
+        '• Prophetic Mutterer: "I knew this would happen" is your catchphrase'
       ]
       
       doc.setFontSize(10)
@@ -582,7 +582,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
                 <span className="text-primary-600">Chaos Carla</span>
               </h1>
               <p className="text-lg text-gray-600 mb-8">
-                Pessimistic planner who expects the worst and creates backup rosters for the backup rosters. Your cautious approach ensures you're prepared for any scheduling disaster.
+                You navigate scheduling chaos like a pro - often found hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" at least once a week. Known to vent, but only after saving the day.
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -652,7 +652,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Leave Me Alone DiCaprio</h3>
               <p className="text-gray-600 max-w-xs mx-auto">
-                Always expects the worst and prepares for disaster.
+                Found hiding under desks when chaos strikes, but somehow always saves the day.
               </p>
             </div>
             
@@ -670,7 +670,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Complain Dion</h3>
               <p className="text-gray-600 max-w-xs mx-auto">
-                My shifts will go wrong... it's all coming back to me now.
+                My shifts will need duct-taping... it's all coming back to me now.
               </p>
             </div>
             
@@ -701,7 +701,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
             As Chaos Carla…
           </h2>
           <p className="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">
-            You prepare for every possible worst-case scenario, creating contingency plans for your contingency plans. Your cautious pessimism keeps operations running when everything inevitably goes wrong.
+            You navigate scheduling chaos like a pro - often found hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" at least once a week. Known to vent, but only after saving the day.
           </p>
           
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
@@ -714,7 +714,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-gray-700">
-                    <span className="font-semibold">Risk Anticipator:</span> Sees potential problems before anyone else notices them
+                    <span className="font-semibold">Chaos Navigator:</span> Expert at duct-taping gaps when everything falls apart
                   </p>
                 </div>
                 
@@ -723,7 +723,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-gray-700">
-                    <span className="font-semibold">Backup Planner:</span> Creates multiple contingency rosters for every scenario
+                    <span className="font-semibold">Swap Smoother:</span> Masters the art of last-minute shift changes
                   </p>
                 </div>
                 
@@ -732,7 +732,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-gray-700">
-                    <span className="font-semibold">Worst-Case Strategist:</span> Plans for every possible disaster scenario
+                    <span className="font-semibold">Under-Desk Hider:</span> Knows when to retreat and regroup
                   </p>
                 </div>
                 
@@ -741,7 +741,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-gray-700">
-                    <span className="font-semibold">Crisis Preparer:</span> Always ready when the inevitable chaos strikes
+                    <span className="font-semibold">Day Saver:</span> Always pulls through despite the chaos
                   </p>
                 </div>
                 
@@ -750,7 +750,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <p className="text-gray-700">
-                    <span className="font-semibold">Reality Checker:</span> Keeps expectations grounded and realistic
+                    <span className="font-semibold">Prophetic Mutterer:</span> "I knew this would happen" is your catchphrase
                   </p>
                 </div>
               </div>
@@ -1149,7 +1149,7 @@ export default function ChaosCarlaClient({ recommendedPosts }: ChaosCarlaClientP
             Need help with your roster?
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
-            As Chaos Carla, you know everything that can go wrong will go wrong. Let RosterLab handle the chaos with automated backup plans and real-time adjustments when disaster strikes.
+            As Chaos Carla, you're a master at navigating scheduling disasters while hiding under your desk. Let RosterLab handle the duct-taping and swap-smoothing, so you can emerge victorious without the stress.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

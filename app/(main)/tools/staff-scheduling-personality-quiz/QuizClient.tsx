@@ -25,7 +25,7 @@ const quizQuestions = [
       { id: 'b', text: "Love it! Give me Excel and a coffee, and I'm happy.", personality: 'spreadsheet' },
       { id: 'c', text: "As long as nobody is upset, I'm good.", personality: 'peacekeeper' },
       { id: 'd', text: "I enjoy making people smile with a good shift.", personality: 'social' },
-      { id: 'e', text: "HELP ME", personality: 'nohope' },
+      { id: 'e', text: "*hides under desk*", personality: 'nohope' },
       { id: 'f', text: "It's a serious responsibility. There are rules!", personality: 'rules' }
     ]
   },
@@ -36,7 +36,7 @@ const quizQuestions = [
       { id: 'a', text: "Making sure that Sarah and Ben aren't rostered together... again.", personality: 'peacekeeper' },
       { id: 'b', text: "Just starting... I work best under pressure.", personality: 'lastminute' },
       { id: 'c', text: "Reviewing my macros one last time.", personality: 'spreadsheet' },
-      { id: 'd', text: "AHHHHGH!", personality: 'nohope' },
+      { id: 'd', text: "Time to duct-tape this together... again", personality: 'nohope' },
       { id: 'e', text: "DM'ing everyone for their preferences.", personality: 'social' },
       { id: 'f', text: "Double-checking every shift meets compliance.", personality: 'rules' }
     ]
@@ -47,7 +47,7 @@ const quizQuestions = [
     answers: [
       { id: 'a', text: "Oh no—will that upset anyone?", personality: 'social' },
       { id: 'b', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
-      { id: 'c', text: "Looks the other way, clicks share", personality: 'nohope' },
+      { id: 'c', text: "I knew this would happen *fixes it anyway*", personality: 'nohope' },
       { id: 'd', text: "I already built formulas to catch that.", personality: 'spreadsheet' },
       { id: 'e', text: "Didn't see that. We'll survive.", personality: 'lastminute' },
       { id: 'f', text: "Let me see who's affected and talk to them.", personality: 'peacekeeper' }
@@ -58,7 +58,7 @@ const quizQuestions = [
     question: "Someone messages at 9pm asking for a change. What do you do?",
     answers: [
       { id: 'a', text: "Ask them to submit it formally in writing.", personality: 'rules' },
-      { id: 'b', text: "Pretend I didn't see the message.", personality: 'nohope' },
+      { id: 'b', text: "*Mutters 'I knew this would happen' and fixes it*", personality: 'nohope' },
       { id: 'c', text: "Say yes and move things around.", personality: 'social' },
       { id: 'd', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
       { id: 'e', text: "Check if my formulas can handle the swap automatically.", personality: 'spreadsheet' },
@@ -71,7 +71,7 @@ const quizQuestions = [
     answers: [
       { id: 'a', text: "Team harmony and morale.", personality: 'peacekeeper' },
       { id: 'b', text: "Getting it done without losing my mind.", personality: 'lastminute' },
-      { id: 'c', text: "Just surviving without too many complaints", personality: 'nohope' },
+      { id: 'c', text: "Saving the day while venting about it", personality: 'nohope' },
       { id: 'd', text: "Legal compliance and structure.", personality: 'rules' },
       { id: 'e', text: "Efficiency and optimization.", personality: 'spreadsheet' },
       { id: 'f', text: "Making everyone feel considered.", personality: 'social' }
@@ -84,7 +84,7 @@ const quizQuestions = [
       { id: 'a', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
       { id: 'b', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' },
       { id: 'c', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
-      { id: 'd', text: "Someone else doing the rostering instead of me", personality: 'nohope' },
+      { id: 'd', text: "Somehow working despite me hiding under my desk", personality: 'nohope' },
       { id: 'e', text: "A perfect balance of shifts, breaks, and responsibilities.", personality: 'spreadsheet' },
       { id: 'f', text: "Everyone has the shifts they wanted.", personality: 'social' }
     ]
@@ -94,7 +94,7 @@ const quizQuestions = [
     question: "When things go wrong, your first move is to...",
     answers: [
       { id: 'a', text: "Calm the waters and realign the team.", personality: 'peacekeeper' },
-      { id: 'b', text: "Cry in a quiet corner for a while", personality: 'nohope' },
+      { id: 'b', text: "Hide under desk, then emerge to save the day", personality: 'nohope' },
       { id: 'c', text: "Diagnose the spreadsheet.", personality: 'spreadsheet' },
       { id: 'd', text: "Try to patch it on the fly.", personality: 'lastminute' },
       { id: 'e', text: "Escalate to management with records.", personality: 'rules' },
@@ -107,7 +107,7 @@ const quizQuestions = [
     answers: [
       { id: 'a', text: "Whatever's quickest right now.", personality: 'lastminute' },
       { id: 'b', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
-      { id: 'c', text: "A good old fashion pen and paper", personality: 'nohope' },
+      { id: 'c', text: "Whatever I can duct-tape together to make it work", personality: 'nohope' },
       { id: 'd', text: "Excel or Google Sheets with conditional formatting.", personality: 'spreadsheet' },
       { id: 'e', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
       { id: 'f', text: "Professional rostering software with all the rules built-in.", personality: 'rules' }
@@ -417,7 +417,7 @@ export default function QuizClient() {
             <div className="rounded-lg bg-white p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary-300 transition-all duration-300 cursor-pointer group">
               <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">The Chaos Carla</h3>
               <p className="text-gray-600">
-                Pessimistic planner who expects the worst. Creates backup rosters for the backup rosters.
+                Navigates scheduling chaos while hiding under their desk. Masters at duct-taping gaps and smoothing swaps while muttering "I knew this would happen."
               </p>
             </div>
           </div>

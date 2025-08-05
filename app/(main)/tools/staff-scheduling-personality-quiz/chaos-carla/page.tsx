@@ -7,14 +7,14 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Chaos Carla - Your Rostering Personality',
-  description: 'Pessimistic planner who expects the worst and creates backup rosters for the backup rosters. Your cautious approach ensures you\'re prepared for any scheduling disaster.',
+  description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
     title: 'Chaos Carla - Your Rostering Personality',
-    description: 'Pessimistic planner who expects the worst and creates backup rosters for the backup rosters. Your cautious approach ensures you\'re prepared for any scheduling disaster.',
+    description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
     images: [
       {
         url: '/images/quiz/og/og.png',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Chaos Carla - Your Rostering Personality',
-    description: 'Pessimistic planner who expects the worst and creates backup rosters for the backup rosters. Your cautious approach ensures you\'re prepared for any scheduling disaster.',
+    description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
     images: ['/images/quiz/og/og.png']
   }
 }
