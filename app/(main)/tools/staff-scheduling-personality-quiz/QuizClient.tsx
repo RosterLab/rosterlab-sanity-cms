@@ -84,7 +84,7 @@ const quizQuestions = [
       { id: 'a', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
       { id: 'b', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' },
       { id: 'c', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
-      { id: 'd', text: "Held together with duct tape and prayer", personality: 'nohope' },
+      { id: 'd', text: "Held together with duct tape and a wish upon a star", personality: 'nohope' },
       { id: 'e', text: "A perfect balance of shifts, breaks, and responsibilities.", personality: 'spreadsheet' },
       { id: 'f', text: "Everyone has the shifts they wanted.", personality: 'social' }
     ]
