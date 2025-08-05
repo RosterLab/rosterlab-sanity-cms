@@ -74,7 +74,7 @@ const quizQuestions = [
       { id: 'c', text: "Getting it done without losing my mind.", personality: 'lastminute' },
       { id: 'd', text: "Legal compliance and structure.", personality: 'rules' },
       { id: 'e', text: "Team harmony and morale.", personality: 'peacekeeper' },
-      { id: 'f', text: "How much of my soul it will take this term", personality: 'nohope' }
+      { id: 'f', text: "Just surviving without too many complaints", personality: 'nohope' }
     ]
   },
   {
