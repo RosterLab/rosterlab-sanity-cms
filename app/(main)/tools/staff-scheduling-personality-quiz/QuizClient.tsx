@@ -43,7 +43,7 @@ const quizQuestions = [
   },
   {
     id: 3,
-    question: "You notice a shift overlaps break compliance rules. What's your reaction?",
+    question: "You notice your roster breaks some compliance rules. What's your reaction?",
     answers: [
       { id: 'a', text: "Oh no—will that upset anyone?", personality: 'social' },
       { id: 'b', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
