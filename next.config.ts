@@ -195,6 +195,11 @@ const nextConfig: NextConfig = {
         destination: '/blog/how-to-implement-self-scheduling',
         permanent: true,
       },
+      {
+        source: '/blog/open-shifts',
+        destination: '/blog/open-shifts-understanding-the-basics',
+        permanent: true,
+      },
       // Case studies redirects
       {
         source: '/case-studies/blog/casestudy_dargavillemedicalcentre',
