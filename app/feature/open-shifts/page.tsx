@@ -36,11 +36,11 @@ export const metadata = {
 const faqItems = [
   {
     question: "How quickly can open shifts be filled?",
-    answer: "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable employee to accept gets the shift, and the roster is automatically updated. Our clients typically see 85% of open shifts filled within 30 minutes."
+    answer: "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable employee to accept gets the shift, and the roster is automatically updated."
   },
   {
     question: "How do employees know about open shifts?",
-    answer: "Employees receive instant push notifications on their mobile devices when shifts matching their qualifications become available. They can also check the app proactively to see all open shifts they're eligible for. The system shows shift details, pay rates, and any special requirements, allowing staff to make informed decisions quickly."
+    answer: "Employees receive instant push notifications on their mobile devices when shifts matching their qualifications become available. They can also check the app proactively to see all open shifts they're eligible for."
   },
   {
     question: "Can I control who sees open shifts?",
@@ -48,11 +48,11 @@ const faqItems = [
   },
   {
     question: "What happens when multiple people want the same shift?",
-    answer: "The system operates on a first-come, first-served basis by default, but you can customise this. Options include automatic assignment to the first qualified person, review mode where managers can choose from interested staff, or priority-based assignment (e.g., by seniority or hours worked). You can also set a brief collection period to gather responses before assigning."
+    answer: "The system operates on a first-come, first-served basis by default."
   },
   {
-    question: "How does this help with unexpected absences?",
-    answer: "When someone calls in sick or has an emergency, you can post their shift as open with just a few clicks. The system immediately identifies all qualified available staff and sends notifications. You can even set up templates for common scenarios to post open shifts even faster. This turns a potential crisis into a resolved issue within minutes."
+    question: "How does open shifts help reduce staffing costs?",
+    answer: "Open shifts helps reduce costly agency and overtime usage by quickly filling gaps with your existing staff pool. Instead of calling expensive agency workers or paying overtime rates, you can instantly broadcast shifts to available employees at regular rates. The system also reduces administrative time spent on phone calls and manual coordination, freeing up managers for more valuable tasks."
   }
 ]
 
@@ -66,7 +66,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Fill Shifts Instantly
+                  Fill Open Shifts Instantly
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Broadcast open shifts to qualified staff and fill gaps in minutes, not hours.
@@ -87,13 +87,7 @@ export default function OpenShiftsPage() {
                 </div>
               </div>
               <div className="relative">
-                <Image
-                  src="/images/illustration/Push notifications-pana-2.svg"
-                  alt="Open shifts broadcasting illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
+                <OpenShiftsContent />
               </div>
             </div>
           </Container>
@@ -231,38 +225,26 @@ export default function OpenShiftsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Track & Optimize Performance
+                  Smart Employee Matching
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Gain insights into open shift patterns, response rates, and fill times. Use data to improve scheduling and reduce last-minute gaps.
+                  Automatically shortlist qualified staff based on skills, availability, and preferences. Only the right people see the right shifts.
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Fill rate analytics</span>
+                    <span className="text-gray-700">Skills-based matching</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Response time tracking</span>
+                    <span className="text-gray-700">Availability filtering</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Staff engagement metrics</span>
+                    <span className="text-gray-700">Preference-based ranking</span>
                   </li>
                 </ul>
               </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* Interactive Demo Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                See It In Action
-              </h2>
-              <OpenShiftsContent />
             </div>
           </Container>
         </div>
