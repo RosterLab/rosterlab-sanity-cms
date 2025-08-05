@@ -110,7 +110,7 @@ const quizQuestions = [
       { id: 'c', text: "Whatever's quickest right now.", personality: 'lastminute' },
       { id: 'd', text: "Award-compliant rostering software.", personality: 'rules' },
       { id: 'e', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
-      { id: 'f', text: "A good ol fashion pen and paper", personality: 'nohope' }
+      { id: 'f', text: "A good old fashion pen and paper", personality: 'nohope' }
     ]
   }
 ]
