@@ -49,8 +49,8 @@ export default function LastMinuteMagicianClient({ recommendedPosts }: LastMinut
   }))
 
   const handleCopyLink = () => {
-    const quizUrl = `${window.location.origin}/tools/staff-scheduling-personality-quiz`
-    navigator.clipboard.writeText(quizUrl)
+    const currentUrl = window.location.href
+    navigator.clipboard.writeText(currentUrl)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }

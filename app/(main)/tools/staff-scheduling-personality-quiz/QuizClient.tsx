@@ -356,14 +356,6 @@ export default function QuizClient() {
               <p className="text-lg text-gray-600 mb-6">
                 Based on research and testing, our personality quiz aims to open up new perspectives for you – about yourself, your roster, and your redeeming hero-like qualities to get that roster done.
               </p>
-              <div className="space-y-4 text-gray-600">
-                <p>
-                  Have you ever noticed how teams have such different approaches to staff rostering? Our relationship with rostering isn't just about getting a good quality roster to the finishing line, it's about the problem-solving we do and the people we help too. If you're curious about yourself and the way you approach staff scheduling, this will be time well spent.
-                </p>
-                <p>
-                  Developed in conjunction with roster creators, this rostering tool is based on extensive research and insights into team dynamics. As more and more people take the quiz, we'll continue to refine it to bring you ever more insight into our work scheduling styles.
-                </p>
-              </div>
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden">
               <Image
