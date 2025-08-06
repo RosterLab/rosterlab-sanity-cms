@@ -200,6 +200,43 @@ const nextConfig: NextConfig = {
         destination: '/blog/open-shifts-understanding-the-basics',
         permanent: true,
       },
+      // Redirect case studies from /blog to /case-studies
+      {
+        source: '/blog/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
+        destination: '/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
+        permanent: true,
+      },
+      {
+        source: '/blog/icu-unit-western-australia',
+        destination: '/case-studies/icu-unit-western-australia',
+        permanent: true,
+      },
+      {
+        source: '/blog/dargaville-medical-centre-new-zealand',
+        destination: '/case-studies/dargaville-medical-centre-new-zealand',
+        permanent: true,
+      },
+      // Redirect newsroom from /blog to /newsroom
+      {
+        source: '/blog/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules',
+        destination: '/newsroom/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules',
+        permanent: true,
+      },
+      {
+        source: '/blog/connecting-with-healthcare-leaders-at-digital-health-festival-2025',
+        destination: '/newsroom/connecting-with-healthcare-leaders-at-digital-health-festival-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters',
+        destination: '/newsroom/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters',
+        permanent: true,
+      },
+      {
+        source: '/blog/whanganui-radiography-department-embraces-ai-rostering',
+        destination: '/newsroom/whanganui-radiography-department-embraces-ai-rostering',
+        permanent: true,
+      },
       // Case studies redirects
       {
         source: '/case-studies/blog/casestudy_dargavillemedicalcentre',
