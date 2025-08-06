@@ -4,7 +4,6 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
-import OpenShiftsContent from './OpenShiftsContent'
 
 export const metadata = {
   title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
@@ -59,7 +58,7 @@ const faqItems = [
 export default function OpenShiftsPage() {
   return (
     <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">
         {/* Hero Section */}
         <div className="py-20">
           <Container>
@@ -74,20 +73,26 @@ export default function OpenShiftsPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     href="/book-a-demo" 
-                    className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     Book A Demo
                   </Button>
                   <Button 
                     href="/solutions/free-staff-scheduling" 
-                    className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
+                    className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Try it for free
                   </Button>
                 </div>
               </div>
               <div className="relative">
-                <OpenShiftsContent />
+                <Image
+                  src="/images/illustration/Mobile inbox-pana.svg"
+                  alt="Open shifts notification illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -106,15 +111,15 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">One-click shift posting</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Instant push notifications to qualified staff</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Smart filtering by skills and availability</span>
                   </li>
                 </ul>
@@ -154,15 +159,15 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time availability updates</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Configurable assignment rules</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Automatic roster updates</span>
                   </li>
                 </ul>
@@ -184,15 +189,15 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Push notifications for immediate reach</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">One-tap shift acceptance</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">In-app shift details and requirements</span>
                   </li>
                 </ul>
@@ -232,15 +237,15 @@ export default function OpenShiftsPage() {
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Skills-based matching</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Availability filtering</span>
                   </li>
                   <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Preference-based ranking</span>
                   </li>
                 </ul>
@@ -262,7 +267,7 @@ export default function OpenShiftsPage() {
         </div>
 
         {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
@@ -299,13 +304,13 @@ export default function OpenShiftsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   href="/book-a-demo" 
-                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
+                  className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
                 <Button 
                   href="/pricing" 
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
+                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
                 </Button>
