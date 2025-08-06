@@ -71,7 +71,11 @@ export const postQuery = groq`
 
 // Query specifically for blog posts - excludes case studies and newsroom
 export const blogPostQuery = groq`
-  *[_type == "post" && slug.current == $slug && !("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)][0] {
+  *[_type == "post" && slug.current == $slug && (
+    !defined(categories) || 
+    count(categories) == 0 || 
+    (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
+  )][0] {
     _id,
     title,
     slug,
@@ -103,7 +107,11 @@ export const postPathsQuery = groq`
 
 // Query for blog post paths only - excludes case studies and newsroom
 export const blogPostPathsQuery = groq`
-  *[_type == "post" && defined(slug.current) && !("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)][].slug.current
+  *[_type == "post" && defined(slug.current) && (
+    !defined(categories) || 
+    count(categories) == 0 || 
+    (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
+  )][].slug.current
 `
 
 // Categories
