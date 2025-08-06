@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getClient, client, urlFor } from '@/sanity/lib/client'
-import { postQuery, postPathsQuery, blogPostsOnlyQuery } from '@/sanity/lib/queries'
+import { blogPostQuery, blogPostPathsQuery, blogPostsOnlyQuery } from '@/sanity/lib/queries'
 import { validatedToken } from '@/sanity/lib/token'
 import { formatDate } from '@/lib/utils'
 import Container from '@/components/ui/Container'
@@ -21,8 +21,8 @@ interface BlogPostPageProps {
 }
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(postPathsQuery)
-  console.log('All post slugs:', slugs)
+  const slugs = await client.fetch(blogPostPathsQuery)
+  console.log('Blog post slugs:', slugs)
   return slugs.map((slug: string) => ({ slug }))
 }
 
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
   const { isEnabled } = await draftMode()
   const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
-  const post = await clientToUse.fetch(postQuery, { slug: slug.trim() })
+  const post = await clientToUse.fetch(blogPostQuery, { slug: slug.trim() })
   
   if (!post) {
     return {
@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   console.log('Slug from URL:', JSON.stringify(slug))
   console.log('Slug length:', slug.length)
   
-  const post = await clientToUse.fetch(postQuery, { slug: slug.trim() })
+  const post = await clientToUse.fetch(blogPostQuery, { slug: slug.trim() })
 
   if (!post) {
     notFound()
