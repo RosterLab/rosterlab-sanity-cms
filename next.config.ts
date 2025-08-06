@@ -331,6 +331,52 @@ const nextConfig: NextConfig = {
         destination: '/industries/healthcare/aged-care',
         permanent: true,
       },
+      // 404 redirects from main domain
+      {
+        source: '/blog/blog/excel-series',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/index.html',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/author/daniel-ge',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/blog/open-shifts',
+        destination: '/blog/open-shifts-understanding-the-basics',
+        permanent: true,
+      },
+      {
+        source: '/blog/blog/shift-types',
+        destination: '/blog/shift-types',
+        permanent: true,
+      },
+      {
+        source: '/blog/self-scheduling%20study/',
+        destination: '/blog/self-scheduling-study',
+        permanent: true,
+      },
+      {
+        source: '/home-b',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/blog/Why%20RosterLab%20Free/',
+        destination: '/solutions/free-staff-scheduling',
+        permanent: true,
+      },
+      {
+        source: '/blog/Why%20RosterLab%20Free',
+        destination: '/solutions/free-staff-scheduling',
+        permanent: true,
+      },
     ]
   },
 };
