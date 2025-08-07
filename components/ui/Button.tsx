@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { trackButtonClick } from '@/components/analytics/Amplitude'
@@ -66,24 +68,24 @@ export default function Button({
     onClick?.()
   }
 
-  const handleLinkClick = () => {
-    if (analyticsLabel) {
-      trackButtonClick(
-        analyticsLabel,
-        analyticsLocation,
-        {
-          variant,
-          size,
-          href,
-          ...analyticsProperties,
-        }
-      )
-    }
-  }
-  
   if (href) {
     return (
-      <Link href={href} className={classes} onClick={handleLinkClick}>
+      <Link 
+        href={href} 
+        className={classes}
+        onClick={analyticsLabel ? () => {
+          trackButtonClick(
+            analyticsLabel,
+            analyticsLocation,
+            {
+              variant,
+              size,
+              href,
+              ...analyticsProperties,
+            }
+          )
+        } : undefined}
+      >
         {children}
       </Link>
     )
