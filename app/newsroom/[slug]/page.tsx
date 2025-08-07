@@ -229,13 +229,6 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
 
             {/* Main Article Content */}
             <main className="lg:col-span-6">
-              {/* Introduction text */}
-              {post.excerpt && (
-                <div className="mb-8 text-lg text-gray-700 leading-relaxed">
-                  {post.excerpt}
-                </div>
-              )}
-
               {/* Article Body */}
               <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
                 <PortableText value={post.body} />
