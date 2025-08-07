@@ -80,7 +80,7 @@ export default function StaffRetentionModule() {
       {/* Image */}
       <div className="mb-6 flex justify-center">
         <Image
-          src="/images/illustration/reduce_turnover.svg"
+          src="/images/illustration/reduce_turnover.webp"
           alt="Improve staff retention"
           width={400}
           height={320}

@@ -22,12 +22,9 @@ interface BlogPostPageProps {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(blogPostPathsQuery)
-  console.log('Blog post slugs:', slugs)
   return slugs.map((slug: string) => ({ slug }))
 }
 
-export const dynamicParams = true // Allow pages not in generateStaticParams
-export const revalidate = 60 // Revalidate every 60 seconds
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params
@@ -65,9 +62,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { isEnabled } = await draftMode()
   const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   
-  // Debug: Log the slug to check for spaces
-  console.log('Slug from URL:', JSON.stringify(slug))
-  console.log('Slug length:', slug.length)
   
   const post = await clientToUse.fetch(blogPostQuery, { slug: slug.trim() })
 

@@ -4,8 +4,6 @@ import { validatedToken } from '@/sanity/lib/token'
 import CaseStudiesPageContent from '@/components/case-studies/CaseStudiesPageContent'
 import { draftMode } from 'next/headers'
 
-export const revalidate = 60 // Revalidate every 60 seconds
-export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'RosterLab Case Studies - Better Rosters, Impactful Results',

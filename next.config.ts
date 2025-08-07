@@ -93,46 +93,6 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: '/(.*).svg',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-          {
-            key: 'Content-Type',
-            value: 'image/svg+xml',
-          },
-        ],
-      },
-      {
-        source: '/(.*).png',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-        ],
-      },
-      {
-        source: '/(.*).jpg',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-        ],
-      },
-      {
-        source: '/(.*).webp',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-        ],
-      },
     ];
   },
   async redirects() {
