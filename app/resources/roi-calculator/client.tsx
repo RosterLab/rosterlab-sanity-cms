@@ -1,0 +1,2001 @@
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+
+export default function ROICalculatorClient() {
+  // Input states
+  const [industry, setIndustry] = useState("icu");
+  const [employees, setEmployees] = useState(50);
+  const [avgHourlyWage, setAvgHourlyWage] = useState(120);
+  const [annualSalary, setAnnualSalary] = useState(120 * 2080); // Annual salary correlated with hourly wage
+  const [rosterCycleWeeks, setRosterCycleWeeks] = useState(6); // 6-week roster cycle default
+  const [baseRosteringDays, setBaseRosteringDays] = useState(5); // Base days before scaling
+  const [rosteringDaysInput, setRosteringDaysInput] = useState(""); // Track input value separately
+  const [overtimePercentage, setOvertimePercentage] = useState(5);
+  const [turnoverRate, setTurnoverRate] = useState(15);
+  
+  // Input state tracking for better UX
+  const [employeesInput, setEmployeesInput] = useState("");
+  const [hourlyWageInput, setHourlyWageInput] = useState("");
+  const [annualSalaryInput, setAnnualSalaryInput] = useState("");
+
+  // Form states
+  const [showReportForm, setShowReportForm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  // Industry configurations
+  const industryConfigs = {
+    icu: {
+      name: "ICU (SMOs)",
+      schedulingComplexity: 1.4,
+      overtimeReduction: 0.5,
+      turnoverReduction: 0.25,
+      defaultOvertime: 10,
+      defaultTurnover: 18,
+      defaultEmployees: 50,
+      defaultHourlyWage: 120,
+      defaultCycleWeeks: 6,
+      defaultRosteringDays: 5,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 150000,
+      avgFTE: 0.90,
+      inefficiency: 0.02,
+      baseCost: 2025,
+      baseSaving: 405,
+      overtimePenalty: 1.20,
+      overtimeCost: 729,
+      locumEfficiency: 1.20,
+      locumCost: 365,
+      totalSaving: 3119,
+      // Skill mix data
+      lowestPay: 242249,
+      highestPay: 488593,
+      weekendPenalty: 1.2,
+      weekendShiftCost: 22171,
+      weekendSaving: 2217,
+      nightPenalty: 1.2,
+      nightShiftCost: 27919,
+      nightSaving: 2792,
+      skillMixTotalPerStaff: 5009,
+      // Turnover data
+      turnoverCostPerRole: 50000,
+      turnoverRate: 0.08,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 400,
+      turnoverTotalSaving: 20000,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 7692,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 884.62,
+    },
+    ed: {
+      name: "ED (SMOs)",
+      schedulingComplexity: 1.35,
+      overtimeReduction: 0.45,
+      turnoverReduction: 0.25,
+      defaultOvertime: 9,
+      defaultTurnover: 20,
+      defaultEmployees: 50,
+      defaultHourlyWage: 120,
+      defaultCycleWeeks: 12,
+      defaultRosteringDays: 14,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 150000,
+      avgFTE: 0.90,
+      inefficiency: 0.02,
+      baseCost: 2025,
+      baseSaving: 405,
+      overtimePenalty: 1.20,
+      overtimeCost: 729,
+      locumEfficiency: 1.20,
+      locumCost: 365,
+      totalSaving: 3119,
+      // Skill mix data
+      lowestPay: 238498,
+      highestPay: 471906,
+      weekendPenalty: 1.2,
+      weekendShiftCost: 21007,
+      weekendSaving: 2101,
+      nightPenalty: 1.2,
+      nightShiftCost: 26453,
+      nightSaving: 2645,
+      skillMixTotalPerStaff: 4746,
+      // Turnover data
+      turnoverCostPerRole: 50000,
+      turnoverRate: 0.08,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 400,
+      turnoverTotalSaving: 20000,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 7692,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 884.62,
+    },
+    radiology: {
+      name: "Radiology",
+      schedulingComplexity: 1.3,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.2,
+      defaultOvertime: 7,
+      defaultTurnover: 15,
+      defaultEmployees: 40,
+      defaultHourlyWage: 120,
+      defaultCycleWeeks: 12,
+      defaultRosteringDays: 6,
+      implementationDays: 5,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 150000,
+      avgFTE: 0.90,
+      inefficiency: 0.02,
+      baseCost: 2025,
+      baseSaving: 405,
+      overtimePenalty: 1.30,
+      overtimeCost: 790,
+      locumEfficiency: 1.30,
+      locumCost: 395,
+      totalSaving: 3210,
+      // Skill mix data
+      lowestPay: 302900,
+      highestPay: 635996,
+      weekendPenalty: 1.2,
+      weekendShiftCost: 29979,
+      weekendSaving: 2998,
+      nightPenalty: 1.2,
+      nightShiftCost: 37751,
+      nightSaving: 3775,
+      skillMixTotalPerStaff: 6773,
+      // Turnover data
+      turnoverCostPerRole: 50000,
+      turnoverRate: 0.12,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 600,
+      turnoverTotalSaving: 24000,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 7692,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 884.62,
+    },
+    radiography: {
+      name: "Radiography",
+      schedulingComplexity: 1.25,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.2,
+      defaultOvertime: 6,
+      defaultTurnover: 14,
+      defaultEmployees: 60,
+      defaultHourlyWage: 60,
+      defaultCycleWeeks: 8,
+      defaultRosteringDays: 8,
+      implementationDays: 5,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 100000,
+      avgFTE: 0.90,
+      inefficiency: 0.03,
+      baseCost: 2700,
+      baseSaving: 540,
+      overtimePenalty: 1.60,
+      overtimeCost: 1296,
+      locumEfficiency: 1.50,
+      locumCost: 608,
+      totalSaving: 4604,
+      // Skill mix data
+      lowestPay: 70690,
+      highestPay: 121356,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 5700,
+      weekendSaving: 570,
+      nightPenalty: 1.25,
+      nightShiftCost: 5981,
+      nightSaving: 598,
+      skillMixTotalPerStaff: 1168,
+      // Turnover data
+      turnoverCostPerRole: 20000,
+      turnoverRate: 0.18,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 360,
+      turnoverTotalSaving: 21600,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3846,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 500.00,
+    },
+    nursing: {
+      name: "Nursing",
+      schedulingComplexity: 1.2,
+      overtimeReduction: 0.45,
+      turnoverReduction: 0.3,
+      defaultOvertime: 8,
+      defaultTurnover: 22,
+      defaultEmployees: 40,
+      defaultHourlyWage: 60,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 4,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: true,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 91179,
+      avgFTE: 0.86,
+      inefficiency: 0.02,
+      baseCost: 1176,
+      baseSaving: 235.24,
+      overtimePenalty: 1.20,
+      overtimeCost: 423,
+      locumEfficiency: 1.20,
+      locumCost: 212,
+      totalSaving: 1811,
+      // Skill mix data
+      lowestPay: 75773,
+      highestPay: 162802,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 9791,
+      weekendSaving: 979,
+      nightPenalty: 1.25,
+      nightShiftCost: 10274,
+      nightSaving: 1027,
+      skillMixTotalPerStaff: 2007,
+      // Turnover data
+      turnoverCostPerRole: 15000,
+      turnoverRate: 0.153,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 230,
+      turnoverTotalSaving: 9180,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3507,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 466.07,
+    },
+    registrar: {
+      name: "Registrars Rosters",
+      schedulingComplexity: 1.3,
+      overtimeReduction: 0.35,
+      turnoverReduction: 0.2,
+      defaultOvertime: 8,
+      defaultTurnover: 16,
+      defaultEmployees: 50,
+      defaultHourlyWage: 45,
+      defaultCycleWeeks: 13,
+      defaultRosteringDays: 8,
+      implementationDays: 6,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 100000,
+      avgFTE: 1.00,
+      inefficiency: 0.02,
+      baseCost: 2000,
+      baseSaving: 400,
+      overtimePenalty: 1.50,
+      overtimeCost: 900,
+      locumEfficiency: 2.00,
+      locumCost: 600,
+      totalSaving: 3500,
+      // Skill mix data
+      lowestPay: 90000,
+      highestPay: 130000,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 4500,
+      weekendSaving: 450,
+      nightPenalty: 1.25,
+      nightShiftCost: 4722,
+      nightSaving: 472,
+      skillMixTotalPerStaff: 922,
+      // Turnover data
+      turnoverCostPerRole: 40000,
+      turnoverRate: 0.18,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 720,
+      turnoverTotalSaving: 36000,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3846,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 500.00,
+    },
+    "aged-care": {
+      name: "Aged care",
+      schedulingComplexity: 1.1,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.3,
+      defaultOvertime: 6,
+      defaultTurnover: 25,
+      defaultEmployees: 60,
+      defaultHourlyWage: 45,
+      defaultCycleWeeks: 2,
+      defaultRosteringDays: 3,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 75000,
+      avgFTE: 0.80,
+      inefficiency: 0.03,
+      baseCost: 1800,
+      baseSaving: 360,
+      overtimePenalty: 1.50,
+      overtimeCost: 810,
+      locumEfficiency: 1.50,
+      locumCost: 405,
+      totalSaving: 3015,
+      // Skill mix data
+      lowestPay: 66666,
+      highestPay: 95238,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 5417,
+      weekendSaving: 542,
+      nightPenalty: 1.25,
+      nightShiftCost: 5684,
+      nightSaving: 568,
+      skillMixTotalPerStaff: 1110,
+      // Turnover data
+      turnoverCostPerRole: 15000,
+      turnoverRate: 0.25,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 375,
+      turnoverTotalSaving: 22500,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 2885,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 403.85,
+    },
+    "other-healthcare": {
+      name: "Other healthcare",
+      schedulingComplexity: 1.2,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.25,
+      defaultOvertime: 7,
+      defaultTurnover: 18,
+      defaultEmployees: 50,
+      defaultHourlyWage: 60,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 4,
+      implementationDays: 5,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 100000,
+      avgFTE: 0.90,
+      inefficiency: 0.03,
+      baseCost: 2700,
+      baseSaving: 540,
+      overtimePenalty: 1.50,
+      overtimeCost: 1215,
+      locumEfficiency: 1.50,
+      locumCost: 608,
+      totalSaving: 4523,
+      // Skill mix data
+      lowestPay: 80000,
+      highestPay: 120000,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 8333,
+      weekendSaving: 833,
+      nightPenalty: 1.3,
+      nightShiftCost: 8747,
+      nightSaving: 875,
+      skillMixTotalPerStaff: 1708,
+      // Turnover data
+      turnoverCostPerRole: 20000,
+      turnoverRate: 0.15,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 300,
+      turnoverTotalSaving: 15000,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 4615,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 576.92,
+    },
+    "24-7-teams": {
+      name: "24/7 Teams",
+      schedulingComplexity: 1.3,
+      overtimeReduction: 0.5,
+      turnoverReduction: 0.2,
+      defaultOvertime: 10,
+      defaultTurnover: 15,
+      defaultEmployees: 50,
+      defaultHourlyWage: 45,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 3,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 80000,
+      avgFTE: 1.00,
+      inefficiency: 0.02,
+      baseCost: 1600,
+      baseSaving: 320,
+      overtimePenalty: 1.20,
+      overtimeCost: 576,
+      locumEfficiency: 1.20,
+      locumCost: 288,
+      totalSaving: 2464,
+      // Skill mix data
+      lowestPay: 60000,
+      highestPay: 80000,
+      weekendPenalty: 2.0,
+      weekendShiftCost: 8000,
+      weekendSaving: 800,
+      nightPenalty: 1.5,
+      nightShiftCost: 8400,
+      nightSaving: 840,
+      skillMixTotalPerStaff: 1640,
+      // Turnover data
+      turnoverCostPerRole: 12000,
+      turnoverRate: 0.14,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 168,
+      turnoverTotalSaving: 8400,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3077,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 423.08,
+    },
+    "large-team-oncall": {
+      name: "Large Team On-Call Rosters",
+      schedulingComplexity: 1.4,
+      overtimeReduction: 0.35,
+      turnoverReduction: 0.15,
+      defaultOvertime: 6,
+      defaultTurnover: 12,
+      defaultEmployees: 100,
+      defaultHourlyWage: 40,
+      defaultCycleWeeks: 8,
+      defaultRosteringDays: 3,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 80000,
+      avgFTE: 1.00,
+      inefficiency: 0.02,
+      baseCost: 1600,
+      baseSaving: 320,
+      overtimePenalty: 1.20,
+      overtimeCost: 576,
+      locumEfficiency: 1.20,
+      locumCost: 288,
+      totalSaving: 2464,
+      // Skill mix data
+      lowestPay: 60000,
+      highestPay: 100000,
+      weekendPenalty: 1.3,
+      weekendShiftCost: 1600,
+      weekendSaving: 160,
+      nightPenalty: 1.3,
+      nightShiftCost: 1680,
+      nightSaving: 168,
+      skillMixTotalPerStaff: 328,
+      // Turnover data
+      turnoverCostPerRole: 12000,
+      turnoverRate: 0.12,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 144,
+      turnoverTotalSaving: 14400,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3077,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 423.08,
+    },
+    hospitality: {
+      name: "Hospitality",
+      schedulingComplexity: 1.15,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.25,
+      defaultOvertime: 7,
+      defaultTurnover: 20,
+      defaultEmployees: 30,
+      defaultHourlyWage: 30,
+      defaultCycleWeeks: 2,
+      defaultRosteringDays: 1,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 70000,
+      avgFTE: 0.70,
+      inefficiency: 0.02,
+      baseCost: 980,
+      baseSaving: 196,
+      overtimePenalty: 1.20,
+      overtimeCost: 353,
+      locumEfficiency: 1.20,
+      locumCost: 176,
+      totalSaving: 1509,
+      // Skill mix data
+      lowestPay: 45000,
+      highestPay: 60000,
+      weekendPenalty: 1.3,
+      weekendShiftCost: 1688,
+      weekendSaving: 169,
+      nightPenalty: 1.2,
+      nightShiftCost: 1771,
+      nightSaving: 177,
+      skillMixTotalPerStaff: 346,
+      // Turnover data
+      turnoverCostPerRole: 5000,
+      turnoverRate: 0.45,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 225,
+      turnoverTotalSaving: 6750,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 2692,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 384.62,
+    },
+    "call-centres": {
+      name: "Call Centres",
+      schedulingComplexity: 1.1,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.3,
+      defaultOvertime: 5,
+      defaultTurnover: 25,
+      defaultEmployees: 30,
+      defaultHourlyWage: 35,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 1,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 70000,
+      avgFTE: 0.90,
+      inefficiency: 0.02,
+      baseCost: 1260,
+      baseSaving: 252,
+      overtimePenalty: 1.20,
+      overtimeCost: 454,
+      locumEfficiency: 1.20,
+      locumCost: 227,
+      totalSaving: 1940,
+      // Skill mix data
+      lowestPay: 50000,
+      highestPay: 70000,
+      weekendPenalty: 1.4,
+      weekendShiftCost: 2604,
+      weekendSaving: 260,
+      nightPenalty: 1.3,
+      nightShiftCost: 2734,
+      nightSaving: 273,
+      skillMixTotalPerStaff: 534,
+      // Turnover data
+      turnoverCostPerRole: 10000,
+      turnoverRate: 0.20,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 200,
+      turnoverTotalSaving: 6000,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 2692,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 384.62,
+    },
+    other: {
+      name: "Other",
+      schedulingComplexity: 1.15,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.25,
+      defaultOvertime: 7,
+      defaultTurnover: 20,
+      defaultEmployees: 30,
+      defaultHourlyWage: 35,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 2,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 75000,
+      avgFTE: 0.90,
+      inefficiency: 0.02,
+      baseCost: 1350,
+      baseSaving: 270,
+      overtimePenalty: 1.20,
+      overtimeCost: 486,
+      locumEfficiency: 1.20,
+      locumCost: 243,
+      totalSaving: 2079,
+      // Skill mix data
+      lowestPay: 60000,
+      highestPay: 80000,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 2813,
+      weekendSaving: 281,
+      nightPenalty: 1.25,
+      nightShiftCost: 2951,
+      nightSaving: 295,
+      skillMixTotalPerStaff: 576,
+      // Turnover data
+      turnoverCostPerRole: 10000,
+      turnoverRate: 0.15,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 150,
+      turnoverTotalSaving: 4500,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 2885,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 403.85,
+    },
+  };
+
+  const currentIndustry =
+    industryConfigs[industry as keyof typeof industryConfigs] || industryConfigs.icu;
+
+  // Calculations
+  // Calculate basic payroll for reference
+  const hoursPerWeek = 40; // Standard 40 hours per FTE
+
+  // === 1. MANUAL TIME SPENT ROSTERING ===
+  // Days scale with roster size: 20% increase for every default size
+  // Calculate total savings based on scaled rostering time
+  
+  const hoursPerDay = 8;
+  const rostersPerYear = 52 / Math.max(1, rosterCycleWeeks);
+  const defaultEmployees = currentIndustry.defaultEmployees || 50;
+  
+  // Scale rostering days based on number of employees
+  // For every multiple of default size, add 20% to rostering time
+  const employeeMultiplier = Math.max(0, employees) / Math.max(1, defaultEmployees);
+  const scaledRosteringDays = Math.max(0.1, baseRosteringDays * (0.8 + 0.2 * employeeMultiplier));
+  
+  // Total hours spent rostering per year with scaled days
+  const annualRosteringHours = scaledRosteringDays * hoursPerDay * rostersPerYear;
+  
+  // Total annual cost of rostering (scales with employee count due to scaled days)
+  const totalAnnualRosteringCost = avgHourlyWage * annualRosteringHours;
+  
+  // Total savings = total cost × 90% reduction (only if enabled)
+  const rosteringImprovement = 0.9; // 90% reduction with RosterLab
+  const timeSavingsCost = currentIndustry.hasManualTimeSaving 
+    ? totalAnnualRosteringCost * rosteringImprovement 
+    : 0;
+
+  // === 2. OPTIMISED STAFFING EFFICIENCY ===
+  // Based on industry-specific data with different inefficiency rates and cost structures
+  // Formula: Base = AvgSalary × avgFTE × inefficiency%
+  // Savings breakdown: Bureau/ordinary hours (20%), Overtime (30%), Locum (15%)
+  
+  // totalSaving in the config is the per-staff saving amount
+  const efficiencySavingsPerPerson = currentIndustry.hasStaffingEfficiency 
+    ? (currentIndustry.totalSaving || 0)
+    : 0;
+  
+  // Total savings = number of employees × savings per person
+  const allocativeEfficiencySavings = (employees || 0) * efficiencySavingsPerPerson;
+  
+  // Individual component savings for display purposes
+  const baseSavingPerPerson = currentIndustry.baseSaving || 0; // 30% of base inefficiency
+  const overtimeSavingPerPerson = (currentIndustry.overtimeCost || 0) * 0.5; // 50% improvement on overtime
+  const locumSavingPerPerson = (currentIndustry.locumCost || 0) * 0.2; // 20% improvement on locum
+  
+  const bureauSavings = (employees || 0) * baseSavingPerPerson;
+  const overtimeSavings = (employees || 0) * overtimeSavingPerPerson;
+  const locumSavings = (employees || 0) * locumSavingPerPerson;
+
+  // === 3. POOR SKILL MIX ===
+  // Based on industry-specific data: Human made rosters have poor skill mix
+  // Using industry-specific weekend and night shift penalties and savings
+  
+  // Weekend savings based on industry-specific data
+  const weekendSavings = (employees || 0) * (currentIndustry.weekendSaving || 979);
+  
+  // Night savings based on industry-specific data
+  const nightSavings = (employees || 0) * (currentIndustry.nightSaving || 1027);
+  
+  // Total skill mix savings using industry-specific total (only if enabled)
+  const skillMixSavings = currentIndustry.hasSkillMix 
+    ? (employees || 0) * (currentIndustry.skillMixTotalPerStaff || 2007)
+    : 0;
+
+  // === 4. UNNECESSARY TURNOVER COSTS ===
+  // Based on industry-specific data: Hiring Admin and Orientation Time
+  // Uses industry-specific turnover costs and improvement rates
+  
+  // Calculate turnover reduction savings based on the formula:
+  // Total saving = (turnover cost per role × turnover rate × RL improve % × standard size)
+  // Then scale by actual employee count
+  const turnoverSavingPerPerson = currentIndustry.hasTurnover 
+    ? currentIndustry.turnoverTotalSaving / currentIndustry.defaultEmployees
+    : 0;
+  const turnoverReductionSavings = (employees || 0) * turnoverSavingPerPerson;
+  
+  // Note: Studies show self-rostering and improving roster quality reduces staff turnover
+  // RosterLab research: 1 less turnover per 40 staff provides significant value
+
+  // === TOTAL ANNUAL SAVINGS ===
+  const totalAnnualSavings =
+    timeSavingsCost + 
+    allocativeEfficiencySavings + 
+    skillMixSavings +
+    turnoverReductionSavings;
+  
+  // RosterLab costs: Subscription + One-off implementation
+  const annualSubscriptionCost = (employees || 0) * 20 * 12; // $20 × employees × 12 months
+  
+  // Scale implementation days based on employee count
+  // Add 1 day for every 100% increase from default size
+  const baseImplementationDays = currentIndustry.implementationDays || 3;
+  const employeeRatio = employees / defaultEmployees;
+  const additionalDays = Math.floor(Math.max(0, employeeRatio - 1)); // Add 1 day per 100% increase
+  const implementationDays = baseImplementationDays + additionalDays;
+  
+  const oneOffImplementationCost = implementationDays * 1500; // $1,500 per implementation day
+  const firstYearTotalCost = annualSubscriptionCost + oneOffImplementationCost;
+  
+  // For ROI calculation, we'll use the first year total cost (subscription + implementation)
+  const roiMultiple = firstYearTotalCost > 0 && totalAnnualSavings > 0 ? (totalAnnualSavings / firstYearTotalCost).toFixed(1) : "0";
+  
+  // Calculate breakeven month considering implementation cost
+  // Monthly savings
+  const monthlySavings = totalAnnualSavings / 12;
+  // Monthly subscription cost
+  const monthlySubscriptionCost = annualSubscriptionCost / 12;
+  
+  // Breakeven calculation: Implementation cost + (months × monthly subscription) = months × monthly savings
+  // Solving for months: months = implementation cost / (monthly savings - monthly subscription)
+  const breakevenMonth = monthlySavings > monthlySubscriptionCost 
+    ? Math.max(0.1, oneOffImplementationCost / (monthlySavings - monthlySubscriptionCost))
+    : 12; // If monthly costs exceed savings, default to 12 months
+
+  // Update default values when industry changes
+  useEffect(() => {
+    const config = industryConfigs[industry as keyof typeof industryConfigs];
+    setOvertimePercentage(config.defaultOvertime);
+    setTurnoverRate(config.defaultTurnover);
+    setEmployees(config.defaultEmployees);
+    setAvgHourlyWage(config.defaultHourlyWage);
+    setAnnualSalary(config.defaultHourlyWage * 2080);
+    setRosterCycleWeeks(config.defaultCycleWeeks);
+    setBaseRosteringDays(config.defaultRosteringDays || 1);
+    // Clear all inputs when industry changes
+    setRosteringDaysInput("");
+    setEmployeesInput("");
+    setHourlyWageInput("");
+    setAnnualSalaryInput("");
+  }, [industry]);
+
+  const generatePDF = useCallback(
+    async (companyName: string = "") => {
+      try {
+        // Dynamically import jsPDF to avoid SSR issues
+        const { default: jsPDF } = await import("jspdf");
+
+        const doc = new jsPDF();
+
+        // Set font sizes and colors
+        const primaryColor: [number, number, number] = [41, 98, 255]; // RosterLab blue
+        const textColor: [number, number, number] = [51, 51, 51];
+        const lightGray: [number, number, number] = [128, 128, 128];
+
+        // Add RosterLab logo
+        try {
+          // Convert logo to base64
+          const logoUrl = "/images/rosterlab-logo.png";
+          const logoResponse = await fetch(logoUrl);
+          const logoBlob = await logoResponse.blob();
+          const logoBase64 = await new Promise<string>((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.readAsDataURL(logoBlob);
+          });
+
+          // Add logo with better aspect ratio (adjust width to maintain proportions)
+          doc.addImage(logoBase64, "PNG", 20, 10, 45, 12);
+        } catch {
+          // Fallback if logo fails to load
+          doc.setFontSize(24);
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.text("RosterLab ROI Report", 20, 25);
+        }
+
+        // Date only
+        doc.setFontSize(9);
+        doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 28);
+
+        // Draw a line
+        doc.setLineWidth(0.5);
+        doc.setDrawColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.line(20, 30, 190, 30);
+
+        // ROI Report Title
+        doc.setFontSize(16);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("ROI Report", 20, 38);
+
+        // Executive Summary Box
+        doc.setFillColor(240, 248, 255); // Light blue background
+        doc.roundedRect(15, 42, 180, 28, 3, 3, 'F');
+        
+        doc.setFontSize(12);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Executive Summary", 20, 50);
+
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        doc.text(
+          `Total Annual Savings: $${totalAnnualSavings.toLocaleString()}`,
+          20,
+          58
+        );
+        doc.setTextColor(34, 139, 34); // Forest green for ROI
+        doc.text(`ROI in Year 1: ${roiMultiple}x`, 20, 65);
+        doc.setFont("helvetica", "normal");
+
+        // Your Organisation Details with left border
+        doc.setDrawColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.setLineWidth(3);
+        doc.line(15, 75, 15, 100);
+        
+        doc.setFontSize(12);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Your Organisation", 20, 78);
+
+        doc.setFontSize(10);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        doc.text(`Roster Type: ${currentIndustry.name}`, 25, 86);
+        doc.text(`Number of Employees: ${employees}`, 25, 92);
+        doc.text(`Rosterer Hourly Wage: $${avgHourlyWage}/hour`, 110, 86);
+        doc.text(
+          `Roster Cycle: Every ${rosterCycleWeeks} week${rosterCycleWeeks > 1 ? 's' : ''}`,
+          110,
+          92
+        );
+        doc.text(
+          `Days Spent per Roster: ${scaledRosteringDays.toFixed(1)} day${scaledRosteringDays > 1 ? 's' : ''}`,
+          25,
+          98
+        );
+
+        // Add extra gap before Savings Breakdown
+        let yPos = 112; // Increased from 105 to add more space
+        
+        // Savings Breakdown Header
+        doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.rect(15, yPos, 180, 8, 'F');
+        doc.setFontSize(12);
+        doc.setTextColor(255, 255, 255);
+        doc.text("Detailed Savings Breakdown (Estimated)", 20, yPos + 5);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+
+        yPos += 15; // Adjust starting position for content
+        let categoryNum = 1;
+
+        // 1. MANUAL TIME SPENT ROSTERING
+        if (currentIndustry.hasManualTimeSaving) {
+          // Savings category box
+          doc.setFillColor(250, 250, 250);
+          doc.roundedRect(18, yPos - 4, 174, 26, 2, 2, 'F');
+          
+          doc.setFontSize(11);
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.text(`${categoryNum}. Manual Time Spent Rostering`, 22, yPos + 2);
+          
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+          doc.text(
+            `90% reduction in manual rostering time`,
+            28,
+            yPos + 9
+          );
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(34, 139, 34);
+          doc.text(
+            `$${timeSavingsCost.toLocaleString()}/year`,
+            155,
+            yPos + 2
+          );
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+          doc.setTextColor(100, 100, 100);
+          doc.text(
+            `Based on: ${scaledRosteringDays.toFixed(1)} days every ${rosterCycleWeeks} weeks`,
+            28,
+            yPos + 16
+          );
+          yPos += 30;
+          categoryNum++;
+        }
+
+        // 2. OPTIMISED STAFFING EFFICIENCY
+        if (currentIndustry.hasStaffingEfficiency) {
+          // Staffing efficiency box with different color
+          doc.setFillColor(250, 250, 250);
+          doc.roundedRect(18, yPos - 4, 174, 38, 2, 2, 'F');
+          
+          doc.setFontSize(11);
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.text(`${categoryNum}. Optimised Staffing Efficiency`, 22, yPos + 2);
+          
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(34, 139, 34);
+          doc.text(
+            `$${allocativeEfficiencySavings.toLocaleString()}/year`,
+            155,
+            yPos + 2
+          );
+          
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+          doc.setTextColor(80, 80, 80);
+          // Split the explanation text into multiple lines for better formatting
+          const explanationLines = doc.splitTextToSize(
+            "By allocating shifts and tasks more optimally, we increase the overall efficiency of the roster, reducing unnecessary overtime and the need to call in locums.",
+            155
+          );
+          
+          let lineOffset = 11;
+          explanationLines.forEach((line: string) => {
+            doc.text(line, 28, yPos + lineOffset);
+            lineOffset += 5;
+          });
+          
+          yPos += 42;
+          categoryNum++;
+        }
+
+        // No page break needed for 2-page layout
+
+        // 3. SKILL MIX
+        if (currentIndustry.hasSkillMix) {
+          // Skill mix savings box
+          doc.setFillColor(250, 250, 250);
+          doc.roundedRect(18, yPos - 4, 174, 26, 2, 2, 'F');
+          
+          doc.setFontSize(11);
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.text(`${categoryNum}. Improved Skill Mix`, 22, yPos + 2);
+          
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+          doc.text(
+            `15% reduction in temporary staff usage`,
+            28,
+            yPos + 9
+          );
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(34, 139, 34);
+          doc.text(
+            `$${skillMixSavings.toLocaleString()}/year`,
+            155,
+            yPos + 2
+          );
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+          doc.setTextColor(100, 100, 100);
+          doc.text(
+            `Temp staff costs 50% more than permanent staff`,
+            28,
+            yPos + 16
+          );
+          yPos += 30;
+          categoryNum++;
+        }
+
+        // 4. TURNOVER COSTS
+        if (currentIndustry.hasTurnover) {
+          // Turnover savings box with explanation
+          doc.setFillColor(250, 250, 250);
+          doc.roundedRect(18, yPos - 4, 174, 38, 2, 2, 'F');
+          
+          doc.setFontSize(11);
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.text(`${categoryNum}. Reduced Turnover Costs`, 22, yPos + 2);
+          
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+          doc.text(
+            `This represents an improvement in staff retention`,
+            28,
+            yPos + 9
+          );
+          doc.setFont("helvetica", "bold");
+          doc.setTextColor(34, 139, 34);
+          doc.text(
+            `$${turnoverReductionSavings.toLocaleString()}/year`,
+            155,
+            yPos + 2
+          );
+          
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+          doc.setTextColor(80, 80, 80);
+          // Split the explanation text into multiple lines
+          const turnoverExplanationLines = doc.splitTextToSize(
+            "For every turnover, it costs the business a decent amount to recruit, train, and the temporary efficiency decline. By increasing staff satisfaction, we reduce turnover for shift workers, let them focus more on what matters.",
+            155
+          );
+          
+          let turnoverLineOffset = 16;
+          turnoverExplanationLines.forEach((line: string) => {
+            doc.text(line, 28, yPos + turnoverLineOffset);
+            turnoverLineOffset += 4;
+          });
+          
+          yPos += 42;
+          categoryNum++;
+        }
+
+
+        // Add 'Some other benefits' section
+        yPos += 8;
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Some other benefits:", 20, yPos);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        
+        // Add bullet point
+        doc.text(`•`, 20, yPos + 8);
+        
+        // Split the benefit text into multiple lines
+        const otherBenefitText = "In certain industries, a more streamlined rostering solution can enable more data-driven planning, helping managers allocate shifts more efficiently. This can also reduce the buildup of unused leave balances, leading to better workforce utilization and cost savings for the organization.";
+        const benefitLines = doc.splitTextToSize(otherBenefitText, 165);
+        
+        let benefitLineOffset = 8;
+        benefitLines.forEach((line: string) => {
+          doc.text(line, 28, yPos + benefitLineOffset);
+          benefitLineOffset += 5;
+        });
+        
+        yPos += benefitLineOffset + 10;
+
+        // Start page 2
+        doc.addPage();
+        yPos = 20;
+        
+        // RosterLab Investment Section with accent background
+        doc.setFillColor(255, 245, 230); // Light orange background
+        doc.roundedRect(15, yPos - 5, 180, 30, 3, 3, 'F');
+        
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("RosterLab Investment", 20, yPos + 2);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        doc.text(
+          `Annual Subscription: $${annualSubscriptionCost.toLocaleString()}`,
+          25,
+          yPos + 9
+        );
+        doc.text(
+          `($20 per employee per month)`,
+          110,
+          yPos + 9
+        );
+        doc.text(
+          `One-off Implementation: $${oneOffImplementationCost.toLocaleString()}*`,
+          25,
+          yPos + 16
+        );
+        const baseImplDays = currentIndustry.implementationDays || 3;
+        const daysText = implementationDays > baseImplDays 
+          ? `(${implementationDays} days scaled for ${employees} employees)`
+          : `(estimate: ${implementationDays} days × $1,500/day)`;
+        doc.text(
+          daysText,
+          110,
+          yPos + 16
+        );
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(255, 69, 0); // Orange-red for total
+        doc.text(
+          `First Year Total: $${firstYearTotalCost.toLocaleString()}`,
+          25,
+          yPos + 23
+        );
+        
+        // Add asterisk note
+        doc.setFont("helvetica", "italic");
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        doc.text(
+          `*Final implementation cost will be confirmed after demo and scoping session`,
+          20,
+          yPos + 32
+        );
+        
+        yPos += 42;
+        
+        // Key Insights with icon bullets
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Key Insights", 20, yPos);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        
+        // Add check marks as bullets
+        doc.setTextColor(34, 139, 34);
+        doc.text(`✓`, 20, yPos + 8);
+        doc.text(`✓`, 20, yPos + 15);
+        doc.text(`✓`, 20, yPos + 22);
+        doc.text(`✓`, 20, yPos + 29);
+        
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        doc.text(`Based on comprehensive industry data and research`, 28, yPos + 8);
+        doc.text(`Key areas where manual rosters underperform vs RosterLab`, 28, yPos + 15);
+        doc.text(`Staff turnover costs ${currentIndustry.turnoverCostPerRole ? `$${currentIndustry.turnoverCostPerRole.toLocaleString()}` : 'significant amount'} per role in ${currentIndustry.name}`, 28, yPos + 22);
+        doc.text(`Total ROI based on validated industry-specific data`, 28, yPos + 29);
+        
+        // Next Steps section
+        yPos += 38;
+        
+        // Next Steps with gradient-like background
+        doc.setFillColor(240, 248, 255);
+        doc.roundedRect(15, yPos - 5, 180, 35, 3, 3, 'F');
+        
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Next Steps", 20, yPos + 2);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+
+        // Add numbered circles for steps
+        doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.circle(23, yPos + 10, 2, 'F');
+        doc.circle(23, yPos + 17, 2, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(8);
+        doc.text("1", 22.3, yPos + 10.5);
+        doc.text("2", 22.3, yPos + 17.5);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        
+        // First step with link
+        const step1Start = "Schedule a ";
+        const step1End = " with our team";
+        doc.text(step1Start, 28, yPos + 11);
+        const step1Width = doc.getTextWidth(step1Start);
+
+        // Add clickable link for "personalised demo"
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.textWithLink("personalised demo", 28 + step1Width, yPos + 11, {
+          url: "https://www.rosterlab.com/book-a-demo",
+        });
+        const linkWidth = doc.getTextWidth("personalised demo");
+
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        doc.text(step1End, 28 + step1Width + linkWidth, yPos + 11);
+        
+        doc.text(
+          "Get a custom implementation plan for your organisation",
+          28,
+          yPos + 18
+        );
+
+        // Contact Information Box
+        yPos += 28;
+        doc.setFillColor(245, 245, 245);
+        doc.roundedRect(15, yPos - 3, 180, 15, 2, 2, 'F');
+        
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Contact Us:", 20, yPos + 4);
+        doc.setFont("helvetica", "normal");
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        doc.text("daniel@rosterlab.com", 55, yPos + 4);
+        doc.text("|", 115, yPos + 4);
+        doc.text("www.rosterlab.com", 120, yPos + 4);
+
+        // Footer at bottom of page
+        const pageHeight = doc.internal.pageSize.height;
+        doc.setFontSize(8);
+        doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.text(
+          "This ROI calculation is based on RosterLab research and 2024-2025 industry data. Actual results may vary.",
+          20,
+          pageHeight - 15
+        );
+
+        // Save the PDF
+        doc.save(
+          `RosterLab-ROI-Report-${companyName.replace(/[^a-z0-9]/gi, "_")}.pdf`
+        );
+
+        return true;
+      } catch (error) {
+        console.error("Error generating PDF:", error);
+        // Fallback to text download if PDF generation fails
+        const report = `
+RosterLab ROI Report
+Generated for: ${companyName}
+
+Your Inputs:
+- Roster Type: ${currentIndustry.name}
+- Employees: ${employees}
+- Rosterer Hourly Wage: $${avgHourlyWage}
+- Roster Cycle: Every ${rosterCycleWeeks} week${rosterCycleWeeks > 1 ? 's' : ''}
+- Days per Roster: ${scaledRosteringDays.toFixed(1)} day${scaledRosteringDays > 1 ? 's' : ''}
+
+Your Potential Savings:
+- Total Annual Savings: $${totalAnnualSavings.toLocaleString()}
+- ROI in Year 1: ${roiMultiple}x
+
+RosterLab Investment:
+- Annual Subscription: $${annualSubscriptionCost.toLocaleString()} ($20 per employee per month)
+- One-off Implementation: $${oneOffImplementationCost.toLocaleString()} (${implementationDays} days at $1,500/day)
+- First Year Total Investment: $${firstYearTotalCost.toLocaleString()}
+
+Savings Breakdown:
+${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${timeSavingsCost.toLocaleString()}
+   - 90% reduction in administrative time (${scaledRosteringDays.toFixed(1)} days every ${rosterCycleWeeks} weeks)
+` : ''}${currentIndustry.hasStaffingEfficiency ? `${currentIndustry.hasManualTimeSaving ? '2' : '1'}. Optimised Staffing Efficiency: $${allocativeEfficiencySavings.toLocaleString()}
+   - By allocating shifts and tasks more optimally, we increase the overall efficiency of the roster, reducing unnecessary overtime and the need to call in locums - helping your department run smoothly without the stress of operational nuances.
+` : ''}${currentIndustry.hasSkillMix ? `${currentIndustry.hasManualTimeSaving && currentIndustry.hasStaffingEfficiency ? '3' : currentIndustry.hasManualTimeSaving || currentIndustry.hasStaffingEfficiency ? '2' : '1'}. Improved Skill Mix: $${skillMixSavings.toLocaleString()}
+   - Weekend shifts (10% improvement): $${weekendSavings.toLocaleString()}
+   - Night shifts (10% improvement): $${nightSavings.toLocaleString()}
+` : ''}${currentIndustry.hasTurnover ? `${(() => {
+  let num = 1;
+  if (currentIndustry.hasManualTimeSaving) num++;
+  if (currentIndustry.hasStaffingEfficiency) num++;
+  if (currentIndustry.hasSkillMix) num++;
+  return num;
+})()}. Reduced Turnover Costs: $${turnoverReductionSavings.toLocaleString()}
+   - Hiring and orientation savings ($${currentIndustry.turnoverCostPerRole} per person, ${((currentIndustry.turnoverImprovement || 0.1) * 100).toFixed(0)}% improvement)` : ''}
+
+      `;
+
+        const blob = new Blob([report], { type: "text/plain" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "rosterlab-roi-report.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+
+        return false;
+      }
+    },
+    [
+      totalAnnualSavings,
+      roiMultiple,
+      employees,
+      avgHourlyWage,
+      rosterCycleWeeks,
+      scaledRosteringDays,
+      currentIndustry,
+      allocativeEfficiencySavings,
+      nightSavings,
+      skillMixSavings,
+      timeSavingsCost,
+      turnoverReductionSavings,
+      weekendSavings,
+      annualSubscriptionCost,
+      oneOffImplementationCost,
+      firstYearTotalCost,
+      implementationDays,
+    ]
+  );
+
+  // Load HubSpot form when modal opens
+  useEffect(() => {
+    if (showReportForm) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        // Check if HubSpot is already loaded
+        if (window.hbspt) {
+          window.hbspt.forms.create({
+            portalId: "20646833",
+            formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",
+            region: "na1",
+            target: "#hubspot-form-container",
+            onFormSubmitted: async (formData: any) => {
+              // Hide the form immediately after submission
+              const formContainer = document.getElementById(
+                "hubspot-form-container"
+              );
+              if (formContainer) {
+                formContainer.style.display = "none";
+              }
+
+              // Get the company name from the form submission
+              const companyField = formData.submissionValues?.company || "";
+
+              // Generate and download the PDF
+              setIsSubmitting(true);
+              const success = await generatePDF(companyField);
+              setIsSubmitting(false);
+
+              if (success) {
+                // Close the modal after a short delay
+                setTimeout(() => {
+                  setShowReportForm(false);
+                  alert("Your personalised ROI report has been downloaded!");
+                }, 1000);
+              }
+            },
+          });
+          return;
+        }
+
+        // Load HubSpot forms script
+        const script = document.createElement("script");
+        script.src = "https://js.hsforms.net/forms/embed/v2.js";
+        script.charset = "utf-8";
+        script.type = "text/javascript";
+
+        script.onload = () => {
+          if (window.hbspt && window.hbspt.forms) {
+            window.hbspt.forms.create({
+              portalId: "20646833",
+              formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",
+              region: "na1",
+              target: "#hubspot-form-container",
+              onFormSubmitted: async (formData: any) => {
+                // Hide the form immediately after submission
+                const formContainer = document.getElementById(
+                  "hubspot-form-container"
+                );
+                if (formContainer) {
+                  formContainer.style.display = "none";
+                }
+
+                // Get the company name from the form submission
+                const companyField =
+                  formData.submissionValues?.company || "Your Company";
+
+                // Generate and download the PDF
+                setIsSubmitting(true);
+                const success = await generatePDF(companyField);
+                setIsSubmitting(false);
+
+                if (success) {
+                  // Close the modal after a short delay
+                  setTimeout(() => {
+                    setShowReportForm(false);
+                    alert("Your personalised ROI report has been downloaded!");
+                  }, 1000);
+                }
+              },
+            });
+          }
+        };
+
+        document.body.appendChild(script);
+      }, 100); // 100ms delay to ensure DOM is ready
+
+      // Cleanup function
+      return () => {
+        // Clear the timer
+        clearTimeout(timer);
+
+        // Remove the form container's content when unmounting
+        const formContainer = document.getElementById("hubspot-form-container");
+        if (formContainer) {
+          formContainer.innerHTML = "";
+          formContainer.style.display = "block"; // Reset display property
+        }
+      };
+    }
+  }, [showReportForm, generatePDF]);
+
+  return (
+    <>
+      <div className="bg-gradient-to-b from-blue-50 to-white py-16">
+        <Container>
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              ROI Calculator
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Discover how much time and money RosterLab can save your
+              organisation with intelligent scheduling automation.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button
+                href="/pricing"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
+                View Pricing
+              </Button>
+              <Button
+                href="/book-a-demo"
+                className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
+              >
+                Book a Demo
+              </Button>
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/images/illustration/Coins-rafiki.svg"
+                alt="ROI Calculator illustration"
+                width={400}
+                height={300}
+                className="w-full max-w-md h-auto"
+              />
+            </div>
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Calculator Inputs */}
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Your Organisation
+                </h2>
+
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      What types of rosters are you making?
+                    </label>
+                    <select
+                      value={industry}
+                      onChange={(e) => setIndustry(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white appearance-none cursor-pointer"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                        backgroundPosition: 'right 0.5rem center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '1.5em 1.5em',
+                        paddingRight: '2.5rem'
+                      }}
+                    >
+                      <optgroup label="Healthcare" className="font-semibold">
+                        <option value="icu" className="pl-4">ICU (SMOs)</option>
+                        <option value="ed" className="pl-4">ED (SMOs)</option>
+                        <option value="radiology" className="pl-4">Radiology</option>
+                        <option value="radiography" className="pl-4">Radiography</option>
+                        <option value="nursing" className="pl-4">Nursing</option>
+                        <option value="registrar" className="pl-4">Registrar Rosters</option>
+                        <option value="aged-care" className="pl-4">Aged Care</option>
+                        <option value="other-healthcare" className="pl-4">Other Healthcare Rosters</option>
+                      </optgroup>
+                      <optgroup label="Other Industries" className="font-semibold mt-2">
+                        <option value="24-7-teams" className="pl-4">24/7 Teams</option>
+                        <option value="large-team-oncall" className="pl-4">Large Team On-Call Rosters</option>
+                        <option value="hospitality" className="pl-4">Hospitality Rosters</option>
+                        <option value="call-centres" className="pl-4">Call Centre Rosters</option>
+                        <option value="other" className="pl-4">Other</option>
+                      </optgroup>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Number of employees
+                    </label>
+                    <input
+                      type="number"
+                      value={employeesInput !== "" ? employeesInput : employees}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setEmployeesInput(val);
+                        if (val !== '') {
+                          setEmployees(Number(val));
+                          setRosteringDaysInput(""); // Clear input when employees change
+                        } else {
+                          setEmployees(0); // Set to 0 when empty to maintain calculations
+                        }
+                      }}
+                      onBlur={() => {
+                        if (employeesInput === '') {
+                          setEmployees(currentIndustry.defaultEmployees || 50);
+                        }
+                        setEmployeesInput("");
+                      }}
+                      onFocus={(e) => {
+                        e.target.select();
+                        setEmployeesInput(e.target.value);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Average hourly wage ($) for rosterer
+                    </label>
+                    <input
+                      type="number"
+                      value={hourlyWageInput !== "" ? hourlyWageInput : avgHourlyWage}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setHourlyWageInput(val);
+                        if (val !== '') {
+                          const hourly = Number(val);
+                          setAvgHourlyWage(hourly);
+                          setAnnualSalary(hourly * 2080);
+                          setAnnualSalaryInput(""); // Clear annual salary input
+                        } else {
+                          setAvgHourlyWage(0);
+                          setAnnualSalary(0);
+                        }
+                      }}
+                      onBlur={() => {
+                        if (hourlyWageInput === '') {
+                          setAvgHourlyWage(currentIndustry.defaultHourlyWage || 50);
+                          setAnnualSalary((currentIndustry.defaultHourlyWage || 50) * 2080);
+                        }
+                        setHourlyWageInput("");
+                      }}
+                      onFocus={(e) => {
+                        e.target.select();
+                        setHourlyWageInput(e.target.value);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Annual salary ($) for rosterer
+                    </label>
+                    <input
+                      type="number"
+                      value={annualSalaryInput !== "" ? annualSalaryInput : annualSalary}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setAnnualSalaryInput(val);
+                        if (val !== '') {
+                          const annual = Number(val);
+                          setAnnualSalary(annual);
+                          setAvgHourlyWage(Math.round((annual / 2080) * 10) / 10);
+                          setHourlyWageInput(""); // Clear hourly wage input
+                        } else {
+                          setAnnualSalary(0);
+                          setAvgHourlyWage(0);
+                        }
+                      }}
+                      onBlur={() => {
+                        if (annualSalaryInput === '') {
+                          const defaultHourly = currentIndustry.defaultHourlyWage || 50;
+                          setAnnualSalary(defaultHourly * 2080);
+                          setAvgHourlyWage(defaultHourly);
+                        }
+                        setAnnualSalaryInput("");
+                      }}
+                      onFocus={(e) => {
+                        e.target.select();
+                        setAnnualSalaryInput(e.target.value);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Roster cycle frequency
+                    </label>
+                    <select
+                      value={rosterCycleWeeks}
+                      onChange={(e) => setRosterCycleWeeks(Number(e.target.value))}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    >
+                      <option value={2}>2 weeks</option>
+                      <option value={4}>4 weeks</option>
+                      <option value={6}>6 weeks</option>
+                      <option value={8}>8 weeks</option>
+                      <option value={10}>10 weeks</option>
+                      <option value={12}>12 weeks</option>
+                      <option value={13}>13 weeks</option>
+                      <option value={14}>14 weeks</option>
+                      <option value={16}>16 weeks</option>
+                      <option value={4.33}>Monthly</option>
+                      <option value={52}>Yearly</option>
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      How often do you create new rosters?
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Days spent creating each roster
+                    </label>
+                    <input
+                      type="number"
+                      value={rosteringDaysInput !== "" ? rosteringDaysInput : scaledRosteringDays.toFixed(1)}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setRosteringDaysInput(val);
+                        if (val !== '') {
+                          const newValue = Number(val);
+                          // Calculate base days from the scaled value
+                          const employeeMultiplier = (employees || 0) / (currentIndustry.defaultEmployees || 50);
+                          const scaleFactor = 0.8 + 0.2 * employeeMultiplier;
+                          setBaseRosteringDays(newValue / scaleFactor);
+                        } else {
+                          // Don't set to 0, keep current value when empty
+                        }
+                      }}
+                      onBlur={() => {
+                        // Clear the input to show calculated value when focus is lost
+                        if (rosteringDaysInput === '') {
+                          setBaseRosteringDays(currentIndustry.defaultRosteringDays || 1);
+                        }
+                        setRosteringDaysInput("");
+                      }}
+                      onFocus={(e) => {
+                        e.target.select();
+                        setRosteringDaysInput(e.target.value);
+                      }}
+                      min="0.5"
+                      step="0.1"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Results */}
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg shadow-lg p-8 text-white">
+                <h2 className="text-2xl font-bold mb-6">
+                  Your Potential Savings
+                </h2>
+
+                <div className="space-y-6">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/10 rounded-lg p-6">
+                      <h3 className="text-3xl font-bold mb-2">
+                        ${(totalAnnualSavings && !isNaN(totalAnnualSavings)) ? Math.round(totalAnnualSavings).toLocaleString() : '0'}
+                      </h3>
+                      <p className="text-blue-100">Total Annual Savings</p>
+                    </div>
+                    <div className="bg-white/10 rounded-lg p-6">
+                      <h3 className="text-3xl font-bold mb-2">{roiMultiple}x</h3>
+                      <p className="text-blue-100">Return on Investment</p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-white/20 pt-6 space-y-4">
+                    <h3 className="font-semibold text-lg mb-3">
+                      Savings Breakdown
+                    </h3>
+
+                    {/* 1. Manual Time Spent Rostering */}
+                    {currentIndustry.hasManualTimeSaving && (
+                      <div className="mb-3">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium">Manual Time Spent Rostering</span>
+                          <span className="text-xl font-semibold">
+                            ${(timeSavingsCost && !isNaN(timeSavingsCost)) ? Math.round(timeSavingsCost).toLocaleString() : '0'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 2. Human made rosters utilise staffing hours inefficiently */}
+                    {currentIndustry.hasStaffingEfficiency && (
+                      <div className="mb-3">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium">Optimised Staffing Efficiency</span>
+                          <span className="text-xl font-semibold">
+                            ${(allocativeEfficiencySavings && !isNaN(allocativeEfficiencySavings)) ? Math.round(allocativeEfficiencySavings).toLocaleString() : '0'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 3. Poor skill mix */}
+                    {currentIndustry.hasSkillMix && (
+                      <div className="mb-3">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium">Improved Skill Mix</span>
+                          <span className="text-xl font-semibold">
+                            ${(skillMixSavings && !isNaN(skillMixSavings)) ? Math.round(skillMixSavings).toLocaleString() : '0'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 4. Unnecessary Turnover Costs */}
+                    {currentIndustry.hasTurnover && (
+                      <div className="mb-3">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium">Reduced Turnover Costs</span>
+                          <span className="text-xl font-semibold">
+                            ${(turnoverReductionSavings && !isNaN(turnoverReductionSavings)) ? Math.round(turnoverReductionSavings).toLocaleString() : '0'}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    
+                  </div>
+
+                  <div className="border-t border-white/20 pt-6 space-y-4">
+                    <h3 className="font-semibold text-lg mb-3">
+                      RosterLab Investment
+                    </h3>
+                    
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-blue-100">Annual Subscription</span>
+                        <span className="font-semibold">
+                          ${(annualSubscriptionCost && !isNaN(annualSubscriptionCost)) ? annualSubscriptionCost.toLocaleString() : '0'}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-blue-100">
+                          One-off Implementation (estimate)
+                        </span>
+                        <span className="font-semibold">
+                          ${(oneOffImplementationCost && !isNaN(oneOffImplementationCost)) ? oneOffImplementationCost.toLocaleString() : '0'}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center pt-2 border-t border-white/20">
+                        <span className="font-medium">First Year Total</span>
+                        <span className="text-xl font-semibold">
+                          ${(firstYearTotalCost && !isNaN(firstYearTotalCost)) ? firstYearTotalCost.toLocaleString() : '0'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-6 space-y-3">
+                    <button
+                      onClick={() => setShowReportForm(true)}
+                      className="w-full bg-green-500 text-white hover:bg-green-600 py-3 px-4 rounded-md font-medium transition-colors"
+                    >
+                      Download Your ROI Report
+                    </button>
+                    <Button
+                      href="/staff-rostering-interactive-demo"
+                      className="w-full bg-white text-blue-600 hover:bg-gray-100 py-3"
+                    >
+                      See How It Works
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Benefits */}
+            <div className="mt-12 bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                Additional Benefits
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    Improved Compliance
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Automatic enforcement of labour laws, union agreements, and
+                    internal policies
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <svg
+                      className="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    Higher Staff Satisfaction
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Fair scheduling and better work-life balance leads to
+                    happier teams
+                  </p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    Faster Decision Making
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Real-time insights and scenario planning for better
+                    workforce management
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Full Width CTA Section */}
+      <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-16 text-white">
+        <Container>
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4">Ready to Start Saving?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Join hundreds of organisations already optimising their scheduling
+              with RosterLab
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                href="/contact"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3"
+              >
+                Contact Us
+              </Button>
+              <Button
+                href="/solutions/ai-staff-scheduling"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
+              >
+                Learn More
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Report Download Modal */}
+      {showReportForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-md w-full p-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Download Your ROI Report
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Get a personalised ROI report showing your potential savings with
+              RosterLab.
+            </p>
+
+            {/* HubSpot Form Container */}
+            <div
+              id="hubspot-form-container"
+              ref={formContainerRef}
+              style={{ minHeight: "100px" }}
+            >
+              <p className="text-sm text-gray-500 text-center">
+                Loading form...
+              </p>
+            </div>
+
+            {isSubmitting && (
+              <div className="text-center py-4">
+                <p className="text-gray-600">Generating your report...</p>
+              </div>
+            )}
+
+            <div className="mt-4">
+              <button
+                type="button"
+                onClick={() => setShowReportForm(false)}
+                className="w-full bg-gray-200 text-gray-700 hover:bg-gray-300 py-2 px-4 rounded-md font-medium transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
