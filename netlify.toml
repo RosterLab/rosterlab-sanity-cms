@@ -1,0 +1,17 @@
+[[redirects]]
+  from = "https://www.rosterlab.com/*"
+  to = "https://rosterlab.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.rosterlab.com/*"
+  to = "https://rosterlab.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://rosterlab.com/*"
+  to = "https://rosterlab.com/:splat"
+  status = 301
+  force = true
