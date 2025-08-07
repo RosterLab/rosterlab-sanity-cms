@@ -178,6 +178,11 @@ export default function Footer() {
                   Schedge
                 </Link>
               </li>
+              <li>
+                <Link href="/resources/roi-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  ROI Calculator
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
