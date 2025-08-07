@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
-import Datadog from "@/components/analytics/Datadog";
+import Amplitude from "@/components/analytics/Amplitude";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -61,12 +61,7 @@ export default async function RootLayout({
         <ClientProviders
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
-          <Datadog
-            clientToken={process.env.NEXT_PUBLIC_DATADOG_CLIENT_TOKEN!}
-            applicationId={process.env.NEXT_PUBLIC_DATADOG_APPLICATION_ID!}
-            service={process.env.NEXT_PUBLIC_DATADOG_SERVICE!}
-            env={process.env.NEXT_PUBLIC_DATADOG_ENV!}
-          />
+          <Amplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { HiMenu, HiX, HiChevronDown, HiChevronRight, HiUser } from 'react-icons/hi'
+import { trackButtonClick } from '@/components/analytics/Amplitude'
 
 interface SubMenuItem {
   title: string
@@ -345,6 +346,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              onClick={() => trackButtonClick('Book a Demo', 'Header Desktop', { cta_type: 'primary' })}
             >
               Book a Demo
             </Link>
@@ -352,6 +354,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               target="_blank"
+              onClick={() => trackButtonClick('Start for free', 'Header Desktop', { cta_type: 'signup', external: true })}
             >
               Start for free
             </Link>
@@ -484,14 +487,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Book a Demo', 'Header Mobile', { cta_type: 'primary' })
+                setIsMenuOpen(false)
+              }}
             >
               Book a Demo
             </Link>
             <Link
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Start for free', 'Header Mobile', { cta_type: 'signup', external: true })
+                setIsMenuOpen(false)
+              }}
               target="_blank"
             >
               Start for free

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { trackButtonClick } from '@/components/analytics/Amplitude'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -10,6 +11,9 @@ interface ButtonProps {
   className?: string
   disabled?: boolean
   type?: 'button' | 'submit' | 'reset'
+  analyticsLabel?: string
+  analyticsLocation?: string
+  analyticsProperties?: Record<string, any>
 }
 
 export default function Button({
@@ -21,6 +25,9 @@ export default function Button({
   className,
   disabled = false,
   type = 'button',
+  analyticsLabel,
+  analyticsLocation,
+  analyticsProperties,
 }: ButtonProps) {
   const baseStyles = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
   
@@ -42,10 +49,41 @@ export default function Button({
     sizes[size],
     className
   )
+
+  const handleClick = () => {
+    if (analyticsLabel) {
+      trackButtonClick(
+        analyticsLabel,
+        analyticsLocation,
+        {
+          variant,
+          size,
+          href,
+          ...analyticsProperties,
+        }
+      )
+    }
+    onClick?.()
+  }
+
+  const handleLinkClick = () => {
+    if (analyticsLabel) {
+      trackButtonClick(
+        analyticsLabel,
+        analyticsLocation,
+        {
+          variant,
+          size,
+          href,
+          ...analyticsProperties,
+        }
+      )
+    }
+  }
   
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={handleLinkClick}>
         {children}
       </Link>
     )
@@ -54,7 +92,7 @@ export default function Button({
   return (
     <button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       className={classes}
     >

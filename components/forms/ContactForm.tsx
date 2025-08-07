@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import Button from '@/components/ui/Button'
+import { trackFormSubmit } from '@/components/analytics/Amplitude'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -32,6 +33,13 @@ export default function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
     
+    // Track form submission attempt
+    trackFormSubmit('Contact Form', {
+      has_company: !!data.company,
+      has_phone: !!data.phone,
+      message_length: data.message.length,
+    })
+    
     try {
       // Replace with your form submission logic
       const response = await fetch('/api/contact', {
@@ -45,12 +53,21 @@ export default function ContactForm() {
       if (response.ok) {
         setIsSubmitted(true)
         reset()
+        
+        // Track successful submission
+        trackFormSubmit('Contact Form Success', {
+          has_company: !!data.company,
+          has_phone: !!data.phone,
+        })
       } else {
         throw new Error('Failed to submit form')
       }
     } catch (error) {
       console.error('Form submission error:', error)
-      // Handle error (show toast, etc.)
+      // Track form submission error
+      trackFormSubmit('Contact Form Error', {
+        error_message: error instanceof Error ? error.message : 'Unknown error'
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -74,6 +91,8 @@ export default function ContactForm() {
           onClick={() => setIsSubmitted(false)}
           variant="outline"
           className="mt-4"
+          analyticsLabel="Send Another Message"
+          analyticsLocation="Contact Form Success"
         >
           Send Another Message
         </Button>
@@ -163,6 +182,9 @@ export default function ContactForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full md:w-auto"
+        analyticsLabel="Send Message"
+        analyticsLocation="Contact Form"
+        analyticsProperties={{ form_type: 'contact' }}
       >
         {isSubmitting ? 'Sending...' : 'Send Message'}
       </Button>
