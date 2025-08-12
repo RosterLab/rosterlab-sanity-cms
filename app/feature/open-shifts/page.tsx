@@ -6,8 +6,8 @@ import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
-  title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
-  description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.',
+  title: 'Open Shifts - RosterLab',
+  description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes.',
   alternates: {
     canonical: 'https://rosterlab.com/feature/open-shifts',
   },
@@ -18,7 +18,7 @@ export const metadata = {
     url: 'https://rosterlab.com/feature/open-shifts',
     images: [
       {
-        url: '/images/og images/FeatureShiftSwaps.png',
+        url: '/images/og images/FeatureOpenShifts.png',
         width: 1200,
         height: 630,
       },
@@ -28,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
     description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.',
-    images: ['/images/og images/FeatureShiftSwaps.png'],
+    images: ['/images/og images/FeatureOpenShifts.png'],
   },
 }
 
@@ -190,7 +190,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/placeholder.svg"
+                  src="/images/illustration/Events-pana.svg"
                   alt="Prioritise urgent shifts"
                   width={600}
                   height={600}

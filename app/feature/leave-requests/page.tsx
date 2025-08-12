@@ -6,8 +6,8 @@ import Image from 'next/image'
 import { HiCheck, HiCalendar, HiClock } from 'react-icons/hi'
 
 export const metadata = {
-  title: 'Employee Leave Request Tracking - RosterLab',
-  description: 'Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.',
+  title: 'Employee Leave Requests - RosterLab',
+  description: 'Give employees an easy and streamline way to request leave. Staff can submit a range of leave types via the employee mobile app to streamline leave requests.',
   robots: {
     index: false,
     follow: false,
@@ -80,7 +80,7 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Submit leave requests via the staff mobile app
+                  Submit Leave Requests Via The Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Staff can easily submit leave requests directly from their mobile devices, anytime and anywhere. The intuitive app interface makes requesting time off quick and convenient.
@@ -160,7 +160,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automatically syncs to the roster ready for approval
+                  Automatically Syncs To The Roster Ready For Approval
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Leave requests seamlessly integrate with your roster system. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need.
@@ -186,7 +186,7 @@ export default function LeaveRequestsPage() {
 
 
         {/* Feature 3: Mobile-First Experience */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
@@ -200,7 +200,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Send a number of different leave requests
+                  Send A Number Of Different Leave Requests
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Support for all types of leave including annual leave, sick leave, parental leave, and custom categories. Each leave type can have its own rules and approval workflows.
@@ -220,6 +220,29 @@ export default function LeaveRequestsPage() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion
+                items={[
+                  {
+                    question: "Can employees check their leave balances on mobile?",
+                    answer: "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones."
+                  },
+                  {
+                    question: "What types of leave can the system handle?",
+                    answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies."
+                  }
+                ]}
+              />
             </div>
           </Container>
         </div>
@@ -245,29 +268,6 @@ export default function LeaveRequestsPage() {
                   <p className="text-xl opacity-90">Self-service availability</p>
                 </div>
               </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* FAQ Section */}
-        <div className="py-20 bg-gray-50">
-          <Container>
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
-                Frequently Asked Questions
-              </h2>
-              <FAQAccordion
-                items={[
-                  {
-                    question: "Can employees check their leave balances on mobile?",
-                    answer: "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones."
-                  },
-                  {
-                    question: "What types of leave can the system handle?",
-                    answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies."
-                  }
-                ]}
-              />
             </div>
           </Container>
         </div>

@@ -7,8 +7,8 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 import AIOptimizationModule from '@/components/feature/AIOptimizationModule'
 
 export const metadata = {
-  title: 'AI Auto Roster Generation - RosterLab',
-  description: 'Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.',
+  title: 'Automatic Roster Generation - RosterLab',
+  description: 'Generate fully optimised rosters in minutes with automatic rostering that balances staffing levels, skills, preferences, and compliance effortlessly.',
   robots: {
     index: false,
     follow: false,

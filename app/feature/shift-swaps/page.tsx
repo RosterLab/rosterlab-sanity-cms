@@ -10,7 +10,7 @@ import AuditTrailModule from './AuditTrailModule'
 import WeekendRotationModule from './WeekendRotationModule'
 
 export const metadata = {
-  title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
+  title: 'Shift Swaps - RosterLab',
   description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
   alternates: {
     canonical: 'https://rosterlab.com/feature/shift-swaps',

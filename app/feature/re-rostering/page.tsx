@@ -6,8 +6,8 @@ import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
-  title: 'Fast Re-Rostering & Scenario Planning - RosterLab',
-  description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.',
+  title: 'Re-Rostering - RosterLab',
+  description: 'Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.',
   robots: {
     index: false,
     follow: false,
@@ -41,7 +41,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Re-roster unexpected changes easily
+                  Re-Roster New Changes Easily
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automatically adjust schedules when staff call in sick or situations change, maintaining coverage and compliance.
@@ -80,23 +80,23 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Easily adapt to roster changes
+                  Easily Adapt To Roster Changes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  When changes occur, our system immediately analyses the impact on coverage, compliance, and staff. Get multiple solution options ranked by effectiveness and minimal disruption to existing schedules.
+                  When new changes need to happen, RosterLab shows you the impact on coverage, compliance, and staff - so you can respond with confidence.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Real-time impact assessment across all departments</span>
+                    <span className="text-gray-700">Minimise disruption to keep shifts safe, fair, and fully staffed</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Multiple solution options ranked by effectiveness</span>
+                    <span className="text-gray-700">New rosters are generated quickly, ready to share</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Minimal disruption analysis for existing schedules</span>
+                    <span className="text-gray-700">Run "what-if" scenarios to prepare for any situation</span>
                   </li>
                 </ul>
               </div>
@@ -119,11 +119,11 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/Customer relationship management-pana.svg"
+                  src="/images/generating.webp"
                   alt="Automated Solution Generation illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={550}
+                  height={450}
+                  className="rounded-lg shadow-lg w-full h-auto max-w-[550px] mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -131,12 +131,12 @@ export default function ReRosteringPage() {
                   Automated Solution Generation
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  AI automatically generates multiple re-rostering solutions considering staff availability, skills, preferences, and compliance requirements. Choose the best option or let the system auto-apply the optimal solution.
+                  Automatically generate the most optimal re-rostering solution based on your new changes whilst still considering staff availability, skills, preferences, and compliance requirements.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Multiple solution scenarios generated instantly</span>
+                    <span className="text-gray-700">Optimal solution generated instantly</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -144,7 +144,7 @@ export default function ReRosteringPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Auto-apply mode for critical situations</span>
+                    <span className="text-gray-700">Isolate only the specific part of the roster that's impacted</span>
                   </li>
                 </ul>
               </div>
@@ -161,16 +161,16 @@ export default function ReRosteringPage() {
                   Compliance Preservation
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  All re-rostering solutions maintain full compliance with regulations, union agreements, and workplace policies. The system ensures minimum rest periods, maximum hours, and skill requirements are never violated.
+                  All re-rostering solutions maintain full compliance with regulations, union agreements, and rules. The platform can help ensure minimum rest periods, maximum hours, and skill requirements are never violated.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic compliance validation for all solutions</span>
+                    <span className="text-gray-700">Automatic compliance</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Rest period and maximum hours enforcement</span>
+                    <span className="text-gray-700">Rest period and maximum hours</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -230,33 +230,8 @@ export default function ReRosteringPage() {
           </Container>
         </div>
 
-        {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
-          <Container>
-            <div className="text-center text-white">
-              <h2 className="text-4xl font-bold mb-12">
-                Re-Rostering Performance
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <p className="text-5xl font-bold mb-2">30 sec</p>
-                  <p className="text-xl opacity-90">Average solution generation time</p>
-                </div>
-                <div>
-                  <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Compliance maintained</p>
-                </div>
-                <div>
-                  <p className="text-5xl font-bold mb-2">95%</p>
-                  <p className="text-xl opacity-90">Reduction in manual re-scheduling</p>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
-
         {/* FAQ Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
@@ -281,6 +256,31 @@ export default function ReRosteringPage() {
                   answer: "Yes, once you approve a re-rostering solution, all affected staff receive instant notifications via the app."
                 }
               ]} />
+            </div>
+          </Container>
+        </div>
+
+        {/* Stats Section */}
+        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
+          <Container>
+            <div className="text-center text-white">
+              <h2 className="text-4xl font-bold mb-12">
+                Re-Rostering Performance
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Compliance maintained</p>
+                </div>
+                <div>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Less Headaches</p>
+                </div>
+                <div>
+                  <p className="text-5xl font-bold mb-2">95%</p>
+                  <p className="text-xl opacity-90">Reduction in manual re-scheduling</p>
+                </div>
+              </div>
             </div>
           </Container>
         </div>
