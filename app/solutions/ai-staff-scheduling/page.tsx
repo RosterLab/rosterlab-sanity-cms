@@ -51,7 +51,7 @@ const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters.",
+      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters. <a href=\"https://rosterlab.com/blog/should-your-next-staff-roster-be-built-with-ai\" className=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",

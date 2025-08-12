@@ -160,6 +160,11 @@ const nextConfig: NextConfig = {
         destination: '/blog/open-shifts-understanding-the-basics',
         permanent: true,
       },
+      {
+        source: '/blog/trade-offs',
+        destination: '/blog/how-to-navigate-staff-scheduling-trade-offs',
+        permanent: true,
+      },
       // Redirect case studies from /blog to /case-studies
       {
         source: '/blog/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',

@@ -7,7 +7,6 @@ Disallow: /studio/
 
 # Disallow test pages
 Disallow: /test-2/
-Disallow: /schedge/
 
 # Disallow favicon indexing
 Disallow: /favicon.ico
