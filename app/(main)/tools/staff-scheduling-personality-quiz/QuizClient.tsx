@@ -21,96 +21,96 @@ const quizQuestions = [
     id: 1,
     question: "How do you feel about rostering?",
     answers: [
-      { id: 'a', text: "Oh, I forgot—was it due today?", personality: 'lastminute' },
-      { id: 'b', text: "Love it! Give me Excel and a coffee, and I'm happy.", personality: 'spreadsheet' },
-      { id: 'c', text: "As long as nobody is upset, I'm good.", personality: 'peacekeeper' },
-      { id: 'd', text: "I enjoy making people smile with a good shift.", personality: 'social' },
-      { id: 'e', text: "It's organized chaos and I'm drowning in it", personality: 'nohope' },
-      { id: 'f', text: "It's a serious responsibility. There are rules!", personality: 'rules' }
+      { id: 'a', text: "Love it! Give me Excel and a glass of wine, and I'm happy.", personality: 'spreadsheet' },
+      { id: 'b', text: "Giving people what they want is what I want.", personality: 'social' },
+      { id: 'c', text: "Oh, I forgot - was it due today?", personality: 'lastminute' },
+      { id: 'd', text: "It's a serious responsibility. There are rules!", personality: 'rules' },
+      { id: 'e', text: "As long as nobody is upset, I'm good.", personality: 'peacekeeper' },
+      { id: 'f', text: "HELP ME", personality: 'nohope' }
     ]
   },
   {
     id: 2,
     question: "Your roster is due tomorrow. What are you doing now?",
     answers: [
-      { id: 'a', text: "Making sure that Sarah and Ben aren't rostered together... again.", personality: 'peacekeeper' },
-      { id: 'b', text: "Just starting... I work best under pressure.", personality: 'lastminute' },
-      { id: 'c', text: "Reviewing my macros one last time.", personality: 'spreadsheet' },
-      { id: 'd', text: "Time to duct-tape this together... again", personality: 'nohope' },
-      { id: 'e', text: "DM'ing everyone for their preferences.", personality: 'social' },
-      { id: 'f', text: "Double-checking every shift meets compliance.", personality: 'rules' }
+      { id: 'a', text: "Relaxing. The roster is done.", personality: 'rules' },
+      { id: 'b', text: "AHHHHGH!", personality: 'nohope' },
+      { id: 'c', text: "Reviewing my formulas one last time.", personality: 'spreadsheet' },
+      { id: 'd', text: "Making sure that Sarah and Ben aren't rostered together... again.", personality: 'peacekeeper' },
+      { id: 'e', text: "Just starting... I work best under pressure.", personality: 'lastminute' },
+      { id: 'f', text: "Checking that everyone is happy with my latest draft roster.", personality: 'social' }
     ]
   },
   {
     id: 3,
-    question: "You notice your roster breaks some compliance rules. What's your reaction?",
+    question: "You notice a series of shifts that break your union rules. What's your reaction?",
     answers: [
-      { id: 'a', text: "Oh no—will that upset anyone?", personality: 'social' },
-      { id: 'b', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
-      { id: 'c', text: "Of course it does. *fixes while venting loudly*", personality: 'nohope' },
-      { id: 'd', text: "I already built formulas to catch that.", personality: 'spreadsheet' },
-      { id: 'e', text: "Didn't see that. We'll survive.", personality: 'lastminute' },
-      { id: 'f', text: "Let me see who's affected and talk to them.", personality: 'peacekeeper' }
+      { id: 'a', text: "Let me see who's affected and talk to them.", personality: 'peacekeeper' },
+      { id: 'b', text: "Didn't see that. We'll survive.", personality: 'lastminute' },
+      { id: 'c', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
+      { id: 'd', text: "Looks the other way, clicks share", personality: 'nohope' },
+      { id: 'e', text: "I already built formulas to catch that.", personality: 'spreadsheet' },
+      { id: 'f', text: "Oh no - will that upset anyone?", personality: 'social' }
     ]
   },
   {
     id: 4,
     question: "Someone messages at 9pm asking for a change. What do you do?",
     answers: [
-      { id: 'a', text: "Ask them to submit it formally in writing.", personality: 'rules' },
-      { id: 'b', text: "I knew this would happen *grumbles but handles it*", personality: 'nohope' },
-      { id: 'c', text: "Say yes and move things around.", personality: 'social' },
-      { id: 'd', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
-      { id: 'e', text: "Check if my formulas can handle the swap automatically.", personality: 'spreadsheet' },
-      { id: 'f', text: "Sigh and do it in the morning.", personality: 'lastminute' }
+      { id: 'a', text: "Pretend I didn't see the message.", personality: 'nohope' },
+      { id: 'b', text: "Tell them it's too late, they will have to organise their own swap.", personality: 'rules' },
+      { id: 'c', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
+      { id: 'd', text: "I'm on it and shuffling things around.", personality: 'social' },
+      { id: 'e', text: "Sigh and deal with them in the morning.", personality: 'lastminute' },
+      { id: 'f', text: "My integrated webform has already sent this to the appropriate approver.", personality: 'spreadsheet' }
     ]
   },
   {
     id: 5,
     question: "What do you care about most in a roster?",
     answers: [
-      { id: 'a', text: "Team harmony and morale.", personality: 'peacekeeper' },
-      { id: 'b', text: "Getting it done without losing my mind.", personality: 'lastminute' },
-      { id: 'c', text: "Saving the day while complaining the entire time", personality: 'nohope' },
-      { id: 'd', text: "Legal compliance and structure.", personality: 'rules' },
-      { id: 'e', text: "Efficiency and optimization.", personality: 'spreadsheet' },
-      { id: 'f', text: "Making everyone feel considered.", personality: 'social' }
+      { id: 'a', text: "Making everyone feel considered.", personality: 'social' },
+      { id: 'b', text: "Team harmony and morale.", personality: 'peacekeeper' },
+      { id: 'c', text: "Just surviving without too many complaints", personality: 'nohope' },
+      { id: 'd', text: "Efficiency and optimization.", personality: 'spreadsheet' },
+      { id: 'e', text: "Legal compliance and structure.", personality: 'rules' },
+      { id: 'f', text: "Getting it done without losing my mind.", personality: 'lastminute' }
     ]
   },
   {
     id: 6,
-    question: "Your ideal team roster looks like...",
+    question: "Your ideal roster looks like...",
     answers: [
       { id: 'a', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
-      { id: 'b', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' },
-      { id: 'c', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
-      { id: 'd', text: "Held together with duct tape and a wish upon a star", personality: 'nohope' },
-      { id: 'e', text: "A perfect balance of shifts, breaks, and responsibilities.", personality: 'spreadsheet' },
-      { id: 'f', text: "Everyone has the shifts they wanted.", personality: 'social' }
+      { id: 'b', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
+      { id: 'c', text: "Everyone has the shifts they wanted.", personality: 'social' },
+      { id: 'd', text: "Someone else doing the rostering instead of me", personality: 'nohope' },
+      { id: 'e', text: "A statistically fair masterpiece.", personality: 'spreadsheet' },
+      { id: 'f', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' }
     ]
   },
   {
     id: 7,
     question: "When things go wrong, your first move is to...",
     answers: [
-      { id: 'a', text: "Calm the waters and realign the team.", personality: 'peacekeeper' },
-      { id: 'b', text: "Have a mini breakdown, then fix everything anyway", personality: 'nohope' },
-      { id: 'c', text: "Diagnose the spreadsheet.", personality: 'spreadsheet' },
+      { id: 'a', text: "Figure out what happened, come with receipts.", personality: 'rules' },
+      { id: 'b', text: "Cry in a quiet corner for a while", personality: 'nohope' },
+      { id: 'c', text: "Calm the waters and realign the team.", personality: 'peacekeeper' },
       { id: 'd', text: "Try to patch it on the fly.", personality: 'lastminute' },
-      { id: 'e', text: "Escalate to management with records.", personality: 'rules' },
-      { id: 'f', text: "Ask the team how they're feeling.", personality: 'social' }
+      { id: 'e', text: "Ask the team how they're feeling.", personality: 'social' },
+      { id: 'f', text: "Diagnose the spreadsheet, how did I not have a formula for this situation?", personality: 'spreadsheet' }
     ]
   },
   {
     id: 8,
     question: "What tool do you prefer to use for rostering?",
     answers: [
-      { id: 'a', text: "Whatever's quickest right now.", personality: 'lastminute' },
-      { id: 'b', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
-      { id: 'c', text: "Whatever chaos management system I've cobbled together", personality: 'nohope' },
-      { id: 'd', text: "Excel or Google Sheets with conditional formatting.", personality: 'spreadsheet' },
-      { id: 'e', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
-      { id: 'f', text: "Professional rostering software with all the rules built-in.", personality: 'rules' }
+      { id: 'a', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
+      { id: 'b', text: "Whatever's quickest right now. Back of a napkin if I have to.", personality: 'lastminute' },
+      { id: 'c', text: "A good old fashion pen and paper", personality: 'nohope' },
+      { id: 'd', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
+      { id: 'e', text: "Rules checking rostering software.", personality: 'rules' },
+      { id: 'f', text: "Excel or Google Sheets with lots of formulas and conditional formatting.", personality: 'spreadsheet' }
     ]
   }
 ]
