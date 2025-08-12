@@ -80,7 +80,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Intelligent Impact Analysis
+                  Easily adapt to roster changes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   When changes occur, our system immediately analyses the impact on coverage, compliance, and staff. Get multiple solution options ranked by effectiveness and minimal disruption to existing schedules.

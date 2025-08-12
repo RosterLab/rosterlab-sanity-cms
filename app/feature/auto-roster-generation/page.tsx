@@ -218,6 +218,45 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
+        {/* Feature 4: What If Scenarios */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Simulate different "What If" Scenarios
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Test roster changes before committing. See how staff rules, absences and requests impact your schedules. Make informed decisions and avoid being over or understaffed.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Preview impact of last-minute sick leave or absences</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Test new shift patterns or staffing models risk-free</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Avoid being over or understaffed</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="relative">
+                <Image
+                  src="/images/illustration/business plan-pana.svg"
+                  alt="What If Scenario Planning"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </Container>
+        </div>
+
         {/* FAQ Section */}
         <div className="py-20 bg-gray-50">
           <Container>
