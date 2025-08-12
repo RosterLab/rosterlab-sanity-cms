@@ -56,19 +56,19 @@ const components = {
   },
   list: {
     bullet: ({ children }: any) => (
-      <ul className="list-disc list-inside mb-4 space-y-2 text-neutral-700">
+      <ul className="list-disc list-outside mb-4 space-y-2 text-neutral-700 ml-8">
         {children}
       </ul>
     ),
     number: ({ children }: any) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2 text-neutral-700">
+      <ol className="list-decimal list-outside mb-4 space-y-2 text-neutral-700 ml-8">
         {children}
       </ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: any) => <li className="ml-4">{children}</li>,
-    number: ({ children }: any) => <li className="ml-4">{children}</li>,
+    bullet: ({ children }: any) => <li className="pl-2">{children}</li>,
+    number: ({ children }: any) => <li className="pl-2">{children}</li>,
   },
   marks: {
     strong: ({ children }: any) => (
