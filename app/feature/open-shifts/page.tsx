@@ -43,7 +43,7 @@ const faqItems = [
   },
   {
     question: "Can I control who sees open shifts?",
-    answer: "Yes! You can set precise criteria for each open shift including required qualifications, minimum experience level, specific departments or teams, and availability requirements. You can also prioritize certain staff members or exclude others based on overtime limits or other factors. The system only notifies employees who meet all specified criteria."
+    answer: "Yes! You can set precise criteria for each open shift including required qualifications, minimum experience level, specific departments or teams, and availability requirements."
   },
   {
     question: "What happens when multiple people want the same shift?",
@@ -93,6 +93,41 @@ export default function OpenShiftsPage() {
                   height={600}
                   className="w-full h-auto"
                 />
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Smart Employee Matching Section */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/illustration/matching.svg"
+                  alt="Smart Employee Matching"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Smart Employee Matching
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Automatically shortlist qualified staff based on skills, availability, and preferences. Only the right people see the right shifts.
+                </p>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Skills-based matching</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Availability filtering</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </Container>
@@ -155,7 +190,7 @@ export default function OpenShiftsPage() {
                   Fair & Transparent Assignment
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Employees see available shifts in real-time and can claim them instantly. Choose between first-come-first-served, manager approval, or custom priority rules.
+                  Employees see available shifts in real-time and can claim them instantly on a first-come-first-served basis.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -164,11 +199,7 @@ export default function OpenShiftsPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Configurable assignment rules</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic roster updates</span>
+                    <span className="text-gray-700">Automatic roster updates when shifts are filled</span>
                   </li>
                 </ul>
               </div>
@@ -215,44 +246,6 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
 
-        {/* Analytics & Insights Section */}
-        <div className="py-20 bg-gray-50">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/Timeline-pana.svg"
-                  alt="Analytics and Insights"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Smart Employee Matching
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Automatically shortlist qualified staff based on skills, availability, and preferences. Only the right people see the right shifts.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Skills-based matching</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Availability filtering</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Preference-based ranking</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Container>
-        </div>
 
         {/* FAQ Section */}
         <div className="py-20 bg-gray-50">

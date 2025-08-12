@@ -35,15 +35,11 @@ export const metadata = {
 const faqItems = [
   {
     question: "What factors does the AI consider when generating rosters?",
-    answer: "The AI considers: staffing requirements by shift and location, employee skills and certifications, staff preferences and availability, fairness metrics (equal distribution of weekends, nights, etc.), labour laws and compliance rules, budget constraints and overtime limits, and historical patterns. It balances all these factors simultaneously to create optimal schedules."
+    answer: "The AI considers: staffing requirements by shift and location, employee skills and qualifications, staff preferences and availability, fairness, labour laws and compliance rules. It balances all these factors simultaneously to create optimal schedules."
   },
   {
     question: "Can I modify the auto-generated roster?",
-    answer: "Absolutely! The auto-generated roster is a starting point that you can refine. You can make manual adjustments, and the system will highlight any rule violations your changes might cause. You can also regenerate specific parts of the roster while keeping other sections locked, giving you full control over the final schedule."
-  },
-  {
-    question: "How does it ensure fairness across the team?",
-    answer: "The AI tracks fairness metrics like weekend distribution, night shift allocation, and preference satisfaction across all staff. It uses advanced algorithms to ensure equitable distribution over time, not just within a single roster period."
+    answer: "Absolutely! The auto-generated roster is a starting point that you can refine. You can make manual adjustments, and the system will highlight any rule violations your changes might cause."
   },
   {
     question: "What happens if no perfect solution exists?",
@@ -96,34 +92,40 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
-        {/* Feature 1: AI-Powered Optimization */}
+        {/* Feature 1: Optimise staffing coverage */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  AI-Powered Optimisation Engine
+                  Optimise staffing coverage
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Our advanced algorithms consider thousands of variables including staff preferences, skills, availability, compliance rules, and fairness metrics to create optimal schedules automatically.
+                  Automatically create rosters that balances safe staffing levels, staff wellbeing, compliance with union agreements, and operational efficiency - all in minutes, not days.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Considers 50+ variables simultaneously</span>
+                    <span className="text-gray-700">Flexible optimisation settings</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Balances preferences with operational needs</span>
+                    <span className="text-gray-700">Customisable rules and constraints</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Learns from historical patterns and feedback</span>
+                    <span className="text-gray-700">Scenario planning tools</span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
-                <AIOptimizationModule />
+                <Image
+                  src="/images/illustration/team checklist-pana.svg"
+                  alt="Optimise staffing coverage"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -168,47 +170,9 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Customizable Parameters */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Optimise staffing coverage
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Fine-tune the generation process to match your organisation's priorities. Adjust the balance between cost optimisation, staff satisfaction, coverage requirements, and other key metrics.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Adjustable optimisation weights and priorities</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Custom rules and constraints configuration</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Multiple generation scenarios for comparison</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/images/illustration/team checklist-pana.svg"
-                  alt="Optimise staffing coverage"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </Container>
-        </div>
 
-        {/* Feature 4: Reduce scheduling from days to minutes */}
-        <div className="py-20 bg-gray-50">
+        {/* Feature 3: Reduce scheduling from days to minutes */}
+        <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
@@ -225,12 +189,12 @@ export default function AutoRosterGenerationPage() {
                   Reduce scheduling from days to minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Eliminate manual scheduling bottlenecks and free up your team to focus on strategic workforce management.
+                  Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Reduce manual scheduling challenges and free up your team to focus on what's important.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Generate complete rosters in under 5 minutes</span>
+                    <span className="text-gray-700">Generate optimal rosters based on your rules and preferences</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
@@ -238,16 +202,24 @@ export default function AutoRosterGenerationPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Save 20+ hours per roster period</span>
+                    <span className="text-gray-700">Save 30+ hours per roster period (depending on your roster type)</span>
                   </li>
                 </ul>
+                <div className="mt-8 text-center">
+                  <Button 
+                    href="/solutions/ai-staff-scheduling" 
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    Learn more about AI scheduling
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
         </div>
 
         {/* FAQ Section */}
-        <div className="py-20 bg-white">
+        <div className="py-20 bg-gray-50">
           <Container>
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">

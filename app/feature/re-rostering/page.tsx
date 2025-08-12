@@ -270,11 +270,11 @@ export default function ReRosteringPage() {
               <FAQAccordion items={[
                 {
                   question: "How quickly can RosterLab generate re-rostering solutions?",
-                  answer: "RosterLab's AI can generate multiple re-rostering solutions in under 30 seconds. The system analyses all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimise disruption while maintaining full coverage."
+                  answer: "RosterLab's AI can generate multiple re-rostering solutions quickly. The system analyses all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimise disruption while maintaining full coverage."
                 },
                 {
                   question: "Can I test different scenarios before implementing changes?",
-                  answer: "Yes! Our scenario planning feature allows you to test 'what-if' situations without affecting the live roster. You can run hypothetical roster scenarios to assess the feasibility of the changes you and your team need to make without impacting your live roster. Compare costs and coverage impacts, and save multiple scenarios for future reference. This helps with contingency planning and budget forecasting."
+                  answer: "Yes! Our scenario planning feature allows you to test 'what-if' situations without affecting the live roster. You can run hypothetical roster scenarios to assess the feasibility of the changes you and your team need to make without impacting your live roster."
                 },
                 {
                   question: "Will staff be automatically notified of roster changes?",

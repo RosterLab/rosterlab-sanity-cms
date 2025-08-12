@@ -33,8 +33,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: 'AI-generated optimised schedules', link: '/solutions/ai-staff-scheduling' },
         { title: 'Free For Manual Digital Scheduling', link: '/solutions/free-staff-scheduling' },
         { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
-        { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
+        { title: 'Preferences & Rules', link: '/feature/preferences-rules' },
+        { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
+        { title: 'Open Shifts', link: '/feature/open-shifts' },
         { title: 'Shift Swaps', link: '/feature/shift-swaps' },
+        { title: 'Leave Requests', link: '/feature/leave-requests' },
+        { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
+        { title: 'Re-Rostering', link: '/feature/re-rostering' },
+        { title: 'Payroll Integration', link: '/feature/payroll-integration' },
       ]
     },
     {
@@ -179,11 +185,27 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1 max-h-80 overflow-y-auto">
                                 <Link
-                                  href="/feature/self-scheduling"
+                                  href="/feature/preferences-rules"
                                   className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Self-Scheduling
+                                    Preferences & Rules
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/auto-roster-generation"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Auto Roster Generation
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/open-shifts"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Open Shifts
                                   </div>
                                 </Link>
                                 <Link
@@ -192,6 +214,38 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Shift Swaps
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/leave-requests"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Leave Requests
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/self-scheduling"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Self-Scheduling
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/re-rostering"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Re-Rostering
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/payroll-integration"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Payroll Integration
                                   </div>
                                 </Link>
                               </div>
