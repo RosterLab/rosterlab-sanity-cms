@@ -3,7 +3,6 @@ import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import Image from 'next/image'
-import LeaveRequestDemo from './LeaveRequestDemo'
 import { HiCheck, HiCalendar, HiClock } from 'react-icons/hi'
 
 export const metadata = {
@@ -42,10 +41,10 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Streamlined leave request management
+                  Streamline Staff Leave Requests
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Automatic coverage analysis and intelligent approval workflows make leave management effortless for staff and managers.
+                  Staff can submit a range of leave types via the employee mobile app to streamline leave requests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
@@ -81,10 +80,10 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automatic Coverage Analysis
+                  Submit leave requests via the staff mobile app
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  When staff request leave, the system automatically analyses impact on coverage, identifies available replacement options, and flags potential issues before they become problems.
+                  Staff can easily submit leave requests directly from their mobile devices, anytime and anywhere. The intuitive app interface makes requesting time off quick and convenient.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -102,7 +101,13 @@ export default function LeaveRequestsPage() {
                 </ul>
               </div>
               <div className="relative">
-                <LeaveRequestDemo />
+                <Image
+                  src="/images/illustration/placeholder.svg"
+                  alt="Automatic coverage analysis"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -115,32 +120,8 @@ export default function LeaveRequestsPage() {
               <div className="order-2 lg:order-1">
                 <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
                       <div className="flex flex-col items-center justify-center">
-                        {/* Leave Request Input */}
-                        <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 w-full max-w-xs mb-6">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center space-x-2">
-                              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                                <HiCalendar className="w-4 h-4 text-white" />
-                              </div>
-                              <span className="font-semibold text-gray-900 text-sm">Leave Request</span>
-                            </div>
-                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                          </div>
-                          <div className="space-y-1">
-                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600">
-                              <span className="font-medium">Employee:</span> Sarah Johnson
-                            </div>
-                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600">
-                              <span className="font-medium">Type:</span> Annual Leave
-                            </div>
-                            <div className="bg-white rounded px-2 py-1 text-xs text-gray-600">
-                              <span className="font-medium">Dates:</span> Jan 15-19, 2025
-                            </div>
-                          </div>
-                        </div>
-                        
                         {/* Approval Engine Processing */}
-                        <div className="relative w-full max-w-xs h-32 mb-6">
+                        <div className="relative w-full max-w-xs h-32">
                           {/* Central Processing Hub */}
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg px-4 py-2 shadow-md border border-gray-200 z-20">
                             <div className="flex items-center space-x-2">
@@ -174,36 +155,15 @@ export default function LeaveRequestsPage() {
                             </div>
                           </div>
                         </div>
-                        
-                        {/* Approval Decision */}
-                        <div className="bg-green-50 rounded-lg p-3 border border-green-200 w-full max-w-xs animate-[fade-in_0.5s_ease-in-out_2s_both]">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center space-x-2">
-                              <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
-                                <HiCheck className="w-4 h-4 text-white" />
-                              </div>
-                              <span className="text-xs text-[#4a9288]">✓ Auto-Approved</span>
-                            </div>
-                          </div>
-                          <div className="space-y-1">
-                          </div>
-                        </div>
-                        
-                        {/* Status Bar */}
-                        <div className="mt-4 w-full max-w-xs">
-                          <div className="text-center">
-                            <p className="text-xs text-gray-500"></p>
-                          </div>
-                        </div>
                       </div>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Intelligent Approval Workflows
+                  Automatically syncs to the roster ready for approval
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Configurable approval rules automatically process leave requests based on your policies. Auto-approve when coverage is available, or route to managers when review is needed.
+                  Leave requests seamlessly integrate with your roster system. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -224,46 +184,8 @@ export default function LeaveRequestsPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Leave Balance Management */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Smart Leave Balance Management
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Automatic tracking of leave balances with real-time updates. Support for multiple leave types, accrual rates, and carry-over policies with full visibility for staff and managers.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Real-time balance tracking and updates</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Multiple leave types and accrual policies</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic alerts for low balances or expiring leave</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/images/illustration/Business ethics-pana-2.svg"
-                  alt="Smart leave balance management illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </Container>
-        </div>
 
-        {/* Feature 4: Mobile-First Experience */}
+        {/* Feature 3: Mobile-First Experience */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -278,10 +200,10 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Mobile-First Experience
+                  Send a number of different leave requests
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff can submit leave requests, check balances, and receive updates from anywhere. Managers can review and approve requests on-the-go with full context and coverage information.
+                  Support for all types of leave including annual leave, sick leave, parental leave, and custom categories. Each leave type can have its own rules and approval workflows.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -343,10 +265,6 @@ export default function LeaveRequestsPage() {
                   {
                     question: "What types of leave can the system handle?",
                     answer: "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies."
-                  },
-                  {
-                    question: "Can we set up automatic approval rules?",
-                    answer: "Absolutely! You can configure automatic approval rules based on various criteria such as leave type, duration, advance notice, and coverage availability. For example, single-day leave requests with 2+ weeks notice and available coverage can be auto-approved, while longer periods or short-notice requests require manager review."
                   }
                 ]}
               />

@@ -43,7 +43,7 @@ const faqItems = [
   },
   {
     question: "What happens if no perfect solution exists?",
-    answer: "When constraints conflict (e.g., everyone wants the same day off), the AI finds the best possible compromise. It shows you exactly which constraints couldn't be fully satisfied and why, suggests alternative solutions. You always see the trade-offs clearly."
+    answer: "When constraints conflict (e.g., everyone wants the same day off), the AI finds the best possible compromise. It shows you exactly which constraints couldn't be fully satisfied and why, suggests alternative solutions. You always see the <a href='https://rosterlab.com/blog/how-to-navigate-staff-scheduling-trade-offs' class='text-blue-600 hover:text-blue-700 underline'>trade-offs</a> clearly."
   }
 ]
 
@@ -57,7 +57,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Generate perfect rosters <br className="hidden md:block" />automatically
+                  Generate Rosters <br className="hidden md:block" />Automatically
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let AI create optimal schedules in minutes while ensuring fairness, compliance, and staff satisfaction.
@@ -98,7 +98,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Optimise staffing coverage
+                  Optimise Staffing Coverage
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Automatically create rosters that balances safe staffing levels, staff wellbeing, compliance with union agreements, and operational efficiency - all in minutes, not days.
@@ -118,10 +118,127 @@ export default function AutoRosterGenerationPage() {
                   </li>
                 </ul>
               </div>
+              <div className="relative rounded-lg p-4">
+                <div className="space-y-4">
+                  <div className="text-center">
+                    <h3 className="text-base font-semibold text-gray-900 mb-3">Roster Inputs</h3>
+                    <div className="grid grid-cols-2 gap-2 max-w-xs mx-auto">
+                      <div className="bg-white border-2 border-gray-200 rounded-lg p-3 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-[#4a9288] cursor-pointer group">
+                        <div className="text-2xl mb-1 transition-transform duration-300 group-hover:scale-110">📋</div>
+                        <div className="text-xs font-medium text-gray-700 group-hover:text-[#4a9288]">Rules</div>
+                      </div>
+                      <div className="bg-white border-2 border-gray-200 rounded-lg p-3 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-[#4a9288] cursor-pointer group">
+                        <div className="text-2xl mb-1 transition-transform duration-300 group-hover:scale-110">❤️</div>
+                        <div className="text-xs font-medium text-gray-700 group-hover:text-[#4a9288]">Preferences</div>
+                      </div>
+                      <div className="bg-white border-2 border-gray-200 rounded-lg p-3 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-[#4a9288] cursor-pointer group">
+                        <div className="text-2xl mb-1 transition-transform duration-300 group-hover:scale-110">📅</div>
+                        <div className="text-xs font-medium text-gray-700 group-hover:text-[#4a9288]">Availability</div>
+                      </div>
+                      <div className="bg-white border-2 border-gray-200 rounded-lg p-3 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-[#4a9288] cursor-pointer group">
+                        <div className="text-2xl mb-1 transition-transform duration-300 group-hover:scale-110">⚖️</div>
+                        <div className="text-xs font-medium text-gray-700 group-hover:text-[#4a9288]">Compliance</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center">
+                    <svg className="w-8 h-8 text-[#4a9288]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </div>
+                  
+                  <div className="text-center">
+                    <h3 className="text-base font-semibold text-gray-900 mb-3">Roster Output</h3>
+                    <div className="border-2 border-[#4a9288] rounded-lg p-4 text-center max-w-xs mx-auto transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-[#3a7268] cursor-pointer group">
+                      <div className="text-2xl mb-1 transition-transform duration-300 group-hover:scale-110">📊</div>
+                      <div className="text-base font-bold text-gray-900 group-hover:text-[#4a9288] transition-colors duration-300">Your Automatic Roster Build</div>
+                      <div className="text-xs mt-1 text-gray-600 group-hover:text-[#3a7268] transition-colors duration-300">Optimised & compliant in minutes</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Feature 2: Reduce scheduling from days to minutes */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/generating.webp"
+                  alt="Reduce scheduling from days to minutes"
+                  width={550}
+                  height={450}
+                  className="rounded-lg shadow-lg w-full h-auto max-w-[550px] mx-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Reduce Scheduling From Days To Minutes
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Reduce manual scheduling challenges and free up your team to focus on what's important.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Generate optimal rosters based on your rules and preferences</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Instant re-optimisation when changes occur</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Save 30+ hours per roster period (depending on your roster type)</span>
+                  </li>
+                </ul>
+                <div className="mt-8 text-center">
+                  <Button 
+                    href="/solutions/ai-staff-scheduling" 
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    Learn more about AI scheduling
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Feature 3: What If Scenarios */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Simulate Different "What If" Scenarios
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Test roster changes before committing. See how staff rules, absences and requests impact your schedules. Make informed decisions and avoid being over or understaffed.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Preview impact of last-minute sick leave or absences</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Test new shift patterns or staffing models risk-free</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Avoid being over or understaffed</span>
+                  </li>
+                </ul>
+              </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/team checklist-pana.svg"
-                  alt="Optimise staffing coverage"
+                  src="/images/illustration/scenario.svg"
+                  alt="What If Scenario Planning"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -131,7 +248,7 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
-        {/* Feature 2: Compliance & Fairness */}
+        {/* Feature 4: Compliance & Fairness */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -170,95 +287,8 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
 
-
-        {/* Feature 3: Reduce scheduling from days to minutes */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/time flies-pana.svg"
-                  alt="Reduce scheduling from days to minutes"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Reduce scheduling from days to minutes
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Reduce manual scheduling challenges and free up your team to focus on what's important.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Generate optimal rosters based on your rules and preferences</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Instant re-optimisation when changes occur</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Save 30+ hours per roster period (depending on your roster type)</span>
-                  </li>
-                </ul>
-                <div className="mt-8 text-center">
-                  <Button 
-                    href="/solutions/ai-staff-scheduling" 
-                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
-                  >
-                    Learn more about AI scheduling
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* Feature 4: What If Scenarios */}
-        <div className="py-20 bg-gray-50">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Simulate different "What If" Scenarios
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Test roster changes before committing. See how staff rules, absences and requests impact your schedules. Make informed decisions and avoid being over or understaffed.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Preview impact of last-minute sick leave or absences</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Test new shift patterns or staffing models risk-free</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Avoid being over or understaffed</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/images/illustration/business plan-pana.svg"
-                  alt="What If Scenario Planning"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </Container>
-        </div>
-
         {/* FAQ Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">

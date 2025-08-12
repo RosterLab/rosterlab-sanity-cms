@@ -41,7 +41,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  Handle unexpected changes with re-rostering
+                  Re-roster unexpected changes easily
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automatically adjust schedules when staff call in sick or situations change, maintaining coverage and compliance.

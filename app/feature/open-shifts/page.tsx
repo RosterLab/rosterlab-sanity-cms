@@ -52,6 +52,10 @@ const faqItems = [
   {
     question: "How does open shifts help reduce staffing costs?",
     answer: "Open shifts helps reduce costly agency and overtime usage by quickly filling gaps with your existing staff pool. Instead of calling expensive agency workers or paying overtime rates, you can instantly broadcast shifts to available employees at regular rates. The system also reduces administrative time spent on phone calls and manual coordination, freeing up managers for more valuable tasks."
+  },
+  {
+    question: "What if an employee can't work an accepted open shift?",
+    answer: "The shift is reopened and automatically shared with the employees who were originally offered it."
   }
 ]
 
@@ -87,7 +91,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
+                  src="/images/illustration/open.svg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
@@ -99,7 +103,7 @@ export default function OpenShiftsPage() {
         </div>
 
         {/* Smart Employee Matching Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
@@ -134,7 +138,7 @@ export default function OpenShiftsPage() {
         </div>
 
         {/* Instant Broadcast Section */}
-        <div className="py-20 bg-white">
+        <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -142,7 +146,7 @@ export default function OpenShiftsPage() {
                   Instant Shift Broadcasting
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Post open shifts with one click and instantly notify all qualified, available staff. Our smart matching ensures only eligible employees see shifts they can actually work.
+                  Post open shifts with one click and instantly notify all qualified, available staff. Staff receive instant notifications on their phones and can accept shifts with one tap. No more unanswered messages.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -151,22 +155,69 @@ export default function OpenShiftsPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Instant push notifications to qualified staff</span>
+                    <span className="text-gray-700">Instant mobile app notifications to staff</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Smart filtering by skills and availability</span>
                   </li>
                 </ul>
+                <div className="mt-8 text-center">
+                  <Button 
+                    href="/solutions/staff-roster-mobile-app" 
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    Learn more about our mobile app
+                  </Button>
+                </div>
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
+                  src="/images/illustration/free-staff-mobile.svg"
                   alt="Instant Shift Broadcasting"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Prioritise Urgent Shifts Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/illustration/placeholder.svg"
+                  alt="Prioritise urgent shifts"
                   width={600}
                   height={600}
                   className="w-full h-auto"
                 />
+              </div>
+              <div className="order-1 lg:order-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Prioritise More Urgent Shifts
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Sometimes an open shift is more critical than the one an employee is already scheduled for. Managers can choose to invite employees who already have a shift with the option to replace their existing shift with a higher priority shift.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Ensures that the most important shifts are filled</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Balances staffing during peak hours</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Improves service during busy periods</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </Container>
@@ -207,48 +258,8 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
 
-        {/* Mobile Notifications Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Mobile-First Experience
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Staff receive instant notifications on their phones and can accept shifts with one tap. No more phone tag or unanswered messages.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Push notifications for immediate reach</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">One-tap shift acceptance</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">In-app shift details and requirements</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/images/illustration/free-staff-mobile.svg"
-                  alt="Mobile Notifications"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </Container>
-        </div>
-
-
         {/* FAQ Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
