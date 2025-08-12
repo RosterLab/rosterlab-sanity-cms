@@ -78,12 +78,26 @@ export default function ShiftSwapsPage() {
                   <Button 
                     href="/book-a-demo" 
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
+                    analyticsLabel="Book A Demo"
+                    analyticsLocation="Feature Page Shift Swaps"
+                    analyticsProperties={{
+                      cta_type: "demo",
+                      page_name: "Shift Swaps",
+                      section: "hero"
+                    }}
                   >
                     Book A Demo
                   </Button>
                   <Button 
                     href="/solutions/free-staff-scheduling" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
+                    analyticsLabel="Try it for free"
+                    analyticsLocation="Feature Page Shift Swaps"
+                    analyticsProperties={{
+                      cta_type: "signup",
+                      page_name: "Shift Swaps",
+                      section: "hero"
+                    }}
                   >
                     Try it for free
                   </Button>
@@ -309,12 +323,26 @@ export default function ShiftSwapsPage() {
                 <Button 
                   href="/book-a-demo" 
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
+                  analyticsLabel="Book Your Demo"
+                  analyticsLocation="Feature Page Shift Swaps"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "Shift Swaps",
+                    section: "final_cta"
+                  }}
                 >
                   Book Your Demo
                 </Button>
                 <Button 
                   href="/pricing" 
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
+                  analyticsLabel="View Pricing"
+                  analyticsLocation="Feature Page Shift Swaps"
+                  analyticsProperties={{
+                    cta_type: "pricing",
+                    page_name: "Shift Swaps",
+                    section: "final_cta"
+                  }}
                 >
                   View Pricing
                 </Button>

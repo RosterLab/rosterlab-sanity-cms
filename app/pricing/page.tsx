@@ -379,6 +379,13 @@ export default function PricingPage() {
                         ? "bg-green-600 text-white hover:bg-green-700"
                         : "bg-purple-500 text-white hover:bg-purple-600"
                   }`}
+                  analyticsLabel={plan.cta}
+                  analyticsLocation="Pricing Card"
+                  analyticsProperties={{ 
+                    plan_name: plan.name,
+                    cta_type: plan.cta.includes('Sign up') ? 'signup' : 'demo',
+                    external: plan.ctaLink.includes('http')
+                  }}
                 >
                   {plan.cta}
                 </Button>
@@ -538,12 +545,18 @@ export default function PricingPage() {
               <Button
                 href="https://app.rosterlab.com/signup"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
+                analyticsLabel="Sign up for free"
+                analyticsLocation="Pricing CTA Bottom"
+                analyticsProperties={{ cta_type: 'signup', external: true }}
               >
                 Sign up for free
               </Button>
               <Button
                 href="/staff-rostering-interactive-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Pricing CTA Bottom"
+                analyticsProperties={{ cta_type: 'demo' }}
               >
                 Book a Demo
               </Button>
