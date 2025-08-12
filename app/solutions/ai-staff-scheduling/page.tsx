@@ -175,12 +175,26 @@ export default function AISchedulesPage() {
                 <Button
                   href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Solution Page AI Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "AI Staff Scheduling",
+                    section: "hero"
+                  }}
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/staff-rostering-interactive-demo"
                   className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
+                  analyticsLabel="See an Example"
+                  analyticsLocation="Solution Page AI Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "AI Staff Scheduling",
+                    section: "hero"
+                  }}
                 >
                   See an Example
                 </Button>
@@ -571,12 +585,26 @@ export default function AISchedulesPage() {
               <Button
                 href="/book-a-demo"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Solution Page AI Staff Scheduling"
+                analyticsProperties={{
+                  cta_type: "demo",
+                  page_name: "AI Staff Scheduling",
+                  section: "final_cta"
+                }}
               >
                 Book a Demo
               </Button>
               <Button
                 href="/contact"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
+                analyticsLabel="Contact Us"
+                analyticsLocation="Solution Page AI Staff Scheduling"
+                analyticsProperties={{
+                  cta_type: "contact",
+                  page_name: "AI Staff Scheduling",
+                  section: "final_cta"
+                }}
               >
                 Contact Us
               </Button>

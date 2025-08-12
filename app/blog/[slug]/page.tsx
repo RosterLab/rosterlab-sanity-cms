@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import Image from 'next/image'
 import { getClient, client, urlFor } from '@/sanity/lib/client'
 import { blogPostQuery, blogPostPathsQuery, blogPostsOnlyQuery } from '@/sanity/lib/queries'
@@ -7,6 +6,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import { formatDate } from '@/lib/utils'
 import Container from '@/components/ui/Container'
 import Breadcrumb from '@/components/ui/Breadcrumb'
+import Button from '@/components/ui/Button'
 import PortableText from '@/components/blog/PortableText'
 import TableOfContents from '@/components/blog/TableOfContents'
 import ShareButtons from '@/components/blog/ShareButtons'
@@ -181,18 +181,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Workforce Management?</h3>
                 <p className="mb-6 text-lg opacity-90">Join thousands using RosterLab to streamline rostering.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
+                  <Button
                     href="/book-a-demo"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                    className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                    analyticsLabel="Book a Demo"
+                    analyticsLocation="Blog Article CTA"
+                    analyticsProperties={{ 
+                      cta_type: 'demo',
+                      article_slug: post.slug?.current || '',
+                      article_title: post.title || ''
+                    }}
                   >
                     Book a Demo
-                  </Link>
-                  <Link
+                  </Button>
+                  <Button
                     href="/pricing"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
+                    className="px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
+                    analyticsLabel="Start Free Trial"
+                    analyticsLocation="Blog Article CTA"
+                    analyticsProperties={{ 
+                      cta_type: 'trial',
+                      article_slug: post.slug?.current || '',
+                      article_title: post.title || ''
+                    }}
                   >
                     Start Free Trial
-                  </Link>
+                  </Button>
                 </div>
               </div>
             </main>

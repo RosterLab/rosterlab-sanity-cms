@@ -14,7 +14,7 @@ export default function Amplitude({ apiKey, userId, options = {} }: AmplitudePro
   useEffect(() => {
     if (!apiKey || typeof window === 'undefined') return
 
-    // Initialize Amplitude
+    // Initialize Amplitude with cross-domain tracking
     amplitude.init(apiKey, userId, {
       defaultTracking: {
         sessions: true,
@@ -22,6 +22,12 @@ export default function Amplitude({ apiKey, userId, options = {} }: AmplitudePro
         formInteractions: true,
         fileDownloads: true,
       },
+      // Enable cross-domain tracking - share cookies across all subdomains
+      cookieOptions: {
+        domain: '.rosterlab.com', // Allows tracking across www.rosterlab.com and app.rosterlab.com
+      },
+      // Standard session timeout
+      sessionTimeout: 30 * 60 * 1000, // 30 minutes
       ...options,
     })
 
@@ -137,6 +143,38 @@ export const trackSignup = (method?: string, properties?: Record<string, any>) =
 export const trackLogin = (method?: string, properties?: Record<string, any>) => {
   analytics.track('User Logged In', {
     login_method: method,
+    ...properties,
+  })
+}
+
+export const trackFAQToggle = (question: string, action: 'opened' | 'closed', properties?: Record<string, any>) => {
+  analytics.track('FAQ Toggled', {
+    question,
+    action,
+    ...properties,
+  })
+}
+
+export const trackVideoPlay = (videoTitle: string, location?: string, properties?: Record<string, any>) => {
+  analytics.track('Video Played', {
+    video_title: videoTitle,
+    location,
+    ...properties,
+  })
+}
+
+export const trackScrollDepth = (depth: number, pageName?: string) => {
+  analytics.track('Page Scrolled', {
+    scroll_depth: depth,
+    page_name: pageName,
+  })
+}
+
+export const trackLinkClick = (linkText: string, linkUrl: string, isExternal: boolean, properties?: Record<string, any>) => {
+  analytics.track('Link Clicked', {
+    link_text: linkText,
+    link_url: linkUrl,
+    is_external: isExternal,
     ...properties,
   })
 }

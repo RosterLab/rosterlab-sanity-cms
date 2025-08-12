@@ -50,7 +50,13 @@ export default function IndustriesPage() {
               Whether you're managing nurses, teachers, call centre agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
             </p>
             <div className="flex justify-center">
-              <Button href="/book-a-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+              <Button 
+                href="/book-a-demo" 
+                className="bg-indigo-600 text-white hover:bg-indigo-700"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Industries Hero"
+                analyticsProperties={{ cta_type: 'demo' }}
+              >
                 Book a Demo
               </Button>
             </div>
@@ -561,12 +567,18 @@ export default function IndustriesPage() {
               <Button 
                 href="/book-a-demo" 
                 className="bg-white text-blue-600 hover:bg-gray-100"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Industries Bottom CTA"
+                analyticsProperties={{ cta_type: 'demo' }}
               >
                 Book a Demo
               </Button>
               <Button 
                 href="/contact" 
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600"
+                analyticsLabel="Discuss Your Industry"
+                analyticsLocation="Industries Bottom CTA"
+                analyticsProperties={{ cta_type: 'contact' }}
               >
                 Discuss Your Industry
               </Button>

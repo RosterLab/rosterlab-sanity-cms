@@ -472,14 +472,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/contact"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Contact Us', 'Header Mobile', { cta_type: 'contact' })
+                setIsMenuOpen(false)
+              }}
             >
               Contact Us
             </Link>
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Login', 'Header Mobile', { cta_type: 'login', external: true })
+                setIsMenuOpen(false)
+              }}
               target="_blank"
             >
               Login
