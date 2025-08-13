@@ -122,8 +122,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : route.includes('/feature/') ? 0.9 : 0.8,
   }))
 
-  // Generate entries for blog posts (excluding redirected URLs)
-  const postEntries = posts?.map((post: any) => {
+  // Generate entries for blog posts (excluding redirected URLs and case-studies/newsroom posts)
+  const postEntries = posts?.filter((post: any) => {
+    const categorySlugStrings = post.categories?.map((cat: any) => cat.slug?.current) || []
+    return !categorySlugStrings.includes('case-studies') && !categorySlugStrings.includes('newsroom')
+  }).map((post: any) => {
     const blogUrl = `/blog/${post.slug}`
     // Skip if this URL is redirected
     if (redirectSourcePaths.has(blogUrl)) {
