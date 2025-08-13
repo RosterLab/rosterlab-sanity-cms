@@ -80,7 +80,7 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Submit Leave Requests Via The Staff Mobile App
+                  Submit Leave Requests via the Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Staff can easily submit leave requests directly from their mobile devices, anytime and anywhere. The intuitive app interface makes requesting time off quick and convenient.
@@ -160,7 +160,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automatically Syncs To The Roster Ready For Approval
+                  Automatically Syncs to the Roster Ready for Approval
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Leave requests seamlessly integrate with your roster system. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need.
@@ -200,7 +200,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Send A Number Of Different Leave Requests
+                  Send a Number of Different Leave Requests
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Support for all types of leave including annual leave, sick leave, parental leave, and custom categories. Each leave type can have its own rules and approval workflows.

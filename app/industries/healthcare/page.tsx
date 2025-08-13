@@ -640,7 +640,7 @@ export default function HealthcarePage() {
           {/* Other Departments */}
           <div className="mt-12 bg-white rounded-lg shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              All healthcare departments
+              All Healthcare Departments
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center group cursor-pointer">
@@ -938,7 +938,7 @@ export default function HealthcarePage() {
               }}
             >
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Better patient care, happier staff.
+                Better Patient Care, Happier Staff.
               </h3>
               <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
                 When healthcare professionals spend less time on administrative

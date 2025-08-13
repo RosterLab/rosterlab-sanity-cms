@@ -68,7 +68,7 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Intelligent Shift Swaps
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
@@ -156,7 +156,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Review Swaps that Break the Rules
+                  Review Swaps That Break the Rules
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   When a swap might break staffing rules or affect critical coverage, managers get a clear, one-click review process with explanations of potential conflicts.
@@ -275,7 +275,7 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                No more rostering headaches!
+                No More Rostering Headaches!
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>

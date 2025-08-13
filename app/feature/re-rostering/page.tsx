@@ -80,7 +80,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Easily Adapt To Roster Changes
+                  Easily Adapt to Roster Changes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   When new changes need to happen, RosterLab shows you the impact on coverage, compliance, and staff - so you can respond with confidence.

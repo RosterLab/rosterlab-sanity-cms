@@ -177,7 +177,7 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Reduce Scheduling From Days To Minutes
+                  Reduce Scheduling from Days to Minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Reduce manual scheduling challenges and free up your team to focus on what's important.
@@ -263,7 +263,7 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Built-in Compliance & Fairness
+                  Built-In Compliance & Fairness
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Automatically enforce all regulatory requirements, union agreements, and internal policies while ensuring fair distribution of shifts, overtime, and weekend work across your team.
