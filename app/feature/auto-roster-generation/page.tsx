@@ -180,7 +180,7 @@ export default function AutoRosterGenerationPage() {
                   Reduce Scheduling from Days to Minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Transform your scheduling process with AI that generates complete rosters in minutes instead of days. Reduce manual scheduling challenges and free up your team to focus on what's important.
+                  Reduce manual scheduling challenges and free up your team to focus on what's important.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -218,7 +218,7 @@ export default function AutoRosterGenerationPage() {
                   Simulate Different "What If" Scenarios
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Test roster changes before committing. See how staff rules, absences and requests impact your schedules. Make informed decisions and avoid being over or understaffed.
+                  Test roster changes before committing. See how staff rules, absences and requests impact your schedules. Make informed decisions to avoid being over or understaffed.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

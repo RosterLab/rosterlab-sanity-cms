@@ -131,6 +131,10 @@ export default function OpenShiftsPage() {
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Availability filtering</span>
                   </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Specify who receives the shift</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -250,7 +254,7 @@ export default function OpenShiftsPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic roster updates when shifts are filled</span>
+                    <span className="text-gray-700">Automatic rostering when shifts are filled</span>
                   </li>
                 </ul>
               </div>

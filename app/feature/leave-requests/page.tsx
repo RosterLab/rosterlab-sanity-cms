@@ -44,7 +44,7 @@ export default function LeaveRequestsPage() {
                   Streamline Staff Leave Requests
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Staff can submit a range of leave types via the employee mobile app to streamline leave requests.
+                  Staff can submit a range of leave types via the employee mobile app to help streamline leave requests.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
@@ -102,7 +102,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/placeholder.svg"
+                  src="/images/illustration/free-staff-mobile.svg"
                   alt="Automatic coverage analysis"
                   width={600}
                   height={600}
@@ -260,8 +260,8 @@ export default function LeaveRequestsPage() {
                   <p className="text-xl opacity-90">Happier Teams</p>
                 </div>
                 <div>
-                  <p className="text-5xl font-bold mb-2">95%</p>
-                  <p className="text-xl opacity-90">Requests processed automatically</p>
+                  <p className="text-5xl font-bold mb-2">100%</p>
+                  <p className="text-xl opacity-90">Streamlined leave requests</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">24/7</p>
