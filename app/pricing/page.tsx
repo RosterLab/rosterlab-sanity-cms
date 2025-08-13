@@ -296,7 +296,7 @@ export default function PricingPage() {
         <div className="py-20">
           <Container>
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Optimise Your Staffing
               </h1>
               <h2

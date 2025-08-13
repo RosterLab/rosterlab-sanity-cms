@@ -60,7 +60,7 @@ export default function ContactPage() {
         <Container>
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
               Speak to a rostering{" "}
               <span
                 className="text-transparent bg-clip-text"

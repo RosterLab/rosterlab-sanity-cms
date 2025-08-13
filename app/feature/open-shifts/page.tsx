@@ -68,7 +68,7 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Fill Open Shifts Instantly
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">

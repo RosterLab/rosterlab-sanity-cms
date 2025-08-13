@@ -72,7 +72,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
               <Image
                 src="/images/rosterlab-logo.png"
                 alt="RosterLab"

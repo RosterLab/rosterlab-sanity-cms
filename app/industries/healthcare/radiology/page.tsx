@@ -49,7 +49,7 @@ export default function RadiologyPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Scheduling your sessions just got a{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   whole lot easier
