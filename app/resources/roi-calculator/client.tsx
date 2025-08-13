@@ -906,7 +906,7 @@ export default function ROICalculatorClient() {
         
         doc.setFontSize(12);
         doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-        doc.text("Your Organisation", 20, 78);
+        doc.text("See how RosterLab can save", 20, 78);
 
         doc.setFontSize(10);
         doc.setTextColor(textColor[0], textColor[1], textColor[2]);
@@ -1510,14 +1510,17 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Calculator Inputs */}
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Your Organisation
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  See how RosterLab can save
                 </h2>
+                <p className="text-base text-gray-600 mb-6">
+                  We estimated your ROI based on our experience with different specialties in healthcare and research on industry standards.
+                </p>
 
                 <div className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      What types of rosters are you making?
+                      What types of healthcare specialties are you rostering for?
                     </label>
                     <select
                       value={industry}
@@ -1531,23 +1534,14 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         paddingRight: '2.5rem'
                       }}
                     >
-                      <optgroup label="Healthcare" className="font-semibold">
-                        <option value="icu" className="pl-4">ICU (SMOs)</option>
-                        <option value="ed" className="pl-4">ED (SMOs)</option>
-                        <option value="radiology" className="pl-4">Radiology</option>
-                        <option value="radiography" className="pl-4">Radiography</option>
-                        <option value="nursing" className="pl-4">Nursing</option>
-                        <option value="registrar" className="pl-4">Registrar Rosters</option>
-                        <option value="aged-care" className="pl-4">Aged Care</option>
-                        <option value="other-healthcare" className="pl-4">Other Healthcare Rosters</option>
-                      </optgroup>
-                      <optgroup label="Other Industries" className="font-semibold mt-2">
-                        <option value="24-7-teams" className="pl-4">24/7 Teams</option>
-                        <option value="large-team-oncall" className="pl-4">Large Team On-Call Rosters</option>
-                        <option value="hospitality" className="pl-4">Hospitality Rosters</option>
-                        <option value="call-centres" className="pl-4">Call Centre Rosters</option>
-                        <option value="other" className="pl-4">Other</option>
-                      </optgroup>
+                      <option value="icu">ICU (SMOs)</option>
+                      <option value="ed">ED (SMOs)</option>
+                      <option value="radiology">Radiology</option>
+                      <option value="radiography">Radiography</option>
+                      <option value="nursing">Nursing</option>
+                      <option value="registrar">Registrar Rosters</option>
+                      <option value="aged-care">Aged Care</option>
+                      <option value="other-healthcare">Other Healthcare Rosters</option>
                     </select>
                   </div>
 
