@@ -203,7 +203,7 @@ export default function LeaveRequestsPage() {
                   Send a Number of Different Leave Requests
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Support for all types of leave including annual leave, sick leave, parental leave, and custom categories. Each leave type can have its own rules and approval workflows.
+                  Support for all types of leave including annual leave, sick leave, parental leave, and custom categories.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
