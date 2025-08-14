@@ -28,12 +28,14 @@ export default function Amplitude({ apiKey, userId, options = {} }: AmplitudePro
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
+      // Use proxy for analytics requests
+      serverUrl: 'https://public.rosterlab.com/telemetry/a/2/httpapi',
       ...options,
     })
 
     // Add session replay plugin
     const sessionReplay = sessionReplayPlugin({
-      sampleRate: 0.1, // Record 10% of sessions
+      sampleRate: 1.0, // Record 100% of sessions
     })
     
     amplitude.add(sessionReplay)
