@@ -6,14 +6,14 @@ import LastMinuteMagicianClient from './LastMinuteMagicianClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Last-Minute Magician - Your Rostering Personality',
+  title: 'The Last-Minute Magician - Your Roster Personality',
   description: 'Thrives under pressure, makes magic happen at the last moment. Your ability to pull together perfect rosters when time is running out is legendary.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
-    title: 'The Last-Minute Magician - Your Rostering Personality',
+    title: 'The Last-Minute Magician - Your Roster Personality',
     description: 'Thrives under pressure, makes magic happen at the last moment. Your ability to pull together perfect rosters when time is running out is legendary.',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Last-Minute Magician - Your Rostering Personality',
+    title: 'The Last-Minute Magician - Your Roster Personality',
     description: 'Thrives under pressure, makes magic happen at the last moment. Your ability to pull together perfect rosters when time is running out is legendary.',
     images: ['/images/quiz/og/og.png']
   }

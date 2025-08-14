@@ -6,14 +6,14 @@ import ChaosCarlaClient from './ChaosCarlaClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Chaos Carla - Your Rostering Personality',
+  title: 'Chaos Carla - Your Roster Personality',
   description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
-    title: 'Chaos Carla - Your Rostering Personality',
+    title: 'Chaos Carla - Your Roster Personality',
     description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Chaos Carla - Your Rostering Personality',
+    title: 'Chaos Carla - Your Roster Personality',
     description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
     images: ['/images/quiz/og/og.png']
   }

@@ -6,14 +6,14 @@ import RulesRobotClient from './RulesRobotClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Rules Robot - Your Rostering Personality',
+  title: 'The Rules Robot - Your Roster Personality',
   description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
-    title: 'The Rules Robot - Your Rostering Personality',
+    title: 'The Rules Robot - Your Roster Personality',
     description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Rules Robot - Your Rostering Personality',
+    title: 'The Rules Robot - Your Roster Personality',
     description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
     images: ['/images/quiz/og/og.png']
   }

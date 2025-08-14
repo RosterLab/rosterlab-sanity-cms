@@ -6,14 +6,14 @@ import PeacekeeperPandaClient from './PeacekeeperPandaClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Peacekeeper Panda - Your Rostering Personality',
+  title: 'The Peacekeeper Panda - Your Roster Personality',
   description: 'Mediator type who balances personalities and conflicts with zen-like calm. Your peaceful approach creates harmony in even the most chaotic scheduling situations.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
-    title: 'The Peacekeeper Panda - Your Rostering Personality',
+    title: 'The Peacekeeper Panda - Your Roster Personality',
     description: 'Mediator type who balances personalities and conflicts with zen-like calm. Your peaceful approach creates harmony in even the most chaotic scheduling situations.',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Peacekeeper Panda - Your Rostering Personality',
+    title: 'The Peacekeeper Panda - Your Roster Personality',
     description: 'Mediator type who balances personalities and conflicts with zen-like calm. Your peaceful approach creates harmony in even the most chaotic scheduling situations.',
     images: ['/images/quiz/og/og.png']
   }

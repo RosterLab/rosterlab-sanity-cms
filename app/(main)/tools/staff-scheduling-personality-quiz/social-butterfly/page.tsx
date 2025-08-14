@@ -6,14 +6,14 @@ import SocialButterflyClient from './SocialButterflyClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Social Butterfly - Your Rostering Personality',
+  title: 'The Social Butterfly - Your Roster Personality',
   description: 'Focuses on fairness, vibes, and keeping everyone happy. Your scheduling approach prioritizes team morale and interpersonal dynamics.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
-    title: 'The Social Butterfly - Your Rostering Personality',
+    title: 'The Social Butterfly - Your Roster Personality',
     description: 'Focuses on fairness, vibes, and keeping everyone happy. Your scheduling approach prioritizes team morale and interpersonal dynamics.',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Social Butterfly - Your Rostering Personality',
+    title: 'The Social Butterfly - Your Roster Personality',
     description: 'Focuses on fairness, vibes, and keeping everyone happy. Your scheduling approach prioritizes team morale and interpersonal dynamics.',
     images: ['/images/quiz/og/og.png']
   }
