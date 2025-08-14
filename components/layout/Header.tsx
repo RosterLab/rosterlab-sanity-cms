@@ -56,6 +56,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: 'Case Studies', link: '/case-studies' },
         { title: 'Newsroom', link: '/newsroom' },
         { title: 'Schedge', link: '/schedge' },
+        { title: 'Personality Test', link: '/tools/staff-scheduling-personality-quiz' },
       ]
     },
     { title: 'About Us', link: '/about' },
