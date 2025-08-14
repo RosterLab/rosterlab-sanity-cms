@@ -87,27 +87,25 @@ export default function LeaveRequestsPage() {
                   Submit Leave Requests via the Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff can easily submit leave requests directly from their
-                  mobile devices, anytime and anywhere. The intuitive app
-                  interface makes requesting time off quick and convenient.
+                  Staff can easily submit leave requests directly from their mobile, anytime and anywhere. They can also see colleagues' leave schedules, helping them plan around popular periods and improve chances of leave approval. This reduces frustration from rejected requests and simplifies administration.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Real-time coverage impact assessment
+                      Submit leave requests on mobile with real-time notifications and updates.
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Automatic identification of replacement staff
+                      See team leave schedules to plan and improve approval chances.
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Skills and availability matching for coverage
+                      Receive manager approval or rejection with full context
                     </span>
                   </li>
                 </ul>
@@ -183,30 +181,28 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automatically Syncs to the Roster Ready for Approval
+                  Automatically Sync Changes to your Roster
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Leave requests seamlessly integrate with your roster system.
-                  Managers can see the impact on staffing levels and make
-                  informed approval decisions with all the context they need.
+                  Leave requests seamlessly integrate with your roster. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need. All information syncs back to the roster and is considered during the AI generation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Customisable approval rules and criteria
+                      Dedicated interface for administrators to review and manage leave requests
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Auto-approval for low-impact requests
+                      Real-time coverage impact assessment
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Escalation paths for complex situations
+                      Automatic identification of replacement staff
                     </span>
                   </li>
                 </ul>
@@ -230,29 +226,28 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Send a Number of Different Leave Requests
+                  Decide How Different Types of Leave are Handled
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Support for all types of leave including annual leave, sick
-                  leave, parental leave, and custom categories.
+                  Admin users have full control over how different types of leave are handled in your roster. You can set whether each leave type counts toward contractual working hours or is excluded, and define exactly how many hours should be counted within a roster period. This flexibility ensures rosters reflect your rules accurately while keeping staffing plans clear and compliant.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Quick leave request submission on mobile
+                      Support for all types of leave including annual, sick, parental and custom categories
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Real-time notifications and status updates
+                      Full control of how different leave is handled
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Manager approval with full context
+                      Automatically maintain compliance regardless of changes
                     </span>
                   </li>
                 </ul>
