@@ -37,7 +37,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: 'Open Shifts', link: '/feature/open-shifts' },
         { title: 'Shift Swaps', link: '/feature/shift-swaps' },
         { title: 'Leave Requests', link: '/feature/leave-requests' },
-        { title: 'Self-Scheduling', link: '/feature/self-scheduling' },
+        { title: 'Staff Preferences', link: '/feature/self-scheduling' },
         { title: 'Re-Rostering', link: '/feature/re-rostering' },
       ]
     },
@@ -219,7 +219,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Self-Scheduling
+                                    Staff Preferences
                                   </div>
                                 </Link>
                                 <Link

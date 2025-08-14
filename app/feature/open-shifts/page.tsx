@@ -102,47 +102,8 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
 
-        {/* Smart Employee Matching Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/matching.svg"
-                  alt="Smart Employee Matching"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Smart Employee Matching
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Automatically shortlist qualified staff based on skills, availability, and preferences. Only the right people see the right shifts.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Skills-based matching</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Availability filtering</span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Specify who receives the shift</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </Container>
-        </div>
-
         {/* Instant Broadcast Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -166,7 +127,7 @@ export default function OpenShiftsPage() {
                     <span className="text-gray-700">Smart filtering by skills and availability</span>
                   </li>
                 </ul>
-                <div className="mt-8 text-center">
+                <div className="mt-8">
                   <Button 
                     href="/solutions/staff-roster-mobile-app" 
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
@@ -183,6 +144,49 @@ export default function OpenShiftsPage() {
                   height={500}
                   className="w-full h-auto"
                 />
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Smart Employee Matching Section */}
+        <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/illustration/matching.svg"
+                  alt="Smart Employee Matching"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Instantly Fill Staffing Gaps Without Worry
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  When open shifts are filled, the roster updates automatically and notifies the admin in real time. This removes the need for manual edits, speeds up the rostering process, and keeps everyone on the same page, reducing miscommunication and ensuring staffing levels are always accurate.
+                </p>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Quick, automatic updates to shift allocations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Immediate notifications for admins when gaps are filled</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Fewer manual adjustments, saving valuable time</span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">Less back-and-forth between managers and staff</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </Container>
