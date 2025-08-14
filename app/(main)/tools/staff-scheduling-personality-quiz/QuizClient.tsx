@@ -382,7 +382,7 @@ export default function QuizClient() {
       <section className="bg-gray-50 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12">
-            Discover your rostering personality type
+            Discover your staff scheduling personality type
           </h2>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
