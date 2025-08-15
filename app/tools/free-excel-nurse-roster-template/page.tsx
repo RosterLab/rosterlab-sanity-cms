@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
@@ -9,70 +9,83 @@ import { HiCheck, HiDownload, HiTable, HiClipboardList, HiCalendar } from 'react
 import { trackButtonClick } from '@/components/analytics/Amplitude'
 
 export default function FreeExcelNurseRosterTemplatePage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isLoadingForm, setIsLoadingForm] = useState(true)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setErrors({})
+  const downloadExcelFile = useCallback(() => {
+    // Track download
+    trackButtonClick('Download Excel Template', 'Excel Template Page', {
+      form_type: 'excel_download',
+      download_type: 'automatic'
+    })
+    
+    // Create a temporary link to download the file
+    const link = document.createElement('a')
+    link.href = '/images/excel/RosterLab Excel Template for Nursing.xlsx'
+    link.download = 'RosterLab Excel Template for Nursing.xlsx'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }, [])
 
-    const formData = new FormData(e.currentTarget)
-    const data = {
-      firstName: formData.get('firstName') as string,
-      lastName: formData.get('lastName') as string,
-      email: formData.get('email') as string,
-      hospitalName: formData.get('hospitalName') as string,
-      role: formData.get('role') as string,
-      departmentSize: formData.get('departmentSize') as string,
-    }
-
-    // Basic validation
-    const newErrors: Record<string, string> = {}
-    if (!data.firstName) newErrors.firstName = 'First name is required'
-    if (!data.lastName) newErrors.lastName = 'Last name is required'
-    if (!data.email) newErrors.email = 'Email is required'
-    if (!data.hospitalName) newErrors.hospitalName = 'Hospital/Organisation name is required'
-    if (!data.role) newErrors.role = 'Role is required'
-    if (!data.departmentSize) newErrors.departmentSize = 'Department size is required'
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      setIsSubmitting(false)
+  // Load HubSpot form on component mount
+  useEffect(() => {
+    // Check if HubSpot is already loaded
+    if (window.hbspt) {
+      window.hbspt.forms.create({
+        portalId: "20646833",
+        formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
+        region: "na1",
+        target: "#hubspot-form-container",
+        onFormSubmitted: () => {
+          // Download the Excel file
+          downloadExcelFile()
+          
+          // Update UI to show success
+          setIsSubmitted(true)
+        }
+      })
+      setIsLoadingForm(false)
       return
     }
-
-    try {
-      // Track form submission
-      trackButtonClick('Download Excel Template', 'Excel Template Page', {
-        form_type: 'excel_download',
-        department_size: data.departmentSize,
-        role: data.role
-      })
-
-      // TODO: Send to your backend/CRM
-      // const response = await fetch('/api/excel-template-download', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // })
-
-      // Simulate success
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      setIsSubmitted(true)
-      
-      // TODO: Trigger actual download
-      // window.location.href = '/downloads/nurse-roster-template.xlsx'
-      
-    } catch (error) {
-      console.error('Form submission error:', error)
-      setErrors({ submit: 'Something went wrong. Please try again.' })
-    } finally {
-      setIsSubmitting(false)
+    
+    // Create script element
+    const script = document.createElement('script')
+    script.src = 'https://js.hsforms.net/forms/embed/v2.js'
+    script.charset = 'utf-8'
+    script.type = 'text/javascript'
+    
+    // When script loads, create the form
+    script.onload = () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          portalId: "20646833",
+          formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
+          region: "na1",
+          target: "#hubspot-form-container",
+          onFormSubmitted: () => {
+            // Download the Excel file
+            downloadExcelFile()
+            
+            // Update UI to show success
+            setIsSubmitted(true)
+          }
+        })
+        setIsLoadingForm(false)
+      }
     }
-  }
+    
+    // Append script to body
+    document.body.appendChild(script)
+    
+    // Cleanup
+    return () => {
+      // Remove script if component unmounts
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [downloadExcelFile])
 
   const features = [
     {
@@ -152,156 +165,17 @@ export default function FreeExcelNurseRosterTemplatePage() {
                       Fill out the form below to download your Excel roster template
                     </p>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
-                            First Name *
-                          </label>
-                          <input
-                            type="text"
-                            id="firstName"
-                            name="firstName"
-                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                              errors.firstName ? 'border-red-500' : 'border-gray-300'
-                            }`}
-                            disabled={isSubmitting}
-                          />
-                          {errors.firstName && (
-                            <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
-                          )}
-                        </div>
-
-                        <div>
-                          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
-                            Last Name *
-                          </label>
-                          <input
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-                            className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                              errors.lastName ? 'border-red-500' : 'border-gray-300'
-                            }`}
-                            disabled={isSubmitting}
-                          />
-                          {errors.lastName && (
-                            <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                          Work Email *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                            errors.email ? 'border-red-500' : 'border-gray-300'
-                          }`}
-                          disabled={isSubmitting}
-                        />
-                        {errors.email && (
-                          <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label htmlFor="hospitalName" className="block text-sm font-medium text-gray-700 mb-1">
-                          Hospital/Organisation Name *
-                        </label>
-                        <input
-                          type="text"
-                          id="hospitalName"
-                          name="hospitalName"
-                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                            errors.hospitalName ? 'border-red-500' : 'border-gray-300'
-                          }`}
-                          disabled={isSubmitting}
-                        />
-                        {errors.hospitalName && (
-                          <p className="mt-1 text-sm text-red-600">{errors.hospitalName}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
-                          Your Role *
-                        </label>
-                        <select
-                          id="role"
-                          name="role"
-                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                            errors.role ? 'border-red-500' : 'border-gray-300'
-                          }`}
-                          disabled={isSubmitting}
-                        >
-                          <option value="">Select your role</option>
-                          <option value="Nurse Unit Manager">Nurse Unit Manager</option>
-                          <option value="Clinical Nurse Specialist">Clinical Nurse Specialist</option>
-                          <option value="Roster Coordinator">Roster Coordinator</option>
-                          <option value="Department Manager">Department Manager</option>
-                          <option value="HR Manager">HR Manager</option>
-                          <option value="Other">Other</option>
-                        </select>
-                        {errors.role && (
-                          <p className="mt-1 text-sm text-red-600">{errors.role}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <label htmlFor="departmentSize" className="block text-sm font-medium text-gray-700 mb-1">
-                          Department Size *
-                        </label>
-                        <select
-                          id="departmentSize"
-                          name="departmentSize"
-                          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                            errors.departmentSize ? 'border-red-500' : 'border-gray-300'
-                          }`}
-                          disabled={isSubmitting}
-                        >
-                          <option value="">Select department size</option>
-                          <option value="1-10">1-10 staff</option>
-                          <option value="11-25">11-25 staff</option>
-                          <option value="26-50">26-50 staff</option>
-                          <option value="51-100">51-100 staff</option>
-                          <option value="100+">100+ staff</option>
-                        </select>
-                        {errors.departmentSize && (
-                          <p className="mt-1 text-sm text-red-600">{errors.departmentSize}</p>
-                        )}
-                      </div>
-
-                      {errors.submit && (
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                          <p className="text-sm text-red-800">{errors.submit}</p>
+                    {/* HubSpot Form Container */}
+                    <div 
+                      id="hubspot-form-container"
+                      className="mb-4"
+                    >
+                      {isLoadingForm && (
+                        <div className="text-center py-8">
+                          <p className="text-gray-600">Loading form...</p>
                         </div>
                       )}
-
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center"
-                      >
-                        {isSubmitting ? (
-                          'Processing...'
-                        ) : (
-                          <>
-                            <HiDownload className="w-5 h-5 mr-2" />
-                            Download Free Template
-                          </>
-                        )}
-                      </button>
-
-                      <p className="text-xs text-gray-500 text-center">
-                        By downloading, you agree to receive occasional emails about rostering best practices. 
-                        You can unsubscribe at any time.
-                      </p>
-                    </form>
+                    </div>
                   </>
                 ) : (
                   <div className="text-center py-8">
@@ -314,11 +188,10 @@ export default function FreeExcelNurseRosterTemplatePage() {
                     <p className="text-gray-600 mb-6">
                       Your download should start automatically. If not, click the button below.
                     </p>
-                    <Button
-                      href="#"
-                      className="bg-green-600 text-white hover:bg-green-700"
+                    <button
+                      className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                       onClick={() => {
-                        // TODO: Trigger download
+                        downloadExcelFile()
                         trackButtonClick('Manual Download', 'Excel Template Page', {
                           download_type: 'manual'
                         })
@@ -326,7 +199,7 @@ export default function FreeExcelNurseRosterTemplatePage() {
                     >
                       <HiDownload className="w-5 h-5 mr-2" />
                       Download Template
-                    </Button>
+                    </button>
 
                     <div className="mt-8 pt-8 border-t border-gray-200">
                       <p className="text-gray-600 mb-4">
