@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
+import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
 
 export const metadata = {
   title: "Self-Scheduling - RosterLab",
@@ -43,7 +44,7 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   AI-powered self-scheduling for your team
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
@@ -129,14 +130,8 @@ export default function SelfSchedulingPage() {
                   </li>
                 </ul>
               </div>
-              <div className="relative">
-                <Image
-                  src="/images/self-scheduling/needs.webp"
-                  alt="Easily meet your staffing needs illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
+              <div className="relative flex items-center justify-center">
+                <MobileAppPreferencesModuleStatic />
               </div>
             </div>
           </Container>

@@ -90,8 +90,8 @@ export default function AISchedulesPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="pb-8 lg:pb-12">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Make rostering faster than ever before
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Make Rostering Faster Than Ever Before
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Unlock the full power of AI roster creation to save time and
@@ -318,7 +318,7 @@ export default function AISchedulesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Everything your team needs, powered by AI
+              Everything Your Team Needs, Powered by AI
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Empower your staff with AI-generated schedules that are accessible
@@ -469,7 +469,7 @@ export default function AISchedulesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Built-in Compliance
+                Built-In Compliance
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Stay compliant with complex healthcare regulations and union
@@ -575,7 +575,7 @@ export default function AISchedulesPage() {
         <Container>
           <div className="text-center text-white max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">
-              Ready to unlock the power of AI?
+              Ready to Unlock the Power of AI?
             </h2>
             <p className="text-xl mb-12 opacity-90">
               Join hundreds of healthcare organisations already using AI to
