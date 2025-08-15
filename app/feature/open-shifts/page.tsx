@@ -196,16 +196,7 @@ export default function OpenShiftsPage() {
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/Events-pana.svg"
-                  alt="Prioritise urgent shifts"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Prioritise More Urgent Shifts
                 </h2>
@@ -226,6 +217,15 @@ export default function OpenShiftsPage() {
                     <span className="text-gray-700">Improves service during busy periods</span>
                   </li>
                 </ul>
+              </div>
+              <div>
+                <Image
+                  src="/images/illustration/Events-pana.svg"
+                  alt="Prioritise urgent shifts"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
