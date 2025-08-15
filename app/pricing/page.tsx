@@ -296,8 +296,8 @@ export default function PricingPage() {
         <div className="py-20">
           <Container>
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Optimise your staffing
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Optimise Your Staffing
               </h1>
               <h2
                 className="text-3xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text"
@@ -306,7 +306,7 @@ export default function PricingPage() {
                     "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                 }}
               >
-                from today
+                From Today
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Unlock the power of automatic rostering today! See immediate

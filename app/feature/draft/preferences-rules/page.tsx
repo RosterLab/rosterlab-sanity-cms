@@ -38,7 +38,7 @@ const faqItems = [
   {
     question: "How do staff set their shift preferences?",
     answer:
-      "Staff can easily set preferences through our mobile app or web portal. They can mark shifts as preferred, available, or unavailable, set recurring patterns (like 'no weekends'), and specify one-off exceptions. The interface is intuitive with visual calendars and simple toggles for different preference types.",
+      "Staff can easily manage preferences through our mobile app. They can mark shifts they'd prefer to have off, and their other preference options are tailored to your organisation's setup. Staff can set recurring patterns (like 'no weekends'), add exceptions, and highlight which preferences matter most to them - with admins able to prioritise those preferences if needed.",
   },
   {
     question: "How does the system balance conflicting preferences?",
@@ -103,154 +103,40 @@ export default function PreferencesRulesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Flexible Preference Collection
+                  Easily Collect Staff Preferences
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Collect detailed staff preferences through intuitive
-                  interfaces. Support for shift times, days, locations, and role
-                  preferences with weighted importance levels and recurring
-                  patterns.
+                  Collect staff preferences through the staff mobile app. Then generate your roster with these preferences automatically considered.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Intuitive preference collection interface
+                      Submit preferences & availability via mobile app
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Weighted preference requests - mark shifts or days off as
-                      preferred or highly preferred
+                      One-click roster generation
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Recurring patterns and one-off exceptions
+                      No more chasing emails or paper forms
                     </span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
-                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-6">
-                    <h3 className="font-semibold text-gray-900">
-                      Set Your Preferences
-                    </h3>
-                    <span className="text-xs bg-[#4a9288] text-white px-3 py-1 rounded-full">
-                      AI-Powered
-                    </span>
-                  </div>
-
-                  {/* Preference Input */}
-                  <div className="space-y-4 mb-6">
-                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm font-medium text-gray-700">
-                          Shift & Task Preferences
-                        </span>
-                        <HiCog className="w-4 h-4 text-gray-400" />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
-                          <span className="text-sm text-gray-600">
-                            Morning Shifts Mon-Thu
-                          </span>
-                          <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                            Highly Preferred
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between p-3 bg-white rounded-lg border-2 border-[#4a9288] animate-pulse">
-                          <span className="text-sm font-medium text-gray-900">
-                            Friday Night Shifts
-                          </span>
-                          <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded font-medium">
-                            Avoid If Possible
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200">
-                          <span className="text-sm text-gray-600">
-                            Weekend Team Leader Role
-                          </span>
-                          <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">
-                            Preferred
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* AI Processing Visualization */}
-                  <div className="relative mb-6">
-                    <div className="flex items-center justify-center py-2">
-                      <div className="flex space-x-1">
-                        <div
-                          className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce"
-                          style={{ animationDelay: "0ms" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce"
-                          style={{ animationDelay: "150ms" }}
-                        ></div>
-                        <div
-                          className="w-2 h-2 bg-[#4a9288] rounded-full animate-bounce"
-                          style={{ animationDelay: "300ms" }}
-                        ></div>
-                      </div>
-                      <span className="ml-3 text-xs text-gray-500">
-                        AI analysing preferences...
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Generated Roster Preview */}
-                  <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium text-gray-700">
-                        Your Schedule
-                      </span>
-                      <HiCheck className="w-4 h-4 text-[#4a9288]" />
-                    </div>
-                    <div className="grid grid-cols-5 gap-1 text-xs">
-                      <div className="text-center">
-                        <p className="font-medium text-gray-600 mb-1">Mon</p>
-                        <div className="bg-[#4a9288] text-white rounded py-1">
-                          Day
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-medium text-gray-600 mb-1">Tue</p>
-                        <div className="bg-[#4a9288] text-white rounded py-1">
-                          Day
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-medium text-gray-600 mb-1">Wed</p>
-                        <div className="bg-[#4a9288] text-white rounded py-1">
-                          Eve
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-medium text-gray-600 mb-1">Thu</p>
-                        <div className="bg-[#4a9288] text-white rounded py-1">
-                          Day
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="font-medium text-gray-600 mb-1">Fri</p>
-                        <div className="bg-gray-300 text-gray-500 rounded py-1">
-                          Off
-                        </div>
-                      </div>
-                    </div>
-                    <p className="text-xs text-green-600 mt-3 text-center">
-                      ✓ 92% preference satisfaction achieved
-                    </p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/illustration/team checklist-pana.svg"
+                  alt="Staff preferences collection"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </Container>
@@ -271,30 +157,28 @@ export default function PreferencesRulesPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Advanced Rule Engine
+                  Retain roster knowledge in the cloud
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Configure complex scheduling rules that automatically enforce
-                  compliance, fairness, and operational requirements. From
-                  simple constraints to sophisticated business logic.
+                  Keep expertise accessible even when staff change, and ensure every roster meets compliance, fairness, and operational standards — automatically.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Drop-down menu rule builder interface
+                      Drop-down menu rule builder for easy configuration
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Custom logic for organisation-specific needs
+                      Custom logic to capture organisation-specific needs
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Powered by AI to handle complexity
+                      AI-powered engine to manage complex scenarios
                     </span>
                   </li>
                 </ul>
@@ -309,7 +193,7 @@ export default function PreferencesRulesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Intelligent Preference Balancing
+                  Set hard rules that cannot be broken
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Advanced algorithms balance individual preferences with team

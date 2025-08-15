@@ -110,7 +110,7 @@ export default function ManualSchedulingPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Your free digital scheduling tool
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
