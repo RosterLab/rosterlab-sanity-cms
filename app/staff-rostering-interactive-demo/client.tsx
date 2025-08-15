@@ -1,6 +1,7 @@
 'use client'
 
 import Container from '@/components/ui/Container'
+import Button from '@/components/ui/Button'
 import SiteLayout from '@/components/layout/SiteLayout'
 import HiClock from '@/components/icons/HiClock'
 import HiShieldCheck from '@/components/icons/HiShieldCheck'
@@ -231,18 +232,24 @@ export default function StaffRosteringInteractiveDemoClient() {
               Contact us directly and we'll work around your schedule
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Button
                 href="mailto:hello@rosterlab.com"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors"
+                analyticsLabel="Email Us"
+                analyticsLocation="Interactive Demo CTA"
+                analyticsProperties={{ cta_type: 'email', external: true }}
               >
                 Email Us
-              </a>
-              <a
+              </Button>
+              <Button
                 href="/contact"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md font-medium transition-colors"
+                analyticsLabel="Get Started Today"
+                analyticsLocation="Interactive Demo CTA"
+                analyticsProperties={{ cta_type: 'contact' }}
               >
                 Get Started Today
-              </a>
+              </Button>
             </div>
           </div>
         </Container>

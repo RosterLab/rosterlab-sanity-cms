@@ -18,6 +18,9 @@ export const metadata = {
   title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
   description:
     "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+  alternates: {
+    canonical: 'https://rosterlab.com/solutions/free-staff-scheduling',
+  },
   openGraph: {
     title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
     description:
@@ -107,7 +110,7 @@ export default function ManualSchedulingPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Your free digital scheduling tool
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
@@ -184,6 +187,13 @@ export default function ManualSchedulingPage() {
                   <Button
                     href="https://app.rosterlab.com/signup"
                     className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
+                    analyticsLabel="Start for Free"
+                    analyticsLocation="Solution Page Free Staff Scheduling"
+                    analyticsProperties={{
+                      cta_type: "signup",
+                      page_name: "Free Staff Scheduling",
+                      section: "hero"
+                    }}
                   >
                     Start for Free
                   </Button>
@@ -191,6 +201,13 @@ export default function ManualSchedulingPage() {
                     href="/solutions/ai-staff-scheduling"
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
+                    analyticsLabel="Discover AI Rosters"
+                    analyticsLocation="Solution Page Free Staff Scheduling"
+                    analyticsProperties={{
+                      cta_type: "upgrade",
+                      page_name: "Free Staff Scheduling",
+                      section: "hero"
+                    }}
                   >
                     Discover AI Rosters
                   </Button>
@@ -427,6 +444,13 @@ export default function ManualSchedulingPage() {
                 <Button
                   href="/solutions/ai-staff-scheduling"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
+                  analyticsLabel="Explore AI Features"
+                  analyticsLocation="Solution Page Free Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "upgrade",
+                    page_name: "Free Staff Scheduling",
+                    section: "steps"
+                  }}
                 >
                   Explore AI Features
                 </Button>
@@ -603,6 +627,13 @@ export default function ManualSchedulingPage() {
                   <Button
                     href="/solutions/staff-roster-mobile-app"
                     className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3"
+                    analyticsLabel="Learn More About Mobile App"
+                    analyticsLocation="Solution Page Free Staff Scheduling"
+                    analyticsProperties={{
+                      cta_type: "learn_more",
+                      page_name: "Free Staff Scheduling",
+                      section: "mobile_app"
+                    }}
                   >
                     Learn More About Mobile App
                   </Button>
@@ -649,12 +680,26 @@ export default function ManualSchedulingPage() {
                 <Button
                   href="https://app.rosterlab.com/signup"
                   className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
+                  analyticsLabel="Start for Free"
+                  analyticsLocation="Solution Page Free Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "signup",
+                    page_name: "Free Staff Scheduling",
+                    section: "final_cta"
+                  }}
                 >
                   Start for Free
                 </Button>
                 <Button
                   href="/book-a-demo"
                   className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold transition-colors"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Solution Page Free Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "Free Staff Scheduling",
+                    section: "final_cta"
+                  }}
                 >
                   Book a Demo
                 </Button>

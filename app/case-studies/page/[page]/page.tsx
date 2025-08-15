@@ -47,17 +47,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? 'Explore our rostering success stories. See how RosterLab\'s AI cuts scheduling time and lifts staff satisfaction for industries worldwide.'
     : `Browse page ${pageNumber} of our case studies showcasing real-world rostering success stories.`
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rosterlab.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
   return {
     title,
     description,
     robots: {
-      index: true,
+      index: false,  // Pagination pages should not be indexed
       follow: true,
     },
     alternates: {
       canonical: pageNumber === 1 ? `${baseUrl}/case-studies` : `${baseUrl}/case-studies/page/${pageNumber}`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `${baseUrl}/case-studies/page/${pageNumber}`,
+      images: [
+        {
+          url: '/images/og images/CaseStudies.png',
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/og images/CaseStudies.png'],
     },
   }
 }

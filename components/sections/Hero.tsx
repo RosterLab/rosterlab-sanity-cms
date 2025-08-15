@@ -42,6 +42,9 @@ export default function Hero() {
               <Button
                 href="/book-a-demo"
                 className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Homepage Hero"
+                analyticsProperties={{ cta_type: 'demo', section: 'hero' }}
               >
                 Book a Demo
               </Button>
@@ -49,6 +52,9 @@ export default function Hero() {
               <Button
                 href="/staff-rostering-interactive-demo"
                 className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                analyticsLabel="See an Example"
+                analyticsLocation="Homepage Hero"
+                analyticsProperties={{ cta_type: 'demo', section: 'hero', demo_type: 'interactive' }}
               >
                 See an Example
               </Button>

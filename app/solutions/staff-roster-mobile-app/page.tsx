@@ -23,6 +23,9 @@ export const metadata = {
   title: "Employee Mobile App - RosterLab",
   description:
     "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
+  alternates: {
+    canonical: 'https://rosterlab.com/solutions/staff-roster-mobile-app',
+  },
   openGraph: {
     title: "Employee Mobile App - RosterLab",
     description:
@@ -110,7 +113,7 @@ export default function EmployeeMobileAppPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Your roster in your pocket
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
@@ -196,6 +199,13 @@ export default function EmployeeMobileAppPage() {
                   <Button
                     href="/book-a-demo"
                     className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
+                    analyticsLabel="Book a Demo"
+                    analyticsLocation="Solution Page Staff Roster Mobile App"
+                    analyticsProperties={{
+                      cta_type: "demo",
+                      page_name: "Staff Roster Mobile App",
+                      section: "hero"
+                    }}
                   >
                     Book a Demo
                   </Button>
@@ -203,6 +213,13 @@ export default function EmployeeMobileAppPage() {
                     href="/contact"
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
+                    analyticsLabel="Contact Us"
+                    analyticsLocation="Solution Page Staff Roster Mobile App"
+                    analyticsProperties={{
+                      cta_type: "contact",
+                      page_name: "Staff Roster Mobile App",
+                      section: "hero"
+                    }}
                   >
                     Contact Us
                   </Button>
@@ -505,12 +522,26 @@ export default function EmployeeMobileAppPage() {
                 <Button
                   href="/book-a-demo"
                   className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Solution Page Staff Roster Mobile App"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "Staff Roster Mobile App",
+                    section: "final_cta"
+                  }}
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/contact"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
+                  analyticsLabel="Contact Sales"
+                  analyticsLocation="Solution Page Staff Roster Mobile App"
+                  analyticsProperties={{
+                    cta_type: "contact",
+                    page_name: "Staff Roster Mobile App",
+                    section: "final_cta"
+                  }}
                 >
                   Contact Sales
                 </Button>

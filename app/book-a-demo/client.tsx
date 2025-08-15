@@ -111,7 +111,7 @@ export default function BookADemoClient() {
         <Container>
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
               Book Your Personalised Demo
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -200,7 +200,7 @@ export default function BookADemoClient() {
                     <div>
                       <h3 className="font-medium text-gray-900 text-sm mb-1">Live Platform Demonstration</h3>
                       <p className="text-gray-600 text-xs">
-                        See RosterLab in action with scenarios relevant to your industry
+                        See RosterLab in action with scenarios relevant to your <Link href="/industries" className="text-blue-600 hover:text-blue-700 underline">industry</Link>
                       </p>
                     </div>
                   </div>

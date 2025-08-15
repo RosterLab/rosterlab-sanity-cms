@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -11,6 +12,14 @@ import {
   HiChevronRight,
   HiUser,
 } from "react-icons/hi";
+=======
+import Link from 'next/link'
+import Image from 'next/image'
+import { useState } from 'react'
+import { cn } from '@/lib/utils'
+import { HiMenu, HiX, HiChevronDown, HiChevronRight, HiUser } from 'react-icons/hi'
+import { trackButtonClick } from '@/components/analytics/Amplitude'
+>>>>>>> origin/main
 
 interface SubMenuItem {
   title: string;
@@ -36,6 +45,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Solutions",
       subItems: [
+<<<<<<< HEAD
         {
           title: "AI-generated optimised schedules",
           link: "/solutions/ai-staff-scheduling",
@@ -51,6 +61,18 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Self-Scheduling", link: "/feature/self-scheduling" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
       ],
+=======
+        { title: 'AI-generated optimised schedules', link: '/solutions/ai-staff-scheduling' },
+        { title: 'Free For Manual Digital Scheduling', link: '/solutions/free-staff-scheduling' },
+        { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
+        { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
+        { title: 'Open Shifts', link: '/feature/open-shifts' },
+        { title: 'Shift Swaps', link: '/feature/shift-swaps' },
+        { title: 'Leave Requests', link: '/feature/leave-requests' },
+        { title: 'Staff Preferences', link: '/feature/self-scheduling' },
+        { title: 'Re-Rostering', link: '/feature/re-rostering' },
+      ]
+>>>>>>> origin/main
     },
     {
       title: "Industries",
@@ -66,12 +88,21 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Resources",
       subItems: [
+<<<<<<< HEAD
         { title: "Blog", link: "/blog" },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/resources/roi-calculator" },
       ],
+=======
+        { title: 'Blog', link: '/blog' },
+        { title: 'Case Studies', link: '/case-studies' },
+        { title: 'Newsroom', link: '/newsroom' },
+        { title: 'Schedge', link: '/schedge' },
+        { title: 'Personality Test', link: '/tools/staff-scheduling-personality-quiz' },
+      ]
+>>>>>>> origin/main
     },
     { title: "About Us", link: "/about" },
   ];
@@ -84,7 +115,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
               <Image
                 src="/images/rosterlab-logo.png"
                 alt="RosterLab"
@@ -210,11 +241,19 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1 max-h-80 overflow-y-auto">
                                 <Link
-                                  href="/feature/self-scheduling"
+                                  href="/feature/auto-roster-generation"
                                   className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Self-Scheduling
+                                    Auto Roster Generation
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/open-shifts"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Open Shifts
                                   </div>
                                 </Link>
                                 <Link
@@ -223,6 +262,30 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                     Shift Swaps
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/leave-requests"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Leave Requests
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/self-scheduling"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Staff Preferences
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/feature/re-rostering"
+                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                    Re-Rostering
                                   </div>
                                 </Link>
                               </div>
@@ -510,6 +573,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              onClick={() => trackButtonClick('Book a Demo', 'Header Desktop', { cta_type: 'primary' })}
             >
               Book a Demo
             </Link>
@@ -517,6 +581,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               target="_blank"
+              onClick={() => trackButtonClick('Start for free', 'Header Desktop', { cta_type: 'signup', external: true })}
             >
               Start for free
             </Link>
@@ -646,14 +711,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/contact"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Contact Us', 'Header Mobile', { cta_type: 'contact' })
+                setIsMenuOpen(false)
+              }}
             >
               Contact Us
             </Link>
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Login', 'Header Mobile', { cta_type: 'login', external: true })
+                setIsMenuOpen(false)
+              }}
               target="_blank"
             >
               Login
@@ -661,14 +732,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Book a Demo', 'Header Mobile', { cta_type: 'primary' })
+                setIsMenuOpen(false)
+              }}
             >
               Book a Demo
             </Link>
             <Link
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                trackButtonClick('Start for free', 'Header Mobile', { cta_type: 'signup', external: true })
+                setIsMenuOpen(false)
+              }}
               target="_blank"
             >
               Start for free

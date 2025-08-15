@@ -5,6 +5,9 @@ import PageWrapper from './PageWrapper'
 export const metadata: Metadata = {
   title: 'Staff Rostering Interactive Demo - RosterLab',
   description: 'Try RosterLab\'s interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
+  alternates: {
+    canonical: 'https://rosterlab.com/staff-rostering-interactive-demo',
+  },
   openGraph: {
     title: 'Staff Rostering Interactive Demo - RosterLab',
     description: 'Try RosterLab\'s interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',

@@ -3,11 +3,15 @@ import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
+import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
 
 export const metadata = {
   title: "Self-Scheduling - RosterLab",
   description:
     "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+  alternates: {
+    canonical: 'https://rosterlab.com/feature/self-scheduling',
+  },
   openGraph: {
     title: "Self-Scheduling - RosterLab",
     description:
@@ -40,8 +44,8 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                  AI-powered self-scheduling for your team
+                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                  AI-powered self-scheduling
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
@@ -52,12 +56,26 @@ export default function SelfSchedulingPage() {
                   <Button
                     href="/book-a-demo"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
+                    analyticsLabel="Book A Demo"
+                    analyticsLocation="Feature Page Self Scheduling"
+                    analyticsProperties={{
+                      cta_type: "demo",
+                      page_name: "Self Scheduling",
+                      section: "hero"
+                    }}
                   >
                     Book A Demo
                   </Button>
                   <Button
                     href="/solutions/free-staff-scheduling"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
+                    analyticsLabel="Try it for free"
+                    analyticsLocation="Feature Page Self Scheduling"
+                    analyticsProperties={{
+                      cta_type: "signup",
+                      page_name: "Self Scheduling",
+                      section: "hero"
+                    }}
                   >
                     Try it for free
                   </Button>
@@ -112,14 +130,8 @@ export default function SelfSchedulingPage() {
                   </li>
                 </ul>
               </div>
-              <div className="relative">
-                <Image
-                  src="/images/self-scheduling/needs.webp"
-                  alt="Easily meet your staffing needs illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
+              <div className="relative flex items-center justify-center">
+                <MobileAppPreferencesModuleStatic />
               </div>
             </div>
           </Container>
@@ -300,12 +312,26 @@ export default function SelfSchedulingPage() {
                 <Button
                   href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
+                  analyticsLabel="Book Your Demo"
+                  analyticsLocation="Feature Page Self Scheduling"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "Self Scheduling",
+                    section: "final_cta"
+                  }}
                 >
                   Book Your Demo
                 </Button>
                 <Button
                   href="/pricing"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
+                  analyticsLabel="View Pricing"
+                  analyticsLocation="Feature Page Self Scheduling"
+                  analyticsProperties={{
+                    cta_type: "pricing",
+                    page_name: "Self Scheduling",
+                    section: "final_cta"
+                  }}
                 >
                   View Pricing
                 </Button>

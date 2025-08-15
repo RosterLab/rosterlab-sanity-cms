@@ -20,6 +20,9 @@ export const metadata = {
   title: "AI Staff Roster Generator for Scheduling Complex Shifts",
   description:
     "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+  alternates: {
+    canonical: 'https://rosterlab.com/solutions/ai-staff-scheduling',
+  },
   openGraph: {
     title: "AI Staff Roster Generator for Scheduling Complex Shifts",
     description:
@@ -48,7 +51,7 @@ const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters.",
+      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters. <a href=\"https://rosterlab.com/blog/should-your-next-staff-roster-be-built-with-ai\" className=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
@@ -87,8 +90,8 @@ export default function AISchedulesPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="pb-8 lg:pb-12">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Make rostering faster than ever before
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Make Rostering Faster Than Ever Before
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Unlock the full power of AI roster creation to save time and
@@ -172,12 +175,26 @@ export default function AISchedulesPage() {
                 <Button
                   href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Solution Page AI Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "AI Staff Scheduling",
+                    section: "hero"
+                  }}
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/staff-rostering-interactive-demo"
                   className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
+                  analyticsLabel="See an Example"
+                  analyticsLocation="Solution Page AI Staff Scheduling"
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: "AI Staff Scheduling",
+                    section: "hero"
+                  }}
                 >
                   See an Example
                 </Button>
@@ -301,7 +318,7 @@ export default function AISchedulesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Everything your team needs, powered by AI
+              Everything Your Team Needs, Powered by AI
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Empower your staff with AI-generated schedules that are accessible
@@ -452,7 +469,7 @@ export default function AISchedulesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Built-in Compliance
+                Built-In Compliance
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Stay compliant with complex healthcare regulations and union
@@ -558,7 +575,7 @@ export default function AISchedulesPage() {
         <Container>
           <div className="text-center text-white max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">
-              Ready to unlock the power of AI?
+              Ready to Unlock the Power of AI?
             </h2>
             <p className="text-xl mb-12 opacity-90">
               Join hundreds of healthcare organisations already using AI to
@@ -568,12 +585,26 @@ export default function AISchedulesPage() {
               <Button
                 href="/book-a-demo"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Solution Page AI Staff Scheduling"
+                analyticsProperties={{
+                  cta_type: "demo",
+                  page_name: "AI Staff Scheduling",
+                  section: "final_cta"
+                }}
               >
                 Book a Demo
               </Button>
               <Button
                 href="/contact"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg"
+                analyticsLabel="Contact Us"
+                analyticsLocation="Solution Page AI Staff Scheduling"
+                analyticsProperties={{
+                  cta_type: "contact",
+                  page_name: "AI Staff Scheduling",
+                  section: "final_cta"
+                }}
               >
                 Contact Us
               </Button>

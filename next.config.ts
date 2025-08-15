@@ -93,46 +93,6 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: '/(.*).svg',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-          {
-            key: 'Content-Type',
-            value: 'image/svg+xml',
-          },
-        ],
-      },
-      {
-        source: '/(.*).png',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-        ],
-      },
-      {
-        source: '/(.*).jpg',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-        ],
-      },
-      {
-        source: '/(.*).webp',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days
-          },
-        ],
-      },
     ];
   },
   async redirects() {
@@ -188,6 +148,58 @@ const nextConfig: NextConfig = {
       {
         source: '/blog/night-shifts',
         destination: '/blog/manage-night-shift-planning-wellbeing-effectively',
+        permanent: true,
+      },
+      {
+        source: '/blog/self-scheduling',
+        destination: '/blog/how-to-implement-self-scheduling',
+        permanent: true,
+      },
+      {
+        source: '/blog/open-shifts',
+        destination: '/blog/open-shifts-understanding-the-basics',
+        permanent: true,
+      },
+      {
+        source: '/blog/trade-offs',
+        destination: '/blog/how-to-navigate-staff-scheduling-trade-offs',
+        permanent: true,
+      },
+      // Redirect case studies from /blog to /case-studies
+      {
+        source: '/blog/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
+        destination: '/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
+        permanent: true,
+      },
+      {
+        source: '/blog/icu-unit-western-australia',
+        destination: '/case-studies/icu-unit-western-australia',
+        permanent: true,
+      },
+      {
+        source: '/blog/dargaville-medical-centre-new-zealand',
+        destination: '/case-studies/dargaville-medical-centre-new-zealand',
+        permanent: true,
+      },
+      // Redirect newsroom from /blog to /newsroom
+      {
+        source: '/blog/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules',
+        destination: '/newsroom/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules',
+        permanent: true,
+      },
+      {
+        source: '/blog/connecting-with-healthcare-leaders-at-digital-health-festival-2025',
+        destination: '/newsroom/connecting-with-healthcare-leaders-at-digital-health-festival-2025',
+        permanent: true,
+      },
+      {
+        source: '/blog/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters',
+        destination: '/newsroom/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters',
+        permanent: true,
+      },
+      {
+        source: '/blog/whanganui-radiography-department-embraces-ai-rostering',
+        destination: '/newsroom/whanganui-radiography-department-embraces-ai-rostering',
         permanent: true,
       },
       // Case studies redirects
@@ -282,6 +294,52 @@ const nextConfig: NextConfig = {
       {
         source: '/industries/healthcare/agedcare',
         destination: '/industries/healthcare/aged-care',
+        permanent: true,
+      },
+      // 404 redirects from main domain
+      {
+        source: '/blog/blog/excel-series',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/index.html',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/case-studies/author/daniel-ge',
+        destination: '/blog',
+        permanent: true,
+      },
+      {
+        source: '/blog/blog/open-shifts',
+        destination: '/blog/open-shifts-understanding-the-basics',
+        permanent: true,
+      },
+      {
+        source: '/blog/blog/shift-types',
+        destination: '/blog/shift-types',
+        permanent: true,
+      },
+      {
+        source: '/blog/self-scheduling%20study/',
+        destination: '/blog/self-scheduling-study',
+        permanent: true,
+      },
+      {
+        source: '/home-b',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/blog/Why%20RosterLab%20Free/',
+        destination: '/solutions/free-staff-scheduling',
+        permanent: true,
+      },
+      {
+        source: '/blog/Why%20RosterLab%20Free',
+        destination: '/solutions/free-staff-scheduling',
         permanent: true,
       },
     ]

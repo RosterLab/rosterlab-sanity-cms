@@ -3,6 +3,7 @@ import { groq } from 'next-sanity'
 import { client } from '@/sanity/lib/client'
 import { readdirSync, statSync, readFileSync } from 'fs'
 import { join } from 'path'
+import nextConfig from '@/next.config'
 
 // Base URL for the site
 const baseUrl = 'https://rosterlab.com'
@@ -99,6 +100,10 @@ const postQuery = groq`*[_type == "post" && !(_id in path("drafts.**"))] | order
 }`
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Get redirects from next.config
+  const redirects = await nextConfig.redirects?.()
+  const redirectSourcePaths = new Set(redirects?.map(r => r.source.replace('/:path*', '').replace('/:slug*', '')) || [])
+  
   // Dynamically find all pages
   const appDir = join(process.cwd(), 'app')
   const staticRoutes = findPages(appDir)
@@ -117,13 +122,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : route.includes('/feature/') ? 0.9 : 0.8,
   }))
 
-  // Generate entries for blog posts
-  const postEntries = posts?.map((post: any) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post._updatedAt || post.publishedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  })) || []
+  // Generate entries for blog posts (excluding redirected URLs and case-studies/newsroom posts)
+  const postEntries = posts?.filter((post: any) => {
+    const categorySlugStrings = post.categories?.map((cat: any) => cat.slug?.current) || []
+    return !categorySlugStrings.includes('case-studies') && !categorySlugStrings.includes('newsroom')
+  }).map((post: any) => {
+    const blogUrl = `/blog/${post.slug}`
+    // Skip if this URL is redirected
+    if (redirectSourcePaths.has(blogUrl)) {
+      return null
+    }
+    return {
+      url: `${baseUrl}${blogUrl}`,
+      lastModified: new Date(post._updatedAt || post.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }
+  }).filter(Boolean) || []
 
   // Calculate pagination for each section
   const postsPerPage = 12
@@ -178,20 +193,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
-  // Add individual post pages for case studies and newsroom
-  const caseStudyEntries = caseStudies?.map((post: any) => ({
-    url: `${baseUrl}/case-studies/${post.slug}`,
-    lastModified: new Date(post._updatedAt || post.publishedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  })) || []
+  // Add individual post pages for case studies and newsroom (excluding redirected URLs)
+  const caseStudyEntries = caseStudies?.map((post: any) => {
+    const caseStudyUrl = `/case-studies/${post.slug}`
+    // Skip if this URL is redirected
+    if (redirectSourcePaths.has(caseStudyUrl)) {
+      return null
+    }
+    return {
+      url: `${baseUrl}${caseStudyUrl}`,
+      lastModified: new Date(post._updatedAt || post.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }
+  }).filter(Boolean) || []
 
-  const newsroomEntries = newsroomPosts?.map((post: any) => ({
-    url: `${baseUrl}/newsroom/${post.slug}`,
-    lastModified: new Date(post._updatedAt || post.publishedAt),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  })) || []
+  const newsroomEntries = newsroomPosts?.map((post: any) => {
+    const newsroomUrl = `/newsroom/${post.slug}`
+    // Skip if this URL is redirected
+    if (redirectSourcePaths.has(newsroomUrl)) {
+      return null
+    }
+    return {
+      url: `${baseUrl}${newsroomUrl}`,
+      lastModified: new Date(post._updatedAt || post.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }
+  }).filter(Boolean) || []
 
   // Combine all entries
   return [

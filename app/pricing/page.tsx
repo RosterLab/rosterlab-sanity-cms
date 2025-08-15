@@ -9,6 +9,9 @@ export const metadata = {
   title: "Pricing - Affordable AI Staff Scheduling Software",
   description:
     "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer schedules effortlessly.",
+  alternates: {
+    canonical: 'https://rosterlab.com/pricing',
+  },
   openGraph: {
     title: "Pricing - Affordable AI Staff Scheduling Software",
     description:
@@ -293,8 +296,8 @@ export default function PricingPage() {
         <div className="py-20">
           <Container>
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Optimise your staffing
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Optimise Your Staffing
               </h1>
               <h2
                 className="text-3xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text"
@@ -303,7 +306,7 @@ export default function PricingPage() {
                     "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                 }}
               >
-                from today
+                From Today
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Unlock the power of automatic rostering today! See immediate
@@ -376,6 +379,13 @@ export default function PricingPage() {
                         ? "bg-green-600 text-white hover:bg-green-700"
                         : "bg-purple-500 text-white hover:bg-purple-600"
                   }`}
+                  analyticsLabel={plan.cta}
+                  analyticsLocation="Pricing Card"
+                  analyticsProperties={{ 
+                    plan_name: plan.name,
+                    cta_type: plan.cta.includes('Sign up') ? 'signup' : 'demo',
+                    external: plan.ctaLink.includes('http')
+                  }}
                 >
                   {plan.cta}
                 </Button>
@@ -535,12 +545,18 @@ export default function PricingPage() {
               <Button
                 href="https://app.rosterlab.com/signup"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
+                analyticsLabel="Sign up for free"
+                analyticsLocation="Pricing CTA Bottom"
+                analyticsProperties={{ cta_type: 'signup', external: true }}
               >
                 Sign up for free
               </Button>
               <Button
                 href="/staff-rostering-interactive-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Pricing CTA Bottom"
+                analyticsProperties={{ cta_type: 'demo' }}
               >
                 Book a Demo
               </Button>

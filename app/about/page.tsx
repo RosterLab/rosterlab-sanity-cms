@@ -9,6 +9,9 @@ export const metadata = {
   title: "About Us - Meet the Team Behind RosterLab",
   description:
     "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+  alternates: {
+    canonical: 'https://rosterlab.com/about',
+  },
   other: {
     link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
   },
@@ -45,7 +48,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 The RosterLab{" "}
                 <span
                   className="text-transparent bg-clip-text"

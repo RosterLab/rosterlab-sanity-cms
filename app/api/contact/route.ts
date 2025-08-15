@@ -22,8 +22,6 @@ export async function POST(request: NextRequest) {
     // 3. Send to CRM (HubSpot, Salesforce, etc.)
     // 4. Send confirmation email to user
     
-    console.log('Contact form submission:', validatedData)
-    
     // For now, just simulate a successful submission
     // In production, replace this with your actual form handling logic
     

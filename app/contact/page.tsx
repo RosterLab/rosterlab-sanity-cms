@@ -9,6 +9,9 @@ export const metadata = {
   title: "Contact Us - Get Help with Your Team Scheduling",
   description:
     "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
+  alternates: {
+    canonical: 'https://rosterlab.com/contact',
+  },
   openGraph: {
     title: "Contact Us - Get Help with Your Team Scheduling",
     description:
@@ -57,7 +60,7 @@ export default function ContactPage() {
         <Container>
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
+            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
               Speak to a rostering{" "}
               <span
                 className="text-transparent bg-clip-text"

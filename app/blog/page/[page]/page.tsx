@@ -6,7 +6,6 @@ import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 
-export const revalidate = 300 // Revalidate every 5 minutes
 
 interface Props {
   params: Promise<{ page: string }>
@@ -27,19 +26,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const description = pageNumber === 1
     ? 'Discover insights on staff rostering, shift scheduling, and workforce planning. Stay ahead with practical tips from RosterLab.'
-    : `Browse page ${pageNumber} of our blog posts about staff rostering and scheduling.`
+    : `Explore page ${pageNumber} of RosterLab's blog featuring expert insights on staff rostering, shift scheduling, and workforce management best practices.`
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.rosterlab.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
   
   return {
     title,
     description,
     robots: {
-      index: true,
+      index: false,  // Pagination pages should not be indexed
       follow: true,
     },
     alternates: {
       canonical: pageNumber === 1 ? `${baseUrl}/blog` : `${baseUrl}/blog/page/${pageNumber}`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `${baseUrl}/blog/page/${pageNumber}`,
+      images: [
+        {
+          url: '/images/og images/Blog.png',
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/images/og images/Blog.png'],
     },
   }
 }

@@ -7,6 +7,9 @@ import Link from 'next/link'
 export const metadata = {
   title: 'Smart AI Rostering Software for All Industries - RosterLab',
   description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+  alternates: {
+    canonical: 'https://rosterlab.com/industries',
+  },
   openGraph: {
     title: 'Smart AI Rostering Software for All Industries - RosterLab',
     description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
@@ -35,7 +38,7 @@ export default function IndustriesPage() {
       <section className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20">
         <Container>
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               AI Rostering Software for Industries with{" "}
               <span className="text-transparent bg-clip-text" style={{
                 backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
@@ -47,7 +50,13 @@ export default function IndustriesPage() {
               Whether you're managing nurses, teachers, call centre agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
             </p>
             <div className="flex justify-center">
-              <Button href="/book-a-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+              <Button 
+                href="/book-a-demo" 
+                className="bg-indigo-600 text-white hover:bg-indigo-700"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Industries Hero"
+                analyticsProperties={{ cta_type: 'demo' }}
+              >
                 Book a Demo
               </Button>
             </div>
@@ -558,12 +567,18 @@ export default function IndustriesPage() {
               <Button 
                 href="/book-a-demo" 
                 className="bg-white text-blue-600 hover:bg-gray-100"
+                analyticsLabel="Book a Demo"
+                analyticsLocation="Industries Bottom CTA"
+                analyticsProperties={{ cta_type: 'demo' }}
               >
                 Book a Demo
               </Button>
               <Button 
                 href="/contact" 
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600"
+                analyticsLabel="Discuss Your Industry"
+                analyticsLocation="Industries Bottom CTA"
+                analyticsProperties={{ cta_type: 'contact' }}
               >
                 Discuss Your Industry
               </Button>

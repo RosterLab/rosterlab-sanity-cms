@@ -45,7 +45,7 @@ const benefitTabs: BenefitTab[] = [
       "Reduce Unnecessary Sick Leave",
       "Reduce Staff Turnover",
     ],
-    image: "/images/illustration/reduce_turnover.svg",
+    image: "/images/illustration/reduce_turnover.webp",
   },
   {
     id: "time",
@@ -59,7 +59,7 @@ const benefitTabs: BenefitTab[] = [
       "Reduce Admin for Last-minute Changes",
       "Dynamically re-roster staff",
     ],
-    image: "/images/illustration/save_time.svg",
+    image: "/images/illustration/save_time.webp",
   },
   {
     id: "safety",
@@ -73,7 +73,7 @@ const benefitTabs: BenefitTab[] = [
       "Reduce Clinical Risks",
       "Reduce Fatigue",
     ],
-    image: "/images/illustration/ensure_safety_fairness.svg",
+    image: "/images/illustration/ensure_safety_fairness.webp",
   },
 ];
 

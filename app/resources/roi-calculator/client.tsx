@@ -4,10 +4,11 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
+import { HiInformationCircle } from "react-icons/hi";
 
 export default function ROICalculatorClient() {
   // Input states
-  const [industry, setIndustry] = useState("icu");
+  const [industry, setIndustry] = useState("nursing");
   const [employees, setEmployees] = useState(50);
   const [avgHourlyWage, setAvgHourlyWage] = useState(120);
   const [annualSalary, setAnnualSalary] = useState(120 * 2080); // Annual salary correlated with hourly wage
@@ -29,17 +30,17 @@ export default function ROICalculatorClient() {
 
   // Industry configurations
   const industryConfigs = {
-    icu: {
-      name: "ICU (SMOs)",
-      schedulingComplexity: 1.4,
-      overtimeReduction: 0.5,
-      turnoverReduction: 0.25,
-      defaultOvertime: 10,
-      defaultTurnover: 18,
-      defaultEmployees: 50,
-      defaultHourlyWage: 120,
-      defaultCycleWeeks: 6,
-      defaultRosteringDays: 5,
+    nursing: {
+      name: "Nursing",
+      schedulingComplexity: 1.2,
+      overtimeReduction: 0.45,
+      turnoverReduction: 0.3,
+      defaultOvertime: 8,
+      defaultTurnover: 15,
+      defaultEmployees: 40,
+      defaultHourlyWage: 60,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 4,
       implementationDays: 3,
       // Saving categories
       hasManualTimeSaving: true,
@@ -47,16 +48,16 @@ export default function ROICalculatorClient() {
       hasSkillMix: false,
       hasTurnover: true,
       // Staffing efficiency data
-      avgSalary: 150000,
-      avgFTE: 0.90,
-      inefficiency: 0.02,
-      baseCost: 2025,
-      baseSaving: 405,
+      avgSalary: 91179,
+      avgFTE: 0.86,
+      inefficiency: 0.03,
+      baseCost: 2352,
+      baseSaving: 470.48,
       overtimePenalty: 1.20,
-      overtimeCost: 729,
+      overtimeCost: 847,
       locumEfficiency: 1.20,
-      locumCost: 365,
-      totalSaving: 3119,
+      locumCost: 423,
+      totalSaving: 3623,
       // Skill mix data
       lowestPay: 242249,
       highestPay: 488593,
@@ -68,11 +69,11 @@ export default function ROICalculatorClient() {
       nightSaving: 2792,
       skillMixTotalPerStaff: 5009,
       // Turnover data
-      turnoverCostPerRole: 50000,
-      turnoverRate: 0.08,
+      turnoverCostPerRole: 15000,
+      turnoverRate: 0.15,
       turnoverImprovement: 0.10,
-      hiringAdminCost: 400,
-      turnoverTotalSaving: 20000,
+      hiringAdminCost: 230,
+      turnoverTotalSaving: 9180,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -80,13 +81,13 @@ export default function ROICalculatorClient() {
       sickLeaveReduction: 0.10,
       leaveSavingPerStaff: 884.62,
     },
-    ed: {
-      name: "ED (SMOs)",
+    "acute-specialities": {
+      name: "Acute Specialities",
       schedulingComplexity: 1.35,
       overtimeReduction: 0.45,
       turnoverReduction: 0.25,
       defaultOvertime: 9,
-      defaultTurnover: 20,
+      defaultTurnover: 8,
       defaultEmployees: 50,
       defaultHourlyWage: 120,
       defaultCycleWeeks: 12,
@@ -100,14 +101,14 @@ export default function ROICalculatorClient() {
       // Staffing efficiency data
       avgSalary: 150000,
       avgFTE: 0.90,
-      inefficiency: 0.02,
-      baseCost: 2025,
-      baseSaving: 405,
+      inefficiency: 0.01,
+      baseCost: 1350,
+      baseSaving: 270,
       overtimePenalty: 1.20,
-      overtimeCost: 729,
+      overtimeCost: 486,
       locumEfficiency: 1.20,
-      locumCost: 365,
-      totalSaving: 3119,
+      locumCost: 243,
+      totalSaving: 2079,
       // Skill mix data
       lowestPay: 238498,
       highestPay: 471906,
@@ -131,13 +132,13 @@ export default function ROICalculatorClient() {
       sickLeaveReduction: 0.10,
       leaveSavingPerStaff: 884.62,
     },
-    radiology: {
-      name: "Radiology",
+    "medicine-specialities": {
+      name: "Medicine Specialities",
       schedulingComplexity: 1.3,
       overtimeReduction: 0.4,
       turnoverReduction: 0.2,
       defaultOvertime: 7,
-      defaultTurnover: 15,
+      defaultTurnover: 12,
       defaultEmployees: 40,
       defaultHourlyWage: 120,
       defaultCycleWeeks: 12,
@@ -151,7 +152,7 @@ export default function ROICalculatorClient() {
       // Staffing efficiency data
       avgSalary: 150000,
       avgFTE: 0.90,
-      inefficiency: 0.02,
+      inefficiency: 0.015,
       baseCost: 2025,
       baseSaving: 405,
       overtimePenalty: 1.30,
@@ -182,13 +183,13 @@ export default function ROICalculatorClient() {
       sickLeaveReduction: 0.10,
       leaveSavingPerStaff: 884.62,
     },
-    radiography: {
-      name: "Radiography",
+    "allied-health": {
+      name: "Allied Health",
       schedulingComplexity: 1.25,
       overtimeReduction: 0.4,
       turnoverReduction: 0.2,
       defaultOvertime: 6,
-      defaultTurnover: 14,
+      defaultTurnover: 18,
       defaultEmployees: 60,
       defaultHourlyWage: 60,
       defaultCycleWeeks: 8,
@@ -202,14 +203,14 @@ export default function ROICalculatorClient() {
       // Staffing efficiency data
       avgSalary: 100000,
       avgFTE: 0.90,
-      inefficiency: 0.03,
-      baseCost: 2700,
-      baseSaving: 540,
+      inefficiency: 0.02,
+      baseCost: 1800,
+      baseSaving: 360,
       overtimePenalty: 1.60,
-      overtimeCost: 1296,
+      overtimeCost: 864,
       locumEfficiency: 1.50,
-      locumCost: 608,
-      totalSaving: 4604,
+      locumCost: 405,
+      totalSaving: 3069,
       // Skill mix data
       lowestPay: 70690,
       highestPay: 121356,
@@ -221,11 +222,11 @@ export default function ROICalculatorClient() {
       nightSaving: 598,
       skillMixTotalPerStaff: 1168,
       // Turnover data
-      turnoverCostPerRole: 20000,
+      turnoverCostPerRole: 40000,
       turnoverRate: 0.18,
       turnoverImprovement: 0.10,
-      hiringAdminCost: 360,
-      turnoverTotalSaving: 21600,
+      hiringAdminCost: 720,
+      turnoverTotalSaving: 36000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -233,14 +234,14 @@ export default function ROICalculatorClient() {
       sickLeaveReduction: 0.10,
       leaveSavingPerStaff: 500.00,
     },
-    nursing: {
-      name: "Nursing",
+    midwives: {
+      name: "Midwives",
       schedulingComplexity: 1.2,
-      overtimeReduction: 0.45,
-      turnoverReduction: 0.3,
-      defaultOvertime: 8,
-      defaultTurnover: 22,
-      defaultEmployees: 40,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.25,
+      defaultOvertime: 7,
+      defaultTurnover: 15,
+      defaultEmployees: 50,
       defaultHourlyWage: 60,
       defaultCycleWeeks: 4,
       defaultRosteringDays: 4,
@@ -248,70 +249,19 @@ export default function ROICalculatorClient() {
       // Saving categories
       hasManualTimeSaving: true,
       hasStaffingEfficiency: true,
-      hasSkillMix: true,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 91179,
-      avgFTE: 0.86,
-      inefficiency: 0.02,
-      baseCost: 1176,
-      baseSaving: 235.24,
-      overtimePenalty: 1.20,
-      overtimeCost: 423,
-      locumEfficiency: 1.20,
-      locumCost: 212,
-      totalSaving: 1811,
-      // Skill mix data
-      lowestPay: 75773,
-      highestPay: 162802,
-      weekendPenalty: 1.5,
-      weekendShiftCost: 9791,
-      weekendSaving: 979,
-      nightPenalty: 1.25,
-      nightShiftCost: 10274,
-      nightSaving: 1027,
-      skillMixTotalPerStaff: 2007,
-      // Turnover data
-      turnoverCostPerRole: 15000,
-      turnoverRate: 0.153,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 230,
-      turnoverTotalSaving: 9180,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 3507,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 466.07,
-    },
-    registrar: {
-      name: "Registrars Rosters",
-      schedulingComplexity: 1.3,
-      overtimeReduction: 0.35,
-      turnoverReduction: 0.2,
-      defaultOvertime: 8,
-      defaultTurnover: 16,
-      defaultEmployees: 50,
-      defaultHourlyWage: 45,
-      defaultCycleWeeks: 13,
-      defaultRosteringDays: 8,
-      implementationDays: 6,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
       hasSkillMix: false,
       hasTurnover: true,
       // Staffing efficiency data
-      avgSalary: 100000,
-      avgFTE: 1.00,
-      inefficiency: 0.02,
-      baseCost: 2000,
-      baseSaving: 400,
-      overtimePenalty: 1.50,
-      overtimeCost: 900,
-      locumEfficiency: 2.00,
-      locumCost: 600,
-      totalSaving: 3500,
+      avgSalary: 110000,
+      avgFTE: 0.80,
+      inefficiency: 0.015,
+      baseCost: 1320,
+      baseSaving: 264,
+      overtimePenalty: 1.20,
+      overtimeCost: 475,
+      locumEfficiency: 1.20,
+      locumCost: 238,
+      totalSaving: 2033,
       // Skill mix data
       lowestPay: 90000,
       highestPay: 130000,
@@ -323,11 +273,113 @@ export default function ROICalculatorClient() {
       nightSaving: 472,
       skillMixTotalPerStaff: 922,
       // Turnover data
-      turnoverCostPerRole: 40000,
-      turnoverRate: 0.18,
+      turnoverCostPerRole: 15000,
+      turnoverRate: 0.15,
       turnoverImprovement: 0.10,
-      hiringAdminCost: 720,
-      turnoverTotalSaving: 36000,
+      hiringAdminCost: 225,
+      turnoverTotalSaving: 11250,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3846,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 500.00,
+    },
+    veterinary: {
+      name: "Veterinary",
+      schedulingComplexity: 1.2,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.25,
+      defaultOvertime: 7,
+      defaultTurnover: 14,
+      defaultEmployees: 50,
+      defaultHourlyWage: 60,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 4,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 110000,
+      avgFTE: 0.85,
+      inefficiency: 0.02,
+      baseCost: 1870,
+      baseSaving: 374,
+      overtimePenalty: 1.20,
+      overtimeCost: 673,
+      locumEfficiency: 1.20,
+      locumCost: 337,
+      totalSaving: 2880,
+      // Skill mix data
+      lowestPay: 90000,
+      highestPay: 130000,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 4500,
+      weekendSaving: 450,
+      nightPenalty: 1.25,
+      nightShiftCost: 4722,
+      nightSaving: 472,
+      skillMixTotalPerStaff: 922,
+      // Turnover data
+      turnoverCostPerRole: 15000,
+      turnoverRate: 0.14,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 210,
+      turnoverTotalSaving: 10500,
+      // Leave balance data
+      annualLeaveCost: 385,
+      annualLeaveReduction: 0.30,
+      sickLeaveTotal: 3846,
+      sickLeaveReduction: 0.10,
+      leaveSavingPerStaff: 500.00,
+    },
+    surgical: {
+      name: "Surgical",
+      schedulingComplexity: 1.3,
+      overtimeReduction: 0.4,
+      turnoverReduction: 0.2,
+      defaultOvertime: 7,
+      defaultTurnover: 12,
+      defaultEmployees: 25,
+      defaultHourlyWage: 120,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 3,
+      implementationDays: 3,
+      // Saving categories
+      hasManualTimeSaving: true,
+      hasStaffingEfficiency: true,
+      hasSkillMix: false,
+      hasTurnover: true,
+      // Staffing efficiency data
+      avgSalary: 250000,
+      avgFTE: 0.90,
+      inefficiency: 0.01,
+      baseCost: 2250,
+      baseSaving: 450,
+      overtimePenalty: 1.10,
+      overtimeCost: 743,
+      locumEfficiency: 1.10,
+      locumCost: 371,
+      totalSaving: 3364,
+      // Skill mix data
+      lowestPay: 200000,
+      highestPay: 300000,
+      weekendPenalty: 1.5,
+      weekendShiftCost: 10000,
+      weekendSaving: 1000,
+      nightPenalty: 1.25,
+      nightShiftCost: 10500,
+      nightSaving: 1050,
+      skillMixTotalPerStaff: 2050,
+      // Turnover data
+      turnoverCostPerRole: 50000,
+      turnoverRate: 0.12,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 600,
+      turnoverTotalSaving: 60000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -343,7 +395,7 @@ export default function ROICalculatorClient() {
       defaultOvertime: 6,
       defaultTurnover: 25,
       defaultEmployees: 60,
-      defaultHourlyWage: 45,
+      defaultHourlyWage: 40,
       defaultCycleWeeks: 2,
       defaultRosteringDays: 3,
       implementationDays: 3,
@@ -353,16 +405,16 @@ export default function ROICalculatorClient() {
       hasSkillMix: false,
       hasTurnover: true,
       // Staffing efficiency data
-      avgSalary: 75000,
+      avgSalary: 65000,
       avgFTE: 0.80,
       inefficiency: 0.03,
-      baseCost: 1800,
-      baseSaving: 360,
+      baseCost: 1560,
+      baseSaving: 312,
       overtimePenalty: 1.50,
-      overtimeCost: 810,
+      overtimeCost: 702,
       locumEfficiency: 1.50,
-      locumCost: 405,
-      totalSaving: 3015,
+      locumCost: 351,
+      totalSaving: 2613,
       // Skill mix data
       lowestPay: 66666,
       highestPay: 95238,
@@ -386,316 +438,10 @@ export default function ROICalculatorClient() {
       sickLeaveReduction: 0.10,
       leaveSavingPerStaff: 403.85,
     },
-    "other-healthcare": {
-      name: "Other healthcare",
-      schedulingComplexity: 1.2,
-      overtimeReduction: 0.4,
-      turnoverReduction: 0.25,
-      defaultOvertime: 7,
-      defaultTurnover: 18,
-      defaultEmployees: 50,
-      defaultHourlyWage: 60,
-      defaultCycleWeeks: 4,
-      defaultRosteringDays: 4,
-      implementationDays: 5,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
-      hasSkillMix: false,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 100000,
-      avgFTE: 0.90,
-      inefficiency: 0.03,
-      baseCost: 2700,
-      baseSaving: 540,
-      overtimePenalty: 1.50,
-      overtimeCost: 1215,
-      locumEfficiency: 1.50,
-      locumCost: 608,
-      totalSaving: 4523,
-      // Skill mix data
-      lowestPay: 80000,
-      highestPay: 120000,
-      weekendPenalty: 1.5,
-      weekendShiftCost: 8333,
-      weekendSaving: 833,
-      nightPenalty: 1.3,
-      nightShiftCost: 8747,
-      nightSaving: 875,
-      skillMixTotalPerStaff: 1708,
-      // Turnover data
-      turnoverCostPerRole: 20000,
-      turnoverRate: 0.15,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 300,
-      turnoverTotalSaving: 15000,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 4615,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 576.92,
-    },
-    "24-7-teams": {
-      name: "24/7 Teams",
-      schedulingComplexity: 1.3,
-      overtimeReduction: 0.5,
-      turnoverReduction: 0.2,
-      defaultOvertime: 10,
-      defaultTurnover: 15,
-      defaultEmployees: 50,
-      defaultHourlyWage: 45,
-      defaultCycleWeeks: 4,
-      defaultRosteringDays: 3,
-      implementationDays: 3,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
-      hasSkillMix: false,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 80000,
-      avgFTE: 1.00,
-      inefficiency: 0.02,
-      baseCost: 1600,
-      baseSaving: 320,
-      overtimePenalty: 1.20,
-      overtimeCost: 576,
-      locumEfficiency: 1.20,
-      locumCost: 288,
-      totalSaving: 2464,
-      // Skill mix data
-      lowestPay: 60000,
-      highestPay: 80000,
-      weekendPenalty: 2.0,
-      weekendShiftCost: 8000,
-      weekendSaving: 800,
-      nightPenalty: 1.5,
-      nightShiftCost: 8400,
-      nightSaving: 840,
-      skillMixTotalPerStaff: 1640,
-      // Turnover data
-      turnoverCostPerRole: 12000,
-      turnoverRate: 0.14,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 168,
-      turnoverTotalSaving: 8400,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 3077,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 423.08,
-    },
-    "large-team-oncall": {
-      name: "Large Team On-Call Rosters",
-      schedulingComplexity: 1.4,
-      overtimeReduction: 0.35,
-      turnoverReduction: 0.15,
-      defaultOvertime: 6,
-      defaultTurnover: 12,
-      defaultEmployees: 100,
-      defaultHourlyWage: 40,
-      defaultCycleWeeks: 8,
-      defaultRosteringDays: 3,
-      implementationDays: 3,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
-      hasSkillMix: false,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 80000,
-      avgFTE: 1.00,
-      inefficiency: 0.02,
-      baseCost: 1600,
-      baseSaving: 320,
-      overtimePenalty: 1.20,
-      overtimeCost: 576,
-      locumEfficiency: 1.20,
-      locumCost: 288,
-      totalSaving: 2464,
-      // Skill mix data
-      lowestPay: 60000,
-      highestPay: 100000,
-      weekendPenalty: 1.3,
-      weekendShiftCost: 1600,
-      weekendSaving: 160,
-      nightPenalty: 1.3,
-      nightShiftCost: 1680,
-      nightSaving: 168,
-      skillMixTotalPerStaff: 328,
-      // Turnover data
-      turnoverCostPerRole: 12000,
-      turnoverRate: 0.12,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 144,
-      turnoverTotalSaving: 14400,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 3077,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 423.08,
-    },
-    hospitality: {
-      name: "Hospitality",
-      schedulingComplexity: 1.15,
-      overtimeReduction: 0.4,
-      turnoverReduction: 0.25,
-      defaultOvertime: 7,
-      defaultTurnover: 20,
-      defaultEmployees: 30,
-      defaultHourlyWage: 30,
-      defaultCycleWeeks: 2,
-      defaultRosteringDays: 1,
-      implementationDays: 3,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
-      hasSkillMix: false,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 70000,
-      avgFTE: 0.70,
-      inefficiency: 0.02,
-      baseCost: 980,
-      baseSaving: 196,
-      overtimePenalty: 1.20,
-      overtimeCost: 353,
-      locumEfficiency: 1.20,
-      locumCost: 176,
-      totalSaving: 1509,
-      // Skill mix data
-      lowestPay: 45000,
-      highestPay: 60000,
-      weekendPenalty: 1.3,
-      weekendShiftCost: 1688,
-      weekendSaving: 169,
-      nightPenalty: 1.2,
-      nightShiftCost: 1771,
-      nightSaving: 177,
-      skillMixTotalPerStaff: 346,
-      // Turnover data
-      turnoverCostPerRole: 5000,
-      turnoverRate: 0.45,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 225,
-      turnoverTotalSaving: 6750,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 2692,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 384.62,
-    },
-    "call-centres": {
-      name: "Call Centres",
-      schedulingComplexity: 1.1,
-      overtimeReduction: 0.4,
-      turnoverReduction: 0.3,
-      defaultOvertime: 5,
-      defaultTurnover: 25,
-      defaultEmployees: 30,
-      defaultHourlyWage: 35,
-      defaultCycleWeeks: 4,
-      defaultRosteringDays: 1,
-      implementationDays: 3,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
-      hasSkillMix: false,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 70000,
-      avgFTE: 0.90,
-      inefficiency: 0.02,
-      baseCost: 1260,
-      baseSaving: 252,
-      overtimePenalty: 1.20,
-      overtimeCost: 454,
-      locumEfficiency: 1.20,
-      locumCost: 227,
-      totalSaving: 1940,
-      // Skill mix data
-      lowestPay: 50000,
-      highestPay: 70000,
-      weekendPenalty: 1.4,
-      weekendShiftCost: 2604,
-      weekendSaving: 260,
-      nightPenalty: 1.3,
-      nightShiftCost: 2734,
-      nightSaving: 273,
-      skillMixTotalPerStaff: 534,
-      // Turnover data
-      turnoverCostPerRole: 10000,
-      turnoverRate: 0.20,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 200,
-      turnoverTotalSaving: 6000,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 2692,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 384.62,
-    },
-    other: {
-      name: "Other",
-      schedulingComplexity: 1.15,
-      overtimeReduction: 0.4,
-      turnoverReduction: 0.25,
-      defaultOvertime: 7,
-      defaultTurnover: 20,
-      defaultEmployees: 30,
-      defaultHourlyWage: 35,
-      defaultCycleWeeks: 4,
-      defaultRosteringDays: 2,
-      implementationDays: 3,
-      // Saving categories
-      hasManualTimeSaving: true,
-      hasStaffingEfficiency: true,
-      hasSkillMix: false,
-      hasTurnover: true,
-      // Staffing efficiency data
-      avgSalary: 75000,
-      avgFTE: 0.90,
-      inefficiency: 0.02,
-      baseCost: 1350,
-      baseSaving: 270,
-      overtimePenalty: 1.20,
-      overtimeCost: 486,
-      locumEfficiency: 1.20,
-      locumCost: 243,
-      totalSaving: 2079,
-      // Skill mix data
-      lowestPay: 60000,
-      highestPay: 80000,
-      weekendPenalty: 1.5,
-      weekendShiftCost: 2813,
-      weekendSaving: 281,
-      nightPenalty: 1.25,
-      nightShiftCost: 2951,
-      nightSaving: 295,
-      skillMixTotalPerStaff: 576,
-      // Turnover data
-      turnoverCostPerRole: 10000,
-      turnoverRate: 0.15,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 150,
-      turnoverTotalSaving: 4500,
-      // Leave balance data
-      annualLeaveCost: 385,
-      annualLeaveReduction: 0.30,
-      sickLeaveTotal: 2885,
-      sickLeaveReduction: 0.10,
-      leaveSavingPerStaff: 403.85,
-    },
   };
 
   const currentIndustry =
-    industryConfigs[industry as keyof typeof industryConfigs] || industryConfigs.icu;
+    industryConfigs[industry as keyof typeof industryConfigs] || industryConfigs.nursing;
 
   // Calculations
   // Calculate basic payroll for reference
@@ -1271,7 +1017,7 @@ export default function ROICalculatorClient() {
         doc.text("Contact Us:", 20, yPos + 4);
         doc.setFont("helvetica", "normal");
         doc.setTextColor(textColor[0], textColor[1], textColor[2]);
-        doc.text("daniel@rosterlab.com", 55, yPos + 4);
+        doc.text("sales@rosterlab.com", 55, yPos + 4);
         doc.text("|", 115, yPos + 4);
         doc.text("www.rosterlab.com", 120, yPos + 4);
 
@@ -1534,14 +1280,14 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         paddingRight: '2.5rem'
                       }}
                     >
-                      <option value="icu">ICU (SMOs)</option>
-                      <option value="ed">ED (SMOs)</option>
-                      <option value="radiology">Radiology</option>
-                      <option value="radiography">Radiography</option>
                       <option value="nursing">Nursing</option>
-                      <option value="registrar">Registrar Rosters</option>
+                      <option value="acute-specialities">Acute Specialities</option>
+                      <option value="medicine-specialities">Medicine Specialities</option>
+                      <option value="allied-health">Allied Health</option>
                       <option value="aged-care">Aged Care</option>
-                      <option value="other-healthcare">Other Healthcare Rosters</option>
+                      <option value="midwives">Midwives</option>
+                      <option value="veterinary">Veterinary</option>
+                      <option value="surgical">Surgical</option>
                     </select>
                   </div>
 
@@ -1556,7 +1302,8 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         const val = e.target.value;
                         setEmployeesInput(val);
                         if (val !== '') {
-                          setEmployees(Number(val));
+                          const numVal = Math.max(0, Number(val));
+                          setEmployees(numVal);
                           setRosteringDaysInput(""); // Clear input when employees change
                         } else {
                           setEmployees(0); // Set to 0 when empty to maintain calculations
@@ -1565,6 +1312,9 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                       onBlur={() => {
                         if (employeesInput === '') {
                           setEmployees(currentIndustry.defaultEmployees || 50);
+                        } else {
+                          const numVal = Math.max(0, Number(employeesInput));
+                          setEmployees(numVal);
                         }
                         setEmployeesInput("");
                       }}
@@ -1572,6 +1322,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         e.target.select();
                         setEmployeesInput(e.target.value);
                       }}
+                      min="0"
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -1587,7 +1338,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         const val = e.target.value;
                         setHourlyWageInput(val);
                         if (val !== '') {
-                          const hourly = Number(val);
+                          const hourly = Math.max(0, Number(val));
                           setAvgHourlyWage(hourly);
                           setAnnualSalary(hourly * 2080);
                           setAnnualSalaryInput(""); // Clear annual salary input
@@ -1600,6 +1351,10 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         if (hourlyWageInput === '') {
                           setAvgHourlyWage(currentIndustry.defaultHourlyWage || 50);
                           setAnnualSalary((currentIndustry.defaultHourlyWage || 50) * 2080);
+                        } else {
+                          const hourly = Math.max(0, Number(hourlyWageInput));
+                          setAvgHourlyWage(hourly);
+                          setAnnualSalary(hourly * 2080);
                         }
                         setHourlyWageInput("");
                       }}
@@ -1607,6 +1362,8 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         e.target.select();
                         setHourlyWageInput(e.target.value);
                       }}
+                      min="0"
+                      step="0.01"
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -1622,7 +1379,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         const val = e.target.value;
                         setAnnualSalaryInput(val);
                         if (val !== '') {
-                          const annual = Number(val);
+                          const annual = Math.max(0, Number(val));
                           setAnnualSalary(annual);
                           setAvgHourlyWage(Math.round((annual / 2080) * 10) / 10);
                           setHourlyWageInput(""); // Clear hourly wage input
@@ -1636,6 +1393,10 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                           const defaultHourly = currentIndustry.defaultHourlyWage || 50;
                           setAnnualSalary(defaultHourly * 2080);
                           setAvgHourlyWage(defaultHourly);
+                        } else {
+                          const annual = Math.max(0, Number(annualSalaryInput));
+                          setAnnualSalary(annual);
+                          setAvgHourlyWage(Math.round((annual / 2080) * 10) / 10);
                         }
                         setAnnualSalaryInput("");
                       }}
@@ -1643,6 +1404,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         e.target.select();
                         setAnnualSalaryInput(e.target.value);
                       }}
+                      min="0"
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
@@ -1684,7 +1446,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         const val = e.target.value;
                         setRosteringDaysInput(val);
                         if (val !== '') {
-                          const newValue = Number(val);
+                          const newValue = Math.max(0.1, Number(val));
                           // Calculate base days from the scaled value
                           const employeeMultiplier = (employees || 0) / (currentIndustry.defaultEmployees || 50);
                           const scaleFactor = 0.8 + 0.2 * employeeMultiplier;
@@ -1697,6 +1459,11 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         // Clear the input to show calculated value when focus is lost
                         if (rosteringDaysInput === '') {
                           setBaseRosteringDays(currentIndustry.defaultRosteringDays || 1);
+                        } else {
+                          const newValue = Math.max(0.1, Number(rosteringDaysInput));
+                          const employeeMultiplier = (employees || 0) / (currentIndustry.defaultEmployees || 50);
+                          const scaleFactor = 0.8 + 0.2 * employeeMultiplier;
+                          setBaseRosteringDays(newValue / scaleFactor);
                         }
                         setRosteringDaysInput("");
                       }}
@@ -1704,7 +1471,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         e.target.select();
                         setRosteringDaysInput(e.target.value);
                       }}
-                      min="0.5"
+                      min="0.1"
                       step="0.1"
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
@@ -1742,7 +1509,16 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                     {currentIndustry.hasManualTimeSaving && (
                       <div className="mb-3">
                         <div className="flex justify-between items-center">
-                          <span className="font-medium">Manual Time Spent Rostering</span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">Manual Time Spent Rostering</span>
+                            <div className="relative group">
+                              <HiInformationCircle className="w-4 h-4 text-blue-200 hover:text-white cursor-help" />
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                                We assume a roughly 80%-90% time saving on your type of roster
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                              </div>
+                            </div>
+                          </div>
                           <span className="text-xl font-semibold">
                             ${(timeSavingsCost && !isNaN(timeSavingsCost)) ? Math.round(timeSavingsCost).toLocaleString() : '0'}
                           </span>
@@ -1754,7 +1530,16 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                     {currentIndustry.hasStaffingEfficiency && (
                       <div className="mb-3">
                         <div className="flex justify-between items-center">
-                          <span className="font-medium">Optimised Staffing Efficiency</span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">Optimised Staffing</span>
+                            <div className="relative group">
+                              <HiInformationCircle className="w-4 h-4 text-blue-200 hover:text-white cursor-help" />
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                                We estimate a 1-3% of better staffing depending on your speciality
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                              </div>
+                            </div>
+                          </div>
                           <span className="text-xl font-semibold">
                             ${(allocativeEfficiencySavings && !isNaN(allocativeEfficiencySavings)) ? Math.round(allocativeEfficiencySavings).toLocaleString() : '0'}
                           </span>
@@ -1778,7 +1563,16 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                     {currentIndustry.hasTurnover && (
                       <div className="mb-3">
                         <div className="flex justify-between items-center">
-                          <span className="font-medium">Reduced Turnover Costs</span>
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium">Reduced Turnover Costs</span>
+                            <div className="relative group">
+                              <HiInformationCircle className="w-4 h-4 text-blue-200 hover:text-white cursor-help" />
+                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                                We assume a 10% improvement in turnover rate through better work-life balance and fair scheduling
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                              </div>
+                            </div>
+                          </div>
                           <span className="text-xl font-semibold">
                             ${(turnoverReductionSavings && !isNaN(turnoverReductionSavings)) ? Math.round(turnoverReductionSavings).toLocaleString() : '0'}
                           </span>
@@ -1786,6 +1580,22 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                       </div>
                     )}
 
+                    {/* Non-fiscal Benefits */}
+                    <div className="mt-4 pt-4 border-t border-white/20">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-blue-100">Non-fiscal Benefits</span>
+                        <div className="flex items-center gap-4 text-sm">
+                          <div className="flex items-center">
+                            <span className="text-green-400 mr-1">✓</span>
+                            <span className="text-blue-100">80% more staff satisfaction</span>
+                          </div>
+                          <div className="flex items-center">
+                            <span className="text-green-400 mr-1">✓</span>
+                            <span className="text-blue-100">15% fatigue reduction</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     
                   </div>
 

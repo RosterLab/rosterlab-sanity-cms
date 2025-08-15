@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getClient, client, urlFor } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { validatedToken } from '@/sanity/lib/token'
@@ -89,12 +90,31 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
     }
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
+  
+  // Ensure meta description is between 120-155 characters
+  let metaDescription = post.seo?.metaDescription || post.excerpt || ''
+  
+  // Special handling for Whanganui post
+  if (slug === 'whanganui-radiography-department-embraces-ai-rostering') {
+    metaDescription = 'Whanganui DHB radiography department successfully implements AI-powered rostering, improving staff satisfaction and work-life balance.'
+  } else if (metaDescription.length < 120) {
+    // If description is too short, enhance it
+    metaDescription = `${metaDescription} Read the full story on RosterLab's newsroom for healthcare workforce management insights.`.slice(0, 155)
+  } else if (metaDescription.length > 155) {
+    // If description is too long, truncate it properly
+    metaDescription = metaDescription.slice(0, 152) + '...'
+  }
+  
   return {
     title: post.seo?.metaTitle || post.title,
-    description: post.seo?.metaDescription || post.excerpt,
+    description: metaDescription,
+    alternates: {
+      canonical: `${baseUrl}/newsroom/${slug}`,
+    },
     openGraph: {
       title: post.seo?.metaTitle || post.title,
-      description: post.seo?.metaDescription || post.excerpt,
+      description: metaDescription,
       type: "article",
       url: `https://rosterlab.com/newsroom/${slug}`,
       images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 
@@ -132,22 +152,43 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
   return (
     <article>
       {/* Purple Gradient Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white">
+      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />
         <Container className="relative">
           <div className="py-20">
-            {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
-              {post.title}
-            </h1>
-            
-            {/* Author and Meta */}
-            <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-              <span className="font-medium">RosterLab</span>
-              <span className="text-purple-200">•</span>
-              <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
-              <span className="text-purple-200">•</span>
-              <span className="text-purple-200">{readingTime}</span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left side - Title and Meta */}
+              <div className="lg:col-span-7">
+                {/* Title */}
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+                  {post.title}
+                </h1>
+                
+                {/* Author and Meta */}
+                <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
+                  <span className="font-medium">RosterLab</span>
+                  <span className="text-purple-200">•</span>
+                  <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
+                  <span className="text-purple-200">•</span>
+                  <span className="text-purple-200">{readingTime}</span>
+                </div>
+              </div>
+              
+              {/* Right side - Hero Image */}
+              {post.mainImage && (
+                <div className="lg:col-span-5 relative hidden lg:block">
+                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                    <Image
+                      src={urlFor(post.mainImage).width(500).height(350).url()}
+                      alt={post.title}
+                      width={500}
+                      height={350}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </Container>
@@ -188,13 +229,6 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
 
             {/* Main Article Content */}
             <main className="lg:col-span-6">
-              {/* Introduction text */}
-              {post.excerpt && (
-                <div className="mb-8 text-lg text-gray-700 leading-relaxed">
-                  {post.excerpt}
-                </div>
-              )}
-
               {/* Article Body */}
               <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
                 <PortableText value={post.body} />
