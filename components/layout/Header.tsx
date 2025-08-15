@@ -1,6 +1,5 @@
 "use client";
 
-<<<<<<< HEAD
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -12,14 +11,7 @@ import {
   HiChevronRight,
   HiUser,
 } from "react-icons/hi";
-=======
-import Link from 'next/link'
-import Image from 'next/image'
-import { useState } from 'react'
-import { cn } from '@/lib/utils'
-import { HiMenu, HiX, HiChevronDown, HiChevronRight, HiUser } from 'react-icons/hi'
-import { trackButtonClick } from '@/components/analytics/Amplitude'
->>>>>>> origin/main
+import { trackButtonClick } from "@/components/analytics/Amplitude";
 
 interface SubMenuItem {
   title: string;
@@ -45,7 +37,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Solutions",
       subItems: [
-<<<<<<< HEAD
         {
           title: "AI-generated optimised schedules",
           link: "/solutions/ai-staff-scheduling",
@@ -58,21 +49,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
           title: "Employee Mobile App",
           link: "/solutions/staff-roster-mobile-app",
         },
-        { title: "Self-Scheduling", link: "/feature/self-scheduling" },
+        { title: "Auto Roster Generation", link: "/feature/auto-roster-generation" },
+        { title: "Open Shifts", link: "/feature/open-shifts" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
+        { title: "Leave Requests", link: "/feature/leave-requests" },
+        { title: "Staff Preferences", link: "/feature/self-scheduling" },
+        { title: "Re-Rostering", link: "/feature/re-rostering" },
       ],
-=======
-        { title: 'AI-generated optimised schedules', link: '/solutions/ai-staff-scheduling' },
-        { title: 'Free For Manual Digital Scheduling', link: '/solutions/free-staff-scheduling' },
-        { title: 'Employee Mobile App', link: '/solutions/staff-roster-mobile-app' },
-        { title: 'Auto Roster Generation', link: '/feature/auto-roster-generation' },
-        { title: 'Open Shifts', link: '/feature/open-shifts' },
-        { title: 'Shift Swaps', link: '/feature/shift-swaps' },
-        { title: 'Leave Requests', link: '/feature/leave-requests' },
-        { title: 'Staff Preferences', link: '/feature/self-scheduling' },
-        { title: 'Re-Rostering', link: '/feature/re-rostering' },
-      ]
->>>>>>> origin/main
     },
     {
       title: "Industries",
@@ -88,21 +71,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Resources",
       subItems: [
-<<<<<<< HEAD
         { title: "Blog", link: "/blog" },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/resources/roi-calculator" },
+        { title: "Personality Test", link: "/tools/staff-scheduling-personality-quiz" },
       ],
-=======
-        { title: 'Blog', link: '/blog' },
-        { title: 'Case Studies', link: '/case-studies' },
-        { title: 'Newsroom', link: '/newsroom' },
-        { title: 'Schedge', link: '/schedge' },
-        { title: 'Personality Test', link: '/tools/staff-scheduling-personality-quiz' },
-      ]
->>>>>>> origin/main
     },
     { title: "About Us", link: "/about" },
   ];
@@ -495,6 +470,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="text-sm text-gray-600">
                                     We love rostering so much that we made a
                                     mini game - Try it out!
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/tools/staff-scheduling-personality-quiz"
+                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                    Personality Test
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Discover your scheduling style
                                   </div>
                                 </Link>
                               </div>

@@ -82,17 +82,17 @@ export default function ROICalculatorClient() {
       leaveSavingPerStaff: 884.62,
     },
     "acute-specialities": {
-      name: "Acute Specialities",
+      name: "Acute",
       schedulingComplexity: 1.35,
       overtimeReduction: 0.45,
       turnoverReduction: 0.25,
       defaultOvertime: 9,
       defaultTurnover: 8,
       defaultEmployees: 50,
-      defaultHourlyWage: 120,
+      defaultHourlyWage: 130,
       defaultCycleWeeks: 12,
-      defaultRosteringDays: 14,
-      implementationDays: 3,
+      defaultRosteringDays: 10,
+      implementationDays: 4,
       // Saving categories
       hasManualTimeSaving: true,
       hasStaffingEfficiency: true,
@@ -101,14 +101,14 @@ export default function ROICalculatorClient() {
       // Staffing efficiency data
       avgSalary: 150000,
       avgFTE: 0.90,
-      inefficiency: 0.01,
-      baseCost: 1350,
-      baseSaving: 270,
+      inefficiency: 0.015,
+      baseCost: 2025,
+      baseSaving: 405,
       overtimePenalty: 1.20,
-      overtimeCost: 486,
+      overtimeCost: 729,
       locumEfficiency: 1.20,
-      locumCost: 243,
-      totalSaving: 2079,
+      locumCost: 365,
+      totalSaving: 3119,
       // Skill mix data
       lowestPay: 238498,
       highestPay: 471906,
@@ -120,11 +120,11 @@ export default function ROICalculatorClient() {
       nightSaving: 2645,
       skillMixTotalPerStaff: 4746,
       // Turnover data
-      turnoverCostPerRole: 50000,
+      turnoverCostPerRole: 55000,
       turnoverRate: 0.08,
       turnoverImprovement: 0.10,
-      hiringAdminCost: 400,
-      turnoverTotalSaving: 20000,
+      hiringAdminCost: 440,
+      turnoverTotalSaving: 22000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -133,14 +133,14 @@ export default function ROICalculatorClient() {
       leaveSavingPerStaff: 884.62,
     },
     "medicine-specialities": {
-      name: "Medicine Specialities",
+      name: "Medicine",
       schedulingComplexity: 1.3,
       overtimeReduction: 0.4,
       turnoverReduction: 0.2,
       defaultOvertime: 7,
       defaultTurnover: 12,
       defaultEmployees: 40,
-      defaultHourlyWage: 120,
+      defaultHourlyWage: 130,
       defaultCycleWeeks: 12,
       defaultRosteringDays: 6,
       implementationDays: 5,
@@ -171,11 +171,11 @@ export default function ROICalculatorClient() {
       nightSaving: 3775,
       skillMixTotalPerStaff: 6773,
       // Turnover data
-      turnoverCostPerRole: 50000,
+      turnoverCostPerRole: 55000,
       turnoverRate: 0.12,
       turnoverImprovement: 0.10,
-      hiringAdminCost: 600,
-      turnoverTotalSaving: 24000,
+      hiringAdminCost: 660,
+      turnoverTotalSaving: 26400,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -190,10 +190,10 @@ export default function ROICalculatorClient() {
       turnoverReduction: 0.2,
       defaultOvertime: 6,
       defaultTurnover: 18,
-      defaultEmployees: 60,
+      defaultEmployees: 80,
       defaultHourlyWage: 60,
-      defaultCycleWeeks: 8,
-      defaultRosteringDays: 8,
+      defaultCycleWeeks: 4,
+      defaultRosteringDays: 9,
       implementationDays: 5,
       // Saving categories
       hasManualTimeSaving: true,
@@ -203,14 +203,14 @@ export default function ROICalculatorClient() {
       // Staffing efficiency data
       avgSalary: 100000,
       avgFTE: 0.90,
-      inefficiency: 0.02,
-      baseCost: 1800,
-      baseSaving: 360,
-      overtimePenalty: 1.60,
-      overtimeCost: 864,
-      locumEfficiency: 1.50,
-      locumCost: 405,
-      totalSaving: 3069,
+      inefficiency: 0.015,
+      baseCost: 1350,
+      baseSaving: 270,
+      overtimePenalty: 1.20,
+      overtimeCost: 486,
+      locumEfficiency: 1.20,
+      locumCost: 243,
+      totalSaving: 2079,
       // Skill mix data
       lowestPay: 70690,
       highestPay: 121356,
@@ -224,9 +224,9 @@ export default function ROICalculatorClient() {
       // Turnover data
       turnoverCostPerRole: 40000,
       turnoverRate: 0.18,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 720,
-      turnoverTotalSaving: 36000,
+      turnoverImprovement: 0.15,
+      hiringAdminCost: 1080,
+      turnoverTotalSaving: 54000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -343,11 +343,11 @@ export default function ROICalculatorClient() {
       turnoverReduction: 0.2,
       defaultOvertime: 7,
       defaultTurnover: 12,
-      defaultEmployees: 25,
+      defaultEmployees: 30,
       defaultHourlyWage: 120,
       defaultCycleWeeks: 4,
       defaultRosteringDays: 3,
-      implementationDays: 3,
+      implementationDays: 4,
       // Saving categories
       hasManualTimeSaving: true,
       hasStaffingEfficiency: true,
@@ -377,9 +377,9 @@ export default function ROICalculatorClient() {
       // Turnover data
       turnoverCostPerRole: 50000,
       turnoverRate: 0.12,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 600,
-      turnoverTotalSaving: 60000,
+      turnoverImprovement: 0.05,
+      hiringAdminCost: 300,
+      turnoverTotalSaving: 30000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -455,10 +455,16 @@ export default function ROICalculatorClient() {
   const rostersPerYear = 52 / Math.max(1, rosterCycleWeeks);
   const defaultEmployees = currentIndustry.defaultEmployees || 50;
   
-  // Scale rostering days based on number of employees
+  // Scale rostering days based on number of employees AND roster cycle
   // For every multiple of default size, add 20% to rostering time
   const employeeMultiplier = Math.max(0, employees) / Math.max(1, defaultEmployees);
-  const scaledRosteringDays = Math.max(0.1, baseRosteringDays * (0.8 + 0.2 * employeeMultiplier));
+  
+  // Scale based on roster cycle: add 1 day for every 100% increase from default cycle
+  const defaultCycleWeeks = currentIndustry.defaultCycleWeeks || 4;
+  const cycleMultiplier = rosterCycleWeeks / defaultCycleWeeks;
+  const cycleAdjustment = cycleMultiplier > 1 ? Math.floor(cycleMultiplier - 1) : 0;
+  
+  const scaledRosteringDays = Math.max(0.1, (baseRosteringDays + cycleAdjustment) * (0.8 + 0.2 * employeeMultiplier));
   
   // Total hours spent rostering per year with scaled days
   const annualRosteringHours = scaledRosteringDays * hoursPerDay * rostersPerYear;
@@ -1281,8 +1287,8 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                       }}
                     >
                       <option value="nursing">Nursing</option>
-                      <option value="acute-specialities">Acute Specialities</option>
-                      <option value="medicine-specialities">Medicine Specialities</option>
+                      <option value="acute-specialities">Acute</option>
+                      <option value="medicine-specialities">Medicine</option>
                       <option value="allied-health">Allied Health</option>
                       <option value="aged-care">Aged Care</option>
                       <option value="midwives">Midwives</option>
@@ -1447,10 +1453,16 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         setRosteringDaysInput(val);
                         if (val !== '') {
                           const newValue = Math.max(0.1, Number(val));
-                          // Calculate base days from the scaled value
+                          // Calculate base days from the scaled value, accounting for both employee and cycle scaling
                           const employeeMultiplier = (employees || 0) / (currentIndustry.defaultEmployees || 50);
                           const scaleFactor = 0.8 + 0.2 * employeeMultiplier;
-                          setBaseRosteringDays(newValue / scaleFactor);
+                          
+                          // Remove cycle adjustment to get base days
+                          const defaultCycleWeeks = currentIndustry.defaultCycleWeeks || 4;
+                          const cycleMultiplier = rosterCycleWeeks / defaultCycleWeeks;
+                          const cycleAdjustment = cycleMultiplier > 1 ? Math.floor(cycleMultiplier - 1) : 0;
+                          
+                          setBaseRosteringDays((newValue / scaleFactor) - cycleAdjustment);
                         } else {
                           // Don't set to 0, keep current value when empty
                         }
