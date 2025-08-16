@@ -869,9 +869,21 @@ export default function ROICalculatorClient() {
           categoryNum++;
         }
 
+        // Footer at bottom of page 1
+        const pageHeight = doc.internal.pageSize.height;
+        doc.setFontSize(8);
+        doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.text(
+          "www.rosterlab.com",
+          20,
+          pageHeight - 15
+        );
 
-        // Add 'Some other benefits' section
-        yPos += 8;
+        // Start page 2
+        doc.addPage();
+        yPos = 20;
+
+        // Add 'Some other benefits' section on page 2
         doc.setFont("helvetica", "bold");
         doc.setFontSize(11);
         doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
@@ -882,7 +894,7 @@ export default function ROICalculatorClient() {
         doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         
         // Benefit 1: Smarter workforce planning
-        yPos += 8;
+        yPos += 10;
         doc.setFont("helvetica", "bold");
         doc.text("Smarter workforce planning", 20, yPos);
         doc.setFont("helvetica", "normal");
@@ -893,30 +905,7 @@ export default function ROICalculatorClient() {
           doc.text(line, 20, yPos + benefit1Offset);
           benefit1Offset += 4;
         });
-        
-        // Footer at bottom of page 1
-        const pageHeight = doc.internal.pageSize.height;
-        doc.setFontSize(8);
-        doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
-        doc.text(
-          "www.rosterlab.com",
-          20,
-          pageHeight - 15
-        );
-        
-        // Start page 2
-        doc.addPage();
-        yPos = 20;
-        
-        // Continue with remaining benefits on page 2
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(11);
-        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-        doc.text("Some other benefits (continued):", 20, yPos);
-        
-        doc.setFont("helvetica", "normal");
-        doc.setFontSize(9);
-        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        yPos += benefit1Offset + 4;
         
         // Benefit 2: Stronger employee engagement
         yPos += 8;
@@ -944,7 +933,18 @@ export default function ROICalculatorClient() {
           benefit3Offset += 4;
         });
         
-        yPos += benefit3Offset + 10;
+        // Add case study link after benefit 3
+        doc.setFont("helvetica", "italic");
+        doc.setFontSize(8);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.textWithLink(
+          "Case study: From 40% Short-Staffed to Fully Staffed: How RosterLab Helped Radiology Retain Staff",
+          20,
+          yPos + benefit3Offset + 4,
+          { url: "https://rosterlab.com/case-studies/from-40-short-staffed-to-fully-staffed-how-rosterlab-helped-radiology-retain-staff" }
+        );
+        
+        yPos += benefit3Offset + 14;
         
         // RosterLab Investment Section with accent background
         doc.setFillColor(255, 245, 230); // Light orange background
@@ -1583,9 +1583,9 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                             <span className="font-medium">Manual Time Spent Rostering</span>
                             <div className="relative group">
                               <HiInformationCircle className="w-4 h-4 text-blue-200 hover:text-white cursor-help" />
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                              <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
                                 We assume a roughly 80%-90% time saving on your type of roster
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                                <div className="absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-gray-900"></div>
                               </div>
                             </div>
                           </div>
@@ -1604,9 +1604,9 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                             <span className="font-medium">Optimised Staffing</span>
                             <div className="relative group">
                               <HiInformationCircle className="w-4 h-4 text-blue-200 hover:text-white cursor-help" />
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                              <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
                                 We estimate a 1-3% of better staffing depending on your speciality
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                                <div className="absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-gray-900"></div>
                               </div>
                             </div>
                           </div>
@@ -1637,9 +1637,9 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                             <span className="font-medium">Reduced Turnover Costs</span>
                             <div className="relative group">
                               <HiInformationCircle className="w-4 h-4 text-blue-200 hover:text-white cursor-help" />
-                              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                                We assume a 10% improvement in turnover rate through better work-life balance and fair scheduling
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                              <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 w-48 bg-gray-900 text-white text-xs rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+                                We assume a 3% - 10% improvement in turnover rate through better work-life balance and fair scheduling
+                                <div className="absolute right-full top-1/2 transform -translate-y-1/2 -mr-1 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-gray-900"></div>
                               </div>
                             </div>
                           </div>
