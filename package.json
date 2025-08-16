@@ -20,8 +20,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@amplitude/analytics-browser": "^2.22.0",
-    "@amplitude/plugin-session-replay-browser": "^1.22.2",
+    "@amplitude/analytics-browser": "^2.22.2",
+    "@amplitude/plugin-session-replay-browser": "^1.22.4",
     "@hookform/resolvers": "^5.1.1",
     "@portabletext/react": "^3.2.1",
     "@sanity/image-url": "^1.1.0",

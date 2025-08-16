@@ -267,7 +267,7 @@ const faqItems = [
   {
     question: "What is my ROI choosing RosterLab",
     answer:
-      "RosterLab delivers ROI by significantly reducing the time spent on rostering, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised rosters also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see a return on investment within the first few months, with some recovering costs in their very first roster.",
+      "RosterLab delivers ROI by cutting rostering time by up to 90% and boosting staff satisfaction and retention with fair, preference-aware schedules.<br><br>Our AI enforces fatigue and union rules to lower sick leave and burnout risk, while improving coverage and reducing costly last-minute changes.<br><br>Optimised rosters streamline onboarding for new teams, enabling scale without extra manual work. Many customers see ROI within first few months, and some after their very first roster.<br><br>Try our <a href='/resources/roi-calculator' class='text-blue-600 hover:underline'>ROI calculator</a> to see your potential savings.",
   },
   {
     question: "How is pricing calculated?",
