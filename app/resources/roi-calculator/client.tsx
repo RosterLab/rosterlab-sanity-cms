@@ -15,6 +15,7 @@ export default function ROICalculatorClient() {
   const [rosterCycleWeeks, setRosterCycleWeeks] = useState(6); // 6-week roster cycle default
   const [baseRosteringDays, setBaseRosteringDays] = useState(5); // Base days before scaling
   const [rosteringDaysInput, setRosteringDaysInput] = useState(""); // Track input value separately
+  const [manualRosteringDays, setManualRosteringDays] = useState<number | null>(null); // Manual override
   const [overtimePercentage, setOvertimePercentage] = useState(5);
   const [turnoverRate, setTurnoverRate] = useState(15);
   
@@ -69,9 +70,9 @@ export default function ROICalculatorClient() {
       nightSaving: 2792,
       skillMixTotalPerStaff: 5009,
       // Turnover data
-      turnoverCostPerRole: 15000,
+      turnoverCostPerRole: 30000,
       turnoverRate: 0.15,
-      turnoverImprovement: 0.10,
+      turnoverImprovement: 0.05,
       hiringAdminCost: 230,
       turnoverTotalSaving: 9180,
       // Leave balance data
@@ -120,11 +121,11 @@ export default function ROICalculatorClient() {
       nightSaving: 2645,
       skillMixTotalPerStaff: 4746,
       // Turnover data
-      turnoverCostPerRole: 55000,
+      turnoverCostPerRole: 80000,
       turnoverRate: 0.08,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 440,
-      turnoverTotalSaving: 22000,
+      turnoverImprovement: 0.05,
+      hiringAdminCost: 320,
+      turnoverTotalSaving: 16000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -142,7 +143,7 @@ export default function ROICalculatorClient() {
       defaultEmployees: 40,
       defaultHourlyWage: 130,
       defaultCycleWeeks: 12,
-      defaultRosteringDays: 6,
+      defaultRosteringDays: 8,
       implementationDays: 5,
       // Saving categories
       hasManualTimeSaving: true,
@@ -171,11 +172,11 @@ export default function ROICalculatorClient() {
       nightSaving: 3775,
       skillMixTotalPerStaff: 6773,
       // Turnover data
-      turnoverCostPerRole: 55000,
+      turnoverCostPerRole: 80000,
       turnoverRate: 0.12,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 660,
-      turnoverTotalSaving: 26400,
+      turnoverImprovement: 0.05,
+      hiringAdminCost: 480,
+      turnoverTotalSaving: 19200,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -203,14 +204,14 @@ export default function ROICalculatorClient() {
       // Staffing efficiency data
       avgSalary: 100000,
       avgFTE: 0.90,
-      inefficiency: 0.015,
-      baseCost: 1350,
-      baseSaving: 270,
+      inefficiency: 0.02,
+      baseCost: 1800,
+      baseSaving: 360,
       overtimePenalty: 1.20,
-      overtimeCost: 486,
+      overtimeCost: 648,
       locumEfficiency: 1.20,
-      locumCost: 243,
-      totalSaving: 2079,
+      locumCost: 324,
+      totalSaving: 2772,
       // Skill mix data
       lowestPay: 70690,
       highestPay: 121356,
@@ -224,9 +225,9 @@ export default function ROICalculatorClient() {
       // Turnover data
       turnoverCostPerRole: 40000,
       turnoverRate: 0.18,
-      turnoverImprovement: 0.15,
-      hiringAdminCost: 1080,
-      turnoverTotalSaving: 54000,
+      turnoverImprovement: 0.10,
+      hiringAdminCost: 720,
+      turnoverTotalSaving: 36000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -273,9 +274,9 @@ export default function ROICalculatorClient() {
       nightSaving: 472,
       skillMixTotalPerStaff: 922,
       // Turnover data
-      turnoverCostPerRole: 15000,
+      turnoverCostPerRole: 30000,
       turnoverRate: 0.15,
-      turnoverImprovement: 0.10,
+      turnoverImprovement: 0.05,
       hiringAdminCost: 225,
       turnoverTotalSaving: 11250,
       // Leave balance data
@@ -324,11 +325,11 @@ export default function ROICalculatorClient() {
       nightSaving: 472,
       skillMixTotalPerStaff: 922,
       // Turnover data
-      turnoverCostPerRole: 15000,
+      turnoverCostPerRole: 80000,
       turnoverRate: 0.14,
-      turnoverImprovement: 0.10,
-      hiringAdminCost: 210,
-      turnoverTotalSaving: 10500,
+      turnoverImprovement: 0.05,
+      hiringAdminCost: 560,
+      turnoverTotalSaving: 28000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -375,11 +376,11 @@ export default function ROICalculatorClient() {
       nightSaving: 1050,
       skillMixTotalPerStaff: 2050,
       // Turnover data
-      turnoverCostPerRole: 50000,
+      turnoverCostPerRole: 80000,
       turnoverRate: 0.12,
-      turnoverImprovement: 0.05,
-      hiringAdminCost: 300,
-      turnoverTotalSaving: 30000,
+      turnoverImprovement: 0.02,
+      hiringAdminCost: 192,
+      turnoverTotalSaving: 19200,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -426,11 +427,11 @@ export default function ROICalculatorClient() {
       nightSaving: 568,
       skillMixTotalPerStaff: 1110,
       // Turnover data
-      turnoverCostPerRole: 15000,
+      turnoverCostPerRole: 10000,
       turnoverRate: 0.25,
       turnoverImprovement: 0.10,
-      hiringAdminCost: 375,
-      turnoverTotalSaving: 22500,
+      hiringAdminCost: 250,
+      turnoverTotalSaving: 15000,
       // Leave balance data
       annualLeaveCost: 385,
       annualLeaveReduction: 0.30,
@@ -459,12 +460,18 @@ export default function ROICalculatorClient() {
   // For every multiple of default size, add 20% to rostering time
   const employeeMultiplier = Math.max(0, employees) / Math.max(1, defaultEmployees);
   
-  // Scale based on roster cycle: add 1 day for every 100% increase from default cycle
-  const defaultCycleWeeks = currentIndustry.defaultCycleWeeks || 4;
-  const cycleMultiplier = rosterCycleWeeks / defaultCycleWeeks;
-  const cycleAdjustment = cycleMultiplier > 1 ? Math.floor(cycleMultiplier - 1) : 0;
-  
-  const scaledRosteringDays = Math.max(0.1, (baseRosteringDays + cycleAdjustment) * (0.8 + 0.2 * employeeMultiplier));
+  // Use manual override if set, otherwise calculate scaled days
+  let scaledRosteringDays: number;
+  if (manualRosteringDays !== null) {
+    scaledRosteringDays = manualRosteringDays;
+  } else {
+    // Scale based on roster cycle: add 1 day for every 100% increase from default cycle
+    const defaultCycleWeeks = currentIndustry.defaultCycleWeeks || 4;
+    const cycleMultiplier = rosterCycleWeeks / defaultCycleWeeks;
+    const cycleAdjustment = cycleMultiplier > 1 ? Math.floor(cycleMultiplier - 1) : 0;
+    
+    scaledRosteringDays = Math.max(0.1, (baseRosteringDays + cycleAdjustment) * (0.8 + 0.2 * employeeMultiplier));
+  }
   
   // Total hours spent rostering per year with scaled days
   const annualRosteringHours = scaledRosteringDays * hoursPerDay * rostersPerYear;
@@ -580,6 +587,7 @@ export default function ROICalculatorClient() {
     setEmployeesInput("");
     setHourlyWageInput("");
     setAnnualSalaryInput("");
+    setManualRosteringDays(null); // Clear manual override
   }, [industry]);
 
   const generatePDF = useCallback(
@@ -692,23 +700,15 @@ export default function ROICalculatorClient() {
 
         // 1. MANUAL TIME SPENT ROSTERING
         if (currentIndustry.hasManualTimeSaving) {
-          // Savings category box
+          // Savings category box - increased height for more content
           doc.setFillColor(250, 250, 250);
-          doc.roundedRect(18, yPos - 4, 174, 26, 2, 2, 'F');
+          doc.roundedRect(18, yPos - 4, 174, 52, 2, 2, 'F');
           
           doc.setFontSize(11);
           doc.setFont("helvetica", "bold");
           doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
           doc.text(`${categoryNum}. Manual Time Spent Rostering`, 22, yPos + 2);
           
-          doc.setFont("helvetica", "normal");
-          doc.setFontSize(10);
-          doc.setTextColor(textColor[0], textColor[1], textColor[2]);
-          doc.text(
-            `90% reduction in manual rostering time`,
-            28,
-            yPos + 9
-          );
           doc.setFont("helvetica", "bold");
           doc.setTextColor(34, 139, 34);
           doc.text(
@@ -716,28 +716,45 @@ export default function ROICalculatorClient() {
             155,
             yPos + 2
           );
+          
           doc.setFont("helvetica", "normal");
           doc.setFontSize(9);
-          doc.setTextColor(100, 100, 100);
-          doc.text(
-            `Based on: ${scaledRosteringDays.toFixed(1)} days every ${rosterCycleWeeks} weeks`,
-            28,
-            yPos + 16
+          doc.setTextColor(80, 80, 80);
+          const manualTimeLines = doc.splitTextToSize(
+            "We save you time from the very first roster. As your rostering requirements become more settled, you'll see even greater time savings. Based on our experience across a wide range of healthcare rosters, we reduce the time spent creating and managing rosters by 80–90%, freeing you to focus on what matters most.",
+            155
           );
-          yPos += 30;
+          
+          let manualLineOffset = 11;
+          manualTimeLines.forEach((line: string) => {
+            doc.text(line, 28, yPos + manualLineOffset);
+            manualLineOffset += 4;
+          });
+          
+          // Add case study link
+          doc.setFont("helvetica", "italic");
+          doc.setFontSize(8);
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.textWithLink(
+            "Case study: Sydney Tertiary Hospital saves 300+ hours a year",
+            28,
+            yPos + manualLineOffset + 2,
+            { url: "https://rosterlab.com/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering" }
+          );
+          yPos += 56;
           categoryNum++;
         }
 
         // 2. OPTIMISED STAFFING EFFICIENCY
         if (currentIndustry.hasStaffingEfficiency) {
-          // Staffing efficiency box with different color
+          // Staffing efficiency box with different color - increased height
           doc.setFillColor(250, 250, 250);
-          doc.roundedRect(18, yPos - 4, 174, 38, 2, 2, 'F');
+          doc.roundedRect(18, yPos - 4, 174, 50, 2, 2, 'F');
           
           doc.setFontSize(11);
           doc.setFont("helvetica", "bold");
           doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-          doc.text(`${categoryNum}. Optimised Staffing Efficiency`, 22, yPos + 2);
+          doc.text(`${categoryNum}. Optimised Staffing`, 22, yPos + 2);
           
           doc.setFont("helvetica", "bold");
           doc.setTextColor(34, 139, 34);
@@ -752,17 +769,17 @@ export default function ROICalculatorClient() {
           doc.setTextColor(80, 80, 80);
           // Split the explanation text into multiple lines for better formatting
           const explanationLines = doc.splitTextToSize(
-            "By allocating shifts and tasks more optimally, we increase the overall efficiency of the roster, reducing unnecessary overtime and the need to call in locums.",
+            "By allocating shifts and tasks with precision, we maximize roster efficiency, cutting unnecessary overtime costs, reducing expensive locum usage, and ensuring optimal staffing for every shift. Our system safeguards continuity of care and maintains the right skill mix, preventing costly errors and service gaps. With real-time insights into staffing quality and coverage, you can identify inefficiencies immediately and take corrective action before they impact patient care or budgets.",
             155
           );
           
           let lineOffset = 11;
           explanationLines.forEach((line: string) => {
             doc.text(line, 28, yPos + lineOffset);
-            lineOffset += 5;
+            lineOffset += 4;
           });
           
-          yPos += 42;
+          yPos += 54;
           categoryNum++;
         }
 
@@ -838,7 +855,7 @@ export default function ROICalculatorClient() {
           doc.setTextColor(80, 80, 80);
           // Split the explanation text into multiple lines
           const turnoverExplanationLines = doc.splitTextToSize(
-            "For every turnover, it costs the business a decent amount to recruit, train, and the temporary efficiency decline. By increasing staff satisfaction, we reduce turnover for shift workers, let them focus more on what matters.",
+            "Reducing staff turnover delivers significant cost savings by avoiding the expenses of recruitment, onboarding, training, and the temporary drop in productivity that follows. By improving shift worker satisfaction, we not only retain valuable team members but also enable them to focus on delivering their best work.",
             155
           );
           
@@ -864,24 +881,70 @@ export default function ROICalculatorClient() {
         doc.setFontSize(9);
         doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         
-        // Add bullet point
-        doc.text(`•`, 20, yPos + 8);
-        
-        // Split the benefit text into multiple lines
-        const otherBenefitText = "In certain industries, a more streamlined rostering solution can enable more data-driven planning, helping managers allocate shifts more efficiently. This can also reduce the buildup of unused leave balances, leading to better workforce utilization and cost savings for the organization.";
-        const benefitLines = doc.splitTextToSize(otherBenefitText, 165);
-        
-        let benefitLineOffset = 8;
-        benefitLines.forEach((line: string) => {
-          doc.text(line, 28, yPos + benefitLineOffset);
-          benefitLineOffset += 5;
+        // Benefit 1: Smarter workforce planning
+        yPos += 8;
+        doc.setFont("helvetica", "bold");
+        doc.text("Smarter workforce planning", 20, yPos);
+        doc.setFont("helvetica", "normal");
+        const benefit1Text = "A streamlined rostering solution gives managers the insights and tools to allocate shifts strategically, align staffing with demand, and prevent the buildup of unused leave balances. This maximizes workforce utilization while delivering measurable cost savings.";
+        const benefit1Lines = doc.splitTextToSize(benefit1Text, 165);
+        let benefit1Offset = 6;
+        benefit1Lines.forEach((line: string) => {
+          doc.text(line, 20, yPos + benefit1Offset);
+          benefit1Offset += 4;
         });
         
-        yPos += benefitLineOffset + 10;
-
+        // Footer at bottom of page 1
+        const pageHeight = doc.internal.pageSize.height;
+        doc.setFontSize(8);
+        doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
+        doc.text(
+          "www.rosterlab.com",
+          20,
+          pageHeight - 15
+        );
+        
         // Start page 2
         doc.addPage();
         yPos = 20;
+        
+        // Continue with remaining benefits on page 2
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+        doc.text("Some other benefits (continued):", 20, yPos);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(textColor[0], textColor[1], textColor[2]);
+        
+        // Benefit 2: Stronger employee engagement
+        yPos += 8;
+        doc.setFont("helvetica", "bold");
+        doc.text("Stronger employee engagement", 20, yPos);
+        doc.setFont("helvetica", "normal");
+        const benefit2Text = "By creating fair, transparent schedules that respect personal preferences, staff feel valued and supported. This boosts morale, increases retention, and builds a more committed and collaborative team culture.";
+        const benefit2Lines = doc.splitTextToSize(benefit2Text, 165);
+        let benefit2Offset = 6;
+        benefit2Lines.forEach((line: string) => {
+          doc.text(line, 20, yPos + benefit2Offset);
+          benefit2Offset += 4;
+        });
+        yPos += benefit2Offset + 4;
+        
+        // Benefit 3: Sustained performance and wellbeing
+        doc.setFont("helvetica", "bold");
+        doc.text("Sustained performance and wellbeing", 20, yPos);
+        doc.setFont("helvetica", "normal");
+        const benefit3Text = "Optimized shift structures ensure adequate rest, balanced workloads, and compliance with fatigue-management best practices. This supports staff health, reduces absenteeism, and enables consistently high-quality performance.";
+        const benefit3Lines = doc.splitTextToSize(benefit3Text, 165);
+        let benefit3Offset = 6;
+        benefit3Lines.forEach((line: string) => {
+          doc.text(line, 20, yPos + benefit3Offset);
+          benefit3Offset += 4;
+        });
+        
+        yPos += benefit3Offset + 10;
         
         // RosterLab Investment Section with accent background
         doc.setFillColor(255, 245, 230); // Light orange background
@@ -1027,12 +1090,11 @@ export default function ROICalculatorClient() {
         doc.text("|", 115, yPos + 4);
         doc.text("www.rosterlab.com", 120, yPos + 4);
 
-        // Footer at bottom of page
-        const pageHeight = doc.internal.pageSize.height;
+        // Footer at bottom of page 2
         doc.setFontSize(8);
         doc.setTextColor(lightGray[0], lightGray[1], lightGray[2]);
         doc.text(
-          "This ROI calculation is based on RosterLab research and 2024-2025 industry data. Actual results may vary.",
+          "This ROI calculation is based on RosterLab research and industry data. Actual results may vary.",
           20,
           pageHeight - 15
         );
@@ -1225,35 +1287,37 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
     <>
       <div className="bg-gradient-to-b from-blue-50 to-white py-16">
         <Container>
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              ROI Calculator
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Discover how much time and money RosterLab can save your
-              organisation with intelligent scheduling automation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button
-                href="/pricing"
-                className="bg-blue-600 text-white hover:bg-blue-700"
-              >
-                View Pricing
-              </Button>
-              <Button
-                href="/book-a-demo"
-                className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
-              >
-                Book a Demo
-              </Button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                ROI Calculator
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Discover how much time and money RosterLab can save your
+                organisation with intelligent scheduling automation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  href="/pricing"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
+                >
+                  View Pricing
+                </Button>
+                <Button
+                  href="/book-a-demo"
+                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
+                >
+                  Book a Demo
+                </Button>
+              </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center lg:justify-end">
               <Image
                 src="/images/illustration/Coins-rafiki.svg"
                 alt="ROI Calculator illustration"
-                width={400}
-                height={300}
-                className="w-full max-w-md h-auto"
+                width={500}
+                height={375}
+                className="w-full max-w-lg h-auto"
               />
             </div>
           </div>
@@ -1311,6 +1375,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                           const numVal = Math.max(0, Number(val));
                           setEmployees(numVal);
                           setRosteringDaysInput(""); // Clear input when employees change
+                          setManualRosteringDays(null); // Clear manual override
                         } else {
                           setEmployees(0); // Set to 0 when empty to maintain calculations
                         }
@@ -1421,7 +1486,10 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                     </label>
                     <select
                       value={rosterCycleWeeks}
-                      onChange={(e) => setRosterCycleWeeks(Number(e.target.value))}
+                      onChange={(e) => {
+                        setRosterCycleWeeks(Number(e.target.value));
+                        setManualRosteringDays(null); // Clear manual override when cycle changes
+                      }}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       <option value={2}>2 weeks</option>
@@ -1453,30 +1521,20 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                         setRosteringDaysInput(val);
                         if (val !== '') {
                           const newValue = Math.max(0.1, Number(val));
-                          // Calculate base days from the scaled value, accounting for both employee and cycle scaling
-                          const employeeMultiplier = (employees || 0) / (currentIndustry.defaultEmployees || 50);
-                          const scaleFactor = 0.8 + 0.2 * employeeMultiplier;
-                          
-                          // Remove cycle adjustment to get base days
-                          const defaultCycleWeeks = currentIndustry.defaultCycleWeeks || 4;
-                          const cycleMultiplier = rosterCycleWeeks / defaultCycleWeeks;
-                          const cycleAdjustment = cycleMultiplier > 1 ? Math.floor(cycleMultiplier - 1) : 0;
-                          
-                          setBaseRosteringDays((newValue / scaleFactor) - cycleAdjustment);
+                          // Set manual override value
+                          setManualRosteringDays(newValue);
                         } else {
-                          // Don't set to 0, keep current value when empty
+                          // Clear manual override when empty
+                          setManualRosteringDays(null);
                         }
                       }}
                       onBlur={() => {
-                        // Clear the input to show calculated value when focus is lost
-                        if (rosteringDaysInput === '') {
-                          setBaseRosteringDays(currentIndustry.defaultRosteringDays || 1);
-                        } else {
+                        // Keep the manual value if user entered one
+                        if (rosteringDaysInput !== '') {
                           const newValue = Math.max(0.1, Number(rosteringDaysInput));
-                          const employeeMultiplier = (employees || 0) / (currentIndustry.defaultEmployees || 50);
-                          const scaleFactor = 0.8 + 0.2 * employeeMultiplier;
-                          setBaseRosteringDays(newValue / scaleFactor);
+                          setManualRosteringDays(newValue);
                         }
+                        // Clear the input to show the value
                         setRosteringDaysInput("");
                       }}
                       onFocus={(e) => {
