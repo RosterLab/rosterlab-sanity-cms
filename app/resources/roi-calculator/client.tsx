@@ -865,7 +865,18 @@ export default function ROICalculatorClient() {
             turnoverLineOffset += 4;
           });
           
-          yPos += 42;
+          // Add case study link after turnover explanation
+          doc.setFont("helvetica", "italic");
+          doc.setFontSize(8);
+          doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+          doc.textWithLink(
+            "Case study: From 40% Short-Staffed to Fully Staffed: How RosterLab Helped Radiology Retain Staff",
+            28,
+            yPos + turnoverLineOffset + 2,
+            { url: "https://rosterlab.com/case-studies/from-40-short-staffed-to-fully-staffed-how-rosterlab-helped-radiology-retain-staff" }
+          );
+          
+          yPos += turnoverLineOffset + 10;
           categoryNum++;
         }
 
@@ -919,7 +930,7 @@ export default function ROICalculatorClient() {
           doc.text(line, 20, yPos + benefit2Offset);
           benefit2Offset += 4;
         });
-        yPos += benefit2Offset + 4;
+        yPos += benefit2Offset + 12;
         
         // Benefit 3: Sustained performance and wellbeing
         doc.setFont("helvetica", "bold");
@@ -933,18 +944,7 @@ export default function ROICalculatorClient() {
           benefit3Offset += 4;
         });
         
-        // Add case study link after benefit 3
-        doc.setFont("helvetica", "italic");
-        doc.setFontSize(8);
-        doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-        doc.textWithLink(
-          "Case study: From 40% Short-Staffed to Fully Staffed: How RosterLab Helped Radiology Retain Staff",
-          20,
-          yPos + benefit3Offset + 4,
-          { url: "https://rosterlab.com/case-studies/from-40-short-staffed-to-fully-staffed-how-rosterlab-helped-radiology-retain-staff" }
-        );
-        
-        yPos += benefit3Offset + 14;
+        yPos += benefit3Offset + 10;
         
         // RosterLab Investment Section with accent background
         doc.setFillColor(255, 245, 230); // Light orange background
