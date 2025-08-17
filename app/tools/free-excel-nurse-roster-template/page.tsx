@@ -6,10 +6,10 @@ import ExcelTemplateClient from './ExcelTemplateClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Free Excel Nurse Roster Template | RosterLab',
+  title: 'Free Excel Nurse Roster Template - RosterLab',
   description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
   openGraph: {
-    title: 'Free Excel Nurse Roster Template | RosterLab',
+    title: 'Free Excel Nurse Roster Template - RosterLab',
     description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Excel Nurse Roster Template | RosterLab',
+    title: 'Free Excel Nurse Roster Template - RosterLab',
     description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
     images: ['/images/excel/excel-preview-new.png']
   }
