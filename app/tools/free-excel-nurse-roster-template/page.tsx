@@ -1,300 +1,57 @@
-'use client'
+import { getClient } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
+import { draftMode } from 'next/headers'
+import { validatedToken } from '@/sanity/lib/token'
+import ExcelTemplateClient from './ExcelTemplateClient'
+import { Metadata } from 'next'
 
-import { useState, useEffect, useCallback } from 'react'
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import { HiCheck, HiDownload, HiTable, HiClipboardList, HiCalendar } from 'react-icons/hi'
-import { trackButtonClick } from '@/components/analytics/Amplitude'
-
-export default function FreeExcelNurseRosterTemplatePage() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isLoadingForm, setIsLoadingForm] = useState(true)
-
-  const downloadExcelFile = useCallback(() => {
-    // Track download
-    trackButtonClick('Download Excel Template', 'Excel Template Page', {
-      form_type: 'excel_download',
-      download_type: 'automatic'
-    })
-    
-    // Create a temporary link to download the file
-    const link = document.createElement('a')
-    link.href = '/images/excel/RosterLab Excel Template for Nursing.xlsx'
-    link.download = 'RosterLab Excel Template for Nursing.xlsx'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }, [])
-
-  // Load HubSpot form on component mount
-  useEffect(() => {
-    // Check if HubSpot is already loaded
-    if (window.hbspt) {
-      window.hbspt.forms.create({
-        portalId: "20646833",
-        formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
-        region: "na1",
-        target: "#hubspot-form-container",
-        onFormSubmitted: () => {
-          // Download the Excel file
-          downloadExcelFile()
-          
-          // Update UI to show success
-          setIsSubmitted(true)
-        }
-      })
-      setIsLoadingForm(false)
-      return
-    }
-    
-    // Create script element
-    const script = document.createElement('script')
-    script.src = 'https://js.hsforms.net/forms/embed/v2.js'
-    script.charset = 'utf-8'
-    script.type = 'text/javascript'
-    
-    // When script loads, create the form
-    script.onload = () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          portalId: "20646833",
-          formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
-          region: "na1",
-          target: "#hubspot-form-container",
-          onFormSubmitted: () => {
-            // Download the Excel file
-            downloadExcelFile()
-            
-            // Update UI to show success
-            setIsSubmitted(true)
-          }
-        })
-        setIsLoadingForm(false)
+export const metadata: Metadata = {
+  title: 'Free Excel Nurse Roster Template | RosterLab',
+  description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
+  openGraph: {
+    title: 'Free Excel Nurse Roster Template | RosterLab',
+    description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
+    images: [
+      {
+        url: '/images/excel/excel-preview-new.png',
+        width: 1200,
+        height: 600,
+        alt: 'Excel nurse roster template preview'
       }
-    }
-    
-    // Append script to body
-    document.body.appendChild(script)
-    
-    // Cleanup
-    return () => {
-      // Remove script if component unmounts
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
-    }
-  }, [downloadExcelFile])
+    ],
+    type: 'website',
+    url: '/tools/free-excel-nurse-roster-template'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Excel Nurse Roster Template | RosterLab',
+    description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
+    images: ['/images/excel/excel-preview-new.png']
+  }
+}
 
-  const features = [
-    {
-      icon: HiCalendar,
-      title: 'Monthly & Weekly Views',
-      description: 'Pre-formatted templates for both monthly and weekly roster planning'
-    },
-    {
-      icon: HiTable,
-      title: 'Shift Pattern Templates',
-      description: 'Common nursing shift patterns including AM, PM, Night, and custom shifts'
-    },
-    {
-      icon: HiClipboardList,
-      title: 'Staff Tracking',
-      description: 'Track hours, overtime, leave balances, and skill mix requirements'
-    }
-  ]
+// Query for recommended blog posts
+const recommendedPostsQuery = groq`
+  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+    (slug.current in ["excel-series", 
+                      "roster-more-effectively-with-excel-ep2-sleep-days-after-night-shifts", 
+                      "should-your-next-staff-roster-be-built-with-ai"])] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{name}
+  }
+`
 
-  const benefits = [
-    'Reduce roster creation time by 50%',
-    'Ensure fair shift distribution',
-    'Track compliance with staffing ratios',
-    'Monitor overtime and costs',
-    'Plan leave coverage effectively',
-    'Print-ready formatting'
-  ]
-
-  return (
-    <SiteLayout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-        {/* Hero Section */}
-        <div className="py-20">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="bg-green-100 p-2 rounded-lg">
-                    <HiDownload className="w-6 h-6 text-green-600" />
-                  </div>
-                  <span className="text-green-600 font-semibold">FREE DOWNLOAD</span>
-                </div>
-                
-                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free Excel Nurse Roster Template
-                </h1>
-                
-                <p className="text-xl text-gray-600 mb-8">
-                  Stop struggling with roster creation. Download our professionally designed 
-                  Excel template specifically built for nursing departments and healthcare teams.
-                </p>
-
-                <div className="space-y-4 mb-8">
-                  {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-start">
-                      <HiCheck className="w-6 h-6 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">{benefit}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-blue-800">
-                    <strong>100% Free</strong> - No credit card required. Just fill out the form and download instantly.
-                  </p>
-                </div>
-              </div>
-
-              {/* Form Section */}
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                {!isSubmitted ? (
-                  <>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                      Get Your Free Template
-                    </h2>
-                    <p className="text-gray-600 mb-6">
-                      Fill out the form below to download your Excel roster template
-                    </p>
-
-                    {/* HubSpot Form Container */}
-                    <div 
-                      id="hubspot-form-container"
-                      className="mb-4"
-                    >
-                      {isLoadingForm && (
-                        <div className="text-center py-8">
-                          <p className="text-gray-600">Loading form...</p>
-                        </div>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="text-center py-8">
-                    <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <HiCheck className="w-8 h-8 text-green-600" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      Thank You!
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      Your download should start automatically. If not, click the button below.
-                    </p>
-                    <button
-                      className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                      onClick={() => {
-                        downloadExcelFile()
-                        trackButtonClick('Manual Download', 'Excel Template Page', {
-                          download_type: 'manual'
-                        })
-                      }}
-                    >
-                      <HiDownload className="w-5 h-5 mr-2" />
-                      Download Template
-                    </button>
-
-                    <div className="mt-8 pt-8 border-t border-gray-200">
-                      <p className="text-gray-600 mb-4">
-                        Ready to automate your rostering completely?
-                      </p>
-                      <Button
-                        href="/book-a-demo"
-                        variant="outline"
-                        className="border-blue-600 text-blue-600 hover:bg-blue-50"
-                      >
-                        See RosterLab in Action
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* Features Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                What's Included in the Template
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Everything you need to create professional nurse rosters in Excel
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <div key={index} className="bg-gray-50 rounded-xl p-6">
-                  <div className="bg-white w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 bg-blue-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-                Template Preview
-              </h3>
-              <div className="bg-white rounded-lg shadow-lg p-4 overflow-hidden">
-                <Image
-                  src="/images/excel/preview-excel.png"
-                  alt="Excel nurse roster template preview"
-                  width={1200}
-                  height={600}
-                  className="w-full h-auto rounded transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </div>
-
-          </Container>
-        </div>
-
-        {/* CTA Section */}
-        <div className="py-20">
-          <Container>
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-12 text-center text-white">
-              <h2 className="text-3xl font-bold mb-4">
-                Still Creating Rosters Manually?
-              </h2>
-              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                While our Excel template saves time, RosterLab's AI can create optimized rosters 
-                in minutes, not hours. See how much time you could save.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-white text-blue-600 hover:bg-gray-100"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/solutions/ai-staff-scheduling"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600"
-                >
-                  Learn About AI Rostering
-                </Button>
-              </div>
-            </div>
-          </Container>
-        </div>
-      </div>
-    </SiteLayout>
-  )
+export default async function FreeExcelNurseRosterTemplatePage() {
+  const { isEnabled } = await draftMode()
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
+  
+  // Fetch the recommended blog posts
+  const recommendedPosts = await client.fetch(recommendedPostsQuery)
+  
+  return <ExcelTemplateClient recommendedPosts={recommendedPosts} />
 }
