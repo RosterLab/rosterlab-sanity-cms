@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       }
     ],
     type: 'website',
-    url: '/tools/free-staff-roster-template-excel'
+    url: '/templates/free-staff-roster-template-excel'
   },
   twitter: {
     card: 'summary_large_image',
