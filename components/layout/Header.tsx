@@ -61,6 +61,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: 'Newsroom', link: '/newsroom' },
         { title: 'Schedge', link: '/schedge' },
         { title: 'Personality Test', link: '/tools/staff-scheduling-personality-quiz' },
+        { title: 'Free Excel Template', link: '/templates/free-staff-roster-template-excel' },
       ]
     },
     { title: 'About Us', link: '/about' },
