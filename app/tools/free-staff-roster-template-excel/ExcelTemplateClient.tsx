@@ -57,8 +57,8 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
     
     // Create a temporary link to download the file
     const link = document.createElement('a')
-    link.href = '/images/excel/RosterLab-Excel Template-for-Nursing.xlsx'
-    link.download = 'RosterLab-Excel Template-for-Nursing.xlsx'
+    link.href = '/images/excel/RosterLab-Free-Excel-Template.xlsx'
+    link.download = 'RosterLab-Free-Excel-Template.xlsx'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -126,25 +126,25 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
   const features = [
     {
       icon: HiTable,
-      title: 'Pre-formatted monthly roster grid',
-      description: 'The dates and days of the week are already laid out for the month, ready for assigning shifts.'
+      title: 'Pre-formatted 6-week roster',
+      description: 'The dates and days of the week are already laid out for 6 weeks, ready for assigning shifts.'
     },
     {
       icon: HiUserGroup,
       title: 'Staff information section',
-      description: 'Space to record each nurse\'s surname, initials, skill level, and FTE (contracted hours).'
+      description: 'Space to record each employee\'s name, initials, skill level, and FTE (contracted hours).'
     },
     {
       icon: HiClipboardList,
       title: 'Shift allocation and totals',
-      description: 'Columns to assign Morning (M), Afternoon (A), or Night (N8) shifts, with automatic totals at the end for tracking workload.'
+      description: 'Cells to assign different shifts, with automatic totals at the end for tracking workload.'
     }
   ]
 
   const benefits = [
     'Distribute shifts across staff',
-    'Easily review the skill balance on each day',
-    'Track FTE against contracts',
+    'Easily review the staff balance on each day',
+    'Track FTE against contract hours',
     'Edit and personalise to meet your requirements',
     'Printer friendly and easy to use'
   ]
@@ -165,12 +165,12 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 </div>
                 
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free Excel Nurse Roster Template
+                  Free Staff Roster Template (Excel)
                 </h1>
                 
                 <p className="text-xl text-gray-600 mb-8">
                   Stop struggling with roster creation. Download our professionally designed 
-                  Excel template specifically built for nursing departments and healthcare teams.
+                  Excel template specifically built for shift work scheduling.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -263,7 +263,7 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 What's Included in the Template
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Everything you need to create professional nurse rosters in Excel
+                Everything you need to create professional staff rosters in Excel
               </p>
             </div>
 
@@ -290,8 +290,8 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
               <div className="bg-white rounded-lg shadow-lg p-8 overflow-hidden">
                 <div className="relative overflow-hidden rounded">
                   <Image
-                    src="/images/excel/excel-preview-new.png"
-                    alt="Excel nurse roster template preview"
+                    src="/images/excel/excel-preview-new-1.png"
+                    alt="Excel roster template preview"
                     width={1200}
                     height={600}
                     className="w-full h-auto transition-transform duration-300 hover:scale-105"

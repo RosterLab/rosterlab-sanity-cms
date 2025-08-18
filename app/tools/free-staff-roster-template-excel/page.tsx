@@ -6,27 +6,27 @@ import ExcelTemplateClient from './ExcelTemplateClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Free Excel Nurse Roster Template - RosterLab',
-  description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
+  title: 'Free Staff Roster Template Excel - RosterLab',
+  description: 'Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.',
   openGraph: {
-    title: 'Free Excel Nurse Roster Template - RosterLab',
-    description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
+    title: 'Free Staff Roster Template Excel - RosterLab',
+    description: 'Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.',
     images: [
       {
-        url: '/images/excel/excel-preview-new.png',
+        url: '/images/og images/Excel.png',
         width: 1200,
         height: 600,
-        alt: 'Excel nurse roster template preview'
+        alt: 'Excel roster template preview'
       }
     ],
     type: 'website',
-    url: '/tools/free-excel-nurse-roster-template'
+    url: '/tools/free-staff-roster-template-excel'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Excel Nurse Roster Template - RosterLab',
-    description: 'Download our free Excel nurse roster template. Pre-formatted monthly roster grid with shift allocation, staff tracking, and automatic totals.',
-    images: ['/images/excel/excel-preview-new.png']
+    title: 'Free Staff Roster Template Excel - RosterLab',
+    description: 'Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.',
+    images: ['/images/og images/Excel.png']
   }
 }
 
@@ -46,7 +46,7 @@ const recommendedPostsQuery = groq`
   }
 `
 
-export default async function FreeExcelNurseRosterTemplatePage() {
+export default async function FreeStaffRosterTemplateExcelPage() {
   const { isEnabled } = await draftMode()
   const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
   
