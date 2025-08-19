@@ -353,8 +353,14 @@ export default function AgedCarePage() {
                       Continuity of Care
                     </h3>
                     <p className="text-gray-600">
-                      Incorporate rules into rosters to ensure continuity of
-                      care. Distribute shifts fairly and safely based on skill
+                      Incorporate rules into rosters to ensure{" "}
+                      <Link
+                        href="https://rosterlab.com/blog/improving-continuity-of-care-in-healthcare"
+                        className="text-teal-600 hover:text-teal-700 underline"
+                      >
+                        continuity of care
+                      </Link>
+                      . Distribute shifts fairly and safely based on skill
                       sets to maximise staff engagement.
                     </p>
                   </div>
