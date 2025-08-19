@@ -55,6 +55,13 @@ function findPages(dir: string, basePath: string = ''): string[] {
       const stat = statSync(filePath)
       
       if (stat.isDirectory()) {
+        // Handle route groups (folders with parentheses)
+        if (file.startsWith('(') && file.endsWith(')')) {
+          // Route groups don't affect the URL path
+          pages.push(...findPages(filePath, basePath))
+          continue
+        }
+        
         // Skip excluded directories
         const currentPath = basePath + '/' + file
         if (excludedPaths.some(excluded => currentPath.startsWith(excluded))) {
