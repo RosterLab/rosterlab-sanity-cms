@@ -5,8 +5,8 @@ export const metadata = {
   title: 'ROI Calculator - RosterLab',
   description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
   openGraph: {
     title: 'ROI Calculator - RosterLab',
