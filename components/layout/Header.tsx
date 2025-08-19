@@ -484,6 +484,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     Discover your scheduling style
                                   </div>
                                 </Link>
+                                <Link
+                                  href="/templates/free-staff-roster-template-excel"
+                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                    Free Excel Template
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Download our roster template
+                                  </div>
+                                </Link>
                               </div>
                             </div>
                           </div>
