@@ -2,17 +2,17 @@ import ROICalculatorClient from './client'
 import SiteLayout from '@/components/layout/SiteLayout'
 
 export const metadata = {
-  title: 'ROI Calculator - Optimise your time and money with RosterLab',
+  title: 'ROI Calculator - RosterLab',
   description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: 'ROI Calculator - Optimise your time and money with RosterLab',
+    title: 'ROI Calculator - RosterLab',
     description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
     type: 'website',
-    url: 'https://rosterlab.com/resources/roi-calculator',
+    url: 'https://rosterlab.com/tools/roi-calculator',
     images: [
       {
         url: '/images/og images/ROICalc.png',
@@ -23,7 +23,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ROI Calculator - Optimise your time and money with RosterLab',
+    title: 'ROI Calculator - RosterLab',
     description: 'Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
     images: ['/images/og images/ROICalc.png'],
   },

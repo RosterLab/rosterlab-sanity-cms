@@ -1557,15 +1557,15 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 rounded-lg p-6">
-                      <h3 className="text-3xl font-bold mb-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-white/10 rounded-lg p-6 order-2 sm:order-1">
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-2">
                         ${(totalAnnualSavings && !isNaN(totalAnnualSavings)) ? Math.round(totalAnnualSavings).toLocaleString() : '0'}
                       </h3>
                       <p className="text-blue-100">Total Annual Savings</p>
                     </div>
-                    <div className="bg-white/10 rounded-lg p-6">
-                      <h3 className="text-3xl font-bold mb-2">{roiMultiple}x</h3>
+                    <div className="bg-white/10 rounded-lg p-6 order-1 sm:order-2">
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-2">{roiMultiple}x</h3>
                       <p className="text-blue-100">Return on Investment</p>
                     </div>
                   </div>

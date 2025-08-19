@@ -75,7 +75,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
         { title: "Schedge", link: "/schedge" },
-        { title: "ROI Calculator", link: "/resources/roi-calculator" },
+        { title: "ROI Calculator", link: "/tools/roi-calculator" },
         { title: "Personality Test", link: "/tools/staff-scheduling-personality-quiz" },
       ],
     },
@@ -450,7 +450,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </h3>
                               <div className="space-y-1">
                                 <Link
-                                  href="/resources/roi-calculator"
+                                  href="/tools/roi-calculator"
                                   className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
                                 >
                                   <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
