@@ -9,10 +9,6 @@ export const metadata = {
   title: "Employee Leave Requests - RosterLab",
   description:
     "Give employees an easy and streamline way to request leave. Staff can submit a range of leave types via the employee mobile app to streamline leave management.",
-  robots: {
-    index: false,
-    follow: false,
-  },
   openGraph: {
     title: "Employee Leave Request Tracking - RosterLab",
     description:
