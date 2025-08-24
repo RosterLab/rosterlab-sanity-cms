@@ -8,6 +8,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Free Staff Roster Template Excel - RosterLab',
   description: 'Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.',
+  alternates: {
+    canonical: 'https://rosterlab.com/templates/free-staff-roster-template-excel',
+  },
   openGraph: {
     title: 'Free Staff Roster Template Excel - RosterLab',
     description: 'Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.',

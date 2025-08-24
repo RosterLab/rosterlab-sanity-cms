@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { HiCheck, HiDownload, HiTable, HiClipboardList, HiCalendar, HiUserGroup } from 'react-icons/hi'
 import { trackButtonClick } from '@/components/analytics/Amplitude'
 import { urlFor } from '@/sanity/lib/client'
+import FAQAccordion from '@/components/ui/FAQAccordion'
 
 // Add HubSpot type declaration
 declare global {
@@ -147,6 +148,21 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
     'Track FTE against contract hours',
     'Edit and personalise to meet your requirements',
     'Printer friendly and easy to use'
+  ]
+
+  const faqItems = [
+    {
+      question: "Who is this staff scheduling template for?",
+      answer: "This free Excel staff roster template is designed for managers, staff schedulers and team leaders who need a simple way to organise staff shifts. It's best suited for workplaces that want a straightforward, no-cost solution without needing to adopt new software."
+    },
+    {
+      question: "Should I use an Excel spreadsheet to roster my staff?",
+      answer: "Excel can be a quick and familiar tool for scheduling if you have a small team and relatively simple shift patterns. However, it can become time-consuming and error-prone as your workforce grows, especially when handling last-minute changes, compliance requirements, or multiple locations."
+    },
+    {
+      question: "What's the difference between your Excel spreadsheet and free digital scheduling?",
+      answer: "The Excel template is static - you download it and update manually. Our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:text-blue-700 underline'>free digital scheduling tool</a>, on the other hand, allows you to build and share rosters online, make real-time updates, and automatically notify staff of changes. Digital scheduling reduces admin time, helps prevent double-ups, and ensures your team always has the latest version."
+    }
   ]
 
   return (
@@ -367,8 +383,23 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
           </Container>
         </section>
 
+        {/* FAQ Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-center text-gray-600 mb-12 text-lg">
+                Everything you need to know about our Excel roster template
+              </p>
+              <FAQAccordion items={faqItems} />
+            </div>
+          </Container>
+        </div>
+
         {/* CTA Section */}
-        <div className="py-20">
+        <div className="py-20 bg-white">
           <Container>
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-12 text-center text-white">
               <h2 className="text-3xl font-bold mb-4">
