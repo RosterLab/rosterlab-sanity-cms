@@ -54,7 +54,7 @@ const faqItems = [
   {
     question: "Should I upgrade to AI rostering?",
     answer:
-      "Yes, absolutely! While our free product provides a convenient platform to manage your rosters digitally, if you have complex rostering needs, automatic rostering can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
+      "Yes, absolutely! While our free product provides a convenient platform to manage your rosters digitally, if you have complex rostering needs, <a href='/feature/auto-roster-generation' style='color: #2563eb; text-decoration: underline;'>automatic rostering</a> can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
   },
   {
     question: "How do I install the employee mobile app?",

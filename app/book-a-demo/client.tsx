@@ -119,6 +119,24 @@ export default function BookADemoClient() {
             </p>
           </div>
 
+          {/* HubSpot Meeting Scheduler Embed */}
+          {/* Start of Meetings Embed Script */}
+          <div 
+            ref={meetingsContainerRef}
+            className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative mb-12" 
+            data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"
+          >
+            {!isHubSpotLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <p className="text-gray-600">Loading calendar...</p>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* End of Meetings Embed Script */}
+
           {/* Benefits Banner */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6 text-center">
@@ -142,34 +160,6 @@ export default function BookADemoClient() {
               <h3 className="font-semibold text-purple-900 mb-1">Happier Teams</h3>
               <p className="text-purple-700 text-sm">Fair schedules that respect preferences</p>
             </div>
-          </div>
-
-          {/* HubSpot Meeting Scheduler */}
-          <div className="bg-white rounded-lg shadow-xl p-8 mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Speak to a rostering expert
-            </h2>
-            <p className="text-gray-600 mb-6 text-center">
-              Choose a time that works best for you. Our product experts will show you how RosterLab can solve your specific scheduling challenges.
-            </p>
-            
-            {/* HubSpot Meeting Scheduler Embed */}
-            {/* Start of Meetings Embed Script */}
-            <div 
-              ref={meetingsContainerRef}
-              className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative" 
-              data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"
-            >
-              {!isHubSpotLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading calendar...</p>
-                  </div>
-                </div>
-              )}
-            </div>
-            {/* End of Meetings Embed Script */}
           </div>
 
           {/* Demo Information Grid - Hidden on mobile/tablet */}

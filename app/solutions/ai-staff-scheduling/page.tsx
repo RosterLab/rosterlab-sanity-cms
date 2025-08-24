@@ -327,79 +327,103 @@ export default function AISchedulesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="block">
+            <Link href="https://rosterlab.com/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       AI-Optimised Schedules
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-3">
                       Assigns the right staff with the right skills to each
                       shift, balancing preferences, availability, and compliance
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                      Learn More
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
-            <Link href="/feature/shift-swaps" className="block">
+            </Link>
+            <Link href="https://rosterlab.com/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiSwitchHorizontal className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Smart Shift Swaps
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-3">
                       Enable staff to easily swap shifts with AI ensuring
                       coverage and compliance requirements are maintained
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                      Learn More
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
             </Link>
-            <div className="block">
+            <Link href="https://rosterlab.com/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiShieldCheck className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Automated Compliance
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-3">
                       AI ensures every schedule meets regulatory requirements
                       and union rules without manual checking
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                      Learn More
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="block">
+            </Link>
+            <Link href="https://rosterlab.com/feature/re-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Dynamic Re-Roster
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-3">
                       Adapt to changes with ease, ensuring your department
                       remains fully operational and responsive to any unexpected
                       shifts
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                      Learn More
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </div>

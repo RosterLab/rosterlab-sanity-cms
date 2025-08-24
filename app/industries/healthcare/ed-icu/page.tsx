@@ -411,10 +411,16 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Smart Shift Swaps
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval
                   workflows.
                 </p>
+                <span className="text-teal-600 font-medium inline-flex items-center">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
               </div>
             </Link>
 
@@ -442,10 +448,16 @@ export default function ICUEDPage() {
                   Staff can view rosters, open shifts, and swap shifts from any
                   device.
                 </p>
+                <span className="text-cyan-600 font-medium inline-flex items-center">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
               </div>
             </Link>
 
-            <Link href="/solutions/ai-staff-scheduling" className="block">
+            <Link href="/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -469,10 +481,16 @@ export default function ICUEDPage() {
                   Build fatigue management rules to prevent staff burnout with
                   ease.
                 </p>
+                <span className="text-blue-600 font-medium inline-flex items-center">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
               </div>
             </Link>
 
-            <div className="block">
+            <Link href="/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -492,12 +510,18 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fair shift allocation
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Equitably distribute night shifts, weekends, and on-call
                   duties automatically.
                 </p>
+                <span className="text-indigo-600 font-medium inline-flex items-center">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>
