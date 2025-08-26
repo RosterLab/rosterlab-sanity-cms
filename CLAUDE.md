@@ -99,3 +99,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Uses `secretlint` with recommended rules to detect API keys, tokens, passwords, and connection strings
 - Configured via `.secretlintrc.json` and runs automatically on staged files
 - Pre-commit hook also runs ESLint and Prettier for code quality
+
+### A/B Testing with Amplitude Experiments
+
+- **Server-side only** - Use `getVariant()` from `lib/amplitude/experiment-server.ts` in Server Components
+- **Add new tests** - Add flag to `ExperimentFlags` in `lib/amplitude/experiment-utils.ts`, then use `getVariant()` in your Server Component
+- **Device id** - Device ID is grabbed from cookie if exists otherwise new one is created.
