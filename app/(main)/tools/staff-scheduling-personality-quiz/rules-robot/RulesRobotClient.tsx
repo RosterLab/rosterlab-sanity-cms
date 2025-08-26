@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { urlFor } from '@/sanity/lib/client'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 
 // Add HubSpot type declaration
 declare global {
@@ -650,6 +651,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
 
   return (
     <div className="bg-white relative">
+      <HubSpotFormListener />
       {/* Hero Section */}
       <section className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

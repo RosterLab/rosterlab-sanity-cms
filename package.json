@@ -17,6 +17,7 @@
     "sanity:reset": "tsx sanity/scripts/reset.ts",
     "sanity:import-images": "tsx sanity/scripts/import-images.ts",
     "sanity:quick-import": "tsx sanity/scripts/quick-image-import.ts",
+    "add-hubspot-listener": "node scripts/add-hubspot-form-listener.js",
     "prepare": "husky"
   },
   "dependencies": {

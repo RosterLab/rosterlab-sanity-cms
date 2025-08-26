@@ -12,6 +12,7 @@ import { analytics } from '@/components/analytics/Amplitude';
 export const CONVERSION_EVENTS = {
   DEMO_BOOKING_COMPLETE: 'demo_booking_complete_amplitude',
   FORM_SUBMITTED: 'form_submitted',
+  FORM_SUBMISSION: 'form_submission',
   TRIAL_STARTED: 'trial_started',
   CONTACT_FORM_SUBMITTED: 'contact_form_submitted',
 } as const;
@@ -132,4 +133,69 @@ export const trackContactFormSubmitted = (
     ...properties,
     timestamp: new Date().toISOString(),
   });
+};
+
+/**
+ * Track HubSpot form submission
+ * 
+ * @param properties - Form submission event properties
+ * 
+ * @example
+ * trackFormSubmission({
+ *   form_guid: 'abc123',
+ *   form_name: 'Contact Form',
+ *   user_email: 'user@example.com'
+ * });
+ */
+export const trackFormSubmission = (
+  properties: {
+    form_guid: string;
+    form_name?: string;
+    page_url?: string;
+    page_name?: string;
+    portal_id?: string;
+    redirect_url?: string;
+    page_location?: string;
+    user_email?: string;
+    user_name?: string;
+    company_name?: string;
+    phone_number?: string;
+    submission_data?: Record<string, any>;
+  }
+) => {
+  // Track the event
+  analytics.track(CONVERSION_EVENTS.FORM_SUBMISSION, {
+    ...properties,
+    timestamp: new Date().toISOString(),
+    source: 'hubspot_form',
+  });
+
+  // Set user properties if email is provided
+  if (properties.user_email) {
+    const userProperties = {
+      email: properties.user_email,
+      name: properties.user_name,
+      company: properties.company_name,
+      phone: properties.phone_number,
+    };
+    
+    // Remove undefined values
+    const cleanUserProps = Object.fromEntries(
+      Object.entries(userProperties).filter(([, v]) => v !== undefined)
+    );
+    
+    if (Object.keys(cleanUserProps).length > 0) {
+      analytics.setUserProperties(cleanUserProps);
+      analytics.identify(properties.user_email, cleanUserProps);
+    }
+  }
+
+  // Also push to dataLayer for GTM (dual tracking)
+  if (typeof window !== 'undefined' && (window as any).dataLayer) {
+    (window as any).dataLayer.push({
+      event: 'hubspot-form-success',
+      'hs-form-guid': properties.form_guid,
+      amplitude_event_sent: true,
+    });
+  }
 };

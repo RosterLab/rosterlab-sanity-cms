@@ -10,6 +10,7 @@ import { HiCheck, HiDownload, HiTable, HiClipboardList, HiCalendar, HiUserGroup 
 import { trackButtonClick } from '@/components/analytics/Amplitude'
 import { urlFor } from '@/sanity/lib/client'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 
 // Add HubSpot type declaration
 declare global {
@@ -227,6 +228,7 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                         </div>
                       )}
                     </div>
+                    <HubSpotFormListener />
                   </>
                 ) : (
                   <div className="text-center py-8">

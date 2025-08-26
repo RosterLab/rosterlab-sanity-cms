@@ -12,6 +12,7 @@ import TableOfContents from '@/components/blog/TableOfContents'
 import ShareButtons from '@/components/blog/ShareButtons'
 import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
 import RelatedPosts from '@/components/blog/RelatedPosts'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 import { draftMode } from 'next/headers'
 
 interface NewsroomPageProps {
@@ -267,6 +268,7 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
                 <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Subscribe for more insights and product updates</h3>
                   <NewsletterFormWrapper />
+                  <HubSpotFormListener />
                 </div>
 
                 {/* Share Buttons */}
