@@ -172,35 +172,10 @@ export default function StaffRosteringInteractiveDemoClient() {
           </div>
         </div>
 
-        {/* Benefits Banner */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <HiClock className="w-6 h-6 text-green-600" />
-            </div>
-            <h3 className="font-semibold text-green-800 mb-1">90% Time Saving</h3>
-            <p className="text-green-700 text-sm">Generate rosters in minutes, not hours</p>
-          </div>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <HiShieldCheck className="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 className="font-semibold text-blue-800 mb-1">100% Compliant</h3>
-            <p className="text-blue-700 text-sm">Guaranteed to meet union and contract obligations</p>
-          </div>
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-              <HiUsers className="w-6 h-6 text-purple-600" />
-            </div>
-            <h3 className="font-semibold text-purple-800 mb-1">Better Staff Satisfaction</h3>
-            <p className="text-purple-700 text-sm">Fairer, safer rosters for your team</p>
-          </div>
-        </div>
-
         {/* Schedule a Demo with Expert */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-16">
-          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Schedule a Demo with an Expert</h2>
-          <p className="text-neutral-600 mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 mb-4 text-center">Schedule a Demo with an Expert</h2>
+          <p className="text-neutral-600 mb-6 text-center">
             Get a personalized walkthrough of RosterLab tailored to your healthcare facility's specific needs.
           </p>
           <div 
@@ -224,6 +199,31 @@ export default function StaffRosteringInteractiveDemoClient() {
       {/* Bottom CTA - Full Width */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 py-16 text-white">
         <Container>
+          {/* Benefits Banner */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <HiClock className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-1">90% Time Saving</h3>
+              <p className="text-white/90 text-sm">Generate rosters in minutes, not hours</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <HiShieldCheck className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-1">100% Compliant</h3>
+              <p className="text-white/90 text-sm">Guaranteed to meet union and contract obligations</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <HiUsers className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-1">Better Staff Satisfaction</h3>
+              <p className="text-white/90 text-sm">Fairer, safer rosters for your team</p>
+            </div>
+          </div>
+
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-3">
               Can't Find a Suitable Time?
@@ -248,7 +248,7 @@ export default function StaffRosteringInteractiveDemoClient() {
                 analyticsLocation="Interactive Demo CTA"
                 analyticsProperties={{ cta_type: 'contact' }}
               >
-                Get Started Today
+                Contact Us
               </Button>
             </div>
           </div>

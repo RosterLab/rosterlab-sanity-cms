@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import Link from "next/link";
 
 const onboardingSteps = [
   {
@@ -27,7 +28,7 @@ const onboardingSteps = [
     ),
     description:
       "Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.",
-    link: "#",
+    link: "https://rosterlab.com/solutions/ai-staff-scheduling",
   },
   {
     number: "2",
@@ -49,7 +50,7 @@ const onboardingSteps = [
     ),
     description:
       "Using the mobile app, staff can submit leave requests and preferences, ready for you to review and incorporate into the roster planning.",
-    link: "#",
+    link: "https://rosterlab.com/feature/self-scheduling",
   },
   {
     number: "3",
@@ -71,7 +72,7 @@ const onboardingSteps = [
     ),
     description:
       "Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.",
-    link: "#",
+    link: "https://rosterlab.com/feature/auto-roster-generation",
   },
   {
     number: "4",
@@ -93,7 +94,7 @@ const onboardingSteps = [
     ),
     description:
       "Publish rosters to staff via mobile app with calendar sync. Share live rosters with other departments like payroll for seamless integration.",
-    link: "/solutions/staff-roster-mobile-app",
+    link: "https://rosterlab.com/solutions/staff-roster-mobile-app",
   },
   {
     number: "5",
@@ -115,7 +116,7 @@ const onboardingSteps = [
     ),
     description:
       "Automatically approve routine swaps while flagging critical changes. Open shifts to your staff to fill gaps.",
-    link: "/feature/shift-swaps",
+    link: "https://rosterlab.com/feature/shift-swaps",
   },
   {
     number: "6",
@@ -137,7 +138,7 @@ const onboardingSteps = [
     ),
     description:
       "Run hypothetical roster scenarios to assess feasibility of changes without impacting your live roster - perfect for planning and optimisation.",
-    link: "/feature/re-rostering",
+    link: "https://rosterlab.com/feature/re-rostering",
   },
   {
     number: "7",
@@ -159,7 +160,7 @@ const onboardingSteps = [
     ),
     description:
       "We currently integrate with Trendcare. Others upon request, depending on your business.",
-    link: "/feature/payroll-integration",
+    link: "/pricing",
     fullWidth: true,
   },
 ];
@@ -184,9 +185,10 @@ export default function Onboarding() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {onboardingSteps.slice(0, 6).map((step, index) => (
-              <div
+              <Link
                 key={index}
-                className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1"
+                href={step.link}
+                className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1 cursor-pointer"
               >
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {step.icon}
@@ -194,25 +196,37 @@ export default function Onboarding() {
                 <h3 className="text-lg font-bold text-neutral-900 mb-3">
                   {step.title}
                 </h3>
-                <p className="text-neutral-600">{step.description}</p>
-              </div>
+                <p className="text-neutral-600 mb-4">{step.description}</p>
+                <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
             ))}
           </div>
 
           {/* Full-width 7th box */}
           {onboardingSteps[6] && (
             <div className="mt-8">
-              <div className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1">
+              <Link href={onboardingSteps[6].link} className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1 cursor-pointer">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {onboardingSteps[6].icon}
                 </div>
                 <h3 className="text-lg font-bold text-neutral-900 mb-3">
                   {onboardingSteps[6].title}
                 </h3>
-                <p className="text-neutral-600 max-w-4xl mx-auto">
+                <p className="text-neutral-600 max-w-4xl mx-auto mb-4">
                   {onboardingSteps[6].description}
                 </p>
-              </div>
+                <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                  Learn More
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
             </div>
           )}
         </div>

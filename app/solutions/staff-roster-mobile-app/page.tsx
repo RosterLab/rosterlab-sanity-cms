@@ -254,21 +254,37 @@ export default function EmployeeMobileAppPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {appFeatures.map((feature, index) => (
-                <div key={index} className="block">
-                  <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 border border-gray-100 hover:border-blue-200">
+                <Link key={index} href={feature.href} className="block">
+                  <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 border border-gray-100 hover:border-blue-200 cursor-pointer">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <feature.icon className="w-6 h-6 text-blue-600" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-600">{feature.description}</p>
+                        <p className="text-gray-600 mb-4">{feature.description}</p>
+                        <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200">
+                          Learn More
+                          <svg
+                            className="w-4 h-4 ml-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </span>
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </Container>
