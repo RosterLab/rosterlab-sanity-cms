@@ -5,6 +5,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
 import { useEffect, useState, useRef } from 'react'
+import HubSpotMeetingListener from '@/components/analytics/HubSpotMeetingListener'
 
 export default function BookADemoClient() {
   const [shouldLoadHubSpot, setShouldLoadHubSpot] = useState(false)
@@ -107,6 +108,7 @@ export default function BookADemoClient() {
 
   return (
     <SiteLayout>
+      <HubSpotMeetingListener />
       <div className="pt-16 bg-gradient-to-b from-blue-50 to-white min-h-screen">
         <Container>
           {/* Header */}
