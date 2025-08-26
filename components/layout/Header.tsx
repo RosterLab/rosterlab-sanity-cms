@@ -49,7 +49,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
           title: "Employee Mobile App",
           link: "/solutions/staff-roster-mobile-app",
         },
-        { title: "Auto Roster Generation", link: "/feature/auto-roster-generation" },
+        {
+          title: "Auto Roster Generation",
+          link: "/feature/auto-roster-generation",
+        },
         { title: "Open Shifts", link: "/feature/open-shifts" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
         { title: "Leave Requests", link: "/feature/leave-requests" },
@@ -76,9 +79,15 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Newsroom", link: "/newsroom" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
-        { title: "Personality Test", link: "/tools/staff-scheduling-personality-quiz" },
-        { title: "Free Excel Template", link: "/templates/free-staff-roster-template-excel" },
-      ]
+        {
+          title: "Personality Test",
+          link: "/tools/staff-scheduling-personality-quiz",
+        },
+        {
+          title: "Free Excel Template",
+          link: "/templates/free-staff-roster-template-excel",
+        },
+      ],
     },
     { title: "About Us", link: "/about" },
   ];
@@ -91,7 +100,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/"
+              className="flex items-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
               <Image
                 src="/images/rosterlab-logo.png"
                 alt="RosterLab"
@@ -117,7 +130,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   onClick={() =>
                     item.subItems &&
                     setActiveDropdown(
-                      activeDropdown === item.title ? null : item.title
+                      activeDropdown === item.title ? null : item.title,
                     )
                   }
                 >
@@ -134,7 +147,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveDropdown(
-                          activeDropdown === item.title ? null : item.title
+                          activeDropdown === item.title ? null : item.title,
                         );
                       }}
                     >
@@ -159,7 +172,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           item.title === "Industries" ||
                           item.title === "Resources"
                           ? "left-0 w-[600px]"
-                          : "left-0 w-64"
+                          : "left-0 w-64",
                       )}
                       onMouseEnter={() => setActiveDropdown(item.title)}
                       onMouseLeave={() => setActiveDropdown(null)}
@@ -571,7 +584,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-              onClick={() => trackButtonClick('Book a Demo', 'Header Desktop', { cta_type: 'primary' })}
+              onClick={() =>
+                trackButtonClick("Book a Demo", "Header Desktop", {
+                  cta_type: "primary",
+                })
+              }
             >
               Book a Demo
             </Link>
@@ -579,7 +596,16 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
               target="_blank"
-              onClick={() => trackButtonClick('Start for free', 'Header Desktop', { cta_type: 'signup', external: true })}
+              onClick={() =>
+                trackButtonClick("Start for free", "Header Desktop", {
+                  cta_type: "signup",
+                  external: true,
+                  path:
+                    typeof window !== "undefined"
+                      ? window.location.pathname
+                      : undefined,
+                })
+              }
             >
               Start for free
             </Link>
@@ -614,7 +640,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
       <div
         className={cn(
           "xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40",
-          isMenuOpen ? "block" : "hidden"
+          isMenuOpen ? "block" : "hidden",
         )}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg h-full overflow-y-auto">
@@ -633,7 +659,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   <button
                     onClick={() =>
                       setMobileDropdown(
-                        mobileDropdown === item.title ? null : item.title
+                        mobileDropdown === item.title ? null : item.title,
                       )
                     }
                     className="w-full text-left text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 px-3 py-2 rounded-md text-base font-medium flex items-center"
@@ -642,7 +668,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                     <HiChevronDown
                       className={cn(
                         "h-4 w-4 ml-1 transition-transform duration-200",
-                        mobileDropdown === item.title ? "rotate-180" : ""
+                        mobileDropdown === item.title ? "rotate-180" : "",
                       )}
                     />
                   </button>
@@ -710,8 +736,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="/contact"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
-                trackButtonClick('Contact Us', 'Header Mobile', { cta_type: 'contact' })
-                setIsMenuOpen(false)
+                trackButtonClick("Contact Us", "Header Mobile", {
+                  cta_type: "contact",
+                });
+                setIsMenuOpen(false);
               }}
             >
               Contact Us
@@ -720,8 +748,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
-                trackButtonClick('Login', 'Header Mobile', { cta_type: 'login', external: true })
-                setIsMenuOpen(false)
+                trackButtonClick("Login", "Header Mobile", {
+                  cta_type: "login",
+                  external: true,
+                });
+                setIsMenuOpen(false);
               }}
               target="_blank"
             >
@@ -731,8 +762,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
-                trackButtonClick('Book a Demo', 'Header Mobile', { cta_type: 'primary' })
-                setIsMenuOpen(false)
+                trackButtonClick("Book a Demo", "Header Mobile", {
+                  cta_type: "primary",
+                });
+                setIsMenuOpen(false);
               }}
             >
               Book a Demo
@@ -741,8 +774,15 @@ export default function Header({ navItems = [] }: HeaderProps) {
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
-                trackButtonClick('Start for free', 'Header Mobile', { cta_type: 'signup', external: true })
-                setIsMenuOpen(false)
+                trackButtonClick("Start for free", "Header Mobile", {
+                  cta_type: "signup",
+                  external: true,
+                  path:
+                    typeof window !== "undefined"
+                      ? window.location.pathname
+                      : undefined,
+                });
+                setIsMenuOpen(false);
               }}
               target="_blank"
             >
