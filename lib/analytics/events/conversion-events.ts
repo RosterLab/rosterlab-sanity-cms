@@ -1,20 +1,20 @@
 /**
  * Centralized Conversion Events for Amplitude
- * 
+ *
  * This file contains all conversion-related events for easy management
  * by multiple team members. Each event is well-documented with its
  * properties and usage.
  */
 
-import { analytics } from '@/components/analytics/Amplitude';
+import { analytics } from "@/components/analytics/Amplitude";
 
 // Event names as constants for consistency
 export const CONVERSION_EVENTS = {
-  DEMO_BOOKING_COMPLETE: 'demo_booking_complete_amplitude',
-  FORM_SUBMITTED: 'form_submitted',
-  FORM_SUBMISSION: 'form_submission',
-  TRIAL_STARTED: 'trial_started',
-  CONTACT_FORM_SUBMITTED: 'contact_form_submitted',
+  DEMO_BOOKING_COMPLETE: "demo_booking_complete",
+  FORM_SUBMITTED: "form_submitted",
+  FORM_SUBMISSION: "form_submission",
+  TRIAL_STARTED: "trial_started",
+  CONTACT_FORM_SUBMITTED: "contact_form_submitted",
 } as const;
 
 // Type definitions for event properties
@@ -37,10 +37,10 @@ export interface DemoBookingProperties {
 
 /**
  * Track demo booking completion
- * 
+ *
  * @param properties - Demo booking event properties
  * @param userProperties - Optional user properties to identify the user
- * 
+ *
  * @example
  * trackDemoBookingComplete({
  *   form_guid: 'abc123',
@@ -61,20 +61,20 @@ export const trackDemoBookingComplete = (
     name?: string;
     role?: string;
     phone?: string;
-  }
+  },
 ) => {
   // Track the event
   analytics.track(CONVERSION_EVENTS.DEMO_BOOKING_COMPLETE, {
     ...properties,
     timestamp: new Date().toISOString(),
     // Add any additional context
-    source: 'hubspot_meeting',
+    source: "hubspot_meeting",
   });
 
   // Set user properties if provided
   if (userProperties && Object.keys(userProperties).length > 0) {
     analytics.setUserProperties(userProperties);
-    
+
     // If email is provided, use it as user ID for better tracking
     if (userProperties.email) {
       analytics.identify(userProperties.email, userProperties);
@@ -82,9 +82,9 @@ export const trackDemoBookingComplete = (
   }
 
   // Also push to dataLayer for GTM (dual tracking)
-  if (typeof window !== 'undefined' && (window as any).dataLayer) {
+  if (typeof window !== "undefined" && (window as any).dataLayer) {
     (window as any).dataLayer.push({
-      event: 'demo_booking_complete',
+      event: "demo_booking_complete",
       amplitude_event_sent: true,
       ...properties,
     });
@@ -97,7 +97,7 @@ export const trackDemoBookingComplete = (
 export const trackFormSubmitted = (
   formName: string,
   formType: string,
-  properties?: Record<string, any>
+  properties?: Record<string, any>,
 ) => {
   analytics.track(CONVERSION_EVENTS.FORM_SUBMITTED, {
     form_name: formName,
@@ -112,7 +112,7 @@ export const trackFormSubmitted = (
  */
 export const trackTrialStarted = (
   planType: string,
-  properties?: Record<string, any>
+  properties?: Record<string, any>,
 ) => {
   analytics.track(CONVERSION_EVENTS.TRIAL_STARTED, {
     plan_type: planType,
@@ -126,7 +126,7 @@ export const trackTrialStarted = (
  */
 export const trackContactFormSubmitted = (
   subject: string,
-  properties?: Record<string, any>
+  properties?: Record<string, any>,
 ) => {
   analytics.track(CONVERSION_EVENTS.CONTACT_FORM_SUBMITTED, {
     subject,
@@ -137,9 +137,9 @@ export const trackContactFormSubmitted = (
 
 /**
  * Track HubSpot form submission
- * 
+ *
  * @param properties - Form submission event properties
- * 
+ *
  * @example
  * trackFormSubmission({
  *   form_guid: 'abc123',
@@ -147,27 +147,25 @@ export const trackContactFormSubmitted = (
  *   user_email: 'user@example.com'
  * });
  */
-export const trackFormSubmission = (
-  properties: {
-    form_guid: string;
-    form_name?: string;
-    page_url?: string;
-    page_name?: string;
-    portal_id?: string;
-    redirect_url?: string;
-    page_location?: string;
-    user_email?: string;
-    user_name?: string;
-    company_name?: string;
-    phone_number?: string;
-    submission_data?: Record<string, any>;
-  }
-) => {
+export const trackFormSubmission = (properties: {
+  form_guid: string;
+  form_name?: string;
+  page_url?: string;
+  page_name?: string;
+  portal_id?: string;
+  redirect_url?: string;
+  page_location?: string;
+  user_email?: string;
+  user_name?: string;
+  company_name?: string;
+  phone_number?: string;
+  submission_data?: Record<string, any>;
+}) => {
   // Track the event
   analytics.track(CONVERSION_EVENTS.FORM_SUBMISSION, {
     ...properties,
     timestamp: new Date().toISOString(),
-    source: 'hubspot_form',
+    source: "hubspot_form",
   });
 
   // Set user properties if email is provided
@@ -178,12 +176,12 @@ export const trackFormSubmission = (
       company: properties.company_name,
       phone: properties.phone_number,
     };
-    
+
     // Remove undefined values
     const cleanUserProps = Object.fromEntries(
-      Object.entries(userProperties).filter(([, v]) => v !== undefined)
+      Object.entries(userProperties).filter(([, v]) => v !== undefined),
     );
-    
+
     if (Object.keys(cleanUserProps).length > 0) {
       analytics.setUserProperties(cleanUserProps);
       analytics.identify(properties.user_email, cleanUserProps);
@@ -191,10 +189,10 @@ export const trackFormSubmission = (
   }
 
   // Also push to dataLayer for GTM (dual tracking)
-  if (typeof window !== 'undefined' && (window as any).dataLayer) {
+  if (typeof window !== "undefined" && (window as any).dataLayer) {
     (window as any).dataLayer.push({
-      event: 'hubspot-form-success',
-      'hs-form-guid': properties.form_guid,
+      event: "hubspot-form-success",
+      "hs-form-guid": properties.form_guid,
       amplitude_event_sent: true,
     });
   }
