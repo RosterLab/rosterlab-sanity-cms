@@ -10,6 +10,9 @@ interface AmplitudeProps {
   options?: Record<string, any>;
 }
 
+// Track initialization to prevent multiple inits
+let isInitialized = false;
+
 export default function Amplitude({
   apiKey,
   userId,
@@ -17,6 +20,16 @@ export default function Amplitude({
 }: AmplitudeProps) {
   useEffect(() => {
     if (!apiKey || typeof window === "undefined") return;
+
+    // Check if already initialized
+    if (isInitialized) {
+      console.log("Amplitude already initialized, skipping re-initialization");
+      // If user ID changed, update it without re-initializing
+      if (userId && amplitude.getUserId() !== userId) {
+        amplitude.setUserId(userId);
+      }
+      return;
+    }
 
     // Determine server URL based on environment
     // Use production endpoint only for main production site, everything else goes to test
@@ -39,7 +52,16 @@ export default function Amplitude({
       },
       // Enable cross-domain tracking - share cookies across all subdomains
       cookieOptions: {
-        domain: ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
+        domain:
+          typeof window !== "undefined" &&
+          window.location.hostname === "localhost"
+            ? undefined // Don't set domain on localhost
+            : ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
+        sameSite: "Lax", // Allows cookies during navigation
+        secure:
+          typeof window !== "undefined" &&
+          window.location.protocol === "https:", // Only secure on HTTPS
+        expirationDays: 365, // Persist device ID for a year
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
@@ -47,6 +69,9 @@ export default function Amplitude({
       serverUrl,
       ...options,
     });
+
+    // Mark as initialized
+    isInitialized = true;
 
     // Log device ID and user ID after initialization
     console.log("Amplitude initialized:", {
@@ -68,8 +93,8 @@ export default function Amplitude({
     }
 
     return () => {
-      // Clean up on unmount
-      amplitude.reset();
+      // Don't reset on unmount - preserve session
+      // amplitude.reset() should only be called on explicit logout
     };
   }, [apiKey, userId, options]);
 
