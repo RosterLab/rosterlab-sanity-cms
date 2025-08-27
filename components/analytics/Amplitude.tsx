@@ -10,9 +10,6 @@ interface AmplitudeProps {
   options?: Record<string, any>;
 }
 
-// Track initialization state
-let isInitialized = false;
-
 export default function Amplitude({
   apiKey,
   userId,
@@ -20,12 +17,6 @@ export default function Amplitude({
 }: AmplitudeProps) {
   useEffect(() => {
     if (!apiKey || typeof window === "undefined") return;
-
-    // Prevent re-initialization
-    if (isInitialized) {
-      console.log("Amplitude already initialized, skipping...");
-      return;
-    }
 
     // Determine server URL based on environment
     // Use production endpoint only for main production site, everything else goes to test
@@ -49,20 +40,13 @@ export default function Amplitude({
       // Enable cross-domain tracking - share cookies across all subdomains
       cookieOptions: {
         domain: ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
-        secure: true, // Ensure cookies work with HTTPS
-        sameSite: "Lax", // Allow cookies to be sent with navigation
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
-      // Min time between sessions - prevents new sessions on quick navigation
-      minTimeBetweenSessionsMillis: 10 * 1000, // 10 seconds
       // Use proxy for analytics requests
       serverUrl,
       ...options,
     });
-
-    // Mark as initialized
-    isInitialized = true;
 
     // Log device ID and user ID after initialization
     console.log("Amplitude initialized:", {
@@ -84,8 +68,8 @@ export default function Amplitude({
     }
 
     return () => {
-      // Don't reset on unmount - this clears the device ID and breaks sessions
-      // amplitude.reset() should only be called on logout
+      // Clean up on unmount
+      amplitude.reset();
     };
   }, [apiKey, userId, options]);
 
