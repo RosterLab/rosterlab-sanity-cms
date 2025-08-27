@@ -48,6 +48,13 @@ export default function Amplitude({
       ...options,
     });
 
+    // Log device ID and user ID after initialization
+    console.log("Amplitude initialized:", {
+      deviceId: amplitude.getDeviceId(),
+      userId: amplitude.getUserId(),
+      sessionId: amplitude.getSessionId(),
+    });
+
     // Add session replay plugin
     const sessionReplay = sessionReplayPlugin({
       sampleRate: 1.0, // Record 100% of sessions
@@ -82,7 +89,11 @@ export const analytics = {
 
   identify: (userId: string, userProperties?: Record<string, any>) => {
     if (typeof window !== "undefined") {
+      console.log("Amplitude identify:", { userId, userProperties });
+
+      // Simply set the user ID - Amplitude handles device ID linking automatically
       amplitude.setUserId(userId);
+
       if (userProperties) {
         const identify = new amplitude.Identify();
         Object.entries(userProperties).forEach(([key, value]) => {
@@ -119,6 +130,20 @@ export const analytics = {
     if (typeof window !== "undefined") {
       amplitude.reset();
     }
+  },
+
+  getDeviceId: () => {
+    if (typeof window !== "undefined") {
+      return amplitude.getDeviceId();
+    }
+    return null;
+  },
+
+  getUserId: () => {
+    if (typeof window !== "undefined") {
+      return amplitude.getUserId();
+    }
+    return null;
   },
 };
 
