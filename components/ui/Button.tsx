@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { trackButtonClick } from "@/components/analytics/Amplitude";
+import {
+  trackButtonClick,
+  trackSmartButtonClick,
+} from "@/components/analytics/Amplitude";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -52,7 +55,13 @@ export default function Button({
   const classes = cn(baseStyles, variants[variant], sizes[size], className);
 
   const handleClick = () => {
-    if (analyticsLabel) {
+    if (analyticsLabel && href) {
+      trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
+        variant,
+        size,
+        ...analyticsProperties,
+      });
+    } else if (analyticsLabel) {
       trackButtonClick(analyticsLabel, analyticsLocation, {
         variant,
         size,
@@ -72,17 +81,22 @@ export default function Button({
         className={classes}
         onClick={
           analyticsLabel
-            ? () => {
-                trackButtonClick(analyticsLabel, analyticsLocation, {
+            ? (e) => {
+                // Only prevent default for external links
+                if (href.startsWith("http")) {
+                  e.preventDefault();
+                }
+                trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
                   variant,
                   size,
-                  href,
-                  path:
-                    typeof window !== "undefined"
-                      ? window.location.pathname
-                      : undefined,
                   ...analyticsProperties,
                 });
+                // Small delay to ensure event is sent before navigation
+                if (href.startsWith("http")) {
+                  setTimeout(() => {
+                    window.location.href = href;
+                  }, 100);
+                }
               }
             : undefined
         }

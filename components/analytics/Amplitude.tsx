@@ -73,7 +73,10 @@ export default function Amplitude({
 export const analytics = {
   track: (eventName: string, eventProperties?: Record<string, any>) => {
     if (typeof window !== "undefined") {
+      console.log("Amplitude track called:", eventName, eventProperties);
       amplitude.track(eventName, eventProperties);
+    } else {
+      console.log("Amplitude track skipped - window undefined");
     }
   },
 
@@ -227,4 +230,105 @@ export const trackLinkClick = (
     is_external: isExternal,
     ...properties,
   });
+};
+
+// Enhanced button click tracking with automatic event type detection
+export const trackSmartButtonClick = (
+  buttonText: string,
+  href: string,
+  location?: string,
+  additionalProperties?: Record<string, any>,
+) => {
+  // Normalize the URL for comparison
+  const normalizedHref = href.toLowerCase().trim();
+
+  // Determine event type and properties based on destination
+  let eventName: string;
+  const eventProperties: Record<string, any> = {
+    button_text: buttonText,
+    destination_url: href,
+    location: location,
+    ...additionalProperties,
+  };
+
+  // Map URLs to specific event types
+  if (
+    normalizedHref.includes("app.rosterlab.com/signup") ||
+    normalizedHref === "https://app.rosterlab.com/signup" ||
+    normalizedHref === "https://test.rosterlab.com"
+  ) {
+    eventName = "Free Signup Button Clicked";
+    eventProperties.cta_type = "signup";
+    eventProperties.external = true;
+    // Add test indicator for test domain
+    if (normalizedHref.includes("test.rosterlab.com")) {
+      eventProperties.is_test = true;
+    }
+  } else if (
+    normalizedHref === "/book-a-demo" ||
+    normalizedHref.includes("/book-a-demo")
+  ) {
+    eventName = "Book Demo Button Clicked";
+    eventProperties.cta_type = "demo";
+    eventProperties.external = false;
+  } else if (
+    normalizedHref === "/staff-rostering-interactive-demo" ||
+    normalizedHref.includes("/staff-rostering-interactive-demo")
+  ) {
+    eventName = "See Example Button Clicked";
+    eventProperties.cta_type = "example";
+    eventProperties.demo_type = "interactive";
+    eventProperties.external = false;
+  } else if (
+    normalizedHref === "/contact" ||
+    normalizedHref.includes("/contact")
+  ) {
+    eventName = "Contact Us Button Clicked";
+    eventProperties.cta_type = "contact";
+    eventProperties.external = false;
+  } else if (
+    normalizedHref === "https://app.rosterlab.com" ||
+    normalizedHref === "https://app.rosterlab.com/"
+  ) {
+    eventName = "Login Button Clicked";
+    eventProperties.cta_type = "login";
+    eventProperties.external = true;
+  } else if (
+    normalizedHref === "/pricing" ||
+    normalizedHref.includes("/pricing")
+  ) {
+    eventName = "View Pricing Button Clicked";
+    eventProperties.cta_type = "pricing";
+    eventProperties.external = false;
+  } else if (normalizedHref.includes("mailto:")) {
+    eventName = "Email Button Clicked";
+    eventProperties.cta_type = "email";
+    eventProperties.email_address = normalizedHref.replace("mailto:", "");
+    eventProperties.external = true;
+  } else if (
+    normalizedHref.includes("calendly.com") ||
+    normalizedHref.includes("meetings.")
+  ) {
+    eventName = "Schedule Meeting Button Clicked";
+    eventProperties.cta_type = "meeting";
+    eventProperties.external = true;
+  } else {
+    // Default to generic button click with smart categorization
+    eventName = "Button Clicked";
+    eventProperties.cta_type = "other";
+    eventProperties.external = normalizedHref.startsWith("http");
+  }
+
+  // Add current page path if available
+  if (typeof window !== "undefined") {
+    eventProperties.current_page_path = window.location.pathname;
+    eventProperties.current_page_url = window.location.href;
+  }
+
+  // Send the event
+  console.log("trackSmartButtonClick firing:", {
+    eventName,
+    eventProperties,
+  });
+  analytics.track(eventName, eventProperties);
 };
