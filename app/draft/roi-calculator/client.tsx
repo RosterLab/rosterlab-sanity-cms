@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 
 export default function ROICalculatorClient() {
   // Input states
@@ -585,6 +586,7 @@ Savings Breakdown:
             <div id="hubspot-form-container" ref={formContainerRef} style={{ minHeight: '100px' }}>
               <p className="text-sm text-gray-500 text-center">Loading form...</p>
             </div>
+            <HubSpotFormListener />
 
             {isSubmitting && (
               <div className="text-center py-4">

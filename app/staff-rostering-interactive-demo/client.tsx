@@ -7,6 +7,7 @@ import HiClock from '@/components/icons/HiClock'
 import HiShieldCheck from '@/components/icons/HiShieldCheck'
 import HiUsers from '@/components/icons/HiUsers'
 import { useEffect, useState, useRef } from 'react'
+import HubSpotMeetingListener from '@/components/analytics/HubSpotMeetingListener'
 
 export default function StaffRosteringInteractiveDemoClient() {
   const [isMobileOrTablet, setIsMobileOrTablet] = useState(false)
@@ -134,6 +135,7 @@ export default function StaffRosteringInteractiveDemoClient() {
 
   return (
     <SiteLayout>
+      <HubSpotMeetingListener />
       <div className="py-16 bg-gradient-to-br from-blue-50 to-primary-50 min-h-screen">
       <Container>
         {/* Hero Section */}

@@ -13,6 +13,7 @@ import ShareButtons from '@/components/blog/ShareButtons'
 import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
 import RelatedPosts from '@/components/blog/RelatedPosts'
 import { draftMode } from 'next/headers'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 
 interface CaseStudyPageProps {
   params: Promise<{

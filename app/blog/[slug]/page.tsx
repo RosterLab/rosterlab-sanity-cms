@@ -13,6 +13,7 @@ import ShareButtons from '@/components/blog/ShareButtons'
 import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
 import RelatedPosts from '@/components/blog/RelatedPosts'
 import { draftMode } from 'next/headers'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -88,6 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article>
+      <HubSpotFormListener />
       {/* Purple Gradient Header */}
       <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />

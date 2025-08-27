@@ -5,6 +5,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import { HiInformationCircle } from "react-icons/hi";
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener';
 
 export default function ROICalculatorClient() {
   // Input states
@@ -1851,6 +1852,7 @@ ${currentIndustry.hasManualTimeSaving ? `1. Manual Time Spent Rostering: $${time
                 Loading form...
               </p>
             </div>
+            <HubSpotFormListener />
 
             {isSubmitting && (
               <div className="text-center py-4">
