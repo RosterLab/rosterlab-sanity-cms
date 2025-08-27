@@ -81,12 +81,22 @@ export default function Button({
         className={classes}
         onClick={
           analyticsLabel
-            ? () => {
+            ? (e) => {
+                // Only prevent default for external links
+                if (href.startsWith("http")) {
+                  e.preventDefault();
+                }
                 trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
                   variant,
                   size,
                   ...analyticsProperties,
                 });
+                // Small delay to ensure event is sent before navigation
+                if (href.startsWith("http")) {
+                  setTimeout(() => {
+                    window.location.href = href;
+                  }, 100);
+                }
               }
             : undefined
         }

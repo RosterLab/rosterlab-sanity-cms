@@ -79,6 +79,15 @@ export default function TestButtonTracking() {
           Email Us
         </Button>
 
+        <Button
+          href="https://test.rosterlab.com"
+          analyticsLabel="Test Free Sign Up"
+          analyticsLocation="Test Page Button Component"
+          analyticsProperties={{ test: true }}
+        >
+          Test Free Sign Up
+        </Button>
+
         <h2 className="text-xl font-semibold mt-6">
           Direct trackSmartButtonClick Usage:
         </h2>

@@ -73,7 +73,10 @@ export default function Amplitude({
 export const analytics = {
   track: (eventName: string, eventProperties?: Record<string, any>) => {
     if (typeof window !== "undefined") {
+      console.log("Amplitude track called:", eventName, eventProperties);
       amplitude.track(eventName, eventProperties);
+    } else {
+      console.log("Amplitude track skipped - window undefined");
     }
   },
 
@@ -251,11 +254,16 @@ export const trackSmartButtonClick = (
   // Map URLs to specific event types
   if (
     normalizedHref.includes("app.rosterlab.com/signup") ||
-    normalizedHref === "https://app.rosterlab.com/signup"
+    normalizedHref === "https://app.rosterlab.com/signup" ||
+    normalizedHref === "https://test.rosterlab.com"
   ) {
     eventName = "Free Signup Button Clicked";
     eventProperties.cta_type = "signup";
     eventProperties.external = true;
+    // Add test indicator for test domain
+    if (normalizedHref.includes("test.rosterlab.com")) {
+      eventProperties.is_test = true;
+    }
   } else if (
     normalizedHref === "/book-a-demo" ||
     normalizedHref.includes("/book-a-demo")
@@ -318,5 +326,9 @@ export const trackSmartButtonClick = (
   }
 
   // Send the event
+  console.log("trackSmartButtonClick firing:", {
+    eventName,
+    eventProperties,
+  });
   analytics.track(eventName, eventProperties);
 };

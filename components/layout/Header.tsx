@@ -583,13 +583,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center"
-              onClick={() =>
+              onClick={(e) => {
+                e.preventDefault();
                 trackSmartButtonClick(
                   "Login",
                   "https://app.rosterlab.com",
                   "Header Desktop",
-                )
-              }
+                );
+                setTimeout(() => {
+                  window.location.href = "https://app.rosterlab.com";
+                }, 100);
+              }}
             >
               <HiUser className="w-4 h-4 mr-1" />
               Login
@@ -610,13 +614,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
-              onClick={() =>
+              onClick={(e) => {
+                e.preventDefault();
                 trackSmartButtonClick(
                   "Start for free",
                   "https://app.rosterlab.com/signup",
                   "Header Desktop",
-                )
-              }
+                );
+                setTimeout(() => {
+                  window.location.href = "https://app.rosterlab.com/signup";
+                }, 100);
+              }}
             >
               Start for free
             </Link>
@@ -760,13 +768,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 trackSmartButtonClick(
                   "Login",
                   "https://app.rosterlab.com",
                   "Header Mobile",
                 );
                 setIsMenuOpen(false);
+                setTimeout(() => {
+                  window.location.href = "https://app.rosterlab.com";
+                }, 100);
               }}
             >
               Login
@@ -788,13 +800,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <Link
               href="https://app.rosterlab.com/signup"
               className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 trackSmartButtonClick(
                   "Start for free",
                   "https://app.rosterlab.com/signup",
                   "Header Mobile",
                 );
                 setIsMenuOpen(false);
+                setTimeout(() => {
+                  window.location.href = "https://app.rosterlab.com/signup";
+                }, 100);
               }}
             >
               Start for free
