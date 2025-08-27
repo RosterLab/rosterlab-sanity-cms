@@ -91,11 +91,12 @@ export default function Amplitude({
           window.location.hostname === "localhost"
             ? undefined // Don't set domain on localhost
             : ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
-        sameSite: "Lax", // Allows cookies during navigation
+        sameSite: "Lax", // Allow cookies during navigation
         secure:
           typeof window !== "undefined" &&
           window.location.protocol === "https:", // Only secure on HTTPS
         expiration: 365, // Persist device ID for a year
+        upgrade: false, // Don't upgrade cookies, maintain existing ones
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
@@ -114,15 +115,6 @@ export default function Amplitude({
       sessionId: amplitude.getSessionId(),
     });
 
-    // If we had stored session data, ensure user is identified
-    if (storedSession && storedSession.email) {
-      console.log("[Amplitude] Re-identifying user from stored session");
-      amplitude.setUserId(storedSession.email);
-      const identify = new amplitude.Identify();
-      identify.set("email", storedSession.email);
-      amplitude.identify(identify);
-    }
-
     // Add session replay plugin
     const sessionReplay = sessionReplayPlugin({
       sampleRate: 1.0, // Record 100% of sessions
@@ -130,9 +122,18 @@ export default function Amplitude({
 
     amplitude.add(sessionReplay);
 
-    // Set user ID if provided
-    if (userId) {
-      amplitude.setUserId(userId);
+    // Set user ID if provided (from props or stored session)
+    const finalUserId = userId || storedSession?.email || storedSession?.userId;
+    if (finalUserId) {
+      amplitude.setUserId(finalUserId);
+      console.log("[Amplitude] User ID set:", finalUserId);
+
+      // If we have stored session email, also set as user property
+      if (storedSession?.email) {
+        const identify = new amplitude.Identify();
+        identify.set("email", storedSession.email);
+        amplitude.identify(identify);
+      }
     }
 
     return () => {
@@ -210,6 +211,26 @@ export const analytics = {
   getUserId: () => {
     if (typeof window !== "undefined") {
       return amplitude.getUserId();
+    }
+    return null;
+  },
+
+  getSessionId: () => {
+    if (typeof window !== "undefined") {
+      return amplitude.getSessionId();
+    }
+    return null;
+  },
+
+  logState: () => {
+    if (typeof window !== "undefined") {
+      const state = {
+        deviceId: amplitude.getDeviceId(),
+        userId: amplitude.getUserId(),
+        sessionId: amplitude.getSessionId(),
+      };
+      console.log("[Amplitude] Current state:", state);
+      return state;
     }
     return null;
   },
