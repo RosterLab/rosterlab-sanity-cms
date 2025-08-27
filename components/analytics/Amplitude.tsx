@@ -254,16 +254,11 @@ export const trackSmartButtonClick = (
   // Map URLs to specific event types
   if (
     normalizedHref.includes("app.rosterlab.com/signup") ||
-    normalizedHref === "https://app.rosterlab.com/signup" ||
-    normalizedHref === "https://test.rosterlab.com"
+    normalizedHref === "https://app.rosterlab.com/signup"
   ) {
     eventName = "Free Signup Button Clicked";
     eventProperties.cta_type = "signup";
     eventProperties.external = true;
-    // Add test indicator for test domain
-    if (normalizedHref.includes("test.rosterlab.com")) {
-      eventProperties.is_test = true;
-    }
   } else if (
     normalizedHref === "/book-a-demo" ||
     normalizedHref.includes("/book-a-demo")
