@@ -42,18 +42,7 @@ export default function Amplitude({
     amplitude.init(apiKey, userId, {
       defaultTracking: {
         sessions: true,
-        pageViews: {
-          trackOn: () => {
-            // Only track page views if not in an iframe and not a HubSpot redirect
-            if (
-              window.self === window.top &&
-              !window.location.href.includes("hubspot")
-            ) {
-              return true;
-            }
-            return false;
-          },
-        },
+        pageViews: true,
         formInteractions: true,
         fileDownloads: true,
       },
@@ -62,11 +51,11 @@ export default function Amplitude({
         domain: ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
         secure: true, // Ensure cookies work with HTTPS
         sameSite: "Lax", // Allow cookies to be sent with navigation
-        // Disable cookie upgrades that might interfere with sessions
-        upgrade: false,
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
+      // Min time between sessions - prevents new sessions on quick navigation
+      minTimeBetweenSessionsMillis: 10 * 1000, // 10 seconds
       // Use proxy for analytics requests
       serverUrl,
       ...options,
