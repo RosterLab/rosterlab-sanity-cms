@@ -61,7 +61,7 @@ export default function Amplitude({
         secure:
           typeof window !== "undefined" &&
           window.location.protocol === "https:", // Only secure on HTTPS
-        expirationDays: 365, // Persist device ID for a year
+        expiration: 365, // Persist device ID for a year
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
