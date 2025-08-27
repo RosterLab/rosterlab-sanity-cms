@@ -23,7 +23,11 @@ export default function Amplitude({
 
     // Check if already initialized
     if (isInitialized) {
-      console.log("Amplitude already initialized, skipping re-initialization");
+      console.log("Amplitude already initialized, skipping re-initialization", {
+        currentDeviceId: amplitude.getDeviceId(),
+        currentUserId: amplitude.getUserId(),
+        currentSessionId: amplitude.getSessionId(),
+      });
       // If user ID changed, update it without re-initializing
       if (userId && amplitude.getUserId() !== userId) {
         amplitude.setUserId(userId);

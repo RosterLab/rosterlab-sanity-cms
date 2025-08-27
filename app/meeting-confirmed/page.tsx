@@ -1,41 +1,46 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import Link from 'next/link'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Image from "next/image";
+import Link from "next/link";
+import MeetingConfirmedTracker from "@/components/analytics/MeetingConfirmedTracker";
 
 export const metadata = {
-  title: 'Meeting Confirmed - RosterLab',
-  description: 'Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.',
+  title: "Meeting Confirmed - RosterLab",
+  description:
+    "Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: 'Meeting Confirmed - RosterLab',
-    description: 'Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.',
-    type: 'website',
-    url: 'https://rosterlab.com/meeting-confirmed',
+    title: "Meeting Confirmed - RosterLab",
+    description:
+      "Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.",
+    type: "website",
+    url: "https://rosterlab.com/meeting-confirmed",
     images: [
       {
-        url: '/images/og images/InteractiveDemo.png',
+        url: "/images/og images/InteractiveDemo.png",
         width: 1200,
         height: 630,
-        alt: 'Meeting Confirmed - RosterLab',
+        alt: "Meeting Confirmed - RosterLab",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Meeting Confirmed - RosterLab',
-    description: 'Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.',
-    images: ['/images/og images/InteractiveDemo.png'],
+    card: "summary_large_image",
+    title: "Meeting Confirmed - RosterLab",
+    description:
+      "Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.",
+    images: ["/images/og images/InteractiveDemo.png"],
   },
-}
+};
 
 export default function MeetingConfirmedPage() {
   return (
     <SiteLayout>
+      <MeetingConfirmedTracker />
       <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen">
         <Container>
           <div className="max-w-3xl mx-auto text-center">
@@ -43,12 +48,14 @@ export default function MeetingConfirmedPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
               You're all booked in! 🎉
             </h1>
-            
+
             {/* Copy */}
             <p className="text-lg text-gray-600 mb-12 leading-relaxed">
-              There should be a calendar invite waiting in your inbox with your requested date and time. We can't wait to speak with you and learn more about your staff scheduling challenges.
+              There should be a calendar invite waiting in your inbox with your
+              requested date and time. We can't wait to speak with you and learn
+              more about your staff scheduling challenges.
             </p>
-            
+
             {/* Placeholder Image */}
             <div className="relative w-full h-64 md:h-96 mb-12 bg-gray-100 rounded-2xl overflow-hidden">
               <Image
@@ -59,7 +66,7 @@ export default function MeetingConfirmedPage() {
                 priority
               />
             </div>
-            
+
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -79,5 +86,5 @@ export default function MeetingConfirmedPage() {
         </Container>
       </section>
     </SiteLayout>
-  )
+  );
 }
