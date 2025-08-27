@@ -57,6 +57,12 @@ export default function HubSpotFormListener() {
           submissionValues: submissionValues,
         });
 
+        // Log current session info before processing
+        console.log("[HubSpotFormListener] Current session info:", {
+          deviceId: analytics.getDeviceId(),
+          userId: analytics.getUserId(),
+        });
+
         // If email is provided, identify the user
         if (submissionValues.email) {
           try {
