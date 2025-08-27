@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { trackButtonClick } from "@/components/analytics/Amplitude";
+import {
+  trackButtonClick,
+  trackSmartButtonClick,
+} from "@/components/analytics/Amplitude";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -52,7 +55,13 @@ export default function Button({
   const classes = cn(baseStyles, variants[variant], sizes[size], className);
 
   const handleClick = () => {
-    if (analyticsLabel) {
+    if (analyticsLabel && href) {
+      trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
+        variant,
+        size,
+        ...analyticsProperties,
+      });
+    } else if (analyticsLabel) {
       trackButtonClick(analyticsLabel, analyticsLocation, {
         variant,
         size,
@@ -73,14 +82,9 @@ export default function Button({
         onClick={
           analyticsLabel
             ? () => {
-                trackButtonClick(analyticsLabel, analyticsLocation, {
+                trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
                   variant,
                   size,
-                  href,
-                  path:
-                    typeof window !== "undefined"
-                      ? window.location.pathname
-                      : undefined,
                   ...analyticsProperties,
                 });
               }
