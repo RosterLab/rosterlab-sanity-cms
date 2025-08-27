@@ -60,17 +60,35 @@ export default function HubSpotMeetingListener() {
 
           // Store flag to maintain session across redirect
           if (typeof window !== "undefined") {
+            const deviceId = analytics.getDeviceId();
+            const userId = analytics.getUserId();
+            const sessionData = {
+              deviceId: deviceId || "",
+              userId: userId || "",
+              timestamp: Date.now(),
+              email: contact?.email || "",
+            };
+
+            // Store in multiple places to ensure persistence
             window.sessionStorage.setItem("amplitude_demo_booked", "true");
             window.sessionStorage.setItem(
-              "amplitude_device_id",
-              analytics.getDeviceId() || "",
+              "amplitude_session_data",
+              JSON.stringify(sessionData),
             );
 
-            // Keep the flag for 30 seconds to handle the redirect
-            setTimeout(() => {
-              window.sessionStorage.removeItem("amplitude_demo_booked");
-              window.sessionStorage.removeItem("amplitude_device_id");
-            }, 30000);
+            // Also store in localStorage as backup
+            window.localStorage.setItem(
+              "amplitude_demo_redirect",
+              JSON.stringify({
+                ...sessionData,
+                expires: Date.now() + 60000, // Expire after 1 minute
+              }),
+            );
+
+            console.log(
+              "[HubSpotMeetingListener] Stored session data for redirect:",
+              sessionData,
+            );
           }
 
           // Track in Amplitude

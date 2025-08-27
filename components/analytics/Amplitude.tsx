@@ -35,6 +35,36 @@ export default function Amplitude({
       return;
     }
 
+    // Check for stored session data (for redirect scenarios)
+    const checkStoredSession = () => {
+      const sessionData = window.sessionStorage.getItem(
+        "amplitude_session_data",
+      );
+      const localData = window.localStorage.getItem("amplitude_demo_redirect");
+
+      if (sessionData) {
+        try {
+          const data = JSON.parse(sessionData);
+          console.log("[Amplitude] Found stored session data:", data);
+          return data;
+        } catch (e) {}
+      }
+
+      if (localData) {
+        try {
+          const data = JSON.parse(localData);
+          if (data.expires > Date.now()) {
+            console.log("[Amplitude] Found stored redirect data:", data);
+            return data;
+          }
+        } catch (e) {}
+      }
+
+      return null;
+    };
+
+    const storedSession = checkStoredSession();
+
     // Determine server URL based on environment
     // Use production endpoint only for main production site, everything else goes to test
     const isProduction =
@@ -47,7 +77,7 @@ export default function Amplitude({
       : "https://public-test.rosterlab.com/telemetry/a/2/httpapi";
 
     // Initialize Amplitude with cross-domain tracking
-    amplitude.init(apiKey, userId, {
+    amplitude.init(apiKey, userId || storedSession?.userId, {
       defaultTracking: {
         sessions: true,
         pageViews: true,
@@ -83,6 +113,15 @@ export default function Amplitude({
       userId: amplitude.getUserId(),
       sessionId: amplitude.getSessionId(),
     });
+
+    // If we had stored session data, ensure user is identified
+    if (storedSession && storedSession.email) {
+      console.log("[Amplitude] Re-identifying user from stored session");
+      amplitude.setUserId(storedSession.email);
+      const identify = new amplitude.Identify();
+      identify.set("email", storedSession.email);
+      amplitude.identify(identify);
+    }
 
     // Add session replay plugin
     const sessionReplay = sessionReplayPlugin({
