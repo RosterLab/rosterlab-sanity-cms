@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import Amplitude from "@/components/analytics/Amplitude";
+import UTMTracker from "@/components/analytics/UTMTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   description:
     "Simplifying workforce management with intelligent scheduling solutions.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com",
   ),
 };
 
@@ -62,6 +63,7 @@ export default async function RootLayout({
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
           <Amplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
+          <UTMTracker debug={process.env.NODE_ENV === "development"} />
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />

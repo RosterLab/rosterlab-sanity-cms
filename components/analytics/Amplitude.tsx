@@ -3,6 +3,13 @@
 import { useEffect } from "react";
 import * as amplitude from "@amplitude/analytics-browser";
 import { sessionReplayPlugin } from "@amplitude/plugin-session-replay-browser";
+import {
+  getFirstTouchData,
+  getCurrentTouchData,
+} from "@/lib/analytics/utm-tracker";
+
+// Store current UTM data globally for event tracking
+let currentUTMData: Record<string, any> = {};
 
 interface AmplitudeProps {
   apiKey: string;
@@ -29,6 +36,10 @@ export default function Amplitude({
       ? "https://public.rosterlab.com/telemetry/a/2/httpapi"
       : "https://public-test.rosterlab.com/telemetry/a/2/httpapi";
 
+    // Get UTM tracking data
+    const firstTouchData = getFirstTouchData();
+    const currentTouchData = getCurrentTouchData();
+
     // Initialize Amplitude with cross-domain tracking
     amplitude.init(apiKey, userId, {
       defaultTracking: {
@@ -53,6 +64,8 @@ export default function Amplitude({
       deviceId: amplitude.getDeviceId(),
       userId: amplitude.getUserId(),
       sessionId: amplitude.getSessionId(),
+      firstTouchData,
+      currentTouchData,
     });
 
     // Add session replay plugin
@@ -67,7 +80,78 @@ export default function Amplitude({
       amplitude.setUserId(userId);
     }
 
+    // Set first-touch user properties (only if they exist)
+    if (firstTouchData) {
+      const identify = new amplitude.Identify();
+
+      // Set first-touch UTM properties
+      if (firstTouchData.utm_source)
+        identify.setOnce("utm_source_first", firstTouchData.utm_source);
+      if (firstTouchData.utm_medium)
+        identify.setOnce("utm_medium_first", firstTouchData.utm_medium);
+      if (firstTouchData.utm_campaign)
+        identify.setOnce("utm_campaign_first", firstTouchData.utm_campaign);
+      if (firstTouchData.utm_content)
+        identify.setOnce("utm_content_first", firstTouchData.utm_content);
+      if (firstTouchData.utm_term)
+        identify.setOnce("utm_term_first", firstTouchData.utm_term);
+
+      // Set additional first-touch properties
+      if (firstTouchData.first_referrer)
+        identify.setOnce("first_referrer", firstTouchData.first_referrer);
+      if (firstTouchData.first_landing_page)
+        identify.setOnce(
+          "first_landing_page",
+          firstTouchData.first_landing_page,
+        );
+      if (firstTouchData.first_touch_ts)
+        identify.setOnce("first_touch_ts", firstTouchData.first_touch_ts);
+      identify.setOnce("is_first_visit", firstTouchData.is_first_visit);
+
+      amplitude.identify(identify);
+    }
+
+    // Store current UTM data for event tracking
+    currentUTMData = {
+      // Current touch UTMs
+      utm_source: currentTouchData.utm_source,
+      utm_medium: currentTouchData.utm_medium,
+      utm_campaign: currentTouchData.utm_campaign,
+      utm_content: currentTouchData.utm_content,
+      utm_term: currentTouchData.utm_term,
+      // Additional current touch data
+      referrer: currentTouchData.referrer,
+      landing_page: currentTouchData.landing_page,
+      session_id: currentTouchData.session_id,
+    };
+
+    // Listen for UTM updates during the session
+    const handleUTMUpdate = (event: CustomEvent) => {
+      const { currentTouch } = event.detail;
+      if (currentTouch) {
+        currentUTMData = {
+          utm_source: currentTouch.utm_source,
+          utm_medium: currentTouch.utm_medium,
+          utm_campaign: currentTouch.utm_campaign,
+          utm_content: currentTouch.utm_content,
+          utm_term: currentTouch.utm_term,
+          referrer: currentTouch.referrer,
+          landing_page: currentTouch.landing_page,
+          session_id: currentTouch.session_id,
+        };
+      }
+    };
+
+    window.addEventListener(
+      "utm-session-update",
+      handleUTMUpdate as EventListener,
+    );
+
     return () => {
+      window.removeEventListener(
+        "utm-session-update",
+        handleUTMUpdate as EventListener,
+      );
       // Clean up on unmount
       amplitude.reset();
     };
@@ -80,8 +164,17 @@ export default function Amplitude({
 export const analytics = {
   track: (eventName: string, eventProperties?: Record<string, any>) => {
     if (typeof window !== "undefined") {
-      console.log("Amplitude track called:", eventName, eventProperties);
-      amplitude.track(eventName, eventProperties);
+      // Merge current UTM data with event properties
+      const enhancedProperties = {
+        ...currentUTMData, // Include all current UTM data
+        ...eventProperties, // User properties can override if needed
+        // Add current page context
+        current_page_path: window.location.pathname,
+        current_page_url: window.location.href,
+      };
+
+      console.log("Amplitude track called:", eventName, enhancedProperties);
+      amplitude.track(eventName, enhancedProperties);
     } else {
       console.log("Amplitude track skipped - window undefined");
     }
@@ -122,7 +215,8 @@ export const analytics = {
 
   logEvent: (eventName: string, eventProperties?: Record<string, any>) => {
     if (typeof window !== "undefined") {
-      amplitude.logEvent(eventName, eventProperties);
+      // Use the track method to ensure UTM data is included
+      analytics.track(eventName, eventProperties);
     }
   },
 
