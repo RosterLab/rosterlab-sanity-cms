@@ -135,12 +135,9 @@ export default function StaffingEnvelopeChartSmall() {
     .join(" ");
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="flex flex-col items-center w-full px-4 sm:px-0">
-        <div
-          className="w-full max-w-[336px] sm:max-w-[480px] md:max-w-[588px] mx-auto"
-          style={{ minHeight: `${height}px` }}
-        >
+    <div className="w-full h-full flex flex-col justify-center">
+      <div className="flex flex-col items-center w-full">
+        <div className="w-full max-w-[336px] sm:max-w-[480px] md:max-w-[588px] mx-auto">
           <svg
             width={width}
             height={height}
@@ -311,10 +308,10 @@ export default function StaffingEnvelopeChartSmall() {
         </div>
 
         {/* Optimization Button */}
-        <div className="mt-0 sm:mt-4 md:mt-6 text-center">
+        <div className="mt-4 text-center">
           <motion.button
             onClick={() => setIsOptimized(!isOptimized)}
-            className={`${isMobile ? "px-4 py-3 text-xs min-h-[44px]" : "px-6 py-2.5 text-sm"} rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md`}
+            className="px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md"
             style={{
               backgroundColor: "#24D9DC",
               color: "#323232",
