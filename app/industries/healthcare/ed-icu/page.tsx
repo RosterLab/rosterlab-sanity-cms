@@ -18,7 +18,7 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare/ed-icu",
     images: [
       {
-        url: "/images/og images/IndustryICUED.png",
+        url: "/images/og-images/IndustryICUED.png",
         width: 1200,
         height: 630,
       },
@@ -29,7 +29,7 @@ export const metadata = {
     title: "ED & ICU Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-    images: ["/images/og images/IndustryICUED.png"],
+    images: ["/images/og-images/IndustryICUED.png"],
   },
 };
 
@@ -417,8 +417,18 @@ export default function ICUEDPage() {
                 </p>
                 <span className="text-teal-600 font-medium inline-flex items-center">
                   Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </div>
@@ -450,8 +460,18 @@ export default function ICUEDPage() {
                 </p>
                 <span className="text-cyan-600 font-medium inline-flex items-center">
                   Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </div>
@@ -483,8 +503,18 @@ export default function ICUEDPage() {
                 </p>
                 <span className="text-blue-600 font-medium inline-flex items-center">
                   Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </div>
@@ -516,8 +546,18 @@ export default function ICUEDPage() {
                 </p>
                 <span className="text-indigo-600 font-medium inline-flex items-center">
                   Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </div>

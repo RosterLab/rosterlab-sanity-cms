@@ -25,7 +25,7 @@ export const metadata = {
     url: "https://rosterlab.com/about",
     images: [
       {
-        url: "/images/og images/About.png",
+        url: "/images/og-images/About.png",
         width: 1200,
         height: 630,
         alt: "About RosterLab",
@@ -37,7 +37,7 @@ export const metadata = {
     title: "About Us - Meet the Team Behind RosterLab",
     description:
       "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    images: ["/images/og images/About.png"],
+    images: ["/images/og-images/About.png"],
   },
 };
 

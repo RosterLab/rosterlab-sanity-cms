@@ -18,7 +18,7 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare/radiology",
     images: [
       {
-        url: "/images/og images/IndustryRadiology.png",
+        url: "/images/og-images/IndustryRadiology.png",
         width: 1200,
         height: 630,
       },
@@ -29,7 +29,7 @@ export const metadata = {
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software simplifies complex staff rostering in Radiology. Build fair, compliant rosters that are flexible & helps save time.",
-    images: ["/images/og images/IndustryRadiology.png"],
+    images: ["/images/og-images/IndustryRadiology.png"],
   },
 };
 
@@ -605,7 +605,10 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="https://rosterlab.com/feature/self-scheduling" className="block">
+            <Link
+              href="https://rosterlab.com/feature/self-scheduling"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg

@@ -19,7 +19,7 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare/aged-care",
     images: [
       {
-        url: "/images/og images/IndustryAgedCare.png",
+        url: "/images/og-images/IndustryAgedCare.png",
         width: 1200,
         height: 630,
       },
@@ -30,7 +30,7 @@ export const metadata = {
     title: "Aged Care Staff Scheduling Software - RosterLab",
     description:
       "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-    images: ["/images/og images/IndustryAgedCare.png"],
+    images: ["/images/og-images/IndustryAgedCare.png"],
   },
 };
 
@@ -360,8 +360,8 @@ export default function AgedCarePage() {
                       >
                         continuity of care
                       </Link>
-                      . Distribute shifts fairly and safely based on skill
-                      sets to maximise staff engagement.
+                      . Distribute shifts fairly and safely based on skill sets
+                      to maximise staff engagement.
                     </p>
                   </div>
                 </div>

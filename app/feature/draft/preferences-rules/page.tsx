@@ -19,7 +19,7 @@ export const metadata = {
       "Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.",
     images: [
       {
-        url: "/images/og images/FeaturePreferencesRules.png",
+        url: "/images/og-images/FeaturePreferencesRules.png",
         width: 1200,
         height: 630,
       },
@@ -30,7 +30,7 @@ export const metadata = {
     title: "Shift Preferences & Fairness Rules - RosterLab",
     description:
       "Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.",
-    images: ["/images/og images/FeaturePreferencesRules.png"],
+    images: ["/images/og-images/FeaturePreferencesRules.png"],
   },
 };
 
@@ -106,7 +106,9 @@ export default function PreferencesRulesPage() {
                   Easily Collect Staff Preferences
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Collect staff preferences through the staff mobile app. Then generate your roster with these preferences automatically considered.
+                  Collect staff preferences through the staff mobile app. Then
+                  generate your roster with these preferences automatically
+                  considered.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -160,7 +162,9 @@ export default function PreferencesRulesPage() {
                   Retain roster knowledge in the cloud
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Keep expertise accessible even when staff change, and ensure every roster meets compliance, fairness, and operational standards — automatically.
+                  Keep expertise accessible even when staff change, and ensure
+                  every roster meets compliance, fairness, and operational
+                  standards — automatically.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

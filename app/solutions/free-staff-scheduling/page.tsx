@@ -19,17 +19,17 @@ export const metadata = {
   description:
     "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
   alternates: {
-    canonical: 'https://rosterlab.com/solutions/free-staff-scheduling',
+    canonical: "https://rosterlab.com/solutions/free-staff-scheduling",
   },
   openGraph: {
     title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
     description:
       "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
-    type: 'website',
-    url: 'https://rosterlab.com/solutions/free-staff-scheduling',
+    type: "website",
+    url: "https://rosterlab.com/solutions/free-staff-scheduling",
     images: [
       {
-        url: "/images/og images/SolutionFree.png",
+        url: "/images/og-images/SolutionFree.png",
         width: 1200,
         height: 630,
         alt: "Free Digital Rostering Platform",
@@ -41,7 +41,7 @@ export const metadata = {
     title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
     description:
       "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
-    images: ["/images/og images/SolutionFree.png"],
+    images: ["/images/og-images/SolutionFree.png"],
   },
 };
 
@@ -192,7 +192,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "signup",
                       page_name: "Free Staff Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Start for Free
@@ -206,7 +206,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "upgrade",
                       page_name: "Free Staff Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Discover AI Rosters
@@ -449,7 +449,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "upgrade",
                     page_name: "Free Staff Scheduling",
-                    section: "steps"
+                    section: "steps",
                   }}
                 >
                   Explore AI Features
@@ -632,7 +632,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "learn_more",
                       page_name: "Free Staff Scheduling",
-                      section: "mobile_app"
+                      section: "mobile_app",
                     }}
                   >
                     Learn More About Mobile App
@@ -685,7 +685,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "signup",
                     page_name: "Free Staff Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Start for Free
@@ -698,7 +698,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Free Staff Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book a Demo
