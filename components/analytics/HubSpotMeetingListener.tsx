@@ -131,20 +131,8 @@ export default function HubSpotMeetingListener() {
             "[HubSpotMeetingListener] Demo booking tracked, expecting redirect to /meeting-confirmed",
           );
 
-          // Also push to GTM dataLayer (maintaining dual tracking)
-          if (typeof window !== "undefined" && (window as any).dataLayer) {
-            (window as any).dataLayer.push({
-              event: "hubspot_meeting_success",
-              "hs-form-guid": meetingsPayload.formGuid,
-              "hs-organizer":
-                meetingsPayload.bookingResponse.postResponse.organizer.name,
-              "hs-is-meeting-paid": meetingsPayload.isPaidMeeting,
-              "hs-meeting-date":
-                meetingsPayload.bookingResponse.event.dateString,
-              "hs-duration-minutes":
-                meetingsPayload.bookingResponse.event.duration / 60000,
-            });
-          }
+          // GTM dataLayer push is already handled by trackDemoBookingComplete()
+          // Removed duplicate push to prevent double tracking
 
           // Log for debugging (remove in production)
           if (process.env.NODE_ENV === "development") {
