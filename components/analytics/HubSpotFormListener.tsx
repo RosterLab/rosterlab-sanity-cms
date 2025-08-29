@@ -149,13 +149,8 @@ export default function HubSpotFormListener() {
           );
         }
 
-        // Also push to GTM dataLayer (maintaining dual tracking)
-        if (typeof window !== "undefined" && (window as any).dataLayer) {
-          (window as any).dataLayer.push({
-            event: "hubspot-form-success",
-            "hs-form-guid": formData.id,
-          });
-        }
+        // GTM dataLayer push is already handled by trackFormSubmission()
+        // Removed duplicate push to prevent double tracking
 
         // Log for debugging (remove in production)
         if (process.env.NODE_ENV === "development") {
