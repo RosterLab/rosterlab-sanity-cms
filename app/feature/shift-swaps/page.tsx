@@ -1,63 +1,71 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import { HiCheck } from 'react-icons/hi'
-import FAQAccordion from '@/components/ui/FAQAccordion'
-import ShiftSwapsContent from './ShiftSwapsContent'
-import ShiftSwapModule from '@/components/sections/animations/ShiftSwapModule'
-import AuditTrailModule from './AuditTrailModule'
-import WeekendRotationModule from './WeekendRotationModule'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Image from "next/image";
+import { HiCheck } from "react-icons/hi";
+import FAQAccordion from "@/components/ui/FAQAccordion";
+import ShiftSwapsContent from "./ShiftSwapsContent";
+import ShiftSwapModule from "@/components/sections/animations/ShiftSwapModule";
+import AuditTrailModule from "./AuditTrailModule";
+import WeekendRotationModule from "./WeekendRotationModule";
 
 export const metadata = {
-  title: 'Shift Swaps - RosterLab',
-  description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
+  title: "Shift Swaps - RosterLab",
+  description:
+    "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
   alternates: {
-    canonical: 'https://rosterlab.com/feature/shift-swaps',
+    canonical: "https://rosterlab.com/feature/shift-swaps",
   },
   openGraph: {
-    title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
-    description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
-    type: 'website',
-    url: 'https://rosterlab.com/feature/shift-swaps',
+    title: "Shift Swaps: Automate Routine Shift Swaps, Review What Matters",
+    description:
+      "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
+    type: "website",
+    url: "https://rosterlab.com/feature/shift-swaps",
     images: [
       {
-        url: '/images/og images/FeatureShiftSwaps.png',
+        url: "/images/og-images/FeatureShiftSwaps.png",
         width: 1200,
         height: 630,
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
-    description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
-    images: ['/images/og images/FeatureShiftSwaps.png'],
+    card: "summary_large_image",
+    title: "Shift Swaps: Automate Routine Shift Swaps, Review What Matters",
+    description:
+      "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
+    images: ["/images/og-images/FeatureShiftSwaps.png"],
   },
-}
+};
 
 const faqItems = [
   {
     question: "How does automated shift swap approval work?",
-    answer: "RosterLab's AI analyses each swap request against your organisation's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both employees are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
+    answer:
+      "RosterLab's AI analyses each swap request against your organisation's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both employees are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review.",
   },
   {
     question: "What rules can I set for automatic approvals?",
-    answer: "You can configure rules based on: minimum staffing levels, skill requirements, maximum hours per week/month, minimum rest periods between shifts, seniority considerations, department-specific requirements, and custom business rules. The system learns from your approval patterns to become more intelligent over time."
+    answer:
+      "You can configure rules based on: minimum staffing levels, skill requirements, maximum hours per week/month, minimum rest periods between shifts, seniority considerations, department-specific requirements, and custom business rules. The system learns from your approval patterns to become more intelligent over time.",
   },
   {
     question: "How do employees request shift swaps?",
-    answer: "Employees can request swaps through our mobile app or web portal. They simply select the shift they want to swap, and the system shows available options with qualified colleagues. They can send swap requests directly, which are then processed according to your automation rules. Employees receive instant notifications about approvals or rejections."
+    answer:
+      "Employees can request swaps through our mobile app or web portal. They simply select the shift they want to swap, and the system shows available options with qualified colleagues. They can send swap requests directly, which are then processed according to your automation rules. Employees receive instant notifications about approvals or rejections.",
   },
   {
     question: "What happens when a swap needs manager approval?",
-    answer: "When the AI detects a swap that requires review (e.g., affects critical coverage or approaches overtime limits), managers receive an alert with all relevant context. They can see exactly why the swap was flagged, review the impact on coverage and costs, and approve or reject with one click. The whole process typically takes less than 30 seconds."
+    answer:
+      "When the AI detects a swap that requires review (e.g., affects critical coverage or approaches overtime limits), managers receive an alert with all relevant context. They can see exactly why the swap was flagged, review the impact on coverage and costs, and approve or reject with one click. The whole process typically takes less than 30 seconds.",
   },
   {
     question: "Can I track and quit all shift swaps?",
-    answer: "Yes! Every swap request, approval, and rejection is logged with complete details including who requested it, when it was processed, who approved it (system or manager). This audit trail is essential for labour compliance, dispute resolution, and identifying patterns to improve your policies."
-  }
-]
+    answer:
+      "Yes! Every swap request, approval, and rejection is logged with complete details including who requested it, when it was processed, who approved it (system or manager). This audit trail is essential for labour compliance, dispute resolution, and identifying patterns to improve your policies.",
+  },
+];
 
 export default function ShiftSwapsPage() {
   return (
@@ -75,28 +83,28 @@ export default function ShiftSwapsPage() {
                   Automate routine swaps, review when it matters.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    href="/book-a-demo" 
+                  <Button
+                    href="/book-a-demo"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                     analyticsLabel="Book A Demo"
                     analyticsLocation="Feature Page Shift Swaps"
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Shift Swaps",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Book A Demo
                   </Button>
-                  <Button 
-                    href="/solutions/free-staff-scheduling" 
+                  <Button
+                    href="/solutions/free-staff-scheduling"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                     analyticsLabel="Try it for free"
                     analyticsLocation="Feature Page Shift Swaps"
                     analyticsProperties={{
                       cta_type: "signup",
                       page_name: "Shift Swaps",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Try it for free
@@ -125,20 +133,28 @@ export default function ShiftSwapsPage() {
                   Automatic Routine Approvals
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  AI automatically approves standard shift swaps between qualified staff members. Only swaps that impact critical coverage, skills mix, or compliance require manager review.
+                  AI automatically approves standard shift swaps between
+                  qualified staff members. Only swaps that impact critical
+                  coverage, skills mix, or compliance require manager review.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Instant approval for routine swaps</span>
+                    <span className="text-gray-700">
+                      Instant approval for routine swaps
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Smart detection of critical shifts</span>
+                    <span className="text-gray-700">
+                      Smart detection of critical shifts
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Reduce administrative workload</span>
+                    <span className="text-gray-700">
+                      Reduce administrative workload
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -173,20 +189,28 @@ export default function ShiftSwapsPage() {
                   Review Swaps That Break the Rules
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  When a swap might break staffing rules or affect critical coverage, managers get a clear, one-click review process with explanations of potential conflicts.
+                  When a swap might break staffing rules or affect critical
+                  coverage, managers get a clear, one-click review process with
+                  explanations of potential conflicts.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Highlights potential rule violations</span>
+                    <span className="text-gray-700">
+                      Highlights potential rule violations
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">One-click approval or rejection</span>
+                    <span className="text-gray-700">
+                      One-click approval or rejection
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Clear explanations of conflicts</span>
+                    <span className="text-gray-700">
+                      Clear explanations of conflicts
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -203,20 +227,28 @@ export default function ShiftSwapsPage() {
                   Automated Notifications
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff can request swaps anytime via mobile app. Relevant team members get instant notifications, and approved swaps update across all systems in real-time.
+                  Staff can request swaps anytime via mobile app. Relevant team
+                  members get instant notifications, and approved swaps update
+                  across all systems in real-time.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Mobile app swap requests</span>
+                    <span className="text-gray-700">
+                      Mobile app swap requests
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Push notifications to relevant staff</span>
+                    <span className="text-gray-700">
+                      Push notifications to relevant staff
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Real-time roster updates</span>
+                    <span className="text-gray-700">
+                      Real-time roster updates
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -251,7 +283,9 @@ export default function ShiftSwapsPage() {
                   Comprehensive Audit Trail
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Track who swapped, when, and why. Complete documentation helps resolve disputes and demonstrate compliance with labour regulations.
+                  Track who swapped, when, and why. Complete documentation helps
+                  resolve disputes and demonstrate compliance with labour
+                  regulations.
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
@@ -260,11 +294,15 @@ export default function ShiftSwapsPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Approval timestamps and reasons</span>
+                    <span className="text-gray-700">
+                      Approval timestamps and reasons
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Compliance documentation</span>
+                    <span className="text-gray-700">
+                      Compliance documentation
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -302,7 +340,9 @@ export default function ShiftSwapsPage() {
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Compliance with labour regulations</p>
+                  <p className="text-xl opacity-90">
+                    Compliance with labour regulations
+                  </p>
                 </div>
               </div>
             </div>
@@ -317,31 +357,32 @@ export default function ShiftSwapsPage() {
                 Ready to Modernize Your Shift Management?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Join leading organizations who've transformed their workforce flexibility with intelligent shift swapping.
+                Join leading organizations who've transformed their workforce
+                flexibility with intelligent shift swapping.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  href="/book-a-demo" 
+                <Button
+                  href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-semibold"
                   analyticsLabel="Book Your Demo"
                   analyticsLocation="Feature Page Shift Swaps"
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Shift Swaps",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book Your Demo
                 </Button>
-                <Button 
-                  href="/pricing" 
+                <Button
+                  href="/pricing"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold"
                   analyticsLabel="View Pricing"
                   analyticsLocation="Feature Page Shift Swaps"
                   analyticsProperties={{
                     cta_type: "pricing",
                     page_name: "Shift Swaps",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   View Pricing
@@ -352,5 +393,5 @@ export default function ShiftSwapsPage() {
         </div>
       </div>
     </SiteLayout>
-  )
+  );
 }

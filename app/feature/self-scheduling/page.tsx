@@ -10,7 +10,7 @@ export const metadata = {
   description:
     "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
   alternates: {
-    canonical: 'https://rosterlab.com/feature/self-scheduling',
+    canonical: "https://rosterlab.com/feature/self-scheduling",
   },
   openGraph: {
     title: "Self-Scheduling - RosterLab",
@@ -20,7 +20,7 @@ export const metadata = {
     url: "https://rosterlab.com/feature/self-scheduling",
     images: [
       {
-        url: "/images/og images/SelfScheduling.png",
+        url: "/images/og-images/SelfScheduling.png",
         width: 1200,
         height: 630,
       },
@@ -31,7 +31,7 @@ export const metadata = {
     title: "Self-Scheduling - RosterLab",
     description:
       "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
-    images: ["/images/og images/SelfScheduling.png"],
+    images: ["/images/og-images/SelfScheduling.png"],
   },
 };
 
@@ -61,7 +61,7 @@ export default function SelfSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Self Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Book A Demo
@@ -74,7 +74,7 @@ export default function SelfSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "signup",
                       page_name: "Self Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Try it for free
@@ -155,7 +155,10 @@ export default function SelfSchedulingPage() {
                   Ensure High-Quality and Compliant Rosters
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  RosterLab AI handles complex constraints including contractual hours, union agreements, and staff availability. Create parameterised rules for each person to ensure fair shift assignments and never worry about compliance again.
+                  RosterLab AI handles complex constraints including contractual
+                  hours, union agreements, and staff availability. Create
+                  parameterised rules for each person to ensure fair shift
+                  assignments and never worry about compliance again.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -191,7 +194,11 @@ export default function SelfSchedulingPage() {
                   Simplify The Collection of Everyone's Preferred Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Every staff member can enter their preferred roster through web, iOS, or Android. The intuitive interface makes it fast to submit preferences and set priorities. All submissions are stored in the cloud and automatically synced with RosterLab AI for roster creation.
+                  Every staff member can enter their preferred roster through
+                  web, iOS, or Android. The intuitive interface makes it fast to
+                  submit preferences and set priorities. All submissions are
+                  stored in the cloud and automatically synced with RosterLab AI
+                  for roster creation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -245,7 +252,10 @@ export default function SelfSchedulingPage() {
                   Self-Roster The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Plan your ideal roster by specifying preferred shifts, days off, and weekend availability. Whether you want full control or just the essentials, RosterLab AI creates fair, equitable schedules that maximise everyone's preferences.
+                  Plan your ideal roster by specifying preferred shifts, days
+                  off, and weekend availability. Whether you want full control
+                  or just the essentials, RosterLab AI creates fair, equitable
+                  schedules that maximise everyone's preferences.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -317,7 +327,7 @@ export default function SelfSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Self Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book Your Demo
@@ -330,7 +340,7 @@ export default function SelfSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "pricing",
                     page_name: "Self Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   View Pricing

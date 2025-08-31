@@ -17,6 +17,9 @@ interface AmplitudeProps {
   options?: Record<string, any>;
 }
 
+// Track initialization to prevent multiple inits
+let isInitialized = false;
+
 export default function Amplitude({
   apiKey,
   userId,
@@ -24,6 +27,50 @@ export default function Amplitude({
 }: AmplitudeProps) {
   useEffect(() => {
     if (!apiKey || typeof window === "undefined") return;
+
+    // Check if already initialized
+    if (isInitialized) {
+      console.log("Amplitude already initialized, skipping re-initialization", {
+        currentDeviceId: amplitude.getDeviceId(),
+        currentUserId: amplitude.getUserId(),
+        currentSessionId: amplitude.getSessionId(),
+      });
+      // If user ID changed, update it without re-initializing
+      if (userId && amplitude.getUserId() !== userId) {
+        amplitude.setUserId(userId);
+      }
+      return;
+    }
+
+    // Check for stored session data (for redirect scenarios)
+    const checkStoredSession = () => {
+      const sessionData = window.sessionStorage.getItem(
+        "amplitude_session_data",
+      );
+      const localData = window.localStorage.getItem("amplitude_demo_redirect");
+
+      if (sessionData) {
+        try {
+          const data = JSON.parse(sessionData);
+          console.log("[Amplitude] Found stored session data:", data);
+          return data;
+        } catch (e) {}
+      }
+
+      if (localData) {
+        try {
+          const data = JSON.parse(localData);
+          if (data.expires > Date.now()) {
+            console.log("[Amplitude] Found stored redirect data:", data);
+            return data;
+          }
+        } catch (e) {}
+      }
+
+      return null;
+    };
+
+    const storedSession = checkStoredSession();
 
     // Determine server URL based on environment
     // Use production endpoint only for main production site, everything else goes to test
@@ -41,7 +88,7 @@ export default function Amplitude({
     const currentTouchData = getCurrentTouchData();
 
     // Initialize Amplitude with cross-domain tracking
-    amplitude.init(apiKey, userId, {
+    amplitude.init(apiKey, userId || storedSession?.userId, {
       defaultTracking: {
         sessions: true,
         pageViews: true,
@@ -50,7 +97,17 @@ export default function Amplitude({
       },
       // Enable cross-domain tracking - share cookies across all subdomains
       cookieOptions: {
-        domain: ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
+        domain:
+          typeof window !== "undefined" &&
+          window.location.hostname === "localhost"
+            ? undefined // Don't set domain on localhost
+            : ".rosterlab.com", // Allows tracking across www.rosterlab.com and app.rosterlab.com
+        sameSite: "Lax", // Allow cookies during navigation
+        secure:
+          typeof window !== "undefined" &&
+          window.location.protocol === "https:", // Only secure on HTTPS
+        expiration: 365, // Persist device ID for a year
+        upgrade: false, // Don't upgrade cookies, maintain existing ones
       },
       // Standard session timeout
       sessionTimeout: 30 * 60 * 1000, // 30 minutes
@@ -58,6 +115,9 @@ export default function Amplitude({
       serverUrl,
       ...options,
     });
+
+    // Mark as initialized
+    isInitialized = true;
 
     // Log device ID and user ID after initialization
     console.log("Amplitude initialized:", {
@@ -75,9 +135,18 @@ export default function Amplitude({
 
     amplitude.add(sessionReplay);
 
-    // Set user ID if provided
-    if (userId) {
-      amplitude.setUserId(userId);
+    // Set user ID if provided (from props or stored session)
+    const finalUserId = userId || storedSession?.email || storedSession?.userId;
+    if (finalUserId) {
+      amplitude.setUserId(finalUserId);
+      console.log("[Amplitude] User ID set:", finalUserId);
+
+      // If we have stored session email, also set as user property
+      if (storedSession?.email) {
+        const identify = new amplitude.Identify();
+        identify.set("email", storedSession.email);
+        amplitude.identify(identify);
+      }
     }
 
     // Set first-touch user properties (only if they exist)
@@ -148,12 +217,8 @@ export default function Amplitude({
     );
 
     return () => {
-      window.removeEventListener(
-        "utm-session-update",
-        handleUTMUpdate as EventListener,
-      );
-      // Clean up on unmount
-      amplitude.reset();
+      // Don't reset on unmount - preserve session
+      // amplitude.reset() should only be called on explicit logout
     };
   }, [apiKey, userId, options]);
 
@@ -236,6 +301,26 @@ export const analytics = {
   getUserId: () => {
     if (typeof window !== "undefined") {
       return amplitude.getUserId();
+    }
+    return null;
+  },
+
+  getSessionId: () => {
+    if (typeof window !== "undefined") {
+      return amplitude.getSessionId();
+    }
+    return null;
+  },
+
+  logState: () => {
+    if (typeof window !== "undefined") {
+      const state = {
+        deviceId: amplitude.getDeviceId(),
+        userId: amplitude.getUserId(),
+        sessionId: amplitude.getSessionId(),
+      };
+      console.log("[Amplitude] Current state:", state);
+      return state;
     }
     return null;
   },

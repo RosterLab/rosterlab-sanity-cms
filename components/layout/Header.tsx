@@ -118,7 +118,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <div className="hidden xl:block">
-            <div className="ml-10 flex items-center space-x-8">
+            <div className="ml-10 flex items-center xl:space-x-4 2xl:space-x-8">
               {navigation.map((item) => (
                 <div
                   key={item.title}
@@ -137,13 +137,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   {item.link ? (
                     <Link
                       href={item.link}
-                      className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center"
+                      className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center"
                     >
                       {item.title}
                     </Link>
                   ) : (
                     <button
-                      className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer"
+                      className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveDropdown(
@@ -565,10 +565,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
           </div>
 
           {/* Header Buttons */}
-          <div className="hidden xl:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center xl:space-x-2 2xl:space-x-4">
             <Link
               href="/contact"
-              className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+              className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={() =>
                 trackSmartButtonClick(
                   "Contact Us",
@@ -579,10 +579,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
             >
               Contact Us
             </Link>
-            <div className="w-px h-6 bg-gray-300 mx-2" />
+            <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
             <Link
               href="https://app.rosterlab.com"
-              className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center"
+              className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors flex items-center"
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(
@@ -600,7 +600,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </Link>
             <Link
               href="/book-a-demo"
-              className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              className="bg-blue-600 text-white hover:bg-blue-700 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={() =>
                 trackSmartButtonClick(
                   "Book a Demo",
@@ -613,7 +613,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </Link>
             <Link
               href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+              className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(

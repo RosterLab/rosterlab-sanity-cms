@@ -10,7 +10,7 @@ export const metadata = {
   description:
     "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
   alternates: {
-    canonical: 'https://rosterlab.com/industries/healthcare',
+    canonical: "https://rosterlab.com/industries/healthcare",
   },
   openGraph: {
     title: "Rostering Software for Healthcare - RosterLab",
@@ -20,7 +20,7 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare",
     images: [
       {
-        url: "/images/og images/IndustryHealthcare.png",
+        url: "/images/og-images/IndustryHealthcare.png",
         width: 1200,
         height: 630,
       },
@@ -31,7 +31,7 @@ export const metadata = {
     title: "Rostering Software for Healthcare - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    images: ["/images/og images/IndustryHealthcare.png"],
+    images: ["/images/og-images/IndustryHealthcare.png"],
   },
 };
 
@@ -102,9 +102,7 @@ export default function HealthcarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
-            >
+            <div className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-500"
@@ -129,9 +127,7 @@ export default function HealthcarePage() {
               </p>
             </div>
 
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
-            >
+            <div className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-sky-500"
@@ -212,9 +208,7 @@ export default function HealthcarePage() {
               </p>
             </Link>
 
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
-            >
+            <div className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-indigo-500"

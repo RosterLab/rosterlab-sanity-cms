@@ -21,7 +21,7 @@ export const metadata = {
   description:
     "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
   alternates: {
-    canonical: 'https://rosterlab.com/solutions/ai-staff-scheduling',
+    canonical: "https://rosterlab.com/solutions/ai-staff-scheduling",
   },
   openGraph: {
     title: "AI Staff Roster Generator for Scheduling Complex Shifts",
@@ -31,7 +31,7 @@ export const metadata = {
     url: "https://rosterlab.com/solutions/ai-staff-scheduling",
     images: [
       {
-        url: "/images/og images/SolutionAIGen.png",
+        url: "/images/og-images/SolutionAIGen.png",
         width: 1200,
         height: 630,
         alt: "AI Staff Roster Generator",
@@ -43,7 +43,7 @@ export const metadata = {
     title: "AI Staff Roster Generator for Scheduling Complex Shifts",
     description:
       "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
-    images: ["/images/og images/SolutionAIGen.png"],
+    images: ["/images/og-images/SolutionAIGen.png"],
   },
 };
 
@@ -51,7 +51,7 @@ const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters. <a href=\"https://rosterlab.com/blog/should-your-next-staff-roster-be-built-with-ai\" className=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
+      'Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal rosters. <a href="https://rosterlab.com/blog/should-your-next-staff-roster-be-built-with-ai" className="text-blue-600 hover:text-blue-700 underline">Read more about how AI works</a>.',
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
@@ -180,7 +180,7 @@ export default function AISchedulesPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "AI Staff Scheduling",
-                    section: "hero"
+                    section: "hero",
                   }}
                 >
                   Book a Demo
@@ -193,7 +193,7 @@ export default function AISchedulesPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "AI Staff Scheduling",
-                    section: "hero"
+                    section: "hero",
                   }}
                 >
                   See an Example
@@ -327,7 +327,10 @@ export default function AISchedulesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Link href="https://rosterlab.com/feature/auto-roster-generation" className="block">
+            <Link
+              href="https://rosterlab.com/feature/auto-roster-generation"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -343,15 +346,28 @@ export default function AISchedulesPage() {
                     </p>
                     <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
                       Learn More
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
                 </div>
               </div>
             </Link>
-            <Link href="https://rosterlab.com/feature/shift-swaps" className="block">
+            <Link
+              href="https://rosterlab.com/feature/shift-swaps"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -367,15 +383,28 @@ export default function AISchedulesPage() {
                     </p>
                     <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
                       Learn More
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
                 </div>
               </div>
             </Link>
-            <Link href="https://rosterlab.com/feature/auto-roster-generation" className="block">
+            <Link
+              href="https://rosterlab.com/feature/auto-roster-generation"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -391,15 +420,28 @@ export default function AISchedulesPage() {
                     </p>
                     <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
                       Learn More
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
                 </div>
               </div>
             </Link>
-            <Link href="https://rosterlab.com/feature/re-rostering" className="block">
+            <Link
+              href="https://rosterlab.com/feature/re-rostering"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -416,8 +458,18 @@ export default function AISchedulesPage() {
                     </p>
                     <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
                       Learn More
-                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </span>
                   </div>
@@ -614,7 +666,7 @@ export default function AISchedulesPage() {
                 analyticsProperties={{
                   cta_type: "demo",
                   page_name: "AI Staff Scheduling",
-                  section: "final_cta"
+                  section: "final_cta",
                 }}
               >
                 Book a Demo
@@ -627,7 +679,7 @@ export default function AISchedulesPage() {
                 analyticsProperties={{
                   cta_type: "contact",
                   page_name: "AI Staff Scheduling",
-                  section: "final_cta"
+                  section: "final_cta",
                 }}
               >
                 Contact Us

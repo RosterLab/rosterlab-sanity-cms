@@ -98,6 +98,12 @@ export default function HubSpotFormListener() {
 
         // Track in Amplitude
         try {
+          // Log current session before tracking
+          console.log("[HubSpotFormListener] Session before form tracking:", {
+            deviceId: analytics.getDeviceId(),
+            userId: analytics.getUserId(),
+          });
+
           trackFormSubmission({
             form_guid: formData.id,
             form_name: formData.data?.formName,
@@ -121,6 +127,21 @@ export default function HubSpotFormListener() {
           console.log(
             "[HubSpotFormListener] Successfully tracked form submission to Amplitude",
           );
+
+          // If form has a redirect URL, add a flag to prevent new session on redirect
+          if (formData.data?.redirectUrl) {
+            console.log(
+              "[HubSpotFormListener] Form will redirect to:",
+              formData.data.redirectUrl,
+            );
+            // Store flag in sessionStorage to maintain session across redirect
+            if (typeof window !== "undefined") {
+              window.sessionStorage.setItem("amplitude_form_redirect", "true");
+              setTimeout(() => {
+                window.sessionStorage.removeItem("amplitude_form_redirect");
+              }, 5000); // Remove flag after 5 seconds
+            }
+          }
         } catch (error) {
           console.error(
             "[HubSpotFormListener] Error tracking form submission:",

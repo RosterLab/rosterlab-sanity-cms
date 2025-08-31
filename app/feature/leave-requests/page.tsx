@@ -15,7 +15,7 @@ export const metadata = {
       "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
     images: [
       {
-        url: "/images/og images/FeatureLeaveRequest.png",
+        url: "/images/og-images/FeatureLeaveRequest.png",
         width: 1200,
         height: 630,
       },
@@ -26,7 +26,7 @@ export const metadata = {
     title: "Employee Leave Request Tracking - RosterLab",
     description:
       "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
-    images: ["/images/og images/FeatureLeaveRequest.png"],
+    images: ["/images/og-images/FeatureLeaveRequest.png"],
   },
 };
 
@@ -83,19 +83,25 @@ export default function LeaveRequestsPage() {
                   Submit Leave Requests via the Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff can easily submit leave requests directly from their mobile, anytime and anywhere. They can also see colleagues' leave schedules, helping them plan around popular periods and improve chances of leave approval. This reduces frustration from rejected requests and simplifies administration.
+                  Staff can easily submit leave requests directly from their
+                  mobile, anytime and anywhere. They can also see colleagues'
+                  leave schedules, helping them plan around popular periods and
+                  improve chances of leave approval. This reduces frustration
+                  from rejected requests and simplifies administration.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Submit leave requests on mobile with real-time notifications and updates.
+                      Submit leave requests on mobile with real-time
+                      notifications and updates.
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      See team leave schedules to plan and improve approval chances.
+                      See team leave schedules to plan and improve approval
+                      chances.
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -180,13 +186,18 @@ export default function LeaveRequestsPage() {
                   Automatically Sync Changes to your Roster
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Leave requests seamlessly integrate with your roster. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need. All information syncs back to the roster and is considered during the AI generation.
+                  Leave requests seamlessly integrate with your roster. Managers
+                  can see the impact on staffing levels and make informed
+                  approval decisions with all the context they need. All
+                  information syncs back to the roster and is considered during
+                  the AI generation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Dedicated interface for administrators to review and manage leave requests
+                      Dedicated interface for administrators to review and
+                      manage leave requests
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -225,13 +236,20 @@ export default function LeaveRequestsPage() {
                   Decide How Different Types of Leave are Handled
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Admin users have full control over how different types of leave are handled in your roster. You can set whether each leave type counts toward contractual working hours or is excluded, and define exactly how many hours should be counted within a roster period. This flexibility ensures rosters reflect your rules accurately while keeping staffing plans clear and compliant.
+                  Admin users have full control over how different types of
+                  leave are handled in your roster. You can set whether each
+                  leave type counts toward contractual working hours or is
+                  excluded, and define exactly how many hours should be counted
+                  within a roster period. This flexibility ensures rosters
+                  reflect your rules accurately while keeping staffing plans
+                  clear and compliant.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Support for all types of leave including annual, sick, parental and custom categories
+                      Support for all types of leave including annual, sick,
+                      parental and custom categories
                     </span>
                   </li>
                   <li className="flex items-start">

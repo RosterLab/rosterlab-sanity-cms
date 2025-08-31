@@ -1,16 +1,17 @@
 import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
 import RosterGenerator from "@/components/ui/RosterGenerator";
-import { HiCheck } from 'react-icons/hi';
+import { HiCheck } from "react-icons/hi";
 
 export default function Hero() {
   return (
     <section
-      className="relative flex items-center py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 pb-20"
+      className="relative flex items-center py-16 bg-gradient-to-br from-blue-50 via-white to-green-50 pb-20"
       style={{
         minHeight: "70vh",
       }}
     >
-      <div className="max-w-7xl mx-auto w-full">
+      <Container className="w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Text and CTAs */}
           <div className="text-left">
@@ -20,7 +21,8 @@ export default function Hero() {
               <span
                 className="inline-block"
                 style={{
-                  background: "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  background:
+                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -44,7 +46,7 @@ export default function Hero() {
                 className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Homepage Hero"
-                analyticsProperties={{ cta_type: 'demo', section: 'hero' }}
+                analyticsProperties={{ cta_type: "demo", section: "hero" }}
               >
                 Book a Demo
               </Button>
@@ -54,21 +56,29 @@ export default function Hero() {
                 className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
                 analyticsLabel="See an Example"
                 analyticsLocation="Homepage Hero"
-                analyticsProperties={{ cta_type: 'demo', section: 'hero', demo_type: 'interactive' }}
+                analyticsProperties={{
+                  cta_type: "demo",
+                  section: "hero",
+                  demo_type: "interactive",
+                }}
               >
                 See an Example
               </Button>
             </div>
 
             {/* Feature ticks */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <div className="flex flex-col xl:flex-row gap-4">
               <div className="flex items-center gap-2">
                 <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">Made for healthcare and complex industries</span>
+                <span className="text-sm text-gray-700 whitespace-nowrap">
+                  Made for healthcare and complex industries
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">AI-generated rosters in seconds</span>
+                <span className="text-sm text-gray-700 whitespace-nowrap">
+                  AI-generated rosters in seconds
+                </span>
               </div>
             </div>
           </div>
@@ -80,7 +90,7 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Wave separator */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
