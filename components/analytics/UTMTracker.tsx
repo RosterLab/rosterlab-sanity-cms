@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   initializeUTMTracking,
@@ -14,10 +14,7 @@ interface UTMTrackerProps {
   debug?: boolean;
 }
 
-export default function UTMTracker({
-  onUTMsDetected,
-  debug = false,
-}: UTMTrackerProps) {
+function UTMTrackerInner({ onUTMsDetected, debug = false }: UTMTrackerProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -85,4 +82,12 @@ export default function UTMTracker({
   }, [debug]);
 
   return null; // This is a tracking component, no UI needed
+}
+
+export default function UTMTracker(props: UTMTrackerProps) {
+  return (
+    <Suspense fallback={null}>
+      <UTMTrackerInner {...props} />
+    </Suspense>
+  );
 }
