@@ -1,16 +1,39 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback } from 'react'
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import Link from 'next/link'
-import { HiCheck, HiDownload, HiTable, HiClipboardList, HiCalendar, HiUserGroup } from 'react-icons/hi'
-import { trackButtonClick } from '@/components/analytics/Amplitude'
-import { urlFor } from '@/sanity/lib/client'
-import FAQAccordion from '@/components/ui/FAQAccordion'
-import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
+import { useState, useEffect } from "react";
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  HiCheck,
+  HiDownload,
+  HiTable,
+  HiClipboardList,
+  HiUserGroup,
+} from "react-icons/hi";
+import { trackButtonClick } from "@/components/analytics/Amplitude";
+import { urlFor } from "@/sanity/lib/client";
+import FAQAccordion from "@/components/ui/FAQAccordion";
+import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
+
+// Download function - extracted outside component for stability
+const downloadExcelFile = () => {
+  // Track download
+  trackButtonClick("Download Excel Template", "Excel Template Page", {
+    form_type: "excel_download",
+    download_type: "automatic",
+  });
+
+  // Create a temporary link to download the file
+  const link = document.createElement("a");
+  link.href = "/images/excel/RosterLab-Free-Excel-Template.xlsx";
+  link.download = "RosterLab-Free-Excel-Template.xlsx";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 // Add HubSpot type declaration
 declare global {
@@ -18,84 +41,44 @@ declare global {
     hbspt?: {
       forms: {
         create: (config: {
-          region: string
-          portalId: string
-          formId: string
-          target: string
-          onFormSubmitted?: (formData: any) => void
-        }) => void
-      }
-    }
+          region: string;
+          portalId: string;
+          formId: string;
+          target: string;
+          onFormSubmitted?: (formData: any) => void;
+        }) => void;
+      };
+    };
   }
 }
 
 interface BlogPost {
-  _id: string
-  title: string
-  slug: { current: string }
-  excerpt?: string
-  mainImage?: { asset: { _ref: string }; alt?: string }
-  publishedAt: string
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  mainImage?: { asset: { _ref: string }; alt?: string };
+  publishedAt: string;
   author?: {
-    name: string
-    image?: { asset: { _ref: string }; alt?: string }
-  }
+    name: string;
+    image?: { asset: { _ref: string }; alt?: string };
+  };
 }
 
 interface ExcelTemplateClientProps {
-  recommendedPosts: BlogPost[]
+  recommendedPosts: BlogPost[];
 }
 
-export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateClientProps) {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isLoadingForm, setIsLoadingForm] = useState(true)
-
-  const downloadExcelFile = useCallback(() => {
-    // Track download
-    trackButtonClick('Download Excel Template', 'Excel Template Page', {
-      form_type: 'excel_download',
-      download_type: 'automatic'
-    })
-    
-    // Create a temporary link to download the file
-    const link = document.createElement('a')
-    link.href = '/images/excel/RosterLab-Free-Excel-Template.xlsx'
-    link.download = 'RosterLab-Free-Excel-Template.xlsx'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }, [])
+export default function ExcelTemplateClient({
+  recommendedPosts,
+}: ExcelTemplateClientProps) {
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Load HubSpot form on component mount
   useEffect(() => {
     // Check if HubSpot is already loaded
-    if (window.hbspt) {
-      window.hbspt.forms.create({
-        portalId: "20646833",
-        formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
-        region: "na1",
-        target: "#hubspot-form-container",
-        onFormSubmitted: () => {
-          // Download the Excel file
-          downloadExcelFile()
-          
-          // Update UI to show success
-          setIsSubmitted(true)
-        }
-      })
-      setIsLoadingForm(false)
-      return
-    }
-    
-    // Create script element
-    const script = document.createElement('script')
-    script.src = 'https://js.hsforms.net/forms/embed/v2.js'
-    script.charset = 'utf-8'
-    script.type = 'text/javascript'
-    
-    // When script loads, create the form
-    script.onload = () => {
-      if (window.hbspt) {
+    try {
+      if (window.hbspt && window.hbspt.forms) {
         window.hbspt.forms.create({
           portalId: "20646833",
           formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
@@ -103,68 +86,106 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
           target: "#hubspot-form-container",
           onFormSubmitted: () => {
             // Download the Excel file
-            downloadExcelFile()
-            
+            downloadExcelFile();
+
             // Update UI to show success
-            setIsSubmitted(true)
-          }
-        })
-        setIsLoadingForm(false)
+            setIsSubmitted(true);
+          },
+        });
+        return;
       }
+    } catch (error) {
+      return;
     }
-    
+
+    // Create script element
+    const script = document.createElement("script");
+    script.src = "https://js.hsforms.net/forms/embed/v2.js";
+    script.charset = "utf-8";
+    script.type = "text/javascript";
+
+    // When script loads, create the form
+    script.onload = () => {
+      try {
+        if (window.hbspt && window.hbspt.forms) {
+          window.hbspt.forms.create({
+            portalId: "20646833",
+            formId: "8b313479-637e-4725-8b9e-3fe8cdae6077",
+            region: "na1",
+            target: "#hubspot-form-container",
+            onFormSubmitted: () => {
+              // Download the Excel file
+              downloadExcelFile();
+
+              // Update UI to show success
+              setIsSubmitted(true);
+            },
+          });
+        }
+      } catch (error) {
+        return;
+      }
+    };
+
     // Append script to body
-    document.body.appendChild(script)
-    
+    document.body.appendChild(script);
+
     // Cleanup
     return () => {
       // Remove script if component unmounts
       if (document.body.contains(script)) {
-        document.body.removeChild(script)
+        document.body.removeChild(script);
       }
-    }
-  }, [downloadExcelFile])
+    };
+  }, []);
 
   const features = [
     {
       icon: HiTable,
-      title: 'Pre-formatted 6-week roster',
-      description: 'The dates and days of the week are already laid out for 6 weeks, ready for assigning shifts.'
+      title: "Pre-formatted 6-week roster",
+      description:
+        "The dates and days of the week are already laid out for 6 weeks, ready for assigning shifts.",
     },
     {
       icon: HiUserGroup,
-      title: 'Staff information section',
-      description: 'Space to record each employee\'s name, initials, skill level, and FTE (contracted hours).'
+      title: "Staff information section",
+      description:
+        "Space to record each employee's name, initials, skill level, and FTE (contracted hours).",
     },
     {
       icon: HiClipboardList,
-      title: 'Shift allocation and totals',
-      description: 'Cells to assign different shifts, with automatic totals at the end for tracking workload.'
-    }
-  ]
+      title: "Shift allocation and totals",
+      description:
+        "Cells to assign different shifts, with automatic totals at the end for tracking workload.",
+    },
+  ];
 
   const benefits = [
-    'Distribute shifts across staff',
-    'Easily review the staff balance on each day',
-    'Track FTE against contract hours',
-    'Edit and personalise to meet your requirements',
-    'Printer friendly and easy to use'
-  ]
+    "Distribute shifts across staff",
+    "Easily review the staff balance on each day",
+    "Track FTE against contract hours",
+    "Edit and personalise to meet your requirements",
+    "Printer friendly and easy to use",
+  ];
 
   const faqItems = [
     {
       question: "Who is this staff scheduling template for?",
-      answer: "This free Excel staff roster template is designed for managers, staff schedulers and team leaders who need a simple way to organise staff shifts. It's best suited for workplaces that want a straightforward, no-cost solution without needing to adopt new software."
+      answer:
+        "This free Excel staff roster template is designed for managers, staff schedulers and team leaders who need a simple way to organise staff shifts. It's best suited for workplaces that want a straightforward, no-cost solution without needing to adopt new software.",
     },
     {
       question: "Should I use an Excel spreadsheet to roster my staff?",
-      answer: "Excel can be a quick and familiar tool for scheduling if you have a small team and relatively simple shift patterns. However, it can become time-consuming and error-prone as your workforce grows, especially when handling last-minute changes, compliance requirements, or multiple locations."
+      answer:
+        "Excel can be a quick and familiar tool for scheduling if you have a small team and relatively simple shift patterns. However, it can become time-consuming and error-prone as your workforce grows, especially when handling last-minute changes, compliance requirements, or multiple locations.",
     },
     {
-      question: "What's the difference between your Excel spreadsheet and free digital scheduling?",
-      answer: "The Excel template is static - you download it and update manually. Our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:text-blue-700 underline'>free digital scheduling tool</a>, on the other hand, allows you to build and share rosters online, make real-time updates, and automatically notify staff of changes. Digital scheduling reduces admin time, helps prevent double-ups, and ensures your team always has the latest version."
-    }
-  ]
+      question:
+        "What's the difference between your Excel spreadsheet and free digital scheduling?",
+      answer:
+        "The Excel template is static - you download it and update manually. Our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:text-blue-700 underline'>free digital scheduling tool</a>, on the other hand, allows you to build and share rosters online, make real-time updates, and automatically notify staff of changes. Digital scheduling reduces admin time, helps prevent double-ups, and ensures your team always has the latest version.",
+    },
+  ];
 
   return (
     <SiteLayout>
@@ -178,16 +199,19 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                   <div className="bg-green-100 p-2 rounded-lg">
                     <HiDownload className="w-6 h-6 text-green-600" />
                   </div>
-                  <span className="text-green-600 font-semibold">FREE DOWNLOAD</span>
+                  <span className="text-green-600 font-semibold">
+                    FREE DOWNLOAD
+                  </span>
                 </div>
-                
+
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Free Staff Roster Template (Excel)
                 </h1>
-                
+
                 <p className="text-xl text-gray-600 mb-8">
-                  Stop struggling with roster creation. Download our professionally designed 
-                  Excel template specifically built for shift work scheduling.
+                  Stop struggling with roster creation. Download our
+                  professionally designed Excel template specifically built for
+                  shift work scheduling.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -201,7 +225,8 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <p className="text-sm text-blue-800">
-                    <strong>100% Free</strong> - No credit card required. Just fill out the form and download instantly.
+                    <strong>100% Free</strong> - No credit card required. Just
+                    fill out the form and download instantly.
                   </p>
                 </div>
               </div>
@@ -214,19 +239,15 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                       Get Your Free Template
                     </h2>
                     <p className="text-gray-600 mb-6">
-                      Fill out the form below to download your Excel roster template
+                      Fill out the form below to download your Excel roster
+                      template
                     </p>
 
                     {/* HubSpot Form Container */}
-                    <div 
-                      id="hubspot-form-container"
-                      className="mb-4"
-                    >
-                      {isLoadingForm && (
-                        <div className="text-center py-8">
-                          <p className="text-gray-600">Loading form...</p>
-                        </div>
-                      )}
+                    <div id="hubspot-form-container" className="mb-4">
+                      <div className="text-center py-8">
+                        <p className="text-gray-600">Loading form...</p>
+                      </div>
                     </div>
                     <HubSpotFormListener />
                   </>
@@ -239,15 +260,20 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                       Thank You!
                     </h3>
                     <p className="text-gray-600 mb-6">
-                      Your download should start automatically. If not, click the button below.
+                      Your download should start automatically. If not, click
+                      the button below.
                     </p>
                     <button
                       className="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                       onClick={() => {
-                        downloadExcelFile()
-                        trackButtonClick('Manual Download', 'Excel Template Page', {
-                          download_type: 'manual'
-                        })
+                        downloadExcelFile();
+                        trackButtonClick(
+                          "Manual Download",
+                          "Excel Template Page",
+                          {
+                            download_type: "manual",
+                          },
+                        );
                       }}
                     >
                       <HiDownload className="w-5 h-5 mr-2" />
@@ -281,22 +307,24 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 What's Included in the Template
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Everything you need to create professional staff rosters in Excel
+                Everything you need to create professional staff rosters in
+                Excel
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
-                <div key={index} className="bg-gray-50 rounded-xl p-6 text-center">
+                <div
+                  key={index}
+                  className="bg-gray-50 rounded-xl p-6 text-center"
+                >
                   <div className="bg-white w-12 h-12 rounded-lg flex items-center justify-center mb-4 mx-auto">
                     <feature.icon className="w-6 h-6 text-blue-600" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600">
-                    {feature.description}
-                  </p>
+                  <p className="text-gray-600">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -317,7 +345,6 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 </div>
               </div>
             </div>
-
           </Container>
         </div>
 
@@ -327,23 +354,33 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
               Recommended reading for Excel Rosterers
             </h2>
-            
+
             <div className="grid gap-8 md:grid-cols-3">
               {recommendedPosts.map((post) => (
-                <article key={post._id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                <article
+                  key={post._id}
+                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                >
                   <Link href={`/blog/${post.slug.current}`} className="block">
                     <div className="relative h-48 overflow-hidden group">
                       {post.mainImage ? (
                         <Image
-                          src={urlFor(post.mainImage).width(400).height(200).url()}
+                          src={urlFor(post.mainImage)
+                            .width(400)
+                            .height(200)
+                            .url()}
                           alt={post.mainImage.alt || post.title}
                           fill
                           className="object-cover hover:scale-105 transition-transform duration-300"
                         />
                       ) : (
                         <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-                          <svg className="w-24 h-24 text-white/20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                          <svg
+                            className="w-24 h-24 text-white/20"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                           </svg>
                         </div>
                       )}
@@ -359,9 +396,19 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                         </p>
                       )}
                       <span className="text-primary-600 font-medium hover:underline inline-flex items-center">
-                        Read more 
-                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        Read more
+                        <svg
+                          className="w-4 h-4 ml-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
                       </span>
                     </div>
@@ -369,7 +416,7 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 </article>
               ))}
             </div>
-            
+
             {/* View all blogs CTA */}
             <div className="mt-12 text-center">
               <Link
@@ -377,8 +424,18 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
               >
                 View all blogs
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </div>
@@ -408,8 +465,9 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
                 Still Creating Rosters Manually?
               </h2>
               <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                While our Excel template saves time, RosterLab's AI can create optimized rosters 
-                in minutes, not hours. See how much time you could save.
+                While our Excel template saves time, RosterLab's AI can create
+                optimized rosters in minutes, not hours. See how much time you
+                could save.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -430,5 +488,5 @@ export default function ExcelTemplateClient({ recommendedPosts }: ExcelTemplateC
         </div>
       </div>
     </SiteLayout>
-  )
+  );
 }
