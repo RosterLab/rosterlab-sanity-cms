@@ -1,110 +1,190 @@
-'use client'
+"use client";
 
-import Container from '@/components/ui/Container'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Link from 'next/link'
-import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
-import { useEffect, useState, useRef } from 'react'
-import HubSpotMeetingListener from '@/components/analytics/HubSpotMeetingListener'
+import Container from "@/components/ui/Container";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Link from "next/link";
+import {
+  HiClock,
+  HiCheck,
+  HiUserGroup,
+  HiLightningBolt,
+  HiShieldCheck,
+  HiChartBar,
+} from "react-icons/hi";
+import { useEffect, useState, useRef } from "react";
+import HubSpotMeetingListener from "@/components/analytics/HubSpotMeetingListener";
+import { useRouter } from "next/navigation";
 
 export default function BookADemoClient() {
-  const [shouldLoadHubSpot, setShouldLoadHubSpot] = useState(false)
-  const meetingsContainerRef = useRef<HTMLDivElement>(null)
-  const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false)
+  const [shouldLoadHubSpot, setShouldLoadHubSpot] = useState(false);
+  const meetingsContainerRef = useRef<HTMLDivElement>(null);
+  const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false);
+  const [isBooking, setIsBooking] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    // Prefetch the meeting-confirmed page
+    router.prefetch("/meeting-confirmed");
+
+    // Add prefetch link tag for faster loading
+    const prefetchLink = document.createElement("link");
+    prefetchLink.rel = "prefetch";
+    prefetchLink.href = "/meeting-confirmed";
+    document.head.appendChild(prefetchLink);
+
     // Load HubSpot fonts CSS immediately
-    const hubspotFontsLink = document.createElement('link')
-    hubspotFontsLink.rel = 'stylesheet'
-    hubspotFontsLink.href = '/styles/hubspot-fonts.css'
-    document.head.appendChild(hubspotFontsLink)
+    const hubspotFontsLink = document.createElement("link");
+    hubspotFontsLink.rel = "stylesheet";
+    hubspotFontsLink.href = "/styles/hubspot-fonts.css";
+    document.head.appendChild(hubspotFontsLink);
 
     // Only add preconnect hints initially
-    const preconnect1 = document.createElement('link')
-    preconnect1.rel = 'preconnect'
-    preconnect1.href = 'https://static.hsappstatic.net'
-    document.head.appendChild(preconnect1)
+    const preconnect1 = document.createElement("link");
+    preconnect1.rel = "preconnect";
+    preconnect1.href = "https://static.hsappstatic.net";
+    document.head.appendChild(preconnect1);
 
-    const preconnect2 = document.createElement('link')
-    preconnect2.rel = 'preconnect'
-    preconnect2.href = 'https://meetings.rosterlab.com'
-    document.head.appendChild(preconnect2)
+    const preconnect2 = document.createElement("link");
+    preconnect2.rel = "preconnect";
+    preconnect2.href = "https://meetings.rosterlab.com";
+    document.head.appendChild(preconnect2);
 
     // Set up Intersection Observer for lazy loading
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !shouldLoadHubSpot) {
-            setShouldLoadHubSpot(true)
+            setShouldLoadHubSpot(true);
           }
-        })
+        });
       },
       {
-        rootMargin: '100px', // Start loading 100px before visible
-        threshold: 0.01
-      }
-    )
+        rootMargin: "100px", // Start loading 100px before visible
+        threshold: 0.01,
+      },
+    );
 
     if (meetingsContainerRef.current) {
-      observer.observe(meetingsContainerRef.current)
+      observer.observe(meetingsContainerRef.current);
     }
 
     return () => {
-      observer.disconnect()
-      if (document.head.contains(preconnect1)) document.head.removeChild(preconnect1)
-      if (document.head.contains(preconnect2)) document.head.removeChild(preconnect2)
-      if (document.head.contains(hubspotFontsLink)) document.head.removeChild(hubspotFontsLink)
-    }
-  }, [shouldLoadHubSpot])
+      observer.disconnect();
+      if (document.head.contains(preconnect1))
+        document.head.removeChild(preconnect1);
+      if (document.head.contains(preconnect2))
+        document.head.removeChild(preconnect2);
+      if (document.head.contains(hubspotFontsLink))
+        document.head.removeChild(hubspotFontsLink);
+      if (document.head.contains(prefetchLink))
+        document.head.removeChild(prefetchLink);
+    };
+  }, [shouldLoadHubSpot, router]);
 
   // Load HubSpot only when needed
   useEffect(() => {
-    if (!shouldLoadHubSpot || isHubSpotLoaded) return
+    if (!shouldLoadHubSpot || isHubSpotLoaded) return;
 
     // Add font preload hints
-    const fontPreload = document.createElement('link')
-    fontPreload.rel = 'preload'
-    fontPreload.as = 'font'
-    fontPreload.type = 'font/woff2'
-    fontPreload.href = 'https://static.hsappstatic.net/fonts/LexendDeca-Light.woff2'
-    fontPreload.crossOrigin = 'anonymous'
-    document.head.appendChild(fontPreload)
+    const fontPreload = document.createElement("link");
+    fontPreload.rel = "preload";
+    fontPreload.as = "font";
+    fontPreload.type = "font/woff2";
+    fontPreload.href =
+      "https://static.hsappstatic.net/fonts/LexendDeca-Light.woff2";
+    fontPreload.crossOrigin = "anonymous";
+    document.head.appendChild(fontPreload);
 
     // Load HubSpot meetings embed script with lower priority
-    const script = document.createElement('script')
-    script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js'
-    script.async = true
-    script.defer = true
-    
+    const script = document.createElement("script");
+    script.src =
+      "https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js";
+    script.async = true;
+    script.defer = true;
+
     // Use requestIdleCallback if available
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => {
-        document.body.appendChild(script)
-        setIsHubSpotLoaded(true)
-      }, { timeout: 2000 })
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(
+        () => {
+          document.body.appendChild(script);
+          setIsHubSpotLoaded(true);
+        },
+        { timeout: 2000 },
+      );
     } else {
       // Fallback to setTimeout
       setTimeout(() => {
-        document.body.appendChild(script)
-        setIsHubSpotLoaded(true)
-      }, 100)
+        document.body.appendChild(script);
+        setIsHubSpotLoaded(true);
+      }, 100);
     }
 
     // Mark fonts as loaded after a delay
     const timer = setTimeout(() => {
-      document.querySelector('.meetings-iframe-container')?.classList.add('fonts-loaded')
-    }, 1500)
+      document
+        .querySelector(".meetings-iframe-container")
+        ?.classList.add("fonts-loaded");
+    }, 1500);
 
     return () => {
-      clearTimeout(timer)
+      clearTimeout(timer);
       if (document.body.contains(script)) {
-        document.body.removeChild(script)
+        document.body.removeChild(script);
       }
       if (document.head.contains(fontPreload)) {
-        document.head.removeChild(fontPreload)
+        document.head.removeChild(fontPreload);
       }
-    }
-  }, [shouldLoadHubSpot, isHubSpotLoaded])
+    };
+  }, [shouldLoadHubSpot, isHubSpotLoaded]);
+
+  // Listen for HubSpot form interactions
+  useEffect(() => {
+    const handleHubSpotMessage = (event: MessageEvent) => {
+      // Listen for when user clicks the confirm button
+      if (
+        event.data &&
+        event.data.type === "hsFormCallback" &&
+        event.data.eventName === "onFormSubmit"
+      ) {
+        setIsBooking(true);
+      }
+      // Also listen for the meeting booking success
+      if (event.data && event.data.meetingBookSucceeded === true) {
+        setIsBooking(true);
+      }
+    };
+
+    // Add listener to detect form interactions
+    const detectFormInteraction = () => {
+      const iframe = meetingsContainerRef.current?.querySelector("iframe");
+      if (iframe) {
+        // Try to detect clicks on the iframe (limited by cross-origin policy)
+        const handleClick = () => {
+          // If we detect any click on the meetings widget, assume booking might be starting
+          const confirmButton = document.querySelector(
+            '[data-test-id="confirm-button"]',
+          );
+          if (confirmButton) {
+            setIsBooking(true);
+          }
+        };
+        meetingsContainerRef.current?.addEventListener("click", handleClick);
+        return () =>
+          meetingsContainerRef.current?.removeEventListener(
+            "click",
+            handleClick,
+          );
+      }
+    };
+
+    window.addEventListener("message", handleHubSpotMessage);
+    const cleanup = detectFormInteraction();
+
+    return () => {
+      window.removeEventListener("message", handleHubSpotMessage);
+      cleanup?.();
+    };
+  }, [isHubSpotLoaded]);
 
   return (
     <SiteLayout>
@@ -117,15 +197,16 @@ export default function BookADemoClient() {
               Book Your Personalised Demo
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how RosterLab's AI-powered scheduling can transform your workforce management in just 30 minutes.
+              See how RosterLab's AI-powered scheduling can transform your
+              workforce management in just 30 minutes.
             </p>
           </div>
 
           {/* HubSpot Meeting Scheduler Embed */}
           {/* Start of Meetings Embed Script */}
-          <div 
+          <div
             ref={meetingsContainerRef}
-            className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative mb-12" 
+            className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative mb-12"
             data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"
           >
             {!isHubSpotLoaded && (
@@ -133,6 +214,19 @@ export default function BookADemoClient() {
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
                   <p className="text-gray-600">Loading calendar...</p>
+                </div>
+              </div>
+            )}
+            {isBooking && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-lg z-50">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <p className="text-gray-900 font-medium text-lg mb-2">
+                    Confirming your booking...
+                  </p>
+                  <p className="text-gray-600 text-sm">
+                    Please wait while we secure your time slot
+                  </p>
                 </div>
               </div>
             )}
@@ -145,150 +239,199 @@ export default function BookADemoClient() {
               <div className="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-3">
                 <HiClock className="w-6 h-6 text-blue-700" />
               </div>
-              <h3 className="font-semibold text-blue-900 mb-1">90% Time Saved</h3>
-              <p className="text-blue-700 text-sm">Create schedules in minutes instead of days</p>
+              <h3 className="font-semibold text-blue-900 mb-1">
+                90% Time Saved
+              </h3>
+              <p className="text-blue-700 text-sm">
+                Create schedules in minutes instead of days
+              </p>
             </div>
             <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-6 text-center">
               <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-3">
                 <HiCheck className="w-6 h-6 text-green-700" />
               </div>
-              <h3 className="font-semibold text-green-900 mb-1">100% Compliance</h3>
-              <p className="text-green-700 text-sm">Automatically meet all regulatory requirements</p>
+              <h3 className="font-semibold text-green-900 mb-1">
+                100% Compliance
+              </h3>
+              <p className="text-green-700 text-sm">
+                Automatically meet all regulatory requirements
+              </p>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-6 text-center">
               <div className="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mx-auto mb-3">
                 <HiUserGroup className="w-6 h-6 text-purple-700" />
               </div>
-              <h3 className="font-semibold text-purple-900 mb-1">Happier Teams</h3>
-              <p className="text-purple-700 text-sm">Fair schedules that respect preferences</p>
+              <h3 className="font-semibold text-purple-900 mb-1">
+                Happier Teams
+              </h3>
+              <p className="text-purple-700 text-sm">
+                Fair schedules that respect preferences
+              </p>
             </div>
           </div>
 
           {/* Demo Information Grid - Hidden on mobile/tablet */}
           <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-              {/* What to Expect */}
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  What to Expect in Your Demo
-                </h2>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">1</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">Understand Your Challenges</h3>
-                      <p className="text-gray-600 text-xs">
-                        We'll discuss your current scheduling process and identify pain points
-                      </p>
-                    </div>
-                  </div>
+            {/* What to Expect */}
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                What to Expect in Your Demo
+              </h2>
 
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">2</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">Live Platform Demonstration</h3>
-                      <p className="text-gray-600 text-xs">
-                        See RosterLab in action with scenarios relevant to your <Link href="/industries" className="text-blue-600 hover:text-blue-700 underline">industry</Link>
-                      </p>
-                    </div>
+              <div className="space-y-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-blue-600 font-bold">1</span>
                   </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">3</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">ROI Analysis</h3>
-                      <p className="text-gray-600 text-xs">
-                        Calculate potential time and cost savings for your organisation
-                      </p>
-                    </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 text-sm mb-1">
+                      Understand Your Challenges
+                    </h3>
+                    <p className="text-gray-600 text-xs">
+                      We'll discuss your current scheduling process and identify
+                      pain points
+                    </p>
                   </div>
+                </div>
 
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">4</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">Implementation Roadmap</h3>
-                      <p className="text-gray-600 text-xs">
-                        Clear next steps and timeline to get you up and running
-                      </p>
-                    </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-blue-600 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 text-sm mb-1">
+                      Live Platform Demonstration
+                    </h3>
+                    <p className="text-gray-600 text-xs">
+                      See RosterLab in action with scenarios relevant to your{" "}
+                      <Link
+                        href="/industries"
+                        className="text-blue-600 hover:text-blue-700 underline"
+                      >
+                        industry
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-blue-600 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 text-sm mb-1">
+                      ROI Analysis
+                    </h3>
+                    <p className="text-gray-600 text-xs">
+                      Calculate potential time and cost savings for your
+                      organisation
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <span className="text-blue-600 font-bold">4</span>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 text-sm mb-1">
+                      Implementation Roadmap
+                    </h3>
+                    <p className="text-gray-600 text-xs">
+                      Clear next steps and timeline to get you up and running
+                    </p>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Key Features */}
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg p-8 border border-gray-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Tailored to your roster type and industry
-                </h2>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center">
-                    <HiLightningBolt className="w-5 h-5 text-yellow-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Healthcare shift patterns</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiShieldCheck className="w-5 h-5 text-green-500 mr-2" />
-                    <span className="text-gray-700 text-sm">24/7 coverage models</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiUserGroup className="w-5 h-5 text-blue-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Rotating shift schedules</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiChartBar className="w-5 h-5 text-purple-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Industry compliance rules</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiLightningBolt className="w-5 h-5 text-orange-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Handles complexity</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiShieldCheck className="w-5 h-5 text-indigo-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Fairer shift allocation</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiUserGroup className="w-5 h-5 text-pink-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Meet more staff preferences</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiShieldCheck className="w-5 h-5 text-teal-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Safer & healthier teams</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiClock className="w-5 h-5 text-red-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Manage fatigue</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiChartBar className="w-5 h-5 text-cyan-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Save time and money</span>
-                  </div>
+            {/* Key Features */}
+            <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg p-8 border border-gray-100">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Tailored to your roster type and industry
+              </h2>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center">
+                  <HiLightningBolt className="w-5 h-5 text-yellow-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Healthcare shift patterns
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiShieldCheck className="w-5 h-5 text-green-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    24/7 coverage models
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiUserGroup className="w-5 h-5 text-blue-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Rotating shift schedules
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiChartBar className="w-5 h-5 text-purple-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Industry compliance rules
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiLightningBolt className="w-5 h-5 text-orange-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Handles complexity
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiShieldCheck className="w-5 h-5 text-indigo-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Fairer shift allocation
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiUserGroup className="w-5 h-5 text-pink-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Meet more staff preferences
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiShieldCheck className="w-5 h-5 text-teal-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Safer & healthier teams
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <HiClock className="w-5 h-5 text-red-500 mr-2" />
+                  <span className="text-gray-700 text-sm">Manage fatigue</span>
+                </div>
+                <div className="flex items-center">
+                  <HiChartBar className="w-5 h-5 text-cyan-500 mr-2" />
+                  <span className="text-gray-700 text-sm">
+                    Save time and money
+                  </span>
                 </div>
               </div>
-
+            </div>
           </div>
 
           {/* Testimonial - Hidden on mobile/tablet */}
           <div className="hidden lg:block bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500 mb-12 text-center">
             <blockquote className="text-gray-700 italic mb-3">
-              "RosterLab has saved me countless hours... I have recommended this service to everyone I know"
+              "RosterLab has saved me countless hours... I have recommended this
+              service to everyone I know"
             </blockquote>
             <cite className="text-gray-600 text-sm font-medium block">
-              Peter<br />
+              Peter
+              <br />
               Senior Registrar ICU, Western Australia
             </cite>
-            <Link href="/case-studies" className="inline-block mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
+            <Link
+              href="/case-studies"
+              className="inline-block mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium underline"
+            >
               Read case study
             </Link>
           </div>
-
         </Container>
 
         {/* Bottom CTA - Full Width */}
@@ -320,5 +463,5 @@ export default function BookADemoClient() {
         </div>
       </div>
     </SiteLayout>
-  )
+  );
 }
