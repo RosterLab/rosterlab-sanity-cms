@@ -39,6 +39,7 @@
     "next-sanity": "^9.12.0",
     "puppeteer": "^24.11.1",
     "react": "^19.0.0",
+    "react-calendly": "^4.4.0",
     "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.57.0",
