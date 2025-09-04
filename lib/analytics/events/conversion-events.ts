@@ -68,9 +68,10 @@ export const trackDemoBookingComplete = (
     userProperties,
   });
 
-  // Track the event
+  // Track the event with email explicitly in event properties
   analytics.track(CONVERSION_EVENTS.DEMO_BOOKING_COMPLETE, {
     ...properties,
+    email: properties.user_email, // Also include email as a top-level property
     timestamp: new Date().toISOString(),
     // Add any additional context
     source: "calendly",
@@ -78,13 +79,22 @@ export const trackDemoBookingComplete = (
 
   // Set user properties if provided
   if (userProperties && Object.keys(userProperties).length > 0) {
-    console.log("Setting user properties:", userProperties);
-    analytics.setUserProperties(userProperties);
+    // Clean up undefined values
+    const cleanUserProps = Object.fromEntries(
+      Object.entries(userProperties).filter(
+        ([_, value]) => value !== undefined && value !== null,
+      ),
+    );
 
-    // If email is provided, use it as user ID for better tracking
-    if (userProperties.email) {
-      console.log("Identifying user with email:", userProperties.email);
-      analytics.identify(userProperties.email, userProperties);
+    if (Object.keys(cleanUserProps).length > 0) {
+      console.log("Setting user properties:", cleanUserProps);
+      analytics.setUserProperties(cleanUserProps);
+
+      // If email is provided, use it as user ID for better tracking
+      if (cleanUserProps.email) {
+        console.log("Identifying user with email:", cleanUserProps.email);
+        analytics.identify(cleanUserProps.email, cleanUserProps);
+      }
     }
   }
 
