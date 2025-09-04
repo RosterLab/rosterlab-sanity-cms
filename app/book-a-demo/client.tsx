@@ -112,6 +112,11 @@ export default function BookADemoClient() {
       // Extract event details
       const eventData = e?.detail || e;
       console.log("Calendly event data:", eventData); // Debug log
+      console.log(
+        "Email from event:",
+        eventData?.invitee?.email || eventData?.email || "No email found",
+      );
+      console.log("Full event structure:", JSON.stringify(eventData, null, 2));
 
       // Track in GA4 via dataLayer
       if (typeof window !== "undefined" && (window as any).dataLayer) {

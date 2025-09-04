@@ -63,20 +63,27 @@ export const trackDemoBookingComplete = (
     phone?: string;
   },
 ) => {
+  console.log("trackDemoBookingComplete called with:", {
+    properties,
+    userProperties,
+  });
+
   // Track the event
   analytics.track(CONVERSION_EVENTS.DEMO_BOOKING_COMPLETE, {
     ...properties,
     timestamp: new Date().toISOString(),
     // Add any additional context
-    source: "hubspot_meeting",
+    source: "calendly",
   });
 
   // Set user properties if provided
   if (userProperties && Object.keys(userProperties).length > 0) {
+    console.log("Setting user properties:", userProperties);
     analytics.setUserProperties(userProperties);
 
     // If email is provided, use it as user ID for better tracking
     if (userProperties.email) {
+      console.log("Identifying user with email:", userProperties.email);
       analytics.identify(userProperties.email, userProperties);
     }
   }
