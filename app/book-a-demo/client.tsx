@@ -31,6 +31,7 @@ const LazyInlineWidget = dynamic(
 export default function BookADemoClient() {
   const [isBooking, setIsBooking] = useState(false);
   const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
+  const [hasTrackedView, setHasTrackedView] = useState(false);
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -116,12 +117,17 @@ export default function BookADemoClient() {
       }, 50);
     },
     onEventTypeViewed: () => {
-      // Track widget view in GA4
-      if (typeof window !== "undefined" && (window as any).dataLayer) {
+      // Track widget view in GA4 (only once)
+      if (
+        !hasTrackedView &&
+        typeof window !== "undefined" &&
+        (window as any).dataLayer
+      ) {
         (window as any).dataLayer.push({
           event: "calendly_widget_viewed",
           page_location: window.location.pathname,
         });
+        setHasTrackedView(true);
       }
     },
   });
