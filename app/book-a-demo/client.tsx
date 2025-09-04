@@ -260,7 +260,7 @@ export default function BookADemoClient() {
           </div>
 
           {/* Contact alternative */}
-          <div className="text-center -mt-4">
+          <div className="text-center -mt-4 pb-8">
             <p className="text-gray-600">
               Can't find a suitable time?{" "}
               <Link
