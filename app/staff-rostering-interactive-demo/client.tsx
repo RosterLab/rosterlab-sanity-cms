@@ -104,29 +104,29 @@ export default function StaffRosteringInteractiveDemoClient() {
 
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-3">
-              Can't Find a Suitable Time?
+              Talk to Us About your Rostering Challenges
             </h2>
             <p className="text-lg mb-6 opacity-90">
-              Contact us directly and we'll work around your schedule
+              Book in a quick chat with someone from our team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="mailto:hello@rosterlab.com"
+                href="/book-a-demo"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors"
-                analyticsLabel="Email Us"
+                analyticsLabel="Book a demo"
                 analyticsLocation="Interactive Demo CTA"
-                analyticsProperties={{ cta_type: "email", external: true }}
+                analyticsProperties={{ cta_type: "demo" }}
               >
-                Email Us
+                Book a demo
               </Button>
               <Button
                 href="/contact"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md font-medium transition-colors"
-                analyticsLabel="Get Started Today"
+                analyticsLabel="Contact us"
                 analyticsLocation="Interactive Demo CTA"
                 analyticsProperties={{ cta_type: "contact" }}
               >
-                Contact Us
+                Contact us
               </Button>
             </div>
           </div>
