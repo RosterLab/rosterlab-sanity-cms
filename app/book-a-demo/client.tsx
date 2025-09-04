@@ -145,7 +145,7 @@ export default function BookADemoClient() {
           >
             {shouldLoadWidget ? (
               <LazyInlineWidget
-                url="https://calendly.com/d/csww-rc4-9v6/test-version"
+                url="https://calendly.com/d/csww-rc4-9v6/test-version?hide_event_type_details=1&hide_gdpr_banner=1"
                 styles={{
                   height: "700px",
                   minWidth: "320px",
