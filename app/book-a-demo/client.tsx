@@ -30,18 +30,17 @@ const LazyInlineWidget = dynamic(
 
 export default function BookADemoClient() {
   const [isBooking, setIsBooking] = useState(false);
-  // Load immediately on mobile devices for better UX
-  const [shouldLoadWidget, setShouldLoadWidget] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth < 768;
-    }
-    return false;
-  });
+  const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const hasTrackedViewRef = useRef(false);
   const router = useRouter();
 
   useEffect(() => {
+    // Check if mobile and load immediately
+    if (window.innerWidth < 768) {
+      setShouldLoadWidget(true);
+    }
+
     // Prefetch the meeting-confirmed page
     router.prefetch("/meeting-confirmed");
 
