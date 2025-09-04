@@ -16,7 +16,7 @@ const LazyInlineWidget = dynamic(
     loading: () => (
       <div
         className="flex items-center justify-center bg-gray-50 rounded-lg"
-        style={{ minHeight: "700px" }}
+        style={{ height: "700px" }}
       >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
@@ -141,13 +141,13 @@ export default function BookADemoClient() {
           <div
             ref={widgetContainerRef}
             className="relative"
-            style={{ minHeight: "680px" }}
+            style={{ minHeight: "700px" }}
           >
             {shouldLoadWidget ? (
               <LazyInlineWidget
-                url="https://calendly.com/d/cv49-m4p-gzx/rosterlab-demo"
+                url="https://calendly.com/d/csww-rc4-9v6/test-version"
                 styles={{
-                  height: "680px",
+                  height: "700px",
                   minWidth: "320px",
                 }}
                 pageSettings={{
@@ -158,7 +158,7 @@ export default function BookADemoClient() {
             ) : (
               <div
                 className="flex items-center justify-center bg-gray-50 rounded-lg"
-                style={{ height: "680px" }}
+                style={{ height: "700px" }}
               >
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
