@@ -109,14 +109,32 @@ export default function BookADemoClient() {
     onEventScheduled: (e: any) => {
       setIsBooking(true);
 
-      // Extract event details
-      const eventData = e?.detail || e;
-      console.log("Calendly event data:", eventData); // Debug log
-      console.log(
-        "Email from event:",
-        eventData?.invitee?.email || eventData?.email || "No email found",
-      );
-      console.log("Full event structure:", JSON.stringify(eventData, null, 2));
+      // Extract event details - try multiple possible structures
+      const rawEvent = e;
+      const eventDetail = e?.detail;
+      const eventData = e?.data || e?.detail || e;
+
+      console.log("=== CALENDLY EVENT DEBUG ===");
+      console.log("Raw event:", rawEvent);
+      console.log("Event detail:", eventDetail);
+      console.log("Event data:", eventData);
+      console.log("Event type:", e?.type);
+      console.log("All event keys:", Object.keys(e || {}));
+
+      // Try to find email in various locations
+      const possibleEmails = [
+        eventData?.invitee?.email,
+        eventData?.email,
+        eventDetail?.invitee?.email,
+        eventDetail?.email,
+        e?.invitee?.email,
+        e?.email,
+        eventData?.payload?.invitee?.email,
+        eventData?.payload?.email,
+      ];
+
+      console.log("Possible emails found:", possibleEmails.filter(Boolean));
+      console.log("Full event structure:", JSON.stringify(e, null, 2));
 
       // Track in GA4 via dataLayer
       if (typeof window !== "undefined" && (window as any).dataLayer) {
@@ -158,7 +176,9 @@ export default function BookADemoClient() {
         router.push("/meeting-confirmed");
       }, 50);
     },
-    onEventTypeViewed: () => {
+    onEventTypeViewed: (e: any) => {
+      console.log("=== CALENDLY EVENT TYPE VIEWED ===", e);
+
       // Track widget view in GA4 (only once per page load)
       const trackingKey = `__calendlyViewed:${window.location.pathname}`;
 
@@ -175,6 +195,12 @@ export default function BookADemoClient() {
           page_location: window.location.pathname,
         });
       }
+    },
+    onDateAndTimeSelected: (e: any) => {
+      console.log("=== CALENDLY DATE AND TIME SELECTED ===", e);
+    },
+    onProfilePageViewed: (e: any) => {
+      console.log("=== CALENDLY PROFILE PAGE VIEWED ===", e);
     },
   });
 
