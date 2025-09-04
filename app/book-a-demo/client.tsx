@@ -4,10 +4,7 @@ import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  useCalendlyEventListener,
-  EventTypeCalendlyEventDetail,
-} from "react-calendly";
+import { useCalendlyEventListener } from "react-calendly";
 import { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
@@ -76,7 +73,7 @@ export default function BookADemoClient() {
 
   // Handle Calendly events
   useCalendlyEventListener({
-    onEventScheduled: (e: CustomEvent<EventTypeCalendlyEventDetail>) => {
+    onEventScheduled: (e: any) => {
       setIsBooking(true);
 
       // Extract event details
