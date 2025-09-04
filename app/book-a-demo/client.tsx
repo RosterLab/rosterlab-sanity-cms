@@ -30,7 +30,13 @@ const LazyInlineWidget = dynamic(
 
 export default function BookADemoClient() {
   const [isBooking, setIsBooking] = useState(false);
-  const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
+  // Load immediately on mobile devices for better UX
+  const [shouldLoadWidget, setShouldLoadWidget] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const hasTrackedViewRef = useRef(false);
   const router = useRouter();
@@ -39,11 +45,35 @@ export default function BookADemoClient() {
     // Prefetch the meeting-confirmed page
     router.prefetch("/meeting-confirmed");
 
-    // Add preconnect for Calendly
-    const link = document.createElement("link");
-    link.rel = "preconnect";
-    link.href = "https://assets.calendly.com";
-    document.head.appendChild(link);
+    // Add preconnect for Calendly domains
+    const calendlyDomains = [
+      "https://assets.calendly.com",
+      "https://calendly.com",
+      "https://app.calendly.com",
+    ];
+
+    calendlyDomains.forEach((domain) => {
+      const link = document.createElement("link");
+      link.rel = "preconnect";
+      link.href = domain;
+      link.crossOrigin = "anonymous";
+      document.head.appendChild(link);
+    });
+
+    // Preload the Calendly widget script
+    const preloadScript = document.createElement("link");
+    preloadScript.rel = "preload";
+    preloadScript.as = "script";
+    preloadScript.href =
+      "https://assets.calendly.com/assets/external/widget.js";
+    document.head.appendChild(preloadScript);
+
+    // Prefetch the Calendly iframe page
+    const prefetchIframe = document.createElement("link");
+    prefetchIframe.rel = "prefetch";
+    prefetchIframe.href =
+      "https://calendly.com/d/csww-rc4-9v6/test-version?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=localhost&embed_type=Inline";
+    document.head.appendChild(prefetchIframe);
 
     // Set up intersection observer for lazy loading
     const observer = new IntersectionObserver(
@@ -55,7 +85,7 @@ export default function BookADemoClient() {
         });
       },
       {
-        rootMargin: "100px", // Start loading 100px before visible
+        rootMargin: "500px", // Start loading 500px before visible for faster load
         threshold: 0.01,
       },
     );
@@ -66,9 +96,12 @@ export default function BookADemoClient() {
 
     return () => {
       observer.disconnect();
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
+      // Clean up all added elements
+      document
+        .querySelectorAll(
+          'link[rel="preconnect"][href*="calendly"], link[rel="preload"][href*="calendly"], link[rel="prefetch"][href*="calendly"]',
+        )
+        .forEach((el) => el.remove());
     };
   }, [router]);
 
