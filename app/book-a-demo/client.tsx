@@ -1,324 +1,278 @@
-'use client'
+"use client";
 
-import Container from '@/components/ui/Container'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Link from 'next/link'
-import { HiClock, HiCheck, HiUserGroup, HiLightningBolt, HiShieldCheck, HiChartBar } from 'react-icons/hi'
-import { useEffect, useState, useRef } from 'react'
-import HubSpotMeetingListener from '@/components/analytics/HubSpotMeetingListener'
+import Container from "@/components/ui/Container";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCalendlyEventListener } from "react-calendly";
+import { useEffect, useState, useRef } from "react";
+import dynamic from "next/dynamic";
+import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
+
+// Lazy load the Calendly widget
+const LazyInlineWidget = dynamic(
+  () => import("react-calendly").then((mod) => mod.InlineWidget),
+  {
+    loading: () => (
+      <div
+        className="flex items-center justify-center bg-gray-50 rounded-lg"
+        style={{ height: "700px" }}
+      >
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading calendar...</p>
+        </div>
+      </div>
+    ),
+    ssr: false,
+  },
+);
 
 export default function BookADemoClient() {
-  const [shouldLoadHubSpot, setShouldLoadHubSpot] = useState(false)
-  const meetingsContainerRef = useRef<HTMLDivElement>(null)
-  const [isHubSpotLoaded, setIsHubSpotLoaded] = useState(false)
+  const [isBooking, setIsBooking] = useState(false);
+  const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
+  const hasTrackedViewRef = useRef(false);
+  const router = useRouter();
 
   useEffect(() => {
-    // Load HubSpot fonts CSS immediately
-    const hubspotFontsLink = document.createElement('link')
-    hubspotFontsLink.rel = 'stylesheet'
-    hubspotFontsLink.href = '/styles/hubspot-fonts.css'
-    document.head.appendChild(hubspotFontsLink)
+    // Check if mobile and load immediately
+    if (window.innerWidth < 768) {
+      setShouldLoadWidget(true);
+    }
 
-    // Only add preconnect hints initially
-    const preconnect1 = document.createElement('link')
-    preconnect1.rel = 'preconnect'
-    preconnect1.href = 'https://static.hsappstatic.net'
-    document.head.appendChild(preconnect1)
+    // Prefetch the meeting-confirmed page
+    router.prefetch("/meeting-confirmed");
 
-    const preconnect2 = document.createElement('link')
-    preconnect2.rel = 'preconnect'
-    preconnect2.href = 'https://meetings.rosterlab.com'
-    document.head.appendChild(preconnect2)
+    // Add preconnect for Calendly domains
+    const calendlyDomains = [
+      "https://assets.calendly.com",
+      "https://calendly.com",
+      "https://app.calendly.com",
+    ];
 
-    // Set up Intersection Observer for lazy loading
+    calendlyDomains.forEach((domain) => {
+      const link = document.createElement("link");
+      link.rel = "preconnect";
+      link.href = domain;
+      link.crossOrigin = "anonymous";
+      document.head.appendChild(link);
+    });
+
+    // Preload the Calendly widget script
+    const preloadScript = document.createElement("link");
+    preloadScript.rel = "preload";
+    preloadScript.as = "script";
+    preloadScript.href =
+      "https://assets.calendly.com/assets/external/widget.js";
+    document.head.appendChild(preloadScript);
+
+    // Prefetch the Calendly iframe page
+    const prefetchIframe = document.createElement("link");
+    prefetchIframe.rel = "prefetch";
+    prefetchIframe.href =
+      "https://calendly.com/d/cv49-m4p-gzx/rosterlab-demo?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=localhost&embed_type=Inline";
+    document.head.appendChild(prefetchIframe);
+
+    // Set up intersection observer for lazy loading
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !shouldLoadHubSpot) {
-            setShouldLoadHubSpot(true)
+          if (entry.isIntersecting) {
+            setShouldLoadWidget(true);
           }
-        })
+        });
       },
       {
-        rootMargin: '100px', // Start loading 100px before visible
-        threshold: 0.01
-      }
-    )
+        rootMargin: "500px", // Start loading 500px before visible for faster load
+        threshold: 0.01,
+      },
+    );
 
-    if (meetingsContainerRef.current) {
-      observer.observe(meetingsContainerRef.current)
+    if (widgetContainerRef.current) {
+      observer.observe(widgetContainerRef.current);
     }
 
     return () => {
-      observer.disconnect()
-      if (document.head.contains(preconnect1)) document.head.removeChild(preconnect1)
-      if (document.head.contains(preconnect2)) document.head.removeChild(preconnect2)
-      if (document.head.contains(hubspotFontsLink)) document.head.removeChild(hubspotFontsLink)
-    }
-  }, [shouldLoadHubSpot])
+      observer.disconnect();
+      // Clean up all added elements
+      document
+        .querySelectorAll(
+          'link[rel="preconnect"][href*="calendly"], link[rel="preload"][href*="calendly"], link[rel="prefetch"][href*="calendly"]',
+        )
+        .forEach((el) => el.remove());
+    };
+  }, [router]);
 
-  // Load HubSpot only when needed
-  useEffect(() => {
-    if (!shouldLoadHubSpot || isHubSpotLoaded) return
+  // Handle Calendly events
+  useCalendlyEventListener({
+    onEventScheduled: (e: any) => {
+      setIsBooking(true);
 
-    // Add font preload hints
-    const fontPreload = document.createElement('link')
-    fontPreload.rel = 'preload'
-    fontPreload.as = 'font'
-    fontPreload.type = 'font/woff2'
-    fontPreload.href = 'https://static.hsappstatic.net/fonts/LexendDeca-Light.woff2'
-    fontPreload.crossOrigin = 'anonymous'
-    document.head.appendChild(fontPreload)
+      // Extract event details - try multiple possible structures
+      const rawEvent = e;
+      const eventDetail = e?.detail;
+      const eventData = e?.data || e?.detail || e;
 
-    // Load HubSpot meetings embed script with lower priority
-    const script = document.createElement('script')
-    script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js'
-    script.async = true
-    script.defer = true
-    
-    // Use requestIdleCallback if available
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => {
-        document.body.appendChild(script)
-        setIsHubSpotLoaded(true)
-      }, { timeout: 2000 })
-    } else {
-      // Fallback to setTimeout
+      console.log("=== CALENDLY EVENT DEBUG ===");
+      console.log("Raw event:", rawEvent);
+      console.log("Event detail:", eventDetail);
+      console.log("Event data:", eventData);
+      console.log("Event type:", e?.type);
+      console.log("All event keys:", Object.keys(e || {}));
+
+      // Try to find email in various locations
+      const possibleEmails = [
+        eventData?.invitee?.email,
+        eventData?.email,
+        eventDetail?.invitee?.email,
+        eventDetail?.email,
+        e?.invitee?.email,
+        e?.email,
+        eventData?.payload?.invitee?.email,
+        eventData?.payload?.email,
+      ];
+
+      console.log("Possible emails found:", possibleEmails.filter(Boolean));
+      console.log("Full event structure:", JSON.stringify(e, null, 2));
+
+      // Track in GA4 via dataLayer
+      if (typeof window !== "undefined" && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: "calendly_meeting_scheduled",
+          calendly_event_type: eventData?.event?.event_type_name || "demo",
+          calendly_event_uri: eventData?.event?.uri || eventData?.uri,
+          calendly_invitee_email: eventData?.invitee?.email || eventData?.email,
+          calendly_invitee_name: eventData?.invitee?.name || eventData?.name,
+          calendly_scheduled_date:
+            eventData?.event?.start_time || eventData?.start_time,
+        });
+      }
+
+      // Track in Amplitude
+      trackDemoBookingComplete(
+        {
+          form_guid: eventData?.event?.uri || eventData?.uri || "calendly-demo",
+          organizer_name: "RosterLab Team",
+          is_meeting_paid: false,
+          meeting_date:
+            eventData?.event?.start_time ||
+            eventData?.start_time ||
+            new Date().toISOString(),
+          duration_minutes: 30,
+          meeting_type: eventData?.event?.event_type_name || "demo",
+          page_location: window.location.pathname,
+          user_email: eventData?.invitee?.email || eventData?.email,
+          user_name: eventData?.invitee?.name || eventData?.name,
+        },
+        {
+          email: eventData?.invitee?.email || eventData?.email,
+          name: eventData?.invitee?.name || eventData?.name,
+        },
+      );
+
+      // Redirect to confirmation page
       setTimeout(() => {
-        document.body.appendChild(script)
-        setIsHubSpotLoaded(true)
-      }, 100)
-    }
+        router.push("/meeting-confirmed");
+      }, 50);
+    },
+    onEventTypeViewed: (e: any) => {
+      console.log("=== CALENDLY EVENT TYPE VIEWED ===", e);
 
-    // Mark fonts as loaded after a delay
-    const timer = setTimeout(() => {
-      document.querySelector('.meetings-iframe-container')?.classList.add('fonts-loaded')
-    }, 1500)
+      // Track widget view in GA4 (only once per page load)
+      const trackingKey = `__calendlyViewed:${window.location.pathname}`;
 
-    return () => {
-      clearTimeout(timer)
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
+      if (
+        !hasTrackedViewRef.current &&
+        !(window as any)[trackingKey] &&
+        typeof window !== "undefined" &&
+        (window as any).dataLayer
+      ) {
+        hasTrackedViewRef.current = true;
+        (window as any)[trackingKey] = true;
+        (window as any).dataLayer.push({
+          event: "calendly_widget_viewed",
+          page_location: window.location.pathname,
+        });
       }
-      if (document.head.contains(fontPreload)) {
-        document.head.removeChild(fontPreload)
-      }
-    }
-  }, [shouldLoadHubSpot, isHubSpotLoaded])
+    },
+    onDateAndTimeSelected: (e: any) => {
+      console.log("=== CALENDLY DATE AND TIME SELECTED ===", e);
+    },
+    onProfilePageViewed: (e: any) => {
+      console.log("=== CALENDLY PROFILE PAGE VIEWED ===", e);
+    },
+  });
 
   return (
     <SiteLayout>
-      <HubSpotMeetingListener />
       <div className="pt-16 bg-gradient-to-b from-blue-50 to-white min-h-screen">
         <Container>
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-center">
             <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-              Book Your Personalised Demo
+              Speak With A Rostering Expert
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how RosterLab's AI-powered scheduling can transform your workforce management in just 30 minutes.
-            </p>
           </div>
 
-          {/* HubSpot Meeting Scheduler Embed */}
-          {/* Start of Meetings Embed Script */}
-          <div 
-            ref={meetingsContainerRef}
-            className="meetings-iframe-container overflow-x-auto max-w-full min-h-[600px] relative mb-12" 
-            data-src="https://meetings.rosterlab.com/meetings/daniel-ge/demo?embed=true"
+          {/* Calendly Meeting Scheduler Embed */}
+          <div
+            ref={widgetContainerRef}
+            className="relative"
+            style={{ minHeight: "700px" }}
           >
-            {!isHubSpotLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-lg">
+            {shouldLoadWidget ? (
+              <LazyInlineWidget
+                url="https://calendly.com/d/cv49-m4p-gzx/rosterlab-demo?hide_event_type_details=1&hide_gdpr_banner=1"
+                styles={{
+                  height: "700px",
+                  minWidth: "320px",
+                }}
+                pageSettings={{
+                  hideEventTypeDetails: true,
+                  hideGdprBanner: true,
+                }}
+              />
+            ) : (
+              <div
+                className="flex items-center justify-center bg-gray-50 rounded-lg"
+                style={{ height: "700px" }}
+              >
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
                   <p className="text-gray-600">Loading calendar...</p>
                 </div>
               </div>
             )}
-          </div>
-          {/* End of Meetings Embed Script */}
-
-          {/* Benefits Banner */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiClock className="w-6 h-6 text-blue-700" />
-              </div>
-              <h3 className="font-semibold text-blue-900 mb-1">90% Time Saved</h3>
-              <p className="text-blue-700 text-sm">Create schedules in minutes instead of days</p>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiCheck className="w-6 h-6 text-green-700" />
-              </div>
-              <h3 className="font-semibold text-green-900 mb-1">100% Compliance</h3>
-              <p className="text-green-700 text-sm">Automatically meet all regulatory requirements</p>
-            </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiUserGroup className="w-6 h-6 text-purple-700" />
-              </div>
-              <h3 className="font-semibold text-purple-900 mb-1">Happier Teams</h3>
-              <p className="text-purple-700 text-sm">Fair schedules that respect preferences</p>
-            </div>
-          </div>
-
-          {/* Demo Information Grid - Hidden on mobile/tablet */}
-          <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-              {/* What to Expect */}
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  What to Expect in Your Demo
-                </h2>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">1</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">Understand Your Challenges</h3>
-                      <p className="text-gray-600 text-xs">
-                        We'll discuss your current scheduling process and identify pain points
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">2</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">Live Platform Demonstration</h3>
-                      <p className="text-gray-600 text-xs">
-                        See RosterLab in action with scenarios relevant to your <Link href="/industries" className="text-blue-600 hover:text-blue-700 underline">industry</Link>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">3</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">ROI Analysis</h3>
-                      <p className="text-gray-600 text-xs">
-                        Calculate potential time and cost savings for your organisation
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <span className="text-blue-600 font-bold">4</span>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900 text-sm mb-1">Implementation Roadmap</h3>
-                      <p className="text-gray-600 text-xs">
-                        Clear next steps and timeline to get you up and running
-                      </p>
-                    </div>
-                  </div>
+            {isBooking && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-lg z-50">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <p className="text-gray-900 font-medium text-lg mb-2">
+                    Confirming your booking...
+                  </p>
+                  <p className="text-gray-600 text-sm">
+                    Please wait while we secure your time slot
+                  </p>
                 </div>
               </div>
-
-              {/* Key Features */}
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-lg p-8 border border-gray-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Tailored to your roster type and industry
-                </h2>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center">
-                    <HiLightningBolt className="w-5 h-5 text-yellow-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Healthcare shift patterns</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiShieldCheck className="w-5 h-5 text-green-500 mr-2" />
-                    <span className="text-gray-700 text-sm">24/7 coverage models</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiUserGroup className="w-5 h-5 text-blue-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Rotating shift schedules</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiChartBar className="w-5 h-5 text-purple-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Industry compliance rules</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiLightningBolt className="w-5 h-5 text-orange-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Handles complexity</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiShieldCheck className="w-5 h-5 text-indigo-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Fairer shift allocation</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiUserGroup className="w-5 h-5 text-pink-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Meet more staff preferences</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiShieldCheck className="w-5 h-5 text-teal-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Safer & healthier teams</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiClock className="w-5 h-5 text-red-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Manage fatigue</span>
-                  </div>
-                  <div className="flex items-center">
-                    <HiChartBar className="w-5 h-5 text-cyan-500 mr-2" />
-                    <span className="text-gray-700 text-sm">Save time and money</span>
-                  </div>
-                </div>
-              </div>
-
+            )}
           </div>
 
-          {/* Testimonial - Hidden on mobile/tablet */}
-          <div className="hidden lg:block bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500 mb-12 text-center">
-            <blockquote className="text-gray-700 italic mb-3">
-              "RosterLab has saved me countless hours... I have recommended this service to everyone I know"
-            </blockquote>
-            <cite className="text-gray-600 text-sm font-medium block">
-              Peter<br />
-              Senior Registrar ICU, Western Australia
-            </cite>
-            <Link href="/case-studies" className="inline-block mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
-              Read case study
-            </Link>
+          {/* Contact alternative */}
+          <div className="text-center -mt-4">
+            <p className="text-gray-600">
+              Can't find a suitable time?{" "}
+              <Link
+                href="/contact"
+                className="text-blue-600 hover:text-blue-700 underline"
+              >
+                Get in touch
+              </Link>
+            </p>
           </div>
-
         </Container>
-
-        {/* Bottom CTA - Full Width */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 py-16 text-white">
-          <Container>
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-3">
-                Can't Find a Suitable Time?
-              </h2>
-              <p className="text-lg mb-6 opacity-90">
-                Contact us directly and we'll work around your schedule
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="mailto:hello@rosterlab.com"
-                  className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors"
-                >
-                  Email Us
-                </a>
-                <a
-                  href="/staff-rostering-interactive-demo"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md font-medium transition-colors"
-                >
-                  Explore our interactive demo
-                </a>
-              </div>
-            </div>
-          </Container>
-        </div>
       </div>
     </SiteLayout>
-  )
+  );
 }

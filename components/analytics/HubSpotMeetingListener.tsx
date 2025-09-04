@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
 import { analytics } from "@/components/analytics/Amplitude";
 
@@ -42,8 +43,13 @@ interface HubSpotMeetingPayload {
  * <HubSpotMeetingListener />
  */
 export default function HubSpotMeetingListener() {
+  const router = useRouter();
+
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
+    // Prefetch meeting-confirmed page on component mount
+    router.prefetch("/meeting-confirmed");
+
+    const handleMessage = async (event: MessageEvent) => {
       // Type guard to check if it's a HubSpot meeting event
       if (event.data && event.data.meetingBookSucceeded === true) {
         const payload = event.data as HubSpotMeetingPayload;
@@ -144,6 +150,13 @@ export default function HubSpotMeetingListener() {
               contact: contact?.email,
             });
           }
+
+          // Add a minimal delay to ensure all tracking events complete
+          // Then use client-side navigation for faster redirect
+          setTimeout(() => {
+            // Use Next.js router for client-side navigation (faster than window.location)
+            router.push("/meeting-confirmed");
+          }, 50); // Reduced to 50ms - analytics should use sendBeacon for reliability
         }
       }
     };
@@ -155,7 +168,7 @@ export default function HubSpotMeetingListener() {
     return () => {
       window.removeEventListener("message", handleMessage);
     };
-  }, []);
+  }, [router]);
 
   // This component doesn't render anything
   return null;
