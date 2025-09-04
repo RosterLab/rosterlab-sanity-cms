@@ -71,7 +71,7 @@ export default function BookADemoClient() {
     const prefetchIframe = document.createElement("link");
     prefetchIframe.rel = "prefetch";
     prefetchIframe.href =
-      "https://calendly.com/d/csww-rc4-9v6/test-version?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=localhost&embed_type=Inline";
+      "https://calendly.com/d/cv49-m4p-gzx/rosterlab-demo?hide_event_type_details=1&hide_gdpr_banner=1&embed_domain=localhost&embed_type=Inline";
     document.head.appendChild(prefetchIframe);
 
     // Set up intersection observer for lazy loading
@@ -192,7 +192,7 @@ export default function BookADemoClient() {
           >
             {shouldLoadWidget ? (
               <LazyInlineWidget
-                url="https://calendly.com/d/csww-rc4-9v6/test-version?hide_event_type_details=1&hide_gdpr_banner=1"
+                url="https://calendly.com/d/cv49-m4p-gzx/rosterlab-demo?hide_event_type_details=1&hide_gdpr_banner=1"
                 styles={{
                   height: "700px",
                   minWidth: "320px",
