@@ -78,36 +78,41 @@ export default function BookADemoClient() {
       setIsBooking(true);
 
       // Extract event details
-      const eventData = e.detail;
+      const eventData = e?.detail || e;
+      console.log("Calendly event data:", eventData); // Debug log
 
       // Track in GA4 via dataLayer
       if (typeof window !== "undefined" && (window as any).dataLayer) {
         (window as any).dataLayer.push({
           event: "calendly_meeting_scheduled",
-          calendly_event_type: eventData.event?.event_type_name || "demo",
-          calendly_event_uri: eventData.event?.uri,
-          calendly_invitee_email: eventData.invitee?.email,
-          calendly_invitee_name: eventData.invitee?.name,
-          calendly_scheduled_date: eventData.event?.start_time,
+          calendly_event_type: eventData?.event?.event_type_name || "demo",
+          calendly_event_uri: eventData?.event?.uri || eventData?.uri,
+          calendly_invitee_email: eventData?.invitee?.email || eventData?.email,
+          calendly_invitee_name: eventData?.invitee?.name || eventData?.name,
+          calendly_scheduled_date:
+            eventData?.event?.start_time || eventData?.start_time,
         });
       }
 
       // Track in Amplitude
       trackDemoBookingComplete(
         {
-          form_guid: eventData.event?.uri || "calendly-demo",
+          form_guid: eventData?.event?.uri || eventData?.uri || "calendly-demo",
           organizer_name: "RosterLab Team",
           is_meeting_paid: false,
-          meeting_date: eventData.event?.start_time || new Date().toISOString(),
+          meeting_date:
+            eventData?.event?.start_time ||
+            eventData?.start_time ||
+            new Date().toISOString(),
           duration_minutes: 30,
-          meeting_type: eventData.event?.event_type_name || "demo",
+          meeting_type: eventData?.event?.event_type_name || "demo",
           page_location: window.location.pathname,
-          user_email: eventData.invitee?.email,
-          user_name: eventData.invitee?.name,
+          user_email: eventData?.invitee?.email || eventData?.email,
+          user_name: eventData?.invitee?.name || eventData?.name,
         },
         {
-          email: eventData.invitee?.email,
-          name: eventData.invitee?.name,
+          email: eventData?.invitee?.email || eventData?.email,
+          name: eventData?.invitee?.name || eventData?.name,
         },
       );
 
