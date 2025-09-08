@@ -29,6 +29,7 @@ export const metadata = {
         url: "/images/og-images/IndustryHealthcare.png",
         width: 1200,
         height: 630,
+        alt: "Healthcare workforce scheduling with RosterLab",
       },
     ],
   },
