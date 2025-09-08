@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import ClientHeader from "@/components/layout/ClientHeader";
+import ClientFooter from "@/components/layout/ClientFooter";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import Amplitude from "@/components/analytics/Amplitude";
@@ -62,9 +62,9 @@ export default async function RootLayout({
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
           <Amplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
-          <Header />
+          <ClientHeader />
           <main className="flex-grow">{children}</main>
-          <Footer />
+          <ClientFooter />
           {isEnabled && <VisualEditing />}
           <LazyStyles />
         </ClientProviders>

@@ -67,6 +67,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
   ]
 
   const navigation = navItems.length > 0 ? navItems : defaultNavItems
+  const isUSNavigation = navItems.length > 0 // US version passes custom navItems
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -365,13 +366,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
           {/* Header Buttons */}
           <div className="hidden xl:flex items-center space-x-4">
-            <Link
-              href="/contact"
-              className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
-            >
-              Contact Us
-            </Link>
-            <div className="w-px h-6 bg-gray-300 mx-2" />
+            {!isUSNavigation && (
+              <>
+                <Link
+                  href="/contact"
+                  className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                >
+                  Contact Us
+                </Link>
+                <div className="w-px h-6 bg-gray-300" />
+              </>
+            )}
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors flex items-center"
@@ -506,16 +511,18 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </div>
           ))}
           <div className="border-t border-gray-200 pt-4 space-y-2">
-            <Link
-              href="/contact"
-              className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => {
-                trackButtonClick('Contact Us', 'Header Mobile', { cta_type: 'contact' })
-                setIsMenuOpen(false)
-              }}
-            >
-              Contact Us
-            </Link>
+            {!isUSNavigation && (
+              <Link
+                href="/contact"
+                className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => {
+                  trackButtonClick('Contact Us', 'Header Mobile', { cta_type: 'contact' })
+                  setIsMenuOpen(false)
+                }}
+              >
+                Contact Us
+              </Link>
+            )}
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"

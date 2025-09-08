@@ -1,18 +1,20 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa'
 import CountrySelector from './CountrySelector'
 
-export default function Footer() {
+export default function USFooter() {
   return (
     <footer className="bg-gradient-to-br from-blue-50 via-white to-green-50 text-gray-800 border-t border-gray-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
+        {/* Main Footer Content - Changed from 5 columns to 4 columns since no Resources */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           {/* Section 1: Logo and Social */}
           <div className="lg:col-span-1 col-span-full lg:col-start-auto">
             <div className="text-center lg:text-left">
-              <Link href="/" className="inline-block mb-4">
+              <Link href="/us/" className="inline-block mb-4">
                 <Image
                   src="/images/rosterlab-logo.png"
                   alt="RosterLab"
@@ -29,7 +31,7 @@ export default function Footer() {
             {/* CTA Buttons */}
             <div className="flex flex-row gap-3 mb-6 justify-center lg:justify-start lg:flex-col">
               <Link
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors text-sm"
               >
                 Book a demo
@@ -89,22 +91,22 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Product</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/solutions/ai-staff-scheduling" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/solutions/ai-staff-schedule-maker" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   AI Scheduling
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/free-staff-scheduling" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/solutions/free-staff-scheduling-tool" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Free digital scheduling tool
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/staff-roster-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/solutions/staff-schedule-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Staff Mobile App
                 </Link>
               </li>
               <li>
-                <Link href="/staff-rostering-interactive-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/staff-scheduling-interactive-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Product Tour
                 </Link>
               </li>
@@ -116,22 +118,22 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Company</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/about" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/careers" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/newsroom" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/newsroom" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Newsroom
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/contact" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Contact Us
                 </Link>
               </li>
@@ -143,44 +145,24 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Customer Success</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Industries
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/pricing" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/case-studies" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Case Studies
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Section 5: Resources */}
-          <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Resources</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link href="/book-a-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Book a demo
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/schedge" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Schedge
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Resources section removed for US version */}
         </div>
 
         {/* App Store Links */}

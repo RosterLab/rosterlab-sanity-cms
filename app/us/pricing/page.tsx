@@ -6,18 +6,18 @@ import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
 
 export const metadata = {
-  title: "Pricing - Affordable AI Staff Rostering Software",
+  title: "Pricing - RosterLab",
   description:
-    "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+    "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
   alternates: {
-    canonical: 'https://rosterlab.com/pricing',
+    canonical: 'https://rosterlab.com/us/pricing',
   },
   openGraph: {
-    title: "Pricing - Affordable AI Staff Rostering Software",
+    title: "Pricing - RosterLab",
     description:
-      "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
     type: "website",
-    url: "https://rosterlab.com/pricing",
+    url: 'https://rosterlab.com/us/pricing',
     images: [
       {
         url: "/images/og images/Pricing.png",
@@ -28,16 +28,16 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pricing - Affordable AI Staff Rostering Software",
+    title: "Pricing - RosterLab",
     description:
-      "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
     images: ["/images/og images/Pricing.png"],
   },
 };
 
 const pricingPlans = [
   {
-    name: "Digital Rostering",
+    name: "Digital Scheduling",
     price: "Free",
     description:
       "For teams looking to transition to a digital scheduling platform.",
@@ -53,14 +53,14 @@ const pricingPlans = [
     highlighted: false,
   },
   {
-    name: "AI Optimised Rostering",
+    name: "AI Optimised Scheduling",
     price: "$20",
     period: "per person per month",
-    description: "Complex 24/7 AI-powered rostering",
+    description: "Complex 24/7 AI-powered scheduling",
     features: [
-      "24/7 automatic rostering",
+      "24/7 automatic scheduling",
       "Multiple sessions per shift",
-      "Dynamic re-rostering",
+      "Dynamic re-scheduling",
       "Legal and contractual compliance",
       "Optimised staffing resources",
       "Scenario simulation",
@@ -92,7 +92,7 @@ const features = [
     category: "For Scheduling Admins & Managers",
     items: [
       {
-        name: "Staff rostering",
+        name: "Staff scheduling",
         digital: true,
         ai: true,
         enterprise: true,
@@ -129,7 +129,7 @@ const features = [
         enterprise: "Optimised by AI",
       },
       {
-        name: "Rostering rules",
+        name: "Scheduling rules",
         digital: "Simple checks",
         ai: "Complex rules",
         enterprise: "Customised rules",
@@ -167,7 +167,7 @@ const features = [
       },
 
       {
-        name: "Re-rostering (reschedule a subset of your roster)",
+        name: "Re-scheduling (reschedule a subset of your schedule)",
         digital: false,
         ai: true,
         enterprise: true,
@@ -255,30 +255,30 @@ const features = [
 const faqItems = [
   {
     question:
-      "What’s the difference between your AI rosters and traditional rostering tools?",
+      "What’s the difference between your AI schedules and traditional scheduling tools?",
     answer:
-      "Traditional rostering tools help you build rosters manually, often by dragging shifts around in a calendar or check your manual rosters against some simple rules (what our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the roster for you. Our algorithms consider your staffing requirements, employee preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair roster in a fraction of the time, with better outcomes for staff and management alike.",
+      "Traditional scheduling tools help you build schedules manually, often by dragging shifts around in a calendar or check your manual schedules against some simple rules (what our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the schedule for you. Our algorithms consider your staffing requirements, employee preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair schedule in a fraction of the time, with better outcomes for staff and management alike.",
   },
   {
     question: "Which plan suits me the best?",
     answer:
-      "We strongly recommend <a href='/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're rostering for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com/signup' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise rosters, <a href='/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
+      "We strongly recommend <a href='/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com/signup' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise schedules, <a href='/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
   },
   {
     question: "What is my ROI choosing RosterLab",
     answer:
-      "RosterLab delivers ROI by significantly reducing the time spent on rostering, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised rosters also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see a return on investment within the first few months, with some recovering costs in their very first roster.",
+      "RosterLab delivers ROI by significantly reducing the time spent on scheduling, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised schedules also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see a return on investment within the first few months, with some recovering costs in their very first schedule.",
   },
   {
     question: "How is pricing calculated?",
     answer:
-      "We charge based on the number of staff on roster being generated by our AI. If you are looking for large enterprise solution, please <a href='/contact' class='text-blue-600 hover:underline'>reach out</a> to one of our team members for further discussion.",
+      "We charge based on the number of staff on schedule being generated by our AI. If you are looking for large enterprise solution, please <a href='/contact' class='text-blue-600 hover:underline'>reach out</a> to one of our team members for further discussion.",
   },
 
   {
     question: "Does admin users or managers get charged?",
     answer:
-      "We only charge for staff who are included on the roster. Admin users or managers who are not part of the roster display are free of charge.",
+      "We only charge for staff who are included on the schedule. Admin users or managers who are not part of the schedule display are free of charge.",
   },
 
   {
@@ -309,8 +309,8 @@ export default function PricingPage() {
                 From Today
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Unlock the power of automatic rostering today! See immediate
-                improvements in rostering efficiency and staff satisfaction.
+                Unlock the power of automatic scheduling today! See immediate
+                improvements in scheduling efficiency and staff satisfaction.
               </p>
             </div>
           </Container>
@@ -375,7 +375,7 @@ export default function PricingPage() {
                   className={`w-full py-4 text-lg font-semibold ${
                     plan.highlighted
                       ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : plan.name === "Digital Rostering"
+                      : plan.name === "Digital Scheduling"
                         ? "bg-green-600 text-white hover:bg-green-700"
                         : "bg-purple-500 text-white hover:bg-purple-600"
                   }`}
@@ -552,7 +552,7 @@ export default function PricingPage() {
                 Sign up for free
               </Button>
               <Button
-                href="/staff-rostering-interactive-demo"
+                href="/us/staff-scheduling-interactive-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Pricing CTA Bottom"
