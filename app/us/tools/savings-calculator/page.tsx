@@ -1,4 +1,4 @@
-import ROICalculatorClient from './client'
+import SavingsCalculatorClient from './client'
 import SiteLayout from '@/components/layout/SiteLayout'
 
 export const metadata = {
@@ -32,7 +32,7 @@ export const metadata = {
 export default function ROICalculatorPage() {
   return (
     <SiteLayout>
-      <ROICalculatorClient />
+      <SavingsCalculatorClient />
     </SiteLayout>
   )
 }

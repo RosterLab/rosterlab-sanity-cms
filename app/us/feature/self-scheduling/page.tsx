@@ -83,7 +83,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/us-images/self-scheduling.jpg"
                   alt="Self-scheduling illustration"
                   width={600}
                   height={600}

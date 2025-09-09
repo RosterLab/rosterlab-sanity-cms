@@ -67,7 +67,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/A day off-pana.svg"
+                  src="/images/us-images/leave-requests.jpg"
                   alt="Leave request management illustration"
                   width={600}
                   height={600}

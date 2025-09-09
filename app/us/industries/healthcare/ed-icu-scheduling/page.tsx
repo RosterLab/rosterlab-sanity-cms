@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
@@ -159,7 +159,7 @@ export default function ICUEDPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/ed-icu.svg"
+                src="/images/us-images/icu-roster.jpg"
                 alt="ICU/ED scheduling dashboard"
                 width={600}
                 height={400}
@@ -375,7 +375,7 @@ export default function ICUEDPage() {
 
       {/* Trusted By */}
       <section className="py-20 bg-white">
-        <TrustedBy />
+        <USTrustedBy />
       </section>
 
       {/* Cloud Features */}
@@ -409,7 +409,7 @@ export default function ICUEDPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Smart Shift Swaps
+                  Smart Shift Trades
                 </h3>
                 <p className="text-base text-gray-600">
                   Enable staff to easily swap shifts with automated approval

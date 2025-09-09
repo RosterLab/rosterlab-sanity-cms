@@ -5,7 +5,7 @@ import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
 
-export default function ROICalculatorClient() {
+export default function SavingsCalculatorClient() {
   // Input states
   const [staff, setStaff] = useState(50)
   const [avgHourlyWage, setAvgHourlyWage] = useState(35)
@@ -348,7 +348,7 @@ Savings Breakdown:
             <div className="flex justify-center">
               <Image
                 src="/images/illustration/Coins-rafiki.svg"
-                alt="ROI Calculator illustration"
+                alt="Savings Calculator illustration"
                 width={400}
                 height={300}
                 className="w-full max-w-md h-auto"
@@ -360,9 +360,38 @@ Savings Breakdown:
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Calculator Inputs */}
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Organisation</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">See how RosterLab can save</h2>
+                <p className="text-base text-gray-600 mb-6">
+                  We estimated your savings based on our experience with different specialties in healthcare and research on industry standards.
+                </p>
                 
                 <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      What types of healthcare specialties are you scheduling for?
+                    </label>
+                    <select
+                      value={industry}
+                      onChange={(e) => setIndustry(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white appearance-none cursor-pointer"
+                      style={{
+                        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                        backgroundPosition: 'right 0.5rem center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '1.5em 1.5em',
+                        paddingRight: '2.5rem'
+                      }}
+                    >
+                      <option value="nursing">Nursing</option>
+                      <option value="acute-specialties">Acute</option>
+                      <option value="medicine-specialties">Medicine</option>
+                      <option value="allied-health">Allied Health</option>
+                      <option value="senior-care">Senior Care</option>
+                      <option value="midwives">Midwives</option>
+                      <option value="veterinary">Veterinary</option>
+                      <option value="surgical">Surgical</option>
+                    </select>
+                  </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Number of staff
@@ -437,9 +466,11 @@ Savings Breakdown:
                 </div>
               </div>
 
+              {/* HubSpot Form Listener */}
+              
               {/* Results */}
               <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg shadow-lg p-8 text-white">
-                <h2 className="text-2xl font-bold mb-6">Your Potential Savings</h2>
+                <h2 className="text-2xl font-bold mb-6">Your Potential Annual Savings</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-white/10 rounded-lg p-6">
@@ -452,7 +483,7 @@ Savings Breakdown:
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/10 rounded-lg p-4">
                       <h4 className="text-2xl font-bold mb-1">{roi}%</h4>
-                      <p className="text-sm text-blue-100">ROI in Year 1</p>
+                      <p className="text-sm text-blue-100">Return in Year 1</p>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4">
                       <h4 className="text-2xl font-bold mb-1">{paybackMonths}</h4>
@@ -476,6 +507,17 @@ Savings Breakdown:
                     <div className="flex justify-between">
                       <span>Reduced turnover costs</span>
                       <span className="font-semibold">${turnoverSavings.toLocaleString()}</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 p-4 bg-white/10 rounded-lg">
+                    <h4 className="font-semibold mb-2">RosterLab Investment</h4>
+                    <div className="space-y-1 text-sm">
+                      <p>Annual Subscription: ${annualSubscriptionCost.toLocaleString()}</p>
+                      <p className="text-blue-100 text-xs">($20 per staff per month)</p>
+                      <p>Implementation: ${oneOffImplementationCost.toLocaleString()}</p>
+                      <p className="text-blue-100 text-xs">({currentIndustry.implementationDays} days × $1,500/day)</p>
+                      <p className="font-semibold pt-2 border-t border-white/20">First Year Total: ${firstYearTotalCost.toLocaleString()}</p>
                     </div>
                   </div>
 
@@ -537,6 +579,13 @@ Savings Breakdown:
                   </p>
                 </div>
               </div>
+            </div>
+            
+            {/* Disclaimer */}
+            <div className="mt-8 p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <p className="text-sm text-amber-800 text-center">
+                * Savings are estimates based on typical results. Actual savings may vary. Final implementation cost will be confirmed after demo and scoping session.
+              </p>
             </div>
           </div>
         </Container>

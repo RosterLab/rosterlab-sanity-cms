@@ -584,7 +584,7 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/employee_app.png"
+                  src="/images/illustration/staff_app.png"
                   alt="Free Staff Mobile App"
                   width={600}
                   height={500}

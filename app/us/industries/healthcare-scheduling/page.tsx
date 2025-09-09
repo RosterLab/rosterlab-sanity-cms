@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import Link from "next/link";
 
 export const metadata = {
@@ -77,7 +77,7 @@ export default function HealthcarePage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/doctors.svg"
+                src="/images/us-images/healthcare-roster.jpg"
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}
@@ -965,7 +965,7 @@ export default function HealthcarePage() {
       </section>
 
       {/* Trusted By */}
-      <TrustedBy />
+      <USTrustedBy />
     </SiteLayout>
   );
 }

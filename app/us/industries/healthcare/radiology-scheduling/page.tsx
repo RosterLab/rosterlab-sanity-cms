@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
@@ -142,7 +142,7 @@ export default function RadiologyPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/radiology.svg"
+                src="/images/us-images/radiology-roster.jpg"
                 alt="Radiology scheduling dashboard"
                 width={600}
                 height={400}
@@ -670,7 +670,7 @@ export default function RadiologyPage() {
 
       {/* Trusted By */}
       <section className="py-20 bg-white">
-        <TrustedBy />
+        <USTrustedBy />
       </section>
 
       {/* FAQ Section */}

@@ -67,7 +67,7 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/us-images/rescheduling.jpg"
                   alt="Re-scheduling events management illustration"
                   width={600}
                   height={600}

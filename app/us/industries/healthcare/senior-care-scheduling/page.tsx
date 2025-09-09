@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
 
@@ -149,7 +149,7 @@ export default function AgedCarePage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/aged-care.svg"
+                src="/images/us-images/senior-care-roster.jpg"
                 alt="Senior care scheduling dashboard"
                 width={600}
                 height={400}
@@ -622,7 +622,7 @@ export default function AgedCarePage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Smart Shift Swaps
+                  Smart Shift Trades
                 </h3>
                 <p className="text-base text-gray-600">
                   Enable staff to easily swap shifts with automated approval
@@ -690,7 +690,7 @@ export default function AgedCarePage() {
 
       {/* Trusted By */}
       <section className="py-20 bg-white">
-        <TrustedBy />
+        <USTrustedBy />
       </section>
 
       {/* FAQ Section */}

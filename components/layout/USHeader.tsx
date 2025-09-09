@@ -25,5 +25,4 @@ export const usNavItems = [
     ]
   },
   { title: 'Pricing', link: '/us/pricing' },
-  { title: 'Contact', link: '/us/contact' },
 ]

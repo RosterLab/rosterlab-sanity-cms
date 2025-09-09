@@ -91,7 +91,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/open.svg"
+                  src="/images/us-images/open-shifts.jpg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
