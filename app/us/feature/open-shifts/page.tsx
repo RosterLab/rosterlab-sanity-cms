@@ -129,7 +129,7 @@ export default function OpenShiftsPage() {
                 </ul>
                 <div className="mt-8">
                   <Button 
-                    href="/us/solutions/staff-schedule-mobile-app" 
+                    href="/us/solutions/staff-scheduling-mobile-app" 
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
                   >
                     Learn more about our mobile app

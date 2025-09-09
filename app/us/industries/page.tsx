@@ -511,7 +511,7 @@ export default function IndustriesPage() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Collect requests & preferences</h3>
                   <p className="text-gray-600">
-                    Staff submit leave requests and shift preferences through the <Link href="/us/solutions/staff-schedule-mobile-app" className="text-blue-600 hover:underline">mobile app</Link>, ready for review and schedule planning.
+                    Staff submit leave requests and shift preferences through the <Link href="/us/solutions/staff-scheduling-mobile-app" className="text-blue-600 hover:underline">mobile app</Link>, ready for review and schedule planning.
                   </p>
                 </div>
               </div>
@@ -535,14 +535,14 @@ export default function IndustriesPage() {
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Share and manage schedules</h3>
                   <p className="text-gray-600">
-                    Publish schedules via <Link href="/us/solutions/staff-schedule-mobile-app" className="text-blue-600 hover:underline">mobile app</Link>, manage shift swaps, and integrate with payroll - all in real-time.
+                    Publish schedules via <Link href="/us/solutions/staff-scheduling-mobile-app" className="text-blue-600 hover:underline">mobile app</Link>, manage shift swaps, and integrate with payroll - all in real-time.
                   </p>
                 </div>
               </div>
             </div>
             
             <div className="text-center mt-12">
-              <Button href="/us/staff-scheduling-interactive-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+              <Button href="/us/product-tour" className="bg-indigo-600 text-white hover:bg-indigo-700">
                 See an Example
               </Button>
             </div>

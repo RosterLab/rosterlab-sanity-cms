@@ -487,7 +487,7 @@ Savings Breakdown:
                       Download Your ROI Report
                     </button>
                     <Button 
-                      href="/us/staff-scheduling-interactive-demo" 
+                      href="/us/product-tour" 
                       className="w-full bg-white text-blue-600 hover:bg-gray-100 py-3"
                     >
                       See How It Works

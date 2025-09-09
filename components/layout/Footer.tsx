@@ -220,7 +220,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} All rights reserved to RosterLab
+            © {new Date().getFullYear()} All rights reserved to <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">RosterLab</Link>
           </p>
           <p className="text-gray-300 text-[10px] mt-1">
             Illustrations by Storyset

@@ -458,7 +458,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
       const tool1Text = 'Employee Mobile App'
       const tool1Width = doc.getTextWidth(tool1Text)
       doc.text(tool1Text, 28, currentY)
-      doc.link(28, currentY - 3, tool1Width, 4, {url: 'https://rosterlab.com/us/solutions/staff-schedule-mobile-app'})
+      doc.link(28, currentY - 3, tool1Width, 4, {url: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app'})
       doc.setTextColor(...textColor as [number, number, number])
       doc.text(': Empower your team with compliant mobile access', 28 + tool1Width, currentY)
       currentY += 8
@@ -1069,7 +1069,7 @@ export default function RulesRobotClient({ recommendedPosts }: RulesRobotClientP
           </h2>
           
           <div className="grid gap-8 md:grid-cols-3 mb-12">
-            <Link href="/us/solutions/staff-schedule-mobile-app" className="block">
+            <Link href="/us/solutions/staff-scheduling-mobile-app" className="block">
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg className="w-24 h-24 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

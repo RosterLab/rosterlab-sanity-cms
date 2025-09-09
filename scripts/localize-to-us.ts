@@ -112,10 +112,10 @@ const URL_MAPPINGS: Record<string, string> = {
   
   // Tools
   '/roi-calculator': '/us/tools/roi-calculator',
-  '/staff-rostering-interactive-demo': '/us/staff-scheduling-interactive-demo',
+  '/staff-rostering-interactive-demo': '/us/product-tour',
   
   // Solutions - with terminology changes
-  '/solutions/staff-roster-mobile-app': '/us/solutions/staff-schedule-mobile-app',
+  '/solutions/staff-roster-mobile-app': '/us/solutions/staff-scheduling-mobile-app',
   '/solutions/ai-staff-scheduling': '/us/solutions/ai-staff-schedule-maker',
   '/solutions/free-staff-scheduling': '/us/solutions/free-staff-scheduling-tool',
   
@@ -287,9 +287,9 @@ async function main() {
     // Tools pages
     { source: 'draft/roi-calculator/page.tsx', target: 'tools/roi-calculator/page.tsx' },
     { source: 'draft/roi-calculator/client.tsx', target: 'tools/roi-calculator/client.tsx' },
-    { source: 'staff-rostering-interactive-demo/page.tsx', target: 'staff-scheduling-interactive-demo/page.tsx' },
-    { source: 'staff-rostering-interactive-demo/client.tsx', target: 'staff-scheduling-interactive-demo/client.tsx' },
-    { source: 'staff-rostering-interactive-demo/PageWrapper.tsx', target: 'staff-scheduling-interactive-demo/PageWrapper.tsx' },
+    { source: 'staff-rostering-interactive-demo/page.tsx', target: 'product-tour/page.tsx' },
+    { source: 'staff-rostering-interactive-demo/client.tsx', target: 'product-tour/client.tsx' },
+    { source: 'staff-rostering-interactive-demo/PageWrapper.tsx', target: 'product-tour/PageWrapper.tsx' },
     
     // Solutions pages
     { source: 'solutions/staff-roster-mobile-app/page.tsx', target: 'solutions/staff-roster-mobile-app/page.tsx' },

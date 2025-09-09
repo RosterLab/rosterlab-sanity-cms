@@ -24,14 +24,14 @@ export const metadata = {
   description:
     "Empower your staff with mobile schedule access. View schedules, request time off, swap shifts, and stay connected on the go.",
   alternates: {
-    canonical: 'https://rosterlab.com/us/solutions/staff-schedule-mobile-app',
+    canonical: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app',
   },
   openGraph: {
     title: "Employee Mobile App - RosterLab",
     description:
       "Empower your staff with mobile schedule access. View schedules, request time off, swap shifts, and stay connected on the go.",
     type: 'website',
-    url: 'https://rosterlab.com/us/solutions/staff-schedule-mobile-app',
+    url: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app',
     images: [
       {
         url: "/images/og images/SolutionMobileApp.png",

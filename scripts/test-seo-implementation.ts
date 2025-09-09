@@ -93,7 +93,7 @@ if (existsSync(clientFooterPath)) {
 console.log('\n7️⃣ Checking URL mappings...')
 if (existsSync(hreflangPath)) {
   const content = readFileSync(hreflangPath, 'utf-8')
-  if (content.includes('staff-schedule-mobile-app')) {
+  if (content.includes('staff-scheduling-mobile-app')) {
     console.log('✅ URL mappings include terminology changes (roster → schedule)')
   }
 }

@@ -5,7 +5,7 @@ export const usNavItems = [
     subItems: [
       { title: 'AI-generated optimized schedules', link: '/us/solutions/ai-staff-schedule-maker' },
       { title: 'Free For Manual Digital Scheduling', link: '/us/solutions/free-staff-scheduling-tool' },
-      { title: 'Employee Mobile App', link: '/us/solutions/staff-schedule-mobile-app' },
+      { title: 'Employee Mobile App', link: '/us/solutions/staff-scheduling-mobile-app' },
       { title: 'Auto Schedule Generation', link: '/us/feature/auto-scheduling' },
       { title: 'Open Shifts', link: '/us/feature/open-shifts' },
       { title: 'Shift Swaps & Trades', link: '/us/feature/shift-swaps-and-trades' },

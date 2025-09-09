@@ -1,10 +1,10 @@
 import USHero from './components/Hero'
 import USTrustedBy from './components/TrustedBy'
-import Benefits from '@/components/sections/Benefits'
-import Onboarding from '@/components/sections/Onboarding'
-import IndustrySolutions from '@/components/sections/IndustrySolutions'
+import USBenefits from './components/Benefits'
+import USOnboarding from './components/Onboarding'
+import USIndustrySolutions from './components/IndustrySolutions'
 import USTestimonials from './components/Testimonials'
-import FinalCTA from '@/components/sections/FinalCTA'
+import USFinalCTA from './components/FinalCTA'
 
 export const metadata = {
   title: 'RosterLab - AI Staff Scheduling Software for Complex Teams', 
@@ -40,11 +40,11 @@ export default function Home() {
       <USHero />
       
       <USTrustedBy />
-      <Benefits />
-      <Onboarding />
-      <IndustrySolutions />
+      <USBenefits />
+      <USOnboarding />
+      <USIndustrySolutions />
       <USTestimonials />
-      <FinalCTA />
+      <USFinalCTA />
     </>
   )
 }

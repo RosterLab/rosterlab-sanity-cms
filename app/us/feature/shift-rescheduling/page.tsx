@@ -34,7 +34,7 @@ export const metadata = {
   },
 };
 
-export default function ReRosteringPage() {
+export default function ReSchedulingPage() {
   return (
     <SiteLayout>
       <div className="min-h-screen bg-gradient-to-br from-teal-50 via-white to-cyan-50">

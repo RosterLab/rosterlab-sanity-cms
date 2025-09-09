@@ -625,7 +625,7 @@ export default function ManualSchedulingPage() {
                 </div>
                 <div className="mt-8">
                   <Button
-                    href="/us/solutions/staff-schedule-mobile-app"
+                    href="/us/solutions/staff-scheduling-mobile-app"
                     className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3"
                     analyticsLabel="Learn More About Mobile App"
                     analyticsLocation="Solution Page Free Staff Scheduling"

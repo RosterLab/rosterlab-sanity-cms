@@ -24,7 +24,7 @@ export default function USFooter() {
                 />
               </Link>
               <p className="text-sm text-gray-600 mb-6">
-                Simplifying workforce management with intelligent scheduling solutions.
+                Simplifying workforce planning with intelligent scheduling solutions.
               </p>
             </div>
             
@@ -101,12 +101,12 @@ export default function USFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/us/solutions/staff-schedule-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/solutions/staff-scheduling-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Staff Mobile App
                 </Link>
               </li>
               <li>
-                <Link href="/us/staff-scheduling-interactive-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link href="/us/product-tour" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Product Tour
                 </Link>
               </li>
@@ -123,18 +123,13 @@ export default function USFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/us/careers" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="/us/newsroom" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Newsroom
-                </Link>
-              </li>
-              <li>
                 <Link href="/us/contact" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/us/book-a-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Book a Demo
                 </Link>
               </li>
             </ul>
@@ -155,8 +150,8 @@ export default function USFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/us/case-studies" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Case Studies
+                <Link href="/us/tools/roi-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  ROI Calculator
                 </Link>
               </li>
             </ul>
@@ -202,7 +197,7 @@ export default function USFooter() {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} All rights reserved to RosterLab
+            © {new Date().getFullYear()} All rights reserved to <Link href="/us" className="text-gray-600 hover:text-blue-600 transition-colors">RosterLab</Link>
           </p>
           <p className="text-gray-300 text-[10px] mt-1">
             Illustrations by Storyset

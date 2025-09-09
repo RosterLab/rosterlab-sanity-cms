@@ -14,7 +14,7 @@ const testimonials = [
   {
     quote: "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical schedules!",
     author: "Peter",
-    company: "Senior Registrar ICU, Western Australia", 
+    company: "Senior Registrar, ICU", 
     logo: null
   },
   {

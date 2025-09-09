@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import RosterGenerator from "@/components/ui/RosterGenerator";
+import SchedulingGenerator from "./SchedulingGenerator";
 import { HiCheck } from 'react-icons/hi';
 
 export default function USHero() {
@@ -29,7 +29,8 @@ export default function USHero() {
               >
                 Scheduling Software
               </span>
-              {" "}for Complex Teams
+              <br />
+              for Complex Teams
             </h1>
 
             {/* Subheading */}
@@ -51,7 +52,7 @@ export default function USHero() {
               </Button>
 
               <Button
-                href="/us/staff-scheduling-interactive-demo"
+                href="/us/product-tour"
                 className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
                 analyticsLabel="See an Example"
                 analyticsLocation="Homepage Hero"
@@ -62,7 +63,7 @@ export default function USHero() {
             </div>
 
             {/* Feature ticks */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <span className="text-sm text-gray-700">Made for healthcare and complex industries</span>
@@ -74,10 +75,10 @@ export default function USHero() {
             </div>
           </div>
 
-          {/* Right side - Roster Generation Module */}
+          {/* Right side - Schedule Generation Module */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-full max-w-[600px]">
-              <RosterGenerator />
+              <SchedulingGenerator />
             </div>
           </div>
         </div>

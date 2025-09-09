@@ -552,7 +552,7 @@ export default function PricingPage() {
                 Sign up for free
               </Button>
               <Button
-                href="/us/staff-scheduling-interactive-demo"
+                href="/us/product-tour"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Pricing CTA Bottom"

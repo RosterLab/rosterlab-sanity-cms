@@ -186,7 +186,7 @@ export default function AISchedulesPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/staff-scheduling-interactive-demo"
+                  href="/us/product-tour"
                   className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
                   analyticsLabel="See an Example"
                   analyticsLocation="Solution Page AI Staff Scheduling"

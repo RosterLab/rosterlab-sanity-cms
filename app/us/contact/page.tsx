@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 import ContactFormWrapper from "@/components/forms/ContactFormWrapper";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
+import { HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 
 export const metadata = {
@@ -136,26 +136,6 @@ export default function ContactPage() {
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <HiLocationMarker className="w-5 h-5 text-primary-600" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-neutral-900 mb-1">
-                        Headquarters
-                      </h3>
-                      <p className="text-neutral-600">
-                        314/380 Khyber Pass Road
-                        <br />
-                        Newmarket, Auckland 1023
-                        <br />
-                        New Zealand
-                      </p>
-                    </div>
-                  </div>
-
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
                       <h3 className="text-xl font-bold text-neutral-900 mb-3">

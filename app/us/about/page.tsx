@@ -13,7 +13,7 @@ export const metadata = {
     canonical: 'https://rosterlab.com/us/about',
   },
   other: {
-    link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
+    link: '<link rel="preload" href="/images/us-images/about-rosterlab-us.jpg" as="image" type="image/jpeg" fetchpriority="high" />',
   },
   openGraph: {
     title: "About Us - Meet the Team Behind RosterLab",
@@ -80,22 +80,22 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Timeline Illustration */}
+            {/* About Image */}
             <div className="flex justify-center lg:justify-end">
               <div
-                className="w-full max-w-2xl relative"
-                style={{ aspectRatio: "600/400" }}
+                className="w-full max-w-md relative"
+                style={{ aspectRatio: "400/300" }}
               >
                 <Image
-                  src="/images/illustration/Timeline-pana.svg"
-                  alt="Timeline illustration"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
+                  src="/images/us-images/about-rosterlab-us.jpg"
+                  alt="About RosterLab US"
+                  width={400}
+                  height={300}
+                  className="w-full h-auto rounded-lg shadow-lg"
                   priority
                   fetchPriority="high"
                   placeholder="empty"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 400px"
                 />
               </div>
             </div>
