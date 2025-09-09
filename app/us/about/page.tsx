@@ -66,10 +66,10 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/us/careers"
+                  href="/us/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700"
                 >
-                  View Open Positions
+                  Book a Demo
                 </Button>
                 <Button
                   href="/us/contact"
@@ -80,22 +80,22 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* About Image */}
+            {/* Timeline Illustration */}
             <div className="flex justify-center lg:justify-end">
               <div
-                className="w-full max-w-md relative"
-                style={{ aspectRatio: "400/300" }}
+                className="w-full max-w-2xl relative"
+                style={{ aspectRatio: "600/400" }}
               >
                 <Image
                   src="/images/us-images/about-rosterlab-us.jpg"
                   alt="About RosterLab US"
-                  width={400}
-                  height={300}
-                  className="w-full h-auto rounded-lg shadow-lg"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
                   priority
                   fetchPriority="high"
                   placeholder="empty"
-                  sizes="(max-width: 768px) 80vw, (max-width: 1200px) 40vw, 400px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
               </div>
             </div>
@@ -488,10 +488,10 @@ export default function AboutPage() {
               operations.
             </p>
             <Button
-              href="/us/careers"
+              href="/us/book-a-demo"
               className="bg-blue-600 text-white hover:bg-blue-700"
             >
-              View Open Positions
+              Book a Demo
             </Button>
           </div>
         </Container>

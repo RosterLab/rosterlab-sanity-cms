@@ -3,16 +3,16 @@ import StaffRosteringInteractiveDemoClient from './client'
 import PageWrapper from './PageWrapper'
 
 export const metadata: Metadata = {
-  title: 'Product Tour - RosterLab',
+  title: 'Staff Scheduling Interactive Demo - RosterLab',
   description: 'Try RosterLab\'s interactive scheduling demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
   alternates: {
-    canonical: 'https://rosterlab.com/us/product-tour',
+    canonical: 'https://rosterlab.com/us/staff-scheduling-interactive-demo',
   },
   openGraph: {
-    title: 'Product Tour - RosterLab',
+    title: 'Staff Scheduling Interactive Demo - RosterLab',
     description: 'Try RosterLab\'s interactive scheduling demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
     type: 'website',
-    url: 'https://rosterlab.com/us/product-tour',
+    url: 'https://rosterlab.com/us/staff-scheduling-interactive-demo',
     images: [
       {
         url: '/images/og images/InteractiveDemo.png',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Product Tour - RosterLab',
+    title: 'Staff Scheduling Interactive Demo - RosterLab',
     description: 'Try RosterLab\'s interactive scheduling demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.',
     images: ['/images/og images/InteractiveDemo.png'],
   },

@@ -4,6 +4,37 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
 import { join, dirname, basename } from 'path'
 import { glob } from 'glob'
 
+// US-specific component mappings
+const US_COMPONENT_MAPPINGS: Record<string, string> = {
+  // Section components
+  "from '@/components/sections/Hero'": "from '@/app/us/components/Hero'",
+  "from '@/components/sections/TrustedBy'": "from '@/app/us/components/TrustedBy'",
+  "from '@/components/sections/Benefits'": "from '@/app/us/components/Benefits'",
+  "from '@/components/sections/Onboarding'": "from '@/app/us/components/Onboarding'",
+  "from '@/components/sections/IndustrySolutions'": "from '@/app/us/components/IndustrySolutions'",
+  "from '@/components/sections/Testimonials'": "from '@/app/us/components/Testimonials'",
+  "from '@/components/sections/FinalCTA'": "from '@/app/us/components/FinalCTA'",
+  
+  // UI components with US versions
+  "from '@/components/ui/RosterLoadingBar'": "from '@/components/ui/ScheduleLoadingBar'",
+  "from '@/components/ui/RosterGenerator'": "from '@/app/us/components/SchedulingGenerator'",
+  
+  // Import name changes
+  'import TrustedBy from': 'import USTrustedBy from',
+  'import RosterLoadingBar from': 'import ScheduleLoadingBar from',
+  'import RosterGenerator from': 'import SchedulingGenerator from',
+}
+
+// Component usage mappings
+const US_COMPONENT_USAGE_MAPPINGS: Record<string, string> = {
+  '<TrustedBy />': '<USTrustedBy />',
+  '<TrustedBy/>': '<USTrustedBy/>',
+  '<RosterLoadingBar />': '<ScheduleLoadingBar />',
+  '<RosterLoadingBar/>': '<ScheduleLoadingBar/>',
+  '<RosterGenerator />': '<SchedulingGenerator />',
+  '<RosterGenerator/>': '<SchedulingGenerator/>',
+}
+
 // Content transformation rules for US localization
 const TERMINOLOGY_MAP = {
   // Primary terms
@@ -21,9 +52,21 @@ const TERMINOLOGY_MAP = {
   'staff roster': 'staff schedule',
   'Staff roster': 'Staff schedule',
   'Staff Roster': 'Staff Schedule',
-  'employee roster': 'employee schedule',
-  'Employee roster': 'Employee schedule',
-  'Employee Roster': 'Employee Schedule',
+  'employee roster': 'staff schedule',
+  'Employee roster': 'Staff schedule',
+  'Employee Roster': 'Staff Schedule',
+  
+  // Employee to Staff transformations
+  'employee': 'staff',
+  'Employee': 'Staff',
+  'EMPLOYEE': 'STAFF',
+  'employees': 'staff',
+  'Employees': 'Staff',
+  'EMPLOYEES': 'STAFF',
+  'employee\'s': 'staff member\'s',
+  'Employee\'s': 'Staff member\'s',
+  'employees\'': 'staff members\'',
+  'Employees\'': 'Staff members\'',
   'roster management': 'schedule management',
   'Roster management': 'Schedule management',
   'Roster Management': 'Schedule Management',
@@ -45,6 +88,20 @@ const TERMINOLOGY_MAP = {
   'roster builder': 'schedule builder',
   'Roster builder': 'Schedule builder',
   'Roster Builder': 'Schedule Builder',
+  
+  // More employee to staff transformations
+  'employee mobile app': 'staff mobile app',
+  'Employee mobile app': 'Staff mobile app', 
+  'Employee Mobile App': 'Staff Mobile App',
+  'employee app': 'staff app',
+  'Employee app': 'Staff app',
+  'Employee App': 'Staff App',
+  'employee scheduling': 'staff scheduling',
+  'Employee scheduling': 'Staff scheduling',
+  'Employee Scheduling': 'Staff Scheduling',
+  'employee management': 'staff management',
+  'Employee management': 'Staff management',
+  'Employee Management': 'Staff Management',
   
   // Healthcare specific
   'nurse rostering': 'nurse scheduling',
@@ -80,18 +137,20 @@ const TERMINOLOGY_MAP = {
   // '-roster': '-schedule',
 }
 
-// SEO metadata updates
-const SEO_UPDATES = {
-  // Title updates
-  'RosterLab': 'RosterLab',  // Keep brand name
-  'Smart Rostering': 'Smart Scheduling',
-  'Rostering Software': 'Scheduling Software',
-  'Roster Management': 'Schedule Management',
-  
-  // Description updates
-  'rostering challenges': 'scheduling challenges',
-  'rostering needs': 'scheduling needs',
-  'rostering process': 'scheduling process',
+// SEO metadata updates - these are specific overrides for certain pages
+const SEO_METADATA_OVERRIDES: Record<string, {title: string, description: string}> = {
+  '/us/solutions/ai-staff-schedule-maker': {
+    title: 'AI Staff Schedule Maker - RosterLab',
+    description: 'AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.'
+  },
+  '/us/solutions/free-staff-scheduling-tool': {
+    title: 'Free Staff Scheduling Tool - RosterLab',
+    description: 'Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.'
+  },
+  '/us/solutions/staff-scheduling-mobile-app': {
+    title: 'Free Staff Scheduling Mobile App - RosterLab',
+    description: 'Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.'
+  }
 }
 
 interface LocalizationOptions {
@@ -111,7 +170,7 @@ const URL_MAPPINGS: Record<string, string> = {
   '/book-a-demo': '/us/book-a-demo',
   
   // Tools
-  '/roi-calculator': '/us/tools/roi-calculator',
+  '/roi-calculator': '/us/tools/savings-calculator',
   '/staff-rostering-interactive-demo': '/us/product-tour',
   
   // Solutions - with terminology changes
@@ -137,6 +196,16 @@ const URL_MAPPINGS: Record<string, string> = {
 
 function localizeContent(content: string, options: LocalizationOptions): string {
   let localizedContent = content
+  
+  // Apply US component mappings first (before terminology)
+  for (const [original, replacement] of Object.entries(US_COMPONENT_MAPPINGS)) {
+    localizedContent = localizedContent.replace(new RegExp(original, 'g'), replacement)
+  }
+  
+  // Apply component usage mappings
+  for (const [original, replacement] of Object.entries(US_COMPONENT_USAGE_MAPPINGS)) {
+    localizedContent = localizedContent.replace(new RegExp(original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replacement)
+  }
   
   // Apply terminology replacements
   // Sort by length descending to replace longer phrases first
@@ -264,14 +333,31 @@ function localizeFile(inputPath: string, outputPath: string, updateLinks = false
   console.log(`✅ Localized: ${outputPath}`)
 }
 
+// Configuration options
+interface LocalizationConfig {
+  overwriteExisting: boolean
+  createBackup: boolean
+  skipFiles?: string[]
+}
+
 // Main function to run localization
-async function main() {
+async function main(config: LocalizationConfig = { overwriteExisting: false, createBackup: true }) {
   const appDir = join(__dirname, '..', 'app')
   const targetDir = join(__dirname, '..', 'app', 'us')
   
   // Create target directory if it doesn't exist
   if (!existsSync(targetDir)) {
     mkdirSync(targetDir, { recursive: true })
+  }
+  
+  // Create backup directory if backup is enabled
+  let backupDir = ''
+  if (config.createBackup && existsSync(targetDir)) {
+    backupDir = join(__dirname, '..', 'app', `us-backup-${new Date().toISOString().replace(/:/g, '-')}`)
+    console.log(`📦 Creating backup at: ${backupDir}`)
+    // Simple copy command for backup
+    const { execSync } = require('child_process')
+    execSync(`cp -r ${targetDir} ${backupDir}`)
   }
   
   // Define files/directories to localize - as specified in requirements
@@ -327,6 +413,22 @@ async function main() {
       continue
     }
     
+    // Check if target already exists and handle based on config
+    if (existsSync(outputPath)) {
+      if (!config.overwriteExisting) {
+        console.log(`⏭️  Skipping (already exists): ${outputPath}`)
+        continue
+      } else {
+        console.log(`⚠️  Overwriting existing file: ${outputPath}`)
+      }
+    }
+    
+    // Skip if in skipFiles list
+    if (config.skipFiles?.includes(target)) {
+      console.log(`⏭️  Skipping (in skip list): ${outputPath}`)
+      continue
+    }
+    
     localizeFile(inputPath, outputPath, true)
   }
   
@@ -342,7 +444,55 @@ async function main() {
 
 // Run the script
 if (require.main === module) {
-  main().catch(console.error)
+  // Parse command line arguments
+  const args = process.argv.slice(2)
+  const forceOverwrite = args.includes('--force') || args.includes('-f')
+  const noBackup = args.includes('--no-backup')
+  const showHelp = args.includes('--help') || args.includes('-h')
+  
+  if (showHelp) {
+    console.log(`
+US Localization Script
+
+Usage: npx tsx scripts/localize-to-us.ts [options]
+
+Options:
+  --force, -f     Overwrite existing files (default: skip existing)
+  --no-backup     Don't create backup of existing files
+  --help, -h      Show this help message
+
+Examples:
+  # Safe mode - skip existing files, create backup
+  npx tsx scripts/localize-to-us.ts
+  
+  # Force overwrite with backup
+  npx tsx scripts/localize-to-us.ts --force
+  
+  # Force overwrite without backup (use with caution!)
+  npx tsx scripts/localize-to-us.ts --force --no-backup
+`)
+    process.exit(0)
+  }
+  
+  const config: LocalizationConfig = {
+    overwriteExisting: forceOverwrite,
+    createBackup: !noBackup,
+    // Add any files you want to always skip here
+    skipFiles: [
+      // Example: 'page.tsx', 'about/page.tsx'
+    ]
+  }
+  
+  console.log('🚀 Starting US localization with config:', {
+    overwriteExisting: config.overwriteExisting ? 'YES' : 'NO',
+    createBackup: config.createBackup ? 'YES' : 'NO'
+  })
+  
+  if (forceOverwrite && !noBackup) {
+    console.log('💾 Creating backup before overwriting...')
+  }
+  
+  main(config).catch(console.error)
 }
 
 export { localizeContent, localizeFile }

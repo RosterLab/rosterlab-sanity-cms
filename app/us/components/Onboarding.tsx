@@ -26,7 +26,7 @@ const onboardingSteps = [
       </svg>
     ),
     description:
-      "Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete schedule compliance.",
+      "Set precise rules based on contract obligations, compliance, skill mix, tasks and staffing coverage to ensure complete schedule compliance.",
     link: "#",
   },
   {
@@ -97,7 +97,7 @@ const onboardingSteps = [
   },
   {
     number: "5",
-    title: "5. Manage shift swaps & open shifts",
+    title: "5. Manage shift trades & open shifts",
     icon: (
       <svg
         className="w-6 h-6 text-blue-600"
@@ -114,8 +114,8 @@ const onboardingSteps = [
       </svg>
     ),
     description:
-      "Automatically approve routine swaps while flagging critical changes. Open shifts to your staff to fill gaps.",
-    link: "/us/feature/shift-swaps",
+      "Automatically approve routine trades while flagging critical changes. Open shifts to your staff to fill gaps.",
+    link: "/us/feature/shift-swaps-and-trades",
   },
   {
     number: "6",

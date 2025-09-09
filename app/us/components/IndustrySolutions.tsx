@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import Link from "next/link";
 import Image from "next/image";
-import { HiArrowRight } from "react-icons/hi";
+import { HiArrowRight, HiUserGroup } from "react-icons/hi";
 
 export default function USIndustrySolutions() {
   return (
@@ -124,17 +124,7 @@ export default function USIndustrySolutions() {
           <div className="bg-green-50 rounded-2xl p-8">
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-green-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                <svg
-                  className="w-8 h-8 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a2 2 0 114 0 2 2 0 01-4 0zm8-2a2 2 0 100 4 2 2 0 000-4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+                <HiUserGroup className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-green-900 mb-2">
                 Complex Teams

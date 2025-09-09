@@ -42,7 +42,7 @@ export default function BookADemoClient() {
     }
 
     // Prefetch the meeting-confirmed page
-    router.prefetch("/us/meeting-confirmed");
+    router.prefetch("/meeting-confirmed");
 
     // Add preconnect for Calendly domains
     const calendlyDomains = [
@@ -173,7 +173,7 @@ export default function BookADemoClient() {
 
       // Redirect to confirmation page
       setTimeout(() => {
-        router.push("/us/meeting-confirmed");
+        router.push('/us/meeting-confirmed');
       }, 50);
     },
     onEventTypeViewed: (e: any) => {

@@ -150,8 +150,8 @@ export default function USFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/us/tools/roi-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  ROI Calculator
+                <Link href="/us/tools/savings-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Savings Calculator
                 </Link>
               </li>
             </ul>

@@ -418,7 +418,7 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/staff-scheduling-mobile-app" className="block">
+            <Link href="/us/solutions/staff-schedule-mobile-app" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg

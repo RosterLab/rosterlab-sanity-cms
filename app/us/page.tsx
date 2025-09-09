@@ -1,22 +1,22 @@
-import USHero from './components/Hero'
-import USTrustedBy from './components/TrustedBy'
-import USBenefits from './components/Benefits'
-import USOnboarding from './components/Onboarding'
-import USIndustrySolutions from './components/IndustrySolutions'
-import USTestimonials from './components/Testimonials'
-import USFinalCTA from './components/FinalCTA'
+import Hero from '@/app/us/components/Hero'
+import TrustedBy from '@/app/us/components/TrustedBy'
+import Benefits from '@/app/us/components/Benefits'
+import Onboarding from '@/app/us/components/Onboarding'
+import IndustrySolutions from '@/app/us/components/IndustrySolutions'
+import Testimonials from '@/app/us/components/Testimonials'
+import FinalCTA from '@/app/us/components/FinalCTA'
 
 export const metadata = {
-  title: 'RosterLab - AI Staff Scheduling Software for Complex Teams', 
+  title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
   description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare and other complex teams - cut admin by 90% and boost coverage.',
   alternates: {
-    canonical: 'https://rosterlab.com/us/',
+    canonical: 'https://rosterlab.com/us',
   },
   openGraph: {
     title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
     description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare and other complex teams - cut admin by 90% and boost coverage.',
     type: 'website',
-    url: 'https://rosterlab.com',
+    url: 'https://rosterlab.com/us',
     images: [
       {
         url: '/images/og images/Home.png',
@@ -37,14 +37,14 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <USHero />
+      <Hero />
       
-      <USTrustedBy />
-      <USBenefits />
-      <USOnboarding />
-      <USIndustrySolutions />
-      <USTestimonials />
-      <USFinalCTA />
+      <TrustedBy />
+      <Benefits />
+      <Onboarding />
+      <IndustrySolutions />
+      <Testimonials />
+      <FinalCTA />
     </>
   )
 }

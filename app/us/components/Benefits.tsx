@@ -127,7 +127,7 @@ export default function USBenefits() {
             Achieve Better Staff Outcomes
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto">
-            Transform your workforce management with our AI-powered scheduling
+            Transform your workforce planning with our AI-powered scheduling
             solution designed specifically for complex scheduling needs.
           </p>
         </div>

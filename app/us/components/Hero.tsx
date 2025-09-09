@@ -16,7 +16,9 @@ export default function USHero() {
           <div className="text-left">
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              AI Staff{" "}
+              AI Staff Scheduling Software
+              <br />
+              <span>for </span>
               <span
                 className="inline-block"
                 style={{
@@ -27,10 +29,8 @@ export default function USHero() {
                   color: "transparent",
                 }}
               >
-                Scheduling Software
+                Complex Teams
               </span>
-              <br />
-              for Complex Teams
             </h1>
 
             {/* Subheading */}
@@ -58,7 +58,7 @@ export default function USHero() {
                 analyticsLocation="Homepage Hero"
                 analyticsProperties={{ cta_type: 'demo', section: 'hero', demo_type: 'interactive' }}
               >
-                See an Example
+                View Product Tour
               </Button>
             </div>
 

@@ -3,7 +3,6 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import AnimatedSpeechBubbles from "@/components/ui/AnimatedSpeechBubbles";
 import Link from "next/link";
 import {
   HiCalendar,
@@ -20,16 +19,16 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "Employee Mobile App - RosterLab",
+  title: "Free Staff Scheduling Mobile App - RosterLab",
   description:
-    "Empower your staff with mobile schedule access. View schedules, request time off, swap shifts, and stay connected on the go.",
+    "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
   alternates: {
     canonical: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app',
   },
   openGraph: {
-    title: "Employee Mobile App - RosterLab",
+    title: "Free Staff Scheduling Mobile App - RosterLab",
     description:
-      "Empower your staff with mobile schedule access. View schedules, request time off, swap shifts, and stay connected on the go.",
+      "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     type: 'website',
     url: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app',
     images: [
@@ -37,15 +36,15 @@ export const metadata = {
         url: "/images/og images/SolutionMobileApp.png",
         width: 1200,
         height: 630,
-        alt: "Employee Mobile App",
+        alt: "Staff Mobile App",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Employee Mobile App - RosterLab",
+    title: "Free Staff Scheduling Mobile App - RosterLab",
     description:
-      "Empower your staff with mobile schedule access. View schedules, request time off, swap shifts, and stay connected on the go.",
+      "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     images: ["/images/og images/SolutionMobileApp.png"],
   },
 };
@@ -66,14 +65,14 @@ const appFeatures = [
     href: "/us/feature/open-shifts",
   },
   {
-    title: "Leave Management",
+    title: "Time Off Requests",
     description:
       "Submit requests and track approval status directly from your phone",
     icon: HiCheckCircle,
     href: "/us/feature/time-off-requests",
   },
   {
-    title: "Smart Shift Swaps",
+    title: "Smart Shift Trades",
     description:
       "Rule-based auto-swaps reduce admin effort in the approval process.",
     icon: HiUserGroup,
@@ -104,92 +103,82 @@ const faqItems = [
   },
 ];
 
-export default function EmployeeMobileAppPage() {
+export default function StaffMobileAppPage() {
   return (
     <SiteLayout>
       <>
         {/* Hero Section */}
-        <div className="bg-white pt-16 pb-0">
+        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
-                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Your schedule in your pocket
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Free Staff Scheduling Mobile App
                 </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                  Give your staff instant access to their schedules, enable easy
-                  shift management, and improve communication with our intuitive
-                  mobile app.
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Give staff instant access to their schedule with easy shift management and improved communication.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
+                    <svg
+                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                     <span className="text-gray-700 font-medium">
                       Streamline communication
                     </span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
+                    <svg
+                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                     <span className="text-gray-700 font-medium">
                       Increase staff engagement
                     </span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
+                    <svg
+                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                     <span className="text-gray-700 font-medium">
                       Works on all devices
                     </span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
+                    <svg
+                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                     <span className="text-gray-700 font-medium">
                       Available free on iOS and Android
                     </span>
@@ -225,20 +214,40 @@ export default function EmployeeMobileAppPage() {
                   </Button>
                 </div>
               </div>
-              <div className="relative flex justify-center items-end">
+              <div className="relative flex justify-center items-center">
                 <div className="w-full max-w-lg">
                   <Image
-                    src="/images/illustration/test5.svg"
-                    alt="RosterLab Mobile App Interface"
+                    src="/images/us-images/free-staff-scheduling-mobile-app.jpg"
+                    alt="Free Staff Scheduling Mobile App"
                     width={600}
                     height={400}
-                    className="w-full h-auto"
+                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
               </div>
             </div>
           </Container>
-        </div>
+          
+          {/* Wave separator */}
+          <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
+            <svg
+              className="relative block w-full h-3 lg:h-16"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1440 80"
+              preserveAspectRatio="none"
+            >
+              <path
+                fill="#ffffff"
+                d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
+                opacity="0.5"
+              />
+              <path
+                fill="#ffffff"
+                d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
+              />
+            </svg>
+          </div>
+        </section>
 
         {/* Key Features Section */}
         <div className="bg-gray-50 py-20">
@@ -280,7 +289,7 @@ export default function EmployeeMobileAppPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Publish your schedule to your employee mobile app
+                  Publish your schedule to your staff mobile app
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
                   Team members can see their published schedules on the RosterLab
@@ -352,12 +361,15 @@ export default function EmployeeMobileAppPage() {
         <div className="bg-gray-50 py-20">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Animation module - order-2 on mobile, order-1 on desktop */}
-              <div
-                className="w-full order-2 lg:order-1"
-                style={{ height: "500px" }}
-              >
-                <AnimatedSpeechBubbles />
+              {/* Image - order-2 on mobile, order-1 on desktop */}
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/us-images/happy-staff.jpg"
+                  alt="Happy Staff"
+                  width={600}
+                  height={500}
+                  className="w-full h-auto rounded-lg shadow-xl"
+                />
               </div>
               {/* Content - order-1 on mobile, order-2 on desktop */}
               <div className="order-1 lg:order-2">
@@ -407,7 +419,7 @@ export default function EmployeeMobileAppPage() {
                   Seamless communication and notifications
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Push notifications keep employees updated in real-time as
+                  Push notifications keep staff updated in real-time as
                   schedules are published, shifts become available and leave
                   requests are approved.
                 </p>

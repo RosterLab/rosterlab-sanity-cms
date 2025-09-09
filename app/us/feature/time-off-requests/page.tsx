@@ -6,17 +6,17 @@ import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
 
 export const metadata = {
-  title: "Employee Leave Requests - RosterLab",
+  title: "Staff Leave Requests - RosterLab",
   description:
-    "Give employees an easy and streamline way to request leave. Staff can submit a range of leave types via the employee mobile app to streamline leave management.",
+    "Give staff an easy and streamline way to request leave. Staff can submit a range of leave types via the staff mobile app to streamline leave management.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: "Employee Leave Request Tracking - RosterLab",
+    title: "Staff Leave Request Tracking - RosterLab",
     description:
-      "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
+      "Give staff an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
     images: [
       {
         url: "/images/og images/FeatureLeaveRequest.png",
@@ -27,9 +27,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Employee Leave Request Tracking - RosterLab",
+    title: "Staff Leave Request Tracking - RosterLab",
     description:
-      "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
+      "Give staff an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
     images: ["/images/og images/FeatureLeaveRequest.png"],
   },
 };
@@ -47,7 +47,7 @@ export default function LeaveRequestsPage() {
                   Streamline Staff Leave Requests
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Staff can submit a range of leave types via the employee
+                  Staff can submit a range of leave types via the staff
                   mobile app to help streamline management.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -267,9 +267,9 @@ export default function LeaveRequestsPage() {
                 items={[
                   {
                     question:
-                      "Can employees check their leave balances on mobile?",
+                      "Can staff check their leave balances on mobile?",
                     answer:
-                      "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
+                      "Yes! Staff can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
                   },
                   {
                     question: "What types of leave can the system handle?",

@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import {
   HiCheck,
   HiClock,
@@ -15,16 +15,16 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "Free Digital Scheduling Platform - Move from Spreadsheets to Cloud",
+  title: "Free Staff Scheduling Tool - RosterLab",
   description:
-    "Free digital scheduling platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+    "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
   alternates: {
     canonical: 'https://rosterlab.com/us/solutions/free-staff-scheduling-tool',
   },
   openGraph: {
-    title: "Free Digital Scheduling Platform - Move from Spreadsheets to Cloud",
+    title: "Free Staff Scheduling Tool - RosterLab",
     description:
-      "Free digital scheduling platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+      "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
     type: 'website',
     url: 'https://rosterlab.com/us/solutions/free-staff-scheduling-tool',
     images: [
@@ -38,9 +38,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Digital Scheduling Platform - Move from Spreadsheets to Cloud",
+    title: "Free Staff Scheduling Tool - RosterLab",
     description:
-      "Free digital scheduling platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+      "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
     images: ["/images/og images/SolutionFree.png"],
   },
 };
@@ -57,9 +57,9 @@ const faqItems = [
       "Yes, absolutely! While our free product provides a convenient platform to manage your schedules digitally, if you have complex scheduling needs, automatic scheduling can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
   },
   {
-    question: "How do I install the employee mobile app?",
+    question: "How do I install the staff mobile app?",
     answer:
-      "The RosterLab employee mobile app is available for free on both iOS and Android devices. Invite your staff to the schedule and then they can download it directly from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>App Store</a> for iPhone/iPad or from the <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>Google Play Store</a> for Android devices. Once installed, staff can log in with their credentials to access schedules, submit preferences, and receive notifications.",
+      "The RosterLab staff mobile app is available for free on both iOS and Android devices. Invite your staff to the schedule and then they can download it directly from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>App Store</a> for iPhone/iPad or from the <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>Google Play Store</a> for Android devices. Once installed, staff can log in with their credentials to access schedules, submit preferences, and receive notifications.",
   },
   {
     question: "How do I keep my teams notified and engaged?",
@@ -106,14 +106,14 @@ export default function ManualSchedulingPage() {
     <SiteLayout>
       <>
         {/* Hero Section */}
-        <div className="bg-white pt-16 pb-0">
+        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
-                <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Your free digital scheduling tool
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Free staff scheduling tool for teams
                 </h1>
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                   Build schedules manually in the cloud with simple rule checking,
                   live statistics, and free mobile apps for your team.
                 </p>
@@ -216,17 +216,37 @@ export default function ManualSchedulingPage() {
               <div className="relative flex justify-center items-center">
                 <div className="w-full max-w-lg">
                   <Image
-                    src="/images/illustration/test5 copy.svg"
-                    alt="Free Staff Scheduling Illustration"
+                    src="/images/us-images/free-staff-scheduling.jpg"
+                    alt="Free Staff Scheduling Tool"
                     width={600}
                     height={400}
-                    className="w-full h-auto"
+                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
               </div>
             </div>
           </Container>
-        </div>
+          
+          {/* Wave separator */}
+          <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
+            <svg
+              className="relative block w-full h-3 lg:h-16"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1440 80"
+              preserveAspectRatio="none"
+            >
+              <path
+                fill="#ffffff"
+                d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
+                opacity="0.5"
+              />
+              <path
+                fill="#ffffff"
+                d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
+              />
+            </svg>
+          </div>
+        </section>
 
         {/* Intelligent Scheduling Section */}
         <div className="bg-gray-50 py-20">
@@ -280,7 +300,7 @@ export default function ManualSchedulingPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        Employee Mobile App
+                        Staff Mobile App
                       </h3>
                       <p className="text-gray-600">
                         Staff can view published schedules and submit preferences
@@ -548,7 +568,7 @@ export default function ManualSchedulingPage() {
                       <HiCheck className="w-5 h-5 text-green-500" />
                     </div>
                     <div className="flex items-center justify-between py-3">
-                      <span className="text-gray-700">Employee mobile app</span>
+                      <span className="text-gray-700">Staff mobile app</span>
                       <HiCheck className="w-5 h-5 text-green-500" />
                     </div>
                   </div>
@@ -565,7 +585,7 @@ export default function ManualSchedulingPage() {
               <div className="order-2 lg:order-1">
                 <Image
                   src="/images/illustration/employee_app.png"
-                  alt="Free Employee Mobile App"
+                  alt="Free Staff Mobile App"
                   width={600}
                   height={500}
                   className="w-full h-auto"
@@ -573,7 +593,7 @@ export default function ManualSchedulingPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Free Employee Mobile App
+                  Free Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
                   Keep your team connected with our free mobile app. Staff can
@@ -625,7 +645,7 @@ export default function ManualSchedulingPage() {
                 </div>
                 <div className="mt-8">
                   <Button
-                    href="/us/solutions/staff-scheduling-mobile-app"
+                    href="/us/solutions/staff-schedule-mobile-app"
                     className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3"
                     analyticsLabel="Learn More About Mobile App"
                     analyticsLocation="Solution Page Free Staff Scheduling"
@@ -646,7 +666,7 @@ export default function ManualSchedulingPage() {
         {/* Trusted By Section */}
         <div className="bg-gray-50">
           <div className="[&>section]:bg-gray-50">
-            <TrustedBy />
+            <USTrustedBy />
           </div>
         </div>
 

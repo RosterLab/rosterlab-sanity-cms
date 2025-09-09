@@ -39,15 +39,15 @@ export const metadata = {
 const faqItems = [
   {
     question: "How does automated shift swap approval work?",
-    answer: "RosterLab's AI analyses each swap request against your organisation's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both employees are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
+    answer: "RosterLab's AI analyses each swap request against your organisation's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both staff are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
   },
   {
     question: "What rules can I set for automatic approvals?",
     answer: "You can configure rules based on: minimum staffing levels, skill requirements, maximum hours per week/month, minimum rest periods between shifts, seniority considerations, department-specific requirements, and custom business rules. The system learns from your approval patterns to become more intelligent over time."
   },
   {
-    question: "How do employees request shift swaps?",
-    answer: "Employees can request swaps through our mobile app or web portal. They simply select the shift they want to swap, and the system shows available options with qualified colleagues. They can send swap requests directly, which are then processed according to your automation rules. Employees receive instant notifications about approvals or rejections."
+    question: "How do staff request shift swaps?",
+    answer: "Staff can request swaps through our mobile app or web portal. They simply select the shift they want to swap, and the system shows available options with qualified colleagues. They can send swap requests directly, which are then processed according to your automation rules. Staff receive instant notifications about approvals or rejections."
   },
   {
     question: "What happens when a swap needs manager approval?",

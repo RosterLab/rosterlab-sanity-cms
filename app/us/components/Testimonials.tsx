@@ -8,7 +8,7 @@ const testimonials = [
   {
     quote: "Scheduling would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
     author: "Mike",
-    company: "Associate Clinical Manager Radiology",
+    company: "Associate Clinical Manager, Radiology",
     logo: "/images/logos/whanganui.png"
   },
   {

@@ -39,7 +39,7 @@ const faqItems = [
   {
     question: "What factors does the AI consider when generating schedules?",
     answer:
-      "The AI considers: staffing requirements by shift and location, employee skills and qualifications, staff preferences and availability, fairness, labour laws and compliance rules. It balances all these factors simultaneously to create optimal schedules.",
+      "The AI considers: staffing requirements by shift and location, staff skills and qualifications, staff preferences and availability, fairness, labour laws and compliance rules. It balances all these factors simultaneously to create optimal schedules.",
   },
   {
     question: "Can I modify the auto-generated schedule?",

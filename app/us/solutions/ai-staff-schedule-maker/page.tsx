@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import RosterLoadingBar from "@/components/ui/RosterLoadingBar";
+import ScheduleLoadingBar from "@/components/ui/ScheduleLoadingBar";
 import {
   HiCheck,
   HiClock,
@@ -17,16 +17,16 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "AI Staff Schedule Generator for Scheduling Complex Shifts",
+  title: "AI Staff Schedule Maker - RosterLab",
   description:
-    "Generate fair, optimised shift schedules with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+    "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
   alternates: {
     canonical: 'https://rosterlab.com/us/solutions/ai-staff-schedule-maker',
   },
   openGraph: {
-    title: "AI Staff Schedule Generator for Scheduling Complex Shifts",
+    title: "AI Staff Schedule Maker - RosterLab",
     description:
-      "Generate fair, optimised shift schedules with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+      "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     type: "website",
     url: 'https://rosterlab.com/us/solutions/ai-staff-schedule-maker',
     images: [
@@ -40,9 +40,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Staff Schedule Generator for Scheduling Complex Shifts",
+    title: "AI Staff Schedule Maker - RosterLab",
     description:
-      "Generate fair, optimised shift schedules with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+      "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     images: ["/images/og images/SolutionAIGen.png"],
   },
 };
@@ -86,16 +86,15 @@ export default function AISchedulesPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <div className="bg-white pt-16 pb-0">
+      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div className="pb-8 lg:pb-12">
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Make Scheduling Faster Than Ever Before
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                AI Staff Schedule Maker
               </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Unlock the full power of AI schedule creation to save time and
-                optimise staff allocation
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Make scheduling faster than ever before.
               </p>
               <div className="space-y-3 mb-8">
                 <div className="flex items-start space-x-3">
@@ -188,7 +187,7 @@ export default function AISchedulesPage() {
                 <Button
                   href="/us/product-tour"
                   className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                  analyticsLabel="See an Example"
+                  analyticsLabel="View Product Tour"
                   analyticsLocation="Solution Page AI Staff Scheduling"
                   analyticsProperties={{
                     cta_type: "demo",
@@ -196,7 +195,7 @@ export default function AISchedulesPage() {
                     section: "hero"
                   }}
                 >
-                  See an Example
+                  View Product Tour
                 </Button>
               </div>
 
@@ -234,18 +233,40 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/images/illustration/Version control-pana.svg"
-                alt="AI Scheduling Illustration"
-                width={600}
-                height={400}
-                className="w-full max-w-[600px] h-auto"
-              />
+            <div className="relative flex justify-center items-center">
+              <div className="w-full max-w-lg">
+                <Image
+                  src="/images/us-images/hero-image-us-ai-schedule-maker.jpg"
+                  alt="AI Staff Schedule Maker"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
+              </div>
             </div>
           </div>
         </Container>
-      </div>
+        
+        {/* Wave separator */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
+          <svg
+            className="relative block w-full h-3 lg:h-16"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 80"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ffffff"
+              d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
+              opacity="0.5"
+            />
+            <path
+              fill="#ffffff"
+              d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
+            />
+          </svg>
+        </div>
+      </section>
 
       {/* AI Benefits Section */}
       <div className="bg-gray-50 py-20">
@@ -307,7 +328,7 @@ export default function AISchedulesPage() {
               </div>
             </div>
             <div className="w-full max-w-[600px] mx-auto order-2 lg:order-2">
-              <RosterLoadingBar />
+              <ScheduleLoadingBar />
             </div>
           </div>
         </Container>
@@ -353,7 +374,7 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      Smart Shift Swaps
+                      Smart Shift Trades
                     </h3>
                     <p className="text-gray-600">
                       Enable staff to easily swap shifts with AI ensuring
@@ -389,7 +410,7 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      Dynamic Re-Schedule
+                      Easy Rescheduling
                     </h3>
                     <p className="text-gray-600">
                       Adapt to changes with ease, ensuring your department

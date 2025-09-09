@@ -185,7 +185,7 @@ export default function HealthcarePage() {
             </Link>
 
             <Link
-              href="/us/solutions/staff-scheduling-mobile-app"
+              href="/us/solutions/staff-schedule-mobile-app"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">

@@ -29,14 +29,17 @@ export default function USTrustedBy() {
             {trustedLogos.map((logo, index) => (
               <div 
                 key={index} 
-                className="flex items-center justify-center p-2"
+                className={`flex items-center justify-center ${
+                  logo.needsBackground ? 'bg-gray-100 rounded-lg p-4' : ''
+                }`}
               >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
-                  className="max-w-full h-auto opacity-70 hover:opacity-100 transition-opacity duration-200 filter grayscale hover:grayscale-0"
+                  className="w-auto h-auto max-w-full opacity-60 hover:opacity-100 transition-opacity"
+                  priority={index < 3}
                 />
               </div>
             ))}

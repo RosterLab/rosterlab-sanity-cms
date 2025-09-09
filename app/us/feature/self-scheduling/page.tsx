@@ -8,14 +8,14 @@ import MobileAppPreferencesModuleStatic from "@/components/sections/animations/M
 export const metadata = {
   title: "Self-Scheduling - RosterLab",
   description:
-    "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+    "Empower your staff with flexible self-scheduling. Let staff choose shifts that work for them while maintaining operational requirements.",
   alternates: {
     canonical: 'https://rosterlab.com/us/feature/self-scheduling',
   },
   openGraph: {
     title: "Self-Scheduling - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+      "Empower your staff with flexible self-scheduling. Let staff choose shifts that work for them while maintaining operational requirements.",
     type: "website",
     url: 'https://rosterlab.com/us/feature/self-scheduling',
     images: [
@@ -30,7 +30,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Self-Scheduling - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+      "Empower your staff with flexible self-scheduling. Let staff choose shifts that work for them while maintaining operational requirements.",
     images: ["/images/og images/SelfScheduling.png"],
   },
 };

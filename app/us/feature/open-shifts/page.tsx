@@ -35,11 +35,11 @@ export const metadata = {
 const faqItems = [
   {
     question: "How quickly can open shifts be filled?",
-    answer: "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable employee to accept gets the shift, and the schedule is automatically updated."
+    answer: "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable staff to accept gets the shift, and the schedule is automatically updated."
   },
   {
-    question: "How do employees know about open shifts?",
-    answer: "Employees receive instant push notifications on their mobile devices when shifts matching their qualifications become available. They can also check the app proactively to see all open shifts they're eligible for."
+    question: "How do staff know about open shifts?",
+    answer: "Staff receive instant push notifications on their mobile devices when shifts matching their qualifications become available. They can also check the app proactively to see all open shifts they're eligible for."
   },
   {
     question: "Can I control who sees open shifts?",
@@ -51,11 +51,11 @@ const faqItems = [
   },
   {
     question: "How does open shifts help reduce staffing costs?",
-    answer: "Open shifts helps reduce costly agency and overtime usage by quickly filling gaps with your existing staff pool. Instead of calling expensive agency workers or paying overtime rates, you can instantly broadcast shifts to available employees at regular rates. The system also reduces administrative time spent on phone calls and manual coordination, freeing up managers for more valuable tasks."
+    answer: "Open shifts helps reduce costly agency and overtime usage by quickly filling gaps with your existing staff pool. Instead of calling expensive agency workers or paying overtime rates, you can instantly broadcast shifts to available staff at regular rates. The system also reduces administrative time spent on phone calls and manual coordination, freeing up managers for more valuable tasks."
   },
   {
-    question: "What if an employee can't work an accepted open shift?",
-    answer: "The shift is reopened and automatically shared with the employees who were originally offered it."
+    question: "What if an staff can't work an accepted open shift?",
+    answer: "The shift is reopened and automatically shared with the staff who were originally offered it."
   }
 ]
 
@@ -129,7 +129,7 @@ export default function OpenShiftsPage() {
                 </ul>
                 <div className="mt-8">
                   <Button 
-                    href="/us/solutions/staff-scheduling-mobile-app" 
+                    href="/us/solutions/staff-schedule-mobile-app" 
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
                   >
                     Learn more about our mobile app
@@ -149,14 +149,14 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
 
-        {/* Smart Employee Matching Section */}
+        {/* Smart Staff Matching Section */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
                   src="/images/illustration/matching.svg"
-                  alt="Smart Employee Matching"
+                  alt="Smart Staff Matching"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -201,7 +201,7 @@ export default function OpenShiftsPage() {
                   Prioritise More Urgent Shifts
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Sometimes an open shift is more critical than the one an employee is already scheduled for. Managers can choose to invite employees who already have a shift with the option to replace their existing shift with a higher priority shift.
+                  Sometimes an open shift is more critical than the one an staff is already scheduled for. Managers can choose to invite staff who already have a shift with the option to replace their existing shift with a higher priority shift.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -240,7 +240,7 @@ export default function OpenShiftsPage() {
                   Fair & Transparent Assignment
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Employees see available shifts in real-time and can claim them instantly on a first-come-first-served basis.
+                  Staff see available shifts in real-time and can claim them instantly on a first-come-first-served basis.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

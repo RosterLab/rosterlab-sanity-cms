@@ -70,7 +70,7 @@ export default function ROICalculatorClient() {
         // Fallback if logo fails to load
         doc.setFontSize(24)
         doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-        doc.text('RosterLab ROI Report', 20, 25)
+        doc.text('RosterLab Savings Report', 20, 25)
       }
       
       // Date only
@@ -86,7 +86,7 @@ export default function ROICalculatorClient() {
       // ROI Report Title
       doc.setFontSize(20)
       doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-      doc.text('ROI Report', 20, 52)
+      doc.text('Savings Report', 20, 52)
       
       // Executive Summary
       doc.setFontSize(16)
@@ -192,7 +192,7 @@ export default function ROICalculatorClient() {
       console.error('Error generating PDF:', error)
       // Fallback to text download if PDF generation fails
       const report = `
-RosterLab ROI Report
+RosterLab Savings Report
 Generated for: ${companyName}
 
 Your Inputs:
@@ -332,7 +332,7 @@ Savings Breakdown:
         <Container>
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              ROI Calculator
+              Savings Calculator
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Discover how much time and money RosterLab can save your organisation with intelligent scheduling automation.
@@ -389,7 +389,7 @@ Savings Breakdown:
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Average hours per staff per week
+                      Average hours per employee per week
                     </label>
                     <input
                       type="number"
@@ -484,10 +484,10 @@ Savings Breakdown:
                       onClick={() => setShowReportForm(true)}
                       className="w-full bg-green-500 text-white hover:bg-green-600 py-3 px-4 rounded-md font-medium transition-colors"
                     >
-                      Download Your ROI Report
+                      Download Your Savings Report
                     </button>
                     <Button 
-                      href="/us/staff-scheduling-interactive-demo" 
+                      href="/us/product-tour" 
                       className="w-full bg-white text-blue-600 hover:bg-gray-100 py-3"
                     >
                       See How It Works
@@ -575,7 +575,7 @@ Savings Breakdown:
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-md w-full p-6">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Download Your ROI Report
+              Download Your Savings Report
             </h3>
             <p className="text-gray-600 mb-6">
               Get a personalised ROI report showing your potential savings with RosterLab.

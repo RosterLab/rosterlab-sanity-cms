@@ -6,16 +6,16 @@ import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
 
 export const metadata = {
-  title: "Pricing - RosterLab",
+  title: "Pricing - Affordable AI Staff Scheduling Software",
   description:
-    "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
+    "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
   alternates: {
     canonical: 'https://rosterlab.com/us/pricing',
   },
   openGraph: {
-    title: "Pricing - RosterLab",
+    title: "Pricing - Affordable AI Staff Scheduling Software",
     description:
-      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
+      "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
     type: "website",
     url: 'https://rosterlab.com/us/pricing',
     images: [
@@ -28,9 +28,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pricing - RosterLab",
+    title: "Pricing - Affordable AI Staff Scheduling Software",
     description:
-      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
+      "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
     images: ["/images/og images/Pricing.png"],
   },
 };
@@ -46,7 +46,7 @@ const pricingPlans = [
       "Simple rule violations check",
       "Dynamic statistics counts",
       "Colour coding by shifts",
-      "Employee mobile app",
+      "Staff mobile app",
     ],
     cta: "Sign up for free",
     ctaLink: "https://app.rosterlab.com/signup",
@@ -205,7 +205,7 @@ const features = [
     ],
   },
   {
-    category: "FOR EMPLOYEES",
+    category: "FOR STAFF",
     items: [
       {
         name: "View published shifts and tasks",
@@ -257,7 +257,7 @@ const faqItems = [
     question:
       "What’s the difference between your AI schedules and traditional scheduling tools?",
     answer:
-      "Traditional scheduling tools help you build schedules manually, often by dragging shifts around in a calendar or check your manual schedules against some simple rules (what our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the schedule for you. Our algorithms consider your staffing requirements, employee preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair schedule in a fraction of the time, with better outcomes for staff and management alike.",
+      "Traditional scheduling tools help you build schedules manually, often by dragging shifts around in a calendar or check your manual schedules against some simple rules (what our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the schedule for you. Our algorithms consider your staffing requirements, staff preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair schedule in a fraction of the time, with better outcomes for staff and management alike.",
   },
   {
     question: "Which plan suits me the best?",
@@ -265,9 +265,9 @@ const faqItems = [
       "We strongly recommend <a href='/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com/signup' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise schedules, <a href='/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
   },
   {
-    question: "What is my ROI choosing RosterLab",
+    question: "How is my savings calculated?",
     answer:
-      "RosterLab delivers ROI by significantly reducing the time spent on scheduling, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised schedules also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see a return on investment within the first few months, with some recovering costs in their very first schedule.",
+      "RosterLab delivers savings by significantly reducing the time spent on scheduling, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised schedules also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see significant savings within the first few months, with some recovering costs in their very first schedule.",
   },
   {
     question: "How is pricing calculated?",
@@ -552,7 +552,7 @@ export default function PricingPage() {
                 Sign up for free
               </Button>
               <Button
-                href="/us/product-tour"
+                href="/us/staff-scheduling-interactive-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Pricing CTA Bottom"
