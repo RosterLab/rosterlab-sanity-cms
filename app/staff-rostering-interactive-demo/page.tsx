@@ -3,16 +3,16 @@ import StaffRosteringInteractiveDemoClient from "./client";
 import PageWrapper from "./PageWrapper";
 
 export const metadata: Metadata = {
-  title: "Staff Rostering Interactive Demo - RosterLab",
+  title: "Interactive Demo - RosterLab",
   description:
-    "Try RosterLab's interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.",
+    "Experience RosterLab's interactive demo and see how AI instantly builds fair, compliant staff rosters. Create rosters for complex teams in minutes, not days.",
   alternates: {
     canonical: "https://rosterlab.com/staff-rostering-interactive-demo",
   },
   openGraph: {
-    title: "Staff Rostering Interactive Demo - RosterLab",
+    title: "Interactive Demo - RosterLab",
     description:
-      "Try RosterLab's interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.",
+      "Experience RosterLab's interactive demo and see how AI instantly builds fair, compliant staff rosters. Create rosters for complex teams in minutes, not days.",
     type: "website",
     url: "https://rosterlab.com/staff-rostering-interactive-demo",
     images: [
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Staff Rostering Interactive Demo - RosterLab",
+    title: "Interactive Demo - RosterLab",
     description:
-      "Try RosterLab's interactive rostering demo to watch AI build fair, compliant schedules for complex teams in real time - test your own scenarios instantly.",
+      "Experience RosterLab's interactive demo and see how AI instantly builds fair, compliant staff rosters. Create rosters for complex teams in minutes, not days.",
     images: ["/images/og-images/InteractiveDemo.png"],
   },
 };
