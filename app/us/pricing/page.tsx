@@ -37,7 +37,7 @@ export const metadata = {
 
 const pricingPlans = [
   {
-    name: "Starter",
+    name: "Digital Scheduling",
     price: "Free",
     description:
       "For teams looking to transition to a digital scheduling platform.",
@@ -53,7 +53,7 @@ const pricingPlans = [
     highlighted: false,
   },
   {
-    name: "Growth",
+    name: "AI Optimised Scheduling",
     price: "$20",
     period: "per person per month",
     description: "Complex 24/7 AI-powered scheduling",
@@ -70,9 +70,9 @@ const pricingPlans = [
     highlighted: true,
   },
   {
-    name: "Enterprise",
+    name: "Enterprise Solution",
     price: "Contact us",
-    description: "Custom solutions for large organizations",
+    description: "Custom solutions for large organisations",
     features: [
       "SSO",
       "API access",
@@ -375,7 +375,7 @@ export default function PricingPage() {
                   className={`w-full py-4 text-lg font-semibold ${
                     plan.highlighted
                       ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : plan.name === "Starter"
+                      : plan.name === "Digital Scheduling"
                         ? "bg-green-600 text-white hover:bg-green-700"
                         : "bg-purple-500 text-white hover:bg-purple-600"
                   }`}
@@ -409,14 +409,14 @@ export default function PricingPage() {
                       Features
                     </th>
                     <th className="text-center py-4 px-2 sm:py-6 sm:px-6 font-bold text-gray-900 text-xs sm:text-base">
-                      Starter
+                      Digital
                       <br />
                       <span className="text-xs font-normal text-gray-600">
                         Free
                       </span>
                     </th>
                     <th className="text-center py-4 px-2 sm:py-6 sm:px-6 font-bold text-gray-900 text-xs sm:text-base">
-                      Growth
+                      AI
                       <br />
                       <span className="text-xs font-normal text-gray-600">
                         $20/user
