@@ -107,15 +107,15 @@ export default function IndustriesPage() {
               </div>
             </div>
 
-            {/* Right side - Manufacturing Process Illustration */}
+            {/* Right side - Scheduling Industries Image */}
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-[600px]">
                 <Image
-                  src="/images/illustration/Manufacturing Process-pana.svg"
-                  alt="Manufacturing process illustration"
+                  src="/images/us-images/scheduling-industries.jpg"
+                  alt="Scheduling across industries"
                   width={600}
                   height={400}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
             </div>
