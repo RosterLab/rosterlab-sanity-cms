@@ -7,17 +7,17 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 
 export const metadata = {
-  title: "Automatic Schedule Generation - RosterLab",
+  title: "Auto Scheduling Staff - RosterLab",
   description:
-    "Generate fully optimised schedules in minutes with automatic scheduling that balances staffing levels, skills, preferences, and compliance effortlessly.",
+    "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: "AI Auto Schedule Generation - RosterLab",
+    title: "Auto Scheduling Staff - RosterLab",
     description:
-      "Generate fully optimised schedules in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.",
+      "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
     images: [
       {
         url: "/images/og images/AutoRosterGeneration.png",
@@ -28,14 +28,29 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Auto Schedule Generation - RosterLab",
+    title: "Auto Scheduling Staff - RosterLab",
     description:
-      "Generate fully optimised schedules in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.",
+      "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
     images: ["/images/og images/AutoRosterGeneration.png"],
   },
 };
 
 const faqItems = [
+  {
+    question: "What is auto scheduling?",
+    answer:
+      "Auto scheduling is an AI-powered feature that automatically generates optimized staff schedules based on your specific requirements, constraints, and preferences. It considers factors like staffing levels, employee skills, availability, compliance rules, and fairness to create schedules in minutes instead of hours or days.",
+  },
+  {
+    question: "How does auto scheduling work?",
+    answer:
+      "Auto scheduling uses advanced optimization algorithms to analyze all your scheduling constraints simultaneously. You input your staffing requirements, staff availability, skills, and rules. The AI then explores millions of possible schedule combinations to find the optimal solution that balances coverage needs, compliance, fairness, and staff preferences.",
+  },
+  {
+    question: "What are the benefits of auto scheduling my staff schedule?",
+    answer:
+      "Auto scheduling saves 90% of scheduling time, eliminates human errors, ensures 100% compliance with labor laws and union agreements, improves staff satisfaction through fair shift distribution, optimizes staffing levels to reduce costs, and allows instant rescheduling when changes occur. It transforms a complex, time-consuming task into a quick, data-driven process.",
+  },
   {
     question: "What factors does the AI consider when generating schedules?",
     answer:
@@ -64,11 +79,13 @@ export default function AutoRosterGenerationPage() {
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Generate Schedules <br className="hidden md:block" />
-                  Automatically
+                  <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                    Automatically
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Let AI create optimal schedules in minutes while ensuring
-                  fairness, compliance, and staff satisfaction.
+                  Use auto scheduling to create optimal schedules in minutes
+                  while ensuring fairness, compliance, and staff satisfaction.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -95,17 +112,17 @@ export default function AutoRosterGenerationPage() {
                       section: "hero"
                     }}
                   >
-                    Try it for free
+                    View Product Tour
                   </Button>
                 </div>
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-1340030339-2048x2048.jpg"
+                  src="/images/us-images/istockphoto-2232242180-1024x1024.jpg"
                   alt="Auto schedule generation illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   loading="eager"
                   fetchPriority="high"
                 />
@@ -123,10 +140,10 @@ export default function AutoRosterGenerationPage() {
                   Reduce Scheduling from Days to Minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Use an optimisation algorithm to generate complex schedules,
+                  Using our optimisation algorithm auto scheduling helps generate complex schedules,
                   based on union rules, staffing requirements, skill mix, leave
-                  requests, and staff preferences across multiple locations with
-                  just a click of a button.
+                  requests, and staff preferences across multiple locations at
+                  the click of a button.
                   <br />
                   <br />
                   Set your priorities and let the AI handle all the trade-offs
@@ -136,14 +153,13 @@ export default function AutoRosterGenerationPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Instant re-schedule when changes occur
+                      Instant rescheduling when changes occur
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Generate optimal schedules based on your rules and
-                      preferences in one go
+                      Generate optimal schedules based on your rules and preferences in one go
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -260,11 +276,11 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/scenario.svg"
+                  src="/images/us-images/stock/istockphoto-1340030339-2048x2048.jpg"
                   alt="What If Scenario Planning"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -336,7 +352,7 @@ export default function AutoRosterGenerationPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                Automated Schedule Generation Results
+                Auto Scheduling Results
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -363,7 +379,7 @@ export default function AutoRosterGenerationPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Automate Your Schedule Generation?
+                Ready to Try Auto Scheduling?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Transform hours of manual scheduling into minutes of automated

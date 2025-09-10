@@ -7,13 +7,13 @@ import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
   title: 'Open Shifts - RosterLab',
-  description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes.',
+  description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
   alternates: {
     canonical: 'https://rosterlab.com/feature/open-shifts',
   },
   openGraph: {
-    title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
-    description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.',
+    title: 'Open Shifts - RosterLab',
+    description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
     type: 'website',
     url: 'https://rosterlab.com/feature/open-shifts',
     images: [
@@ -26,8 +26,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
-    description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.',
+    title: 'Open Shifts - RosterLab',
+    description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
     images: ['/images/og images/FeatureOpenShifts.png'],
   },
 }

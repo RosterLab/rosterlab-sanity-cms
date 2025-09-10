@@ -9,11 +9,11 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 export const metadata = {
   title: "Radiology Staff Rostering Software - RosterLab",
   description:
-    "Learn how our rostering software simplifies complex staff rostering in Radiology. Build fair, compliant rosters that are flexible & helps save time.",
+    "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
   openGraph: {
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies complex staff rostering in Radiology. Build fair, compliant rosters that are flexible & helps save time.",
+      "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
     type: "website",
     url: "https://rosterlab.com/industries/healthcare/radiology",
     images: [
@@ -28,7 +28,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies complex staff rostering in Radiology. Build fair, compliant rosters that are flexible & helps save time.",
+      "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
     images: ["/images/og images/IndustryRadiology.png"],
   },
 };

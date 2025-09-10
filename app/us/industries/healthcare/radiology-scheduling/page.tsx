@@ -7,13 +7,13 @@ import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
-  title: "Radiology Staff Scheduling Software - RosterLab",
+  title: "Radiology Staff Scheduling Platform - RosterLab",
   description:
-    "Learn how our scheduling software simplifies complex staff scheduling in Radiology. Build fair, compliant schedules that are flexible & helps save time.",
+    "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
   openGraph: {
-    title: "Radiology Staff Scheduling Software - RosterLab",
+    title: "Radiology Staff Scheduling Platform - RosterLab",
     description:
-      "Learn how our scheduling software simplifies complex staff scheduling in Radiology. Build fair, compliant schedules that are flexible & helps save time.",
+      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
     type: "website",
     url: 'https://rosterlab.com/us/industries/healthcare/radiology-scheduling',
     images: [
@@ -26,14 +26,24 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Radiology Staff Scheduling Software - RosterLab",
+    title: "Radiology Staff Scheduling Platform - RosterLab",
     description:
-      "Learn how our scheduling software simplifies complex staff scheduling in Radiology. Build fair, compliant schedules that are flexible & helps save time.",
+      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
     images: ["/images/og images/IndustryRadiology.png"],
   },
 };
 
 const faqItems = [
+  {
+    question: "What is a radiology staff schedule?",
+    answer:
+      "A radiology staff schedule is a complex timetable that coordinates radiologists, technologists, and support staff across multiple imaging modalities and locations. It must balance subspecialty expertise (like neuroradiology or interventional procedures), equipment availability, patient demand patterns, and on-call coverage requirements. Unlike typical staff scheduling, radiology schedules must ensure the right specialist is available for specific procedures while maintaining continuous coverage for emergency imaging needs.",
+  },
+  {
+    question: "Can you handle the complexity of a radiology schedule?",
+    answer:
+      "Yes, RosterLab is specifically designed to handle radiology's unique scheduling complexities. Our AI manages multiple subspecialty rotations, equipment-specific staffing, reading room assignments, and on-call coverage simultaneously. The system considers certification requirements, procedure-specific skills, and workload distribution across different modalities. It automatically balances long-term rotations with daily operational needs, ensures appropriate coverage for all imaging types, and maintains compliance with both regulatory requirements and departmental policies.",
+  },
   {
     question: "How does long-term schedule planning work in radiology?",
     answer:
@@ -50,7 +60,10 @@ export default function RadiologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Radiology Staff Scheduling Software
+                <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                  Radiology Scheduling Software
+                </span>{" "}
+                for Modern Teams
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Reduce scheduling time by 90%. Optimise radiologist coverage and
@@ -130,10 +143,10 @@ export default function RadiologyPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="https://app.rosterlab.com/signup"
+                  href="/us/product-tour"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Get Started
+                  View Product Tour
                 </Button>
               </div>
             </div>
@@ -535,7 +548,7 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Radiology Scheduling
+              Radiology Scheduling Software for Modern Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -666,7 +679,7 @@ export default function RadiologyPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white">
         <USTrustedBy />
       </section>
 
@@ -690,7 +703,7 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Radiology Department Scheduling
+              Transform Your Radiology Teams Scheduling
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join leading imaging centres saving days of scheduling time every
@@ -701,7 +714,7 @@ export default function RadiologyPage() {
                 href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
-                See It In Action
+                Book a Demo
               </Button>
               <Button
                 href="/us/contact"

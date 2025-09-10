@@ -477,23 +477,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Join Us CTA */}
-          <div className="mt-16 text-center bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Join Our Growing Team
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              We're always looking for talented individuals passionate about
-              solving complex scheduling challenges and improving healthcare
-              operations.
-            </p>
-            <Button
-              href="/us/book-a-demo"
-              className="bg-blue-600 text-white hover:bg-blue-700"
-            >
-              Book a Demo
-            </Button>
-          </div>
         </Container>
       </div>
 

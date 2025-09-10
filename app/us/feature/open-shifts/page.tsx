@@ -6,14 +6,14 @@ import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 
 export const metadata = {
-  title: 'Open Shifts - RosterLab',
-  description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes.',
+  title: 'Open Shifts for Staff - RosterLab',
+  description: 'Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
   alternates: {
     canonical: 'https://rosterlab.com/us/feature/open-shifts',
   },
   openGraph: {
-    title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
-    description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.',
+    title: 'Open Shifts for Staff - RosterLab',
+    description: 'Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
     type: 'website',
     url: 'https://rosterlab.com/us/feature/open-shifts',
     images: [
@@ -26,13 +26,17 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Open Shifts: Fill Last-Minute Gaps Instantly',
-    description: 'Instantly fill last-minute staffing gaps with RosterLab\'s Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.',
+    title: 'Open Shifts for Staff - RosterLab',
+    description: 'Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
     images: ['/images/og images/FeatureOpenShifts.png'],
   },
 }
 
 const faqItems = [
+  {
+    question: "What is an open shift?",
+    answer: "An open shift is an unfilled work slot in your schedule that needs coverage. These can arise from last-minute call-outs, unexpected demand, or gaps in your original schedule. With RosterLab's open shift feature, you can instantly broadcast these available shifts to qualified staff members who can claim them through the mobile app, ensuring quick coverage without the manual phone calls or emails."
+  },
   {
     question: "How quickly can open shifts be filled?",
     answer: "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable staff to accept gets the shift, and the schedule is automatically updated."
@@ -72,7 +76,7 @@ export default function OpenShiftsPage() {
                   Fill Open Shifts Instantly
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Broadcast open shifts to qualified staff and fill gaps in minutes, not hours.
+                  Share open shifts to qualified staff and fill gaps in minutes, not hours.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
@@ -155,7 +159,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/matching.svg"
+                  src="/images/us-images/stock/istockphoto-2207338135-2048x2048.jpg"
                   alt="Smart Staff Matching"
                   width={600}
                   height={600}
@@ -220,7 +224,7 @@ export default function OpenShiftsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/us-images/stock/istockphoto-1295774052-1024x1024.jpg"
                   alt="Prioritise urgent shifts"
                   width={600}
                   height={600}
@@ -235,7 +239,16 @@ export default function OpenShiftsPage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/illustration/Choose-pana.svg"
+                  alt="First-Come First-Served Assignment"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Fair & Transparent Assignment
                 </h2>
@@ -252,15 +265,6 @@ export default function OpenShiftsPage() {
                     <span className="text-gray-700">Automatic scheduling when shifts are filled</span>
                   </li>
                 </ul>
-              </div>
-              <div>
-                <Image
-                  src="/images/illustration/Choose-pana.svg"
-                  alt="First-Come First-Served Assignment"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
               </div>
             </div>
           </Container>
@@ -283,7 +287,7 @@ export default function OpenShiftsPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                Fill Shifts Faster Than Ever
+                Fill Shifts Faster Than Ever With Open Shifts
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>

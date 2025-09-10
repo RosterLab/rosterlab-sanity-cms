@@ -8,15 +8,15 @@ import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
 export const metadata = {
   title: "Employee Leave Requests - RosterLab",
   description:
-    "Give employees an easy and streamline way to request leave. Staff can submit a range of leave types via the employee mobile app to streamline leave management.",
+    "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: "Employee Leave Request Tracking - RosterLab",
+    title: "Employee Leave Requests - RosterLab",
     description:
-      "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
+      "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
     images: [
       {
         url: "/images/og images/FeatureLeaveRequest.png",
@@ -27,9 +27,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Employee Leave Request Tracking - RosterLab",
+    title: "Employee Leave Requests - RosterLab",
     description:
-      "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
+      "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
     images: ["/images/og images/FeatureLeaveRequest.png"],
   },
 };

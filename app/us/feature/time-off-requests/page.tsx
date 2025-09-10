@@ -6,17 +6,17 @@ import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
 
 export const metadata = {
-  title: "Staff Leave Requests - RosterLab",
+  title: "Employee Time-Off Requests - RosterLab",
   description:
-    "Give staff an easy and streamline way to request leave. Staff can submit a range of leave types via the staff mobile app to streamline leave management.",
+    "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: "Staff Leave Request Tracking - RosterLab",
+    title: "Employee Time-Off Requests - RosterLab",
     description:
-      "Give staff an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
+      "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
     images: [
       {
         url: "/images/og images/FeatureLeaveRequest.png",
@@ -27,9 +27,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Staff Leave Request Tracking - RosterLab",
+    title: "Employee Time-Off Requests - RosterLab",
     description:
-      "Give staff an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
+      "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
     images: ["/images/og images/FeatureLeaveRequest.png"],
   },
 };
@@ -44,10 +44,10 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Streamline Staff Leave Requests
+                  Streamline Staff Time-Off Requests
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Staff can submit a range of leave types via the staff
+                  Staff can submit a range of time-off request types via the staff
                   mobile app to help streamline management.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -58,20 +58,20 @@ export default function LeaveRequestsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/us/solutions/free-staff-scheduling-tool"
+                    href="/us/product-tour"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Product Tour
                   </Button>
                 </div>
               </div>
               <div className="relative">
                 <Image
                   src="/images/us-images/stock/istockphoto-2223989723-2048x2048.jpg"
-                  alt="Leave request management illustration"
+                  alt="Time-off request management illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -84,22 +84,22 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Submit Leave Requests via the Staff Mobile App
+                  Submit Time-Off Requests via the Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff can easily submit leave requests directly from their mobile, anytime and anywhere. They can also see colleagues' leave schedules, helping them plan around popular periods and improve chances of leave approval. This reduces frustration from rejected requests and simplifies administration.
+                  Staff can easily submit time-off requests directly from their mobile, anytime and anywhere. They can also see colleagues' time-off schedules, helping them plan around popular periods and improve chances of time-off approval. This reduces frustration from rejected requests and simplifies administration.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Submit leave requests on mobile with real-time notifications and updates.
+                      Submit time-off requests on mobile with real-time notifications and updates.
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      See team leave schedules to plan and improve approval chances.
+                      See team time-off schedules to plan and improve approval chances.
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -109,6 +109,14 @@ export default function LeaveRequestsPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8 text-center">
+                  <Button
+                    href="/us/solutions/staff-scheduling-mobile-app"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-6 py-3 font-semibold"
+                  >
+                    Learn More
+                  </Button>
+                </div>
               </div>
               <div className="relative">
                 <Image
@@ -184,13 +192,13 @@ export default function LeaveRequestsPage() {
                   Automatically Sync Changes to your Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Leave requests seamlessly integrate with your schedule. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need. All information syncs back to the schedule and is considered during the AI generation.
+                  Time-off requests seamlessly integrate with your schedule. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need. All information syncs back to the schedule and is considered during the AI generation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Dedicated interface for administrators to review and manage leave requests
+                      Dedicated interface for administrators to review and manage time-off requests
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -215,33 +223,24 @@ export default function LeaveRequestsPage() {
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
-                  alt="Mobile leave request app illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Decide How Different Types of Leave are Handled
+                  Decide How Different Types of Time-Off Requests are Handled
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Admin users have full control over how different types of leave are handled in your schedule. You can set whether each leave type counts toward contractual working hours or is excluded, and define exactly how many hours should be counted within a schedule period. This flexibility ensures schedules reflect your rules accurately while keeping staffing plans clear and compliant.
+                  Admin users have full control over how different types of time-off requests are handled in your schedule. You can set whether each time-off request type counts toward contractual working hours or is excluded, and define exactly how many hours should be counted within a schedule period. This flexibility ensures schedules reflect your rules accurately while keeping staffing plans clear and compliant.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Support for all types of leave including annual, sick, parental and custom categories
+                      Support for all types of time-off requests including annual, sick, parental and custom categories
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Full control of how different leave is handled
+                      Full control of how different time-off requests are handled
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -251,6 +250,15 @@ export default function LeaveRequestsPage() {
                     </span>
                   </li>
                 </ul>
+              </div>
+              <div>
+                <Image
+                  src="/images/us-images/pexels-divinetechygirl-1181441-2.jpg"
+                  alt="Mobile time-off request app illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
               </div>
             </div>
           </Container>
@@ -267,14 +275,14 @@ export default function LeaveRequestsPage() {
                 items={[
                   {
                     question:
-                      "Can staff check their leave balances on mobile?",
+                      "Can staff check their time-off balances on mobile?",
                     answer:
-                      "Yes! Staff can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
+                      "Yes! Staff can access their time-off balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request time-off on-the-go, while managers can review and approve requests with full coverage context from their phones.",
                   },
                   {
-                    question: "What types of leave can the system handle?",
+                    question: "What types of time-off requests can the system handle?",
                     answer:
-                      "RosterLab supports all leave types including annual leave, sick leave, personal leave, parental leave, long service leave, and custom leave categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies.",
+                      "RosterLab supports all time-off request types including annual time-off, sick time-off, personal time-off, parental time-off, long service time-off, and custom time-off categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies.",
                   },
                 ]}
               />
@@ -287,7 +295,7 @@ export default function LeaveRequestsPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                Leave Management Efficiency
+                Time-Off Request Management Efficiency
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -297,7 +305,7 @@ export default function LeaveRequestsPage() {
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
                   <p className="text-xl opacity-90">
-                    Streamlined leave requests
+                    Streamlined time-off requests
                   </p>
                 </div>
                 <div>
@@ -316,10 +324,10 @@ export default function LeaveRequestsPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Streamline Leave Management?
+                Ready to Streamline Time-Off Request Management?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Transform leave requests from administrative burden to seamless
+                Transform time-off requests from administrative burden to seamless
                 self-service with intelligent automation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

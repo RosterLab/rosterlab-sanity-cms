@@ -9,15 +9,15 @@ import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSma
 export const metadata = {
   title: "Automatic Roster Generation - RosterLab",
   description:
-    "Generate fully optimised rosters in minutes with automatic rostering that balances staffing levels, skills, preferences, and compliance effortlessly.",
+    "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: "AI Auto Roster Generation - RosterLab",
+    title: "Automatic Roster Generation - RosterLab",
     description:
-      "Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.",
+      "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
     images: [
       {
         url: "/images/og images/AutoRosterGeneration.png",
@@ -28,9 +28,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Auto Roster Generation - RosterLab",
+    title: "Automatic Roster Generation - RosterLab",
     description:
-      "Generate fully optimised rosters in minutes with AI that balances staffing levels, skills, preferences, and compliance effortlessly.",
+      "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
     images: ["/images/og images/AutoRosterGeneration.png"],
   },
 };

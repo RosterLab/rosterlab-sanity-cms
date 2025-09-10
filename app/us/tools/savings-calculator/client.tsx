@@ -152,10 +152,10 @@ export default function SavingsCalculatorClient() {
       doc.text(`ROI in Year 1: ${roi}%`, 20, 83)
       doc.text(`Payback Period: ${paybackMonths} months`, 20, 91)
       
-      // Your Organisation Details
+      // Your Organization Details
       doc.setFontSize(16)
       doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2])
-      doc.text('Your Organisation', 20, 105)
+      doc.text('Your Organization', 20, 105)
       
       doc.setFontSize(11)
       doc.setTextColor(textColor[0], textColor[1], textColor[2])
@@ -221,7 +221,7 @@ export default function SavingsCalculatorClient() {
       doc.setTextColor(textColor[0], textColor[1], textColor[2])
       doc.text(step1End, 20 + step1Width + linkWidth, 265)
       
-      doc.text('2. Get a custom implementation plan for your organisation', 20, 272)
+      doc.text('2. Get a custom implementation plan for your organization', 20, 272)
       doc.text('3. Start your free trial and see immediate results', 20, 279)
       
       // Contact Information

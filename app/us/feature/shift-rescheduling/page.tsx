@@ -71,7 +71,7 @@ export default function ReRosteringPage() {
                   alt="Re-scheduling events management illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>

@@ -285,7 +285,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                   >
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                      {subItem.title}
+                                      {isUSVersion && subItem.title === "Healthcare" ? "Healthcare Scheduling" :
+                                       isUSVersion && subItem.title === "ICU/ED" ? "ICU/ED Scheduling" :
+                                       subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
                                       {subItem.title === "Healthcare" ? "General healthcare solutions that handle complex workforces and frontline workers" :
@@ -306,11 +308,15 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                   >
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                      {subItem.title}
+                                      {isUSVersion && subItem.title === "Senior Care" ? "Senior Care Scheduling" :
+                                       isUSVersion && subItem.title === "Radiology" ? "Radiology Scheduling" :
+                                       subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
-                                      {subItem.title.includes("Senior Care") || subItem.title.includes("Aged Care") ? "Make better use of staffing hours with rosters for care facilities" :
-                                       subItem.title === "Radiology" ? "Balance your teams with the right skill mix with compliant radiology rosters" : ""}
+                                      {subItem.title.includes("Senior Care") || subItem.title.includes("Aged Care") ? 
+                                        (isUSVersion ? "Make better use of staffing hours with schedules for care facilities" : "Make better use of staffing hours with rosters for care facilities") :
+                                       subItem.title === "Radiology" ? 
+                                        (isUSVersion ? "Balance your teams with the right skill mix with compliant radiology staff schedules" : "Balance your teams with the right skill mix with compliant radiology rosters") : ""}
                                     </div>
                                   </Link>
                                 ))}
