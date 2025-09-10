@@ -5,14 +5,14 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Smart AI Rostering Software for All Industries - RosterLab',
-  description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+  title: 'AI Rostering Software for All Industries - RosterLab',
+  description: 'Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
   alternates: {
     canonical: 'https://rosterlab.com/industries',
   },
   openGraph: {
-    title: 'Smart AI Rostering Software for All Industries - RosterLab',
-    description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+    title: 'AI Rostering Software for All Industries - RosterLab',
+    description: 'Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
     type: 'website',
     url: 'https://rosterlab.com/industries',
     images: [
@@ -25,8 +25,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Smart AI Rostering Software for All Industries - RosterLab',
-    description: 'Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.',
+    title: 'AI Rostering Software for All Industries - RosterLab',
+    description: 'Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
     images: ['/images/og images/Industry.png'],
   },
 }
