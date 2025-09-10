@@ -35,44 +35,112 @@ export default function IndustriesPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20">
-        <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              AI Scheduling Software for Industries with{" "}
-              <span className="text-transparent bg-clip-text" style={{
-                backgroundImage: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)'
-              }}>
-                Complex Schedules
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Whether you're managing nurses, teachers, call centre agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
-            </p>
-            <div className="flex justify-center">
-              <Button 
-                href="/us/book-a-demo" 
-                className="bg-indigo-600 text-white hover:bg-indigo-700"
-                analyticsLabel="Book a Demo"
-                analyticsLocation="Industries Hero"
-                analyticsProperties={{ cta_type: 'demo' }}
-              >
-                Book a Demo
-              </Button>
+      <section
+        className="relative flex items-center py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 pb-20"
+        style={{
+          minHeight: "70vh",
+        }}
+      >
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Text and CTAs */}
+            <div className="text-left">
+              {/* Main Heading */}
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                AI Scheduling Software for Industries with{" "}
+                <span
+                  className="inline-block"
+                  style={{
+                    background: "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Complex Schedules
+                </span>
+              </h1>
+
+              {/* Subheading */}
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Whether you're managing nurses, teachers, call center agents, or pilots - RosterLab's intelligent scheduling adapts to your industry's unique requirements.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <Button
+                  href="/us/book-a-demo"
+                  className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Industries Hero"
+                  analyticsProperties={{ cta_type: 'demo', section: 'hero' }}
+                >
+                  Book a Demo
+                </Button>
+
+                <Button
+                  href="/us/product-tour"
+                  className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                  analyticsLabel="View Product Tour"
+                  analyticsLocation="Industries Hero"
+                  analyticsProperties={{ cta_type: 'demo', section: 'hero', demo_type: 'interactive' }}
+                >
+                  View Product Tour
+                </Button>
+              </div>
+
+              {/* Feature ticks */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-gray-700">Adapts to any industry's unique scheduling needs</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-gray-700">90% faster scheduling with full compliance</span>
+                </div>
+              </div>
             </div>
-            
-            {/* Manufacturing Process Illustration */}
-            <div className="flex justify-center mt-12">
-              <Image
-                src="/images/illustration/Manufacturing Process-pana.svg"
-                alt="Manufacturing process illustration"
-                width={600}
-                height={400}
-                className="w-full max-w-2xl h-auto"
-              />
+
+            {/* Right side - Manufacturing Process Illustration */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-full max-w-[600px]">
+                <Image
+                  src="/images/illustration/Manufacturing Process-pana.svg"
+                  alt="Manufacturing process illustration"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
+              </div>
             </div>
           </div>
-        </Container>
+        </div>
+
+        {/* Wave separator */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
+          <svg
+            className="relative block w-full h-3 lg:h-16"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 80"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ffffff"
+              d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
+              opacity="0.5"
+            />
+            <path
+              fill="#ffffff"
+              d="M0,50 Q360,35 720,50 T1440,50 L1440,80 L0,80 Z"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* Healthcare Section */}
