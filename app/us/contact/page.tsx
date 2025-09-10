@@ -72,50 +72,13 @@ export default function ContactPage() {
                 expert
               </span>
             </h1>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-12">
               We&apos;re here to help you solve your complex challenges and
               requirements.
             </p>
           </div>
 
-          {/* Benefits Banner */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiClock className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="font-semibold text-green-800 mb-1">
-                90% Time Saving
-              </h3>
-              <p className="text-green-700 text-sm">
-                Generate schedules in minutes, not hours
-              </p>
-            </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiCheck className="w-6 h-6 text-blue-600" />
-              </div>
-              <h3 className="font-semibold text-blue-800 mb-1">
-                100% Compliant
-              </h3>
-              <p className="text-blue-700 text-sm">
-                Guaranteed to meet union and contract obligations
-              </p>
-            </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiCheck className="w-6 h-6 text-purple-600" />
-              </div>
-              <h3 className="font-semibold text-purple-800 mb-1">
-                Better Staff Satisfaction
-              </h3>
-              <p className="text-purple-700 text-sm">
-                Fairer, safer schedules for your team
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
             {/* HubSpot Demo Form */}
             <div className="bg-white rounded-lg shadow-sm p-8">
               <h2 className="text-2xl font-bold text-neutral-900 mb-6">
@@ -180,6 +143,43 @@ export default function ContactPage() {
 
                 <FAQAccordion items={faqItems} />
               </div>
+            </div>
+          </div>
+
+          {/* Benefits Banner */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <HiClock className="w-6 h-6 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-green-800 mb-1">
+                90% Time Saving
+              </h3>
+              <p className="text-green-700 text-sm">
+                Generate schedules in minutes, not hours
+              </p>
+            </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <HiCheck className="w-6 h-6 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-blue-800 mb-1">
+                100% Compliant
+              </h3>
+              <p className="text-blue-700 text-sm">
+                Guaranteed to meet union and contract obligations
+              </p>
+            </div>
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <HiCheck className="w-6 h-6 text-purple-600" />
+              </div>
+              <h3 className="font-semibold text-purple-800 mb-1">
+                Better Staff Satisfaction
+              </h3>
+              <p className="text-purple-700 text-sm">
+                Fairer, safer schedules for your team
+              </p>
             </div>
           </div>
         </Container>
