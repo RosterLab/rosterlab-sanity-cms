@@ -8,7 +8,7 @@ import { FaLinkedin } from "react-icons/fa";
 export const metadata = {
   title: "About Us - Meet the Team Behind RosterLab",
   description:
-    "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
   alternates: {
     canonical: 'https://rosterlab.com/about',
   },
@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: "About Us - Meet the Team Behind RosterLab",
     description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
     type: "website",
     url: "https://rosterlab.com/about",
     images: [
@@ -34,7 +34,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "About Us - Meet the Team Behind RosterLab",
     description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
     images: ["/images/og images/About.png"],
   },
 };
