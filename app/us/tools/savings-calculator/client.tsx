@@ -517,12 +517,12 @@ Savings Breakdown:
                     >
                       <option value="nursing">Nursing</option>
                       <option value="acute-specialties">Acute</option>
-                      <option value="medicine-specialties">Medicine</option>
-                      <option value="allied-health">Allied Health</option>
+                      <option value="medicine-specialties">Primary Care / Family Medicine</option>
+                      <option value="allied-health">Therapists & Technicians</option>
                       <option value="senior-care">Senior Care</option>
-                      <option value="midwives">Midwives</option>
-                      <option value="veterinary">Veterinary</option>
-                      <option value="surgical">Surgical</option>
+                      <option value="midwives">Labor & Delivery</option>
+                      <option value="veterinary">Veterinary Practices & Animal Hospitals</option>
+                      <option value="surgical">Surgical Services</option>
                     </select>
                   </div>
                   <div>
