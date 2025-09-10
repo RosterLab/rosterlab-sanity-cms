@@ -381,34 +381,114 @@ Savings Breakdown:
 
   return (
     <>
-      <div className="bg-gradient-to-b from-blue-50 to-white py-16">
-        <Container>
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Savings Calculator
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Discover how much time and money RosterLab can save your organisation with intelligent scheduling automation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button href="/us/pricing" className="bg-blue-600 text-white hover:bg-blue-700">
-                View Pricing
-              </Button>
-              <Button href="/us/book-a-demo" className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50">
-                Book a Demo
-              </Button>
+      {/* Hero Section */}
+      <section
+        className="relative flex items-center py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 pb-20"
+        style={{
+          minHeight: "70vh",
+        }}
+      >
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Text and CTAs */}
+            <div className="text-left">
+              {/* Main Heading */}
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Savings Calculator
+                <br />
+                <span>for </span>
+                <span
+                  className="inline-block"
+                  style={{
+                    background: "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Healthcare Teams
+                </span>
+              </h1>
+
+              {/* Subheading */}
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Discover how much time and money RosterLab can save your organization with intelligent scheduling automation.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <Button
+                  href="/us/pricing"
+                  className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  View Pricing
+                </Button>
+
+                <Button
+                  href="/us/book-a-demo"
+                  className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  Book a Demo
+                </Button>
+              </div>
+
+              {/* Feature ticks */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-gray-700">90% reduction in scheduling time</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-gray-700">Instant ROI calculations for your team size</span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-center">
-              <Image
-                src="/images/illustration/Coins-rafiki.svg"
-                alt="Savings Calculator illustration"
-                width={400}
-                height={300}
-                className="w-full max-w-md h-auto"
-              />
+
+            {/* Right side - Coins Illustration */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-full max-w-[600px]">
+                <Image
+                  src="/images/illustration/Coins-rafiki.svg"
+                  alt="Savings Calculator illustration"
+                  width={600}
+                  height={450}
+                  className="w-full h-auto"
+                />
+              </div>
             </div>
           </div>
+        </div>
 
+        {/* Wave separator */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
+          <svg
+            className="relative block w-full h-3 lg:h-16"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 80"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ffffff"
+              d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
+              opacity="0.5"
+            />
+            <path
+              fill="#ffffff"
+              d="M0,50 Q360,35 720,50 T1440,50 L1440,80 L0,80 Z"
+            />
+          </svg>
+        </div>
+      </section>
+
+      {/* Calculator Section */}
+      <div className="bg-white py-16">
+        <Container>
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Calculator Inputs */}
