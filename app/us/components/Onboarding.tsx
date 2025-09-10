@@ -27,7 +27,7 @@ const onboardingSteps = [
     ),
     description:
       "Set precise rules based on contract obligations, compliance, skill mix, tasks and staffing coverage to ensure complete schedule compliance.",
-    link: "#",
+    link: "/us/solutions/ai-staff-schedule-maker",
   },
   {
     number: "2",
@@ -49,7 +49,7 @@ const onboardingSteps = [
     ),
     description:
       "Using the mobile app, staff can submit leave requests and preferences, ready for you to review and incorporate into the schedule planning.",
-    link: "#",
+    link: "/us/feature/self-scheduling",
   },
   {
     number: "3",
@@ -71,7 +71,7 @@ const onboardingSteps = [
     ),
     description:
       "Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.",
-    link: "#",
+    link: "/us/feature/auto-scheduling",
   },
   {
     number: "4",
@@ -137,7 +137,7 @@ const onboardingSteps = [
     ),
     description:
       "Run hypothetical schedule scenarios to assess feasibility of changes without impacting your live schedule - perfect for planning and optimisation.",
-    link: "/us/feature/re-scheduling",
+    link: "/us/feature/shift-rescheduling",
   },
   {
     number: "7",
@@ -195,6 +195,27 @@ export default function USOnboarding() {
                   {step.title}
                 </h3>
                 <p className="text-neutral-600">{step.description}</p>
+                {step.link && step.link !== "#" && (
+                  <a
+                    href={step.link}
+                    className="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700 font-medium group"
+                  >
+                    Learn more
+                    <svg
+                      className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </a>
+                )}
               </div>
             ))}
           </div>

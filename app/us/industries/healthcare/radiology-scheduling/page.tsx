@@ -50,10 +50,7 @@ export default function RadiologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Scheduling your sessions just got a{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  whole lot easier
-                </span>
+                Radiology Staff Scheduling Software
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Reduce scheduling time by 90%. Optimise radiologist coverage and
@@ -146,7 +143,7 @@ export default function RadiologyPage() {
                 alt="Radiology scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>

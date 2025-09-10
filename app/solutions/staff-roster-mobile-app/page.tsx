@@ -20,16 +20,16 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "Employee Mobile App - RosterLab",
+  title: "Free Staff Roster Mobile App - RosterLab",
   description:
-    "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
+    "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
   alternates: {
     canonical: 'https://rosterlab.com/solutions/staff-roster-mobile-app',
   },
   openGraph: {
-    title: "Employee Mobile App - RosterLab",
+    title: "Free Staff Roster Mobile App - RosterLab",
     description:
-      "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
+      "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     type: 'website',
     url: 'https://rosterlab.com/solutions/staff-roster-mobile-app',
     images: [
@@ -43,9 +43,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Employee Mobile App - RosterLab",
+    title: "Free Staff Roster Mobile App - RosterLab",
     description:
-      "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
+      "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     images: ["/images/og images/SolutionMobileApp.png"],
   },
 };

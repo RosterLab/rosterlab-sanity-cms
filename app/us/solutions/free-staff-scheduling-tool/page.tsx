@@ -76,6 +76,16 @@ const faqItems = [
     answer:
       "The free platform checks for simple rule violations as you build your schedule manually. Get visual warnings when you assign too many consecutive shifts or violate basic rest requirements. Staff preferences collected through the mobile app are displayed alongside the schedule, helping you make informed decisions.",
   },
+  {
+    question: "Is this the best free staff scheduling app for my business?",
+    answer:
+      "RosterLab's free scheduling tool is ideal for businesses looking to move from spreadsheets to digital scheduling. It offers essential features like cloud-based schedule creation, simple rule checking, real-time statistics, and free mobile apps for iOS and Android. While it's perfect for basic scheduling needs, businesses with complex requirements may benefit from our AI-powered solution which automatically generates optimized schedules while ensuring complete compliance.",
+  },
+  {
+    question: "What is a staff scheduling mobile app?",
+    answer:
+      "A staff scheduling mobile app is a smartphone application that allows employees to access their work schedules anytime, anywhere. RosterLab's free mobile app lets staff view their upcoming shifts, submit time-off requests and preferences, receive instant notifications about schedule changes, and sync their work schedule with their personal calendar. It eliminates the need for paper schedules, emails, or phone calls, keeping your entire team connected and informed.",
+  },
 ];
 
 const painPoints = [
@@ -254,10 +264,10 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Your Digital Scheduling Platform
+                  Your Digital Staff Scheduling Tool
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Our free digital platform provides a web-based interface for
+                  Our free digital tool provides a web-based interface for
                   creating and managing schedules. Check for simple rule
                   violations, view dynamic statistics, and keep your team
                   connected through our mobile app - all without the spreadsheet
@@ -333,7 +343,7 @@ export default function ManualSchedulingPage() {
                 GETTING STARTED
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-                Six Steps to Build Your Digital Schedule
+                Six Steps to Build Your Staff Schedule
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Get started with digital scheduling in minutes. Our simple
@@ -584,7 +594,7 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/staff_app.png"
+                  src="/images/illustration/employee_app.png"
                   alt="Free Staff Mobile App"
                   width={600}
                   height={500}

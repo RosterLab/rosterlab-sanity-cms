@@ -7,14 +7,14 @@ import Testimonials from '@/components/sections/Testimonials'
 import FinalCTA from '@/components/sections/FinalCTA'
 
 export const metadata = {
-  title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-  description: 'AI staff scheduling software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
+  title: 'RosterLab - AI Staff Rostering Software for Complex Teams',
+  description: 'AI staff rostering software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
   alternates: {
     canonical: 'https://rosterlab.com',
   },
   openGraph: {
-    title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-    description: 'AI staff scheduling software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
+    title: 'RosterLab - AI Staff Rostering Software for Complex Teams',
+    description: 'AI staff rostering software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
     type: 'website',
     url: 'https://rosterlab.com',
     images: [
@@ -28,8 +28,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-    description: 'AI staff scheduling software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
+    title: 'RosterLab - AI Staff Rostering Software for Complex Teams',
+    description: 'AI staff rostering software that automatically builds fair, compliant rosters for healthcare and other complex teams - cut admin by 90% and boost coverage.',
     images: ['/images/og images/Home.png'],
   },
 }

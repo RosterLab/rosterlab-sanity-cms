@@ -4,17 +4,18 @@ import Benefits from '@/app/us/components/Benefits'
 import Onboarding from '@/app/us/components/Onboarding'
 import IndustrySolutions from '@/app/us/components/IndustrySolutions'
 import Testimonials from '@/app/us/components/Testimonials'
+import FAQ from '@/app/us/components/FAQ'
 import FinalCTA from '@/app/us/components/FinalCTA'
 
 export const metadata = {
   title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-  description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare and other complex teams - cut admin by 90% and boost coverage.',
+  description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare & other complex teams - cut admin by 90% and boost coverage.',
   alternates: {
     canonical: 'https://rosterlab.com/us',
   },
   openGraph: {
     title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-    description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare and other complex teams - cut admin by 90% and boost coverage.',
+    description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare & other complex teams - cut admin by 90% and boost coverage.',
     type: 'website',
     url: 'https://rosterlab.com/us',
     images: [
@@ -29,7 +30,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
-    description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare and other complex teams - cut admin by 90% and boost coverage.',
+    description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare & other complex teams - cut admin by 90% and boost coverage.',
     images: ['/images/og images/Home.png'],
   },
 }
@@ -44,6 +45,7 @@ export default function Home() {
       <Onboarding />
       <IndustrySolutions />
       <Testimonials />
+      <FAQ />
       <FinalCTA />
     </>
   )
