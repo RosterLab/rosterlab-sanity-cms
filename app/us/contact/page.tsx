@@ -91,8 +91,47 @@ export default function ContactPage() {
               <ContactFormWrapper />
             </div>
 
-            {/* FAQ Section */}
+            {/* Contact Information */}
             <div className="space-y-8">
+              <div className="bg-white rounded-lg shadow-sm p-8">
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <h3 className="text-xl font-bold text-neutral-900 mb-3">
+                        Follow Us
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <a
+                      href="https://www.linkedin.com/company/rosterlab"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                    >
+                      <FaLinkedin className="w-5 h-5 text-primary-600" />
+                    </a>
+                    <a
+                      href="https://facebook.com/p/RosterLab-100084645549356/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                    >
+                      <FaFacebook className="w-5 h-5 text-primary-600" />
+                    </a>
+                    <a
+                      href="https://instagram.com/rosterlab"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
+                    >
+                      <FaInstagram className="w-5 h-5 text-primary-600" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* FAQ Section */}
               <div className="bg-white rounded-lg shadow-sm p-8">
                 <h2 className="text-2xl font-bold text-neutral-900 mb-6">
                   Frequently Asked Questions
