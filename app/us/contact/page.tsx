@@ -6,16 +6,16 @@ import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 
 export const metadata = {
-  title: "Contact Us - Get Help with Your Team Scheduling",
+  title: "Contact Us - RosterLab",
   description:
-    "Contact the team about your staff scheduling needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
+    "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
   alternates: {
     canonical: 'https://rosterlab.com/us/contact',
   },
   openGraph: {
-    title: "Contact Us - Get Help with Your Team Scheduling",
+    title: "Contact Us - RosterLab",
     description:
-      "Contact the team about your staff scheduling needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
+      "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
     type: 'website',
     url: 'https://rosterlab.com/us/contact',
     images: [
@@ -28,9 +28,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us - Get Help with Your Team Scheduling",
+    title: "Contact Us - RosterLab",
     description:
-      "Contact the team about your staff scheduling needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
+      "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
     images: ["/images/og images/Contact.png"],
   },
 };
