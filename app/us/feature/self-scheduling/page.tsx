@@ -83,7 +83,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/self-scheduling.jpg"
+                  src="/images/us-images/stock/istockphoto-1457092492-2048x2048.jpg"
                   alt="Self-scheduling illustration"
                   width={600}
                   height={600}

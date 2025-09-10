@@ -38,7 +38,7 @@ export default function USTrustedBy() {
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
-                  className="w-auto h-auto max-w-full opacity-60 hover:opacity-100 transition-opacity"
+                  className="w-auto h-auto max-w-full opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                   priority={index < 3}
                 />
               </div>

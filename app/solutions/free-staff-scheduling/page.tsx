@@ -15,16 +15,16 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
+  title: "Free Staff Roster Software - RosterLab",
   description:
-    "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+    "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
   alternates: {
     canonical: 'https://rosterlab.com/solutions/free-staff-scheduling',
   },
   openGraph: {
-    title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
+    title: "Free Staff Roster Software - RosterLab",
     description:
-      "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+      "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
     type: 'website',
     url: 'https://rosterlab.com/solutions/free-staff-scheduling',
     images: [
@@ -38,9 +38,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Digital Rostering Platform - Move from Spreadsheets to Cloud",
+    title: "Free Staff Roster Software - RosterLab",
     description:
-      "Free digital rostering platform with manual scheduling, simple rule checking, dynamic statistics, and mobile app. No credit card required - start today!",
+      "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
     images: ["/images/og images/SolutionFree.png"],
   },
 };

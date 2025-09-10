@@ -454,7 +454,7 @@ Savings Breakdown:
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-[600px]">
                 <Image
-                  src="/images/us-images/radiography.jpg"
+                  src="/images/us-images/stock/istockphoto-1903423742-2048x2048.jpg"
                   alt="Healthcare radiography scheduling"
                   width={600}
                   height={450}

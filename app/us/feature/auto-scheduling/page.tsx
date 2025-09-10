@@ -101,7 +101,7 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/auto-scheduling.jpg"
+                  src="/images/us-images/stock/istockphoto-1340030339-2048x2048.jpg"
                   alt="Auto schedule generation illustration"
                   width={600}
                   height={600}

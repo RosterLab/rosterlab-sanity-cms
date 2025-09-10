@@ -67,7 +67,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/leave-requests.jpg"
+                  src="/images/us-images/stock/istockphoto-2223989723-2048x2048.jpg"
                   alt="Leave request management illustration"
                   width={600}
                   height={600}

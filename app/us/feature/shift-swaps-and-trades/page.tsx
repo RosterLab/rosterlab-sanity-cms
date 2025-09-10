@@ -105,7 +105,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/shift-trades.jpg"
+                  src="/images/us-images/stock/istockphoto-2103975951-2048x2048.jpg"
                   alt="Shift swaps communication illustration"
                   width={600}
                   height={600}

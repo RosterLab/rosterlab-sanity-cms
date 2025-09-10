@@ -159,7 +159,7 @@ export default function ICUEDPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/us-images/icu-roster.jpg"
+                src="/images/us-images/stock/istockphoto-2190085149-2048x2048.jpg"
                 alt="ICU/ED scheduling dashboard"
                 width={600}
                 height={400}

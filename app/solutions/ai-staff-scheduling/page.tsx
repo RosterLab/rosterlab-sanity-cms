@@ -17,16 +17,16 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "AI Staff Roster Generator for Scheduling Complex Shifts",
+  title: "AI Roster Generator - RosterLab",
   description:
-    "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+    "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
   alternates: {
     canonical: 'https://rosterlab.com/solutions/ai-staff-scheduling',
   },
   openGraph: {
-    title: "AI Staff Roster Generator for Scheduling Complex Shifts",
+    title: "AI Roster Generator - RosterLab",
     description:
-      "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+      "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     type: "website",
     url: "https://rosterlab.com/solutions/ai-staff-scheduling",
     images: [
@@ -40,9 +40,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Staff Roster Generator for Scheduling Complex Shifts",
+    title: "AI Roster Generator - RosterLab",
     description:
-      "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+      "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     images: ["/images/og images/SolutionAIGen.png"],
   },
 };

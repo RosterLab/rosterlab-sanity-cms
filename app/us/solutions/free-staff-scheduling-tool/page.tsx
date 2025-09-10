@@ -47,6 +47,16 @@ export const metadata = {
 
 const faqItems = [
   {
+    question: "What is a staff scheduling mobile app?",
+    answer:
+      "A staff scheduling mobile app is a smartphone application that allows employees to access their work schedules anytime, anywhere. RosterLab's free mobile app lets staff view their upcoming shifts, submit time-off requests and preferences, receive instant notifications about schedule changes, and sync their work schedule with their personal calendar. It eliminates the need for paper schedules, emails, or phone calls, keeping your entire team connected and informed.",
+  },
+  {
+    question: "What is a free staff scheduling tool?",
+    answer:
+      "A free staff scheduling tool is a cloud-based platform that helps managers create and manage employee work schedules without cost. RosterLab's free tool includes features like digital schedule building, basic rule checking to prevent errors, real-time statistics tracking, and a free mobile app for staff. It's designed to help teams transition from spreadsheets to professional digital scheduling while maintaining simplicity and ease of use.",
+  },
+  {
     question: "Is the AI generator included in the free product?",
     answer:
       "The <a href='/solutions/ai-staff-scheduling' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform. The free version provides a manual scheduling platform with simple rule checking, dynamic statistics, and mobile app access - everything you need to move from spreadsheets to digital scheduling.",
@@ -80,11 +90,6 @@ const faqItems = [
     question: "Is this the best free staff scheduling app for my business?",
     answer:
       "RosterLab's free scheduling tool is ideal for businesses looking to move from spreadsheets to digital scheduling. It offers essential features like cloud-based schedule creation, simple rule checking, real-time statistics, and free mobile apps for iOS and Android. While it's perfect for basic scheduling needs, businesses with complex requirements may benefit from our AI-powered solution which automatically generates optimized schedules while ensuring complete compliance.",
-  },
-  {
-    question: "What is a staff scheduling mobile app?",
-    answer:
-      "A staff scheduling mobile app is a smartphone application that allows employees to access their work schedules anytime, anywhere. RosterLab's free mobile app lets staff view their upcoming shifts, submit time-off requests and preferences, receive instant notifications about schedule changes, and sync their work schedule with their personal calendar. It eliminates the need for paper schedules, emails, or phone calls, keeping your entire team connected and informed.",
   },
 ];
 
@@ -121,11 +126,11 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free staff scheduling tool for teams
+                  Free Staff Scheduling Tool for Teams
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Build schedules manually in the cloud with simple rule checking,
-                  live statistics, and free mobile apps for your team.
+                  Build free digital staff schedules in the cloud with simple rule checking,
+                  live statistics, and free mobile app for your team.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start space-x-3">
@@ -223,16 +228,14 @@ export default function ManualSchedulingPage() {
                   </Button>
                 </div>
               </div>
-              <div className="relative flex justify-center items-center">
-                <div className="w-full max-w-lg">
-                  <Image
-                    src="/images/us-images/free-staff-scheduling.jpg"
-                    alt="Free Staff Scheduling Tool"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                  />
-                </div>
+              <div className="relative">
+                <Image
+                  src="/images/us-images/free-staff-scheduling.jpg"
+                  alt="Free Staff Scheduling Tool"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
               </div>
             </div>
           </Container>
@@ -246,12 +249,12 @@ export default function ManualSchedulingPage() {
               preserveAspectRatio="none"
             >
               <path
-                fill="#ffffff"
+                fill="#f9fafb"
                 d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
                 opacity="0.5"
               />
               <path
-                fill="#ffffff"
+                fill="#f9fafb"
                 d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
               />
             </svg>
@@ -264,7 +267,7 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Your Digital Staff Scheduling Tool
+                  Your Free Digital Staff Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
                   Our free digital tool provides a web-based interface for
@@ -343,7 +346,7 @@ export default function ManualSchedulingPage() {
                 GETTING STARTED
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-                Six Steps to Build Your Staff Schedule
+                Six Steps to Build Your Digital Staff Schedule
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Get started with digital scheduling in minutes. Our simple
@@ -655,7 +658,7 @@ export default function ManualSchedulingPage() {
                 </div>
                 <div className="mt-8">
                   <Button
-                    href="/us/solutions/staff-schedule-mobile-app"
+                    href="/us/solutions/staff-scheduling-mobile-app"
                     className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-3"
                     analyticsLabel="Learn More About Mobile App"
                     analyticsLocation="Solution Page Free Staff Scheduling"

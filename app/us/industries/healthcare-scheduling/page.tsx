@@ -77,7 +77,7 @@ export default function HealthcarePage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/us-images/healthcare-roster.jpg"
+                src="/images/us-images/stock/istockphoto-2187596982-2048x2048.jpg"
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}

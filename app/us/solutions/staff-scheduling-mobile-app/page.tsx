@@ -214,16 +214,14 @@ export default function StaffMobileAppPage() {
                   </Button>
                 </div>
               </div>
-              <div className="relative flex justify-center items-center">
-                <div className="w-full max-w-lg">
-                  <Image
-                    src="/images/us-images/free-staff-scheduling-mobile-app.jpg"
-                    alt="Free Staff Scheduling Mobile App"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                  />
-                </div>
+              <div className="relative">
+                <Image
+                  src="/images/us-images/stock/istockphoto-1748387978-2048x2048.jpg"
+                  alt="Free Staff Scheduling Mobile App"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
               </div>
             </div>
           </Container>
@@ -237,12 +235,12 @@ export default function StaffMobileAppPage() {
               preserveAspectRatio="none"
             >
               <path
-                fill="#ffffff"
+                fill="#f9fafb"
                 d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
                 opacity="0.5"
               />
               <path
-                fill="#ffffff"
+                fill="#f9fafb"
                 d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
               />
             </svg>
@@ -269,11 +267,30 @@ export default function StaffMobileAppPage() {
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                         <feature.icon className="w-6 h-6 text-blue-600" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-600">{feature.description}</p>
+                        <p className="text-gray-600 mb-4">{feature.description}</p>
+                        <Link
+                          href={feature.href}
+                          className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
+                        >
+                          Learn more
+                          <svg
+                            className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </Link>
                       </div>
                     </div>
                   </div>

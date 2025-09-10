@@ -49,6 +49,11 @@ export const metadata = {
 
 const faqItems = [
   {
+    question: "What is an AI staff schedule maker?",
+    answer:
+      "An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff schedule information which the including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information analyses the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href=\"/us/book-a-demo\" className=\"text-blue-600 hover:text-blue-700 underline\">Book a demo</a> to learn more.",
+  },
+  {
     question: "How does AI-powered scheduling actually work?",
     answer:
       "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal schedules. <a href=\"https://rosterlab.com/blog/should-your-next-staff-schedule-be-built-with-ai\" className=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
@@ -72,7 +77,7 @@ const faqItems = [
   {
     question: "How much time and cost savings can we expect?",
     answer:
-      "Most organisations see a 70–90% reduction in time spent on scheduling, along with up to a 10% improvement in scheduling efficiency, such as reduced overtime costs and improved staff retention through better optimisation. Actual savings depend on your current processes and organisation size.",
+      "Most organisations see a 70–90% reduction in time spent on scheduling, along with up to a 10% improvement in scheduling efficiency, such as reduced overtime costs and improved staff retention through better optimisation. Actual savings depend on your current processes and organisation size. Check out our <a href=\"/us/tools/savings-calculator\" className=\"text-blue-600 hover:text-blue-700 underline\">savings calculator</a> to see how much your team could benefit.",
   },
   {
     question:
@@ -233,16 +238,14 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
-            <div className="relative flex justify-center items-center">
-              <div className="w-full max-w-lg">
-                <Image
-                  src="/images/us-images/hero-image-us-ai-schedule-maker.jpg"
-                  alt="AI Staff Schedule Maker"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                />
-              </div>
+            <div className="relative">
+              <Image
+                src="/images/us-images/stock/istockphoto-1399172596-2048x2048.jpg"
+                alt="AI Staff Schedule Maker"
+                width={600}
+                height={400}
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+              />
             </div>
           </div>
         </Container>
@@ -256,12 +259,12 @@ export default function AISchedulesPage() {
             preserveAspectRatio="none"
           >
             <path
-              fill="#ffffff"
+              fill="#f9fafb"
               d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
               opacity="0.5"
             />
             <path
-              fill="#ffffff"
+              fill="#f9fafb"
               d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
             />
           </svg>
@@ -274,7 +277,7 @@ export default function AISchedulesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="order-2 lg:order-1">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Intelligent Scheduling
+                Intelligent AI Scheduling
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Our AI algorithms analyse thousands of variables to create
@@ -348,79 +351,143 @@ export default function AISchedulesPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="block">
+            <Link href="/us/feature/auto-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiClock className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       AI-Optimised Schedules
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-4">
                       Assigns the right staff with the right skills to each
                       shift, balancing preferences, availability, and compliance
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group">
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
             <Link href="/us/feature/shift-swaps-and-trades" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiSwitchHorizontal className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Smart Shift Trades
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-4">
                       Enable staff to easily swap shifts with AI ensuring
                       coverage and compliance requirements are maintained
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group">
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
             </Link>
-            <div className="block">
+            <Link href="/us/feature/auto-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiShieldCheck className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Automated Compliance
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-4">
                       AI ensures every schedule meets regulatory requirements
                       and union rules without manual checking
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group">
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="block">
+            </Link>
+            <Link href="/us/feature/shift-rescheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <HiUsers className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
                       Easy Rescheduling
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 mb-4">
                       Adapt to changes with ease, ensuring your department
                       remains fully operational and responsive to any unexpected
                       shifts
                     </p>
+                    <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group">
+                      Learn more
+                      <svg
+                        className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </div>
@@ -566,7 +633,7 @@ export default function AISchedulesPage() {
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">Fair Distributions</span>
+                    <span className="text-gray-700">Fair Shift Distribution</span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
@@ -596,7 +663,7 @@ export default function AISchedulesPage() {
         <Container>
           <div className="text-center text-white max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">
-              Ready to Unlock the Power of AI?
+              Ready Make Your First AI Staff Schedule?
             </h2>
             <p className="text-xl mb-12 opacity-90">
               Join hundreds of healthcare organisations already using AI to

@@ -203,14 +203,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                   >
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                      {subItem.title.includes("AI") ? "AI-Powered Scheduling" :
-                                       subItem.title.includes("Free") ? "Manual Digital Scheduling" :
-                                       subItem.title.includes("Mobile App") ? "Employee Mobile App" : subItem.title}
+                                      {subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
-                                      {subItem.title.includes("AI") ? "Automated schedules optimized for your team" :
-                                       subItem.title.includes("Free") ? "Free digital scheduling tool" :
-                                       subItem.title.includes("Mobile App") ? "Mobile roster access for staff" : ""}
+                                      {(subItem as any).description || 
+                                       (subItem.title.includes("AI") ? "Automated schedules optimized for your team" :
+                                        subItem.title.includes("Free") ? "Free digital scheduling tool" :
+                                        subItem.title.includes("Mobile App") ? "Keep your team connected with mobile schedules" : "")}
                                     </div>
                                   </Link>
                                 ))}
@@ -468,20 +467,24 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
           {/* Header Buttons */}
           <div className="hidden xl:flex items-center xl:space-x-2 2xl:space-x-4">
-            <Link
-              href={contactLink}
-              className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
-              onClick={() =>
-                trackSmartButtonClick(
-                  "Contact Us",
-                  contactLink,
-                  "Header Desktop",
-                )
-              }
-            >
-              Contact Us
-            </Link>
-            <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
+            {!isUSVersion && (
+              <>
+                <Link
+                  href={contactLink}
+                  className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      "Contact Us",
+                      contactLink,
+                      "Header Desktop",
+                    )
+                  }
+                >
+                  Contact Us
+                </Link>
+                <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
+              </>
+            )}
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors flex items-center"
@@ -653,20 +656,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </div>
           ))}
           <div className="border-t border-gray-200 pt-4 space-y-2">
-            <Link
-              href={contactLink}
-              className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => {
-                trackSmartButtonClick(
-                  "Contact Us",
-                  contactLink,
-                  "Header Mobile",
-                );
-                setIsMenuOpen(false);
-              }}
-            >
-              Contact Us
-            </Link>
+            {!isUSVersion && (
+              <Link
+                href={contactLink}
+                className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => {
+                  trackSmartButtonClick(
+                    "Contact Us",
+                    contactLink,
+                    "Header Mobile",
+                  );
+                  setIsMenuOpen(false);
+                }}
+              >
+                Contact Us
+              </Link>
+            )}
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"

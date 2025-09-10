@@ -91,11 +91,11 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/open-shifts.jpg"
+                  src="/images/us-images/stock/istockphoto-2139198981-2048x2048.jpg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>

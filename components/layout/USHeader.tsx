@@ -3,9 +3,9 @@ export const usNavItems = [
   {
     title: 'Solutions',
     subItems: [
-      { title: 'AI-generated optimized schedules', link: '/us/solutions/ai-staff-schedule-maker' },
-      { title: 'Free For Manual Digital Scheduling', link: '/us/solutions/free-staff-scheduling-tool' },
-      { title: 'Staff Mobile App', link: '/us/solutions/staff-scheduling-mobile-app' },
+      { title: 'AI Staff Scheduling', link: '/us/solutions/ai-staff-schedule-maker' },
+      { title: 'Free Staff Scheduling Tool', link: '/us/solutions/free-staff-scheduling-tool', description: 'Manual digital scheduling' },
+      { title: 'Staff Mobile App', link: '/us/solutions/staff-scheduling-mobile-app', description: 'Keep your team connected with mobile schedules' },
       { title: 'Auto Schedule Generation', link: '/us/feature/auto-scheduling' },
       { title: 'Open Shifts', link: '/us/feature/open-shifts' },
       { title: 'Shift Swaps & Trades', link: '/us/feature/shift-swaps-and-trades' },
@@ -25,4 +25,5 @@ export const usNavItems = [
     ]
   },
   { title: 'Pricing', link: '/us/pricing' },
+  { title: 'Contact', link: '/us/contact' },
 ]
