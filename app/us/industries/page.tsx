@@ -487,7 +487,7 @@ export default function IndustriesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Universal Benefits, Industry-Specific Solutions
+              Industry Specific Schedules for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               No matter your industry, RosterLab delivers the same core benefits while adapting to your unique needs.
