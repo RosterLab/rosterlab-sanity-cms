@@ -7,6 +7,7 @@ import Image from 'next/image'
 
 export default function SavingsCalculatorClient() {
   // Input states
+  const [industry, setIndustry] = useState('nursing')
   const [staff, setStaff] = useState(50)
   const [avgHourlyWage, setAvgHourlyWage] = useState(35)
   const [hoursPerWeek, setHoursPerWeek] = useState(38)
@@ -18,6 +19,53 @@ export default function SavingsCalculatorClient() {
   const [showReportForm, setShowReportForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const formContainerRef = useRef<HTMLDivElement>(null)
+  
+  // Industry configurations
+  const industryConfigs = {
+    nursing: {
+      name: 'Nursing',
+      implementationDays: 3,
+      schedulingComplexity: 1.2,
+    },
+    'acute-specialties': {
+      name: 'Acute',
+      implementationDays: 4,
+      schedulingComplexity: 1.35,
+    },
+    'medicine-specialties': {
+      name: 'Medicine',
+      implementationDays: 3,
+      schedulingComplexity: 1.25,
+    },
+    'allied-health': {
+      name: 'Allied Health',
+      implementationDays: 2,
+      schedulingComplexity: 1.1,
+    },
+    'senior-care': {
+      name: 'Senior Care',
+      implementationDays: 2,
+      schedulingComplexity: 1.15,
+    },
+    midwives: {
+      name: 'Midwives',
+      implementationDays: 3,
+      schedulingComplexity: 1.2,
+    },
+    veterinary: {
+      name: 'Veterinary',
+      implementationDays: 3,
+      schedulingComplexity: 1.2,
+    },
+    surgical: {
+      name: 'Surgical',
+      implementationDays: 4,
+      schedulingComplexity: 1.3,
+    },
+  }
+  
+  // Get current industry configuration
+  const currentIndustry = industryConfigs[industry as keyof typeof industryConfigs] || industryConfigs.nursing
   
   // Calculations
   const weeklyPayroll = staff * avgHourlyWage * hoursPerWeek
@@ -35,10 +83,15 @@ export default function SavingsCalculatorClient() {
   const turnoverCost = staff * (turnoverRate / 100) * avgHourlyWage * 500 // Replacement cost
   const turnoverSavings = turnoverCost * 0.2
   
+  // RosterLab costs
+  const annualSubscriptionCost = staff * 20 * 12 // $20 per staff per month
+  const oneOffImplementationCost = currentIndustry.implementationDays * 1500 // $1,500 per day
+  const firstYearTotalCost = annualSubscriptionCost + oneOffImplementationCost
+  
   // Total savings
   const totalAnnualSavings = schedulingSavingsCost + overtimeSavings + turnoverSavings
-  const roi = ((totalAnnualSavings / 30000) * 100).toFixed(0) // Assuming $30k annual cost
-  const paybackMonths = (30000 / (totalAnnualSavings / 12)).toFixed(1)
+  const roi = ((totalAnnualSavings / firstYearTotalCost) * 100).toFixed(0)
+  const paybackMonths = (firstYearTotalCost / (totalAnnualSavings / 12)).toFixed(1)
 
   const generatePDF = useCallback(async (companyName: string = '') => {
     try {
