@@ -516,7 +516,7 @@ Savings Breakdown:
                       }}
                     >
                       <option value="nursing">Nursing</option>
-                      <option value="acute-specialties">Acute</option>
+                      <option value="acute-specialties">Acute Care</option>
                       <option value="medicine-specialties">Primary Care / Family Medicine</option>
                       <option value="allied-health">Therapists & Technicians</option>
                       <option value="senior-care">Senior Care</option>
