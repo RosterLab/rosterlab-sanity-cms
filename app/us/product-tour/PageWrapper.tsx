@@ -5,7 +5,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   // Read critical CSS at build time
   let criticalCSS = ''
   try {
-    const cssPath = join(process.cwd(), 'app', 'staff-scheduling-interactive-demo', 'critical-styles.css')
+    const cssPath = join(process.cwd(), 'app', 'staff-rostering-interactive-demo', 'critical-styles.css')
     criticalCSS = readFileSync(cssPath, 'utf8')
   } catch (error) {
     console.error('Failed to read critical CSS:', error)
