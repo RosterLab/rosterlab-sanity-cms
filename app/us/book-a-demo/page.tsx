@@ -2,16 +2,16 @@ import { Metadata } from "next";
 import BookADemoClient from "./client";
 
 export const metadata: Metadata = {
-  title: "Book a Demo - Talk to Us About Your Scheduling Challenges",
+  title: "Schedule a Demo - RosterLab",
   description:
-    "Book a live demo with RosterLab to see how AI-powered scheduling slashes admin time, balances shifts, and fixes your toughest scheduling challenges.",
+    "Schedule a demo with RosterLab to see how modern staff scheduling can help reduce admin time, optimize shifts, & fix your toughest scheduling challenges.",
   alternates: {
     canonical: 'https://rosterlab.com/us/book-a-demo',
   },
   openGraph: {
-    title: "Book a Demo - Talk to Us About Your Scheduling Challenges",
+    title: "Schedule a Demo - RosterLab",
     description:
-      "Book a live demo with RosterLab to see how AI-powered scheduling slashes admin time, balances shifts, and fixes your toughest scheduling challenges.",
+      "Schedule a demo with RosterLab to see how modern staff scheduling can help reduce admin time, optimize shifts, & fix your toughest scheduling challenges.",
     type: "website",
     url: 'https://rosterlab.com/us/book-a-demo',
     images: [
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book a Demo - Talk to Us About Your Scheduling Challenges",
+    title: "Schedule a Demo - RosterLab",
     description:
-      "Book a live demo with RosterLab to see how AI-powered scheduling slashes admin time, balances shifts, and fixes your toughest scheduling challenges.",
+      "Schedule a demo with RosterLab to see how modern staff scheduling can help reduce admin time, optimize shifts, & fix your toughest scheduling challenges.",
     images: ["/images/og images/Bookademo.png"],
   },
 };
