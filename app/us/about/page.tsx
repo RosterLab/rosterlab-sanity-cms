@@ -6,9 +6,9 @@ import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
 
 export const metadata = {
-  title: "About Us - Meet the Team Behind RosterLab",
+  title: "About Us - RosterLab",
   description:
-    "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+    "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
   alternates: {
     canonical: 'https://rosterlab.com/us/about',
   },
@@ -16,9 +16,9 @@ export const metadata = {
     link: '<link rel="preload" href="/images/us-images/about-rosterlab-us.jpg" as="image" type="image/jpeg" fetchpriority="high" />',
   },
   openGraph: {
-    title: "About Us - Meet the Team Behind RosterLab",
+    title: "About Us - RosterLab",
     description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+      "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
     type: "website",
     url: 'https://rosterlab.com/us/about',
     images: [
@@ -32,9 +32,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us - Meet the Team Behind RosterLab",
+    title: "About Us - RosterLab",
     description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+      "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
     images: ["/images/og images/About.png"],
   },
 };
