@@ -39,6 +39,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
     item.subItems?.some(sub => sub.link.includes('/us/'))
   );
   const logoLink = isUSVersion ? '/us' : '/';
+  const contactLink = isUSVersion ? '/us/contact' : '/contact';
+  const demoLink = isUSVersion ? '/us/book-a-demo' : '/book-a-demo';
 
   const defaultNavItems: NavItem[] = [
     {
@@ -240,7 +242,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
                               <Link
-                                href="/contact"
+                                href={contactLink}
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
                                 Speak to our team
@@ -259,7 +261,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/book-a-demo"
+                                href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -340,7 +342,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/book-a-demo"
+                                href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -435,7 +437,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/book-a-demo"
+                                href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -467,12 +469,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
           {/* Header Buttons */}
           <div className="hidden xl:flex items-center xl:space-x-2 2xl:space-x-4">
             <Link
-              href="/contact"
+              href={contactLink}
               className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={() =>
                 trackSmartButtonClick(
                   "Contact Us",
-                  "/contact",
+                  contactLink,
                   "Header Desktop",
                 )
               }
@@ -499,12 +501,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/book-a-demo"
+              href={demoLink}
               className="bg-blue-600 text-white hover:bg-blue-700 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={() =>
                 trackSmartButtonClick(
                   "Book a Demo",
-                  "/book-a-demo",
+                  demoLink,
                   "Header Desktop",
                 )
               }
@@ -652,12 +654,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
           ))}
           <div className="border-t border-gray-200 pt-4 space-y-2">
             <Link
-              href="/contact"
+              href={contactLink}
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
                 trackSmartButtonClick(
                   "Contact Us",
-                  "/contact",
+                  contactLink,
                   "Header Mobile",
                 );
                 setIsMenuOpen(false);
@@ -684,12 +686,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/book-a-demo"
+              href={demoLink}
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
                 trackSmartButtonClick(
                   "Book a Demo",
-                  "/book-a-demo",
+                  demoLink,
                   "Header Mobile",
                 );
                 setIsMenuOpen(false);
