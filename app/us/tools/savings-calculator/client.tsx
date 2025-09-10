@@ -450,15 +450,15 @@ Savings Breakdown:
               </div>
             </div>
 
-            {/* Right side - Coins Illustration */}
+            {/* Right side - Radiography Image */}
             <div className="flex justify-center lg:justify-end">
               <div className="w-full max-w-[600px]">
                 <Image
-                  src="/images/illustration/Coins-rafiki.svg"
-                  alt="Savings Calculator illustration"
+                  src="/images/us-images/radiography.jpg"
+                  alt="Healthcare radiography scheduling"
                   width={600}
                   height={450}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg shadow-lg"
                 />
               </div>
             </div>
