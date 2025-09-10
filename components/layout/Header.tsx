@@ -32,6 +32,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  
+  // Determine if this is a US page by checking if navItems contain US-specific links
+  const isUSVersion = navItems.some(item => 
+    item.link?.includes('/us/') || 
+    item.subItems?.some(sub => sub.link.includes('/us/'))
+  );
+  const logoLink = isUSVersion ? '/us' : '/';
 
   const defaultNavItems: NavItem[] = [
     {
@@ -101,7 +108,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
-              href="/"
+              href={logoLink}
               className="flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
