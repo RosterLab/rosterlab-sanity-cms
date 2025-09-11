@@ -91,7 +91,7 @@ export default function AboutPage() {
                   alt="About RosterLab US"
                   width={600}
                   height={400}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   priority
                   fetchPriority="high"
                   placeholder="empty"
@@ -507,9 +507,8 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-gray-600 mt-2">
                     The idea began with Isaac's PhD research in schedule
-                    optimisation at the University of Auckland, where he
-                    explored how operations research could dramatically improve
-                    healthcare scheduling.
+                    optimisation, where he explored how operations research could
+                    dramatically improve healthcare scheduling.
                   </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
@@ -547,7 +546,7 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-gray-600 mt-2">
                     We won first place in the Velocity Innovation competition
-                    hosted by the University Of Auckland in 2020.
+                    in 2020.
                   </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>

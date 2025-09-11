@@ -11,16 +11,16 @@ import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
 
 export const metadata = {
-  title: "Scheduling Software for Healthcare - RosterLab",
+  title: "Healthcare Scheduling Software - RosterLab",
   description:
-    "Learn how our scheduling software simplifies staff scheduling in healthcare. Create fair, efficient schedules that improve patient care, compliance & saves time.",
+    "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
   alternates: {
     canonical: "https://rosterlab.com/us/industries/healthcare-scheduling",
   },
   openGraph: {
-    title: "Scheduling Software for Healthcare - RosterLab",
+    title: "Healthcare Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software simplifies staff scheduling in healthcare. Create fair, efficient schedules that improve patient care, compliance & saves time.",
+      "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
     type: "website",
     url: "https://rosterlab.com/us/industries/healthcare-scheduling",
     images: [
@@ -34,9 +34,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scheduling Software for Healthcare - RosterLab",
+    title: "Healthcare Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software simplifies staff scheduling in healthcare. Create fair, efficient schedules that improve patient care, compliance & saves time.",
+      "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
     images: ["/images/og-images/IndustryHealthcare.png"],
   },
 };
@@ -427,6 +427,16 @@ export default async function HealthcarePage() {
               </div>
             </Link>
           </div>
+          
+          {/* CTA Section */}
+          <div className="mt-16 text-center">
+            <Button
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
+            >
+              Learn about AI Staff Scheduling
+            </Button>
+          </div>
         </Container>
       </section>
 
@@ -583,7 +593,7 @@ export default async function HealthcarePage() {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   href="/us/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700"
@@ -682,7 +692,7 @@ export default async function HealthcarePage() {
       </section>
 
       {/* Healthcare Verticals */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -697,7 +707,7 @@ export default async function HealthcarePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* ICU/ED Card */}
             <Link href="/us/industries/healthcare/ed-icu-scheduling" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full">
                 <div className="h-48 relative overflow-hidden">
                   <Image
                     src="/images/icu/pexels-shvetsa-4483340.jpg"
@@ -706,21 +716,37 @@ export default async function HealthcarePage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col h-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     ICU & Emergency Departments
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mb-3 flex-grow">
                     24/7 critical care coverage with skill mix optimisation and
                     surge capacity planning.
                   </p>
+                  <div className="flex items-center text-blue-600 font-medium">
+                    Learn more
+                    <svg
+                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </Link>
 
             {/* Radiology Card */}
             <Link href="/us/industries/healthcare/radiology-scheduling" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full">
                 <div className="h-48 relative overflow-hidden">
                   <Image
                     src="/images/radiology/accuray-5VkNa1LrS8A-unsplash.jpg"
@@ -759,7 +785,7 @@ export default async function HealthcarePage() {
 
             {/* Senior Care Card */}
             <Link href="/us/industries/healthcare/senior-care-scheduling" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full">
                 <div className="h-48 relative overflow-hidden">
                   <Image
                     src="/images/aged care/pexels-matthiaszomer-339620.jpg"
@@ -860,7 +886,7 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Pathology</h4>
+                <h4 className="font-semibold text-gray-900">Clinical Labs / Lab Services</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -878,7 +904,7 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Allied Health</h4>
+                <h4 className="font-semibold text-gray-900">Therapists & Technicians</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -898,7 +924,7 @@ export default async function HealthcarePage() {
                 </div>
 
                 <h4 className="font-semibold text-gray-900">
-                  Large Medical Clinics
+                  Multi-Specialty Clinics
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -922,7 +948,7 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Maternity Wards</h4>
+                <h4 className="font-semibold text-gray-900">Labor & Delivery Units</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -941,7 +967,7 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Veterinary Clinics
+                  Veterinary Practices & Animal Hospitals
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -961,7 +987,7 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  General Medicine
+                  Family Medicine Practices
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -996,7 +1022,7 @@ export default async function HealthcarePage() {
                     <path d="M12 2C10 2 8 3 8 5C8 6 7 7 7 8C7 9 8 10 8 11C8 12 7 13 7 14C7 15 7 16 8 17L10 22L12 22L14 22L16 17C17 16 17 15 17 14C17 13 16 12 16 11C16 10 17 9 17 8C17 7 16 6 16 5C16 3 14 2 12 2Z" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Dental Chains</h4>
+                <h4 className="font-semibold text-gray-900">Dental Groups</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">

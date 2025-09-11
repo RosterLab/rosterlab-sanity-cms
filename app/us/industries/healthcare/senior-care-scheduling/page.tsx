@@ -10,11 +10,11 @@ import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
 export const metadata = {
   title: "Senior Care Staff Scheduling Software - RosterLab",
   description:
-    "Learn how our scheduling software improves shift scheduling in Senior Care. Create better schedules that boost team wellbeing, ensure compliance & saves time.",
+    "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
   openGraph: {
     title: "Senior Care Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software improves shift scheduling in Senior Care. Create better schedules that boost team wellbeing, ensure compliance & saves time.",
+      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
     type: "website",
     url: 'https://rosterlab.com/us/industries/healthcare/senior-care-scheduling',
     images: [
@@ -29,12 +29,17 @@ export const metadata = {
     card: "summary_large_image",
     title: "Senior Care Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software improves shift scheduling in Senior Care. Create better schedules that boost team wellbeing, ensure compliance & saves time.",
+      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
     images: ["/images/og images/IndustryAgedCare.png"],
   },
 };
 
 const faqItems = [
+  {
+    question: "What is senior care staff scheduling?",
+    answer:
+      "Senior care staff scheduling involves creating work schedules for nursing staff, care assistants, and support personnel in senior care facilities. It requires careful consideration of resident care needs, staff qualifications, regulatory requirements, and compliance with labor laws while ensuring adequate coverage across all shifts and care levels.",
+  },
   {
     question: "What devices can the platform be used on?",
     answer:
@@ -56,10 +61,10 @@ export default function AgedCarePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Optimise your{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Staff Scheduling
-                </span>
+                  Senior Care
+                </span>{" "}
+                Staff Scheduling
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Deliver better care with smart scheduling. Achieve 5% efficiency
@@ -153,7 +158,7 @@ export default function AgedCarePage() {
                 alt="Senior care scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
