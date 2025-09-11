@@ -4,13 +4,18 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import Link from "next/link";
+import { getClient } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { draftMode } from "next/headers";
+import { validatedToken } from "@/sanity/lib/token";
+import { urlFor } from "@/sanity/lib/client";
 
 export const metadata = {
   title: "Rostering Software for Healthcare - RosterLab",
   description:
     "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
   alternates: {
-    canonical: 'https://rosterlab.com/industries/healthcare',
+    canonical: "https://rosterlab.com/industries/healthcare",
   },
   openGraph: {
     title: "Rostering Software for Healthcare - RosterLab",
@@ -20,9 +25,10 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare",
     images: [
       {
-        url: "/images/og images/IndustryHealthcare.png",
+        url: "/images/og-images/IndustryHealthcare.png",
         width: 1200,
         height: 630,
+        alt: "Healthcare workforce scheduling with RosterLab",
       },
     ],
   },
@@ -31,11 +37,76 @@ export const metadata = {
     title: "Rostering Software for Healthcare - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    images: ["/images/og images/IndustryHealthcare.png"],
+    images: ["/images/og-images/IndustryHealthcare.png"],
   },
 };
 
-export default function HealthcarePage() {
+// Query for the 3 most recent case studies
+const recentCaseStudiesQuery = groq`
+  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{
+      name,
+      slug,
+      image
+    },
+    categories[]->{
+      title,
+      slug
+    }
+  }
+`;
+
+const testimonials = [
+  {
+    quote:
+      "It's not just about saving hours. It's about confidence in the roster, about fairness, and about giving senior clinicians time back for patient care - not spreadsheets.",
+    author: "Emergency Physician",
+    company: "South Eastern Sydney Area Health Services",
+  },
+  {
+    quote:
+      "Rostering would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
+    author: "Mike",
+    company: "Associate Clinical Manager Radiology",
+  },
+  {
+    quote:
+      "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical rosters!",
+    author: "Peter",
+    company: "Senior Registrar ICU, Western Australia",
+  },
+  {
+    quote:
+      "If Rosterlab can help with our complicated rostering needs, we are confident it will work for anyone.",
+    author: "Judy Harris",
+    company: "Practice Manager, Dargaville Hospital",
+  },
+  {
+    quote:
+      "We wanted more continuity of care built into the rosters, and RosterLab was easily able to incorporate that into the rosters they generated for us.",
+    author: "Rebecca",
+    company: "Staff Specialist Neonatologist, RPA Newborn Care",
+  },
+  {
+    quote:
+      "Since using RosterLab, I've felt that the rosters are better for my circadian rhythm, with less up-and-down cycling.",
+    author: "Anthea",
+    company: "MIT, Hawke's Bay Hospital",
+  },
+];
+
+export default async function HealthcarePage() {
+  const { isEnabled } = await draftMode();
+  const client = getClient(
+    isEnabled && validatedToken ? { token: validatedToken } : undefined,
+  );
+  const caseStudies = await client.fetch(recentCaseStudiesQuery);
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -44,7 +115,9 @@ export default function HealthcarePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                Solutions for{" "}
+                Roster Solutions
+                <br />
+                for{" "}
                 <span
                   className="text-transparent bg-clip-text"
                   style={{
@@ -74,6 +147,42 @@ export default function HealthcarePage() {
                   Learn More
                 </Button>
               </div>
+
+              {/* Feature Ticks */}
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5 text-green-500 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-sm text-gray-700">
+                    Made for healthcare and complex industries
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg
+                    className="w-5 h-5 text-green-500 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-sm text-gray-700">
+                    AI-generated rosters in seconds
+                  </span>
+                </div>
+              </div>
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
@@ -87,6 +196,9 @@ export default function HealthcarePage() {
           </div>
         </Container>
       </section>
+
+      {/* Trusted By */}
+      <TrustedBy />
 
       {/* Core Features */}
       <section className="py-20 bg-white">
@@ -102,8 +214,9 @@ export default function HealthcarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
+            <Link
+              href="/feature/auto-roster-generation"
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -123,15 +236,29 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Automatically Generate Rosters
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Create optimal schedules in minutes using AI that balances all
                 requirements.
               </p>
-            </div>
+              <div className="flex items-center text-blue-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </Link>
 
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
-            >
+            <div className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-sky-500"
@@ -157,7 +284,7 @@ export default function HealthcarePage() {
             </div>
 
             <Link
-              href="/feature/shift-swaps"
+              href="/feature/open-shifts"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -178,10 +305,26 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Better Staffing Coverage
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Optimise all the staffing intricacies for better coverage for
                 your hospitals.
               </p>
+              <div className="flex items-center text-blue-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Link>
 
             <Link
@@ -206,14 +349,31 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Mobile Access & Notifications
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Staff can view schedules, make preferences, request leave,
                 accept open shifts and manage swaps from any device.
               </p>
+              <div className="flex items-center text-cyan-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Link>
 
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
+            <Link
+              href="/feature/re-rostering"
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -233,14 +393,30 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Re-rostering
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Handle last-minute changes with minimal disruption during sick
                 calls or emergencies.
               </p>
-            </div>
+              <div className="flex items-center text-indigo-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </Link>
 
             <Link
-              href="/solutions/ai-staff-scheduling"
+              href="/feature/self-scheduling"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -261,10 +437,26 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Higher Staff Retention
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Better-quality rosters, self rostering, reduced bias perception,
                 and better work-life balance.
               </p>
+              <div className="flex items-center text-blue-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Link>
           </div>
         </Container>
@@ -423,7 +615,7 @@ export default function HealthcarePage() {
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   href="/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700"
@@ -437,85 +629,6 @@ export default function HealthcarePage() {
                   Learn More
                 </Button>
               </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Key Statistics */}
-      <section className="py-20 bg-gray-50">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">
-              Healthcare Workforce Excellence
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-              <div className="text-center">
-                <div className="mb-4">
-                  <span className="block text-5xl font-bold text-blue-600 mb-2">
-                    90%
-                  </span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    Less Admin Time
-                  </span>
-                </div>
-                <p className="text-gray-600">
-                  Reduce rostering from days to minutes with AI automation
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4">
-                  <span className="block text-5xl font-bold text-sky-600 mb-2">
-                    100%
-                  </span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    Union Compliance
-                  </span>
-                </div>
-                <p className="text-gray-600">
-                  Meet all regulatory requirements and union agreements
-                  automatically
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4">
-                  <span className="block text-5xl font-bold text-green-600 mb-2">
-                    ~10%
-                  </span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    Higher Efficiency
-                  </span>
-                </div>
-                <p className="text-gray-600">
-                  Reduce staff turnover and improve retention with better
-                  staffing
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-16 text-center">
-              <Button
-                href="/solutions/ai-staff-scheduling"
-                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
-              >
-                Explore AI Rostering Features
-                <svg
-                  className="w-5 h-5 ml-2 inline"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Button>
             </div>
           </div>
         </Container>
@@ -550,10 +663,26 @@ export default function HealthcarePage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     ICU & Emergency Departments
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mb-3">
                     24/7 critical care coverage with skill mix optimisation and
                     surge capacity planning.
                   </p>
+                  <div className="flex items-center text-blue-600 font-medium">
+                    Learn more
+                    <svg
+                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </Link>
@@ -573,7 +702,7 @@ export default function HealthcarePage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">
                     Radiology Departments
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mb-3">
                     Subspecialty coverage with equipment coordination and
                     reading room optimisation.
                   </p>
@@ -612,7 +741,7 @@ export default function HealthcarePage() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
                     Aged Care Facilities
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mb-3">
                     Resident-focused scheduling with care level matching and
                     compliance assurance.
                   </p>
@@ -883,6 +1012,188 @@ export default function HealthcarePage() {
         </Container>
       </section>
 
+      {/* Key Statistics */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">
+              Healthcare Workforce Excellence
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+              <div className="text-center">
+                <div className="mb-4">
+                  <span className="block text-5xl font-bold text-blue-600 mb-2">
+                    90%
+                  </span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Less Admin Time
+                  </span>
+                </div>
+                <p className="text-gray-600">
+                  Reduce rostering from days to minutes with AI automation
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-4">
+                  <span className="block text-5xl font-bold text-sky-600 mb-2">
+                    100%
+                  </span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Union Compliance
+                  </span>
+                </div>
+                <p className="text-gray-600">
+                  Meet all regulatory requirements and union agreements
+                  automatically
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-4">
+                  <span className="block text-5xl font-bold text-green-600 mb-2">
+                    ~10%
+                  </span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Higher Efficiency
+                  </span>
+                </div>
+                <p className="text-gray-600">
+                  Reduce staff turnover and improve retention with better
+                  staffing
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-16 text-center">
+              <Button
+                href="/solutions/ai-staff-scheduling"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
+              >
+                Explore AI Rostering Features
+                <svg
+                  className="w-5 h-5 ml-2 inline"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Case Studies Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Success Stories in Healthcare
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See how healthcare organizations are transforming their workforce
+              management with RosterLab
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {caseStudies.map((post: any) => (
+              <article
+                key={post._id}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+              >
+                <Link
+                  href={`/case-studies/${post.slug.current}`}
+                  className="block"
+                >
+                  <div className="relative h-48 overflow-hidden group">
+                    {post.mainImage ? (
+                      <Image
+                        src={urlFor(post.mainImage)
+                          .width(400)
+                          .height(200)
+                          .url()}
+                        alt={post.mainImage.alt || post.title}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                        <svg
+                          className="w-24 h-24 text-white/20"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <span className="text-blue-600 font-medium hover:underline inline-flex items-center">
+                      Read case study
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          {/* View all case studies CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            >
+              View all case studies
+              <svg
+                className="w-4 h-4 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
       {/* Success Story */}
       <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -964,8 +1275,73 @@ export default function HealthcarePage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <TrustedBy />
+      {/* ROI Calculator CTA */}
+      <section className="py-16 bg-gray-50">
+        <Container>
+          <div className="text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              See Your Potential Savings
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Calculate how much time and money you could save with automated
+              rostering
+            </p>
+            <Button
+              href="/tools/roi-calculator"
+              className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
+            >
+              View ROI calculator
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Button>
+          </div>
+        </Container>
+      </section>
+
+      {/* Central Message - Full Width */}
+      <div
+        className="py-16 text-center"
+        style={{
+          background:
+            "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+        }}
+      >
+        <Container>
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Better Patient Care, Happier Staff.
+          </h3>
+          <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
+            When healthcare professionals spend less time on administrative
+            tasks, they can focus on what matters most - delivering exceptional
+            patient care.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              href="/book-a-demo"
+              className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
+            >
+              Schedule a Healthcare Demo
+            </Button>
+            <Button
+              href="/solutions/ai-staff-scheduling"
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
+            >
+              Learn more about AI rostering
+            </Button>
+          </div>
+        </Container>
+      </div>
     </SiteLayout>
   );
 }

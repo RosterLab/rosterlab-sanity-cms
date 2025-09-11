@@ -214,6 +214,14 @@ export default function LeaveRequestsPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8 text-center">
+                  <Button
+                    href="/us/solutions/ai-staff-schedule-maker"
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-6 py-3 font-semibold"
+                  >
+                    Learn About AI Scheduling
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -295,7 +303,7 @@ export default function LeaveRequestsPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                Time-Off Request Management Efficiency
+                Time-Off Request Management
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -324,7 +332,7 @@ export default function LeaveRequestsPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Streamline Time-Off Request Management?
+                Ready to Streamline Time-Off Requests?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Transform time-off requests from administrative burden to seamless

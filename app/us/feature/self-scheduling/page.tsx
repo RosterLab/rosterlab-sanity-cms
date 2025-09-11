@@ -4,18 +4,19 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
+import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
-  title: "Self-Scheduling - RosterLab",
+  title: "Self-Scheduling Powered By You - RosterLab",
   description:
-    "Empower your staff with flexible self-scheduling. Let staff choose shifts that work for them while maintaining operational requirements.",
+    "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
   alternates: {
     canonical: 'https://rosterlab.com/us/feature/self-scheduling',
   },
   openGraph: {
-    title: "Self-Scheduling - RosterLab",
+    title: "Self-Scheduling Powered By You - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let staff choose shifts that work for them while maintaining operational requirements.",
+      "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
     type: "website",
     url: 'https://rosterlab.com/us/feature/self-scheduling',
     images: [
@@ -28,12 +29,27 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Self-Scheduling - RosterLab",
+    title: "Self-Scheduling Powered By You - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let staff choose shifts that work for them while maintaining operational requirements.",
+      "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
     images: ["/images/og images/SelfScheduling.png"],
   },
 };
+
+const faqItems = [
+  {
+    question: "What is self scheduling?",
+    answer: "Self scheduling is a system where staff members can indicate their preferred work shifts, days off, and task assignments in advance. Instead of managers creating schedules unilaterally, employees submit their availability and preferences through a digital platform. RosterLab's AI then optimizes these preferences to create schedules that meet both staff wishes and organizational needs, typically satisfying over 90% of preferences while ensuring proper coverage."
+  },
+  {
+    question: "What are the benefits of self scheduling?",
+    answer: "Self scheduling offers numerous benefits for both organizations and staff. Organizations see reduced administrative time (up to 90% reduction), improved staff satisfaction and retention, better shift coverage, and enhanced work-life balance for employees. Staff members gain more control over their schedules, experience greater job satisfaction, have better ability to plan personal commitments, and feel more valued when their preferences are considered. The system also ensures fairness and transparency in shift distribution while maintaining compliance with labor laws and organizational policies."
+  },
+  {
+    question: "What type of preferences can staff enter?",
+    answer: "Staff can enter a wide variety of preferences through RosterLab's self-scheduling system. These include: preferred shifts (morning, afternoon, night), specific days they want to work or have off, desired number of hours per week, preference for consecutive days or specific patterns, location preferences for multi-site organizations, task or role preferences, partner preferences (working with specific colleagues), and weekend availability. Staff can also set priority levels for different preferences, helping the AI understand which requests are most important to them."
+  }
+];
 
 export default function SelfSchedulingPage() {
   return (
@@ -45,7 +61,7 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  AI-powered self-scheduling
+                  <span className="bg-gradient-to-r from-[#4a9288] to-[#5aa399] bg-clip-text text-transparent">Self-scheduling</span> Powered By You
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
@@ -233,7 +249,7 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/self-scheduling/self-schedule.webp"
+                  src="/images/illustration/free-staff-mobile.svg"
                   alt="Self-Schedule The Way You Want To illustration"
                   width={600}
                   height={600}
@@ -268,6 +284,18 @@ export default function SelfSchedulingPage() {
                   </li>
                 </ul>
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                Frequently Asked Questions
+              </h2>
+              <FAQAccordion items={faqItems} />
             </div>
           </Container>
         </div>

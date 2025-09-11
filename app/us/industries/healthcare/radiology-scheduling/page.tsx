@@ -61,9 +61,9 @@ export default function RadiologyPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                  Radiology Scheduling Software
+                  Radiology Scheduling
                 </span>{" "}
-                for Modern Teams
+                Software for Modern Teams
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Reduce scheduling time by 90%. Optimise radiologist coverage and

@@ -6,16 +6,16 @@ import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
 
 export const metadata = {
-  title: "Self-Scheduling - RosterLab",
+  title: "AI-Powered Self-Scheduling - RosterLab",
   description:
-    "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+    "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
   alternates: {
     canonical: 'https://rosterlab.com/feature/self-scheduling',
   },
   openGraph: {
-    title: "Self-Scheduling - RosterLab",
+    title: "AI-Powered Self-Scheduling - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+      "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
     type: "website",
     url: "https://rosterlab.com/feature/self-scheduling",
     images: [
@@ -28,9 +28,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Self-Scheduling - RosterLab",
+    title: "AI-Powered Self-Scheduling - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
+      "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
     images: ["/images/og images/SelfScheduling.png"],
   },
 };

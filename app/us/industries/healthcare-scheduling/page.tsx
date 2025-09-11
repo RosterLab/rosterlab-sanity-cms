@@ -4,25 +4,31 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import Link from "next/link";
+import { getClient } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { draftMode } from "next/headers";
+import { validatedToken } from "@/sanity/lib/token";
+import { urlFor } from "@/sanity/lib/client";
 
 export const metadata = {
   title: "Scheduling Software for Healthcare - RosterLab",
   description:
     "Learn how our scheduling software simplifies staff scheduling in healthcare. Create fair, efficient schedules that improve patient care, compliance & saves time.",
   alternates: {
-    canonical: 'https://rosterlab.com/us/industries/healthcare-scheduling',
+    canonical: "https://rosterlab.com/us/industries/healthcare-scheduling",
   },
   openGraph: {
     title: "Scheduling Software for Healthcare - RosterLab",
     description:
       "Learn how our scheduling software simplifies staff scheduling in healthcare. Create fair, efficient schedules that improve patient care, compliance & saves time.",
     type: "website",
-    url: 'https://rosterlab.com/us/industries/healthcare-scheduling',
+    url: "https://rosterlab.com/us/industries/healthcare-scheduling",
     images: [
       {
-        url: "/images/og images/IndustryHealthcare.png",
+        url: "/images/og-images/IndustryHealthcare.png",
         width: 1200,
         height: 630,
+        alt: "Healthcare workforce scheduling with RosterLab",
       },
     ],
   },
@@ -31,11 +37,76 @@ export const metadata = {
     title: "Scheduling Software for Healthcare - RosterLab",
     description:
       "Learn how our scheduling software simplifies staff scheduling in healthcare. Create fair, efficient schedules that improve patient care, compliance & saves time.",
-    images: ["/images/og images/IndustryHealthcare.png"],
+    images: ["/images/og-images/IndustryHealthcare.png"],
   },
 };
 
-export default function HealthcarePage() {
+// Query for the 3 most recent case studies
+const recentCaseStudiesQuery = groq`
+  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{
+      name,
+      slug,
+      image
+    },
+    categories[]->{
+      title,
+      slug
+    }
+  }
+`;
+
+const testimonials = [
+  {
+    quote:
+      "It's not just about saving hours. It's about confidence in the schedule, about fairness, and about giving senior clinicians time back for patient care - not spreadsheets.",
+    author: "Emergency Physician",
+    company: "South Eastern Sydney Area Health Services",
+  },
+  {
+    quote:
+      "Scheduling would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
+    author: "Mike",
+    company: "Associate Clinical Manager Radiology",
+  },
+  {
+    quote:
+      "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical schedules!",
+    author: "Peter",
+    company: "Senior Registrar ICU, Western Australia",
+  },
+  {
+    quote:
+      "If Rosterlab can help with our complicated scheduling needs, we are confident it will work for anyone.",
+    author: "Judy Harris",
+    company: "Practice Manager, Dargaville Hospital",
+  },
+  {
+    quote:
+      "We wanted more continuity of care built into the schedules, and RosterLab was easily able to incorporate that into the schedules they generated for us.",
+    author: "Rebecca",
+    company: "Staff Specialist Neonatologist, RPA Newborn Care",
+  },
+  {
+    quote:
+      "Since using RosterLab, I've felt that the schedules are better for my circadian rhythm, with less up-and-down cycling.",
+    author: "Anthea",
+    company: "MIT, Hawke's Bay Hospital",
+  },
+];
+
+export default async function HealthcarePage() {
+  const { isEnabled } = await draftMode();
+  const client = getClient(
+    isEnabled && validatedToken ? { token: validatedToken } : undefined,
+  );
+  const caseStudies = await client.fetch(recentCaseStudiesQuery);
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -44,7 +115,9 @@ export default function HealthcarePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                Solutions for{" "}
+                Staff Scheduling
+                <br />
+                for{" "}
                 <span
                   className="text-transparent bg-clip-text"
                   style={{
@@ -68,10 +141,10 @@ export default function HealthcarePage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/contact"
+                  href="/us/product-tour"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
                 >
-                  Learn More
+                  View Product Tour
                 </Button>
               </div>
             </div>
@@ -81,11 +154,16 @@ export default function HealthcarePage() {
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
         </Container>
+      </section>
+
+      {/* Trusted By */}
+      <section className="py-16 bg-white">
+        <USTrustedBy />
       </section>
 
       {/* Core Features */}
@@ -102,8 +180,9 @@ export default function HealthcarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
+            <Link
+              href="/us/feature/auto-scheduling"
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -123,11 +202,27 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Automatically Generate Schedules
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Create optimal schedules in minutes using AI that balances all
                 requirements.
               </p>
-            </div>
+              <div className="flex items-center text-blue-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </Link>
 
             <div
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
@@ -178,14 +273,30 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Better Staffing Coverage
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Optimise all the staffing intricacies for better coverage for
                 your hospitals.
               </p>
+              <div className="flex items-center text-blue-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Link>
 
             <Link
-              href="/us/solutions/staff-schedule-mobile-app"
+              href="/us/solutions/staff-scheduling-mobile-app"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">
@@ -206,14 +317,31 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Mobile Access & Notifications
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Staff can view schedules, make preferences, request leave,
                 accept open shifts and manage swaps from any device.
               </p>
+              <div className="flex items-center text-cyan-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Link>
 
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
+            <Link
+              href="/us/feature/shift-rescheduling"
+              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -233,11 +361,27 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Re-scheduling
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Handle last-minute changes with minimal disruption during sick
                 calls or emergencies.
               </p>
-            </div>
+              <div className="flex items-center text-indigo-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </Link>
 
             <Link
               href="/us/solutions/ai-staff-schedule-maker"
@@ -261,10 +405,26 @@ export default function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Higher Staff Retention
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Better-quality schedules, self scheduling, reduced bias perception,
                 and better work-life balance.
               </p>
+              <div className="flex items-center text-blue-600 font-medium">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
             </Link>
           </div>
         </Container>
@@ -602,17 +762,17 @@ export default function HealthcarePage() {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
                 <div className="h-48 relative overflow-hidden">
                   <Image
-                    src="/images/senior care/pexels-matthiaszomer-339620.jpg"
-                    alt="Nursing Homes"
+                    src="/images/aged care/pexels-matthiaszomer-339620.jpg"
+                    alt="Senior Care Facilities"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-                    Nursing Homes
+                    Senior Care
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mb-3">
                     Resident-focused scheduling with care level matching and
                     compliance assurance.
                   </p>
@@ -964,8 +1124,6 @@ export default function HealthcarePage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <USTrustedBy />
     </SiteLayout>
   );
 }

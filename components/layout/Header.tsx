@@ -11,7 +11,13 @@ import {
   HiChevronRight,
   HiUser,
 } from "react-icons/hi";
-import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
+// import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
+
+// Temporary function to avoid build errors
+const trackSmartButtonClick = (buttonName: string, link: string, location: string) => {
+  // Analytics tracking disabled temporarily
+  console.log(`Button clicked: ${buttonName} at ${location} to ${link}`);
+};
 
 interface SubMenuItem {
   title: string;
