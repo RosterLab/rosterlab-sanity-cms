@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
+import USTestimonials from "@/app/us/components/Testimonials";
 import Link from "next/link";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
@@ -1069,31 +1070,70 @@ export default async function HealthcarePage() {
         </Container>
       </section>
 
-      {/* Success Story */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
         <Container>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+              Loved by our users
+            </h2>
+            <p className="text-xl text-neutral-600">
+              The only solution that generates & solves your schedule in minutes
+            </p>
+          </div>
+
           <div className="max-w-6xl mx-auto">
-            {/* Testimonial */}
-            <div className="bg-white rounded-2xl shadow-lg max-w-4xl mx-auto mb-12">
-              <div className="p-10 md:p-12">
-                <blockquote className="text-xl md:text-2xl text-gray-700 italic text-center leading-relaxed mb-8">
-                  "It's not just about saving hours. It's about confidence in
-                  the schedule, about fairness, and about giving senior clinicians
-                  time back for patient care - not spreadsheets."
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-lg">
-                    Emergency Physician
-                  </p>
-                  <p className="text-gray-600">
-                    South Eastern Sydney Area Health Services
-                  </p>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Image placeholder */}
+              <div className="order-2 lg:order-1 flex items-start justify-center">
+                <Image
+                  src="/images/us-images/us-nurse.jpg"
+                  alt="Healthcare professional"
+                  width={400}
+                  height={500}
+                  className="w-full max-w-sm rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  style={{ height: 'auto', maxHeight: '480px' }}
+                />
+              </div>
+              
+              {/* Speech Bubble */}
+              <div className="relative order-1 lg:order-2">
+                {/* Speech Bubble Background */}
+                <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-lg">
+                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
+                    <div className="w-8 h-8 bg-white transform rotate-45"></div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed">
+                      &ldquo;Scheduling would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.&rdquo;
+                    </blockquote>
+                    
+                    <div className="flex flex-col items-center space-y-4">
+                      <div className="w-20 h-12 relative">
+                        <Image
+                          src="/images/logos/whanganui.png"
+                          alt="Whanganui Hospital"
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-neutral-900">
+                          Mike
+                        </p>
+                        <p className="text-neutral-600">
+                          Associate Clinical Manager, Radiology
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="text-center mb-16">
+            {/* Case Studies CTA */}
+            <div className="text-center mt-16">
               <Button
                 href="/us/case-studies"
                 className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
@@ -1114,8 +1154,14 @@ export default async function HealthcarePage() {
                 </svg>
               </Button>
             </div>
+          </div>
+        </Container>
+      </section>
 
-            {/* Central Message */}
+      {/* Central Message */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="max-w-6xl mx-auto">
             <div
               className="rounded-3xl p-12 text-center shadow-xl"
               style={{
