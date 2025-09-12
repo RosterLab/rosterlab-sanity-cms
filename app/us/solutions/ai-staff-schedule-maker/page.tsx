@@ -5,6 +5,7 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import ScheduleLoadingBar from "@/components/ui/ScheduleLoadingBar";
+import { withHreflang } from '@/components/seo/HreflangTags';
 import {
   HiCheck,
   HiClock,
@@ -16,7 +17,7 @@ import {
   HiSwitchHorizontal,
 } from "react-icons/hi";
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "AI Staff Schedule Maker - RosterLab",
   description:
     "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
@@ -45,7 +46,7 @@ export const metadata = {
       "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     images: ["/images/og images/SolutionAIGen.png"],
   },
-};
+}, '/us/solutions/ai-staff-schedule-maker');
 
 const faqItems = [
   {
@@ -453,7 +454,7 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </Link>
-            <Link href="/us/feature/shift-rescheduling" className="block">
+            <Link href="/us/feature/staff-rescheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">

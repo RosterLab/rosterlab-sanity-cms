@@ -1,8 +1,47 @@
+'use client';
+
 import Button from "@/components/ui/Button";
 import SchedulingGenerator from "./SchedulingGenerator";
 import { HiCheck } from 'react-icons/hi';
+import { useState, useEffect } from 'react';
 
 export default function USHero() {
+  const teamTypes = ['Teams', 'Nurses', 'Physicians', 'Doctors', 'Radiographers', 'Radiologists', 'Staff'];
+  const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [charIndex, setCharIndex] = useState(0);
+
+  useEffect(() => {
+    const currentWord = teamTypes[currentTeamIndex];
+    const typingSpeed = isDeleting ? 50 : 100; // Faster when deleting
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (charIndex < currentWord.length) {
+          setDisplayText(currentWord.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        } else {
+          // Finished typing, wait then start deleting
+          setTimeout(() => setIsDeleting(true), 1500);
+        }
+      } else {
+        // Deleting
+        if (charIndex > 0) {
+          setDisplayText(currentWord.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        } else {
+          // Finished deleting, move to next word
+          setIsDeleting(false);
+          setCurrentTeamIndex((prev) => (prev + 1) % teamTypes.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, currentTeamIndex, isDeleting, teamTypes]);
+
   return (
     <section
       className="relative flex items-center py-16 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 pb-20"
@@ -16,20 +55,23 @@ export default function USHero() {
           <div className="text-left">
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              AI Staff Scheduling Software
+              AI Staff Scheduling
               <br />
-              <span>for </span>
+              Software for{" "}
               <span
-                className="inline-block"
+                className="inline-block transition-all duration-500 ease-in-out"
                 style={{
                   background: "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                   color: "transparent",
+                  minWidth: "160px",
+                  textAlign: "left",
                 }}
               >
-                Complex Teams
+                {displayText}
+                <span className="animate-pulse">|</span>
               </span>
             </h1>
 

@@ -4,8 +4,9 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "About Us - RosterLab",
   description:
     "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
@@ -37,7 +38,7 @@ export const metadata = {
       "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
     images: ["/images/og images/About.png"],
   },
-};
+}, '/us/about');
 
 export default function AboutPage() {
   return (

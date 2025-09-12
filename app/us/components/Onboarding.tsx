@@ -137,7 +137,7 @@ const onboardingSteps = [
     ),
     description:
       "Run hypothetical schedule scenarios to assess feasibility of changes without impacting your live schedule - perfect for planning and optimisation.",
-    link: "/us/feature/shift-rescheduling",
+    link: "/us/feature/staff-rescheduling",
   },
   {
     number: "7",

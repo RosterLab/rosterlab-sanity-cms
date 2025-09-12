@@ -1,7 +1,8 @@
 import SavingsCalculatorClient from './client'
 import SiteLayout from '@/components/layout/SiteLayout'
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: 'Savings Calculator - RosterLab',
   description: 'Calculate your savings with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
   robots: {
@@ -27,7 +28,7 @@ export const metadata = {
     description: 'Calculate your savings with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
     images: ['/images/og images/ROICalc.png'],
   },
-}
+}, '/us/tools/savings-calculator');
 
 export default function ROICalculatorPage() {
   return (

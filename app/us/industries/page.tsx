@@ -3,8 +3,9 @@ import Button from '@/components/ui/Button'
 import Image from 'next/image'
 import SiteLayout from '@/components/layout/SiteLayout'
 import Link from 'next/link'
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: 'Staff Scheduling Software For Any Industry - RosterLab',
   description: 'Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
   alternates: {
@@ -29,7 +30,7 @@ export const metadata = {
     description: 'Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
     images: ['/images/og images/Industry.png'],
   },
-}
+}, '/us/industries');
 
 export default function IndustriesPage() {
   return (

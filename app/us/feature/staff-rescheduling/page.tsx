@@ -4,19 +4,20 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
-  title: "Re-Scheduling - RosterLab",
+export const metadata = withHreflang({
+  title: "Staff Rescheduling - RosterLab",
   description:
-    "Adjust schedules on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the schedule.",
+    "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: "Fast Re-Scheduling & Scenario Planning - RosterLab",
+    title: "Fast Rescheduling & Scenario Planning - RosterLab",
     description:
-      "Adjust schedules on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
+      "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
     images: [
       {
         url: "/images/og images/FeatureReRostering.png",
@@ -27,12 +28,12 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fast Re-Scheduling & Scenario Planning - RosterLab",
+    title: "Fast Rescheduling & Scenario Planning - RosterLab",
     description:
-      "Adjust schedules on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
+      "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
     images: ["/images/og images/FeatureReRostering.png"],
   },
-};
+}, '/us/feature/staff-rescheduling');
 
 export default function ReRosteringPage() {
   return (
@@ -44,7 +45,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Re-Schedule New Changes Easily
+                  Reschedule New Changes Easily
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automatically adjust schedules when staff call in sick or
@@ -58,17 +59,17 @@ export default function ReRosteringPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/us/solutions/free-staff-scheduling-tool"
+                    href="/us/product-tour"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Product Tour
                   </Button>
                 </div>
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2190085149-2048x2048.jpg"
-                  alt="Re-scheduling events management illustration"
+                  src="/images/us-images/stock/istockphoto-2157499482-2048x2048.jpg"
+                  alt="Rescheduling events management illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
@@ -108,14 +109,14 @@ export default function ReRosteringPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Re-schedule tasks only, or entire allocations, as needed
+                      Reschedule tasks only, or entire allocations, as needed
                     </span>
                   </li>
                 </ul>
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Programmer-pana-2.svg"
+                  src="/images/generating.webp"
                   alt="Intelligent Impact Analysis illustration"
                   width={600}
                   height={600}
@@ -132,7 +133,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/generating.webp"
+                  src="/images/us-images/stock/istockphoto-2104287465-2048x2048.jpg"
                   alt="Automated Solution Generation illustration"
                   width={550}
                   height={450}
@@ -144,7 +145,7 @@ export default function ReRosteringPage() {
                   Automated Solution Generation
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Automatically generate the most optimal re-scheduling solution
+                  Automatically generate the most optimal rescheduling solution
                   based on your new changes whilst still considering staff
                   availability, skills, preferences, and compliance
                   requirements.
@@ -170,6 +171,27 @@ export default function ReRosteringPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8 text-center">
+                  <Button
+                    href="/us/feature/auto-scheduling"
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 rounded-lg font-semibold inline-flex items-center"
+                  >
+                    Learn about Auto Scheduling
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -184,7 +206,7 @@ export default function ReRosteringPage() {
                   Compliance Preservation
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  All re-scheduling solutions maintain full compliance with
+                  All rescheduling solutions maintain full compliance with
                   regulations, union agreements, and rules. The platform can
                   help ensure minimum rest periods, maximum hours, and skill
                   requirements are never violated.
@@ -259,6 +281,27 @@ export default function ReRosteringPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8 text-center">
+                  <Button
+                    href="/us/solutions/staff-scheduling-mobile-app"
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 rounded-lg font-semibold inline-flex items-center"
+                  >
+                    Learn About Staff Scheduling Mobile App
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -273,16 +316,26 @@ export default function ReRosteringPage() {
                   Frequently Asked Questions
                 </h2>
                 <p className="text-xl text-gray-600">
-                  Learn more about how re-scheduling and scenario planning work
+                  Learn more about how rescheduling and scenario planning work
                 </p>
               </div>
               <FAQAccordion
                 items={[
                   {
-                    question:
-                      "How quickly can RosterLab generate re-scheduling solutions?",
+                    question: "What is staff rescheduling?",
                     answer:
-                      "RosterLab's AI can generate multiple re-scheduling solutions quickly. The system analyses all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimise disruption while maintaining full coverage.",
+                      "Staff rescheduling is the process of adjusting employee schedules after they've been published to accommodate unexpected changes like sick calls, emergencies, or changing business needs. It involves finding suitable replacements while maintaining proper coverage, compliance with labor laws, and fairness to all staff members. RosterLab automates this complex process, instantly generating optimal solutions that consider all constraints and requirements.",
+                  },
+                  {
+                    question: "How is rescheduling better with AI?",
+                    answer:
+                      "AI transforms rescheduling from hours of manual work into minutes of automated optimization. Instead of manually checking each staff member's availability, skills, and compliance status, AI instantly analyzes all possibilities and generates the best solutions. It ensures fair distribution of changes, maintains compliance with all rules, and minimizes disruption to both staff and operations.",
+                  },
+                  {
+                    question:
+                      "How quickly can RosterLab generate rescheduling solutions?",
+                    answer:
+                      "RosterLab's AI can generate multiple rescheduling solutions quickly. The system analyses all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimise disruption while maintaining full coverage.",
                   },
                   {
                     question:
@@ -294,7 +347,7 @@ export default function ReRosteringPage() {
                     question:
                       "Will staff be automatically notified of schedule changes?",
                     answer:
-                      "Yes, once you approve a re-scheduling solution, all affected staff receive instant notifications via the app.",
+                      "Yes, once you approve a rescheduling solution, all affected staff receive instant notifications via the app.",
                   },
                 ]}
               />
@@ -307,7 +360,7 @@ export default function ReRosteringPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                Re-Scheduling Performance
+                Rescheduling Performance
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -321,7 +374,7 @@ export default function ReRosteringPage() {
                 <div>
                   <p className="text-5xl font-bold mb-2">95%</p>
                   <p className="text-xl opacity-90">
-                    Reduction in manual re-scheduling
+                    Reduction in manual rescheduling
                   </p>
                 </div>
               </div>
@@ -334,11 +387,11 @@ export default function ReRosteringPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready for Intelligent Re-Scheduling?
+                Ready for Intelligent Rescheduling?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Handle unexpected changes seamlessly with AI-powered
-                re-scheduling that maintains coverage and compliance.
+                rescheduling that maintains coverage and compliance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button

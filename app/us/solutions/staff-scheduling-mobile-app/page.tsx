@@ -4,6 +4,7 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Link from "next/link";
+import { withHreflang } from '@/components/seo/HreflangTags';
 import {
   HiCalendar,
   HiBell,
@@ -18,7 +19,7 @@ import {
   HiAcademicCap,
 } from "react-icons/hi";
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Free Staff Scheduling Mobile App - RosterLab",
   description:
     "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
@@ -47,7 +48,7 @@ export const metadata = {
       "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     images: ["/images/og images/SolutionMobileApp.png"],
   },
-};
+}, '/us/solutions/staff-scheduling-mobile-app');
 
 const appFeatures = [
   {

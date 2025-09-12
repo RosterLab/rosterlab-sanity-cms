@@ -11,7 +11,7 @@ export const usNavItems = [
       { title: 'Shift Swaps & Trades', link: '/us/feature/shift-swaps-and-trades' },
       { title: 'Time Off Requests', link: '/us/feature/time-off-requests' },
       { title: 'Staff Preferences', link: '/us/feature/self-scheduling' },
-      { title: 'Re-Scheduling', link: '/us/feature/shift-rescheduling' },
+      { title: 'Re-Scheduling', link: '/us/feature/staff-rescheduling' },
     ]
   },
   {

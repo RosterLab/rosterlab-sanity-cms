@@ -8,16 +8,17 @@ import ShiftSwapsContent from './ShiftSwapsContent'
 import ShiftSwapModule from '@/components/sections/animations/ShiftSwapModule'
 import AuditTrailModule from './AuditTrailModule'
 import WeekendRotationModule from './WeekendRotationModule'
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
-  title: 'Shift Swaps - RosterLab',
-  description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
+export const metadata = withHreflang({
+  title: 'Shift Swaps & Shift Trades - RosterLab',
+  description: 'Automate routine shift trades, ensuring optimal staffing and compliance while reducing admin. When a shift trade impacts coverage, managers get full oversight.',
   alternates: {
     canonical: 'https://rosterlab.com/us/feature/shift-swaps-and-trades',
   },
   openGraph: {
-    title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
-    description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
+    title: 'Shift Swaps & Shift Trades - RosterLab',
+    description: 'Automate routine shift trades, ensuring optimal staffing and compliance while reducing admin. When a shift trade impacts coverage, managers get full oversight.',
     type: 'website',
     url: 'https://rosterlab.com/us/feature/shift-swaps-and-trades',
     images: [
@@ -30,16 +31,20 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shift Swaps: Automate Routine Shift Swaps, Review What Matters',
-    description: 'Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.',
+    title: 'Shift Swaps & Shift Trades - RosterLab',
+    description: 'Automate routine shift trades, ensuring optimal staffing and compliance while reducing admin. When a shift trade impacts coverage, managers get full oversight.',
     images: ['/images/og images/FeatureShiftSwaps.png'],
   },
-}
+}, '/us/feature/shift-swaps-and-trades')
 
 const faqItems = [
   {
+    question: "What is a shift swap?",
+    answer: "A shift swap (or shift trade) is when two employees exchange their scheduled shifts with each other. For example, if one employee is scheduled for Monday and another for Wednesday, they can swap so the first works Wednesday and the second works Monday. This helps staff manage personal commitments while maintaining full coverage for the organization."
+  },
+  {
     question: "How does automated shift swap approval work?",
-    answer: "RosterLab's AI analyses each swap request against your organisation's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both staff are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
+    answer: "RosterLab's AI analyses each swap request against your organization's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both staff are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
   },
   {
     question: "What rules can I set for automatic approvals?",
@@ -55,7 +60,7 @@ const faqItems = [
   },
   {
     question: "Can I track and quit all shift swaps?",
-    answer: "Yes! Every swap request, approval, and rejection is logged with complete details including who requested it, when it was processed, who approved it (system or manager). This audit trail is essential for labour compliance, dispute resolution, and identifying patterns to improve your policies."
+    answer: "Yes! Every swap request, approval, and rejection is logged with complete details including who requested it, when it was processed, who approved it (system or manager). This audit trail is essential for labor compliance, dispute resolution, and identifying patterns to improve your policies."
   }
 ]
 
@@ -69,7 +74,7 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Intelligent Shift Swaps
+                  Intelligent Shift Swaps & Trades
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automate routine swaps, review when it matters.
@@ -251,7 +256,7 @@ export default function ShiftSwapsPage() {
                   Comprehensive Audit Trail
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Track who swapped, when, and why. Complete documentation helps resolve disputes and demonstrate compliance with labour regulations.
+                  Track who swapped, when, and why. Complete documentation helps resolve disputes and demonstrate compliance with labor regulations.
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
@@ -302,7 +307,7 @@ export default function ShiftSwapsPage() {
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Compliance with labour regulations</p>
+                  <p className="text-xl opacity-90">Compliance with labor regulations</p>
                 </div>
               </div>
             </div>

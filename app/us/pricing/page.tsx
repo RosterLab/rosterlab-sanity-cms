@@ -4,8 +4,9 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Pricing - Affordable AI Staff Scheduling Software",
   description:
     "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
@@ -33,7 +34,7 @@ export const metadata = {
       "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
     images: ["/images/og images/Pricing.png"],
   },
-};
+}, '/us/pricing');
 
 const pricingPlans = [
   {

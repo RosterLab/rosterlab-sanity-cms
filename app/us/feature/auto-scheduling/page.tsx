@@ -5,8 +5,9 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Auto Scheduling Staff - RosterLab",
   description:
     "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
@@ -33,7 +34,7 @@ export const metadata = {
       "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
     images: ["/images/og images/AutoRosterGeneration.png"],
   },
-};
+}, '/us/feature/auto-scheduling');
 
 const faqItems = [
   {

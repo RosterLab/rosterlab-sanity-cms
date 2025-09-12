@@ -5,8 +5,9 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Self-Scheduling Powered By You - RosterLab",
   description:
     "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
@@ -34,7 +35,7 @@ export const metadata = {
       "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
     images: ["/images/og images/SelfScheduling.png"],
   },
-};
+}, '/us/feature/self-scheduling');
 
 const faqItems = [
   {

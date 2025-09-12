@@ -6,8 +6,9 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Senior Care Staff Scheduling Software - RosterLab",
   description:
     "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
@@ -32,7 +33,7 @@ export const metadata = {
       "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
     images: ["/images/og images/IndustryAgedCare.png"],
   },
-};
+}, '/us/industries/healthcare/senior-care-scheduling');
 
 const faqItems = [
   {

@@ -4,6 +4,7 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import USTrustedBy from "@/app/us/components/TrustedBy";
+import { withHreflang } from '@/components/seo/HreflangTags';
 import {
   HiCheck,
   HiClock,
@@ -14,7 +15,7 @@ import {
   HiAcademicCap,
 } from "react-icons/hi";
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Free Staff Scheduling Tool - RosterLab",
   description:
     "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
@@ -43,7 +44,7 @@ export const metadata = {
       "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
     images: ["/images/og images/SolutionFree.png"],
   },
-};
+}, '/us/solutions/free-staff-scheduling-tool');
 
 const faqItems = [
   {

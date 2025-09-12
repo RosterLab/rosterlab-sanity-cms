@@ -10,8 +10,10 @@ import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
+import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Healthcare Scheduling Software - RosterLab",
   description:
     "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
@@ -40,7 +42,7 @@ export const metadata = {
       "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
     images: ["/images/og-images/IndustryHealthcare.png"],
   },
-};
+}, '/us/industries/healthcare-scheduling');
 
 // Query for the 3 most recent case studies
 const recentCaseStudiesQuery = groq`
@@ -341,7 +343,7 @@ export default async function HealthcarePage() {
             </Link>
 
             <Link
-              href="/us/feature/shift-rescheduling"
+              href="/us/feature/staff-rescheduling"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
@@ -360,7 +362,7 @@ export default async function HealthcarePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Re-scheduling
+                Rescheduling
               </h3>
               <p className="text-gray-600 mb-3">
                 Handle last-minute changes with minimal disruption during sick
@@ -756,11 +758,11 @@ export default async function HealthcarePage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col h-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">
                     Radiology Departments
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 mb-3 flex-grow">
                     Subspecialty coverage with equipment coordination and
                     reading room optimisation.
                   </p>
@@ -795,11 +797,11 @@ export default async function HealthcarePage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col h-full">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
                     Senior Care
                   </h3>
-                  <p className="text-gray-600 mb-3">
+                  <p className="text-gray-600 mb-3 flex-grow">
                     Resident-focused scheduling with care level matching and
                     compliance assurance.
                   </p>
@@ -1071,89 +1073,37 @@ export default async function HealthcarePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+      <USTestimonials />
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              Loved by our users
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              Frequently Asked Questions
             </h2>
-            <p className="text-xl text-neutral-600">
-              The only solution that generates & solves your schedule in minutes
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Common questions about healthcare scheduling
             </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Image placeholder */}
-              <div className="order-2 lg:order-1 flex items-start justify-center">
-                <Image
-                  src="/images/us-images/us-nurse.jpg"
-                  alt="Healthcare professional"
-                  width={400}
-                  height={500}
-                  className="w-full max-w-sm rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                  style={{ height: 'auto', maxHeight: '480px' }}
-                />
-              </div>
-              
-              {/* Speech Bubble */}
-              <div className="relative order-1 lg:order-2">
-                {/* Speech Bubble Background */}
-                <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2">
-                    <div className="w-8 h-8 bg-white transform rotate-45"></div>
-                  </div>
-                  
-                  <div className="text-center">
-                    <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed">
-                      &ldquo;Scheduling would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.&rdquo;
-                    </blockquote>
-                    
-                    <div className="flex flex-col items-center space-y-4">
-                      <div className="w-20 h-12 relative">
-                        <Image
-                          src="/images/logos/whanganui.png"
-                          alt="Whanganui Hospital"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-neutral-900">
-                          Mike
-                        </p>
-                        <p className="text-neutral-600">
-                          Associate Clinical Manager, Radiology
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Case Studies CTA */}
-            <div className="text-center mt-16">
-              <Button
-                href="/us/case-studies"
-                className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
-              >
-                View case studies
-                <svg
-                  className="w-5 h-5 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Button>
-            </div>
+            <FAQAccordion
+              items={[
+                {
+                  question: "What is a healthcare schedule?",
+                  answer:
+                    "A healthcare schedule is a comprehensive staffing plan that organizes healthcare professionals across shifts, departments, and locations. It ensures adequate coverage for patient care while balancing staff workload, compliance requirements, skill mix needs, and employee preferences. Healthcare schedules must account for 24/7 operations, varying skill requirements, and complex labor regulations.",
+                },
+                {
+                  question: "Can you help build my healthcare schedule?",
+                  answer:
+                    "Yes! RosterLab specializes in creating optimized healthcare schedules. Our AI-powered platform can handle complex requirements including skill mix, compliance rules, staff preferences, and coverage needs. <a href='/us/book-a-demo' class='text-blue-600 hover:text-blue-700 underline'>Book a demo</a> to see how we can build schedules for your specific healthcare facility.",
+                },
+                {
+                  question: "How much does it cost?",
+                  answer:
+                    "Our healthcare scheduling platform starts at $20 per user per month. Pricing varies based on the number of staff, departments, and specific features needed. We offer volume discounts for larger healthcare organizations. <a href='/us/pricing' class='text-blue-600 hover:text-blue-700 underline'>View our pricing page</a> or <a href='/us/contact' class='text-blue-600 hover:text-blue-700 underline'>contact us</a> for a customized quote.",
+                },
+              ]}
+            />
           </div>
         </Container>
       </section>

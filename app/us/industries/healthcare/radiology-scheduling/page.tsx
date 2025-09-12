@@ -5,8 +5,9 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Radiology Staff Scheduling Platform - RosterLab",
   description:
     "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
@@ -31,7 +32,7 @@ export const metadata = {
       "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
     images: ["/images/og images/IndustryRadiology.png"],
   },
-};
+}, '/us/industries/healthcare/radiology-scheduling');
 
 const faqItems = [
   {

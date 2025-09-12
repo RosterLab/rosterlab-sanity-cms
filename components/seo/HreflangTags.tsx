@@ -22,7 +22,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   '/feature/shift-swaps': '/us/feature/shift-swaps-and-trades',
   '/feature/leave-requests': '/us/feature/time-off-requests',
   '/feature/self-scheduling': '/us/feature/self-scheduling',
-  '/feature/re-rostering': '/us/feature/shift-rescheduling',
+  '/feature/re-rostering': '/us/feature/staff-rescheduling',
   
   // Industries - with terminology changes
   '/industries': '/us/industries',

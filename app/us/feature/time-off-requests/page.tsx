@@ -4,8 +4,9 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Employee Time-Off Requests - RosterLab",
   description:
     "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
@@ -32,7 +33,7 @@ export const metadata = {
       "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
     images: ["/images/og images/FeatureLeaveRequest.png"],
   },
-};
+}, '/us/feature/time-off-requests');
 
 export default function LeaveRequestsPage() {
   return (

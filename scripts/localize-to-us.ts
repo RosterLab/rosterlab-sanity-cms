@@ -184,7 +184,7 @@ const URL_MAPPINGS: Record<string, string> = {
   '/feature/shift-swaps': '/us/feature/shift-swaps-and-trades',
   '/feature/leave-requests': '/us/feature/time-off-requests',
   '/feature/self-scheduling': '/us/feature/self-scheduling',
-  '/feature/re-rostering': '/us/feature/shift-rescheduling',
+  '/feature/re-rostering': '/us/feature/staff-rescheduling',
   
   // Industries - with terminology changes
   '/industries': '/us/industries',
@@ -392,7 +392,7 @@ async function main(config: LocalizationConfig = { overwriteExisting: false, cre
     { source: 'feature/leave-requests/page.tsx', target: 'feature/time-off-requests/page.tsx' },
     { source: 'feature/leave-requests/LeaveRequestDemo.tsx', target: 'feature/time-off-requests/LeaveRequestDemo.tsx' },
     { source: 'feature/self-scheduling/page.tsx', target: 'feature/self-scheduling/page.tsx' },
-    { source: 'feature/re-rostering/page.tsx', target: 'feature/shift-rescheduling/page.tsx' },
+    { source: 'feature/re-rostering/page.tsx', target: 'feature/staff-rescheduling/page.tsx' },
     
     // Industries pages
     { source: 'industries/page.tsx', target: 'industries/page.tsx' },

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Container from '@/components/ui/Container'
+import Button from '@/components/ui/Button'
 
 const testimonials = [
   {
@@ -45,7 +46,7 @@ export default function USTestimonials() {
       <Container>
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-            Loved by our users
+            Loved by healthcare teams
           </h2>
           <p className="text-xl text-neutral-600">
             The only solution that generates & solves your schedule in minutes
@@ -124,6 +125,29 @@ export default function USTestimonials() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Case Studies CTA */}
+          <div className="text-center mt-16">
+            <Button
+              href="/us/book-a-demo"
+              className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
+            >
+              Book a Demo
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Button>
           </div>
         </div>
       </Container>

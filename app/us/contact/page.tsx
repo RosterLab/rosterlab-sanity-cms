@@ -4,8 +4,9 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "Contact Us - RosterLab",
   description:
     "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
@@ -33,7 +34,7 @@ export const metadata = {
       "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
     images: ["/images/og images/Contact.png"],
   },
-};
+}, '/us/contact');
 
 const faqItems = [
   {

@@ -6,8 +6,9 @@ import IndustrySolutions from '@/app/us/components/IndustrySolutions'
 import Testimonials from '@/app/us/components/Testimonials'
 import FAQ from '@/app/us/components/FAQ'
 import FinalCTA from '@/app/us/components/FinalCTA'
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: 'RosterLab - AI Staff Scheduling Software for Complex Teams',
   description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare & other complex teams - cut admin by 90% and boost coverage.',
   alternates: {
@@ -33,7 +34,7 @@ export const metadata = {
     description: 'AI staff scheduling software that automatically builds fair, compliant schedules for healthcare & other complex teams - cut admin by 90% and boost coverage.',
     images: ['/images/og images/Home.png'],
   },
-}
+}, '/us')
 
 export default function Home() {
   return (

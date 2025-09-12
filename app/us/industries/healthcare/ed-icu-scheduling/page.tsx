@@ -5,15 +5,16 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from '@/components/seo/HreflangTags';
 
-export const metadata = {
+export const metadata = withHreflang({
   title: "ED & ICU Staff Scheduling Software - RosterLab",
   description:
-    "Learn how our scheduling software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+    "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
   openGraph: {
     title: "ED & ICU Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
     type: "website",
     url: 'https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling',
     images: [
@@ -28,10 +29,10 @@ export const metadata = {
     card: "summary_large_image",
     title: "ED & ICU Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
     images: ["/images/og images/IndustryICUED.png"],
   },
-};
+}, '/us/industries/healthcare/ed-icu-scheduling');
 
 const faqItems = [
   {
@@ -43,7 +44,7 @@ const faqItems = [
   {
     question: "How does the platform automate my ICU schedule?",
     answer:
-      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Set up to have a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised schedules for your staff.",
+      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Input your scheduling information so the AI develops a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised schedules for your staff.",
   },
   {
     question: "Where is my schedule stored?",
@@ -53,7 +54,7 @@ const faqItems = [
   {
     question: "How do I share my schedule?",
     answer:
-      "Staff leave requests and preferences are collated via the RosterLab iOS/Android app, ready for the AI to interpret. When you publish your schedule, it is automatically pushed to everyone who needs to see it. You could also share a controlled version with different departments or various groups of people in the best format for them:\n\n• Shift-based schedules for switchboard and managers.\n• Individually personalised schedules for each person are integrated into their personal calendars.",
+      "Staff leave requests and preferences are collated via the RosterLab iOS/Android app, ready for the AI to interpret. When you publish your schedule, it is automatically pushed to everyone who needs to see it.",
   },
 ];
 
@@ -123,7 +124,7 @@ export default function ICUEDPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Make safer and better schedules for your team
+                  Make safer and fairer schedules for your team
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -139,7 +140,7 @@ export default function ICUEDPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Move away from spreadsheets and into the cloud
+                  Increase continuity of care
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -175,7 +176,7 @@ export default function ICUEDPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Critical Care Scheduling Solved
+              ED & ICU Scheduling Solved
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               Emergency departments and ICUs require precise skill mix, 24/7
@@ -383,7 +384,7 @@ export default function ICUEDPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Critical Care
+              Modern ICU & ED Staff Scheduling Software
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -411,10 +412,13 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Smart Shift Trades
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval
                   workflows.
                 </p>
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
+                  Learn more →
+                </span>
               </div>
             </Link>
 
@@ -442,6 +446,9 @@ export default function ICUEDPage() {
                   Staff can view schedules, open shifts, and swap shifts from any
                   device.
                 </p>
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
+                  Learn more →
+                </span>
               </div>
             </Link>
 
@@ -469,6 +476,9 @@ export default function ICUEDPage() {
                   Build fatigue management rules to prevent staff burnout with
                   ease.
                 </p>
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
+                  Learn more →
+                </span>
               </div>
             </Link>
 
@@ -492,10 +502,13 @@ export default function ICUEDPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fair shift allocation
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Equitably distribute night shifts, weekends, and on-call
                   duties automatically.
                 </p>
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
+                  Learn more →
+                </span>
               </div>
             </div>
           </div>
@@ -522,7 +535,7 @@ export default function ICUEDPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Critical Care Scheduling?
+              Ready to Transform Your ED Staff Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join leading hospitals using RosterLab to ensure optimal ICU and

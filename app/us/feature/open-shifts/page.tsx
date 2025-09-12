@@ -4,8 +4,9 @@ import SiteLayout from '@/components/layout/SiteLayout'
 import Image from 'next/image'
 import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata = {
+export const metadata = withHreflang({
   title: 'Open Shifts for Staff - RosterLab',
   description: 'Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
   alternates: {
@@ -30,7 +31,7 @@ export const metadata = {
     description: 'Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
     images: ['/images/og images/FeatureOpenShifts.png'],
   },
-}
+}, '/us/feature/open-shifts')
 
 const faqItems = [
   {
@@ -86,10 +87,10 @@ export default function OpenShiftsPage() {
                     Book A Demo
                   </Button>
                   <Button 
-                    href="/us/solutions/free-staff-scheduling-tool" 
+                    href="/us/product-tour" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Product Tour
                   </Button>
                 </div>
               </div>

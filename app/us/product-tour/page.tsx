@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import ProductTourClient from "./client";
 import PageWrapper from "./PageWrapper";
+import { withHreflang } from '@/components/seo/HreflangTags'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withHreflang({
   title: "Product Tour - RosterLab",
   description:
     "Explore RosterLab's product tour and see how AI instantly builds fair, compliant staff schedules. Create schedules for complex teams in minutes, not days.",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
       "Explore RosterLab's product tour and see how AI instantly builds fair, compliant staff schedules. Create schedules for complex teams in minutes, not days.",
     images: ["/images/og-images/InteractiveDemo.png"],
   },
-};
+}, '/us/product-tour');
 
 export default function ProductTour() {
   return (
