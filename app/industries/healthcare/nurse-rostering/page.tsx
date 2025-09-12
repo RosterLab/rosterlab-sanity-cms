@@ -40,6 +40,16 @@ const faqItems = [
       "A nurse roster is a work schedule that organises nursing staff into shifts. It shows who is working, when, and where, ensuring fair workload distribution and adequate staffing for safe, effective healthcare delivery.",
   },
   {
+    question: "How do I make a nurse roster?",
+    answer:
+      "Start by defining your coverage requirements per shift and ward. List all available nurses with their skills, preferences, and contractual hours. Consider compliance rules like minimum rest periods and maximum consecutive shifts. Then allocate staff ensuring skill mix requirements are met while balancing workload fairly. RosterLab's AI can automate this entire process, creating optimal rosters in minutes rather than days.",
+  },
+  {
+    question: "What is the standard shift pattern for nurses?",
+    answer:
+      "Common nursing shift patterns include 12-hour shifts (7am-7pm day, 7pm-7am night), 8-hour shifts (7am-3pm morning, 3pm-11pm afternoon, 11pm-7am night), or 10-hour shifts. Many hospitals use a rotation of 2-3 days on followed by 2-4 days off. The specific pattern varies by hospital, unit type, and local regulations regarding maximum hours and minimum rest periods.",
+  },
+  {
     question: "Can you help me build a nursing roster?",
     answer:
       "Yes, if you'd like to discuss your nursing roster with us please <a href='/book-a-demo' class='text-teal-600 hover:text-teal-700 underline'>book a demo</a> or <a href='/contact' class='text-teal-600 hover:text-teal-700 underline'>get in touch</a>.",
@@ -65,14 +75,14 @@ export default function NurseRosteringPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build modern{" "}
+                Build Modern{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  nursing rosters
+                  Nursing Rosters
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Reduce rostering time by 90%. Optimise nurse coverage and ward
-                planning with intelligent rostering.
+                Reduce nurse rostering time by 90%. Optimise nurse coverage and
+                ward planning with AI rostering.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -105,7 +115,7 @@ export default function NurseRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Seamlessly integrate your long and short term rosters
+                  Input staff preferences through our mobile app
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -121,7 +131,7 @@ export default function NurseRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing from the get go
+                  Re-roster last minute changes automatically
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -137,7 +147,7 @@ export default function NurseRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Move away from spreadsheets and into the cloud
+                  Fairer shift allocation
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -148,10 +158,10 @@ export default function NurseRosteringPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="https://app.rosterlab.com/signup"
+                  href="/solutions/ai-staff-scheduling"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Get Started
+                  Learn About AI Rostering
                 </Button>
               </div>
             </div>
@@ -181,8 +191,9 @@ export default function NurseRosteringPage() {
               Built for specific nurse rostering challenges.
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Balance ward coverage, skill mix requirements, and shift patterns
-              while maintaining optimal patient care and staff wellbeing.
+              Balance ward coverage, skill mix requirements, and fatigue
+              management while maintaining optimal patient care and staff
+              wellbeing.
             </p>
           </div>
 
@@ -204,12 +215,11 @@ export default function NurseRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Unified Multi-Ward Rostering
+                Handle Last Minute Changes
               </h3>
               <p className="text-gray-600">
-                Break down silos between ward teams. Create hospital-wide
-                rosters that balance staffing across ICU, Emergency, Medical,
-                and Surgical units.
+                Quickly adjust rosters when staff call in sick. AI re-optimizes
+                schedules in seconds.
               </p>
             </div>
 
@@ -297,8 +307,8 @@ export default function NurseRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Maintain a digital record of what skills each team member
-                      has. Let the AI allocates the right person to the right
-                      session.
+                      has. Let the AI allocate the right person to the right
+                      shift.
                     </p>
                   </div>
                 </div>
@@ -321,12 +331,12 @@ export default function NurseRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamless Integrate Long-Term Plans
+                      Fair Distribution of Challenging Shifts
                     </h3>
                     <p className="text-gray-600">
-                      AI optimises weekly rosters around your pre-established
-                      commitments. Preload established fixed dates rotations,
-                      exam dates, and training schedules to avoid mistakes.
+                      Automatically distribute nights, weekends, and holidays
+                      equitably. Prevent excessive consecutive shifts and ensure
+                      balanced workloads.
                     </p>
                   </div>
                 </div>
@@ -349,12 +359,12 @@ export default function NurseRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalised Session Requirements
+                      Improve Operational Efficiency
                     </h3>
                     <p className="text-gray-600">
-                      Ensure each nurse gets their required professional
-                      development hours, specialty rotations, or training
-                      shifts. Fairly distribute night shifts and weekend duties.
+                      Better utilise ordinary hours to reduce unnecessary
+                      overtime and locums, and ensure higher skill coverage.
+                      Optimise your current staffing with better efficiency.
                     </p>
                   </div>
                 </div>
@@ -377,12 +387,41 @@ export default function NurseRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Smart Cloud-Based Distribution
+                      Focus on Patient Care
                     </h3>
                     <p className="text-gray-600">
-                      Publish rosters instantly to all stakeholders. Managers
-                      see session views while staff receive personalised
-                      calendars on their mobile devices.
+                      Create fair rosters that respect preferences and work-life
+                      balance. Transparent rostering boosts staff retention and
+                      engagement, leading to better patient care.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Access Your Nurse Roster Via Mobile App
+                    </h3>
+                    <p className="text-gray-600">
+                      Publish rosters instantly to all stakeholders. Staff
+                      receive personalised calendars on their mobile devices
+                      where they can submit preferences, swap shifts and accept
+                      open shifts.
                     </p>
                   </div>
                 </div>
