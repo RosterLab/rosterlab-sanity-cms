@@ -77,7 +77,7 @@ export default function NurseRosteringPage() {
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Build Modern{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Nursing Rosters
+                  Nurse Rosters
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
