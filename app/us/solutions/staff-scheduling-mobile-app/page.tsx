@@ -100,7 +100,7 @@ const faqItems = [
   {
     question: "How does the shift swapping feature work?",
     answer:
-      "The <a href='/feature/shift-swaps' class='text-blue-600 hover:underline'>shift swap feature</a> allows staff to directly send a request to colleagues after communicated with them. Auto-swaps are permitted if the request doesn’t impact operational rules or coverage, with more complex cases triaged to managers for approval.",
+      "The <a href='/us/feature/shift-swaps-and-trades' class='text-blue-600 hover:underline'>shift swap feature</a> allows staff to directly send a request to colleagues after communicated with them. Auto-swaps are permitted if the request doesn’t impact operational rules or coverage, with more complex cases triaged to managers for approval.",
   },
   {
     question: "What devices are supported by the mobile app?",

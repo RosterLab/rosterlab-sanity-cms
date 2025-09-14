@@ -55,7 +55,7 @@ const faqItems = [
   {
     question: "Is the AI generator included in the free product?",
     answer:
-      "The <a href='/solutions/ai-staff-scheduling' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform. The free version provides a manual scheduling platform with simple rule checking, dynamic statistics, and mobile app access - everything you need to move from spreadsheets to digital scheduling.",
+      "The <a href='/us/solutions/ai-staff-schedule-maker' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform. The free version provides a manual scheduling platform with simple rule checking, dynamic statistics, and mobile app access - everything you need to move from spreadsheets to digital scheduling.",
   },
   {
     question: "Should I upgrade to AI scheduling?",
