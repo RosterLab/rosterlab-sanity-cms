@@ -83,6 +83,11 @@ const appFeatures = [
 
 const faqItems = [
   {
+    question: "What is a staff scheduling mobile app?",
+    answer:
+      "A staff scheduling mobile app is a smartphone application that allows employees to access their work schedules anytime, anywhere. RosterLab's free mobile app lets staff view their upcoming shifts, submit time-off requests and preferences, receive instant notifications about schedule changes, and sync their work schedule with their personal calendar. It eliminates the need for paper schedules, emails, or phone calls, keeping your entire team connected and informed.",
+  },
+  {
     question: "How do staff members download and access the mobile app?",
     answer:
       "Staff needs to be invited by admins to the schedule. Once invited, they can then download the RosterLab mobile app from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>Apple App Store</a> or <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>Google Play Store</a>. After receiving an invitation, staff will get login credentials from their administrator to set up their account and access their personal schedule.",
@@ -248,61 +253,8 @@ export default function StaffMobileAppPage() {
           </div>
         </section>
 
-        {/* Key Features Section */}
-        <div className="bg-gray-50 py-20">
-          <Container>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Everything your staff needs, anywhere they are
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Empower your team with instant access to schedules, easy shift
-                management, and seamless communication through our mobile app.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {appFeatures.map((feature, index) => (
-                <div key={index} className="block">
-                  <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 border border-gray-100 hover:border-blue-200">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <feature.icon className="w-6 h-6 text-blue-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
-                          {feature.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4">{feature.description}</p>
-                        <Link
-                          href={feature.href}
-                          className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
-                        >
-                          Learn more
-                          <svg
-                            className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </div>
-
         {/* Intelligent Scheduling Section */}
-        <div className="bg-white py-20">
+        <div className="bg-gray-50 py-20">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
@@ -371,6 +323,56 @@ export default function StaffMobileAppPage() {
                   className="w-full h-auto"
                 />
               </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Key Features Section */}
+        <div className="bg-white py-20">
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Everything your staff needs, anywhere they are
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Empower your team with instant access to schedules, easy shift
+                management, and seamless communication through our mobile app.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {appFeatures.map((feature, index) => (
+                <Link key={index} href={feature.href} className="block">
+                  <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 border border-gray-100 hover:border-blue-200">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <feature.icon className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                          {feature.title}
+                        </h3>
+                        <p className="text-gray-600 mb-4">{feature.description}</p>
+                        <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group">
+                          Learn more
+                          <svg
+                            className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </Container>
         </div>

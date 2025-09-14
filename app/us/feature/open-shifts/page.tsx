@@ -96,7 +96,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2139198981-2048x2048.jpg"
+                  src="/images/us-images/stock/istockphoto-1478505201-1024x1024.jpg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
@@ -134,10 +134,10 @@ export default function OpenShiftsPage() {
                 </ul>
                 <div className="mt-8">
                   <Button 
-                    href="/us/solutions/staff-schedule-mobile-app" 
+                    href="/us/solutions/staff-scheduling-mobile-app" 
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
                   >
-                    Learn more about our mobile app
+                    Explore the Staff Mobile App
                   </Button>
                 </div>
               </div>
@@ -145,9 +145,9 @@ export default function OpenShiftsPage() {
                 <Image
                   src="/images/illustration/free-staff-mobile.svg"
                   alt="Instant Shift Broadcasting"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -160,11 +160,11 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2207338135-2048x2048.jpg"
+                  src="/images/us-images/stock/istockphoto-2147591263-1024x1024.jpg"
                   alt="Smart Staff Matching"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -222,6 +222,14 @@ export default function OpenShiftsPage() {
                     <span className="text-gray-700">Improves service during busy periods</span>
                   </li>
                 </ul>
+                <div className="mt-8">
+                  <Button 
+                    href="/us/book-a-demo" 
+                    className="bg-teal-600 text-white hover:bg-teal-700 px-6 py-3 font-semibold"
+                  >
+                    Book a Demo
+                  </Button>
+                </div>
               </div>
               <div>
                 <Image
@@ -229,7 +237,7 @@ export default function OpenShiftsPage() {
                   alt="Prioritise urgent shifts"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -242,11 +250,11 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/Choose-pana.svg"
+                  src="/images/us-images/stock/istockphoto-1903423742-2048x2048.jpg"
                   alt="First-Come First-Served Assignment"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -257,6 +265,10 @@ export default function OpenShiftsPage() {
                   Staff see available shifts in real-time and can claim them instantly on a first-come-first-served basis.
                 </p>
                 <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">First-come-first-served basis</span>
+                  </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">Real-time availability updates</span>

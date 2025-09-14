@@ -84,17 +84,17 @@ export default function SelfSchedulingPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/us/solutions/free-staff-scheduling-tool"
+                    href="/us/product-tour"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Product Tour"
                     analyticsLocation="Feature Page Self Scheduling"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "demo",
                       page_name: "Self Scheduling",
                       section: "hero"
                     }}
                   >
-                    Try it for free
+                    View Product Tour
                   </Button>
                 </div>
               </div>

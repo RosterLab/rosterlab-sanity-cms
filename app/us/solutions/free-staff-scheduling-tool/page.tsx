@@ -48,11 +48,6 @@ export const metadata = withHreflang({
 
 const faqItems = [
   {
-    question: "What is a staff scheduling mobile app?",
-    answer:
-      "A staff scheduling mobile app is a smartphone application that allows employees to access their work schedules anytime, anywhere. RosterLab's free mobile app lets staff view their upcoming shifts, submit time-off requests and preferences, receive instant notifications about schedule changes, and sync their work schedule with their personal calendar. It eliminates the need for paper schedules, emails, or phone calls, keeping your entire team connected and informed.",
-  },
-  {
     question: "What is a free staff scheduling tool?",
     answer:
       "A free staff scheduling tool is a cloud-based platform that helps managers create and manage employee work schedules without cost. RosterLab's free tool includes features like digital schedule building, basic rule checking to prevent errors, real-time statistics tracking, and a free mobile app for staff. It's designed to help teams transition from spreadsheets to professional digital scheduling while maintaining simplicity and ease of use.",
@@ -66,11 +61,6 @@ const faqItems = [
     question: "Should I upgrade to AI scheduling?",
     answer:
       "Yes, absolutely! While our free product provides a convenient platform to manage your schedules digitally, if you have complex scheduling needs, automatic scheduling can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
-  },
-  {
-    question: "How do I install the staff mobile app?",
-    answer:
-      "The RosterLab staff mobile app is available for free on both iOS and Android devices. Invite your staff to the schedule and then they can download it directly from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>App Store</a> for iPhone/iPad or from the <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' style='color: #2563eb; text-decoration: underline;'>Google Play Store</a> for Android devices. Once installed, staff can log in with their credentials to access schedules, submit preferences, and receive notifications.",
   },
   {
     question: "How do I keep my teams notified and engaged?",

@@ -52,12 +52,12 @@ const faqItems = [
   {
     question: "What is an AI staff schedule maker?",
     answer:
-      "An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff schedule information which the including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information analyses the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href=\"/us/book-a-demo\" className=\"text-blue-600 hover:text-blue-700 underline\">Book a demo</a> to learn more.",
+      "An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff information including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information analyses the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href=\"/us/book-a-demo\" class=\"text-blue-600 hover:text-blue-700 underline\">Book a demo</a> to learn more.",
   },
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      "Our AI algorithms take union rules, staff preferences, skill requirements, and compliance rules into account to generate optimal schedules. <a href=\"https://rosterlab.com/blog/should-your-next-staff-schedule-be-built-with-ai\" className=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
+      "AI has revolutionized staff scheduling by analyzing scheduling requirements and optimizing schedules in ways that would take humans hours or days to accomplish. RosterLab's AI considers multiple factors simultaneously - staff availability, skills, preferences, compliance requirements, and coverage needs - to generate optimal schedules in minutes. <a href=\"https://rosterlab.com/blog/should-your-next-staff-schedule-be-built-with-ai\" class=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
@@ -78,7 +78,7 @@ const faqItems = [
   {
     question: "How much time and cost savings can we expect?",
     answer:
-      "Most organisations see a 70–90% reduction in time spent on scheduling, along with up to a 10% improvement in scheduling efficiency, such as reduced overtime costs and improved staff retention through better optimisation. Actual savings depend on your current processes and organisation size. Check out our <a href=\"/us/tools/savings-calculator\" className=\"text-blue-600 hover:text-blue-700 underline\">savings calculator</a> to see how much your team could benefit.",
+      "Most organisations see a 70–90% reduction in time spent on scheduling, along with up to a 10% improvement in scheduling efficiency, such as reduced overtime costs and improved staff retention through better optimisation. Actual savings depend on your current processes and organisation size. Check out our <a href=\"/us/tools/savings-calculator\" class=\"text-blue-600 hover:text-blue-700 underline\">savings calculator</a> to see how much your team could benefit.",
   },
   {
     question:

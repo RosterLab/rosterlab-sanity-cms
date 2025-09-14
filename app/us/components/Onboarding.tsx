@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import Link from "next/link";
 
 const onboardingSteps = [
   {
@@ -184,9 +185,10 @@ export default function USOnboarding() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {onboardingSteps.slice(0, 6).map((step, index) => (
-              <div
+              <Link
                 key={index}
-                className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1"
+                href={step.link}
+                className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1"
               >
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {step.icon}
@@ -195,35 +197,33 @@ export default function USOnboarding() {
                   {step.title}
                 </h3>
                 <p className="text-neutral-600">{step.description}</p>
-                {step.link && step.link !== "#" && (
-                  <a
-                    href={step.link}
-                    className="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700 font-medium group"
+                <span className="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700 font-medium group">
+                  Learn more
+                  <svg
+                    className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    Learn more
-                    <svg
-                      className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
-                )}
-              </div>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </Link>
             ))}
           </div>
 
           {/* Full-width 7th box */}
           {onboardingSteps[6] && (
             <div className="mt-8">
-              <div className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1">
+              <Link
+                href={onboardingSteps[6].link}
+                className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1"
+              >
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {onboardingSteps[6].icon}
                 </div>
@@ -233,7 +233,23 @@ export default function USOnboarding() {
                 <p className="text-neutral-600 max-w-4xl mx-auto">
                   {onboardingSteps[6].description}
                 </p>
-              </div>
+                <span className="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700 font-medium group">
+                  Learn more
+                  <svg
+                    className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </Link>
             </div>
           )}
         </div>

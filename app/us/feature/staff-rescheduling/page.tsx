@@ -335,7 +335,7 @@ export default function ReRosteringPage() {
                     question:
                       "How quickly can RosterLab generate rescheduling solutions?",
                     answer:
-                      "RosterLab's AI can generate multiple rescheduling solutions quickly. The system analyses all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimise disruption while maintaining full coverage.",
+                      "RosterLab's AI can generate multiple rescheduling solutions quickly. The system analyzes all available staff, their skills, availability, and compliance requirements to provide you with ranked options that minimize disruption while maintaining full coverage.",
                   },
                   {
                     question:

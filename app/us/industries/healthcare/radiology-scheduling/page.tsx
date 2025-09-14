@@ -381,10 +381,10 @@ export default function RadiologyPage() {
               </div>
               <div className="mt-8 text-center">
                 <Button
-                  href="/us/blog/whanganui-radiography-department-embraces-ai-scheduling"
+                  href="/us/solutions/ai-staff-schedule-maker"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
-                  Read case study
+                  Learn about AI scheduling
                 </Button>
               </div>
             </div>
@@ -556,7 +556,7 @@ export default function RadiologyPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="block">
+            <Link href="/us/feature/auto-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -584,9 +584,9 @@ export default function RadiologyPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
 
-            <Link href="/us/feature/shift-swaps-and-trades" className="block">
+            <Link href="/us/solutions/ai-staff-schedule-maker" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -616,7 +616,7 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <div className="block">
+            <Link href="/us/feature/self-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -644,9 +644,9 @@ export default function RadiologyPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
 
-            <div className="block">
+            <Link href="/us/solutions/staff-scheduling-mobile-app" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -674,7 +674,7 @@ export default function RadiologyPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>

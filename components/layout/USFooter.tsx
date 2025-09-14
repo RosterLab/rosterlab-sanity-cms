@@ -24,7 +24,7 @@ export default function USFooter() {
                 />
               </Link>
               <p className="text-sm text-gray-600 mb-6">
-                Simplifying workforce planning with intelligent scheduling solutions.
+                AI Staff Scheduling Software for modern teams.
               </p>
             </div>
             
@@ -97,7 +97,7 @@ export default function USFooter() {
               </li>
               <li>
                 <Link href="/us/solutions/free-staff-scheduling-tool" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Free digital scheduling tool
+                  Free Staff Scheduling Tool
                 </Link>
               </li>
               <li>

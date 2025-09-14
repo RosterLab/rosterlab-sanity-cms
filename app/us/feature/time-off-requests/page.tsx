@@ -283,6 +283,11 @@ export default function LeaveRequestsPage() {
               <FAQAccordion
                 items={[
                   {
+                    question: "What is a time off request?",
+                    answer:
+                      "A time off request is a formal application from an employee asking for approved absence from work. This can include vacation days, sick leave, personal time, parental leave, or other types of authorized absences. With RosterLab, staff submit these requests digitally through the mobile app, where they're automatically integrated into the scheduling system for seamless management and approval.",
+                  },
+                  {
                     question:
                       "Can staff check their time-off balances on mobile?",
                     answer:

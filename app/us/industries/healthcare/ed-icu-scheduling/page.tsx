@@ -151,10 +151,10 @@ export default function ICUEDPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="https://app.rosterlab.com/signup"
+                  href="/us/product-tour"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Get Started
+                  View Product Tour
                 </Button>
               </div>
             </div>
@@ -422,7 +422,7 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/staff-schedule-mobile-app" className="block">
+            <Link href="/us/solutions/staff-scheduling-mobile-app" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -482,7 +482,7 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <div className="block">
+            <Link href="/us/solutions/ai-staff-schedule-maker" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -510,7 +510,7 @@ export default function ICUEDPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>

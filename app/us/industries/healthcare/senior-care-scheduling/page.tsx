@@ -575,7 +575,7 @@ export default function AgedCarePage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Modern Senior Care
+              Modern Senior Care Staff Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -583,7 +583,7 @@ export default function AgedCarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="block">
+            <Link href="/us/feature/self-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -603,12 +603,15 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Preferences & Rules
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Configure staff preferences and organisational rules for
                   optimal scheduling.
                 </p>
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
+                  Learn more →
+                </span>
               </div>
-            </div>
+            </Link>
 
             <Link href="/us/feature/shift-swaps-and-trades" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
@@ -630,14 +633,17 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Smart Shift Trades
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval
                   workflows.
                 </p>
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
+                  Learn more →
+                </span>
               </div>
             </Link>
 
-            <div className="block">
+            <Link href="/us/feature/auto-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -655,16 +661,19 @@ export default function AgedCarePage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Automate Scheduling
+                  Auto Scheduling
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Create compliant schedules in minutes with AI-powered
                   optimisation.
                 </p>
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
+                  Learn more →
+                </span>
               </div>
-            </div>
+            </Link>
 
-            <div className="block">
+            <Link href="/us/feature/staff-rescheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -682,14 +691,17 @@ export default function AgedCarePage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Re-schedule Changes
+                  Reschedule Changes
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Handle unexpected changes with intelligent re-scheduling
                   algorithms.
                 </p>
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
+                  Learn more →
+                </span>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>
@@ -719,18 +731,24 @@ export default function AgedCarePage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Nursing Home Today
+              Transform Senior Care Staff Scheduling
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join senior care providers achieving better outcomes with smarter
               scheduling.
             </p>
-            <div className="flex justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
+              </Button>
+              <Button
+                href="/us/pricing"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
+              >
+                View Pricing
               </Button>
             </div>
           </div>

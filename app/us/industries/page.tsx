@@ -611,7 +611,7 @@ export default function IndustriesPage() {
             </div>
             
             <div className="text-center mt-12">
-              <Button href="/us/staff-scheduling-interactive-demo" className="bg-indigo-600 text-white hover:bg-indigo-700">
+              <Button href="/us/product-tour" className="bg-indigo-600 text-white hover:bg-indigo-700">
                 See an Example
               </Button>
             </div>

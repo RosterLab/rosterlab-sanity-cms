@@ -67,7 +67,7 @@ const pricingPlans = [
       "Scenario simulation",
     ],
     cta: "Book a demo",
-    ctaLink: "/book-a-demo",
+    ctaLink: "/us/book-a-demo",
     highlighted: true,
   },
   {
@@ -83,7 +83,7 @@ const pricingPlans = [
       "Priority support",
     ],
     cta: "Contact us",
-    ctaLink: "/contact",
+    ctaLink: "/us/contact",
     highlighted: false,
   },
 ];
@@ -221,7 +221,7 @@ const features = [
         enterprise: true,
       },
       {
-        name: "Leave requests",
+        name: "Time-off requests",
         digital: false,
         ai: true,
         enterprise: true,
@@ -553,7 +553,7 @@ export default function PricingPage() {
                 Sign up for free
               </Button>
               <Button
-                href="/us/staff-scheduling-interactive-demo"
+                href="/us/book-a-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Pricing CTA Bottom"

@@ -44,7 +44,7 @@ const faqItems = [
   },
   {
     question: "How does automated shift swap approval work?",
-    answer: "RosterLab's AI analyses each swap request against your organization's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both staff are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
+    answer: "RosterLab's AI analyzes each swap request against your organization's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both staff are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review."
   },
   {
     question: "What rules can I set for automatic approvals?",
@@ -52,7 +52,7 @@ const faqItems = [
   },
   {
     question: "How do staff request shift swaps?",
-    answer: "Staff can request swaps through our mobile app or web portal. They simply select the shift they want to swap, and the system shows available options with qualified colleagues. They can send swap requests directly, which are then processed according to your automation rules. Staff receive instant notifications about approvals or rejections."
+    answer: "Staff can request swaps through our mobile app or scheduling platform. They simply select the shift they want to swap, and the system shows available options with qualified colleagues. They can send swap requests directly, which are then processed according to your automation rules. Staff receive instant notifications about approvals or rejections."
   },
   {
     question: "What happens when a swap needs manager approval?",
@@ -94,17 +94,17 @@ export default function ShiftSwapsPage() {
                     Book A Demo
                   </Button>
                   <Button 
-                    href="/us/solutions/free-staff-scheduling-tool" 
+                    href="/us/product-tour" 
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Product Tour"
                     analyticsLocation="Feature Page Shift Swaps"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "demo",
                       page_name: "Shift Swaps",
                       section: "hero"
                     }}
                   >
-                    Try it for free
+                    View Product Tour
                   </Button>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Review Swaps That Break the Rules
+                  Review Trades That Break the Rules
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   When a swap might break staffing rules or affect critical coverage, managers get a clear, one-click review process with explanations of potential conflicts.
