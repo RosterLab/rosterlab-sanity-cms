@@ -24,8 +24,7 @@ export const metadata: Metadata = {
   description:
     "Download our free staff timesheet template for Excel. Track employee hours, calculate overtime, and manage payroll with our professionally designed template.",
   alternates: {
-    canonical:
-      "https://rosterlab.com/templates/free-staff-timesheet-template",
+    canonical: "https://rosterlab.com/templates/free-staff-timesheet-template",
   },
   openGraph: {
     title: "Free Staff Timesheet Template - RosterLab",
@@ -94,7 +93,7 @@ const benefits = [
   "Calculate staff hours",
   "Calculate overtime",
   "Printable and easy to edit",
-  "Customizable for your business needs",
+  "Customisable for your business needs",
 ];
 
 const faqItems = [
@@ -104,9 +103,9 @@ const faqItems = [
       "This free timesheet template is designed for managers, HR teams, and small business owners who need a simple way to track employee hours.",
   },
   {
-    question: "Can I customize the timesheet template?",
+    question: "Can I customise the timesheet template?",
     answer:
-      "Yes! Our template is fully customizable. You can add your company logo, modify the fields to include specific information you need, and change the formatting to match your brand colors. The word doc format makes it easy to adapt to your specific requirements.",
+      "Yes! Our template is fully customisable. You can add your company logo, modify the fields to include specific information you need, and change the formatting to match your brand colours. The word doc format makes it easy to adapt to your specific requirements.",
   },
   {
     question:
@@ -147,7 +146,8 @@ export default async function FreeStaffTimesheetTemplatePage() {
                 </h1>
 
                 <p className="text-xl text-gray-600 mb-8">
-                  Looking for a timesheet template to track employee hours? Download our professionally designed timesheet template.
+                  Looking for a timesheet template to track employee hours?
+                  Download our professionally designed timesheet template.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -339,12 +339,12 @@ export default async function FreeStaffTimesheetTemplatePage() {
           <Container>
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-3xl p-12 text-center text-white">
               <h2 className="text-3xl font-bold mb-4">
-                Ready to Modernize Your Time Tracking?
+                Ready to Modernise Your Time Tracking?
               </h2>
               <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
                 While our timesheet template helps track hours, RosterLab's
                 digital solution automates the entire process - from scheduling
-                to time tracking to payroll integration.
+                to time tracking.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -354,10 +354,10 @@ export default async function FreeStaffTimesheetTemplatePage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/solutions/time-and-attendance"
+                  href="/contact"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600"
                 >
-                  Learn About Digital Time Tracking
+                  Contact Us
                 </Button>
               </div>
             </div>
