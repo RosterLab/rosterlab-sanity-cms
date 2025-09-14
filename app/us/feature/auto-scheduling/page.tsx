@@ -11,10 +11,6 @@ export const metadata = withHreflang({
   title: "Auto Scheduling Staff - RosterLab",
   description:
     "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
-  robots: {
-    index: false,
-    follow: false,
-  },
   openGraph: {
     title: "Auto Scheduling Staff - RosterLab",
     description:

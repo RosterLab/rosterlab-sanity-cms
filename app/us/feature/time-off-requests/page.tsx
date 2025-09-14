@@ -10,10 +10,6 @@ export const metadata = withHreflang({
   title: "Employee Time-Off Requests - RosterLab",
   description:
     "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
-  robots: {
-    index: false,
-    follow: false,
-  },
   openGraph: {
     title: "Employee Time-Off Requests - RosterLab",
     description:

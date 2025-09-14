@@ -10,10 +10,6 @@ export const metadata = {
   title: "Automatic Roster Generation - RosterLab",
   description:
     "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
-  robots: {
-    index: false,
-    follow: false,
-  },
   openGraph: {
     title: "Automatic Roster Generation - RosterLab",
     description:

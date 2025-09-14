@@ -7,16 +7,16 @@ import React from "react";
 import { withHreflang } from '@/components/seo/HreflangTags'
 
 export const metadata = withHreflang({
-  title: "Pricing - Affordable AI Staff Scheduling Software",
+  title: "Pricing - RosterLab",
   description:
-    "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
+    "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
   alternates: {
     canonical: 'https://rosterlab.com/us/pricing',
   },
   openGraph: {
-    title: "Pricing - Affordable AI Staff Scheduling Software",
+    title: "Pricing - RosterLab",
     description:
-      "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
+      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
     type: "website",
     url: 'https://rosterlab.com/us/pricing',
     images: [
@@ -29,9 +29,9 @@ export const metadata = withHreflang({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pricing - Affordable AI Staff Scheduling Software",
+    title: "Pricing - RosterLab",
     description:
-      "Explore RosterLab's flexible pricing for AI-powered staff scheduling. Save time, ensure compliance, and build fairer schedules effortlessly.",
+      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
     images: ["/images/og images/Pricing.png"],
   },
 }, '/us/pricing');

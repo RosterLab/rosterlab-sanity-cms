@@ -8,16 +8,16 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from '@/components/seo/HreflangTags';
 
 export const metadata = withHreflang({
-  title: "Self-Scheduling Powered By You - RosterLab",
+  title: "Flexible Self-Scheduling - RosterLab",
   description:
-    "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+    "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
   alternates: {
     canonical: 'https://rosterlab.com/us/feature/self-scheduling',
   },
   openGraph: {
-    title: "Self-Scheduling Powered By You - RosterLab",
+    title: "Flexible Self-Scheduling - RosterLab",
     description:
-      "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+      "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
     type: "website",
     url: 'https://rosterlab.com/us/feature/self-scheduling',
     images: [
@@ -30,9 +30,9 @@ export const metadata = withHreflang({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Self-Scheduling Powered By You - RosterLab",
+    title: "Flexible Self-Scheduling - RosterLab",
     description:
-      "Empower your team with AI-powered self-scheduling. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+      "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
     images: ["/images/og images/SelfScheduling.png"],
   },
 }, '/us/feature/self-scheduling');

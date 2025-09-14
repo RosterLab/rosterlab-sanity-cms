@@ -5,10 +5,6 @@ import { withHreflang } from '@/components/seo/HreflangTags'
 export const metadata = withHreflang({
   title: 'Savings Calculator - RosterLab',
   description: 'Calculate your savings with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',
-  robots: {
-    index: false,
-    follow: false,
-  },
   openGraph: {
     title: 'Savings Calculator - RosterLab',
     description: 'Calculate your savings with RosterLab. See how much time and money you can save with AI-powered staff scheduling.',

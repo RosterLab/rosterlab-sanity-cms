@@ -8,11 +8,11 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from '@/components/seo/HreflangTags';
 
 export const metadata = withHreflang({
-  title: "Radiology Staff Scheduling Platform - RosterLab",
+  title: "Radiology Staff Scheduling Software - RosterLab",
   description:
     "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
   openGraph: {
-    title: "Radiology Staff Scheduling Platform - RosterLab",
+    title: "Radiology Staff Scheduling Software - RosterLab",
     description:
       "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
     type: "website",
@@ -27,7 +27,7 @@ export const metadata = withHreflang({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Radiology Staff Scheduling Platform - RosterLab",
+    title: "Radiology Staff Scheduling Software - RosterLab",
     description:
       "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
     images: ["/images/og images/IndustryRadiology.png"],
