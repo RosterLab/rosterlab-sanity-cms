@@ -10,6 +10,9 @@ export const metadata = withHreflang({
   title: "Staff Rescheduling - RosterLab",
   description:
     "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
+  alternates: {
+    canonical: 'https://rosterlab.com/us/feature/staff-rescheduling',
+  },
   openGraph: {
     title: "Fast Rescheduling & Scenario Planning - RosterLab",
     description:

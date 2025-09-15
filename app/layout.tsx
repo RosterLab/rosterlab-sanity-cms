@@ -11,6 +11,7 @@ import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
+import { headers } from "next/headers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,6 +37,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { isEnabled } = await draftMode();
+  
+  // Check if current page is a US page
+  const headersList = headers();
+  const pathname = headersList.get('x-pathname') || headersList.get('x-url') || '';
+  const isUSPage = pathname.startsWith('/us/');
 
   return (
     <html lang="en" className={poppins.variable}>
@@ -50,7 +56,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <StructuredData type="organization" />
+        <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
       <body
