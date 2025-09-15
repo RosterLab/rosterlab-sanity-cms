@@ -8,11 +8,11 @@ export function middleware(request: NextRequest) {
 
   // Detect user's country from various sources
   // 1. Vercel geo object (if deployed on Vercel)
-  // 2. CloudFront headers (if deployed on AWS)
+  // 2. Netlify x-country header (if deployed on Netlify)
   // 3. Standard geo headers
   const detectedCountry = 
     (request as any).geo?.country ||
-    request.headers.get('CloudFront-Viewer-Country') ||
+    request.headers.get('x-country') ||
     request.headers.get('CF-IPCountry') ||
     request.headers.get('X-Country-Code') ||
     null
