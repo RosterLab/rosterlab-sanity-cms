@@ -39,7 +39,7 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
   
   // Check if current page is a US page
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get('x-pathname') || headersList.get('x-url') || '';
   const isUSPage = pathname.startsWith('/us/');
 
