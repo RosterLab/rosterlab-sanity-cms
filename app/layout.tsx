@@ -11,6 +11,7 @@ import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
+import GeolocationProvider from "@/components/layout/GeolocationProvider";
 import { headers } from "next/headers";
 
 const poppins = Poppins({
@@ -68,6 +69,7 @@ export default async function RootLayout({
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
           <Amplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
+          <GeolocationProvider />
           <ClientHeader />
           <main className="flex-grow">{children}</main>
           <ClientFooter />

@@ -6,13 +6,34 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
+  // Detect user's country from various sources
+  // 1. Vercel geo object (if deployed on Vercel)
+  // 2. CloudFront headers (if deployed on AWS)
+  // 3. Standard geo headers
+  const detectedCountry = 
+    (request as any).geo?.country ||
+    request.headers.get('CloudFront-Viewer-Country') ||
+    request.headers.get('CF-IPCountry') ||
+    request.headers.get('X-Country-Code') ||
+    null
+
   // Handle /us routes - no redirects, just pass through
   if (pathname.startsWith('/us')) {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    // Add detected country as header for client components
+    if (detectedCountry) {
+      response.headers.set('x-detected-country', detectedCountry)
+    }
+    return response
   }
 
   // Add hreflang headers for SEO
   const response = NextResponse.next()
+  
+  // Add detected country as header for client components
+  if (detectedCountry) {
+    response.headers.set('x-detected-country', detectedCountry)
+  }
   
   // Get the base path without /us prefix if present
   const basePath = pathname.startsWith('/us/') ? pathname.substring(3) : pathname
@@ -40,7 +61,7 @@ export function middleware(request: NextRequest) {
 // Configure which routes the middleware runs on
 export const config = {
   matcher: [
-    // Match all routes except static files and API routes
-    '/((?!_next/static|_next/image|favicon.ico|api|studio).*)',
+    // Match all routes except static files
+    '/((?!_next/static|_next/image|favicon.ico|studio).*)',
   ],
 }
