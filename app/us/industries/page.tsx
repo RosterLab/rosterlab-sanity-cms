@@ -43,9 +43,9 @@ export default function IndustriesPage() {
         }}
       >
         <div className="max-w-7xl mx-auto w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Text and CTAs */}
-            <div className="text-left">
+            <div className="w-full text-left">
               {/* Main Heading */}
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 AI Scheduling Software for Industries with{" "}
@@ -62,6 +62,19 @@ export default function IndustriesPage() {
                   Complex Schedules
                 </span>
               </h1>
+              
+              {/* Mobile only: Image appears here after H1 */}
+              <div className="block lg:hidden w-full mb-8">
+                <div className="w-full max-w-[600px]">
+                  <Image
+                    src="/images/us-images/scheduling-industries.jpg"
+                    alt="Scheduling across industries"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                </div>
+              </div>
 
               {/* Subheading */}
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -108,8 +121,8 @@ export default function IndustriesPage() {
               </div>
             </div>
 
-            {/* Right side - Scheduling Industries Image */}
-            <div className="flex justify-center lg:justify-end">
+            {/* Desktop only: Right side - Scheduling Industries Image */}
+            <div className="hidden lg:flex justify-center lg:justify-end">
               <div className="w-full max-w-[600px]">
                 <Image
                   src="/images/us-images/scheduling-industries.jpg"

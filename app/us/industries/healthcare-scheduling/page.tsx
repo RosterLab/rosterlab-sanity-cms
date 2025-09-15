@@ -115,8 +115,8 @@ export default async function HealthcarePage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
-            <div>
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
+            <div className="w-full">
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
                 Staff Scheduling
                 <br />
@@ -131,6 +131,18 @@ export default async function HealthcarePage() {
                   Healthcare
                 </span>
               </h1>
+              
+              {/* Mobile only: Image appears here after H1 */}
+              <div className="block lg:hidden w-full relative mt-6 mb-6">
+                <Image
+                  src="/images/us-images/stock/istockphoto-2187596982-2048x2048.jpg"
+                  alt="Healthcare workforce scheduling dashboard"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
+              </div>
+              
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
                 Less time scheduling, more time caring for patients. We
                 specialise in all types of healthcare schedules, no matter how
@@ -151,7 +163,8 @@ export default async function HealthcarePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative mt-6 lg:mt-0">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative mt-6 lg:mt-0">
               <Image
                 src="/images/us-images/stock/istockphoto-2187596982-2048x2048.jpg"
                 alt="Healthcare workforce scheduling dashboard"

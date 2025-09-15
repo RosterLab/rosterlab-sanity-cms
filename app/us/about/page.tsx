@@ -48,7 +48,7 @@ export default function AboutPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
-            <div>
+            <div className="order-1">
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 The RosterLab{" "}
                 <span
@@ -81,8 +81,8 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Timeline Illustration */}
-            <div className="flex justify-center lg:justify-end">
+            {/* Desktop only: Timeline Illustration */}
+            <div className="hidden lg:flex justify-center lg:justify-end">
               <div
                 className="w-full max-w-2xl relative"
                 style={{ aspectRatio: "600/400" }}

@@ -41,11 +41,23 @@ export default function LeaveRequestsPage() {
         {/* Hero Section */}
         <div className="py-20">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+              <div className="w-full">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Streamline Staff Time-Off Requests
                 </h1>
+                
+                {/* Mobile only: Image appears here after H1 */}
+                <div className="block lg:hidden w-full relative mb-8">
+                  <Image
+                    src="/images/us-images/stock/istockphoto-2223989723-2048x2048.jpg"
+                    alt="Time-off request management illustration"
+                    width={600}
+                    height={600}
+                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  />
+                </div>
+                
                 <p className="text-xl text-gray-600 mb-8">
                   Staff can submit a range of time-off request types via the staff
                   mobile app to help streamline management.
@@ -65,7 +77,8 @@ export default function LeaveRequestsPage() {
                   </Button>
                 </div>
               </div>
-              <div className="relative">
+              {/* Desktop only: Image in right column */}
+              <div className="hidden lg:block w-full relative">
                 <Image
                   src="/images/us-images/stock/istockphoto-2223989723-2048x2048.jpg"
                   alt="Time-off request management illustration"

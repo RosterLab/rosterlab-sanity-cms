@@ -94,11 +94,25 @@ export default function AISchedulesPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="pb-8 lg:pb-12">
+          {/* Mobile: flex column, Desktop: grid 2 columns */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
+            {/* Text content - shows first on mobile */}
+            <div className="w-full pb-8 lg:pb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 AI Staff Schedule Maker
               </h1>
+              
+              {/* Mobile only: Image appears here after H1 */}
+              <div className="block lg:hidden w-full relative mb-8">
+                <Image
+                  src="/images/us-images/stock/istockphoto-1399172596-2048x2048.jpg"
+                  alt="AI Staff Schedule Maker"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
+              </div>
+              
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Make scheduling faster than ever before.
               </p>
@@ -231,7 +245,8 @@ export default function AISchedulesPage() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block w-full relative">
               <Image
                 src="/images/us-images/stock/istockphoto-1399172596-2048x2048.jpg"
                 alt="AI Staff Schedule Maker"

@@ -70,6 +70,18 @@ export default function AgedCarePage() {
                 </span>{" "}
                 Staff Scheduling
               </h1>
+              
+              {/* Mobile only: Image appears here after H1 */}
+              <div className="block lg:hidden relative mb-8">
+                <Image
+                  src="/images/us-images/senior-care-roster.jpg"
+                  alt="Senior care scheduling dashboard"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
+              </div>
+              
               <p className="text-xl text-gray-600 mb-8">
                 Deliver better care with smart scheduling. Achieve 5% efficiency
                 gains while reducing scheduling errors and ensuring full
@@ -156,7 +168,8 @@ export default function AgedCarePage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
                 src="/images/us-images/senior-care-roster.jpg"
                 alt="Senior care scheduling dashboard"

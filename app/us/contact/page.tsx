@@ -96,14 +96,12 @@ export default function ContactPage() {
             <div className="space-y-8">
               <div className="bg-white rounded-lg shadow-sm p-8">
                 <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <h3 className="text-xl font-bold text-neutral-900 mb-3">
-                        Follow Us
-                      </h3>
-                    </div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold text-neutral-900 mb-3">
+                      Follow Us
+                    </h3>
                   </div>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center justify-center space-x-4">
                     <a
                       href="https://www.linkedin.com/company/rosterlab"
                       target="_blank"

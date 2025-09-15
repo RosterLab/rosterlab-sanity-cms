@@ -69,6 +69,18 @@ export default function RadiologyPage() {
                 </span>{" "}
                 Software for Modern Teams
               </h1>
+              
+              {/* Mobile only: Image appears here after H1 */}
+              <div className="block lg:hidden relative mb-8">
+                <Image
+                  src="/images/us-images/radiology-roster.jpg"
+                  alt="Radiology scheduling dashboard"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                />
+              </div>
+              
               <p className="text-xl text-gray-600 mb-8">
                 Reduce scheduling time by 90%. Optimise radiologist coverage and
                 modality planning with intelligent scheduling.
@@ -154,7 +166,8 @@ export default function RadiologyPage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
                 src="/images/us-images/radiology-roster.jpg"
                 alt="Radiology scheduling dashboard"

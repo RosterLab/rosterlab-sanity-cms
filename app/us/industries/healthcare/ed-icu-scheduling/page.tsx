@@ -75,6 +75,18 @@ export default function ICUEDPage() {
                   minutes
                 </span>
               </h1>
+              
+              {/* Mobile only: Image appears here after H1 */}
+              <div className="block lg:hidden relative mb-8">
+                <Image
+                  src="/images/us-images/stock/istockphoto-2190085149-2048x2048.jpg"
+                  alt="ICU/ED scheduling dashboard"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                />
+              </div>
+              
               <p className="text-xl text-gray-600 mb-8">
                 Cut schedule creation time by 90% with AI automation. Build
                 compliant schedules that balance critical care demands with
@@ -161,7 +173,8 @@ export default function ICUEDPage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
                 src="/images/us-images/stock/istockphoto-2190085149-2048x2048.jpg"
                 alt="ICU/ED scheduling dashboard"
