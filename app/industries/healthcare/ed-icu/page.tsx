@@ -66,10 +66,11 @@ export default function ICUEDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Generate your ED staff roster in{" "}
+                Generate{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  minutes
-                </span>
+                  ED & ICU
+                </span>{" "}
+                Staff Rosters in Minutes
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Cut roster creation time by 90% with AI automation. Build
@@ -272,7 +273,7 @@ export default function ICUEDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Critical Care Complexity
+                Built for ICU & ED Roster Complexity
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -373,17 +374,12 @@ export default function ICUEDPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="py-20 bg-white">
-        <TrustedBy />
-      </section>
-
       {/* Cloud Features */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Critical Care
+              ICU & ED Rostering for Hospital Staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -566,8 +562,23 @@ export default function ICUEDPage() {
         </Container>
       </section>
 
+      {/* Trusted By */}
+      <section className="bg-white pb-20">
+        <TrustedBy />
+        <Container>
+          <div className="text-center mt-0">
+            <Button
+              href="/case-studies"
+              className="bg-teal-600 text-white hover:bg-teal-700"
+            >
+              View Case Studies
+            </Button>
+          </div>
+        </Container>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
@@ -586,7 +597,7 @@ export default function ICUEDPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Critical Care Scheduling?
+              Ready to Transform Your Critical Care Rostering?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join leading hospitals using RosterLab to ensure optimal ICU and

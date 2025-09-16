@@ -35,6 +35,21 @@ export const metadata = {
 
 const faqItems = [
   {
+    question: "What is a radiology roster?",
+    answer:
+      "A radiology roster is a staff schedule that organises radiographers, radiologists, and support staff across different imaging modalities (CT, MRI, X-ray, ultrasound, etc.) and shifts. It ensures adequate coverage for all equipment, balances subspecialty expertise and manages on-call rotations. Unlike general healthcare rosters, radiology rosters must account for equipment availability, specialized certifications, reading room assignments, and varying procedure durations.",
+  },
+  {
+    question: "Why is radiology rostering so complex?",
+    answer:
+      "Radiology rostering is particularly complex due to multiple overlapping constraints: staff must be certified for specific modalities, equipment has limited availability, subspecialty coverage is required 24/7, reading workflows need continuity, interventional procedures require specific team compositions, and training rotations must be balanced. Additionally, managing fair distribution of after-hours duties, emergency coverage, and ensuring appropriate skill mix for each shift while accommodating individual preferences and contractual obligations makes manual scheduling extremely time-consuming and error-prone.",
+  },
+  {
+    question: "Have you worked with radiology teams before?",
+    answer:
+      "Yes, RosterLab has extensive experience with radiology departments. We've successfully implemented our AI rostering solution for multiple radiology teams, including Whanganui Hospital's radiology department, which saw a 90% reduction in scheduling time. <a href='/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
+  },
+  {
     question: "How does long-term roster planning work in radiology?",
     answer:
       "RosterLab's radiology scheduling supports both long-term and short-term roster creation. You can plan quarterly or annual schedules considering subspecialty rotations, vacation blocks, conference attendance, and equipment maintenance windows. The system automatically ensures continuous coverage for all modalities while respecting radiologist preferences and certification requirements. Changes in long-term plans automatically cascade to daily schedules, maintaining consistency across all time horizons.",
@@ -50,9 +65,9 @@ export default function RadiologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Scheduling your sessions just got a{" "}
+                Build Complex{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  whole lot easier
+                  Radiology Rosters
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
@@ -133,10 +148,10 @@ export default function RadiologyPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="https://app.rosterlab.com/signup"
+                  href="/tools/roi-calculator"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Get Started
+                  ROI Calculator
                 </Button>
               </div>
             </div>
@@ -538,7 +553,7 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Radiology Rostering
+              Modern Radiology Rostering Software for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -672,8 +687,18 @@ export default function RadiologyPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="py-20 bg-white">
+      <section className="bg-white pb-20">
         <TrustedBy />
+        <Container>
+          <div className="text-center mt-0">
+            <Button
+              href="/case-studies"
+              className="bg-teal-600 text-white hover:bg-teal-700"
+            >
+              View Case Studies
+            </Button>
+          </div>
+        </Container>
       </section>
 
       {/* FAQ Section */}
@@ -696,7 +721,7 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Radiology Department Scheduling
+              Transform Your Radiology Department Rostering
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join leading imaging centres saving days of scheduling time every
@@ -710,10 +735,10 @@ export default function RadiologyPage() {
                 See It In Action
               </Button>
               <Button
-                href="/contact"
+                href="/book-a-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                Talk to an Expert
+                Book a Demo
               </Button>
             </div>
           </div>

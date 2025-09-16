@@ -73,10 +73,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Industries",
       subItems: [
-        { title: "Healthcare", link: "/industries/healthcare" },
-        { title: "ICU/ED", link: "/industries/healthcare/ed-icu" },
-        { title: "Aged Care", link: "/industries/healthcare/aged-care" },
-        { title: "Radiology", link: "/industries/healthcare/radiology" },
+        { title: "Healthcare Roster", link: "/industries/healthcare" },
+        { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
+        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
         { title: "See All Industries", link: "/industries" },
       ],
     },
@@ -293,17 +293,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   >
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
                                       {isUSVersion &&
-                                      subItem.title === "Healthcare"
+                                      (subItem.title === "Healthcare Roster" ||
+                                        subItem.title === "Healthcare")
                                         ? "Healthcare Scheduling"
                                         : isUSVersion &&
-                                            subItem.title === "ICU/ED"
+                                            (subItem.title ===
+                                              "ICU/ED Roster" ||
+                                              subItem.title === "ICU/ED")
                                           ? "ICU/ED Scheduling"
                                           : subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
-                                      {subItem.title === "Healthcare"
+                                      {subItem.title === "Healthcare Roster" ||
+                                      subItem.title === "Healthcare"
                                         ? "General healthcare solutions that handle complex workforces and frontline workers"
-                                        : subItem.title === "ICU/ED"
+                                        : subItem.title === "ICU/ED Roster" ||
+                                            subItem.title === "ICU/ED"
                                           ? isUSVersion
                                             ? "Build ICU/ED schedules that support better continuity of care"
                                             : "Build ICU/ED rosters that support better continuity of care"
@@ -325,10 +330,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   >
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
                                       {isUSVersion &&
-                                      subItem.title === "Aged Care"
+                                      (subItem.title === "Aged Care Roster" ||
+                                        subItem.title === "Aged Care")
                                         ? "Senior Care Scheduling"
                                         : isUSVersion &&
-                                            subItem.title === "Radiology"
+                                            (subItem.title ===
+                                              "Radiology Roster" ||
+                                              subItem.title === "Radiology")
                                           ? "Radiology Scheduling"
                                           : subItem.title}
                                     </div>
@@ -339,7 +347,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                           ? isUSVersion
                                             ? "Efficient scheduling for nursing homes & assisted living"
                                             : "Make better use of staffing hours with rosters for aged care facilities"
-                                          : subItem.title === "Radiology"
+                                          : subItem.title ===
+                                                "Radiology Roster" ||
+                                              subItem.title === "Radiology"
                                             ? isUSVersion
                                               ? "Balance your teams with the right skill mix with compliant radiology staff schedules"
                                               : "Balance your teams with the right skill mix with compliant radiology rosters"

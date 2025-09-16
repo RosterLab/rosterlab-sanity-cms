@@ -49,5 +49,6 @@ export const usNavItems = [
     ],
   },
   { title: "Pricing", link: "/us/pricing" },
+  { title: "About", link: "/us/about" },
   { title: "Contact", link: "/us/contact" },
 ];
