@@ -65,24 +65,22 @@ export default function USHero() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               AI Staff Scheduling
               <br />
-              <span className="whitespace-nowrap">
-                Software for{" "}
-                <span
-                  className="inline-block transition-all duration-500 ease-in-out"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    minWidth: "240px",
-                    textAlign: "left",
-                  }}
-                >
-                  {displayText}
-                  <span className="animate-pulse">|</span>
-                </span>
+              Software for{" "}
+              <span
+                className="inline-block transition-all duration-500 ease-in-out"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  minWidth: "160px",
+                  textAlign: "left",
+                }}
+              >
+                {displayText}
+                <span className="animate-pulse">|</span>
               </span>
             </h1>
 
