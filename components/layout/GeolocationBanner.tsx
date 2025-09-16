@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { HiX } from "react-icons/hi";
 
 // URL mapping between US and Global versions
 const URL_MAPPING = {
@@ -195,7 +196,15 @@ export default function GeolocationBanner() {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full p-6 relative mx-auto">
-        {/* Remove the close button to force user choice */}
+        {/* Close button */}
+        <button
+          onClick={() => setShowBanner(false)}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          aria-label="Close"
+        >
+          <HiX className="w-6 h-6" />
+        </button>
+
         <div className="mb-6">
           <h3 className="text-xl font-semibold text-gray-900 mb-2">
             Select Your Region
