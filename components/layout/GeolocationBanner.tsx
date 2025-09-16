@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { HiX } from "react-icons/hi";
 
 export default function GeolocationBanner() {
   const [showBanner, setShowBanner] = useState(false);
@@ -104,36 +103,34 @@ export default function GeolocationBanner() {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-primary-900 text-white py-3 px-4 z-50 shadow-lg">
-      <div className="container mx-auto flex items-center justify-between max-w-6xl">
-        <div className="flex-1 text-sm md:text-base">
-          <p>
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full p-6 relative mx-auto">
+        {/* Remove the close button to force user choice */}
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            Select Your Region
+          </h3>
+          <p className="text-gray-600">
             It looks like you're visiting from{" "}
             <strong>{isUSUser ? "the United States" : "outside the US"}</strong>
             . Would you like to view our{" "}
             <strong>{getSuggestedVersion()}</strong> website?
           </p>
         </div>
-        <div className="flex items-center gap-3 ml-4">
+
+        <div className="flex flex-col sm:flex-row gap-3">
           <Link
             href={getSuggestedPath()}
             onClick={() => handleChoice(false)}
-            className="bg-white text-primary-900 px-4 py-2 rounded-md font-semibold hover:bg-gray-100 transition-colors text-sm whitespace-nowrap"
+            className="flex-1 bg-primary-600 text-white px-4 py-3 rounded-md font-semibold hover:bg-primary-700 transition-colors text-center"
           >
             Yes, take me there
           </Link>
           <button
             onClick={() => handleChoice(true)}
-            className="text-white hover:text-gray-300 transition-colors text-sm whitespace-nowrap"
+            className="flex-1 border border-gray-300 text-gray-700 px-4 py-3 rounded-md font-semibold hover:bg-gray-50 transition-colors"
           >
             No, stay here
-          </button>
-          <button
-            onClick={() => setShowBanner(false)}
-            className="text-white hover:text-gray-300 transition-colors ml-2"
-            aria-label="Close banner"
-          >
-            <HiX className="w-5 h-5" />
           </button>
         </div>
       </div>
