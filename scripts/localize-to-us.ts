@@ -176,7 +176,7 @@ const URL_MAPPINGS: Record<string, string> = {
   // Solutions - with terminology changes
   '/solutions/staff-roster-mobile-app': '/us/solutions/staff-scheduling-mobile-app',
   '/solutions/ai-staff-scheduling': '/us/solutions/ai-staff-schedule-maker',
-  '/solutions/free-staff-scheduling': '/us/solutions/free-staff-scheduling-tool',
+  '/solutions/free-staff-rostering-software': '/us/solutions/free-staff-scheduling-tool',
   
   // Features - with terminology changes
   '/feature/auto-roster-generation': '/us/feature/auto-scheduling',
@@ -380,7 +380,7 @@ async function main(config: LocalizationConfig = { overwriteExisting: false, cre
     // Solutions pages
     { source: 'solutions/staff-roster-mobile-app/page.tsx', target: 'solutions/staff-roster-mobile-app/page.tsx' },
     { source: 'solutions/ai-staff-scheduling/page.tsx', target: 'solutions/ai-staff-schedule-maker/page.tsx' },
-    { source: 'solutions/free-staff-scheduling/page.tsx', target: 'solutions/free-staff-scheduling-tool/page.tsx' },
+    { source: 'solutions/free-staff-rostering-software/page.tsx', target: 'solutions/free-staff-scheduling-tool/page.tsx' },
     
     // Feature pages
     { source: 'feature/auto-roster-generation/page.tsx', target: 'feature/auto-scheduling/page.tsx' },

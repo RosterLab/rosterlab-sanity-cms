@@ -54,7 +54,7 @@ export default function ReRosteringPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-scheduling"
+                    href="/solutions/free-staff-rostering-software"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Try it for free

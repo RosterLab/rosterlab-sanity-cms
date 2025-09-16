@@ -127,7 +127,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/product/rosterlab-free',
-        destination: '/solutions/free-staff-scheduling',
+        destination: '/solutions/free-staff-rostering-software',
+        permanent: true,
+      },
+      {
+        source: '/solutions/free-staff-scheduling',
+        destination: '/solutions/free-staff-rostering-software',
         permanent: true,
       },
       // Blog redirects
@@ -340,12 +345,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/blog/Why%20RosterLab%20Free/',
-        destination: '/solutions/free-staff-scheduling',
+        destination: '/solutions/free-staff-rostering-software',
         permanent: true,
       },
       {
         source: '/blog/Why%20RosterLab%20Free',
-        destination: '/solutions/free-staff-scheduling',
+        destination: '/solutions/free-staff-rostering-software',
         permanent: true,
       },
     ]

@@ -19,14 +19,14 @@ export const metadata = {
   description:
     "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
   alternates: {
-    canonical: "https://rosterlab.com/solutions/free-staff-scheduling",
+    canonical: "https://rosterlab.com/solutions/free-staff-rostering-software",
   },
   openGraph: {
     title: "Free Staff Roster Software - RosterLab",
     description:
       "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
     type: "website",
-    url: "https://rosterlab.com/solutions/free-staff-scheduling",
+    url: "https://rosterlab.com/solutions/free-staff-rostering-software",
     images: [
       {
         url: "/images/og-images/SolutionFree.png",

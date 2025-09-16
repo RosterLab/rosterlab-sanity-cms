@@ -112,7 +112,7 @@ const faqItems = [
     question:
       "What's the difference between your Excel spreadsheet and free digital scheduling?",
     answer:
-      "The Excel template is static - you download it and update manually. Our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:text-blue-700 underline'>free digital scheduling tool</a>, on the other hand, allows you to build and share rosters online, make real-time updates, and automatically notify staff of changes. Digital scheduling reduces admin time, helps prevent double-ups, and ensures your team always has the latest version.",
+      "The Excel template is static - you download it and update manually. Our <a href='/solutions/free-staff-rostering-software' class='text-blue-600 hover:text-blue-700 underline'>free digital scheduling tool</a>, on the other hand, allows you to build and share rosters online, make real-time updates, and automatically notify staff of changes. Digital scheduling reduces admin time, helps prevent double-ups, and ensures your team always has the latest version.",
   },
 ];
 

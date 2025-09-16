@@ -14,7 +14,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   // Solutions - with terminology changes
   '/solutions/staff-roster-mobile-app': '/us/solutions/staff-scheduling-mobile-app',
   '/solutions/ai-staff-scheduling': '/us/solutions/ai-staff-schedule-maker',
-  '/solutions/free-staff-scheduling': '/us/solutions/free-staff-scheduling-tool',
+  '/solutions/free-staff-rostering-software': '/us/solutions/free-staff-scheduling-tool',
   
   // Features - with terminology changes
   '/feature/auto-roster-generation': '/us/feature/auto-scheduling',
@@ -54,7 +54,7 @@ export const LOCALIZED_PAGES = new Set([
   // Solutions
   '/solutions/staff-roster-mobile-app',
   '/solutions/ai-staff-scheduling',
-  '/solutions/free-staff-scheduling',
+  '/solutions/free-staff-rostering-software',
   
   // Features
   '/feature/auto-roster-generation',

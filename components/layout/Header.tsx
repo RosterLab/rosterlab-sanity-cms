@@ -53,7 +53,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         },
         {
           title: "Free For Manual Digital Scheduling",
-          link: "/solutions/free-staff-scheduling",
+          link: "/solutions/free-staff-rostering-software",
         },
         {
           title: "Employee Mobile App",

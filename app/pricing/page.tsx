@@ -257,7 +257,7 @@ const faqItems = [
     question:
       "What’s the difference between your AI rosters and traditional rostering tools?",
     answer:
-      "Traditional rostering tools help you build rosters manually, often by dragging shifts around in a calendar or check your manual rosters against some simple rules (what our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the roster for you. Our algorithms consider your staffing requirements, employee preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair roster in a fraction of the time, with better outcomes for staff and management alike.",
+      "Traditional rostering tools help you build rosters manually, often by dragging shifts around in a calendar or check your manual rosters against some simple rules (what our <a href='/solutions/free-staff-rostering-software' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the roster for you. Our algorithms consider your staffing requirements, employee preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair roster in a fraction of the time, with better outcomes for staff and management alike.",
   },
   {
     question: "Which plan suits me the best?",
@@ -297,17 +297,17 @@ export default function PricingPage() {
           <Container>
             <div className="text-center mb-16">
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Optimise Your Staffing
+                AI Rostering{" "}
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  }}
+                >
+                  Pricing Plans
+                </span>
               </h1>
-              <h2
-                className="text-3xl md:text-5xl font-bold mb-8 text-transparent bg-clip-text"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                From Today
-              </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Unlock the power of automatic rostering today! See immediate
                 improvements in rostering efficiency and staff satisfaction.
