@@ -1,14 +1,22 @@
-'use client';
+"use client";
 
 import Button from "@/components/ui/Button";
 import SchedulingGenerator from "./SchedulingGenerator";
-import { HiCheck } from 'react-icons/hi';
-import { useState, useEffect } from 'react';
+import { HiCheck } from "react-icons/hi";
+import { useState, useEffect } from "react";
 
 export default function USHero() {
-  const teamTypes = ['Teams', 'Nurses', 'Physicians', 'Doctors', 'Radiographers', 'Radiologists', 'Staff'];
+  const teamTypes = [
+    "Teams",
+    "Healthcare",
+    "Nurses",
+    "Physicians",
+    "Doctors",
+    "Radiography",
+    "Staff",
+  ];
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
 
@@ -57,21 +65,24 @@ export default function USHero() {
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               AI Staff Scheduling
               <br />
-              Software for{" "}
-              <span
-                className="inline-block transition-all duration-500 ease-in-out"
-                style={{
-                  background: "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  color: "transparent",
-                  minWidth: "160px",
-                  textAlign: "left",
-                }}
-              >
-                {displayText}
-                <span className="animate-pulse">|</span>
+              <span className="whitespace-nowrap">
+                Software for{" "}
+                <span
+                  className="inline-block transition-all duration-500 ease-in-out"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    minWidth: "240px",
+                    textAlign: "left",
+                  }}
+                >
+                  {displayText}
+                  <span className="animate-pulse">|</span>
+                </span>
               </span>
             </h1>
 
@@ -88,7 +99,7 @@ export default function USHero() {
                 className="bg-blue-600 text-white px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Homepage Hero"
-                analyticsProperties={{ cta_type: 'demo', section: 'hero' }}
+                analyticsProperties={{ cta_type: "demo", section: "hero" }}
               >
                 Book a Demo
               </Button>
@@ -98,7 +109,11 @@ export default function USHero() {
                 className="bg-white text-blue-600 border-2 border-blue-600 px-10 py-3 rounded-full text-lg font-semibold hover:bg-blue-50 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
                 analyticsLabel="See an Example"
                 analyticsLocation="Homepage Hero"
-                analyticsProperties={{ cta_type: 'demo', section: 'hero', demo_type: 'interactive' }}
+                analyticsProperties={{
+                  cta_type: "demo",
+                  section: "hero",
+                  demo_type: "interactive",
+                }}
               >
                 View Product Tour
               </Button>
@@ -108,11 +123,15 @@ export default function USHero() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">Made for healthcare and complex industries</span>
+                <span className="text-sm text-gray-700">
+                  Made for healthcare and complex industries
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">AI-generated schedules in seconds</span>
+                <span className="text-sm text-gray-700">
+                  AI-generated schedules in seconds
+                </span>
               </div>
             </div>
           </div>

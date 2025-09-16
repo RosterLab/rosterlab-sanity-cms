@@ -120,7 +120,7 @@ export default function DemoBookingBase({
           {/* Calendly Meeting Scheduler Embed */}
           <div
             ref={widgetContainerRef}
-            className="relative"
+            className="relative pb-8 lg:pb-0"
             style={{ minHeight: "700px" }}
           >
             {shouldLoadWidget && calendlyUrl ? (

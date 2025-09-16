@@ -4,41 +4,44 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
-import { withHreflang } from '@/components/seo/HreflangTags'
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "About Us - RosterLab",
-  description:
-    "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/about',
-  },
-  other: {
-    link: '<link rel="preload" href="/images/us-images/about-rosterlab-us.jpg" as="image" type="image/jpeg" fetchpriority="high" />',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "About Us - RosterLab",
     description:
       "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    type: "website",
-    url: 'https://rosterlab.com/us/about',
-    images: [
-      {
-        url: "/images/og images/About.png",
-        width: 1200,
-        height: 630,
-        alt: "About RosterLab",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/about",
+    },
+    other: {
+      link: '<link rel="preload" href="/images/us-images/about-rosterlab-us.jpg" as="image" type="image/jpeg" fetchpriority="high" />',
+    },
+    openGraph: {
+      title: "About Us - RosterLab",
+      description:
+        "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+      type: "website",
+      url: "https://rosterlab.com/us/about",
+      images: [
+        {
+          url: "/images/og images/About.png",
+          width: 1200,
+          height: 630,
+          alt: "About RosterLab",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "About Us - RosterLab",
+      description:
+        "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
+      images: ["/images/og images/About.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Us - RosterLab",
-    description:
-      "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    images: ["/images/og images/About.png"],
-  },
-}, '/us/about');
+  "/us/about",
+);
 
 export default function AboutPage() {
   return (
@@ -235,9 +238,9 @@ export default function AboutPage() {
                   </p>
                   <p className="text-sm text-gray-600 mb-4">
                     Isaac is the brain behind our AI engine. With a PhD in
-                    scheduling optimisation, he leads the development of our core
-                    algorithms and technology. As the CEO, he brings vision to
-                    the impact that RosterLab delivers for healthcare teams.
+                    scheduling optimisation, he leads the development of our
+                    core algorithms and technology. As the CEO, he brings vision
+                    to the impact that RosterLab delivers for healthcare teams.
                   </p>
                 </div>
               </div>
@@ -307,9 +310,9 @@ export default function AboutPage() {
                   </p>
                   <p className="text-sm text-gray-600 mb-4">
                     Daniel works closely with customers, bringing a deep
-                    understanding of healthcare scheduling challenges. He ensures
-                    our solutions meet real-world needs and make a difference
-                    from day one.
+                    understanding of healthcare scheduling challenges. He
+                    ensures our solutions meet real-world needs and make a
+                    difference from day one.
                   </p>
                 </div>
               </div>
@@ -477,7 +480,6 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-
         </Container>
       </div>
 
@@ -508,8 +510,8 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-gray-600 mt-2">
                     The idea began with Isaac's PhD research in schedule
-                    optimisation, where he explored how operations research could
-                    dramatically improve healthcare scheduling.
+                    optimisation, where he explored how operations research
+                    could dramatically improve healthcare scheduling.
                   </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
@@ -546,8 +548,8 @@ export default function AboutPage() {
                     Velocity Innovation Competition Winners
                   </h3>
                   <p className="text-gray-600 mt-2">
-                    We won first place in the Velocity Innovation competition
-                    in 2020.
+                    We won first place in the Velocity Innovation competition in
+                    2020.
                   </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
@@ -582,7 +584,7 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-gray-600 mt-2">
                     Our technology is used across multiple countries, changing
-                    how organisations build and manage schedules.
+                    how organizations build and manage schedules.
                   </p>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
@@ -645,7 +647,7 @@ export default function AboutPage() {
               Ready to Transform Your Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join the healthcare organisations already optimising their
+              Join the healthcare organizations already optimizing their
               workforce with RosterLab.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

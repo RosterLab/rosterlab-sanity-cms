@@ -304,7 +304,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       {subItem.title === "Healthcare"
                                         ? "General healthcare solutions that handle complex workforces and frontline workers"
                                         : subItem.title === "ICU/ED"
-                                          ? "Build ICU/ED rosters that support better continuity of care for patients"
+                                          ? isUSVersion
+                                            ? "Build ICU/ED schedules that support better continuity of care"
+                                            : "Build ICU/ED rosters that support better continuity of care"
                                           : ""}
                                     </div>
                                   </Link>
@@ -331,15 +333,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                           : subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
-                                      {subItem.title.includes("Aged Care")
-                                        ? isUSVersion
-                                          ? "Make better use of staffing hours with schedules for care facilities"
-                                          : "Make better use of staffing hours with rosters for aged care facilities"
-                                        : subItem.title === "Radiology"
+                                      {(subItem as any).description ||
+                                        (subItem.title.includes("Aged Care") ||
+                                        subItem.title === "Senior Care"
                                           ? isUSVersion
-                                            ? "Balance your teams with the right skill mix with compliant radiology staff schedules"
-                                            : "Balance your teams with the right skill mix with compliant radiology rosters"
-                                          : ""}
+                                            ? "Efficient scheduling for nursing homes & assisted living"
+                                            : "Make better use of staffing hours with rosters for aged care facilities"
+                                          : subItem.title === "Radiology"
+                                            ? isUSVersion
+                                              ? "Balance your teams with the right skill mix with compliant radiology staff schedules"
+                                              : "Balance your teams with the right skill mix with compliant radiology rosters"
+                                            : "")}
                                     </div>
                                   </Link>
                                 ))}

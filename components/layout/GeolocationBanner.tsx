@@ -4,6 +4,47 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+// URL mapping between US and Global versions
+const URL_MAPPING = {
+  // Global -> US mappings (null means page doesn't exist on US)
+  globalToUS: {
+    "/roi-calculator": "/savings-calculator",
+    "/book-a-demo": "/book-a-demo",
+    "/pricing": "/pricing",
+    "/contact": "/contact",
+    "/about": "/about",
+    "/blog": "/blog",
+    "/solutions": null, // Only exists on global
+    "/solutions/healthcare": null, // Only exists on global
+    "/solutions/retail": null, // Only exists on global
+    "/solutions/aged-care": null, // Only exists on global
+    "/solutions/hospitality": null, // Only exists on global
+    "/": "/",
+  },
+  // US -> Global mappings (null means page doesn't exist on global)
+  usToGlobal: {
+    "/savings-calculator": "/roi-calculator",
+    "/book-a-demo": "/book-a-demo",
+    "/pricing": "/pricing",
+    "/contact": "/contact",
+    "/about": "/about",
+    "/blog": "/blog",
+    "/": "/",
+  },
+  // Pages that exist only on global (no US equivalent)
+  globalOnly: [
+    "/solutions",
+    "/solutions/healthcare",
+    "/solutions/retail",
+    "/solutions/aged-care",
+    "/solutions/hospitality",
+  ],
+  // Pages that exist only on US (no global equivalent)
+  usOnly: [
+    // Add US-only pages here if any
+  ],
+};
+
 export default function GeolocationBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const [detectedCountry, setDetectedCountry] = useState<string | null>(null);
@@ -41,24 +82,38 @@ export default function GeolocationBanner() {
         if (data.country) {
           setDetectedCountry(data.country);
 
-          const shouldShowBanner =
-            (data.country === "US" && !isUSPath) ||
-            (data.country !== "US" && isUSPath);
+          // Check if current page exists in the target version
+          let shouldShowBanner = false;
+
+          if (data.country === "US" && !isUSPath) {
+            // US user on global site - check if page exists on US
+            const mappedPath =
+              URL_MAPPING.globalToUS[
+                pathname as keyof typeof URL_MAPPING.globalToUS
+              ];
+            // Show banner only if page exists on US (not null and not in globalOnly)
+            shouldShowBanner =
+              mappedPath !== null && !URL_MAPPING.globalOnly.includes(pathname);
+          } else if (data.country !== "US" && isUSPath) {
+            // Non-US user on US site - always show banner to redirect to global
+            shouldShowBanner = true;
+          }
 
           console.log("🌍 Banner Logic:", {
             detectedCountry: data.country,
             isUSPath,
-            condition1: data.country === "US" && !isUSPath,
-            condition2: data.country !== "US" && isUSPath,
+            pathname,
             shouldShowBanner,
           });
 
-          // Show banner if there's a mismatch
+          // Show banner if there's a mismatch and target page exists
           if (shouldShowBanner) {
             console.log("🌍 Showing banner!");
             setShowBanner(true);
           } else {
-            console.log("🌍 No banner - no mismatch");
+            console.log(
+              "🌍 No banner - no mismatch or target page doesn't exist",
+            );
           }
         } else {
           console.log("🌍 No country detected");
@@ -80,11 +135,35 @@ export default function GeolocationBanner() {
 
   const getSuggestedPath = () => {
     if (isUSUser && !isUSPath) {
-      // Suggest US version
+      // User is from US but on global site - suggest US version
+      // Check if current path has a specific US mapping
+      const mappedPath =
+        URL_MAPPING.globalToUS[pathname as keyof typeof URL_MAPPING.globalToUS];
+      if (mappedPath === null) {
+        // Page doesn't exist on US - redirect to US home
+        return "/us";
+      }
+      if (mappedPath) {
+        return "/us" + mappedPath;
+      }
+      // For unmapped paths, just add /us prefix
       return "/us" + pathname;
     } else if (!isUSUser && isUSPath) {
-      // Suggest AU/NZ version
-      return pathname.replace("/us", "");
+      // User is not from US but on US site - suggest global version
+      // Remove /us prefix first
+      const pathWithoutUS =
+        pathname === "/us" ? "/" : pathname.replace(/^\/us/, "");
+
+      // Check if this US path has a specific global mapping
+      const mappedPath =
+        URL_MAPPING.usToGlobal[
+          pathWithoutUS as keyof typeof URL_MAPPING.usToGlobal
+        ];
+      if (mappedPath) {
+        return mappedPath;
+      }
+      // For unmapped paths, return without /us prefix
+      return pathWithoutUS;
     }
     return pathname;
   };
@@ -93,12 +172,23 @@ export default function GeolocationBanner() {
     if (isUSUser && !isUSPath) {
       return "United States";
     } else if (!isUSUser && isUSPath) {
-      return "Australia/New Zealand";
+      // Check if user is from AU or NZ
+      if (detectedCountry === "AU" || detectedCountry === "NZ") {
+        return "Australia/New Zealand";
+      }
+      return "global";
     }
     return "";
   };
 
-  console.log("🌍 Render check:", { showBanner, detectedCountry });
+  console.log("🌍 Render check:", {
+    showBanner,
+    detectedCountry,
+    currentPath: pathname,
+    suggestedPath: getSuggestedPath(),
+    isUSUser,
+    isUSPath,
+  });
 
   if (!showBanner) return null;
 

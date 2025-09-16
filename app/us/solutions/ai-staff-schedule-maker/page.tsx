@@ -5,7 +5,7 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import ScheduleLoadingBar from "@/components/ui/ScheduleLoadingBar";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCheck,
   HiClock,
@@ -17,57 +17,60 @@ import {
   HiSwitchHorizontal,
 } from "react-icons/hi";
 
-export const metadata = withHreflang({
-  title: "AI Staff Schedule Maker - RosterLab",
-  description:
-    "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/solutions/ai-staff-schedule-maker',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "AI Staff Schedule Maker - RosterLab",
     description:
       "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-    type: "website",
-    url: 'https://rosterlab.com/us/solutions/ai-staff-schedule-maker',
-    images: [
-      {
-        url: "/images/og images/SolutionAIGen.png",
-        width: 1200,
-        height: 630,
-        alt: "AI Staff Schedule Generator",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/solutions/ai-staff-schedule-maker",
+    },
+    openGraph: {
+      title: "AI Staff Schedule Maker - RosterLab",
+      description:
+        "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
+      type: "website",
+      url: "https://rosterlab.com/us/solutions/ai-staff-schedule-maker",
+      images: [
+        {
+          url: "/images/og images/SolutionAIGen.png",
+          width: 1200,
+          height: 630,
+          alt: "AI Staff Schedule Generator",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI Staff Schedule Maker - RosterLab",
+      description:
+        "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
+      images: ["/images/og images/SolutionAIGen.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Staff Schedule Maker - RosterLab",
-    description:
-      "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-    images: ["/images/og images/SolutionAIGen.png"],
-  },
-}, '/us/solutions/ai-staff-schedule-maker');
+  "/us/solutions/ai-staff-schedule-maker",
+);
 
 const faqItems = [
   {
     question: "What is an AI staff schedule maker?",
     answer:
-      "An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff information including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information analyses the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href=\"/us/book-a-demo\" class=\"text-blue-600 hover:text-blue-700 underline\">Book a demo</a> to learn more.",
+      'An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff information including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information analyses the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href="/us/book-a-demo" class="text-blue-600 hover:text-blue-700 underline">Book a demo</a> to learn more.',
   },
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      "AI has revolutionized staff scheduling by analyzing scheduling requirements and optimizing schedules in ways that would take humans hours or days to accomplish. RosterLab's AI considers multiple factors simultaneously - staff availability, skills, preferences, compliance requirements, and coverage needs - to generate optimal schedules in minutes. <a href=\"https://rosterlab.com/blog/should-your-next-staff-schedule-be-built-with-ai\" class=\"text-blue-600 hover:text-blue-700 underline\">Read more about how AI works</a>.",
+      'AI has revolutionized staff scheduling by analyzing scheduling requirements and optimizing schedules in ways that would take humans hours or days to accomplish. RosterLab\'s AI considers multiple factors simultaneously - staff availability, skills, preferences, compliance requirements, and coverage needs - to generate optimal schedules in minutes. <a href="https://rosterlab.com/blog/should-your-next-staff-schedule-be-built-with-ai" class="text-blue-600 hover:text-blue-700 underline">Read more about how AI works</a>.',
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
     answer:
-      "Implementation typically takes 2-4 weeks depending on your organisation's size and complexity. This includes data migration, system configuration, app handover and training, and initial AI model calibration to achieve your specific requirements.",
+      "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, app handover and training, and initial AI model calibration to achieve your specific requirements.",
   },
   {
     question: "Can the AI handle complex compliance and union rules?",
     answer:
-      "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organisational policies. You can configure custom rules in-app and the system will ensure all generated schedules are fully compliant.",
+      "Yes, our AI is designed to understand and enforce complex regulatory requirements, union agreements, and organizational policies. You can configure custom rules in-app and the system will ensure all generated schedules are fully compliant.",
   },
   {
     question:
@@ -78,7 +81,7 @@ const faqItems = [
   {
     question: "How much time and cost savings can we expect?",
     answer:
-      "Most organisations see a 70–90% reduction in time spent on scheduling, along with up to a 10% improvement in scheduling efficiency, such as reduced overtime costs and improved staff retention through better optimisation. Actual savings depend on your current processes and organisation size. Check out our <a href=\"/us/tools/savings-calculator\" class=\"text-blue-600 hover:text-blue-700 underline\">savings calculator</a> to see how much your team could benefit.",
+      'Most organizations see a 70–90% reduction in time spent on scheduling, along with up to a 10% improvement in scheduling efficiency, such as reduced overtime costs and improved staff retention through better optimization. Actual savings depend on your current processes and organization size. Check out our <a href="/us/tools/savings-calculator" class="text-blue-600 hover:text-blue-700 underline">savings calculator</a> to see how much your team could benefit.',
   },
   {
     question:
@@ -101,7 +104,7 @@ export default function AISchedulesPage() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 AI Staff Schedule Maker
               </h1>
-              
+
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden w-full relative mb-8">
                 <Image
@@ -112,7 +115,7 @@ export default function AISchedulesPage() {
                   className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
-              
+
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Make scheduling faster than ever before.
               </p>
@@ -191,7 +194,7 @@ export default function AISchedulesPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "AI Staff Scheduling",
-                    section: "hero"
+                    section: "hero",
                   }}
                 >
                   Book a Demo
@@ -204,7 +207,7 @@ export default function AISchedulesPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "AI Staff Scheduling",
-                    section: "hero"
+                    section: "hero",
                   }}
                 >
                   View Product Tour
@@ -257,7 +260,7 @@ export default function AISchedulesPage() {
             </div>
           </div>
         </Container>
-        
+
         {/* Wave separator */}
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
           <svg
@@ -596,8 +599,8 @@ export default function AISchedulesPage() {
                       Handles Skills Mix
                     </h3>
                     <p className="text-gray-600">
-                      Ensures qualified staff are schedules for appropriate roles
-                      and responsibilities
+                      Ensures qualified staff are schedules for appropriate
+                      roles and responsibilities
                     </p>
                   </div>
                 </div>
@@ -611,7 +614,7 @@ export default function AISchedulesPage() {
                     </h3>
                     <p className="text-gray-600">
                       Our natural language engine helps you convert
-                      organisation-specific rules and policies into app
+                      organization-specific rules and policies into app
                       functionality to ensure perfect compliance.
                     </p>
                   </div>
@@ -641,7 +644,9 @@ export default function AISchedulesPage() {
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                   <div className="flex items-center justify-between py-3">
-                    <span className="text-gray-700">Fair Shift Distribution</span>
+                    <span className="text-gray-700">
+                      Fair Shift Distribution
+                    </span>
                     <HiCheck className="w-5 h-5 text-green-500" />
                   </div>
                 </div>
@@ -674,7 +679,7 @@ export default function AISchedulesPage() {
               Ready Make Your First AI Staff Schedule?
             </h2>
             <p className="text-xl mb-12 opacity-90">
-              Join hundreds of healthcare organisations already using AI to
+              Join hundreds of healthcare organizations already using AI to
               transform their workforce management.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -686,7 +691,7 @@ export default function AISchedulesPage() {
                 analyticsProperties={{
                   cta_type: "demo",
                   page_name: "AI Staff Scheduling",
-                  section: "final_cta"
+                  section: "final_cta",
                 }}
               >
                 Book a Demo
@@ -699,7 +704,7 @@ export default function AISchedulesPage() {
                 analyticsProperties={{
                   cta_type: "contact",
                   page_name: "AI Staff Scheduling",
-                  section: "final_cta"
+                  section: "final_cta",
                 }}
               >
                 Contact Us

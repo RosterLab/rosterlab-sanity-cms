@@ -4,37 +4,40 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
-import { withHreflang } from '@/components/seo/HreflangTags'
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "Pricing - RosterLab",
-  description:
-    "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/pricing',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Pricing - RosterLab",
     description:
       "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
-    type: "website",
-    url: 'https://rosterlab.com/us/pricing',
-    images: [
-      {
-        url: "/images/og images/Pricing.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/pricing",
+    },
+    openGraph: {
+      title: "Pricing - RosterLab",
+      description:
+        "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
+      type: "website",
+      url: "https://rosterlab.com/us/pricing",
+      images: [
+        {
+          url: "/images/og images/Pricing.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Pricing - RosterLab",
+      description:
+        "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
+      images: ["/images/og images/Pricing.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pricing - RosterLab",
-    description:
-      "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
-    images: ["/images/og images/Pricing.png"],
-  },
-}, '/us/pricing');
+  "/us/pricing",
+);
 
 const pricingPlans = [
   {
@@ -73,7 +76,7 @@ const pricingPlans = [
   {
     name: "Enterprise Solution",
     price: "Contact us",
-    description: "Custom solutions for large organisations",
+    description: "Custom solutions for large organizations",
     features: [
       "SSO",
       "API access",
@@ -382,10 +385,10 @@ export default function PricingPage() {
                   }`}
                   analyticsLabel={plan.cta}
                   analyticsLocation="Pricing Card"
-                  analyticsProperties={{ 
+                  analyticsProperties={{
                     plan_name: plan.name,
-                    cta_type: plan.cta.includes('Sign up') ? 'signup' : 'demo',
-                    external: plan.ctaLink.includes('http')
+                    cta_type: plan.cta.includes("Sign up") ? "signup" : "demo",
+                    external: plan.ctaLink.includes("http"),
                   }}
                 >
                   {plan.cta}
@@ -539,7 +542,7 @@ export default function PricingPage() {
               Ready to Transform Your Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join healthcare organisations already optimising their workforce
+              Join healthcare organizations already optimizing their workforce
               with RosterLab
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -548,7 +551,7 @@ export default function PricingPage() {
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Sign up for free"
                 analyticsLocation="Pricing CTA Bottom"
-                analyticsProperties={{ cta_type: 'signup', external: true }}
+                analyticsProperties={{ cta_type: "signup", external: true }}
               >
                 Sign up for free
               </Button>
@@ -557,7 +560,7 @@ export default function PricingPage() {
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Pricing CTA Bottom"
-                analyticsProperties={{ cta_type: 'demo' }}
+                analyticsProperties={{ cta_type: "demo" }}
               >
                 Book a Demo
               </Button>

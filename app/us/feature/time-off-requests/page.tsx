@@ -4,35 +4,38 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "Employee Time-Off Requests - RosterLab",
-  description:
-    "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/feature/time-off-requests',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Employee Time-Off Requests - RosterLab",
     description:
       "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
-    images: [
-      {
-        url: "/images/og images/FeatureLeaveRequest.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/feature/time-off-requests",
+    },
+    openGraph: {
+      title: "Employee Time-Off Requests - RosterLab",
+      description:
+        "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
+      images: [
+        {
+          url: "/images/og images/FeatureLeaveRequest.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Employee Time-Off Requests - RosterLab",
+      description:
+        "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
+      images: ["/images/og images/FeatureLeaveRequest.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Employee Time-Off Requests - RosterLab",
-    description:
-      "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
-    images: ["/images/og images/FeatureLeaveRequest.png"],
-  },
-}, '/us/feature/time-off-requests');
+  "/us/feature/time-off-requests",
+);
 
 export default function LeaveRequestsPage() {
   return (
@@ -46,7 +49,7 @@ export default function LeaveRequestsPage() {
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Streamline Staff Time-Off Requests
                 </h1>
-                
+
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
@@ -57,10 +60,10 @@ export default function LeaveRequestsPage() {
                     className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
-                
+
                 <p className="text-xl text-gray-600 mb-8">
-                  Staff can submit a range of time-off request types via the staff
-                  mobile app to help streamline management.
+                  Staff can submit a range of time-off request types via the
+                  staff mobile app to help streamline management.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -100,19 +103,26 @@ export default function LeaveRequestsPage() {
                   Submit Time-Off Requests via the Staff Mobile App
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Staff can easily submit time-off requests directly from their mobile, anytime and anywhere. They can also see colleagues' time-off schedules, helping them plan around popular periods and improve chances of time-off approval. This reduces frustration from rejected requests and simplifies administration.
+                  Staff can easily submit time-off requests directly from their
+                  mobile, anytime and anywhere. They can also see colleagues'
+                  time-off schedules, helping them plan around popular periods
+                  and improve chances of time-off approval. This reduces
+                  frustration from rejected requests and simplifies
+                  administration.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Submit time-off requests on mobile with real-time notifications and updates.
+                      Submit time-off requests on mobile with real-time
+                      notifications and updates.
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      See team time-off schedules to plan and improve approval chances.
+                      See team time-off schedules to plan and improve approval
+                      chances.
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -205,13 +215,18 @@ export default function LeaveRequestsPage() {
                   Automatically Sync Changes to your Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Time-off requests seamlessly integrate with your schedule. Managers can see the impact on staffing levels and make informed approval decisions with all the context they need. All information syncs back to the schedule and is considered during the AI generation.
+                  Time-off requests seamlessly integrate with your schedule.
+                  Managers can see the impact on staffing levels and make
+                  informed approval decisions with all the context they need.
+                  All information syncs back to the schedule and is considered
+                  during the AI generation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Dedicated interface for administrators to review and manage time-off requests
+                      Dedicated interface for administrators to review and
+                      manage time-off requests
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -249,19 +264,27 @@ export default function LeaveRequestsPage() {
                   Decide How Different Types of Time-Off Requests are Handled
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Admin users have full control over how different types of time-off requests are handled in your schedule. You can set whether each time-off request type counts toward contractual working hours or is excluded, and define exactly how many hours should be counted within a schedule period. This flexibility ensures schedules reflect your rules accurately while keeping staffing plans clear and compliant.
+                  Admin users have full control over how different types of
+                  time-off requests are handled in your schedule. You can set
+                  whether each time-off request type counts toward contractual
+                  working hours or is excluded, and define exactly how many
+                  hours should be counted within a schedule period. This
+                  flexibility ensures schedules reflect your rules accurately
+                  while keeping staffing plans clear and compliant.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Support for all types of time-off requests including annual, sick, parental and custom categories
+                      Support for all types of time-off requests including
+                      annual, sick, parental and custom categories
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Full control of how different time-off requests are handled
+                      Full control of how different time-off requests are
+                      handled
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -306,9 +329,10 @@ export default function LeaveRequestsPage() {
                       "Yes! Staff can access their time-off balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request time-off on-the-go, while managers can review and approve requests with full coverage context from their phones.",
                   },
                   {
-                    question: "What types of time-off requests can the system handle?",
+                    question:
+                      "What types of time-off requests can the system handle?",
                     answer:
-                      "RosterLab supports all time-off request types including annual time-off, sick time-off, personal time-off, parental time-off, long service time-off, and custom time-off categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organisation's policies.",
+                      "RosterLab supports all time-off request types including annual time-off, sick time-off, personal time-off, parental time-off, long service time-off, and custom time-off categories. Each type can have its own accrual rules, carry-over policies, and approval workflows configured to match your organization's policies.",
                   },
                 ]}
               />
@@ -353,8 +377,8 @@ export default function LeaveRequestsPage() {
                 Ready to Streamline Time-Off Requests?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Transform time-off requests from administrative burden to seamless
-                self-service with intelligent automation.
+                Transform time-off requests from administrative burden to
+                seamless self-service with intelligent automation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button

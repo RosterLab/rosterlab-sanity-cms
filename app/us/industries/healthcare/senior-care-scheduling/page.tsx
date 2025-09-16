@@ -6,37 +6,41 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "Senior Care Staff Scheduling Software - RosterLab",
-  description:
-    "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/industries/healthcare/senior-care-scheduling',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Senior Care Staff Scheduling Software - RosterLab",
     description:
       "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
-    type: "website",
-    url: 'https://rosterlab.com/us/industries/healthcare/senior-care-scheduling',
-    images: [
-      {
-        url: "/images/og images/IndustryAgedCare.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical:
+        "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
+    },
+    openGraph: {
+      title: "Senior Care Staff Scheduling Software - RosterLab",
+      description:
+        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
+      type: "website",
+      url: "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
+      images: [
+        {
+          url: "/images/og images/IndustryAgedCare.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Senior Care Staff Scheduling Software - RosterLab",
+      description:
+        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
+      images: ["/images/og images/IndustryAgedCare.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Senior Care Staff Scheduling Software - RosterLab",
-    description:
-      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
-    images: ["/images/og images/IndustryAgedCare.png"],
-  },
-}, '/us/industries/healthcare/senior-care-scheduling');
+  "/us/industries/healthcare/senior-care-scheduling",
+);
 
 const faqItems = [
   {
@@ -70,7 +74,7 @@ export default function AgedCarePage() {
                 </span>{" "}
                 Staff Scheduling
               </h1>
-              
+
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden relative mb-8">
                 <Image
@@ -81,7 +85,7 @@ export default function AgedCarePage() {
                   className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
-              
+
               <p className="text-xl text-gray-600 mb-8">
                 Deliver better care with smart scheduling. Achieve 5% efficiency
                 gains while reducing scheduling errors and ensuring full
@@ -432,8 +436,8 @@ export default function AgedCarePage() {
                     </h3>
                     <p className="text-gray-600">
                       Access and share schedules from anywhere, with your
-                      scheduling know-how stored digitally. Standardise rules and
-                      processes to build resilient, high-quality schedules.
+                      scheduling know-how stored digitally. Standardise rules
+                      and processes to build resilient, high-quality schedules.
                     </p>
                   </div>
                 </div>
@@ -620,7 +624,7 @@ export default function AgedCarePage() {
                   Preferences & Rules
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Configure staff preferences and organisational rules for
+                  Configure staff preferences and organizational rules for
                   optimal scheduling.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
