@@ -1,23 +1,25 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import Image from 'next/image'
-import { getClient, client, urlFor } from '@/sanity/lib/client'
-import { groq } from 'next-sanity'
-import { validatedToken } from '@/sanity/lib/token'
-import { formatDate } from '@/lib/utils'
-import Container from '@/components/ui/Container'
-import Breadcrumb from '@/components/ui/Breadcrumb'
-import PortableText from '@/components/blog/PortableText'
-import TableOfContents from '@/components/blog/TableOfContents'
-import ShareButtons from '@/components/blog/ShareButtons'
-import NewsletterFormWrapper from '@/components/forms/NewsletterFormWrapper'
-import RelatedPosts from '@/components/blog/RelatedPosts'
-import { draftMode } from 'next/headers'
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { getClient, client, urlFor } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
+import { validatedToken } from "@/sanity/lib/token";
+import { formatDate } from "@/lib/utils";
+import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import PortableText from "@/components/blog/PortableText";
+import TableOfContents from "@/components/blog/TableOfContents";
+import ShareButtons from "@/components/blog/ShareButtons";
+import NewsletterFormWrapper from "@/components/forms/NewsletterFormWrapper";
+import RelatedPosts from "@/components/blog/RelatedPosts";
+import { draftMode } from "next/headers";
+import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
+import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 
 interface CaseStudyPageProps {
   params: Promise<{
-    slug: string
-  }>
+    slug: string;
+  }>;
 }
 
 // Query for a single case study post
@@ -45,12 +47,12 @@ const caseStudyQuery = groq`
       slug
     }
   }
-`
+`;
 
 // Query for case study slugs
 const caseStudyPathsQuery = groq`
   *[_type == "post" && "case-studies" in categories[]->slug.current][].slug.current
-`
+`;
 
 // Query for all case studies (for related posts)
 const allCaseStudiesQuery = groq`
@@ -71,41 +73,48 @@ const allCaseStudiesQuery = groq`
       slug
     }
   }
-`
+`;
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(caseStudyPathsQuery)
-  return slugs.map((slug: string) => ({ slug }))
+  const slugs = await client.fetch(caseStudyPathsQuery);
+  return slugs.map((slug: string) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps) {
-  const { slug } = await params
-  const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
-  const post = await clientToUse.fetch(caseStudyQuery, { slug })
-  
+  const { slug } = await params;
+  const { isEnabled } = await draftMode();
+  const clientToUse = getClient(
+    isEnabled && validatedToken ? { token: validatedToken } : undefined,
+  );
+  const post = await clientToUse.fetch(caseStudyQuery, { slug });
+
   if (!post) {
     return {
-      title: 'Case Study Not Found',
-    }
+      title: "Case Study Not Found",
+    };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rosterlab.com'
-  
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
+
   // Ensure meta description is between 120-155 characters
-  let metaDescription = post.seo?.metaDescription || post.excerpt || ''
-  
+  let metaDescription = post.seo?.metaDescription || post.excerpt || "";
+
   // Special handling for ICU unit case study
-  if (slug === 'icu-unit-western-australia') {
-    metaDescription = 'Western Australian ICU transforms staff rostering with RosterLab, achieving significant time savings and improved staff satisfaction.'
+  if (slug === "icu-unit-western-australia") {
+    metaDescription =
+      "Western Australian ICU transforms staff rostering with RosterLab, achieving significant time savings and improved staff satisfaction.";
   } else if (metaDescription.length < 120) {
     // If description is too short, enhance it
-    metaDescription = `${metaDescription} Read the full case study on how RosterLab transforms healthcare workforce management.`.slice(0, 155)
+    metaDescription =
+      `${metaDescription} Read the full case study on how RosterLab transforms healthcare workforce management.`.slice(
+        0,
+        155,
+      );
   } else if (metaDescription.length > 155) {
     // If description is too long, truncate it properly
-    metaDescription = metaDescription.slice(0, 152) + '...'
+    metaDescription = metaDescription.slice(0, 152) + "...";
   }
-  
+
   return {
     title: post.seo?.metaTitle || post.title,
     description: metaDescription,
@@ -117,40 +126,56 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
       description: metaDescription,
       type: "article",
       url: `https://rosterlab.com/case-studies/${slug}`,
-      images: post.seo?.ogImage ? [urlFor(post.seo.ogImage).url()] : 
-              post.mainImage ? [urlFor(post.mainImage).url()] : undefined,
+      images: post.seo?.ogImage
+        ? [urlFor(post.seo.ogImage).url()]
+        : post.mainImage
+          ? [urlFor(post.mainImage).url()]
+          : undefined,
     },
-  }
+  };
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
-  const { slug } = await params
-  const { isEnabled } = await draftMode()
-  const clientToUse = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
-  const post = await clientToUse.fetch(caseStudyQuery, { slug })
+  const { slug } = await params;
+  const { isEnabled } = await draftMode();
+  const clientToUse = getClient(
+    isEnabled && validatedToken ? { token: validatedToken } : undefined,
+  );
+  const post = await clientToUse.fetch(caseStudyQuery, { slug });
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   // Fetch all case studies for the related posts section
-  const allCaseStudies = await clientToUse.fetch(allCaseStudiesQuery)
+  const allCaseStudies = await clientToUse.fetch(allCaseStudiesQuery);
 
   // Calculate reading time
   const calculateReadingTime = (text: any[]) => {
-    const wordsPerMinute = 200
-    const textContent = text
-      ?.map((block: any) => block.children?.map((child: any) => child.text).join(' '))
-      .join(' ') || ''
-    const wordCount = textContent.split(/\s+/).length
-    const readingTime = Math.ceil(wordCount / wordsPerMinute)
-    return `${readingTime} mins read`
-  }
+    const wordsPerMinute = 200;
+    const textContent =
+      text
+        ?.map((block: any) =>
+          block.children?.map((child: any) => child.text).join(" "),
+        )
+        .join(" ") || "";
+    const wordCount = textContent.split(/\s+/).length;
+    const readingTime = Math.ceil(wordCount / wordsPerMinute);
+    return `${readingTime} mins read`;
+  };
 
-  const readingTime = calculateReadingTime(post.body)
+  const readingTime = calculateReadingTime(post.body);
 
   return (
     <article>
+      <HubSpotFormListener />
+      <BlogPostTracker
+        title={post.title}
+        slug={post.slug?.current || slug}
+        author={post.author?.name}
+        category="Case Studies"
+        publishedAt={post.publishedAt}
+      />
       {/* Purple Gradient Header */}
       <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10" />
@@ -163,17 +188,19 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
                   {post.title}
                 </h1>
-                
+
                 {/* Author and Meta */}
                 <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
                   <span className="font-medium">RosterLab</span>
                   <span className="text-purple-200">•</span>
-                  <time className="text-purple-200">{formatDate(post.publishedAt)}</time>
+                  <time className="text-purple-200">
+                    {formatDate(post.publishedAt)}
+                  </time>
                   <span className="text-purple-200">•</span>
                   <span className="text-purple-200">{readingTime}</span>
                 </div>
               </div>
-              
+
               {/* Right side - Hero Image */}
               {post.mainImage && (
                 <div className="lg:col-span-5 relative hidden lg:block">
@@ -192,7 +219,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </div>
           </div>
         </Container>
-        
+
         {/* Decorative circles */}
         <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
@@ -202,12 +229,12 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <div className="bg-gray-50 border-b hidden lg:block">
         <Container>
           <div className="py-2">
-            <Breadcrumb 
+            <Breadcrumb
               items={[
-                { label: 'Home', href: '/' },
-                { label: 'Case Studies', href: '/case-studies' },
-                { label: post.title }
-              ]} 
+                { label: "Home", href: "/" },
+                { label: "Case Studies", href: "/case-studies" },
+                { label: post.title },
+              ]}
             />
           </div>
         </Container>
@@ -221,7 +248,9 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <aside className="lg:col-span-3">
               <div className="lg:sticky lg:top-8">
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">TABLE OF CONTENTS</h3>
+                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">
+                    TABLE OF CONTENTS
+                  </h3>
                   <TableOfContents />
                 </div>
               </div>
@@ -236,13 +265,27 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
               {/* Related Posts */}
               {allCaseStudies.length > 0 && (
-                <RelatedPosts posts={allCaseStudies} currentPostId={post._id} currentPostDate={post.publishedAt} />
+                <RelatedPosts
+                  posts={allCaseStudies}
+                  currentPostId={post._id}
+                  currentPostDate={post.publishedAt}
+                />
               )}
 
               {/* Bottom CTA */}
-              <div className="mt-16 p-8 text-white rounded-lg text-center" style={{ background: 'linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)' }}>
-                <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Workforce Management?</h3>
-                <p className="mb-6 text-lg opacity-90">Join thousands using RosterLab to streamline rostering.</p>
+              <div
+                className="mt-16 p-8 text-white rounded-lg text-center"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                }}
+              >
+                <h3 className="text-2xl font-bold mb-4">
+                  Ready to Transform Your Workforce Management?
+                </h3>
+                <p className="mb-6 text-lg opacity-90">
+                  Join thousands using RosterLab to streamline rostering.
+                </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/book-a-demo"
@@ -265,7 +308,9 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               <div className="lg:sticky lg:top-8 space-y-6">
                 {/* Newsletter Signup */}
                 <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Subscribe for more insights and product updates</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    Subscribe for more insights and product updates
+                  </h3>
                   <NewsletterFormWrapper />
                 </div>
 
@@ -279,5 +324,5 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </Container>
       </div>
     </article>
-  )
+  );
 }

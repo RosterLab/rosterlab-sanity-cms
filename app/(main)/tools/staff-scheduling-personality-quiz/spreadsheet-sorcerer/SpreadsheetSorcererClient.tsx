@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { urlFor } from '@/sanity/lib/client'
+import HubSpotFormListener from '@/components/analytics/HubSpotFormListener'
 
 // Add HubSpot type declaration
 declare global {
@@ -644,6 +645,7 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
 
   return (
     <div className="min-h-screen bg-white">
+      <HubSpotFormListener />
 
       {/* Hero Section */}
       <section className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">

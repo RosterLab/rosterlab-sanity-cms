@@ -18,7 +18,7 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare/radiology",
     images: [
       {
-        url: "/images/og images/IndustryRadiology.png",
+        url: "/images/og-images/IndustryRadiology.png",
         width: 1200,
         height: 630,
       },
@@ -29,7 +29,7 @@ export const metadata = {
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
       "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
-    images: ["/images/og images/IndustryRadiology.png"],
+    images: ["/images/og-images/IndustryRadiology.png"],
   },
 };
 
@@ -545,7 +545,7 @@ export default function RadiologyPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="block">
+            <Link href="/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -573,9 +573,9 @@ export default function RadiologyPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
 
-            <Link href="/feature/shift-swaps" className="block">
+            <Link href="/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -605,7 +605,10 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <div className="block">
+            <Link
+              href="https://rosterlab.com/feature/self-scheduling"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -633,9 +636,9 @@ export default function RadiologyPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
 
-            <div className="block">
+            <Link href="/feature/leave-requests" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -663,7 +666,7 @@ export default function RadiologyPage() {
                   Learn more →
                 </span>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>

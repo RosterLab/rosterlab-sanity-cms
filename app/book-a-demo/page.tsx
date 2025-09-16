@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: "https://rosterlab.com/book-a-demo",
     images: [
       {
-        url: "/images/og images/Bookademo.png",
+        url: "/images/og-images/Bookademo.png",
         width: 1200,
         height: 630,
       },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Book a Demo - Talk to Us About Your Rostering Challenges",
     description:
       "Book a live demo with RosterLab to see how AI-powered rostering slashes admin time, optimises shifts, and fixes your toughest scheduling challenges.",
-    images: ["/images/og images/Bookademo.png"],
+    images: ["/images/og-images/Bookademo.png"],
   },
 };
 

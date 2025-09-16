@@ -16,11 +16,14 @@
     "sanity:seed": "tsx sanity/scripts/seed.ts",
     "sanity:reset": "tsx sanity/scripts/reset.ts",
     "sanity:import-images": "tsx sanity/scripts/import-images.ts",
-    "sanity:quick-import": "tsx sanity/scripts/quick-image-import.ts"
+    "sanity:quick-import": "tsx sanity/scripts/quick-image-import.ts",
+    "add-hubspot-listener": "node scripts/add-hubspot-form-listener.js",
+    "prepare": "husky"
   },
   "dependencies": {
-    "@amplitude/analytics-browser": "^2.22.0",
-    "@amplitude/plugin-session-replay-browser": "^1.22.2",
+    "@amplitude/analytics-browser": "^2.22.2",
+    "@amplitude/experiment-node-server": "^1.10.1",
+    "@amplitude/plugin-session-replay-browser": "^1.22.4",
     "@hookform/resolvers": "^5.1.1",
     "@portabletext/react": "^3.2.1",
     "@sanity/image-url": "^1.1.0",
@@ -50,6 +53,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@secretlint/secretlint-rule-preset-recommend": "^11.0.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/glob": "^8.1.0",
@@ -62,13 +66,29 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^16.1.5",
     "postcss": "^8.5.5",
+    "prettier": "^3.6.2",
+    "secretlint": "^11.0.2",
     "sharp": "^0.34.3",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.19.2",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*": [
+      "secretlint"
+    ]
   },
   "browserslist": [
     "chrome >= 92",

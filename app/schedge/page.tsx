@@ -1,38 +1,42 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import SchedgeGame from '@/components/games/SchedgeGame'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Image from "next/image";
+import SchedgeGame from "@/components/games/SchedgeGame";
 
 export const metadata = {
-  title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
-  description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
+  title: "Schedge - Puzzle Scheduling Game to Test your Skills",
+  description:
+    "Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!",
   alternates: {
-    canonical: 'https://rosterlab.com/schedge',
+    canonical: "https://rosterlab.com/schedge",
   },
   openGraph: {
-    title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
-    description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
-    type: 'website',
-    url: 'https://rosterlab.com/schedge',
+    title: "Schedge - Puzzle Scheduling Game to Test your Skills",
+    description:
+      "Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!",
+    type: "website",
+    url: "https://rosterlab.com/schedge",
     images: [
       {
-        url: '/images/og images/Schedge.png',
+        url: "/images/og-images/Schedge.png",
         width: 1200,
         height: 630,
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Schedge - Puzzle Scheduling Game to Test your Skills',
-    description: 'Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!',
-    images: ['/images/og images/Schedge.png'],
+    card: "summary_large_image",
+    title: "Schedge - Puzzle Scheduling Game to Test your Skills",
+    description:
+      "Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!",
+    images: ["/images/og-images/Schedge.png"],
   },
   other: {
-    'link:0': '<link rel="preload" href="/images/illustration/Choose-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
-  }
-}
+    "link:0":
+      '<link rel="preload" href="/images/illustration/Choose-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
+  },
+};
 
 export default function SchedgePage() {
   return (
@@ -47,17 +51,18 @@ export default function SchedgePage() {
                   The ultimate scheduling puzzle game.
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Test your shift planning speed and strategy to see how fast you can solve a 7×6 roster.
+                  Test your shift planning speed and strategy to see how fast
+                  you can solve a 7×6 roster.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    href="/solutions/ai-staff-scheduling" 
+                  <Button
+                    href="/solutions/ai-staff-scheduling"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     Learn about AI scheduling
                   </Button>
-                  <Button 
-                    href="/book-a-demo" 
+                  <Button
+                    href="/book-a-demo"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Book a demo
@@ -86,7 +91,7 @@ export default function SchedgePage() {
               <h2 className="text-4xl font-bold text-gray-900 mb-12">
                 Can you solve the roster?
               </h2>
-              <SchedgeGame 
+              <SchedgeGame
                 initialGrid={[
                   ["A", "", "", "", "", ""],
                   ["", "B", "", "", "", ""],
@@ -94,7 +99,7 @@ export default function SchedgePage() {
                   ["", "", "", "D", "", ""],
                   ["", "", "", "", "E", ""],
                   ["", "", "", "", "", ""],
-                  ["", "", "", "", "", ""]
+                  ["", "", "", "", "", ""],
                 ]}
                 heading=""
               />
@@ -103,5 +108,5 @@ export default function SchedgePage() {
         </div>
       </div>
     </SiteLayout>
-  )
+  );
 }

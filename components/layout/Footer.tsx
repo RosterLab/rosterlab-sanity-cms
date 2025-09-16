@@ -143,11 +143,6 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4 text-gray-900">Customer Success</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
-                  Industries
-                </Link>
-              </li>
-              <li>
                 <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Pricing
                 </Link>
@@ -155,6 +150,16 @@ export default function Footer() {
               <li>
                 <Link href="/case-studies" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/healthcare" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Healthcare
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  All industries
                 </Link>
               </li>
             </ul>
@@ -177,6 +182,16 @@ export default function Footer() {
               <li>
                 <Link href="/schedge" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
                   Schedge
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/roi-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  ROI Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/staff-scheduling-personality-quiz" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                  Personality Quiz
                 </Link>
               </li>
             </ul>

@@ -1,22 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-// import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
+import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
 import { analytics } from "@/components/analytics/Amplitude";
-
-// Temporary function to avoid build errors
-const trackFormSubmission = (properties: any) => {
-  // Analytics tracking disabled temporarily
-  console.log('Form submission tracked:', properties);
-  
-  // Track in Google Analytics via dataLayer if needed
-  if (typeof window !== 'undefined' && window.dataLayer) {
-    window.dataLayer.push({
-      event: 'form_submission',
-      ...properties,
-    });
-  }
-};
 
 interface HubSpotFormCallback {
   type: "hsFormCallback";
@@ -113,7 +99,10 @@ export default function HubSpotFormListener() {
         // Track in Amplitude
         try {
           // Log current session before tracking
-          console.log("[HubSpotFormListener] Session before form tracking");
+          console.log("[HubSpotFormListener] Session before form tracking:", {
+            deviceId: analytics.getDeviceId(),
+            userId: analytics.getUserId(),
+          });
 
           trackFormSubmission({
             form_guid: formData.id,

@@ -19,7 +19,7 @@ export const metadata = {
     url: "https://rosterlab.com/industries/healthcare/aged-care",
     images: [
       {
-        url: "/images/og images/IndustryAgedCare.png",
+        url: "/images/og-images/IndustryAgedCare.png",
         width: 1200,
         height: 630,
       },
@@ -30,7 +30,7 @@ export const metadata = {
     title: "Aged Care Staff Scheduling Software - RosterLab",
     description:
       "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-    images: ["/images/og images/IndustryAgedCare.png"],
+    images: ["/images/og-images/IndustryAgedCare.png"],
   },
 };
 
@@ -353,9 +353,15 @@ export default function AgedCarePage() {
                       Continuity of Care
                     </h3>
                     <p className="text-gray-600">
-                      Incorporate rules into rosters to ensure continuity of
-                      care. Distribute shifts fairly and safely based on skill
-                      sets to maximise staff engagement.
+                      Incorporate rules into rosters to ensure{" "}
+                      <Link
+                        href="https://rosterlab.com/blog/improving-continuity-of-care-in-healthcare"
+                        className="text-teal-600 hover:text-teal-700 underline"
+                      >
+                        continuity of care
+                      </Link>
+                      . Distribute shifts fairly and safely based on skill sets
+                      to maximise staff engagement.
                     </p>
                   </div>
                 </div>
@@ -577,7 +583,7 @@ export default function AgedCarePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="block">
+            <Link href="/feature/self-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -597,12 +603,15 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Preferences & Rules
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Configure staff preferences and organisational rules for
                   optimal scheduling.
                 </p>
+                <p className="text-teal-600 font-medium text-sm">
+                  Learn More →
+                </p>
               </div>
-            </div>
+            </Link>
 
             <Link href="/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
@@ -624,14 +633,17 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Smart Shift Swaps
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Enable staff to easily swap shifts with automated approval
                   workflows.
+                </p>
+                <p className="text-cyan-600 font-medium text-sm">
+                  Learn More →
                 </p>
               </div>
             </Link>
 
-            <div className="block">
+            <Link href="/feature/auto-roster-generation" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -651,14 +663,17 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Automate Rostering
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Create compliant schedules in minutes with AI-powered
                   optimisation.
                 </p>
+                <p className="text-blue-600 font-medium text-sm">
+                  Learn More →
+                </p>
               </div>
-            </div>
+            </Link>
 
-            <div className="block">
+            <Link href="/feature/re-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -678,12 +693,15 @@ export default function AgedCarePage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Re-roster Changes
                 </h3>
-                <p className="text-base text-gray-600">
+                <p className="text-base text-gray-600 mb-3">
                   Handle unexpected changes with intelligent re-rostering
                   algorithms.
                 </p>
+                <p className="text-indigo-600 font-medium text-sm">
+                  Learn More →
+                </p>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>

@@ -11,13 +11,7 @@ import {
   HiChevronRight,
   HiUser,
 } from "react-icons/hi";
-// import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
-
-// Temporary function to avoid build errors
-const trackSmartButtonClick = (buttonName: string, link: string, location: string) => {
-  // Analytics tracking disabled temporarily
-  console.log(`Button clicked: ${buttonName} at ${location} to ${link}`);
-};
+import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
 
 interface SubMenuItem {
   title: string;
@@ -38,6 +32,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+<<<<<<< HEAD
   
   // Determine if this is a US page by checking if navItems contain US-specific links
   const isUSVersion = navItems.some(item => 
@@ -47,6 +42,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
   const logoLink = isUSVersion ? '/us' : '/';
   const contactLink = isUSVersion ? '/us/contact' : '/contact';
   const demoLink = isUSVersion ? '/us/book-a-demo' : '/book-a-demo';
+=======
+>>>>>>> origin/main
 
   const defaultNavItems: NavItem[] = [
     {
@@ -116,7 +113,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
+<<<<<<< HEAD
               href={logoLink}
+=======
+              href="/"
+>>>>>>> origin/main
               className="flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -284,6 +285,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Healthcare Sectors
                               </h3>
                               <div className="space-y-1">
+<<<<<<< HEAD
                                 {item.subItems?.slice(0, 2).map((subItem) => (
                                   <Link
                                     key={subItem.link}
@@ -301,12 +303,39 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     </div>
                                   </Link>
                                 ))}
+=======
+                                <Link
+                                  href="/industries/healthcare"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Healthcare
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    General healthcare solutions that handle
+                                    complex workforces and frontline workers
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/industries/healthcare/ed-icu"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    ICU/ED
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Build ICU/ED rosters that support better
+                                    continuity of care for patients
+                                  </div>
+                                </Link>
+>>>>>>> origin/main
                               </div>
                             </div>
 
                             {/* Specialized Care Column */}
                             <div>
                               <div className="space-y-1 mt-8">
+<<<<<<< HEAD
                                 {item.subItems?.slice(2, 4).map((subItem) => (
                                   <Link
                                     key={subItem.link}
@@ -326,6 +355,32 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     </div>
                                   </Link>
                                 ))}
+=======
+                                <Link
+                                  href="/industries/healthcare/aged-care"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Aged Care
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Make better use of staffing hours with
+                                    rosters for aged care facilities
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/industries/healthcare/radiology"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Radiology
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Balance your teams with the right skill mix
+                                    with compliant radiology rosters
+                                  </div>
+                                </Link>
+>>>>>>> origin/main
                               </div>
                             </div>
                           </div>
@@ -350,6 +405,141 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     strokeWidth={2}
                                     d="M9 5l7 7-7 7"
                                   />
+<<<<<<< HEAD
+=======
+                                </svg>
+                              </Link>
+                              <Link
+                                href="/book-a-demo"
+                                className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                              >
+                                Get a demo
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      ) : item.title === "Resources" ? (
+                        // Enhanced Resources Dropdown Layout
+                        <div className="p-6">
+                          <div className="grid grid-cols-2 gap-6">
+                            {/* Content & Learning Column */}
+                            <div>
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Content & Learning
+                              </h3>
+                              <div className="space-y-1">
+                                <Link
+                                  href="/blog"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Blog
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Insights and best practices
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/case-studies"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Case Studies
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Success stories from our customers
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/newsroom"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    Newsroom
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Latest updates and announcements
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+
+                            {/* Tools Column */}
+                            <div>
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Tools
+                              </h3>
+                              <div className="space-y-1">
+                                <Link
+                                  href="/tools/roi-calculator"
+                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                    ROI Calculator
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Calculate your savings
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/schedge"
+                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                    Schedge
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    We love rostering so much that we made a
+                                    mini game - Try it out!
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/tools/staff-scheduling-personality-quiz"
+                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                    Personality Test
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Discover your scheduling style
+                                  </div>
+                                </Link>
+                                <Link
+                                  href="/templates/free-staff-roster-template-excel"
+                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                >
+                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                    Free Excel Template
+                                  </div>
+                                  <div className="text-sm text-gray-600">
+                                    Download our roster template
+                                  </div>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Call to Action */}
+                          <div className="mt-6 pt-6 border-t border-gray-200">
+                            <div className="flex items-center justify-between">
+                              <Link
+                                href="/blog"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                              >
+                                Explore all resources
+                                <svg
+                                  className="ml-1 h-4 w-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 5l7 7-7 7"
+                                  />
+>>>>>>> origin/main
                                 </svg>
                               </Link>
                               <Link
@@ -479,6 +669,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
           {/* Header Buttons */}
           <div className="hidden xl:flex items-center xl:space-x-2 2xl:space-x-4">
+<<<<<<< HEAD
             {!isUSVersion && (
               <>
                 <Link
@@ -497,6 +688,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
               </>
             )}
+=======
+            <Link
+              href="/contact"
+              className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
+              onClick={() =>
+                trackSmartButtonClick(
+                  "Contact Us",
+                  "/contact",
+                  "Header Desktop",
+                )
+              }
+            >
+              Contact Us
+            </Link>
+            <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
+>>>>>>> origin/main
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors flex items-center"
@@ -516,12 +723,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Login
             </Link>
             <Link
+<<<<<<< HEAD
               href={demoLink}
+=======
+              href="/book-a-demo"
+>>>>>>> origin/main
               className="bg-blue-600 text-white hover:bg-blue-700 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={() =>
                 trackSmartButtonClick(
                   "Book a Demo",
+<<<<<<< HEAD
                   demoLink,
+=======
+                  "/book-a-demo",
+>>>>>>> origin/main
                   "Header Desktop",
                 )
               }
@@ -668,6 +883,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </div>
           ))}
           <div className="border-t border-gray-200 pt-4 space-y-2">
+<<<<<<< HEAD
             {!isUSVersion && (
               <Link
                 href={contactLink}
@@ -684,6 +900,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 Contact Us
               </Link>
             )}
+=======
+            <Link
+              href="/contact"
+              className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => {
+                trackSmartButtonClick(
+                  "Contact Us",
+                  "/contact",
+                  "Header Mobile",
+                );
+                setIsMenuOpen(false);
+              }}
+            >
+              Contact Us
+            </Link>
+>>>>>>> origin/main
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
@@ -708,7 +940,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
               onClick={() => {
                 trackSmartButtonClick(
                   "Book a Demo",
+<<<<<<< HEAD
                   demoLink,
+=======
+                  "/book-a-demo",
+>>>>>>> origin/main
                   "Header Mobile",
                 );
                 setIsMenuOpen(false);

@@ -1,15 +1,15 @@
-import Container from '@/components/ui/Container'
-import Button from '@/components/ui/Button'
-import SiteLayout from '@/components/layout/SiteLayout'
-import Image from 'next/image'
-import { HiCheck } from 'react-icons/hi'
-import FAQAccordion from '@/components/ui/FAQAccordion'
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
+import SiteLayout from "@/components/layout/SiteLayout";
+import Image from "next/image";
+import { HiCheck } from "react-icons/hi";
+import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
   title: 'Open Shifts - RosterLab',
   description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
   alternates: {
-    canonical: 'https://rosterlab.com/feature/open-shifts',
+    canonical: "https://rosterlab.com/feature/open-shifts",
   },
   openGraph: {
     title: 'Open Shifts - RosterLab',
@@ -18,7 +18,7 @@ export const metadata = {
     url: 'https://rosterlab.com/feature/open-shifts',
     images: [
       {
-        url: '/images/og images/FeatureOpenShifts.png',
+        url: "/images/og-images/FeatureOpenShifts.png",
         width: 1200,
         height: 630,
       },
@@ -28,36 +28,42 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Open Shifts - RosterLab',
     description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
-    images: ['/images/og images/FeatureOpenShifts.png'],
+    images: ['/images/og-images/FeatureOpenShifts.png'],
   },
-}
+};
 
 const faqItems = [
   {
     question: "How quickly can open shifts be filled?",
-    answer: "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable employee to accept gets the shift, and the roster is automatically updated."
+    answer:
+      "With RosterLab's instant notification system, open shifts can be filled within minutes. As soon as you post an open shift, all qualified and available staff receive push notifications. The first suitable employee to accept gets the shift, and the roster is automatically updated.",
   },
   {
     question: "How do employees know about open shifts?",
-    answer: "Employees receive instant push notifications on their mobile devices when shifts matching their qualifications become available. They can also check the app proactively to see all open shifts they're eligible for."
+    answer:
+      "Employees receive instant push notifications on their mobile devices when shifts matching their qualifications become available. They can also check the app proactively to see all open shifts they're eligible for.",
   },
   {
     question: "Can I control who sees open shifts?",
-    answer: "Yes! You can set precise criteria for each open shift including required qualifications, minimum experience level, specific departments or teams, and availability requirements."
+    answer:
+      "Yes! You can set precise criteria for each open shift including required qualifications, minimum experience level, specific departments or teams, and availability requirements.",
   },
   {
     question: "What happens when multiple people want the same shift?",
-    answer: "The system operates on a first-come, first-served basis by default."
+    answer:
+      "The system operates on a first-come, first-served basis by default.",
   },
   {
     question: "How does open shifts help reduce staffing costs?",
-    answer: "Open shifts helps reduce costly agency and overtime usage by quickly filling gaps with your existing staff pool. Instead of calling expensive agency workers or paying overtime rates, you can instantly broadcast shifts to available employees at regular rates. The system also reduces administrative time spent on phone calls and manual coordination, freeing up managers for more valuable tasks."
+    answer:
+      "Open shifts helps reduce costly agency and overtime usage by quickly filling gaps with your existing staff pool. Instead of calling expensive agency workers or paying overtime rates, you can instantly broadcast shifts to available employees at regular rates. The system also reduces administrative time spent on phone calls and manual coordination, freeing up managers for more valuable tasks.",
   },
   {
     question: "What if an employee can't work an accepted open shift?",
-    answer: "The shift is reopened and automatically shared with the employees who were originally offered it."
-  }
-]
+    answer:
+      "The shift is reopened and automatically shared with the employees who were originally offered it.",
+  },
+];
 
 export default function OpenShiftsPage() {
   return (
@@ -72,17 +78,18 @@ export default function OpenShiftsPage() {
                   Fill Open Shifts Instantly
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Broadcast open shifts to qualified staff and fill gaps in minutes, not hours.
+                  Broadcast open shifts to qualified staff and fill gaps in
+                  minutes, not hours.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    href="/book-a-demo" 
+                  <Button
+                    href="/book-a-demo"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     Book A Demo
                   </Button>
-                  <Button 
-                    href="/solutions/free-staff-scheduling" 
+                  <Button
+                    href="/solutions/free-staff-scheduling"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     Try it for free
@@ -111,25 +118,34 @@ export default function OpenShiftsPage() {
                   Instant Shift Broadcasting
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Post open shifts with one click and instantly notify all qualified, available staff. Staff receive instant notifications on their phones and can accept shifts with one tap. No more unanswered messages.
+                  Post open shifts with one click and instantly notify all
+                  qualified, available staff. Staff receive instant
+                  notifications on their phones and can accept shifts with one
+                  tap. No more unanswered messages.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">One-click shift posting</span>
+                    <span className="text-gray-700">
+                      One-click shift posting
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Instant mobile app notifications to staff</span>
+                    <span className="text-gray-700">
+                      Instant mobile app notifications to staff
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Smart filtering by skills and availability</span>
+                    <span className="text-gray-700">
+                      Smart filtering by skills and availability
+                    </span>
                   </li>
                 </ul>
                 <div className="mt-8">
-                  <Button 
-                    href="/solutions/staff-roster-mobile-app" 
+                  <Button
+                    href="/solutions/staff-roster-mobile-app"
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
                   >
                     Learn more about our mobile app
@@ -167,24 +183,36 @@ export default function OpenShiftsPage() {
                   Instantly Fill Staffing Gaps Without Worry
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  When open shifts are filled, the roster updates automatically and notifies the admin in real time. This removes the need for manual edits, speeds up the rostering process, and keeps everyone on the same page, reducing miscommunication and ensuring staffing levels are always accurate.
+                  When open shifts are filled, the roster updates automatically
+                  and notifies the admin in real time. This removes the need for
+                  manual edits, speeds up the rostering process, and keeps
+                  everyone on the same page, reducing miscommunication and
+                  ensuring staffing levels are always accurate.
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Quick, automatic updates to shift allocations</span>
+                    <span className="text-gray-700">
+                      Quick, automatic updates to shift allocations
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Immediate notifications for admins when gaps are filled</span>
+                    <span className="text-gray-700">
+                      Immediate notifications for admins when gaps are filled
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Fewer manual adjustments, saving valuable time</span>
+                    <span className="text-gray-700">
+                      Fewer manual adjustments, saving valuable time
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Less back-and-forth between managers and staff</span>
+                    <span className="text-gray-700">
+                      Less back-and-forth between managers and staff
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -201,20 +229,29 @@ export default function OpenShiftsPage() {
                   Prioritise More Urgent Shifts
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Sometimes an open shift is more critical than the one an employee is already scheduled for. Managers can choose to invite employees who already have a shift with the option to replace their existing shift with a higher priority shift.
+                  Sometimes an open shift is more critical than the one an
+                  employee is already scheduled for. Managers can choose to
+                  invite employees who already have a shift with the option to
+                  replace their existing shift with a higher priority shift.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Ensures that the most important shifts are filled</span>
+                    <span className="text-gray-700">
+                      Ensures that the most important shifts are filled
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Balances staffing during peak hours</span>
+                    <span className="text-gray-700">
+                      Balances staffing during peak hours
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Improves service during busy periods</span>
+                    <span className="text-gray-700">
+                      Improves service during busy periods
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -240,16 +277,21 @@ export default function OpenShiftsPage() {
                   Fair & Transparent Assignment
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Employees see available shifts in real-time and can claim them instantly on a first-come-first-served basis.
+                  Employees see available shifts in real-time and can claim them
+                  instantly on a first-come-first-served basis.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Real-time availability updates</span>
+                    <span className="text-gray-700">
+                      Real-time availability updates
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">Automatic rostering when shifts are filled</span>
+                    <span className="text-gray-700">
+                      Automatic rostering when shifts are filled
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -288,7 +330,9 @@ export default function OpenShiftsPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                   <p className="text-5xl font-bold mb-2">85%</p>
-                  <p className="text-xl opacity-90">Shifts filled within 30 minutes</p>
+                  <p className="text-xl opacity-90">
+                    Shifts filled within 30 minutes
+                  </p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">3x</p>
@@ -311,17 +355,18 @@ export default function OpenShiftsPage() {
                 Never Leave a Shift Unfilled Again
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Join thousands of organizations that fill last-minute gaps instantly with RosterLab's Open Shifts feature.
+                Join thousands of organizations that fill last-minute gaps
+                instantly with RosterLab's Open Shifts feature.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  href="/book-a-demo" 
+                <Button
+                  href="/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
-                <Button 
-                  href="/pricing" 
+                <Button
+                  href="/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
@@ -332,5 +377,5 @@ export default function OpenShiftsPage() {
         </div>
       </div>
     </SiteLayout>
-  )
+  );
 }

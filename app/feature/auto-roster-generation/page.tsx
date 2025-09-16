@@ -16,7 +16,7 @@ export const metadata = {
       "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
     images: [
       {
-        url: "/images/og images/AutoRosterGeneration.png",
+        url: "/images/og-images/AutoRosterGeneration.png",
         width: 1200,
         height: 630,
       },
@@ -27,7 +27,7 @@ export const metadata = {
     title: "Automatic Roster Generation - RosterLab",
     description:
       "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
-    images: ["/images/og images/AutoRosterGeneration.png"],
+    images: ["/images/og-images/AutoRosterGeneration.png"],
   },
 };
 
@@ -75,7 +75,7 @@ export default function AutoRosterGenerationPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Auto Roster Generation",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Book A Demo
@@ -88,7 +88,7 @@ export default function AutoRosterGenerationPage() {
                     analyticsProperties={{
                       cta_type: "signup",
                       page_name: "Auto Roster Generation",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Try it for free
@@ -374,7 +374,7 @@ export default function AutoRosterGenerationPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Auto Roster Generation",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book Your Demo
@@ -387,7 +387,7 @@ export default function AutoRosterGenerationPage() {
                   analyticsProperties={{
                     cta_type: "pricing",
                     page_name: "Auto Roster Generation",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   View Pricing

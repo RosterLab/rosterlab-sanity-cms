@@ -8,6 +8,7 @@ import { useCalendlyEventListener } from "react-calendly";
 import { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
+import { analytics } from "@/components/analytics/Amplitude";
 
 // Lazy load the Calendly widget
 const LazyInlineWidget = dynamic(
@@ -31,11 +32,27 @@ const LazyInlineWidget = dynamic(
 export default function BookADemoClient() {
   const [isBooking, setIsBooking] = useState(false);
   const [shouldLoadWidget, setShouldLoadWidget] = useState(false);
+  const [calendlyUrl, setCalendlyUrl] = useState<string>("");
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const hasTrackedViewRef = useRef(false);
   const router = useRouter();
 
   useEffect(() => {
+    // Build Calendly URL with Amplitude user ID
+    const amplitudeUserId = analytics.getUserId();
+    const baseUrl = "https://calendly.com/d/cw2v-vw3-j2z";
+    const params = new URLSearchParams({
+      hide_gdpr_banner: "1",
+      utm_source: "website",
+      utm_medium: "booking",
+      utm_campaign: "demo",
+      utm_content: amplitudeUserId
+        ? `amplitude_${amplitudeUserId}`
+        : "no_user_id",
+    });
+
+    setCalendlyUrl(`${baseUrl}?${params.toString()}`);
+
     // Check if mobile and load immediately
     if (window.innerWidth < 768) {
       setShouldLoadWidget(true);
@@ -67,12 +84,13 @@ export default function BookADemoClient() {
       "https://assets.calendly.com/assets/external/widget.js";
     document.head.appendChild(preloadScript);
 
-    // Prefetch the Calendly iframe page
-    const prefetchIframe = document.createElement("link");
-    prefetchIframe.rel = "prefetch";
-    prefetchIframe.href =
-      "https://calendly.com/d/cw2v-vw3-j2z?hide_gdpr_banner=1&embed_domain=localhost&embed_type=Inline";
-    document.head.appendChild(prefetchIframe);
+    // Prefetch the Calendly iframe page if URL is ready
+    if (calendlyUrl) {
+      const prefetchIframe = document.createElement("link");
+      prefetchIframe.rel = "prefetch";
+      prefetchIframe.href = `${calendlyUrl}&embed_domain=${window.location.hostname}&embed_type=Inline`;
+      document.head.appendChild(prefetchIframe);
+    }
 
     // Set up intersection observer for lazy loading
     const observer = new IntersectionObserver(
@@ -102,7 +120,7 @@ export default function BookADemoClient() {
         )
         .forEach((el) => el.remove());
     };
-  }, [router]);
+  }, [router, calendlyUrl]);
 
   // Handle Calendly events
   useCalendlyEventListener({
@@ -221,9 +239,9 @@ export default function BookADemoClient() {
             className="relative"
             style={{ minHeight: "700px" }}
           >
-            {shouldLoadWidget ? (
+            {shouldLoadWidget && calendlyUrl ? (
               <LazyInlineWidget
-                url="https://calendly.com/d/cw2v-vw3-j2z?hide_gdpr_banner=1"
+                url={calendlyUrl}
                 styles={{
                   height: "700px",
                   minWidth: "320px",
@@ -259,7 +277,7 @@ export default function BookADemoClient() {
           </div>
 
           {/* Contact alternative */}
-          <div className="text-center mt-8 pb-8">
+          <div className="text-center -mt-4 pb-8">
             <p className="text-gray-600">
               Can't find a suitable time?{" "}
               <Link

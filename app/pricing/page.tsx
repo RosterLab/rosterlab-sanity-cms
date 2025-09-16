@@ -10,7 +10,7 @@ export const metadata = {
   description:
     "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
   alternates: {
-    canonical: 'https://rosterlab.com/pricing',
+    canonical: "https://rosterlab.com/pricing",
   },
   openGraph: {
     title: "Pricing - Affordable AI Staff Rostering Software",
@@ -20,7 +20,7 @@ export const metadata = {
     url: "https://rosterlab.com/pricing",
     images: [
       {
-        url: "/images/og images/Pricing.png",
+        url: "/images/og-images/Pricing.png",
         width: 1200,
         height: 630,
       },
@@ -31,7 +31,7 @@ export const metadata = {
     title: "Pricing - Affordable AI Staff Rostering Software",
     description:
       "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
-    images: ["/images/og images/Pricing.png"],
+    images: ["/images/og-images/Pricing.png"],
   },
 };
 
@@ -267,7 +267,7 @@ const faqItems = [
   {
     question: "What is my ROI choosing RosterLab",
     answer:
-      "RosterLab delivers ROI by significantly reducing the time spent on rostering, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised rosters also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see a return on investment within the first few months, with some recovering costs in their very first roster.",
+      "RosterLab delivers ROI by cutting rostering time by up to 90% and boosting staff satisfaction and retention with fair, preference-aware schedules.<br><br>Our AI enforces fatigue and union rules to lower sick leave and burnout risk, while improving coverage and reducing costly last-minute changes.<br><br>Optimised rosters streamline onboarding for new teams, enabling scale without extra manual work. Many customers see ROI within first few months, and some after their very first roster.<br><br>Try our <a href='/tools/roi-calculator' class='text-blue-600 hover:underline'>ROI calculator</a> to see your potential savings.",
   },
   {
     question: "How is pricing calculated?",
@@ -381,10 +381,10 @@ export default function PricingPage() {
                   }`}
                   analyticsLabel={plan.cta}
                   analyticsLocation="Pricing Card"
-                  analyticsProperties={{ 
+                  analyticsProperties={{
                     plan_name: plan.name,
-                    cta_type: plan.cta.includes('Sign up') ? 'signup' : 'demo',
-                    external: plan.ctaLink.includes('http')
+                    cta_type: plan.cta.includes("Sign up") ? "signup" : "demo",
+                    external: plan.ctaLink.includes("http"),
                   }}
                 >
                   {plan.cta}
@@ -547,7 +547,7 @@ export default function PricingPage() {
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Sign up for free"
                 analyticsLocation="Pricing CTA Bottom"
-                analyticsProperties={{ cta_type: 'signup', external: true }}
+                analyticsProperties={{ cta_type: "signup", external: true }}
               >
                 Sign up for free
               </Button>
@@ -556,7 +556,7 @@ export default function PricingPage() {
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Book a Demo"
                 analyticsLocation="Pricing CTA Bottom"
-                analyticsProperties={{ cta_type: 'demo' }}
+                analyticsProperties={{ cta_type: "demo" }}
               >
                 Book a Demo
               </Button>

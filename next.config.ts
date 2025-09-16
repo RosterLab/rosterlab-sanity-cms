@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  trailingSlash: false, // Explicitly set to false to avoid redirect chains
   images: {
     domains: ['cdn.sanity.io', 'rosterlab.com'],
     formats: ['image/webp'],
@@ -220,6 +221,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/studies',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/studies/',
         destination: '/case-studies',
         permanent: true,
       },

@@ -4,23 +4,24 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 
 export const metadata = {
   title: "Contact Us - Get Help with Your Team Rosters",
   description:
     "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
   alternates: {
-    canonical: 'https://rosterlab.com/contact',
+    canonical: "https://rosterlab.com/contact",
   },
   openGraph: {
     title: "Contact Us - Get Help with Your Team Rosters",
     description:
       "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
-    type: 'website',
-    url: 'https://rosterlab.com/contact',
+    type: "website",
+    url: "https://rosterlab.com/contact",
     images: [
       {
-        url: "/images/og images/Contact.png",
+        url: "/images/og-images/Contact.png",
         width: 1200,
         height: 630,
       },
@@ -31,7 +32,7 @@ export const metadata = {
     title: "Contact Us - Get Help with Your Team Rosters",
     description:
       "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
-    images: ["/images/og images/Contact.png"],
+    images: ["/images/og-images/Contact.png"],
   },
 };
 
@@ -56,6 +57,7 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <SiteLayout>
+      <HubSpotFormListener />
       <div className="py-16 bg-neutral-50 min-h-screen">
         <Container>
           {/* Header */}

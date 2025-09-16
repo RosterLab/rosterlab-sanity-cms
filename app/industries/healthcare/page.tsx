@@ -1014,6 +1014,7 @@ export default async function HealthcarePage() {
 
       {/* Key Statistics */}
       <section className="py-20 bg-white">
+<<<<<<< HEAD
         <Container>
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">
@@ -1197,35 +1198,68 @@ export default async function HealthcarePage() {
       {/* Success Story */}
       <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+=======
+>>>>>>> origin/main
         <Container>
           <div className="max-w-6xl mx-auto">
-            {/* Testimonial */}
-            <div className="bg-white rounded-2xl shadow-lg max-w-4xl mx-auto mb-12">
-              <div className="p-10 md:p-12">
-                <blockquote className="text-xl md:text-2xl text-gray-700 italic text-center leading-relaxed mb-8">
-                  "It's not just about saving hours. It's about confidence in
-                  the roster, about fairness, and about giving senior clinicians
-                  time back for patient care - not spreadsheets."
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-lg">
-                    Emergency Physician
-                  </p>
-                  <p className="text-gray-600">
-                    South Eastern Sydney Area Health Services
-                  </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">
+              Healthcare Workforce Excellence
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+              <div className="text-center">
+                <div className="mb-4">
+                  <span className="block text-5xl font-bold text-blue-600 mb-2">
+                    90%
+                  </span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Less Admin Time
+                  </span>
                 </div>
+                <p className="text-gray-600">
+                  Reduce rostering from days to minutes with AI automation
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-4">
+                  <span className="block text-5xl font-bold text-sky-600 mb-2">
+                    100%
+                  </span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Union Compliance
+                  </span>
+                </div>
+                <p className="text-gray-600">
+                  Meet all regulatory requirements and union agreements
+                  automatically
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="mb-4">
+                  <span className="block text-5xl font-bold text-green-600 mb-2">
+                    ~10%
+                  </span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Higher Efficiency
+                  </span>
+                </div>
+                <p className="text-gray-600">
+                  Reduce staff turnover and improve retention with better
+                  staffing
+                </p>
               </div>
             </div>
 
-            <div className="text-center mb-16">
+            <div className="mt-16 text-center">
               <Button
-                href="/case-studies"
-                className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
+                href="/solutions/ai-staff-scheduling"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
-                View case studies
+                Explore AI Rostering Features
                 <svg
-                  className="w-5 h-5 ml-2"
+                  className="w-5 h-5 ml-2 inline"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1239,42 +1273,119 @@ export default async function HealthcarePage() {
                 </svg>
               </Button>
             </div>
-
-            {/* Central Message */}
-            <div
-              className="rounded-3xl p-12 text-center shadow-xl"
-              style={{
-                background:
-                  "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-              }}
-            >
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Better Patient Care, Happier Staff.
-              </h3>
-              <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-                When healthcare professionals spend less time on administrative
-                tasks, they can focus on what matters most - delivering
-                exceptional patient care.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
-                >
-                  Schedule a Healthcare Demo
-                </Button>
-                <Button
-                  href="/solutions/ai-staff-scheduling"
-                  className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
-                >
-                  Learn more about AI rostering
-                </Button>
-              </div>
-            </div>
           </div>
         </Container>
       </section>
 
+<<<<<<< HEAD
+=======
+      {/* Case Studies Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Success Stories in Healthcare
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See how healthcare organizations are transforming their workforce
+              management with RosterLab
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {caseStudies.map((post: any) => (
+              <article
+                key={post._id}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+              >
+                <Link
+                  href={`/case-studies/${post.slug.current}`}
+                  className="block"
+                >
+                  <div className="relative h-48 overflow-hidden group">
+                    {post.mainImage ? (
+                      <Image
+                        src={urlFor(post.mainImage)
+                          .width(400)
+                          .height(200)
+                          .url()}
+                        alt={post.mainImage.alt || post.title}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                        <svg
+                          className="w-24 h-24 text-white/20"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <span className="text-blue-600 font-medium hover:underline inline-flex items-center">
+                      Read case study
+                      <svg
+                        className="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          {/* View all case studies CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/case-studies"
+              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            >
+              View all case studies
+              <svg
+                className="w-4 h-4 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* Success Story */}
+      <HealthcareTestimonials testimonials={testimonials} />
+
+>>>>>>> origin/main
       {/* ROI Calculator CTA */}
       <section className="py-16 bg-gray-50">
         <Container>

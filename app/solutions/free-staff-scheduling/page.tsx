@@ -19,17 +19,17 @@ export const metadata = {
   description:
     "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
   alternates: {
-    canonical: 'https://rosterlab.com/solutions/free-staff-scheduling',
+    canonical: "https://rosterlab.com/solutions/free-staff-scheduling",
   },
   openGraph: {
     title: "Free Staff Roster Software - RosterLab",
     description:
       "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
-    type: 'website',
-    url: 'https://rosterlab.com/solutions/free-staff-scheduling',
+    type: "website",
+    url: "https://rosterlab.com/solutions/free-staff-scheduling",
     images: [
       {
-        url: "/images/og images/SolutionFree.png",
+        url: "/images/og-images/SolutionFree.png",
         width: 1200,
         height: 630,
         alt: "Free Digital Rostering Platform",
@@ -41,7 +41,7 @@ export const metadata = {
     title: "Free Staff Roster Software - RosterLab",
     description:
       "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
-    images: ["/images/og images/SolutionFree.png"],
+    images: ["/images/og-images/SolutionFree.png"],
   },
 };
 
@@ -54,7 +54,7 @@ const faqItems = [
   {
     question: "Should I upgrade to AI rostering?",
     answer:
-      "Yes, absolutely! While our free product provides a convenient platform to manage your rosters digitally, if you have complex rostering needs, automatic rostering can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
+      "Yes, absolutely! While our free product provides a convenient platform to manage your rosters digitally, if you have complex rostering needs, <a href='/feature/auto-roster-generation' style='color: #2563eb; text-decoration: underline;'>automatic rostering</a> can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
   },
   {
     question: "How do I install the employee mobile app?",
@@ -192,7 +192,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "signup",
                       page_name: "Free Staff Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Start for Free
@@ -206,7 +206,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "upgrade",
                       page_name: "Free Staff Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Discover AI Rosters
@@ -449,7 +449,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "upgrade",
                     page_name: "Free Staff Scheduling",
-                    section: "steps"
+                    section: "steps",
                   }}
                 >
                   Explore AI Features
@@ -632,7 +632,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "learn_more",
                       page_name: "Free Staff Scheduling",
-                      section: "mobile_app"
+                      section: "mobile_app",
                     }}
                   >
                     Learn More About Mobile App
@@ -685,7 +685,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "signup",
                     page_name: "Free Staff Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Start for Free
@@ -698,7 +698,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Free Staff Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book a Demo
