@@ -49,7 +49,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         {
           title: "AI Roster Generator",
-          link: "/solutions/ai-staff-scheduling",
+          link: "/solutions/ai-staff-rostering",
         },
         {
           title: "Free Staff Roster Software",

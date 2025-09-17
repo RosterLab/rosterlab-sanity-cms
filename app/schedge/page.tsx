@@ -56,7 +56,7 @@ export default function SchedgePage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
-                    href="/solutions/ai-staff-scheduling"
+                    href="/solutions/ai-staff-rostering"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
                     Learn about AI scheduling

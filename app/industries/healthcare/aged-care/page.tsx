@@ -48,7 +48,7 @@ const faqItems = [
   {
     question: "How does the platform help reduce scheduling mistakes?",
     answer:
-      "With the highly flexible RosterLab Rules Engine, you can create the constraints for your specific schedule and feel safe knowing that <a href='/solutions/ai-staff-scheduling' class='text-blue-600 hover:underline'>the A.I.</a> will never break any hard rules you set. The A.I. will always consider every staff member's skillset and availability, so you won't schedule someone onto a shift they can't work.",
+      "With the highly flexible RosterLab Rules Engine, you can create the constraints for your specific schedule and feel safe knowing that <a href='/solutions/ai-staff-rostering' class='text-blue-600 hover:underline'>the A.I.</a> will never break any hard rules you set. The A.I. will always consider every staff member's skillset and availability, so you won't schedule someone onto a shift they can't work.",
   },
 ];
 

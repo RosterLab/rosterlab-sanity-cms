@@ -622,7 +622,7 @@ export default async function HealthcarePage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/solutions/ai-staff-scheduling"
+                  href="/solutions/ai-staff-rostering"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -1067,7 +1067,7 @@ export default async function HealthcarePage() {
 
             <div className="mt-16 text-center">
               <Button
-                href="/solutions/ai-staff-scheduling"
+                href="/solutions/ai-staff-rostering"
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
                 Explore AI Rostering Features
@@ -1255,7 +1255,7 @@ export default async function HealthcarePage() {
               Schedule a Healthcare Demo
             </Button>
             <Button
-              href="/solutions/ai-staff-scheduling"
+              href="/solutions/ai-staff-rostering"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
               Learn more about AI rostering

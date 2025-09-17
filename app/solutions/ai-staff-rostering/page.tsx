@@ -21,14 +21,14 @@ export const metadata = {
   description:
     "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
   alternates: {
-    canonical: "https://rosterlab.com/solutions/ai-staff-scheduling",
+    canonical: "https://rosterlab.com/solutions/ai-staff-rostering",
   },
   openGraph: {
     title: "AI Roster Generator - RosterLab",
     description:
       "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     type: "website",
-    url: "https://rosterlab.com/solutions/ai-staff-scheduling",
+    url: "https://rosterlab.com/solutions/ai-staff-rostering",
     images: [
       {
         url: "/images/og-images/SolutionAIGen.png",

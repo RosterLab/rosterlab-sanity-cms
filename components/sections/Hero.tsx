@@ -17,7 +17,7 @@ export default function Hero() {
           <div className="text-left">
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Complex rostering made{" "}
+              AI{" "}
               <span
                 className="inline-block"
                 style={{
@@ -29,8 +29,9 @@ export default function Hero() {
                   color: "transparent",
                 }}
               >
-                easy
-              </span>
+                Staff Roster
+              </span>{" "}
+              Software for Complex Workforces
             </h1>
 
             {/* Subheading */}

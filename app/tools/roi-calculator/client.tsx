@@ -31,7 +31,7 @@ export default function ROICalculatorClient() {
       demo: "/book-a-demo",
       productTour: "/staff-rostering-interactive-demo",
       contact: "/contact",
-      solutions: "/solutions/ai-staff-scheduling",
+      solutions: "/solutions/ai-staff-rostering",
     },
     industryOptions: [
       { value: "nursing", label: "Nursing" },

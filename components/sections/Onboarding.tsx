@@ -28,7 +28,7 @@ const onboardingSteps = [
     ),
     description:
       "Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.",
-    link: "https://rosterlab.com/solutions/ai-staff-scheduling",
+    link: "https://rosterlab.com/solutions/ai-staff-rostering",
   },
   {
     number: "2",

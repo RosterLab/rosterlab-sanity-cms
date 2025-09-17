@@ -49,7 +49,7 @@ const faqItems = [
   {
     question: "Is the AI generator included in the free product?",
     answer:
-      "The <a href='/solutions/ai-staff-scheduling' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform. The free version provides a manual scheduling platform with simple rule checking, dynamic statistics, and mobile app access - everything you need to move from spreadsheets to digital rostering.",
+      "The <a href='/solutions/ai-staff-rostering' style='color: #2563eb; text-decoration: underline;'>AI generator</a> is only available for the paid version of the platform. The free version provides a manual scheduling platform with simple rule checking, dynamic statistics, and mobile app access - everything you need to move from spreadsheets to digital rostering.",
   },
   {
     question: "Should I upgrade to AI rostering?",
@@ -202,7 +202,7 @@ export default function ManualSchedulingPage() {
                     Start for Free
                   </Button>
                   <Button
-                    href="/solutions/ai-staff-scheduling"
+                    href="/solutions/ai-staff-rostering"
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
                     analyticsLabel="Discover AI Rosters"
@@ -446,7 +446,7 @@ export default function ManualSchedulingPage() {
                   Ready to upgrade to AI-powered rostering?
                 </p>
                 <Button
-                  href="/solutions/ai-staff-scheduling"
+                  href="/solutions/ai-staff-rostering"
                   className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
                   analyticsLabel="Explore AI Features"
                   analyticsLocation="Solution Page Free Staff Scheduling"

@@ -171,7 +171,7 @@ export default function ReRosteringPage() {
                 </ul>
                 <div className="mt-8">
                   <Button
-                    href="/solutions/ai-staff-scheduling"
+                    href="/solutions/ai-staff-rostering"
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
                   >
                     Learn about AI Rostering

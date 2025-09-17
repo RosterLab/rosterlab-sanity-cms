@@ -112,17 +112,22 @@ const nextConfig: NextConfig = {
       // Product redirects
       {
         source: '/product/rosterlab-ai',
-        destination: '/solutions/ai-staff-scheduling',
+        destination: '/solutions/ai-staff-rostering',
         permanent: true,
       },
       {
         source: '/solutions/ai-schedules',
-        destination: '/solutions/ai-staff-scheduling',
+        destination: '/solutions/ai-staff-rostering',
         permanent: true,
       },
       {
         source: '/solution/ai-schedule',
-        destination: '/solutions/ai-staff-scheduling',
+        destination: '/solutions/ai-staff-rostering',
+        permanent: true,
+      },
+      {
+        source: '/solutions/ai-staff-scheduling',
+        destination: '/solutions/ai-staff-rostering',
         permanent: true,
       },
       {
