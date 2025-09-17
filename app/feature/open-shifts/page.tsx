@@ -6,16 +6,18 @@ import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
-  title: 'Open Shifts - RosterLab',
-  description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
+  title: "Open Shifts - RosterLab",
+  description:
+    "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
   alternates: {
     canonical: "https://rosterlab.com/feature/open-shifts",
   },
   openGraph: {
-    title: 'Open Shifts - RosterLab',
-    description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
-    type: 'website',
-    url: 'https://rosterlab.com/feature/open-shifts',
+    title: "Open Shifts - RosterLab",
+    description:
+      "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+    type: "website",
+    url: "https://rosterlab.com/feature/open-shifts",
     images: [
       {
         url: "/images/og-images/FeatureOpenShifts.png",
@@ -25,14 +27,25 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Open Shifts - RosterLab',
-    description: 'Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.',
-    images: ['/images/og-images/FeatureOpenShifts.png'],
+    card: "summary_large_image",
+    title: "Open Shifts - RosterLab",
+    description:
+      "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+    images: ["/images/og-images/FeatureOpenShifts.png"],
   },
 };
 
 const faqItems = [
+  {
+    question: "What is an open shift?",
+    answer:
+      "An open shift is an unassigned work period that needs to be filled. These typically occur when an employee calls in sick, takes unexpected leave, or when you have last-minute staffing needs. Open shifts can be broadcast to qualified staff who can then volunteer to take the shift.",
+  },
+  {
+    question: "Why are open shifts important?",
+    answer:
+      "Open shifts are critical for maintaining adequate staffing levels and ensuring quality service. They help you avoid expensive agency staff, reduce overtime costs, and give employees opportunities for extra hours. Quick filling of open shifts prevents service disruptions and maintains team morale by avoiding understaffing.",
+  },
   {
     question: "How quickly can open shifts be filled?",
     answer:
@@ -75,11 +88,16 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Fill Open Shifts Instantly
+                  Fill{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Open Shifts
+                  </span>{" "}
+                  Instantly
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Broadcast open shifts to qualified staff and fill gaps in
-                  minutes, not hours.
+                  minutes, not hours. Maintain adequate staffing levels and
+                  coverage.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -89,10 +107,10 @@ export default function OpenShiftsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-rostering-software"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -115,7 +133,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Instant Shift Broadcasting
+                  Instant Open Shift Broadcasting
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Post open shifts with one click and instantly notify all

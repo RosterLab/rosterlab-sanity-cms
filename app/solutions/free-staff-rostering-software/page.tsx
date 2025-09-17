@@ -111,7 +111,7 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Your free digital scheduling tool
+                  Your free staff rostering software
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Build rosters manually in the cloud with simple rule checking,
@@ -313,7 +313,7 @@ export default function ManualSchedulingPage() {
                 GETTING STARTED
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-                Six Steps to Build Your Digital Roster
+                Six Steps to Build Your Free Staff Roster
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Get started with digital scheduling in minutes. Our simple

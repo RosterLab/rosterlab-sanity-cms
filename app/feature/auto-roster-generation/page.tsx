@@ -60,7 +60,9 @@ export default function AutoRosterGenerationPage() {
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Generate Rosters <br className="hidden md:block" />
-                  Automatically
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Automatically
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let AI create optimal schedules in minutes while ensuring
@@ -81,17 +83,17 @@ export default function AutoRosterGenerationPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-rostering-software"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Pricing"
                     analyticsLocation="Feature Page Auto Roster Generation"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "pricing",
                       page_name: "Auto Roster Generation",
                       section: "hero",
                     }}
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>

@@ -77,7 +77,10 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Intelligent Shift Swaps
+                  Intelligent{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Shift Swaps
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automate routine swaps, review when it matters.
@@ -97,17 +100,17 @@ export default function ShiftSwapsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-rostering-software"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Pricing"
                     analyticsLocation="Feature Page Shift Swaps"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "pricing",
                       page_name: "Shift Swaps",
                       section: "hero",
                     }}
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -218,13 +221,13 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
 
-        {/* Automated Notifications Section */}
+        {/* Automated Shift Swap Notifications Section */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automated Notifications
+                  Automated Shift Swap Notifications
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Staff can request swaps anytime via mobile app. Relevant team
@@ -255,7 +258,7 @@ export default function ShiftSwapsPage() {
               <div className="relative">
                 <Image
                   src="/images/shift swaps/Shift Swap 3.webp"
-                  alt="Automated Notifications"
+                  alt="Automated Shift Swap Notifications"
                   width={500}
                   height={500}
                   className="w-full h-auto scale-90"
