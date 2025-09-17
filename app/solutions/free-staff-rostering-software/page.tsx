@@ -111,7 +111,11 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Your free staff rostering software
+                  Your Free{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Staff Rostering
+                  </span>{" "}
+                  Software
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Build rosters manually in the cloud with simple rule checking,
