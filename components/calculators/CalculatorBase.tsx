@@ -236,7 +236,7 @@ export default function CalculatorBase({
                       alt={regionalContent.heroImage.alt}
                       width={600}
                       height={450}
-                      className="w-full h-auto rounded-lg shadow-lg"
+                      className="w-full h-auto"
                     />
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export default function CalculatorBase({
                     alt={regionalContent.heroImage.alt}
                     width={600}
                     height={450}
-                    className="w-full h-auto rounded-lg shadow-lg"
+                    className="w-full h-auto"
                   />
                 </div>
               </div>

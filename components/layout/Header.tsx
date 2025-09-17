@@ -48,11 +48,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
       title: "Solutions",
       subItems: [
         {
-          title: "AI-generated optimised schedules",
+          title: "AI Roster Generator",
           link: "/solutions/ai-staff-scheduling",
         },
         {
-          title: "Free For Manual Digital Scheduling",
+          title: "Free Staff Roster Software",
           link: "/solutions/free-staff-rostering-software",
         },
         {
@@ -208,9 +208,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     </div>
                                     <div className="text-sm text-gray-600">
                                       {(subItem as any).description ||
-                                        (subItem.title.includes("AI")
+                                        (subItem.title === "AI Roster Generator"
                                           ? "Automated schedules optimized for your team"
-                                          : subItem.title.includes("Free")
+                                          : subItem.title ===
+                                              "Free Staff Roster Software"
                                             ? "Free digital scheduling tool"
                                             : subItem.title.includes(
                                                   "Mobile App",

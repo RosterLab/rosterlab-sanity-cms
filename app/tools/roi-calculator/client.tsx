@@ -9,6 +9,10 @@ export default function ROICalculatorClient() {
       "Discover how much time and money RosterLab can save your organisation with intelligent rostering automation.",
     explanation:
       "We estimated your ROI based on our experience with different specialties in healthcare and research on industry standards.",
+    heroImage: {
+      src: "/images/illustration/Coins-rafiki.svg",
+      alt: "ROI Calculator illustration",
+    },
     terminology: {
       scheduling: "rostering",
       schedules: "rosters",
