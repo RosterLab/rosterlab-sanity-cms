@@ -169,6 +169,14 @@ export default function ReRosteringPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8">
+                  <Button
+                    href="/solutions/ai-staff-scheduling"
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    Learn about AI Rostering
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -258,6 +266,14 @@ export default function ReRosteringPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8">
+                  <Button
+                    href="/solutions/staff-roster-mobile-app"
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    View Mobile App
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -277,6 +293,11 @@ export default function ReRosteringPage() {
               </div>
               <FAQAccordion
                 items={[
+                  {
+                    question: "What is re-rostering?",
+                    answer:
+                      "Re-rostering is the process of adjusting existing staff schedules in response to unexpected changes like sick leave, emergencies, or last-minute requests. It involves quickly reorganising shifts to maintain adequate coverage while minimising disruption to staff and ensuring compliance with workplace rules.",
+                  },
                   {
                     question:
                       "How quickly can RosterLab generate re-rostering solutions?",

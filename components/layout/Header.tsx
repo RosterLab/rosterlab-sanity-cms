@@ -56,7 +56,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           link: "/solutions/free-staff-rostering-software",
         },
         {
-          title: "Employee Mobile App",
+          title: "Staff Mobile App",
           link: "/solutions/staff-roster-mobile-app",
         },
         {
