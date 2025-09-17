@@ -41,6 +41,11 @@ export const metadata = {
 
 const faqItems = [
   {
+    question: "What is a shift swap?",
+    answer:
+      "A shift swap is when two employees exchange their scheduled shifts with each other. For example, if Employee A is scheduled for Monday and Employee B for Tuesday, they can swap so A works Tuesday and B works Monday. This flexibility helps staff manage personal commitments while maintaining full coverage for the organization.",
+  },
+  {
     question: "How does automated shift swap approval work?",
     answer:
       "RosterLab's AI analyses each swap request against your organisation's rules, compliance requirements, and staffing needs. If the swap maintains proper coverage, doesn't violate any rules, and both employees are qualified for the shifts, it's automatically approved. Complex swaps that might impact critical coverage or compliance are flagged for manager review.",
@@ -357,7 +362,7 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Modernize Your Shift Management?
+                Ready to Modernise Your Shift Swap Management?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Join leading organizations who've transformed their workforce

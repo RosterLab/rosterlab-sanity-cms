@@ -40,7 +40,10 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Re-Roster New Changes Easily
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Re-Roster
+                  </span>{" "}
+                  New Changes Easily
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automatically adjust schedules when staff call in sick or
@@ -54,10 +57,10 @@ export default function ReRosteringPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-rostering-software"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>

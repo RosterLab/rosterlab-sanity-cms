@@ -40,7 +40,10 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Streamline Staff Leave Requests
+                  Streamline Staff{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Leave Requests
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Staff can submit a range of leave types via the employee
@@ -54,10 +57,10 @@ export default function LeaveRequestsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-rostering-software"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -222,16 +225,7 @@ export default function LeaveRequestsPage() {
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
-                  alt="Mobile leave request app illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Decide How Different Types of Leave are Handled
                 </h2>
@@ -266,6 +260,15 @@ export default function LeaveRequestsPage() {
                   </li>
                 </ul>
               </div>
+              <div>
+                <Image
+                  src="/images/illustration/Mobile inbox-pana.svg"
+                  alt="Mobile leave request app illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                />
+              </div>
             </div>
           </Container>
         </div>
@@ -280,10 +283,15 @@ export default function LeaveRequestsPage() {
               <FAQAccordion
                 items={[
                   {
+                    question: "What is a staff leave request?",
+                    answer:
+                      "A staff leave request is a formal application from an employee asking for time off work. This can include annual leave, sick leave, personal leave, or other types of absences. Leave requests typically include the dates requested, type of leave, reason (if required), and are submitted for manager approval to ensure adequate staffing coverage is maintained.",
+                  },
+                  {
                     question:
                       "Can employees check their leave balances on mobile?",
                     answer:
-                      "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
+                      "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The <a href='/solutions/staff-roster-mobile-app' class='text-blue-600 hover:text-blue-700 underline'>staff mobile app</a> makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
                   },
                   {
                     question: "What types of leave can the system handle?",

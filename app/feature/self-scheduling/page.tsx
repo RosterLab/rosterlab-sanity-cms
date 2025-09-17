@@ -45,7 +45,10 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  AI-powered self-scheduling
+                  AI-Powered{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Self-Scheduling
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
@@ -67,17 +70,17 @@ export default function SelfSchedulingPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-rostering-software"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Pricing"
                     analyticsLocation="Feature Page Self Scheduling"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "pricing",
                       page_name: "Self Scheduling",
                       section: "hero",
                     }}
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -185,7 +188,7 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Self-Roster The Way You Want To */}
+        {/* Feature 3: Self-Schedule The Way You Want To */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -241,7 +244,7 @@ export default function SelfSchedulingPage() {
               <div className="order-2 lg:order-1">
                 <Image
                   src="/images/self-scheduling/self-roster.webp"
-                  alt="Self-Roster The Way You Want To illustration"
+                  alt="Self-Schedule The Way You Want To illustration"
                   width={600}
                   height={600}
                   className="w-full h-auto"
@@ -249,7 +252,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Self-Roster The Way You Want To
+                  Self-Schedule The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Plan your ideal roster by specifying preferred shifts, days
@@ -287,7 +290,7 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                The Results Speak for Themselves
+                Staff Preferences with Self Scheduling
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -312,7 +315,7 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Empower Your Team?
+                Ready to Empower Your Team With Self-Scheduling?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Give your staff the flexibility they want while maintaining the
