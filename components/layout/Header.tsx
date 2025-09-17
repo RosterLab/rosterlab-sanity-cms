@@ -48,7 +48,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
       title: "Solutions",
       subItems: [
         {
-          title: "AI Roster Generator",
+          title: "AI Staff Roster Software",
           link: "/solutions/ai-staff-rostering",
         },
         {
@@ -56,11 +56,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
           link: "/solutions/free-staff-rostering-software",
         },
         {
-          title: "Staff Mobile App",
+          title: "Staff Roster Mobile App",
           link: "/solutions/staff-roster-mobile-app",
         },
         {
-          title: "Auto Roster Generation",
+          title: "Automatic Rostering",
           link: "/feature/auto-roster-generation",
         },
         { title: "Open Shifts", link: "/feature/open-shifts" },
@@ -208,7 +208,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     </div>
                                     <div className="text-sm text-gray-600">
                                       {(subItem as any).description ||
-                                        (subItem.title === "AI Roster Generator"
+                                        (subItem.title ===
+                                        "AI Staff Roster Software"
                                           ? "Automated schedules optimized for your team"
                                           : subItem.title ===
                                               "Free Staff Roster Software"

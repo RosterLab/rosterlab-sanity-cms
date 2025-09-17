@@ -29,9 +29,9 @@ export default function Hero() {
                   color: "transparent",
                 }}
               >
-                Staff Roster
+                Staff Rostering
               </span>{" "}
-              Software for Complex Workforces
+              for Complex Teams
             </h1>
 
             {/* Subheading */}

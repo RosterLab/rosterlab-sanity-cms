@@ -59,10 +59,11 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Generate Rosters <br className="hidden md:block" />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                     Automatically
-                  </span>
+                  </span>{" "}
+                  <br className="hidden md:block" />
+                  Roster Staff
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let AI create optimal schedules in minutes while ensuring
