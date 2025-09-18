@@ -47,7 +47,11 @@ export default function LeaveRequestsPage() {
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
               <div className="w-full">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Streamline Staff Time-Off Requests
+                  Streamline Staff{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Time-Off
+                  </span>{" "}
+                  Requests
                 </h1>
 
                 {/* Mobile only: Image appears here after H1 */}

@@ -4,35 +4,38 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "Staff Rescheduling - RosterLab",
-  description:
-    "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/feature/staff-rescheduling',
-  },
-  openGraph: {
-    title: "Fast Rescheduling & Scenario Planning - RosterLab",
+export const metadata = withHreflang(
+  {
+    title: "Staff Rescheduling - RosterLab",
     description:
       "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
-    images: [
-      {
-        url: "/images/og images/FeatureReRostering.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/feature/staff-rescheduling",
+    },
+    openGraph: {
+      title: "Fast Rescheduling & Scenario Planning - RosterLab",
+      description:
+        "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
+      images: [
+        {
+          url: "/images/og images/FeatureReRostering.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Fast Rescheduling & Scenario Planning - RosterLab",
+      description:
+        "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
+      images: ["/images/og images/FeatureReRostering.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fast Rescheduling & Scenario Planning - RosterLab",
-    description:
-      "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
-    images: ["/images/og images/FeatureReRostering.png"],
-  },
-}, '/us/feature/staff-rescheduling');
+  "/us/feature/staff-rescheduling",
+);
 
 export default function ReRosteringPage() {
   return (
@@ -44,9 +47,12 @@ export default function ReRosteringPage() {
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
               <div className="w-full">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Reschedule New Changes Easily
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Reschedule
+                  </span>{" "}
+                  New Changes Easily
                 </h1>
-                
+
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
@@ -57,7 +63,7 @@ export default function ReRosteringPage() {
                     className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
-                
+
                 <p className="text-xl text-gray-600 mb-8">
                   Automatically adjust schedules when staff call in sick or
                   situations change, maintaining coverage and compliance.

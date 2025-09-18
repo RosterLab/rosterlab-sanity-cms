@@ -5,51 +5,57 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "Flexible Self-Scheduling - RosterLab",
-  description:
-    "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/feature/self-scheduling',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Flexible Self-Scheduling - RosterLab",
     description:
       "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
-    type: "website",
-    url: 'https://rosterlab.com/us/feature/self-scheduling',
-    images: [
-      {
-        url: "/images/og images/SelfScheduling.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/feature/self-scheduling",
+    },
+    openGraph: {
+      title: "Flexible Self-Scheduling - RosterLab",
+      description:
+        "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
+      type: "website",
+      url: "https://rosterlab.com/us/feature/self-scheduling",
+      images: [
+        {
+          url: "/images/og images/SelfScheduling.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Flexible Self-Scheduling - RosterLab",
+      description:
+        "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
+      images: ["/images/og images/SelfScheduling.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Flexible Self-Scheduling - RosterLab",
-    description:
-      "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
-    images: ["/images/og images/SelfScheduling.png"],
-  },
-}, '/us/feature/self-scheduling');
+  "/us/feature/self-scheduling",
+);
 
 const faqItems = [
   {
     question: "What is self scheduling?",
-    answer: "Self scheduling is a system where staff members can indicate their preferred work shifts, days off, and task assignments in advance. Instead of managers creating schedules unilaterally, employees submit their availability and preferences through a digital platform. RosterLab's AI then optimizes these preferences to create schedules that meet both staff wishes and organizational needs, typically satisfying over 90% of preferences while ensuring proper coverage."
+    answer:
+      "Self scheduling is a system where staff members can indicate their preferred work shifts, days off, and task assignments in advance. Instead of managers creating schedules unilaterally, employees submit their availability and preferences through a digital platform. RosterLab's AI then optimizes these preferences to create schedules that meet both staff wishes and organizational needs, typically satisfying over 90% of preferences while ensuring proper coverage.",
   },
   {
     question: "What are the benefits of self scheduling?",
-    answer: "Self scheduling offers numerous benefits for both organizations and staff. Organizations see reduced administrative time (up to 90% reduction), improved staff satisfaction and retention, better shift coverage, and enhanced work-life balance for employees. Staff members gain more control over their schedules, experience greater job satisfaction, have better ability to plan personal commitments, and feel more valued when their preferences are considered. The system also ensures fairness and transparency in shift distribution while maintaining compliance with labor laws and organizational policies."
+    answer:
+      "Self scheduling offers numerous benefits for both organizations and staff. Organizations see reduced administrative time (up to 90% reduction), improved staff satisfaction and retention, better shift coverage, and enhanced work-life balance for employees. Staff members gain more control over their schedules, experience greater job satisfaction, have better ability to plan personal commitments, and feel more valued when their preferences are considered. The system also ensures fairness and transparency in shift distribution while maintaining compliance with labor laws and organizational policies.",
   },
   {
     question: "What type of preferences can staff enter?",
-    answer: "Staff can enter a wide variety of preferences through RosterLab's self-scheduling system. These include: preferred shifts (morning, afternoon, night), specific days they want to work or have off, desired number of hours per week, preference for consecutive days or specific patterns, location preferences for multi-site organizations, task or role preferences, partner preferences (working with specific colleagues), and weekend availability. Staff can also set priority levels for different preferences, helping the AI understand which requests are most important to them."
-  }
+    answer:
+      "Staff can enter a wide variety of preferences through RosterLab's self-scheduling system. These include: preferred shifts (morning, afternoon, night), specific days they want to work or have off, desired number of hours per week, preference for consecutive days or specific patterns, location preferences for multi-site organizations, task or role preferences, partner preferences (working with specific colleagues), and weekend availability. Staff can also set priority levels for different preferences, helping the AI understand which requests are most important to them.",
+  },
 ];
 
 export default function SelfSchedulingPage() {
@@ -62,9 +68,12 @@ export default function SelfSchedulingPage() {
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
               <div className="w-full">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-[#4a9288] to-[#5aa399] bg-clip-text text-transparent">Self-scheduling</span> Powered By You
+                  <span className="bg-gradient-to-r from-[#4a9288] to-[#5aa399] bg-clip-text text-transparent">
+                    Self-Scheduling
+                  </span>{" "}
+                  Powered By You
                 </h1>
-                
+
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
@@ -75,7 +84,7 @@ export default function SelfSchedulingPage() {
                     className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
-                
+
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
                   our AI optimises to meet 90%+ of preferences while ensuring
@@ -90,7 +99,7 @@ export default function SelfSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Self Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Book A Demo
@@ -103,7 +112,7 @@ export default function SelfSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Self Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     View Product Tour
@@ -185,7 +194,10 @@ export default function SelfSchedulingPage() {
                   Ensure High-Quality and Compliant Schedules
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  RosterLab AI handles complex constraints including contractual hours, union agreements, and staff availability. Create parameterised rules for each person to ensure fair shift assignments and never worry about compliance again.
+                  RosterLab AI handles complex constraints including contractual
+                  hours, union agreements, and staff availability. Create
+                  parameterised rules for each person to ensure fair shift
+                  assignments and never worry about compliance again.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -221,7 +233,11 @@ export default function SelfSchedulingPage() {
                   Simplify The Collection of Everyone's Preferred Schedule
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Every staff member can enter their preferred schedule through web, iOS, or Android. The intuitive interface makes it fast to submit preferences and set priorities. All submissions are stored in the cloud and automatically synced with RosterLab AI for schedule creation.
+                  Every staff member can enter their preferred schedule through
+                  web, iOS, or Android. The intuitive interface makes it fast to
+                  submit preferences and set priorities. All submissions are
+                  stored in the cloud and automatically synced with RosterLab AI
+                  for schedule creation.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -275,7 +291,10 @@ export default function SelfSchedulingPage() {
                   Self-Schedule The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Plan your ideal schedule by specifying preferred shifts, days off, and weekend availability. Whether you want full control or just the essentials, RosterLab AI creates fair, equitable schedules that maximise everyone's preferences.
+                  Plan your ideal schedule by specifying preferred shifts, days
+                  off, and weekend availability. Whether you want full control
+                  or just the essentials, RosterLab AI creates fair, equitable
+                  schedules that maximise everyone's preferences.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -359,7 +378,7 @@ export default function SelfSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Self Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book Your Demo
@@ -372,7 +391,7 @@ export default function SelfSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "pricing",
                     page_name: "Self Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   View Pricing
