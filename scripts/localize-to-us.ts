@@ -175,7 +175,7 @@ const URL_MAPPINGS: Record<string, string> = {
   
   // Solutions - with terminology changes
   '/solutions/staff-roster-mobile-app': '/us/solutions/staff-scheduling-mobile-app',
-  '/solutions/ai-staff-rostering': '/us/solutions/ai-staff-schedule-maker',
+  '/solutions/ai-roster-generator': '/us/solutions/ai-staff-schedule-maker',
   '/solutions/free-staff-rostering-software': '/us/solutions/free-staff-scheduling-tool',
   
   // Features - with terminology changes

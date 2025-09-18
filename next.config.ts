@@ -112,22 +112,22 @@ const nextConfig: NextConfig = {
       // Product redirects
       {
         source: '/product/rosterlab-ai',
-        destination: '/solutions/ai-staff-rostering',
+        destination: '/solutions/ai-roster-generator',
         permanent: true,
       },
       {
         source: '/solutions/ai-schedules',
-        destination: '/solutions/ai-staff-rostering',
+        destination: '/solutions/ai-roster-generator',
         permanent: true,
       },
       {
         source: '/solution/ai-schedule',
-        destination: '/solutions/ai-staff-rostering',
+        destination: '/solutions/ai-roster-generator',
         permanent: true,
       },
       {
         source: '/solutions/ai-staff-scheduling',
-        destination: '/solutions/ai-staff-rostering',
+        destination: '/solutions/ai-roster-generator',
         permanent: true,
       },
       {
@@ -243,6 +243,12 @@ const nextConfig: NextConfig = {
       {
         source: '/feature/auto-roster-generation',
         destination: '/feature/automated-rostering',
+        permanent: true,
+      },
+      // Solutions redirects
+      {
+        source: '/solutions/ai-staff-rostering',
+        destination: '/solutions/ai-roster-generator',
         permanent: true,
       },
       {

@@ -155,7 +155,7 @@ export default function AutoRosterGenerationPage() {
                 </ul>
                 <div className="mt-8 text-center">
                   <Button
-                    href="/solutions/ai-staff-rostering"
+                    href="/solutions/ai-roster-generator"
                     className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
                   >
                     Learn more about AI scheduling

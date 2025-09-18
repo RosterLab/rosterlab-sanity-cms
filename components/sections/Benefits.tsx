@@ -247,7 +247,7 @@ export default function Benefits() {
           {/* CTA Button */}
           <div className="text-center mt-6 md:mt-8 px-4">
             <Button
-              href="/solutions/ai-staff-rostering"
+              href="/solutions/ai-roster-generator"
               className="inline-flex items-center bg-blue-600 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full text-base md:text-lg font-semibold hover:bg-blue-700 transition-all hover:shadow-lg transform hover:-translate-y-0.5"
             >
               Learn more about AI rostering
