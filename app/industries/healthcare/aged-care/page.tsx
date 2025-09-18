@@ -649,7 +649,7 @@ export default function AgedCarePage() {
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg

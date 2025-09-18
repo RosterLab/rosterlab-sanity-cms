@@ -332,7 +332,7 @@ export default function AISchedulesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Link
-              href="https://rosterlab.com/feature/auto-roster-generation"
+              href="https://rosterlab.com/feature/automated-rostering"
               className="block"
             >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">
@@ -406,7 +406,7 @@ export default function AISchedulesPage() {
               </div>
             </Link>
             <Link
-              href="https://rosterlab.com/feature/auto-roster-generation"
+              href="https://rosterlab.com/feature/automated-rostering"
               className="block"
             >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer border border-gray-100 hover:border-blue-200">

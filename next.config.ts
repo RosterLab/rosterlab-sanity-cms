@@ -241,6 +241,11 @@ const nextConfig: NextConfig = {
       },
       // Feature redirects
       {
+        source: '/feature/auto-roster-generation',
+        destination: '/feature/automated-rostering',
+        permanent: true,
+      },
+      {
         source: '/product/self-scheduling',
         destination: '/feature/self-scheduling',
         permanent: true,

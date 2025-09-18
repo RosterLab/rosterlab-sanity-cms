@@ -17,7 +17,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   '/solutions/free-staff-rostering-software': '/us/solutions/free-staff-scheduling-tool',
   
   // Features - with terminology changes
-  '/feature/auto-roster-generation': '/us/feature/auto-scheduling',
+  '/feature/automated-rostering': '/us/feature/auto-scheduling',
   '/feature/open-shifts': '/us/feature/open-shifts',
   '/feature/shift-swaps': '/us/feature/shift-swaps-and-trades',
   '/feature/leave-requests': '/us/feature/time-off-requests',
@@ -57,7 +57,7 @@ export const LOCALIZED_PAGES = new Set([
   '/solutions/free-staff-rostering-software',
   
   // Features
-  '/feature/auto-roster-generation',
+  '/feature/automated-rostering',
   '/feature/open-shifts',
   '/feature/shift-swaps',
   '/feature/leave-requests',

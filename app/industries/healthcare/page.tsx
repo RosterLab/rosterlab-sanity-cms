@@ -214,7 +214,7 @@ export default async function HealthcarePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
-              href="/feature/auto-roster-generation"
+              href="/feature/automated-rostering"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">

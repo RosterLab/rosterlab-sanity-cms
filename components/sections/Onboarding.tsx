@@ -72,7 +72,7 @@ const onboardingSteps = [
     ),
     description:
       "Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.",
-    link: "https://rosterlab.com/feature/auto-roster-generation",
+    link: "https://rosterlab.com/feature/automated-rostering",
   },
   {
     number: "4",

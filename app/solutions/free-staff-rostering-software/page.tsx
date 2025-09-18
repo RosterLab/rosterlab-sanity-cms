@@ -54,7 +54,7 @@ const faqItems = [
   {
     question: "Should I upgrade to AI rostering?",
     answer:
-      "Yes, absolutely! While our free product provides a convenient platform to manage your rosters digitally, if you have complex rostering needs, <a href='/feature/auto-roster-generation' style='color: #2563eb; text-decoration: underline;'>automatic rostering</a> can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
+      "Yes, absolutely! While our free product provides a convenient platform to manage your rosters digitally, if you have complex rostering needs, <a href='/feature/automated-rostering' style='color: #2563eb; text-decoration: underline;'>automatic rostering</a> can eliminate unnecessary admin, ensure compliance with all rules, and let you focus on what truly matters.",
   },
   {
     question: "How do I install the employee mobile app?",
@@ -111,7 +111,7 @@ export default function ManualSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Your Free{" "}
+                  Free{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                     Staff Rostering
                   </span>{" "}

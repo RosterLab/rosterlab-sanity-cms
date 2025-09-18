@@ -179,7 +179,7 @@ const URL_MAPPINGS: Record<string, string> = {
   '/solutions/free-staff-rostering-software': '/us/solutions/free-staff-scheduling-tool',
   
   // Features - with terminology changes
-  '/feature/auto-roster-generation': '/us/feature/auto-scheduling',
+  '/feature/automated-rostering': '/us/feature/auto-scheduling',
   '/feature/open-shifts': '/us/feature/open-shifts',
   '/feature/shift-swaps': '/us/feature/shift-swaps-and-trades',
   '/feature/leave-requests': '/us/feature/time-off-requests',
@@ -383,7 +383,7 @@ async function main(config: LocalizationConfig = { overwriteExisting: false, cre
     { source: 'solutions/free-staff-rostering-software/page.tsx', target: 'solutions/free-staff-scheduling-tool/page.tsx' },
     
     // Feature pages
-    { source: 'feature/auto-roster-generation/page.tsx', target: 'feature/auto-scheduling/page.tsx' },
+    { source: 'feature/automated-rostering/page.tsx', target: 'feature/auto-scheduling/page.tsx' },
     { source: 'feature/open-shifts/page.tsx', target: 'feature/open-shifts/page.tsx' },
     { source: 'feature/shift-swaps/page.tsx', target: 'feature/shift-swaps-and-trades/page.tsx' },
     { source: 'feature/shift-swaps/ShiftSwapsContent.tsx', target: 'feature/shift-swaps-and-trades/ShiftSwapsContent.tsx' },

@@ -560,7 +560,7 @@ export default function RadiologyPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -590,7 +590,7 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
