@@ -102,7 +102,10 @@ export default function AISchedulesPage() {
             {/* Text content - shows first on mobile */}
             <div className="w-full pb-8 lg:pb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                AI Staff Schedule Maker
+                AI Staff Schedule{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                  Maker
+                </span>
               </h1>
 
               {/* Mobile only: Image appears here after H1 */}
