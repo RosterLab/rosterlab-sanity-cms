@@ -32,7 +32,7 @@ export const metadata: Metadata = {
       "Download our free shift swap request form template. Streamline staff shift exchanges with our professionally designed Word template.",
     images: [
       {
-        url: "/images/og-images/ShiftSwap.png",
+        url: "/images/shift-swap/shift-swap-preview.png",
         width: 1200,
         height: 600,
         alt: "Shift swap template preview",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "Free Shift Swap Template - RosterLab",
     description:
       "Download our free shift swap request form template. Streamline staff shift exchanges with our professionally designed Word template.",
-    images: ["/images/og-images/ShiftSwap.png"],
+    images: ["/images/shift-swap/shift-swap-preview.png"],
   },
 };
 
