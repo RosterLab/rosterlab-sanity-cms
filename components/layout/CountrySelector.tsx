@@ -1,11 +1,25 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { HiGlobeAlt, HiChevronDown } from 'react-icons/hi'
 import { US_URL_MAPPINGS, REVERSE_US_MAPPINGS } from '@/components/seo/HreflangTags'
 import { cn } from '@/lib/utils'
+
+// Function to check if a page exists
+async function checkIfPageExists(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(url, {
+      method: 'HEAD',
+      mode: 'same-origin',
+    })
+    return response.ok
+  } catch (error) {
+    console.error('Error checking page existence:', error)
+    return false
+  }
+}
 
 export default function CountrySelector() {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +31,7 @@ export default function CountrySelector() {
   const currentLocale = isUSVersion ? 'US' : 'AU/NZ'
   
   // Get URLs for both versions
-  const getAUNZUrl = () => {
+  const getAUNZUrl = useCallback(() => {
     // If we're on a US page, convert back to AU/NZ
     if (isUSVersion) {
       // First check if we have a specific reverse mapping
@@ -36,9 +50,9 @@ export default function CountrySelector() {
     
     // Already on AU/NZ version
     return pathname
-  }
+  }, [isUSVersion, pathname])
   
-  const getUSUrl = () => {
+  const getUSUrl = useCallback(() => {
     // If we're on an AU/NZ page, convert to US
     if (!isUSVersion) {
       // First check if we have a specific mapping
@@ -57,10 +71,33 @@ export default function CountrySelector() {
     
     // Already on US version
     return pathname
-  }
+  }, [isUSVersion, pathname])
   
-  const auNzUrl = getAUNZUrl()
-  const usUrl = getUSUrl()
+  // State for validated URLs
+  const [auNzUrl, setAuNzUrl] = useState<string>('')
+  const [usUrl, setUsUrl] = useState<string>('')
+  const [urlsLoaded, setUrlsLoaded] = useState(false)
+  
+  // Validate and set URLs
+  const validateAndSetUrls = useCallback(async () => {
+    const potentialAuNzUrl = getAUNZUrl()
+    const potentialUsUrl = getUSUrl()
+    
+    // Check if the AU/NZ URL exists, otherwise use homepage
+    const auNzExists = await checkIfPageExists(potentialAuNzUrl)
+    setAuNzUrl(auNzExists ? potentialAuNzUrl : '/')
+    
+    // Check if the US URL exists, otherwise use US homepage
+    const usExists = await checkIfPageExists(potentialUsUrl)
+    setUsUrl(usExists ? potentialUsUrl : '/us')
+    
+    setUrlsLoaded(true)
+  }, [pathname, isUSVersion])
+  
+  // Validate URLs when component mounts or pathname changes
+  useEffect(() => {
+    validateAndSetUrls()
+  }, [validateAndSetUrls])
   
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -89,7 +126,7 @@ export default function CountrySelector() {
         )} />
       </button>
       
-      {isOpen && (
+      {isOpen && urlsLoaded && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
           <div className="py-2">
             <Link

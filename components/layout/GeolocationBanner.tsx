@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { HiX } from "react-icons/hi";
@@ -45,6 +45,20 @@ const URL_MAPPING = {
     // Add US-only pages here if any
   ],
 };
+
+// Function to check if a page exists
+async function checkIfPageExists(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(url, {
+      method: "HEAD",
+      mode: "same-origin",
+    });
+    return response.ok;
+  } catch (error) {
+    console.error("Error checking page existence:", error);
+    return false;
+  }
+}
 
 export default function GeolocationBanner() {
   const [showBanner, setShowBanner] = useState(false);
@@ -123,7 +137,7 @@ export default function GeolocationBanner() {
       .catch((error) => {
         console.log("🌍 Geo API failed:", error);
       });
-  }, [isUSPath]);
+  }, [isUSPath, pathname]);
 
   const handleChoice = (stayOnCurrent: boolean) => {
     // Save user preference
@@ -134,7 +148,7 @@ export default function GeolocationBanner() {
     setShowBanner(false);
   };
 
-  const getSuggestedPath = () => {
+  const getSuggestedPath = useCallback(async (): Promise<string> => {
     if (isUSUser && !isUSPath) {
       // User is from US but on global site - suggest US version
       // Check if current path has a specific US mapping
@@ -145,10 +159,14 @@ export default function GeolocationBanner() {
         return "/us";
       }
       if (mappedPath) {
-        return "/us" + mappedPath;
+        const targetUrl = "/us" + mappedPath;
+        const pageExists = await checkIfPageExists(targetUrl);
+        return pageExists ? targetUrl : "/us";
       }
-      // For unmapped paths, just add /us prefix
-      return "/us" + pathname;
+      // For unmapped paths, check if page exists with /us prefix
+      const targetUrl = "/us" + pathname;
+      const pageExists = await checkIfPageExists(targetUrl);
+      return pageExists ? targetUrl : "/us";
     } else if (!isUSUser && isUSPath) {
       // User is not from US but on US site - suggest global version
       // Remove /us prefix first
@@ -161,13 +179,15 @@ export default function GeolocationBanner() {
           pathWithoutUS as keyof typeof URL_MAPPING.usToGlobal
         ];
       if (mappedPath) {
-        return mappedPath;
+        const pageExists = await checkIfPageExists(mappedPath);
+        return pageExists ? mappedPath : "/";
       }
-      // For unmapped paths, return without /us prefix
-      return pathWithoutUS;
+      // For unmapped paths, check if page exists without /us prefix
+      const pageExists = await checkIfPageExists(pathWithoutUS);
+      return pageExists ? pathWithoutUS : "/";
     }
     return pathname;
-  };
+  }, [isUSUser, isUSPath, pathname]);
 
   const getSuggestedVersion = () => {
     if (isUSUser && !isUSPath) {
@@ -182,16 +202,25 @@ export default function GeolocationBanner() {
     return "";
   };
 
+  // State for the suggested path
+  const [suggestedPath, setSuggestedPath] = useState<string>("");
+
+  useEffect(() => {
+    if (showBanner) {
+      getSuggestedPath().then(setSuggestedPath);
+    }
+  }, [showBanner, isUSUser, isUSPath, pathname]);
+
   console.log("🌍 Render check:", {
     showBanner,
     detectedCountry,
     currentPath: pathname,
-    suggestedPath: getSuggestedPath(),
+    suggestedPath,
     isUSUser,
     isUSPath,
   });
 
-  if (!showBanner) return null;
+  if (!showBanner || !suggestedPath) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4">
@@ -219,7 +248,7 @@ export default function GeolocationBanner() {
 
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
-            href={getSuggestedPath()}
+            href={suggestedPath}
             onClick={() => handleChoice(false)}
             className="flex-1 bg-primary-600 text-white px-4 py-3 rounded-md font-semibold hover:bg-primary-700 transition-colors text-center"
           >
