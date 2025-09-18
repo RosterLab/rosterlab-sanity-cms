@@ -119,7 +119,10 @@ export default function StaffMobileAppPage() {
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
               <div className="w-full pb-8 lg:pb-12">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free Staff Scheduling Mobile App
+                  Free Staff Scheduling{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Mobile App
+                  </span>
                 </h1>
                 
                 {/* Mobile only: Image appears here after H1 */}
