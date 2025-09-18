@@ -92,7 +92,7 @@ export default function CountrySelector() {
     setUsUrl(usExists ? potentialUsUrl : '/us')
     
     setUrlsLoaded(true)
-  }, [pathname, isUSVersion])
+  }, [pathname, isUSVersion, getAUNZUrl, getUSUrl])
   
   // Validate URLs when component mounts or pathname changes
   useEffect(() => {

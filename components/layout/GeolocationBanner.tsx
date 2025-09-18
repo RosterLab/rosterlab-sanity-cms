@@ -209,7 +209,7 @@ export default function GeolocationBanner() {
     if (showBanner) {
       getSuggestedPath().then(setSuggestedPath);
     }
-  }, [showBanner, isUSUser, isUSPath, pathname]);
+  }, [showBanner, isUSUser, isUSPath, pathname, getSuggestedPath]);
 
   console.log("🌍 Render check:", {
     showBanner,
