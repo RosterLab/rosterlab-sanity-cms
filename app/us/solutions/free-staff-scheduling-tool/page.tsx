@@ -4,7 +4,7 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import USTrustedBy from "@/app/us/components/TrustedBy";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCheck,
   HiClock,
@@ -15,36 +15,40 @@ import {
   HiAcademicCap,
 } from "react-icons/hi";
 
-export const metadata = withHreflang({
-  title: "Free Staff Scheduling Tool - RosterLab",
-  description:
-    "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/solutions/free-staff-scheduling-tool',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Free Staff Scheduling Tool - RosterLab",
     description:
       "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
-    type: 'website',
-    url: 'https://rosterlab.com/us/solutions/free-staff-scheduling-tool',
-    images: [
-      {
-        url: "/images/og images/SolutionFree.png",
-        width: 1200,
-        height: 630,
-        alt: "Free Digital Scheduling Platform",
-      },
-    ],
+    alternates: {
+      canonical:
+        "https://rosterlab.com/us/solutions/free-staff-scheduling-tool",
+    },
+    openGraph: {
+      title: "Free Staff Scheduling Tool - RosterLab",
+      description:
+        "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
+      type: "website",
+      url: "https://rosterlab.com/us/solutions/free-staff-scheduling-tool",
+      images: [
+        {
+          url: "/images/og images/SolutionFree.png",
+          width: 1200,
+          height: 630,
+          alt: "Free Digital Scheduling Platform",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free Staff Scheduling Tool - RosterLab",
+      description:
+        "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
+      images: ["/images/og images/SolutionFree.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Staff Scheduling Tool - RosterLab",
-    description:
-      "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
-    images: ["/images/og images/SolutionFree.png"],
-  },
-}, '/us/solutions/free-staff-scheduling-tool');
+  "/us/solutions/free-staff-scheduling-tool",
+);
 
 const faqItems = [
   {
@@ -117,9 +121,13 @@ export default function ManualSchedulingPage() {
             <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
               <div className="w-full pb-8 lg:pb-12">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free Staff Scheduling Tool for Teams
+                  Free Staff{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Scheduling Tool
+                  </span>{" "}
+                  for Teams
                 </h1>
-                
+
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
@@ -130,10 +138,11 @@ export default function ManualSchedulingPage() {
                     className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
-                
+
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Build free digital staff schedules in the cloud with simple rule checking,
-                  live statistics, and free mobile app for your team.
+                  Build free digital staff schedules in the cloud with simple
+                  rule checking, live statistics, and free mobile app for your
+                  team.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start space-x-3">
@@ -210,7 +219,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "signup",
                       page_name: "Free Staff Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Start for Free
@@ -224,7 +233,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "upgrade",
                       page_name: "Free Staff Scheduling",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Discover AI Schedules
@@ -243,7 +252,7 @@ export default function ManualSchedulingPage() {
               </div>
             </div>
           </Container>
-          
+
           {/* Wave separator */}
           <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
             <svg
@@ -320,9 +329,9 @@ export default function ManualSchedulingPage() {
                         Staff Mobile App
                       </h3>
                       <p className="text-gray-600">
-                        Staff can view published schedules and submit preferences
-                        through free iOS and Android apps. No more chasing
-                        emails or paper forms.
+                        Staff can view published schedules and submit
+                        preferences through free iOS and Android apps. No more
+                        chasing emails or paper forms.
                       </p>
                     </div>
                   </div>
@@ -486,7 +495,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "upgrade",
                     page_name: "Free Staff Scheduling",
-                    section: "steps"
+                    section: "steps",
                   }}
                 >
                   Explore AI Features
@@ -669,7 +678,7 @@ export default function ManualSchedulingPage() {
                     analyticsProperties={{
                       cta_type: "learn_more",
                       page_name: "Free Staff Scheduling",
-                      section: "mobile_app"
+                      section: "mobile_app",
                     }}
                   >
                     Learn More About Mobile App
@@ -722,7 +731,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "signup",
                     page_name: "Free Staff Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Start for Free
@@ -735,7 +744,7 @@ export default function ManualSchedulingPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Free Staff Scheduling",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book a Demo

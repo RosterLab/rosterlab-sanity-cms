@@ -6,6 +6,7 @@ export const usNavItems = [
       {
         title: "AI Staff Scheduling",
         link: "/us/solutions/ai-staff-schedule-maker",
+        description: "Automated schedules optimized for your team",
       },
       {
         title: "Free Staff Scheduling Tool",
