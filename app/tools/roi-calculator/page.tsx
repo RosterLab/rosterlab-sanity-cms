@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       images: ["/images/og-images/ROICalc.png"],
     },
   },
-  "/roi-calculator",
+  "/tools/roi-calculator",
 );
 
 export default function ROICalculatorPage() {

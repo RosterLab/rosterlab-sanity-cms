@@ -8,7 +8,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   '/book-a-demo': '/us/book-a-demo',
   
   // Tools
-  '/roi-calculator': '/us/tools/savings-calculator',
+  '/tools/roi-calculator': '/us/tools/savings-calculator',
   '/staff-rostering-interactive-demo': '/us/product-tour',
   
   // Solutions - with terminology changes
@@ -48,7 +48,7 @@ export const LOCALIZED_PAGES = new Set([
   '/book-a-demo',
   
   // Tools
-  '/roi-calculator',
+  '/tools/roi-calculator',
   '/staff-rostering-interactive-demo',
   
   // Solutions
