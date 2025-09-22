@@ -5,6 +5,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import AnimatedSpeechBubbles from "@/components/ui/AnimatedSpeechBubbles";
 import Link from "next/link";
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCalendar,
   HiBell,
@@ -19,36 +20,39 @@ import {
   HiAcademicCap,
 } from "react-icons/hi";
 
-export const metadata = {
-  title: "Free Staff Roster Mobile App - RosterLab",
-  description:
-    "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-  alternates: {
-    canonical: "https://rosterlab.com/solutions/staff-roster-mobile-app",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Free Staff Roster Mobile App - RosterLab",
     description:
       "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-    type: "website",
-    url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
-    images: [
-      {
-        url: "/images/og-images/SolutionMobileApp.png",
-        width: 1200,
-        height: 630,
-        alt: "Employee Mobile App",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+    },
+    openGraph: {
+      title: "Free Staff Roster Mobile App - RosterLab",
+      description:
+        "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      type: "website",
+      url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+      images: [
+        {
+          url: "/images/og-images/SolutionMobileApp.png",
+          width: 1200,
+          height: 630,
+          alt: "Employee Mobile App",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free Staff Roster Mobile App - RosterLab",
+      description:
+        "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      images: ["/images/og-images/SolutionMobileApp.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Staff Roster Mobile App - RosterLab",
-    description:
-      "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-    images: ["/images/og-images/SolutionMobileApp.png"],
-  },
-};
+  "/solutions/staff-roster-mobile-app",
+);
 
 const appFeatures = [
   {

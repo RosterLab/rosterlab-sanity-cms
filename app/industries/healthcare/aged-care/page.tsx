@@ -6,33 +6,37 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Aged Care Staff Scheduling Software - RosterLab",
-  description:
-    "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Aged Care Staff Scheduling Software - RosterLab",
     description:
       "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare/aged-care",
-    images: [
-      {
-        url: "/images/og-images/IndustryAgedCare.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "Aged Care Staff Scheduling Software - RosterLab",
+      description:
+        "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare/aged-care",
+      images: [
+        {
+          url: "/images/og-images/IndustryAgedCare.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Aged Care Staff Scheduling Software - RosterLab",
+      description:
+        "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
+      images: ["/images/og-images/IndustryAgedCare.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Aged Care Staff Scheduling Software - RosterLab",
-    description:
-      "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-    images: ["/images/og-images/IndustryAgedCare.png"],
-  },
-};
+  "/industries/healthcare/aged-care",
+);
 
 const faqItems = [
   {

@@ -4,36 +4,42 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "AI-Powered Self-Scheduling - RosterLab",
-  description:
-    "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/self-scheduling",
-  },
-  openGraph: {
+const pathname = "/feature/self-scheduling";
+
+export const metadata = withHreflang(
+  {
     title: "AI-Powered Self-Scheduling - RosterLab",
     description:
       "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
-    type: "website",
-    url: "https://rosterlab.com/feature/self-scheduling",
-    images: [
-      {
-        url: "/images/og-images/SelfScheduling.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/feature/self-scheduling",
+    },
+    openGraph: {
+      title: "AI-Powered Self-Scheduling - RosterLab",
+      description:
+        "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+      type: "website",
+      url: "https://rosterlab.com/feature/self-scheduling",
+      images: [
+        {
+          url: "/images/og-images/SelfScheduling.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI-Powered Self-Scheduling - RosterLab",
+      description:
+        "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+      images: ["/images/og-images/SelfScheduling.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI-Powered Self-Scheduling - RosterLab",
-    description:
-      "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
-    images: ["/images/og-images/SelfScheduling.png"],
-  },
-};
+  pathname,
+);
 
 export default function SelfSchedulingPage() {
   return (

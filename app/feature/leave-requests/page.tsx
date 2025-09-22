@@ -4,31 +4,37 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Employee Leave Requests - RosterLab",
-  description:
-    "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
-  openGraph: {
+const pathname = "/feature/leave-requests";
+
+export const metadata = withHreflang(
+  {
     title: "Employee Leave Requests - RosterLab",
     description:
       "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
-    images: [
-      {
-        url: "/images/og-images/FeatureLeaveRequest.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "Employee Leave Requests - RosterLab",
+      description:
+        "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
+      images: [
+        {
+          url: "/images/og-images/FeatureLeaveRequest.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Employee Leave Requests - RosterLab",
+      description:
+        "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
+      images: ["/images/og-images/FeatureLeaveRequest.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Employee Leave Requests - RosterLab",
-    description:
-      "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
-    images: ["/images/og-images/FeatureLeaveRequest.png"],
-  },
-};
+  pathname,
+);
 
 export default function LeaveRequestsPage() {
   return (

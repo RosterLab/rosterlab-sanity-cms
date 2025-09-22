@@ -3,33 +3,40 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: 'AI Rostering Software for All Industries - RosterLab',
-  description: 'Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
-  alternates: {
-    canonical: "https://rosterlab.com/industries",
+export const metadata = withHreflang(
+  {
+    title: "AI Rostering Software for All Industries - RosterLab",
+    description:
+      "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
+    alternates: {
+      canonical: "https://rosterlab.com/industries",
+    },
+    openGraph: {
+      title: "AI Rostering Software for All Industries - RosterLab",
+      description:
+        "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
+      type: "website",
+      url: "https://rosterlab.com/industries",
+      images: [
+        {
+          url: "/images/og-images/Industry.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI Rostering Software for All Industries - RosterLab",
+      description:
+        "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
+      images: ["/images/og-images/Industry.png"],
+    },
   },
-  openGraph: {
-    title: 'AI Rostering Software for All Industries - RosterLab',
-    description: 'Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
-    type: 'website',
-    url: 'https://rosterlab.com/industries',
-    images: [
-      {
-        url: "/images/og-images/Industry.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI Rostering Software for All Industries - RosterLab',
-    description: 'Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.',
-    images: ['/images/og-images/Industry.png'],
-  },
-};
+  "/industries",
+);
 
 export default function IndustriesPage() {
   return (
@@ -72,7 +79,10 @@ export default function IndustriesPage() {
                   className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50"
                   analyticsLabel="View ROI Calculator"
                   analyticsLocation="Industries Hero"
-                  analyticsProperties={{ cta_type: "tool", tool_name: "roi_calculator" }}
+                  analyticsProperties={{
+                    cta_type: "tool",
+                    tool_name: "roi_calculator",
+                  }}
                 >
                   View ROI Calculator
                 </Button>

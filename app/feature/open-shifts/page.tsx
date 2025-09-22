@@ -4,36 +4,42 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Open Shifts - RosterLab",
-  description:
-    "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/open-shifts",
-  },
-  openGraph: {
+const pathname = "/feature/open-shifts";
+
+export const metadata = withHreflang(
+  {
     title: "Open Shifts - RosterLab",
     description:
       "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
-    type: "website",
-    url: "https://rosterlab.com/feature/open-shifts",
-    images: [
-      {
-        url: "/images/og-images/FeatureOpenShifts.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/feature/open-shifts",
+    },
+    openGraph: {
+      title: "Open Shifts - RosterLab",
+      description:
+        "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+      type: "website",
+      url: "https://rosterlab.com/feature/open-shifts",
+      images: [
+        {
+          url: "/images/og-images/FeatureOpenShifts.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Open Shifts - RosterLab",
+      description:
+        "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+      images: ["/images/og-images/FeatureOpenShifts.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Open Shifts - RosterLab",
-    description:
-      "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
-    images: ["/images/og-images/FeatureOpenShifts.png"],
-  },
-};
+  pathname,
+);
 
 const faqItems = [
   {

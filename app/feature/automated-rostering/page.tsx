@@ -5,31 +5,37 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Automatic Roster Generation - RosterLab",
-  description:
-    "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
-  openGraph: {
+const pathname = "/feature/automated-rostering";
+
+export const metadata = withHreflang(
+  {
     title: "Automatic Roster Generation - RosterLab",
     description:
       "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
-    images: [
-      {
-        url: "/images/og-images/AutoRosterGeneration.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "Automatic Roster Generation - RosterLab",
+      description:
+        "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
+      images: [
+        {
+          url: "/images/og-images/AutoRosterGeneration.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Automatic Roster Generation - RosterLab",
+      description:
+        "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
+      images: ["/images/og-images/AutoRosterGeneration.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Automatic Roster Generation - RosterLab",
-    description:
-      "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
-    images: ["/images/og-images/AutoRosterGeneration.png"],
-  },
-};
+  pathname,
+);
 
 const faqItems = [
   {

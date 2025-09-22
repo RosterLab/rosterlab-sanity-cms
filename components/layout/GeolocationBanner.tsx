@@ -4,47 +4,11 @@ import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { HiX } from "react-icons/hi";
-
-// URL mapping between US and Global versions
-const URL_MAPPING = {
-  // Global -> US mappings (null means page doesn't exist on US)
-  globalToUS: {
-    "/roi-calculator": "/savings-calculator",
-    "/book-a-demo": "/book-a-demo",
-    "/pricing": "/pricing",
-    "/contact": "/contact",
-    "/about": "/about",
-    "/blog": "/blog",
-    "/solutions": null, // Only exists on global
-    "/solutions/healthcare": null, // Only exists on global
-    "/solutions/retail": null, // Only exists on global
-    "/solutions/aged-care": null, // Only exists on global
-    "/solutions/hospitality": null, // Only exists on global
-    "/": "/",
-  },
-  // US -> Global mappings (null means page doesn't exist on global)
-  usToGlobal: {
-    "/savings-calculator": "/roi-calculator",
-    "/book-a-demo": "/book-a-demo",
-    "/pricing": "/pricing",
-    "/contact": "/contact",
-    "/about": "/about",
-    "/blog": "/blog",
-    "/": "/",
-  },
-  // Pages that exist only on global (no US equivalent)
-  globalOnly: [
-    "/solutions",
-    "/solutions/healthcare",
-    "/solutions/retail",
-    "/solutions/aged-care",
-    "/solutions/hospitality",
-  ],
-  // Pages that exist only on US (no global equivalent)
-  usOnly: [
-    // Add US-only pages here if any
-  ],
-};
+import {
+  US_URL_MAPPINGS,
+  REVERSE_US_MAPPINGS,
+  LOCALIZED_PAGES,
+} from "@/components/seo/HreflangTags";
 
 // Function to check if a page exists
 async function checkIfPageExists(url: string): Promise<boolean> {
@@ -101,17 +65,14 @@ export default function GeolocationBanner() {
           let shouldShowBanner = false;
 
           if (data.country === "US" && !isUSPath) {
-            // US user on global site - check if page exists on US
-            const mappedPath =
-              URL_MAPPING.globalToUS[
-                pathname as keyof typeof URL_MAPPING.globalToUS
-              ];
-            // Show banner only if page exists on US (not null and not in globalOnly)
-            shouldShowBanner =
-              mappedPath !== null && !URL_MAPPING.globalOnly.includes(pathname);
+            // US user on global site - check if page has a US equivalent
+            shouldShowBanner = LOCALIZED_PAGES.has(pathname);
           } else if (data.country !== "US" && isUSPath) {
-            // Non-US user on US site - always show banner to redirect to global
-            shouldShowBanner = true;
+            // Non-US user on US site - check if we can map back to a global page
+            const globalPath = REVERSE_US_MAPPINGS[pathname];
+            // Show banner if we can find a global equivalent
+            shouldShowBanner =
+              !!globalPath || pathname === "/us" || pathname === "/us/";
           }
 
           console.log("🌍 Banner Logic:", {
@@ -119,6 +80,7 @@ export default function GeolocationBanner() {
             isUSPath,
             pathname,
             shouldShowBanner,
+            hasUSEquivalent: LOCALIZED_PAGES.has(pathname),
           });
 
           // Show banner if there's a mismatch and target page exists
@@ -151,40 +113,26 @@ export default function GeolocationBanner() {
   const getSuggestedPath = useCallback(async (): Promise<string> => {
     if (isUSUser && !isUSPath) {
       // User is from US but on global site - suggest US version
-      // Check if current path has a specific US mapping
-      const mappedPath =
-        URL_MAPPING.globalToUS[pathname as keyof typeof URL_MAPPING.globalToUS];
-      if (mappedPath === null) {
-        // Page doesn't exist on US - redirect to US home
-        return "/us";
+      const usPath = US_URL_MAPPINGS[pathname];
+      if (usPath) {
+        const pageExists = await checkIfPageExists(usPath);
+        return pageExists ? usPath : "/us";
       }
-      if (mappedPath) {
-        const targetUrl = "/us" + mappedPath;
-        const pageExists = await checkIfPageExists(targetUrl);
-        return pageExists ? targetUrl : "/us";
-      }
-      // For unmapped paths, check if page exists with /us prefix
-      const targetUrl = "/us" + pathname;
-      const pageExists = await checkIfPageExists(targetUrl);
-      return pageExists ? targetUrl : "/us";
+      // This shouldn't happen since we only show banner for pages with US equivalents
+      return "/us";
     } else if (!isUSUser && isUSPath) {
       // User is not from US but on US site - suggest global version
-      // Remove /us prefix first
-      const pathWithoutUS =
-        pathname === "/us" ? "/" : pathname.replace(/^\/us/, "");
-
-      // Check if this US path has a specific global mapping
-      const mappedPath =
-        URL_MAPPING.usToGlobal[
-          pathWithoutUS as keyof typeof URL_MAPPING.usToGlobal
-        ];
-      if (mappedPath) {
-        const pageExists = await checkIfPageExists(mappedPath);
-        return pageExists ? mappedPath : "/";
+      const globalPath = REVERSE_US_MAPPINGS[pathname];
+      if (globalPath) {
+        const pageExists = await checkIfPageExists(globalPath);
+        return pageExists ? globalPath : "/";
       }
-      // For unmapped paths, check if page exists without /us prefix
-      const pageExists = await checkIfPageExists(pathWithoutUS);
-      return pageExists ? pathWithoutUS : "/";
+      // Handle /us or /us/ homepage
+      if (pathname === "/us" || pathname === "/us/") {
+        return "/";
+      }
+      // This shouldn't happen since we only show banner for pages with global equivalents
+      return "/";
     }
     return pathname;
   }, [isUSUser, isUSPath, pathname]);

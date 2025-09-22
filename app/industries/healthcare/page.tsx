@@ -10,37 +10,41 @@ import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
 import HealthcareTestimonials from "@/components/sections/HealthcareTestimonials";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Rostering Software for Healthcare - RosterLab",
-  description:
-    "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-  alternates: {
-    canonical: "https://rosterlab.com/industries/healthcare",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Rostering Software for Healthcare - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare",
-    images: [
-      {
-        url: "/images/og-images/IndustryHealthcare.png",
-        width: 1200,
-        height: 630,
-        alt: "Healthcare workforce scheduling with RosterLab",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/industries/healthcare",
+    },
+    openGraph: {
+      title: "Rostering Software for Healthcare - RosterLab",
+      description:
+        "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare",
+      images: [
+        {
+          url: "/images/og-images/IndustryHealthcare.png",
+          width: 1200,
+          height: 630,
+          alt: "Healthcare workforce scheduling with RosterLab",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Rostering Software for Healthcare - RosterLab",
+      description:
+        "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+      images: ["/images/og-images/IndustryHealthcare.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rostering Software for Healthcare - RosterLab",
-    description:
-      "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    images: ["/images/og-images/IndustryHealthcare.png"],
-  },
-};
+  "/industries/healthcare",
+);
 
 // Query for the 3 most recent case studies
 const recentCaseStudiesQuery = groq`

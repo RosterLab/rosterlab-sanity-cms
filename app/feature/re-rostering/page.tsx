@@ -4,31 +4,37 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Re-Rostering - RosterLab",
-  description:
-    "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.",
-  openGraph: {
-    title: "Fast Re-Rostering & Scenario Planning - RosterLab",
+const pathname = "/feature/re-rostering";
+
+export const metadata = withHreflang(
+  {
+    title: "Re-Rostering - RosterLab",
     description:
-      "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
-    images: [
-      {
-        url: "/images/og-images/FeatureReRostering.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+      "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.",
+    openGraph: {
+      title: "Fast Re-Rostering & Scenario Planning - RosterLab",
+      description:
+        "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
+      images: [
+        {
+          url: "/images/og-images/FeatureReRostering.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Fast Re-Rostering & Scenario Planning - RosterLab",
+      description:
+        "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
+      images: ["/images/og-images/FeatureReRostering.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fast Re-Rostering & Scenario Planning - RosterLab",
-    description:
-      "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
-    images: ["/images/og-images/FeatureReRostering.png"],
-  },
-};
+  pathname,
+);
 
 export default function ReRosteringPage() {
   return (

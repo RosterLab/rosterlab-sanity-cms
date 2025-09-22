@@ -4,36 +4,40 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Pricing - Affordable AI Staff Rostering Software",
-  description:
-    "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
-  alternates: {
-    canonical: "https://rosterlab.com/pricing",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Pricing - Affordable AI Staff Rostering Software",
     description:
       "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
-    type: "website",
-    url: "https://rosterlab.com/pricing",
-    images: [
-      {
-        url: "/images/og-images/Pricing.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/pricing",
+    },
+    openGraph: {
+      title: "Pricing - Affordable AI Staff Rostering Software",
+      description:
+        "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+      type: "website",
+      url: "https://rosterlab.com/pricing",
+      images: [
+        {
+          url: "/images/og-images/Pricing.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Pricing - Affordable AI Staff Rostering Software",
+      description:
+        "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+      images: ["/images/og-images/Pricing.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pricing - Affordable AI Staff Rostering Software",
-    description:
-      "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
-    images: ["/images/og-images/Pricing.png"],
-  },
-};
+  "/pricing",
+);
 
 const pricingPlans = [
   {

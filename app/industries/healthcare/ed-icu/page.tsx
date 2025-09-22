@@ -5,33 +5,37 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "ED & ICU Staff Scheduling Software - RosterLab",
-  description:
-    "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-  openGraph: {
-    title: "ED & ICU Staff Rostering Software - RosterLab",
+export const metadata = withHreflang(
+  {
+    title: "ED & ICU Staff Scheduling Software - RosterLab",
     description:
       "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare/ed-icu",
-    images: [
-      {
-        url: "/images/og-images/IndustryICUED.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "ED & ICU Staff Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare/ed-icu",
+      images: [
+        {
+          url: "/images/og-images/IndustryICUED.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "ED & ICU Staff Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      images: ["/images/og-images/IndustryICUED.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ED & ICU Staff Rostering Software - RosterLab",
-    description:
-      "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-    images: ["/images/og-images/IndustryICUED.png"],
-  },
-};
+  "/industries/healthcare/ed-icu",
+);
 
 const faqItems = [
   {

@@ -5,33 +5,37 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = {
-  title: "Radiology Staff Rostering Software - RosterLab",
-  description:
-    "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
       "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare/radiology",
-    images: [
-      {
-        url: "/images/og-images/IndustryRadiology.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "Radiology Staff Rostering Software - RosterLab",
+      description:
+        "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare/radiology",
+      images: [
+        {
+          url: "/images/og-images/IndustryRadiology.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Radiology Staff Rostering Software - RosterLab",
+      description:
+        "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+      images: ["/images/og-images/IndustryRadiology.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Radiology Staff Rostering Software - RosterLab",
-    description:
-      "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
-    images: ["/images/og-images/IndustryRadiology.png"],
-  },
-};
+  "/industries/healthcare/radiology",
+);
 
 const faqItems = [
   {

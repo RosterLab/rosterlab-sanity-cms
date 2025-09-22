@@ -5,6 +5,7 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import RosterLoadingBar from "@/components/ui/RosterLoadingBar";
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCheck,
   HiClock,
@@ -16,36 +17,39 @@ import {
   HiSwitchHorizontal,
 } from "react-icons/hi";
 
-export const metadata = {
-  title: "AI Roster Generator - RosterLab",
-  description:
-    "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-  alternates: {
-    canonical: "https://rosterlab.com/solutions/ai-roster-generator",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "AI Roster Generator - RosterLab",
     description:
       "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-    type: "website",
-    url: "https://rosterlab.com/solutions/ai-roster-generator",
-    images: [
-      {
-        url: "/images/og-images/SolutionAIGen.png",
-        width: 1200,
-        height: 630,
-        alt: "AI Staff Roster Generator",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/solutions/ai-roster-generator",
+    },
+    openGraph: {
+      title: "AI Roster Generator - RosterLab",
+      description:
+        "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
+      type: "website",
+      url: "https://rosterlab.com/solutions/ai-roster-generator",
+      images: [
+        {
+          url: "/images/og-images/SolutionAIGen.png",
+          width: 1200,
+          height: 630,
+          alt: "AI Staff Roster Generator",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI Roster Generator - RosterLab",
+      description:
+        "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
+      images: ["/images/og-images/SolutionAIGen.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Roster Generator - RosterLab",
-    description:
-      "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-    images: ["/images/og-images/SolutionAIGen.png"],
-  },
-};
+  "/solutions/ai-roster-generator",
+);
 
 const faqItems = [
   {

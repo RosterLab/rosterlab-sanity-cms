@@ -4,6 +4,7 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import TrustedBy from "@/components/sections/TrustedBy";
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCheck,
   HiClock,
@@ -14,36 +15,40 @@ import {
   HiAcademicCap,
 } from "react-icons/hi";
 
-export const metadata = {
-  title: "Free Staff Roster Software - RosterLab",
-  description:
-    "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
-  alternates: {
-    canonical: "https://rosterlab.com/solutions/free-staff-rostering-software",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Free Staff Roster Software - RosterLab",
     description:
       "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
-    type: "website",
-    url: "https://rosterlab.com/solutions/free-staff-rostering-software",
-    images: [
-      {
-        url: "/images/og-images/SolutionFree.png",
-        width: 1200,
-        height: 630,
-        alt: "Free Digital Rostering Platform",
-      },
-    ],
+    alternates: {
+      canonical:
+        "https://rosterlab.com/solutions/free-staff-rostering-software",
+    },
+    openGraph: {
+      title: "Free Staff Roster Software - RosterLab",
+      description:
+        "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
+      type: "website",
+      url: "https://rosterlab.com/solutions/free-staff-rostering-software",
+      images: [
+        {
+          url: "/images/og-images/SolutionFree.png",
+          width: 1200,
+          height: 630,
+          alt: "Free Digital Rostering Platform",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free Staff Roster Software - RosterLab",
+      description:
+        "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
+      images: ["/images/og-images/SolutionFree.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Staff Roster Software - RosterLab",
-    description:
-      "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
-    images: ["/images/og-images/SolutionFree.png"],
-  },
-};
+  "/solutions/free-staff-rostering-software",
+);
 
 const faqItems = [
   {
