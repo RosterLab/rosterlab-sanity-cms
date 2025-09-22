@@ -61,13 +61,16 @@ export default function USIndustrySolutions() {
                 className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
               >
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
-                      ICU/ED
-                    </h4>
-                    <p className="text-sm text-blue-700">
-                      Critical care scheduling with complex skill-mix
-                    </p>
+                  <div className="flex items-start">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
+                        ICU/ED
+                      </h4>
+                      <p className="text-sm text-blue-700">
+                        Critical care scheduling with complex skill-mix
+                      </p>
+                    </div>
                   </div>
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -77,13 +80,16 @@ export default function USIndustrySolutions() {
                 className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
               >
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
-                      Radiology
-                    </h4>
-                    <p className="text-sm text-blue-700">
-                      24/7 imaging services with compliance tracking
-                    </p>
+                  <div className="flex items-start">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
+                        Radiology
+                      </h4>
+                      <p className="text-sm text-blue-700">
+                        24/7 imaging services with compliance tracking
+                      </p>
+                    </div>
                   </div>
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -93,13 +99,16 @@ export default function USIndustrySolutions() {
                 className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
               >
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
-                      Senior Care
-                    </h4>
-                    <p className="text-sm text-blue-700">
-                      Continuity of care with resident-focused scheduling
-                    </p>
+                  <div className="flex items-start">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
+                        Senior Care
+                      </h4>
+                      <p className="text-sm text-blue-700">
+                        Continuity of care with resident-focused scheduling
+                      </p>
+                    </div>
                   </div>
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
                 </div>
@@ -113,7 +122,7 @@ export default function USIndustrySolutions() {
                 className="border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white"
                 analyticsLabel="View Healthcare Solutions"
                 analyticsLocation="Homepage Industry Solutions"
-                analyticsProperties={{ industry: 'healthcare' }}
+                analyticsProperties={{ industry: "healthcare" }}
               >
                 View Healthcare Solutions
               </Button>
@@ -184,7 +193,7 @@ export default function USIndustrySolutions() {
                 className="border-green-500 text-green-600 hover:bg-green-500 hover:text-white"
                 analyticsLabel="View All Industries"
                 analyticsLocation="Homepage Industry Solutions"
-                analyticsProperties={{ industry: 'all' }}
+                analyticsProperties={{ industry: "all" }}
               >
                 View All Industries
               </Button>
