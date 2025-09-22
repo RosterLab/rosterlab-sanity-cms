@@ -166,7 +166,7 @@ export default function USIndustrySolutions() {
                       Skill-based Scheduling
                     </h4>
                     <p className="text-sm text-green-700">
-                      Match staff skills with operational requirements
+                      Assigning shifts based on complex skill mix
                     </p>
                   </div>
                 </div>
