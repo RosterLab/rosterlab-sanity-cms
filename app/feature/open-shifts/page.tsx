@@ -123,11 +123,11 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/open.svg"
+                  src="/images/us-images/stock/istockphoto-1486019621-1024x1024.jpg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -179,11 +179,11 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
+                  src="/images/new-product-images/shift-broadcasting-open-shifts.png"
                   alt="Instant Shift Broadcasting"
                   width={500}
                   height={500}
-                  className="w-full h-auto"
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -196,11 +196,11 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/matching.svg"
+                  src="/images/new-product-images/fill-shift-gaps-open-shifts.png"
                   alt="Smart Employee Matching"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -282,11 +282,11 @@ export default function OpenShiftsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/new-product-images/priortise-urgent-shift-open-shifts.png"
                   alt="Prioritise urgent shifts"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -322,11 +322,11 @@ export default function OpenShiftsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/illustration/Choose-pana.svg"
+                  src="/images/new-product-images/fair-transparent-assignment-open-shifts.png"
                   alt="First-Come First-Served Assignment"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -401,21 +401,16 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Features", url: "/feature" },
-          { name: "Open Shifts" }
-
+          { name: "Open Shifts" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
