@@ -93,11 +93,11 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/us-images/stock/istockphoto-1457092492-2048x2048.jpg"
                   alt="Self-scheduling illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -141,7 +141,13 @@ export default function SelfSchedulingPage() {
                 </ul>
               </div>
               <div className="relative flex items-center justify-center">
-                <MobileAppPreferencesModuleStatic />
+                <Image
+                  src="/images/new-product-images/meet-staffing-needs-self-scheduling.png"
+                  alt="Easily meet your staffing needs"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
               </div>
             </div>
           </Container>
@@ -153,11 +159,11 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/product/quality.webp"
+                  src="/images/new-product-images/compliance-self-scheduling.png"
                   alt="AI-Optimised Compliant Rosters illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -233,11 +239,11 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/self-scheduling/preference.webp"
+                  src="/images/new-product-images/simplify-schedules-self-scheduling.png"
                   alt="Preference collection illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-[0.8]"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -250,11 +256,11 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/self-scheduling/self-roster.webp"
+                  src="/images/new-product-images/self-roster-self-scheduling.png"
                   alt="Self-Schedule The Way You Want To illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -360,21 +366,16 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Features", url: "/feature" },
-          { name: "Self Scheduling" }
-
+          { name: "Self Scheduling" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
