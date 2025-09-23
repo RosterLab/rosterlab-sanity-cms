@@ -243,11 +243,11 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
+                  src="/images/new-product-images/notifications-rerostering-rescheduling.png"
                   alt="Real-Time Notifications & Updates illustration"
-                  width={400}
-                  height={400}
-                  className="w-full h-auto max-w-md mx-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
