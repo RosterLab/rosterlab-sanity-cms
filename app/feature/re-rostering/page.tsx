@@ -121,11 +121,11 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Programmer-pana-2.svg"
+                  src="/images/new-product-images/roster-changes.png"
                   alt="Intelligent Impact Analysis illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -226,11 +226,11 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/product/quality.webp"
+                  src="/images/new-product-images/compliance-preservation-rescheduling.png"
                   alt="Compliance Preservation illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -385,21 +385,16 @@ export default function ReRosteringPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Features", url: "/feature" },
-          { name: "Re-rostering" }
-
+          { name: "Re-rostering" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
