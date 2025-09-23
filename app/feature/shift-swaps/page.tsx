@@ -128,11 +128,11 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Chatting-pana.svg"
+                  src="/images/us-images/stock/istockphoto-2103975951-2048x2048.jpg"
                   alt="Shift swaps communication illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
             </div>
@@ -175,11 +175,11 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/shift swaps/Test 5 copy.webp"
+                  src="/images/new-product-images/automatic-routine-approvals-shift-swaps.png"
                   alt="Automatic Routine Approvals"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-90"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -192,11 +192,11 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/shift swaps/Group 391 copy.webp"
+                  src="/images/new-product-images/shift-swaps-rule-breaks.png"
                   alt="Review Swaps that Break the Rules"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-90"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -269,11 +269,11 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/shift swaps/Shift Swap 3.webp"
+                  src="/images/new-product-images/shift-swaps-automatic-notifications.png"
                   alt="Automated Shift Swap Notifications"
                   width={500}
                   height={500}
-                  className="w-full h-auto scale-90"
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -286,11 +286,11 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/shift swaps/Group 390 copy.webp"
+                  src="/images/new-product-images/shift-swaps-audit-trail.png"
                   alt="Comprehensive Audit Trail"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-90"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -407,21 +407,16 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Features", url: "/feature" },
-          { name: "Shift Swaps" }
-
+          { name: "Shift Swaps" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
