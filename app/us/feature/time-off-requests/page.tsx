@@ -148,11 +148,11 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
-                  alt="Automatic coverage analysis"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  src="/images/new-product-images/leave-requests-submit-leave.png"
+                  alt="Submit time-off requests via mobile app"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -164,56 +164,13 @@ export default function LeaveRequestsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                  <div className="flex flex-col items-center justify-center">
-                    {/* Approval Engine Processing */}
-                    <div className="relative w-full max-w-xs h-32">
-                      {/* Central Processing Hub */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg px-4 py-2 shadow-md border border-gray-200 z-20">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center animate-spin">
-                            <HiClock className="w-4 h-4 text-white" />
-                          </div>
-                          <span className="text-xs font-semibold text-gray-700">
-                            AI Approval Engine
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Checking Steps - Animated */}
-                      <div className="absolute top-0 left-0 w-full">
-                        <div className="flex justify-between px-2">
-                          <div className="bg-green-100 rounded-lg px-2 py-1 text-xs text-[#4a9288] animate-pulse">
-                            ✓ Coverage OK
-                          </div>
-                          <div
-                            className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse"
-                            style={{ animationDelay: "0.5s" }}
-                          >
-                            ✓ Balance OK
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-0 left-0 w-full">
-                        <div className="flex justify-between px-2">
-                          <div
-                            className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse"
-                            style={{ animationDelay: "1s" }}
-                          >
-                            ✓ No Conflicts
-                          </div>
-                          <div
-                            className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse"
-                            style={{ animationDelay: "1.5s" }}
-                          >
-                            ✓ Policy OK
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/new-product-images/leave-requests-sync-changes.png"
+                  alt="Automatically sync changes to schedule"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -302,11 +259,11 @@ export default function LeaveRequestsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/us-images/pexels-divinetechygirl-1181441-2.jpg"
-                  alt="Mobile time-off request app illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  src="/images/new-product-images/leave-requests-handled.png"
+                  alt="Decide how different types of time-off are handled"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -403,21 +360,16 @@ export default function LeaveRequestsPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Features", url: "/us/feature" },
-          { name: "Time Off Requests" }
-
+          { name: "Time Off Requests" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
