@@ -245,9 +245,9 @@ export default function ReRosteringPage() {
                 <Image
                   src="/images/illustration/free-staff-mobile.svg"
                   alt="Real-Time Notifications & Updates illustration"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
+                  width={400}
+                  height={400}
+                  className="w-full h-auto max-w-md mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
