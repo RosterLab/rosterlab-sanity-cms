@@ -1,6 +1,7 @@
 import ROICalculatorClient from "./client";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -40,6 +41,21 @@ export default function ROICalculatorPage() {
   return (
     <SiteLayout>
       <ROICalculatorClient />
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Tools", url: "/tools" },
+          { name: "ROI Calculator" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

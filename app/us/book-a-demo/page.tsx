@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import BookADemoClient from "./client";
 import { withHreflang } from '@/components/seo/HreflangTags'
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = withHreflang({
   title: "Schedule a Demo - RosterLab",
@@ -33,5 +34,17 @@ export const metadata: Metadata = withHreflang({
 }, '/us/book-a-demo');
 
 export default function BookADemoPage() {
-  return <BookADemoClient />;
+  return (
+    <>
+      <BookADemoClient />
+      
+      {/* Hidden Breadcrumb Schema for SEO */}
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Book a Demo" }
+        ]}
+      />
+    </>
+  );
 }

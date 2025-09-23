@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Container from '@/components/ui/Container'
+import { generateFAQSchema } from '@/lib/structured-data/faq-schema'
 
 const faqs = [
   {
@@ -20,6 +21,9 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  
+  // Generate FAQ schema
+  const faqSchema = generateFAQSchema(faqs)
 
   return (
     <section className="py-20 bg-neutral-50">
@@ -75,6 +79,12 @@ export default function FAQ() {
           </div>
         </div>
       </Container>
+      
+      {/* FAQ Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     </section>
   )
 }

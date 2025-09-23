@@ -6,6 +6,7 @@ import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pathname = "/feature/automated-rostering";
 
@@ -406,6 +407,21 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Automated Rostering" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

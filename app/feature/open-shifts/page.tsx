@@ -5,6 +5,7 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pathname = "/feature/open-shifts";
 
@@ -400,6 +401,21 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Open Shifts" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

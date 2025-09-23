@@ -7,6 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { getVariant } from "@/lib/amplitude/experiment-server";
 import { ExperimentFlags } from "@/lib/amplitude/experiment-utils";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -711,6 +712,20 @@ export default async function AboutPage() {
           </div>
         </Container>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "About" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

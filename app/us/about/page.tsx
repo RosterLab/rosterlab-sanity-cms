@@ -5,6 +5,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -667,6 +668,20 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "About" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

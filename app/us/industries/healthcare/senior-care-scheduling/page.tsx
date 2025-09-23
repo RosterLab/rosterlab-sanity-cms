@@ -7,6 +7,7 @@ import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -774,6 +775,22 @@ export default function AgedCarePage() {
           </div>
         </Container>
       </section>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
+          { name: "Senior Care" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

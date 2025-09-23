@@ -14,6 +14,7 @@ import {
   HiCog,
   HiAcademicCap,
 } from "react-icons/hi";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -717,6 +718,21 @@ export default function ManualSchedulingPage() {
           </Container>
         </div>
       </>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Solutions", url: "/solutions" },
+          { name: "Free Staff Rostering Software" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

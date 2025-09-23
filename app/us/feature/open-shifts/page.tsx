@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { HiCheck } from 'react-icons/hi'
 import FAQAccordion from '@/components/ui/FAQAccordion'
 import { withHreflang } from '@/components/seo/HreflangTags'
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema'
 
 export const metadata = withHreflang({
   title: 'Open Shifts for Staff - RosterLab',
@@ -365,6 +366,21 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Features", url: "/us/feature" },
+          { name: "Open Shifts" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   )
 }

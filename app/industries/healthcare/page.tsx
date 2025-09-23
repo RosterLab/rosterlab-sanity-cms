@@ -11,6 +11,7 @@ import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
 import HealthcareTestimonials from "@/components/sections/HealthcareTestimonials";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -1267,6 +1268,21 @@ export default async function HealthcarePage() {
           </div>
         </Container>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: "Healthcare" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

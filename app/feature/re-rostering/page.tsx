@@ -5,6 +5,7 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pathname = "/feature/re-rostering";
 
@@ -384,6 +385,21 @@ export default function ReRosteringPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Re-rostering" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

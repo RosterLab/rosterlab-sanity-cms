@@ -18,6 +18,7 @@ import {
   HiCog,
   HiAcademicCap,
 } from "react-icons/hi";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang({
   title: "Free Staff Scheduling Mobile App - RosterLab",
@@ -598,6 +599,21 @@ export default function StaffMobileAppPage() {
           </Container>
         </div>
       </>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Solutions", url: "/us/solutions" },
+          { name: "Staff Scheduling Mobile App" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

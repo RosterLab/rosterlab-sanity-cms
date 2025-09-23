@@ -3,11 +3,7 @@
 import { useState } from 'react'
 import { HiChevronDown } from 'react-icons/hi'
 import { cn } from '@/lib/utils'
-
-interface FAQItem {
-  question: string
-  answer: string
-}
+import { generateFAQSchema, FAQItem } from '@/lib/structured-data/faq-schema'
 
 interface FAQAccordionProps {
   items: FAQItem[]
@@ -15,13 +11,17 @@ interface FAQAccordionProps {
 
 export default function FAQAccordion({ items }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  
+  // Generate FAQ schema
+  const faqSchema = generateFAQSchema(items)
 
   const toggleItem = (index: number) => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
   return (
-    <div className="space-y-4">
+    <>
+      <div className="space-y-4">
       {items.map((item, index) => (
         <div
           key={index}
@@ -57,5 +57,12 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
         </div>
       ))}
     </div>
+    
+    {/* FAQ Schema Markup */}
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+    />
+    </>
   )
 }

@@ -6,6 +6,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -624,6 +625,16 @@ export default function ICUEDPage() {
           </div>
         </Container>
       </section>
+      
+      {/* Hidden Breadcrumb Schema for SEO */}
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: "Healthcare", url: "/industries/healthcare" },
+          { name: "ED/ICU", url: "/industries/healthcare/ed-icu" }
+        ]}
+      />
     </SiteLayout>
   );
 }

@@ -6,6 +6,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from '@/components/seo/HreflangTags';
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang({
   title: "ED & ICU Staff Scheduling Software - RosterLab",
@@ -574,6 +575,22 @@ export default function ICUEDPage() {
           </div>
         </Container>
       </section>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
+          { name: "ED/ICU" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

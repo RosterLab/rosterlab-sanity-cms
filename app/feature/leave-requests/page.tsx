@@ -5,6 +5,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pathname = "/feature/leave-requests";
 
@@ -368,6 +369,21 @@ export default function LeaveRequestsPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Leave Requests" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

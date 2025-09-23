@@ -6,6 +6,7 @@ import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 import { withHreflang } from '@/components/seo/HreflangTags';
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang({
   title: "Auto Scheduling Staff - RosterLab",
@@ -432,6 +433,21 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Features", url: "/us/feature" },
+          { name: "Auto Scheduling" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

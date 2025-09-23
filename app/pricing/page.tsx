@@ -5,6 +5,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -568,6 +569,20 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Pricing" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

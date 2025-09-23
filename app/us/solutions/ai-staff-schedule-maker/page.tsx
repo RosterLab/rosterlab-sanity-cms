@@ -90,6 +90,7 @@ const faqItems = [
       "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimises human error but also saves time spent recalling minor details and enhances the efficiency of communications.",
   },
 ];
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export default function AISchedulesPage() {
   return (
@@ -716,6 +717,21 @@ export default function AISchedulesPage() {
           </div>
         </Container>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Solutions", url: "/us/solutions" },
+          { name: "AI Staff Schedule Maker" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

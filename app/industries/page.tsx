@@ -4,6 +4,7 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -1021,6 +1022,20 @@ export default function IndustriesPage() {
           </div>
         </Container>
       </section>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

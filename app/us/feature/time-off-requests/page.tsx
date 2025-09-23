@@ -5,6 +5,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -402,6 +403,21 @@ export default function LeaveRequestsPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Features", url: "/us/feature" },
+          { name: "Time Off Requests" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

@@ -28,11 +28,27 @@ export const metadata = withHreflang({
     images: ['/images/og images/ROICalc.png'],
   },
 }, '/us/tools/savings-calculator');
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export default function ROICalculatorPage() {
   return (
     <SiteLayout>
       <SavingsCalculatorClient />
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Tools", url: "/us/tools" },
+          { name: "Savings Calculator" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   )
 }

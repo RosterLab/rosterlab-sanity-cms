@@ -5,6 +5,7 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pathname = "/feature/self-scheduling";
 
@@ -359,6 +360,21 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Self Scheduling" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

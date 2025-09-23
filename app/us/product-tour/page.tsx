@@ -32,6 +32,7 @@ export const metadata: Metadata = withHreflang({
     images: ["/images/og-images/InteractiveDemo.png"],
   },
 }, '/us/product-tour');
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export default function ProductTour() {
   return (

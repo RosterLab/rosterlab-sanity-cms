@@ -12,6 +12,7 @@ import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from '@/components/seo/HreflangTags';
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang({
   title: "Healthcare Scheduling Software - RosterLab",
@@ -1160,6 +1161,27 @@ export default async function HealthcarePage() {
           </div>
         </Container>
       </section>
+
+      
+
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+
+      <BreadcrumbSchema 
+
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare" }
+
+
+        ]}
+
+
+      />
+
 
     </SiteLayout>
   );

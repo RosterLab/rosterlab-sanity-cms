@@ -6,6 +6,7 @@ import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
@@ -210,6 +211,20 @@ export default function ContactPage() {
           </div>
         </Container>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Contact" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

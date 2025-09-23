@@ -9,6 +9,7 @@ import ShiftSwapModule from "@/components/sections/animations/ShiftSwapModule";
 import AuditTrailModule from "./AuditTrailModule";
 import WeekendRotationModule from "./WeekendRotationModule";
 import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const pathname = "/feature/shift-swaps";
 
@@ -406,6 +407,21 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Shift Swaps" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

@@ -9,6 +9,7 @@ import ShiftSwapModule from '@/components/sections/animations/ShiftSwapModule'
 import AuditTrailModule from './AuditTrailModule'
 import WeekendRotationModule from './WeekendRotationModule'
 import { withHreflang } from '@/components/seo/HreflangTags'
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema'
 
 export const metadata = withHreflang({
   title: 'Shift Swaps & Shift Trades - RosterLab',
@@ -373,6 +374,21 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Features", url: "/us/feature" },
+          { name: "Shift Swaps and Trades" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   )
 }

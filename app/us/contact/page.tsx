@@ -35,6 +35,7 @@ export const metadata = withHreflang({
     images: ["/images/og images/Contact.png"],
   },
 }, '/us/contact');
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const faqItems = [
   {
@@ -179,6 +180,20 @@ export default function ContactPage() {
           </div>
         </Container>
       </div>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/us" },
+          { name: "Contact" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }
