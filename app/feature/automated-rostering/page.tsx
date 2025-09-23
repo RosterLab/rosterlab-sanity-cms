@@ -266,11 +266,11 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/scenario.svg"
+                  src="/images/new-product-images/what-if-scenario.png"
                   alt="What If Scenario Planning"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -407,21 +407,16 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Features", url: "/feature" },
-          { name: "Automated Rostering" }
-
+          { name: "Automated Rostering" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

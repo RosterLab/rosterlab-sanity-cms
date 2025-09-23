@@ -5,36 +5,39 @@ import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = withHreflang({
-  title: "Auto Scheduling Staff - RosterLab",
-  description:
-    "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/feature/auto-scheduling',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Auto Scheduling Staff - RosterLab",
     description:
       "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
-    images: [
-      {
-        url: "/images/og images/AutoRosterGeneration.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/feature/auto-scheduling",
+    },
+    openGraph: {
+      title: "Auto Scheduling Staff - RosterLab",
+      description:
+        "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
+      images: [
+        {
+          url: "/images/og images/AutoRosterGeneration.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Auto Scheduling Staff - RosterLab",
+      description:
+        "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
+      images: ["/images/og images/AutoRosterGeneration.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Auto Scheduling Staff - RosterLab",
-    description:
-      "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
-    images: ["/images/og images/AutoRosterGeneration.png"],
-  },
-}, '/us/feature/auto-scheduling');
+  "/us/feature/auto-scheduling",
+);
 
 const faqItems = [
   {
@@ -84,7 +87,7 @@ export default function AutoRosterGenerationPage() {
                     Automatically
                   </span>
                 </h1>
-                
+
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
@@ -97,7 +100,7 @@ export default function AutoRosterGenerationPage() {
                     fetchPriority="high"
                   />
                 </div>
-                
+
                 <p className="text-xl text-gray-600 mb-8">
                   Use auto scheduling to create optimal schedules in minutes
                   while ensuring fairness, compliance, and staff satisfaction.
@@ -111,7 +114,7 @@ export default function AutoRosterGenerationPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Auto Schedule Generation",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Book A Demo
@@ -124,7 +127,7 @@ export default function AutoRosterGenerationPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Auto Schedule Generation",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     View Product Tour
@@ -156,10 +159,10 @@ export default function AutoRosterGenerationPage() {
                   Reduce Scheduling from Days to Minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Using our optimisation algorithm auto scheduling helps generate complex schedules,
-                  based on union rules, staffing requirements, skill mix, leave
-                  requests, and staff preferences across multiple locations at
-                  the click of a button.
+                  Using our optimisation algorithm auto scheduling helps
+                  generate complex schedules, based on union rules, staffing
+                  requirements, skill mix, leave requests, and staff preferences
+                  across multiple locations at the click of a button.
                   <br />
                   <br />
                   Set your priorities and let the AI handle all the trade-offs
@@ -175,7 +178,8 @@ export default function AutoRosterGenerationPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Generate optimal schedules based on your rules and preferences in one go
+                      Generate optimal schedules based on your rules and
+                      preferences in one go
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -225,9 +229,9 @@ export default function AutoRosterGenerationPage() {
                   operational efficiency.
                   <br />
                   <br />
-                  Instantly see how good your schedule is with clear, at-a-glance
-                  insights, and get real-time feedback on staffing quality and
-                  coverage levels.
+                  Instantly see how good your schedule is with clear,
+                  at-a-glance insights, and get real-time feedback on staffing
+                  quality and coverage levels.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -292,11 +296,11 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-1340030339-2048x2048.jpg"
+                  src="/images/new-product-images/what-if-scenario.png"
                   alt="What If Scenario Planning"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -410,7 +414,7 @@ export default function AutoRosterGenerationPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Auto Schedule Generation",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book Your Demo
@@ -423,7 +427,7 @@ export default function AutoRosterGenerationPage() {
                   analyticsProperties={{
                     cta_type: "pricing",
                     page_name: "Auto Schedule Generation",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   View Pricing
@@ -433,21 +437,16 @@ export default function AutoRosterGenerationPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Features", url: "/us/feature" },
-          { name: "Auto Scheduling" }
-
+          { name: "Auto Scheduling" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
