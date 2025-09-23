@@ -186,9 +186,9 @@ export default function OpenShiftsPage() {
                 <Image
                   src="/images/new-product-images/shift-broadcasting-open-shifts.png"
                   alt="Instant Shift Broadcasting"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -203,9 +203,9 @@ export default function OpenShiftsPage() {
                 <Image
                   src="/images/new-product-images/fill-shift-gaps-open-shifts.png"
                   alt="Smart Staff Matching"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -298,9 +298,9 @@ export default function OpenShiftsPage() {
                 <Image
                   src="/images/new-product-images/priortise-urgent-shift-open-shifts.png"
                   alt="Prioritise urgent shifts"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -315,9 +315,9 @@ export default function OpenShiftsPage() {
                 <Image
                   src="/images/new-product-images/fair-transparent-assignment-open-shifts.png"
                   alt="First-Come First-Served Assignment"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
