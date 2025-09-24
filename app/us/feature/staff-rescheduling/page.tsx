@@ -57,7 +57,7 @@ export default function ReRosteringPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/stock/istockphoto-2157499482-2048x2048.jpg"
+                    src="/images/us-images/iStock-2157499482.jpg"
                     alt="Rescheduling events management illustration"
                     width={600}
                     height={600}
@@ -87,7 +87,7 @@ export default function ReRosteringPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2157499482-2048x2048.jpg"
+                  src="/images/us-images/iStock-2157499482.jpg"
                   alt="Rescheduling events management illustration"
                   width={600}
                   height={600}
