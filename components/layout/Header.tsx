@@ -308,7 +308,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     <div className="text-sm text-gray-600">
                                       {subItem.title === "Healthcare Roster" ||
                                       subItem.title === "Healthcare"
-                                        ? "General healthcare solutions that handle complex workforces and frontline workers"
+                                        ? "General healthcare solutions that handle complex workforces"
                                         : subItem.title === "ICU/ED Roster" ||
                                             subItem.title === "ICU/ED"
                                           ? isUSVersion
@@ -353,7 +353,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                                 "Radiology Roster" ||
                                               subItem.title === "Radiology"
                                             ? isUSVersion
-                                              ? "Balance your teams with the right skill mix with compliant radiology staff schedules"
+                                              ? "Build radiology schedules with the right skill mix and compliance"
                                               : "Balance your teams with the right skill mix with compliant radiology rosters"
                                             : "")}
                                     </div>

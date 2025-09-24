@@ -38,7 +38,7 @@ export const usNavItems = [
       { title: "Healthcare", link: "/us/industries/healthcare-scheduling" },
       { title: "ICU/ED", link: "/us/industries/healthcare/ed-icu-scheduling" },
       {
-        title: "Senior Care",
+        title: "Senior Care Scheduling",
         link: "/us/industries/healthcare/senior-care-scheduling",
         description: "Efficient scheduling for nursing homes & assisted living",
       },
