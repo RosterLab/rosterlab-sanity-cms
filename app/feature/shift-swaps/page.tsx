@@ -128,11 +128,11 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2103975951-2048x2048.jpg"
+                  src="/images/illustration/Chatting-pana.svg"
                   alt="Shift swaps communication illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -175,7 +175,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/ png/open-shifts-atuomatic-routine-approvals.png"
+                  src="/images/new-product-images/ png/shift-swaps/1-shift-swap-atuomatic-routine-approvals.png"
                   alt="Automatic Routine Approvals"
                   width={500}
                   height={500}
@@ -192,7 +192,7 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/shift-swaps-rule-breaks.png"
+                  src="/images/new-product-images/ png/shift-swaps/2-swaps-that-break.png"
                   alt="Review Swaps that Break the Rules"
                   width={500}
                   height={500}
@@ -269,7 +269,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/shift-swaps-automatic-notifications.png"
+                  src="/images/new-product-images/ png/shift-swaps/3-notifications.png"
                   alt="Automated Shift Swap Notifications"
                   width={500}
                   height={500}
@@ -286,7 +286,7 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/shift-swaps-audit-trail.png"
+                  src="/images/new-product-images/ png/shift-swaps/4-audit-trail.png"
                   alt="Comprehensive Audit Trail"
                   width={500}
                   height={500}

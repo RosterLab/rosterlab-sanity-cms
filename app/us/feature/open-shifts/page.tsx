@@ -184,7 +184,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/svg/open shifts/shift-broadcasting.svg"
+                  src="/images/new-product-images/ png/open-shifts/1-shift-broadcasting.png"
                   alt="Instant Shift Broadcasting"
                   width={500}
                   height={500}
@@ -201,7 +201,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/svg/open shifts/open-shift-gaps.svg"
+                  src="/images/new-product-images/ png/open-shifts/2-fill-gaps.png"
                   alt="Smart Staff Matching"
                   width={500}
                   height={500}
@@ -296,7 +296,7 @@ export default function OpenShiftsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/new-product-images/svg/open shifts/prioritise-urgent-shifts.svg"
+                  src="/images/new-product-images/ png/open-shifts/3-priortise-urgent-shifts.png"
                   alt="Prioritise urgent shifts"
                   width={500}
                   height={500}
@@ -313,7 +313,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/svg/open shifts/transparent-assignment.svg"
+                  src="/images/new-product-images/ png/open-shifts/4-transparent-assignment.png"
                   alt="First-Come First-Served Assignment"
                   width={500}
                   height={500}

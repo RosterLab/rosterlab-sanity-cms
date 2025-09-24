@@ -266,7 +266,7 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/svg/what-if-scenarios.svg"
+                  src="/images/new-product-images/ png/auto-scheduling/1-what-if-scenarios.png"
                   alt="What If Scenario Planning"
                   width={500}
                   height={500}
@@ -283,7 +283,7 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/svg/create-your-own-rules.svg"
+                  src="/images/new-product-images/ png/auto-scheduling/2-built-in-compliance.png"
                   alt="Built-in Compliance & Fairness"
                   width={500}
                   height={500}

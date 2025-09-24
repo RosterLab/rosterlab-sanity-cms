@@ -135,7 +135,7 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/roster-changes.png"
+                  src="/images/new-product-images/ png/rescheduling/1-roster-changes.png"
                   alt="Intelligent Impact Analysis illustration"
                   width={500}
                   height={500}
@@ -152,7 +152,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2104287465-2048x2048.jpg"
+                  src="/images/generating.webp"
                   alt="Automated Solution Generation illustration"
                   width={550}
                   height={450}
@@ -253,7 +253,7 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/compliance-preservation-rescheduling.png"
+                  src="/images/new-product-images/ png/rescheduling/3-union-compliant.png"
                   alt="Compliance Preservation illustration"
                   width={500}
                   height={500}
@@ -270,7 +270,7 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/notifications-rerostering-rescheduling.png"
+                  src="/images/new-product-images/ png/rescheduling/4-real-time-notifications.png"
                   alt="Real-Time Notifications & Updates illustration"
                   width={300}
                   height={300}

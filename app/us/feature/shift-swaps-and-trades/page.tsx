@@ -187,7 +187,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/ png/open-shifts-atuomatic-routine-approvals.png"
+                  src="/images/new-product-images/ png/shift-swaps/1-shift-swap-atuomatic-routine-approvals.png"
                   alt="Automatic Routine Approvals"
                   width={500}
                   height={500}
@@ -204,7 +204,7 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/svg/shift swaps/swap-request.svg"
+                  src="/images/new-product-images/ png/shift-swaps/2-swaps-that-break.png"
                   alt="Review Swaps that Break the Rules"
                   width={500}
                   height={500}
@@ -281,7 +281,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/svg/shift swaps/notifications.svg"
+                  src="/images/new-product-images/ png/shift-swaps/3-notifications.png"
                   alt="Automated Notifications"
                   width={500}
                   height={500}
@@ -298,7 +298,7 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/svg/shift swaps/audit-trail.svg"
+                  src="/images/new-product-images/ png/shift-swaps/4-audit-trail.png"
                   alt="Comprehensive Audit Trail"
                   width={500}
                   height={500}

@@ -148,7 +148,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/svg/time-off/submit-leave-requests.svg"
+                  src="/images/new-product-images/ png/time-off/1-mobile-app.png"
                   alt="Submit time-off requests via mobile app"
                   width={500}
                   height={500}
@@ -165,7 +165,7 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/svg/time-off/sync-changes.svg"
+                  src="/images/new-product-images/ png/time-off/2-sync-changes.png"
                   alt="Automatically sync changes to schedule"
                   width={500}
                   height={500}
@@ -259,7 +259,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/new-product-images/svg/time-off/leave-requests.svg"
+                  src="/images/new-product-images/ png/time-off/3-leave-request.png"
                   alt="Decide how different types of time-off are handled"
                   width={500}
                   height={500}

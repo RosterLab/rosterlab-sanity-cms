@@ -4,7 +4,7 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Link from "next/link";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCalendar,
   HiBell,
@@ -20,36 +20,40 @@ import {
 } from "react-icons/hi";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = withHreflang({
-  title: "Free Staff Scheduling Mobile App - RosterLab",
-  description:
-    "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Free Staff Scheduling Mobile App - RosterLab",
     description:
       "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-    type: 'website',
-    url: 'https://rosterlab.com/us/solutions/staff-scheduling-mobile-app',
-    images: [
-      {
-        url: "/images/og images/SolutionMobileApp.png",
-        width: 1200,
-        height: 630,
-        alt: "Staff Mobile App",
-      },
-    ],
+    alternates: {
+      canonical:
+        "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app",
+    },
+    openGraph: {
+      title: "Free Staff Scheduling Mobile App - RosterLab",
+      description:
+        "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      type: "website",
+      url: "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app",
+      images: [
+        {
+          url: "/images/og images/SolutionMobileApp.png",
+          width: 1200,
+          height: 630,
+          alt: "Staff Mobile App",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free Staff Scheduling Mobile App - RosterLab",
+      description:
+        "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      images: ["/images/og images/SolutionMobileApp.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Free Staff Scheduling Mobile App - RosterLab",
-    description:
-      "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-    images: ["/images/og images/SolutionMobileApp.png"],
-  },
-}, '/us/solutions/staff-scheduling-mobile-app');
+  "/us/solutions/staff-scheduling-mobile-app",
+);
 
 const appFeatures = [
   {
@@ -125,20 +129,21 @@ export default function StaffMobileAppPage() {
                     Mobile App
                   </span>
                 </h1>
-                
+
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/stock/istockphoto-1748387978-2048x2048.jpg"
+                    src="/images/us-images/iStock-1748387978.jpg"
                     alt="Free Staff Scheduling Mobile App"
                     width={600}
                     height={400}
                     className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                   />
                 </div>
-                
+
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Give staff instant access to their schedule with easy shift management and improved communication.
+                  Give staff instant access to their schedule with easy shift
+                  management and improved communication.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start space-x-3">
@@ -215,7 +220,7 @@ export default function StaffMobileAppPage() {
                     analyticsProperties={{
                       cta_type: "demo",
                       page_name: "Staff Schedule Mobile App",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Book a Demo
@@ -229,7 +234,7 @@ export default function StaffMobileAppPage() {
                     analyticsProperties={{
                       cta_type: "contact",
                       page_name: "Staff Schedule Mobile App",
-                      section: "hero"
+                      section: "hero",
                     }}
                   >
                     Contact Us
@@ -239,7 +244,7 @@ export default function StaffMobileAppPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-1748387978-2048x2048.jpg"
+                  src="/images/us-images/iStock-1748387978.jpg"
                   alt="Free Staff Scheduling Mobile App"
                   width={600}
                   height={400}
@@ -248,7 +253,7 @@ export default function StaffMobileAppPage() {
               </div>
             </div>
           </Container>
-          
+
           {/* Wave separator */}
           <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
             <svg
@@ -279,10 +284,10 @@ export default function StaffMobileAppPage() {
                   Publish your schedule to your staff mobile app
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Team members can see their published schedules on the RosterLab
-                  app, allowing them to stay updated with their work schedules.
-                  They are also able to communicate their preferred shift
-                  patterns.
+                  Team members can see their published schedules on the
+                  RosterLab app, allowing them to stay updated with their work
+                  schedules. They are also able to communicate their preferred
+                  shift patterns.
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-start">
@@ -368,7 +373,9 @@ export default function StaffMobileAppPage() {
                         <h3 className="text-xl font-bold text-gray-900 mb-3">
                           {feature.title}
                         </h3>
-                        <p className="text-gray-600 mb-4">{feature.description}</p>
+                        <p className="text-gray-600 mb-4">
+                          {feature.description}
+                        </p>
                         <span className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group">
                           Learn more
                           <svg
@@ -576,7 +583,7 @@ export default function StaffMobileAppPage() {
                   analyticsProperties={{
                     cta_type: "demo",
                     page_name: "Staff Schedule Mobile App",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Book a Demo
@@ -589,7 +596,7 @@ export default function StaffMobileAppPage() {
                   analyticsProperties={{
                     cta_type: "contact",
                     page_name: "Staff Schedule Mobile App",
-                    section: "final_cta"
+                    section: "final_cta",
                   }}
                 >
                   Contact Sales
@@ -599,21 +606,16 @@ export default function StaffMobileAppPage() {
           </Container>
         </div>
       </>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Solutions", url: "/us/solutions" },
-          { name: "Staff Scheduling Mobile App" }
-
+          { name: "Staff Scheduling Mobile App" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
