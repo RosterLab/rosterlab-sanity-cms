@@ -16,7 +16,7 @@ export const metadata = withHreflang(
       canonical: "https://rosterlab.com/us/about",
     },
     other: {
-      link: '<link rel="preload" href="/images/us-images/about-rosterlab-us.jpg" as="image" type="image/jpeg" fetchpriority="high" />',
+      link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
     },
     openGraph: {
       title: "About Us - RosterLab",
@@ -52,7 +52,7 @@ export default function AboutPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
-            <div className="order-1">
+            <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 The RosterLab{" "}
                 <span
@@ -92,11 +92,11 @@ export default function AboutPage() {
                 style={{ aspectRatio: "600/400" }}
               >
                 <Image
-                  src="/images/us-images/about-rosterlab-us.jpg"
-                  alt="About RosterLab US"
+                  src="/images/illustration/Timeline-pana.svg"
+                  alt="Timeline illustration"
                   width={600}
                   height={400}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                   priority
                   fetchPriority="high"
                   placeholder="empty"
@@ -668,20 +668,12 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "About" }
-
-        ]}
-
+      <BreadcrumbSchema
+        items={[{ name: "Home", url: "/us" }, { name: "About" }]}
       />
-
     </SiteLayout>
   );
 }
