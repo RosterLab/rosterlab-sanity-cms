@@ -255,7 +255,7 @@ export default function AISchedulesPage() {
             {/* Desktop only: Image in right column */}
             <div className="hidden lg:block w-full relative">
               <Image
-                src="/images/us-images/stock/istockphoto-1399172596-2048x2048.jpg"
+                src="/images/us-images/iStock-1399172596.jpg"
                 alt="AI Staff Schedule Maker"
                 width={600}
                 height={400}
