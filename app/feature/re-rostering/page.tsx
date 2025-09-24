@@ -121,7 +121,7 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/roster-changes.png"
+                  src="/images/new-product-images/svg/reschedule/roster-changes.svg"
                   alt="Intelligent Impact Analysis illustration"
                   width={500}
                   height={500}
@@ -226,7 +226,7 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/compliance-preservation-rescheduling.png"
+                  src="/images/new-product-images/svg/reschedule/compliance-reservation.svg"
                   alt="Compliance Preservation illustration"
                   width={500}
                   height={500}
@@ -243,11 +243,11 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/notifications-rerostering-rescheduling.png"
+                  src="/images/new-product-images/svg/reschedule/notifications.svg"
                   alt="Real-Time Notifications & Updates illustration"
-                  width={350}
-                  height={350}
-                  className="w-full h-auto max-w-sm mx-auto"
+                  width={300}
+                  height={300}
+                  className="w-full h-auto max-w-xs mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">

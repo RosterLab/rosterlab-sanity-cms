@@ -124,7 +124,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/leave-requests-submit-leave.png"
+                  src="/images/new-product-images/svg/time-off/submit-leave-requests.svg"
                   alt="Submit leave requests via mobile app"
                   width={500}
                   height={500}
@@ -141,7 +141,7 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/leave-requests-sync-changes.png"
+                  src="/images/new-product-images/svg/time-off/sync-changes.svg"
                   alt="Automatically sync changes to roster"
                   width={500}
                   height={500}
@@ -226,7 +226,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/new-product-images/leave-requests-handled.png"
+                  src="/images/new-product-images/svg/time-off/leave-requests.svg"
                   alt="Decide how different types of leave are handled"
                   width={500}
                   height={500}

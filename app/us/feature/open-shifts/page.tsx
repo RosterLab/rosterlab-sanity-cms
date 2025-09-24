@@ -98,7 +98,7 @@ export default function OpenShiftsPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/stock/istockphoto-1486019621-1024x1024.jpg"
+                    src="/images/us-images/iStock-1486019621.jpg"
                     alt="Open shifts notification illustration"
                     width={600}
                     height={600}
@@ -128,7 +128,7 @@ export default function OpenShiftsPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-1486019621-1024x1024.jpg"
+                  src="/images/us-images/iStock-1486019621.jpg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
@@ -184,7 +184,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/shift-broadcasting-open-shifts.png"
+                  src="/images/new-product-images/svg/open shifts/shift-broadcasting.svg"
                   alt="Instant Shift Broadcasting"
                   width={500}
                   height={500}
@@ -201,7 +201,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/fill-shift-gaps-open-shifts.png"
+                  src="/images/new-product-images/svg/open shifts/open-shift-gaps.svg"
                   alt="Smart Staff Matching"
                   width={500}
                   height={500}
@@ -296,7 +296,7 @@ export default function OpenShiftsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/new-product-images/priortise-urgent-shift-open-shifts.png"
+                  src="/images/new-product-images/svg/open shifts/prioritise-urgent-shifts.svg"
                   alt="Prioritise urgent shifts"
                   width={500}
                   height={500}
@@ -313,7 +313,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/fair-transparent-assignment-open-shifts.png"
+                  src="/images/new-product-images/svg/open shifts/transparent-assignment.svg"
                   alt="First-Come First-Served Assignment"
                   width={500}
                   height={500}

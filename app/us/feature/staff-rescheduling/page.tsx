@@ -135,11 +135,11 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/generating.webp"
+                  src="/images/new-product-images/roster-changes.png"
                   alt="Intelligent Impact Analysis illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -253,11 +253,11 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/product/quality.webp"
+                  src="/images/new-product-images/compliance-preservation-rescheduling.png"
                   alt="Compliance Preservation illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -270,11 +270,11 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
+                  src="/images/new-product-images/notifications-rerostering-rescheduling.png"
                   alt="Real-Time Notifications & Updates illustration"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
+                  width={300}
+                  height={300}
+                  className="w-full h-auto max-w-xs mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -430,21 +430,16 @@ export default function ReRosteringPage() {
           </Container>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Features", url: "/us/feature" },
-          { name: "Staff Rescheduling" }
-
+          { name: "Staff Rescheduling" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

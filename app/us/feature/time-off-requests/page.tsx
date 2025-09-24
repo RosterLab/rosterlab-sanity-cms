@@ -58,7 +58,7 @@ export default function LeaveRequestsPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/stock/istockphoto-2223989723-2048x2048.jpg"
+                    src="/images/us-images/iStock-2223989723.jpg"
                     alt="Time-off request management illustration"
                     width={600}
                     height={600}
@@ -88,7 +88,7 @@ export default function LeaveRequestsPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2223989723-2048x2048.jpg"
+                  src="/images/us-images/iStock-2223989723.jpg"
                   alt="Time-off request management illustration"
                   width={600}
                   height={600}
@@ -148,7 +148,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/leave-requests-submit-leave.png"
+                  src="/images/new-product-images/svg/time-off/submit-leave-requests.svg"
                   alt="Submit time-off requests via mobile app"
                   width={500}
                   height={500}
@@ -165,7 +165,7 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/leave-requests-sync-changes.png"
+                  src="/images/new-product-images/svg/time-off/sync-changes.svg"
                   alt="Automatically sync changes to schedule"
                   width={500}
                   height={500}
@@ -259,7 +259,7 @@ export default function LeaveRequestsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/new-product-images/leave-requests-handled.png"
+                  src="/images/new-product-images/svg/time-off/leave-requests.svg"
                   alt="Decide how different types of time-off are handled"
                   width={500}
                   height={500}

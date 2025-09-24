@@ -91,7 +91,7 @@ export default function AutoRosterGenerationPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/stock/istockphoto-2232242180-2048x2048.jpg"
+                    src="/images/us-images/iStock-2232242180.jpg"
                     alt="Auto schedule generation illustration"
                     width={600}
                     height={600}
@@ -137,7 +137,7 @@ export default function AutoRosterGenerationPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2232242180-2048x2048.jpg"
+                  src="/images/us-images/iStock-2232242180.jpg"
                   alt="Auto schedule generation illustration"
                   width={600}
                   height={600}
@@ -296,7 +296,7 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/what-if-scenario.png"
+                  src="/images/new-product-images/svg/what-if-scenarios.svg"
                   alt="What If Scenario Planning"
                   width={500}
                   height={500}
@@ -313,11 +313,11 @@ export default function AutoRosterGenerationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/radiology_excellence.png"
+                  src="/images/new-product-images/svg/create-your-own-rules.svg"
                   alt="Built-in Compliance & Fairness"
-                  width={600}
+                  width={500}
                   height={500}
-                  className="rounded-lg shadow-xl w-full h-auto"
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">

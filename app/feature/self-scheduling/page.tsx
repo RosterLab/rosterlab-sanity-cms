@@ -142,7 +142,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative flex items-center justify-center">
                 <Image
-                  src="/images/new-product-images/meet-staffing-needs-self-scheduling.png"
+                  src="/images/new-product-images/svg/preferences/staff-preferences.svg"
                   alt="Easily meet your staffing needs"
                   width={500}
                   height={500}
@@ -159,7 +159,7 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/compliance-self-scheduling.png"
+                  src="/images/new-product-images/svg/preferences/compliance.svg"
                   alt="AI-Optimised Compliant Rosters illustration"
                   width={500}
                   height={500}
@@ -239,7 +239,7 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/simplify-schedules-self-scheduling.png"
+                  src="/images/new-product-images/svg/preferences/simplify-schedules.svg"
                   alt="Preference collection illustration"
                   width={500}
                   height={500}
@@ -256,7 +256,7 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/self-roster-self-scheduling.png"
+                  src="/images/new-product-images/svg/preferences/self-roster.svg"
                   alt="Self-Schedule The Way You Want To illustration"
                   width={500}
                   height={500}

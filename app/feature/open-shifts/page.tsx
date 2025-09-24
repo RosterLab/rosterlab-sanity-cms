@@ -123,11 +123,11 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/us-images/stock/istockphoto-1486019621-1024x1024.jpg"
+                  src="/images/illustration/open.svg"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -179,11 +179,11 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/shift-broadcasting-open-shifts.png"
+                  src="/images/new-product-images/svg/open shifts/shift-broadcasting.svg"
                   alt="Instant Shift Broadcasting"
                   width={500}
                   height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -297,7 +297,16 @@ export default function OpenShiftsPage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/new-product-images/fair-transparent-assignment-open-shifts.png"
+                  alt="First-Come First-Served Assignment"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Fair & Transparent Assignment
                 </h2>
@@ -319,15 +328,6 @@ export default function OpenShiftsPage() {
                     </span>
                   </li>
                 </ul>
-              </div>
-              <div>
-                <Image
-                  src="/images/new-product-images/fair-transparent-assignment-open-shifts.png"
-                  alt="First-Come First-Served Assignment"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
-                />
               </div>
             </div>
           </Container>
