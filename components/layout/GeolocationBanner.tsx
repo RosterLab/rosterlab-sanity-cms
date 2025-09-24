@@ -175,7 +175,7 @@ export default function GeolocationBanner() {
       <div className="bg-white rounded-lg shadow-xl max-w-lg w-full p-6 relative mx-auto">
         {/* Close button */}
         <button
-          onClick={() => setShowBanner(false)}
+          onClick={() => handleChoice(true)}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
           aria-label="Close"
         >
