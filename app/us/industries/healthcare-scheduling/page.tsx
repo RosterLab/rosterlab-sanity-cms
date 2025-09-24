@@ -11,39 +11,42 @@ import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = withHreflang({
-  title: "Healthcare Scheduling Software - RosterLab",
-  description:
-    "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
-  alternates: {
-    canonical: "https://rosterlab.com/us/industries/healthcare-scheduling",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Healthcare Scheduling Software - RosterLab",
     description:
       "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
-    type: "website",
-    url: "https://rosterlab.com/us/industries/healthcare-scheduling",
-    images: [
-      {
-        url: "/images/og-images/IndustryHealthcare.png",
-        width: 1200,
-        height: 630,
-        alt: "Healthcare workforce scheduling with RosterLab",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/industries/healthcare-scheduling",
+    },
+    openGraph: {
+      title: "Healthcare Scheduling Software - RosterLab",
+      description:
+        "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
+      type: "website",
+      url: "https://rosterlab.com/us/industries/healthcare-scheduling",
+      images: [
+        {
+          url: "/images/og-images/IndustryHealthcare.png",
+          width: 1200,
+          height: 630,
+          alt: "Healthcare workforce scheduling with RosterLab",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Healthcare Scheduling Software - RosterLab",
+      description:
+        "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
+      images: ["/images/og-images/IndustryHealthcare.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Healthcare Scheduling Software - RosterLab",
-    description:
-      "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
-    images: ["/images/og-images/IndustryHealthcare.png"],
-  },
-}, '/us/industries/healthcare-scheduling');
+  "/us/industries/healthcare-scheduling",
+);
 
 // Query for the 3 most recent case studies
 const recentCaseStudiesQuery = groq`
@@ -132,18 +135,18 @@ export default async function HealthcarePage() {
                   Healthcare
                 </span>
               </h1>
-              
+
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden w-full relative mt-6 mb-6">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2187596982-2048x2048.jpg"
+                  src="/images/us-images/iStock-2187596982.jpg"
                   alt="Healthcare workforce scheduling dashboard"
                   width={600}
                   height={400}
                   className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
-              
+
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
                 Less time scheduling, more time caring for patients. We
                 specialise in all types of healthcare schedules, no matter how
@@ -167,7 +170,7 @@ export default async function HealthcarePage() {
             {/* Desktop only: Image in right column */}
             <div className="hidden lg:block relative mt-6 lg:mt-0">
               <Image
-                src="/images/us-images/stock/istockphoto-2187596982-2048x2048.jpg"
+                src="/images/us-images/iStock-2187596982.jpg"
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}
@@ -182,7 +185,6 @@ export default async function HealthcarePage() {
       <section className="py-16 bg-white">
         <USTrustedBy />
       </section>
-
 
       {/* Core Features */}
       <section className="py-20 bg-white">
@@ -267,9 +269,9 @@ export default async function HealthcarePage() {
                       Focus on Patient Care
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Create fair schedules that respect preferences and work-life
-                      balance. Transparent scheduling boosts staff retention and
-                      engagement, leading to better patient care.
+                      Create fair schedules that respect preferences and
+                      work-life balance. Transparent scheduling boosts staff
+                      retention and engagement, leading to better patient care.
                     </p>
                   </div>
                 </div>
@@ -414,9 +416,7 @@ export default async function HealthcarePage() {
               </div>
             </Link>
 
-            <div
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
-            >
+            <div className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-sky-500"
@@ -596,8 +596,8 @@ export default async function HealthcarePage() {
                 Higher Staff Retention
               </h3>
               <p className="text-gray-600 mb-3">
-                Better-quality schedules, self scheduling, reduced bias perception,
-                and better work-life balance.
+                Better-quality schedules, self scheduling, reduced bias
+                perception, and better work-life balance.
               </p>
               <div className="flex items-center text-blue-600 font-medium">
                 Learn more
@@ -617,7 +617,7 @@ export default async function HealthcarePage() {
               </div>
             </Link>
           </div>
-          
+
           {/* CTA Section */}
           <div className="mt-16 text-center">
             <Button
@@ -629,7 +629,6 @@ export default async function HealthcarePage() {
           </div>
         </Container>
       </section>
-
 
       {/* Key Statistics */}
       <section className="py-20 bg-gray-50">
@@ -725,7 +724,10 @@ export default async function HealthcarePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* ICU/ED Card */}
-            <Link href="/us/industries/healthcare/ed-icu-scheduling" className="group">
+            <Link
+              href="/us/industries/healthcare/ed-icu-scheduling"
+              className="group"
+            >
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full">
                 <div className="h-48 relative overflow-hidden">
                   <Image
@@ -764,7 +766,10 @@ export default async function HealthcarePage() {
             </Link>
 
             {/* Radiology Card */}
-            <Link href="/us/industries/healthcare/radiology-scheduling" className="group">
+            <Link
+              href="/us/industries/healthcare/radiology-scheduling"
+              className="group"
+            >
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full">
                 <div className="h-48 relative overflow-hidden">
                   <Image
@@ -803,7 +808,10 @@ export default async function HealthcarePage() {
             </Link>
 
             {/* Senior Care Card */}
-            <Link href="/us/industries/healthcare/senior-care-scheduling" className="group">
+            <Link
+              href="/us/industries/healthcare/senior-care-scheduling"
+              className="group"
+            >
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full">
                 <div className="h-48 relative overflow-hidden">
                   <Image
@@ -905,7 +913,9 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Clinical Labs / Lab Services</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Clinical Labs / Lab Services
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -923,7 +933,9 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Therapists & Technicians</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Therapists & Technicians
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -967,7 +979,9 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Labor & Delivery Units</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Labor & Delivery Units
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -1162,27 +1176,15 @@ export default async function HealthcarePage() {
         </Container>
       </section>
 
-      
-
-
       {/* Hidden Breadcrumb Schema for SEO */}
 
-
-      <BreadcrumbSchema 
-
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
-          { name: "Healthcare" }
-
-
+          { name: "Healthcare" },
         ]}
-
-
       />
-
-
     </SiteLayout>
   );
 }

@@ -5,38 +5,42 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = withHreflang({
-  title: "ED & ICU Staff Scheduling Software - RosterLab",
-  description:
-    "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "ED & ICU Staff Scheduling Software - RosterLab",
     description:
       "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
-    type: "website",
-    url: 'https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling',
-    images: [
-      {
-        url: "/images/og images/IndustryICUED.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical:
+        "https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling",
+    },
+    openGraph: {
+      title: "ED & ICU Staff Scheduling Software - RosterLab",
+      description:
+        "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
+      type: "website",
+      url: "https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling",
+      images: [
+        {
+          url: "/images/og images/IndustryICUED.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "ED & ICU Staff Scheduling Software - RosterLab",
+      description:
+        "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
+      images: ["/images/og images/IndustryICUED.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ED & ICU Staff Scheduling Software - RosterLab",
-    description:
-      "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
-    images: ["/images/og images/IndustryICUED.png"],
-  },
-}, '/us/industries/healthcare/ed-icu-scheduling');
+  "/us/industries/healthcare/ed-icu-scheduling",
+);
 
 const faqItems = [
   {
@@ -76,18 +80,18 @@ export default function ICUEDPage() {
                   minutes
                 </span>
               </h1>
-              
+
               {/* Mobile only: Image appears here after H1 */}
-              <div className="block lg:hidden relative mb-8">
+              <div className="block lg:hidden w-full relative mb-8">
                 <Image
-                  src="/images/us-images/stock/istockphoto-2190085149-2048x2048.jpg"
+                  src="/images/us-images/iStock-2190085149.jpg"
                   alt="ICU/ED scheduling dashboard"
                   width={600}
-                  height={400}
-                  className="w-full h-auto"
+                  height={600}
+                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
-              
+
               <p className="text-xl text-gray-600 mb-8">
                 Cut schedule creation time by 90% with AI automation. Build
                 compliant schedules that balance critical care demands with
@@ -175,13 +179,13 @@ export default function ICUEDPage() {
               </div>
             </div>
             {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block relative">
+            <div className="hidden lg:block w-full relative">
               <Image
-                src="/images/us-images/stock/istockphoto-2190085149-2048x2048.jpg"
+                src="/images/us-images/iStock-2190085149.jpg"
                 alt="ICU/ED scheduling dashboard"
                 width={600}
-                height={400}
-                className="block w-full h-auto"
+                height={600}
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
@@ -439,7 +443,10 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/staff-scheduling-mobile-app" className="block">
+            <Link
+              href="/us/solutions/staff-scheduling-mobile-app"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -460,8 +467,8 @@ export default function ICUEDPage() {
                   Staff Mobile Access
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Staff can view schedules, open shifts, and swap shifts from any
-                  device.
+                  Staff can view schedules, open shifts, and swap shifts from
+                  any device.
                 </p>
                 <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
                   Learn more →
@@ -469,7 +476,10 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/ai-staff-schedule-maker" className="block">
+            <Link
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -499,7 +509,10 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/ai-staff-schedule-maker" className="block">
+            <Link
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -575,22 +588,17 @@ export default function ICUEDPage() {
           </div>
         </Container>
       </section>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
-          { name: "ED/ICU" }
-
+          { name: "ED/ICU" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

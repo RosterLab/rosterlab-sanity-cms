@@ -187,7 +187,7 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/new-product-images/svg/shift swaps/shift-swap.svg"
+                  src="/images/new-product-images/ png/open-shifts-atuomatic-routine-approvals.png"
                   alt="Automatic Routine Approvals"
                   width={500}
                   height={500}

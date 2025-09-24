@@ -4,37 +4,40 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
-import { withHreflang } from '@/components/seo/HreflangTags'
+import { withHreflang } from "@/components/seo/HreflangTags";
 
-export const metadata = withHreflang({
-  title: "Contact Us - RosterLab",
-  description:
-    "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/contact',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Contact Us - RosterLab",
     description:
       "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
-    type: 'website',
-    url: 'https://rosterlab.com/us/contact',
-    images: [
-      {
-        url: "/images/og images/Contact.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/us/contact",
+    },
+    openGraph: {
+      title: "Contact Us - RosterLab",
+      description:
+        "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
+      type: "website",
+      url: "https://rosterlab.com/us/contact",
+      images: [
+        {
+          url: "/images/og images/Contact.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Contact Us - RosterLab",
+      description:
+        "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
+      images: ["/images/og images/Contact.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us - RosterLab",
-    description:
-      "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
-    images: ["/images/og images/Contact.png"],
-  },
-}, '/us/contact');
+  "/us/contact",
+);
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 const faqItems = [
@@ -63,7 +66,7 @@ export default function ContactPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
-              Speak to a scheduling{" "}
+              Speak To A Scheduling{" "}
               <span
                 className="text-transparent bg-clip-text"
                 style={{
@@ -71,7 +74,7 @@ export default function ContactPage() {
                     "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                 }}
               >
-                expert
+                Expert
               </span>
             </h1>
             <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-12">
@@ -180,20 +183,12 @@ export default function ContactPage() {
           </div>
         </Container>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Contact" }
-
-        ]}
-
+      <BreadcrumbSchema
+        items={[{ name: "Home", url: "/us" }, { name: "Contact" }]}
       />
-
     </SiteLayout>
   );
 }
