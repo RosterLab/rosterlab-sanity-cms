@@ -112,7 +112,7 @@ export default function AISchedulesPage() {
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden w-full relative mb-8">
                 <Image
-                  src="/images/us-images/stock/istockphoto-1399172596-2048x2048.jpg"
+                  src="/images/us-images/iStock-1399172596.jpg"
                   alt="AI Staff Schedule Maker"
                   width={600}
                   height={400}
@@ -717,21 +717,16 @@ export default function AISchedulesPage() {
           </div>
         </Container>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Solutions", url: "/us/solutions" },
-          { name: "AI Staff Schedule Maker" }
-
+          { name: "AI Staff Schedule Maker" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }
