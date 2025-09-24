@@ -75,9 +75,9 @@ export default function ICUEDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Generate your ED staff schedule in{" "}
+                Generate your ED Staff Schedule in{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  minutes
+                  Minutes
                 </span>
               </h1>
 
