@@ -30,7 +30,7 @@ export default function SavingsCalculatorClient() {
       solutions: "/us/solutions/ai-staff-schedule-maker",
     },
     heroImage: {
-      src: "/images/us-images/stock/istockphoto-1903423742-2048x2048.jpg",
+      src: "/images/us-images/iStock-1903423742.jpg",
       alt: "Healthcare radiography scheduling",
     },
     industryOptions: [
