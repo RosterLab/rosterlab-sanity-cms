@@ -132,11 +132,11 @@ export default function ManualSchedulingPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/free-staff-scheduling.jpg"
+                    src="/images/updated-hero/free-scheduling-tool.webp"
                     alt="Free Staff Scheduling Tool"
                     width={600}
                     height={400}
-                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                    className="w-full h-auto"
                   />
                 </div>
 
@@ -244,11 +244,11 @@ export default function ManualSchedulingPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/free-staff-scheduling.jpg"
+                  src="/images/updated-hero/free-scheduling-tool.webp"
                   alt="Free Staff Scheduling Tool"
                   width={600}
                   height={400}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -755,21 +755,16 @@ export default function ManualSchedulingPage() {
           </Container>
         </div>
       </>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Solutions", url: "/us/solutions" },
-          { name: "Free Staff Scheduling Tool" }
-
+          { name: "Free Staff Scheduling Tool" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

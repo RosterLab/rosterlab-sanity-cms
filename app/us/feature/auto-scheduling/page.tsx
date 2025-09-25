@@ -91,11 +91,11 @@ export default function AutoRosterGenerationPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/iStock-2232242180.jpg"
+                    src="/images/updated-hero/auto-scheduling.webp"
                     alt="Auto schedule generation illustration"
                     width={600}
                     height={600}
-                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                    className="w-full h-auto"
                     loading="eager"
                     fetchPriority="high"
                   />
@@ -137,11 +137,11 @@ export default function AutoRosterGenerationPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/iStock-2232242180.jpg"
+                  src="/images/updated-hero/auto-scheduling.webp"
                   alt="Auto schedule generation illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                   loading="eager"
                   fetchPriority="high"
                 />

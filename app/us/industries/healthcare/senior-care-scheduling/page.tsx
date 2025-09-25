@@ -79,7 +79,7 @@ export default function AgedCarePage() {
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden relative mb-8">
                 <Image
-                  src="/images/us-images/senior-care-roster.jpg"
+                  src="/images/updated-hero/iStock-1307432645.jpg"
                   alt="Senior care scheduling dashboard"
                   width={600}
                   height={400}
@@ -176,7 +176,7 @@ export default function AgedCarePage() {
             {/* Desktop only: Image in right column */}
             <div className="hidden lg:block relative">
               <Image
-                src="/images/us-images/senior-care-roster.jpg"
+                src="/images/updated-hero/iStock-1307432645.jpg"
                 alt="Senior care scheduling dashboard"
                 width={600}
                 height={400}
@@ -775,22 +775,17 @@ export default function AgedCarePage() {
           </div>
         </Container>
       </section>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
-          { name: "Senior Care" }
-
+          { name: "Senior Care" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

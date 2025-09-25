@@ -139,7 +139,7 @@ export default async function HealthcarePage() {
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden w-full relative mt-6 mb-6">
                 <Image
-                  src="/images/updated-hero/healthcare-1.png"
+                  src="/images/updated-hero/healthcare.webp"
                   alt="Healthcare workforce scheduling dashboard"
                   width={600}
                   height={400}
@@ -170,7 +170,7 @@ export default async function HealthcarePage() {
             {/* Desktop only: Image in right column */}
             <div className="hidden lg:block relative mt-6 lg:mt-0">
               <Image
-                src="/images/updated-hero/healthcare-1.png"
+                src="/images/updated-hero/healthcare.webp"
                 alt="Healthcare workforce scheduling dashboard"
                 width={600}
                 height={400}

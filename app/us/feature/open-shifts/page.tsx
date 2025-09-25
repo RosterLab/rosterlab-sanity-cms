@@ -98,11 +98,11 @@ export default function OpenShiftsPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/iStock-1486019621.jpg"
+                    src="/images/updated-hero/open-shifts.webp"
                     alt="Open shifts notification illustration"
                     width={600}
                     height={600}
-                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                    className="w-full h-auto"
                   />
                 </div>
 
@@ -128,11 +128,11 @@ export default function OpenShiftsPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/iStock-1486019621.jpg"
+                  src="/images/updated-hero/open-shifts.webp"
                   alt="Open shifts notification illustration"
                   width={600}
                   height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                 />
               </div>
             </div>

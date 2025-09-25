@@ -133,11 +133,11 @@ export default function StaffMobileAppPage() {
                 {/* Mobile only: Image appears here after H1 */}
                 <div className="block lg:hidden w-full relative mb-8">
                   <Image
-                    src="/images/us-images/iStock-1748387978.jpg"
+                    src="/images/updated-hero/staff-mobile-app.webp"
                     alt="Free Staff Scheduling Mobile App"
                     width={600}
                     height={400}
-                    className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                    className="w-full h-auto"
                   />
                 </div>
 
@@ -244,11 +244,11 @@ export default function StaffMobileAppPage() {
               {/* Desktop only: Image in right column */}
               <div className="hidden lg:block w-full relative">
                 <Image
-                  src="/images/us-images/iStock-1748387978.jpg"
+                  src="/images/updated-hero/staff-mobile-app.webp"
                   alt="Free Staff Scheduling Mobile App"
                   width={600}
                   height={400}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -408,7 +408,7 @@ export default function StaffMobileAppPage() {
               {/* Image - order-2 on mobile, order-1 on desktop */}
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/us-images/happy-staff.jpg"
+                  src="/images/updated-hero/staff-satisfaction-mobile-app.jpg"
                   alt="Happy Staff"
                   width={600}
                   height={500}
