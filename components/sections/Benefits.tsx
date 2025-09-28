@@ -38,7 +38,7 @@ const benefitTabs: BenefitTab[] = [
     label: "Reduce Turnover",
     title: "Improve staff retention",
     description:
-      "Empower your team to plan ahead and take control of their rosters, while staying aligned with business needs. Fewer shift swaps, lower absenteeism, and more matched preferences boost staff engagement and improve patient outcomes.",
+      "Empower your team to plan ahead and manage their rosters with confidence, while staying aligned with business needs. Fewer shift swaps, reduced absenteeism, and better-matched preferences drive staff engagement and lead to improved patient outcomes.",
     highlights: [
       "Improve Work-Life Balance and Staff Satisfaction",
       "Meet a High Percentage of Preference",

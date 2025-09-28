@@ -38,7 +38,7 @@ const benefitTabs: BenefitTab[] = [
     label: "Reduce Turnover",
     title: "Improve staff retention",
     description:
-      "Empower your team to plan ahead and take control of their schedules, while staying aligned with business needs. Fewer shift swaps, lower absenteeism, and more matched preferences boost staff engagement and improve patient outcomes.",
+      "Empower your team to plan ahead and manage their schedules with confidence, while staying aligned with business needs. Fewer shift swaps, reduced absenteeism, and better-matched preferences drive staff engagement and lead to improved patient outcomes.",
     highlights: [
       "Improve Work-Life Balance and Staff Satisfaction",
       "Meet a High Percentage of Preference",
@@ -82,7 +82,7 @@ export default function USBenefits() {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
-  
+
   const currentTab =
     benefitTabs.find((tab) => tab.id === activeTab) || benefitTabs[0];
   const currentTabIndex = benefitTabs.findIndex((tab) => tab.id === activeTab);
@@ -99,7 +99,7 @@ export default function USBenefits() {
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -110,7 +110,7 @@ export default function USBenefits() {
     if (isRightSwipe && currentTabIndex > 0) {
       setActiveTab(benefitTabs[currentTabIndex - 1].id);
     }
-    
+
     // Reset touch values
     setTouchStart(0);
     setTouchEnd(0);
@@ -155,13 +155,13 @@ export default function USBenefits() {
           </div>
 
           {/* Active Tab Content with swipe support */}
-          <div 
+          <div
             ref={contentRef}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-16 mx-4 md:mx-0 min-h-[450px] lg:min-h-[380px] transition-all duration-150 relative z-10"
-            style={{ isolation: 'isolate' }}
+            style={{ isolation: "isolate" }}
           >
             {/* Mobile swipe indicators */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:hidden">
@@ -174,7 +174,7 @@ export default function USBenefits() {
                 />
               ))}
             </div>
-            
+
             <div className="grid lg:grid-cols-[5.6fr,7fr] gap-6 md:gap-8 lg:gap-12 items-start h-full">
               <div className="order-2 lg:order-1 lg:pt-0 pb-12 sm:pb-0">
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
@@ -217,7 +217,10 @@ export default function USBenefits() {
                     </div>
                     {benefitTabs.map(
                       (tab) =>
-                        tab.id !== "optimisation" && tab.id !== "safety" && tab.id !== "turnover" && tab.id !== "time" && (
+                        tab.id !== "optimisation" &&
+                        tab.id !== "safety" &&
+                        tab.id !== "turnover" &&
+                        tab.id !== "time" && (
                           <div
                             key={tab.id}
                             className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${activeTab === tab.id ? "opacity-100 z-10" : "opacity-0 pointer-events-none"}`}
@@ -233,7 +236,7 @@ export default function USBenefits() {
                               loading="eager"
                             />
                           </div>
-                        )
+                        ),
                     )}
                   </div>
                 )}
