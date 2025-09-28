@@ -270,7 +270,7 @@ const faqItems = [
       "We strongly recommend <a href='/us/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com/signup' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise schedules, <a href='/us/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
   },
   {
-    question: "How is my savings calculated?",
+    question: "How are my savings calculated?",
     answer:
       "RosterLab delivers savings by significantly reducing the time spent on scheduling, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised schedules also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see significant savings within the first few months, with some recovering costs in their very first schedule.",
   },
@@ -569,20 +569,12 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Pricing" }
-
-        ]}
-
+      <BreadcrumbSchema
+        items={[{ name: "Home", url: "/us" }, { name: "Pricing" }]}
       />
-
     </SiteLayout>
   );
 }

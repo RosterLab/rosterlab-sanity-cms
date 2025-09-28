@@ -160,7 +160,7 @@ const onboardingSteps = [
     ),
     description:
       "We currently integrate with Trendcare. Others upon request, depending on your business.",
-    link: "/us/feature/payroll-integration",
+    link: "/us/pricing",
     fullWidth: true,
   },
 ];
@@ -177,8 +177,8 @@ export default function USOnboarding() {
             Six Steps to Building Perfect Schedules
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-            Our streamlined platform takes you from complex scheduling challenges
-            to optimised schedules in just six simple steps.
+            Our streamlined platform takes you from complex scheduling
+            challenges to optimised schedules in just six simple steps.
           </p>
         </div>
 

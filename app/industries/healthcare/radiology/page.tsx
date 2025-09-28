@@ -298,7 +298,7 @@ export default function RadiologyPage() {
                     </h3>
                     <p className="text-gray-600">
                       Maintain a digital record of what skills each team member
-                      has. Let the AI allocates the right person to the right
+                      has. Let the AI allocate the right person to the right
                       session.
                     </p>
                   </div>
@@ -322,7 +322,7 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamless Integrate Long-Term Plans
+                      Seamlessly Integrate Long-Term Plans
                     </h3>
                     <p className="text-gray-600">
                       AI optimises weekly rosters around your pre-established
@@ -749,14 +749,14 @@ export default function RadiologyPage() {
           </div>
         </Container>
       </section>
-      
+
       {/* Hidden Breadcrumb Schema for SEO */}
-      <BreadcrumbSchema 
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Radiology", url: "/industries/healthcare/radiology" }
+          { name: "Radiology", url: "/industries/healthcare/radiology" },
         ]}
       />
     </SiteLayout>

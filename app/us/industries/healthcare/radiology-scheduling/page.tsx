@@ -5,38 +5,42 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { withHreflang } from '@/components/seo/HreflangTags';
+import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = withHreflang({
-  title: "Radiology Staff Scheduling Software - RosterLab",
-  description:
-    "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
-  alternates: {
-    canonical: 'https://rosterlab.com/us/industries/healthcare/radiology-scheduling',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Radiology Staff Scheduling Software - RosterLab",
     description:
       "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
-    type: "website",
-    url: 'https://rosterlab.com/us/industries/healthcare/radiology-scheduling',
-    images: [
-      {
-        url: "/images/og images/IndustryRadiology.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical:
+        "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
+    },
+    openGraph: {
+      title: "Radiology Staff Scheduling Software - RosterLab",
+      description:
+        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
+      type: "website",
+      url: "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
+      images: [
+        {
+          url: "/images/og images/IndustryRadiology.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Radiology Staff Scheduling Software - RosterLab",
+      description:
+        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
+      images: ["/images/og images/IndustryRadiology.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Radiology Staff Scheduling Software - RosterLab",
-    description:
-      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology staff schedules that save time and money.",
-    images: ["/images/og images/IndustryRadiology.png"],
-  },
-}, '/us/industries/healthcare/radiology-scheduling');
+  "/us/industries/healthcare/radiology-scheduling",
+);
 
 const faqItems = [
   {
@@ -70,7 +74,7 @@ export default function RadiologyPage() {
                 </span>{" "}
                 Software for Modern Teams
               </h1>
-              
+
               {/* Mobile only: Image appears here after H1 */}
               <div className="block lg:hidden relative mb-8">
                 <Image
@@ -81,7 +85,7 @@ export default function RadiologyPage() {
                   className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
                 />
               </div>
-              
+
               <p className="text-xl text-gray-600 mb-8">
                 Reduce scheduling time by 90%. Optimise radiologist coverage and
                 modality planning with intelligent scheduling.
@@ -306,7 +310,7 @@ export default function RadiologyPage() {
                     </h3>
                     <p className="text-gray-600">
                       Maintain a digital record of what skills each team member
-                      has. Let the AI allocates the right person to the right
+                      has. Let the AI allocate the right person to the right
                       session.
                     </p>
                   </div>
@@ -330,7 +334,7 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamless Integrate Long-Term Plans
+                      Seamlessly Integrate Long-Term Plans
                     </h3>
                     <p className="text-gray-600">
                       AI optimises weekly schedules around your pre-established
@@ -390,7 +394,7 @@ export default function RadiologyPage() {
                     </h3>
                     <p className="text-gray-600">
                       Publish schedules instantly to all stakeholders. Managers
-                      see session views while staff receive personalised
+                      see session views while staff receive personalized
                       calendars on their mobile devices.
                     </p>
                   </div>
@@ -519,8 +523,8 @@ export default function RadiologyPage() {
                       Review & Adjust
                     </h3>
                     <p className="text-gray-600">
-                      Fine-tune assignments, add notes, and re-schedule a selected
-                      subset to accommodate last-minute changes.
+                      Fine-tune assignments, add notes, and re-schedule a
+                      selected subset to accommodate last-minute changes.
                     </p>
                   </div>
                 </div>
@@ -537,8 +541,9 @@ export default function RadiologyPage() {
                       Publish & Sync
                     </h3>
                     <p className="text-gray-600">
-                      Distribute your final schedules through streamlined digital
-                      solution and share them with different teams as needed.
+                      Distribute your final schedules through streamlined
+                      digital solution and share them with different teams as
+                      needed.
                     </p>
                   </div>
                 </div>
@@ -603,7 +608,10 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/ai-staff-schedule-maker" className="block">
+            <Link
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -663,7 +671,10 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/us/solutions/staff-scheduling-mobile-app" className="block">
+            <Link
+              href="/us/solutions/staff-scheduling-mobile-app"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -744,22 +755,17 @@ export default function RadiologyPage() {
           </div>
         </Container>
       </section>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
-          { name: "Radiology" }
-
+          { name: "Radiology" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

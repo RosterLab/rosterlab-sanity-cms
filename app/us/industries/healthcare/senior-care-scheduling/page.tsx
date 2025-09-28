@@ -197,7 +197,7 @@ export default function AgedCarePage() {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Balance resident needs, staff wellbeing, and regulatory
               requirements with intelligent scheduling designed specifically for
-              nursing homes.
+              skilled nursing facilities (SNF).
             </p>
           </div>
 
