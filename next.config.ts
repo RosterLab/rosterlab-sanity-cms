@@ -3,11 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   trailingSlash: false, // Explicitly set to false to avoid redirect chains
   images: {
-    domains: ['cdn.sanity.io', 'rosterlab.com'],
-    formats: ['image/webp'],
+    domains: ["cdn.sanity.io", "rosterlab.com"],
+    formats: ["image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days in seconds
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'inline',
+    contentDispositionType: "inline",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   compress: true,
@@ -18,11 +18,15 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['react-icons', 'react-confetti', '@heroicons/react'],
+    optimizePackageImports: [
+      "react-icons",
+      "react-confetti",
+      "@heroicons/react",
+    ],
   },
   compiler: {
     // Remove unused JavaScript
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === "production",
   },
   // Exclude polyfills for modern browsers
   webpack: (config, { isServer }) => {
@@ -30,8 +34,8 @@ const nextConfig: NextConfig = {
     if (!isServer) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        'core-js': false,
-        'core-js-pure': false,
+        "core-js": false,
+        "core-js-pure": false,
       };
     }
     return config;
@@ -40,57 +44,57 @@ const nextConfig: NextConfig = {
     return [
       // Blog pages should have shorter cache
       {
-        source: '/blog',
+        source: "/blog",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
           },
         ],
       },
       {
-        source: '/blog/page/:page',
+        source: "/blog/page/:page",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
           },
         ],
       },
       // Case studies pages should have shorter cache
       {
-        source: '/case-studies',
+        source: "/case-studies",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
           },
         ],
       },
       {
-        source: '/case-studies/:slug*',
+        source: "/case-studies/:slug*",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, s-maxage=300, stale-while-revalidate=60', // 5 min cache
+            key: "Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
           },
         ],
       },
       {
-        source: '/_next/image(.*)',
+        source: "/_next/image(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=604800, stale-while-revalidate=86400', // 7 days cache, 1 day stale
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=86400", // 7 days cache, 1 day stale
           },
         ],
       },
       {
-        source: '/images/(.*)',
+        source: "/images/(.*)",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days cache, 1 day stale
+            key: "Cache-Control",
+            value: "public, max-age=2592000, stale-while-revalidate=86400", // 30 days cache, 1 day stale
           },
         ],
       },
@@ -100,276 +104,288 @@ const nextConfig: NextConfig = {
     return [
       // Author and test redirects to blog
       {
-        source: '/author/:path*',
-        destination: '/blog',
+        source: "/author/:path*",
+        destination: "/blog",
         permanent: true,
       },
       {
-        source: '/test/:path*',
-        destination: '/blog',
+        source: "/test/:path*",
+        destination: "/blog",
         permanent: true,
       },
       // Product redirects
       {
-        source: '/product/rosterlab-ai',
-        destination: '/solutions/ai-roster-generator',
+        source: "/product/rosterlab-ai",
+        destination: "/solutions/ai-roster-generator",
         permanent: true,
       },
       {
-        source: '/solutions/ai-schedules',
-        destination: '/solutions/ai-roster-generator',
+        source: "/solutions/ai-schedules",
+        destination: "/solutions/ai-roster-generator",
         permanent: true,
       },
       {
-        source: '/solution/ai-schedule',
-        destination: '/solutions/ai-roster-generator',
+        source: "/solution/ai-schedule",
+        destination: "/solutions/ai-roster-generator",
         permanent: true,
       },
       {
-        source: '/solutions/ai-staff-scheduling',
-        destination: '/solutions/ai-roster-generator',
+        source: "/solutions/ai-staff-scheduling",
+        destination: "/solutions/ai-roster-generator",
         permanent: true,
       },
       {
-        source: '/product/rosterlab-free',
-        destination: '/solutions/free-staff-rostering-software',
+        source: "/product/rosterlab-free",
+        destination: "/solutions/free-staff-rostering-software",
         permanent: true,
       },
       {
-        source: '/solutions/free-staff-scheduling',
-        destination: '/solutions/free-staff-rostering-software',
+        source: "/solutions/free-staff-scheduling",
+        destination: "/solutions/free-staff-rostering-software",
         permanent: true,
       },
       // Blog redirects
       {
-        source: '/blog/wdhbradiographyimplementation',
-        destination: '/newsroom/whanganui-radiography-department-embraces-ai-rostering',
+        source: "/blog/wdhbradiographyimplementation",
+        destination:
+          "/newsroom/whanganui-radiography-department-embraces-ai-rostering",
         permanent: true,
       },
       {
-        source: '/blog/cost-efficiency',
-        destination: '/blog/improving-cost-efficiency-staff-rostering',
+        source: "/blog/cost-efficiency",
+        destination: "/blog/improving-cost-efficiency-staff-rostering",
         permanent: true,
       },
       {
-        source: '/blog/staff-scheduling-to-payroll-the-right-way-to-do-it',
-        destination: '/blog/staff-rostering-to-payroll-the-right-way-to-do-it',
+        source: "/blog/staff-scheduling-to-payroll-the-right-way-to-do-it",
+        destination: "/blog/staff-rostering-to-payroll-the-right-way-to-do-it",
         permanent: true,
       },
       {
-        source: '/blog/night-shifts',
-        destination: '/blog/manage-night-shift-planning-wellbeing-effectively',
+        source: "/blog/night-shifts",
+        destination: "/blog/manage-night-shift-planning-wellbeing-effectively",
         permanent: true,
       },
       {
-        source: '/blog/self-scheduling',
-        destination: '/blog/how-to-implement-self-scheduling',
+        source: "/blog/self-scheduling",
+        destination: "/blog/how-to-implement-self-scheduling",
         permanent: true,
       },
       {
-        source: '/blog/open-shifts',
-        destination: '/blog/open-shifts-understanding-the-basics',
+        source: "/blog/open-shifts",
+        destination: "/blog/open-shifts-understanding-the-basics",
         permanent: true,
       },
       {
-        source: '/blog/trade-offs',
-        destination: '/blog/how-to-navigate-staff-scheduling-trade-offs',
+        source: "/blog/trade-offs",
+        destination: "/blog/how-to-navigate-staff-scheduling-trade-offs",
         permanent: true,
       },
       // Redirect case studies from /blog to /case-studies
       {
-        source: '/blog/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
-        destination: '/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
+        source:
+          "/blog/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
+        destination:
+          "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
         permanent: true,
       },
       {
-        source: '/blog/icu-unit-western-australia',
-        destination: '/case-studies/icu-unit-western-australia',
+        source: "/blog/icu-unit-western-australia",
+        destination: "/case-studies/icu-unit-western-australia",
         permanent: true,
       },
       {
-        source: '/blog/dargaville-medical-centre-new-zealand',
-        destination: '/case-studies/dargaville-medical-centre-new-zealand',
+        source: "/blog/dargaville-medical-centre-new-zealand",
+        destination: "/case-studies/dargaville-medical-centre-new-zealand",
         permanent: true,
       },
       // Redirect newsroom from /blog to /newsroom
       {
-        source: '/blog/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules',
-        destination: '/newsroom/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules',
+        source:
+          "/blog/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules",
+        destination:
+          "/newsroom/government-agency-chooses-rosterlab-to-help-streamline-staff-schedules",
         permanent: true,
       },
       {
-        source: '/blog/connecting-with-healthcare-leaders-at-digital-health-festival-2025',
-        destination: '/newsroom/connecting-with-healthcare-leaders-at-digital-health-festival-2025',
+        source:
+          "/blog/connecting-with-healthcare-leaders-at-digital-health-festival-2025",
+        destination:
+          "/newsroom/connecting-with-healthcare-leaders-at-digital-health-festival-2025",
         permanent: true,
       },
       {
-        source: '/blog/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters',
-        destination: '/newsroom/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters',
+        source:
+          "/blog/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters",
+        destination:
+          "/newsroom/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters",
         permanent: true,
       },
       {
-        source: '/blog/whanganui-radiography-department-embraces-ai-rostering',
-        destination: '/newsroom/whanganui-radiography-department-embraces-ai-rostering',
+        source: "/blog/whanganui-radiography-department-embraces-ai-rostering",
+        destination:
+          "/newsroom/whanganui-radiography-department-embraces-ai-rostering",
         permanent: true,
       },
       // Case studies redirects
       {
-        source: '/case-studies/blog/casestudy_dargavillemedicalcentre',
-        destination: '/case-studies/dargaville-medical-centre-new-zealand',
+        source: "/case-studies/blog/casestudy_dargavillemedicalcentre",
+        destination: "/case-studies/dargaville-medical-centre-new-zealand",
         permanent: true,
       },
       {
-        source: '/case-studies/blog/case-study-aus-icu-unit',
-        destination: '/case-studies/icu-unit-western-australia',
+        source: "/case-studies/blog/case-study-aus-icu-unit",
+        destination: "/case-studies/icu-unit-western-australia",
         permanent: true,
       },
       {
-        source: '/case-studies/press-news',
-        destination: '/newsroom',
+        source: "/case-studies/press-news",
+        destination: "/newsroom",
         permanent: true,
       },
       {
-        source: '/studies',
-        destination: '/case-studies',
+        source: "/studies",
+        destination: "/case-studies",
         permanent: true,
       },
       {
-        source: '/studies/',
-        destination: '/case-studies',
+        source: "/studies/",
+        destination: "/case-studies",
         permanent: true,
       },
       // Feature redirects
       {
-        source: '/feature/auto-roster-generation',
-        destination: '/feature/automated-rostering',
+        source: "/feature/auto-roster-generation",
+        destination: "/feature/automated-rostering",
         permanent: true,
       },
       // Solutions redirects
       {
-        source: '/solutions/ai-staff-rostering',
-        destination: '/solutions/ai-roster-generator',
+        source: "/solutions/ai-staff-rostering",
+        destination: "/solutions/ai-roster-generator",
         permanent: true,
       },
       {
-        source: '/product/self-scheduling',
-        destination: '/feature/self-scheduling',
+        source: "/product/self-scheduling",
+        destination: "/feature/self-scheduling",
         permanent: true,
       },
       {
-        source: '/self-scheduling',
-        destination: '/product/self-scheduling',
+        source: "/self-scheduling",
+        destination: "/feature/self-scheduling",
         permanent: true,
       },
       // Other redirects
       {
-        source: '/example-media',
-        destination: '/staff-rostering-interactive-demo',
+        source: "/example-media",
+        destination: "/staff-rostering-interactive-demo",
         permanent: true,
       },
       {
-        source: '/hs-web-interactive-20646833-189912447154',
-        destination: '/',
+        source: "/hs-web-interactive-20646833-189912447154",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/example-medi',
-        destination: '/',
+        source: "/example-medi",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/aa',
-        destination: '/',
+        source: "/aa",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/test',
-        destination: '/',
+        source: "/test",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/-ab-variant-82914e52-ef88-4c6a-94f5-67524e4608db',
-        destination: '/about',
+        source: "/-ab-variant-82914e52-ef88-4c6a-94f5-67524e4608db",
+        destination: "/about",
         permanent: true,
       },
       {
-        source: '/meeting-confirmed-0',
-        destination: '/book-a-demo',
+        source: "/meeting-confirmed-0",
+        destination: "/book-a-demo",
         permanent: true,
       },
       {
-        source: '/-ab-variant-478b989c-855c-4383-9e60-19529616c556',
-        destination: '/',
+        source: "/-ab-variant-478b989c-855c-4383-9e60-19529616c556",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/newsroom/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
-        destination: '/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering',
+        source:
+          "/newsroom/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
+        destination:
+          "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
         permanent: true,
       },
       {
-        source: '/industries/others',
-        destination: '/industries',
+        source: "/industries/others",
+        destination: "/industries",
         permanent: true,
       },
       // Healthcare industry redirects
       {
-        source: '/industries/healthcare/edicu',
-        destination: '/industries/healthcare/ed-icu',
+        source: "/industries/healthcare/edicu",
+        destination: "/industries/healthcare/ed-icu",
         permanent: true,
       },
       {
-        source: '/industries/healthcare/agedcare',
-        destination: '/industries/healthcare/aged-care',
+        source: "/industries/healthcare/agedcare",
+        destination: "/industries/healthcare/aged-care",
         permanent: true,
       },
       // 404 redirects from main domain
       {
-        source: '/blog/blog/excel-series',
-        destination: '/blog',
+        source: "/blog/blog/excel-series",
+        destination: "/blog",
         permanent: true,
       },
       {
-        source: '/index.html',
-        destination: '/',
+        source: "/index.html",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/case-studies/author/daniel-ge',
-        destination: '/blog',
+        source: "/case-studies/author/daniel-ge",
+        destination: "/blog",
         permanent: true,
       },
       {
-        source: '/blog/blog/open-shifts',
-        destination: '/blog/open-shifts-understanding-the-basics',
+        source: "/blog/blog/open-shifts",
+        destination: "/blog/open-shifts-understanding-the-basics",
         permanent: true,
       },
       {
-        source: '/blog/blog/shift-types',
-        destination: '/blog/shift-types',
+        source: "/blog/blog/shift-types",
+        destination: "/blog/shift-types",
         permanent: true,
       },
       {
-        source: '/blog/self-scheduling%20study/',
-        destination: '/blog/self-scheduling-study',
+        source: "/blog/self-scheduling%20study/",
+        destination: "/blog/self-scheduling-study",
         permanent: true,
       },
       {
-        source: '/home-b',
-        destination: '/',
+        source: "/home-b",
+        destination: "/",
         permanent: true,
       },
       {
-        source: '/blog/Why%20RosterLab%20Free/',
-        destination: '/solutions/free-staff-rostering-software',
+        source: "/blog/Why%20RosterLab%20Free/",
+        destination: "/solutions/free-staff-rostering-software",
         permanent: true,
       },
       {
-        source: '/blog/Why%20RosterLab%20Free',
-        destination: '/solutions/free-staff-rostering-software',
+        source: "/blog/Why%20RosterLab%20Free",
+        destination: "/solutions/free-staff-rostering-software",
         permanent: true,
       },
-    ]
+    ];
   },
 };
 
