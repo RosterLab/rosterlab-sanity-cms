@@ -19,6 +19,7 @@ import RelatedPosts from "@/components/blog/RelatedPosts";
 import { draftMode } from "next/headers";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
+import ArticleSchema from "@/components/seo/ArticleSchema";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -99,6 +100,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const readingTime = calculateReadingTime(post.body);
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
+  const articleUrl = `${baseUrl}/blog/${slug}`;
+  const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
+
   return (
     <article>
       <HubSpotFormListener />
@@ -108,6 +113,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         author={post.author?.name}
         category={post.category?.title}
         publishedAt={post.publishedAt}
+      />
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt || ""}
+        author={{ name: post.author?.name || "RosterLab" }}
+        publishedTime={post.publishedAt}
+        modifiedTime={post._updatedAt}
+        image={imageUrl}
+        url={articleUrl}
       />
       {/* Purple Gradient Header */}
       <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
