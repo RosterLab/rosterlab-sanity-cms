@@ -80,23 +80,49 @@ export const LOCALIZED_PAGES = new Set([
 export function generateHreflangMetadata(pathname: string) {
   const baseUrl = "https://rosterlab.com";
 
+  // Normalize pathname - remove trailing slashes
+  const normalizedPathname =
+    pathname.endsWith("/") && pathname !== "/"
+      ? pathname.slice(0, -1)
+      : pathname;
+
   // Determine the original path and whether we're on a US page
-  const isUSPage = pathname === "/us" || pathname.startsWith("/us/");
-  const originalPath = isUSPage
-    ? REVERSE_US_MAPPINGS[pathname] ||
-      REVERSE_US_MAPPINGS[pathname + "/"] ||
-      pathname.replace(/^\/us/, "")
-    : pathname;
+  const isUSPage =
+    normalizedPathname === "/us" || normalizedPathname.startsWith("/us/");
 
-  // Check if this page has localized versions
-  const hasLocalizedVersions = LOCALIZED_PAGES.has(originalPath);
+  let originalPath: string;
+  let usPath: string;
 
-  if (!hasLocalizedVersions) {
-    return {};
+  if (isUSPage) {
+    // For US pages, find the original path using reverse mapping
+    originalPath = REVERSE_US_MAPPINGS[normalizedPathname];
+
+    if (!originalPath) {
+      // If no reverse mapping found, this US page doesn't have a corresponding original page
+      // Don't generate hreflang tags
+      return {};
+    }
+
+    usPath = normalizedPathname;
+  } else {
+    // For non-US pages, check if it has a localized version
+    originalPath = normalizedPathname;
+
+    // Check if this page has localized versions
+    if (!LOCALIZED_PAGES.has(originalPath)) {
+      return {};
+    }
+
+    usPath = US_URL_MAPPINGS[originalPath];
+
+    if (!usPath) {
+      // This shouldn't happen if LOCALIZED_PAGES and US_URL_MAPPINGS are in sync
+      console.warn(
+        `Page ${originalPath} is in LOCALIZED_PAGES but has no US mapping`,
+      );
+      return {};
+    }
   }
-
-  // Get the US path
-  const usPath = US_URL_MAPPINGS[originalPath] || `/us${originalPath}`;
 
   return {
     alternates: {
