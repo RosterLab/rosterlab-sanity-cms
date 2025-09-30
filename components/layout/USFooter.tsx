@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa'
-import CountrySelector from './CountrySelector'
+import Link from "next/link";
+import Image from "next/image";
+import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
+import CountrySelector from "./CountrySelector";
 
 export default function USFooter() {
   return (
@@ -27,7 +27,7 @@ export default function USFooter() {
                 AI Staff Scheduling Software for modern teams.
               </p>
             </div>
-            
+
             {/* CTA Buttons */}
             <div className="flex flex-row gap-3 mb-6 justify-center lg:justify-start lg:flex-col">
               <Link
@@ -40,11 +40,12 @@ export default function USFooter() {
                 href="https://app.rosterlab.com"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-white text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-300 text-sm"
                 target="_blank"
+                rel="noopener"
               >
                 Login
               </Link>
             </div>
-            
+
             {/* Social Icons */}
             <div className="flex space-x-4 justify-center lg:justify-start">
               <a
@@ -88,25 +89,39 @@ export default function USFooter() {
 
           {/* Section 2: Product */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Product</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Product
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/us/solutions/ai-staff-schedule-maker" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/solutions/ai-staff-schedule-maker"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   AI Scheduling
                 </Link>
               </li>
               <li>
-                <Link href="/us/solutions/free-staff-scheduling-tool" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/solutions/free-staff-scheduling-tool"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Free Staff Scheduling Tool
                 </Link>
               </li>
               <li>
-                <Link href="/us/solutions/staff-scheduling-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/solutions/staff-scheduling-mobile-app"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Staff Mobile App
                 </Link>
               </li>
               <li>
-                <Link href="/us/product-tour" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/product-tour"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Product Tour
                 </Link>
               </li>
@@ -115,20 +130,31 @@ export default function USFooter() {
 
           {/* Section 3: Company */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Company</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Company
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/us/about" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/about"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/us/contact" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/contact"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/us/book-a-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/book-a-demo"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Book a Demo
                 </Link>
               </li>
@@ -137,20 +163,31 @@ export default function USFooter() {
 
           {/* Section 4: Customer Success */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Customer Success</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Customer Success
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/us/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/industries"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Industries
                 </Link>
               </li>
               <li>
-                <Link href="/us/pricing" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/pricing"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link href="/us/tools/savings-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/us/tools/savings-calculator"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Savings Calculator
                 </Link>
               </li>
@@ -197,7 +234,13 @@ export default function USFooter() {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} All rights reserved to <Link href="/us" className="text-gray-600 hover:text-blue-600 transition-colors">RosterLab</Link>
+            © {new Date().getFullYear()} All rights reserved to{" "}
+            <Link
+              href="/us"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              RosterLab
+            </Link>
           </p>
           <p className="text-gray-300 text-[10px] mt-1">
             Illustrations by Storyset
@@ -208,5 +251,5 @@ export default function USFooter() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa'
-import CountrySelector from './CountrySelector'
+import Link from "next/link";
+import Image from "next/image";
+import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
+import CountrySelector from "./CountrySelector";
 
 export default function Footer() {
   return (
@@ -22,10 +22,11 @@ export default function Footer() {
                 />
               </Link>
               <p className="text-sm text-gray-600 mb-6">
-                Simplifying workforce management with intelligent scheduling solutions.
+                Simplifying workforce management with intelligent scheduling
+                solutions.
               </p>
             </div>
-            
+
             {/* CTA Buttons */}
             <div className="flex flex-row gap-3 mb-6 justify-center lg:justify-start lg:flex-col">
               <Link
@@ -38,11 +39,12 @@ export default function Footer() {
                 href="https://app.rosterlab.com"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-white text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-300 text-sm"
                 target="_blank"
+                rel="noopener"
               >
                 Login
               </Link>
             </div>
-            
+
             {/* Social Icons */}
             <div className="flex space-x-4 justify-center lg:justify-start">
               <a
@@ -86,25 +88,39 @@ export default function Footer() {
 
           {/* Section 2: Product */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Product</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Product
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/solutions/ai-roster-generator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/solutions/ai-roster-generator"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   AI Scheduling
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/free-staff-rostering-software" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/solutions/free-staff-rostering-software"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Free digital scheduling tool
                 </Link>
               </li>
               <li>
-                <Link href="/solutions/staff-roster-mobile-app" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/solutions/staff-roster-mobile-app"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Staff Mobile App
                 </Link>
               </li>
               <li>
-                <Link href="/staff-rostering-interactive-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/staff-rostering-interactive-demo"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Product Tour
                 </Link>
               </li>
@@ -113,25 +129,39 @@ export default function Footer() {
 
           {/* Section 3: Company */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Company</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Company
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/about"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/careers"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/newsroom" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/newsroom"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Newsroom
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/contact"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Contact Us
                 </Link>
               </li>
@@ -140,25 +170,39 @@ export default function Footer() {
 
           {/* Section 4: Customer Success */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Customer Success</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Customer Success
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/pricing"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/case-studies"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link href="/industries/healthcare" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/industries/healthcare"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Healthcare
                 </Link>
               </li>
               <li>
-                <Link href="/industries" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/industries"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   All industries
                 </Link>
               </li>
@@ -167,30 +211,47 @@ export default function Footer() {
 
           {/* Section 5: Resources */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">Resources</h4>
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Resources
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/book-a-demo" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/book-a-demo"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Book a demo
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/blog"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/schedge" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/schedge"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Schedge
                 </Link>
               </li>
               <li>
-                <Link href="/tools/roi-calculator" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/tools/roi-calculator"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   ROI Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/tools/staff-scheduling-personality-quiz" className="text-gray-600 hover:text-blue-600 transition-colors text-sm">
+                <Link
+                  href="/tools/staff-scheduling-personality-quiz"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
                   Personality Quiz
                 </Link>
               </li>
@@ -235,7 +296,13 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} All rights reserved to <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">RosterLab</Link>
+            © {new Date().getFullYear()} All rights reserved to{" "}
+            <Link
+              href="/"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              RosterLab
+            </Link>
           </p>
           <p className="text-gray-300 text-[10px] mt-1">
             Illustrations by Storyset
@@ -246,5 +313,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
