@@ -10,6 +10,9 @@ export const metadata = {
   title: "Automatic Roster Generation - RosterLab",
   description:
     "Generate fully optimised rosters in minutes with automatic rostering that balances staffing levels, skills, preferences, and compliance effortlessly.",
+  alternates: {
+    canonical: "https://rosterlab.com/feature/auto-roster-generation",
+  },
   openGraph: {
     title: "AI Auto Roster Generation - RosterLab",
     description:

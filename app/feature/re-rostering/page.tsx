@@ -9,6 +9,9 @@ export const metadata = {
   title: "Re-Rostering - RosterLab",
   description:
     "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.",
+  alternates: {
+    canonical: "https://rosterlab.com/feature/re-rostering",
+  },
   openGraph: {
     title: "Fast Re-Rostering & Scenario Planning - RosterLab",
     description:

@@ -5,6 +5,9 @@ export const metadata = {
   title: "ROI Calculator - RosterLab",
   description:
     "Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered staff scheduling.",
+  alternates: {
+    canonical: "https://rosterlab.com/tools/roi-calculator",
+  },
   robots: {
     index: true,
     follow: true,
