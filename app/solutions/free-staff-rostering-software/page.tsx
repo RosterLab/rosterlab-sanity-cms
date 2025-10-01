@@ -18,7 +18,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Free Staff Roster Software - RosterLab",
+    title: "Free Staff Rostering Software - RosterLab",
     description:
       "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
     alternates: {
@@ -26,7 +26,7 @@ export const metadata = withHreflang(
         "https://rosterlab.com/solutions/free-staff-rostering-software",
     },
     openGraph: {
-      title: "Free Staff Roster Software - RosterLab",
+      title: "Free Staff Rostering Software - RosterLab",
       description:
         "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
       type: "website",
@@ -42,7 +42,7 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Free Staff Roster Software - RosterLab",
+      title: "Free Staff Rostering Software - RosterLab",
       description:
         "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
       images: ["/images/og-images/SolutionFree.png"],
@@ -718,21 +718,16 @@ export default function ManualSchedulingPage() {
           </Container>
         </div>
       </>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Solutions", url: "/solutions" },
-          { name: "Free Staff Rostering Software" }
-
+          { name: "Free Staff Rostering Software" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

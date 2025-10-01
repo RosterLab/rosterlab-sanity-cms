@@ -11,11 +11,11 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Aged Care Staff Scheduling Software - RosterLab",
+    title: "Aged Care Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
     openGraph: {
-      title: "Aged Care Staff Scheduling Software - RosterLab",
+      title: "Aged Care Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
       type: "website",
@@ -30,7 +30,7 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Aged Care Staff Scheduling Software - RosterLab",
+      title: "Aged Care Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
       images: ["/images/og-images/IndustryAgedCare.png"],
@@ -775,22 +775,17 @@ export default function AgedCarePage() {
           </div>
         </Container>
       </section>
-      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema 
-
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Aged Care" }
-
+          { name: "Aged Care" },
         ]}
-
       />
-
     </SiteLayout>
   );
 }

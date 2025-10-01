@@ -10,7 +10,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "ED & ICU Staff Scheduling Software - RosterLab",
+    title: "ED & ICU Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
     openGraph: {
@@ -625,14 +625,14 @@ export default function ICUEDPage() {
           </div>
         </Container>
       </section>
-      
+
       {/* Hidden Breadcrumb Schema for SEO */}
-      <BreadcrumbSchema 
+      <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "ED/ICU", url: "/industries/healthcare/ed-icu" }
+          { name: "ED/ICU", url: "/industries/healthcare/ed-icu" },
         ]}
       />
     </SiteLayout>

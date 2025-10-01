@@ -22,17 +22,17 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Free Staff Scheduling Mobile App - RosterLab",
+    title: "Staff Scheduling Mobile App - RosterLab",
     description:
-      "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app",
     },
     openGraph: {
-      title: "Free Staff Scheduling Mobile App - RosterLab",
+      title: "Staff Scheduling Mobile App - RosterLab",
       description:
-        "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+        "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
       type: "website",
       url: "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app",
       images: [
@@ -46,9 +46,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Free Staff Scheduling Mobile App - RosterLab",
+      title: "Staff Scheduling Mobile App - RosterLab",
       description:
-        "Free staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+        "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
       images: ["/images/og images/SolutionMobileApp.png"],
     },
   },

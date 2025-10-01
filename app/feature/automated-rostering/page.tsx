@@ -12,13 +12,13 @@ const pathname = "/feature/automated-rostering";
 
 export const metadata = withHreflang(
   {
-    title: "Automatic Roster Generation - RosterLab",
+    title: "Automatic Rostering - RosterLab",
     description:
-      "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
+      "Generate fully optimised staff rosters in minutes with automatic rostering. Balance staffing, skills, preferences, and compliance automatically.",
     openGraph: {
-      title: "Automatic Roster Generation - RosterLab",
+      title: "Automatic Rostering - RosterLab",
       description:
-        "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
+        "Generate fully optimised staff rosters in minutes with automatic rostering. Balance staffing, skills, preferences, and compliance automatically.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -29,9 +29,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Automatic Roster Generation - RosterLab",
+      title: "Automatic Rostering - RosterLab",
       description:
-        "Generate fully optimised staff rosters in minutes with our auto roster generator. Balance staffing, skills, preferences, and compliance automatically.",
+        "Generate fully optimised staff rosters in minutes with automatic rostering. Balance staffing, skills, preferences, and compliance automatically.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
