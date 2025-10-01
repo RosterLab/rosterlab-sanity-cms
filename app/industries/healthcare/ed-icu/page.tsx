@@ -5,33 +5,38 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "ED & ICU Staff Scheduling Software - RosterLab",
-  description:
-    "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "ED & ICU Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare/ed-icu",
-    images: [
-      {
-        url: "/images/og-images/IndustryICUED.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "ED & ICU Staff Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare/ed-icu",
+      images: [
+        {
+          url: "/images/og-images/IndustryICUED.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "ED & ICU Staff Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      images: ["/images/og-images/IndustryICUED.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ED & ICU Staff Rostering Software - RosterLab",
-    description:
-      "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-    images: ["/images/og-images/IndustryICUED.png"],
-  },
-};
+  "/industries/healthcare/ed-icu",
+);
 
 const faqItems = [
   {
@@ -66,10 +71,11 @@ export default function ICUEDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Generate your ED staff roster in{" "}
+                Generate{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  minutes
-                </span>
+                  ED & ICU
+                </span>{" "}
+                Staff Rosters in Minutes
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Cut roster creation time by 90% with AI automation. Build
@@ -272,7 +278,7 @@ export default function ICUEDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Critical Care Complexity
+                Built for ICU & ED Roster Complexity
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -373,17 +379,12 @@ export default function ICUEDPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="py-20 bg-white">
-        <TrustedBy />
-      </section>
-
       {/* Cloud Features */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Critical Care
+              ICU & ED Rostering for Hospital Staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -477,7 +478,7 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -520,7 +521,7 @@ export default function ICUEDPage() {
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -566,8 +567,23 @@ export default function ICUEDPage() {
         </Container>
       </section>
 
+      {/* Trusted By */}
+      <section className="bg-white pb-20">
+        <TrustedBy />
+        <Container>
+          <div className="text-center mt-0">
+            <Button
+              href="/case-studies"
+              className="bg-teal-600 text-white hover:bg-teal-700"
+            >
+              View Case Studies
+            </Button>
+          </div>
+        </Container>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
@@ -586,7 +602,7 @@ export default function ICUEDPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Critical Care Scheduling?
+              Ready to Transform Your Critical Care Rostering?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join leading hospitals using RosterLab to ensure optimal ICU and
@@ -609,6 +625,16 @@ export default function ICUEDPage() {
           </div>
         </Container>
       </section>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: "Healthcare", url: "/industries/healthcare" },
+          { name: "ED/ICU", url: "/industries/healthcare/ed-icu" },
+        ]}
+      />
     </SiteLayout>
   );
 }

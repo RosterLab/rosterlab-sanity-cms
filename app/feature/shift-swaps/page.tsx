@@ -8,38 +8,50 @@ import ShiftSwapsContent from "./ShiftSwapsContent";
 import ShiftSwapModule from "@/components/sections/animations/ShiftSwapModule";
 import AuditTrailModule from "./AuditTrailModule";
 import WeekendRotationModule from "./WeekendRotationModule";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Shift Swaps - RosterLab",
-  description:
-    "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/shift-swaps",
-  },
-  openGraph: {
-    title: "Shift Swaps: Automate Routine Shift Swaps, Review What Matters",
+const pathname = "/feature/shift-swaps";
+
+export const metadata = withHreflang(
+  {
+    title: "Shift Swaps - RosterLab",
     description:
       "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
-    type: "website",
-    url: "https://rosterlab.com/feature/shift-swaps",
-    images: [
-      {
-        url: "/images/og-images/FeatureShiftSwaps.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/feature/shift-swaps",
+    },
+    openGraph: {
+      title: "Shift Swaps: Automate Routine Shift Swaps, Review What Matters",
+      description:
+        "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
+      type: "website",
+      url: "https://rosterlab.com/feature/shift-swaps",
+      images: [
+        {
+          url: "/images/og-images/FeatureShiftSwaps.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Shift Swaps: Automate Routine Shift Swaps, Review What Matters",
+      description:
+        "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
+      images: ["/images/og-images/FeatureShiftSwaps.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Shift Swaps: Automate Routine Shift Swaps, Review What Matters",
-    description:
-      "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
-    images: ["/images/og-images/FeatureShiftSwaps.png"],
-  },
-};
+  pathname,
+);
 
 const faqItems = [
+  {
+    question: "What is a shift swap?",
+    answer:
+      "A shift swap is when two employees exchange their scheduled shifts with each other. For example, if Employee A is scheduled for Monday and Employee B for Tuesday, they can swap so A works Tuesday and B works Monday. This flexibility helps staff manage personal commitments while maintaining full coverage for the organization.",
+  },
   {
     question: "How does automated shift swap approval work?",
     answer:
@@ -77,7 +89,10 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Intelligent Shift Swaps
+                  Intelligent{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Shift Swaps
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automate routine swaps, review when it matters.
@@ -97,17 +112,17 @@ export default function ShiftSwapsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-scheduling"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Pricing"
                     analyticsLocation="Feature Page Shift Swaps"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "pricing",
                       page_name: "Shift Swaps",
                       section: "hero",
                     }}
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -160,11 +175,11 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/shift swaps/Test 5 copy.webp"
+                  src="/images/new-product-images/ png/shift-swaps/1-shift-swap-atuomatic-routine-approvals.png"
                   alt="Automatic Routine Approvals"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-90"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -177,11 +192,11 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/shift swaps/Group 391 copy.webp"
+                  src="/images/new-product-images/ png/shift-swaps/2-swaps-that-break.png"
                   alt="Review Swaps that Break the Rules"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-90"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -218,13 +233,13 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
 
-        {/* Automated Notifications Section */}
+        {/* Automated Shift Swap Notifications Section */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Automated Notifications
+                  Automated Shift Swap Notifications
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Staff can request swaps anytime via mobile app. Relevant team
@@ -254,11 +269,11 @@ export default function ShiftSwapsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/shift swaps/Shift Swap 3.webp"
-                  alt="Automated Notifications"
+                  src="/images/new-product-images/ png/shift-swaps/3-notifications.png"
+                  alt="Automated Shift Swap Notifications"
                   width={500}
                   height={500}
-                  className="w-full h-auto scale-90"
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -271,11 +286,11 @@ export default function ShiftSwapsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/shift swaps/Group 390 copy.webp"
+                  src="/images/new-product-images/ png/shift-swaps/4-audit-trail.png"
                   alt="Comprehensive Audit Trail"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-90"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -354,7 +369,7 @@ export default function ShiftSwapsPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Modernize Your Shift Management?
+                Ready to Modernise Your Shift Swap Management?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Join leading organizations who've transformed their workforce
@@ -392,6 +407,16 @@ export default function ShiftSwapsPage() {
           </Container>
         </div>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Shift Swaps" },
+        ]}
+      />
     </SiteLayout>
   );
 }

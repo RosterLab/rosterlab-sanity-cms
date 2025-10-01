@@ -1,11 +1,13 @@
 interface StructuredDataProps {
   type?: "organization" | "website" | "article";
   data?: Record<string, unknown>;
+  isUSPage?: boolean;
 }
 
 export default function StructuredData({
   type = "organization",
   data,
+  isUSPage = false,
 }: StructuredDataProps) {
   const getStructuredData = () => {
     switch (type) {
@@ -17,6 +19,7 @@ export default function StructuredData({
           legalName: "ROSTERLAB LIMITED",
           url: "https://rosterlab.com",
           logo: "https://rosterlab.com/images/favicon.png",
+          ...(isUSPage && { inLanguage: "en-US" }),
           address: {
             "@type": "PostalAddress",
             streetAddress: "Level 1, 22 The Strand",
@@ -53,6 +56,7 @@ export default function StructuredData({
           url: "https://rosterlab.com",
           description:
             "Complex solutions made easy with AI-powered scheduling for healthcare teams",
+          ...(isUSPage && { inLanguage: "en-US" }),
           publisher: {
             "@type": "Organization",
             name: "RosterLab",

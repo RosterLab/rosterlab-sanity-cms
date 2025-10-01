@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import styles from "./SchedgeGame.module.css";
 import { useCallback, useEffect, useState } from "react";
@@ -170,7 +170,7 @@ export default function SchedgeGame({
         });
       }
     },
-    [initialGrid, state]
+    [initialGrid, state],
   );
 
   const funct = useCallback(
@@ -183,11 +183,11 @@ export default function SchedgeGame({
         handleShiftChange(
           state.currentlySelected[0],
           state.currentlySelected[1],
-          e.key
+          e.key,
         );
       }
     },
-    [state.currentlySelected, handleShiftChange]
+    [state.currentlySelected, handleShiftChange],
   );
 
   useEffect(() => {
@@ -200,7 +200,7 @@ export default function SchedgeGame({
 
   const demandFulfilment = getDemandFulfilment(state.grid);
   const problemLocations = getEmployeeRulesBroken(state.grid).flatMap(
-    (problem) => problem.locs
+    (problem) => problem.locs,
   );
 
   useEffect(() => {
@@ -297,7 +297,7 @@ export default function SchedgeGame({
                 <a
                   href="https://www.rosterlab.com"
                   target="_blank"
-                  rel="noreferrer noopener"
+                  rel="noopener noreferrer"
                 >
                   www.rosterlab.com
                 </a>
@@ -416,10 +416,10 @@ export default function SchedgeGame({
                           initialGrid[i][j] !== ""
                             ? "lightgreen"
                             : problemLocations.find(
-                                (loc) => loc[0] === i && loc[1] === j
-                              )
-                            ? "rgb(252, 190, 216)"
-                            : "",
+                                  (loc) => loc[0] === i && loc[1] === j,
+                                )
+                              ? "rgb(252, 190, 216)"
+                              : "",
                       }}
                     >
                       <input
@@ -441,10 +441,10 @@ export default function SchedgeGame({
                             initialGrid[i][j] !== ""
                               ? "lightgreen"
                               : problemLocations.find(
-                                  (loc) => loc[0] === i && loc[1] === j
-                                )
-                              ? "rgb(252, 190, 216)"
-                              : "",
+                                    (loc) => loc[0] === i && loc[1] === j,
+                                  )
+                                ? "rgb(252, 190, 216)"
+                                : "",
                         }}
                         onKeyDown={(e) => handleKeyDown(e, i, j)}
                         onClick={() => {
@@ -489,12 +489,12 @@ export default function SchedgeGame({
                   handleShiftChange(
                     state.currentlySelected[0],
                     state.currentlySelected[1],
-                    shift.replace("_", "")
+                    shift.replace("_", ""),
                   );
 
                   document
                     .getElementById(
-                      `input-${state.currentlySelected[0]}-${state.currentlySelected[1]}`
+                      `input-${state.currentlySelected[0]}-${state.currentlySelected[1]}`,
                     )
                     ?.focus({ preventScroll: true });
                 }
@@ -520,7 +520,11 @@ export default function SchedgeGame({
           >
             Auto solve
           </button>
-          <button type="button" onClick={clearAll} className={styles.optionButton}>
+          <button
+            type="button"
+            onClick={clearAll}
+            className={styles.optionButton}
+          >
             Clear all
           </button>
         </div>

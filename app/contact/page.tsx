@@ -5,36 +5,41 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Contact Us - Get Help with Your Team Scheduling",
-  description:
-    "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
-  alternates: {
-    canonical: "https://rosterlab.com/contact",
-  },
-  openGraph: {
-    title: "Contact Us - Get Help with Your Team Scheduling",
+export const metadata = withHreflang(
+  {
+    title: "Contact Us - Get Help with Your Team Rosters",
     description:
       "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
-    type: "website",
-    url: "https://rosterlab.com/contact",
-    images: [
-      {
-        url: "/images/og-images/Contact.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/contact",
+    },
+    openGraph: {
+      title: "Contact Us - Get Help with Your Team Rosters",
+      description:
+        "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
+      type: "website",
+      url: "https://rosterlab.com/contact",
+      images: [
+        {
+          url: "/images/og-images/Contact.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Contact Us - Get Help with Your Team Rosters",
+      description:
+        "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
+      images: ["/images/og-images/Contact.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us - Get Help with Your Team Scheduling",
-    description:
-      "Contact the team about your staff rostering needs using our contact form or live chat feature. We will aim to get back to you within 24 hours.",
-    images: ["/images/og-images/Contact.png"],
-  },
-};
+  "/contact",
+);
 
 const faqItems = [
   {
@@ -206,6 +211,12 @@ export default function ContactPage() {
           </div>
         </Container>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[{ name: "Home", url: "/" }, { name: "Contact" }]}
+      />
     </SiteLayout>
   );
 }
