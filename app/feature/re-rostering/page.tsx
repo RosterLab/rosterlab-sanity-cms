@@ -4,34 +4,38 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Re-Rostering - RosterLab",
-  description:
-    "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/re-rostering",
-  },
-  openGraph: {
-    title: "Fast Re-Rostering & Scenario Planning - RosterLab",
+const pathname = "/feature/re-rostering";
+
+export const metadata = withHreflang(
+  {
+    title: "Re-Rostering - RosterLab",
     description:
-      "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
-    images: [
-      {
-        url: "/images/og-images/FeatureReRostering.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+      "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.",
+    openGraph: {
+      title: "Fast Re-Rostering & Scenario Planning - RosterLab",
+      description:
+        "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
+      images: [
+        {
+          url: "/images/og-images/FeatureReRostering.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Fast Re-Rostering & Scenario Planning - RosterLab",
+      description:
+        "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
+      images: ["/images/og-images/FeatureReRostering.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Fast Re-Rostering & Scenario Planning - RosterLab",
-    description:
-      "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds to keep coverage and cost on track.",
-    images: ["/images/og-images/FeatureReRostering.png"],
-  },
-};
+  pathname,
+);
 
 export default function ReRosteringPage() {
   return (
@@ -43,7 +47,10 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Re-Roster New Changes Easily
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Re-Roster
+                  </span>{" "}
+                  New Changes Easily
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Automatically adjust schedules when staff call in sick or
@@ -57,10 +64,10 @@ export default function ReRosteringPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-scheduling"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -114,11 +121,11 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/Programmer-pana-2.svg"
+                  src="/images/new-product-images/ png/rescheduling/1-roster-changes.png"
                   alt="Intelligent Impact Analysis illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -169,6 +176,14 @@ export default function ReRosteringPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8">
+                  <Button
+                    href="/solutions/ai-roster-generator"
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    Learn about AI Rostering
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -211,11 +226,11 @@ export default function ReRosteringPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/product/quality.webp"
+                  src="/images/new-product-images/ png/rescheduling/3-union-compliant.png"
                   alt="Compliance Preservation illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -228,11 +243,11 @@ export default function ReRosteringPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
+                  src="/images/new-product-images/ png/rescheduling/4-real-time-notifications.png"
                   alt="Real-Time Notifications & Updates illustration"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto"
+                  width={300}
+                  height={300}
+                  className="w-full h-auto max-w-xs mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -258,6 +273,14 @@ export default function ReRosteringPage() {
                     </span>
                   </li>
                 </ul>
+                <div className="mt-8">
+                  <Button
+                    href="/solutions/staff-roster-mobile-app"
+                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
+                  >
+                    View Mobile App
+                  </Button>
+                </div>
               </div>
             </div>
           </Container>
@@ -277,6 +300,11 @@ export default function ReRosteringPage() {
               </div>
               <FAQAccordion
                 items={[
+                  {
+                    question: "What is re-rostering?",
+                    answer:
+                      "Re-rostering is the process of adjusting existing staff schedules in response to unexpected changes like sick leave, emergencies, or last-minute requests. It involves quickly reorganising shifts to maintain adequate coverage while minimising disruption to staff and ensuring compliance with workplace rules.",
+                  },
                   {
                     question:
                       "How quickly can RosterLab generate re-rostering solutions?",
@@ -357,6 +385,16 @@ export default function ReRosteringPage() {
           </Container>
         </div>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Re-rostering" },
+        ]}
+      />
     </SiteLayout>
   );
 }

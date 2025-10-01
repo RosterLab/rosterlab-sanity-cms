@@ -4,34 +4,38 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
 import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Employee Leave Requests - RosterLab",
-  description:
-    "Give employees an easy and streamline way to request leave. Staff can submit a range of leave types via the employee mobile app to streamline leave management.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/leave-requests",
-  },
-  openGraph: {
-    title: "Employee Leave Request Tracking - RosterLab",
+const pathname = "/feature/leave-requests";
+
+export const metadata = withHreflang(
+  {
+    title: "Employee Leave Requests - RosterLab",
     description:
-      "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
-    images: [
-      {
-        url: "/images/og-images/FeatureLeaveRequest.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+      "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
+    openGraph: {
+      title: "Employee Leave Requests - RosterLab",
+      description:
+        "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
+      images: [
+        {
+          url: "/images/og-images/FeatureLeaveRequest.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Employee Leave Requests - RosterLab",
+      description:
+        "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
+      images: ["/images/og-images/FeatureLeaveRequest.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Employee Leave Request Tracking - RosterLab",
-    description:
-      "Give employees an easy portal to request leave while managers see real-time impacts on coverage, costs, and compliance before approving.",
-    images: ["/images/og-images/FeatureLeaveRequest.png"],
-  },
-};
+  pathname,
+);
 
 export default function LeaveRequestsPage() {
   return (
@@ -43,7 +47,10 @@ export default function LeaveRequestsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Streamline Staff Leave Requests
+                  Streamline Staff{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Leave Requests
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Staff can submit a range of leave types via the employee
@@ -57,10 +64,10 @@ export default function LeaveRequestsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-scheduling"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -117,11 +124,11 @@ export default function LeaveRequestsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
-                  alt="Automatic coverage analysis"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  src="/images/new-product-images/ png/time-off/1-mobile-app.png"
+                  alt="Submit leave requests via mobile app"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -133,56 +140,13 @@ export default function LeaveRequestsPage() {
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                  <div className="flex flex-col items-center justify-center">
-                    {/* Approval Engine Processing */}
-                    <div className="relative w-full max-w-xs h-32">
-                      {/* Central Processing Hub */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg px-4 py-2 shadow-md border border-gray-200 z-20">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center animate-spin">
-                            <HiClock className="w-4 h-4 text-white" />
-                          </div>
-                          <span className="text-xs font-semibold text-gray-700">
-                            AI Approval Engine
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Checking Steps - Animated */}
-                      <div className="absolute top-0 left-0 w-full">
-                        <div className="flex justify-between px-2">
-                          <div className="bg-green-100 rounded-lg px-2 py-1 text-xs text-[#4a9288] animate-pulse">
-                            ✓ Coverage OK
-                          </div>
-                          <div
-                            className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse"
-                            style={{ animationDelay: "0.5s" }}
-                          >
-                            ✓ Balance OK
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-0 left-0 w-full">
-                        <div className="flex justify-between px-2">
-                          <div
-                            className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse"
-                            style={{ animationDelay: "1s" }}
-                          >
-                            ✓ No Conflicts
-                          </div>
-                          <div
-                            className="bg-green-100 rounded-lg px-2 py-1 text-xs text-green-700 animate-pulse"
-                            style={{ animationDelay: "1.5s" }}
-                          >
-                            ✓ Policy OK
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Image
+                  src="/images/new-product-images/ png/time-off/2-sync-changes.png"
+                  alt="Automatically sync changes to roster"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -225,16 +189,7 @@ export default function LeaveRequestsPage() {
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/illustration/Mobile inbox-pana.svg"
-                  alt="Mobile leave request app illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="order-1 lg:order-2">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Decide How Different Types of Leave are Handled
                 </h2>
@@ -269,6 +224,15 @@ export default function LeaveRequestsPage() {
                   </li>
                 </ul>
               </div>
+              <div>
+                <Image
+                  src="/images/new-product-images/ png/time-off/3-leave-request.png"
+                  alt="Decide how different types of leave are handled"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
+              </div>
             </div>
           </Container>
         </div>
@@ -283,10 +247,15 @@ export default function LeaveRequestsPage() {
               <FAQAccordion
                 items={[
                   {
+                    question: "What is a staff leave request?",
+                    answer:
+                      "A staff leave request is a formal application from an employee asking for time off work. This can include annual leave, sick leave, personal leave, or other types of absences. Leave requests typically include the dates requested, type of leave, reason (if required), and are submitted for manager approval to ensure adequate staffing coverage is maintained.",
+                  },
+                  {
                     question:
                       "Can employees check their leave balances on mobile?",
                     answer:
-                      "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The mobile-optimized interface makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
+                      "Yes! Employees can access their leave balances, submit requests, and track approval status from any device. The <a href='/solutions/staff-roster-mobile-app' class='text-blue-600 hover:text-blue-700 underline'>staff mobile app</a> makes it easy to request leave on-the-go, while managers can review and approve requests with full coverage context from their phones.",
                   },
                   {
                     question: "What types of leave can the system handle?",
@@ -357,6 +326,16 @@ export default function LeaveRequestsPage() {
           </Container>
         </div>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Leave Requests" },
+        ]}
+      />
     </SiteLayout>
   );
 }
