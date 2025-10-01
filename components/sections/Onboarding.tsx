@@ -28,7 +28,7 @@ const onboardingSteps = [
     ),
     description:
       "Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.",
-    link: "https://rosterlab.com/solutions/ai-staff-scheduling",
+    link: "https://rosterlab.com/solutions/ai-roster-generator",
   },
   {
     number: "2",
@@ -72,7 +72,7 @@ const onboardingSteps = [
     ),
     description:
       "Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.",
-    link: "https://rosterlab.com/feature/auto-roster-generation",
+    link: "https://rosterlab.com/feature/automated-rostering",
   },
   {
     number: "4",
@@ -199,8 +199,18 @@ export default function Onboarding() {
                 <p className="text-neutral-600 mb-4">{step.description}</p>
                 <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
                   Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </Link>
@@ -210,7 +220,10 @@ export default function Onboarding() {
           {/* Full-width 7th box */}
           {onboardingSteps[6] && (
             <div className="mt-8">
-              <Link href={onboardingSteps[6].link} className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1 cursor-pointer">
+              <Link
+                href={onboardingSteps[6].link}
+                className="block bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all text-center hover:-translate-y-1 cursor-pointer"
+              >
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   {onboardingSteps[6].icon}
                 </div>
@@ -222,8 +235,18 @@ export default function Onboarding() {
                 </p>
                 <span className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
                   Learn More
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </Link>

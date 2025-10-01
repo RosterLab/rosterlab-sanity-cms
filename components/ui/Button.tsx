@@ -6,6 +6,7 @@ import {
   trackButtonClick,
   trackSmartButtonClick,
 } from "@/components/analytics/Amplitude";
+import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -75,32 +76,31 @@ export default function Button({
   };
 
   if (href) {
+    // Create the click handler with cross-domain support
+    const clickHandler = analyticsLabel
+      ? handleCrossDomainLink(href, (e) => {
+          // Track analytics for all links
+          trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
+            variant,
+            size,
+            ...analyticsProperties,
+          });
+
+          // For external non-app.rosterlab.com links, handle navigation
+          if (href.startsWith("http") && !href.includes("app.rosterlab.com")) {
+            e.preventDefault();
+            // Small delay to ensure event is sent before navigation
+            setTimeout(() => {
+              window.location.href = href;
+            }, 100);
+          }
+        })
+      : href.includes("app.rosterlab.com")
+        ? handleCrossDomainLink(href)
+        : undefined;
+
     return (
-      <Link
-        href={href}
-        className={classes}
-        onClick={
-          analyticsLabel
-            ? (e) => {
-                // Only prevent default for external links
-                if (href.startsWith("http")) {
-                  e.preventDefault();
-                }
-                trackSmartButtonClick(analyticsLabel, href, analyticsLocation, {
-                  variant,
-                  size,
-                  ...analyticsProperties,
-                });
-                // Small delay to ensure event is sent before navigation
-                if (href.startsWith("http")) {
-                  setTimeout(() => {
-                    window.location.href = href;
-                  }, 100);
-                }
-              }
-            : undefined
-        }
-      >
+      <Link href={href} className={classes} onClick={clickHandler}>
         {children}
       </Link>
     );

@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import ClientHeader from "@/components/layout/ClientHeader";
+import ClientFooter from "@/components/layout/ClientFooter";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import Amplitude from "@/components/analytics/Amplitude";
+import UTMTracker from "@/components/analytics/UTMTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
+import GeolocationProvider from "@/components/layout/GeolocationProvider";
+import { headers } from "next/headers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,7 +29,7 @@ export const metadata: Metadata = {
   description:
     "Simplifying workforce management with intelligent scheduling solutions.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com",
   ),
 };
 
@@ -36,6 +39,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const { isEnabled } = await draftMode();
+
+  // Check if current page is a US page
+  const headersList = await headers();
+  const pathname =
+    headersList.get("x-pathname") || headersList.get("x-url") || "";
+  const isUSPage = pathname.startsWith("/us/");
 
   return (
     <html lang="en" className={poppins.variable}>
@@ -50,7 +59,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <StructuredData type="organization" />
+        <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
       <body
@@ -62,9 +71,11 @@ export default async function RootLayout({
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
           <Amplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
-          <Header />
+          <UTMTracker debug={process.env.NODE_ENV === "development"} />
+          <GeolocationProvider />
+          <ClientHeader />
           <main className="flex-grow">{children}</main>
-          <Footer />
+          <ClientFooter />
           {isEnabled && <VisualEditing />}
           <LazyStyles />
         </ClientProviders>

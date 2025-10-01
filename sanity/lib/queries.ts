@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 // Blog queries
 export const postsQuery = groq`
@@ -19,7 +19,7 @@ export const postsQuery = groq`
       slug
     }
   }
-`
+`;
 
 // Blog posts only (excluding case studies and newsroom)
 export const blogPostsOnlyQuery = groq`
@@ -40,7 +40,7 @@ export const blogPostsOnlyQuery = groq`
       slug
     }
   }
-`
+`;
 
 export const postQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
@@ -67,7 +67,7 @@ export const postQuery = groq`
       ogImage
     }
   }
-`
+`;
 
 // Query specifically for blog posts - excludes case studies and newsroom
 export const blogPostQuery = groq`
@@ -77,6 +77,7 @@ export const blogPostQuery = groq`
     (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
   )][0] {
     _id,
+    _updatedAt,
     title,
     slug,
     excerpt,
@@ -99,11 +100,11 @@ export const blogPostQuery = groq`
       ogImage
     }
   }
-`
+`;
 
 export const postPathsQuery = groq`
   *[_type == "post" && defined(slug.current)][].slug.current
-`
+`;
 
 // Query for blog post paths only - excludes case studies and newsroom
 export const blogPostPathsQuery = groq`
@@ -112,7 +113,7 @@ export const blogPostPathsQuery = groq`
     count(categories) == 0 || 
     (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
   )][].slug.current
-`
+`;
 
 // Categories
 export const categoriesQuery = groq`
@@ -122,7 +123,7 @@ export const categoriesQuery = groq`
     slug,
     description
   }
-`
+`;
 
 // Related posts query
 export const relatedPostsQuery = groq`
@@ -137,7 +138,7 @@ export const relatedPostsQuery = groq`
       name
     }
   }
-`
+`;
 
 // Asset queries
 export const assetsQuery = groq`
@@ -150,7 +151,7 @@ export const assetsQuery = groq`
     description,
     tags
   }
-`
+`;
 
 export const assetBySlugQuery = groq`
   *[_type == "asset" && slug.current == $slug][0] {
@@ -162,7 +163,7 @@ export const assetBySlugQuery = groq`
     description,
     tags
   }
-`
+`;
 
 export const assetsByCategoryQuery = groq`
   *[_type == "asset" && category == $category] | order(title asc) {
@@ -174,4 +175,4 @@ export const assetsByCategoryQuery = groq`
     description,
     tags
   }
-`
+`;

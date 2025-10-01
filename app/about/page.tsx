@@ -6,40 +6,45 @@ import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
 import { getVariant } from "@/lib/amplitude/experiment-server";
 import { ExperimentFlags } from "@/lib/amplitude/experiment-utils";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "About Us - Meet the Team Behind RosterLab",
-  description:
-    "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-  alternates: {
-    canonical: "https://rosterlab.com/about",
-  },
-  other: {
-    link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "About Us - Meet the Team Behind RosterLab",
     description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    type: "website",
-    url: "https://rosterlab.com/about",
-    images: [
-      {
-        url: "/images/og-images/About.png",
-        width: 1200,
-        height: 630,
-        alt: "About RosterLab",
-      },
-    ],
+      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+    alternates: {
+      canonical: "https://rosterlab.com/about",
+    },
+    other: {
+      link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
+    },
+    openGraph: {
+      title: "About Us - Meet the Team Behind RosterLab",
+      description:
+        "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+      type: "website",
+      url: "https://rosterlab.com/about",
+      images: [
+        {
+          url: "/images/og-images/About.png",
+          width: 1200,
+          height: 630,
+          alt: "About RosterLab",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "About Us - Meet the Team Behind RosterLab",
+      description:
+        "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+      images: ["/images/og-images/About.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Us - Meet the Team Behind RosterLab",
-    description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-    images: ["/images/og-images/About.png"],
-  },
-};
+  "/about",
+);
 
 export default async function AboutPage() {
   // A/B Test: Header text based on experiment variant
@@ -707,6 +712,12 @@ export default async function AboutPage() {
           </div>
         </Container>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[{ name: "Home", url: "/" }, { name: "About" }]}
+      />
     </SiteLayout>
   );
 }

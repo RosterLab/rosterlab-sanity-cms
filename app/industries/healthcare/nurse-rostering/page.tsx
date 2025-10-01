@@ -5,33 +5,41 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Nurse Rostering Software - RosterLab",
-  description:
-    "Learn how our rostering software simplifies complex nurse rostering. Build fair, compliant rosters that are flexible & helps save time.",
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Nurse Rostering Software - RosterLab",
     description:
       "Learn how our rostering software simplifies complex nurse rostering. Build fair, compliant rosters that are flexible & helps save time.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare/nurse-rostering",
-    images: [
-      {
-        url: "/images/og-images/IndustryNurseRostering.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+    },
+    openGraph: {
+      title: "Nurse Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software simplifies complex nurse rostering. Build fair, compliant rosters that are flexible & helps save time.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      images: [
+        {
+          url: "/images/og-images/IndustryNurseRostering.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Nurse Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software simplifies complex nurse rostering. Build fair, compliant rosters that are flexible & helps save time.",
+      images: ["/images/og-images/IndustryNurseRostering.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Nurse Rostering Software - RosterLab",
-    description:
-      "Learn how our rostering software simplifies complex nurse rostering. Build fair, compliant rosters that are flexible & helps save time.",
-    images: ["/images/og-images/IndustryNurseRostering.png"],
-  },
-};
+  "/industries/healthcare/nurse-rostering",
+);
 
 const faqItems = [
   {
@@ -743,6 +751,16 @@ export default function NurseRosteringPage() {
           </div>
         </Container>
       </section>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: "Healthcare", url: "/industries/healthcare" },
+          { name: "Nurse Rostering" },
+        ]}
+      />
     </SiteLayout>
   );
 }

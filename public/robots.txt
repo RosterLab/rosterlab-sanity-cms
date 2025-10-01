@@ -11,29 +11,14 @@ Disallow: /test-2/
 # Disallow favicon indexing
 Disallow: /favicon.ico
 
-# Disallow image and media indexing
-Disallow: /images/
-Disallow: /assets/
+# Allow crawling of specific image directories that should be indexed
+# (e.g., Open Graph images, featured images)
+Allow: /images/og-images/
+Allow: /images/updated-hero/
+
+# Disallow only internal/system images and assets
 Disallow: /_next/image/
-Disallow: /*.jpg
-Disallow: /*.jpeg
-Disallow: /*.png
-Disallow: /*.gif
-Disallow: /*.webp
-Disallow: /*.svg
-Disallow: /*.mp4
-Disallow: /*.webm
-Disallow: /*.pdf
-
-# Block image crawlers specifically
-User-agent: Googlebot-Image
-Disallow: /
-
-User-agent: Googlebot-Image/1.0
-Disallow: /
-
-User-agent: MSNBot-Media/1.1
-Disallow: /
+Disallow: /assets/
 
 # Sitemap
 Sitemap: https://rosterlab.com/sitemap.xml
