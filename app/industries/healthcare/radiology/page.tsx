@@ -13,9 +13,6 @@ export const metadata = withHreflang(
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
       "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
-    alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare/radiology",
-    },
     openGraph: {
       title: "Radiology Staff Rostering Software - RosterLab",
       description:

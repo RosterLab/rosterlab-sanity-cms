@@ -8,9 +8,6 @@ export const metadata = withHreflang(
     title: "ROI Calculator - RosterLab",
     description:
       "Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered rosters.",
-    alternates: {
-      canonical: "https://rosterlab.com/tools/roi-calculator",
-    },
     robots: {
       index: true,
       follow: true,
@@ -44,16 +41,21 @@ export default function ROICalculatorPage() {
   return (
     <SiteLayout>
       <ROICalculatorClient />
+      
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
-      <BreadcrumbSchema
+      <BreadcrumbSchema 
+
         items={[
           { name: "Home", url: "/" },
           { name: "Tools", url: "/tools" },
-          { name: "ROI Calculator" },
+          { name: "ROI Calculator" }
+
         ]}
+
       />
+
     </SiteLayout>
   );
 }

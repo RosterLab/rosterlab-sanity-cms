@@ -13,9 +13,6 @@ export const metadata = withHreflang(
     title: "ED & ICU Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
-    alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare/ed-icu",
-    },
     openGraph: {
       title: "ED & ICU Staff Rostering Software - RosterLab",
       description:
