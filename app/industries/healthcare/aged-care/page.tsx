@@ -6,44 +6,54 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Aged Care Staff Scheduling Software - RosterLab",
-  description:
-    "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-  openGraph: {
-    title: "Aged Care Staff Scheduling Software - RosterLab",
+export const metadata = withHreflang(
+  {
+    title: "Aged Care Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare/aged-care",
-    images: [
-      {
-        url: "/images/og-images/IndustryAgedCare.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    openGraph: {
+      title: "Aged Care Staff Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare/aged-care",
+      images: [
+        {
+          url: "/images/og-images/IndustryAgedCare.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Aged Care Staff Rostering Software - RosterLab",
+      description:
+        "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
+      images: ["/images/og-images/IndustryAgedCare.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Aged Care Staff Scheduling Software - RosterLab",
-    description:
-      "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
-    images: ["/images/og-images/IndustryAgedCare.png"],
-  },
-};
+  "/industries/healthcare/aged-care",
+);
 
 const faqItems = [
   {
+    question: "What is an aged care roster?",
+    answer:
+      "An aged care roster is a staff schedule specifically designed for nursing homes, residential care facilities, and assisted living centers. It organizes care workers, registered nurses, enrolled nurses, and support staff across different shifts to ensure 24/7 resident care. Unlike standard healthcare rosters, aged care rosters must balance resident-to-staff ratios, accommodate varying care needs across different units (dementia, palliative, high care), and comply with aged care quality standards while managing a mix of permanent, casual, and agency staff.",
+  },
+  {
     question: "What devices can the platform be used on?",
     answer:
-      "Your schedules are stored safely in the cloud which means you and your teams can access your rosters from anywhere in the world and distribute the published rosters digitally on any device.",
+      "Your schedules are stored safely in the cloud which means you and your teams can access your rosters from anywhere in the world and distribute the published rosters digitally on <a href='/solutions/staff-roster-mobile-app' class='text-blue-600 hover:underline'>any device</a>.",
   },
   {
     question: "How does the platform help reduce scheduling mistakes?",
     answer:
-      "With the highly flexible RosterLab Rules Engine, you can create the constraints for your specific schedule and feel safe knowing that the A.I. will never break any hard rules you set. The A.I. will always consider every staff member's skillset and availability, so you won't schedule someone onto a shift they can't work.",
+      "With the highly flexible RosterLab Rules Engine, you can create the constraints for your specific schedule and feel safe knowing that <a href='/solutions/ai-roster-generator' class='text-blue-600 hover:underline'>the A.I.</a> will never break any hard rules you set. The A.I. will always consider every staff member's skillset and availability, so you won't schedule someone onto a shift they can't work.",
   },
 ];
 
@@ -56,10 +66,11 @@ export default function AgedCarePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Optimise your{" "}
+                Optimise{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Staff Scheduling
-                </span>
+                  Aged Care
+                </span>{" "}
+                Staff Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Deliver better care with smart rostering. Achieve 5% efficiency
@@ -575,7 +586,7 @@ export default function AgedCarePage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Cloud Platform for Modern Aged Care
+              Modern Aged Care Rosters for Healthcare Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Secure, accessible, and integrated with your existing systems.
@@ -643,7 +654,7 @@ export default function AgedCarePage() {
               </div>
             </Link>
 
-            <Link href="/feature/auto-roster-generation" className="block">
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -707,8 +718,18 @@ export default function AgedCarePage() {
       </section>
 
       {/* Trusted By */}
-      <section className="py-20 bg-white">
+      <section className="bg-white pb-20">
         <TrustedBy />
+        <Container>
+          <div className="text-center mt-0">
+            <Button
+              href="/case-studies"
+              className="bg-teal-600 text-white hover:bg-teal-700"
+            >
+              View Case Studies
+            </Button>
+          </div>
+        </Container>
       </section>
 
       {/* FAQ Section */}
@@ -737,17 +758,34 @@ export default function AgedCarePage() {
               Join aged care providers achieving better outcomes with smarter
               scheduling.
             </p>
-            <div className="flex justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
+              <Button
+                href="/pricing"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
+              >
+                View Pricing
+              </Button>
             </div>
           </div>
         </Container>
       </section>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: "Healthcare", url: "/industries/healthcare" },
+          { name: "Aged Care" },
+        ]}
+      />
     </SiteLayout>
   );
 }
