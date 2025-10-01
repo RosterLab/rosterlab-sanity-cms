@@ -145,7 +145,7 @@ export default function RosterGenerationModule() {
             </div>
           </div>
           <h3 className="flex-1 text-center text-xs sm:text-base md:text-lg font-semibold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
-            Hospital Roster
+            Hospital Team Schedule
           </h3>
           <div className="w-16 sm:w-24 flex items-center justify-end pr-1 sm:pr-2">
             {isGenerated ? (

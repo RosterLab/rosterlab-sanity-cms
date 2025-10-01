@@ -3,36 +3,41 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Smart AI Rostering Software for All Industries - RosterLab",
-  description:
-    "Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.",
-  alternates: {
-    canonical: "https://rosterlab.com/industries",
-  },
-  openGraph: {
-    title: "Smart AI Rostering Software for All Industries - RosterLab",
+export const metadata = withHreflang(
+  {
+    title: "AI Rostering Software for All Industries - RosterLab",
     description:
-      "Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.",
-    type: "website",
-    url: "https://rosterlab.com/industries",
-    images: [
-      {
-        url: "/images/og-images/Industry.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+      "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
+    alternates: {
+      canonical: "https://rosterlab.com/industries",
+    },
+    openGraph: {
+      title: "AI Rostering Software for All Industries - RosterLab",
+      description:
+        "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
+      type: "website",
+      url: "https://rosterlab.com/industries",
+      images: [
+        {
+          url: "/images/og-images/Industry.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI Rostering Software for All Industries - RosterLab",
+      description:
+        "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
+      images: ["/images/og-images/Industry.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Smart AI Rostering Software for All Industries - RosterLab",
-    description:
-      "Simplify staff scheduling with our smart AI rostering software. Save time, boost efficiency & create fair rosters across industries that require rostering.",
-    images: ["/images/og-images/Industry.png"],
-  },
-};
+  "/industries",
+);
 
 export default function IndustriesPage() {
   return (
@@ -40,44 +45,59 @@ export default function IndustriesPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20">
         <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              AI Rostering Software for Industries with{" "}
-              <span
-                className="text-transparent bg-clip-text"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                Complex Schedules
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Whether you're managing nurses, teachers, call centre agents, or
-              pilots - RosterLab's intelligent scheduling adapts to your
-              industry's unique requirements.
-            </p>
-            <div className="flex justify-center">
-              <Button
-                href="/book-a-demo"
-                className="bg-indigo-600 text-white hover:bg-indigo-700"
-                analyticsLabel="Book a Demo"
-                analyticsLocation="Industries Hero"
-                analyticsProperties={{ cta_type: "demo" }}
-              >
-                Book a Demo
-              </Button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side - Text content */}
+            <div className="text-left">
+              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                AI Rostering Software for{" "}
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  }}
+                >
+                  all industries
+                </span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Whether you're managing nurses, teachers, call centre agents, or
+                pilots - RosterLab's intelligent scheduling adapts to your
+                industry's unique requirements.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  href="/book-a-demo"
+                  className="bg-indigo-600 text-white hover:bg-indigo-700"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Industries Hero"
+                  analyticsProperties={{ cta_type: "demo" }}
+                >
+                  Book a Demo
+                </Button>
+                <Button
+                  href="/tools/roi-calculator"
+                  className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50"
+                  analyticsLabel="View ROI Calculator"
+                  analyticsLocation="Industries Hero"
+                  analyticsProperties={{
+                    cta_type: "tool",
+                    tool_name: "roi_calculator",
+                  }}
+                >
+                  View ROI Calculator
+                </Button>
+              </div>
             </div>
 
-            {/* Manufacturing Process Illustration */}
-            <div className="flex justify-center mt-12">
+            {/* Right side - Image */}
+            <div className="flex justify-center lg:justify-end">
               <Image
                 src="/images/illustration/Manufacturing Process-pana.svg"
                 alt="Manufacturing process illustration"
                 width={600}
                 height={400}
-                className="w-full max-w-2xl h-auto"
+                className="w-full max-w-xl h-auto"
               />
             </div>
           </div>
@@ -1002,6 +1022,20 @@ export default function IndustriesPage() {
           </div>
         </Container>
       </section>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }

@@ -28,7 +28,7 @@ const onboardingSteps = [
     ),
     description:
       "Set precise rules based on contract obligations, EBA union compliance, skill mix, tasks and staffing coverage to ensure complete roster compliance.",
-    link: "https://rosterlab.com/solutions/ai-staff-scheduling",
+    link: "https://rosterlab.com/solutions/ai-roster-generator",
   },
   {
     number: "2",
@@ -72,7 +72,7 @@ const onboardingSteps = [
     ),
     description:
       "Our algorithm creates the most optimal, safe, fair, and flexible schedule - balancing skill mix, compliance and staff preferences automatically.",
-    link: "https://rosterlab.com/feature/auto-roster-generation",
+    link: "https://rosterlab.com/feature/automated-rostering",
   },
   {
     number: "4",

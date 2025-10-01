@@ -465,7 +465,7 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
     const tool2Text = 'Automation roster generation'
     const tool2Width = doc.getTextWidth(tool2Text)
     doc.text(tool2Text, 28, currentY)
-    doc.link(28, currentY - 3, tool2Width, 4, {url: 'https://rosterlab.com/solutions/ai-staff-scheduling'})
+    doc.link(28, currentY - 3, tool2Width, 4, {url: 'https://rosterlab.com/solutions/ai-roster-generator'})
     doc.setTextColor(...textColor as [number, number, number])
     doc.text(': AI-powered scheduling optimization', 28 + tool2Width, currentY)
     currentY += 8
@@ -1085,7 +1085,7 @@ export default function SpreadsheetSorcererClient({ recommendedPosts }: Spreadsh
               </div>
             </Link>
             
-            <Link href="/solutions/ai-staff-scheduling" className="block">
+            <Link href="/solutions/ai-roster-generator" className="block">
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg className="w-24 h-24 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

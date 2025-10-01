@@ -5,6 +5,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import AnimatedSpeechBubbles from "@/components/ui/AnimatedSpeechBubbles";
 import Link from "next/link";
+import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HiCalendar,
   HiBell,
@@ -18,37 +19,41 @@ import {
   HiCog,
   HiAcademicCap,
 } from "react-icons/hi";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Employee Mobile App - RosterLab",
-  description:
-    "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
-  alternates: {
-    canonical: "https://rosterlab.com/solutions/staff-roster-mobile-app",
-  },
-  openGraph: {
-    title: "Employee Mobile App - RosterLab",
+export const metadata = withHreflang(
+  {
+    title: "Free Staff Roster Mobile App - RosterLab",
     description:
-      "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
-    type: "website",
-    url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
-    images: [
-      {
-        url: "/images/og-images/SolutionMobileApp.png",
-        width: 1200,
-        height: 630,
-        alt: "Employee Mobile App",
-      },
-    ],
+      "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+    alternates: {
+      canonical: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+    },
+    openGraph: {
+      title: "Free Staff Roster Mobile App - RosterLab",
+      description:
+        "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      type: "website",
+      url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+      images: [
+        {
+          url: "/images/og-images/SolutionMobileApp.png",
+          width: 1200,
+          height: 630,
+          alt: "Employee Mobile App",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free Staff Roster Mobile App - RosterLab",
+      description:
+        "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      images: ["/images/og-images/SolutionMobileApp.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Employee Mobile App - RosterLab",
-    description:
-      "Empower your staff with mobile roster access. View schedules, request time off, swap shifts, and stay connected on the go.",
-    images: ["/images/og-images/SolutionMobileApp.png"],
-  },
-};
+  "/solutions/staff-roster-mobile-app",
+);
 
 const appFeatures = [
   {
@@ -83,6 +88,11 @@ const appFeatures = [
 
 const faqItems = [
   {
+    question: "What is a staff mobile app for rostering?",
+    answer:
+      "A staff mobile app for rostering is a smartphone application that allows employees to access their work schedules, request time off, and swap shifts. It provides real-time access to roster information, instant notifications about schedule changes, and self-service features that reduce administrative burden while improving staff satisfaction and engagement.",
+  },
+  {
     question: "How do staff members download and access the mobile app?",
     answer:
       "Staff needs to be invited by admins to the roster. Once invited, they can then download the RosterLab mobile app from the <a href='https://apps.apple.com/nz/app/rosterlab/id6448819917' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>Apple App Store</a> or <a href='https://play.google.com/store/apps/details?id=com.rosterlab.app' target='_blank' rel='noopener noreferrer' class='text-blue-600 hover:underline'>Google Play Store</a>. After receiving an invitation, staff will get login credentials from their administrator to set up their account and access their personal roster.",
@@ -114,7 +124,11 @@ export default function EmployeeMobileAppPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               <div className="pb-8 lg:pb-12">
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Your roster in your pocket
+                  Staff Roster{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Mobile App
+                  </span>{" "}
+                  On The Go
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Give your staff instant access to their schedules, enable easy
@@ -210,18 +224,18 @@ export default function EmployeeMobileAppPage() {
                     Book a Demo
                   </Button>
                   <Button
-                    href="/contact"
+                    href="/pricing"
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                    analyticsLabel="Contact Us"
+                    analyticsLabel="View Pricing"
                     analyticsLocation="Solution Page Staff Roster Mobile App"
                     analyticsProperties={{
-                      cta_type: "contact",
+                      cta_type: "pricing",
                       page_name: "Staff Roster Mobile App",
                       section: "hero",
                     }}
                   >
-                    Contact Us
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -568,6 +582,21 @@ export default function EmployeeMobileAppPage() {
           </Container>
         </div>
       </>
+      
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema 
+
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Solutions", url: "/solutions" },
+          { name: "Staff Roster Mobile App" }
+
+        ]}
+
+      />
+
     </SiteLayout>
   );
 }
