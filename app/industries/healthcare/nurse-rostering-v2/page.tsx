@@ -80,13 +80,13 @@ export default function NurseRosteringV2Page() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
+      <section className="relative bg-gradient-to-br from-purple-50 via-white to-indigo-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Build{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
                   Safe, Fair
                 </span>{" "}
                 Nurse Rosters
@@ -99,13 +99,13 @@ export default function NurseRosteringV2Page() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   href="/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
+                  className="bg-purple-600 text-white hover:bg-purple-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/case-studies"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
+                  className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50"
                 >
                   Read Case Studies
                 </Button>
@@ -268,7 +268,7 @@ export default function NurseRosteringV2Page() {
             <div>
               <div className="bg-white rounded-xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Why RosterLab vs Core Schedule or Manual Rostering?
+                  Perfect for nurse rostering challenges
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -392,6 +392,16 @@ export default function NurseRosteringV2Page() {
               />
             </div>
           </div>
+
+          {/* CTA Button */}
+          <div className="max-w-md mx-auto text-center mt-12">
+            <Button
+              href="/solutions/ai-roster-generator"
+              className="bg-purple-600 text-white hover:bg-purple-700 px-8 py-3"
+            >
+              Learn about AI Rostering
+            </Button>
+          </div>
         </Container>
       </section>
 
@@ -408,8 +418,8 @@ export default function NurseRosteringV2Page() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
-              <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
+            <div className="bg-purple-50 rounded-xl p-8 border border-purple-100">
+              <div className="text-4xl font-bold text-purple-600 mb-2">90%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Reduction in Rostering Time
               </h3>
@@ -419,8 +429,10 @@ export default function NurseRosteringV2Page() {
               </p>
             </div>
 
-            <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
-              <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
+            <div className="bg-indigo-50 rounded-xl p-8 border border-indigo-100">
+              <div className="text-4xl font-bold text-indigo-600 mb-2">
+                100%
+              </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Compliance with Union Rules
               </h3>
@@ -430,8 +442,8 @@ export default function NurseRosteringV2Page() {
               </p>
             </div>
 
-            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-              <div className="text-4xl font-bold text-blue-600 mb-2">40%</div>
+            <div className="bg-violet-50 rounded-xl p-8 border border-violet-100">
+              <div className="text-4xl font-bold text-violet-600 mb-2">40%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Reduction in Turnover
               </h3>
@@ -448,7 +460,7 @@ export default function NurseRosteringV2Page() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">
               NURSE-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
@@ -465,8 +477,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 1 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">1</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold">1</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -483,8 +495,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 2 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">2</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold">2</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -501,8 +513,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 3 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">3</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold">3</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -519,8 +531,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 4 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">4</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold">4</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -537,8 +549,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 5 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">5</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold">5</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -555,8 +567,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 6 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">6</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-purple-600 font-bold">6</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -590,9 +602,9 @@ export default function NurseRosteringV2Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Feature 1 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-teal-600"
+                  className="w-6 h-6 text-purple-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -616,9 +628,9 @@ export default function NurseRosteringV2Page() {
 
             {/* Feature 2 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-cyan-600"
+                  className="w-6 h-6 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -642,9 +654,9 @@ export default function NurseRosteringV2Page() {
 
             {/* Feature 3 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-blue-600"
+                  className="w-6 h-6 text-violet-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -668,9 +680,9 @@ export default function NurseRosteringV2Page() {
 
             {/* Feature 4 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-indigo-600"
+                  className="w-6 h-6 text-purple-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -694,9 +706,9 @@ export default function NurseRosteringV2Page() {
 
             {/* Feature 5 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-purple-600"
+                  className="w-6 h-6 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -720,9 +732,9 @@ export default function NurseRosteringV2Page() {
 
             {/* Feature 6 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-pink-600"
+                  className="w-6 h-6 text-violet-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -763,7 +775,7 @@ export default function NurseRosteringV2Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
+      <section className="py-20 bg-gradient-to-r from-purple-600 to-indigo-600">
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -776,13 +788,13 @@ export default function NurseRosteringV2Page() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/book-a-demo"
-                className="bg-white text-teal-600 hover:bg-gray-100"
+                className="bg-white text-purple-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
                 href="/contact"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600"
               >
                 Talk to a Specialist
               </Button>
