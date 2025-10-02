@@ -1,7 +1,7 @@
 // URL mappings for US version
 export const US_URL_MAPPINGS: Record<string, string> = {
   // Main pages
-  "/": "/us/",
+  "/": "/us",
   "/about": "/us/about",
   "/pricing": "/us/pricing",
   "/contact": "/us/contact",
