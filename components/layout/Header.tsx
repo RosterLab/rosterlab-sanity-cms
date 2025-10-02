@@ -83,7 +83,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
         },
         { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
         { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
-        { title: "See All Industries", link: "/industries" },
       ],
     },
     { title: "Pricing", link: "/pricing" },
@@ -203,7 +202,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Core Solutions
                               </h3>
                               <div className="space-y-1">
-                                {item.subItems?.slice(0, 5).map((subItem) => (
+                                {item.subItems?.slice(0, 3).map((subItem) => (
                                   <Link
                                     key={subItem.link}
                                     href={subItem.link}
@@ -330,7 +329,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Specialized Care Column */}
                             <div>
                               <div className="space-y-1 mt-8">
-                                {item.subItems?.slice(2, 4).map((subItem) => (
+                                {item.subItems?.slice(2, 6).map((subItem) => (
                                   <Link
                                     key={subItem.link}
                                     href={subItem.link}
