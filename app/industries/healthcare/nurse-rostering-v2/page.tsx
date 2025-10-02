@@ -124,11 +124,6 @@ export default function NurseRosteringV2Page() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="py-10 bg-white">
-        <TrustedBy />
-      </section>
-
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
         <Container>
@@ -772,6 +767,11 @@ export default function NurseRosteringV2Page() {
             <FAQAccordion items={faqItems} />
           </div>
         </Container>
+      </section>
+
+      {/* Trusted By */}
+      <section className="py-10 bg-white">
+        <TrustedBy />
       </section>
 
       {/* CTA Section */}
