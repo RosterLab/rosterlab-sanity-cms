@@ -16,6 +16,7 @@ import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
 interface SubMenuItem {
   title: string;
   link: string;
+  description?: string;
 }
 
 interface NavItem {
@@ -75,6 +76,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
+        {
+          title: "Nurse Roster",
+          link: "/industries/healthcare/nurse-rostering",
+          description: "Fair, compliant nurse scheduling software",
+        },
         { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
         { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
         { title: "See All Industries", link: "/industries" },
@@ -197,7 +203,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Core Solutions
                               </h3>
                               <div className="space-y-1">
-                                {item.subItems?.slice(0, 3).map((subItem) => (
+                                {item.subItems?.slice(0, 5).map((subItem) => (
                                   <Link
                                     key={subItem.link}
                                     href={subItem.link}
@@ -670,7 +676,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               Core Solutions
                             </div>
                             <div className="space-y-1">
-                              {item.subItems.slice(0, 3).map((subItem) => (
+                              {item.subItems.slice(0, 5).map((subItem) => (
                                 <Link
                                   key={subItem.link}
                                   href={subItem.link}

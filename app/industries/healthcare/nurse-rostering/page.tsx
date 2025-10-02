@@ -408,7 +408,7 @@ export default function NurseRosteringPage() {
               </div>
               <div className="mt-8 text-center">
                 <Button
-                  href="/blog/nurse-rostering-case-study"
+                  href="/case-studies"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Read case study
