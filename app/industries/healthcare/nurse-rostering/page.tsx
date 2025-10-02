@@ -45,7 +45,7 @@ const faqItems = [
   {
     question: "How does RosterLab maintain safe nurse-to-patient ratios?",
     answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI won't generate rosters that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward, shift type, and patient acuity levels.",
+      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag rosters that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
   },
   {
     question: "Can nurses submit their own preferences?",
@@ -53,25 +53,19 @@ const faqItems = [
       "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's self-rostering feature lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
   },
   {
-    question: "How does RosterLab handle union agreements and awards?",
-    answer:
-      "You can configure all your union rules, awards, and enterprise agreements into the system. RosterLab enforces these automatically - including minimum rest periods, maximum consecutive shifts, penalty rates, and rotation requirements. Every roster is guaranteed to be compliant before publication.",
-  },
-  {
     question: "What happens when a nurse calls in sick at the last minute?",
     answer:
       "RosterLab identifies replacement nurses who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe ratios by alerting you if a shift can't be safely covered.",
   },
   {
-    question:
-      "How does RosterLab prevent burnout and ensure fair shift distribution?",
+    question: "How does RosterLab prevent roster-based favoritism or bullying?",
     answer:
-      "RosterLab tracks workload metrics across your team and automatically balances night shifts, weekends, and high-intensity shifts equitably. You can set maximum shift limits, enforce rest periods, and ensure no nurse is consistently assigned the most challenging shifts. The transparency helps build trust with your team.",
+      "RosterLab uses transparent, algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
   },
   {
-    question: "Can RosterLab handle ICU-trained or specialty-trained nurses?",
+    question: "Can RosterLab help identify knowledge silos and training gaps?",
     answer:
-      "Absolutely. You can define skill levels for each nurse (ICU-trained, paediatric-trained, charge nurse, etc.) and set requirements for each shift and ward. RosterLab ensures specialty shifts always have appropriately trained nurses, preventing dangerous skill gaps.",
+      "Yes. RosterLab's skills matrix gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify succession risks, and plan targeted cross-training. The system alerts you when key skills are approaching dangerous concentration levels, helping you build a more resilient team.",
   },
 ];
 
@@ -79,13 +73,13 @@ export default function NurseRosteringV2Page() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-50 via-white to-indigo-50 py-20">
+      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Build{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Safe, Fair
                 </span>{" "}
                 Nurse Rosters
@@ -98,13 +92,13 @@ export default function NurseRosteringV2Page() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   href="/book-a-demo"
-                  className="bg-purple-600 text-white hover:bg-purple-700"
+                  className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/case-studies"
-                  className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50"
+                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
                   Read Case Studies
                 </Button>
@@ -112,8 +106,8 @@ export default function NurseRosteringV2Page() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/nurse-roster.svg"
-                alt="Safe nurse rostering software"
+                src="/images/illustration/nursing.svg"
+                alt="Nurse rostering software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -136,12 +130,12 @@ export default function NurseRosteringV2Page() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Pain Point 1: Overwork */}
-            <div className="bg-red-50 rounded-xl p-6 border-2 border-red-100">
-              <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-10 h-10 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -154,7 +148,7 @@ export default function NurseRosteringV2Page() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Chronic Overwork
               </h3>
               <p className="text-gray-600">
@@ -164,10 +158,10 @@ export default function NurseRosteringV2Page() {
             </div>
 
             {/* Pain Point 2: Unsafe Rosters */}
-            <div className="bg-orange-50 rounded-xl p-6 border-2 border-orange-100">
-              <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-10 h-10 text-cyan-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -180,7 +174,7 @@ export default function NurseRosteringV2Page() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Unsafe Staffing Ratios
               </h3>
               <p className="text-gray-600">
@@ -190,10 +184,10 @@ export default function NurseRosteringV2Page() {
             </div>
 
             {/* Pain Point 3: Union Rule Violations */}
-            <div className="bg-amber-50 rounded-xl p-6 border-2 border-amber-100">
-              <div className="w-12 h-12 bg-amber-500 rounded-lg flex items-center justify-center mb-4">
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-10 h-10 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -206,20 +200,20 @@ export default function NurseRosteringV2Page() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Complex Compliance
               </h3>
               <p className="text-gray-600">
-                Navigating union agreements, awards, and enterprise bargaining
-                rules while maintaining flexibility is near impossible manually.
+                Navigating union agreements, awards, and policy rules while
+                maintaining flexibility is near impossible manually.
               </p>
             </div>
 
             {/* Pain Point 4: Skill Mix Gaps */}
-            <div className="bg-yellow-50 rounded-xl p-6 border-2 border-yellow-100">
-              <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mb-4">
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-10 h-10 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -232,7 +226,7 @@ export default function NurseRosteringV2Page() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Skill Mix Shortfalls
               </h3>
               <p className="text-gray-600">
@@ -340,8 +334,8 @@ export default function NurseRosteringV2Page() {
                         Union Rule Compliance Guaranteed
                       </p>
                       <p className="text-gray-600 text-sm">
-                        Every award, enterprise agreement, and rest period rule
-                        is automatically enforced - no manual checking needed
+                        Union rule, contractual agreement, and rest period rule
+                        is automatically enforced - no manual checking needed.
                       </p>
                     </div>
                   </div>
@@ -367,8 +361,37 @@ export default function NurseRosteringV2Page() {
                         Real Self-Rostering for Nurses
                       </p>
                       <p className="text-gray-600 text-sm">
-                        Nurses can bid for shifts, submit preferences, and see
+                        Nurses can swap shifts, submit preferences, and see
                         their roster on mobile - building autonomy and trust
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={3}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">
+                        End Roster Instability
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        When last-minute changes occur, RosterLab instantly
+                        identifies compliant replacements that maintain safe
+                        nurse-to-patient ratios and prevent dangerous
+                        understaffing
                       </p>
                     </div>
                   </div>
@@ -391,7 +414,7 @@ export default function NurseRosteringV2Page() {
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
               href="/solutions/ai-roster-generator"
-              className="bg-purple-600 text-white hover:bg-purple-700 px-8 py-3"
+              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
               Learn about AI Rostering
             </Button>
@@ -412,8 +435,8 @@ export default function NurseRosteringV2Page() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-purple-50 rounded-xl p-8 border border-purple-100">
-              <div className="text-4xl font-bold text-purple-600 mb-2">90%</div>
+            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
+              <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Reduction in Rostering Time
               </h3>
@@ -423,27 +446,26 @@ export default function NurseRosteringV2Page() {
               </p>
             </div>
 
-            <div className="bg-indigo-50 rounded-xl p-8 border border-indigo-100">
-              <div className="text-4xl font-bold text-indigo-600 mb-2">
-                100%
-              </div>
+            <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
+              <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Compliance with Union Rules
+                Stable Staffing
               </h3>
               <p className="text-gray-600">
-                Every roster meets award requirements, rest periods, and maximum
-                shift limits - eliminating compliance disputes.
+                Safe nurse-to-patient ratios maintained across every shift, with
+                instant alerts and compliant replacement suggestions when
+                changes occur.
               </p>
             </div>
 
-            <div className="bg-violet-50 rounded-xl p-8 border border-violet-100">
-              <div className="text-4xl font-bold text-violet-600 mb-2">40%</div>
+            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
+              <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduction in Turnover
+                Transparent Roster Assignment
               </h3>
               <p className="text-gray-600">
-                Fairer rosters, better work-life balance, and respected
-                preferences lead to happier nurses who stay longer.
+                Fair, automated rostering eliminates favoritism and bullying
+                through transparent, bias-free shift allocation.
               </p>
             </div>
           </div>
@@ -454,7 +476,7 @@ export default function NurseRosteringV2Page() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-purple-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
               NURSE-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
@@ -471,8 +493,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 1 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 font-bold">1</span>
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">1</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -489,8 +511,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 2 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 font-bold">2</span>
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">2</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -507,8 +529,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 3 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 font-bold">3</span>
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">3</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -525,8 +547,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 4 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 font-bold">4</span>
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">4</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -543,8 +565,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 5 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 font-bold">5</span>
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">5</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -561,8 +583,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 6 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-600 font-bold">6</span>
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">6</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -575,6 +597,19 @@ export default function NurseRosteringV2Page() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-6">
+                Ready to streamline your nurse rostering?
+              </p>
+              <Button
+                href="/book-a-demo"
+                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+              >
+                See How It Works
+              </Button>
             </div>
           </div>
         </Container>
@@ -596,9 +631,9 @@ export default function NurseRosteringV2Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Feature 1 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-purple-600"
+                  className="w-6 h-6 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -616,15 +651,15 @@ export default function NurseRosteringV2Page() {
               </h3>
               <p className="text-gray-600">
                 Configurable patient-to-nurse ratios by ward and shift. The
-                system won't allow unsafe rosters to be published.
+                system will flag unsafe and understaffed rosters.
               </p>
             </div>
 
             {/* Feature 2 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-indigo-600"
+                  className="w-6 h-6 text-cyan-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -641,16 +676,17 @@ export default function NurseRosteringV2Page() {
                 Skill Mix Management
               </h3>
               <p className="text-gray-600">
-                Track ICU-trained, paediatric, and specialty-certified nurses.
-                Ensure every shift has the right skills present.
+                Ensure every shift has the right skills present by creating
+                rules to ensure a balanced mix of skills is present on your
+                roster.
               </p>
             </div>
 
             {/* Feature 3 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-violet-600"
+                  className="w-6 h-6 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -667,16 +703,16 @@ export default function NurseRosteringV2Page() {
                 Union Rule Automation
               </h3>
               <p className="text-gray-600">
-                Enforce award rules, minimum rest periods, maximum consecutive
-                shifts, and penalty rates automatically.
+                Enforce rules, minimum rest periods, maximum consecutive shifts,
+                and contractual obligations.
               </p>
             </div>
 
             {/* Feature 4 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-purple-600"
+                  className="w-6 h-6 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -693,16 +729,16 @@ export default function NurseRosteringV2Page() {
                 Mobile Self-Rostering
               </h3>
               <p className="text-gray-600">
-                Nurses submit preferences, bid for open shifts, and manage
+                Nurses submit preferences, apply for open shifts, and manage
                 time-off requests directly from their phones.
               </p>
             </div>
 
             {/* Feature 5 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-indigo-600"
+                  className="w-6 h-6 text-cyan-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -726,9 +762,9 @@ export default function NurseRosteringV2Page() {
 
             {/* Feature 6 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-violet-600"
+                  className="w-6 h-6 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -774,7 +810,7 @@ export default function NurseRosteringV2Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-indigo-600">
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -787,13 +823,13 @@ export default function NurseRosteringV2Page() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/book-a-demo"
-                className="bg-white text-purple-600 hover:bg-gray-100"
+                className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
                 href="/contact"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
                 Talk to a Specialist
               </Button>
