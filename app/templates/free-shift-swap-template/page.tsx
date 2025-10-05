@@ -313,6 +313,29 @@ export default async function FreeShiftSwapTemplatePage() {
                 </svg>
               </Link>
             </div>
+
+            {/* Digital Shift Swaps CTA */}
+            <div className="mt-6 text-center">
+              <Link
+                href="/feature/shift-swaps"
+                className="inline-flex items-center justify-center rounded-md bg-white border-2 border-blue-600 px-8 py-3 text-base font-medium text-blue-600 shadow-sm hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+              >
+                Discover Digital Shift Swaps
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
           </Container>
         </section>
 
