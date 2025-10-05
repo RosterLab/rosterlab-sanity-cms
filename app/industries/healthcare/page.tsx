@@ -776,7 +776,10 @@ export default async function HealthcarePage() {
               All Healthcare Departments
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/industries/healthcare/nurse-rostering"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
@@ -798,7 +801,7 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">Nurses</h4>
-              </div>
+              </Link>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
