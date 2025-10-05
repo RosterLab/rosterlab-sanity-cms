@@ -117,7 +117,7 @@ export default function SpreadsheetSorcererClient({
   const generatePDF = useCallback(async () => {
     try {
       // Dynamically import jsPDF
-      const { jsPDF } = await import("jspdf");
+      const jsPDF = (await import("jspdf")).default;
       const doc = new jsPDF();
 
       // Helper function to load images as base64
