@@ -22,14 +22,14 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Free Staff Timesheet Template - RosterLab",
   description:
-    "Download our free staff timesheet template for Excel. Track employee hours, calculate overtime, and manage payroll with our professionally designed template.",
+    "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
   alternates: {
     canonical: "https://rosterlab.com/templates/free-staff-timesheet-template",
   },
   openGraph: {
     title: "Free Staff Timesheet Template - RosterLab",
     description:
-      "Download our free staff timesheet template for Excel. Track employee hours, calculate overtime, and manage payroll with our professionally designed template.",
+      "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
     images: [
       {
         url: "/images/og-images/timesheet.png",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Staff Timesheet Template - RosterLab",
     description:
-      "Download our free staff timesheet template for Excel. Track employee hours, calculate overtime, and manage payroll with our professionally designed template.",
+      "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
     images: ["/images/og-images/timesheet.png"],
   },
 };
@@ -90,8 +90,7 @@ const features = [
 
 const benefits = [
   "Track employee hours accurately",
-  "Calculate staff hours",
-  "Calculate overtime",
+  "Track overtime",
   "Printable and easy to edit",
   "Customisable for your business needs",
 ];
