@@ -4,36 +4,43 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import MobileAppPreferencesModuleStatic from "@/components/sections/animations/MobileAppPreferencesModuleStatic";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Self-Scheduling - RosterLab",
-  description:
-    "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/self-scheduling",
-  },
-  openGraph: {
-    title: "Self-Scheduling - RosterLab",
+const pathname = "/feature/self-scheduling";
+
+export const metadata = withHreflang(
+  {
+    title: "AI-Powered Self-Scheduling - RosterLab",
     description:
-      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
-    type: "website",
-    url: "https://rosterlab.com/feature/self-scheduling",
-    images: [
-      {
-        url: "/images/og-images/SelfScheduling.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+      "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+    alternates: {
+      canonical: "https://rosterlab.com/feature/self-scheduling",
+    },
+    openGraph: {
+      title: "AI-Powered Self-Scheduling - RosterLab",
+      description:
+        "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+      type: "website",
+      url: "https://rosterlab.com/feature/self-scheduling",
+      images: [
+        {
+          url: "/images/og-images/SelfScheduling.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI-Powered Self-Scheduling - RosterLab",
+      description:
+        "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
+      images: ["/images/og-images/SelfScheduling.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Self-Scheduling - RosterLab",
-    description:
-      "Empower your staff with flexible self-scheduling. Let employees choose shifts that work for them while maintaining operational requirements.",
-    images: ["/images/og-images/SelfScheduling.png"],
-  },
-};
+  pathname,
+);
 
 export default function SelfSchedulingPage() {
   return (
@@ -45,7 +52,10 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  AI-powered self-scheduling
+                  AI-Powered{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Self-Scheduling
+                  </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
@@ -67,17 +77,17 @@ export default function SelfSchedulingPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-scheduling"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
-                    analyticsLabel="Try it for free"
+                    analyticsLabel="View Pricing"
                     analyticsLocation="Feature Page Self Scheduling"
                     analyticsProperties={{
-                      cta_type: "signup",
+                      cta_type: "pricing",
                       page_name: "Self Scheduling",
                       section: "hero",
                     }}
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -131,7 +141,13 @@ export default function SelfSchedulingPage() {
                 </ul>
               </div>
               <div className="relative flex items-center justify-center">
-                <MobileAppPreferencesModuleStatic />
+                <Image
+                  src="/images/new-product-images/ png/self-scheduling/1-meet-staffing-needs.png"
+                  alt="Easily meet your staffing needs"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
               </div>
             </div>
           </Container>
@@ -143,11 +159,11 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/product/quality.webp"
+                  src="/images/new-product-images/ png/self-scheduling/2-compliance.png"
                   alt="AI-Optimised Compliant Rosters illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -185,7 +201,7 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Self-Roster The Way You Want To */}
+        {/* Feature 3: Self-Schedule The Way You Want To */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -223,11 +239,11 @@ export default function SelfSchedulingPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/self-scheduling/preference.webp"
+                  src="/images/new-product-images/ png/self-scheduling/3-preference-collection.png"
                   alt="Preference collection illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto scale-[0.8]"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -240,16 +256,16 @@ export default function SelfSchedulingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/self-scheduling/self-roster.webp"
-                  alt="Self-Roster The Way You Want To illustration"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  src="/images/new-product-images/ png/self-scheduling/4-self-schedule.png"
+                  alt="Self-Schedule The Way You Want To illustration"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Self-Roster The Way You Want To
+                  Self-Schedule The Way You Want To
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Plan your ideal roster by specifying preferred shifts, days
@@ -287,7 +303,7 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="text-center text-white">
               <h2 className="text-4xl font-bold mb-12">
-                The Results Speak for Themselves
+                Staff Preferences with Self Scheduling
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -312,7 +328,7 @@ export default function SelfSchedulingPage() {
           <Container>
             <div className="text-center bg-white rounded-3xl shadow-xl p-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Ready to Empower Your Team?
+                Ready to Empower Your Team With Self-Scheduling?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Give your staff the flexibility they want while maintaining the
@@ -350,6 +366,16 @@ export default function SelfSchedulingPage() {
           </Container>
         </div>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Self Scheduling" },
+        ]}
+      />
     </SiteLayout>
   );
 }

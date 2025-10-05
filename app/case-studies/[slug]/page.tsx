@@ -15,6 +15,7 @@ import RelatedPosts from "@/components/blog/RelatedPosts";
 import { draftMode } from "next/headers";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
+import ArticleSchema from "@/components/seo/ArticleSchema";
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -26,6 +27,7 @@ interface CaseStudyPageProps {
 const caseStudyQuery = groq`
   *[_type == "post" && slug.current == $slug && "case-studies" in categories[]->slug.current][0] {
     _id,
+    _updatedAt,
     title,
     slug,
     excerpt,
@@ -166,6 +168,10 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   const readingTime = calculateReadingTime(post.body);
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
+  const articleUrl = `${baseUrl}/case-studies/${slug}`;
+  const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
+
   return (
     <article>
       <HubSpotFormListener />
@@ -175,6 +181,15 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         author={post.author?.name}
         category="Case Studies"
         publishedAt={post.publishedAt}
+      />
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt || ""}
+        author={{ name: post.author?.name || "RosterLab" }}
+        publishedTime={post.publishedAt}
+        modifiedTime={post._updatedAt}
+        image={imageUrl}
+        url={articleUrl}
       />
       {/* Purple Gradient Header */}
       <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">

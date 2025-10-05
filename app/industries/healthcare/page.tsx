@@ -10,37 +10,42 @@ import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
 import { urlFor } from "@/sanity/lib/client";
 import HealthcareTestimonials from "@/components/sections/HealthcareTestimonials";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Rostering Software for Healthcare - RosterLab",
-  description:
-    "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-  alternates: {
-    canonical: "https://rosterlab.com/industries/healthcare",
-  },
-  openGraph: {
+export const metadata = withHreflang(
+  {
     title: "Rostering Software for Healthcare - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    type: "website",
-    url: "https://rosterlab.com/industries/healthcare",
-    images: [
-      {
-        url: "/images/og-images/IndustryHealthcare.png",
-        width: 1200,
-        height: 630,
-        alt: "Healthcare workforce scheduling with RosterLab",
-      },
-    ],
+    alternates: {
+      canonical: "https://rosterlab.com/industries/healthcare",
+    },
+    openGraph: {
+      title: "Rostering Software for Healthcare - RosterLab",
+      description:
+        "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+      type: "website",
+      url: "https://rosterlab.com/industries/healthcare",
+      images: [
+        {
+          url: "/images/og-images/IndustryHealthcare.png",
+          width: 1200,
+          height: 630,
+          alt: "Healthcare workforce scheduling with RosterLab",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Rostering Software for Healthcare - RosterLab",
+      description:
+        "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+      images: ["/images/og-images/IndustryHealthcare.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rostering Software for Healthcare - RosterLab",
-    description:
-      "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-    images: ["/images/og-images/IndustryHealthcare.png"],
-  },
-};
+  "/industries/healthcare",
+);
 
 // Query for the 3 most recent case studies
 const recentCaseStudiesQuery = groq`
@@ -116,9 +121,6 @@ export default async function HealthcarePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                Roster Solutions
-                <br />
-                for{" "}
                 <span
                   className="text-transparent bg-clip-text"
                   style={{
@@ -126,8 +128,9 @@ export default async function HealthcarePage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Healthcare
-                </span>
+                  Healthcare Rostering
+                </span>{" "}
+                Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
                 Less time rostering, more time caring for patients. We
@@ -216,7 +219,7 @@ export default async function HealthcarePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
-              href="/feature/auto-roster-generation"
+              href="/feature/automated-rostering"
               className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -624,7 +627,7 @@ export default async function HealthcarePage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/solutions/ai-staff-scheduling"
+                  href="/solutions/ai-roster-generator"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -1069,7 +1072,7 @@ export default async function HealthcarePage() {
 
             <div className="mt-16 text-center">
               <Button
-                href="/solutions/ai-staff-scheduling"
+                href="/solutions/ai-roster-generator"
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
                 Explore AI Rostering Features
@@ -1257,7 +1260,7 @@ export default async function HealthcarePage() {
               Schedule a Healthcare Demo
             </Button>
             <Button
-              href="/solutions/ai-staff-scheduling"
+              href="/solutions/ai-roster-generator"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
               Learn more about AI rostering
@@ -1265,6 +1268,16 @@ export default async function HealthcarePage() {
           </div>
         </Container>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Industries", url: "/industries" },
+          { name: "Healthcare" },
+        ]}
+      />
     </SiteLayout>
   );
 }

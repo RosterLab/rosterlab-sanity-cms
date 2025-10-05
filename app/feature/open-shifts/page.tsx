@@ -4,38 +4,55 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
+import { withHreflang } from "@/components/seo/HreflangTags";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = {
-  title: "Open Shifts - RosterLab",
-  description:
-    "Instantly fill last-minute staffing gaps with RosterLab's Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes.",
-  alternates: {
-    canonical: "https://rosterlab.com/feature/open-shifts",
-  },
-  openGraph: {
-    title: "Open Shifts: Fill Last-Minute Gaps Instantly",
+const pathname = "/feature/open-shifts";
+
+export const metadata = withHreflang(
+  {
+    title: "Open Shifts - RosterLab",
     description:
-      "Instantly fill last-minute staffing gaps with RosterLab's Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.",
-    type: "website",
-    url: "https://rosterlab.com/feature/open-shifts",
-    images: [
-      {
-        url: "/images/og-images/FeatureOpenShifts.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+      "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+    alternates: {
+      canonical: "https://rosterlab.com/feature/open-shifts",
+    },
+    openGraph: {
+      title: "Open Shifts - RosterLab",
+      description:
+        "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+      type: "website",
+      url: "https://rosterlab.com/feature/open-shifts",
+      images: [
+        {
+          url: "/images/og-images/FeatureOpenShifts.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Open Shifts - RosterLab",
+      description:
+        "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
+      images: ["/images/og-images/FeatureOpenShifts.png"],
+    },
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Open Shifts: Fill Last-Minute Gaps Instantly",
-    description:
-      "Instantly fill last-minute staffing gaps with RosterLab's Open Shifts feature. Broadcast available shifts to qualified staff and get them filled in minutes, not hours.",
-    images: ["/images/og-images/FeatureOpenShifts.png"],
-  },
-};
+  pathname,
+);
 
 const faqItems = [
+  {
+    question: "What is an open shift?",
+    answer:
+      "An open shift is an unassigned work period that needs to be filled. These typically occur when an employee calls in sick, takes unexpected leave, or when you have last-minute staffing needs. Open shifts can be broadcast to qualified staff who can then volunteer to take the shift.",
+  },
+  {
+    question: "Why are open shifts important?",
+    answer:
+      "Open shifts are critical for maintaining adequate staffing levels and ensuring quality service. They help you avoid expensive agency staff, reduce overtime costs, and give employees opportunities for extra hours. Quick filling of open shifts prevents service disruptions and maintains team morale by avoiding understaffing.",
+  },
   {
     question: "How quickly can open shifts be filled?",
     answer:
@@ -78,11 +95,16 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Fill Open Shifts Instantly
+                  Fill{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
+                    Open Shifts
+                  </span>{" "}
+                  Instantly
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Broadcast open shifts to qualified staff and fill gaps in
-                  minutes, not hours.
+                  minutes, not hours. Maintain adequate staffing levels and
+                  coverage.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -92,10 +114,10 @@ export default function OpenShiftsPage() {
                     Book A Demo
                   </Button>
                   <Button
-                    href="/solutions/free-staff-scheduling"
+                    href="/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
-                    Try it for free
+                    View Pricing
                   </Button>
                 </div>
               </div>
@@ -118,7 +140,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Instant Shift Broadcasting
+                  Instant Open Shift Broadcasting
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Post open shifts with one click and instantly notify all
@@ -157,7 +179,7 @@ export default function OpenShiftsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/free-staff-mobile.svg"
+                  src="/images/new-product-images/ png/open-shifts/1-shift-broadcasting.png"
                   alt="Instant Shift Broadcasting"
                   width={500}
                   height={500}
@@ -174,11 +196,11 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/illustration/matching.svg"
+                  src="/images/new-product-images/ png/open-shifts/2-fill-gaps.png"
                   alt="Smart Employee Matching"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
               <div className="order-1 lg:order-2">
@@ -260,11 +282,11 @@ export default function OpenShiftsPage() {
               </div>
               <div>
                 <Image
-                  src="/images/illustration/Events-pana.svg"
+                  src="/images/new-product-images/ png/open-shifts/3-priortise-urgent-shifts.png"
                   alt="Prioritise urgent shifts"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -275,7 +297,16 @@ export default function OpenShiftsPage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/new-product-images/ png/open-shifts/4-transparent-assignment.png"
+                  alt="First-Come First-Served Assignment"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Fair & Transparent Assignment
                 </h2>
@@ -297,15 +328,6 @@ export default function OpenShiftsPage() {
                     </span>
                   </li>
                 </ul>
-              </div>
-              <div>
-                <Image
-                  src="/images/illustration/Choose-pana.svg"
-                  alt="First-Come First-Served Assignment"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto"
-                />
               </div>
             </div>
           </Container>
@@ -379,6 +401,16 @@ export default function OpenShiftsPage() {
           </Container>
         </div>
       </div>
+
+      {/* Hidden Breadcrumb Schema for SEO */}
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Features", url: "/feature" },
+          { name: "Open Shifts" },
+        ]}
+      />
     </SiteLayout>
   );
 }

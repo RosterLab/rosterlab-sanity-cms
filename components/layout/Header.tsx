@@ -33,25 +33,35 @@ export default function Header({ navItems = [] }: HeaderProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
 
+  // Determine if this is a US page by checking if navItems contain US-specific links
+  const isUSVersion = navItems.some(
+    (item) =>
+      item.link?.includes("/us/") ||
+      item.subItems?.some((sub) => sub.link.includes("/us/")),
+  );
+  const logoLink = isUSVersion ? "/us" : "/";
+  const contactLink = isUSVersion ? "/us/contact" : "/contact";
+  const demoLink = isUSVersion ? "/us/book-a-demo" : "/book-a-demo";
+
   const defaultNavItems: NavItem[] = [
     {
       title: "Solutions",
       subItems: [
         {
-          title: "AI-generated optimised schedules",
-          link: "/solutions/ai-staff-scheduling",
+          title: "AI Staff Roster Generator",
+          link: "/solutions/ai-roster-generator",
         },
         {
-          title: "Free For Manual Digital Scheduling",
-          link: "/solutions/free-staff-scheduling",
+          title: "Free Staff Roster Software",
+          link: "/solutions/free-staff-rostering-software",
         },
         {
-          title: "Employee Mobile App",
+          title: "Staff Roster Mobile App",
           link: "/solutions/staff-roster-mobile-app",
         },
         {
-          title: "Auto Roster Generation",
-          link: "/feature/auto-roster-generation",
+          title: "Automated Rostering",
+          link: "/feature/automated-rostering",
         },
         { title: "Open Shifts", link: "/feature/open-shifts" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
@@ -63,10 +73,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Industries",
       subItems: [
-        { title: "Healthcare", link: "/industries/healthcare" },
-        { title: "ICU/ED", link: "/industries/healthcare/ed-icu" },
-        { title: "Aged Care", link: "/industries/healthcare/aged-care" },
-        { title: "Radiology", link: "/industries/healthcare/radiology" },
+        { title: "Healthcare Roster", link: "/industries/healthcare" },
+        { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
+        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
         { title: "See All Industries", link: "/industries" },
       ],
     },
@@ -101,7 +111,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
-              href="/"
+              href={logoLink}
               className="flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -187,39 +197,31 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Core Solutions
                               </h3>
                               <div className="space-y-1">
-                                <Link
-                                  href="/solutions/ai-staff-scheduling"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    AI-Powered Scheduling
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Automated schedules optimized for your team
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/solutions/free-staff-scheduling"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Manual Digital Scheduling
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Free digital scheduling tool
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/solutions/staff-roster-mobile-app"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Employee Mobile App
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Mobile roster access for staff
-                                  </div>
-                                </Link>
+                                {item.subItems?.slice(0, 3).map((subItem) => (
+                                  <Link
+                                    key={subItem.link}
+                                    href={subItem.link}
+                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                  >
+                                    <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                      {subItem.title}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {(subItem as any).description ||
+                                        (subItem.title ===
+                                        "AI Staff Roster Generator"
+                                          ? "Automated schedules optimized for your team"
+                                          : subItem.title ===
+                                              "Free Staff Roster Software"
+                                            ? "Free digital scheduling tool"
+                                            : subItem.title.includes(
+                                                  "Mobile App",
+                                                )
+                                              ? "Keep your team connected with mobile schedules"
+                                              : "")}
+                                    </div>
+                                  </Link>
+                                ))}
                               </div>
                             </div>
 
@@ -229,54 +231,17 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Features
                               </h3>
                               <div className="space-y-1 max-h-80 overflow-y-auto">
-                                <Link
-                                  href="/feature/auto-roster-generation"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Auto Roster Generation
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/open-shifts"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Open Shifts
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/shift-swaps"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Shift Swaps
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/leave-requests"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Leave Requests
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/self-scheduling"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Staff Preferences
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/feature/re-rostering"
-                                  className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                    Re-Rostering
-                                  </div>
-                                </Link>
+                                {item.subItems?.slice(3).map((subItem) => (
+                                  <Link
+                                    key={subItem.link}
+                                    href={subItem.link}
+                                    className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                  >
+                                    <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
+                                      {subItem.title}
+                                    </div>
+                                  </Link>
+                                ))}
                               </div>
                             </div>
                           </div>
@@ -285,7 +250,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
                               <Link
-                                href="/contact"
+                                href={contactLink}
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
                                 Speak to our team
@@ -304,7 +269,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/book-a-demo"
+                                href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -322,60 +287,78 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Healthcare Sectors
                               </h3>
                               <div className="space-y-1">
-                                <Link
-                                  href="/industries/healthcare"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Healthcare
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    General healthcare solutions that handle
-                                    complex workforces and frontline workers
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/industries/healthcare/ed-icu"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    ICU/ED
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Build ICU/ED rosters that support better
-                                    continuity of care for patients
-                                  </div>
-                                </Link>
+                                {item.subItems?.slice(0, 2).map((subItem) => (
+                                  <Link
+                                    key={subItem.link}
+                                    href={subItem.link}
+                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                  >
+                                    <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                      {isUSVersion &&
+                                      (subItem.title === "Healthcare Roster" ||
+                                        subItem.title === "Healthcare")
+                                        ? "Healthcare Scheduling"
+                                        : isUSVersion &&
+                                            (subItem.title ===
+                                              "ICU/ED Roster" ||
+                                              subItem.title === "ICU/ED")
+                                          ? "ICU/ED Scheduling"
+                                          : subItem.title}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {subItem.title === "Healthcare Roster" ||
+                                      subItem.title === "Healthcare"
+                                        ? "General healthcare solutions that handle complex workforces"
+                                        : subItem.title === "ICU/ED Roster" ||
+                                            subItem.title === "ICU/ED"
+                                          ? isUSVersion
+                                            ? "Build ICU/ED schedules that support better continuity of care"
+                                            : "Build ICU/ED rosters that support better continuity of care"
+                                          : ""}
+                                    </div>
+                                  </Link>
+                                ))}
                               </div>
                             </div>
 
                             {/* Specialized Care Column */}
                             <div>
                               <div className="space-y-1 mt-8">
-                                <Link
-                                  href="/industries/healthcare/aged-care"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Aged Care
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Make better use of staffing hours with
-                                    rosters for aged care facilities
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/industries/healthcare/radiology"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Radiology
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Balance your teams with the right skill mix
-                                    with compliant radiology rosters
-                                  </div>
-                                </Link>
+                                {item.subItems?.slice(2, 4).map((subItem) => (
+                                  <Link
+                                    key={subItem.link}
+                                    href={subItem.link}
+                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                  >
+                                    <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                      {isUSVersion &&
+                                      (subItem.title === "Aged Care Roster" ||
+                                        subItem.title === "Aged Care")
+                                        ? "Senior Care Scheduling"
+                                        : isUSVersion &&
+                                            (subItem.title ===
+                                              "Radiology Roster" ||
+                                              subItem.title === "Radiology")
+                                          ? "Radiology Scheduling"
+                                          : subItem.title}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {(subItem as any).description ||
+                                        (subItem.title.includes("Aged Care") ||
+                                        subItem.title === "Senior Care"
+                                          ? isUSVersion
+                                            ? "Efficient scheduling for nursing homes & assisted living"
+                                            : "Make better use of staffing hours with rosters for aged care facilities"
+                                          : subItem.title ===
+                                                "Radiology Roster" ||
+                                              subItem.title === "Radiology"
+                                            ? isUSVersion
+                                              ? "Build radiology schedules with the right skill mix and compliance"
+                                              : "Balance your teams with the right skill mix with compliant radiology rosters"
+                                            : "")}
+                                    </div>
+                                  </Link>
+                                ))}
                               </div>
                             </div>
                           </div>
@@ -384,7 +367,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
                               <Link
-                                href="/industries"
+                                href={
+                                  item.subItems?.find((sub) =>
+                                    sub.title.includes("All Industries"),
+                                  )?.link || "/industries"
+                                }
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
                                 View all industries
@@ -403,7 +390,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/book-a-demo"
+                                href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -421,39 +408,33 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Content & Learning
                               </h3>
                               <div className="space-y-1">
-                                <Link
-                                  href="/blog"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Blog
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Insights and best practices
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/case-studies"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Case Studies
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Success stories from our customers
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/newsroom"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    Newsroom
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Latest updates and announcements
-                                  </div>
-                                </Link>
+                                {item.subItems
+                                  ?.filter(
+                                    (sub) =>
+                                      sub.title === "Blog" ||
+                                      sub.title === "Case Studies" ||
+                                      sub.title === "Newsroom",
+                                  )
+                                  .map((subItem) => (
+                                    <Link
+                                      key={subItem.link}
+                                      href={subItem.link}
+                                      className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                    >
+                                      <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                        {subItem.title}
+                                      </div>
+                                      <div className="text-sm text-gray-600">
+                                        {subItem.title === "Blog"
+                                          ? "Insights and best practices"
+                                          : subItem.title === "Case Studies"
+                                            ? "Success stories from our customers"
+                                            : subItem.title === "Newsroom"
+                                              ? "Latest updates and announcements"
+                                              : ""}
+                                      </div>
+                                    </Link>
+                                  ))}
                               </div>
                             </div>
 
@@ -463,51 +444,39 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Tools
                               </h3>
                               <div className="space-y-1">
-                                <Link
-                                  href="/tools/roi-calculator"
-                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
-                                    ROI Calculator
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Calculate your savings
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/schedge"
-                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
-                                    Schedge
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    We love rostering so much that we made a
-                                    mini game - Try it out!
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/tools/staff-scheduling-personality-quiz"
-                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
-                                    Personality Test
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Discover your scheduling style
-                                  </div>
-                                </Link>
-                                <Link
-                                  href="/templates/free-staff-roster-template-excel"
-                                  className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
-                                >
-                                  <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
-                                    Free Excel Template
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    Download our roster template
-                                  </div>
-                                </Link>
+                                {item.subItems
+                                  ?.filter(
+                                    (sub) =>
+                                      sub.title !== "Blog" &&
+                                      sub.title !== "Case Studies" &&
+                                      sub.title !== "Newsroom",
+                                  )
+                                  .map((subItem) => (
+                                    <Link
+                                      key={subItem.link}
+                                      href={subItem.link}
+                                      className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
+                                    >
+                                      <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
+                                        {subItem.title}
+                                      </div>
+                                      <div className="text-sm text-gray-600">
+                                        {subItem.title.includes("Calculator")
+                                          ? "Calculate your savings"
+                                          : subItem.title === "Schedge"
+                                            ? "We love rostering so much that we made a mini game - Try it out!"
+                                            : subItem.title.includes(
+                                                  "Personality Test",
+                                                )
+                                              ? "Discover your scheduling style"
+                                              : subItem.title.includes(
+                                                    "Excel Template",
+                                                  )
+                                                ? "Download our roster template"
+                                                : ""}
+                                      </div>
+                                    </Link>
+                                  ))}
                               </div>
                             </div>
                           </div>
@@ -535,7 +504,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </svg>
                               </Link>
                               <Link
-                                href="/book-a-demo"
+                                href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
                                 Get a demo
@@ -566,20 +535,24 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
           {/* Header Buttons */}
           <div className="hidden xl:flex items-center xl:space-x-2 2xl:space-x-4">
-            <Link
-              href="/contact"
-              className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
-              onClick={() =>
-                trackSmartButtonClick(
-                  "Contact Us",
-                  "/contact",
-                  "Header Desktop",
-                )
-              }
-            >
-              Contact Us
-            </Link>
-            <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
+            {!isUSVersion && (
+              <>
+                <Link
+                  href={contactLink}
+                  className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      "Contact Us",
+                      contactLink,
+                      "Header Desktop",
+                    )
+                  }
+                >
+                  Contact Us
+                </Link>
+                <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
+              </>
+            )}
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors flex items-center"
@@ -599,14 +572,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/book-a-demo"
+              href={demoLink}
               className="bg-blue-600 text-white hover:bg-blue-700 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
               onClick={() =>
-                trackSmartButtonClick(
-                  "Book a Demo",
-                  "/book-a-demo",
-                  "Header Desktop",
-                )
+                trackSmartButtonClick("Book a Demo", demoLink, "Header Desktop")
               }
             >
               Book a Demo
@@ -751,20 +720,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
             </div>
           ))}
           <div className="border-t border-gray-200 pt-4 space-y-2">
-            <Link
-              href="/contact"
-              className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => {
-                trackSmartButtonClick(
-                  "Contact Us",
-                  "/contact",
-                  "Header Mobile",
-                );
-                setIsMenuOpen(false);
-              }}
-            >
-              Contact Us
-            </Link>
+            {!isUSVersion && (
+              <Link
+                href={contactLink}
+                className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => {
+                  trackSmartButtonClick(
+                    "Contact Us",
+                    contactLink,
+                    "Header Mobile",
+                  );
+                  setIsMenuOpen(false);
+                }}
+              >
+                Contact Us
+              </Link>
+            )}
             <Link
               href="https://app.rosterlab.com"
               className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
@@ -784,14 +755,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
               Login
             </Link>
             <Link
-              href="/book-a-demo"
+              href={demoLink}
               className="bg-blue-600 text-white hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium"
               onClick={() => {
-                trackSmartButtonClick(
-                  "Book a Demo",
-                  "/book-a-demo",
-                  "Header Mobile",
-                );
+                trackSmartButtonClick("Book a Demo", demoLink, "Header Mobile");
                 setIsMenuOpen(false);
               }}
             >
