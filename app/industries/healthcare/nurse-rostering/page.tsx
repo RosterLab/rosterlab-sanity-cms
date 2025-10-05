@@ -50,7 +50,7 @@ const faqItems = [
   {
     question: "Can nurses submit their own preferences?",
     answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's self-rostering feature lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
+      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-rostering feature</a> lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
   },
   {
     question: "What happens when a nurse calls in sick at the last minute?",
@@ -60,12 +60,12 @@ const faqItems = [
   {
     question: "How does RosterLab prevent roster-based favoritism or bullying?",
     answer:
-      "RosterLab uses transparent, algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
+      "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
   },
   {
     question: "Can RosterLab help identify knowledge silos and training gaps?",
     answer:
-      "Yes. RosterLab's skills matrix gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify succession risks, and plan targeted cross-training. The system alerts you when key skills are approaching dangerous concentration levels, helping you build a more resilient team.",
+      "Yes. RosterLab's gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify risks, and plan accordingly. The system alerts you when key skills are missing from a shift.",
   },
 ];
 
@@ -179,7 +179,7 @@ export default function NurseRosteringV2Page() {
               </h3>
               <p className="text-gray-600">
                 Roster gaps that breach safe patient-to-nurse ratios, increasing
-                clinical risk and placing impossible pressure on nurses present.
+                clinical risk and adding pressure on nurses.
               </p>
             </div>
 
@@ -204,8 +204,8 @@ export default function NurseRosteringV2Page() {
                 Complex Compliance
               </h3>
               <p className="text-gray-600">
-                Navigating union agreements, awards, and policy rules while
-                maintaining flexibility is near impossible manually.
+                Navigating union agreements and policy rules while maintaining
+                flexibility is near impossible manually.
               </p>
             </div>
 
@@ -230,9 +230,8 @@ export default function NurseRosteringV2Page() {
                 Skill Mix Shortfalls
               </h3>
               <p className="text-gray-600">
-                Shifts without ICU-trained, paediatric, or specialty nurses when
-                needed, creating dangerous knowledge gaps and patient safety
-                issues.
+                Shifts without ICU-trained, paediatric, or specialty nurses,
+                create knowledge gaps and safety issues.
               </p>
             </div>
           </div>
@@ -498,11 +497,11 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Submit Preferences
+                      Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, nurses indicate shift preferences, time
-                      off requests, and availability. No emails or paper forms.
+                      Define minimum ratios, skill mix needs (ICU-trained,
+                      paeds, etc.), and ward coverage requirements.
                     </p>
                   </div>
                 </div>
@@ -516,11 +515,11 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Set Staffing Requirements
+                      Nurses Submit Preferences
                     </h3>
                     <p className="text-gray-600">
-                      Define minimum ratios, skill mix needs (ICU-trained,
-                      paeds, etc.), and ward coverage requirements.
+                      Via mobile app, nurses indicate shift preferences, time
+                      off requests, and availability. No emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -552,11 +551,11 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Self-Roster Open Shifts
+                      Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - nurses can
-                      pick them up directly if qualified and within hour limits.
+                      Rosters sync instantly to nurses' phones. They see their
+                      shifts, can request swaps, and get real-time updates.
                     </p>
                   </div>
                 </div>
@@ -570,11 +569,11 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish to Mobile
+                      Nurses Self-Roster Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to nurses' phones. They see their
-                      shifts, can request swaps, and get real-time updates.
+                      Unfilled shifts are posted as "open shifts" - nurses can
+                      pick them up directly if qualified and within hour limits.
                     </p>
                   </div>
                 </div>
@@ -785,6 +784,16 @@ export default function NurseRosteringV2Page() {
                 consecutive shift patterns that lead to burnout.
               </p>
             </div>
+          </div>
+
+          {/* CTA for Mobile App */}
+          <div className="text-center mt-12">
+            <Button
+              href="/solutions/staff-roster-mobile-app"
+              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+            >
+              Learn about mobile app
+            </Button>
           </div>
         </Container>
       </section>
