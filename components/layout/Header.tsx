@@ -76,13 +76,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
+        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
         {
           title: "Nurse Roster",
           link: "/industries/healthcare/nurse-rostering",
-          description: "Fair, compliant nurse scheduling software",
+          description: "Fair, safe and compliant nurse rostering software",
         },
-        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
-        { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
       ],
     },
     { title: "Pricing", link: "/pricing" },
@@ -292,7 +292,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Healthcare Sectors
                               </h3>
                               <div className="space-y-1">
-                                {item.subItems?.slice(0, 2).map((subItem) => (
+                                {item.subItems?.slice(0, 3).map((subItem) => (
                                   <Link
                                     key={subItem.link}
                                     href={subItem.link}
@@ -308,7 +308,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                               "ICU/ED Roster" ||
                                               subItem.title === "ICU/ED")
                                           ? "ICU/ED Scheduling"
-                                          : subItem.title}
+                                          : isUSVersion &&
+                                              (subItem.title ===
+                                                "Aged Care Roster" ||
+                                                subItem.title === "Aged Care")
+                                            ? "Senior Care Scheduling"
+                                            : subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
                                       {subItem.title === "Healthcare Roster" ||
@@ -319,7 +324,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                           ? isUSVersion
                                             ? "Build ICU/ED schedules that support better continuity of care"
                                             : "Build ICU/ED rosters that support better continuity of care"
-                                          : ""}
+                                          : subItem.title ===
+                                                "Aged Care Roster" ||
+                                              subItem.title === "Aged Care"
+                                            ? isUSVersion
+                                              ? "Senior care scheduling that balance wellbeing & care"
+                                              : "Aged care rostering that balance wellbeing & care"
+                                            : ""}
                                     </div>
                                   </Link>
                                 ))}
@@ -329,7 +340,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Specialized Care Column */}
                             <div>
                               <div className="space-y-1 mt-8">
-                                {item.subItems?.slice(2, 6).map((subItem) => (
+                                {item.subItems?.slice(3, 6).map((subItem) => (
                                   <Link
                                     key={subItem.link}
                                     href={subItem.link}
@@ -359,7 +370,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                               subItem.title === "Radiology"
                                             ? isUSVersion
                                               ? "Build radiology schedules with the right skill mix and compliance"
-                                              : "Balance your teams with the right skill mix with compliant radiology rosters"
+                                              : "Balance teams with the right skill mix with compliant rosters"
                                             : "")}
                                     </div>
                                   </Link>
