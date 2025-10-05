@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/healthcare/nurse-rostering",
       images: [
         {
-          url: "/images/og-images/IndustryNurseRostering.png",
+          url: "/images/us-images/iStock-2232242180.jpg",
           width: 1200,
           height: 630,
         },
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       title: "Nurse Rostering Software - RosterLab",
       description:
         "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/og-images/IndustryNurseRostering.png"],
+      images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
   "/industries/healthcare/nurse-rostering-v2",
@@ -246,8 +246,8 @@ export default function NurseRosteringV2Page() {
               How RosterLab Solves This Differently
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Unlike basic scheduling tools, RosterLab was built specifically
-              for the complex reality of nursing rosters
+              Unlike basic rostering tools, RosterLab was built specifically for
+              the complex reality of nursing rosters
             </p>
           </div>
 
@@ -483,7 +483,7 @@ export default function NurseRosteringV2Page() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around self-rostering and nurse autonomy, not just top-down
-              scheduling
+              rostering
             </p>
           </div>
 
