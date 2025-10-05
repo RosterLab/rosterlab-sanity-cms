@@ -1,7 +1,7 @@
 // URL mappings for US version
 export const US_URL_MAPPINGS: Record<string, string> = {
   // Main pages
-  "/": "/us/",
+  "/": "/us",
   "/about": "/us/about",
   "/pricing": "/us/pricing",
   "/contact": "/us/contact",
@@ -124,13 +124,18 @@ export function generateHreflangMetadata(pathname: string) {
     }
   }
 
+  // For homepage, don't include the trailing slash to match canonical
+  const formatUrl = (path: string) => {
+    return path === "/" ? baseUrl : `${baseUrl}${path}`;
+  };
+
   return {
     alternates: {
       languages: {
-        "en-AU": `${baseUrl}${originalPath}`,
-        "en-NZ": `${baseUrl}${originalPath}`,
-        "en-US": `${baseUrl}${usPath}`,
-        "x-default": `${baseUrl}${originalPath}`,
+        "en-AU": formatUrl(originalPath),
+        "en-NZ": formatUrl(originalPath),
+        "en-US": formatUrl(usPath),
+        "x-default": formatUrl(originalPath),
       },
     },
   };
