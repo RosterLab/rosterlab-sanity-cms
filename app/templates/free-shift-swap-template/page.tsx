@@ -291,8 +291,8 @@ export default async function FreeShiftSwapTemplatePage() {
               ))}
             </div>
 
-            {/* View all blogs CTA */}
-            <div className="mt-12 text-center">
+            {/* CTAs */}
+            <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/blog"
                 className="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
@@ -312,10 +312,7 @@ export default async function FreeShiftSwapTemplatePage() {
                   />
                 </svg>
               </Link>
-            </div>
 
-            {/* Digital Shift Swaps CTA */}
-            <div className="mt-6 text-center">
               <Link
                 href="/feature/shift-swaps"
                 className="inline-flex items-center justify-center rounded-md bg-white border-2 border-blue-600 px-8 py-3 text-base font-medium text-blue-600 shadow-sm hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
