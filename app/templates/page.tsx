@@ -5,19 +5,19 @@ import SiteLayout from "@/components/layout/SiteLayout";
 export const metadata: Metadata = {
   title: "Free Workforce Management Templates - RosterLab",
   description:
-    "Download free staff rostering and scheduling templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
+    "Download free workforce management templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
   alternates: {
     canonical: "https://rosterlab.com/templates",
   },
   openGraph: {
     title: "Free Workforce Management Templates - RosterLab",
     description:
-      "Download free staff rostering and scheduling templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
+      "Download free workforce management templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
     type: "website",
     url: "https://rosterlab.com/templates",
     images: [
       {
-        url: "/images/og-images/Templates.png",
+        url: "/images/og-images/WFM.png",
         width: 1200,
         height: 630,
       },
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Workforce Management Templates - RosterLab",
     description:
-      "Download free staff rostering and scheduling templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
-    images: ["/images/og-images/Templates.png"],
+      "Download free workforce management templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
+    images: ["/images/og-images/WFM.png"],
   },
 };
 
@@ -59,7 +59,7 @@ const templates = [
     description:
       "Create and manage staff schedules efficiently with our comprehensive Excel roster template.",
     href: "/templates/free-staff-roster-template-excel",
-    image: "/images/roster-template/roster-preview.png",
+    image: "/images/excel/excel-preview-new-1.png",
     format: "Excel",
     category: "Rostering",
   },

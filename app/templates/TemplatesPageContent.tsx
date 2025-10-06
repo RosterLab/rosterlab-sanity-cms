@@ -187,10 +187,10 @@ export default function TemplatesPageContent({
               Book a Demo
             </Link>
             <Link
-              href="/pricing"
+              href="/solutions/ai-roster-generator"
               className="inline-flex items-center justify-center px-6 py-3 bg-primary-800 text-white font-semibold rounded-lg hover:bg-primary-900 transition-colors"
             >
-              View Pricing
+              Explore AI Rostering
             </Link>
           </div>
         </div>
