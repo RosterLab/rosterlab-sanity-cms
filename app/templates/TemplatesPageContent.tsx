@@ -56,8 +56,8 @@ export default function TemplatesPageContent({
             Free Workforce Management Templates
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            Download professionally designed templates to streamline your staff
-            rostering, scheduling, and workforce management.
+            Download free professionally designed templates to help manage your
+            workforce.
           </p>
         </div>
 
