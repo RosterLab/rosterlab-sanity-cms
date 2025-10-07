@@ -86,10 +86,75 @@ export default function NurseRosteringV2Page() {
                 Nurse Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                End roster instability and unsafe staffing. Create compliant
-                rosters that respect your nurses, maintain safe ratios, and
-                honour union agreements.
+                Create compliant AI rosters that respect your nurse preferences,
+                maintain safe ratios, and honour union agreements.
               </p>
+              <div className="mb-8 space-y-2">
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  No more unsafe staffing levels
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Reduce your time rostering with automatic roster generation
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Guaranteed compliance
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Flexible preference based self-rostering
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   href="/book-a-demo"
@@ -118,136 +183,21 @@ export default function NurseRosteringV2Page() {
         </Container>
       </section>
 
-      {/* Key Benefits Section */}
-      <section className="py-12 bg-white">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">
-                  Lorem ipsum dolor sit amet
-                </p>
-                <p className="text-gray-600 text-sm">
-                  Consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">
-                  Ut enim ad minim veniam
-                </p>
-                <p className="text-gray-600 text-sm">
-                  Quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                  ea commodo consequat.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">
-                  Duis aute irure dolor
-                </p>
-                <p className="text-gray-600 text-sm">
-                  In reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={3}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">
-                  Excepteur sint occaecat
-                </p>
-                <p className="text-gray-600 text-sm">
-                  Cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The Reality of Nurse Rostering Today
+              Safer Staffing Starts with Smart Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Nursing teams face unique challenges that generic rostering
-              software can't solve
+              Build compliant and safe nurse rosters in minutes, not days.
+              Discover how:
             </p>
           </div>
 
           {/* Interactive Demo Widget */}
-          <div className="mb-16">
+          <div className="mb-16 max-w-4xl mx-auto">
             <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-50 to-cyan-50 p-4">
               <div
                 className="relative w-full"
@@ -267,7 +217,7 @@ export default function NurseRosteringV2Page() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pain Point 1: Overwork */}
+            {/* Pain Point 1: Automatic Roster Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -285,15 +235,15 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Chronic Overwork
+                Automatic roster generation
               </h3>
               <p className="text-gray-600">
-                Back-to-back shifts, excessive overtime, and insufficient rest
-                periods leading to dangerous fatigue and burnout.
+                Eliminate the need for manual rostering with our AI roster
+                generation giving you time back to focus on what's important.
               </p>
             </div>
 
-            {/* Pain Point 2: Unsafe Rosters */}
+            {/* Pain Point 2: Stay compliant with rules */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -306,20 +256,20 @@ export default function NurseRosteringV2Page() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Unsafe Staffing Ratios
+                Stay compliant with union rules
               </h3>
               <p className="text-gray-600">
-                Roster gaps that breach safe patient-to-nurse ratios, increasing
-                clinical risk and adding pressure on nurses.
+                Never break compliance on contractual requirements, critical
+                staff rules or union requirements.
               </p>
             </div>
 
-            {/* Pain Point 3: Union Rule Violations */}
+            {/* Pain Point 3: Improve flexibility through self-rostering */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -332,20 +282,20 @@ export default function NurseRosteringV2Page() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Complex Compliance
+                Improve flexibility through self-rostering
               </h3>
               <p className="text-gray-600">
-                Navigating union agreements and policy rules while maintaining
-                flexibility is near impossible manually.
+                Empower nurses with flexibility while maintaining fairness and
+                compliance with core rules and requirements.
               </p>
             </div>
 
-            {/* Pain Point 4: Skill Mix Gaps */}
+            {/* Pain Point 4: Ensure safe staffing levels */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -358,16 +308,16 @@ export default function NurseRosteringV2Page() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Skill Mix Shortfalls
+                Ensure safe staffing levels for nurses
               </h3>
               <p className="text-gray-600">
-                Shifts without ICU-trained, paediatric, or specialty nurses,
-                create knowledge gaps and safety issues.
+                Identify understaffing and skill gaps before they become issues,
+                maintaining safe patient-to-nurse ratios.
               </p>
             </div>
           </div>
@@ -377,165 +327,151 @@ export default function NurseRosteringV2Page() {
       {/* Solution Section */}
       <section className="py-20 bg-gray-50">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How RosterLab Solves This Differently
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Unlike basic rostering tools, RosterLab was built specifically for
-              the complex reality of nursing rosters
-            </p>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <div className="bg-white rounded-xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Perfect for nurse rostering challenges
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        AI-Powered Nurse-First Rostering
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Automatically considers nurse preferences, skill levels,
-                        and fatigue - not just filling shifts
-                      </p>
-                    </div>
+            <div className="order-2 lg:order-1">
+              <MobileAppPreferencesModule />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h3 className="text-3xl font-bold text-gray-900 mb-16">
+                Perfect For Nurse Roster Challenges
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
                   </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        Built-In Clinical Safety
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Enforces safe patient-to-nurse ratios and prevents
-                        dangerous understaffing before rosters are published
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Eliminate Favouritism
+                    </h4>
+                    <p className="text-gray-600">
+                      Ensure fairness, reduce the perception of favouritism, and
+                      create a more inclusive work environment for nurses.
+                    </p>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        Union Rule Compliance Guaranteed
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Union rule, contractual agreement, and rest period rule
-                        is automatically enforced - no manual checking needed.
-                      </p>
-                    </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-cyan-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
                   </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        Real Self-Rostering for Nurses
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Nurses can swap shifts, submit preferences, and see
-                        their roster on mobile - building autonomy and trust
-                      </p>
-                    </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Ensure Clinical Safety
+                    </h4>
+                    <p className="text-gray-600">
+                      Ensure nurses are working safely, enhancing overall
+                      patient outcomes and trust in patient care.
+                    </p>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                      <svg
-                        className="w-4 h-4 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">
-                        End Roster Instability
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        When last-minute changes occur, RosterLab instantly
-                        identifies compliant replacements that maintain safe
-                        nurse-to-patient ratios and prevent dangerous
-                        understaffing
-                      </p>
-                    </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Reduce Nurse Fatigue
+                    </h4>
+                    <p className="text-gray-600">
+                      Enhance overall work-life balance and minimise fatigue for
+                      your staff.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Improve Staffing Level Accuracy
+                    </h4>
+                    <p className="text-gray-600">
+                      Understand your staffing levels better and how many people
+                      are required for each role.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-teal-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Meet More Staff Preferences
+                    </h4>
+                    <p className="text-gray-600">
+                      Help nurses achieve better work-life balance by
+                      considering a high percentage of staff preferences whilst
+                      ensuring critical business needs are met.
+                    </p>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="relative">
-              <MobileAppPreferencesModule />
             </div>
           </div>
 
@@ -556,7 +492,7 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The Impact on Your Nursing Team
+              Modern Nurse Rostering Software for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Real outcomes that improve nurse wellbeing and patient care
