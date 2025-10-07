@@ -7,6 +7,7 @@ import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import MobileAppPreferencesModule from "@/components/sections/animations/MobileAppPreferencesModule";
 
 export const metadata = withHreflang(
   {
@@ -117,6 +118,121 @@ export default function NurseRosteringV2Page() {
         </Container>
       </section>
 
+      {/* Key Benefits Section */}
+      <section className="py-12 bg-white">
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex items-start gap-3">
+              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">
+                  Lorem ipsum dolor sit amet
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  ut labore et dolore magna aliqua.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">
+                  Ut enim ad minim veniam
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                  ea commodo consequat.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">
+                  Duis aute irure dolor
+                </p>
+                <p className="text-gray-600 text-sm">
+                  In reprehenderit in voluptate velit esse cillum dolore eu
+                  fugiat nulla pariatur.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">
+                  Excepteur sint occaecat
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
         <Container>
@@ -128,6 +244,26 @@ export default function NurseRosteringV2Page() {
               Nursing teams face unique challenges that generic rostering
               software can't solve
             </p>
+          </div>
+
+          {/* Interactive Demo Widget */}
+          <div className="mb-16">
+            <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-50 to-cyan-50 p-4">
+              <div
+                className="relative w-full"
+                style={{ paddingBottom: "calc(56.67989417989418% + 41px)" }}
+              >
+                <iframe
+                  src="https://demo.arcade.software/qKV5GmMinypq2yXM19Xi?embed"
+                  title="RosterLab Interactive Demo"
+                  frameBorder="0"
+                  loading="lazy"
+                  allowFullScreen
+                  allow="clipboard-write"
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -399,13 +535,7 @@ export default function NurseRosteringV2Page() {
             </div>
 
             <div className="relative">
-              <Image
-                src="/images/illustration/Push notifications-pana-2 copy.svg"
-                alt="RosterLab mobile app for nurses"
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
+              <MobileAppPreferencesModule />
             </div>
           </div>
 
