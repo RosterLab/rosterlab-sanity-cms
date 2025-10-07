@@ -903,10 +903,10 @@ export default function NurseRosteringV2Page() {
                 Book a Demo
               </Button>
               <Button
-                href="/contact"
+                href="/tools/roi-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                Talk to a Specialist
+                See ROI Calculator
               </Button>
             </div>
           </div>
