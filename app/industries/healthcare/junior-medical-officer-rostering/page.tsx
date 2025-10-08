@@ -82,7 +82,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Build{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  AMA/EBA Compliant
+                  Compliant
                 </span>{" "}
                 JMO Rosters
               </h1>
@@ -173,7 +173,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/nursing.svg"
+                src="/images/illustration/jmo.svg"
                 alt="JMO rostering software interface"
                 width={600}
                 height={400}
@@ -334,7 +334,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Nurse Roster Challenges
+                Perfect For JMO Roster Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -355,11 +355,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Eliminate Favouritism
+                      Build Department Reputation
                     </h4>
                     <p className="text-gray-600">
-                      Ensure fairness, reduce the perception of favouritism, and
-                      create a more inclusive work environment for nurses.
+                      Fair, compliant rosters build a positive reputation that
+                      attracts and retains quality JMOs in your department.
                     </p>
                   </div>
                 </div>
@@ -382,11 +382,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Ensure Clinical Safety
+                      Complete Training Programs
                     </h4>
                     <p className="text-gray-600">
-                      Ensure nurses are working safely, enhancing overall
-                      patient outcomes and trust in patient care.
+                      Protected time for education and teaching ensures JMOs
+                      receive complete training while maintaining department
+                      coverage.
                     </p>
                   </div>
                 </div>
@@ -409,7 +410,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Nurse Fatigue
+                      Reduce JMO Burnout
                     </h4>
                     <p className="text-gray-600">
                       Enhance overall work-life balance and minimise fatigue for
@@ -466,9 +467,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Meet More Staff Preferences
                     </h4>
                     <p className="text-gray-600">
-                      Help nurses achieve better work-life balance by
-                      considering a high percentage of staff preferences whilst
-                      ensuring critical business needs are met.
+                      Support working parents and younger doctors seeking
+                      work-life balance. Preferences can be overridden by
+                      training, staffing, and night shift requirements when
+                      needed.
                     </p>
                   </div>
                 </div>
@@ -493,10 +495,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern Nurse Rostering Software for Teams
+              Modern JMO Rostering Software for Departments
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve nurse wellbeing and patient care
+              Real outcomes that improve JMO wellbeing, retention, and
+              compliance
             </p>
           </div>
 
@@ -507,8 +510,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Reduction in Rostering Time
               </h3>
               <p className="text-gray-600">
-                Nurse managers spend days less per month on rostering,
-                redirecting time to patient care and team support.
+                Heads of department and business managers spend days less per
+                month on rostering, redirecting time to patient care and
+                department operations.
               </p>
             </div>
 
@@ -518,9 +522,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Stable Staffing
               </h3>
               <p className="text-gray-600">
-                Safe nurse-to-patient ratios maintained across every shift, with
-                instant alerts and compliant replacement suggestions when
-                changes occur.
+                AMA/EBA compliant rosters maintained across every shift, with
+                instant alerts when compliance is at risk and proper
+                night-to-day transitions reducing sick leave.
               </p>
             </div>
 
@@ -543,14 +547,14 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              NURSE-FIRST WORKFLOW
+              JMO-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Nurses Engage with Their Rosters
+              How JMOs Engage with Their Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around self-rostering and nurse autonomy, not just top-down
-              rostering
+              Built around training requirements, preferences, and wellbeing,
+              not just top-down rostering
             </p>
           </div>
 
@@ -567,8 +571,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Define minimum ratios, skill mix needs (ICU-trained,
-                      paeds, etc.), and ward coverage requirements.
+                      Define skill mix needs (senior registrars for night
+                      supervision), term rosters, and department coverage
+                      requirements.
                     </p>
                   </div>
                 </div>
@@ -582,11 +587,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Submit Preferences
+                      JMOs Submit Preferences & Training Needs
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, nurses indicate shift preferences, time
-                      off requests, and availability. No emails or paper forms.
+                      Via mobile app, JMOs indicate shift preferences, exam
+                      dates, teaching sessions, and time off requests. No emails
+                      or paper forms.
                     </p>
                   </div>
                 </div>
@@ -600,11 +606,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Safe Roster
+                      AI Generates Compliant Roster
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, skills, and compliance
-                      rules to create fair rosters with safe staffing levels.
+                      RosterLab balances preferences, training requirements,
+                      night shift equity, and AMA/EBA rules to create compliant
+                      term rosters.
                     </p>
                   </div>
                 </div>
@@ -621,8 +628,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to nurses' phones. They see their
-                      shifts, can request swaps, and get real-time updates.
+                      Rosters sync instantly to JMOs' phones. They see their
+                      shifts, training time, and can request swaps with
+                      real-time updates.
                     </p>
                   </div>
                 </div>
@@ -636,11 +644,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Self-Roster Open Shifts
+                      JMOs Self-Roster Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - nurses can
-                      pick them up directly if qualified and within hour limits.
+                      Unfilled shifts are posted as "open shifts" - JMOs can
+                      pick them up directly if qualified, within hour limits,
+                      and training time protected.
                     </p>
                   </div>
                 </div>
@@ -668,7 +677,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your nurse rostering?
+                Ready to streamline your JMO rostering?
               </p>
               <Button
                 href="/book-a-demo"
@@ -686,10 +695,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for Nurse Rostering
+              Essential Features for JMO Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of nursing
+              Purpose-built tools that address the unique complexity of JMO term
               rosters
             </p>
           </div>
@@ -713,11 +722,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Safe Staffing Enforcement
+                AMA/EBA Compliance Enforcement
               </h3>
               <p className="text-gray-600">
-                Configurable patient-to-nurse ratios by ward and shift. The
-                system will flag unsafe and understaffed rosters.
+                Enforces maximum consecutive shifts, minimum rest periods, and
+                fatigue management. The system flags non-compliant rosters.
               </p>
             </div>
 
@@ -795,7 +804,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Mobile Self-Rostering
               </h3>
               <p className="text-gray-600">
-                Nurses submit preferences, apply for open shifts, and manage
+                JMOs submit preferences, training needs, exam dates, and manage
                 time-off requests directly from their phones.
               </p>
             </div>
@@ -821,8 +830,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Instant Roster Changes
               </h3>
               <p className="text-gray-600">
-                When nurses call in sick, see who's qualified and available to
-                fill the gap without breaking safety rules.
+                When JMOs call in sick, see who's qualified and available to
+                fill the gap without breaking compliance or training
+                requirements.
               </p>
             </div>
 
@@ -890,11 +900,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Safer, Fairer Nurse Rosters
+              Build Compliant, Fairer JMO Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join hospitals that have eliminated unsafe rosters and reduced
-              nurse burnout
+              Join departments that have improved JMO retention, reduced
+              burnout, and built positive reputations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -920,7 +930,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Nurse Rostering V2" },
+          { name: "Junior Medical Officer Rostering" },
         ]}
       />
     </SiteLayout>

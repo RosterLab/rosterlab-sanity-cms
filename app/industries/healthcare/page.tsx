@@ -997,7 +997,10 @@ export default async function HealthcarePage() {
                   Operating Theatres
                 </h4>
               </div>
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/industries/healthcare/junior-medical-officer-rostering"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-red-500 transition-transform duration-200 group-hover:scale-110"
@@ -1009,14 +1012,14 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  24/7 Complex Departments
+                  Junior Medical Officers
                 </h4>
-              </div>
+              </Link>
             </div>
           </div>
         </Container>
