@@ -57,17 +57,12 @@ const faqItems = [
   {
     question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab automatically distributes night shifts equitably across all JMOs, preventing burnout and ensuring fairness. The system pairs junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
+      "RosterLab automatically distributes night shifts equitably across all JMOs, preventing burnout and ensuring fairness. The system can help pair junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
     question: "Can RosterLab help improve JMO retention?",
     answer:
       "Yes. By creating fair, compliant rosters that respect work-life balance and training needs, RosterLab helps departments build a positive reputation that attracts and retains JMOs. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
-  },
-  {
-    question: "How does RosterLab manage skill mix for night shifts?",
-    answer:
-      "RosterLab ensures proper supervision by pairing junior medical officers with senior registrars for night coverage. The system enforces skill mix requirements to maintain safe staffing levels and provides visibility of competencies across your medical team.",
   },
 ];
 
@@ -192,8 +187,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
               Better JMO Rostering Starts with Compliance
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build AMA/EBA compliant JMO rosters in minutes, not days. Discover
-              how:
+              Build compliant JMO rosters in minutes, not days. Discover how:
             </p>
           </div>
 
@@ -437,11 +431,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Improve Staffing Level Accuracy
+                      Maintain Safe Skill Mix
                     </h4>
                     <p className="text-gray-600">
-                      Understand your staffing levels better and how many people
-                      are required for each role.
+                      Automatically pair junior medical officers with senior
+                      registrars for night shifts, ensuring safe supervision and
+                      skill mix across all shifts.
                     </p>
                   </div>
                 </div>
@@ -495,7 +490,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern JMO Rostering Software for Departments
+              Modern JMO Rostering Software
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Real outcomes that improve JMO wellbeing, retention, and
@@ -519,7 +514,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
               <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stable Staffing
+                Optimised Roster
               </h3>
               <p className="text-gray-600">
                 AMA/EBA compliant rosters maintained across every shift, with
@@ -531,7 +526,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
               <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Transparent Roster Assignment
+                Happier Junior Doctors
               </h3>
               <p className="text-gray-600">
                 Fair, automated rostering eliminates favoritism and bullying
