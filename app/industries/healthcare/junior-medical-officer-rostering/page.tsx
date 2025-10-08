@@ -45,33 +45,33 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
-    question: "How does RosterLab maintain safe nurse-to-patient ratios?",
+    question: "How does RosterLab ensure AMA/EBA compliance for JMO rosters?",
     answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag rosters that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
+      "RosterLab enforces AMA and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring JMOs actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
-    question: "Can nurses submit their own preferences?",
+    question: "How does RosterLab handle training and exam periods for JMOs?",
     answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-rostering feature</a> lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
+      "JMOs can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the roster to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
   },
   {
-    question: "What happens when a nurse calls in sick at the last minute?",
+    question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab identifies replacement nurses who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe ratios by alerting you if a shift can't be safely covered.",
+      "RosterLab automatically distributes night shifts equitably across all JMOs, preventing burnout and ensuring fairness. The system pairs junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question: "How does RosterLab prevent roster-based favoritism or bullying?",
+    question: "Can RosterLab help improve JMO retention?",
     answer:
-      "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
+      "Yes. By creating fair, compliant rosters that respect work-life balance and training needs, RosterLab helps departments build a positive reputation that attracts and retains JMOs. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
   {
-    question: "Can RosterLab help identify knowledge silos and training gaps?",
+    question: "How does RosterLab manage skill mix for night shifts?",
     answer:
-      "Yes. RosterLab's gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify risks, and plan accordingly. The system alerts you when key skills are missing from a shift.",
+      "RosterLab ensures proper supervision by pairing junior medical officers with senior registrars for night coverage. The system enforces skill mix requirements to maintain safe staffing levels and provides visibility of competencies across your medical team.",
   },
 ];
 
-export default function NurseRosteringV2Page() {
+export default function JuniorMedicalOfficerRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -82,13 +82,13 @@ export default function NurseRosteringV2Page() {
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Build{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Safe, Fair
+                  AMA/EBA Compliant
                 </span>{" "}
-                Nurse Rosters
+                JMO Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that respect your nurse preferences,
-                maintain safe ratios, and honour union agreements.
+                Create compliant AI rosters that balance training requirements,
+                fair night shift distribution, and JMO wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -105,7 +105,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  No more unsafe staffing levels
+                  AMA/EBA compliant rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -121,7 +121,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce your time rostering with automatic roster generation
+                  Protected training and exam periods
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -137,7 +137,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Guaranteed compliance
+                  Fair night shift distribution
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -153,7 +153,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Flexible preference based self-rostering
+                  Improved JMO retention and wellbeing
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -174,7 +174,7 @@ export default function NurseRosteringV2Page() {
             <div className="relative">
               <Image
                 src="/images/illustration/nursing.svg"
-                alt="Nurse rostering software interface"
+                alt="JMO rostering software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -189,11 +189,11 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Safer Staffing Starts with Smart Rostering
+              Better JMO Rostering Starts with Compliance
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build compliant and safe nurse rosters in minutes, not days.
-              Discover how:
+              Build AMA/EBA compliant JMO rosters in minutes, not days. Discover
+              how:
             </p>
           </div>
 
@@ -262,11 +262,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                AMA/EBA compliance guaranteed
               </h3>
               <p className="text-gray-600">
-                Never break compliance on contractual requirements, critical
-                staff rules or union requirements.
+                Rosters that JMOs actually work instead of calling in sick.
+                Build department reputation and reduce compliance risks.
               </p>
             </div>
 
@@ -288,11 +288,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Improve flexibility through self-rostering
+                Protected training and exam time
               </h3>
               <p className="text-gray-600">
-                Empower nurses with flexibility while maintaining fairness and
-                compliance with core rules and requirements.
+                Schedule longer days off around exams and ensure complete
+                training programs while maintaining coverage.
               </p>
             </div>
 
@@ -314,11 +314,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Ensure safe staffing levels for nurses
+                Fair night shift distribution
               </h3>
               <p className="text-gray-600">
-                Identify understaffing and skill gaps before they become issues,
-                maintaining safe patient-to-nurse ratios.
+                Equitable night allocation paired with senior registrars. Proper
+                transitions reduce burnout and sick leave.
               </p>
             </div>
           </div>
