@@ -267,7 +267,7 @@ export default function VeterinaryRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Fatigue Management for Night Shifts
+                Fatigue management for night shifts
               </h3>
               <p className="text-gray-600">
                 Prevent burnout with intelligent workload distribution and
@@ -526,9 +526,8 @@ export default function VeterinaryRosteringPage() {
                 Stable Staffing
               </h3>
               <p className="text-gray-600">
-                Proper vet and nurse coverage maintained across every shift,
-                with instant alerts and compliant replacement suggestions when
-                changes occur.
+                Proper vet coverage maintained across every shift, with instant
+                alerts and compliant replacement suggestions when changes occur.
               </p>
             </div>
 
