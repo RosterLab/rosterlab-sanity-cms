@@ -83,6 +83,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
           link: "/industries/healthcare/nurse-rostering",
           description: "Fair, safe and compliant nurse rostering software",
         },
+        {
+          title: "JMO Roster",
+          link: "/industries/healthcare/junior-medical-officer-rostering",
+          description: "Compliant rostering for junior medical officers",
+        },
       ],
     },
     { title: "Pricing", link: "/pricing" },
