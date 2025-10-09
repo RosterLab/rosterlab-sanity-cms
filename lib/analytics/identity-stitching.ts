@@ -42,11 +42,31 @@ export function appendUTMsToUrl(
       params.set("first_landing_page", firstTouchData.first_landing_page);
     params.set("first_touch_ts", firstTouchData.first_touch_ts.toString());
 
-    // Also include Amplitude device ID if available
-    if (typeof window !== "undefined" && window.amplitude?.getDeviceId) {
-      const deviceId = window.amplitude.getDeviceId();
-      if (deviceId) {
-        params.set("amp_device_id", deviceId);
+    // Also include Segment anonymous ID and Amplitude device ID if available
+    if (typeof window !== "undefined") {
+      // Get Segment anonymous ID from cookie
+      const segmentCookie = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("ajs_anonymous_id="));
+      if (segmentCookie) {
+        try {
+          const anonymousId = JSON.parse(
+            decodeURIComponent(segmentCookie.split("=")[1]),
+          );
+          if (anonymousId) {
+            params.set("segment_anonymous_id", anonymousId);
+          }
+        } catch (e) {
+          console.error("[Identity Stitching] Error parsing Segment ID:", e);
+        }
+      }
+
+      // Get Amplitude device ID if available
+      if ((window as any).amplitude?.getDeviceId) {
+        const deviceId = (window as any).amplitude.getDeviceId();
+        if (deviceId) {
+          params.set("amplitude_device_id", deviceId);
+        }
       }
     }
 
@@ -63,7 +83,7 @@ export function appendUTMsToUrl(
  */
 export function parseUTMsFromUrl(url: string = window.location.href): {
   firstTouchUTMs: Record<string, string | null>;
-  amplitudeDeviceId: string | null;
+  segmentAnonymousId: string | null;
 } {
   try {
     const urlObj = new URL(url);
@@ -80,71 +100,83 @@ export function parseUTMsFromUrl(url: string = window.location.href): {
         first_landing_page: params.get("first_landing_page"),
         first_touch_ts: params.get("first_touch_ts"),
       },
-      amplitudeDeviceId: params.get("amp_device_id"),
+      segmentAnonymousId: params.get("segment_anonymous_id"),
     };
   } catch (error) {
     console.error("[Identity Stitching] Error parsing UTMs from URL:", error);
     return {
       firstTouchUTMs: {},
-      amplitudeDeviceId: null,
+      segmentAnonymousId: null,
     };
   }
 }
 
 /**
- * Apply first-touch UTMs to Amplitude after login/signup
+ * Apply first-touch UTMs to analytics after login/signup
  * This should be called in the app after user authentication
+ * Works with both Segment and Amplitude
  */
-export function applyFirstTouchUTMs(amplitude: any, userId: string): void {
-  if (!amplitude || !userId) return;
+export function applyFirstTouchUTMs(analytics: any, userId: string): void {
+  if (!analytics || !userId) return;
 
-  const { firstTouchUTMs, amplitudeDeviceId } = parseUTMsFromUrl();
+  const { firstTouchUTMs, segmentAnonymousId } = parseUTMsFromUrl();
 
-  // Set user ID to link sessions
-  amplitude.setUserId(userId);
+  // Set user ID to link sessions in Segment
+  analytics.identify(userId);
 
-  // If we have a device ID from the marketing site, set it
-  if (amplitudeDeviceId) {
-    amplitude.setDeviceId(amplitudeDeviceId);
+  // If we have an anonymous ID from the marketing site, set it
+  // Segment handles this automatically through cookies, but we log for tracking
+  if (segmentAnonymousId) {
+    console.log(
+      "[Identity Stitching] Found Segment anonymous ID from marketing site:",
+      segmentAnonymousId,
+    );
+  }
+
+  // If Amplitude is available (for session replay), identify there too
+  if (typeof window !== "undefined" && (window as any).amplitude) {
+    const amplitude = (window as any).amplitude;
+    amplitude.setUserId(userId);
+    console.log(
+      "[Identity Stitching] Identified user in Amplitude Session Replay:",
+      userId,
+    );
   }
 
   // Apply first-touch UTMs if they exist
   const hasUTMs = Object.values(firstTouchUTMs).some((value) => value !== null);
   if (hasUTMs) {
-    const identify = new amplitude.Identify();
+    const traits: Record<string, any> = {};
 
-    // Set UTM properties
+    // Set UTM traits (Segment doesn't have setOnce, but we can check existing traits)
     if (firstTouchUTMs.utm_source_first) {
-      identify.setOnce("utm_source_first", firstTouchUTMs.utm_source_first);
+      traits.utm_source_first = firstTouchUTMs.utm_source_first;
     }
     if (firstTouchUTMs.utm_medium_first) {
-      identify.setOnce("utm_medium_first", firstTouchUTMs.utm_medium_first);
+      traits.utm_medium_first = firstTouchUTMs.utm_medium_first;
     }
     if (firstTouchUTMs.utm_campaign_first) {
-      identify.setOnce("utm_campaign_first", firstTouchUTMs.utm_campaign_first);
+      traits.utm_campaign_first = firstTouchUTMs.utm_campaign_first;
     }
     if (firstTouchUTMs.utm_content_first) {
-      identify.setOnce("utm_content_first", firstTouchUTMs.utm_content_first);
+      traits.utm_content_first = firstTouchUTMs.utm_content_first;
     }
     if (firstTouchUTMs.utm_term_first) {
-      identify.setOnce("utm_term_first", firstTouchUTMs.utm_term_first);
+      traits.utm_term_first = firstTouchUTMs.utm_term_first;
     }
 
-    // Set additional properties
+    // Set additional traits
     if (firstTouchUTMs.first_referrer) {
-      identify.setOnce("first_referrer", firstTouchUTMs.first_referrer);
+      traits.first_referrer = firstTouchUTMs.first_referrer;
     }
     if (firstTouchUTMs.first_landing_page) {
-      identify.setOnce("first_landing_page", firstTouchUTMs.first_landing_page);
+      traits.first_landing_page = firstTouchUTMs.first_landing_page;
     }
     if (firstTouchUTMs.first_touch_ts) {
-      identify.setOnce(
-        "first_touch_ts",
-        parseInt(firstTouchUTMs.first_touch_ts, 10),
-      );
+      traits.first_touch_ts = parseInt(firstTouchUTMs.first_touch_ts, 10);
     }
 
-    amplitude.identify(identify);
+    analytics.identify(userId, traits);
 
     console.log(
       "[Identity Stitching] Applied first-touch UTMs for user:",

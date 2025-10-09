@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useCalendlyWidget } from "@/lib/hooks";
 import { useCalendlyEventListener } from "react-calendly";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
-import { analytics } from "@/components/analytics/Amplitude";
 import dynamic from "next/dynamic";
 
 // Lazy load the Calendly widget
@@ -57,9 +56,8 @@ export default function DemoBookingBase({
       config: {
         baseUrl: regionalContent.calendlyUrl,
         queryParams: {
-          utm_content: analytics.getUserId()
-            ? `amplitude_${analytics.getUserId()}`
-            : "no_user_id",
+          // User ID not available at demo booking time
+          utm_content: "demo_booking",
         },
         region,
         redirectPath: regionalContent.links.meetingConfirmed,

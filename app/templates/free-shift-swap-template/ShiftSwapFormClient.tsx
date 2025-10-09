@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import { HiCheck, HiDownload } from "react-icons/hi";
-import { trackButtonClick } from "@/components/analytics/Amplitude";
+import { trackButtonClick } from "@/components/analytics/Segment";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 
 // Download function

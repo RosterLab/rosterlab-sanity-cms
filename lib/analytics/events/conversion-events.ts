@@ -6,7 +6,7 @@
  * properties and usage.
  */
 
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 
 // Event names as constants for consistency
 export const CONVERSION_EVENTS = {

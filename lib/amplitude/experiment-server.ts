@@ -24,32 +24,26 @@ export function getExperimentClient() {
   return experimentClient;
 }
 
-async function getAmplitudeIds(
+async function getSegmentIds(
   cookieStore: ReadonlyRequestCookies,
 ): Promise<{ deviceId: string; userId?: string }> {
-  const apiKey = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
-  const ampCookieName = apiKey ? `AMP_${apiKey.substring(0, 10)}` : null;
+  // Try to get anonymous ID from Segment cookie
+  const anonId = cookieStore.get("ajs_anonymous_id")?.value;
 
-  if (ampCookieName) {
-    const ampCookie = cookieStore.get(ampCookieName)?.value;
-    if (ampCookie) {
-      try {
-        // Decode Base64, then URL decode
-        const base64Decoded = Buffer.from(ampCookie, "base64").toString(
-          "utf-8",
-        );
-        const decoded = decodeURIComponent(base64Decoded);
-        const data = JSON.parse(decoded);
-
-        if (data.deviceId) {
-          return {
-            deviceId: data.deviceId,
-            userId: data.userId || undefined,
-          };
-        }
-      } catch {
-        // Fall through to generate new ID
-      }
+  if (anonId) {
+    try {
+      // Segment stores the ID in quotes, so we need to parse it
+      const parsed = JSON.parse(anonId);
+      return {
+        deviceId: parsed,
+        userId: undefined,
+      };
+    } catch {
+      // If parsing fails, use it directly
+      return {
+        deviceId: anonId.replace(/"/g, ""),
+        userId: undefined,
+      };
     }
   }
 
@@ -65,7 +59,7 @@ export async function fetchExperimentVariants(userIdOverride?: string) {
   }
 
   const cookieStore = await cookies();
-  const { deviceId, userId } = await getAmplitudeIds(cookieStore);
+  const { deviceId, userId } = await getSegmentIds(cookieStore);
 
   const user = {
     user_id: userIdOverride || userId,

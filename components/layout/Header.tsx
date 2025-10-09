@@ -4,14 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  HiMenu,
-  HiX,
-  HiChevronDown,
-  HiChevronRight,
-  HiUser,
-} from "react-icons/hi";
-import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
+import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
+import { trackSmartButtonClick } from "@/components/analytics/Segment";
 
 interface SubMenuItem {
   title: string;
