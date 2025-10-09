@@ -12,7 +12,8 @@ export default function BookADemoClient() {
       contact: "/contact",
       meetingConfirmed: "/meeting-confirmed",
     },
-    calendlyUrl: "https://calendly.com/d/cw2v-vw3-j2z",
+    calendlyUrl:
+      "https://calendly.com/d/csww-rc4-9v6/test-version?hide_event_type_details=1&hide_gdpr_banner=1",
   };
 
   return <DemoBookingBase region="global" regionalContent={regionalContent} />;
