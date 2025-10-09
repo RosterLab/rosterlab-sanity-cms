@@ -53,6 +53,7 @@ export default async function AboutPage() {
     headerVariant?.value === "enabled"
       ? "About the RosterLab Team"
       : "The RosterLab Story";
+
   return (
     <SiteLayout>
       {/* Hero Section */}

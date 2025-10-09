@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import Button from '@/components/ui/Button'
-import { trackFormSubmit } from '@/components/analytics/Amplitude'
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import Button from "@/components/ui/Button";
+import { trackFormSubmit } from "@/components/analytics/Segment";
 
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
   company: z.string().optional(),
   phone: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-})
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
 
-type ContactFormData = z.infer<typeof contactSchema>
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
     register,
@@ -28,57 +28,67 @@ export default function ContactForm() {
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
-  })
+  });
 
   const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true)
-    
+    setIsSubmitting(true);
+
     // Track form submission attempt
-    trackFormSubmit('Contact Form', {
+    trackFormSubmit("Contact Form", {
       has_company: !!data.company,
       has_phone: !!data.phone,
       message_length: data.message.length,
-    })
-    
+    });
+
     try {
       // Replace with your form submission logic
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      })
+      });
 
       if (response.ok) {
-        setIsSubmitted(true)
-        reset()
-        
+        setIsSubmitted(true);
+        reset();
+
         // Track successful submission
-        trackFormSubmit('Contact Form Success', {
+        trackFormSubmit("Contact Form Success", {
           has_company: !!data.company,
           has_phone: !!data.phone,
-        })
+        });
       } else {
-        throw new Error('Failed to submit form')
+        throw new Error("Failed to submit form");
       }
     } catch (error) {
-      console.error('Form submission error:', error)
+      console.error("Form submission error:", error);
       // Track form submission error
-      trackFormSubmit('Contact Form Error', {
-        error_message: error instanceof Error ? error.message : 'Unknown error'
-      })
+      trackFormSubmit("Contact Form Error", {
+        error_message: error instanceof Error ? error.message : "Unknown error",
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   if (isSubmitted) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
         <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <svg
+            className="w-6 h-6 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
         </div>
         <h3 className="text-lg font-semibold text-green-800 mb-2">
@@ -97,18 +107,21 @@ export default function ContactForm() {
           Send Another Message
         </Button>
       </div>
-    )
+    );
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-neutral-700 mb-2"
+          >
             Name *
           </label>
           <input
-            {...register('name')}
+            {...register("name")}
             type="text"
             id="name"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -120,11 +133,14 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-neutral-700 mb-2"
+          >
             Email *
           </label>
           <input
-            {...register('email')}
+            {...register("email")}
             type="email"
             id="email"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -136,11 +152,14 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-sm font-medium text-neutral-700 mb-2">
+          <label
+            htmlFor="company"
+            className="block text-sm font-medium text-neutral-700 mb-2"
+          >
             Company
           </label>
           <input
-            {...register('company')}
+            {...register("company")}
             type="text"
             id="company"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -149,11 +168,14 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-2">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-neutral-700 mb-2"
+          >
             Phone
           </label>
           <input
-            {...register('phone')}
+            {...register("phone")}
             type="tel"
             id="phone"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -163,11 +185,14 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium text-neutral-700 mb-2"
+        >
           Message *
         </label>
         <textarea
-          {...register('message')}
+          {...register("message")}
           id="message"
           rows={5}
           className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -184,10 +209,10 @@ export default function ContactForm() {
         className="w-full md:w-auto"
         analyticsLabel="Send Message"
         analyticsLocation="Contact Form"
-        analyticsProperties={{ form_type: 'contact' }}
+        analyticsProperties={{ form_type: "contact" }}
       >
-        {isSubmitting ? 'Sending...' : 'Send Message'}
+        {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>
-  )
+  );
 }

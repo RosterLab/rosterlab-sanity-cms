@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 
 interface HubSpotFormCallback {
   type: "hsFormCallback";

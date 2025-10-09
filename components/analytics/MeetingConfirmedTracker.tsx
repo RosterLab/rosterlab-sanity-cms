@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 
 export default function MeetingConfirmedTracker() {
   useEffect(() => {

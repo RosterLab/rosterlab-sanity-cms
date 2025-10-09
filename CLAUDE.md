@@ -100,8 +100,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Configured via `.secretlintrc.json` and runs automatically on staged files
 - Pre-commit hook also runs ESLint and Prettier for code quality
 
-### A/B Testing with Amplitude Experiments
+### Analytics Stack
+
+#### Segment (Event Tracking)
+
+- **Event tracking** - Use Segment SDK via `components/analytics/Segment.tsx` component
+- **Client-side tracking** - Component automatically tracks page views, form interactions, and file downloads
+- **UTM tracking** - First-touch and current-touch attribution handled automatically via `lib/analytics/utm-tracker.ts`
+- **Cross-domain tracking** - Identity stitching between marketing site and app via `lib/analytics/identity-stitching.ts`
+- **Required environment variable** - `NEXT_PUBLIC_SEGMENT_WRITE_KEY`
+- **Proxy configuration** - Events routed through `https://public.rosterlab.com/telemetry/s` (production) or `https://public-test.rosterlab.com/telemetry/s` (staging/development)
+
+#### Amplitude Session Replay
+
+- **Session recording only** - Records user sessions for replay and debugging (NO event tracking)
+- **Component** - `components/analytics/AmplitudeSessionReplay.tsx`
+- **All analytics events** - Handled by Segment (see above)
+- **Required environment variable** - `NEXT_PUBLIC_AMPLITUDE_API_KEY`
+- **Sample rate** - 100% of sessions are recorded
+
+#### Amplitude Experiments (A/B Testing)
 
 - **Server-side only** - Use `getVariant()` from `lib/amplitude/experiment-server.ts` in Server Components
 - **Add new tests** - Add flag to `ExperimentFlags` in `lib/amplitude/experiment-utils.ts`, then use `getVariant()` in your Server Component
-- **Device id** - Device ID is grabbed from cookie if exists otherwise new one is created.
+- **Device ID** - Uses Segment's anonymous ID for consistent user identification across experiments
+- **Required environment variable** - `AMPLITUDE_EXPERIMENT_SERVER_KEY`
