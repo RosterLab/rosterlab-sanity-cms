@@ -85,6 +85,13 @@ function findPages(dir: string, basePath: string = ""): string[] {
           continue;
         }
 
+        // Handle route groups (folders wrapped in parentheses)
+        if (file.startsWith("(") && file.endsWith(")")) {
+          // Include content from route groups but don't add the group name to the path
+          pages.push(...findPages(filePath, basePath));
+          continue;
+        }
+
         // Recursively search subdirectories
         pages.push(...findPages(filePath, currentPath));
       } else if (file === "page.tsx" && basePath !== "") {
@@ -235,41 +242,8 @@ async function generateSitemap() {
     }
   }
 
-  // Add pagination pages
-  const postsPerPage = 12;
-
-  // Blog pagination
-  const blogTotalPages = Math.ceil(blogPosts.length / postsPerPage);
-  for (let i = 2; i <= blogTotalPages; i++) {
-    entries.push(`  <url>
-    <loc>${baseUrl}/blog/page/${i}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-  }
-
-  // Case studies pagination
-  const caseStudiesTotalPages = Math.ceil(caseStudies.length / postsPerPage);
-  for (let i = 2; i <= caseStudiesTotalPages; i++) {
-    entries.push(`  <url>
-    <loc>${baseUrl}/case-studies/page/${i}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-  }
-
-  // Newsroom pagination
-  const newsroomTotalPages = Math.ceil(newsroomPosts.length / postsPerPage);
-  for (let i = 2; i <= newsroomTotalPages; i++) {
-    entries.push(`  <url>
-    <loc>${baseUrl}/newsroom/page/${i}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>`);
-  }
+  // Note: Pagination pages have noindex meta tag and should not be in sitemap
+  // They are excluded from the sitemap as per SEO best practices
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
