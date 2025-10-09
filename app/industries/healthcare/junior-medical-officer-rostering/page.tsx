@@ -183,10 +183,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Better JMO Rostering Starts with Compliance
+              Better JMO Staffing Starts with Smart Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build compliant JMO rosters in minutes, not days. Discover how:
+              Build flexible JMO rosters in minutes, not days. Discover how:
             </p>
           </div>
 
@@ -528,8 +528,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Happier Junior Doctors
               </h3>
               <p className="text-gray-600">
-                Fair, automated rostering eliminates favoritism and bullying
-                through transparent, bias-free shift allocation.
+                Better work-life balance and fair shift allocation improve JMO
+                retention and job satisfaction.
               </p>
             </div>
           </div>
