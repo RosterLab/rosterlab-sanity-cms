@@ -1,12 +1,11 @@
 import Container from "@/components/ui/Container";
-import ContactFormWrapper from "@/components/forms/ContactFormWrapper";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import Script from "next/script";
 
 export const metadata = withHreflang(
   {
@@ -62,7 +61,10 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <SiteLayout>
-      <HubSpotFormListener />
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
       <div className="py-16 bg-neutral-50 min-h-screen">
         <Container>
           {/* Header */}
@@ -123,16 +125,17 @@ export default function ContactPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* HubSpot Demo Form */}
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-                Speak to us about your rostering challenges
-              </h2>
-              <p className="text-neutral-600 mb-6">
-                Fill out the form below and our team will be in touch to discuss
-                how we can help you create the perfect roster for your team.
-              </p>
-              <ContactFormWrapper />
+            {/* Calendly Widget */}
+            <div>
+              <div
+                className="calendly-inline-widget"
+                data-url="https://calendly.com/d/cv5n-fky-kpf?hide_gdpr_banner=1"
+                style={{
+                  minWidth: "320px",
+                  height: "700px",
+                  overflow: "hidden",
+                }}
+              ></div>
             </div>
 
             {/* Contact Information */}
