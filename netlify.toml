@@ -1,4 +1,5 @@
-# Handle HTTP to HTTPS at CDN level for security
+# HTTP to HTTPS redirects are handled at CDN level for security
+# IMPORTANT: No www removal here - that's handled by Next.js middleware
 [[redirects]]
   from = "http://rosterlab.com/*"
   to = "https://rosterlab.com/:splat"
