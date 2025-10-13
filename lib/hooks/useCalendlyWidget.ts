@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import {
+  getCurrentTouchData,
+  getFirstTouchData,
+} from "@/lib/analytics/utm-tracker";
 
 interface CalendlyEventData {
   event?: {
@@ -59,15 +63,38 @@ export function useCalendlyWidget({
   const hasTrackedViewRef = useRef(false);
   const router = useRouter();
 
-  // Build Calendly URL with parameters
+  // Build Calendly URL with parameters including UTM tracking
   useEffect(() => {
     if (!config.baseUrl) return;
 
+    // Get UTM parameters - prioritize first-touch (original source) over current-touch
+    // This ensures bookings are attributed to the marketing channel that brought the user
+    const firstTouch = getFirstTouchData();
+    const currentTouch = getCurrentTouchData();
+
+    // Use first-touch attribution if available (where user originally came from)
+    // Otherwise fall back to current-touch (current page attribution)
+    const attribution = firstTouch || currentTouch;
+
+    // Build params with UTM tracking for proper channel attribution in GA4
     const params = new URLSearchParams({
       hide_gdpr_banner: "1",
-      utm_source: "website",
-      utm_medium: "booking",
-      utm_campaign: "demo",
+      // Pass UTM params to Calendly so they're included when Calendly fires GA4 events
+      ...(attribution.utm_source && {
+        utm_source: attribution.utm_source,
+      }),
+      ...(attribution.utm_medium && {
+        utm_medium: attribution.utm_medium,
+      }),
+      ...(attribution.utm_campaign && {
+        utm_campaign: attribution.utm_campaign,
+      }),
+      ...(attribution.utm_term && { utm_term: attribution.utm_term }),
+      ...(attribution.utm_content && {
+        utm_content: attribution.utm_content,
+      }),
+      // Add session ID for cross-session tracking
+      ...(currentTouch.session_id && { session_id: currentTouch.session_id }),
       ...config.queryParams,
     });
 
