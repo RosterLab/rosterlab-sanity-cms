@@ -81,9 +81,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Deployment & Hosting
 
-- **AWS Amplify** hosts the production application
-- Amplify configuration in `amplify.yml` handles build, caching, and security headers
-- Next.js redirects are automatically respected by Amplify during builds
+- **Netlify** hosts the production application
+- Build configuration in `netlify.toml` (currently minimal - redirects handled by Next.js middleware)
+- AWS Amplify configuration in `amplify.yml` exists but is not actively used
+- Next.js middleware handles www removal and trailing slash redirects with a single 301 redirect
 - Static assets served from `.next` build directory with optimized caching
 
 ### Development Workflow
