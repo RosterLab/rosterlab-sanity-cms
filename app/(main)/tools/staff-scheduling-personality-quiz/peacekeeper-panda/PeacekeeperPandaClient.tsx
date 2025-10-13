@@ -122,7 +122,7 @@ export default function PeacekeeperPandaClient({
   const generatePDF = useCallback(async () => {
     try {
       // Dynamically import jsPDF to avoid SSR issues
-      const { jsPDF } = await import("jspdf");
+      const jsPDF = (await import("jspdf")).default;
       const doc = new jsPDF();
 
       // Helper function to load images as base64
