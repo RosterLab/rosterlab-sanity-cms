@@ -4,6 +4,28 @@ import type { NextRequest } from "next/server";
 // Middleware for handling localized routes
 // No automatic redirects - users choose their preferred version
 export function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  const hostname = request.headers.get("host") || "";
+
+  // Handle www removal and trailing slash in a single redirect
+  const hasWww = hostname.startsWith("www.");
+  const hasTrailingSlash = url.pathname !== "/" && url.pathname.endsWith("/");
+
+  if (hasWww || hasTrailingSlash) {
+    // Remove www from hostname
+    if (hasWww) {
+      url.hostname = hostname.replace(/^www\./, "");
+    }
+
+    // Remove trailing slash from pathname
+    if (hasTrailingSlash) {
+      url.pathname = url.pathname.slice(0, -1);
+    }
+
+    // Single 301 redirect for both www and trailing slash
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
   const pathname = request.nextUrl.pathname;
 
   // Detect user's country from various sources
