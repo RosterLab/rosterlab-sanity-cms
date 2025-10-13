@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, Suspense, useRef } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   initializeUTMTracking,
@@ -14,27 +14,11 @@ interface UTMTrackerProps {
   debug?: boolean;
 }
 
-const PREVIOUS_PAGE_KEY = "rl_previous_page";
-
 function UTMTrackerInner({ onUTMsDetected, debug = false }: UTMTrackerProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const previousPathnameRef = useRef<string | null>(null);
 
   useEffect(() => {
-    // Track previous page before updating to current
-    if (previousPathnameRef.current !== null) {
-      // Save the previous pathname to sessionStorage
-      try {
-        sessionStorage.setItem(PREVIOUS_PAGE_KEY, previousPathnameRef.current);
-      } catch (e) {
-        console.error("Failed to save previous page:", e);
-      }
-    }
-
-    // Update the ref to current pathname for next navigation
-    previousPathnameRef.current = pathname;
-
     // Initialize UTM tracking on mount and route changes
     const trackingData = initializeUTMTracking();
 
