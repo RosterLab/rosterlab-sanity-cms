@@ -407,6 +407,11 @@ const nextConfig: NextConfig = {
         destination: "/solutions/free-staff-rostering-software",
         permanent: true,
       },
+      {
+        source: "/blog/te-whatu-ora-workforce-plan-2023-2024",
+        destination: "/blog",
+        permanent: true,
+      },
     ];
   },
 };
