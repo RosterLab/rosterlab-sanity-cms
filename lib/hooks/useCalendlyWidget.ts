@@ -76,10 +76,17 @@ export function useCalendlyWidget({
     // Otherwise fall back to current-touch (current page attribution)
     const attribution = firstTouch || currentTouch;
 
+    // Get previous page from sessionStorage (page user was on before current page)
+    let previousPage: string | null = null;
+    try {
+      previousPage = sessionStorage.getItem("rl_previous_page");
+    } catch (e) {
+      // SessionStorage not available
+    }
+
     // Build params with UTM tracking for proper channel attribution in GA4
-    // Only include parameters that Calendly will automatically pass to GA4
     const params = new URLSearchParams({
-      // Pass UTM params to Calendly so they're included when Calendly fires GA4 events
+      // UTM params - automatically passed to GA4 by Calendly
       ...(attribution.utm_source && {
         utm_source: attribution.utm_source,
       }),
@@ -93,6 +100,10 @@ export function useCalendlyWidget({
       ...(attribution.utm_content && {
         utm_content: attribution.utm_content,
       }),
+      // Custom params - available in Calendly data but not automatically sent to GA4
+      ...(currentTouch.session_id && { session_id: currentTouch.session_id }),
+      ...(previousPage && { last_page: previousPage }),
+      ...(currentTouch.referrer && { referrer: currentTouch.referrer }),
       ...config.queryParams,
     });
 
