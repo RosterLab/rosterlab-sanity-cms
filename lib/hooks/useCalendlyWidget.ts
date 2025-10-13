@@ -95,6 +95,11 @@ export function useCalendlyWidget({
       }),
       // Add session ID for cross-session tracking
       ...(currentTouch.session_id && { session_id: currentTouch.session_id }),
+      // Add landing page and referrer tracking for conversion path analysis
+      ...(currentTouch.landing_page && {
+        last_page: currentTouch.landing_page,
+      }),
+      ...(currentTouch.referrer && { referrer: currentTouch.referrer }),
       ...config.queryParams,
     });
 
