@@ -62,7 +62,7 @@ const faqItems = [
   {
     question: "Can RosterLab help improve JMO retention?",
     answer:
-      "Yes. By creating fair, compliant rosters that respect work-life balance and training needs, RosterLab helps departments build a positive reputation that attracts and retains JMOs. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - JMOs now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect training needs and personal preferences, RosterLab increases JMO engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  AMA/EBA compliant rosters
+                  Union compliant rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -115,7 +115,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Protected training and exam periods
+                  Maintain optimal staffing throughout training and exam periods
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -131,7 +131,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair night shift distribution
+                  Empower staff equity with balanced, transparent scheduling
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -147,7 +147,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Improved JMO retention and wellbeing
+                  Improve junior doctors retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -183,31 +183,22 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Better JMO Staffing Starts with Smart Rostering
+              The best AI rostering tool for junior doctors
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build flexible JMO rosters in minutes, not days. Discover how:
+              Fast. Optimised. Made for junior doctors. Adapt to changes fast.
             </p>
           </div>
 
-          {/* Interactive Demo Widget */}
+          {/* AI Rostering Image */}
           <div className="mb-16 max-w-4xl mx-auto">
-            <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-50 to-cyan-50 p-4">
-              <div
-                className="relative w-full"
-                style={{ paddingBottom: "calc(56.67989417989418% + 41px)" }}
-              >
-                <iframe
-                  src="https://demo.arcade.software/qKV5GmMinypq2yXM19Xi?embed"
-                  title="RosterLab Interactive Demo"
-                  frameBorder="0"
-                  loading="lazy"
-                  allowFullScreen
-                  allow="clipboard-write"
-                  className="absolute top-0 left-0 w-full h-full"
-                ></iframe>
-              </div>
-            </div>
+            <Image
+              src="/images/generating.webp"
+              alt="AI-generated roster interface"
+              width={600}
+              height={500}
+              className="rounded-lg shadow-lg mx-auto"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -229,11 +220,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Automatic roster generation
+                Reduce rostering administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering with our AI roster
-                generation giving you time back to focus on what's important.
+                Eliminate the need for manual rostering, with automatic
+                rostering - giving you time back to focus on what's important.
               </p>
             </div>
 
@@ -255,11 +246,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                AMA/EBA compliance guaranteed
+                Stay compliant with union rules
               </h3>
               <p className="text-gray-600">
-                Rosters that JMOs actually work instead of calling in sick.
-                Build department reputation and reduce compliance risks.
+                Remain legally and union compliant so junior doctors can work
+                safely while having more flexibility.
               </p>
             </div>
 
@@ -281,7 +272,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Protected training and exam time
+                Protect training and exam time
               </h3>
               <p className="text-gray-600">
                 Schedule longer days off around exams and ensure complete
@@ -307,11 +298,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Fair night shift distribution
+                Better engagement, better care
               </h3>
               <p className="text-gray-600">
-                Equitable night allocation paired with senior registrars. Proper
-                transitions reduce burnout and sick leave.
+                Consider staff preferences while ensuring fairness, reducing
+                burnout and supporting safer night-to-day transitions.
               </p>
             </div>
           </div>
@@ -331,33 +322,6 @@ export default function JuniorMedicalOfficerRosteringPage() {
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Build Department Reputation
-                    </h4>
-                    <p className="text-gray-600">
-                      Fair, compliant rosters build a positive reputation that
-                      attracts and retains quality JMOs in your department.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
                       className="w-6 h-6 text-cyan-600"
@@ -375,39 +339,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Complete Training Programs
+                      Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protected time for education and teaching ensures JMOs
+                      Protect time for education and teaching ensures JMOs
                       receive complete training while maintaining department
                       coverage.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce JMO Burnout
-                    </h4>
-                    <p className="text-gray-600">
-                      Enhance overall work-life balance and minimise fatigue for
-                      your staff.
                     </p>
                   </div>
                 </div>
@@ -430,7 +367,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Maintain Safe Skill Mix
+                      Optimise Shifts for Complex Skill Mix
                     </h4>
                     <p className="text-gray-600">
                       Automatically pair junior medical officers with senior
@@ -458,13 +395,41 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Meet More Staff Preferences
+                      Switch Between Shift View and Employee View
                     </h4>
                     <p className="text-gray-600">
-                      Support working parents and younger doctors seeking
-                      work-life balance. Preferences can be overridden by
-                      training, staffing, and night shift requirements when
-                      needed.
+                      Easily manage day to day roster changes using shift view.
+                      Shift view provides a visual representation of different
+                      responsibilities across departments so you can see what's
+                      important.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-orange-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Adapt to Changes with Rerostering
+                    </h4>
+                    <p className="text-gray-600">
+                      Adapt to changes and last-minute requests while keeping
+                      handovers and rostering for junior doctors consistent -
+                      without added admin or roster headaches.
                     </p>
                   </div>
                 </div>
@@ -484,60 +449,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
         </Container>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-white">
-        <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern JMO Rostering Software
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve JMO wellbeing, retention, and
-              compliance
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
-              <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduction in Rostering Time
-              </h3>
-              <p className="text-gray-600">
-                Heads of department and business managers spend days less per
-                month on rostering, redirecting time to patient care and
-                department operations.
-              </p>
-            </div>
-
-            <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
-              <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Optimised Roster
-              </h3>
-              <p className="text-gray-600">
-                AMA/EBA compliant rosters maintained across every shift, with
-                instant alerts when compliance is at risk and proper
-                night-to-day transitions reducing sick leave.
-              </p>
-            </div>
-
-            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-              <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Happier Junior Doctors
-              </h3>
-              <p className="text-gray-600">
-                Better work-life balance and fair shift allocation improve JMO
-                retention and job satisfaction.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Self-Rostering Workflow Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
@@ -685,7 +598,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -697,62 +610,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                AMA/EBA Compliance Enforcement
-              </h3>
-              <p className="text-gray-600">
-                Enforces maximum consecutive shifts, minimum rest periods, and
-                fatigue management. The system flags non-compliant rosters.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Skill Mix Management
-              </h3>
-              <p className="text-gray-600">
-                Ensure every shift has the right skills present by creating
-                rules to ensure a balanced mix of skills is present on your
-                roster.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -769,16 +629,22 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Union Rule Automation
+                Automatic Roster Generation
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Enforce rules, minimum rest periods, maximum consecutive shifts,
                 and contractual obligations.
               </p>
+              <a
+                href="/solutions/ai-roster-generator"
+                className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
 
-            {/* Feature 4 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            {/* Feature 2 */}
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-teal-600"
@@ -795,16 +661,22 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Mobile Self-Rostering
+                Self Scheduling
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 JMOs submit preferences, training needs, exam dates, and manage
                 time-off requests directly from their phones.
               </p>
+              <a
+                href="https://rosterlab.com/feature/self-scheduling"
+                className="text-teal-600 hover:text-teal-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
 
-            {/* Feature 5 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            {/* Feature 3 */}
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-cyan-600"
@@ -823,15 +695,21 @@ export default function JuniorMedicalOfficerRosteringPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Instant Roster Changes
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 When JMOs call in sick, see who's qualified and available to
                 fill the gap without breaking compliance or training
                 requirements.
               </p>
+              <a
+                href="/feature/re-rostering"
+                className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
 
-            {/* Feature 6 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            {/* Feature 4 */}
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -848,25 +726,26 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Fatigue Prevention
+                Staff Mobile App
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-3">
                 Track hours worked, enforce rest periods, and prevent dangerous
                 consecutive shift patterns that lead to burnout.
               </p>
+              <a
+                href="/solutions/staff-roster-mobile-app"
+                className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
           </div>
-
-          {/* CTA for Mobile App */}
-          <div className="text-center mt-12">
-            <Button
-              href="/solutions/staff-roster-mobile-app"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
-            >
-              Learn about mobile app
-            </Button>
-          </div>
         </Container>
+      </section>
+
+      {/* Trusted By */}
+      <section className="py-10 bg-white">
+        <TrustedBy />
       </section>
 
       {/* FAQ Section */}
@@ -882,11 +761,6 @@ export default function JuniorMedicalOfficerRosteringPage() {
             <FAQAccordion items={faqItems} />
           </div>
         </Container>
-      </section>
-
-      {/* Trusted By */}
-      <section className="py-10 bg-white">
-        <TrustedBy />
       </section>
 
       {/* CTA Section */}
