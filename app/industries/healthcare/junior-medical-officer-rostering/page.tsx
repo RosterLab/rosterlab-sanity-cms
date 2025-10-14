@@ -665,7 +665,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
               </h3>
               <p className="text-gray-600 mb-3">
                 JMOs submit preferences, training needs, exam dates, and manage
-                time-off requests directly from their phones.
+                time-off requests directly from their phones. <br />
+                &nbsp;
               </p>
               <a
                 href="https://rosterlab.com/feature/self-scheduling"
@@ -730,7 +731,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
               </h3>
               <p className="text-gray-600 mb-3">
                 Track hours worked, enforce rest periods, and prevent dangerous
-                consecutive shift patterns that lead to burnout.
+                consecutive shift patterns that lead to burnout and fatigue.{" "}
+                <br />
+                &nbsp;
               </p>
               <a
                 href="/solutions/staff-roster-mobile-app"
