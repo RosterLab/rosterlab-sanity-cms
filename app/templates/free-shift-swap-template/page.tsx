@@ -108,7 +108,7 @@ const faqItems = [
   {
     question: "How does this compare to digital shift swap management?",
     answer:
-      "While this template provides structure for shift swap requests, our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:text-blue-700 underline'>digital rostering solution</a> automates the entire process. Staff can request swaps through their phones, managers get instant notifications for approval, and the roster updates automatically - eliminating paperwork and reducing admin time by up to 80%.",
+      "While this template provides structure for shift swap requests, our <a href='/solutions/free-staff-rostering-software' class='text-blue-600 hover:text-blue-700 underline'>digital rostering solution</a> automates the entire process. Staff can request swaps through their phones, managers get instant notifications for approval, and the roster updates automatically - eliminating paperwork and reducing admin time by up to 80%.",
   },
 ];
 

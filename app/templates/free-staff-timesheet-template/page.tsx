@@ -110,7 +110,7 @@ const faqItems = [
     question:
       "What's the difference between timesheet tracking and staff scheduling?",
     answer:
-      "Timesheet tracking records actual hours worked by employees, while staff scheduling plans future shifts. Our timesheet template helps you capture what happened, while our <a href='/solutions/free-staff-scheduling' class='text-blue-600 hover:text-blue-700 underline'>scheduling tools</a> help you plan what will happen. Our digital platform links scheduling and timesheets together for more streamlined information.",
+      "Timesheet tracking records actual hours worked by employees, while staff scheduling plans future shifts. Our timesheet template helps you capture what happened, while our <a href='https://rosterlab.com/solutions/free-staff-rostering-software' class='text-blue-600 hover:text-blue-700 underline'>scheduling tools</a> help you plan what will happen. Our digital platform links scheduling and timesheets together for more streamlined information.",
   },
 ];
 
