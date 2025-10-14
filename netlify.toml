@@ -1,17 +1,16 @@
+# HTTP to HTTPS redirects are handled at CDN level for security
+# IMPORTANT: No www removal here - that's handled by Next.js middleware
 [[redirects]]
-  from = "https://www.rosterlab.com/*"
+  from = "http://rosterlab.com/*"
   to = "https://rosterlab.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "http://www.rosterlab.com/*"
-  to = "https://rosterlab.com/:splat"
+  to = "https://www.rosterlab.com/:splat"
   status = 301
   force = true
 
-[[redirects]]
-  from = "http://rosterlab.com/*"
-  to = "https://rosterlab.com/:splat"
-  status = 301
-  force = true
+# All other redirects (www removal, trailing slashes) are handled by Next.js middleware
+# This ensures a single 301 redirect instead of a chain for application-level redirects

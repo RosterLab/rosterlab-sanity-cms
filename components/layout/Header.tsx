@@ -506,10 +506,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
                               <Link
-                                href="/blog"
+                                href="/templates"
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
-                                Explore all resources
+                                Explore workforce templates
                                 <svg
                                   className="ml-1 h-4 w-4"
                                   fill="none"
