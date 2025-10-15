@@ -99,7 +99,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Union compliant rosters
+                  Create union compliant rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -433,6 +433,34 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     </p>
                   </div>
                 </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Fatigue Management
+                    </h4>
+                    <p className="text-gray-600">
+                      Enforce rest periods to prevent dangerous consecutive
+                      shift patterns that lead to burnout and fatigue. Staff can
+                      also input preferences for better work-life balance.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -632,8 +660,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Automatic Roster Generation
               </h3>
               <p className="text-gray-600 mb-3">
-                Enforce rules, minimum rest periods, maximum consecutive shifts,
-                and contractual obligations.
+                Automatically generate compliant rosters that enforce union
+                rules and requirements. Reduce roster admin by 90%.
               </p>
               <a
                 href="/solutions/ai-roster-generator"
@@ -730,10 +758,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Staff Mobile App
               </h3>
               <p className="text-gray-600 mb-3">
-                Track hours worked, enforce rest periods, and prevent dangerous
-                consecutive shift patterns that lead to burnout and fatigue.{" "}
-                <br />
-                &nbsp;
+                Access rosters on the go and submit preferences for better
+                work-life balance. Empower JMOs with mobile tools to manage
+                their schedules anytime, anywhere.
               </p>
               <a
                 href="/solutions/staff-roster-mobile-app"
