@@ -198,7 +198,7 @@ export default function ROICalculatorClient() {
         // Add clickable link for "personalised demo"
         doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
         doc.textWithLink("personalised demo", 20 + step1Width, 265, {
-          url: "https://www.rosterlab.com/book-a-demo",
+          url: "https://rosterlab.com/book-a-demo",
         });
         const linkWidth = doc.getTextWidth("personalised demo");
 
@@ -218,7 +218,7 @@ export default function ROICalculatorClient() {
         doc.text("Contact Us:", 20, 289);
         doc.setTextColor(textColor[0], textColor[1], textColor[2]);
         doc.text(
-          "Email: hello@rosterlab.com  |  Website: www.rosterlab.com",
+          "Email: hello@rosterlab.com  |  Website: rosterlab.com",
           60,
           289,
         );

@@ -299,7 +299,7 @@ export default function SchedgeGame({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  www.rosterlab.com
+                  rosterlab.com
                 </a>
               </h3>
               <p>
