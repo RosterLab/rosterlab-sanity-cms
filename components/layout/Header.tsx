@@ -68,6 +68,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Leave Requests", link: "/feature/leave-requests" },
         { title: "Staff Preferences", link: "/feature/self-scheduling" },
         { title: "Re-Rostering", link: "/feature/re-rostering" },
+        {
+          title: "Rules and Compliance",
+          link: "/feature/rules-engine",
+        },
       ],
     },
     {
