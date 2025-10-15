@@ -147,7 +147,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Improve junior doctors retention and work-life balance
+                  Improve junior doctors' retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -223,8 +223,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Reduce rostering administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering, with automatic
-                rostering - giving you time back to focus on what's important.
+                Eliminate the need for manual rostering - giving you time back
+                to focus on patient care and team wellbeing.
               </p>
             </div>
 
@@ -249,7 +249,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Stay compliant with union rules
               </h3>
               <p className="text-gray-600">
-                Remain legally and union compliant so junior doctors can work
+                Maintain legal and union compliance so junior doctors can work
                 safely while having more flexibility.
               </p>
             </div>
@@ -342,7 +342,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching ensures JMOs
+                      Protect time for education and teaching to ensure JMOs
                       receive complete training while maintaining department
                       coverage.
                     </p>
@@ -400,8 +400,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     <p className="text-gray-600">
                       Easily manage day to day roster changes using shift view.
                       Shift view provides a visual representation of different
-                      responsibilities across departments so you can see what's
-                      important.
+                      responsibilities across departments so you can see shift
+                      coverage.
                     </p>
                   </div>
                 </div>
