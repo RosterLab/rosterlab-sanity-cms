@@ -395,13 +395,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Switch Between Shift View and Employee View
+                      Manage Your Workforce With Confidence
                     </h4>
                     <p className="text-gray-600">
-                      Easily manage day to day roster changes using shift view.
-                      Shift view provides a visual representation of different
-                      responsibilities across departments so you can see shift
-                      coverage.
+                      Switch seamlessly between staff and shift perspectives to
+                      gain a clear picture of responsibilities, coverage, and
+                      balance across your department.
                     </p>
                   </div>
                 </div>
@@ -424,12 +423,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Adapt to Changes with Rerostering
+                      Adapt to Cohort Changes With Ease and Confidence
                     </h4>
                     <p className="text-gray-600">
-                      Adapt to changes and last-minute requests while keeping
-                      handovers and rostering for junior doctors consistent -
-                      without added admin or roster headaches.
+                      Manage every term in a structured, consistent way - so
+                      your rosters stay accurate, organised, and stress-free.
                     </p>
                   </div>
                 </div>
@@ -452,7 +450,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Fatigue Management
+                      Better Wellbeing, Less Fatigue
                     </h4>
                     <p className="text-gray-600">
                       Enforce rest periods to prevent dangerous consecutive
@@ -755,12 +753,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Staff Mobile App
+                Term Roster Management
               </h3>
               <p className="text-gray-600 mb-3">
-                Access rosters on the go and submit preferences for better
-                work-life balance. Empower JMOs with mobile tools to manage
-                their schedules anytime, anywhere.
+                Stay on top of cohort changes with ease. Manage every term
+                consistently so rosters stay accurate, compliant, and
+                stress-free.
               </p>
               <a
                 href="/solutions/staff-roster-mobile-app"
