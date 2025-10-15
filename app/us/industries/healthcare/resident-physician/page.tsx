@@ -11,19 +11,19 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Junior Medical Officer Rostering Software - RosterLab",
+    title: "Resident Physician Scheduling Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+      "End unsafe schedules and overwork. Build fair, compliant resident physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/resident-physician",
     },
     openGraph: {
-      title: "Junior Medical Officer Rostering Software - RosterLab",
+      title: "Resident Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe schedules and overwork. Build fair, compliant resident physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/junior-medical-officer-rostering",
+      url: "https://rosterlab.com/us/industries/healthcare/resident-physician",
       images: [
         {
           url: "/images/us-images/iStock-2232242180.jpg",
@@ -34,9 +34,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Junior Medical Officer Rostering Software - RosterLab",
+      title: "Resident Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe schedules and overwork. Build fair, compliant resident physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
@@ -45,24 +45,26 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
-    question: "How does RosterLab ensure AMA/EBA compliance for JMO rosters?",
+    question:
+      "How does RosterLab ensure ACGME duty hour compliance for resident physician schedules?",
     answer:
-      "RosterLab enforces AMA and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring JMOs actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces ACGME duty hour and labor law requirements automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules, ensuring resident physicians actually work the schedules rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
-    question: "How does RosterLab handle training and exam periods for JMOs?",
+    question:
+      "How does RosterLab handle training and exam periods for resident physicians?",
     answer:
-      "JMOs can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the roster to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
+      "resident physicians can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the schedule to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
   },
   {
     question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab automatically distributes night shifts equitably across all JMOs, preventing burnout and ensuring fairness. The system can help pair junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
+      "RosterLab automatically distributes night shifts equitably across all resident physicians, preventing burnout and ensuring fairness. The system can help pair junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question: "Can RosterLab help improve JMO retention?",
+    question: "Can RosterLab help improve resident physician retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - JMOs now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect training needs and personal preferences, RosterLab increases JMO engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - resident physicians now prioritise work-life balance more than ever. By creating safe, fair, and flexible schedules that respect training needs and personal preferences, RosterLab increases resident physician engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
@@ -78,11 +80,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Flexible, Compliant
                 </span>{" "}
-                JMO Rosters
+                resident physician Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance training requirements,
-                fair night shift distribution, and JMO wellbeing.
+                Create compliant AI schedules that balance training
+                requirements, fair night shift distribution, and resident
+                physician wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -99,7 +102,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Create union compliant rosters
+                  Create compliant with ACGME duty hours schedules
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -152,23 +155,23 @@ export default function JuniorMedicalOfficerRosteringPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/case-studies"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Read Case Studies
+                  View Pricing
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
                 src="/images/illustration/jmo.svg"
-                alt="JMO rostering software interface"
+                alt="resident physician scheduling software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -183,18 +186,18 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI rostering tool for junior doctors
+              The best AI scheduling tool for junior doctors
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Fast. Optimised. Made for junior doctors. Adapt to changes fast.
             </p>
           </div>
 
-          {/* AI Rostering Image */}
+          {/* AI Scheduling Image */}
           <div className="mb-16 max-w-4xl mx-auto">
             <Image
               src="/images/generating.webp"
-              alt="AI-generated roster interface"
+              alt="AI-generated schedule interface"
               width={600}
               height={500}
               className="rounded-lg shadow-lg mx-auto"
@@ -202,7 +205,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pain Point 1: Automatic Roster Generation */}
+            {/* Pain Point 1: Automatic Schedule Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -220,10 +223,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduce rostering administration
+                Reduce scheduling administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering - giving you time back
+                Eliminate the need for manual scheduling- giving you time back
                 to focus on patient care and team wellbeing.
               </p>
             </div>
@@ -246,15 +249,15 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Stay compliant with ACGME duty hour rules
               </h3>
               <p className="text-gray-600">
-                Maintain legal and union compliance so junior doctors can work
+                Maintain legal and ACGME compliance so junior doctors can work
                 safely while having more flexibility.
               </p>
             </div>
 
-            {/* Pain Point 3: Improve flexibility through self-rostering */}
+            {/* Pain Point 3: Improve flexibility through self-scheduling*/}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -318,7 +321,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For JMO Roster Challenges
+                Perfect For resident physician Scheduling Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -342,9 +345,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure JMOs
-                      receive complete training while maintaining department
-                      coverage.
+                      Protect time for education and teaching to ensure resident
+                      physicians receive complete training while maintaining
+                      department coverage.
                     </p>
                   </div>
                 </div>
@@ -427,7 +430,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     </h4>
                     <p className="text-gray-600">
                       Manage every term in a structured, consistent way - so
-                      your rosters stay accurate, organised, and stress-free.
+                      your schedules stay accurate, organized, and stress-free.
                     </p>
                   </div>
                 </div>
@@ -466,28 +469,28 @@ export default function JuniorMedicalOfficerRosteringPage() {
           {/* CTA Button */}
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
-              href="/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
-              Learn about AI Rostering
+              Learn about AI Scheduling
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* Self-Rostering Workflow Section */}
+      {/* Self-Scheduling Workflow Section */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              JMO-FIRST WORKFLOW
+              resident physician-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How JMOs Engage with Their Rosters
+              How resident physicians Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around training requirements, preferences, and wellbeing,
-              not just top-down rostering
+              not just top-down scheduling
             </p>
           </div>
 
@@ -505,7 +508,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Define skill mix needs (senior registrars for night
-                      supervision), term rosters, and department coverage
+                      supervision), term schedules, and department coverage
                       requirements.
                     </p>
                   </div>
@@ -520,12 +523,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      JMOs Submit Preferences & Training Needs
+                      resident physicians Submit Preferences & Training Needs
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, JMOs indicate shift preferences, exam
-                      dates, teaching sessions, and time off requests. No emails
-                      or paper forms.
+                      Via mobile app, resident physicians indicate shift
+                      preferences, exam dates, teaching sessions, and time off
+                      requests. No emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -539,12 +542,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Compliant Roster
+                      AI Generates Compliant Schedule
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, training requirements,
-                      night shift equity, and AMA/EBA rules to create compliant
-                      term rosters.
+                      night shift equity, and ACGME duty hour rules to create
+                      compliant term schedules.
                     </p>
                   </div>
                 </div>
@@ -561,9 +564,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to JMOs' phones. They see their
-                      shifts, training time, and can request swaps with
-                      real-time updates.
+                      Schedules sync instantly to resident physicians' phones.
+                      They see their shifts, training time, and can request
+                      swaps with real-time updates.
                     </p>
                   </div>
                 </div>
@@ -577,12 +580,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      JMOs Self-Roster Open Shifts
+                      resident physicians Self-Schedule Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - JMOs can
-                      pick them up directly if qualified, within hour limits,
-                      and training time protected.
+                      Unfilled shifts are posted as "open shifts" - resident
+                      physicians can pick them up directly if qualified, within
+                      hour limits, and training time protected.
                     </p>
                   </div>
                 </div>
@@ -610,10 +613,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your JMO rostering?
+                Ready to streamline your resident physician scheduling?
               </p>
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
               >
                 See How It Works
@@ -628,11 +631,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for JMO Rostering
+              Essential Features for resident physician Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of JMO term
-              rosters
+              Purpose-built tools that address the unique complexity of resident
+              physician term schedules
             </p>
           </div>
 
@@ -655,14 +658,14 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Automatic Roster Generation
+                Automatic Schedule Generation
               </h3>
               <p className="text-gray-600 mb-3">
-                Automatically generate compliant rosters that enforce union
-                rules and requirements. Reduce roster admin by 90%.
+                Automatically generate compliant schedules that enforce union
+                rules and requirements. Reduce schedule admin by 90%.
               </p>
               <a
-                href="/solutions/ai-roster-generator"
+                href="/us/solutions/ai-staff-schedule-maker"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -690,8 +693,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Self Scheduling
               </h3>
               <p className="text-gray-600 mb-3">
-                JMOs submit preferences, training needs, exam dates, and manage
-                time-off requests directly from their phones. <br />
+                resident physicians submit preferences, training needs, exam
+                dates, and manage time-off requests directly from their phones.{" "}
+                <br />
                 &nbsp;
               </p>
               <a
@@ -720,15 +724,15 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Roster Changes
+                Instant Schedule Changes
               </h3>
               <p className="text-gray-600 mb-3">
-                When JMOs call in sick, see who's qualified and available to
-                fill the gap without breaking compliance or training
-                requirements.
+                When resident physicians call in sick, see who's qualified and
+                available to fill the gap without breaking compliance or
+                training requirements.
               </p>
               <a
-                href="/feature/re-rostering"
+                href="/us/feature/staff-rescheduling"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -753,15 +757,15 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Term Roster Management
+                Term Schedule Management
               </h3>
               <p className="text-gray-600 mb-3">
                 Stay on top of cohort changes with ease. Manage every term
-                consistently so rosters stay accurate, compliant, and
+                consistently so schedules stay accurate, compliant, and
                 stress-free.
               </p>
               <a
-                href="/solutions/staff-roster-mobile-app"
+                href="/us/solutions/staff-scheduling-mobile-app"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -796,24 +800,24 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer JMO Rosters
+              Build Compliant, Fairer resident physician Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved JMO retention, reduced
-              burnout, and built positive reputations
+              Join departments that have improved resident physician retention,
+              reduced burnout, and built positive reputations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
-                href="/tools/roi-calculator"
+                href="/us/tools/savings-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                See ROI Calculator
+                See Savings Calculator
               </Button>
             </div>
           </div>
@@ -826,7 +830,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Junior Medical Officer Rostering" },
+          { name: "Resident Physician Scheduling" },
         ]}
       />
     </SiteLayout>

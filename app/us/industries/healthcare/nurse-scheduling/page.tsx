@@ -16,7 +16,7 @@ export const metadata = withHreflang(
       "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
     alternates: {
       canonical:
-        "https://rosterlab.com/us/industries/healthcare/nurse-rostering",
+        "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
     },
     openGraph: {
       title: "Nurse Scheduling Software - RosterLab",
@@ -40,7 +40,7 @@ export const metadata = withHreflang(
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
-  "/us/industries/healthcare/nurse-rostering",
+  "/us/industries/healthcare/nurse-scheduling",
 );
 
 const faqItems = [
