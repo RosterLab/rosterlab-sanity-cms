@@ -64,7 +64,7 @@ const faqItems = [
   {
     question: "Can RosterLab help improve physician retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - physicians now prioritize work-life balance more than ever. By creating safe, fair, and flexible schedules that respect training needs and personal preferences, RosterLab increases physician engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - resident physicians now prioritize work-life balance more than ever. By creating safe, fair, and flexible schedules that respect training needs and personal preferences, RosterLab increases physician engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
@@ -227,7 +227,7 @@ export default function ResidentPhysicianSchedulingPage() {
                 Reduce scheduling administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual scheduling- giving you time back
+                Eliminate the need for manual scheduling - giving you time back
                 to focus on patient care and team wellbeing.
               </p>
             </div>
@@ -250,10 +250,10 @@ export default function ResidentPhysicianSchedulingPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with ACGME duty hour rules
+                Stay compliant with labor laws
               </h3>
               <p className="text-gray-600">
-                Maintain legal and ACGME compliance so junior doctors can work
+                Maintain legal and ACGME compliance so physicians can work
                 safely while having more flexibility.
               </p>
             </div>
@@ -346,7 +346,7 @@ export default function ResidentPhysicianSchedulingPage() {
                       Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure
+                      Protect time for education and teaching to ensure resident
                       physicians receive complete training while maintaining
                       department coverage.
                     </p>
@@ -374,8 +374,8 @@ export default function ResidentPhysicianSchedulingPage() {
                       Optimise Shifts for Complex Skill Mix
                     </h4>
                     <p className="text-gray-600">
-                      Automatically pair junior medical officers with senior
-                      registrars for night shifts, ensuring safe supervision and
+                      Automatically pair resident physicians with attending
+                      physicians for night shifts, ensuring safe supervision and
                       skill mix across all shifts.
                     </p>
                   </div>
@@ -508,7 +508,7 @@ export default function ResidentPhysicianSchedulingPage() {
                       Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Define skill mix needs (senior registrars for night
+                      Define skill mix needs (attending physicians for night
                       supervision), term schedules, and department coverage
                       requirements.
                     </p>
@@ -524,7 +524,7 @@ export default function ResidentPhysicianSchedulingPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Physicians Submit Preferences & Training Needs
+                      Physicians Submit Preferences
                     </h3>
                     <p className="text-gray-600">
                       Via mobile app, physicians indicate shift preferences,
@@ -662,8 +662,8 @@ export default function ResidentPhysicianSchedulingPage() {
                 Automatic Schedule Generation
               </h3>
               <p className="text-gray-600 mb-3">
-                Automatically generate compliant schedules that enforce labor
-                laws and requirements. Reduce schedule admin by 90%.
+                Create compliant schedules based on labor laws & ACGME
+                standards. Reduce schedule admin by 90%.
               </p>
               <a
                 href="/us/solutions/ai-staff-schedule-maker"
