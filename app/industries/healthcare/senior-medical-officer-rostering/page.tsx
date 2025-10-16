@@ -196,7 +196,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Pain Point 1: Complex Availability Management */}
+            {/* Benefit 1: Better Work-Life Balance */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -209,20 +209,20 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Manage Public/Private Commitments
+                Better Work-Life Balance
               </h3>
               <p className="text-gray-600">
-                Coordinate complex schedules across multiple locations. SMOs
-                inform their availability instead of being dictated to.
+                Reduce scheduling stress and administrative burden. Spend more
+                time on patient care and less time managing complex rosters.
               </p>
             </div>
 
-            {/* Pain Point 2: Maintain Control */}
+            {/* Benefit 2: Maintain Autonomy */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -235,20 +235,20 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Review and Adjust Rosters
+                Maintain Autonomy and Control
               </h3>
               <p className="text-gray-600">
-                Maintain control with consensus-driven rostering. Make
-                adjustments to the live roster whenever needed.
+                Keep the final say over your roster. Set your availability on
+                your terms while ensuring fair coverage across the department.
               </p>
             </div>
 
-            {/* Pain Point 3: Personalisation */}
+            {/* Benefit 3: Reduce Conflicts */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -261,16 +261,16 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Highly Personalised Rostering
+                Reduce Scheduling Conflicts
               </h3>
               <p className="text-gray-600">
-                Cater to individual preferences and constraints. Ensure requests
-                are honoured while maintaining fair coverage.
+                Avoid cancellations and last-minute changes. Transparent
+                scheduling reduces tension and keeps senior staff satisfied.
               </p>
             </div>
           </div>
