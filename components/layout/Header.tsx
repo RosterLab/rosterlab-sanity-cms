@@ -321,21 +321,23 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                             : subItem.title}
                                     </div>
                                     <div className="text-sm text-gray-600">
-                                      {subItem.title === "Healthcare Roster" ||
-                                      subItem.title === "Healthcare"
-                                        ? "General healthcare solutions that handle complex workforces"
-                                        : subItem.title === "ICU/ED Roster" ||
-                                            subItem.title === "ICU/ED"
-                                          ? isUSVersion
-                                            ? "Build ICU/ED schedules that support better continuity of care"
-                                            : "Build ICU/ED rosters that support better continuity of care"
-                                          : subItem.title ===
-                                                "Aged Care Roster" ||
-                                              subItem.title === "Aged Care"
+                                      {(subItem as any).description ||
+                                        (subItem.title ===
+                                          "Healthcare Roster" ||
+                                        subItem.title === "Healthcare"
+                                          ? "General healthcare solutions that handle complex workforces"
+                                          : subItem.title === "ICU/ED Roster" ||
+                                              subItem.title === "ICU/ED"
                                             ? isUSVersion
-                                              ? "Senior care scheduling that balance wellbeing & care"
-                                              : "Aged care rostering that balance wellbeing & care"
-                                            : ""}
+                                              ? "Build ICU/ED schedules that support better continuity of care"
+                                              : "Build ICU/ED rosters that support better continuity of care"
+                                            : subItem.title ===
+                                                  "Aged Care Roster" ||
+                                                subItem.title === "Aged Care"
+                                              ? isUSVersion
+                                                ? "Senior care scheduling that balance wellbeing & care"
+                                                : "Aged care rostering that balance wellbeing & care"
+                                              : "")}
                                     </div>
                                   </Link>
                                 ))}
