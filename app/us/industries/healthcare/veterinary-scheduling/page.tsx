@@ -89,7 +89,7 @@ export default function VeterinarySchedulingPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">
                   Optimised, Flexible
                 </span>{" "}
-                Veterinary Schedules
+                Vet Staff Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Create efficient AI schedules that respect your vet preferences,
