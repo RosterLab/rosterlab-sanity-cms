@@ -919,9 +919,9 @@ export default function NurseRosteringV2Page() {
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Healthcare", url: "/industries/healthcare" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
           { name: "Nurse Scheduling" },
         ]}
       />
