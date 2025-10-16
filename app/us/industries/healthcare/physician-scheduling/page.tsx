@@ -102,7 +102,8 @@ export default function ResidentPhysicianSchedulingPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Create compliant with ACGME duty hours schedules
+                  Create compliant schedules based on labor laws & ACGME
+                  standards
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -322,7 +323,7 @@ export default function ResidentPhysicianSchedulingPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Physician Scheduling Challenges
+                Perfect For Physician Scheduling
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
