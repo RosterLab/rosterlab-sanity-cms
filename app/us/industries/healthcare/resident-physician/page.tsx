@@ -187,10 +187,11 @@ export default function ResidentPhysicianSchedulingPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI scheduling tool for junior doctors
+              The best AI scheduling tool for resident physicians
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for junior doctors. Adapt to changes fast.
+              Fast. Optimized. Made for resident physicians. Adapt to changes
+              fast.
             </p>
           </div>
 
