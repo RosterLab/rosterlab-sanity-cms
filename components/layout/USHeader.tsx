@@ -46,7 +46,16 @@ export const usNavItems = [
         title: "Radiology",
         link: "/us/industries/healthcare/radiology-scheduling",
       },
-      { title: "See All Industries", link: "/us/industries" },
+      {
+        title: "Nurse Scheduling",
+        link: "/us/industries/healthcare/nurse-scheduling",
+        description: "Fair, compliant nurse schedules that reduce burnout",
+      },
+      {
+        title: "Physician Scheduling",
+        link: "/us/industries/healthcare/physician-scheduling",
+        description: "Compliant and flexible staff schedules for physicians",
+      },
     ],
   },
   { title: "Pricing", link: "/us/pricing" },

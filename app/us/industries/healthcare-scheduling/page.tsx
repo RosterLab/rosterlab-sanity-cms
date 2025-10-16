@@ -856,7 +856,10 @@ export default async function HealthcarePage() {
               All Healthcare Departments
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/us/industries/healthcare/nurse-scheduling"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
@@ -878,7 +881,7 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">Nurses</h4>
-              </div>
+              </Link>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
@@ -983,7 +986,10 @@ export default async function HealthcarePage() {
                   Labor & Delivery Units
                 </h4>
               </div>
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/us/industries/healthcare/veterinary-scheduling"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
@@ -1002,7 +1008,7 @@ export default async function HealthcarePage() {
                 <h4 className="font-semibold text-gray-900">
                   Veterinary Practices & Animal Hospitals
                 </h4>
-              </div>
+              </Link>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
@@ -1077,7 +1083,10 @@ export default async function HealthcarePage() {
                   Operating Theatres
                 </h4>
               </div>
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/us/industries/healthcare/physician-scheduling"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-red-500 transition-transform duration-200 group-hover:scale-110"
@@ -1093,10 +1102,8 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  24/7 Complex Departments
-                </h4>
-              </div>
+                <h4 className="font-semibold text-gray-900">Physicians</h4>
+              </Link>
             </div>
           </div>
         </Container>
