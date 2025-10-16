@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -778,7 +778,7 @@ export default function ResidentPhysicianSchedulingPage() {
 
       {/* Trusted By */}
       <section className="py-10 bg-white">
-        <TrustedBy />
+        <USTrustedBy />
       </section>
 
       {/* FAQ Section */}
