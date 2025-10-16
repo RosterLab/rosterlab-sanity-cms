@@ -54,7 +54,7 @@ export const usNavItems = [
       {
         title: "Physician Scheduling",
         link: "/us/industries/healthcare/physician-scheduling",
-        description: "ACGME-compliant schedules for physicians",
+        description: "Compliant and flexible staff schedules for physicians",
       },
     ],
   },
