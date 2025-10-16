@@ -700,7 +700,7 @@ export default function ResidentPhysicianSchedulingPage() {
                 &nbsp;
               </p>
               <a
-                href="https://rosterlab.com/feature/self-scheduling"
+                href="/us/feature/self-scheduling"
                 className="text-teal-600 hover:text-teal-700 font-medium text-sm"
               >
                 Learn more →
