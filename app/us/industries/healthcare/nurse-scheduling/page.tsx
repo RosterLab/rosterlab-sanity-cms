@@ -26,7 +26,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/pexels-karolina-grabowska-4021769.jpg",
           width: 1200,
           height: 630,
         },
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       title: "Nurse Scheduling Software - RosterLab",
       description:
         "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+      images: ["/images/us-images/pexels-karolina-grabowska-4021769.jpg"],
     },
   },
   "/us/industries/healthcare/nurse-scheduling",
@@ -175,7 +175,7 @@ export default function NurseRosteringV2Page() {
             {/* Desktop only: Image in right column */}
             <div className="hidden lg:block relative">
               <Image
-                src="/images/us-images/test/pexels-karolina-grabowska-4021769.jpg"
+                src="/images/us-images/pexels-karolina-grabowska-4021769.jpg"
                 alt="Nurse scheduling software interface"
                 width={600}
                 height={400}

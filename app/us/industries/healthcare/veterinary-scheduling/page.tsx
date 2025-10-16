@@ -26,7 +26,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/veterinary-scheduling",
       images: [
         {
-          url: "/images/us-images/test/istockphoto-1397394446-1024x1024.jpg",
+          url: "/images/us-images/iStock-1397394446.jpg",
           width: 1200,
           height: 630,
         },
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       title: "Veterinary Scheduling Software - RosterLab",
       description:
         "End chaotic vet schedules and overwork. Build fair, efficient schedules that maintain proper staffing coverage and respect work-life balance.",
-      images: ["/images/us-images/test/istockphoto-1397394446-1024x1024.jpg"],
+      images: ["/images/us-images/iStock-1397394446.jpg"],
     },
   },
   "/us/industries/healthcare/veterinary-scheduling",
@@ -178,7 +178,7 @@ export default function VeterinarySchedulingPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/us-images/test/istockphoto-1397394446-1024x1024.jpg"
+                src="/images/us-images/iStock-1397394446.jpg"
                 alt="Veterinary scheduling software interface"
                 width={600}
                 height={600}

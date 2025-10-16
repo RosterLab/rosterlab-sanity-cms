@@ -26,7 +26,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/physician-scheduling",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/iStock-1172429075.jpg",
           width: 1200,
           height: 630,
         },
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       title: "Physician Scheduling Software - RosterLab",
       description:
         "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+      images: ["/images/us-images/iStock-1172429075.jpg"],
     },
   },
   "/us/industries/healthcare/physician-scheduling",
@@ -171,7 +171,7 @@ export default function ResidentPhysicianSchedulingPage() {
             {/* Desktop only: Image in right column */}
             <div className="hidden lg:block relative">
               <Image
-                src="/images/us-images/test/istockphoto-1172429075-1024x1024.jpg"
+                src="/images/us-images/iStock-1172429075.jpg"
                 alt="physician scheduling software interface"
                 width={600}
                 height={400}
