@@ -393,7 +393,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={
                                   item.subItems?.find((sub) =>
                                     sub.title.includes("All Industries"),
-                                  )?.link || "/industries"
+                                  )?.link ||
+                                  (isUSVersion
+                                    ? "/us/industries"
+                                    : "/industries")
                                 }
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
