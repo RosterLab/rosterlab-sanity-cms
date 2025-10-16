@@ -39,7 +39,7 @@ export const metadata = withHreflang(
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
-  "/industries/healthcare/nurse-rostering-v2",
+  "/industries/healthcare/nurse-rostering",
 );
 
 const faqItems = [
