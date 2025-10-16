@@ -357,10 +357,10 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Eliminate Favouritism
+                      Eliminate Favoritism
                     </h4>
                     <p className="text-gray-600">
-                      Ensure fairness, reduce the perception of favouritism, and
+                      Ensure fairness, reduce the perception of favoritism, and
                       create a more inclusive work environment for nurses.
                     </p>
                   </div>
