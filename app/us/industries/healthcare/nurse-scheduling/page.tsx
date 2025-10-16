@@ -23,7 +23,7 @@ export const metadata = withHreflang(
       description:
         "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
       type: "website",
-      url: "https://rosterlab.com/us/industries/healthcare/nurse-rostering",
+      url: "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
       images: [
         {
           url: "/images/us-images/iStock-2232242180.jpg",
