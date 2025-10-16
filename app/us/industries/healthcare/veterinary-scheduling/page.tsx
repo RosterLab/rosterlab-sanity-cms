@@ -680,7 +680,7 @@ export default function VeterinarySchedulingPage() {
                 Ready to streamline your veterinary scheduling?
               </p>
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-green-600 text-white hover:bg-green-700 px-8 py-3"
               >
                 See How It Works
