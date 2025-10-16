@@ -1084,7 +1084,7 @@ export default async function HealthcarePage() {
                 </h4>
               </div>
               <Link
-                href="/us/industries/healthcare/resident-physician"
+                href="/us/industries/healthcare/physician-scheduling"
                 className="text-center group cursor-pointer"
               >
                 <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">

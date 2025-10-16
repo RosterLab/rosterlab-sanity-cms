@@ -53,8 +53,8 @@ export const usNavItems = [
       },
       {
         title: "Physician Scheduling",
-        link: "/us/industries/healthcare/resident-physician",
-        description: "ACGME-compliant schedules for resident physicians",
+        link: "/us/industries/healthcare/physician-scheduling",
+        description: "ACGME-compliant schedules for physicians",
       },
     ],
   },

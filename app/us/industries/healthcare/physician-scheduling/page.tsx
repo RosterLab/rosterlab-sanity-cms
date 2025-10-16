@@ -11,19 +11,19 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Resident Physician Scheduling Software - RosterLab",
+    title: "Physician Scheduling Software - RosterLab",
     description:
       "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
     alternates: {
       canonical:
-        "https://rosterlab.com/us/industries/healthcare/resident-physician",
+        "https://rosterlab.com/us/industries/healthcare/physician-scheduling",
     },
     openGraph: {
-      title: "Resident Physician Scheduling Software - RosterLab",
+      title: "Physician Scheduling Software - RosterLab",
       description:
         "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       type: "website",
-      url: "https://rosterlab.com/us/industries/healthcare/resident-physician",
+      url: "https://rosterlab.com/us/industries/healthcare/physician-scheduling",
       images: [
         {
           url: "/images/us-images/iStock-2232242180.jpg",
@@ -34,13 +34,13 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Resident Physician Scheduling Software - RosterLab",
+      title: "Physician Scheduling Software - RosterLab",
       description:
         "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
-  "/us/industries/healthcare/resident-physician",
+  "/us/industries/healthcare/physician-scheduling",
 );
 
 const faqItems = [
@@ -187,11 +187,10 @@ export default function ResidentPhysicianSchedulingPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI scheduling tool for resident physicians
+              The best AI scheduling tool for physicians
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimized. Made for resident physicians. Adapt to changes
-              fast.
+              Fast. Optimized. Made for physicians. Adapt to changes fast.
             </p>
           </div>
 
@@ -831,7 +830,7 @@ export default function ResidentPhysicianSchedulingPage() {
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
-          { name: "Resident Physician Scheduling" },
+          { name: "Physician Scheduling" },
         ]}
       />
     </SiteLayout>

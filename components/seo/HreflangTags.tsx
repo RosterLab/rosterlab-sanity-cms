@@ -36,7 +36,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/industries/healthcare/radiology":
     "/us/industries/healthcare/radiology-scheduling",
   "/industries/healthcare/junior-medical-officer-rostering":
-    "/us/industries/healthcare/resident-physician",
+    "/us/industries/healthcare/physician-scheduling",
   "/industries/healthcare/nurse-rostering":
     "/us/industries/healthcare/nurse-scheduling",
   "/industries/healthcare/veterinary-rostering":
