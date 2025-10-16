@@ -13,7 +13,7 @@ export const metadata = withHreflang(
   {
     title: "Resident Physician Scheduling Software - RosterLab",
     description:
-      "End unsafe schedules and overwork. Build fair, compliant resident physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
+      "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/resident-physician",
@@ -21,7 +21,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Resident Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe schedules and overwork. Build fair, compliant resident physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
+        "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/resident-physician",
       images: [
@@ -36,7 +36,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Resident Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe schedules and overwork. Build fair, compliant resident physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
+        "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
@@ -46,29 +46,29 @@ export const metadata = withHreflang(
 const faqItems = [
   {
     question:
-      "How does RosterLab ensure ACGME duty hour compliance for resident physician schedules?",
+      "How does RosterLab ensure ACGME duty hour compliance for physician schedules?",
     answer:
-      "RosterLab enforces ACGME duty hour and labor law requirements automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules, ensuring resident physicians actually work the schedules rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces ACGME duty hour and labor law requirements automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules, ensuring physicians actually work the schedules rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
     question:
-      "How does RosterLab handle training and exam periods for resident physicians?",
+      "How does RosterLab handle training and exam periods for physicians?",
     answer:
-      "resident physicians can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the schedule to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
+      "Physicians can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the schedule to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
   },
   {
     question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab automatically distributes night shifts equitably across all resident physicians, preventing burnout and ensuring fairness. The system can help pair junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
+      "RosterLab automatically distributes night shifts equitably across all physicians, preventing burnout and ensuring fairness. The system can help pair physicians with senior physicians for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question: "Can RosterLab help improve resident physician retention?",
+    question: "Can RosterLab help improve physician retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - resident physicians now prioritise work-life balance more than ever. By creating safe, fair, and flexible schedules that respect training needs and personal preferences, RosterLab increases resident physician engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - physicians now prioritize work-life balance more than ever. By creating safe, fair, and flexible schedules that respect training needs and personal preferences, RosterLab increases physician engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
-export default function JuniorMedicalOfficerRosteringPage() {
+export default function ResidentPhysicianSchedulingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -80,12 +80,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Flexible, Compliant
                 </span>{" "}
-                resident physician Schedules
+                Physician Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Create compliant AI schedules that balance training
-                requirements, fair night shift distribution, and resident
-                physician wellbeing.
+                requirements, fair night shift distribution, and physician
+                wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -150,7 +150,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Improve junior doctors' retention and work-life balance
+                  Improve physicians' retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -171,7 +171,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             <div className="relative">
               <Image
                 src="/images/illustration/jmo.svg"
-                alt="resident physician scheduling software interface"
+                alt="physician scheduling software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -321,7 +321,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For resident physician Scheduling Challenges
+                Perfect For Physician Scheduling Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -345,7 +345,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure resident
+                      Protect time for education and teaching to ensure
                       physicians receive complete training while maintaining
                       department coverage.
                     </p>
@@ -483,10 +483,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              resident physician-FIRST WORKFLOW
+              PHYSICIAN-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How resident physicians Engage with Their Schedules
+              How Physicians Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around training requirements, preferences, and wellbeing,
@@ -523,12 +523,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      resident physicians Submit Preferences & Training Needs
+                      Physicians Submit Preferences & Training Needs
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, resident physicians indicate shift
-                      preferences, exam dates, teaching sessions, and time off
-                      requests. No emails or paper forms.
+                      Via mobile app, physicians indicate shift preferences,
+                      exam dates, teaching sessions, and time off requests. No
+                      emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -564,9 +564,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Schedules sync instantly to resident physicians' phones.
-                      They see their shifts, training time, and can request
-                      swaps with real-time updates.
+                      Schedules sync instantly to physicians' phones. They see
+                      their shifts, training time, and can request swaps with
+                      real-time updates.
                     </p>
                   </div>
                 </div>
@@ -580,12 +580,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      resident physicians Self-Schedule Open Shifts
+                      Physicians Self-Schedule Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - resident
-                      physicians can pick them up directly if qualified, within
-                      hour limits, and training time protected.
+                      Unfilled shifts are posted as "open shifts" - physicians
+                      can pick them up directly if qualified, within hour
+                      limits, and training time protected.
                     </p>
                   </div>
                 </div>
@@ -613,7 +613,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your resident physician scheduling?
+                Ready to streamline your physician scheduling?
               </p>
               <Button
                 href="/us/book-a-demo"
@@ -631,10 +631,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for resident physician Scheduling
+              Essential Features for Physician Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of resident
+              Purpose-built tools that address the unique complexity of
               physician term schedules
             </p>
           </div>
@@ -661,8 +661,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Automatic Schedule Generation
               </h3>
               <p className="text-gray-600 mb-3">
-                Automatically generate compliant schedules that enforce union
-                rules and requirements. Reduce schedule admin by 90%.
+                Automatically generate compliant schedules that enforce labor
+                laws and requirements. Reduce schedule admin by 90%.
               </p>
               <a
                 href="/us/solutions/ai-staff-schedule-maker"
@@ -693,9 +693,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Self Scheduling
               </h3>
               <p className="text-gray-600 mb-3">
-                resident physicians submit preferences, training needs, exam
-                dates, and manage time-off requests directly from their phones.{" "}
-                <br />
+                Physicians submit preferences, training needs, exam dates, and
+                manage time-off requests directly from their phones. <br />
                 &nbsp;
               </p>
               <a
@@ -727,9 +726,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Instant Schedule Changes
               </h3>
               <p className="text-gray-600 mb-3">
-                When resident physicians call in sick, see who's qualified and
-                available to fill the gap without breaking compliance or
-                training requirements.
+                When physicians call in sick, see who's qualified and available
+                to fill the gap without breaking compliance or training
+                requirements.
               </p>
               <a
                 href="/us/feature/staff-rescheduling"
@@ -800,11 +799,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer resident physician Schedules
+              Build Compliant, Fairer Physician Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved resident physician retention,
-              reduced burnout, and built positive reputations
+              Join departments that have improved physician retention, reduced
+              burnout, and built positive reputations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
