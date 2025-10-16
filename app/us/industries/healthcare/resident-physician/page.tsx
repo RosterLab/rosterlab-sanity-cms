@@ -170,7 +170,7 @@ export default function ResidentPhysicianSchedulingPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/jmo.svg"
+                src="/images/us-images/test/istockphoto-1172429075-1024x1024.jpg"
                 alt="physician scheduling software interface"
                 width={600}
                 height={400}
