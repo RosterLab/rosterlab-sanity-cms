@@ -168,13 +168,14 @@ export default function ResidentPhysicianSchedulingPage() {
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
                 src="/images/us-images/test/istockphoto-1172429075-1024x1024.jpg"
                 alt="physician scheduling software interface"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
