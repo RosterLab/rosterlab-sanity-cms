@@ -45,28 +45,37 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
-    question: "How does RosterLab ensure AMA/EBA compliance for SMO rosters?",
+    question:
+      "How does RosterLab handle SMOs working across public and private sectors?",
     answer:
-      "RosterLab enforces AMA and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring SMOs actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab allows SMOs to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. This flexibility ensures rosters adapt to SMOs' commitments rather than dictating them.",
   },
   {
-    question: "How does RosterLab handle training and exam periods for SMOs?",
+    question: "Can SMOs still maintain control over their rosters?",
     answer:
-      "SMOs can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the roster to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
+      "Absolutely. RosterLab supports consensus-driven rostering where SMOs can review and adjust the live roster. You maintain the level of control you're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
   },
   {
-    question: "How does RosterLab ensure fair night shift distribution?",
+    question:
+      "How does RosterLab handle individual SMO preferences and constraints?",
     answer:
-      "RosterLab automatically distributes night shifts equitably across all SMOs, preventing burnout and ensuring fairness. The system can help pair senior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
+      "The system is built for high personalisation and flexibility. SMOs can input their preferences, leave requests, and unavailability. The stable cohort structure (no rotations) means institutional knowledge about individual preferences is preserved. Each SMO's requests are honoured while maintaining departmental coverage and fairness.",
   },
   {
-    question: "Can RosterLab help improve SMO retention?",
+    question:
+      "Is RosterLab easy to transition to for SMOs who value stability?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - SMOs now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect training needs and personal preferences, RosterLab increases SMO engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be resistant to new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining control with better tools.",
+  },
+  {
+    question:
+      "How does RosterLab coordinate multiple locums and part-time SMOs?",
+    answer:
+      "Managing locums and part-timers becomes significantly easier. RosterLab tracks availability for all staff including casual and part-time SMOs. The system coordinates preferences across your entire cohort, making it simple to fill gaps while ensuring all leave requests are actually honoured and work-life balance is maintained.",
   },
 ];
 
-export default function JuniorMedicalOfficerRosteringPage() {
+export default function SeniorMedicalOfficerRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -76,13 +85,14 @@ export default function JuniorMedicalOfficerRosteringPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Compliant
+                  Flexible, Personalised
                 </span>{" "}
                 SMO Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance training requirements,
-                fair night shift distribution, and SMO wellbeing.
+                Maintain control while streamlining complex scheduling. Balance
+                public/private commitments, personal preferences, and department
+                coverage with ease.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -99,7 +109,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Create union compliant rosters
+                  Manage complex availability across public and private practice
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -115,7 +125,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Maintain optimal staffing throughout training and exam periods
+                  Preserve institutional knowledge with stable cohorts
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -131,7 +141,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Empower staff equity with balanced, transparent scheduling
+                  Give SMOs control to review and adjust rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -147,7 +157,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Improve senior doctors' retention and work-life balance
+                  Reduce admin time while maintaining personalisation
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -183,10 +193,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI rostering tool for senior doctors
+              SMO Rostering That Respects Your Expertise
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for senior doctors. Adapt to changes fast.
+              Built for senior medical officers who value control, flexibility,
+              and work-life balance across multiple commitments.
             </p>
           </div>
 
@@ -202,7 +213,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pain Point 1: Automatic Roster Generation */}
+            {/* Pain Point 1: Complex Availability Management */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -215,20 +226,20 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduce rostering administration
+                Manage Public/Private Commitments
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering - giving you time back
-                to focus on patient care and team wellbeing.
+                Coordinate complex schedules across multiple locations. SMOs
+                inform their availability instead of being dictated to.
               </p>
             </div>
 
-            {/* Pain Point 2: Stay compliant with rules */}
+            {/* Pain Point 2: Maintain Control */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -241,20 +252,20 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Review and Adjust Rosters
               </h3>
               <p className="text-gray-600">
-                Maintain legal and union compliance so senior doctors can work
-                safely while having more flexibility.
+                Maintain control with consensus-driven rostering. Make
+                adjustments to the live roster whenever needed.
               </p>
             </div>
 
-            {/* Pain Point 3: Improve flexibility through self-rostering */}
+            {/* Pain Point 3: Preserve Institutional Knowledge */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -267,20 +278,20 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Protect training and exam time
+                Stable Cohort Management
               </h3>
               <p className="text-gray-600">
-                Schedule longer days off around exams and ensure complete
-                training programs while maintaining coverage.
+                No rotations means preserved institutional knowledge. Maintain
+                established practices and individual preferences.
               </p>
             </div>
 
-            {/* Pain Point 4: Ensure safe staffing levels */}
+            {/* Pain Point 4: Personalisation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -293,16 +304,16 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Better engagement, better care
+                Highly Personalised Rostering
               </h3>
               <p className="text-gray-600">
-                Consider staff preferences while ensuring fairness, reducing
-                burnout and supporting safer night-to-day transitions.
+                Cater to individual preferences and constraints. Ensure requests
+                are honoured while maintaining fair coverage.
               </p>
             </div>
           </div>
@@ -318,7 +329,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For SMO Roster Challenges
+                Built for Senior Medical Officer Needs
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -339,12 +350,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Auto-Schedule Training Without Disrupting Coverage
+                      SMOs Control Their Availability
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure SMOs
-                      receive complete training while maintaining department
-                      coverage.
+                      SMOs inform their availability and preferred working days.
+                      The system adapts to complex public/private commitments
+                      rather than dictating schedules.
                     </p>
                   </div>
                 </div>
@@ -367,12 +378,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Shifts for Complex Skill Mix
+                      Consensus-Driven Rostering
                     </h4>
                     <p className="text-gray-600">
-                      Automatically pair senior medical officers with senior
-                      registrars for night shifts, ensuring safe supervision and
-                      skill mix across all shifts.
+                      SMOs review and adjust live rosters. Maintain control with
+                      the ability to make changes while ensuring fairness and
+                      coverage across the department.
                     </p>
                   </div>
                 </div>
@@ -395,12 +406,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Manage Your Workforce With Confidence
+                      Preserve Established Practices
                     </h4>
                     <p className="text-gray-600">
-                      Switch seamlessly between staff and shift perspectives to
-                      gain a clear picture of responsibilities, coverage, and
-                      balance across your department.
+                      Stable cohorts with no rotations mean institutional
+                      knowledge is preserved. Maintain individual preferences
+                      and established rostering patterns.
                     </p>
                   </div>
                 </div>
@@ -423,11 +434,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Adapt to Cohort Changes With Ease and Confidence
+                      Easy Transition and Adoption
                     </h4>
                     <p className="text-gray-600">
-                      Manage every term in a structured, consistent way - so
-                      your rosters stay accurate, organised, and stress-free.
+                      Intuitive interface designed for senior doctors who value
+                      stability. Frame it as an upgrade that maintains your
+                      existing rostering culture.
                     </p>
                   </div>
                 </div>
@@ -450,12 +462,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Better Wellbeing, Less Fatigue
+                      Work-Life Balance Priority
                     </h4>
                     <p className="text-gray-600">
-                      Enforce rest periods to prevent dangerous consecutive
-                      shift patterns that lead to burnout and fatigue. Staff can
-                      also input preferences for better work-life balance.
+                      Especially important for busy departments. Coordinate
+                      multiple locums and part-timers while honouring leave
+                      requests and maintaining flexibility.
                     </p>
                   </div>
                 </div>
