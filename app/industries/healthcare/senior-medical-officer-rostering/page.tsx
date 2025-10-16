@@ -90,9 +90,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 SMO Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Maintain control while streamlining complex scheduling. Balance
-                public/private commitments, personal preferences, and department
-                coverage with ease.
+                Balance public/private commitments, personal preferences, and
+                department coverage with ease.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -110,22 +109,6 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   Manage complex availability across public and private practice
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Preserve institutional knowledge with stable cohorts
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
