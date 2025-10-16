@@ -52,7 +52,7 @@ const faqItems = [
   {
     question: "Can nurses submit their own preferences?",
     answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-scheduling feature</a> lets nurses bid for available shifts while the system maintains compliance with labor laws, fatigue management, and skill mix requirements.",
+      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='/us/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-scheduling feature</a> lets nurses bid for available shifts while the system maintains compliance with labor laws, fatigue management, and skill mix requirements.",
   },
   {
     question: "What happens when a nurse calls in sick at the last minute?",
