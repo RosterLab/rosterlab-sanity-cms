@@ -176,7 +176,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              SMO Rostering That Respects Your Expertise
+              SMO Rostering That Respects Your Time
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built for senior medical officers who value control, flexibility,
