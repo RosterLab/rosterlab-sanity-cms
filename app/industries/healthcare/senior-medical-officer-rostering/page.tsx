@@ -659,8 +659,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Self Scheduling
               </h3>
               <p className="text-gray-600 mb-3">
-                SMOs submit preferences, training needs, exam dates, and manage
-                time-off requests directly from their phones. <br />
+                SMOs submit preferences and personal requests directly from
+                their phones using the staff mobile app. <br />
                 &nbsp;
               </p>
               <a
