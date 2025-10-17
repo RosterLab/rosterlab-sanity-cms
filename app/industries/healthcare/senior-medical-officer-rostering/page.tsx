@@ -395,8 +395,9 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     </h4>
                     <p className="text-gray-600">
                       Intuitive interface designed for senior doctors who value
-                      stability. Frame it as an upgrade that maintains your
-                      existing rostering culture.
+                      ease of use and stability. Maintain your existing
+                      rostering culture whilst experiencing the benefits of AI
+                      rostering.
                     </p>
                   </div>
                 </div>
