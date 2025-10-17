@@ -310,9 +310,9 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       SMOs Control Their Availability
                     </h4>
                     <p className="text-gray-600">
-                      SMOs inform their availability and preferred working days.
-                      The system adapts to complex public/private commitments
-                      rather than dictating schedules.
+                      The system understands and optimises for when an SMO is
+                      unavailable due to other commitments rather than dictating
+                      schedules.
                     </p>
                   </div>
                 </div>
