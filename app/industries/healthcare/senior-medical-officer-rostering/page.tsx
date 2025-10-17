@@ -722,12 +722,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Term Roster Management
+                Submit Leave Requests
               </h3>
               <p className="text-gray-600 mb-3">
-                Stay on top of cohort changes with ease. Manage every term
-                consistently so rosters stay accurate, compliant, and
-                stress-free.
+                SMOs can easily submit and track leave requests. Ensure all
+                leave is honoured while maintaining department coverage and
+                fairness.
               </p>
               <a
                 href="/solutions/staff-roster-mobile-app"
