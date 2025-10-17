@@ -154,7 +154,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/jmo.svg"
+                src="/images/illustration/smo.svg"
                 alt="SMO rostering software interface"
                 width={600}
                 height={400}
