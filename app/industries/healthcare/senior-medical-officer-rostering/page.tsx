@@ -67,12 +67,6 @@ const faqItems = [
     answer:
       "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be resistant to new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining control with better tools.",
   },
-  {
-    question:
-      "How does RosterLab coordinate multiple locums and part-time SMOs?",
-    answer:
-      "Managing locums and part-timers becomes significantly easier. RosterLab tracks availability for all staff including casual and part-time SMOs. The system coordinates preferences across your entire cohort, making it simple to fill gaps while ensuring all leave requests are actually honoured and work-life balance is maintained.",
-  },
 ];
 
 export default function SeniorMedicalOfficerRosteringPage() {
