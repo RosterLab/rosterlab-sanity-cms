@@ -335,7 +335,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Consensus-Driven Rostering
+                      Personalise Individual Schedules
                     </h4>
                     <p className="text-gray-600">
                       SMOs review and adjust live rosters. Maintain control with
