@@ -307,12 +307,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      SMOs Control Their Availability
+                      Personalised SMO Rosters
                     </h4>
                     <p className="text-gray-600">
-                      The system understands and optimises for when an SMO is
-                      unavailable due to other commitments rather than dictating
-                      schedules.
+                      SMOs can adjust and manage their individual schedules as
+                      required. The system understands and optimises for
+                      availability rather than dictating the roster.
                     </p>
                   </div>
                 </div>
@@ -335,12 +335,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalise Individual Schedules
+                      Reduce Rostering Mistakes
                     </h4>
                     <p className="text-gray-600">
-                      SMOs review and adjust live rosters. Maintain control with
-                      the ability to make changes while ensuring fairness and
-                      coverage across the department.
+                      Reduce human error to avoid patient cancellations or
+                      costly scheduling mistakes with an AI tool that instantly
+                      flags issues.
                     </p>
                   </div>
                 </div>
@@ -363,12 +363,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Preserve Established Practices
+                      Balance Preferences and Coverage Without the Admin
                     </h4>
                     <p className="text-gray-600">
-                      Stable cohorts with no rotations mean institutional
-                      knowledge is preserved. Maintain individual preferences
-                      and established rostering patterns.
+                      RosterLab is able to quickly assess fairness and coverage
+                      across the department based on SMO preferences and changes
+                      to the roster in real-time.
                     </p>
                   </div>
                 </div>
@@ -396,7 +396,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     <p className="text-gray-600">
                       Intuitive interface designed for senior doctors who value
                       ease of use and stability. Maintain your existing
-                      rostering culture whilst experiencing the benefits of AI
+                      rostering culture, whilst experiencing the benefits of AI
                       rostering.
                     </p>
                   </div>
@@ -420,12 +420,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Work-Life Balance Priority
+                      Maintain Established Rostering Patterns
                     </h4>
                     <p className="text-gray-600">
-                      Especially important for busy departments. Coordinate
-                      multiple locums and part-timers while honouring leave
-                      requests and maintaining flexibility.
+                      Stable cohorts with no rotations mean institutional
+                      knowledge is preserved. Maintain individual preferences
+                      and established rostering patterns.
                     </p>
                   </div>
                 </div>
