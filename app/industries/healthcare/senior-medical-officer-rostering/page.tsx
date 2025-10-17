@@ -196,7 +196,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Benefit 1: Better Work-Life Balance */}
+            {/* Benefit 1: Happier Senior Doctors */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -214,7 +214,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Better Work-Life Balance
+                Happier Senior Doctors
               </h3>
               <p className="text-gray-600">
                 Reduce scheduling stress and administrative burden. Spend more
