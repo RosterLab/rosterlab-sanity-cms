@@ -512,8 +512,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       AI Generates Compliant Roster
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, night shift equity, and
-                      AMA/EBA rules to create compliant term rosters.
+                      RosterLab balances preferences and night shift equity to
+                      create compliant term rosters.
                     </p>
                   </div>
                 </div>
