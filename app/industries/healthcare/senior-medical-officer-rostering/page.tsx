@@ -693,8 +693,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               </h3>
               <p className="text-gray-600 mb-3">
                 When SMOs call in sick, see who's qualified and available to
-                fill the gap without breaking compliance or training
-                requirements.
+                fill the gap without breaking compliance or patient commitments.
               </p>
               <a
                 href="/feature/re-rostering"
