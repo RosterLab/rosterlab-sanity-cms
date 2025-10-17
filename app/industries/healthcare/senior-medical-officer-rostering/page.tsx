@@ -456,8 +456,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
               How SMOs Engage with Their Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around training requirements, preferences, and wellbeing,
-              not just top-down rostering
+              Built around preferences and wellbeing, not just top-down
+              rostering
             </p>
           </div>
 
@@ -490,12 +490,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      SMOs Submit Preferences & Training Needs
+                      SMOs Submit Preferences
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, SMOs indicate shift preferences, exam
-                      dates, teaching sessions, and time off requests. No emails
-                      or paper forms.
+                      Via mobile app, SMOs indicate shift preferences,
+                      availability and time off requests. No emails or paper
+                      forms.
                     </p>
                   </div>
                 </div>
@@ -512,9 +512,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       AI Generates Compliant Roster
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, training requirements,
-                      night shift equity, and AMA/EBA rules to create compliant
-                      term rosters.
+                      RosterLab balances preferences, night shift equity, and
+                      AMA/EBA rules to create compliant term rosters.
                     </p>
                   </div>
                 </div>
@@ -532,8 +531,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Rosters sync instantly to SMOs' phones. They see their
-                      shifts, training time, and can request swaps with
-                      real-time updates.
+                      shifts and can request swaps with real-time updates.
                     </p>
                   </div>
                 </div>
@@ -551,8 +549,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Unfilled shifts are posted as "open shifts" - SMOs can
-                      pick them up directly if qualified, within hour limits,
-                      and training time protected.
+                      pick them up directly if qualified and within hour limits.
                     </p>
                   </div>
                 </div>
