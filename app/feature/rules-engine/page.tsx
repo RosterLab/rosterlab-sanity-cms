@@ -279,7 +279,7 @@ export default function RulesAndCompliancePage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-1 lg:order-2">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Apply staff-specific and skill-based rules and constraints
                 </h2>
