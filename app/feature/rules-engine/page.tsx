@@ -14,14 +14,14 @@ export const metadata = withHreflang(
   {
     title: "Rules and Compliance - RosterLab",
     description:
-      "Ensure roster compliance with automated rules and regulations. Stay compliant with labor laws, union agreements, and company policies with intelligent roster management.",
+      "Ensure roster compliance with automated rules and regulations. Stay compliant with labour laws, union agreements, and company policies with intelligent roster management.",
     alternates: {
       canonical: "https://rosterlab.com/feature/rules-engine",
     },
     openGraph: {
       title: "Rules and Compliance - RosterLab",
       description:
-        "Ensure roster compliance with automated rules and regulations. Stay compliant with labor laws, union agreements, and company policies with intelligent roster management.",
+        "Ensure roster compliance with automated rules and regulations. Stay compliant with labour laws, union agreements, and company policies with intelligent roster management.",
       type: "website",
       url: "https://rosterlab.com/feature/rules-engine",
       images: [
@@ -36,7 +36,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Rules and Compliance - RosterLab",
       description:
-        "Ensure roster compliance with automated rules and regulations. Stay compliant with labor laws, union agreements, and company policies with intelligent roster management.",
+        "Ensure roster compliance with automated rules and regulations. Stay compliant with labour laws, union agreements, and company policies with intelligent roster management.",
       images: ["/images/og-images/FeatureRulesCompliance.png"],
     },
   },
@@ -134,7 +134,7 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Set guaranteed "must have" rules that ensure every roster is
-                  compliant with union agreements and labor laws. These hard
+                  compliant with union agreements and labour laws. These hard
                   rules are never broken, protecting your organization from
                   compliance violations and fines.
                 </p>
