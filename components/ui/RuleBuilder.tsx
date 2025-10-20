@@ -17,9 +17,14 @@ export default function RuleBuilder() {
     week2: [] as string[],
   });
   const [optimalDays, setOptimalDays] = useState<string[]>([]);
-  const [juniorSeniorPairing, setJuniorSeniorPairing] = useState({
-    junior: "",
-    senior: "",
+  const [skillMixConfig, setSkillMixConfig] = useState<Record<string, string>>({
+    Mon: "",
+    Tue: "",
+    Wed: "",
+    Thu: "",
+    Fri: "",
+    Sat: "",
+    Sun: "",
   });
   const [coupleEmployees, setCoupleEmployees] = useState<string[]>([]);
 
@@ -48,28 +53,13 @@ export default function RuleBuilder() {
     "Dr. Sarah Anderson",
   ];
 
-  const hardRuleOptions = [
+  const ruleOptions = [
     { value: "min_hours", label: "Minimum hours between shifts" },
     { value: "max_shifts", label: "Maximum consecutive shifts" },
     { value: "night_shifts", label: "Days off after night shifts" },
     { value: "min_hours_period", label: "Minimum hours per roster period" },
     { value: "max_hours_period", label: "Maximum hours per roster period" },
-  ];
-
-  const softRuleOptions = [
     { value: "consecutive_days", label: "Preferred consecutive days on" },
-    {
-      value: "staffing_levels",
-      label: "Ideal staffing levels above minimum requirements",
-    },
-    {
-      value: "shift_patterns",
-      label: "Preferred shift patterns for individual employees",
-    },
-    {
-      value: "weighted_priorities",
-      label: "Weighted priorities to balance competing preferences",
-    },
   ];
 
   const demandRuleOptions = [
@@ -78,16 +68,21 @@ export default function RuleBuilder() {
       label: "Ensure staff coverage is optimal on days",
     },
     {
+      value: "staffing_levels",
+      label: "Ideal staffing levels above minimum requirements",
+    },
+    {
       value: "skill_pairing",
-      label: "Ensure junior staff are paired with senior staff",
+      label:
+        "Ensure there is a minimum number of senior staff for each shift (skill mix)",
     },
     {
       value: "couple_together",
-      label: "Ensure couple are rostered together (car pool)",
+      label: "Ensure staff are rostered together (car pool)",
     },
     {
       value: "couple_apart",
-      label: "Ensure couple are not rostered together (child care)",
+      label: "Ensure staff are not rostered together (child care)",
     },
   ];
 
@@ -112,6 +107,13 @@ export default function RuleBuilder() {
     });
   };
 
+  const handleSkillMixChange = (day: string, value: string) => {
+    setSkillMixConfig((prev) => ({
+      ...prev,
+      [day]: value,
+    }));
+  };
+
   const handleToggleEmployee = (employee: string) => {
     setCoupleEmployees((prev) => {
       if (prev.includes(employee)) {
@@ -126,24 +128,10 @@ export default function RuleBuilder() {
   };
 
   const handleAddRule = () => {
-    const allOptions = [
-      ...hardRuleOptions,
-      ...softRuleOptions,
-      ...demandRuleOptions,
-    ];
+    const allOptions = [...ruleOptions, ...demandRuleOptions];
     const ruleLabel = allOptions.find((r) => r.value === selectedRule)?.label;
 
-    if (selectedRule === "shift_patterns") {
-      const week1Days =
-        shiftPattern.week1.length > 0 ? shiftPattern.week1.join(", ") : "None";
-      const week2Days =
-        shiftPattern.week2.length > 0 ? shiftPattern.week2.join(", ") : "None";
-      const newRule = `${ruleLabel}: Week 1 [${week1Days}], Week 2 [${week2Days}]`;
-      setRules([...rules, newRule]);
-      setSelectedRule("");
-      setShiftPattern({ week1: [], week2: [] });
-      setIsComplete(false);
-    } else if (selectedRule === "optimal_coverage") {
+    if (selectedRule === "optimal_coverage") {
       const days = optimalDays.length > 0 ? optimalDays.join(", ") : "None";
       const newRule = `${ruleLabel}: ${days}`;
       setRules([...rules, newRule]);
@@ -151,10 +139,22 @@ export default function RuleBuilder() {
       setOptimalDays([]);
       setIsComplete(false);
     } else if (selectedRule === "skill_pairing") {
-      const newRule = `${ruleLabel}: ${juniorSeniorPairing.junior} + ${juniorSeniorPairing.senior}`;
+      const configuredDays = Object.entries(skillMixConfig)
+        .filter(([_, count]) => count !== "")
+        .map(([day, count]) => `${day}: ${count}`)
+        .join(", ");
+      const newRule = `${ruleLabel}: ${configuredDays}`;
       setRules([...rules, newRule]);
       setSelectedRule("");
-      setJuniorSeniorPairing({ junior: "", senior: "" });
+      setSkillMixConfig({
+        Mon: "",
+        Tue: "",
+        Wed: "",
+        Thu: "",
+        Fri: "",
+        Sat: "",
+        Sun: "",
+      });
       setIsComplete(false);
     } else if (
       selectedRule === "couple_together" ||
@@ -174,8 +174,6 @@ export default function RuleBuilder() {
         unit = "days";
       } else if (selectedRule === "staffing_levels") {
         unit = "staff";
-      } else if (selectedRule === "weighted_priorities") {
-        unit = "priority";
       } else {
         unit = "hours";
       }
@@ -264,14 +262,16 @@ export default function RuleBuilder() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                 >
                   <option value="">Select rule type...</option>
-                  <option value="hard">Hard Rules</option>
-                  <option value="soft">Soft Rules</option>
+                  <option value="rules">Rules</option>
                   <option value="demands">Demands</option>
                 </select>
               </div>
 
-              {ruleType === "hard" && (
+              {ruleType === "rules" && (
                 <>
+                  <p className="text-sm text-gray-600 mb-4 italic">
+                    Rules for each individual roster line.
+                  </p>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Select Common Rule Types
@@ -282,7 +282,7 @@ export default function RuleBuilder() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     >
                       <option value="">Choose a rule...</option>
-                      {hardRuleOptions.map((option) => (
+                      {ruleOptions.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -290,145 +290,21 @@ export default function RuleBuilder() {
                     </select>
                   </div>
 
-                  {selectedRule && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        {selectedRule === "max_shifts" ||
-                        selectedRule === "night_shifts"
-                          ? "Number of Days"
-                          : "Number of Hours"}
-                      </label>
-                      <input
-                        type="number"
-                        min="0"
-                        value={ruleValue}
-                        onChange={(e) => setRuleValue(e.target.value)}
-                        placeholder="Enter number..."
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                      />
-                    </div>
-                  )}
-
-                  {selectedRule && ruleValue && (
-                    <button
-                      onClick={handleAddRule}
-                      className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
-                    >
-                      + Add Rule
-                    </button>
-                  )}
-                </>
-              )}
-
-              {ruleType === "soft" && (
-                <>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Select Common Rule Types
-                    </label>
-                    <select
-                      value={selectedRule}
-                      onChange={(e) => setSelectedRule(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                    >
-                      <option value="">Choose a rule...</option>
-                      {softRuleOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {selectedRule === "shift_patterns" ? (
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Week 1
-                        </label>
-                        <div className="grid grid-cols-7 gap-2">
-                          {[
-                            "Mon",
-                            "Tue",
-                            "Wed",
-                            "Thu",
-                            "Fri",
-                            "Sat",
-                            "Sun",
-                          ].map((day) => (
-                            <label
-                              key={day}
-                              className="flex flex-col items-center cursor-pointer"
-                            >
-                              <input
-                                type="checkbox"
-                                checked={shiftPattern.week1.includes(day)}
-                                onChange={() => handleToggleDay("week1", day)}
-                                className="w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
-                              />
-                              <span className="text-xs text-gray-600 mt-1">
-                                {day}
-                              </span>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Week 2
-                        </label>
-                        <div className="grid grid-cols-7 gap-2">
-                          {[
-                            "Mon",
-                            "Tue",
-                            "Wed",
-                            "Thu",
-                            "Fri",
-                            "Sat",
-                            "Sun",
-                          ].map((day) => (
-                            <label
-                              key={day}
-                              className="flex flex-col items-center cursor-pointer"
-                            >
-                              <input
-                                type="checkbox"
-                                checked={shiftPattern.week2.includes(day)}
-                                onChange={() => handleToggleDay("week2", day)}
-                                className="w-4 h-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
-                              />
-                              <span className="text-xs text-gray-600 mt-1">
-                                {day}
-                              </span>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                      <button
-                        onClick={handleAddRule}
-                        className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
-                      >
-                        + Add Rule
-                      </button>
-                    </div>
-                  ) : selectedRule ? (
+                  {selectedRule ? (
                     <>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          {selectedRule === "consecutive_days"
+                          {selectedRule === "max_shifts" ||
+                          selectedRule === "night_shifts" ||
+                          selectedRule === "consecutive_days"
                             ? "Number of Days"
                             : selectedRule === "staffing_levels"
                               ? "Number of Staff"
-                              : "Priority Weight (1-10)"}
+                              : "Number of Hours"}
                         </label>
                         <input
                           type="number"
                           min="0"
-                          max={
-                            selectedRule === "weighted_priorities"
-                              ? "10"
-                              : undefined
-                          }
                           value={ruleValue}
                           onChange={(e) => setRuleValue(e.target.value)}
                           placeholder="Enter number..."
@@ -450,6 +326,9 @@ export default function RuleBuilder() {
 
               {ruleType === "demands" && (
                 <>
+                  <p className="text-sm text-gray-600 mb-4 italic">
+                    Demands for each day of the roster.
+                  </p>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Select Demand Type
@@ -510,83 +389,79 @@ export default function RuleBuilder() {
                     </div>
                   )}
 
+                  {selectedRule === "staffing_levels" && (
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Number of Staff
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          value={ruleValue}
+                          onChange={(e) => setRuleValue(e.target.value)}
+                          placeholder="Enter number..."
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                        />
+                      </div>
+                      {ruleValue && (
+                        <button
+                          onClick={handleAddRule}
+                          className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
+                        >
+                          + Add Rule
+                        </button>
+                      )}
+                    </div>
+                  )}
+
                   {selectedRule === "skill_pairing" && (
                     <div className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Junior Staff
-                          </label>
-                          <div className="space-y-2">
-                            {juniorStaffNames.map((staff) => (
-                              <label
-                                key={staff}
-                                className="flex items-center cursor-pointer p-2 rounded hover:bg-gray-50"
-                              >
-                                <input
-                                  type="radio"
-                                  name="juniorStaff"
-                                  checked={juniorSeniorPairing.junior === staff}
-                                  onChange={() =>
-                                    setJuniorSeniorPairing((prev) => ({
-                                      ...prev,
-                                      junior: staff,
-                                    }))
-                                  }
-                                  className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
-                                />
-                                <span className="ml-2 text-sm text-gray-700">
-                                  {staff}
-                                </span>
-                              </label>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Senior Staff
-                          </label>
-                          <div className="space-y-2">
-                            {seniorStaffNames.map((staff) => (
-                              <label
-                                key={staff}
-                                className="flex items-center cursor-pointer p-2 rounded hover:bg-gray-50"
-                              >
-                                <input
-                                  type="radio"
-                                  name="seniorStaff"
-                                  checked={juniorSeniorPairing.senior === staff}
-                                  onChange={() =>
-                                    setJuniorSeniorPairing((prev) => ({
-                                      ...prev,
-                                      senior: staff,
-                                    }))
-                                  }
-                                  className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
-                                />
-                                <span className="ml-2 text-sm text-gray-700">
-                                  {staff}
-                                </span>
-                              </label>
-                            ))}
-                          </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-3">
+                          Number of Senior Staff Required Per Day
+                        </label>
+                        <div className="grid grid-cols-7 gap-2">
+                          {[
+                            "Mon",
+                            "Tue",
+                            "Wed",
+                            "Thu",
+                            "Fri",
+                            "Sat",
+                            "Sun",
+                          ].map((day) => (
+                            <div
+                              key={day}
+                              className="flex flex-col items-center"
+                            >
+                              <span className="text-xs font-medium text-gray-700 mb-1">
+                                {day}
+                              </span>
+                              <input
+                                type="number"
+                                min="0"
+                                value={skillMixConfig[day]}
+                                onChange={(e) =>
+                                  handleSkillMixChange(day, e.target.value)
+                                }
+                                placeholder="0"
+                                className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-center"
+                              />
+                            </div>
+                          ))}
                         </div>
                       </div>
-                      <button
-                        onClick={handleAddRule}
-                        disabled={
-                          !juniorSeniorPairing.junior ||
-                          !juniorSeniorPairing.senior
-                        }
-                        className={`w-full py-2 px-4 rounded-lg transition-colors font-medium ${
-                          juniorSeniorPairing.junior &&
-                          juniorSeniorPairing.senior
-                            ? "bg-teal-600 text-white hover:bg-teal-700"
-                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                        }`}
-                      >
-                        + Add Rule
-                      </button>
+                      {Object.values(skillMixConfig).some(
+                        (val) => val !== "",
+                      ) && (
+                        <button
+                          onClick={handleAddRule}
+                          className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
+                        >
+                          + Add Rule
+                        </button>
+                      )}
                     </div>
                   )}
 

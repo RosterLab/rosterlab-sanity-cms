@@ -58,7 +58,7 @@ const faqItems = [
   {
     question: "How are different rules weighted?",
     answer:
-      "Rules are categorized as hard (must be satisfied) or soft (preferred). Soft rules are weighted by points - the higher the points, the more important the rule. For staffing demands, you can set priority levels (normal, high, critical). For preferences, you can set weights (normal, high, critical) to indicate how strongly the rule should influence the final roster.",
+      "Rules are categorized as hard (must be satisfied) or soft (preferred). For staffing demands, you can set priority levels (low, medium, high, critical). For preferences, you can set weights (normal, high, critical) to indicate how strongly the rule should influence the final roster.",
   },
 ];
 
@@ -72,15 +72,15 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Compliant Driven{" "}
+                  Compliant & Fair{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                     Rostering Rules
                   </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Define how rosters should be constructed with guaranteed and
-                  flexible rules that ensure fairness, fatigue management and
-                  contractual compliance.
+                  Build your roster using a mix of fixed and flexible rules to
+                  ensure fairness, manage fatigue, and meet all contractual and
+                  union requirements.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -116,20 +116,21 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Create <UnbreakableText /> rules that meet union and contract
-                  requirements
+                  Create <UnbreakableText /> rules that guarantee fairness,
+                  compliance & wellbeing
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Set guaranteed "must have" rules that ensure every roster is
-                  compliant with union agreements and labour laws. These hard
-                  rules are never broken, protecting your organisation from
-                  compliance violations and fines.
+                  Set guaranteed "must have" rules that ensure fairness,
+                  maintain staff wellbeing, and meet compliance requirements.
+                  These hard rules are never broken, protecting your
+                  organisation and your people.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Minimum hours between shifts (e.g., 8 hours for nurses)
+                      Minimum hours off between shifts (e.g., 8 hours for
+                      nurses)
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -147,7 +148,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Guaranteed minimum hours per roster period
+                      Guaranteed hours per two weeks
                     </span>
                   </li>
                 </ul>
@@ -178,7 +179,7 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Create soft rules that express "nice to have" rules rather
-                  than absolute requirements. The AI will prioritise these soft
+                  than absolute requirements. The AI will consider these soft
                   rules when building rosters, balancing them against other
                   constraints to find the optimal solution.
                 </p>
@@ -249,6 +250,15 @@ export default function RulesAndCompliancePage() {
                   </li>
                 </ul>
               </div>
+              <div className="relative">
+                <Image
+                  src="/images/generating.webp"
+                  alt="Automated fairness distribution"
+                  width={600}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto rounded-lg shadow-lg"
+                />
+              </div>
             </div>
           </Container>
         </div>
@@ -307,8 +317,8 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Define specific shift sequences that must be avoided or
-                  encouraged to maintain work-life balance and comply with best
-                  practices.
+                  encouraged to maintain work-life balance and comply with
+                  requirements.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -318,7 +328,30 @@ export default function RulesAndCompliancePage() {
                       shifts
                     </span>
                   </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Improve circadian rhythm for better sleep, mood, and
+                      productivity
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Implement fatigue-reducing schedules (e.g., night-shift
+                      staff get two days off and then a morning shift)
+                    </span>
+                  </li>
                 </ul>
+              </div>
+              <div className="relative">
+                <Image
+                  src="/images/new-product-images/ png/self-scheduling/2-compliance.png"
+                  alt="Shift patterns and fatigue management"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
               </div>
             </div>
           </Container>
