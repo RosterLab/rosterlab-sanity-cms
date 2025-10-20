@@ -191,9 +191,9 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Create soft rules that express "nice to have" rules rather
-                  than absolute requirements. The AI will prioritize these
-                  preferences when building rosters, balancing them against
-                  other constraints to find the optimal solution.
+                  than absolute requirements. The AI will prioritize these soft
+                  rules when building rosters, balancing them against other
+                  constraints to find the optimal solution.
                 </p>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
