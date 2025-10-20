@@ -190,8 +190,8 @@ export default function RulesAndCompliancePage() {
                   Add flexible rules based on priorities
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Create soft rules that express preferences rather than
-                  absolute requirements. The AI will prioritize these
+                  Create soft rules that express "nice to have" rules rather
+                  than absolute requirements. The AI will prioritize these
                   preferences when building rosters, balancing them against
                   other constraints to find the optimal solution.
                 </p>
