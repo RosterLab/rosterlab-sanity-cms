@@ -52,7 +52,7 @@ const faqItems = [
   {
     question: "How do rules help form your staff roster?",
     answer:
-      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritize the best possible roster options among all valid solutions.",
+      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritise the best possible roster options among all valid solutions.",
   },
   {
     question: "How does the AI and rules work together?",
@@ -191,7 +191,7 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Create soft rules that express "nice to have" rules rather
-                  than absolute requirements. The AI will prioritize these soft
+                  than absolute requirements. The AI will prioritise these soft
                   rules when building rosters, balancing them against other
                   constraints to find the optimal solution.
                 </p>
