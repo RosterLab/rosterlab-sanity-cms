@@ -178,7 +178,7 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/rules-builder/rules-builder.png"
+                  src="/images/new-product-images/ png/auto-scheduling/2-built-in-compliance.png"
                   alt="Flexible preferences"
                   width={500}
                   height={500}
@@ -264,7 +264,7 @@ export default function RulesAndCompliancePage() {
               </div>
               <div>
                 <Image
-                  src="/images/new-product-images/ png/open-shifts/3-priortise-urgent-shifts.png"
+                  src="/images/new-product-images/ png/auto-scheduling/2-built-in-compliance.png"
                   alt="Fairness rules"
                   width={500}
                   height={500}
@@ -279,15 +279,6 @@ export default function RulesAndCompliancePage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/new-product-images/ png/open-shifts/4-transparent-assignment.png"
-                  alt="Person-specific rules"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
-                />
-              </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Apply staff-specific and skill-based rules and constraints
@@ -306,9 +297,7 @@ export default function RulesAndCompliancePage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Part-time hour limitations
-                    </span>
+                    <span className="text-gray-700">FTE limitations</span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
