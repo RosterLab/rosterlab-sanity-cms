@@ -262,15 +262,6 @@ export default function RulesAndCompliancePage() {
                   </li>
                 </ul>
               </div>
-              <div>
-                <Image
-                  src="/images/new-product-images/ png/auto-scheduling/2-built-in-compliance.png"
-                  alt="Fairness rules"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
-                />
-              </div>
             </div>
           </Container>
         </div>
