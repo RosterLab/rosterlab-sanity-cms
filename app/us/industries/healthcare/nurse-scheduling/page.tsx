@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -11,21 +11,22 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Nurse Rostering Software - RosterLab",
+    title: "Nurse Scheduling Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
+      "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      canonical:
+        "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
     },
     openGraph: {
-      title: "Nurse Rostering Software - RosterLab",
+      title: "Nurse Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      url: "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/pexels-karolina-grabowska-4021769.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,25 +34,25 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Nurse Rostering Software - RosterLab",
+      title: "Nurse Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+        "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
+      images: ["/images/us-images/pexels-karolina-grabowska-4021769.jpg"],
     },
   },
-  "/industries/healthcare/nurse-rostering",
+  "/us/industries/healthcare/nurse-scheduling",
 );
 
 const faqItems = [
   {
     question: "How does RosterLab maintain safe nurse-to-patient ratios?",
     answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag rosters that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
+      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag schedules that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
   },
   {
     question: "Can nurses submit their own preferences?",
     answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-rostering feature</a> lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
+      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='/us/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-scheduling feature</a> lets nurses bid for available shifts while the system maintains compliance with labor laws, fatigue management, and skill mix requirements.",
   },
   {
     question: "What happens when a nurse calls in sick at the last minute?",
@@ -59,7 +60,8 @@ const faqItems = [
       "RosterLab identifies replacement nurses who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe ratios by alerting you if a shift can't be safely covered.",
   },
   {
-    question: "How does RosterLab prevent roster-based favoritism or bullying?",
+    question:
+      "How does RosterLab prevent schedule-based favoritism or bullying?",
     answer:
       "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
   },
@@ -83,11 +85,11 @@ export default function NurseRosteringV2Page() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Safe, Fair
                 </span>{" "}
-                Nurse Rosters
+                Nurse Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that respect your nurse preferences,
-                maintain safe ratios, and honour union agreements.
+                Create compliant AI schedules that respect your nurse
+                preferences, maintain safe ratios, and honour labor agreements.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -120,7 +122,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce your time rostering with automatic roster generation
+                  Reduce your time scheduling with automatic schedule generation
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -152,31 +154,32 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Flexible preference based self-rostering
+                  Flexible preference based self-scheduling
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/case-studies"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Read Case Studies
+                  View Pricing
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
-                src="/images/illustration/nursing.svg"
-                alt="Nurse rostering software interface"
+                src="/images/us-images/pexels-karolina-grabowska-4021769.jpg"
+                alt="Nurse scheduling software interface"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
@@ -188,10 +191,10 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Safer Staffing Starts with Smart Rostering
+              Safer Staffing Starts with Smart Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build compliant and safe nurse rosters in minutes, not days.
+              Build compliant and safe nurse schedules in minutes, not days.
               Discover how:
             </p>
           </div>
@@ -217,7 +220,7 @@ export default function NurseRosteringV2Page() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pain Point 1: Automatic Roster Generation */}
+            {/* Pain Point 1: Automatic Schedule Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -235,10 +238,10 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Automatic roster generation
+                Automatic schedule generation
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering with our AI roster
+                Eliminate the need for manual scheduling with our AI schedule
                 generation giving you time back to focus on what's important.
               </p>
             </div>
@@ -261,15 +264,15 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Stay compliant with labor laws
               </h3>
               <p className="text-gray-600">
                 Never break compliance on contractual requirements, critical
-                staff rules or union requirements.
+                staff rules or labor requirements.
               </p>
             </div>
 
-            {/* Pain Point 3: Improve flexibility through self-rostering */}
+            {/* Pain Point 3: Improve flexibility through self-scheduling*/}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -287,7 +290,7 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Improve flexibility through self-rostering
+                Improve flexibility through self-scheduling
               </h3>
               <p className="text-gray-600">
                 Empower nurses with flexibility while maintaining fairness and
@@ -333,7 +336,7 @@ export default function NurseRosteringV2Page() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Nurse Roster Challenges
+                Perfect For Nurse Scheduling Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -354,10 +357,10 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Eliminate Favouritism
+                      Eliminate Favoritism
                     </h4>
                     <p className="text-gray-600">
-                      Ensure fairness, reduce the perception of favouritism, and
+                      Ensure fairness, reduce the perception of favoritism, and
                       create a more inclusive work environment for nurses.
                     </p>
                   </div>
@@ -411,7 +414,7 @@ export default function NurseRosteringV2Page() {
                       Reduce Nurse Fatigue
                     </h4>
                     <p className="text-gray-600">
-                      Enhance overall work-life balance and minimise fatigue for
+                      Enhance overall work-life balance and minimize fatigue for
                       your staff.
                     </p>
                   </div>
@@ -478,10 +481,10 @@ export default function NurseRosteringV2Page() {
           {/* CTA Button */}
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
-              href="/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
-              Learn about AI Rostering
+              Learn about AI Scheduling
             </Button>
           </div>
         </Container>
@@ -492,7 +495,7 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern Nurse Rostering Software for Teams
+              Modern Nurse Scheduling Software for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Real outcomes that improve nurse wellbeing and patient care
@@ -503,10 +506,10 @@ export default function NurseRosteringV2Page() {
             <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
               <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduction in Rostering Time
+                Reduction in Scheduling Time
               </h3>
               <p className="text-gray-600">
-                Nurse managers spend days less per month on rostering,
+                Nurse managers spend days less per month on scheduling,
                 redirecting time to patient care and team support.
               </p>
             </div>
@@ -526,10 +529,10 @@ export default function NurseRosteringV2Page() {
             <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
               <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Transparent Roster Assignment
+                Transparent Schedule Assignment
               </h3>
               <p className="text-gray-600">
-                Fair, automated rostering eliminates favoritism and bullying
+                Fair, automated scheduling eliminates favoritism and bullying
                 through transparent, bias-free shift allocation.
               </p>
             </div>
@@ -537,7 +540,7 @@ export default function NurseRosteringV2Page() {
         </Container>
       </section>
 
-      {/* Self-Rostering Workflow Section */}
+      {/* Self-Scheduling Workflow Section */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
@@ -545,11 +548,11 @@ export default function NurseRosteringV2Page() {
               NURSE-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Nurses Engage with Their Rosters
+              How Nurses Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around self-rostering and nurse autonomy, not just top-down
-              rostering
+              Built around self-scheduling and nurse autonomy, not just top-down
+              scheduling
             </p>
           </div>
 
@@ -599,11 +602,11 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Safe Roster
+                      AI Generates Safe Schedule
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, skills, and compliance
-                      rules to create fair rosters with safe staffing levels.
+                      rules to create fair schedules with safe staffing levels.
                     </p>
                   </div>
                 </div>
@@ -620,7 +623,7 @@ export default function NurseRosteringV2Page() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to nurses' phones. They see their
+                      Schedules sync instantly to nurses' phones. They see their
                       shifts, can request swaps, and get real-time updates.
                     </p>
                   </div>
@@ -635,7 +638,7 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Self-Roster Open Shifts
+                      Nurses Self-Schedule Open Shifts
                     </h3>
                     <p className="text-gray-600">
                       Unfilled shifts are posted as "open shifts" - nurses can
@@ -667,10 +670,10 @@ export default function NurseRosteringV2Page() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your nurse rostering?
+                Ready to streamline your nurse scheduling?
               </p>
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
               >
                 See How It Works
@@ -685,11 +688,11 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for Nurse Rostering
+              Essential Features for Nurse Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Purpose-built tools that address the unique complexity of nursing
-              rosters
+              schedules
             </p>
           </div>
 
@@ -716,7 +719,7 @@ export default function NurseRosteringV2Page() {
               </h3>
               <p className="text-gray-600">
                 Configurable patient-to-nurse ratios by ward and shift. The
-                system will flag unsafe and understaffed rosters.
+                system will flag unsafe and understaffed schedules.
               </p>
             </div>
 
@@ -743,7 +746,7 @@ export default function NurseRosteringV2Page() {
               <p className="text-gray-600">
                 Ensure every shift has the right skills present by creating
                 rules to ensure a balanced mix of skills is present on your
-                roster.
+                schedule.
               </p>
             </div>
 
@@ -765,7 +768,7 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Union Rule Automation
+                Labor Law Automation
               </h3>
               <p className="text-gray-600">
                 Enforce rules, minimum rest periods, maximum consecutive shifts,
@@ -791,7 +794,7 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Mobile Self-Rostering
+                Mobile Self-Scheduling
               </h3>
               <p className="text-gray-600">
                 Nurses submit preferences, apply for open shifts, and manage
@@ -817,7 +820,7 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Roster Changes
+                Instant Schedule Changes
               </h3>
               <p className="text-gray-600">
                 When nurses call in sick, see who's qualified and available to
@@ -855,7 +858,7 @@ export default function NurseRosteringV2Page() {
           {/* CTA for Mobile App */}
           <div className="text-center mt-12">
             <Button
-              href="/solutions/staff-roster-mobile-app"
+              href="/us/solutions/staff-scheduling-mobile-app"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
               Learn about mobile app
@@ -881,7 +884,7 @@ export default function NurseRosteringV2Page() {
 
       {/* Trusted By */}
       <section className="py-10 bg-white">
-        <TrustedBy />
+        <USTrustedBy />
       </section>
 
       {/* CTA Section */}
@@ -889,24 +892,24 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Safer, Fairer Nurse Rosters
+              Build Safer, Fairer Nurse Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join hospitals that have eliminated unsafe rosters and reduced
+              Join hospitals that have eliminated unsafe schedules and reduced
               nurse burnout
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
-                href="/tools/roi-calculator"
+                href="/us/tools/savings-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                See ROI Calculator
+                See Savings Calculator
               </Button>
             </div>
           </div>
@@ -916,10 +919,10 @@ export default function NurseRosteringV2Page() {
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Nurse Rostering V2" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
+          { name: "Nurse Scheduling" },
         ]}
       />
     </SiteLayout>

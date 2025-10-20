@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -11,21 +11,22 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Nurse Rostering Software - RosterLab",
+    title: "Physician Scheduling Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
+      "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      canonical:
+        "https://rosterlab.com/us/industries/healthcare/physician-scheduling",
     },
     openGraph: {
-      title: "Nurse Rostering Software - RosterLab",
+      title: "Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      url: "https://rosterlab.com/us/industries/healthcare/physician-scheduling",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/iStock-1172429075.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,44 +34,41 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Nurse Rostering Software - RosterLab",
+      title: "Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+        "End unsafe schedules and overwork. Build fair, compliant physician schedules that maintain safe staffing ratios and respect ACGME duty hour rules.",
+      images: ["/images/us-images/iStock-1172429075.jpg"],
     },
   },
-  "/industries/healthcare/nurse-rostering",
+  "/us/industries/healthcare/physician-scheduling",
 );
 
 const faqItems = [
   {
-    question: "How does RosterLab maintain safe nurse-to-patient ratios?",
+    question:
+      "How does RosterLab ensure ACGME duty hour compliance for physician schedules?",
     answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag rosters that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
+      "RosterLab enforces ACGME duty hour and labor law requirements automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules, ensuring physicians actually work the schedules rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
-    question: "Can nurses submit their own preferences?",
+    question:
+      "How does RosterLab handle training and exam periods for physicians?",
     answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-rostering feature</a> lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
+      "Physicians can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the schedule to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
   },
   {
-    question: "What happens when a nurse calls in sick at the last minute?",
+    question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab identifies replacement nurses who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe ratios by alerting you if a shift can't be safely covered.",
+      "RosterLab automatically distributes night shifts equitably across all physicians, preventing burnout and ensuring fairness. The system can help pair physicians with senior physicians for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question: "How does RosterLab prevent roster-based favoritism or bullying?",
+    question: "Can RosterLab help improve physician retention?",
     answer:
-      "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
-  },
-  {
-    question: "Can RosterLab help identify knowledge silos and training gaps?",
-    answer:
-      "Yes. RosterLab's gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify risks, and plan accordingly. The system alerts you when key skills are missing from a shift.",
+      "Yes. There's been a significant culture change in healthcare - resident physicians now prioritize work-life balance more than ever. By creating safe, fair, and flexible schedules that respect training needs and personal preferences, RosterLab increases physician engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
-export default function NurseRosteringV2Page() {
+export default function ResidentPhysicianSchedulingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -79,15 +77,15 @@ export default function NurseRosteringV2Page() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Safe, Fair
+                  Flexible, Compliant
                 </span>{" "}
-                Nurse Rosters
+                Physician Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that respect your nurse preferences,
-                maintain safe ratios, and honour union agreements.
+                Create compliant AI schedules that balance training
+                requirements, fair night shift distribution, and physician
+                wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -104,7 +102,8 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  No more unsafe staffing levels
+                  Create compliant schedules based on labor laws & ACGME
+                  standards
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -120,7 +119,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce your time rostering with automatic roster generation
+                  Maintain optimal staffing throughout training and exam periods
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -136,7 +135,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Guaranteed compliance
+                  Empower staff equity with balanced, transparent scheduling
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -152,31 +151,32 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Flexible preference based self-rostering
+                  Improve physicians' retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/case-studies"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Read Case Studies
+                  View Pricing
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
-                src="/images/illustration/nursing.svg"
-                alt="Nurse rostering software interface"
+                src="/images/us-images/iStock-1172429075.jpg"
+                alt="physician scheduling software interface"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
@@ -188,36 +188,26 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Safer Staffing Starts with Smart Rostering
+              The best AI scheduling tool for physicians
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build compliant and safe nurse rosters in minutes, not days.
-              Discover how:
+              Fast. Optimized. Made for physicians. Adapt to changes fast.
             </p>
           </div>
 
-          {/* Interactive Demo Widget */}
+          {/* AI Scheduling Image */}
           <div className="mb-16 max-w-4xl mx-auto">
-            <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-50 to-cyan-50 p-4">
-              <div
-                className="relative w-full"
-                style={{ paddingBottom: "calc(56.67989417989418% + 41px)" }}
-              >
-                <iframe
-                  src="https://demo.arcade.software/qKV5GmMinypq2yXM19Xi?embed"
-                  title="RosterLab Interactive Demo"
-                  frameBorder="0"
-                  loading="lazy"
-                  allowFullScreen
-                  allow="clipboard-write"
-                  className="absolute top-0 left-0 w-full h-full"
-                ></iframe>
-              </div>
-            </div>
+            <Image
+              src="/images/generating.webp"
+              alt="AI-generated schedule interface"
+              width={600}
+              height={500}
+              className="rounded-lg shadow-lg mx-auto"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pain Point 1: Automatic Roster Generation */}
+            {/* Pain Point 1: Automatic Schedule Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -235,11 +225,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Automatic roster generation
+                Reduce scheduling administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering with our AI roster
-                generation giving you time back to focus on what's important.
+                Eliminate the need for manual scheduling - giving you time back
+                to focus on patient care and team wellbeing.
               </p>
             </div>
 
@@ -261,15 +251,15 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Stay compliant with labor laws
               </h3>
               <p className="text-gray-600">
-                Never break compliance on contractual requirements, critical
-                staff rules or union requirements.
+                Maintain legal and ACGME compliance so physicians can work
+                safely while having more flexibility.
               </p>
             </div>
 
-            {/* Pain Point 3: Improve flexibility through self-rostering */}
+            {/* Pain Point 3: Improve flexibility through self-scheduling*/}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -287,11 +277,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Improve flexibility through self-rostering
+                Protect training and exam time
               </h3>
               <p className="text-gray-600">
-                Empower nurses with flexibility while maintaining fairness and
-                compliance with core rules and requirements.
+                Schedule longer days off around exams and ensure complete
+                training programs while maintaining coverage.
               </p>
             </div>
 
@@ -313,11 +303,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Ensure safe staffing levels for nurses
+                Better engagement, better care
               </h3>
               <p className="text-gray-600">
-                Identify understaffing and skill gaps before they become issues,
-                maintaining safe patient-to-nurse ratios.
+                Consider staff preferences while ensuring fairness, reducing
+                burnout and supporting safer night-to-day transitions.
               </p>
             </div>
           </div>
@@ -333,36 +323,9 @@ export default function NurseRosteringV2Page() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Nurse Roster Challenges
+                Perfect For Physician Scheduling
               </h3>
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Eliminate Favouritism
-                    </h4>
-                    <p className="text-gray-600">
-                      Ensure fairness, reduce the perception of favouritism, and
-                      create a more inclusive work environment for nurses.
-                    </p>
-                  </div>
-                </div>
-
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
@@ -381,38 +344,12 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Ensure Clinical Safety
+                      Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Ensure nurses are working safely, enhancing overall
-                      patient outcomes and trust in patient care.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Nurse Fatigue
-                    </h4>
-                    <p className="text-gray-600">
-                      Enhance overall work-life balance and minimise fatigue for
-                      your staff.
+                      Protect time for education and teaching to ensure resident
+                      physicians receive complete training while maintaining
+                      department coverage.
                     </p>
                   </div>
                 </div>
@@ -435,11 +372,12 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Improve Staffing Level Accuracy
+                      Optimise Shifts for Complex Skill Mix
                     </h4>
                     <p className="text-gray-600">
-                      Understand your staffing levels better and how many people
-                      are required for each role.
+                      Automatically pair resident physicians with attending
+                      physicians for night shifts, ensuring safe supervision and
+                      skill mix across all shifts.
                     </p>
                   </div>
                 </div>
@@ -462,12 +400,67 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Meet More Staff Preferences
+                      Manage Your Workforce With Confidence
                     </h4>
                     <p className="text-gray-600">
-                      Help nurses achieve better work-life balance by
-                      considering a high percentage of staff preferences whilst
-                      ensuring critical business needs are met.
+                      Switch seamlessly between staff and shift perspectives to
+                      gain a clear picture of responsibilities, coverage, and
+                      balance across your department.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-orange-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Adapt to Cohort Changes With Ease and Confidence
+                    </h4>
+                    <p className="text-gray-600">
+                      Manage every term in a structured, consistent way - so
+                      your schedules stay accurate, organized, and stress-free.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Better Wellbeing, Less Fatigue
+                    </h4>
+                    <p className="text-gray-600">
+                      Enforce rest periods to prevent dangerous consecutive
+                      shift patterns that lead to burnout and fatigue. Staff can
+                      also input preferences for better work-life balance.
                     </p>
                   </div>
                 </div>
@@ -478,78 +471,28 @@ export default function NurseRosteringV2Page() {
           {/* CTA Button */}
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
-              href="/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
-              Learn about AI Rostering
+              Learn about AI Scheduling
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* Benefits Section */}
+      {/* Self-Scheduling Workflow Section */}
       <section className="py-20 bg-white">
-        <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern Nurse Rostering Software for Teams
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve nurse wellbeing and patient care
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
-              <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduction in Rostering Time
-              </h3>
-              <p className="text-gray-600">
-                Nurse managers spend days less per month on rostering,
-                redirecting time to patient care and team support.
-              </p>
-            </div>
-
-            <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
-              <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stable Staffing
-              </h3>
-              <p className="text-gray-600">
-                Safe nurse-to-patient ratios maintained across every shift, with
-                instant alerts and compliant replacement suggestions when
-                changes occur.
-              </p>
-            </div>
-
-            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-              <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Transparent Roster Assignment
-              </h3>
-              <p className="text-gray-600">
-                Fair, automated rostering eliminates favoritism and bullying
-                through transparent, bias-free shift allocation.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Self-Rostering Workflow Section */}
-      <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              NURSE-FIRST WORKFLOW
+              PHYSICIAN-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Nurses Engage with Their Rosters
+              How Physicians Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around self-rostering and nurse autonomy, not just top-down
-              rostering
+              Built around training requirements, preferences, and wellbeing,
+              not just top-down scheduling
             </p>
           </div>
 
@@ -566,8 +509,9 @@ export default function NurseRosteringV2Page() {
                       Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Define minimum ratios, skill mix needs (ICU-trained,
-                      paeds, etc.), and ward coverage requirements.
+                      Define skill mix needs (attending physicians for night
+                      supervision), term schedules, and department coverage
+                      requirements.
                     </p>
                   </div>
                 </div>
@@ -581,11 +525,12 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Submit Preferences
+                      Physicians Submit Preferences
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, nurses indicate shift preferences, time
-                      off requests, and availability. No emails or paper forms.
+                      Via mobile app, physicians indicate shift preferences,
+                      exam dates, teaching sessions, and time off requests. No
+                      emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -599,11 +544,12 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Safe Roster
+                      AI Generates Compliant Schedule
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, skills, and compliance
-                      rules to create fair rosters with safe staffing levels.
+                      RosterLab balances preferences, training requirements,
+                      night shift equity, and ACGME duty hour rules to create
+                      compliant term schedules.
                     </p>
                   </div>
                 </div>
@@ -620,8 +566,9 @@ export default function NurseRosteringV2Page() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to nurses' phones. They see their
-                      shifts, can request swaps, and get real-time updates.
+                      Schedules sync instantly to physicians' phones. They see
+                      their shifts, training time, and can request swaps with
+                      real-time updates.
                     </p>
                   </div>
                 </div>
@@ -635,11 +582,12 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Self-Roster Open Shifts
+                      Physicians Self-Schedule Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - nurses can
-                      pick them up directly if qualified and within hour limits.
+                      Unfilled shifts are posted as "open shifts" - physicians
+                      can pick them up directly if qualified, within hour
+                      limits, and training time protected.
                     </p>
                   </div>
                 </div>
@@ -667,10 +615,10 @@ export default function NurseRosteringV2Page() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your nurse rostering?
+                Ready to streamline your physician scheduling?
               </p>
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
               >
                 See How It Works
@@ -681,74 +629,21 @@ export default function NurseRosteringV2Page() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for Nurse Rostering
+              Essential Features for Physician Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of nursing
-              rosters
+              Purpose-built tools that address the unique complexity of
+              physician term schedules
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Safe Staffing Enforcement
-              </h3>
-              <p className="text-gray-600">
-                Configurable patient-to-nurse ratios by ward and shift. The
-                system will flag unsafe and understaffed rosters.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Skill Mix Management
-              </h3>
-              <p className="text-gray-600">
-                Ensure every shift has the right skills present by creating
-                rules to ensure a balanced mix of skills is present on your
-                roster.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -765,16 +660,22 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Union Rule Automation
+                Automatic Schedule Generation
               </h3>
-              <p className="text-gray-600">
-                Enforce rules, minimum rest periods, maximum consecutive shifts,
-                and contractual obligations.
+              <p className="text-gray-600 mb-3">
+                Create compliant schedules based on labor laws & ACGME
+                standards. Reduce schedule admin by 90%.
               </p>
+              <a
+                href="/us/solutions/ai-staff-schedule-maker"
+                className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
 
-            {/* Feature 4 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            {/* Feature 2 */}
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-teal-600"
@@ -791,16 +692,23 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Mobile Self-Rostering
+                Self Scheduling
               </h3>
-              <p className="text-gray-600">
-                Nurses submit preferences, apply for open shifts, and manage
-                time-off requests directly from their phones.
+              <p className="text-gray-600 mb-3">
+                Physicians submit preferences, training needs, exam dates, and
+                manage time-off requests directly from their phones. <br />
+                &nbsp;
               </p>
+              <a
+                href="/us/feature/self-scheduling"
+                className="text-teal-600 hover:text-teal-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
 
-            {/* Feature 5 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            {/* Feature 3 */}
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-cyan-600"
@@ -817,16 +725,23 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Roster Changes
+                Instant Schedule Changes
               </h3>
-              <p className="text-gray-600">
-                When nurses call in sick, see who's qualified and available to
-                fill the gap without breaking safety rules.
+              <p className="text-gray-600 mb-3">
+                When physicians call in sick, see who's qualified and available
+                to fill the gap without breaking compliance or training
+                requirements.
               </p>
+              <a
+                href="/us/feature/staff-rescheduling"
+                className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
 
-            {/* Feature 6 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            {/* Feature 4 */}
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -843,25 +758,27 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Fatigue Prevention
+                Term Schedule Management
               </h3>
-              <p className="text-gray-600">
-                Track hours worked, enforce rest periods, and prevent dangerous
-                consecutive shift patterns that lead to burnout.
+              <p className="text-gray-600 mb-3">
+                Stay on top of cohort changes with ease. Manage every term
+                consistently so schedules stay accurate, compliant, and
+                stress-free.
               </p>
+              <a
+                href="/us/solutions/staff-scheduling-mobile-app"
+                className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+              >
+                Learn more →
+              </a>
             </div>
           </div>
-
-          {/* CTA for Mobile App */}
-          <div className="text-center mt-12">
-            <Button
-              href="/solutions/staff-roster-mobile-app"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
-            >
-              Learn about mobile app
-            </Button>
-          </div>
         </Container>
+      </section>
+
+      {/* Trusted By */}
+      <section className="py-10 bg-white">
+        <USTrustedBy />
       </section>
 
       {/* FAQ Section */}
@@ -879,34 +796,29 @@ export default function NurseRosteringV2Page() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="py-10 bg-white">
-        <TrustedBy />
-      </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Safer, Fairer Nurse Rosters
+              Build Compliant, Fairer Physician Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join hospitals that have eliminated unsafe rosters and reduced
-              nurse burnout
+              Join departments that have improved physician retention, reduced
+              burnout, and built positive reputations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
-                href="/tools/roi-calculator"
+                href="/us/tools/savings-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                See ROI Calculator
+                See Savings Calculator
               </Button>
             </div>
           </div>
@@ -916,10 +828,10 @@ export default function NurseRosteringV2Page() {
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Nurse Rostering V2" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
+          { name: "Physician Scheduling" },
         ]}
       />
     </SiteLayout>

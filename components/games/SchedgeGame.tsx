@@ -295,11 +295,11 @@ export default function SchedgeGame({
               <h3>
                 To try it out, go to{" "}
                 <a
-                  href="https://www.rosterlab.com"
+                  href="https://rosterlab.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  www.rosterlab.com
+                  rosterlab.com
                 </a>
               </h3>
               <p>

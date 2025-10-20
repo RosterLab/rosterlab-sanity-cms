@@ -11,21 +11,22 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Nurse Rostering Software - RosterLab",
+    title: "Veterinary Rostering Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
+      "End chaotic vet rosters and overwork. Build fair, efficient rosters that maintain proper staffing coverage and respect work-life balance.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      canonical:
+        "https://rosterlab.com/industries/healthcare/veterinary-rostering",
     },
     openGraph: {
-      title: "Nurse Rostering Software - RosterLab",
+      title: "Veterinary Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
+        "End chaotic vet rosters and overwork. Build fair, efficient rosters that maintain proper staffing coverage and respect work-life balance.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/nurse-rostering",
+      url: "https://rosterlab.com/industries/healthcare/veterinary-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/updated-hero/vet.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,61 +34,66 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Nurse Rostering Software - RosterLab",
+      title: "Veterinary Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+        "End chaotic vet rosters and overwork. Build fair, efficient rosters that maintain proper staffing coverage and respect work-life balance.",
+      images: ["/images/updated-hero/vet.jpg"],
     },
   },
-  "/industries/healthcare/nurse-rostering",
+  "/industries/healthcare/veterinary-rostering",
 );
 
 const faqItems = [
   {
-    question: "How does RosterLab maintain safe nurse-to-patient ratios?",
+    question:
+      "How does RosterLab handle emergency coverage for veterinary clinics?",
     answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag rosters that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
+      "RosterLab helps you enforce minimum staffing requirements and skill mix rules for every shift, including emergency coverage. The AI will flag rosters that don't have proper veterinarian coverage, ensuring animal care is never compromised. You can set different requirements by clinic type and shift.",
   },
   {
-    question: "Can nurses submit their own preferences?",
+    question: "Can veterinary staff submit their own preferences?",
     answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-rostering feature</a> lets nurses bid for available shifts while the system maintains compliance with union rules, fatigue management, and skill mix requirements.",
+      "Yes. Vets, technicians and assistants can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='https://rosterlab.com/feature/self-scheduling' class='text-green-600 hover:text-green-700 underline'>self-rostering feature</a> lets staff bid for available shifts while the system maintains coverage requirements and fatigue management rules.",
   },
   {
-    question: "What happens when a nurse calls in sick at the last minute?",
+    question: "What happens when a vet calls in sick at the last minute?",
     answer:
-      "RosterLab identifies replacement nurses who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe ratios by alerting you if a shift can't be safely covered.",
+      "RosterLab identifies replacement vets who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe coverage by alerting you if a shift can't be properly staffed.",
   },
   {
-    question: "How does RosterLab prevent roster-based favoritism or bullying?",
+    question: "How does RosterLab prevent roster-based favouritism?",
     answer:
-      "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
+      "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules.",
   },
   {
-    question: "Can RosterLab help identify knowledge silos and training gaps?",
+    question: "Can RosterLab help identify skill gaps in our veterinary team?",
     answer:
-      "Yes. RosterLab's gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify risks, and plan accordingly. The system alerts you when key skills are missing from a shift.",
+      "Yes. RosterLab gives you complete visibility of all competencies across your veterinary staff. You can instantly see which critical skills are held by only one or two people, identify risks, and plan accordingly. The system alerts you when key skills are missing from a shift.",
+  },
+  {
+    question: "How does RosterLab save veterinary hospitals money?",
+    answer:
+      "RosterLab reduces costs through less locum usage and more effective staffing. By optimising your existing staff schedules and ensuring proper skill mix coverage, you can minimise expensive agency staff and overtime costs. Our AI-powered rostering helps you identify the right staffing levels, reducing both overstaffing and understaffing. <a href='https://rosterlab.com/tools/roi-calculator' class='text-green-600 hover:text-green-700 underline'>Use our ROI calculator</a> to see your potential savings.",
   },
 ];
 
-export default function NurseRosteringV2Page() {
+export default function VeterinaryRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
+      <section className="relative bg-gradient-to-br from-green-50 via-white to-teal-50 py-20">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Safe, Fair
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">
+                  Optimised, Flexible
                 </span>{" "}
-                Nurse Rosters
+                Veterinary Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that respect your nurse preferences,
-                maintain safe ratios, and honour union agreements.
+                Create efficient AI rosters that respect your vet preferences,
+                maintain the right skill mix, and ensure work-life balance.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -104,7 +110,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  No more unsafe staffing levels
+                  Optimise staff skill mix for every shift
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -136,7 +142,7 @@ export default function NurseRosteringV2Page() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Guaranteed compliance
+                  24/7 emergency coverage management
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -158,13 +164,13 @@ export default function NurseRosteringV2Page() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   href="/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
+                  className="bg-green-600 text-white hover:bg-green-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/case-studies"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
+                  className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50"
                 >
                   Read Case Studies
                 </Button>
@@ -172,8 +178,8 @@ export default function NurseRosteringV2Page() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/nursing.svg"
-                alt="Nurse rostering software interface"
+                src="/images/illustration/vets.svg"
+                alt="Veterinary rostering software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -188,17 +194,17 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Safer Staffing Starts with Smart Rostering
+              Better Veterinary Staffing Starts with Smart Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build compliant and safe nurse rosters in minutes, not days.
+              Build efficient and fair veterinary rosters in minutes, not days.
               Discover how:
             </p>
           </div>
 
           {/* Interactive Demo Widget */}
           <div className="mb-16 max-w-4xl mx-auto">
-            <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-50 to-cyan-50 p-4">
+            <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-green-50 to-teal-50 p-4">
               <div
                 className="relative w-full"
                 style={{ paddingBottom: "calc(56.67989417989418% + 41px)" }}
@@ -219,9 +225,9 @@ export default function NurseRosteringV2Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Pain Point 1: Automatic Roster Generation */}
             <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-10 h-10 text-teal-600"
+                  className="w-10 h-10 text-green-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -239,15 +245,15 @@ export default function NurseRosteringV2Page() {
               </h3>
               <p className="text-gray-600">
                 Eliminate the need for manual rostering with our AI roster
-                generation giving you time back to focus on what's important.
+                generation giving you time back to focus on animal care.
               </p>
             </div>
 
-            {/* Pain Point 2: Stay compliant with rules */}
+            {/* Pain Point 2: Coverage Requirements */}
             <div className="text-center p-6">
-              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-10 h-10 text-cyan-600"
+                  className="w-10 h-10 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -261,11 +267,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Less fatigue through safer rosters
               </h3>
               <p className="text-gray-600">
-                Never break compliance on contractual requirements, critical
-                staff rules or union requirements.
+                Prevent burnout with intelligent workload distribution and
+                automated rest period enforcement across your team.
               </p>
             </div>
 
@@ -290,16 +296,16 @@ export default function NurseRosteringV2Page() {
                 Improve flexibility through self-rostering
               </h3>
               <p className="text-gray-600">
-                Empower nurses with flexibility while maintaining fairness and
-                compliance with core rules and requirements.
+                Empower veterinary staff with flexibility while maintaining
+                fairness and proper coverage requirements.
               </p>
             </div>
 
-            {/* Pain Point 4: Ensure safe staffing levels */}
+            {/* Pain Point 4: Emergency Coverage */}
             <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-10 h-10 text-teal-600"
+                  className="w-10 h-10 text-green-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -313,11 +319,11 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Ensure safe staffing levels for nurses
+                24/7 emergency coverage
               </h3>
               <p className="text-gray-600">
-                Identify understaffing and skill gaps before they become issues,
-                maintaining safe patient-to-nurse ratios.
+                Manage after-hours and emergency on-call rotations while
+                ensuring fair distribution across your team.
               </p>
             </div>
           </div>
@@ -333,7 +339,7 @@ export default function NurseRosteringV2Page() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Nurse Roster Challenges
+                Perfect For Veterinary Hospitals
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -354,92 +360,11 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Eliminate Favouritism
+                      Optimise Shifts for Skill Mix
                     </h4>
                     <p className="text-gray-600">
-                      Ensure fairness, reduce the perception of favouritism, and
-                      create a more inclusive work environment for nurses.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-cyan-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Ensure Clinical Safety
-                    </h4>
-                    <p className="text-gray-600">
-                      Ensure nurses are working safely, enhancing overall
-                      patient outcomes and trust in patient care.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Nurse Fatigue
-                    </h4>
-                    <p className="text-gray-600">
-                      Enhance overall work-life balance and minimise fatigue for
-                      your staff.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Improve Staffing Level Accuracy
-                    </h4>
-                    <p className="text-gray-600">
-                      Understand your staffing levels better and how many people
-                      are required for each role.
+                      Ensure veterinary staff are working safely, enhancing
+                      overall animal care outcomes and client trust.
                     </p>
                   </div>
                 </div>
@@ -462,12 +387,95 @@ export default function NurseRosteringV2Page() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Reduce Fatigue & Burnout
+                    </h4>
+                    <p className="text-gray-600">
+                      Fairly distribute night shifts and enhance overall
+                      work-life balance to minimise burnout for your veterinary
+                      team.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Improve Cost Efficiency
+                    </h4>
+                    <p className="text-gray-600">
+                      Less locums, more effective staffing. Better utilise staff
+                      hours to reduce overtime and ensure proper skill coverage
+                      across all procedures and appointments.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
                       Meet More Staff Preferences
                     </h4>
                     <p className="text-gray-600">
-                      Help nurses achieve better work-life balance by
+                      Help veterinary staff achieve better work-life balance by
                       considering a high percentage of staff preferences whilst
                       ensuring critical business needs are met.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Improve Staffing Level Accuracy
+                    </h4>
+                    <p className="text-gray-600">
+                      Understand your staffing levels better and how many people
+                      are required for each role.
                     </p>
                   </div>
                 </div>
@@ -479,7 +487,7 @@ export default function NurseRosteringV2Page() {
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
               href="/solutions/ai-roster-generator"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+              className="bg-green-600 text-white hover:bg-green-700 px-8 py-3"
             >
               Learn about AI Rostering
             </Button>
@@ -492,34 +500,34 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern Nurse Rostering Software for Teams
+              Paw-sitive Veterinary Rostering Impact
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve nurse wellbeing and patient care
+              Real outcomes that improve veterinary staff wellbeing and animal
+              care
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
-              <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
+            <div className="bg-green-50 rounded-xl p-8 border border-green-100">
+              <div className="text-4xl font-bold text-green-600 mb-2">90%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Reduction in Rostering Time
               </h3>
               <p className="text-gray-600">
-                Nurse managers spend days less per month on rostering,
-                redirecting time to patient care and team support.
+                Clinic managers spend days less per month on rostering,
+                redirecting time to animal care and team support.
               </p>
             </div>
 
-            <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
-              <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
+            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
+              <div className="text-4xl font-bold text-teal-600 mb-2">100%</div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
                 Stable Staffing
               </h3>
               <p className="text-gray-600">
-                Safe nurse-to-patient ratios maintained across every shift, with
-                instant alerts and compliant replacement suggestions when
-                changes occur.
+                Proper vet coverage maintained across every shift, with instant
+                alerts and compliant replacement suggestions when changes occur.
               </p>
             </div>
 
@@ -529,8 +537,8 @@ export default function NurseRosteringV2Page() {
                 Transparent Roster Assignment
               </h3>
               <p className="text-gray-600">
-                Fair, automated rostering eliminates favoritism and bullying
-                through transparent, bias-free shift allocation.
+                Fair, automated rostering eliminates favoritism through
+                transparent, bias-free shift allocation.
               </p>
             </div>
           </div>
@@ -541,14 +549,14 @@ export default function NurseRosteringV2Page() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              NURSE-FIRST WORKFLOW
+            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              VET-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Nurses Engage with Their Rosters
+              How Veterinary Staff Engage with Their Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around self-rostering and nurse autonomy, not just top-down
+              Built around self-rostering and staff autonomy, not just top-down
               rostering
             </p>
           </div>
@@ -558,16 +566,17 @@ export default function NurseRosteringV2Page() {
               {/* Step 1 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">1</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">1</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Define minimum ratios, skill mix needs (ICU-trained,
-                      paeds, etc.), and ward coverage requirements.
+                      Define minimum staffing ratios, skill mix needs
+                      (emergency-trained, surgical, etc.), and clinic coverage
+                      requirements.
                     </p>
                   </div>
                 </div>
@@ -576,16 +585,17 @@ export default function NurseRosteringV2Page() {
               {/* Step 2 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">2</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">2</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Submit Preferences
+                      Staff Submit Preferences
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, nurses indicate shift preferences, time
-                      off requests, and availability. No emails or paper forms.
+                      Via mobile app, veterinary staff indicate shift
+                      preferences, time off requests, and availability. No
+                      emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -594,16 +604,16 @@ export default function NurseRosteringV2Page() {
               {/* Step 3 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">3</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">3</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Safe Roster
+                      AI Generates Balanced Roster
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, skills, and compliance
-                      rules to create fair rosters with safe staffing levels.
+                      RosterLab balances preferences, skills, and coverage rules
+                      to create fair rosters with proper staffing levels.
                     </p>
                   </div>
                 </div>
@@ -612,15 +622,15 @@ export default function NurseRosteringV2Page() {
               {/* Step 4 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">4</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">4</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to nurses' phones. They see their
+                      Rosters sync instantly to staff phones. They see their
                       shifts, can request swaps, and get real-time updates.
                     </p>
                   </div>
@@ -630,15 +640,15 @@ export default function NurseRosteringV2Page() {
               {/* Step 5 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">5</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">5</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Self-Roster Open Shifts
+                      Staff Self-Roster Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - nurses can
+                      Unfilled shifts are posted as "open shifts" - staff can
                       pick them up directly if qualified and within hour limits.
                     </p>
                   </div>
@@ -648,8 +658,8 @@ export default function NurseRosteringV2Page() {
               {/* Step 6 */}
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">6</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-green-600 font-bold">6</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -657,7 +667,7 @@ export default function NurseRosteringV2Page() {
                     </h3>
                     <p className="text-gray-600">
                       If someone calls in sick, RosterLab shows who can safely
-                      fill the gap without breaking ratios or fatigue rules.
+                      fill the gap without breaking coverage or fatigue rules.
                     </p>
                   </div>
                 </div>
@@ -667,11 +677,11 @@ export default function NurseRosteringV2Page() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your nurse rostering?
+                Ready to streamline your veterinary rostering?
               </p>
               <Button
                 href="/book-a-demo"
-                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+                className="bg-green-600 text-white hover:bg-green-700 px-8 py-3"
               >
                 See How It Works
               </Button>
@@ -685,20 +695,20 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for Nurse Rostering
+              Essential Features for Veterinary Hospitals
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of nursing
-              rosters
+              Purpose-built tools that address the unique complexity of
+              veterinary hospital rosters
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Feature 1 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-teal-600"
+                  className="w-6 h-6 text-green-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -712,19 +722,19 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Safe Staffing Enforcement
+                Coverage Enforcement
               </h3>
               <p className="text-gray-600">
-                Configurable patient-to-nurse ratios by ward and shift. The
-                system will flag unsafe and understaffed rosters.
+                Configurable vet-to-support staff ratios by clinic type and
+                shift. The system will flag understaffed rosters.
               </p>
             </div>
 
             {/* Feature 2 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-cyan-600"
+                  className="w-6 h-6 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -765,19 +775,19 @@ export default function NurseRosteringV2Page() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Union Rule Automation
+                Fair Workload Distribution
               </h3>
               <p className="text-gray-600">
-                Enforce rules, minimum rest periods, maximum consecutive shifts,
-                and contractual obligations.
+                Enforce fair distribution of shifts, night shifts, weekend work,
+                and on-call duties across your veterinary team.
               </p>
             </div>
 
             {/* Feature 4 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-teal-600"
+                  className="w-6 h-6 text-green-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -794,16 +804,16 @@ export default function NurseRosteringV2Page() {
                 Mobile Self-Rostering
               </h3>
               <p className="text-gray-600">
-                Nurses submit preferences, apply for open shifts, and manage
-                time-off requests directly from their phones.
+                Veterinary staff submit preferences, apply for open shifts, and
+                manage time-off requests directly from their phones.
               </p>
             </div>
 
             {/* Feature 5 */}
             <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
-                  className="w-6 h-6 text-cyan-600"
+                  className="w-6 h-6 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -820,8 +830,8 @@ export default function NurseRosteringV2Page() {
                 Instant Roster Changes
               </h3>
               <p className="text-gray-600">
-                When nurses call in sick, see who's qualified and available to
-                fill the gap without breaking safety rules.
+                When staff call in sick, see who's qualified and available to
+                fill the gap without breaking coverage rules.
               </p>
             </div>
 
@@ -856,7 +866,7 @@ export default function NurseRosteringV2Page() {
           <div className="text-center mt-12">
             <Button
               href="/solutions/staff-roster-mobile-app"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+              className="bg-green-600 text-white hover:bg-green-700 px-8 py-3"
             >
               Learn about mobile app
             </Button>
@@ -869,10 +879,10 @@ export default function NurseRosteringV2Page() {
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-              Frequently Asked Questions
+              Fur-quently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from nursing managers
+              Questions we hear from veterinary clinic managers
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -885,26 +895,26 @@ export default function NurseRosteringV2Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
+      <section className="py-20 bg-gradient-to-r from-green-600 to-teal-500">
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Safer, Fairer Nurse Rosters
+              Build Smarter, Fairer Veterinary Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join hospitals that have eliminated unsafe rosters and reduced
-              nurse burnout
+              Join veterinary clinics that have eliminated chaotic rosters and
+              reduced staff burnout
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/book-a-demo"
-                className="bg-white text-teal-600 hover:bg-gray-100"
+                className="bg-white text-green-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
                 href="/tools/roi-calculator"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-600"
               >
                 See ROI Calculator
               </Button>
@@ -919,7 +929,7 @@ export default function NurseRosteringV2Page() {
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Nurse Rostering V2" },
+          { name: "Veterinary Rostering" },
         ]}
       />
     </SiteLayout>
