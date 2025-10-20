@@ -231,7 +231,7 @@ export default function RuleBuilder() {
             }}
             className="w-full bg-teal-600 text-white py-3 px-6 rounded-lg hover:bg-teal-700 transition-colors font-semibold"
           >
-            Build New Roster
+            Add New Rules
           </button>
         </div>
       )}

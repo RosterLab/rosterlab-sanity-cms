@@ -67,7 +67,7 @@ const faqItems = [
   {
     question: "What type of rules can I create?",
     answer:
-      "You can create rules for hours worked (per week or roster period), days on/off, specific shift types (night, call, etc.), time between shifts, maximum shifts in a row, fairness distribution (weekends, night shifts), individual employee constraints, and staffing level requirements. Rules can apply organization-wide or to specific individuals.",
+      "You can create rules for hours worked (per week or roster period), days on/off, specific shift types (night, call, etc.), time between shifts, maximum shifts in a row, fairness distribution (weekends, night shifts), individual employee constraints, and staffing level requirements. Rules can apply organisation-wide or to specific individuals.",
   },
   {
     question: "How are different rules weighted?",
@@ -135,7 +135,7 @@ export default function RulesAndCompliancePage() {
                 <p className="text-lg text-gray-600 mb-6">
                   Set guaranteed "must have" rules that ensure every roster is
                   compliant with union agreements and labour laws. These hard
-                  rules are never broken, protecting your organization from
+                  rules are never broken, protecting your organisation from
                   compliance violations and fines.
                 </p>
                 <ul className="space-y-4">
