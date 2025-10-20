@@ -7,6 +7,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import RuleBuilder from "@/components/ui/RuleBuilder";
+import UnbreakableText from "@/components/ui/UnbreakableText";
 
 const pathname = "/feature/rules-engine";
 
@@ -47,27 +48,12 @@ const faqItems = [
   {
     question: "What are rostering rules?",
     answer:
-      "Rostering rules are constraints and requirements that shape how your roster is constructed. They include hard rules (must be followed) and soft rules (preferred but flexible), covering everything from union requirements and staffing levels to fairness distribution and regular work patterns.",
+      "Rostering rules are a mix of requirements and constraints that shape how your roster is constructed. They include hard rules (must be followed) and soft rules (preferred but flexible), as well as demands and preferences. This covers everything from union requirements and staffing levels to fairness distribution and regular work patterns.",
   },
   {
     question: "How do rules help form your staff roster?",
     answer:
-      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritise the best possible roster options among all valid solutions.",
-  },
-  {
-    question: "How does the AI and rules work together?",
-    answer:
-      "The roster generator evaluates every possible roster solution. Hard rules immediately eliminate non-compliant options, while soft rules are weighted by points to help the system determine which valid solutions are better than others. The AI considers all options and selects the optimal roster that satisfies hard rules while maximizing soft rule preferences.",
-  },
-  {
-    question: "What union requirements do the rules support?",
-    answer:
-      "RosterLab supports a comprehensive range of union requirements including minimum hours between shifts (e.g., 8-hour breaks for nurses), maximum consecutive shifts, mandatory rest periods after night shifts, guaranteed minimum hours per roster period, and specific shift pattern requirements defined in collective agreements.",
-  },
-  {
-    question: "What type of rules can I create?",
-    answer:
-      "You can create rules for hours worked (per week or roster period), days on/off, specific shift types (night, call, etc.), time between shifts, maximum shifts in a row, fairness distribution (weekends, night shifts), individual employee constraints, and staffing level requirements. Rules can apply organisation-wide or to specific individuals.",
+      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritise the best possible roster options among all valid solutions. Demands and preferences are considered too.",
   },
   {
     question: "How are different rules weighted?",
@@ -93,7 +79,8 @@ export default function RulesAndCompliancePage() {
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Define how rosters should be constructed with guaranteed and
-                  flexible rules that meet union and contractual requirements.
+                  flexible rules that ensure fairness, fatigue management and
+                  contractual compliance.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -129,7 +116,7 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Create unbreakable rules that meet union and contract
+                  Create <UnbreakableText /> rules that meet union and contract
                   requirements
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
@@ -288,7 +275,9 @@ export default function RulesAndCompliancePage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">FTE limitations</span>
+                    <span className="text-gray-700">
+                      Pro-rata'd FTE based rules
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
@@ -308,8 +297,35 @@ export default function RulesAndCompliancePage() {
           </Container>
         </div>
 
-        {/* FAQ Section */}
+        {/* Shift Patterns Section */}
         <div className="py-20 bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Add forbidden or allowed shift patterns
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Define specific shift sequences that must be avoided or
+                  encouraged to maintain work-life balance and comply with best
+                  practices.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Build upcycling patterns for morning, evening and night
+                      shifts
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="py-20 bg-gray-50">
           <Container>
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
