@@ -13,14 +13,14 @@ const pathname = "/feature/rules-engine";
 
 export const metadata = withHreflang(
   {
-    title: "Rules and Compliance - RosterLab",
+    title: "Roster Rules Engine - RosterLab",
     description:
       "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
     alternates: {
       canonical: "https://rosterlab.com/feature/rules-engine",
     },
     openGraph: {
-      title: "Rules and Compliance - RosterLab",
+      title: "Roster Rules Engine - RosterLab",
       description:
         "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
       type: "website",
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rules and Compliance - RosterLab",
+      title: "Roster Rules Engine - RosterLab",
       description:
         "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
       images: ["/images/og-images/Feature-Compliance-Rules.png"],
