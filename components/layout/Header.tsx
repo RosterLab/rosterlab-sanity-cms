@@ -344,9 +344,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </div>
                             </div>
 
-                            {/* Specialized Care Column */}
+                            {/* Roster By Type Column */}
                             <div>
-                              <div className="space-y-1 mt-8">
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Roster By Type
+                              </h3>
+                              <div className="space-y-1">
                                 {item.subItems?.slice(3, 6).map((subItem) => (
                                   <Link
                                     key={subItem.link}
