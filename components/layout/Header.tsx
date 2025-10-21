@@ -220,7 +220,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
                                       {subItem.title}
                                     </div>
-                                    <div className="text-sm text-gray-600">
+                                    <div className="text-xs text-gray-600">
                                       {(subItem as any).description ||
                                         (subItem.title ===
                                         "AI Staff Roster Generator"
@@ -286,7 +286,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
-                                Get a demo
+                                Book a demo
                               </Link>
                             </div>
                           </div>
@@ -298,7 +298,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Healthcare Sectors Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Healthcare Sectors
+                                Specialty Rosters
                               </h3>
                               <div className="space-y-1">
                                 {/* ICU/ED Roster */}
@@ -311,27 +311,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "ICU/ED Scheduling"
                                       : "ICU/ED Roster"}
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Build ICU/ED schedules that support better continuity of care"
                                       : "Build ICU/ED rosters that support better continuity of care"}
-                                  </div>
-                                </Link>
-
-                                {/* Aged Care Roster */}
-                                <Link
-                                  href="/industries/healthcare/aged-care"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "Senior Care Scheduling"
-                                      : "Aged Care Roster"}
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    {isUSVersion
-                                      ? "Efficient scheduling for nursing homes & assisted living"
-                                      : "Make better use of staffing hours with rosters for aged care facilities"}
                                   </div>
                                 </Link>
 
@@ -345,7 +328,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "Radiology Scheduling"
                                       : "Radiology Roster"}
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Build radiology schedules with the right skill mix and compliance"
                                       : "Balance teams with the right skill mix with compliant rosters"}
@@ -362,13 +345,30 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "Nurse Scheduling"
                                       : "Nurse Roster"}
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-gray-600">
                                     Fair, safe and compliant nurse rostering
                                     software
                                   </div>
                                 </Link>
 
-                                {/* Vet Roster */}
+                                {/* Aged Care Roster */}
+                                <Link
+                                  href="/industries/healthcare/aged-care"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Senior Care Scheduling"
+                                      : "Aged Care Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Efficient scheduling for nursing homes & assisted living"
+                                      : "Make better use of staffing hours with rosters for aged care facilities"}
+                                  </div>
+                                </Link>
+
+                                {/* Veterinary Roster */}
                                 <Link
                                   href="/industries/veterinary"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
@@ -376,9 +376,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
                                     {isUSVersion
                                       ? "Veterinary Scheduling"
-                                      : "Vet Roster"}
+                                      : "Veterinary Roster"}
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Veterinary clinic scheduling that handles complex shift patterns"
                                       : "Veterinary clinic rostering that handles complex shift patterns"}
@@ -393,23 +393,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Roster By Type
                               </h3>
                               <div className="space-y-1">
-                                {/* SMO Roster */}
-                                <Link
-                                  href="/industries/healthcare/senior-medical-officer-rostering"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "SMO Scheduling"
-                                      : "SMO Roster"}
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    {isUSVersion
-                                      ? "Senior medical officer scheduling with compliance and workload balance"
-                                      : "Senior medical officer rostering with compliance and workload balance"}
-                                  </div>
-                                </Link>
-
                                 {/* JMO Roster */}
                                 <Link
                                   href="/industries/healthcare/junior-medical-officer-rostering"
@@ -420,9 +403,26 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "JMO Scheduling"
                                       : "JMO Roster"}
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-gray-600">
                                     Compliant rostering for junior medical
                                     officers
+                                  </div>
+                                </Link>
+
+                                {/* SMO Roster */}
+                                <Link
+                                  href="/industries/healthcare/senior-medical-officer-rostering"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "SMO Scheduling"
+                                      : "SMO Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Senior medical officer scheduling with compliance and workload balance"
+                                      : "Senior medical officer rostering with compliance and workload balance"}
                                   </div>
                                 </Link>
 
@@ -436,10 +436,27 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "On-Call Scheduling"
                                       : "On-Call Roster"}
                                   </div>
-                                  <div className="text-sm text-gray-600">
+                                  <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Fair on-call schedules with 24/7 coverage and compliance"
                                       : "Fair on-call rosters with 24/7 coverage and compliance"}
+                                  </div>
+                                </Link>
+
+                                {/* Long Roster */}
+                                <Link
+                                  href="/type/long-roster"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Long Scheduling"
+                                      : "Long Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Plan weeks and months ahead with long-term scheduling"
+                                      : "Plan weeks and months ahead with long-term rosters"}
                                   </div>
                                 </Link>
                               </div>
@@ -456,7 +473,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "/us/industries"
                                       : "/industries"
                                   }
-                                  className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                                  className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
                                 >
                                   View all industries
                                   <svg
@@ -479,7 +496,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       ? "/us/industries/healthcare"
                                       : "/industries/healthcare"
                                   }
-                                  className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                                  className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
                                 >
                                   View healthcare rosters
                                   <svg
@@ -501,7 +518,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
-                                Get a demo
+                                Book a demo
                               </Link>
                             </div>
                           </div>
@@ -615,7 +632,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
-                                Get a demo
+                                Book a demo
                               </Link>
                             </div>
                           </div>
