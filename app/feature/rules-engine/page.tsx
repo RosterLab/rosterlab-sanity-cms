@@ -15,19 +15,19 @@ export const metadata = withHreflang(
   {
     title: "Rules and Compliance - RosterLab",
     description:
-      "Ensure roster compliance with automated rules and regulations. Stay compliant with labour laws, union agreements, and company policies with intelligent roster management.",
+      "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
     alternates: {
       canonical: "https://rosterlab.com/feature/rules-engine",
     },
     openGraph: {
       title: "Rules and Compliance - RosterLab",
       description:
-        "Ensure roster compliance with automated rules and regulations. Stay compliant with labour laws, union agreements, and company policies with intelligent roster management.",
+        "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
       type: "website",
       url: "https://rosterlab.com/feature/rules-engine",
       images: [
         {
-          url: "/images/og-images/FeatureRulesCompliance.png",
+          url: "/images/og-images/Feature-Compliance-Rules.png",
           width: 1200,
           height: 630,
         },
@@ -37,8 +37,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Rules and Compliance - RosterLab",
       description:
-        "Ensure roster compliance with automated rules and regulations. Stay compliant with labour laws, union agreements, and company policies with intelligent roster management.",
-      images: ["/images/og-images/FeatureRulesCompliance.png"],
+        "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
+      images: ["/images/og-images/Feature-Compliance-Rules.png"],
     },
   },
   pathname,
