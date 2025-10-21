@@ -8,6 +8,7 @@ export default function RuleBuilder() {
   const [ruleType, setRuleType] = useState("");
   const [selectedRule, setSelectedRule] = useState("");
   const [ruleValue, setRuleValue] = useState("");
+  const [rulePriority, setRulePriority] = useState<"must" | "should">("must");
   const [rules, setRules] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationStep, setGenerationStep] = useState("");
@@ -178,10 +179,18 @@ export default function RuleBuilder() {
         unit = "hours";
       }
 
-      const newRule = `${ruleLabel}: ${ruleValue} ${unit}`;
+      // Only add must/should prefix for rules (not demands) and exclude consecutive_days
+      const isRuleWithPriority =
+        ruleType === "rules" && selectedRule !== "consecutive_days";
+      const priorityPrefix = isRuleWithPriority
+        ? `[${rulePriority.toUpperCase()}] `
+        : "";
+      const newRule = `${priorityPrefix}${ruleLabel}: ${ruleValue} ${unit}`;
+
       setRules([...rules, newRule]);
       setSelectedRule("");
       setRuleValue("");
+      setRulePriority("must");
       setIsComplete(false);
     }
   };
@@ -292,6 +301,57 @@ export default function RuleBuilder() {
 
                   {selectedRule ? (
                     <>
+                      {/* Must/Should radio buttons - show for all rules except consecutive_days */}
+                      {selectedRule !== "consecutive_days" && (
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Priority
+                          </label>
+                          <div className="flex gap-4">
+                            <label className="flex items-center cursor-pointer">
+                              <input
+                                type="radio"
+                                name="rulePriority"
+                                value="must"
+                                checked={rulePriority === "must"}
+                                onChange={(e) =>
+                                  setRulePriority(
+                                    e.target.value as "must" | "should",
+                                  )
+                                }
+                                className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
+                              />
+                              <span className="ml-2 text-sm text-gray-700">
+                                {selectedRule === "min_hours_period" ||
+                                selectedRule === "max_hours_period"
+                                  ? "Must Be"
+                                  : "Must Have"}
+                              </span>
+                            </label>
+                            <label className="flex items-center cursor-pointer">
+                              <input
+                                type="radio"
+                                name="rulePriority"
+                                value="should"
+                                checked={rulePriority === "should"}
+                                onChange={(e) =>
+                                  setRulePriority(
+                                    e.target.value as "must" | "should",
+                                  )
+                                }
+                                className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
+                              />
+                              <span className="ml-2 text-sm text-gray-700">
+                                {selectedRule === "min_hours_period" ||
+                                selectedRule === "max_hours_period"
+                                  ? "Should Be"
+                                  : "Should Have"}
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      )}
+
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           {selectedRule === "max_shifts" ||
@@ -310,6 +370,42 @@ export default function RuleBuilder() {
                           placeholder="Enter number..."
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                         />
+                        {selectedRule === "min_hours" && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            Minimum hours between shifts{" "}
+                            {rulePriority === "must" ? "must" : "should"} be{" "}
+                            {ruleValue || "[X]"} hour(s)
+                          </p>
+                        )}
+                        {selectedRule === "max_shifts" && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            Maximum consecutive shifts{" "}
+                            {rulePriority === "must" ? "must" : "should"} be{" "}
+                            {ruleValue || "[X]"} shift(s)
+                          </p>
+                        )}
+                        {selectedRule === "night_shifts" && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            {rulePriority === "must"
+                              ? "Must have"
+                              : "Should have"}{" "}
+                            {ruleValue || "[X]"} day(s) off after night shifts
+                          </p>
+                        )}
+                        {selectedRule === "min_hours_period" && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            Minimum hours per roster period{" "}
+                            {rulePriority === "must" ? "must" : "should"} be{" "}
+                            {ruleValue || "[X]"} hour(s)
+                          </p>
+                        )}
+                        {selectedRule === "max_hours_period" && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            Maximum hours per roster period{" "}
+                            {rulePriority === "must" ? "must" : "should"} be{" "}
+                            {ruleValue || "[X]"} hour(s)
+                          </p>
+                        )}
                       </div>
                       {ruleValue && (
                         <button
