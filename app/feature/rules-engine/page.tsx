@@ -53,12 +53,12 @@ const faqItems = [
   {
     question: "How do rules help form your staff roster?",
     answer:
-      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritise the best possible roster options among all valid solutions. Demands and preferences are considered too.",
+      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritise the best possible roster options among all possible solutions. Demands and preferences are considered too.",
   },
   {
     question: "How are different rules weighted?",
     answer:
-      "Rules are categorized as hard (must be satisfied) or soft (preferred). For staffing demands, you can set priority levels (low, medium, high, critical). For preferences, you can set weights (normal, high, critical) to indicate how strongly the rule should influence the final roster.",
+      "Rules are categorised as hard (must be satisfied) or soft (preferred). For staffing demands, you can set priority levels (low, medium, high, critical). For preferences, you can set weights (normal, high, critical) to indicate how strongly the preference should influence the final roster.",
   },
 ];
 
@@ -79,8 +79,8 @@ export default function RulesAndCompliancePage() {
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Build your roster using a mix of fixed and flexible rules to
-                  ensure fairness, manage fatigue, and meet all contractual and
-                  union requirements.
+                  help manage fatigue, ensure fairness and meet all contractual
+                  and union requirements.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -99,7 +99,7 @@ export default function RulesAndCompliancePage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/illustration/rules-compliance.svg"
+                  src="/images/illustration/rules-compliance-roster.svg"
                   alt="Rules and compliance illustration"
                   width={600}
                   height={600}
@@ -116,13 +116,10 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Create <UnbreakableText /> rules that guarantee fairness,
-                  compliance & wellbeing
+                  Create <UnbreakableText /> rules that guarantee safer rosters
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Set guaranteed "must have" rules that ensure fairness,
-                  maintain staff wellbeing, and meet compliance requirements.
-                  These hard rules are never broken, protecting your
+                  Set "must have" rules that are never broken, protecting your
                   organisation and your people.
                 </p>
                 <ul className="space-y-4">
@@ -160,20 +157,58 @@ export default function RulesAndCompliancePage() {
           </Container>
         </div>
 
-        {/* Soft Rules Section */}
+        {/* Fairness Rules Section */}
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <Image
-                  src="/images/new-product-images/ png/auto-scheduling/2-built-in-compliance.png"
-                  alt="Flexible preferences"
-                  width={500}
+                  src="/images/generating.webp"
+                  alt="Automated fairness distribution"
+                  width={600}
                   height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
+                  className="w-full h-auto max-w-lg mx-auto rounded-lg shadow-lg"
                 />
               </div>
               <div className="order-1 lg:order-2">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Ensure fairness through automated distribution
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Create fairness rules that automatically distribute shifts
+                  equitably across your team. Reduce conflicts and improve
+                  morale by ensuring transparent, balanced rostering.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Fair weekend shift distribution
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Balanced night shift allocation
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Equitable on-call shift distribution
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Soft Rules Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Add flexible rules based on priorities
                 </h2>
@@ -211,52 +246,13 @@ export default function RulesAndCompliancePage() {
                   </li>
                 </ul>
               </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* Fairness Rules Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Ensure fairness through automated distribution
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Create fairness rules that automatically distribute
-                  undesirable shifts equitably across your team. Reduce
-                  conflicts and improve morale by ensuring transparent, balanced
-                  scheduling.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Fair weekend shift distribution
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Balanced night shift allocation
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Equitable public holiday coverage
-                    </span>
-                  </li>
-                </ul>
-              </div>
               <div className="relative">
                 <Image
-                  src="/images/generating.webp"
-                  alt="Automated fairness distribution"
-                  width={600}
+                  src="/images/rules-builder/rules-compliance.webp"
+                  alt="Flexible preferences"
+                  width={500}
                   height={500}
-                  className="w-full h-auto max-w-lg mx-auto rounded-lg shadow-lg"
+                  className="w-full h-auto max-w-lg mx-auto"
                 />
               </div>
             </div>
@@ -273,8 +269,7 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Create rules that apply to specific individuals or groups,
-                  accommodating unique circumstances, part-time arrangements,
-                  training requirements, or special accommodations.
+                  accommodating unique circumstances.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -286,7 +281,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Pro-rata'd FTE based rules
+                      Pro-rated FTE based rules
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -383,7 +378,7 @@ export default function RulesAndCompliancePage() {
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Fairer rosters</p>
+                  <p className="text-xl opacity-90">Fairest solution</p>
                 </div>
                 <div>
                   <p className="text-5xl font-bold mb-2">Zero</p>

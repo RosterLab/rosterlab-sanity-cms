@@ -61,6 +61,7 @@ export default function RuleBuilder() {
     { value: "min_hours_period", label: "Minimum hours per roster period" },
     { value: "max_hours_period", label: "Maximum hours per roster period" },
     { value: "consecutive_days", label: "Preferred consecutive days on" },
+    { value: "consecutive_days_off", label: "Preferred consecutive days off" },
   ];
 
   const demandRuleOptions = [
@@ -171,7 +172,10 @@ export default function RuleBuilder() {
       let unit = "";
       if (selectedRule === "max_shifts" || selectedRule === "night_shifts") {
         unit = "days";
-      } else if (selectedRule === "consecutive_days") {
+      } else if (
+        selectedRule === "consecutive_days" ||
+        selectedRule === "consecutive_days_off"
+      ) {
         unit = "days";
       } else if (selectedRule === "staffing_levels") {
         unit = "staff";
@@ -179,9 +183,11 @@ export default function RuleBuilder() {
         unit = "hours";
       }
 
-      // Only add must/should prefix for rules (not demands) and exclude consecutive_days
+      // Only add must/should prefix for rules (not demands) and exclude consecutive_days and consecutive_days_off
       const isRuleWithPriority =
-        ruleType === "rules" && selectedRule !== "consecutive_days";
+        ruleType === "rules" &&
+        selectedRule !== "consecutive_days" &&
+        selectedRule !== "consecutive_days_off";
       const priorityPrefix = isRuleWithPriority
         ? `[${rulePriority.toUpperCase()}] `
         : "";
@@ -301,62 +307,58 @@ export default function RuleBuilder() {
 
                   {selectedRule ? (
                     <>
-                      {/* Must/Should radio buttons - show for all rules except consecutive_days */}
-                      {selectedRule !== "consecutive_days" && (
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Priority
-                          </label>
-                          <div className="flex gap-4">
-                            <label className="flex items-center cursor-pointer">
-                              <input
-                                type="radio"
-                                name="rulePriority"
-                                value="must"
-                                checked={rulePriority === "must"}
-                                onChange={(e) =>
-                                  setRulePriority(
-                                    e.target.value as "must" | "should",
-                                  )
-                                }
-                                className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
-                              />
-                              <span className="ml-2 text-sm text-gray-700">
-                                {selectedRule === "min_hours_period" ||
-                                selectedRule === "max_hours_period"
-                                  ? "Must Be"
-                                  : "Must Have"}
-                              </span>
+                      {/* Must/Should radio buttons - show for all rules except consecutive_days and consecutive_days_off */}
+                      {selectedRule !== "consecutive_days" &&
+                        selectedRule !== "consecutive_days_off" && (
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Priority
                             </label>
-                            <label className="flex items-center cursor-pointer">
-                              <input
-                                type="radio"
-                                name="rulePriority"
-                                value="should"
-                                checked={rulePriority === "should"}
-                                onChange={(e) =>
-                                  setRulePriority(
-                                    e.target.value as "must" | "should",
-                                  )
-                                }
-                                className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
-                              />
-                              <span className="ml-2 text-sm text-gray-700">
-                                {selectedRule === "min_hours_period" ||
-                                selectedRule === "max_hours_period"
-                                  ? "Should Be"
-                                  : "Should Have"}
-                              </span>
-                            </label>
+                            <div className="flex gap-4">
+                              <label className="flex items-center cursor-pointer">
+                                <input
+                                  type="radio"
+                                  name="rulePriority"
+                                  value="must"
+                                  checked={rulePriority === "must"}
+                                  onChange={(e) =>
+                                    setRulePriority(
+                                      e.target.value as "must" | "should",
+                                    )
+                                  }
+                                  className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
+                                />
+                                <span className="ml-2 text-sm text-gray-700">
+                                  Must Have
+                                </span>
+                              </label>
+                              <label className="flex items-center cursor-pointer">
+                                <input
+                                  type="radio"
+                                  name="rulePriority"
+                                  value="should"
+                                  checked={rulePriority === "should"}
+                                  onChange={(e) =>
+                                    setRulePriority(
+                                      e.target.value as "must" | "should",
+                                    )
+                                  }
+                                  className="w-4 h-4 text-teal-600 border-gray-300 focus:ring-teal-500"
+                                />
+                                <span className="ml-2 text-sm text-gray-700">
+                                  Should Have
+                                </span>
+                              </label>
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           {selectedRule === "max_shifts" ||
                           selectedRule === "night_shifts" ||
-                          selectedRule === "consecutive_days"
+                          selectedRule === "consecutive_days" ||
+                          selectedRule === "consecutive_days_off"
                             ? "Number of Days"
                             : selectedRule === "staffing_levels"
                               ? "Number of Staff"
