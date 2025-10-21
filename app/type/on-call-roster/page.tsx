@@ -162,7 +162,7 @@ export default function OnCallRosterPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/on-call.svg"
+                src="/images/illustration/on-call-roster.svg"
                 alt="On-call scheduling dashboard"
                 width={600}
                 height={400}

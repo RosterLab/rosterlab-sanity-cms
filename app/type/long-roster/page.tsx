@@ -162,8 +162,8 @@ export default function LongRosterPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/on-call.svg"
-                alt="On-call scheduling dashboard"
+                src="/images/illustration/long-roster.svg"
+                alt="Long roster scheduling dashboard"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
