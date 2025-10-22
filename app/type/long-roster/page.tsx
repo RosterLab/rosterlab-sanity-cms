@@ -45,9 +45,9 @@ const faqItems = [
       "Long rosters are typically used in smaller, senior departments, such as radiology, where staffing numbers are limited and teams consist mainly of senior medical officers (SMOs). They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
   },
   {
-    question: "Why is long roster planning so complex?",
+    question: "How does AI make long roster planning more effective?",
     answer:
-      "Long roster planning is complex because it must balance fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where everyone has minimal skill differentiation, fairness in distributing less desirable duties (like weekend on-calls) becomes critical. The challenge is maintaining this fairness when staff schedules and preferences change, requiring re-rostering capabilities that adjust subsets of shifts while preserving overall fairness across the entire year. Additionally, many SMOs work part-time due to teaching or private practice commitments, adding complexity to availability patterns.",
+      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
   },
   {
     question: "Who creates and manages long rosters?",
@@ -558,7 +558,7 @@ export default function LongRosterPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -577,7 +577,7 @@ export default function LongRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Optimise for skill mix
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Automatically assign staff to on-call periods based on skills
                   and certifications for optimal coverage.
                 </p>
@@ -588,7 +588,7 @@ export default function LongRosterPage() {
             </Link>
 
             <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -607,7 +607,7 @@ export default function LongRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Compliant with regulations
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Ensure all schedules meet rest period requirements and
                   regulatory obligations automatically.
                 </p>
@@ -621,7 +621,7 @@ export default function LongRosterPage() {
               href="https://rosterlab.com/feature/self-scheduling"
               className="block"
             >
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -640,7 +640,7 @@ export default function LongRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fairer duty allocation
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Distribute on-call duties and workload equitably across your
                   team with transparent tracking.
                 </p>
@@ -651,7 +651,7 @@ export default function LongRosterPage() {
             </Link>
 
             <Link href="/feature/leave-requests" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -670,7 +670,7 @@ export default function LongRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Streamline staff requests
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Manage availability, swaps, and preferences efficiently in one
                   integrated system.
                 </p>
