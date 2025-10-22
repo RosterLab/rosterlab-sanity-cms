@@ -42,22 +42,22 @@ const faqItems = [
   {
     question: "What is a long roster?",
     answer:
-      "A long roster is a staff schedule that extends over multiple weeks or months, providing visibility and planning for extended periods. It helps teams plan ahead, balance workload distribution over time, manage leave requests, and ensure adequate coverage across longer timeframes. Long rosters are particularly useful for industries requiring advance scheduling, such as healthcare, hospitality, and emergency services.",
+      "Long rosters are typically used in smaller, senior departments, such as radiology, where staffing numbers are limited and teams consist mainly of senior medical officers (SMOs). They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
   },
   {
     question: "Why is long roster planning so complex?",
     answer:
-      "Long roster planning is complex because it must balance multiple factors over extended timeframes: fair distribution of shifts across weeks and months, managing leave and availability patterns, ensuring skill mix requirements are met throughout the period, compliance with working hour regulations, accommodating individual preferences and constraints, and maintaining adequate coverage during peak and low periods. Manual long roster creation is extremely time-consuming and prone to errors.",
+      "Long roster planning is complex because it must balance fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where everyone has minimal skill differentiation, fairness in distributing less desirable duties (like weekend on-calls) becomes critical. The challenge is maintaining this fairness when staff schedules and preferences change, requiring re-rostering capabilities that adjust subsets of shifts while preserving overall fairness across the entire year. Additionally, many SMOs work part-time due to teaching or private practice commitments, adding complexity to availability patterns.",
   },
   {
-    question: "Have you worked with long roster planning before?",
+    question: "Who creates and manages long rosters?",
     answer:
-      "Yes, RosterLab has extensive experience with long roster planning across various industries including healthcare, hospitality, and retail. We've successfully implemented our AI rostering solution for teams requiring multi-week and multi-month schedules. <a href='/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
+      "Long rosters are usually built by the most senior team member or designated 'rosterer' who understands the team dynamics and operational needs. The rosterer balances fairness and predictability while maintaining operational continuity, often taking on extra duties or making personal sacrifices to fill coverage gaps. This role requires strong communication skills to maintain team goodwill and ensure everyone feels like a partner in the process. <a href='/book-a-demo' class='text-blue-600 hover:underline'>See how RosterLab supports rosterers</a>.",
   },
   {
-    question: "How does long-term roster planning work?",
+    question: "How does long roster planning work with RosterLab?",
     answer:
-      "RosterLab's long roster scheduling supports planning for weeks, months, or even quarters ahead. You can create schedules considering vacation blocks, training periods, team capacity, and seasonal variations. The system automatically ensures continuous coverage while respecting staff preferences and compliance requirements. Changes in long-term plans can be easily adjusted while maintaining fairness and coverage across the entire period.",
+      "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform shorter-term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
   },
 ];
 
@@ -76,8 +76,8 @@ export default function LongRosterPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Reduce rostering time by 90%. Plan weeks and months ahead with
-                intelligent long roster scheduling.
+                Plan 3+ months to a full year ahead with fair on-call and leave
+                allocation for small senior teams.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -94,7 +94,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Skill and seniority rostering
+                  Fair distribution of weekend and on-call duties
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -110,7 +110,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Seamlessly integrate your long and short term rosters
+                  Seamlessly integrate with short-term rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -126,7 +126,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing from the get go
+                  Re-roster with maintained fairness across the year
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -142,7 +142,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Move away from spreadsheets and into the cloud
+                  Built for SMO teams with part-time commitments
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -178,12 +178,12 @@ export default function LongRosterPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Built for specific on-call rostering challenges.
+              Built for Small Senior Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Balance emergency coverage, skill requirements, and fair
-              distribution while maintaining compliance with rest period
-              regulations and compensation rules.
+              Perfect for departments where fairness over time matters more than
+              daily optimization. Designed for SMO teams with part-time
+              commitments and minimal skill differentiation.
             </p>
           </div>
 
@@ -205,11 +205,12 @@ export default function LongRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                24/7 Coverage Guaranteed
+                Predictability & Fairness
               </h3>
               <p className="text-gray-600">
-                Ensure continuous on-call coverage with automatic gap detection
-                and skill-based assignment for all emergency scenarios.
+                Guarantee fairness across a full year with transparent tracking
+                of weekend and on-call distribution. Everyone knows their
+                commitments well in advance.
               </p>
             </div>
 
@@ -230,11 +231,12 @@ export default function LongRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Fair Distribution Across Team
+                Flexible Re-Rostering
               </h3>
               <p className="text-gray-600">
-                Ensure equitable on-call duty distribution with automatic
-                tracking of cumulative hours and weekend coverage.
+                Adjust specific periods when plans change while automatically
+                maintaining overall fairness across the entire year. Essential
+                for accommodating evolving commitments.
               </p>
             </div>
 
@@ -255,11 +257,12 @@ export default function LongRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Compliance & Rest Periods
+                Integration with Short Rosters
               </h3>
               <p className="text-gray-600">
-                Automatically enforce rest period requirements and compensation
-                rules to stay compliant with regulations.
+                Long rosters for leave and on-call feed seamlessly into
+                short-term rosters (e.g., 6-week cycles) that handle detailed
+                daily shift assignments.
               </p>
             </div>
           </div>
@@ -272,7 +275,7 @@ export default function LongRosterPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Modern On-Call Management
+                Key Features for Long Roster Planning
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -293,12 +296,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Track & Allocate Specialised Skills
+                      Year-Long Planning Horizon
                     </h3>
                     <p className="text-gray-600">
-                      Maintain a digital record of team member skills and
-                      certifications. Let the AI assign the right person for
-                      each on-call period.
+                      Plan 3+ months to a full year ahead, focusing on leave and
+                      on-call allocations rather than daily shifts. Perfect for
+                      senior teams where predictability matters.
                     </p>
                   </div>
                 </div>
@@ -321,12 +324,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamlessly Integrate Regular & On-Call Schedules
+                      Part-Time & Split Commitments
                     </h3>
                     <p className="text-gray-600">
-                      AI optimises on-call rosters around regular work
-                      schedules. Automatically account for leave, training, and
-                      other commitments.
+                      Perfect for SMOs with teaching, private practice, or
+                      academic commitments. Accommodates fractional appointments
+                      and alternating clinical/teaching weeks.
                     </p>
                   </div>
                 </div>
@@ -349,12 +352,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Fair Distribution Rules
+                      Fairness Over Time
                     </h3>
                     <p className="text-gray-600">
-                      Ensure each team member gets equitable on-call duty
-                      distribution. Fairly balance weekday, weekend, and holiday
-                      coverage.
+                      Distribute less desirable duties (weekend on-calls,
+                      holiday coverage) equitably across the full year.
+                      Transparent tracking builds team goodwill and trust.
                     </p>
                   </div>
                 </div>
@@ -377,12 +380,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Smart Cloud-Based Distribution
+                      Re-Rostering with Maintained Fairness
                     </h3>
                     <p className="text-gray-600">
-                      Publish on-call schedules instantly to all team members.
-                      Staff receive personalised calendars with automatic
-                      reminders on their mobile devices.
+                      When preferences change, re-roster specific periods while
+                      the system automatically preserves overall fairness across
+                      the entire year. Essential for small teams.
                     </p>
                   </div>
                 </div>
@@ -417,11 +420,11 @@ export default function LongRosterPage() {
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              Your Complete On-Call Rostering Workflow
+              Your Long Roster Planning Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From long-term planning to daily adjustments, manage every aspect
-              of your on-call coverage.
+              From annual planning to flexible adjustments, manage leave and
+              on-call allocations for your senior team.
             </p>
           </div>
 
@@ -435,11 +438,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Define Coverage Requirements
+                      Define Planning Period
                     </h3>
                     <p className="text-gray-600">
-                      Set on-call period requirements, skill mix rules, and
-                      coverage targets for different emergency scenarios.
+                      Set your long roster timeframe (3+ months to a year),
+                      on-call requirements, and fairness targets for weekend and
+                      holiday coverage distribution.
                     </p>
                   </div>
                 </div>
@@ -453,11 +457,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Input Constraints
+                      Input Part-Time Patterns
                     </h3>
                     <p className="text-gray-600">
-                      Add staff skills, preferences, contractual rules, and rest
-                      period requirements.
+                      Add SMO availability, teaching commitments, private
+                      practice schedules, and leave preferences for the planning
+                      period.
                     </p>
                   </div>
                 </div>
@@ -471,11 +476,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Collect Staff Requests
+                      Balance Fairness Goals
                     </h3>
                     <p className="text-gray-600">
-                      Collect and automatically take staff availability and
-                      preferences into account while staying compliant.
+                      Set rules for equitable distribution of weekend on-calls
+                      and less desirable duties across the full year, ensuring
+                      transparency and team goodwill.
                     </p>
                   </div>
                 </div>
@@ -489,11 +495,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate Schedule
+                      Generate Long Roster
                     </h3>
                     <p className="text-gray-600">
-                      AI creates optimal on-call rosters balancing all
-                      requirements in minutes.
+                      AI creates fair leave and on-call allocations for the
+                      entire period, balancing commitments and ensuring
+                      predictability for all team members.
                     </p>
                   </div>
                 </div>
@@ -507,11 +514,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Review & Adjust
+                      Re-Roster as Needed
                     </h3>
                     <p className="text-gray-600">
-                      Fine-tune assignments, add notes, and re-roster selected
-                      periods to accommodate last-minute changes.
+                      When preferences change, re-roster specific periods while
+                      automatically maintaining overall fairness across the
+                      entire year. Adapt without starting over.
                     </p>
                   </div>
                 </div>
@@ -525,11 +533,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Sync
+                      Feed Into Short Rosters
                     </h3>
                     <p className="text-gray-600">
-                      Distribute your final on-call schedules with automatic
-                      notifications and calendar sync.
+                      Use long roster leave and on-call allocations as inputs
+                      for short-term rosters (e.g., 6-week cycles) that handle
+                      detailed daily shifts.
                     </p>
                   </div>
                 </div>
@@ -557,10 +566,11 @@ export default function LongRosterPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern On-Call Rostering Software for Teams
+              Long Roster Software for Senior Medical Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Secure, accessible, and integrated with your existing systems.
+              Designed for small departments where fairness, predictability, and
+              flexibility matter most.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -725,10 +735,11 @@ export default function LongRosterPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your On-Call Rostering
+              Transform Your Long Roster Planning
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading teams saving days of scheduling time every month.
+              Join senior medical teams planning fairly and efficiently across
+              the entire year.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
