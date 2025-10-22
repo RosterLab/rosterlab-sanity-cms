@@ -14,6 +14,7 @@ import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
 import GeolocationProvider from "@/components/layout/GeolocationProvider";
 import { headers } from "next/headers";
+import SkipLink from "@/components/accessibility/SkipLink";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -67,6 +68,7 @@ export default async function RootLayout({
         suppressHydrationWarning={true}
       >
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+        <SkipLink />
         <ClientProviders
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
@@ -74,7 +76,9 @@ export default async function RootLayout({
           <UTMTracker debug={process.env.NODE_ENV === "development"} />
           <GeolocationProvider />
           <ClientHeader />
-          <main className="flex-grow">{children}</main>
+          <main id="main-content" className="flex-grow" role="main">
+            {children}
+          </main>
           <ClientFooter />
           {isEnabled && <VisualEditing />}
           <LazyStyles />

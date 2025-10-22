@@ -7,7 +7,10 @@ import CountrySelector from "./CountrySelector";
 
 export default function USFooter() {
   return (
-    <footer className="bg-gradient-to-br from-blue-50 via-white to-green-50 text-gray-800 border-t border-gray-200">
+    <footer
+      className="bg-gradient-to-br from-blue-50 via-white to-green-50 text-gray-800 border-t border-gray-200"
+      role="contentinfo"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer Content - Changed from 5 columns to 4 columns since no Resources */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
@@ -55,7 +58,7 @@ export default function USFooter() {
                 className="text-gray-600 hover:text-blue-600 transition-colors"
                 aria-label="LinkedIn"
               >
-                <FaLinkedin className="h-5 w-5" />
+                <FaLinkedin className="h-5 w-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.instagram.com/RosterLab/"
@@ -64,7 +67,7 @@ export default function USFooter() {
                 className="text-gray-600 hover:text-blue-600 transition-colors"
                 aria-label="Instagram"
               >
-                <FaInstagram className="h-5 w-5" />
+                <FaInstagram className="h-5 w-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.facebook.com/p/RosterLab-100084645549356/"
@@ -73,7 +76,7 @@ export default function USFooter() {
                 className="text-gray-600 hover:text-blue-600 transition-colors"
                 aria-label="Facebook"
               >
-                <FaFacebook className="h-5 w-5" />
+                <FaFacebook className="h-5 w-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.youtube.com/@rosterlab"
@@ -82,7 +85,7 @@ export default function USFooter() {
                 className="text-gray-600 hover:text-blue-600 transition-colors"
                 aria-label="YouTube"
               >
-                <FaYoutube className="h-5 w-5" />
+                <FaYoutube className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
           </div>

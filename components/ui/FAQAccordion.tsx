@@ -19,6 +19,32 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Keyboard navigation handler
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    const totalItems = items.length;
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault();
+        const nextIndex = (index + 1) % totalItems;
+        document.getElementById(`faq-button-${nextIndex}`)?.focus();
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        const prevIndex = (index - 1 + totalItems) % totalItems;
+        document.getElementById(`faq-button-${prevIndex}`)?.focus();
+        break;
+      case "Home":
+        e.preventDefault();
+        document.getElementById(`faq-button-0`)?.focus();
+        break;
+      case "End":
+        e.preventDefault();
+        document.getElementById(`faq-button-${totalItems - 1}`)?.focus();
+        break;
+    }
+  };
+
   return (
     <>
       <div className="space-y-4">
@@ -29,8 +55,12 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
             style={{ contain: "layout" }}
           >
             <button
+              id={`faq-button-${index}`}
               onClick={() => toggleItem(index)}
-              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-t-lg"
+              aria-expanded={openIndex === index}
+              aria-controls={`faq-panel-${index}`}
             >
               <span className="text-lg font-semibold text-gray-900 pr-4">
                 {item.question}
@@ -40,9 +70,13 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                   "w-5 h-5 text-gray-500 flex-shrink-0 transition-transform duration-200",
                   openIndex === index && "transform rotate-180",
                 )}
+                aria-hidden="true"
               />
             </button>
             <div
+              id={`faq-panel-${index}`}
+              role="region"
+              aria-labelledby={`faq-button-${index}`}
               className="overflow-hidden"
               style={{
                 maxHeight: openIndex === index ? "300px" : "0",
