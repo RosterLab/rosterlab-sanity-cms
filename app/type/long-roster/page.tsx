@@ -57,7 +57,7 @@ const faqItems = [
   {
     question: "How does long roster planning work with RosterLab?",
     answer:
-      "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform shorter-term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
+      "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
   },
 ];
 
@@ -516,11 +516,11 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Feed Into Short Rosters
+                      Feed Into Term Rosters
                     </h3>
                     <p className="text-gray-600">
                       Use long roster leave and on-call allocations as inputs
-                      for short-term rosters (e.g., 6-week cycles) that handle
+                      for term rosters (e.g., 6-week cycles) that handle
                       detailed daily shifts.
                     </p>
                   </div>
