@@ -51,9 +51,9 @@ const faqItems = [
       "RosterLab allows SMOs to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. This flexibility ensures rosters adapt to SMOs' commitments rather than dictating them.",
   },
   {
-    question: "Can SMOs still maintain control over their rosters?",
+    question: "Can SMOs still maintain autonomy over their rosters?",
     answer:
-      "Absolutely. RosterLab supports consensus-driven rostering where SMOs can review and adjust the live roster. You maintain the level of control you're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
+      "Absolutely. RosterLab supports consensus-driven rostering where SMOs can review and adjust the live roster. You maintain the level of autonomy you're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
   },
   {
     question:
@@ -65,7 +65,7 @@ const faqItems = [
     question:
       "Is RosterLab easy to transition to for SMOs who value stability?",
     answer:
-      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be resistant to new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining control with better tools.",
+      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be resistant to new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining autonomy with better tools.",
   },
 ];
 
@@ -118,7 +118,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Give SMOs control to review and adjust rosters
+                  Give SMOs freedom to review and adjust rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -134,7 +134,23 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce admin time while maintaining personalisation
+                  Reduce admin time while maintaining flexible rostering
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Allocate specific time to provide training to JMOs
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -173,7 +189,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               SMO Rostering That Respects Your Time
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built for senior medical officers who value control, flexibility,
+              Built for senior medical officers who value autonomy, flexibility,
               and work-life balance across multiple commitments.
             </p>
           </div>
@@ -234,7 +250,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Maintain Autonomy and Control
+                Maintain Autonomy and Freedom
               </h3>
               <p className="text-gray-600">
                 Keep the final say over your roster. Set your availability on
@@ -385,7 +401,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Easy Transition and Adoption
+                      Easy Technology Transition and Adoption
                     </h4>
                     <p className="text-gray-600">
                       Intuitive interface designed for senior doctors who value
@@ -560,8 +576,9 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       Handle Last-Minute Changes
                     </h3>
                     <p className="text-gray-600">
-                      If someone calls in sick, RosterLab shows who can safely
-                      fill the gap without breaking ratios or fatigue rules.
+                      RosterLab can handle last minute unavailability and
+                      changes by identifying who can safely fill the gaps
+                      without breaking ratios or fatigue rules.
                     </p>
                   </div>
                 </div>
@@ -681,14 +698,15 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Roster Changes
+                Instant Shift Swaps
               </h3>
               <p className="text-gray-600 mb-3">
-                When SMOs call in sick, see who's qualified and available to
-                fill the gap without breaking compliance or patient commitments.
+                Enable SMOs to swap shifts instantly while maintaining
+                compliance and ensuring all swaps are approved and logged
+                automatically.
               </p>
               <a
-                href="/feature/re-rostering"
+                href="/feature/shift-swaps"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -744,7 +762,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from nursing managers
+              Questions we hear from SMOs
             </p>
             <FAQAccordion items={faqItems} />
           </div>

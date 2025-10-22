@@ -76,7 +76,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
       ],
     },
     {
-      title: "Industries",
+      title: "Rosters",
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
@@ -113,7 +113,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         },
       ],
     },
-    { title: "About Us", link: "/about" },
+    { title: "About", link: "/about" },
   ];
 
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
@@ -193,7 +193,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                       className={cn(
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === "Solutions" ||
-                          item.title === "Industries" ||
+                          item.title === "Rosters" ||
                           item.title === "Resources"
                           ? "left-0 w-[600px]"
                           : "left-0 w-64",
@@ -291,14 +291,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             </div>
                           </div>
                         </div>
-                      ) : item.title === "Industries" ? (
-                        // Enhanced Industries Dropdown Layout
+                      ) : item.title === "Rosters" ? (
+                        // Enhanced Rosters Dropdown Layout
                         <div className="p-6">
                           <div className="grid grid-cols-2 gap-6">
                             {/* Healthcare Sectors Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Specialty Rosters
+                                Specialty Healthcare Rosters
                               </h3>
                               <div className="space-y-1">
                                 {/* ICU/ED Roster */}
@@ -667,13 +667,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
                   onClick={() =>
                     trackSmartButtonClick(
-                      "Contact Us",
+                      "Contact",
                       contactLink,
                       "Header Desktop",
                     )
                   }
                 >
-                  Contact Us
+                  Contact
                 </Link>
                 <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
               </>
@@ -851,14 +851,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => {
                   trackSmartButtonClick(
-                    "Contact Us",
+                    "Contact",
                     contactLink,
                     "Header Mobile",
                   );
                   setIsMenuOpen(false);
                 }}
               >
-                Contact Us
+                Contact
               </Link>
             )}
             <Link
