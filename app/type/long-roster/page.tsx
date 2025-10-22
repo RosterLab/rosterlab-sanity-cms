@@ -76,8 +76,8 @@ export default function LongRosterPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Plan 3+ months to a full year ahead with fair on-call and leave
-                allocation for small senior teams.
+                Plan a full year ahead with fair on-call and leave allocation
+                for small senior teams.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -110,39 +110,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Seamlessly integrate with short-term rosters
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
                   Re-roster with maintained fairness across the year
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Built for SMO teams with part-time commitments
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -182,8 +150,7 @@ export default function LongRosterPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               Perfect for departments where fairness over time matters more than
-              daily optimization. Designed for SMO teams with part-time
-              commitments and minimal skill differentiation.
+              daily optimisation.
             </p>
           </div>
 
@@ -257,12 +224,12 @@ export default function LongRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Integration with Short Rosters
+                90% Less Admin
               </h3>
               <p className="text-gray-600">
-                Long rosters for leave and on-call feed seamlessly into
-                short-term rosters (e.g., 6-week cycles) that handle detailed
-                daily shift assignments.
+                Automate the complex task of balancing fairness across a full
+                year. Reduce manual planning from days to minutes while
+                maintaining transparency and team goodwill.
               </p>
             </div>
           </div>
