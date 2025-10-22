@@ -577,7 +577,7 @@ export default function LongRosterPage() {
               </div>
             </Link>
 
-            <Link href="/feature/automated-rostering" className="block">
+            <Link href="/solutions/ai-roster-generator" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
