@@ -701,7 +701,7 @@ export default function LongRosterPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about on-call scheduling
+              Common questions about long rosters
             </p>
             <FAQAccordion items={faqItems} />
           </div>
