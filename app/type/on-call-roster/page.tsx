@@ -7,6 +7,7 @@ import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import FairnessAcrossYearModule from "@/components/sections/animations/FairnessAcrossYearModule";
 
 export const metadata = withHreflang(
   {
@@ -42,22 +43,12 @@ const faqItems = [
   {
     question: "What is an on-call roster?",
     answer:
-      "An on-call roster is a staff schedule that organises team members who are available to respond to urgent situations outside of regular working hours. It ensures adequate coverage for emergencies, balances on-call duties fairly across the team, and manages compensation and rest requirements. Unlike regular rosters, on-call rosters must account for response time requirements, skill mix for different emergency scenarios, and fair distribution of after-hours availability.",
+      "An on-call roster schedules team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles—typically 12 weeks—promoting fairness, predictability, and easy re-rostering. Used across all specialties, especially in <a href='/industries/healthcare/ed-icu' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, rosters are tailored to your team size and service needs.",
   },
   {
-    question: "Why is on-call rostering so complex?",
+    question: "Can on-call rosters be customized for different departments?",
     answer:
-      "On-call rostering is particularly complex due to multiple overlapping constraints: fair distribution of undesirable shifts, skill requirements for different emergency types, compliance with rest period regulations, managing compensation and allowances, balancing primary and backup coverage, and ensuring appropriate skill mix for each period. Additionally, integrating on-call duties with regular work schedules, accommodating individual preferences and contractual obligations, and maintaining adequate coverage during peak periods makes manual scheduling extremely time-consuming and error-prone.",
-  },
-  {
-    question: "Have you worked with on-call teams before?",
-    answer:
-      "Yes, RosterLab has extensive experience with on-call rostering across various industries including healthcare, IT, and engineering. We've successfully implemented our AI rostering solution for multiple teams managing 24/7 on-call coverage. <a href='/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
-  },
-  {
-    question: "How does long-term on-call planning work?",
-    answer:
-      "RosterLab's on-call scheduling supports both long-term and short-term roster creation. You can plan quarterly or annual schedules considering vacation blocks, training periods, and team capacity. The system automatically ensures continuous coverage while respecting staff preferences and compliance requirements. Changes in long-term plans automatically cascade to daily schedules, maintaining consistency across all time horizons.",
+      "Yes, on-call rostering with RosterLab is highly flexible and recognizes that on-call requirements differ depending on the department and clinical situation. The system scales from small specialist teams to large emergency departments, adapting to your specific service needs, whether you're managing urgent care, emergency response, or specialty on-call coverage.",
   },
 ];
 
@@ -70,14 +61,15 @@ export default function OnCallRosterPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build Fair{" "}
+                Manage{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   On-Call Rosters
-                </span>
+                </span>{" "}
+                Efficiently
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Reduce rostering time by 90%. Optimise on-call coverage and
-                ensure fair distribution with intelligent rostering.
+                Create fair and predictable on-call rosters on a 12-week cycle.
+                Built for all specialties handling urgent and emergency cases.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -110,7 +102,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Seamlessly integrate your long and short term rosters
+                  Fair distribution of weekend and on-call duties
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -126,7 +118,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing from the get go
+                  Balance workloads to manage fatigue and wellbeing
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -142,7 +134,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Move away from spreadsheets and into the cloud
+                  Re-roster last minute changes easily
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -163,7 +155,7 @@ export default function OnCallRosterPage() {
             <div className="relative">
               <Image
                 src="/images/illustration/on-call-roster.svg"
-                alt="On-call scheduling dashboard"
+                alt="On-call rostering dashboard"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -178,12 +170,12 @@ export default function OnCallRosterPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Built for specific on-call rostering challenges.
+              Flexible On-Call Rostering Across All Specialties
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Balance emergency coverage, skill requirements, and fair
-              distribution while maintaining compliance with rest period
-              regulations and compensation rules.
+              Tailored to your department size and service needs. Whether you're
+              managing urgent care, emergency response, or specialty on-call
+              coverage.
             </p>
           </div>
 
@@ -205,11 +197,12 @@ export default function OnCallRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                24/7 Coverage Guaranteed
+                12-Week Cycle Rostering
               </h3>
               <p className="text-gray-600">
-                Ensure continuous on-call coverage with automatic gap detection
-                and skill-based assignment for all emergency scenarios.
+                Plan on-call coverage in predictable 12-week cycles with
+                flexible re-rostering as department needs change. Ensure
+                continuous coverage with automatic gap detection.
               </p>
             </div>
 
@@ -255,11 +248,12 @@ export default function OnCallRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Compliance & Rest Periods
+                Adaptable to Department Size
               </h3>
               <p className="text-gray-600">
-                Automatically enforce rest period requirements and compensation
-                rules to stay compliant with regulations.
+                Scales from small specialist teams to large emergency
+                departments. Customized to your department's specific service
+                needs and clinical situation.
               </p>
             </div>
           </div>
@@ -270,7 +264,10 @@ export default function OnCallRosterPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
+              <FairnessAcrossYearModule />
+            </div>
+            <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 Built for Modern On-Call Management
               </h2>
@@ -279,62 +276,6 @@ export default function OnCallRosterPage() {
                   <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
                       className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Track & Allocate Specialised Skills
-                    </h3>
-                    <p className="text-gray-600">
-                      Maintain a digital record of team member skills and
-                      certifications. Let the AI assign the right person for
-                      each on-call period.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-cyan-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamlessly Integrate Regular & On-Call Schedules
-                    </h3>
-                    <p className="text-gray-600">
-                      AI optimises on-call rosters around regular work
-                      schedules. Automatically account for leave, training, and
-                      other commitments.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -360,6 +301,62 @@ export default function OnCallRosterPage() {
                 </div>
 
                 <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Predictable Rostering
+                    </h3>
+                    <p className="text-gray-600">
+                      Plan consistent on-call coverage that your team can rely
+                      on, reducing uncertainty and supporting better work-life
+                      balance.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-cyan-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Track & Allocate Specialised Skills
+                    </h3>
+                    <p className="text-gray-600">
+                      Maintain a digital record of team member skills and
+                      certifications. Let the AI assign the right person for
+                      each on-call period.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
                       className="w-6 h-6 text-indigo-600"
@@ -377,33 +374,24 @@ export default function OnCallRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Smart Cloud-Based Distribution
+                      Re-Roster Changes Hassle Free
                     </h3>
                     <p className="text-gray-600">
-                      Publish on-call schedules instantly to all team members.
-                      Staff receive personalised calendars with automatic
-                      reminders on their mobile devices.
+                      When preferences change, re-roster specific periods while
+                      the system automatically preserves overall fairness across
+                      the term.
                     </p>
                   </div>
                 </div>
               </div>
               <div className="mt-8 text-center">
                 <Button
-                  href="/case-studies"
+                  href="/solutions/ai-roster-generator"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
-                  View Case Studies
+                  Learn about AI Rosters
                 </Button>
               </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/on-call-excellence.png"
-                alt="On-call roster excellence"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
             </div>
           </div>
         </Container>
@@ -420,8 +408,7 @@ export default function OnCallRosterPage() {
               Your Complete On-Call Rostering Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From long-term planning to daily adjustments, manage every aspect
-              of your on-call coverage.
+              Manage every aspect of your on-call coverage.
             </p>
           </div>
 
@@ -560,12 +547,13 @@ export default function OnCallRosterPage() {
               Modern On-Call Rostering Software for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Secure, accessible, and integrated with your existing systems.
+              Essential features for managing on-call coverage across all
+              specialties.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -584,7 +572,7 @@ export default function OnCallRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Optimise for skill mix
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Automatically assign staff to on-call periods based on skills
                   and certifications for optimal coverage.
                 </p>
@@ -595,7 +583,7 @@ export default function OnCallRosterPage() {
             </Link>
 
             <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -614,7 +602,7 @@ export default function OnCallRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Compliant with regulations
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Ensure all schedules meet rest period requirements and
                   regulatory obligations automatically.
                 </p>
@@ -628,7 +616,7 @@ export default function OnCallRosterPage() {
               href="https://rosterlab.com/feature/self-scheduling"
               className="block"
             >
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -647,7 +635,7 @@ export default function OnCallRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Fairer duty allocation
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Distribute on-call duties and workload equitably across your
                   team with transparent tracking.
                 </p>
@@ -658,7 +646,7 @@ export default function OnCallRosterPage() {
             </Link>
 
             <Link href="/feature/leave-requests" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -677,7 +665,7 @@ export default function OnCallRosterPage() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Streamline staff requests
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
+                <p className="text-base text-gray-600 mb-3 flex-grow">
                   Manage availability, swaps, and preferences efficiently in one
                   integrated system.
                 </p>
@@ -713,7 +701,7 @@ export default function OnCallRosterPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about on-call scheduling
+              Common questions about on-call rostering
             </p>
             <FAQAccordion items={faqItems} />
           </div>

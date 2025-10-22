@@ -301,6 +301,23 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Specialty Healthcare Rosters
                               </h3>
                               <div className="space-y-1">
+                                {/* Healthcare Roster */}
+                                <Link
+                                  href="/industries/healthcare"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Healthcare Scheduling"
+                                      : "Healthcare Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Complete scheduling solution for healthcare teams"
+                                      : "Complete rostering solution for healthcare teams"}
+                                  </div>
+                                </Link>
+
                                 {/* ICU/ED Roster */}
                                 <Link
                                   href="/industries/healthcare/ed-icu"
@@ -332,22 +349,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     {isUSVersion
                                       ? "Build radiology schedules with the right skill mix and compliance"
                                       : "Balance teams with the right skill mix with compliant rosters"}
-                                  </div>
-                                </Link>
-
-                                {/* Nurse Roster */}
-                                <Link
-                                  href="/industries/healthcare/nurse-rostering"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "Nurse Scheduling"
-                                      : "Nurse Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    Fair, safe and compliant nurse rostering
-                                    software
                                   </div>
                                 </Link>
 
@@ -393,19 +394,27 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 Roster By Type
                               </h3>
                               <div className="space-y-1">
+                                {/* Nurse Roster */}
+                                <Link
+                                  href="/industries/healthcare/nurse-rostering"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "Nurse Scheduling"
+                                      : "Nurse Roster"}
+                                  </div>
+                                </Link>
+
                                 {/* JMO Roster */}
                                 <Link
                                   href="/industries/healthcare/junior-medical-officer-rostering"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "JMO Scheduling"
                                       : "JMO Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    Compliant rostering for junior medical
-                                    officers
                                   </div>
                                 </Link>
 
@@ -414,15 +423,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   href="/industries/healthcare/senior-medical-officer-rostering"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "SMO Scheduling"
                                       : "SMO Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Senior medical officer scheduling with compliance and workload balance"
-                                      : "Senior medical officer rostering with compliance and workload balance"}
                                   </div>
                                 </Link>
 
@@ -431,15 +435,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   href="/type/on-call-roster"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "On-Call Scheduling"
                                       : "On-Call Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Fair on-call schedules with 24/7 coverage and compliance"
-                                      : "Fair on-call rosters with 24/7 coverage and compliance"}
                                   </div>
                                 </Link>
 
@@ -448,15 +447,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   href="/type/long-roster"
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Long Scheduling"
                                       : "Long Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Plan weeks and months ahead with long-term scheduling"
-                                      : "Plan weeks and months ahead with long-term rosters"}
                                   </div>
                                 </Link>
                               </div>
@@ -466,54 +460,27 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           {/* Call to Action */}
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4">
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries"
-                                      : "/industries"
-                                  }
-                                  className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
+                              <Link
+                                href={
+                                  isUSVersion ? "/us/industries" : "/industries"
+                                }
+                                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
+                              >
+                                View all industries
+                                <svg
+                                  className="ml-1 h-4 w-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
                                 >
-                                  View all industries
-                                  <svg
-                                    className="ml-1 h-4 w-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M9 5l7 7-7 7"
-                                    />
-                                  </svg>
-                                </Link>
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare"
-                                      : "/industries/healthcare"
-                                  }
-                                  className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
-                                >
-                                  View healthcare rosters
-                                  <svg
-                                    className="ml-1 h-4 w-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M9 5l7 7-7 7"
-                                    />
-                                  </svg>
-                                </Link>
-                              </div>
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 5l7 7-7 7"
+                                  />
+                                </svg>
+                              </Link>
                               <Link
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"

@@ -7,6 +7,7 @@ import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import FairnessAcrossYearModule from "@/components/sections/animations/FairnessAcrossYearModule";
 
 export const metadata = withHreflang(
   {
@@ -42,17 +43,17 @@ const faqItems = [
   {
     question: "What is a long roster?",
     answer:
-      "Long rosters are typically used in smaller, senior departments, such as radiology, where staffing numbers are limited and teams consist mainly of senior medical officers (SMOs). They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
+      "Long rosters are typically used in smaller, senior departments, such as <a href='/industries/healthcare/radiology' class='text-teal-600 hover:text-teal-700 underline'>radiology</a>, where staffing numbers are limited and teams consist mainly of <a href='/industries/healthcare/senior-medical-officer-rostering' class='text-teal-600 hover:text-teal-700 underline'>senior medical officers (SMOs)</a>. They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
   },
   {
     question: "How does AI make long roster planning more effective?",
     answer:
-      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
+      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered <a href='/feature/re-rostering' class='text-teal-600 hover:text-teal-700 underline'>re-rostering</a> adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
   },
   {
     question: "How does long roster planning work with RosterLab?",
     answer:
-      "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
+      "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful <a href='/feature/re-rostering' class='text-teal-600 hover:text-teal-700 underline'>re-rostering</a> features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
   },
 ];
 
@@ -251,7 +252,10 @@ export default function LongRosterPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
+              <FairnessAcrossYearModule />
+            </div>
+            <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 Key Features for Long Roster Planning
               </h2>
@@ -274,10 +278,10 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Year-Long Planning Horizon
+                      Year-Long Planning
                     </h3>
                     <p className="text-gray-600">
-                      Plan 3+ months to a full year ahead, focusing on leave and
+                      Easily plan for a full year ahead, focusing on leave and
                       on-call allocations rather than daily shifts. Perfect for
                       senior teams where predictability matters.
                     </p>
@@ -358,7 +362,7 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Re-Rostering Changes Across the Year
+                      Re-Roster Changes Across the Year
                     </h3>
                     <p className="text-gray-600">
                       When preferences change, re-roster specific periods while
@@ -370,21 +374,12 @@ export default function LongRosterPage() {
               </div>
               <div className="mt-8 text-center">
                 <Button
-                  href="/case-studies"
+                  href="/solutions/ai-roster-generator"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
-                  View Case Studies
+                  Learn about AI Rostering
                 </Button>
               </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/on-call-excellence.png"
-                alt="On-call roster excellence"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
             </div>
           </div>
         </Container>
@@ -721,7 +716,7 @@ export default function LongRosterPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/staff-rostering-interactive-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action
