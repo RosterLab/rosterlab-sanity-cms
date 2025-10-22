@@ -358,7 +358,7 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Re-Rostering with Maintained Fairness
+                      Re-Rostering Changes Across the Year
                     </h3>
                     <p className="text-gray-600">
                       When preferences change, re-roster specific periods while
