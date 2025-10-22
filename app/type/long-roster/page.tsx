@@ -50,11 +50,6 @@ const faqItems = [
       "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
   },
   {
-    question: "Who creates and manages long rosters?",
-    answer:
-      "Long rosters are usually built by the most senior team member or designated 'rosterer' who understands the team dynamics and operational needs. The rosterer balances fairness and predictability while maintaining operational continuity, often taking on extra duties or making personal sacrifices to fill coverage gaps. This role requires strong communication skills to maintain team goodwill and ensure everyone feels like a partner in the process. <a href='/book-a-demo' class='text-blue-600 hover:underline'>See how RosterLab supports rosterers</a>.",
-  },
-  {
     question: "How does long roster planning work with RosterLab?",
     answer:
       "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
