@@ -552,7 +552,7 @@ export default function OnCallRosterPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/automated-rostering" className="block">
+            <Link href="/feature/shift-swaps" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -570,11 +570,11 @@ export default function OnCallRosterPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Optimise for skill mix
+                  Easily Swap Shifts
                 </h3>
                 <p className="text-base text-gray-600 mb-3 flex-grow">
-                  Automatically assign staff to on-call periods based on skills
-                  and certifications for optimal coverage.
+                  Enable staff to request and approve shift swaps seamlessly,
+                  maintaining coverage while providing flexibility.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
@@ -663,11 +663,11 @@ export default function OnCallRosterPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Streamline staff requests
+                  Streamline Leave Requests
                 </h3>
                 <p className="text-base text-gray-600 mb-3 flex-grow">
-                  Manage availability, swaps, and preferences efficiently in one
-                  integrated system.
+                  Manage leave requests and staff availability efficiently in
+                  one integrated system.
                 </p>
                 <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
                   Learn more →
