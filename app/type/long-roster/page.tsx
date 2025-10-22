@@ -112,6 +112,22 @@ export default function LongRosterPage() {
                   </svg>
                   Re-roster with maintained fairness across the year
                 </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Built for SMO teams with part-time commitments
+                </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
