@@ -1,51 +1,53 @@
-import Button from '@/components/ui/Button'
-import Container from '@/components/ui/Container'
-import { HiCheck } from 'react-icons/hi'
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+import { HiCheck } from "react-icons/hi";
 
 interface PricingPlan {
-  name: string
-  price: string
-  period?: string
-  description?: string
-  features: string[]
-  highlighted?: boolean
-  buttonText?: string
-  buttonLink?: string
+  name: string;
+  price: string;
+  period?: string;
+  description?: string;
+  features: string[];
+  highlighted?: boolean;
+  buttonText?: string;
+  buttonLink?: string;
 }
 
 interface PricingProps {
-  heading?: string
-  description?: string
-  plans: PricingPlan[]
+  heading?: string;
+  description?: string;
+  plans: PricingPlan[];
 }
 
-export default function Pricing({ 
+export default function Pricing({
   heading = "Simple, Transparent Pricing",
   description = "Choose the plan that works best for your business. All plans include our core scheduling features.",
-  plans = []
+  plans = [],
 }: PricingProps) {
   const defaultPlans: PricingPlan[] = [
     {
       name: "Essential",
       price: "$3",
       period: "per staff member/month",
-      description: "Perfect for small healthcare teams getting started with AI rostering.",
+      description:
+        "Perfect for small healthcare teams getting started with AI rostering.",
       features: [
         "Up to 50 staff members",
         "AI-powered roster generation",
         "Mobile app access",
         "Basic compliance checks",
         "Email support",
-        "Shift templates"
+        "Shift templates",
       ],
       buttonText: "Start Free Trial",
-      buttonLink: "/book-a-demo"
+      buttonLink: "/book-a-demo",
     },
     {
       name: "Professional",
       price: "$5",
       period: "per staff member/month",
-      description: "Advanced features for hospitals and clinics with complex rostering needs.",
+      description:
+        "Advanced features for hospitals and clinics with complex rostering needs.",
       features: [
         "Up to 200 staff members",
         "Advanced AI optimisation",
@@ -53,16 +55,17 @@ export default function Pricing({
         "Leave management",
         "Priority support",
         "Advanced analytics",
-        "API access"
+        "API access",
       ],
       highlighted: true,
       buttonText: "Start Free Trial",
-      buttonLink: "/book-a-demo"
+      buttonLink: "/book-a-demo",
     },
     {
       name: "Enterprise",
       price: "Custom",
-      description: "Tailored solutions for large healthcare networks and organizations.",
+      description:
+        "Tailored solutions for large healthcare networks and organizations.",
       features: [
         "Unlimited staff members",
         "Custom workflow automation",
@@ -70,21 +73,24 @@ export default function Pricing({
         "On-premise deployment",
         "Custom integrations",
         "Training & onboarding",
-        "99.9% SLA guarantee"
+        "99.9% SLA guarantee",
       ],
       buttonText: "Contact Sales",
-      buttonLink: "/contact"
-    }
-  ]
+      buttonLink: "/contact",
+    },
+  ];
 
-  const pricingPlans = plans.length > 0 ? plans : defaultPlans
+  const pricingPlans = plans.length > 0 ? plans : defaultPlans;
 
   return (
-    <section className="py-20 bg-neutral-50">
+    <section className="py-20 bg-neutral-50" aria-labelledby="pricing-heading">
       <Container>
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+          <h2
+            id="pricing-heading"
+            className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4"
+          >
             {heading}
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
@@ -98,9 +104,9 @@ export default function Pricing({
             <div
               key={index}
               className={`relative bg-white rounded-lg shadow-lg overflow-hidden ${
-                plan.highlighted 
-                  ? 'ring-2 ring-primary-500 scale-105' 
-                  : 'hover:shadow-xl'
+                plan.highlighted
+                  ? "ring-2 ring-primary-500 scale-105"
+                  : "hover:shadow-xl"
               } transition-all duration-300`}
             >
               {plan.highlighted && (
@@ -108,8 +114,8 @@ export default function Pricing({
                   Most Popular
                 </div>
               )}
-              
-              <div className={`p-8 ${plan.highlighted ? 'pt-12' : ''}`}>
+
+              <div className={`p-8 ${plan.highlighted ? "pt-12" : ""}`}>
                 {/* Plan Header */}
                 <div className="text-center mb-8">
                   <h3 className="text-xl font-bold text-neutral-900 mb-2">
@@ -135,9 +141,15 @@ export default function Pricing({
                 {/* Features */}
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start space-x-3">
+                    <li
+                      key={featureIndex}
+                      className="flex items-start space-x-3"
+                    >
                       <div className="flex-shrink-0">
-                        <HiCheck className="w-5 h-5 text-green-500" />
+                        <HiCheck
+                          className="w-5 h-5 text-green-500"
+                          aria-hidden="true"
+                        />
                       </div>
                       <span className="text-neutral-700 text-sm">
                         {feature}
@@ -148,11 +160,11 @@ export default function Pricing({
 
                 {/* CTA Button */}
                 <Button
-                  href={plan.buttonLink || '/book-a-demo'}
-                  variant={plan.highlighted ? 'primary' : 'outline'}
+                  href={plan.buttonLink || "/book-a-demo"}
+                  variant={plan.highlighted ? "primary" : "outline"}
                   className="w-full"
                 >
-                  {plan.buttonText || 'Get Started'}
+                  {plan.buttonText || "Get Started"}
                 </Button>
               </div>
             </div>
@@ -165,10 +177,13 @@ export default function Pricing({
             All plans include a 14-day free trial. No credit card required.
           </p>
           <p className="text-sm text-neutral-500">
-            Need a custom solution? <a href="/contact" className="text-primary-600 hover:underline">Contact our sales team</a>
+            Need a custom solution?{" "}
+            <a href="/contact" className="text-primary-600 hover:underline">
+              Contact our sales team
+            </a>
           </p>
         </div>
       </Container>
     </section>
-  )
+  );
 }
