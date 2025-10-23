@@ -22,7 +22,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/type/long-roster",
       images: [
         {
-          url: "/images/og-images/TypeLongRoster.png",
+          url: "/images/us-images/iStock-1134462016.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       title: "Long Roster Software - RosterLab",
       description:
         "Build your long roster with RosterLab. Automatically generate fair, compliant and flexible long rosters that save time and money.",
-      images: ["/images/og-images/TypeLongRoster.png"],
+      images: ["/images/us-images/iStock-1134462016.jpg"],
     },
   },
   "/type/long-roster",

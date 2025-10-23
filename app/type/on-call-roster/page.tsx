@@ -13,16 +13,16 @@ export const metadata = withHreflang(
   {
     title: "On-Call Roster Software - RosterLab",
     description:
-      "Build your on-call roster with RosterLab. Automatically generate fair, compliant and flexible on-call rosters that save time and money.",
+      "Create fair and predictable on-call rosters. Built for all specialties handling urgent and emergency cases.",
     openGraph: {
       title: "On-Call Roster Software - RosterLab",
       description:
-        "Build your on-call roster with RosterLab. Automatically generate fair, compliant and flexible on-call rosters that save time and money.",
+        "Create fair and predictable on-call rosters. Built for all specialties handling urgent and emergency cases.",
       type: "website",
       url: "https://rosterlab.com/type/on-call-roster",
       images: [
         {
-          url: "/images/og-images/TypeOnCallRoster.png",
+          url: "/images/us-images/iStock-1959732893.jpg",
           width: 1200,
           height: 630,
         },
@@ -32,8 +32,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "On-Call Roster Software - RosterLab",
       description:
-        "Build your on-call roster with RosterLab. Automatically generate fair, compliant and flexible on-call rosters that save time and money.",
-      images: ["/images/og-images/TypeOnCallRoster.png"],
+        "Create fair and predictable on-call rosters. Built for all specialties handling urgent and emergency cases.",
+      images: ["/images/us-images/iStock-1959732893.jpg"],
     },
   },
   "/type/on-call-roster",
