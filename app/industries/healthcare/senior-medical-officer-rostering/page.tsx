@@ -65,7 +65,7 @@ const faqItems = [
     question:
       "Is RosterLab easy to transition to for SMOs who value stability?",
     answer:
-      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be resistant to new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining autonomy with better tools.",
+      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be worried about using new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining autonomy with better tools.",
   },
 ];
 
