@@ -365,9 +365,9 @@ export default function LongRosterPage() {
                       Re-Roster Changes Across the Year
                     </h3>
                     <p className="text-gray-600">
-                      When preferences change, re-roster specific periods while
-                      the system automatically preserves overall fairness across
-                      the entire year. Essential for small teams.
+                      When availability changes, re-roster specific periods
+                      while the system automatically preserves overall fairness
+                      across the entire year. Essential for small teams.
                     </p>
                   </div>
                 </div>
@@ -490,9 +490,9 @@ export default function LongRosterPage() {
                       Re-Roster as Needed
                     </h3>
                     <p className="text-gray-600">
-                      When preferences change, re-roster specific periods while
-                      automatically maintaining overall fairness across the
-                      entire year. Adapt without starting over.
+                      When availability changes, re-roster specific periods
+                      while automatically maintaining overall fairness across
+                      the entire year. Adapt without starting over.
                     </p>
                   </div>
                 </div>
@@ -506,12 +506,11 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Feed Into Term Rosters
+                      Feed Into Other Rosters
                     </h3>
                     <p className="text-gray-600">
                       Use long roster leave and on-call allocations as inputs
-                      for term rosters (e.g., 6-week cycles) that handle
-                      detailed daily shifts.
+                      for your main roster that handle detailed daily shifts.
                     </p>
                   </div>
                 </div>

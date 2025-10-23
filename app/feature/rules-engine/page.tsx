@@ -263,7 +263,16 @@ export default function RulesAndCompliancePage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="lg:col-start-2">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/new-product-images/skill-based-rules.webp"
+                  alt="Staff-specific and skill-based rules"
+                  width={600}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto rounded-lg shadow-lg"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Apply staff-specific and skill-based rules and constraints
                 </h2>

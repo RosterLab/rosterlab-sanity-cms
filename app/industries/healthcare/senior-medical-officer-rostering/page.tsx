@@ -118,7 +118,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Give SMOs freedom to review and adjust rosters
+                  Freedom to review and adjust rosters before and after
+                  publishing
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -150,7 +151,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Allocate specific time to provide training to JMOs
+                  Allocate specific times for training
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">

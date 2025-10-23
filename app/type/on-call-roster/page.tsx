@@ -68,8 +68,8 @@ export default function OnCallRosterPage() {
                 Efficiently
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create fair and predictable on-call rosters on a 12-week cycle.
-                Built for all specialties handling urgent and emergency cases.
+                Create fair and predictable on-call rosters. Built for all
+                specialties handling urgent and emergency cases.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -197,12 +197,12 @@ export default function OnCallRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                12-Week Cycle Rostering
+                Predictable Rostering Cycles
               </h3>
               <p className="text-gray-600">
-                Plan on-call coverage in predictable 12-week cycles with
-                flexible re-rostering as department needs change. Ensure
-                continuous coverage with automatic gap detection.
+                Plan on-call coverage in predictable cycles with flexible
+                re-rostering as department needs change. Ensure continuous
+                coverage with automatic gap detection.
               </p>
             </div>
 
@@ -377,9 +377,9 @@ export default function OnCallRosterPage() {
                       Re-Roster Changes Hassle Free
                     </h3>
                     <p className="text-gray-600">
-                      When preferences change, re-roster specific periods while
-                      the system automatically preserves overall fairness across
-                      the term.
+                      When availability changes, re-roster specific periods
+                      while the system automatically preserves overall fairness
+                      across the term.
                     </p>
                   </div>
                 </div>
