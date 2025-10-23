@@ -69,10 +69,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Leave Requests", link: "/feature/leave-requests" },
         { title: "Staff Preferences", link: "/feature/self-scheduling" },
         { title: "Re-Rostering", link: "/feature/re-rostering" },
+        {
+          title: "Rules and Compliance",
+          link: "/feature/rules-engine",
+        },
       ],
     },
     {
-      title: "Industries",
+      title: "Rosters",
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
@@ -109,7 +113,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         },
       ],
     },
-    { title: "About Us", link: "/about" },
+    { title: "About", link: "/about" },
   ];
 
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
@@ -189,7 +193,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                       className={cn(
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === "Solutions" ||
-                          item.title === "Industries" ||
+                          item.title === "Rosters" ||
                           item.title === "Resources"
                           ? "left-0 w-[600px]"
                           : "left-0 w-64",
@@ -216,7 +220,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
                                       {subItem.title}
                                     </div>
-                                    <div className="text-sm text-gray-600">
+                                    <div className="text-xs text-gray-600">
                                       {(subItem as any).description ||
                                         (subItem.title ===
                                         "AI Staff Roster Generator"
@@ -282,106 +286,173 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
-                                Get a demo
+                                Book a demo
                               </Link>
                             </div>
                           </div>
                         </div>
-                      ) : item.title === "Industries" ? (
-                        // Enhanced Industries Dropdown Layout
+                      ) : item.title === "Rosters" ? (
+                        // Enhanced Rosters Dropdown Layout
                         <div className="p-6">
                           <div className="grid grid-cols-2 gap-6">
-                            {/* Healthcare Solutions Column */}
+                            {/* Healthcare Sectors Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Healthcare Sectors
+                                Specialty Healthcare Rosters
                               </h3>
                               <div className="space-y-1">
-                                {item.subItems?.slice(0, 3).map((subItem) => (
-                                  <Link
-                                    key={subItem.link}
-                                    href={subItem.link}
-                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                  >
-                                    <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                      {isUSVersion &&
-                                      (subItem.title === "Healthcare Roster" ||
-                                        subItem.title === "Healthcare")
-                                        ? "Healthcare Scheduling"
-                                        : isUSVersion &&
-                                            (subItem.title ===
-                                              "ICU/ED Roster" ||
-                                              subItem.title === "ICU/ED")
-                                          ? "ICU/ED Scheduling"
-                                          : isUSVersion &&
-                                              (subItem.title ===
-                                                "Aged Care Roster" ||
-                                                subItem.title === "Aged Care")
-                                            ? "Senior Care Scheduling"
-                                            : subItem.title}
-                                    </div>
-                                    <div className="text-sm text-gray-600">
-                                      {(subItem as any).description ||
-                                        (subItem.title ===
-                                          "Healthcare Roster" ||
-                                        subItem.title === "Healthcare"
-                                          ? "General healthcare solutions that handle complex workforces"
-                                          : subItem.title === "ICU/ED Roster" ||
-                                              subItem.title === "ICU/ED"
-                                            ? isUSVersion
-                                              ? "Build ICU/ED schedules that support better continuity of care"
-                                              : "Build ICU/ED rosters that support better continuity of care"
-                                            : subItem.title ===
-                                                  "Aged Care Roster" ||
-                                                subItem.title === "Aged Care"
-                                              ? isUSVersion
-                                                ? "Senior care scheduling that balance wellbeing & care"
-                                                : "Aged care rostering that balance wellbeing & care"
-                                              : "")}
-                                    </div>
-                                  </Link>
-                                ))}
+                                {/* Healthcare Roster */}
+                                <Link
+                                  href="/industries/healthcare"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Healthcare Scheduling"
+                                      : "Healthcare Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Complete scheduling solution for healthcare teams"
+                                      : "Complete rostering solution for healthcare teams"}
+                                  </div>
+                                </Link>
+
+                                {/* ICU/ED Roster */}
+                                <Link
+                                  href="/industries/healthcare/ed-icu"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "ICU/ED Scheduling"
+                                      : "ICU/ED Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Build ICU/ED schedules that support better continuity of care"
+                                      : "Build ICU/ED rosters that support better continuity of care"}
+                                  </div>
+                                </Link>
+
+                                {/* Radiology Roster */}
+                                <Link
+                                  href="/industries/healthcare/radiology"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Radiology Scheduling"
+                                      : "Radiology Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Build radiology schedules with the right skill mix and compliance"
+                                      : "Balance teams with the right skill mix with compliant rosters"}
+                                  </div>
+                                </Link>
+
+                                {/* Aged Care Roster */}
+                                <Link
+                                  href="/industries/healthcare/aged-care"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Senior Care Scheduling"
+                                      : "Aged Care Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Efficient scheduling for nursing homes & assisted living"
+                                      : "Make better use of staffing hours with rosters for aged care facilities"}
+                                  </div>
+                                </Link>
+
+                                {/* Veterinary Roster */}
+                                <Link
+                                  href="/industries/veterinary"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Veterinary Scheduling"
+                                      : "Veterinary Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Veterinary clinic scheduling that handles complex shift patterns"
+                                      : "Veterinary clinic rostering that handles complex shift patterns"}
+                                  </div>
+                                </Link>
                               </div>
                             </div>
 
-                            {/* Specialized Care Column */}
+                            {/* Roster By Type Column */}
                             <div>
-                              <div className="space-y-1 mt-8">
-                                {item.subItems?.slice(3, 6).map((subItem) => (
-                                  <Link
-                                    key={subItem.link}
-                                    href={subItem.link}
-                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                  >
-                                    <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                      {isUSVersion &&
-                                      (subItem.title === "Aged Care Roster" ||
-                                        subItem.title === "Aged Care")
-                                        ? "Senior Care Scheduling"
-                                        : isUSVersion &&
-                                            (subItem.title ===
-                                              "Radiology Roster" ||
-                                              subItem.title === "Radiology")
-                                          ? "Radiology Scheduling"
-                                          : subItem.title}
-                                    </div>
-                                    <div className="text-sm text-gray-600">
-                                      {(subItem as any).description ||
-                                        (subItem.title.includes("Aged Care") ||
-                                        subItem.title === "Senior Care"
-                                          ? isUSVersion
-                                            ? "Efficient scheduling for nursing homes & assisted living"
-                                            : "Make better use of staffing hours with rosters for aged care facilities"
-                                          : subItem.title ===
-                                                "Radiology Roster" ||
-                                              subItem.title === "Radiology"
-                                            ? isUSVersion
-                                              ? "Build radiology schedules with the right skill mix and compliance"
-                                              : "Balance teams with the right skill mix with compliant rosters"
-                                            : "")}
-                                    </div>
-                                  </Link>
-                                ))}
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                Roster By Type
+                              </h3>
+                              <div className="space-y-1">
+                                {/* Nurse Roster */}
+                                <Link
+                                  href="/industries/healthcare/nurse-rostering"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "Nurse Scheduling"
+                                      : "Nurse Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* JMO Roster */}
+                                <Link
+                                  href="/industries/healthcare/junior-medical-officer-rostering"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "JMO Scheduling"
+                                      : "JMO Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* SMO Roster */}
+                                <Link
+                                  href="/industries/healthcare/senior-medical-officer-rostering"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "SMO Scheduling"
+                                      : "SMO Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* On Call Roster */}
+                                <Link
+                                  href="/type/on-call-roster"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "On-Call Scheduling"
+                                      : "On-Call Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* Long Roster */}
+                                <Link
+                                  href="/type/long-roster"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "Long Scheduling"
+                                      : "Long Roster"}
+                                  </div>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -391,14 +462,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             <div className="flex items-center justify-between">
                               <Link
                                 href={
-                                  item.subItems?.find((sub) =>
-                                    sub.title.includes("All Industries"),
-                                  )?.link ||
-                                  (isUSVersion
-                                    ? "/us/industries"
-                                    : "/industries")
+                                  isUSVersion ? "/us/industries" : "/industries"
                                 }
-                                className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
                               >
                                 View all industries
                                 <svg
@@ -419,7 +485,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
-                                Get a demo
+                                Book a demo
                               </Link>
                             </div>
                           </div>
@@ -533,7 +599,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                               >
-                                Get a demo
+                                Book a demo
                               </Link>
                             </div>
                           </div>
@@ -568,13 +634,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
                   onClick={() =>
                     trackSmartButtonClick(
-                      "Contact Us",
+                      "Contact",
                       contactLink,
                       "Header Desktop",
                     )
                   }
                 >
-                  Contact Us
+                  Contact
                 </Link>
                 <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
               </>
@@ -752,14 +818,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 className="text-neutral-700 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => {
                   trackSmartButtonClick(
-                    "Contact Us",
+                    "Contact",
                     contactLink,
                     "Header Mobile",
                   );
                   setIsMenuOpen(false);
                 }}
               >
-                Contact Us
+                Contact
               </Link>
             )}
             <Link
