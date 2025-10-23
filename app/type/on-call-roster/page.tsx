@@ -46,7 +46,7 @@ const faqItems = [
       "An on-call roster schedules team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles—typically 12 weeks—promoting fairness, predictability, and easy re-rostering. Used across all specialties, especially in <a href='/industries/healthcare/ed-icu' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, rosters are tailored to your team size and service needs.",
   },
   {
-    question: "Can on-call rosters be customized for different departments?",
+    question: "Can on-call rosters be customised for different departments?",
     answer:
       "Yes, on-call rostering with RosterLab is highly flexible and recognizes that on-call requirements differ depending on the department and clinical situation. The system scales from small specialist teams to large emergency departments, adapting to your specific service needs, whether you're managing urgent care, emergency response, or specialty on-call coverage.",
   },
@@ -252,7 +252,7 @@ export default function OnCallRosterPage() {
               </h3>
               <p className="text-gray-600">
                 Scales from small specialist teams to large emergency
-                departments. Customized to your department's specific service
+                departments. Customised to your department's specific service
                 needs and clinical situation.
               </p>
             </div>
