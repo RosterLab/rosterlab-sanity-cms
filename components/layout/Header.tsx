@@ -2,17 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
-import {
-  HiMenu,
-  HiX,
-  HiChevronDown,
-  HiChevronRight,
-  HiUser,
-} from "react-icons/hi";
+import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
-import { generateAriaId } from "@/lib/utils/aria";
 
 interface SubMenuItem {
   title: string;
