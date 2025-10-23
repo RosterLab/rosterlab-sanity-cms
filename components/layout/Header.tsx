@@ -10,6 +10,7 @@ import {
   HiChevronDown,
   HiChevronRight,
   HiUser,
+  HiHeart,
 } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
 
@@ -306,7 +307,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   href="/industries/healthcare"
                                   className="group block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
                                 >
-                                  <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1">
+                                  <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1 flex items-center gap-2">
+                                    <HiHeart className="w-4 h-4" />
                                     {isUSVersion
                                       ? "Healthcare Scheduling"
                                       : "Healthcare Roster"}
