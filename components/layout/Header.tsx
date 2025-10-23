@@ -304,9 +304,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 {/* Healthcare Roster */}
                                 <Link
                                   href="/industries/healthcare"
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                  className="group block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
                                 >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                  <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1">
                                     {isUSVersion
                                       ? "Healthcare Scheduling"
                                       : "Healthcare Roster"}
