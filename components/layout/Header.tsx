@@ -308,10 +308,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   className="group block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
                                 >
                                   <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1 flex items-center gap-2">
-                                    <HiHeart className="w-4 h-4" />
                                     {isUSVersion
                                       ? "Healthcare Scheduling"
                                       : "Healthcare Roster"}
+                                    <HiHeart className="w-4 h-4" />
                                   </div>
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion
