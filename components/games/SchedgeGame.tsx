@@ -256,6 +256,9 @@ export default function SchedgeGame({
     <div className={styles.container}>
       {showCongratulatoryModal && (
         <Modal
+          isOpen={showCongratulatoryModal}
+          onClose={() => setShowCongratulatoryModal(false)}
+          title="Congratulations!"
           style={{
             padding: "30px",
             borderRadius: "10px",
@@ -280,7 +283,11 @@ export default function SchedgeGame({
         </Modal>
       )}
       {showAIModal && (
-        <Modal>
+        <Modal
+          isOpen={showAIModal}
+          onClose={() => setShowAIModal(false)}
+          title="How to solve automatically using the RosterLab solver"
+        >
           <>
             <div className={styles["modalHeader"]}>
               <button
@@ -327,7 +334,11 @@ export default function SchedgeGame({
         </Modal>
       )}
       {showInfoModal && (
-        <Modal>
+        <Modal
+          isOpen={showInfoModal}
+          onClose={() => setShowInfoModal(false)}
+          title="How to play"
+        >
           <>
             <div className={styles["modalHeader"]}>
               <button

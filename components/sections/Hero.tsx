@@ -70,13 +70,19 @@ export default function Hero() {
             {/* Feature ticks */}
             <div className="flex flex-col xl:flex-row gap-4">
               <div className="flex items-center gap-2">
-                <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <HiCheck
+                  className="w-5 h-5 text-green-600 flex-shrink-0"
+                  aria-hidden="true"
+                />
                 <span className="text-sm text-gray-700 whitespace-nowrap">
                   Made for healthcare and complex industries
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <HiCheck className="w-5 h-5 text-green-600 flex-shrink-0" />
+                <HiCheck
+                  className="w-5 h-5 text-green-600 flex-shrink-0"
+                  aria-hidden="true"
+                />
                 <span className="text-sm text-gray-700 whitespace-nowrap">
                   AI-generated rosters in seconds
                 </span>
@@ -100,6 +106,7 @@ export default function Hero() {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 80"
           preserveAspectRatio="none"
+          aria-hidden="true"
         >
           <path
             fill="#ffffff"
