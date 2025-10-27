@@ -53,13 +53,13 @@ const faqItems = [
   {
     question: "Can SMOs still maintain autonomy over their rosters?",
     answer:
-      "Absolutely. RosterLab supports consensus-driven rostering where SMOs can review and adjust the live roster. You maintain the level of autonomy you're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
+      "Absolutely. RosterLab supports consensus-driven rostering where SMOs can review and adjust the roster. You maintain the level of autonomy you're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
   },
   {
     question:
       "How does RosterLab handle individual SMO preferences and constraints?",
     answer:
-      "The system is built for high personalisation and flexibility. SMOs can input their preferences, leave requests, and unavailability. The stable cohort structure (no rotations) means institutional knowledge about individual preferences is preserved. Each SMO's requests are honoured while maintaining departmental coverage and fairness.",
+      "The system is built for high personalisation and flexibility. SMOs can input their preferences, leave requests, and unavailability. Each SMO's requests are honoured while maintaining departmental coverage and fairness.",
   },
   {
     question:
@@ -102,7 +102,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Manage complex availability across public and private practice
+                  Manage complex availability across multiple sites & employers
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -118,8 +118,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Freedom to review and adjust rosters before and after
-                  publishing
+                  Retain full control by reviewing, adjusting, & approving
+                  rosters before they go live
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -135,7 +135,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce admin time while maintaining flexible rostering
+                  Reduce admin time while ensuring fairness and predictability
+                  across consultants
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -151,7 +152,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Allocate specific times for training
+                  Schedule time for teaching, supervision, and professional
+                  development alongside clinical duties
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -280,7 +282,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Reduce Scheduling Conflicts
               </h3>
               <p className="text-gray-600">
-                Avoid cancellations and last-minute changes. Transparent
+                Avoid double-bookings and last-minute changes. Transparent
                 scheduling reduces tension and keeps senior staff satisfied.
               </p>
             </div>
@@ -346,12 +348,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Rostering Mistakes
+                      Availability & Preference Management
                     </h4>
                     <p className="text-gray-600">
-                      Reduce human error to avoid patient cancellations or
-                      costly scheduling mistakes with an AI tool that instantly
-                      flags issues.
+                      Set availability across hospital sessions, private
+                      clinics, and academic commitments. Manage preferences
+                      directly from mobile.
                     </p>
                   </div>
                 </div>
@@ -374,41 +376,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Balance Preferences and Coverage Without the Admin
+                      Compliance & Fatigue Safeguards
                     </h4>
                     <p className="text-gray-600">
-                      RosterLab is able to quickly assess fairness and coverage
-                      across the department based on SMO preferences and changes
-                      to the roster in real-time.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-orange-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Easy Technology Transition and Adoption
-                    </h4>
-                    <p className="text-gray-600">
-                      Intuitive interface designed for senior doctors who value
-                      ease of use and stability. Maintain your existing
-                      rostering culture, whilst experiencing the benefits of AI
-                      rostering.
+                      Automatic checks for rest periods, maximum hours, and
+                      recovery time between commitments - ensuring safety and
+                      contract compliance.
                     </p>
                   </div>
                 </div>
@@ -431,12 +404,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Maintain Established Rostering Patterns
+                      Leave Management
                     </h4>
                     <p className="text-gray-600">
-                      Stable cohorts with no rotations mean institutional
-                      knowledge is preserved. Maintain individual preferences
-                      and established rostering patterns.
+                      Submit and track leave requests easily - maximise approved
+                      leave while keeping it fair and fully covered.
                     </p>
                   </div>
                 </div>
@@ -456,147 +428,116 @@ export default function SeniorMedicalOfficerRosteringPage() {
         </Container>
       </section>
 
-      {/* Self-Rostering Workflow Section */}
+      {/* Case Study & Image Section */}
       <section className="py-20 bg-white">
         <Container>
-          <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              SMO-FIRST WORKFLOW
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How SMOs Engage with Their Rosters
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around preferences and wellbeing, not just top-down
-              rostering
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Step 1 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">1</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Set Staffing Requirements
-                    </h3>
-                    <p className="text-gray-600">
-                      Define skill mix needs (senior registrars for night
-                      supervision), term rosters, and department coverage
-                      requirements.
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Case Study - Left */}
+            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
+              <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
+                CASE STUDY
+              </span>
+              <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-4">
+                Sydney Tertiary Hospital Saves 300 Hours with AI Rostering
+              </h3>
+              <p className="text-gray-600 mb-6">
+                A busy emergency department with 45+ consultants reduced
+                rostering time from 40 hours per month to just 4 hours - saving
+                300+ hours annually while improving fairness and reducing
+                conflicts.
+              </p>
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>300+ hours saved</strong> annually in rostering
+                    administration
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>Transparent fairness</strong> across 45+ emergency
+                    consultants
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>Complex preferences managed</strong> across hospital
+                    sites and private practice
+                  </p>
                 </div>
               </div>
 
-              {/* Step 2 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      SMOs Submit Preferences
-                    </h3>
-                    <p className="text-gray-600">
-                      Via mobile app, SMOs indicate shift preferences,
-                      availability and time off requests. No emails or paper
-                      forms.
-                    </p>
-                  </div>
-                </div>
+              {/* Quote */}
+              <div className="bg-white/60 rounded-lg p-6 mb-6">
+                <svg
+                  className="w-8 h-8 text-teal-600 mb-3"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p className="text-base text-gray-700 italic mb-3">
+                  "...the complexities of consultant preferences made rostering
+                  feel like solving a jigsaw puzzle. RosterLab has already made
+                  a big dent in that..."
+                </p>
+                <p className="text-sm font-semibold text-gray-900">
+                  Sydney Tertiary Hospital, Emergency Physician
+                </p>
               </div>
 
-              {/* Step 3 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">3</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Compliant Roster
-                    </h3>
-                    <p className="text-gray-600">
-                      RosterLab balances preferences and night shift equity to
-                      create compliant term rosters.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">4</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish to Mobile
-                    </h3>
-                    <p className="text-gray-600">
-                      Rosters sync instantly to SMOs' phones. They see their
-                      shifts and can request swaps with real-time updates.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">5</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      SMOs Self-Roster Open Shifts
-                    </h3>
-                    <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - SMOs can
-                      pick them up directly if qualified and within hour limits.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 6 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">6</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Handle Last-Minute Changes
-                    </h3>
-                    <p className="text-gray-600">
-                      RosterLab can handle last minute unavailability and
-                      changes by identifying who can safely fill the gaps
-                      without breaking ratios or fatigue rules.
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <Button
+                  href="/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering"
+                  className="bg-teal-600 text-white hover:bg-teal-700"
+                >
+                  Read Full Case Study
+                </Button>
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="text-center mt-12">
-              <p className="text-gray-600 mb-6">
-                Ready to streamline your SMO rostering?
-              </p>
-              <Button
-                href="/book-a-demo"
-                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
-              >
-                See How It Works
-              </Button>
+            {/* Image - Right */}
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/us-images/radiology-roster.jpg"
+                alt="Radiology scheduling dashboard"
+                width={600}
+                height={800}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </Container>

@@ -66,14 +66,14 @@ export default function LongRosterPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Fair, Predictable{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Long Rosters
-                </span>
+                  Long-term roster planning
+                </span>{" "}
+                made simple
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Plan a full year ahead with fair on-call and leave allocation
-                for small senior teams.
+                Plan long roster cycles ahead with fair on-call and leave
+                allocation for small senior medical teams.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -122,7 +122,8 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Built for SMO teams with part-time commitments
+                  Built for long-term planning across complex teams and
+                  commitments
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -278,12 +279,13 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Year-Long Planning
+                      Long-Term Planning
                     </h3>
                     <p className="text-gray-600">
-                      Easily plan for a full year ahead, focusing on leave and
-                      on-call allocations rather than daily shifts. Perfect for
-                      senior teams where predictability matters.
+                      Easily plan up to a full year ahead, focusing on equitable
+                      leave and on-call allocations rather than daily shifts.
+                      Perfect for senior medical teams where predictability
+                      matters.
                     </p>
                   </div>
                 </div>
@@ -306,12 +308,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Part-Time & Split Commitments
+                      Part-Time & Mixed Commitments
                     </h3>
                     <p className="text-gray-600">
-                      Perfect for SMOs with teaching, private practice, or
-                      academic commitments. Accommodates fractional appointments
-                      and alternating clinical/teaching weeks.
+                      Easily accommodate mixed-FTEs and cross-site schedules,
+                      including fractional appointments and alternating
+                      clinical/non-clinical duty weeks.
                     </p>
                   </div>
                 </div>
@@ -334,12 +336,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Fairness Over Time
+                      Fair Duty Distribution
                     </h3>
                     <p className="text-gray-600">
-                      Distribute less desirable duties (weekend on-calls,
-                      holiday coverage) equitably across the full year.
-                      Transparent tracking builds team goodwill and trust.
+                      Track and distribute weekend and holiday duties fairly
+                      across the full year. Make fairness transparent,
+                      measurable, and automated.
                     </p>
                   </div>
                 </div>
@@ -362,12 +364,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Re-Roster Changes Across the Year
+                      Adapt To Changes Without Starting Over
                     </h3>
                     <p className="text-gray-600">
-                      When availability changes, re-roster specific periods
-                      while the system automatically preserves overall fairness
-                      across the entire year. Essential for small teams.
+                      Easily re-roster selected periods when availability
+                      changes. The system automatically preserves overall
+                      fairness across the full period.
                     </p>
                   </div>
                 </div>
@@ -430,7 +432,7 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Input Part-Time Patterns
+                      Input Availability and Patterns
                     </h3>
                     <p className="text-gray-600">
                       Add SMO availability, teaching commitments, private
@@ -564,11 +566,11 @@ export default function LongRosterPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Optimise for skill mix
+                  Automatically Generate Long Rosters
                 </h3>
                 <p className="text-base text-gray-600 mb-3 flex-grow">
-                  Automatically assign staff to on-call periods based on skills
-                  and certifications for optimal coverage.
+                  Generate long rosters in minutes instead of days. Save hours
+                  of manual planning while ensuring equitable distribution.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →

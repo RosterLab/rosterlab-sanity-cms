@@ -68,8 +68,8 @@ export default function OnCallRosterPage() {
                 Efficiently
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create fair and predictable on-call rosters. Built for all
-                specialties handling urgent and emergency cases.
+                Create compliant, fair on-call schedules that balance workload
+                and reduce administrative burden.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -86,7 +86,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Skill and seniority rostering
+                  Match skills and seniority to coverage needs
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -102,7 +102,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair distribution of weekend and on-call duties
+                  Enforce fatigue rules and rest periods automatically
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -118,7 +118,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Balance workloads to manage fatigue and wellbeing
+                  Re-roster last-minute changes while preserving fairness
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -134,7 +134,7 @@ export default function OnCallRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Re-roster last minute changes easily
+                  Track weekend and holiday duty distribution transparently
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -293,9 +293,9 @@ export default function OnCallRosterPage() {
                       Fair Distribution Rules
                     </h3>
                     <p className="text-gray-600">
-                      Ensure each team member gets equitable on-call duty
-                      distribution. Fairly balance weekday, weekend, and holiday
-                      coverage.
+                      Automatically balance weekday, weekend, and holiday
+                      on-call duties across your team. Make fairness measurable,
+                      transparent, and defensible.
                     </p>
                   </div>
                 </div>
@@ -318,12 +318,12 @@ export default function OnCallRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Predictable Rostering
+                      Fatigue Management & Safe Limits
                     </h3>
                     <p className="text-gray-600">
-                      Plan consistent on-call coverage that your team can rely
-                      on, reducing uncertainty and supporting better work-life
-                      balance.
+                      Enforce maximum consecutive shifts, minimum rest periods,
+                      and safe working hour limits. Protect your team from
+                      burnout and stay compliant with regulations.
                     </p>
                   </div>
                 </div>
@@ -346,12 +346,12 @@ export default function OnCallRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Track & Allocate Specialised Skills
+                      Predictable Roster Planning
                     </h3>
                     <p className="text-gray-600">
-                      Maintain a digital record of team member skills and
-                      certifications. Let the AI assign the right person for
-                      each on-call period.
+                      Plan consistent on-call coverage far ahead that your team
+                      can rely on, reducing last-minute chaos and supporting
+                      better work-life balance.
                     </p>
                   </div>
                 </div>
@@ -374,12 +374,12 @@ export default function OnCallRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Re-Roster Changes Hassle Free
+                      Match Skills to Coverage Needs
                     </h3>
                     <p className="text-gray-600">
-                      When availability changes, re-roster specific periods
-                      while the system automatically preserves overall fairness
-                      across the term.
+                      Track team certifications and specialisations, then assign
+                      the right qualified person to each on-call needs
+                      automatically - no more manual matching.
                     </p>
                   </div>
                 </div>
@@ -392,148 +392,6 @@ export default function OnCallRosterPage() {
                   Learn about AI Rosters
                 </Button>
               </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Workflow Section */}
-      <section className="py-20 bg-white">
-        <Container>
-          <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
-              COMPLETE WORKFLOW
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              Your Complete On-Call Rostering Workflow
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Manage every aspect of your on-call coverage.
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Step 1 */}
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-600 font-bold">1</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Define Coverage Requirements
-                    </h3>
-                    <p className="text-gray-600">
-                      Set on-call period requirements, skill mix rules, and
-                      coverage targets for different emergency scenarios.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-600 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Input Constraints
-                    </h3>
-                    <p className="text-gray-600">
-                      Add staff skills, preferences, contractual rules, and rest
-                      period requirements.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-600 font-bold">3</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Collect Staff Requests
-                    </h3>
-                    <p className="text-gray-600">
-                      Collect and automatically take staff availability and
-                      preferences into account while staying compliant.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-600 font-bold">4</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate Schedule
-                    </h3>
-                    <p className="text-gray-600">
-                      AI creates optimal on-call rosters balancing all
-                      requirements in minutes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-600 font-bold">5</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Review & Adjust
-                    </h3>
-                    <p className="text-gray-600">
-                      Fine-tune assignments, add notes, and re-roster selected
-                      periods to accommodate last-minute changes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 6 */}
-              <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-green-600 font-bold">6</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Sync
-                    </h3>
-                    <p className="text-gray-600">
-                      Distribute your final on-call schedules with automatic
-                      notifications and calendar sync.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="text-center mt-12">
-              <p className="text-gray-600 mb-6">
-                Ready to streamline your on-call rostering?
-              </p>
-              <Button
-                href="/book-a-demo"
-                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
-              >
-                See How It Works
-              </Button>
             </div>
           </div>
         </Container>
@@ -600,11 +458,12 @@ export default function OnCallRosterPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Compliant with regulations
+                  Rules & Compliance
                 </h3>
                 <p className="text-base text-gray-600 mb-3 flex-grow">
-                  Ensure all schedules meet rest period requirements and
-                  regulatory obligations automatically.
+                  Define rostering rules in plain English - let the system
+                  automatically enforce fatigue limits, rest periods, and
+                  contractual requirements.
                 </p>
                 <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
                   Learn more →
