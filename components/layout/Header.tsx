@@ -120,8 +120,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 bg-white shadow-sm" role="banner">
+      <nav
+        className="container mx-auto px-4 sm:px-6 lg:px-8"
+        role="navigation"
+        aria-label="Main navigation"
+      >
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -168,17 +172,29 @@ export default function Header({ navItems = [] }: HeaderProps) {
                     </Link>
                   ) : (
                     <button
-                      className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer"
+                      className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveDropdown(
                           activeDropdown === item.title ? null : item.title,
                         );
                       }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Escape" && activeDropdown) {
+                          e.preventDefault();
+                          setActiveDropdown(null);
+                        }
+                      }}
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === item.title}
+                      aria-controls={`${item.title.toLowerCase().replace(/\s+/g, "-")}-menu`}
                     >
                       {item.title}
                       {item.subItems && (
-                        <HiChevronDown className="ml-1 h-4 w-4" />
+                        <HiChevronDown
+                          className="ml-1 h-4 w-4"
+                          aria-hidden="true"
+                        />
                       )}
                     </button>
                   )}
@@ -191,6 +207,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                   {/* Dropdown Menu */}
                   {item.subItems && activeDropdown === item.title && (
                     <div
+                      id={`${item.title.toLowerCase().replace(/\s+/g, "-")}-menu`}
+                      role="menu"
+                      aria-orientation="vertical"
                       className={cn(
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === "Solutions" ||
@@ -698,12 +717,19 @@ export default function Header({ navItems = [] }: HeaderProps) {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={
+                isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+              }
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">
+                {isMenuOpen ? "Close menu" : "Open menu"}
+              </span>
               {isMenuOpen ? (
-                <HiX className="block h-6 w-6" />
+                <HiX className="block h-6 w-6" aria-hidden="true" />
               ) : (
-                <HiMenu className="block h-6 w-6" />
+                <HiMenu className="block h-6 w-6" aria-hidden="true" />
               )}
             </button>
           </div>
@@ -715,11 +741,16 @@ export default function Header({ navItems = [] }: HeaderProps) {
         <div
           className="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-20"
           onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
         />
       )}
 
       {/* Mobile menu */}
       <div
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation menu"
         className={cn(
           "xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40",
           isMenuOpen ? "block" : "hidden",
