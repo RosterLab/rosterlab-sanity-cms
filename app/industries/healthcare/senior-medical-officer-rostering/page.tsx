@@ -119,7 +119,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   Retain full control by reviewing, adjusting, & approving
-                  rosters before they go live
+                  rosters before sharing
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg

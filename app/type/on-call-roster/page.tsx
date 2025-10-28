@@ -261,7 +261,7 @@ export default function OnCallRosterPage() {
       </section>
 
       {/* Specific Features */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -538,7 +538,7 @@ export default function OnCallRosterPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="bg-white pb-20">
+      <section className="bg-gray-50 pb-20">
         <TrustedBy />
         <Container>
           <div className="text-center mt-0">
@@ -553,7 +553,7 @@ export default function OnCallRosterPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">

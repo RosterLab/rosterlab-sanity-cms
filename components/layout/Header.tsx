@@ -71,13 +71,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Staff Preferences", link: "/feature/self-scheduling" },
         { title: "Re-Rostering", link: "/feature/re-rostering" },
         {
-          title: "Rules and Compliance",
+          title: "Rules Engine",
           link: "/feature/rules-engine",
         },
       ],
     },
     {
-      title: "Rosters",
+      title: "Industries",
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
@@ -213,7 +213,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                       className={cn(
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === "Solutions" ||
-                          item.title === "Rosters" ||
+                          item.title === "Industries" ||
                           item.title === "Resources"
                           ? "left-0 w-[600px]"
                           : "left-0 w-64",
@@ -311,8 +311,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             </div>
                           </div>
                         </div>
-                      ) : item.title === "Rosters" ? (
-                        // Enhanced Rosters Dropdown Layout
+                      ) : item.title === "Industries" ? (
+                        // Enhanced Industries Dropdown Layout
                         <div className="p-6">
                           <div className="grid grid-cols-2 gap-6">
                             {/* Healthcare Sectors Column */}
@@ -330,7 +330,6 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     {isUSVersion
                                       ? "Healthcare Scheduling"
                                       : "Healthcare Roster"}
-                                    <HiHeart className="w-4 h-4" />
                                   </div>
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion

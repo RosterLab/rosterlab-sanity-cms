@@ -116,7 +116,7 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Create <UnbreakableText /> rules that guarantee safer rosters
+                  Create Rules That Guarantee Safer Rosters
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Set "must have" rules that are never broken, protecting your
@@ -299,12 +299,6 @@ export default function RulesAndCompliancePage() {
                       Training and development requirements
                     </span>
                   </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Special accommodation needs
-                    </span>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -317,7 +311,7 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Add forbidden or allowed shift patterns
+                  Manage Fatigue Through Shift Patterns
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Define specific shift sequences that must be avoided or
@@ -369,33 +363,6 @@ export default function RulesAndCompliancePage() {
                 Frequently Asked Questions
               </h2>
               <FAQAccordion items={faqItems} />
-            </div>
-          </Container>
-        </div>
-
-        {/* Stats Section */}
-        <div className="py-20 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600">
-          <Container>
-            <div className="text-center text-white">
-              <h2 className="text-4xl font-bold mb-12">
-                Build Better Rosters with Rules
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Compliance guaranteed</p>
-                </div>
-                <div>
-                  <p className="text-5xl font-bold mb-2">100%</p>
-                  <p className="text-xl opacity-90">Fairest solution</p>
-                </div>
-                <div>
-                  <p className="text-5xl font-bold mb-2">Zero</p>
-                  <p className="text-xl opacity-90">
-                    Fines from rule violations
-                  </p>
-                </div>
-              </div>
             </div>
           </Container>
         </div>

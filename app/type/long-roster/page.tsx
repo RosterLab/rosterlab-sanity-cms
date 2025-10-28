@@ -566,7 +566,7 @@ export default function LongRosterPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Automatically Generate Long Rosters
+                  Automatically Generate
                 </h3>
                 <p className="text-base text-gray-600 mb-3 flex-grow">
                   Generate long rosters in minutes instead of days. Save hours
