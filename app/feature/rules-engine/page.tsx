@@ -133,7 +133,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Protect your staffs health and wellbeing
+                      Protect your staff's health and wellbeing
                     </span>
                   </li>
                   <li className="flex items-start">
