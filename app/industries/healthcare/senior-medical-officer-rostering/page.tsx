@@ -48,12 +48,12 @@ const faqItems = [
     question:
       "How does RosterLab handle SMOs working across public and private sectors?",
     answer:
-      "RosterLab allows SMOs to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. This flexibility ensures rosters adapt to SMOs' commitments rather than dictating them.",
+      "RosterLab allows SMOs to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. It supports mixed FTE arrangements, ensuring rosters adapt to SMOs' commitments rather than dictating them.",
   },
   {
     question: "Can SMOs still maintain autonomy over their rosters?",
     answer:
-      "Absolutely. RosterLab supports consensus-driven rostering where SMOs can review and adjust the roster. You maintain the level of autonomy you're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
+      "Absolutely. RosterLab empowers SMOs to put in their availability through self-scheduling. SMOs maintain the level of autonomy they're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
   },
   {
     question:
