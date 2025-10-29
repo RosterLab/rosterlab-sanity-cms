@@ -135,8 +135,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce admin time while ensuring fairness and predictability
-                  across consultants
+                  Reduce admin while ensuring fairness and predictability
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -153,7 +152,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   Schedule time for teaching, supervision, and professional
-                  development alongside clinical duties
+                  development
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">

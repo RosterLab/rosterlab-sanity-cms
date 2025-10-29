@@ -116,36 +116,30 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Create Rules That Guarantee Safer Rosters
+                  Build Rules That Protect Your Organisation And People
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Set "must have" rules that are never broken, protecting your
-                  organisation and your people.
+                  Define hard rules that must never be broken, and soft rules
+                  that allow flexibility - together, they protect your teams and
+                  help your organisation run smoothly.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Minimum hours off between shifts (e.g., 8 hours for
-                      nurses)
+                      Ensure union rules and contracts are met
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Maximum consecutive shifts allowed
+                      Protect your staffs health and wellbeing
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Mandatory days off after night shifts
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Guaranteed hours per two weeks
+                      Increase operational effeciency
                     </span>
                   </li>
                 </ul>
@@ -172,98 +166,74 @@ export default function RulesAndCompliancePage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Ensure fairness through automated distribution
+                  Ensure Fairness Through Automatic Shift Distribution
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Create fairness rules that automatically distribute shifts
-                  equitably across your team. Reduce conflicts and improve
-                  morale by ensuring transparent, balanced rostering.
+                  Create fairness rules that provide transparent, unbiased
+                  allocation including equitable weekends, nights and on-call
+                  shifts.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Fair weekend shift distribution
+                      Reduce conflicts and perceived favouritsm
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Balanced night shift allocation
+                      Increase staff retention and engagement
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Equitable on-call shift distribution
+                      Improve team satisfaction and reduce roster disputes
                     </span>
                   </li>
                 </ul>
-              </div>
-            </div>
-          </Container>
-        </div>
-
-        {/* Soft Rules Section */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Add flexible rules based on priorities
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Create soft rules that express "nice to have" rules rather
-                  than absolute requirements. The AI will consider these soft
-                  rules when building rosters, balancing them against other
-                  constraints to find the optimal solution.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Preferred consecutive days on (e.g., 4-5 days for 24/7
-                      shift work)
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Ideal staffing levels above minimum requirements
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Preferred shift patterns for individual employees
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Weighted priorities to balance competing preferences
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/images/rules-builder/rules-compliance.webp"
-                  alt="Flexible preferences"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
-                />
               </div>
             </div>
           </Container>
         </div>
 
         {/* Person-Specific Rules Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Supports Personalisation at Scale
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Create staff-specifc and skill-based rules that apply to
+                  specific individuals or groups, accommodating unique
+                  requirements.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Respect individual availability constraints
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Ensure teaching, studying and personal development time is
+                      respected
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Enable rosters to scale seamlessly as your team grows
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className="relative">
                 <Image
                   src="/images/new-product-images/skill-based-rules.webp"
                   alt="Staff-specific and skill-based rules"
@@ -272,44 +242,24 @@ export default function RulesAndCompliancePage() {
                   className="w-full h-auto max-w-lg mx-auto rounded-lg shadow-lg"
                 />
               </div>
-              <div className="order-1 lg:order-2">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Apply staff-specific and skill-based rules and constraints
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Create rules that apply to specific individuals or groups,
-                  accommodating unique circumstances.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Individual availability constraints
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Pro-rated FTE based rules
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Training and development requirements
-                    </span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </Container>
         </div>
 
         {/* Shift Patterns Section */}
-        <div className="py-20 bg-white">
+        <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+              <div className="order-2 lg:order-1">
+                <Image
+                  src="/images/new-product-images/ png/self-scheduling/2-compliance.png"
+                  alt="Shift patterns and fatigue management"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-lg mx-auto"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Manage Fatigue Through Shift Patterns
                 </h2>
@@ -336,27 +286,17 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Implement fatigue-reducing schedules (e.g., night-shift
-                      staff get two days off and then a morning shift)
+                      Implement fatigue-reducing schedules
                     </span>
                   </li>
                 </ul>
-              </div>
-              <div className="relative">
-                <Image
-                  src="/images/new-product-images/ png/self-scheduling/2-compliance.png"
-                  alt="Shift patterns and fatigue management"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-lg mx-auto"
-                />
               </div>
             </div>
           </Container>
         </div>
 
         {/* FAQ Section */}
-        <div className="py-20 bg-gray-50">
+        <div className="py-20 bg-white">
           <Container>
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">

@@ -72,8 +72,8 @@ export default function LongRosterPage() {
                 made simple
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Plan long roster cycles ahead with fair on-call and leave
-                allocation for small senior medical teams.
+                Plan long roster cycles with fair on-call and leave allocation
+                for small senior medical teams.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">

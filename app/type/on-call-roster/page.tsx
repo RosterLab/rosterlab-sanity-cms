@@ -538,7 +538,7 @@ export default function OnCallRosterPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="bg-gray-50 pb-20">
+      <section className="bg-white pb-20">
         <TrustedBy />
         <Container>
           <div className="text-center mt-0">
@@ -553,7 +553,7 @@ export default function OnCallRosterPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
