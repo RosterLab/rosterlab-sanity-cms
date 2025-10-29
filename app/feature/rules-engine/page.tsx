@@ -169,7 +169,7 @@ export default function RulesAndCompliancePage() {
                   Ensure Fairness Through Automatic Shift Distribution
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Create fairness rules that provide transparent, unbiased
+                  Create fairness rules that provide transparent, unbiased shift
                   allocation including equitable weekends, nights and on-call
                   shifts.
                 </p>
@@ -177,7 +177,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Reduce conflicts and perceived favouritsm
+                      Reduce conflicts and perceived favouritism
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -228,7 +228,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Enable rosters to scale seamlessly as your team grows
+                      Allow rosters to grow effortlessly with your team
                     </span>
                   </li>
                 </ul>
@@ -286,7 +286,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Implement fatigue-reducing schedules
+                      Implement fatigue-reducing roster rules
                     </span>
                   </li>
                 </ul>

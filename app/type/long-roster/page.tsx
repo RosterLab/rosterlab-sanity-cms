@@ -67,9 +67,9 @@ export default function LongRosterPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Long-term roster planning
+                  Long-Term Roster Planning
                 </span>{" "}
-                made simple
+                Made Simple
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Plan long roster cycles with fair on-call and leave allocation

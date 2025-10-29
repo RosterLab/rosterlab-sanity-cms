@@ -437,7 +437,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 CASE STUDY
               </span>
               <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-4">
-                Sydney Tertiary Hospital Saves 300 Hours with AI SMO Rostering
+                Sydney Tertiary Hospital Saves 300 Hours with SMO Rostering
               </h3>
               <div className="space-y-4 mb-6">
                 <div className="flex items-start">
@@ -470,7 +470,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>Transparent fairness</strong> across 45+ emergency
+                    <strong>Transparent fairness</strong> across 60 emergency
                     consultants
                   </p>
                 </div>
