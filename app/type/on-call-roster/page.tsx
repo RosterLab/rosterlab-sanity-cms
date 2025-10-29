@@ -43,7 +43,7 @@ const faqItems = [
   {
     question: "What is an on-call roster?",
     answer:
-      "An on-call roster schedules team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles—typically 12 weeks—promoting fairness, predictability, and easy re-rostering. Used across all specialties, especially in <a href='/industries/healthcare/ed-icu' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, rosters are tailored to your team size and service needs.",
+      "An on-call roster schedules team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles (typically 12 weeks) promoting fairness, predictability, and easy re-rostering. Used across all specialties, especially in <a href='/industries/healthcare/ed-icu' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, rosters are tailored to your team size and service needs.",
   },
   {
     question: "Can on-call rosters be customised for different departments?",
@@ -349,9 +349,9 @@ export default function OnCallRosterPage() {
                       Predictable Roster Planning
                     </h3>
                     <p className="text-gray-600">
-                      Plan consistent on-call coverage far ahead that your team
-                      can rely on, reducing last-minute chaos and supporting
-                      better work-life balance.
+                      Plan consistent on-call coverage that your team can rely
+                      on - reducing last-minute chaos and supporting better
+                      work-life balance.
                     </p>
                   </div>
                 </div>
@@ -440,7 +440,7 @@ export default function OnCallRosterPage() {
               </div>
             </Link>
 
-            <Link href="/feature/automated-rostering" className="block">
+            <Link href="/feature/rules-engine" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -471,10 +471,7 @@ export default function OnCallRosterPage() {
               </div>
             </Link>
 
-            <Link
-              href="https://rosterlab.com/feature/self-scheduling"
-              className="block"
-            >
+            <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -579,10 +576,10 @@ export default function OnCallRosterPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/tools/roi-calculator"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
-                See It In Action
+                ROI Calculator
               </Button>
               <Button
                 href="/book-a-demo"

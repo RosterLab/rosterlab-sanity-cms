@@ -116,7 +116,7 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Build Rules That Protect Your Organisation And People
+                  Create Rules That Protect Your Organisation And People
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Define hard rules that must never be broken, and soft rules

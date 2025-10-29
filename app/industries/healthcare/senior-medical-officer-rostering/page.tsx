@@ -65,7 +65,7 @@ const faqItems = [
     question:
       "Is RosterLab easy to transition to for SMOs who value stability?",
     answer:
-      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be worried about using new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden. Many departments find the transition smooth when framed as maintaining autonomy with better tools.",
+      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be worried about using new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden.",
   },
 ];
 
@@ -626,7 +626,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 compliance.
               </p>
               <a
-                href="/feature/shift-swaps"
+                href="/feature/rules-engine"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -658,7 +658,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 while keeping it fair and fully covered.
               </p>
               <a
-                href="/solutions/staff-roster-mobile-app"
+                href="/feature/leave-requests"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -696,8 +696,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
               Build Compliant, Fairer SMO Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved SMO retention, reduced
-              burnout, and built positive reputations
+              Join departments that have improved SMO rostering, with
+              predictable, compliant and fair rosters.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button

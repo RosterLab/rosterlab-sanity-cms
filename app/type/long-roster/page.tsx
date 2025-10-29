@@ -67,9 +67,9 @@ export default function LongRosterPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Long-Term Roster Planning
+                  Fair, Predictable
                 </span>{" "}
-                Made Simple
+                Long Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Plan long roster cycles with fair on-call and leave allocation
@@ -258,7 +258,7 @@ export default function LongRosterPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Key Features for Long Roster Planning
+                Long-term roster planning made simple
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -578,7 +578,7 @@ export default function LongRosterPage() {
               </div>
             </Link>
 
-            <Link href="/solutions/ai-roster-generator" className="block">
+            <Link href="/feature/rules-engine" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -608,10 +608,7 @@ export default function LongRosterPage() {
               </div>
             </Link>
 
-            <Link
-              href="https://rosterlab.com/feature/self-scheduling"
-              className="block"
-            >
+            <Link href="/solutions/ai-roster-generator" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
