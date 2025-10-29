@@ -84,8 +84,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 SMO Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Balance public/private commitments, personal preferences, and
-                department coverage with ease.
+                Balance work commitments, personal preferences, and department
+                coverage with ease.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -102,7 +102,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Manage complex availability across multiple sites & employers
+                  Balance commitments across hospitals, clinics, & private
+                  practice
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -119,7 +120,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   Retain full control by reviewing, adjusting, & approving
-                  rosters before sharing
+                  rosters
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -278,11 +279,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduce Scheduling Conflicts
+                Manage Multi-Site Commitments
               </h3>
               <p className="text-gray-600">
-                Avoid double-bookings and last-minute changes. Transparent
-                scheduling reduces tension and keeps senior staff satisfied.
+                Reduce scheduling conflicts by co-ordinating responsibilities
+                across multiple locations with accuracy and compliance.
               </p>
             </div>
           </div>
@@ -322,9 +323,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       Personalised SMO Rosters
                     </h4>
                     <p className="text-gray-600">
-                      SMOs can adjust and manage their individual schedules as
-                      required. The system understands and optimises for
-                      availability rather than dictating the roster.
+                      Set your individual constraints within seconds for
+                      non-clinical duties, research time, or multi-site
+                      commitments. The system remembers your patterns and
+                      constraints so you don't re-enter them for every roster
+                      cycle.
                     </p>
                   </div>
                 </div>
@@ -347,12 +350,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Availability & Preference Management
+                      Catch Mistakes Before They Impact Patients
                     </h4>
                     <p className="text-gray-600">
-                      Set availability across hospital sessions, private
-                      clinics, and academic commitments. Manage preferences
-                      directly from mobile.
+                      Instantly flags clashes, fatigue breaches, or overlapping
+                      bookings before they happen - keeping clinics and patient
+                      care running smoothly.
                     </p>
                   </div>
                 </div>
@@ -375,12 +378,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Compliance & Fatigue Safeguards
+                      Reduce Hours of Admin Work
                     </h4>
                     <p className="text-gray-600">
-                      Automatic checks for rest periods, maximum hours, and
-                      recovery time between commitments - ensuring safety and
-                      contract compliance.
+                      Turn rostering from a multi-day puzzle into a quick review
+                      process. Generate optimized schedules that balance
+                      coverage, fairness, and compliance all within minutes.
                     </p>
                   </div>
                 </div>
@@ -403,11 +406,13 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Leave Management
+                      Easy Technology Transition and Adoption
                     </h4>
                     <p className="text-gray-600">
-                      Submit and track leave requests easily - maximise approved
-                      leave while keeping it fair and fully covered.
+                      Intuitive interface designed for senior doctors who value
+                      ease of use and stability. Keep your department's way of
+                      working while you review, refine, and approve each
+                      schedule.
                     </p>
                   </div>
                 </div>
@@ -430,13 +435,13 @@ export default function SeniorMedicalOfficerRosteringPage() {
       {/* Case Study & Image Section */}
       <section className="py-20 bg-white">
         <Container>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            SMO Rostering Case Study
+          </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Case Study - Left */}
             <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
-              <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-                CASE STUDY
-              </span>
-              <h3 className="text-2xl font-bold text-gray-900 mt-4 mb-4">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
                 Sydney Tertiary Hospital Saves 300 Hours with SMO Rostering
               </h3>
               <div className="space-y-4 mb-6">
@@ -532,7 +537,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -551,7 +556,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Automatic Roster Generation
               </h3>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-600 mb-3 flex-grow">
                 Automatically generate compliant rosters that enforce union
                 rules and requirements. Reduce roster admin by 90%.
               </p>
@@ -564,7 +569,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-teal-600"
@@ -581,15 +586,14 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Self Scheduling
+                Availability & Preference Management
               </h3>
-              <p className="text-gray-600 mb-3">
-                SMOs submit preferences and personal requests directly from
-                their phones using the staff mobile app. <br />
-                &nbsp;
+              <p className="text-gray-600 mb-3 flex-grow">
+                Set availability across hospital sessions, private clinics, and
+                academic commitments. Manage preferences directly from mobile.
               </p>
               <a
-                href="https://rosterlab.com/feature/self-scheduling"
+                href="/feature/self-scheduling"
                 className="text-teal-600 hover:text-teal-700 font-medium text-sm"
               >
                 Learn more →
@@ -597,7 +601,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
               <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-cyan-600"
@@ -614,12 +618,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Shift Swaps
+                Compliance & Fatigue Safeguards
               </h3>
-              <p className="text-gray-600 mb-3">
-                Enable SMOs to swap shifts instantly while maintaining
-                compliance and ensuring all swaps are approved and logged
-                automatically.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Automatic checks for rest periods, maximum hours, and recovery
+                time between commitments - ensuring safety and contract
+                compliance.
               </p>
               <a
                 href="/feature/shift-swaps"
@@ -630,7 +634,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -647,12 +651,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Submit Leave Requests
+                Leave Management
               </h3>
-              <p className="text-gray-600 mb-3">
-                SMOs can easily submit and track leave requests. Ensure all
-                leave is honoured while maintaining department coverage and
-                fairness.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Submit and track leave requests easily - maximise approved leave
+                while keeping it fair and fully covered.
               </p>
               <a
                 href="/solutions/staff-roster-mobile-app"

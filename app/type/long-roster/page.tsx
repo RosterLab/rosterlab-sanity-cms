@@ -106,7 +106,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Re-roster with maintained fairness across the year
+                  Re-roster with maintained fairness across the cycle
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
