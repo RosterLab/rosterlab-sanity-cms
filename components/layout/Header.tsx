@@ -65,6 +65,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
           title: "Automated Rostering",
           link: "/feature/automated-rostering",
         },
+        {
+          title: "AI Chat Assistant",
+          link: "/feature/ai-roster-assistant",
+        },
         { title: "Open Shifts", link: "/feature/open-shifts" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
         { title: "Leave Requests", link: "/feature/leave-requests" },
@@ -252,7 +256,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                                   "Mobile App",
                                                 )
                                               ? "Keep your team connected with mobile schedules"
-                                              : "")}
+                                              : subItem.title ===
+                                                  "AI Chat Assistant"
+                                                ? "Get instant rostering help with AI chat support"
+                                                : "")}
                                     </div>
                                   </Link>
                                 ))}
@@ -369,6 +376,23 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     {isUSVersion
                                       ? "Build radiology schedules with the right skill mix and compliance"
                                       : "Balance teams with the right skill mix with compliant rosters"}
+                                  </div>
+                                </Link>
+
+                                {/* Radiography Roster */}
+                                <Link
+                                  href="/industries/healthcare/radiography"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Radiography Scheduling"
+                                      : "Radiography Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Optimize radiographer coverage across imaging modalities"
+                                      : "Optimize radiographer coverage across imaging modalities"}
                                   </div>
                                 </Link>
 
@@ -794,7 +818,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               Core Solutions
                             </div>
                             <div className="space-y-1">
-                              {item.subItems.slice(0, 5).map((subItem) => (
+                              {item.subItems.slice(0, 3).map((subItem) => (
                                 <Link
                                   key={subItem.link}
                                   href={subItem.link}
