@@ -7,19 +7,19 @@ import Image from "next/image";
 export default function NightShiftFatigueModule() {
   const [showAfter, setShowAfter] = useState(false);
 
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+  const weeks = [
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "W5",
+    "W6",
+    "W7",
+    "W8",
+    "W9",
+    "W10",
+    "W11",
+    "W12",
   ];
 
   // Before state - unfair night shift distribution with fatigue issues
@@ -130,7 +130,7 @@ export default function NightShiftFatigueModule() {
                         className="flex flex-col items-center"
                       >
                         <span className="text-[8px] sm:text-[9px] md:text-[10px] text-gray-600 font-medium mb-1 sm:mb-1.5 md:mb-2">
-                          {months[index]}
+                          {weeks[index]}
                         </span>
                         <div className="w-full space-y-0.5 sm:space-y-1">
                           {/* Worker 1 */}
@@ -222,7 +222,7 @@ export default function NightShiftFatigueModule() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs text-gray-600 mb-1.5 sm:mb-2">
-                  <span>Night shifts per year:</span>
+                  <span>Night shifts per quarter:</span>
                   <div className="flex gap-1.5 sm:gap-2">
                     <span
                       className={

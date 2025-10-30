@@ -48,7 +48,7 @@ const faqItems = [
   {
     question: "How does AI make port rostering more effective?",
     answer:
-      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In port operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating vessel schedules and tidal patterns. When operational demands and vessel schedules change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team morale.",
+      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In port operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes. When operational demands and vessel schedules change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team morale.",
   },
   {
     question: "How does port roster planning work with RosterLab?",
@@ -67,13 +67,13 @@ export default function PortRosteringPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Fair, Compliant
+                  Safer, Compliant
                 </span>{" "}
                 Port Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Plan port operations with fair shift allocation and efficient
-                workforce management for 24/7 maritime operations.
+                Plan port operations with safer and more efficient workforce
+                management for 24/7 maritime operations.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -90,7 +90,8 @@ export default function PortRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair distribution of night shifts and premium duties
+                  Create union compliant rosters that protect your organisation
+                  and people
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -106,7 +107,7 @@ export default function PortRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Re-roster with maintained fairness across cycles
+                  Safer distribution of night shifts to reduce staff fatigue
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -122,7 +123,23 @@ export default function PortRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Built for 24/7 port operations and vessel schedules
+                  Easily re-roster staff as a result of last minute changes
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Maintain optimal skill coverage across 24/7 port operations
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -133,10 +150,10 @@ export default function PortRosteringPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/tools/roi-calculator"
+                  href="/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  ROI Calculator
+                  View pricing
                 </Button>
               </div>
             </div>
@@ -237,7 +254,7 @@ export default function PortRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Improve flexibility through self-rostering
+                The right skills on the right shifts
               </h3>
               <p className="text-gray-600">
                 Empower port workers with flexibility while maintaining fairness
@@ -287,34 +304,6 @@ export default function PortRosteringPage() {
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      24/7 Operations Planning
-                    </h3>
-                    <p className="text-gray-600">
-                      Plan shifts across day, night, and weekend operations with
-                      coverage that adapts to vessel arrivals and tidal
-                      schedules. Balance operational demands with worker safety.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
                       className="w-6 h-6 text-cyan-600"
@@ -332,12 +321,13 @@ export default function PortRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Skill Mix
+                      More Efficient Operations for 24/7 Shift Work
                     </h3>
                     <p className="text-gray-600">
                       Ensure the right blend of experienced and junior workers
                       on every shift. Balance crane operators, stevedores, and
-                      specialised equipment handlers for safe operations.
+                      specialised equipment handlers for safe and efficient
+                      operations.
                     </p>
                   </div>
                 </div>
@@ -392,8 +382,36 @@ export default function PortRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Re-roster when vessel arrivals change without starting
-                      over. The system automatically preserves overall fairness
-                      while adapting to operational needs.
+                      over. Quickly adapt to operational needs while maintaining
+                      compliance and coverage requirements.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Reduce Port Worker Fatigue
+                    </h3>
+                    <p className="text-gray-600">
+                      Help port workers achieve better work-life balance by
+                      considering a high percentage of staff preferences whilst
+                      ensuring critical operational needs are met.
                     </p>
                   </div>
                 </div>
