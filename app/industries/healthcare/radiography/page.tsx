@@ -162,7 +162,7 @@ export default function RadiographyPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/radiology.svg"
+                src="/images/illustration/radiography.svg"
                 alt="Radiography scheduling dashboard"
                 width={600}
                 height={400}

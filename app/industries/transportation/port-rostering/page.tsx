@@ -262,7 +262,7 @@ export default function PortRosteringPage() {
               </p>
             </div>
 
-            {/* Pain Point 4: Manage Night Shift Fatigue */}
+            {/* Pain Point 4: Manage Port Worker Fatigue */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -280,7 +280,7 @@ export default function PortRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Manage Night Shift Fatigue
+                Manage Port Worker Fatigue
               </h3>
               <p className="text-gray-600">
                 Distribute night shifts fairly and enforce rest periods to
@@ -459,8 +459,7 @@ export default function PortRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Set shift patterns, crew sizes, and skill requirements for
-                      different operations. Plan for vessel schedules and tidal
-                      patterns.
+                      different operations.
                     </p>
                   </div>
                 </div>
@@ -478,7 +477,7 @@ export default function PortRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       Add worker certifications, equipment qualifications, and
-                      availability preferences for the planning period.
+                      availability preferences.
                     </p>
                   </div>
                 </div>
@@ -548,7 +547,7 @@ export default function PortRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Track
+                      Publish roster to mobile
                     </h3>
                     <p className="text-gray-600">
                       Distribute rosters digitally to workers and track
