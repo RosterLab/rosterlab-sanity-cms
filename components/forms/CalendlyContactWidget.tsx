@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useCalendlyEventListener } from "react-calendly";
 import dynamic from "next/dynamic";
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 
 // Track demo booking completion
 const trackDemoBookingComplete = (properties?: Record<string, any>) => {

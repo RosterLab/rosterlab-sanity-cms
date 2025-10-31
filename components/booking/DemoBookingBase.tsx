@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useCalendlyWidget } from "@/lib/hooks";
 import { useCalendlyEventListener } from "react-calendly";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 import dynamic from "next/dynamic";
 
 // Lazy load the Calendly widget

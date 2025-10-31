@@ -101,8 +101,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Configured via `.secretlintrc.json` and runs automatically on staged files
 - Pre-commit hook also runs ESLint and Prettier for code quality
 
-### A/B Testing with Amplitude Experiments
+### Analytics with Segment
 
-- **Server-side only** - Use `getVariant()` from `lib/amplitude/experiment-server.ts` in Server Components
-- **Add new tests** - Add flag to `ExperimentFlags` in `lib/amplitude/experiment-utils.ts`, then use `getVariant()` in your Server Component
-- **Device id** - Device ID is grabbed from cookie if exists otherwise new one is created.
+- **Client-side analytics** - Uses Segment Analytics.js 2.0 (`@segment/analytics-next`)
+- **Proxy URLs** - Analytics requests are proxied through:
+  - Production: `https://public.rosterlab.com/telemetry/s/`
+  - Test/Development: `https://public-test.rosterlab.com/telemetry/s/`
+- **UTM Tracking** - Automatic first-touch and current-touch attribution
+- **Cross-domain tracking** - Device ID preservation between marketing site and app
+- **Event tracking** - Use `analytics.track()` from `@/components/analytics/Segment`
+- **User identification** - Use `analytics.identify(userId, traits)` for user properties
+- **Dual tracking** - Events sent to both Segment and GTM dataLayer
