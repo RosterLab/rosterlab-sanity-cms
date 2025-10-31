@@ -79,10 +79,6 @@ export default function Segment({
       !process.env.NEXT_PUBLIC_VERCEL_ENV?.includes("preview") &&
       !window.location.hostname.includes("netlify");
 
-    const cdnURL = isProduction
-      ? "https://public.rosterlab.com/telemetry/s/analytics.js/v1"
-      : "https://public-test.rosterlab.com/telemetry/s/analytics.js/v1";
-
     const apiHost = isProduction
       ? "https://public.rosterlab.com/telemetry/s"
       : "https://public-test.rosterlab.com/telemetry/s";
@@ -96,7 +92,6 @@ export default function Segment({
       const [segment] = await AnalyticsBrowser.load(
         {
           writeKey,
-          cdnURL,
         },
         {
           integrations: {
