@@ -98,7 +98,7 @@ export default function SpreadsheetSorcererClient({
 
   // Handle back button navigation
   useEffect(() => {
-    const handlePopstate = (event: PopStateEvent) => {
+    const handlePopstate = () => {
       window.location.href = "/tools/staff-scheduling-personality-quiz";
     };
 
@@ -158,7 +158,6 @@ export default function SpreadsheetSorcererClient({
       const primaryColor = [59, 130, 246]; // blue-500
       const textColor = [55, 65, 81]; // gray-700
       const lightGray = [156, 163, 175]; // gray-400
-      const rosterLabBlue = [10, 25, 41]; // #0a1929
       const linkBlue = [0, 102, 204]; // #0066CC for hyperlinks
 
       // Page 1
@@ -702,7 +701,7 @@ export default function SpreadsheetSorcererClient({
         portalId: "20646833",
         formId: "d6b9c588-9eb1-44ba-bbe2-1d3aa362e5b1",
         target: "#hubspot-form-container",
-        onFormSubmitted: async (formData: any) => {
+        onFormSubmitted: async () => {
           // Hide form and show generating message
           if (formContainerRef.current) {
             formContainerRef.current.style.display = "none";

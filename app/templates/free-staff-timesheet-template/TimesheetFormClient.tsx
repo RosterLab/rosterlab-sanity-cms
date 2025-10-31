@@ -63,7 +63,7 @@ export default function TimesheetFormClient() {
         });
         return;
       }
-    } catch (error) {
+    } catch {
       return;
     }
 

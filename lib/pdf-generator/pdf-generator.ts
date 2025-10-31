@@ -220,7 +220,6 @@ export class PDFGenerator {
     boxHeight: number = 52,
   ): number {
     const primaryColor: [number, number, number] = [41, 98, 255];
-    const textColor: [number, number, number] = [51, 51, 51];
 
     // Category box
     doc.setFillColor(250, 250, 250);

@@ -63,7 +63,7 @@ export default function ExcelFormClient() {
         });
         return;
       }
-    } catch (error) {
+    } catch {
       return;
     }
 

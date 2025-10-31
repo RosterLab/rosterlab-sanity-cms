@@ -160,7 +160,7 @@ export default function CalculatorBase({
   }, [industry]);
 
   // HubSpot form integration
-  const { resetForm } = useHubSpotForm({
+  useHubSpotForm({
     config: {
       portalId: hubspotConfig.portalId,
       formId: hubspotConfig.formId,

@@ -54,7 +54,6 @@ interface InteractiveDemoBaseProps {
 }
 
 export default function InteractiveDemoBase({
-  region,
   regionalContent,
   className = "",
 }: InteractiveDemoBaseProps) {

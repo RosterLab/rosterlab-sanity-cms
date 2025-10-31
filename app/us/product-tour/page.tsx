@@ -35,7 +35,6 @@ export const metadata: Metadata = withHreflang(
   },
   "/us/product-tour",
 );
-import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export default function ProductTour() {
   return (

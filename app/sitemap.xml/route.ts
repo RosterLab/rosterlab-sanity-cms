@@ -49,7 +49,7 @@ function hasNoIndex(pagePath: string): boolean {
     }
 
     return false;
-  } catch (error) {
+  } catch {
     return false;
   }
 }

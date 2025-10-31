@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import StaffRosteringInteractiveDemoClient from "./client";
 import PageWrapper from "./PageWrapper";
 import { withHreflang } from "@/components/seo/HreflangTags";
-import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = withHreflang(
   {

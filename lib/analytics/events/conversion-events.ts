@@ -82,7 +82,7 @@ export const trackDemoBookingComplete = (
     // Clean up undefined values
     const cleanUserProps = Object.fromEntries(
       Object.entries(userProperties).filter(
-        ([_, value]) => value !== undefined && value !== null,
+        ([, value]) => value !== undefined && value !== null,
       ),
     );
 
