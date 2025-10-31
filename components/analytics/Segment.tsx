@@ -80,8 +80,8 @@ export default function Segment({
       !window.location.hostname.includes("netlify");
 
     const apiHost = isProduction
-      ? "https://public.rosterlab.com/telemetry/s"
-      : "https://public-test.rosterlab.com/telemetry/s";
+      ? "public.rosterlab.com/telemetry/s"
+      : "public-test.rosterlab.com/telemetry/s";
 
     // Get UTM tracking data
     const firstTouchData = getFirstTouchData();
