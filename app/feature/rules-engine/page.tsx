@@ -295,6 +295,47 @@ export default function RulesAndCompliancePage() {
           </Container>
         </div>
 
+        {/* Optimise Staffing Coverage Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  Optimise Staffing Coverage
+                </h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Generate rosters with ideal staffing requirements for critical
+                  shifts.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Set minimum and optimal staffing levels for each shift
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Ensure appropriate skill mix across all shifts
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Automatically balance coverage needs with staff
+                      preferences
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className="relative">
+                <RuleBuilder />
+              </div>
+            </div>
+          </Container>
+        </div>
+
         {/* FAQ Section */}
         <div className="py-20 bg-white">
           <Container>
