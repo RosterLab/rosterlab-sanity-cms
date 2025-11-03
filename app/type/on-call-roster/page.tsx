@@ -197,12 +197,12 @@ export default function OnCallRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Predictable Rostering Cycles
+                Safer Staffing with Fewer Gaps
               </h3>
               <p className="text-gray-600">
-                Plan on-call coverage in predictable cycles with flexible
-                re-rostering as department needs change. Ensure continuous
-                coverage with automatic gap detection.
+                Ensure continuous coverage with automatic gap detection and
+                smart alerts. Flexible re-rostering adapts as department needs
+                change while maintaining safety standards.
               </p>
             </div>
 

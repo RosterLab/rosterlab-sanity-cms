@@ -428,24 +428,32 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* JMO Roster */}
                                 <Link
-                                  href="/industries/healthcare/junior-medical-officer-rostering"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/physician-scheduling"
+                                      : "/industries/healthcare/junior-medical-officer-rostering"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
-                                      ? "JMO Scheduling"
+                                      ? "Physician Scheduling"
                                       : "JMO Roster"}
                                   </div>
                                 </Link>
 
                                 {/* SMO Roster */}
                                 <Link
-                                  href="/industries/healthcare/senior-medical-officer-rostering"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/senior-medical-officer-scheduling"
+                                      : "/industries/healthcare/senior-medical-officer-rostering"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
-                                      ? "SMO Scheduling"
+                                      ? "Attending Physician"
                                       : "SMO Roster"}
                                   </div>
                                 </Link>
