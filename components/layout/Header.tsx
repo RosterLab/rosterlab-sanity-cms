@@ -446,7 +446,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 <Link
                                   href={
                                     isUSVersion
-                                      ? "/us/industries/healthcare/senior-medical-officer-scheduling"
+                                      ? "/us/industries/healthcare/attending-physician-scheduling"
                                       : "/industries/healthcare/senior-medical-officer-rostering"
                                   }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
@@ -460,7 +460,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* On Call Roster */}
                                 <Link
-                                  href="/type/on-call-roster"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/type/on-call-scheduling"
+                                      : "/type/on-call-roster"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
@@ -472,12 +476,16 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Long Roster */}
                                 <Link
-                                  href="/type/long-roster"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/type/long-term-schedule-planning"
+                                      : "/type/long-roster"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
-                                      ? "Long Scheduling"
+                                      ? "Long Term Planning"
                                       : "Long Roster"}
                                   </div>
                                 </Link>
