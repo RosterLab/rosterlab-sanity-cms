@@ -16,14 +16,14 @@ export const metadata = withHreflang(
       "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
     alternates: {
       canonical:
-        "https://rosterlab.com/us/industries/healthcare/senior-medical-officer-scheduling",
+        "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
     },
     openGraph: {
       title: "Attending Physician Scheduling Software - RosterLab",
       description:
         "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
       type: "website",
-      url: "https://rosterlab.com/us/industries/healthcare/senior-medical-officer-scheduling",
+      url: "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
       images: [
         {
           url: "/images/us-images/iStock-2232242180.jpg",
@@ -40,7 +40,7 @@ export const metadata = withHreflang(
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
-  "/us/industries/healthcare/senior-medical-officer-scheduling",
+  "/us/industries/healthcare/attending-physician-scheduling",
 );
 
 const faqItems = [
@@ -293,7 +293,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="order-2 lg:order-1">
@@ -501,14 +501,17 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </div>
               </div>
 
-              <div className="text-center mt-8">
-                <Button
-                  href="/us/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Read Full Case Study
-                </Button>
-              </div>
+              <blockquote className="mt-8 bg-white border-l-4 border-teal-600 px-6 py-4 rounded-r-lg text-left shadow-sm">
+                <p className="text-gray-800 italic">
+                  “We used to manage lots of formulas across multiple
+                  spreadsheets. It worked - but it was incredibly
+                  time-consuming. With RosterLab, we're trading that for
+                  something smarter and more sustainable.”
+                </p>
+                <footer className="mt-3 text-sm font-semibold text-teal-700">
+                  Attending Physician
+                </footer>
+              </blockquote>
             </div>
 
             {/* Image - Right */}
@@ -521,6 +524,19 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 className="w-full h-full object-cover"
               />
             </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="pt-4 pb-8 bg-white">
+        <Container>
+          <div className="text-center">
+            <Button
+              href="/us/tools/savings-calculator"
+              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+            >
+              View Savings Calculator
+            </Button>
           </div>
         </Container>
       </section>

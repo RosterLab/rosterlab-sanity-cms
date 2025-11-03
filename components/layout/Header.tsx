@@ -323,7 +323,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-1">
                                 {/* Healthcare Roster */}
                                 <Link
-                                  href="/industries/healthcare"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare-scheduling"
+                                      : "/industries/healthcare"
+                                  }
                                   className="group block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
                                 >
                                   <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1 flex items-center gap-2">
@@ -340,7 +344,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* ICU/ED Roster */}
                                 <Link
-                                  href="/industries/healthcare/ed-icu"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/ed-icu-scheduling"
+                                      : "/industries/healthcare/ed-icu"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -357,7 +365,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Radiology Roster */}
                                 <Link
-                                  href="/industries/healthcare/radiology"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/radiology-scheduling"
+                                      : "/industries/healthcare/radiology"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -374,7 +386,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Aged Care Roster */}
                                 <Link
-                                  href="/industries/healthcare/aged-care"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/senior-care-scheduling"
+                                      : "/industries/healthcare/aged-care"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -391,7 +407,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Veterinary Roster */}
                                 <Link
-                                  href="/industries/veterinary"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/veterinary-scheduling"
+                                      : "/industries/veterinary"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -416,7 +436,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-1">
                                 {/* Nurse Roster */}
                                 <Link
-                                  href="/industries/healthcare/nurse-rostering"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/nurse-scheduling"
+                                      : "/industries/healthcare/nurse-rostering"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">

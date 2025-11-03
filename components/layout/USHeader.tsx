@@ -22,6 +22,10 @@ export const usNavItems = [
         title: "Auto Schedule Generation",
         link: "/us/feature/auto-scheduling",
       },
+      {
+        title: "Rules Engine",
+        link: "/us/feature/rules-engine",
+      },
       { title: "Open Shifts", link: "/us/feature/open-shifts" },
       {
         title: "Shift Swaps & Trades",
@@ -55,6 +59,11 @@ export const usNavItems = [
         title: "Physician Scheduling",
         link: "/us/industries/healthcare/physician-scheduling",
         description: "Compliant and flexible staff schedules for physicians",
+      },
+      {
+        title: "On-Call Scheduling",
+        link: "/us/type/on-call-scheduling",
+        description: "Maintain rapid response coverage across every specialty",
       },
     ],
   },

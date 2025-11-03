@@ -200,9 +200,8 @@ export default function OnCallRosterPage() {
                 Safer Staffing with Fewer Gaps
               </h3>
               <p className="text-gray-600">
-                Ensure continuous coverage with automatic gap detection and
-                smart alerts. Flexible re-rostering adapts as department needs
-                change while maintaining safety standards.
+                Maintain optimal on-call coverage with min and max staffing
+                rules that automatically alert you to understaffed shifts.
               </p>
             </div>
 

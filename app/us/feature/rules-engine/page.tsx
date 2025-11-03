@@ -9,22 +9,22 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import RuleBuilder from "@/components/ui/RuleBuilder";
 import UnbreakableText from "@/components/ui/UnbreakableText";
 
-const pathname = "/feature/rules-engine";
+const pathname = "/us/feature/rules-engine";
 
 export const metadata = withHreflang(
   {
-    title: "Roster Rules Engine - RosterLab",
+    title: "Scheduling Rules Engine - RosterLab",
     description:
-      "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
+      "Create a mix of fixed and flexible scheduling rules to help manage fatigue, ensure fairness, and meet all contractual and union requirements.",
     alternates: {
-      canonical: "https://rosterlab.com/feature/rules-engine",
+      canonical: "https://rosterlab.com/us/feature/rules-engine",
     },
     openGraph: {
-      title: "Roster Rules Engine - RosterLab",
+      title: "Scheduling Rules Engine - RosterLab",
       description:
-        "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
+        "Create a mix of fixed and flexible scheduling rules to help manage fatigue, ensure fairness, and meet all contractual and union requirements.",
       type: "website",
-      url: "https://rosterlab.com/feature/rules-engine",
+      url: "https://rosterlab.com/us/feature/rules-engine",
       images: [
         {
           url: "/images/og-images/Feature-Compliance-Rules.png",
@@ -35,9 +35,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Roster Rules Engine - RosterLab",
+      title: "Scheduling Rules Engine - RosterLab",
       description:
-        "Create a mix of fixed and flexible roster rules to help manage fatigue, ensure fairness and meet all contractual and union requirements.",
+        "Create a mix of fixed and flexible scheduling rules to help manage fatigue, ensure fairness, and meet all contractual and union requirements.",
       images: ["/images/og-images/Feature-Compliance-Rules.png"],
     },
   },
@@ -46,19 +46,19 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
-    question: "What are rostering rules?",
+    question: "What are scheduling rules?",
     answer:
-      "Rostering rules are a mix of requirements and constraints that shape how your roster is constructed. They include hard rules (must be followed) and soft rules (preferred but flexible), as well as demands and preferences. This covers everything from union requirements and staffing levels to fairness distribution and regular work patterns.",
+      "Scheduling rules are a mix of requirements and constraints that shape how your schedule is constructed. They include hard rules (must be followed) and soft rules (preferred but flexible), as well as staffing demands and preferences. This covers everything from union requirements and staffing levels to fairness distribution and standard work patterns.",
   },
   {
-    question: "How do rules help form your staff roster?",
+    question: "How do rules help build our staff schedule?",
     answer:
-      "Rules guide the AI roster generator to create compliant, fair, and efficient schedules. Hard rules eliminate roster solutions that violate essential requirements, while soft rules help the system identify and prioritise the best possible roster options among all possible solutions. Demands and preferences are considered too.",
+      "Rules guide the AI schedule builder to create compliant, fair, and efficient coverage. Hard rules remove schedule options that violate essential requirements, while soft rules help the system identify and prioritize the best possible options. Demands and preferences are considered too.",
   },
   {
     question: "How are different rules weighted?",
     answer:
-      "Rules are categorised as hard (must be satisfied) or soft (preferred). For staffing demands, you can set priority levels (low, medium, high, critical). For preferences, you can set weights (normal, high, critical) to indicate how strongly the preference should influence the final roster.",
+      "Rules are categorized as hard (must be satisfied) or soft (preferred). For staffing demands, you can set priority levels (low, medium, high, critical). For preferences, you can set weights (normal, high, critical) to indicate how strongly the preference should influence the final schedule.",
   },
 ];
 
@@ -74,24 +74,24 @@ export default function RulesAndCompliancePage() {
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   Compliant & Fair{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                    Rostering Rules
+                    Scheduling Rules
                   </span>
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Create a mix of fixed and flexible rules that set the
-                  requirements and constraints for how your roster is built,
-                  helping you to manage fatigue, ensure fairness, and meet all
+                  requirements and constraints for how your schedule is built,
+                  helping you manage fatigue, ensure fairness, and meet all
                   contractual and union demands.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
-                    href="/book-a-demo"
+                    href="/us/book-a-demo"
                     className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                   >
-                    Book A Demo
+                    Book a Demo
                   </Button>
                   <Button
-                    href="/pricing"
+                    href="/us/pricing"
                     className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                   >
                     View Pricing
@@ -117,12 +117,12 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Create Rules That Protect Your Organisation And People
+                  Create Rules That Protect Your Organization And People
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Define hard rules that must never be broken, and soft rules
-                  that allow flexibility - together, they protect your teams and
-                  help your organisation run smoothly.
+                  Define hard rules that must never be broken and soft rules
+                  that allow flexibility—together, they protect your teams and
+                  help your organization run smoothly.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -140,7 +140,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Increase operational effeciency
+                      Increase operational efficiency
                     </span>
                   </li>
                 </ul>
@@ -171,14 +171,14 @@ export default function RulesAndCompliancePage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Create fairness rules that provide transparent, unbiased shift
-                  allocation including equitable weekends, nights and on-call
+                  allocation including equitable weekends, nights, and on-call
                   shifts.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Reduce conflicts and perceived favouritism
+                      Reduce conflicts and perceived favoritism
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -190,7 +190,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Improve team satisfaction and reduce roster disputes
+                      Improve team satisfaction and reduce schedule disputes
                     </span>
                   </li>
                 </ul>
@@ -205,10 +205,10 @@ export default function RulesAndCompliancePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Personalise Rules That Scale Easily
+                  Personalize Rules That Scale Easily
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Create staff-specifc and skill-based rules that apply to
+                  Create staff-specific and skill-based rules that apply to
                   specific individuals or groups, accommodating unique
                   requirements.
                 </p>
@@ -229,7 +229,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Allow rosters to grow effortlessly with your team
+                      Allow schedules to grow effortlessly with your team
                     </span>
                   </li>
                 </ul>
@@ -287,7 +287,7 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Implement fatigue-reducing roster rules
+                      Implement fatigue-reducing scheduling rules
                     </span>
                   </li>
                 </ul>
@@ -296,13 +296,13 @@ export default function RulesAndCompliancePage() {
           </Container>
         </div>
 
-        {/* Optimise Staffing Coverage Section */}
+        {/* Optimize Staffing Coverage Section */}
         <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Optimise Staffing Coverage
+                  Optimize Staffing Coverage
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Ensure optimal coverage with rules that guarantee minimum and
@@ -365,19 +365,19 @@ export default function RulesAndCompliancePage() {
                 Stay Compliant, Reduce Fines, Ensure Fairness
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Join organisations that have eliminated compliance violations
-                and built fairer rosters with RosterLab's intelligent rules
+                Join organizations that have eliminated compliance violations
+                and built fairer schedules with RosterLab's intelligent rules
                 engine.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-4 text-lg font-semibold"
                 >
                   Book Your Demo
                 </Button>
                 <Button
-                  href="/pricing"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
                 >
                   View Pricing
@@ -392,9 +392,9 @@ export default function RulesAndCompliancePage() {
 
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "Rules and Compliance" },
+          { name: "Home", url: "/us" },
+          { name: "Features", url: "/us/feature" },
+          { name: "Rules Engine" },
         ]}
       />
     </SiteLayout>
