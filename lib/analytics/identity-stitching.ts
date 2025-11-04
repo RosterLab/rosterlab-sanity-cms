@@ -42,114 +42,11 @@ export function appendUTMsToUrl(
       params.set("first_landing_page", firstTouchData.first_landing_page);
     params.set("first_touch_ts", firstTouchData.first_touch_ts.toString());
 
-    // Also include Amplitude device ID if available
-    if (typeof window !== "undefined" && window.amplitude?.getDeviceId) {
-      const deviceId = window.amplitude.getDeviceId();
-      if (deviceId) {
-        params.set("amp_device_id", deviceId);
-      }
-    }
-
     url.search = params.toString();
     return url.toString();
   } catch (error) {
     console.error("[Identity Stitching] Error appending UTMs to URL:", error);
     return targetUrl;
-  }
-}
-
-/**
- * Parse UTM data from URL (for use in the app after redirect)
- */
-export function parseUTMsFromUrl(url: string = window.location.href): {
-  firstTouchUTMs: Record<string, string | null>;
-  amplitudeDeviceId: string | null;
-} {
-  try {
-    const urlObj = new URL(url);
-    const params = urlObj.searchParams;
-
-    return {
-      firstTouchUTMs: {
-        utm_source_first: params.get("utm_source_first"),
-        utm_medium_first: params.get("utm_medium_first"),
-        utm_campaign_first: params.get("utm_campaign_first"),
-        utm_content_first: params.get("utm_content_first"),
-        utm_term_first: params.get("utm_term_first"),
-        first_referrer: params.get("first_referrer"),
-        first_landing_page: params.get("first_landing_page"),
-        first_touch_ts: params.get("first_touch_ts"),
-      },
-      amplitudeDeviceId: params.get("amp_device_id"),
-    };
-  } catch (error) {
-    console.error("[Identity Stitching] Error parsing UTMs from URL:", error);
-    return {
-      firstTouchUTMs: {},
-      amplitudeDeviceId: null,
-    };
-  }
-}
-
-/**
- * Apply first-touch UTMs to Amplitude after login/signup
- * This should be called in the app after user authentication
- */
-export function applyFirstTouchUTMs(amplitude: any, userId: string): void {
-  if (!amplitude || !userId) return;
-
-  const { firstTouchUTMs, amplitudeDeviceId } = parseUTMsFromUrl();
-
-  // Set user ID to link sessions
-  amplitude.setUserId(userId);
-
-  // If we have a device ID from the marketing site, set it
-  if (amplitudeDeviceId) {
-    amplitude.setDeviceId(amplitudeDeviceId);
-  }
-
-  // Apply first-touch UTMs if they exist
-  const hasUTMs = Object.values(firstTouchUTMs).some((value) => value !== null);
-  if (hasUTMs) {
-    const identify = new amplitude.Identify();
-
-    // Set UTM properties
-    if (firstTouchUTMs.utm_source_first) {
-      identify.setOnce("utm_source_first", firstTouchUTMs.utm_source_first);
-    }
-    if (firstTouchUTMs.utm_medium_first) {
-      identify.setOnce("utm_medium_first", firstTouchUTMs.utm_medium_first);
-    }
-    if (firstTouchUTMs.utm_campaign_first) {
-      identify.setOnce("utm_campaign_first", firstTouchUTMs.utm_campaign_first);
-    }
-    if (firstTouchUTMs.utm_content_first) {
-      identify.setOnce("utm_content_first", firstTouchUTMs.utm_content_first);
-    }
-    if (firstTouchUTMs.utm_term_first) {
-      identify.setOnce("utm_term_first", firstTouchUTMs.utm_term_first);
-    }
-
-    // Set additional properties
-    if (firstTouchUTMs.first_referrer) {
-      identify.setOnce("first_referrer", firstTouchUTMs.first_referrer);
-    }
-    if (firstTouchUTMs.first_landing_page) {
-      identify.setOnce("first_landing_page", firstTouchUTMs.first_landing_page);
-    }
-    if (firstTouchUTMs.first_touch_ts) {
-      identify.setOnce(
-        "first_touch_ts",
-        parseInt(firstTouchUTMs.first_touch_ts, 10),
-      );
-    }
-
-    amplitude.identify(identify);
-
-    console.log(
-      "[Identity Stitching] Applied first-touch UTMs for user:",
-      userId,
-    );
   }
 }
 

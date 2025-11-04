@@ -4,10 +4,7 @@ interface BreadcrumbItem {
 }
 
 // Helper to generate breadcrumb items from a URL path
-export function generateBreadcrumbItems(
-  pathname: string,
-  isUS = false,
-): BreadcrumbItem[] {
+export function generateBreadcrumbItems(pathname: string): BreadcrumbItem[] {
   const segments = pathname.split("/").filter(Boolean);
   const items: BreadcrumbItem[] = [{ name: "Home", url: "/" }];
 

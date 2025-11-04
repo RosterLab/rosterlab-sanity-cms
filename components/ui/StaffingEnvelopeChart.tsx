@@ -1,103 +1,109 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Button from '@/components/ui/Button'
+import { useState, useEffect } from "react";
 
 export default function StaffingEnvelopeChart() {
-  const [isOptimized, setIsOptimized] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isOptimized, setIsOptimized] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Check if mobile
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Chart dimensions - responsive
-  const width = isMobile ? 350 : 800
-  const height = isMobile ? 300 : 400
-  const padding = { 
-    top: 40, 
-    right: isMobile ? 20 : 60, 
-    bottom: 60, 
-    left: isMobile ? 50 : 60 
-  }
-  const chartWidth = width - padding.left - padding.right
-  const chartHeight = height - padding.top - padding.bottom
+  const width = isMobile ? 350 : 800;
+  const height = isMobile ? 300 : 400;
+  const padding = {
+    top: 40,
+    right: isMobile ? 20 : 60,
+    bottom: 60,
+    left: isMobile ? 50 : 60,
+  };
+  const chartWidth = width - padding.left - padding.right;
+  const chartHeight = height - padding.top - padding.bottom;
 
   // Days data - fewer on mobile
-  const days = isMobile 
+  const days = isMobile
     ? [5, 20, 40, 55]
-    : [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
-  
+    : [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
   // Staffing data
-  const baseMinStaff = 25
-  const baseMaxStaff = 30
-  const idealStaff = 27.5
+  const baseMinStaff = 25;
+  const baseMaxStaff = 30;
+  const idealStaff = 27.5;
 
   // Generate slightly varied min/max lines
   const minStaffData = days.map((day) => ({
     day,
-    value: baseMinStaff + (Math.sin(day / 20) * 1) + (Math.cos(day / 15) * 0.5)
-  }))
+    value: baseMinStaff + Math.sin(day / 20) * 1 + Math.cos(day / 15) * 0.5,
+  }));
 
   const maxStaffData = days.map((day) => ({
     day,
-    value: baseMaxStaff + (Math.sin(day / 25) * 1) + (Math.cos(day / 18) * 0.5)
-  }))
+    value: baseMaxStaff + Math.sin(day / 25) * 1 + Math.cos(day / 18) * 0.5,
+  }));
 
   // Generate actual staffing data (before and after optimisation)
   // Using deterministic pseudo-random based on day for consistent server/client rendering
   const pseudoRandom = (seed: number) => {
-    const x = Math.sin(seed * 12.9898) * 43758.5453
-    return x - Math.floor(x)
-  }
+    const x = Math.sin(seed * 12.9898) * 43758.5453;
+    return x - Math.floor(x);
+  };
 
   const beforeData = days.map((day) => ({
     day,
-    value: Math.min(40, idealStaff + (Math.sin(day / 10) * 12) + (pseudoRandom(day) * 8 - 4))
-  }))
+    value: Math.min(
+      40,
+      idealStaff + Math.sin(day / 10) * 12 + (pseudoRandom(day) * 8 - 4),
+    ),
+  }));
 
   const afterData = days.map((day) => ({
     day,
-    value: idealStaff + (Math.sin(day / 30) * 1.5) + (pseudoRandom(day + 100) * 1 - 0.5)
-  }))
+    value:
+      idealStaff +
+      Math.sin(day / 30) * 1.5 +
+      (pseudoRandom(day + 100) * 1 - 0.5),
+  }));
 
-  const currentData = isOptimized ? afterData : beforeData
+  const currentData = isOptimized ? afterData : beforeData;
 
   // Scale functions
-  const xScale = (day: number) => ((day - 5) / 50) * chartWidth
-  const yScale = (value: number) => chartHeight - ((value - 10) / 35) * chartHeight
+  const xScale = (day: number) => ((day - 5) / 50) * chartWidth;
+  const yScale = (value: number) =>
+    chartHeight - ((value - 10) / 35) * chartHeight;
 
   // Create path for actual staffing line
   const linePath = currentData
     .map((point, index) => {
-      const x = xScale(point.day)
-      const y = yScale(point.value)
-      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`
+      const x = xScale(point.day);
+      const y = yScale(point.value);
+      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
     })
-    .join(' ')
+    .join(" ");
 
   // Create paths for min/max lines
   const minLinePath = minStaffData
     .map((point, index) => {
-      const x = xScale(point.day)
-      const y = yScale(point.value)
-      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`
+      const x = xScale(point.day);
+      const y = yScale(point.value);
+      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
     })
-    .join(' ')
+    .join(" ");
 
   const maxLinePath = maxStaffData
     .map((point, index) => {
-      const x = xScale(point.day)
-      const y = yScale(point.value)
-      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`
+      const x = xScale(point.day);
+      const y = yScale(point.value);
+      return index === 0 ? `M ${x} ${y}` : `L ${x} ${y}`;
     })
-    .join(' ')
+    .join(" ");
 
   return (
     <div className="w-full flex justify-center overflow-x-auto">
@@ -143,11 +149,15 @@ export default function StaffingEnvelopeChart() {
 
             {/* Ideal range - white (between min and max) */}
             <path
-              d={`${minLinePath} ${maxStaffData.slice().reverse().map((point, index) => {
-                const x = xScale(point.day)
-                const y = yScale(point.value)
-                return index === 0 ? `L ${x} ${y}` : `L ${x} ${y}`
-              }).join(' ')} Z`}
+              d={`${minLinePath} ${maxStaffData
+                .slice()
+                .reverse()
+                .map((point, index) => {
+                  const x = xScale(point.day);
+                  const y = yScale(point.value);
+                  return index === 0 ? `L ${x} ${y}` : `L ${x} ${y}`;
+                })
+                .join(" ")} Z`}
               fill="#FFFFFF"
               stroke="#e5e7eb"
               strokeWidth="1"
@@ -168,12 +178,7 @@ export default function StaffingEnvelopeChart() {
             />
 
             {/* Actual staffing line */}
-            <path
-              d={linePath}
-              fill="none"
-              stroke="#000000"
-              strokeWidth="3"
-            />
+            <path d={linePath} fill="none" stroke="#000000" strokeWidth="3" />
 
             {/* Data points */}
             {currentData.map((point) => (
@@ -188,28 +193,28 @@ export default function StaffingEnvelopeChart() {
 
             {/* Area labels */}
             <text
-              x={chartWidth * (isMobile ? 0.20 : 0.12)}
+              x={chartWidth * (isMobile ? 0.2 : 0.12)}
               y={yScale(38)}
               textAnchor="middle"
-              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-pink-700`}
+              className={`${isMobile ? "text-xs" : "text-sm"} font-medium fill-pink-700`}
             >
               OVERSTAFFED
             </text>
-            
+
             <text
-              x={chartWidth * (isMobile ? 0.20 : 0.12)}
+              x={chartWidth * (isMobile ? 0.2 : 0.12)}
               y={yScale(27.5)}
               textAnchor="middle"
-              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-gray-700`}
+              className={`${isMobile ? "text-xs" : "text-sm"} font-medium fill-gray-700`}
             >
               IDEAL RANGE
             </text>
-            
+
             <text
-              x={chartWidth * (isMobile ? 0.20 : 0.12)}
+              x={chartWidth * (isMobile ? 0.2 : 0.12)}
               y={yScale(18)}
               textAnchor="middle"
-              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-blue-700`}
+              className={`${isMobile ? "text-xs" : "text-sm"} font-medium fill-blue-700`}
             >
               UNDERSTAFFED
             </text>
@@ -241,12 +246,11 @@ export default function StaffingEnvelopeChart() {
               y={isMobile ? -35 : -40}
               textAnchor="middle"
               transform="rotate(-90)"
-              className={`${isMobile ? 'text-xs' : 'text-sm'} font-medium fill-gray-700`}
+              className={`${isMobile ? "text-xs" : "text-sm"} font-medium fill-gray-700`}
             >
-              {isMobile ? 'Staff' : 'Staffing Numbers'}
+              {isMobile ? "Staff" : "Staffing Numbers"}
             </text>
           </g>
-
         </svg>
 
         {/* Optimization Button */}
@@ -254,17 +258,21 @@ export default function StaffingEnvelopeChart() {
           <button
             onClick={() => setIsOptimized(!isOptimized)}
             className={`${
-              isOptimized 
-                ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-            } ${isMobile ? 'px-4 py-2 text-xs' : 'px-6 py-2 text-sm'} rounded-lg font-medium transition-colors border border-gray-300`}
+              isOptimized
+                ? "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+            } ${isMobile ? "px-4 py-2 text-xs" : "px-6 py-2 text-sm"} rounded-lg font-medium transition-colors border border-gray-300`}
           >
-            {isOptimized 
-              ? isMobile ? '← Before' : '← View Before Optimization' 
-              : isMobile ? 'After →' : 'View After Optimization →'}
+            {isOptimized
+              ? isMobile
+                ? "← Before"
+                : "← View Before Optimization"
+              : isMobile
+                ? "After →"
+                : "View After Optimization →"}
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }

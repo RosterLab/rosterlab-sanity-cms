@@ -1,7 +1,6 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";

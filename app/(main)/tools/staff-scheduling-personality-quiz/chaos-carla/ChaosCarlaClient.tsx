@@ -101,7 +101,7 @@ export default function ChaosCarlaClient({
 
   // Handle back button navigation to ensure users return to quiz start page
   useEffect(() => {
-    const handlePopstate = (event: PopStateEvent) => {
+    const handlePopstate = () => {
       // If user navigates back, redirect to the quiz start page
       window.location.href = "/tools/staff-scheduling-personality-quiz";
     };
@@ -158,7 +158,6 @@ export default function ChaosCarlaClient({
       const primaryColor = [14, 165, 233]; // primary-500
       const textColor = [31, 41, 55]; // gray-800
       const lightGray = [156, 163, 175]; // gray-400
-      const rosterLabBlue = [3, 105, 161]; // #0369A1
       const linkBlue = [0, 102, 204]; // #0066CC for hyperlinks
 
       // Page 1
@@ -680,7 +679,7 @@ export default function ChaosCarlaClient({
         portalId: "20646833",
         formId: "d6b9c588-9eb1-44ba-bbe2-1d3aa362e5b1",
         target: "#hubspot-form-container",
-        onFormSubmitted: async (formData: any) => {
+        onFormSubmitted: async () => {
           // Hide form and show generating message
           if (formContainerRef.current) {
             formContainerRef.current.style.display = "none";

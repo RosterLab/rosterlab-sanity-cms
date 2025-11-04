@@ -4,10 +4,6 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import ShiftSwapsContent from "./ShiftSwapsContent";
-import ShiftSwapModule from "@/components/sections/animations/ShiftSwapModule";
-import AuditTrailModule from "./AuditTrailModule";
-import WeekendRotationModule from "./WeekendRotationModule";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 
 interface HubSpotMeetingPayload {
   meetingBookSucceeded: boolean;
@@ -78,13 +78,13 @@ export default function HubSpotMeetingListener() {
             // Store in multiple places to ensure persistence
             window.sessionStorage.setItem("amplitude_demo_booked", "true");
             window.sessionStorage.setItem(
-              "amplitude_session_data",
+              "analytics_session_data",
               JSON.stringify(sessionData),
             );
 
             // Also store in localStorage as backup
             window.localStorage.setItem(
-              "amplitude_demo_redirect",
+              "analytics_demo_redirect",
               JSON.stringify({
                 ...sessionData,
                 expires: Date.now() + 60000, // Expire after 1 minute

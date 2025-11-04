@@ -17,13 +17,13 @@ lib/analytics/
 
 ### Overview
 
-The demo booking conversion event (`demo_booking_complete`) tracks when a user successfully books a demo through HubSpot meeting scheduler. This event is tracked in both Amplitude and Google Tag Manager (dual tracking).
+The demo booking conversion event (`demo_booking_complete`) tracks when a user successfully books a demo through HubSpot meeting scheduler. This event is tracked in both Segment and Google Tag Manager (dual tracking).
 
 ### Implementation
 
 1. **HubSpot Meeting Listener Component** (`/components/analytics/HubSpotMeetingListener.tsx`)
    - Listens for HubSpot meeting booking events
-   - Automatically tracks to both Amplitude and GTM
+   - Automatically tracks to both Segment and GTM
    - Captures user information from the form
 
 2. **Pages with Demo Booking**
@@ -53,7 +53,7 @@ The `demo_booking_complete` event includes:
 When a demo is booked, the system:
 
 1. Tracks the conversion event
-2. Sets user properties in Amplitude
+2. Sets user properties (traits) in Segment
 3. Identifies the user by email (if provided)
 
 ### Adding to New Pages
@@ -93,11 +93,11 @@ export const trackNewConversion = (properties: NewConversionProperties) => {
 };
 ```
 
-## Dual Tracking (Amplitude + GTM)
+## Dual Tracking (Segment + GTM)
 
 All conversion events maintain dual tracking:
 
-- Events are sent to Amplitude for product analytics
+- Events are sent to Segment for analytics (which can forward to multiple destinations)
 - Events are pushed to dataLayer for GTM/Google Analytics
 - No changes needed to existing GTM setup
 
@@ -111,4 +111,4 @@ Demo booking tracked: { ... event details ... }
 
 ## Questions?
 
-For questions about analytics implementation, contact the development team or check the Amplitude dashboard for event details.
+For questions about analytics implementation, contact the development team or check the Segment debugger for event details.

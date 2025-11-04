@@ -4,7 +4,7 @@ import ClientHeader from "@/components/layout/ClientHeader";
 import ClientFooter from "@/components/layout/ClientFooter";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
-import Amplitude from "@/components/analytics/Amplitude";
+import Segment from "@/components/analytics/Segment";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
@@ -72,7 +72,7 @@ export default async function RootLayout({
         <ClientProviders
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
-          <Amplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
+          <Segment writeKey={process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY!} />
           <UTMTracker debug={process.env.NODE_ENV === "development"} />
           <GeolocationProvider />
           <ClientHeader />

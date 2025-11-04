@@ -80,7 +80,7 @@ export function useCalendlyWidget({
     let previousPage: string | null = null;
     try {
       previousPage = sessionStorage.getItem("rl_previous_page");
-    } catch (e) {
+    } catch {
       // SessionStorage not available
     }
 
@@ -193,7 +193,6 @@ export function useCalendlyWidget({
 
   // Extract event data from Calendly events
   const extractEventData = useCallback((e: any): CalendlyEventData => {
-    const eventDetail = e?.detail;
     const eventData = e?.data || e?.detail || e;
 
     return {

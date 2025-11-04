@@ -1,40 +1,44 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { HiUser, HiSwitchHorizontal } from 'react-icons/hi'
+import { useState } from "react";
+import { HiUser, HiSwitchHorizontal } from "react-icons/hi";
 
 export default function ShiftSwapModule() {
-  const [isSwapping, setIsSwapping] = useState(false)
-  const [swapComplete, setSwapComplete] = useState(false)
+  const [isSwapping, setIsSwapping] = useState(false);
+  const [swapComplete, setSwapComplete] = useState(false);
 
   const handleSwap = () => {
-    setIsSwapping(true)
-    setSwapComplete(false)
-    
+    setIsSwapping(true);
+    setSwapComplete(false);
+
     setTimeout(() => {
-      setIsSwapping(false)
-      setSwapComplete(true)
-      
+      setIsSwapping(false);
+      setSwapComplete(true);
+
       setTimeout(() => {
-        setSwapComplete(false)
-      }, 2000)
-    }, 1500)
-  }
+        setSwapComplete(false);
+      }, 2000);
+    }, 1500);
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">Seamless Shift Swapping</h3>
-        <p className="text-gray-600">Watch how easily staff can swap shifts with automatic approval</p>
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+          Seamless Shift Swapping
+        </h3>
+        <p className="text-gray-600">
+          Watch how easily staff can swap shifts with automatic approval
+        </p>
       </div>
 
       <div className="relative max-w-2xl mx-auto">
         {/* Doctor 1 */}
-        <div 
+        <div
           className="absolute left-0 top-1/2 -translate-y-1/2 transition-transform duration-1000"
           style={{
-            transform: `translateY(-50%) translateX(${isSwapping ? '400px' : '0'})`,
-            willChange: isSwapping ? 'transform' : 'auto'
+            transform: `translateY(-50%) translateX(${isSwapping ? "400px" : "0"})`,
+            willChange: isSwapping ? "transform" : "auto",
           }}
         >
           <div className="bg-blue-100 rounded-lg p-6 text-center">
@@ -48,11 +52,11 @@ export default function ShiftSwapModule() {
         </div>
 
         {/* Doctor 2 */}
-        <div 
+        <div
           className="absolute right-0 top-1/2 -translate-y-1/2 transition-transform duration-1000"
           style={{
-            transform: `translateY(-50%) translateX(${isSwapping ? '-400px' : '0'})`,
-            willChange: isSwapping ? 'transform' : 'auto'
+            transform: `translateY(-50%) translateX(${isSwapping ? "-400px" : "0"})`,
+            willChange: isSwapping ? "transform" : "auto",
           }}
         >
           <div className="bg-teal-100 rounded-lg p-6 text-center">
@@ -67,11 +71,13 @@ export default function ShiftSwapModule() {
 
         {/* Center Swap Icon */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div 
+          <div
             className="transition-transform duration-500"
             style={{
-              transform: isSwapping ? 'scale(1.5) rotate(180deg)' : 'scale(1) rotate(0deg)',
-              willChange: isSwapping ? 'transform' : 'auto'
+              transform: isSwapping
+                ? "scale(1.5) rotate(180deg)"
+                : "scale(1) rotate(0deg)",
+              willChange: isSwapping ? "transform" : "auto",
             }}
           >
             <HiSwitchHorizontal className="w-16 h-16 text-gray-400" />
@@ -79,7 +85,9 @@ export default function ShiftSwapModule() {
         </div>
 
         {/* Arrows */}
-        <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-500 ${isSwapping ? 'opacity-100' : 'opacity-0'}`}>
+        <div
+          className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-500 ${isSwapping ? "opacity-100" : "opacity-0"}`}
+        >
           {/* Top Arrow (left to right) */}
           <div className="absolute -top-12 left-0 w-full">
             <svg className="w-full h-12" viewBox="0 0 400 50">
@@ -98,7 +106,7 @@ export default function ShiftSwapModule() {
               />
             </svg>
           </div>
-          
+
           {/* Bottom Arrow (right to left) */}
           <div className="absolute -bottom-12 left-0 w-full">
             <svg className="w-full h-12" viewBox="0 0 400 50">
@@ -138,7 +146,7 @@ export default function ShiftSwapModule() {
           disabled={isSwapping}
           className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSwapping ? 'Swapping...' : 'Initiate Shift Swap'}
+          {isSwapping ? "Swapping..." : "Initiate Shift Swap"}
         </button>
       </div>
 
@@ -148,7 +156,7 @@ export default function ShiftSwapModule() {
             stroke-dashoffset: -10;
           }
         }
-        
+
         @keyframes arrow-move {
           from {
             transform: translateX(-300px);
@@ -157,7 +165,7 @@ export default function ShiftSwapModule() {
             transform: translateX(0);
           }
         }
-        
+
         @keyframes arrow-move-reverse {
           from {
             transform: translateX(300px);
@@ -166,23 +174,23 @@ export default function ShiftSwapModule() {
             transform: translateX(0);
           }
         }
-        
+
         .animate-dash {
           animation: dash 1.5s linear infinite;
         }
-        
+
         .animate-arrow-move {
           animation: arrow-move 1.5s ease-out;
         }
-        
+
         .animate-arrow-move-reverse {
           animation: arrow-move-reverse 1.5s ease-out;
         }
-        
+
         .animate-fade-in {
           animation: fadeIn 0.5s ease-out;
         }
-        
+
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -195,5 +203,5 @@ export default function ShiftSwapModule() {
         }
       `}</style>
     </div>
-  )
+  );
 }

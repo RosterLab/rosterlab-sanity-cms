@@ -18,9 +18,6 @@ export function calculateSavings(
   const defaultEmployees = industryConfig.defaultEmployees || 50;
 
   // === 1. MANUAL TIME SPENT ROSTERING ===
-  const employeeMultiplier =
-    Math.max(0, employees) / Math.max(1, defaultEmployees);
-
   // Use manual override if set, otherwise use calculated scaled days
   let finalRosteringDays: number;
   if (manualRosteringDays !== null && manualRosteringDays !== undefined) {

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Button from "@/components/ui/Button";
-import { trackFormSubmit } from "@/components/analytics/Amplitude";
+import { trackFormSubmit } from "@/components/analytics/Segment";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),

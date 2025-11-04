@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import Image from "next/image";
-import { HiCheck, HiCalendar, HiClock } from "react-icons/hi";
+import { HiCheck } from "react-icons/hi";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
