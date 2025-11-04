@@ -89,29 +89,6 @@ const faqItems = [
   },
 ];
 
-const painPoints = [
-  {
-    title: "No More Spreadsheet Chaos",
-    description:
-      "Multiple versions, lost updates, and formula errors making scheduling a nightmare. Move to digital scheduling - it's free forever.",
-  },
-  {
-    title: "Free Forever",
-    description:
-      "No hidden fees, no credit card required. Get started with digital scheduling at no cost and stay free forever.",
-  },
-  {
-    title: "Real-Time Notifications",
-    description:
-      "Keep your team informed with instant push notifications when schedules change - no more missed communications.",
-  },
-  {
-    title: "Free Mobile Apps",
-    description:
-      "Staff can view schedules and submit preferences from anywhere with our free iOS and Android apps.",
-  },
-];
-
 export default function ManualSchedulingPage() {
   return (
     <SiteLayout>

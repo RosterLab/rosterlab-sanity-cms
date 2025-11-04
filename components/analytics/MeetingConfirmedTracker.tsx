@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { analytics } from "@/components/analytics/Amplitude";
+import { analytics } from "@/components/analytics/Segment";
 
 export default function MeetingConfirmedTracker() {
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function MeetingConfirmedTracker() {
     // Check sessionStorage first
     let sessionData = null;
     const sessionStorageData = window.sessionStorage.getItem(
-      "amplitude_session_data",
+      "analytics_session_data",
     );
 
     if (sessionStorageData) {
@@ -87,7 +87,7 @@ export default function MeetingConfirmedTracker() {
 
       // Clear the session data
       window.sessionStorage.removeItem("amplitude_demo_booked");
-      window.sessionStorage.removeItem("amplitude_session_data");
+      window.sessionStorage.removeItem("analytics_session_data");
     } else {
       console.log(
         "[MeetingConfirmedTracker] No demo booking session data found",

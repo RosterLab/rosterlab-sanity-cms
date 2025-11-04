@@ -160,7 +160,7 @@ export default function CalculatorBase({
   }, [industry]);
 
   // HubSpot form integration
-  const { resetForm } = useHubSpotForm({
+  useHubSpotForm({
     config: {
       portalId: hubspotConfig.portalId,
       formId: hubspotConfig.formId,
@@ -230,13 +230,15 @@ export default function CalculatorBase({
               {/* Mobile only: Image appears here after H1 */}
               {regionalContent.heroImage && (
                 <div className="block lg:hidden w-full mb-8">
-                  <div className="w-full max-w-[600px]">
+                  <div className="relative w-full max-w-[600px] mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/60">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/40 via-transparent to-teal-100/40 pointer-events-none" />
                     <Image
                       src={regionalContent.heroImage.src}
                       alt={regionalContent.heroImage.alt}
                       width={600}
                       height={450}
-                      className="w-full h-auto"
+                      className="w-full h-auto object-cover"
+                      priority
                     />
                   </div>
                 </div>
@@ -309,13 +311,15 @@ export default function CalculatorBase({
             {/* Desktop only: Right side - Image */}
             {regionalContent.heroImage && (
               <div className="hidden lg:flex justify-center lg:justify-end">
-                <div className="w-full max-w-[600px]">
+                <div className="relative w-full max-w-[600px] rounded-[36px] overflow-hidden shadow-[0_30px_80px_-40px_rgba(31,78,121,0.65)] border border-white/70">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-200/35 via-transparent to-teal-200/35 pointer-events-none" />
                   <Image
                     src={regionalContent.heroImage.src}
                     alt={regionalContent.heroImage.alt}
                     width={600}
                     height={450}
-                    className="w-full h-auto"
+                    className="w-full h-full object-cover"
+                    priority
                   />
                 </div>
               </div>

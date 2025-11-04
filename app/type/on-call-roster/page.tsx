@@ -14,6 +14,9 @@ export const metadata = withHreflang(
     title: "On-Call Roster Software - RosterLab",
     description:
       "Create fair and predictable on-call rosters. Built for all specialties handling urgent and emergency cases.",
+    alternates: {
+      canonical: "https://rosterlab.com/type/on-call-roster",
+    },
     openGraph: {
       title: "On-Call Roster Software - RosterLab",
       description:
@@ -22,7 +25,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/type/on-call-roster",
       images: [
         {
-          url: "/images/us-images/iStock-1959732893.jpg",
+          url: "/images/us-images/on-call-scheduling.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,7 +36,7 @@ export const metadata = withHreflang(
       title: "On-Call Roster Software - RosterLab",
       description:
         "Create fair and predictable on-call rosters. Built for all specialties handling urgent and emergency cases.",
-      images: ["/images/us-images/iStock-1959732893.jpg"],
+      images: ["/images/us-images/on-call-scheduling.jpg"],
     },
   },
   "/type/on-call-roster",
@@ -197,12 +200,11 @@ export default function OnCallRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Predictable Rostering Cycles
+                Safer Staffing with Fewer Gaps
               </h3>
               <p className="text-gray-600">
-                Plan on-call coverage in predictable cycles with flexible
-                re-rostering as department needs change. Ensure continuous
-                coverage with automatic gap detection.
+                Maintain optimal on-call coverage with min and max staffing
+                rules that automatically alert you to understaffed shifts.
               </p>
             </div>
 

@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 import ContactFormWrapper from "@/components/forms/ContactFormWrapper";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
+import { HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 import { withHreflang } from "@/components/seo/HreflangTags";
 

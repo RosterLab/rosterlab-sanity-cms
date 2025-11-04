@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+
 import {
   HiMenu,
   HiX,
@@ -12,7 +13,7 @@ import {
   HiUser,
   HiHeart,
 } from "react-icons/hi";
-import { trackSmartButtonClick } from "@/components/analytics/Amplitude";
+import { trackSmartButtonClick } from "@/components/analytics/Segment";
 
 interface SubMenuItem {
   title: string;
@@ -330,7 +331,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-1">
                                 {/* Healthcare Roster */}
                                 <Link
-                                  href="/industries/healthcare"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare-scheduling"
+                                      : "/industries/healthcare"
+                                  }
                                   className="group block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
                                 >
                                   <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1 flex items-center gap-2">
@@ -347,7 +352,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* ICU/ED Roster */}
                                 <Link
-                                  href="/industries/healthcare/ed-icu"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/ed-icu-scheduling"
+                                      : "/industries/healthcare/ed-icu"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -364,7 +373,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Radiology Roster */}
                                 <Link
-                                  href="/industries/healthcare/radiology"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/radiology-scheduling"
+                                      : "/industries/healthcare/radiology"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -398,7 +411,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Aged Care Roster */}
                                 <Link
-                                  href="/industries/healthcare/aged-care"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/senior-care-scheduling"
+                                      : "/industries/healthcare/aged-care"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -415,7 +432,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Veterinary Roster */}
                                 <Link
-                                  href="/industries/veterinary"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/veterinary-scheduling"
+                                      : "/industries/veterinary"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
@@ -440,7 +461,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-1">
                                 {/* Nurse Roster */}
                                 <Link
-                                  href="/industries/healthcare/nurse-rostering"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/nurse-scheduling"
+                                      : "/industries/healthcare/nurse-rostering"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
@@ -452,31 +477,43 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* JMO Roster */}
                                 <Link
-                                  href="/industries/healthcare/junior-medical-officer-rostering"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/physician-scheduling"
+                                      : "/industries/healthcare/junior-medical-officer-rostering"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
-                                      ? "JMO Scheduling"
+                                      ? "Physician Scheduling"
                                       : "JMO Roster"}
                                   </div>
                                 </Link>
 
                                 {/* SMO Roster */}
                                 <Link
-                                  href="/industries/healthcare/senior-medical-officer-rostering"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/attending-physician-scheduling"
+                                      : "/industries/healthcare/senior-medical-officer-rostering"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
-                                      ? "SMO Scheduling"
+                                      ? "Attending Physician"
                                       : "SMO Roster"}
                                   </div>
                                 </Link>
 
                                 {/* On Call Roster */}
                                 <Link
-                                  href="/type/on-call-roster"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/type/on-call-scheduling"
+                                      : "/type/on-call-roster"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
@@ -488,12 +525,16 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Long Roster */}
                                 <Link
-                                  href="/type/long-roster"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/type/long-term-schedule-planning"
+                                      : "/type/long-roster"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
-                                      ? "Long Scheduling"
+                                      ? "Long Term Planning"
                                       : "Long Roster"}
                                   </div>
                                 </Link>

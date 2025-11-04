@@ -20,11 +20,16 @@ export const US_URL_MAPPINGS: Record<string, string> = {
 
   // Features - with terminology changes
   "/feature/automated-rostering": "/us/feature/auto-scheduling",
+  "/feature/rules-engine": "/us/feature/rules-engine",
   "/feature/open-shifts": "/us/feature/open-shifts",
   "/feature/shift-swaps": "/us/feature/shift-swaps-and-trades",
   "/feature/leave-requests": "/us/feature/time-off-requests",
   "/feature/self-scheduling": "/us/feature/self-scheduling",
   "/feature/re-rostering": "/us/feature/staff-rescheduling",
+
+  // Schedule types
+  "/type/on-call-roster": "/us/type/on-call-scheduling",
+  "/type/long-roster": "/us/type/long-term-schedule-planning",
 
   // Industries - with terminology changes
   "/industries": "/us/industries",
@@ -41,6 +46,8 @@ export const US_URL_MAPPINGS: Record<string, string> = {
     "/us/industries/healthcare/nurse-scheduling",
   "/industries/healthcare/veterinary-rostering":
     "/us/industries/healthcare/veterinary-scheduling",
+  "/industries/healthcare/senior-medical-officer-rostering":
+    "/us/industries/healthcare/attending-physician-scheduling",
 };
 
 // Reverse mapping to find original URL from US version
@@ -68,11 +75,16 @@ export const LOCALIZED_PAGES = new Set([
 
   // Features
   "/feature/automated-rostering",
+  "/feature/rules-engine",
   "/feature/open-shifts",
   "/feature/shift-swaps",
   "/feature/leave-requests",
   "/feature/self-scheduling",
   "/feature/re-rostering",
+
+  // Schedule types
+  "/type/on-call-roster",
+  "/type/long-roster",
 
   // Industries
   "/industries",
@@ -83,6 +95,7 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/healthcare/junior-medical-officer-rostering",
   "/industries/healthcare/nurse-rostering",
   "/industries/healthcare/veterinary-rostering",
+  "/industries/healthcare/senior-medical-officer-rostering",
 ]);
 
 // Helper function to generate hreflang metadata

@@ -1,14 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Button from "./Button";
 import Image from "next/image";
 
-export default function RuleBuilder() {
-  const [ruleType, setRuleType] = useState("");
-  const [selectedRule, setSelectedRule] = useState("");
+type RuleCategory = "rules" | "demands";
+
+interface RuleBuilderProps {
+  allowedRuleTypes?: RuleCategory[];
+  defaultRuleType?: RuleCategory;
+  defaultSelectedRule?: string;
+  defaultPriority?: "must" | "should";
+  showRuleTypeSelector?: boolean;
+  showDemandSelection?: boolean;
+  showDemandAddButton?: boolean;
+}
+
+export default function RuleBuilder({
+  allowedRuleTypes = ["rules", "demands"],
+  defaultRuleType,
+  defaultSelectedRule = "min_hours",
+  defaultPriority = "should",
+  showRuleTypeSelector = true,
+  showDemandSelection = true,
+  showDemandAddButton = true,
+}: RuleBuilderProps) {
+  const normalizedAllowedTypes = useMemo(() => {
+    const unique = Array.from(new Set(allowedRuleTypes));
+    return unique.length > 0 ? unique : ["rules", "demands"];
+  }, [allowedRuleTypes]);
+
+  const initialRuleType: RuleCategory =
+    defaultRuleType && normalizedAllowedTypes.includes(defaultRuleType)
+      ? defaultRuleType
+      : (normalizedAllowedTypes[0] as RuleCategory);
+
+  const [ruleType, setRuleType] = useState<RuleCategory>(initialRuleType);
+  const [selectedRule, setSelectedRule] = useState(defaultSelectedRule);
   const [ruleValue, setRuleValue] = useState("");
-  const [rulePriority, setRulePriority] = useState<"must" | "should">("must");
+  const [rulePriority, setRulePriority] = useState<"must" | "should">(
+    defaultPriority,
+  );
   const [rules, setRules] = useState<string[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationStep, setGenerationStep] = useState("");
@@ -67,7 +99,7 @@ export default function RuleBuilder() {
   const demandRuleOptions = [
     {
       value: "optimal_coverage",
-      label: "Ensure staff coverage is optimal on days",
+      label: "Coverage for each day of the roster",
     },
     {
       value: "staffing_levels",
@@ -193,7 +225,7 @@ export default function RuleBuilder() {
       setRules([...rules, newRule]);
       setSelectedRule("");
       setRuleValue("");
-      setRulePriority("must");
+      setRulePriority(defaultPriority);
       setIsComplete(false);
     }
   };
@@ -260,24 +292,42 @@ export default function RuleBuilder() {
           <>
             {/* Rule Selection */}
             <div className="space-y-4 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Rule Type
-                </label>
-                <select
-                  value={ruleType}
-                  onChange={(e) => {
-                    setRuleType(e.target.value);
-                    setSelectedRule("");
-                    setRuleValue("");
-                  }}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                >
-                  <option value="">Select rule type...</option>
-                  <option value="rules">Rules</option>
-                  <option value="demands">Demands</option>
-                </select>
-              </div>
+              {showRuleTypeSelector && normalizedAllowedTypes.length > 1 && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Rule Type
+                  </label>
+                  <select
+                    value={ruleType}
+                    onChange={(e) => {
+                      const nextType = e.target.value as RuleCategory;
+                      setRuleType(nextType);
+                      setSelectedRule("");
+                      setRuleValue("");
+                      setRulePriority(defaultPriority);
+                      setOptimalDays([]);
+                      setSkillMixConfig({
+                        Mon: "",
+                        Tue: "",
+                        Wed: "",
+                        Thu: "",
+                        Fri: "",
+                        Sat: "",
+                        Sun: "",
+                      });
+                      setCoupleEmployees([]);
+                    }}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                  >
+                    <option value="">Select rule type...</option>
+                    {normalizedAllowedTypes.map((typeOption) => (
+                      <option key={typeOption} value={typeOption}>
+                        {typeOption === "rules" ? "Rules" : "Demands"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               {ruleType === "rules" && (
                 <>
@@ -367,66 +417,72 @@ export default function RuleBuilder() {
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                         />
                         {selectedRule === "min_hours" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            Minimum hours between shifts{" "}
-                            {rulePriority === "must" ? "must" : "should"} be{" "}
-                            {ruleValue || "[X]"} hour(s)
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              Minimum hours between shifts{" "}
+                              {rulePriority === "must" ? "must" : "should"} be{" "}
+                              {ruleValue || "[X]"} hour(s)
+                            </p>
+                          </div>
                         )}
                         {selectedRule === "max_shifts" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            Maximum consecutive shifts{" "}
-                            {rulePriority === "must" ? "must" : "should"} be{" "}
-                            {ruleValue || "[X]"} shift(s)
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              Maximum consecutive shifts{" "}
+                              {rulePriority === "must" ? "must" : "should"} be{" "}
+                              {ruleValue || "[X]"} shift(s)
+                            </p>
+                          </div>
                         )}
                         {selectedRule === "night_shifts" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            {rulePriority === "must"
-                              ? "Must have"
-                              : "Should have"}{" "}
-                            {ruleValue || "[X]"} day(s) off after night shifts
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              {rulePriority === "must"
+                                ? "Must have"
+                                : "Should have"}{" "}
+                              {ruleValue || "[X]"} day(s) off after night shifts
+                            </p>
+                          </div>
                         )}
                         {selectedRule === "min_hours_period" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            Minimum hours per roster period{" "}
-                            {rulePriority === "must" ? "must" : "should"} be{" "}
-                            {ruleValue || "[X]"} hour(s)
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              Minimum hours per roster period{" "}
+                              {rulePriority === "must" ? "must" : "should"} be{" "}
+                              {ruleValue || "[X]"} hour(s)
+                            </p>
+                          </div>
                         )}
                         {selectedRule === "max_hours_period" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            Maximum hours per roster period{" "}
-                            {rulePriority === "must" ? "must" : "should"} be{" "}
-                            {ruleValue || "[X]"} hour(s)
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              Maximum hours per roster period{" "}
+                              {rulePriority === "must" ? "must" : "should"} be{" "}
+                              {ruleValue || "[X]"} hour(s)
+                            </p>
+                          </div>
                         )}
                         {selectedRule === "consecutive_days" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            {rulePriority === "must"
-                              ? "Must have"
-                              : "Should have"}{" "}
-                            {ruleValue || "[X]"} consecutive day(s) on
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              {rulePriority === "must"
+                                ? "Must have"
+                                : "Should have"}{" "}
+                              {ruleValue || "[X]"} consecutive day(s) on
+                            </p>
+                          </div>
                         )}
                         {selectedRule === "consecutive_days_off" && (
-                          <p className="text-sm text-gray-600 mt-2">
-                            {rulePriority === "must"
-                              ? "Must have"
-                              : "Should have"}{" "}
-                            {ruleValue || "[X]"} consecutive day(s) off
-                          </p>
+                          <div className="mt-3 p-3 bg-teal-50 border-l-4 border-teal-500 rounded">
+                            <p className="text-sm text-gray-800 font-medium">
+                              {rulePriority === "must"
+                                ? "Must have"
+                                : "Should have"}{" "}
+                              {ruleValue || "[X]"} consecutive day(s) off
+                            </p>
+                          </div>
                         )}
                       </div>
-                      {ruleValue && (
-                        <button
-                          onClick={handleAddRule}
-                          className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
-                        >
-                          + Add Rule
-                        </button>
-                      )}
                     </>
                   ) : null}
                 </>
@@ -437,23 +493,25 @@ export default function RuleBuilder() {
                   <p className="text-sm text-gray-600 mb-4 italic">
                     Demands for each day of the roster.
                   </p>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Select Demand Type
-                    </label>
-                    <select
-                      value={selectedRule}
-                      onChange={(e) => setSelectedRule(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                    >
-                      <option value="">Choose a demand...</option>
-                      {demandRuleOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                  {showDemandSelection && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Select Demand Type
+                      </label>
+                      <select
+                        value={selectedRule}
+                        onChange={(e) => setSelectedRule(e.target.value)}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                      >
+                        <option value="">Choose a demand...</option>
+                        {demandRuleOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
 
                   {selectedRule === "optimal_coverage" && (
                     <div className="space-y-4">
@@ -488,12 +546,14 @@ export default function RuleBuilder() {
                           ))}
                         </div>
                       </div>
-                      <button
-                        onClick={handleAddRule}
-                        className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
-                      >
-                        + Add Rule
-                      </button>
+                      {showDemandAddButton && (
+                        <button
+                          onClick={handleAddRule}
+                          className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
+                        >
+                          + Add Rule
+                        </button>
+                      )}
                     </div>
                   )}
 
@@ -512,7 +572,7 @@ export default function RuleBuilder() {
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                         />
                       </div>
-                      {ruleValue && (
+                      {ruleValue && showDemandAddButton && (
                         <button
                           onClick={handleAddRule}
                           className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
@@ -562,14 +622,15 @@ export default function RuleBuilder() {
                       </div>
                       {Object.values(skillMixConfig).some(
                         (val) => val !== "",
-                      ) && (
-                        <button
-                          onClick={handleAddRule}
-                          className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
-                        >
-                          + Add Rule
-                        </button>
-                      )}
+                      ) &&
+                        showDemandAddButton && (
+                          <button
+                            onClick={handleAddRule}
+                            className="w-full bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition-colors font-medium"
+                          >
+                            + Add Rule
+                          </button>
+                        )}
                     </div>
                   )}
 
@@ -610,17 +671,19 @@ export default function RuleBuilder() {
                           ))}
                         </div>
                       </div>
-                      <button
-                        onClick={handleAddRule}
-                        disabled={coupleEmployees.length !== 2}
-                        className={`w-full py-2 px-4 rounded-lg transition-colors font-medium ${
-                          coupleEmployees.length === 2
-                            ? "bg-teal-600 text-white hover:bg-teal-700"
-                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                        }`}
-                      >
-                        + Add Rule
-                      </button>
+                      {showDemandAddButton && (
+                        <button
+                          onClick={handleAddRule}
+                          disabled={coupleEmployees.length !== 2}
+                          className={`w-full py-2 px-4 rounded-lg transition-colors font-medium ${
+                            coupleEmployees.length === 2
+                              ? "bg-teal-600 text-white hover:bg-teal-700"
+                              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                          }`}
+                        >
+                          + Add Rule
+                        </button>
+                      )}
                     </div>
                   )}
                 </>
@@ -650,25 +713,6 @@ export default function RuleBuilder() {
                   ))}
                 </div>
               </div>
-            )}
-
-            {/* Generate Button */}
-            <Button
-              onClick={handleGenerateRoster}
-              disabled={rules.length === 0}
-              className={`w-full ${
-                rules.length === 0
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-teal-600 to-cyan-500 text-white hover:from-teal-700 hover:to-cyan-600"
-              } py-3 px-6 font-semibold text-lg`}
-            >
-              {rules.length === 0 ? "Add Rules to Generate" : "Generate Roster"}
-            </Button>
-
-            {rules.length === 0 && (
-              <p className="text-xs text-gray-500 text-center mt-2">
-                Add at least one rule to generate a compliant roster
-              </p>
             )}
           </>
         )}

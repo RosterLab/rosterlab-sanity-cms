@@ -74,20 +74,6 @@ export default function RosterGenerationModule() {
     }
   };
 
-  // Find empty cells for animation
-  const getEmptyCells = () => {
-    const emptyCells = [];
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 5; j++) {
-        const key = `${i}-${j}`;
-        if (!manualRosterState[key]) {
-          emptyCells.push({ key, row: i, col: j });
-        }
-      }
-    }
-    return emptyCells;
-  };
-
   // Predefined cells to animate in sequence
   const animationSequence = [
     { key: "2-1", shift: "Night" }, // Maria, Tue, Night
@@ -221,7 +207,6 @@ export default function RosterGenerationModule() {
                         {dates.map((_, dateIndex) => {
                           const key = `${staffIndex}-${dateIndex}`;
                           const shift = currentRoster[key];
-                          const isSelected = selectedCell === key;
 
                           return (
                             <td key={dateIndex} className="p-0.5">
@@ -262,62 +247,53 @@ export default function RosterGenerationModule() {
                                 </motion.div>
 
                                 {/* Dropdown menu for shift selection */}
-                                {showDropdown &&
-                                  selectedCell === key &&
-                                  (() => {
-                                    const cellElement = document.getElementById(
-                                      `cell-${key}`,
-                                    );
-                                    return (
-                                      <motion.div
-                                        initial={{
-                                          opacity: 0,
-                                          scale: 0.8,
-                                          y: -10,
-                                        }}
-                                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                                        exit={{ opacity: 0, scale: 0.8 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="absolute z-50 bg-white rounded-md sm:rounded-lg shadow-xl border sm:border-2 border-gray-200 p-1 sm:p-2"
-                                        style={{
-                                          left: "50%",
-                                          transform: "translateX(-50%)",
-                                          top: "100%",
-                                          marginTop: "2px",
-                                          minWidth: "80px",
-                                        }}
-                                      >
-                                        {shifts.map((s, idx) => {
-                                          const isSelected =
-                                            animationSequence[animationCount]
-                                              ?.shift === s;
-                                          return (
-                                            <motion.div
-                                              key={s}
-                                              initial={{ opacity: 0, x: -10 }}
-                                              animate={{
-                                                opacity: 1,
-                                                x: 0,
-                                                backgroundColor: isSelected
-                                                  ? getShiftColor(s).split(
-                                                      " ",
-                                                    )[0]
-                                                  : undefined,
-                                              }}
-                                              transition={{ delay: idx * 0.15 }}
-                                              className={`px-2 sm:px-3 py-1 sm:py-2 mb-0.5 sm:mb-1 text-[9px] sm:text-xs rounded cursor-pointer ${getShiftColor(s)} ${
-                                                isSelected
-                                                  ? "ring-1 sm:ring-2 ring-[#24D9DC]"
-                                                  : ""
-                                              } transition-all duration-300`}
-                                            >
-                                              {s}
-                                            </motion.div>
-                                          );
-                                        })}
-                                      </motion.div>
-                                    );
-                                  })()}
+                                {showDropdown && selectedCell === key && (
+                                  <motion.div
+                                    initial={{
+                                      opacity: 0,
+                                      scale: 0.8,
+                                      y: -10,
+                                    }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.8 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="absolute z-50 bg-white rounded-md sm:rounded-lg shadow-xl border sm:border-2 border-gray-200 p-1 sm:p-2"
+                                    style={{
+                                      left: "50%",
+                                      transform: "translateX(-50%)",
+                                      top: "100%",
+                                      marginTop: "2px",
+                                      minWidth: "80px",
+                                    }}
+                                  >
+                                    {shifts.map((s, idx) => {
+                                      const isSelected =
+                                        animationSequence[animationCount]
+                                          ?.shift === s;
+                                      return (
+                                        <motion.div
+                                          key={s}
+                                          initial={{ opacity: 0, x: -10 }}
+                                          animate={{
+                                            opacity: 1,
+                                            x: 0,
+                                            backgroundColor: isSelected
+                                              ? getShiftColor(s).split(" ")[0]
+                                              : undefined,
+                                          }}
+                                          transition={{ delay: idx * 0.15 }}
+                                          className={`px-2 sm:px-3 py-1 sm:py-2 mb-0.5 sm:mb-1 text-[9px] sm:text-xs rounded cursor-pointer ${getShiftColor(s)} ${
+                                            isSelected
+                                              ? "ring-1 sm:ring-2 ring-[#24D9DC]"
+                                              : ""
+                                          } transition-all duration-300`}
+                                        >
+                                          {s}
+                                        </motion.div>
+                                      );
+                                    })}
+                                  </motion.div>
+                                )}
                               </div>
                             </td>
                           );

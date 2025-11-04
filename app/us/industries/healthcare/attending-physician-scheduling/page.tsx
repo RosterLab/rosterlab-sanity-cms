@@ -11,19 +11,19 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Senior Medical Officer Rostering Software - RosterLab",
+    title: "Attending Physician Scheduling Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant SMO rosters that maintain safe staffing ratios and respect union rules.",
+      "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
     alternates: {
       canonical:
-        "https://rosterlab.com/industries/healthcare/senior-medical-officer-rostering",
+        "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
     },
     openGraph: {
-      title: "Senior Medical Officer Rostering Software - RosterLab",
+      title: "Attending Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant SMO rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/senior-medical-officer-rostering",
+      url: "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
       images: [
         {
           url: "/images/us-images/smo-scheduling.jpg",
@@ -34,38 +34,39 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Senior Medical Officer Rostering Software - RosterLab",
+      title: "Attending Physician Scheduling Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant SMO rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
       images: ["/images/us-images/smo-scheduling.jpg"],
     },
   },
-  "/industries/healthcare/senior-medical-officer-rostering",
+  "/us/industries/healthcare/attending-physician-scheduling",
 );
 
 const faqItems = [
   {
     question:
-      "How does RosterLab handle SMOs working across public and private sectors?",
+      "How does RosterLab handle attending physicians working across multiple facilities?",
     answer:
-      "RosterLab allows SMOs to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. It supports mixed FTE arrangements, ensuring rosters adapt to SMOs' commitments rather than dictating them.",
-  },
-  {
-    question: "Can SMOs still maintain autonomy over their rosters?",
-    answer:
-      "Absolutely. RosterLab empowers SMOs to put in their availability through self-scheduling. SMOs maintain the level of autonomy they're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
+      "RosterLab allows attending physicians to inform their availability across multiple facilities. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between hospital work and private practice. It supports mixed FTE arrangements, ensuring schedules adapt to physicians' commitments rather than dictating them.",
   },
   {
     question:
-      "How does RosterLab handle individual SMO preferences and constraints?",
+      "Can attending physicians still maintain autonomy over their schedules?",
     answer:
-      "The system is built for high personalisation and flexibility. SMOs can input their preferences, leave requests, and unavailability. Each SMO's requests are honoured while maintaining departmental coverage and fairness.",
+      "Absolutely. RosterLab empowers attending physicians to put in their availability through self-scheduling. Physicians maintain the level of autonomy they're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
   },
   {
     question:
-      "Is RosterLab easy to transition to for SMOs who value stability?",
+      "How does RosterLab handle individual physician preferences and constraints?",
     answer:
-      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be worried about using new software. It preserves your existing rostering culture and established practices while eliminating manual administrative burden.",
+      "The system is built for high personalization and flexibility. Attending physicians can input their preferences, leave requests, and unavailability. Each physician's requests are honored while maintaining departmental coverage and fairness.",
+  },
+  {
+    question:
+      "Is RosterLab easy to transition to for physicians who value stability?",
+    answer:
+      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be worried about using new software. It preserves your existing scheduling culture and established practices while eliminating manual administrative burden.",
   },
 ];
 
@@ -79,9 +80,9 @@ export default function SeniorMedicalOfficerRosteringPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Personalised
+                  Flexible, Personalized
                 </span>{" "}
-                SMO Rosters
+                Attending Physician Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Balance work commitments, personal preferences, and department
@@ -120,7 +121,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   Retain full control by reviewing, adjusting, & approving
-                  rosters
+                  schedules
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -158,26 +159,27 @@ export default function SeniorMedicalOfficerRosteringPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/case-studies"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Read Case Studies
+                  View Pricing
                 </Button>
               </div>
             </div>
-            <div className="relative">
+            {/* Desktop only: Image in right column */}
+            <div className="hidden lg:block relative">
               <Image
-                src="/images/illustration/smo.svg"
-                alt="SMO rostering software interface"
+                src="/images/us-images/smo-scheduling.jpg"
+                alt="Attending Physicianrostering software interface"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
@@ -189,15 +191,15 @@ export default function SeniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              SMO Rostering That Respects Your Time
+              Attending Physician Scheduling That Respects Your Time
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built for senior medical officers who value autonomy, flexibility,
+              Built for attending physicians who value autonomy, flexibility,
               and work-life balance across multiple commitments.
             </p>
           </div>
 
-          {/* AI Rostering Image */}
+          {/* AI Scheduling Image */}
           <div className="mb-16 max-w-4xl mx-auto">
             <Image
               src="/images/generating.webp"
@@ -227,11 +229,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Happier Senior Doctors
+                Happier Senior Physicians
               </h3>
               <p className="text-gray-600">
                 Reduce scheduling stress and administrative burden. Spend more
-                time on patient care and less time managing complex rosters.
+                time on patient care and less time managing complex schedules.
               </p>
             </div>
 
@@ -282,7 +284,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Manage Multi-Site Commitments
               </h3>
               <p className="text-gray-600">
-                Reduce scheduling conflicts by co-ordinating responsibilities
+                Reduce scheduling conflicts by coordinating responsibilities
                 across multiple locations with accuracy and compliance.
               </p>
             </div>
@@ -291,7 +293,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="order-2 lg:order-1">
@@ -299,7 +301,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Built for Senior Medical Officer Needs
+                Built for Attending Physician Needs
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -320,7 +322,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalised SMO Rosters
+                      Personalized Attending Physician Schedules
                     </h4>
                     <p className="text-gray-600">
                       Set your individual constraints within seconds for
@@ -423,10 +425,10 @@ export default function SeniorMedicalOfficerRosteringPage() {
           {/* CTA Button */}
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
-              href="/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
-              Learn about AI Rostering
+              Learn about AI Scheduling
             </Button>
           </div>
         </Container>
@@ -436,13 +438,14 @@ export default function SeniorMedicalOfficerRosteringPage() {
       <section className="py-20 bg-white">
         <Container>
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            SMO Rostering Case Study
+            Attending Physician Scheduling Case Study
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Case Study - Left */}
             <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Sydney Tertiary Hospital Saves 300 Hours with SMO Rostering
+                Sydney Tertiary Hospital Saves 300 Hours with Attending
+                Physician Scheduling
               </h3>
               <div className="space-y-4 mb-6">
                 <div className="flex items-start">
@@ -498,14 +501,17 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </div>
               </div>
 
-              <div className="text-center mt-8">
-                <Button
-                  href="/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Read Full Case Study
-                </Button>
-              </div>
+              <blockquote className="mt-8 bg-white border-l-4 border-teal-600 px-6 py-4 rounded-r-lg text-left shadow-sm">
+                <p className="text-gray-800 italic">
+                  “We used to manage lots of formulas across multiple
+                  spreadsheets. It worked - but it was incredibly
+                  time-consuming. With RosterLab, we're trading that for
+                  something smarter and more sustainable.”
+                </p>
+                <footer className="mt-3 text-sm font-semibold text-teal-700">
+                  Attending Physician
+                </footer>
+              </blockquote>
             </div>
 
             {/* Image - Right */}
@@ -522,16 +528,29 @@ export default function SeniorMedicalOfficerRosteringPage() {
         </Container>
       </section>
 
+      <section className="pt-4 pb-8 bg-white">
+        <Container>
+          <div className="text-center">
+            <Button
+              href="/us/tools/savings-calculator"
+              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+            >
+              View Savings Calculator
+            </Button>
+          </div>
+        </Container>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for SMO Rostering
+              Essential Features for Attending Physician Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of SMO term
-              rosters
+              Purpose-built tools that address the unique complexity of
+              attending physician term schedules
             </p>
           </div>
 
@@ -557,11 +576,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Automatic Roster Generation
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Automatically generate compliant rosters that enforce union
-                rules and requirements. Reduce roster admin by 90%.
+                Automatically generate compliant schedules that enforce union
+                rules and requirements. Reduce scheduling admin by 90%.
               </p>
               <a
-                href="/solutions/ai-roster-generator"
+                href="/us/solutions/ai-staff-schedule-maker"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -593,7 +612,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 academic commitments. Manage preferences directly from mobile.
               </p>
               <a
-                href="/feature/self-scheduling"
+                href="/us/feature/self-scheduling"
                 className="text-teal-600 hover:text-teal-700 font-medium text-sm"
               >
                 Learn more →
@@ -626,7 +645,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 compliance.
               </p>
               <a
-                href="/feature/rules-engine"
+                href="/us/feature/rules-engine"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -654,11 +673,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Leave Management
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Submit and track leave requests easily - maximise approved leave
+                Submit and track leave requests easily - maximize approved leave
                 while keeping it fair and fully covered.
               </p>
               <a
-                href="/feature/leave-requests"
+                href="/us/feature/time-off-requests"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -681,7 +700,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from SMOs
+              Questions we hear from attending physicians
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -693,24 +712,24 @@ export default function SeniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer SMO Rosters
+              Build Compliant, Fairer Attending Physician Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved SMO rostering, with
-              predictable, compliant and fair rosters.
+              Join departments that have improved attending physician
+              scheduling, with predictable, compliant and fair schedules.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 Book a Demo
               </Button>
               <Button
-                href="/tools/roi-calculator"
+                href="/us/tools/savings-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                See ROI Calculator
+                See Savings Calculator
               </Button>
             </div>
           </div>
@@ -720,10 +739,10 @@ export default function SeniorMedicalOfficerRosteringPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Senior Medical Officer Rostering" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare" },
+          { name: "Attending Physician Scheduling" },
         ]}
       />
     </SiteLayout>

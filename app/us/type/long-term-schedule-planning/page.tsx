@@ -11,18 +11,18 @@ import FairnessAcrossYearModule from "@/components/sections/animations/FairnessA
 
 export const metadata = withHreflang(
   {
-    title: "Long Roster Software - RosterLab",
+    title: "Long-Term Schedule Planning Software - RosterLab",
     description:
-      "Build your long roster with RosterLab. Automatically generate fair, compliant and flexible long rosters that save time and money.",
+      "Build your long-term schedule with RosterLab. Automatically generate fair, compliant and flexible long-term schedules that save time and money.",
     alternates: {
-      canonical: "https://rosterlab.com/type/long-roster",
+      canonical: "https://rosterlab.com/us/type/long-term-schedule-planning",
     },
     openGraph: {
-      title: "Long Roster Software - RosterLab",
+      title: "Long-Term Schedule Planning Software - RosterLab",
       description:
-        "Build your long roster with RosterLab. Automatically generate fair, compliant and flexible long rosters that save time and money.",
+        "Build your long-term schedule with RosterLab. Automatically generate fair, compliant and flexible long-term schedules that save time and money.",
       type: "website",
-      url: "https://rosterlab.com/type/long-roster",
+      url: "https://rosterlab.com/us/type/long-term-schedule-planning",
       images: [
         {
           url: "/images/us-images/long-term-scheduling.jpg",
@@ -33,34 +33,34 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Long Roster Software - RosterLab",
+      title: "Long-Term Schedule Planning Software - RosterLab",
       description:
-        "Build your long roster with RosterLab. Automatically generate fair, compliant and flexible long rosters that save time and money.",
+        "Build your long-term schedule with RosterLab. Automatically generate fair, compliant and flexible long-term schedules that save time and money.",
       images: ["/images/us-images/long-term-scheduling.jpg"],
     },
   },
-  "/type/long-roster",
+  "/us/type/long-term-schedule-planning",
 );
 
 const faqItems = [
   {
-    question: "What is a long roster?",
+    question: "What is a long-term schedule?",
     answer:
-      "Long rosters are typically used in smaller, senior departments, such as <a href='/industries/healthcare/radiology' class='text-teal-600 hover:text-teal-700 underline'>radiology</a>, where staffing numbers are limited and teams consist mainly of <a href='/industries/healthcare/senior-medical-officer-rostering' class='text-teal-600 hover:text-teal-700 underline'>senior medical officers (SMOs)</a>. They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
+      "Long-term schedules are typically used in smaller, senior departments, such as <a href='/us/industries/healthcare/radiology-scheduling' class='text-teal-600 hover:text-teal-700 underline'>radiology</a>, where staffing numbers are limited and teams consist mainly of <a href='/us/industries/healthcare/attending-physician-scheduling' class='text-teal-600 hover:text-teal-700 underline'>attending physicians</a>. They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
   },
   {
-    question: "How does AI make long roster planning more effective?",
+    question: "How does AI make long-term schedule planning more effective?",
     answer:
-      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered <a href='/feature/re-rostering' class='text-teal-600 hover:text-teal-700 underline'>re-rostering</a> adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
+      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered <a href='/us/feature/staff-rescheduling' class='text-teal-600 hover:text-teal-700 underline'>rescheduling</a> adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
   },
   {
-    question: "How does long roster planning work with RosterLab?",
+    question: "How does long-term schedule planning work with RosterLab?",
     answer:
-      "RosterLab's long roster scheduling supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term rosters (e.g., 6-week rosters) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful <a href='/feature/re-rostering' class='text-teal-600 hover:text-teal-700 underline'>re-rostering</a> features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
+      "RosterLab's long-term schedule planning supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term schedules (e.g., 6-week schedules) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful <a href='/us/feature/staff-rescheduling' class='text-teal-600 hover:text-teal-700 underline'>rescheduling</a> features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
   },
 ];
 
-export default function LongRosterPage() {
+export default function LongTermSchedulePlanningPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -72,11 +72,11 @@ export default function LongRosterPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Fair, Predictable
                 </span>{" "}
-                Long Rosters
+                Long-Term Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Plan long roster cycles with fair on-call and leave allocation
-                for small senior medical teams.
+                Plan long-term schedule cycles with fair on-call and leave
+                allocation for small senior medical teams.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -109,7 +109,7 @@ export default function LongRosterPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Re-roster with maintained fairness across the cycle
+                  Re-schedule with maintained fairness across the cycle
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -131,26 +131,26 @@ export default function LongRosterPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/tools/roi-calculator"
+                  href="/us/tools/savings-calculator"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  ROI Calculator
+                  Savings Calculator
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/long-roster.svg"
-                alt="Long roster scheduling dashboard"
+                src="/images/us-images/long-term-scheduling.jpg"
+                alt="Long-term schedule planning dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="hidden lg:block w-full h-auto rounded-lg shadow-2xl hover:shadow-3xl transition-shadow duration-300"
               />
             </div>
           </div>
@@ -166,7 +166,7 @@ export default function LongRosterPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               Perfect for departments where fairness over time matters more than
-              daily optimisation.
+              daily optimization.
             </p>
           </div>
 
@@ -214,7 +214,7 @@ export default function LongRosterPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Flexible Re-Rostering
+                Flexible Re-Scheduling
               </h3>
               <p className="text-gray-600">
                 Adjust specific periods when plans change while automatically
@@ -261,7 +261,7 @@ export default function LongRosterPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Long-term roster planning made simple
+                Long-term schedule planning made simple
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -370,7 +370,7 @@ export default function LongRosterPage() {
                       Adapt To Changes Without Starting Over
                     </h3>
                     <p className="text-gray-600">
-                      Easily re-roster selected periods when availability
+                      Easily re-schedule selected periods when availability
                       changes. The system automatically preserves overall
                       fairness across the full period.
                     </p>
@@ -379,10 +379,10 @@ export default function LongRosterPage() {
               </div>
               <div className="mt-8 text-center">
                 <Button
-                  href="/solutions/ai-roster-generator"
+                  href="/us/solutions/ai-staff-schedule-maker"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
-                  Learn about AI Rostering
+                  Learn about AI Scheduling
                 </Button>
               </div>
             </div>
@@ -398,7 +398,7 @@ export default function LongRosterPage() {
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              Your Long Roster Planning Workflow
+              Your Long-Term Schedule Planning Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               From annual planning to flexible adjustments, manage leave and
@@ -419,9 +419,9 @@ export default function LongRosterPage() {
                       Define Planning Period
                     </h3>
                     <p className="text-gray-600">
-                      Set your long roster timeframe (3+ months to a year),
-                      on-call requirements, and fairness targets for weekend and
-                      holiday coverage distribution.
+                      Set your long-term schedule timeframe (3+ months to a
+                      year), on-call requirements, and fairness targets for
+                      weekend and holiday coverage distribution.
                     </p>
                   </div>
                 </div>
@@ -438,9 +438,9 @@ export default function LongRosterPage() {
                       Input Availability and Patterns
                     </h3>
                     <p className="text-gray-600">
-                      Add SMO availability, teaching commitments, private
-                      practice schedules, and leave preferences for the planning
-                      period.
+                      Add attending physician availability, teaching
+                      commitments, private practice schedules, and leave
+                      preferences for the planning period.
                     </p>
                   </div>
                 </div>
@@ -473,7 +473,7 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate Long Roster
+                      Generate Long-Term Schedule
                     </h3>
                     <p className="text-gray-600">
                       AI creates fair leave and on-call allocations for the
@@ -492,10 +492,10 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Re-Roster as Needed
+                      Re-Schedule as Needed
                     </h3>
                     <p className="text-gray-600">
-                      When availability changes, re-roster specific periods
+                      When availability changes, re-schedule specific periods
                       while automatically maintaining overall fairness across
                       the entire year. Adapt without starting over.
                     </p>
@@ -511,11 +511,12 @@ export default function LongRosterPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Feed Into Other Rosters
+                      Feed Into Other Schedules
                     </h3>
                     <p className="text-gray-600">
-                      Use long roster leave and on-call allocations as inputs
-                      for your main roster that handle detailed daily shifts.
+                      Use long-term schedule leave and on-call allocations as
+                      inputs for your main schedule that handle detailed daily
+                      shifts.
                     </p>
                   </div>
                 </div>
@@ -525,10 +526,10 @@ export default function LongRosterPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your on-call rostering?
+                Ready to streamline your on-call scheduling?
               </p>
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
               >
                 See How It Works
@@ -543,7 +544,7 @@ export default function LongRosterPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Long Roster Software for Senior Medical Teams
+              Long-Term Schedule Software for Senior Medical Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Designed for small departments where fairness, predictability, and
@@ -551,7 +552,7 @@ export default function LongRosterPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/automated-rostering" className="block">
+            <Link href="/us/feature/auto-scheduling" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -572,8 +573,9 @@ export default function LongRosterPage() {
                   Automatically Generate
                 </h3>
                 <p className="text-base text-gray-600 mb-3 flex-grow">
-                  Generate long rosters in minutes instead of days. Save hours
-                  of manual planning while ensuring equitable distribution.
+                  Generate long-term schedules in minutes instead of days. Save
+                  hours of manual planning while ensuring equitable
+                  distribution.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
@@ -581,7 +583,7 @@ export default function LongRosterPage() {
               </div>
             </Link>
 
-            <Link href="/feature/rules-engine" className="block">
+            <Link href="/us/feature/rules-engine" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -611,7 +613,10 @@ export default function LongRosterPage() {
               </div>
             </Link>
 
-            <Link href="/solutions/ai-roster-generator" className="block">
+            <Link
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="block"
+            >
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -641,7 +646,7 @@ export default function LongRosterPage() {
               </div>
             </Link>
 
-            <Link href="/feature/leave-requests" className="block">
+            <Link href="/us/feature/time-off-requests" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -680,10 +685,10 @@ export default function LongRosterPage() {
         <Container>
           <div className="text-center mt-0">
             <Button
-              href="/case-studies"
+              href="/us/pricing"
               className="bg-teal-600 text-white hover:bg-teal-700"
             >
-              View Case Studies
+              View Pricing
             </Button>
           </div>
         </Container>
@@ -697,7 +702,7 @@ export default function LongRosterPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about long rosters
+              Common questions about long-term schedules
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -709,7 +714,7 @@ export default function LongRosterPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Long Roster Planning
+              Transform Your Long-Term Schedule Planning
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join senior medical teams planning fairly and efficiently across
@@ -717,13 +722,13 @@ export default function LongRosterPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/staff-rostering-interactive-demo"
+                href="/us/product-tour"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action
               </Button>
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
                 Book a Demo
@@ -736,9 +741,12 @@ export default function LongRosterPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Type", url: "/type" },
-          { name: "On-Call Roster", url: "/type/on-call-roster" },
+          { name: "Home", url: "/us" },
+          { name: "Type", url: "/us/type" },
+          {
+            name: "Long-Term Schedule Planning",
+            url: "/us/type/long-term-schedule-planning",
+          },
         ]}
       />
     </SiteLayout>

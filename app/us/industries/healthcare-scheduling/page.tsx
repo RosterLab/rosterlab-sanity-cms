@@ -9,7 +9,6 @@ import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
-import { urlFor } from "@/sanity/lib/client";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -69,51 +68,12 @@ const recentCaseStudiesQuery = groq`
   }
 `;
 
-const testimonials = [
-  {
-    quote:
-      "It's not just about saving hours. It's about confidence in the schedule, about fairness, and about giving senior clinicians time back for patient care - not spreadsheets.",
-    author: "Emergency Physician",
-    company: "South Eastern Sydney Area Health Services",
-  },
-  {
-    quote:
-      "Scheduling would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
-    author: "Mike",
-    company: "Associate Clinical Manager Radiology",
-  },
-  {
-    quote:
-      "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical schedules!",
-    author: "Peter",
-    company: "Senior Registrar ICU, Western Australia",
-  },
-  {
-    quote:
-      "If Rosterlab can help with our complicated scheduling needs, we are confident it will work for anyone.",
-    author: "Judy Harris",
-    company: "Practice Manager, Dargaville Hospital",
-  },
-  {
-    quote:
-      "We wanted more continuity of care built into the schedules, and RosterLab was easily able to incorporate that into the schedules they generated for us.",
-    author: "Rebecca",
-    company: "Staff Specialist Neonatologist, RPA Newborn Care",
-  },
-  {
-    quote:
-      "Since using RosterLab, I've felt that the schedules are better for my circadian rhythm, with less up-and-down cycling.",
-    author: "Anthea",
-    company: "MIT, Hawke's Bay Hospital",
-  },
-];
-
 export default async function HealthcarePage() {
   const { isEnabled } = await draftMode();
   const client = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const caseStudies = await client.fetch(recentCaseStudiesQuery);
+  await client.fetch(recentCaseStudiesQuery);
   return (
     <SiteLayout>
       {/* Hero Section */}

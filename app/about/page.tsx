@@ -4,8 +4,6 @@ import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
-import { getVariant } from "@/lib/amplitude/experiment-server";
-import { ExperimentFlags } from "@/lib/amplitude/experiment-utils";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
@@ -47,12 +45,6 @@ export const metadata = withHreflang(
 );
 
 export default async function AboutPage() {
-  // A/B Test: Header text based on experiment variant
-  const headerVariant = await getVariant(ExperimentFlags.ABOUT_PAGE_HEADER);
-  const headerText =
-    headerVariant?.value === "enabled"
-      ? "About the RosterLab Team"
-      : "The RosterLab Story";
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -62,33 +54,16 @@ export default async function AboutPage() {
             {/* Text Content */}
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                {headerText === "About the RosterLab Team" ? (
-                  <>
-                    About the RosterLab{" "}
-                    <span
-                      className="text-transparent bg-clip-text"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                      }}
-                    >
-                      Team
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    The RosterLab{" "}
-                    <span
-                      className="text-transparent bg-clip-text"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                      }}
-                    >
-                      Story
-                    </span>
-                  </>
-                )}
+                The RosterLab{" "}
+                <span
+                  className="text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  }}
+                >
+                  Story
+                </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 We transform the way rostering works, making it faster, safer,
