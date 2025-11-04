@@ -46,17 +46,17 @@ const faqItems = [
   {
     question: "What is a long-term schedule?",
     answer:
-      "Long-term schedules are typically used in smaller, senior departments, such as <a href='/us/industries/healthcare/radiology' class='text-teal-600 hover:text-teal-700 underline'>radiology</a>, where staffing numbers are limited and teams consist mainly of <a href='/us/industries/healthcare/attending-physician-scheduling' class='text-teal-600 hover:text-teal-700 underline'>attending physicians</a>. They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
+      "Long-term schedules are typically used in smaller, senior departments, such as <a href='/us/industries/healthcare/radiology-scheduling' class='text-teal-600 hover:text-teal-700 underline'>radiology</a>, where staffing numbers are limited and teams consist mainly of <a href='/us/industries/healthcare/attending-physician-scheduling' class='text-teal-600 hover:text-teal-700 underline'>attending physicians</a>. They're designed to manage on-call and leave allocations over extended periods (often a year), rather than handling day-to-day shift assignments.",
   },
   {
     question: "How does AI make long-term schedule planning more effective?",
     answer:
-      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered <a href='/us/feature/re-scheduling' class='text-teal-600 hover:text-teal-700 underline'>re-scheduling</a> adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
+      "AI automates the complex task of balancing fairness over extended periods (3+ months to a year) with flexibility. In small senior teams where fairness in distributing less desirable duties (like weekend on-calls) is critical, AI ensures equitable distribution while accommodating part-time commitments. When staff schedules and preferences change, AI-powered <a href='/us/feature/staff-rescheduling' class='text-teal-600 hover:text-teal-700 underline'>rescheduling</a> adjusts specific periods while automatically maintaining overall fairness across the entire year. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team goodwill.",
   },
   {
     question: "How does long-term schedule planning work with RosterLab?",
     answer:
-      "RosterLab's long-term schedule planning supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term schedules (e.g., 6-week schedules) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful <a href='/us/feature/re-scheduling' class='text-teal-600 hover:text-teal-700 underline'>re-scheduling</a> features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
+      "RosterLab's long-term schedule planning supports planning for 3+ months up to a full year ahead, focusing on leave and on-call allocations. These long-term plans then inform term schedules (e.g., 6-week schedules) that handle detailed shift assignments. The system ensures fair distribution of weekend and on-call duties across the full period, with powerful <a href='/us/feature/staff-rescheduling' class='text-teal-600 hover:text-teal-700 underline'>rescheduling</a> features that let you adjust specific periods while maintaining overall fairness. This is essential when staff preferences or commitments change throughout the year.",
   },
 ];
 
@@ -722,7 +722,7 @@ export default function LongTermSchedulePlanningPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/us/staff-scheduling-interactive-demo"
+                href="/us/product-tour"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action

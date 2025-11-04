@@ -22,10 +22,6 @@ export const usNavItems = [
         title: "Auto Schedule Generation",
         link: "/us/feature/auto-scheduling",
       },
-      {
-        title: "Rules Engine",
-        link: "/us/feature/rules-engine",
-      },
       { title: "Open Shifts", link: "/us/feature/open-shifts" },
       {
         title: "Shift Swaps & Trades",
@@ -34,6 +30,10 @@ export const usNavItems = [
       { title: "Time Off Requests", link: "/us/feature/time-off-requests" },
       { title: "Staff Preferences", link: "/us/feature/self-scheduling" },
       { title: "Rescheduling", link: "/us/feature/staff-rescheduling" },
+      {
+        title: "Rules Engine",
+        link: "/us/feature/rules-engine",
+      },
     ],
   },
   {

@@ -442,7 +442,7 @@ export default function OnCallSchedulingPage() {
               </div>
             </Link>
 
-            <Link href="/us/feature/staff-rescheduling" className="block">
+            <Link href="/us/feature/rules-engine" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg

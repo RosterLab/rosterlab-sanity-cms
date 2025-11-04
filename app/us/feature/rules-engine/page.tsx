@@ -79,9 +79,9 @@ export default function RulesAndCompliancePage() {
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Create a mix of fixed and flexible rules that set the
-                  requirements and constraints for how your schedule is built,
-                  helping you manage fatigue, ensure fairness, and meet all
-                  contractual and union demands.
+                  requirements and constraints for how your schedule is built.
+                  This allows you to manage fatigue, ensure fairness, and meet
+                  all contractual and union demands.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -313,14 +313,14 @@ export default function RulesAndCompliancePage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Prevent overstaffing and understaffing for each shift
+                      Prevent unsafe staffing levels for every shift
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-teal-600 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Ensure appropriate skill and seniority mix for safer
-                      shifts
+                      Ensure appropriate skill and seniority mix for an optimal
+                      workforce
                     </span>
                   </li>
                   <li className="flex items-start">

@@ -677,7 +677,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 while keeping it fair and fully covered.
               </p>
               <a
-                href="/us/feature/leave-requests"
+                href="/us/feature/time-off-requests"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
