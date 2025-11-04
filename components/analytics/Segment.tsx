@@ -352,6 +352,7 @@ export const trackFormSubmit = (
 };
 
 // Enhanced button click tracking with automatic event type detection
+// Now uses standardized "cta_clicked" event name for consistent attribution
 export const trackSmartButtonClick = (
   buttonText: string,
   href: string,
@@ -361,77 +362,94 @@ export const trackSmartButtonClick = (
   // Normalize the URL for comparison
   const normalizedHref = href.toLowerCase().trim();
 
-  // Determine event type and properties based on destination
-  let eventName: string;
+  // Determine CTA type and name based on destination
+  let ctaType: string;
+  let ctaName: string;
   const eventProperties: Record<string, any> = {
     button_text: buttonText,
     destination_url: href,
-    location: location,
+    page_location: location,
     ...additionalProperties,
   };
 
-  // Map URLs to specific event types
+  // Map URLs to specific CTA types and generate descriptive names
   if (
     normalizedHref.includes("app.rosterlab.com/signup") ||
     normalizedHref === "https://app.rosterlab.com/signup"
   ) {
-    eventName = "Free Signup Button Clicked";
-    eventProperties.cta_type = "signup";
+    ctaType = "signup";
+    ctaName = location
+      ? `${location}: ${buttonText}`
+      : `Free Signup: ${buttonText}`;
     eventProperties.external = true;
   } else if (
     normalizedHref === "/book-a-demo" ||
     normalizedHref.includes("/book-a-demo")
   ) {
-    eventName = "Book Demo Button Clicked";
-    eventProperties.cta_type = "demo";
+    ctaType = "demo";
+    ctaName = location
+      ? `${location}: ${buttonText}`
+      : `Book Demo: ${buttonText}`;
     eventProperties.external = false;
   } else if (
     normalizedHref === "/staff-rostering-interactive-demo" ||
     normalizedHref.includes("/staff-rostering-interactive-demo")
   ) {
-    eventName = "See Example Button Clicked";
-    eventProperties.cta_type = "example";
+    ctaType = "example";
+    ctaName = location
+      ? `${location}: ${buttonText}`
+      : `Interactive Demo: ${buttonText}`;
     eventProperties.demo_type = "interactive";
     eventProperties.external = false;
   } else if (
     normalizedHref === "/contact" ||
     normalizedHref.includes("/contact")
   ) {
-    eventName = "Contact Us Button Clicked";
-    eventProperties.cta_type = "contact";
+    ctaType = "contact";
+    ctaName = location
+      ? `${location}: ${buttonText}`
+      : `Contact: ${buttonText}`;
     eventProperties.external = false;
   } else if (
     normalizedHref === "https://app.rosterlab.com" ||
     normalizedHref === "https://app.rosterlab.com/"
   ) {
-    eventName = "Login Button Clicked";
-    eventProperties.cta_type = "login";
+    ctaType = "login";
+    ctaName = location ? `${location}: ${buttonText}` : `Login: ${buttonText}`;
     eventProperties.external = true;
   } else if (
     normalizedHref === "/pricing" ||
     normalizedHref.includes("/pricing")
   ) {
-    eventName = "View Pricing Button Clicked";
-    eventProperties.cta_type = "pricing";
+    ctaType = "pricing";
+    ctaName = location
+      ? `${location}: ${buttonText}`
+      : `Pricing: ${buttonText}`;
     eventProperties.external = false;
   } else if (normalizedHref.includes("mailto:")) {
-    eventName = "Email Button Clicked";
-    eventProperties.cta_type = "email";
+    ctaType = "email";
+    ctaName = location ? `${location}: ${buttonText}` : `Email: ${buttonText}`;
     eventProperties.email_address = normalizedHref.replace("mailto:", "");
     eventProperties.external = true;
   } else if (
     normalizedHref.includes("calendly.com") ||
     normalizedHref.includes("meetings.")
   ) {
-    eventName = "Schedule Meeting Button Clicked";
-    eventProperties.cta_type = "meeting";
+    ctaType = "meeting";
+    ctaName = location
+      ? `${location}: ${buttonText}`
+      : `Schedule Meeting: ${buttonText}`;
     eventProperties.external = true;
   } else {
     // Default to generic button click with smart categorization
-    eventName = "Button Clicked";
-    eventProperties.cta_type = "other";
+    ctaType = "other";
+    ctaName = location ? `${location}: ${buttonText}` : buttonText;
     eventProperties.external = normalizedHref.startsWith("http");
   }
+
+  // Add standardized properties
+  eventProperties.cta_name = ctaName;
+  eventProperties.cta_type = ctaType;
 
   // Add current page path if available
   if (typeof window !== "undefined") {
@@ -439,10 +457,11 @@ export const trackSmartButtonClick = (
     eventProperties.current_page_url = window.location.href;
   }
 
-  // Send the event
-  console.log("trackSmartButtonClick firing:", {
-    eventName,
+  // Send the standardized cta_clicked event
+  console.log("trackSmartButtonClick firing cta_clicked:", {
+    ctaName,
+    ctaType,
     eventProperties,
   });
-  analytics.track(eventName, eventProperties);
+  analytics.track("cta_clicked", eventProperties);
 };

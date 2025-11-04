@@ -6,6 +6,7 @@ import { HiCheck, HiMinus, HiInformationCircle } from "react-icons/hi";
 import React from "react";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import PricingPageTracker from "@/components/analytics/PricingPageTracker";
 
 export const metadata = withHreflang(
   {
@@ -296,6 +297,7 @@ const faqItems = [
 export default function PricingPage() {
   return (
     <SiteLayout>
+      <PricingPageTracker />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-x-hidden">
         {/* Hero Section */}
         <div className="py-20">
