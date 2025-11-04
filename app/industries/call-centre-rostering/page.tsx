@@ -158,7 +158,7 @@ export default function CallCentresPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/call-center.svg"
+                src="/images/illustration/call-centre-rostering.svg"
                 alt="Call centre roster scheduling dashboard"
                 width={600}
                 height={400}
