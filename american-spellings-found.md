@@ -5,18 +5,21 @@ This document lists all American spellings found that need to be changed to Brit
 ## Summary of American Spellings Found
 
 ### 1. "color" → "colour"
+
 - **tailwind.config.ts**:
   - Line 11: `colors: {` (in theme configuration)
 - **Multiple CSS files**: Used in Tailwind CSS classes like `text-gray-600`, `bg-blue-500`, etc.
 - **Common usage**: The word "color" appears in 46+ files, mostly in CSS class names
 
 ### 2. "center" → "centre"
+
 - **tailwind.config.ts**:
   - Line 53: `center: true` (in container configuration)
 - **Multiple files**: Used in CSS classes like `text-center`, `items-center`, `justify-center`
 - **Common usage**: The word "center" appears in 79+ files, mostly in CSS positioning
 
 ### 3. "optimize" → "optimise"
+
 - **Multiple content files**:
   - `/app/feature/auto-roster-generation/page.tsx`: Lines 11, 14, 26 - "optimized rosters"
   - `/app/feature/leave-requests/page.tsx`: Line 337 - "mobile-optimized interface"
@@ -35,6 +38,7 @@ This document lists all American spellings found that need to be changed to Brit
   - `/sanity/fixtures/posts.ts`: Line 58 - "workforce optimization"
 
 ### 4. "analyze" → "analyse"
+
 - **Multiple content files**:
   - `/app/feature/preferences-rules/page.tsx`: Line 154 - "AI analyzing preferences"
   - `/sanity/fixtures/posts.ts`: Line 30 - "analyzing historical data"
@@ -42,6 +46,7 @@ This document lists all American spellings found that need to be changed to Brit
   - Various other files use "analyze" in content
 
 ### 5. "organize" → "organise"
+
 - **Multiple content files**:
   - `/app/industries/healthcare/aged-care/page.tsx`: Line 401 - "organizational rules"
   - `/app/careers/page.tsx`: Line 104 - "healthcare organizations"
@@ -57,10 +62,12 @@ This document lists all American spellings found that need to be changed to Brit
   - `/README.md`: Line 106 - "Content organization"
 
 ### 6. "behavior" → "behaviour"
+
 - **components/blog/TableOfContents.tsx**:
   - Line 82: `behavior: 'smooth'` (in scrollIntoView options)
 
 ### 7. "gray" → "grey"
+
 - **Multiple files**: Used extensively in Tailwind CSS classes
   - Common patterns: `text-gray-600`, `bg-gray-100`, `border-gray-200`
   - Found in 56+ files throughout the codebase
@@ -69,6 +76,7 @@ This document lists all American spellings found that need to be changed to Brit
     - Many UI components use gray color scales
 
 ### 8. "customize" → "customise"
+
 - Found in 2 files:
   - `/app/feature/leave-requests/page.tsx`
   - `/app/feature/auto-roster-generation/page.tsx`
@@ -76,6 +84,7 @@ This document lists all American spellings found that need to be changed to Brit
 ## Files Not Containing American Spellings Searched For
 
 The following American spellings were searched but not found in the codebase:
+
 - dialog → dialogue
 - fulfill → fulfil
 - enrollment → enrolment
@@ -114,3 +123,87 @@ The following American spellings were searched but not found in the codebase:
    - Content text using "organize" → "organise"
    - Content text using "analyze" → "analyse"
    - The `behavior: 'smooth'` → `behaviour: 'smooth'` (if the API supports it)
+
+## Important Notes for US Localization
+
+### Why "Rostering" → "Scheduling" Conversions May Be Missed
+
+When using automated find-and-replace (like the `replace_all` functionality), compound words without spaces can be missed:
+
+**Examples of missed conversions:**
+
+- `SMORostering` → Should be `SMO Scheduling` (missing space + rostering conversion)
+- `PhysicianRostering` → Should be `Physician Scheduling`
+- `SeniorMedicalOfficerRostering` → Should be `Senior Medical Officer Scheduling`
+
+**Why this happens:**
+
+- Simple replace operations look for exact string matches
+- `replace_all` for "Rostering" won't match "PhysicianRostering" if there's no space
+- When replacing compound terms (like "SMO" → "Attending Physician"), the tool may not handle adjacent words properly
+
+**Solution:**
+After automated replacements, manually search for:
+
+1. Compound words ending in "Rostering" (search: `[A-Z]Rostering`)
+2. Compound words ending in "Roster" (search: `[A-Z]Roster`)
+3. Missing spaces in multi-word replacements
+
+**Prevention for future conversions:**
+
+- When using replace_all, do multiple passes:
+  1. First pass: Replace terminology (e.g., "SMO" → "Attending Physician")
+  2. Second pass: Replace rostering terminology (e.g., "Rostering" → "Scheduling")
+  3. Third pass: Manual review for compound words and spacing issues
+
+### US-Specific Terminology Changes for CTAs
+
+When localizing pages for the US market (`/us/` routes), certain terminology and links need to be updated:
+
+**ROI Calculator → Savings Calculator:**
+
+- Button text: "ROI Calculator" → "Savings Calculator"
+- Button text: "See ROI Calculator" → "See Savings Calculator"
+- Link URL: `/tools/roi-calculator` → `/us/tools/savings-calculator`
+
+**Why this matters:**
+
+- "ROI Calculator" is the AU/NZ terminology
+- "Savings Calculator" is preferred for US market
+- The URL path must also change to match the US localized route
+
+**How to check:**
+After localization, search for:
+
+1. "ROI Calculator" (case-sensitive)
+2. `/tools/roi-calculator` (in href attributes)
+3. Replace with "Savings Calculator" and `/us/tools/savings-calculator`
+
+**Read Case Studies → View Pricing:**
+
+- Button text: "Read Case Studies" → "View Pricing"
+- Link URL: `/case-studies` → `/us/pricing`
+
+**Why this matters:**
+
+- US market prefers direct pricing information over case studies in hero CTAs
+- Drives users to conversion-focused pages faster
+
+**Learn about AI Rostering → Learn about AI Scheduling:**
+
+- Button text: "Learn about AI Rostering" → "Learn about AI Scheduling"
+- Link URL: `/solutions/ai-roster-generator` → `/us/solutions/ai-staff-schedule-maker`
+- Also applies to "Learn more →" links in feature cards
+
+**Why this matters:**
+
+- "Rostering" terminology needs to be "Scheduling" for US market
+- URL path must match the US localized solution page name
+- Maintains consistency across all CTA language
+
+**Other US CTA considerations:**
+
+- "Book a Demo" vs "Book a demo" - check capitalization consistency
+- Ensure all internal links use `/us/` prefix
+- Check that "rostering" hasn't been missed in CTA buttons
+- Hero secondary CTA should typically be "View Pricing" not "Read Case Studies"

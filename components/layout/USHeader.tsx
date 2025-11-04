@@ -30,6 +30,10 @@ export const usNavItems = [
       { title: "Time Off Requests", link: "/us/feature/time-off-requests" },
       { title: "Staff Preferences", link: "/us/feature/self-scheduling" },
       { title: "Rescheduling", link: "/us/feature/staff-rescheduling" },
+      {
+        title: "Rules Engine",
+        link: "/us/feature/rules-engine",
+      },
     ],
   },
   {
@@ -55,6 +59,11 @@ export const usNavItems = [
         title: "Physician Scheduling",
         link: "/us/industries/healthcare/physician-scheduling",
         description: "Compliant and flexible staff schedules for physicians",
+      },
+      {
+        title: "On-Call Scheduling",
+        link: "/us/type/on-call-scheduling",
+        description: "Maintain rapid response coverage across every specialty",
       },
     ],
   },
