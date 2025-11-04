@@ -1,6 +1,7 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
+import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
@@ -8,6 +9,11 @@ import { getVariant } from "@/lib/amplitude/experiment-server";
 import { ExperimentFlags } from "@/lib/amplitude/experiment-utils";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import { getClient, urlFor } from "@/sanity/lib/client";
+import { draftMode } from "next/headers";
+import { validatedToken } from "@/sanity/lib/token";
+import { groq } from "next-sanity";
+import { formatDate } from "@/lib/utils";
 
 export const metadata = withHreflang(
   {
@@ -46,22 +52,59 @@ export const metadata = withHreflang(
   "/why-rosterlab",
 );
 
+const recentCaseStudiesQuery = groq`
+  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{
+      name
+    },
+    categories[]->{
+      title,
+      slug
+    }
+  }
+`;
+
+type CaseStudy = {
+  _id: string;
+  title: string;
+  slug?: { current?: string };
+  excerpt?: string;
+  mainImage?: { asset?: { _ref: string }; alt?: string };
+  publishedAt?: string;
+  author?: { name?: string };
+};
+
 export default async function WhyRosterLabPage() {
   // A/B Test: Header text based on experiment variant
   const headerVariant = await getVariant(ExperimentFlags.ABOUT_PAGE_HEADER);
   const headerText =
     headerVariant?.value === "enabled"
-      ? "Why Choose RosterLab"
-      : "Why Choose RosterLab";
+      ? "Why Choose RosterLab?"
+      : "Why Choose RosterLab?";
+  const { isEnabled } = await draftMode();
+  const client = getClient(
+    isEnabled && validatedToken ? { token: validatedToken } : undefined,
+  );
+  const caseStudies: CaseStudy[] =
+    (await client.fetch(recentCaseStudiesQuery)) ?? [];
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <div className="py-16">
+      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-16">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
             <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1
+                className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+                aria-label={headerText}
+              >
                 Why Choose{" "}
                 <span
                   className="text-transparent bg-clip-text"
@@ -70,7 +113,7 @@ export default async function WhyRosterLabPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  RosterLab
+                  RosterLab?
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
@@ -124,7 +167,133 @@ export default async function WhyRosterLabPage() {
             </div>
           </div>
         </Container>
-      </div>
+      </section>
+
+      {/* How RosterLab Helps Section */}
+      <section className="py-20 bg-white">
+        <Container>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              How Can RosterLab Help Your Team?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Fast. Optimised. Made for junior doctors. Adapt to changes fast.
+            </p>
+          </div>
+
+          <div className="mb-16 max-w-4xl mx-auto">
+            <Image
+              src="/images/generating.webp"
+              alt="AI-generated roster interface"
+              width={600}
+              height={500}
+              className="rounded-lg shadow-lg mx-auto"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-teal-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Reduce rostering administration
+              </h3>
+              <p className="text-gray-600">
+                Eliminate the need for manual rostering - giving you time back
+                to focus on patient care and team wellbeing.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-cyan-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Stay compliant with union rules
+              </h3>
+              <p className="text-gray-600">
+                Maintain legal and union compliance so junior doctors can work
+                safely while having more flexibility.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Protect training and exam time
+              </h3>
+              <p className="text-gray-600">
+                Schedule longer days off around exams and ensure complete
+                training programs while maintaining coverage.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-teal-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Better engagement, better care
+              </h3>
+              <p className="text-gray-600">
+                Consider staff preferences while ensuring fairness, reducing
+                burnout and supporting safer night-to-day transitions.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Mission Section */}
       <div className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
@@ -177,9 +346,16 @@ export default async function WhyRosterLabPage() {
                 Some rosters are easy. We handle the complex ones.
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Some rosters are simple and can easily be rostered manually.
-                Others feel impossible. RosterLab was built for the most complex
-                ones.
+                Some rosters are simple and can easily be rostered manually with
+                our{" "}
+                <Link
+                  href="https://app.rosterlab.com/signup"
+                  className="text-blue-600 underline"
+                >
+                  free platform
+                </Link>
+                . Others feel impossible. RosterLab was built for the most
+                complex ones and handles lots of different rostering scenarios.
               </p>
               <Button
                 href="/book-a-demo"
@@ -436,6 +612,86 @@ export default async function WhyRosterLabPage() {
           </div>
         </Container>
       </div>
+
+      {/* Recent Case Studies */}
+      {caseStudies.length > 0 && (
+        <section className="py-20 bg-white">
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Recent Case Studies
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                See how teams like yours partner with RosterLab to solve complex
+                rostering challenges.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {caseStudies.map((post) => {
+                const postUrl = post.slug?.current
+                  ? `/case-studies/${post.slug.current}`
+                  : "/case-studies";
+                return (
+                  <article
+                    key={post._id}
+                    className="bg-gray-50 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow"
+                  >
+                    {post.mainImage?.asset && (
+                      <Link href={postUrl}>
+                        <div className="relative h-56 w-full">
+                          <Image
+                            src={urlFor(post.mainImage)
+                              .width(640)
+                              .height(360)
+                              .url()}
+                            alt={post.mainImage?.alt || post.title}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                            className="object-cover"
+                          />
+                        </div>
+                      </Link>
+                    )}
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                        <Link
+                          href={postUrl}
+                          className="hover:text-blue-600 transition-colors"
+                        >
+                          {post.title}
+                        </Link>
+                      </h3>
+                      {post.excerpt && (
+                        <p className="text-gray-600 mb-6 line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                      )}
+                      <div className="mt-auto flex items-center justify-between text-sm text-gray-500">
+                        <span>{post.author?.name || "RosterLab Team"}</span>
+                        {post.publishedAt && (
+                          <time dateTime={post.publishedAt}>
+                            {formatDate(post.publishedAt)}
+                          </time>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Button
+                href="/case-studies"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
+                View all case studies
+              </Button>
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Metrics Section */}
       <div className="py-20 bg-white">
