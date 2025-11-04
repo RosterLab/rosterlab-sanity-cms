@@ -25,7 +25,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/type/long-term-schedule-planning",
       images: [
         {
-          url: "/images/us-images/iStock-1134462016.jpg",
+          url: "/images/us-images/long-term-scheduling.jpg",
           width: 1200,
           height: 630,
         },
@@ -36,7 +36,7 @@ export const metadata = withHreflang(
       title: "Long-Term Schedule Planning Software - RosterLab",
       description:
         "Build your long-term schedule with RosterLab. Automatically generate fair, compliant and flexible long-term schedules that save time and money.",
-      images: ["/images/us-images/iStock-1134462016.jpg"],
+      images: ["/images/us-images/long-term-scheduling.jpg"],
     },
   },
   "/us/type/long-term-schedule-planning",

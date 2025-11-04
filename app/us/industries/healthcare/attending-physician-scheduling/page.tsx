@@ -26,7 +26,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/smo-scheduling.jpg",
           width: 1200,
           height: 630,
         },
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       title: "Attending Physician Scheduling Software - RosterLab",
       description:
         "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+      images: ["/images/us-images/smo-scheduling.jpg"],
     },
   },
   "/us/industries/healthcare/attending-physician-scheduling",

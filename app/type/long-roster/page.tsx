@@ -14,6 +14,9 @@ export const metadata = withHreflang(
     title: "Long Roster Software - RosterLab",
     description:
       "Build your long roster with RosterLab. Automatically generate fair, compliant and flexible long rosters that save time and money.",
+    alternates: {
+      canonical: "https://rosterlab.com/type/long-roster",
+    },
     openGraph: {
       title: "Long Roster Software - RosterLab",
       description:
@@ -22,7 +25,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/type/long-roster",
       images: [
         {
-          url: "/images/us-images/iStock-1134462016.jpg",
+          url: "/images/us-images/long-term-scheduling.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,7 +36,7 @@ export const metadata = withHreflang(
       title: "Long Roster Software - RosterLab",
       description:
         "Build your long roster with RosterLab. Automatically generate fair, compliant and flexible long rosters that save time and money.",
-      images: ["/images/us-images/iStock-1134462016.jpg"],
+      images: ["/images/us-images/long-term-scheduling.jpg"],
     },
   },
   "/type/long-roster",

@@ -26,7 +26,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/healthcare/senior-medical-officer-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/smo-scheduling.jpg",
           width: 1200,
           height: 630,
         },
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       title: "Senior Medical Officer Rostering Software - RosterLab",
       description:
         "End unsafe rosters and overwork. Build fair, compliant SMO rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+      images: ["/images/us-images/smo-scheduling.jpg"],
     },
   },
   "/industries/healthcare/senior-medical-officer-rostering",
