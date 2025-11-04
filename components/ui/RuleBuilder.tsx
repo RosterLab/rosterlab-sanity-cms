@@ -30,10 +30,10 @@ export default function RuleBuilder({
     return unique.length > 0 ? unique : ["rules", "demands"];
   }, [allowedRuleTypes]);
 
-  const initialRuleType =
+  const initialRuleType: RuleCategory =
     defaultRuleType && normalizedAllowedTypes.includes(defaultRuleType)
       ? defaultRuleType
-      : normalizedAllowedTypes[0];
+      : (normalizedAllowedTypes[0] as RuleCategory);
 
   const [ruleType, setRuleType] = useState<RuleCategory>(initialRuleType);
   const [selectedRule, setSelectedRule] = useState(defaultSelectedRule);
