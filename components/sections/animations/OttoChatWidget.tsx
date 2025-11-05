@@ -136,9 +136,9 @@ export default function OttoChatWidget() {
           <Image
             src="/images/ottopus.png"
             alt="Otto"
-            width={32}
-            height={32}
-            className="rounded-full"
+            width={28}
+            height={28}
+            className="rounded-full object-contain"
           />
         </div>
         <div>
@@ -167,18 +167,27 @@ export default function OttoChatWidget() {
               <div key={index} className="flex justify-start">
                 <div className="bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-gray-200">
                   <div className="flex items-center gap-2">
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 items-end h-4">
                       <span
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "0ms" }}
+                        className="w-1 bg-gray-400 rounded-full"
+                        style={{
+                          animation: "wave 1.2s ease-in-out infinite",
+                          animationDelay: "0ms",
+                        }}
                       />
                       <span
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "150ms" }}
+                        className="w-1 bg-gray-400 rounded-full"
+                        style={{
+                          animation: "wave 1.2s ease-in-out infinite",
+                          animationDelay: "150ms",
+                        }}
                       />
                       <span
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "300ms" }}
+                        className="w-1 bg-gray-400 rounded-full"
+                        style={{
+                          animation: "wave 1.2s ease-in-out infinite",
+                          animationDelay: "300ms",
+                        }}
                       />
                     </div>
                     <span className="text-xs text-gray-500">
@@ -186,6 +195,17 @@ export default function OttoChatWidget() {
                     </span>
                   </div>
                 </div>
+                <style jsx>{`
+                  @keyframes wave {
+                    0%,
+                    100% {
+                      height: 0.5rem;
+                    }
+                    50% {
+                      height: 1rem;
+                    }
+                  }
+                `}</style>
               </div>
             );
           } else if (message.type === "answer") {
@@ -208,13 +228,13 @@ export default function OttoChatWidget() {
         <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-gray-300">
           <input
             type="text"
-            placeholder="Ask Otto anything..."
+            placeholder="Ask Otto anything about your roster..."
             className="flex-1 bg-transparent outline-none text-sm text-gray-600"
             disabled
           />
-          <button className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
             <svg
-              className="w-4 h-4 text-white"
+              className="w-4 h-4 text-white transform rotate-45"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -226,7 +246,7 @@ export default function OttoChatWidget() {
                 d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
               />
             </svg>
-          </button>
+          </div>
         </div>
       </div>
     </div>
