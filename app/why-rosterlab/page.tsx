@@ -170,7 +170,7 @@ export default async function WhyRosterLabPage() {
               How Can RosterLab Help Your Team?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for junior doctors. Adapt to changes fast.
+              Fast. Optimised. Built to handle complexity.
             </p>
           </div>
 
@@ -252,11 +252,11 @@ export default async function WhyRosterLabPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Protect training and exam time
+                Safer Staffing with Fewer Gaps
               </h3>
               <p className="text-gray-600">
-                Schedule longer days off around exams and ensure complete
-                training programs while maintaining coverage.
+                Maintain optimal on-call coverage with min and max staffing
+                rules that automatically alert you to understaffed shifts.
               </p>
             </div>
 
