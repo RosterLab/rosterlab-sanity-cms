@@ -425,7 +425,7 @@ export default function IndustriesPage() {
                   managing breaks, training, and multi-skill routing
                   requirements.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -475,6 +475,11 @@ export default function IndustriesPage() {
                     Peak hour management
                   </li>
                 </ul>
+                <Link href="/industries/call-centre-rostering">
+                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
+                    Learn more
+                  </Button>
+                </Link>
               </div>
             </div>
 
