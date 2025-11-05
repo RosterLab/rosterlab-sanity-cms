@@ -261,12 +261,6 @@ export default function AIRosterAssistantPage() {
                       wellbeing
                     </span>
                   </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Reduce guesswork and admin
-                    </span>
-                  </li>
                 </ul>
                 <div className="mt-8">
                   <Button
