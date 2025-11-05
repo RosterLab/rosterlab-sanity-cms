@@ -334,26 +334,24 @@ export default function IndustriesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Education */}
+            {/* Ports */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/Education.webp"
-                  alt="Education industry scheduling"
+                  src="/images/port-roster.jpg"
+                  alt="Ports industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Education
-                </h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Ports</h3>
                 <p className="text-gray-600 mb-4">
-                  Schedule teachers, support staff, and substitutes while
-                  balancing class requirements, specializations, and
-                  professional development.
+                  Manage dock workers, crane operators, and logistics staff
+                  across shifts while coordinating with vessel schedules and
+                  cargo operations.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -368,7 +366,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Subject expertise matching
+                    Vessel arrival coordination
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -384,7 +382,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Substitute management
+                    Equipment operator matching
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -400,9 +398,14 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Break duty scheduling
+                    24/7 operations management
                   </li>
                 </ul>
+                <Link href="/industries/transportation/port-rostering">
+                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
+                    Learn more
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -768,24 +771,26 @@ export default function IndustriesPage() {
               </div>
             </div>
 
-            {/* Ports */}
+            {/* Education */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/port-roster.jpg"
-                  alt="Ports industry scheduling"
+                  src="/images/Education.webp"
+                  alt="Education industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Ports</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Education
+                </h3>
                 <p className="text-gray-600 mb-4">
-                  Manage dock workers, crane operators, and logistics staff
-                  across shifts while coordinating with vessel schedules and
-                  cargo operations.
+                  Schedule teachers, support staff, and substitutes while
+                  balancing class requirements, specializations, and
+                  professional development.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                <ul className="text-sm text-gray-600 space-y-2">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -800,7 +805,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Vessel arrival coordination
+                    Subject expertise matching
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -816,7 +821,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Equipment operator matching
+                    Substitute management
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -832,14 +837,9 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    24/7 operations management
+                    Break duty scheduling
                   </li>
                 </ul>
-                <Link href="/industries/transportation/port-rostering">
-                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
-                    Learn more
-                  </Button>
-                </Link>
               </div>
             </div>
           </div>
