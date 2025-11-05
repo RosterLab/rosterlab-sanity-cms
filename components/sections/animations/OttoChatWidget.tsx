@@ -20,8 +20,7 @@ const conversations = [
       "Both Emma and Lucas should be rostered together on these shifts: Night shifts (10pm-8am), Weekend shifts, and Holiday shifts. You can apply a 'couple constraint' rule.",
   },
   {
-    question:
-      "How many night shifts did I give Sarah - how do I make sure this doesn't happen?",
+    question: "How many night shifts did I give Sarah?",
     answer:
       "Sarah has been assigned 8 night shifts this month. You can set a max night shift constraint of 6 per month to prevent this.",
   },
