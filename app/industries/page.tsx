@@ -767,6 +767,81 @@ export default function IndustriesPage() {
                 </ul>
               </div>
             </div>
+
+            {/* Ports */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 relative">
+                <Image
+                  src="/images/ports.webp"
+                  alt="Ports industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Ports</h3>
+                <p className="text-gray-600 mb-4">
+                  Manage dock workers, crane operators, and logistics staff
+                  across shifts while coordinating with vessel schedules and
+                  cargo operations.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Vessel arrival coordination
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Equipment operator matching
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    24/7 operations management
+                  </li>
+                </ul>
+                <Link href="/industries/transportation/port-rostering">
+                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
+                    Learn more
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
