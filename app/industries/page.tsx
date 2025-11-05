@@ -772,7 +772,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/ports.webp"
+                  src="/images/port-roster.jpg"
                   alt="Ports industry scheduling"
                   fill
                   className="object-cover"
