@@ -212,14 +212,19 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Streamline your knowledge in the cloud, then easily query
-                      it
+                      Streamline your knowledge in one place with AI assistance
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
                       Learn your roster without reading lengthy handover notes
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Reduce miscommunication and mistakes
                     </span>
                   </li>
                 </ul>
@@ -246,7 +251,7 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Get clear explanations about your roster
+                      Get clear explanations about different staff shifts
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -254,6 +259,12 @@ export default function AIRosterAssistantPage() {
                     <span className="text-gray-700">
                       Use insights to improve roster fairness, compliance and
                       wellbeing
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Reduce guesswork and admin
                     </span>
                   </li>
                 </ul>
