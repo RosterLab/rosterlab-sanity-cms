@@ -5,8 +5,6 @@ import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
-import { getVariant } from "@/lib/amplitude/experiment-server";
-import { ExperimentFlags } from "@/lib/amplitude/experiment-utils";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { getClient, urlFor } from "@/sanity/lib/client";
@@ -81,12 +79,7 @@ type CaseStudy = {
 };
 
 export default async function WhyRosterLabPage() {
-  // A/B Test: Header text based on experiment variant
-  const headerVariant = await getVariant(ExperimentFlags.ABOUT_PAGE_HEADER);
-  const headerText =
-    headerVariant?.value === "enabled"
-      ? "Why Choose RosterLab?"
-      : "Why Choose RosterLab?";
+  const headerText = "Why Choose RosterLab?";
   const { isEnabled } = await draftMode();
   const client = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
