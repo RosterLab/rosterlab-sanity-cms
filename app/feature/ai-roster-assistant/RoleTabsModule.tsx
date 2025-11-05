@@ -57,12 +57,11 @@ export default function RoleTabsModule() {
             </div>
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Built for busy managers
+                Make Smarter Decisions Informed By Rostering Data
               </h3>
               <p className="text-gray-600 mb-6">
-                Get instant insights into your team's roster without digging
-                through spreadsheets. Otto provides the data you need to make
-                informed decisions quickly.
+                Ask Otto for the data you need to make smart, informed decisions
+                quickly.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -78,8 +77,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    View roster stats at a glance - coverage gaps, overtime
-                    trends, and shift distribution
+                    Get roster stats for coverage gaps, overtime trends, and
+                    shift distribution
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -95,8 +94,7 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Identify staffing shortages and coverage issues before they
-                    become problems
+                    Identify staffing shortages and coverage issues
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -112,7 +110,7 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Track team workload balance and flag potential burnout risks
+                    Track staff fatigue and flag potential burnout risks
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -148,7 +146,65 @@ export default function RoleTabsModule() {
               />
             </div>
             <div className="flex-1">
-              {/* Content for Team Leads - to be filled */}
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Build better rosters with AI guidance
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Learn how to create higher quality rosters with Otto's expert
+                guidance on fairness, fatigue management, and compliance.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Get expert guidance on setting up fairness rules and
+                    reducing staff fatigue
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Ask Otto how to handle complex rostering scenarios and edge
+                    cases
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Get things done quicker, without navigating the app
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
         )}
@@ -164,7 +220,64 @@ export default function RoleTabsModule() {
               />
             </div>
             <div className="flex-1">
-              {/* Content for Staff - to be filled */}
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Adjust shifts easily for staff on the go
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Staff can use Otto to make instant changes to their shifts
+                without navigating the app.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Make changes to their preferences
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Query info related to their shift (e.g. "How much sick leave
+                    have I had?")
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Make annual leave requests
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
         )}

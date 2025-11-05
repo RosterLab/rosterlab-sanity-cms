@@ -83,8 +83,9 @@ export default function AIRosterAssistantPage() {
                   Rostering Assistant
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Ask Otto for instant roster insights so you can make smarter
-                  decisions, faster.
+                  Otto is your virtual rostering assistant here to help you make
+                  smarter decisions. Ask Otto for insights and support to build
+                  better rosters for your team.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -119,7 +120,7 @@ export default function AIRosterAssistantPage() {
                   <div className="relative flex items-center gap-3">
                     {/* Text label */}
                     <p className="text-[#1c82fd] font-semibold text-base">
-                      Meet Otto! Your AI rostering buddy.
+                      Meet Otto! Your new AI team member.
                     </p>
                     {/* Scribble arrow SVG pointing right */}
                     <svg
@@ -155,12 +156,12 @@ export default function AIRosterAssistantPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Ask. Learn. Roster smarter.
+                  Ask. Learn. Roster Smarter.
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Ask questions and get immediate tips and answers about your
-                  roster. The AI understands your team's context, constraints,
-                  and preferences to provide relevant guidance.
+                  Ask questions and get immediate answers about your roster. The
+                  AI understands your team's context, constraints, and
+                  preferences to provide tips, insights and guidance.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -173,8 +174,8 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Pull roster insights instantly so you can focus on
-                      building the perfect roster
+                      Get roster tips and support instantly to help you build
+                      the perfect roster
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -193,12 +194,64 @@ export default function AIRosterAssistantPage() {
           </Container>
         </div>
 
-        {/* Feature 2: Smart Recommendations */}
+        {/* Feature 2: Better Insights, Better Rosters */}
         <div className="py-20 bg-gray-50">
+          <Container>
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Better Insights, Better Rosters
+              </h2>
+              <p className="text-lg text-gray-600 mb-12">
+                Otto analyses your rostering data and provides the insights you
+                need to improve fairness, ensure compliance, and staff
+                well-being across your team.
+              </p>
+            </div>
+
+            {/* Tabular Module */}
+            <div>
+              <RoleTabsModule />
+            </div>
+          </Container>
+        </div>
+
+        {/* Feature 3: Streamlined Knowledge */}
+        <div className="py-20 bg-white">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <OttoStaticChat />
+                <div className="bg-white rounded-xl shadow-lg p-8">
+                  <svg
+                    className="w-10 h-10 text-[#1c82fd] mb-4"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                  <blockquote className="text-lg text-gray-700 leading-relaxed mb-4">
+                    "Otto has completely transformed how we manage staff
+                    scheduling. The AI actually understands our unique clinic
+                    setup, shift patterns, and preferences, making adjustments
+                    automatically and intelligently. Otto has become an
+                    essential member of our team."
+                  </blockquote>
+                  <div className="mb-4">
+                    <p className="font-bold text-gray-900">Vivien Chan</p>
+                    <p className="text-gray-600 text-sm">
+                      Operations & Customer Relations Manager, Peticare Medical
+                      Group
+                    </p>
+                  </div>
+                  <div className="flex justify-center">
+                    <Image
+                      src="/images/other logos/peticare.webp"
+                      alt="Peticare Medical Group"
+                      width={36}
+                      height={12}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -207,8 +260,8 @@ export default function AIRosterAssistantPage() {
                 <p className="text-lg text-gray-600 mb-6">
                   Otto is your single source of truth for all roster knowledge.
                   Make roster handovers and transitions easier between
-                  administrators. Admins on your team can ask questions to
-                  understand the schedule, eliminating confusion.
+                  administrators. Understand roster information and changes to
+                  eliminate confusion.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -235,28 +288,6 @@ export default function AIRosterAssistantPage() {
           </Container>
         </div>
 
-        {/* Feature 3: Compliance & Rule Explanations */}
-        <div className="py-20 bg-white">
-          <Container>
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Better Insights, Better Rosters
-              </h2>
-              <p className="text-lg text-gray-600 mb-12">
-                Get instant insights that help you build fairer, more compliant
-                rosters. Otto analyzes your rostering data and provides the
-                insights you need to improve fairness, ensure compliance, and
-                optimize staff well-being across your team.
-              </p>
-            </div>
-
-            {/* Tabular Module */}
-            <div>
-              <RoleTabsModule />
-            </div>
-          </Container>
-        </div>
-
         {/* Coming Soon: Agentic AI Section */}
         <div className="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
           <Container>
@@ -275,61 +306,24 @@ export default function AIRosterAssistantPage() {
               <AgenticAICarousel />
 
               {/* Waitlist Section */}
-              <div className="mt-16">
-                <div className="flex justify-center mb-8">
-                  <Image
-                    src="/images/ottopus.png"
-                    alt="Otto"
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                  <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
-                    <div className="flex flex-col">
-                      <svg
-                        className="w-10 h-10 text-purple-500 mb-4"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                      </svg>
-                      <blockquote className="text-lg text-gray-700 leading-relaxed mb-4">
-                        "Otto has completely transformed how we manage staff
-                        scheduling. The AI actually understands our unique
-                        clinic setup, shift patterns, and preferences, making
-                        adjustments automatically and intelligently. Otto has
-                        become an essential member of our team."
-                      </blockquote>
-                      <div className="mb-4">
-                        <p className="font-bold text-gray-900">Vivien Chan</p>
-                        <p className="text-gray-600 text-sm">
-                          Operations & Customer Relations Manager, Peticare
-                          Medical Group
-                        </p>
-                      </div>
-                      <div className="mt-4 flex justify-center">
-                        <Image
-                          src="/images/other logos/peticare.webp"
-                          alt="Peticare Medical Group"
-                          width={36}
-                          height={12}
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
+              <div className="mt-16 max-w-xl mx-auto">
+                <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    Join the Waitlist
+                  </h3>
+                  <div className="flex justify-center mb-6">
+                    <Image
+                      src="/images/ottopus.png"
+                      alt="Otto"
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
                   </div>
-
-                  <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                      Join the Waitlist
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      Be among the first to experience the future of rostering
-                    </p>
-                    <WaitlistForm />
-                  </div>
+                  <p className="text-gray-600 mb-6">
+                    Be among the first to experience the future of rostering
+                  </p>
+                  <WaitlistForm />
                 </div>
               </div>
             </div>

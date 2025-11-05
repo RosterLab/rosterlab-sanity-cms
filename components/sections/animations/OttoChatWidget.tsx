@@ -11,13 +11,13 @@ const conversations = [
   {
     question: "Who worked last Christmas?",
     answer:
-      "Dr. Sarah Chen and Dr. James Mitchell worked 25th December in 2025 and 2024, but not 2023.",
+      "Dr. Sarah Chen and Dr. James Mitchell worked 25th December in 2025, but not 2024.",
   },
   {
     question:
-      "How do I ensure Emma and Lucas are always rostered together because they are a couple?",
+      "I want Emma and Lucas always rostered together because they carpool together",
     answer:
-      "Both Emma and Lucas should be rostered together on these shifts: Night shifts (10pm-8am), Weekend shifts, and Holiday shifts. You can apply a 'couple constraint' rule.",
+      "Both Emma and Lucas should be rostered together on these shifts: Night shifts (10pm-8am).",
   },
   {
     question: "How many night shifts did I give Sarah?",
@@ -26,9 +26,9 @@ const conversations = [
   },
   {
     question:
-      "Michael told me he felt really fatigued last night - have I given him too many night shifts?",
+      "Yesterday, Michael told me he felt fatigued - have I given him too many night shifts?",
     answer:
-      "You gave Michael 7 night shifts in 10 days. I recommend increasing distance between nights to improve his circadian rhythm - spacing them at least 3 days apart.",
+      "You gave Michael 7 night shifts in 10 days. I recommend spacing them at least 3 days to improve his circadian rhythm.",
   },
 ];
 
