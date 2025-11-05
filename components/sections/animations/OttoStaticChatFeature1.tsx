@@ -9,9 +9,9 @@ const messages = [
       "Dr. Martinez would exceed 60 hours this week if assigned tomorrow. I recommend Dr. Chen or Dr. Patel who are both under 50 hours.",
   },
   {
-    question: "Who can cover the emergency department on Christmas Day?",
+    question: "Who can cover the emergency department on Easter Weekend?",
     answer:
-      "Dr. Johnson and Dr. Lee are available and certified for ED. Dr. Johnson worked last Christmas, so Dr. Lee would be the fairer choice.",
+      "Dr. Johnson and Dr. Lee are available and certified for ED. Dr. Johnson worked last Easter, so Dr. Lee would be the fairer choice.",
   },
 ];
 

@@ -44,17 +44,17 @@ const faqItems = [
   {
     question: "What can the AI Chat Assistant help me with?",
     answer:
-      "The AI Chat Assistant can help you understand roster conflicts, get suggestions for shift coverage, answer questions about compliance rules, recommend optimal staffing patterns, and provide instant guidance on complex rostering scenarios.",
+      "The AI Chat Assistant can help you understand your roster, answering questions about your roster instantly. The AI understands your team's context, constraints, and preferences to provide relevant information.",
   },
   {
     question: "Does the AI Chat Assistant have access to my roster data?",
     answer:
-      "Yes, the AI Assistant can access your roster context to provide relevant, personalized recommendations. It understands your team's skills, availability, and scheduling constraints to give you accurate guidance.",
+      "Yes, the AI Assistant can access your roster context to provide relevant, personalised insights. It understands your team's skills, availability, and scheduling constraints to give you accurate information.",
   },
   {
     question: "Can the AI Chat Assistant make changes to my roster?",
     answer:
-      "The AI Assistant provides recommendations and guidance, but you maintain full control. It will suggest changes and explain the reasoning, but you always approve any modifications to your schedule.",
+      "The AI Assistant provides you with instant insights and knowledge, but you maintain full control.",
   },
 ];
 
@@ -219,7 +219,7 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Learn your roster without reading lengthy documentation
+                      Learn your roster without reading lengthy handover notes
                     </span>
                   </li>
                 </ul>
@@ -246,20 +246,14 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Get clear explanations of compliance violations
+                      Get clear explanations about your roster
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Learn how to maintain compliance while meeting operational
-                      needs
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Understand union agreements and labor law requirements
+                      Use insights to improve roster fairness, compliance and
+                      wellbeing
                     </span>
                   </li>
                 </ul>
