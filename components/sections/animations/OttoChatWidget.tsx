@@ -69,8 +69,8 @@ export default function OttoChatWidget() {
         },
       ]);
       // Calculate reading time based on question length (longer questions = more time)
-      // Base time 1.5s + 20ms per character
-      const questionReadTime = 1500 + currentConversation.question.length * 20;
+      // Base time 3s + 40ms per character (doubled from original)
+      const questionReadTime = 3000 + currentConversation.question.length * 40;
       const questionTimeout = setTimeout(() => setStage(1), questionReadTime);
       return () => clearTimeout(questionTimeout);
     }
@@ -106,8 +106,8 @@ export default function OttoChatWidget() {
         },
       ]);
       // Calculate reading time based on answer length (longer answers = more time)
-      // Base time 2s + 25ms per character
-      const answerReadTime = 2000 + currentConversation.answer.length * 25;
+      // Base time 4s + 50ms per character (doubled from original)
+      const answerReadTime = 4000 + currentConversation.answer.length * 50;
       const answerTimeout = setTimeout(() => {
         // Clear messages and move to next question in queue
         setMessages([]);

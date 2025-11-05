@@ -1,7 +1,6 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
-import Image from "next/image";
 import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -9,6 +8,10 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import OttoChatWidget from "@/components/sections/animations/OttoChatWidget";
 import OttoStaticChat from "@/components/sections/animations/OttoStaticChat";
 import OttoStaticChatFeature1 from "@/components/sections/animations/OttoStaticChatFeature1";
+import RoleTabsModule from "./RoleTabsModule";
+import WaitlistForm from "./WaitlistForm";
+import AgenticAICarousel from "./AgenticAICarousel";
+import Image from "next/image";
 
 const pathname = "/feature/ai-roster-assistant";
 
@@ -42,19 +45,24 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
-    question: "What can the AI Chat Assistant help me with?",
+    question: "What can the AI Roster Assistant help me with?",
     answer:
-      "The AI Chat Assistant can help you understand your roster, answering questions about your roster instantly. The AI understands your team's context, constraints, and preferences to provide relevant information.",
+      "The AI Roster Assistant can help you understand your roster, answering questions about your roster instantly. The AI understands your team's context, constraints, and preferences to provide relevant information.",
   },
   {
-    question: "Does the AI Chat Assistant have access to my roster data?",
+    question: "Does the AI Roster Assistant have access to my roster data?",
     answer:
-      "Yes, the AI Assistant can access your roster context to provide relevant, personalised insights. It understands your team's skills, availability, and scheduling constraints to give you accurate information.",
+      "Yes, the AI Roster Assistant can access your roster context to provide relevant, personalised insights. It understands your team's skills, availability, and scheduling constraints to give you accurate information.",
   },
   {
-    question: "Can the AI Chat Assistant make changes to my roster?",
+    question: "Can the AI Roster Assistant make changes to my roster?",
     answer:
-      "The AI Assistant provides you with instant insights and knowledge, but you maintain full control.",
+      "The AI Roster Assistant provides you with instant insights and knowledge, but you maintain full control.",
+  },
+  {
+    question: "What is Agentic AI for rostering?",
+    answer:
+      "Agentic AI will revolutionize how we approach workforce scheduling. The ability to have AI autonomously handle complex rostering tasks means more time for strategic planning and less time on administrative work.",
   },
 ];
 
@@ -69,10 +77,10 @@ export default function AIRosterAssistantPage() {
               <div>
                 <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                    AI Chat Assistant
+                    Your Personal AI
                   </span>{" "}
                   <br className="hidden md:block" />
-                  for Rostering
+                  Rostering Assistant
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Ask Otto for instant roster insights so you can make smarter
@@ -147,12 +155,12 @@ export default function AIRosterAssistantPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Ask. Learn. Schedule smarter.
+                  Ask. Learn. Roster smarter.
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Ask questions in plain English and get immediate answers about
-                  your roster. The AI understands your team's context,
-                  constraints, and preferences to provide relevant information.
+                  Ask questions and get immediate tips and answers about your
+                  roster. The AI understands your team's context, constraints,
+                  and preferences to provide relevant guidance.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -189,16 +197,10 @@ export default function AIRosterAssistantPage() {
         <div className="py-20 bg-gray-50">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/us-images/iStock-1457092492.jpg"
-                  alt="Streamlined roster knowledge management"
-                  width={550}
-                  height={450}
-                  className="w-full max-w-[550px] mx-auto rounded-lg shadow-lg"
-                />
+              <div>
+                <OttoStaticChat />
               </div>
-              <div className="order-1 lg:order-2">
+              <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                   Streamlined Knowledge, No More Guesswork
                 </h2>
@@ -236,43 +238,99 @@ export default function AIRosterAssistantPage() {
         {/* Feature 3: Compliance & Rule Explanations */}
         <div className="py-20 bg-white">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Better Insights, Better Rosters
-                </h2>
-                <p className="text-lg text-gray-600 mb-6">
-                  Get instant insights that help you build fairer, more
-                  compliant rosters. Otto analyzes your rostering data and
-                  provides the insights you need to improve fairness, ensure
-                  compliance, and optimize staff well-being across your team.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Get clear explanations about different staff shifts
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">
-                      Use insights to improve roster fairness, compliance and
-                      wellbeing
-                    </span>
-                  </li>
-                </ul>
-                <div className="mt-8">
-                  <Button
-                    href="/feature/rules-engine"
-                    className="bg-[#4a9288] text-white hover:bg-[#3a7268] px-6 py-3 font-semibold"
-                  >
-                    Learn about the Rules Engine
-                  </Button>
-                </div>
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Better Insights, Better Rosters
+              </h2>
+              <p className="text-lg text-gray-600 mb-12">
+                Get instant insights that help you build fairer, more compliant
+                rosters. Otto analyzes your rostering data and provides the
+                insights you need to improve fairness, ensure compliance, and
+                optimize staff well-being across your team.
+              </p>
+            </div>
+
+            {/* Tabular Module */}
+            <div>
+              <RoleTabsModule />
+            </div>
+          </Container>
+        </div>
+
+        {/* Coming Soon: Agentic AI Section */}
+        <div className="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
+          <Container>
+            <div className="max-w-6xl mx-auto text-center">
+              <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                COMING SOON
               </div>
-              <div>
-                <OttoStaticChat />
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                The Future of Rostering is Here
+              </h2>
+              <p className="text-xl text-gray-600 mb-12">
+                Otto will soon be able to take action on your behalf, making
+                rostering even more effortless.
+              </p>
+
+              <AgenticAICarousel />
+
+              {/* Waitlist Section */}
+              <div className="mt-16">
+                <div className="flex justify-center mb-8">
+                  <Image
+                    src="/images/ottopus.png"
+                    alt="Otto"
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
+                    <div className="flex flex-col">
+                      <svg
+                        className="w-10 h-10 text-purple-500 mb-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                      <blockquote className="text-lg text-gray-700 leading-relaxed mb-4">
+                        "Otto has completely transformed how we manage staff
+                        scheduling. The AI actually understands our unique
+                        clinic setup, shift patterns, and preferences, making
+                        adjustments automatically and intelligently. Otto has
+                        become an essential member of our team."
+                      </blockquote>
+                      <div className="mb-4">
+                        <p className="font-bold text-gray-900">Vivien Chan</p>
+                        <p className="text-gray-600 text-sm">
+                          Operations & Customer Relations Manager, Peticare
+                          Medical Group
+                        </p>
+                      </div>
+                      <div className="mt-4 flex justify-center">
+                        <Image
+                          src="/images/other logos/peticare.webp"
+                          alt="Peticare Medical Group"
+                          width={36}
+                          height={12}
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      Join the Waitlist
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      Be among the first to experience the future of rostering
+                    </p>
+                    <WaitlistForm />
+                  </div>
+                </div>
               </div>
             </div>
           </Container>
@@ -298,7 +356,7 @@ export default function AIRosterAssistantPage() {
           <Container>
             <div className="text-center text-white max-w-3xl mx-auto">
               <h2 className="text-4xl font-bold mb-6">
-                Ready to experience smarter rostering?
+                Ready to experience the future of rostering?
               </h2>
               <p className="text-xl mb-12 opacity-90">
                 See how AI-powered assistance can transform your scheduling
