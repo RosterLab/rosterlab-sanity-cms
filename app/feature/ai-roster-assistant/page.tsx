@@ -18,13 +18,13 @@ const pathname = "/feature/ai-roster-assistant";
 
 export const metadata = withHreflang(
   {
-    title: "AI Chat Assistant for Rostering - RosterLab",
+    title: "Personal AI Rostering Assistant - RosterLab",
     description:
-      "Get instant rostering help with AI-powered chat assistant. Answer questions, get recommendations, and solve scheduling conflicts in real-time.",
+      "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
     openGraph: {
-      title: "AI Chat Assistant for Rostering - RosterLab",
+      title: "Personal AI Rostering Assistant - RosterLab",
       description:
-        "Get instant rostering help with AI-powered chat assistant. Answer questions, get recommendations, and solve scheduling conflicts in real-time.",
+        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -35,9 +35,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "AI Chat Assistant for Rostering - RosterLab",
+      title: "Personal AI Rostering Assistant - RosterLab",
       description:
-        "Get instant rostering help with AI-powered chat assistant. Answer questions, get recommendations, and solve scheduling conflicts in real-time.",
+        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
