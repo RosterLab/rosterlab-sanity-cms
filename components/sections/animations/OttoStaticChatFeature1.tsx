@@ -8,42 +8,32 @@ const messagesByCategory = {
     {
       question: "How do I set up a safe roster?",
       answer:
-        "Night shifts are a common safety concern. Based on your shift data we could set up a rule to prevent staff from working 6 nights per roster.",
+        "Night shifts are a common safety concern. Based on your shift data, I recommend: no more than 3 consecutive night shifts, and minimum 2 rest days after a block of night shifts.",
     },
     {
       question: "How do I set up a safe roster?",
       answer:
-        "This will help reduce staff fatigue and improve circadium rythm.",
+        "This will help reduce staff fatigue and improve circadian rhythm.",
     },
     {
       question: "How do I set up a safe roster?",
       answer: "Would you like to know how to create that rule?",
     },
   ],
-  "How do I do deal with split weekends?": [
+  "How do I improve staff work-life balance?": [
     {
-      question: "How do I deal with split weekends?",
-      answer: "Great question, you could add only split weekends.",
-    },
-    {
-      question: "How do I deal with split weekends?",
+      question: "How do I improve staff work-life balance?",
       answer:
-        "You can use the day off rule - Minimum days off per weekend is 1. This means employees must have at least 1 day off per weekend.",
+        "Split weekends can impact staff work-life balance. Giving staff full weekends off helps them recover properly and spend quality time with family.",
     },
     {
-      question: "How do I deal with split weekends?",
-      answer: "Do you need me to list the steps on how to do that?",
-    },
-  ],
-  "How do I handle no split weekends?": [
-    {
-      question: "How do I handle no split weekends?",
+      question: "How do I improve staff work-life balance?",
       answer:
-        'Great question! You can use the days off rule - "Days off per weekend off is 2". This means employees must have at least 2 days off per weekend off.',
+        "I can set up a rule ensuring staff get 2 consecutive days off per weekend. This prevents split weekends where they work Saturday, off Sunday, then back Monday - which doesn't provide proper rest.",
     },
     {
-      question: "How do I handle no split weekends?",
-      answer: "Would you like me to explain how to set this up?",
+      question: "How do I improve staff work-life balance?",
+      answer: "Would you like me to show you how to create that rule?",
     },
   ],
   "How can I distribute weekend shifts fairly?": [
@@ -57,16 +47,55 @@ const messagesByCategory = {
       answer: "Would you like me to show you how to add that rule?",
     },
   ],
-  "How do I use the RosterLab app?": [
+  "How can I manage staff fatigue risks?": [
     {
-      question: "How do I use the RosterLab app?",
+      question: "How can I manage staff fatigue risks?",
       answer:
-        'First, you\'ll need to download it to your mobile device. Here are the links for the <a href="https://apps.apple.com/nz/app/rosterlab/id6448819917" target="_blank" rel="noopener noreferrer" class="text-[#1c82fd] underline hover:text-blue-700">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.rosterlab.app" target="_blank" rel="noopener noreferrer" class="text-[#1c82fd] underline hover:text-blue-700">Play Store</a>.',
+        "Fatigue is a critical safety concern. Based on your roster data, I've identified some potential fatigue risks: Sarah is scheduled for 6 consecutive shifts, and Tom has only 9 hours between shifts.",
     },
     {
-      question: "How do I use the RosterLab app?",
+      question: "How can I manage staff fatigue risks?",
       answer:
-        "Next, you'll need to login with your administrator access. Do you remember those login details or do you need me to help with a password reset?",
+        "To reduce fatigue, I recommend: maximum 5 consecutive shifts before a break, and minimum 12 hours rest after night shifts.",
+    },
+    {
+      question: "How can I manage staff fatigue risks?",
+      answer:
+        "Would you like me to show you how to set up these fatigue management rules?",
+    },
+  ],
+  "How compliant is my roster with union rules?": [
+    {
+      question: "How compliant is my roster with union rules?",
+      answer:
+        "I've found 2 potential issues: Jessica is rostered for 44 hours this week (exceeds 38-hour standard), and Alex has only 1 day off this week.",
+    },
+    {
+      question: "How compliant is my roster with union rules?",
+      answer:
+        "EBA compliance requires maximum 38 hours per week for standard employment, and minimum 2 consecutive days off per week.",
+    },
+    {
+      question: "How compliant is my roster with union rules?",
+      answer:
+        "Would you like me to help you adjust the roster to meet these requirements?",
+    },
+  ],
+  "Am I giving staff enough rest between shifts?": [
+    {
+      question: "Am I giving staff enough rest between shifts?",
+      answer:
+        "Rest between shifts is crucial for safety. I found 3 shifts with insufficient breaks: Tom has 8 hours between Friday night and Saturday day shifts (minimum is 12 hours after nights).",
+    },
+    {
+      question: "Am I giving staff enough rest between shifts?",
+      answer:
+        "Best practice break requirements: minimum 10 hours between standard shifts, and 12 hours after night shifts.",
+    },
+    {
+      question: "Am I giving staff enough rest between shifts?",
+      answer:
+        "Would you like me to flag any future shifts that don't meet minimum break requirements?",
     },
   ],
 };
@@ -112,17 +141,20 @@ export default function OttoStaticChatFeature1() {
             <option value="How do I setup a fair roster?">
               How do I set up a safe roster?
             </option>
-            <option value="How do I do deal with split weekends?">
-              How do I do deal with split weekends?
-            </option>
-            <option value="How do I handle no split weekends?">
-              How do I handle no split weekends?
+            <option value="How do I improve staff work-life balance?">
+              How do I improve staff work-life balance?
             </option>
             <option value="How can I distribute weekend shifts fairly?">
               How can I distribute weekend shifts fairly?
             </option>
-            <option value="How do I use the RosterLab app?">
-              How do I use the RosterLab app?
+            <option value="How can I manage staff fatigue risks?">
+              How can I manage staff fatigue risks?
+            </option>
+            <option value="How compliant is my roster with union rules?">
+              How compliant is my roster with union rules?
+            </option>
+            <option value="Am I giving staff enough rest between shifts?">
+              Am I giving staff enough rest between shifts?
             </option>
           </select>
         </div>

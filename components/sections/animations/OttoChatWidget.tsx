@@ -74,7 +74,7 @@ export default function OttoChatWidget() {
       return () => clearTimeout(questionTimeout);
     }
 
-    // Stage 1: Otto thinking (wait 1.5 seconds then show answer)
+    // Stage 1: Otto thinking (wait 0.8 seconds then show answer)
     if (stage === 1) {
       // Add thinking indicator to messages
       setMessages((prev) => [
@@ -89,7 +89,7 @@ export default function OttoChatWidget() {
         // Remove thinking indicator
         setMessages((prev) => prev.filter((msg) => msg.type !== "thinking"));
         setStage(2);
-      }, 1500);
+      }, 800);
       return () => clearTimeout(thinkingTimeout);
     }
 

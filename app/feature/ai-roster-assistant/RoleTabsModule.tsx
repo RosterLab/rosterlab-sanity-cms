@@ -150,8 +150,8 @@ export default function RoleTabsModule() {
                 Build Better Rosters With AI Guidance
               </h3>
               <p className="text-gray-600 mb-6">
-                Create higher quality rosters with Otto's expert guidance on
-                fairness, fatigue management, and compliance.
+                Otto helps roster co-ordinators build safe and fair rosters
+                faster, without needing to remember every rule.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -167,8 +167,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get expert guidance on setting up fairness rules and
-                    reducing staff fatigue
+                    Ask questions about team availability e.g. "Who can fill
+                    Saturday night without overtime?"
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -184,7 +184,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Ask Otto how to handle complex rostering scenarios
+                    Automatically check fairness, fatigue and EBA rules as you
+                    build
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -200,7 +201,25 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get things done instantly with natural language
+                    Get instant answers to complex scenarios, such as, on-call,
+                    sick leave, shift swaps
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Make changes with natural language instead of manually
+                    searching
                   </span>
                 </li>
               </ul>
@@ -257,7 +276,7 @@ export default function RoleTabsModule() {
                   </svg>
                   <span className="text-gray-700">
                     Quickly get information related to their shift e.g. "How
-                    much sick leave have I had?"
+                    much annual leave have I had?"
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -273,7 +292,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Easy to use, even for non-technical users!
+                    Ask questions about their shifts e.g. "When am I working
+                    night shifts next?"
                   </span>
                 </li>
               </ul>

@@ -37,7 +37,7 @@ const agenticFeatures = [
     id: 3,
     title: '"Help improve my roster"',
     description:
-      "Receive intelligent suggestions for schedule optimisation and staff allocation based on historical data and preferences.",
+      "Receive intelligent suggestions for schedule optimisation and staff well-being based on your rostering data.",
     gradient: "from-blue-500 to-indigo-500",
     icon: (
       <path

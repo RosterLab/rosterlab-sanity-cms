@@ -64,7 +64,7 @@ const faqItems = [
     question:
       "Is it possible to control Otto's access to information by user role?",
     answer:
-      "Yes, Otto's information is by default restricted based on user permissions.",
+      "Yes. Otto's access to information is restricted by existing user permissions, ensuring that each individual can only retrieve data they are authorised to view. Sensitive or administrative information remains fully protected and accessible solely to those with the appropriate access. Staff cannot use Otto to query content restricted to administrators.",
   },
 ];
 
@@ -161,31 +161,38 @@ export default function AIRosterAssistantPage() {
                   Ask. Learn. Roster Smarter.
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Ask questions to learn about your roster and how to handle
-                  different scenarios. The AI understands your team's context,
-                  constraints, and preferences so it can provide personalised
-                  tips, insights and guidance.
+                  Rostering shouldn't feel like guesswork. Ask Otto anything you
+                  need such as "Do I have enough people for next week?" Or
+                  "Who's working too many nights?" The AI knows your roster and
+                  people giving you personalised tips & insights.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Save time by getting instant answers to your rostering
-                      questions
+                      Get instant answers to your rostering questions (no more
+                      manually searching)
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Get roster tips and support to help you build better
-                      quality rosters
+                      Save hours of trial and error by learning from real roster
+                      data, not assumptions
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Make informed decisions to ensure shifts are fair,
-                      compliant and safe
+                      Spot risks before they happen like fatigue, skill gaps, or
+                      uneven shift loads
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">
+                      Build safer, fairer, more balanced rosters that work for
+                      everyone
                     </span>
                   </li>
                 </ul>
@@ -301,12 +308,13 @@ export default function AIRosterAssistantPage() {
               <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 COMING SOON
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h3 className="text-4xl font-bold mb-6 text-gray-900">
                 The Future of Rostering is Here
-              </h2>
+              </h3>
               <p className="text-xl text-gray-600 mb-12">
-                Otto will soon be able to take action on your behalf, making
-                rostering even more effortless.
+                Powered by Agentic AI, Otto will soon be able to take action on
+                your behalf, making rostering effortless — always with your
+                approval and oversight.
               </p>
 
               <AgenticAICarousel />
@@ -349,7 +357,7 @@ export default function AIRosterAssistantPage() {
                 Frequently Asked Questions
               </h2>
               <p className="text-center text-gray-600 mb-12 text-lg">
-                Common questions about the AI Chat Assistant
+                Common questions about the AI Rostering Assistant
               </p>
               <FAQAccordion items={faqItems} />
             </div>

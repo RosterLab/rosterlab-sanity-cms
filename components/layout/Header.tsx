@@ -67,7 +67,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
           link: "/feature/automated-rostering",
         },
         {
-          title: "AI Chat Assistant",
+          title: "AI Rostering Assistant",
           link: "/feature/ai-roster-assistant",
         },
         { title: "Open Shifts", link: "/feature/open-shifts" },
