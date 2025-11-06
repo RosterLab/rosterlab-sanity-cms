@@ -77,8 +77,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get roster stats for coverage gaps, overtime trends, and
-                    shift distribution
+                    Get roster stats for coverage gaps, shift allocation and
+                    history.
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -258,22 +258,6 @@ export default function RoleTabsModule() {
                   <span className="text-gray-700">
                     Quickly get information related to their shift e.g. "How
                     much sick leave have I had?"
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Make leave requests without navigating the app
                   </span>
                 </li>
                 <li className="flex items-start">
