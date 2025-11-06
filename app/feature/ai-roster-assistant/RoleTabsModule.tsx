@@ -128,8 +128,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get clear explanations about roster changes, fairness
-                    metrics and compliance across your team
+                    Get clear explanations about roster changes, fairness and
+                    compliance across your team
                   </span>
                 </li>
               </ul>
