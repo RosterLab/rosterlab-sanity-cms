@@ -4,76 +4,69 @@ import { useState } from "react";
 import Image from "next/image";
 
 const messagesByCategory = {
-  "No split weekends": [
+  "How do I setup a fair roster?": [
     {
-      question: "Can you ensure no one works split weekends?",
+      question: "How do I set up a safe roster?",
       answer:
-        "I've enabled the no split weekends rule. Staff will now only be assigned complete weekends (both Saturday and Sunday) or none at all. This helps maintain work-life balance.",
+        "Night shifts are a common safety concern. Based on your shift data we could set up a rule to prevent staff from working 6 nights per roster.",
     },
     {
-      question: "Why is this weekend pattern flagged?",
+      question: "How do I set up a safe roster?",
       answer:
-        "This creates a split weekend - working only one day of the weekend. I recommend assigning both days or neither to maintain the no split weekends policy.",
-    },
-  ],
-  "Only split weekends": [
-    {
-      question: "Can we set up only split weekend shifts?",
-      answer:
-        "I've configured the roster to allow only split weekends. Staff will be assigned either Saturday or Sunday, but not both together. This maximizes weekend coverage.",
+        "This will help reduce staff fatigue and improve circadium rythm.",
     },
     {
-      question: "How do split weekends help with staffing?",
-      answer:
-        "Split weekends allow more staff to have at least one weekend day off while maintaining coverage. This can improve satisfaction and work-life balance across the team.",
+      question: "How do I set up a safe roster?",
+      answer: "Would you like to know how to create that rule?",
     },
   ],
-  "Leave shouldn't have hours": [
+  "How do I do deal with split weekends?": [
     {
-      question: "Why are leave days showing hours?",
-      answer:
-        "Leave days shouldn't count towards worked hours. I've adjusted the settings so leave is now tracked separately and won't affect overtime calculations or hour limits.",
+      question: "How do I deal with split weekends?",
+      answer: "Great question, you could add only split weekends.",
     },
     {
-      question: "How should leave be handled in the roster?",
+      question: "How do I deal with split weekends?",
       answer:
-        "Leave should be marked without hours attached. This ensures accurate tracking of actual worked hours and prevents leave from triggering overtime or fatigue warnings.",
-    },
-  ],
-  "Fair night shifts": [
-    {
-      question: "How can I distribute night shifts fairly?",
-      answer:
-        "I'll monitor night shift distribution and alert you when there's an imbalance. Currently tracking shows Dr. Martinez has 8 night shifts this month, while Dr. Chen has only 3.",
+        "You can use the day off rule - Minimum days off per weekend is 1. This means employees must have at least 1 day off per weekend.",
     },
     {
-      question: "Are night shifts being distributed evenly?",
-      answer:
-        "I've analyzed the roster and found uneven night shift distribution. I recommend rotating night shifts more evenly to prevent burnout and ensure fairness across the team.",
+      question: "How do I deal with split weekends?",
+      answer: "Do you need me to list the steps on how to do that?",
     },
   ],
-  "Fair weekends": [
+  "How do I handle no split weekends?": [
     {
-      question: "How can I ensure fair weekend distribution?",
+      question: "How do I handle no split weekends?",
       answer:
-        "I'm tracking weekend shifts and will alert you to imbalances. Enable weekend fairness rules in Settings to automatically flag when someone works more than their fair share.",
+        'Great question! You can use the days off rule - "Days off per weekend off is 2". This means employees must have at least 2 days off per weekend off.',
     },
     {
-      question: "Who has worked the most weekends this month?",
-      answer:
-        "Dr. Johnson has worked 4 weekends this month, while Dr. Lee has worked only 1. I recommend balancing this out in the next roster cycle to maintain fairness.",
+      question: "How do I handle no split weekends?",
+      answer: "Would you like me to explain how to set this up?",
     },
   ],
-  "Unbalanced staffing": [
+  "How can I distribute weekend shifts fairly?": [
     {
-      question: "Are there any staffing imbalances I should know about?",
+      question: "How can I distribute weekend shifts fairly?",
       answer:
-        "I've detected imbalances: Night shifts have a 40% variance in distribution, and weekend coverage shows Dr. Martinez working 3x more than average. I recommend rebalancing.",
+        "Weekend shift distribution can be a pain point for staff. I suggest we use a min and max rule. For example a maximum of 3 weekends off and a minimum of 1.",
     },
     {
-      question: "How do I fix unbalanced staffing?",
+      question: "How can I distribute weekend shifts fairly?",
+      answer: "Would you like me to show you how to add that rule?",
+    },
+  ],
+  "How do I use the RosterLab app?": [
+    {
+      question: "How do I use the RosterLab app?",
       answer:
-        "I've identified staff with significantly more hours than others. Try redistributing shifts from over-scheduled staff to under-utilized team members to create better balance.",
+        'First, you\'ll need to download it to your mobile device. Here are the links for the <a href="https://apps.apple.com/nz/app/rosterlab/id6448819917" target="_blank" rel="noopener noreferrer" class="text-[#1c82fd] underline hover:text-blue-700">App Store</a> and <a href="https://play.google.com/store/apps/details?id=com.rosterlab.app" target="_blank" rel="noopener noreferrer" class="text-[#1c82fd] underline hover:text-blue-700">Play Store</a>.',
+    },
+    {
+      question: "How do I use the RosterLab app?",
+      answer:
+        "Next, you'll need to login with your administrator access. Do you remember those login details or do you need me to help with a password reset?",
     },
   ],
 };
@@ -115,40 +108,52 @@ export default function OttoStaticChatFeature1() {
             }
             className="text-sm border border-gray-300 rounded-md px-2 py-1 bg-white text-gray-700 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="">AI Shortcuts:</option>
-            <option value="No split weekends">No split weekends</option>
-            <option value="Only split weekends">Only split weekends</option>
-            <option value="Leave shouldn't have hours">
-              Leave shouldn't have hours
+            <option value="">AI Prompts:</option>
+            <option value="How do I setup a fair roster?">
+              How do I set up a safe roster?
             </option>
-            <option value="Fair night shifts">Fair night shifts</option>
-            <option value="Fair weekends">Fair weekends</option>
-            <option value="Unbalanced staffing">Unbalanced staffing</option>
+            <option value="How do I do deal with split weekends?">
+              How do I do deal with split weekends?
+            </option>
+            <option value="How do I handle no split weekends?">
+              How do I handle no split weekends?
+            </option>
+            <option value="How can I distribute weekend shifts fairly?">
+              How can I distribute weekend shifts fairly?
+            </option>
+            <option value="How do I use the RosterLab app?">
+              How do I use the RosterLab app?
+            </option>
           </select>
         </div>
       </div>
 
       {/* Chat Messages */}
       <div className="py-6 space-y-4">
-        {messages.map((message, index) => (
-          <div key={index} className="space-y-3">
-            {/* Question */}
+        {messages.length > 0 && (
+          <>
+            {/* Question - shown once */}
             <div className="flex justify-end">
               <div className="max-w-[85%] bg-[#1c82fd] text-white rounded-2xl rounded-tr-sm px-4 py-3 shadow-sm">
-                <p className="text-sm leading-relaxed">{message.question}</p>
-              </div>
-            </div>
-
-            {/* Answer */}
-            <div className="flex justify-start">
-              <div className="max-w-[85%] bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-gray-200">
-                <p className="text-sm text-gray-800 leading-relaxed">
-                  {message.answer}
+                <p className="text-sm leading-relaxed">
+                  {messages[0].question}
                 </p>
               </div>
             </div>
-          </div>
-        ))}
+
+            {/* Answers - all answers shown in sequence */}
+            {messages.map((message, index) => (
+              <div key={index} className="flex justify-start">
+                <div className="max-w-[85%] bg-white rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm border border-gray-200">
+                  <p
+                    className="text-sm text-gray-800 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: message.answer }}
+                  />
+                </div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
