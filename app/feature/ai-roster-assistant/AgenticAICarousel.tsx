@@ -37,7 +37,7 @@ const agenticFeatures = [
     id: 3,
     title: '"Help improve my roster"',
     description:
-      "Receive intelligent suggestions for schedule optimization and staff allocation based on historical data and preferences.",
+      "Receive intelligent suggestions for schedule optimisation and staff allocation based on historical data and preferences.",
     gradient: "from-blue-500 to-indigo-500",
     icon: (
       <path
@@ -56,7 +56,7 @@ export default function AgenticAICarousel() {
       {agenticFeatures.map((feature) => (
         <div
           key={feature.id}
-          className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center"
+          className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-105 cursor-pointer"
         >
           <div
             className={`w-12 h-12 bg-gradient-to-br ${feature.gradient} rounded-lg flex items-center justify-center mb-4`}

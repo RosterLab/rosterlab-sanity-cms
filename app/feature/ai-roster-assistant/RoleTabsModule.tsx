@@ -147,11 +147,11 @@ export default function RoleTabsModule() {
             </div>
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Build better rosters with AI guidance
+                Build Better Rosters With AI Guidance
               </h3>
               <p className="text-gray-600 mb-6">
-                Learn how to create higher quality rosters with Otto's expert
-                guidance on fairness, fatigue management, and compliance.
+                Create higher quality rosters with Otto's expert guidance on
+                fairness, fatigue management, and compliance.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -184,8 +184,7 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Ask Otto how to handle complex rostering scenarios and edge
-                    cases
+                    Ask Otto how to handle complex rostering scenarios
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -201,7 +200,7 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get things done quicker, without navigating the app
+                    Get things done instantly with natural language
                   </span>
                 </li>
               </ul>
@@ -221,7 +220,7 @@ export default function RoleTabsModule() {
             </div>
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Adjust shifts easily for staff on the go
+                Quick Shift Management - Anywhere, Anytime
               </h3>
               <p className="text-gray-600 mb-6">
                 Staff can use Otto to make instant changes to their shifts
@@ -241,7 +240,7 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Make changes to their preferences
+                    Make changes to staff preferences
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -257,8 +256,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Query info related to their shift (e.g. "How much sick leave
-                    have I had?")
+                    Quickly get information related to their shift e.g. "How
+                    much sick leave have I had?"
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -274,7 +273,23 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Make annual leave requests
+                    Make leave requests without navigating the app
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-gray-700">
+                    Easy to use, even for non-technical users!
                   </span>
                 </li>
               </ul>
@@ -282,6 +297,11 @@ export default function RoleTabsModule() {
           </div>
         )}
       </div>
+
+      {/* Disclaimer */}
+      <p className="text-xs text-gray-500 mt-4 text-center">
+        *Otto's information is restricted based on user permissions by default.
+      </p>
     </div>
   );
 }

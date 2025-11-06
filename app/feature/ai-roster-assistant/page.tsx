@@ -11,6 +11,7 @@ import OttoStaticChatFeature1 from "@/components/sections/animations/OttoStaticC
 import RoleTabsModule from "./RoleTabsModule";
 import WaitlistForm from "./WaitlistForm";
 import AgenticAICarousel from "./AgenticAICarousel";
+import ShareButton from "./ShareButton";
 import Image from "next/image";
 
 const pathname = "/feature/ai-roster-assistant";
@@ -47,22 +48,23 @@ const faqItems = [
   {
     question: "What can the AI Roster Assistant help me with?",
     answer:
-      "The AI Roster Assistant can help you understand your roster, answering questions about your roster instantly. The AI understands your team's context, constraints, and preferences to provide relevant information.",
-  },
-  {
-    question: "Does the AI Roster Assistant have access to my roster data?",
-    answer:
-      "Yes, the AI Roster Assistant can access your roster context to provide relevant, personalised insights. It understands your team's skills, availability, and scheduling constraints to give you accurate information.",
+      "Our AI Roster Assistant can help you understand your roster, answering questions about your roster instantly. The AI understands your team's context, constraints, and preferences to provide relevant information.",
   },
   {
     question: "Can the AI Roster Assistant make changes to my roster?",
     answer:
-      "The AI Roster Assistant provides you with instant insights and knowledge, but you maintain full control.",
+      "The AI Roster Assistant provides you with instant insights, tips and knowledge, but you maintain full control.",
   },
   {
     question: "What is Agentic AI for rostering?",
     answer:
-      "Agentic AI will revolutionize how we approach workforce scheduling. The ability to have AI autonomously handle complex rostering tasks means more time for strategic planning and less time on administrative work.",
+      "Agentic AI will revolutionise how we approach workforce scheduling. The ability to have AI autonomously handle complex rostering tasks means more time for strategic planning and less time on administrative work.",
+  },
+  {
+    question:
+      "Is it possible to control Otto's access to information by user role?",
+    answer:
+      "Yes, Otto's information is by default restricted based on user permissions.",
   },
 ];
 
@@ -85,7 +87,7 @@ export default function AIRosterAssistantPage() {
                 <p className="text-xl text-gray-600 mb-8">
                   Otto is your virtual rostering assistant here to help you make
                   smarter decisions. Ask Otto for insights and support to build
-                  better rosters for your team.
+                  better rosters, for you and your team to succeed.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -159,9 +161,10 @@ export default function AIRosterAssistantPage() {
                   Ask. Learn. Roster Smarter.
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Ask questions and get immediate answers about your roster. The
-                  AI understands your team's context, constraints, and
-                  preferences to provide tips, insights and guidance.
+                  Ask questions to learn about your roster and how to handle
+                  different scenarios. The AI understands your team's context,
+                  constraints, and preferences so it can provide useful tips,
+                  insights and guidance.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -174,8 +177,8 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Get roster tips and support instantly to help you build
-                      the perfect roster
+                      Get roster tips and support to help you build better
+                      quality rosters
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -199,12 +202,12 @@ export default function AIRosterAssistantPage() {
           <Container>
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Better Insights, Better Rosters
+                Better Insights, Safer Teams
               </h2>
               <p className="text-lg text-gray-600 mb-12">
                 Otto analyses your rostering data and provides the insights you
-                need to improve fairness, ensure compliance, and staff
-                well-being across your team.
+                need to make the right decisions for the health and well-being
+                of your teams.
               </p>
             </div>
 
@@ -230,10 +233,13 @@ export default function AIRosterAssistantPage() {
                   </svg>
                   <blockquote className="text-lg text-gray-700 leading-relaxed mb-4">
                     "Otto has completely transformed how we manage staff
-                    scheduling. The AI actually understands our unique clinic
-                    setup, shift patterns, and preferences, making adjustments
-                    automatically and intelligently. Otto has become an
-                    essential member of our team."
+                    scheduling. The AI{" "}
+                    <span className="font-semibold">actually understands</span>{" "}
+                    our unique clinic setup, shift patterns, and preferences,
+                    making adjustments automatically and intelligently. Otto has
+                    become an{" "}
+                    <span className="font-semibold">essential member</span> of
+                    our team."
                   </blockquote>
                   <div className="mb-4">
                     <p className="font-bold text-gray-900">Vivien Chan</p>
@@ -267,7 +273,7 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Streamline your knowledge in one place with AI assistance
+                      Deal with roster changes in one place with AI assistance
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -279,7 +285,7 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Reduce miscommunication and mistakes
+                      Customised specifically to your roster data
                     </span>
                   </li>
                 </ul>
@@ -324,6 +330,11 @@ export default function AIRosterAssistantPage() {
                     Be among the first to experience the future of rostering
                   </p>
                   <WaitlistForm />
+
+                  {/* Tell a Friend Button */}
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <ShareButton />
+                  </div>
                 </div>
               </div>
             </div>
