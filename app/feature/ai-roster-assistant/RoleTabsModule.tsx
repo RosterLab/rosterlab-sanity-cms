@@ -77,8 +77,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get roster stats for coverage gaps, shift allocation and
-                    history.
+                    Look up stats, coverage gaps, shift allocations, leave
+                    patterns and staffing levels across departments
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -94,7 +94,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Identify staffing shortages and coverage issues
+                    Check skill-mix requirements and identify potential
+                    shortages before they become critical
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -110,7 +111,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Track staff fatigue and flag potential burnout risks
+                    Review workload distribution and ask about staff utilisation
+                    across different shift types
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -126,8 +128,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Get clear explanations about shift allocations and fairness
-                    across your team
+                    Get clear explanations about roster changes, fairness
+                    metrics and compliance across your team
                   </span>
                 </li>
               </ul>

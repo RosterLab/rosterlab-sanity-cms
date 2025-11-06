@@ -170,15 +170,15 @@ export default function AIRosterAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Get instant answers to your rostering questions (no more
-                      manually searching)
+                      Get instant answers to your rostering questions (no manual
+                      searches)
                     </span>
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Save hours of trial and error by learning from real roster
-                      data, not assumptions
+                      Save time by learning from real roster data, not guesswork
+                      or assumptions
                     </span>
                   </li>
                   <li className="flex items-start">
