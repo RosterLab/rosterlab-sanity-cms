@@ -57,7 +57,7 @@ export default function RoleTabsModule() {
             </div>
             <div className="flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Make Smarter Decisions Informed By Rostering Data
+                Make Smarter Decisions, Informed By Rostering Data
               </h3>
               <p className="text-gray-600 mb-6">
                 Ask Otto for the data you need to make smart, informed decisions

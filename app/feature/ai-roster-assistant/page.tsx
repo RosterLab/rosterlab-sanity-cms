@@ -85,9 +85,9 @@ export default function AIRosterAssistantPage() {
                   Rostering Assistant
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Otto is your virtual rostering assistant here to help you make
-                  smarter decisions. Ask Otto for insights and support to build
-                  better rosters, for you and your team to succeed.
+                  Otto is your virtual rostering assistant here to help make
+                  tasks and decisions easier. Ask Otto for insights and support
+                  to build better rosters, for you and your team to succeed.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
@@ -163,8 +163,8 @@ export default function AIRosterAssistantPage() {
                 <p className="text-lg text-gray-600 mb-6">
                   Ask questions to learn about your roster and how to handle
                   different scenarios. The AI understands your team's context,
-                  constraints, and preferences so it can provide useful tips,
-                  insights and guidance.
+                  constraints, and preferences so it can provide personalised
+                  tips, insights and guidance.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

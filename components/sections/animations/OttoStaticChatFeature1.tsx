@@ -74,7 +74,7 @@ const messagesByCategory = {
 export default function OttoStaticChatFeature1() {
   const [selectedCategory, setSelectedCategory] = useState<
     keyof typeof messagesByCategory | ""
-  >("");
+  >("How do I setup a fair roster?");
 
   const messages = selectedCategory ? messagesByCategory[selectedCategory] : [];
 
