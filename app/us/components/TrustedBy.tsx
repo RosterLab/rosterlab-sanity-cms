@@ -17,10 +17,10 @@ const trustedLogos: TrustedLogo[] = [
     height: 60,
   },
   {
-    src: "/images/logos/western.png",
-    alt: "Western Health",
-    width: 140,
-    height: 60,
+    src: "/images/logos/department-of-health-western-australia.png",
+    alt: "Department of Health Western Australia",
+    width: 202,
+    height: 86,
   },
   { src: "/images/logos/rpa.png", alt: "RPA", width: 160, height: 80 },
   {
@@ -34,6 +34,12 @@ const trustedLogos: TrustedLogo[] = [
     alt: "NSW South Eastern",
     width: 152,
     height: 40,
+  },
+  {
+    src: "/images/logos/royal-flying-doctor.png",
+    alt: "Royal Flying Doctor Service",
+    width: 88,
+    height: 38,
   },
 ];
 
