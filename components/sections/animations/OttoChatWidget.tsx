@@ -226,8 +226,14 @@ export default function OttoChatWidget() {
         <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-gray-300">
           <input
             type="text"
+            placeholder="Ask Otto about your roster..."
+            className="flex-1 bg-transparent outline-none text-sm text-gray-600 sm:hidden"
+            disabled
+          />
+          <input
+            type="text"
             placeholder="Ask Otto anything about your roster..."
-            className="flex-1 bg-transparent outline-none text-sm text-gray-600"
+            className="flex-1 bg-transparent outline-none text-sm text-gray-600 hidden sm:block"
             disabled
           />
           <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">

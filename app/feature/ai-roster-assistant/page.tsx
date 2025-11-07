@@ -312,12 +312,20 @@ export default function AIRosterAssistantPage() {
                 The Future of Rostering is Here
               </h3>
               <p className="text-xl text-gray-600 mb-12">
-                Powered by Agentic AI, Otto will soon be able to take action on
-                your behalf, making rostering effortless — always with your
-                approval and oversight.
+                Otto will soon be able to take action on your behalf, making
+                rostering effortless — always with your approval and oversight.
               </p>
 
               <AgenticAICarousel />
+
+              <div className="mt-12">
+                <p className="text-xl text-gray-600">
+                  Powered by{" "}
+                  <span className="bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-bold">
+                    Agentic AI
+                  </span>
+                </p>
+              </div>
 
               {/* Waitlist Section */}
               <div className="mt-16 max-w-xl mx-auto">
