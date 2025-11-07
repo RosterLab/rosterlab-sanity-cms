@@ -162,9 +162,10 @@ export default function AIRosterAssistantPage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Rostering shouldn't feel like guesswork. Ask Otto anything you
-                  need such as "Do I have enough people for next week?" Or
-                  "Who's working too many nights?" The AI knows your roster and
-                  people giving you personalised tips & insights.
+                  need such as <em>"Do I have enough people for next week?"</em>{" "}
+                  Or
+                  <em>"Who's working too many nights?"</em> The AI knows your
+                  roster and people giving you personalised tips & insights.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -185,7 +186,7 @@ export default function AIRosterAssistantPage() {
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
                       Spot risks before they happen like fatigue, skill gaps, or
-                      uneven shift loads
+                      understaffing
                     </span>
                   </li>
                   <li className="flex items-start">

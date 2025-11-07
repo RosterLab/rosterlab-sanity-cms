@@ -78,7 +78,7 @@ const messagesByCategory = {
     {
       question: "How compliant is my roster with union rules?",
       answer:
-        "Would you like me to help you adjust the roster to meet these requirements?",
+        "I can show you how to adjust the roster to meet these requirements if you'd like?",
     },
   ],
   "Am I giving staff enough rest between shifts?": [
@@ -95,7 +95,7 @@ const messagesByCategory = {
     {
       question: "Am I giving staff enough rest between shifts?",
       answer:
-        "Would you like me to flag any future shifts that don't meet minimum break requirements?",
+        "Would you like help flagging any future shifts that don't meet minimum break requirements?",
     },
   ],
 };
