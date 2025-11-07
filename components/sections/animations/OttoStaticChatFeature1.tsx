@@ -110,17 +110,17 @@ export default function OttoStaticChatFeature1() {
   return (
     <div className="w-full max-w-[550px] mx-auto bg-white rounded-lg shadow-xl p-6 flex flex-col">
       {/* Chat Header */}
-      <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center overflow-hidden">
-          <Image
-            src="/images/ottopus.png"
-            alt="Otto"
-            width={24}
-            height={24}
-            className="object-contain"
-          />
-        </div>
-        <div className="flex flex-1 items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 pb-4 border-b border-gray-200">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center overflow-hidden">
+            <Image
+              src="/images/ottopus.png"
+              alt="Otto"
+              width={24}
+              height={24}
+              className="object-contain"
+            />
+          </div>
           <div className="flex flex-col">
             <h3 className="font-semibold text-gray-900">Otto</h3>
             <div className="flex items-center gap-1">
@@ -128,36 +128,36 @@ export default function OttoStaticChatFeature1() {
               <span className="text-xs text-gray-500">Online</span>
             </div>
           </div>
-          <select
-            value={selectedCategory}
-            onChange={(e) =>
-              setSelectedCategory(
-                e.target.value as keyof typeof messagesByCategory | "",
-              )
-            }
-            className="text-sm border border-gray-300 rounded-md px-2 py-1 bg-white text-gray-700 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="">AI Prompts:</option>
-            <option value="How do I setup a fair roster?">
-              How do I set up a safe roster?
-            </option>
-            <option value="How do I improve staff work-life balance?">
-              How do I improve staff work-life balance?
-            </option>
-            <option value="How can I distribute weekend shifts fairly?">
-              How can I distribute weekend shifts fairly?
-            </option>
-            <option value="How can I manage staff fatigue risks?">
-              How can I manage staff fatigue risks?
-            </option>
-            <option value="How compliant is my roster with union rules?">
-              How compliant is my roster with union rules?
-            </option>
-            <option value="Am I giving staff enough rest between shifts?">
-              Am I giving staff enough rest between shifts?
-            </option>
-          </select>
         </div>
+        <select
+          value={selectedCategory}
+          onChange={(e) =>
+            setSelectedCategory(
+              e.target.value as keyof typeof messagesByCategory | "",
+            )
+          }
+          className="text-sm border border-gray-300 rounded-md px-2 py-1 bg-white text-gray-700 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:flex-1 sm:max-w-none truncate"
+        >
+          <option value="">AI Prompts:</option>
+          <option value="How do I setup a fair roster?">
+            How do I set up a safe roster?
+          </option>
+          <option value="How do I improve staff work-life balance?">
+            How do I improve staff work-life balance?
+          </option>
+          <option value="How can I distribute weekend shifts fairly?">
+            How can I distribute weekend shifts fairly?
+          </option>
+          <option value="How can I manage staff fatigue risks?">
+            How can I manage staff fatigue risks?
+          </option>
+          <option value="How compliant is my roster with union rules?">
+            How compliant is my roster with union rules?
+          </option>
+          <option value="Am I giving staff enough rest between shifts?">
+            Am I giving staff enough rest between shifts?
+          </option>
+        </select>
       </div>
 
       {/* Chat Messages */}

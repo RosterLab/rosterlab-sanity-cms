@@ -51,7 +51,6 @@ export default function OttoChatWidget() {
   );
   const [queuePosition, setQueuePosition] = useState(0);
   const [stage, setStage] = useState(0); // 0: typing question, 1: thinking, 2: typing answer
-  const [displayedText, setDisplayedText] = useState("");
 
   const currentConversation = conversations[conversationQueue[queuePosition]];
 
@@ -128,7 +127,7 @@ export default function OttoChatWidget() {
   }, [stage, queuePosition, currentConversation, conversationQueue.length]);
 
   return (
-    <div className="w-full aspect-[4/3] bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg shadow-xl p-6 flex flex-col">
+    <div className="w-full min-h-[500px] md:aspect-[4/3] bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg shadow-xl p-6 flex flex-col">
       {/* Chat Header */}
       <div className="flex items-center gap-3 pb-4 border-b border-gray-200">
         <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
@@ -150,7 +149,7 @@ export default function OttoChatWidget() {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 py-6 space-y-4 overflow-hidden">
+      <div className="flex-1 py-6 space-y-4 overflow-y-auto overflow-x-hidden">
         {/* Render all completed messages */}
         {messages.map((message, index) => {
           if (message.type === "question") {
