@@ -435,7 +435,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   href={
                                     isUSVersion
                                       ? "/us/industries/healthcare/veterinary-scheduling"
-                                      : "/industries/veterinary"
+                                      : "/industries/healthcare/veterinary-rostering"
                                   }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >

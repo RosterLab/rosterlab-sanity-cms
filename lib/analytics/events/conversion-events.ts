@@ -15,6 +15,8 @@ export const CONVERSION_EVENTS = {
   FORM_SUBMISSION: "form_submission",
   TRIAL_STARTED: "trial_started",
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
+  CTA_CLICKED: "cta_clicked",
+  PRICING_VIEWED: "pricing_viewed",
 } as const;
 
 // Type definitions for event properties
@@ -213,4 +215,54 @@ export const trackFormSubmission = (properties: {
       amplitude_event_sent: true,
     });
   }
+};
+
+/**
+ * Track CTA button clicks (standardized event for all call-to-action buttons)
+ *
+ * @param properties - CTA click event properties
+ *
+ * @example
+ * trackCTAClicked({
+ *   cta_name: 'Header: Book demo',
+ *   cta_type: 'demo',
+ *   page_location: '/pricing',
+ *   destination_url: '/book-a-demo'
+ * });
+ */
+export const trackCTAClicked = (properties: {
+  cta_name: string;
+  cta_type: string;
+  page_location?: string;
+  destination_url?: string;
+  button_text?: string;
+  external?: boolean;
+  [key: string]: any;
+}) => {
+  analytics.track(CONVERSION_EVENTS.CTA_CLICKED, {
+    ...properties,
+    timestamp: new Date().toISOString(),
+  });
+};
+
+/**
+ * Track pricing page views
+ *
+ * @param properties - Pricing page view properties
+ *
+ * @example
+ * trackPricingViewed({
+ *   page_location: '/pricing',
+ *   page_url: 'https://rosterlab.com/pricing'
+ * });
+ */
+export const trackPricingViewed = (properties?: {
+  page_location?: string;
+  page_url?: string;
+  [key: string]: any;
+}) => {
+  analytics.track(CONVERSION_EVENTS.PRICING_VIEWED, {
+    ...properties,
+    timestamp: new Date().toISOString(),
+  });
 };
