@@ -46,13 +46,13 @@ export default function RoleTabsModule() {
       <div className="bg-white rounded-lg shadow-lg p-8 min-h-[200px]">
         {activeTab === "managers" && (
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full md:w-auto">
+            <div className="flex-shrink-0 w-full md:w-[280px]">
               <Image
                 src="/images/tab-module/module3.jpg"
                 alt="For Managers"
                 width={280}
                 height={350}
-                className="rounded-lg object-cover w-full md:w-auto"
+                className="rounded-lg object-cover w-full h-auto"
               />
             </div>
             <div className="flex-1">
@@ -138,13 +138,13 @@ export default function RoleTabsModule() {
         )}
         {activeTab === "team-leads" && (
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full md:w-auto">
+            <div className="flex-shrink-0 w-full md:w-[280px]">
               <Image
                 src="/images/tab-module/module1.jpg"
                 alt="For Team Leads / Roster Admins"
                 width={280}
                 height={350}
-                className="rounded-lg object-cover w-full md:w-auto"
+                className="rounded-lg object-cover w-full h-auto"
               />
             </div>
             <div className="flex-1">
@@ -230,13 +230,13 @@ export default function RoleTabsModule() {
         )}
         {activeTab === "staff" && (
           <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full md:w-auto">
+            <div className="flex-shrink-0 w-full md:w-[280px]">
               <Image
                 src="/images/tab-module/module2.jpg"
                 alt="For Staff"
                 width={280}
                 height={350}
-                className="rounded-lg object-cover w-full md:w-auto"
+                className="rounded-lg object-cover w-full h-auto"
               />
             </div>
             <div className="flex-1">
