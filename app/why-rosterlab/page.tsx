@@ -254,12 +254,18 @@ export default async function WhyRosterLabPage() {
             <AgenticAICarousel />
 
             <div className="mt-12">
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-600 mb-8">
                 Powered by{" "}
                 <span className="bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-bold">
                   Agentic AI
                 </span>
               </p>
+              <Button
+                href="/feature/ai-roster-assistant"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
+              >
+                Learn More
+              </Button>
             </div>
           </div>
         </Container>
