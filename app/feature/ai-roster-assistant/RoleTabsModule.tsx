@@ -77,8 +77,8 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Look up stats, coverage gaps, shift allocations, leave
-                    patterns and staffing levels across departments
+                    Look up stats, coverage gaps, shift allocations and leave
+                    information across departments
                   </span>
                 </li>
                 <li className="flex items-start">
@@ -186,7 +186,7 @@ export default function RoleTabsModule() {
                     />
                   </svg>
                   <span className="text-gray-700">
-                    Automatically check fairness, fatigue and EBA rules as you
+                    Automatically add fairness, fatigue and EBA rules as you
                     build
                   </span>
                 </li>

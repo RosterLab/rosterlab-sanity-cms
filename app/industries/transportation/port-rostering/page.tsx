@@ -3,7 +3,6 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -49,11 +48,6 @@ const faqItems = [
     question: "How does AI make port rostering more effective?",
     answer:
       "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In port operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes. When operational demands and vessel schedules change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team morale.",
-  },
-  {
-    question: "How does port roster planning work with RosterLab?",
-    answer:
-      "RosterLab's port roster scheduling supports planning for multiple weeks ahead, focusing on shift allocations and leave management. The system ensures fair distribution of night shifts, weekend work, and premium duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when vessel schedules change or operational demands shift throughout the planning period.",
   },
 ];
 
@@ -262,7 +256,7 @@ export default function PortRosteringPage() {
               </p>
             </div>
 
-            {/* Pain Point 4: Manage Port Worker Fatigue */}
+            {/* Pain Point 4: Manage port worker fatigue */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -280,7 +274,7 @@ export default function PortRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Manage Port Worker Fatigue
+                Manage port worker fatigue
               </h3>
               <p className="text-gray-600">
                 Distribute night shifts fairly and enforce rest periods to
@@ -324,8 +318,8 @@ export default function PortRosteringPage() {
                       More Efficient Operations for 24/7 Shift Work
                     </h3>
                     <p className="text-gray-600">
-                      Ensure the right blend of experienced and junior workers
-                      on every shift. Balance crane operators, stevedores, and
+                      Ensure the right blend of skills and experience on every
+                      shift. Balance crane operators, stevedores, and
                       specialised equipment handlers for safe and efficient
                       operations.
                     </p>
@@ -406,7 +400,7 @@ export default function PortRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Port Worker Fatigue
+                      Reduce port worker fatigue
                     </h3>
                     <p className="text-gray-600">
                       Help port workers achieve better work-life balance by
@@ -710,23 +704,8 @@ export default function PortRosteringPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white pb-20">
-        <TrustedBy />
-        <Container>
-          <div className="text-center mt-0">
-            <Button
-              href="/case-studies"
-              className="bg-teal-600 text-white hover:bg-teal-700"
-            >
-              View Case Studies
-            </Button>
-          </div>
-        </Container>
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
