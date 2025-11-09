@@ -612,7 +612,7 @@ export default async function WhyRosterLabPage() {
           <Container>
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Recent Case Studies
+                Healthcare Teams We've Recently Helped
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 See how teams like yours partner with RosterLab to solve complex
