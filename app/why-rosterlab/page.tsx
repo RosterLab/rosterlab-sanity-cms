@@ -249,10 +249,10 @@ export default async function WhyRosterLabPage() {
                 you can reduce your admin by 90%.
               </p>
               <Button
-                href="/book-a-demo"
+                href="/feature/ai-roster-assistant"
                 className="bg-blue-600 text-white hover:bg-blue-700"
               >
-                See How We Do It
+                Discover Agentic AI
               </Button>
             </div>
             <div>
