@@ -408,11 +408,6 @@ export default async function WhyRosterLabPage() {
                 <span className="text-gray-400 text-xl">✗</span>
                 <span className="text-gray-600">Not available</span>
               </div>
-              <div className="flex items-center gap-2 bg-yellow-50 px-3 py-1 rounded border-l-4 border-yellow-400">
-                <span className="text-gray-900 font-semibold">
-                  Highlighted = RosterLab USP
-                </span>
-              </div>
             </div>
           </div>
         </Container>
