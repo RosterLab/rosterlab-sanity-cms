@@ -345,7 +345,7 @@ export default async function WhyRosterLabPage() {
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
-                    Workforce Consulting Services
+                    Rostering Build & Onboarding
                   </td>
                   <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
                     ✓
