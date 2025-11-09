@@ -21,7 +21,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/call-centre-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-1134462016.jpg",
+          url: "/images/call-centre-rostering.jpg",
           width: 1200,
           height: 630,
         },
@@ -32,7 +32,7 @@ export const metadata = withHreflang(
       title: "Call Centre Rostering Software - RosterLab",
       description:
         "Build your call centre roster with RosterLab. Automatically generate fair, compliant and flexible call centre rosters that save time and money.",
-      images: ["/images/us-images/iStock-1134462016.jpg"],
+      images: ["/images/call-centre-rostering.jpg"],
     },
   },
   "/industries/call-centre-rostering",

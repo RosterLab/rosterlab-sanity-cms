@@ -21,7 +21,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/transportation/port-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-1134462016.jpg",
+          url: "/images/port-roster.jpg",
           width: 1200,
           height: 630,
         },
@@ -32,7 +32,7 @@ export const metadata = withHreflang(
       title: "Port Rostering Software - RosterLab",
       description:
         "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
-      images: ["/images/us-images/iStock-1134462016.jpg"],
+      images: ["/images/port-roster.jpg"],
     },
   },
   "/transportation/port-rostering",
