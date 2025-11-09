@@ -237,18 +237,16 @@ export default async function WhyRosterLabPage() {
       </div>
 
       {/* Coming Soon: Agentic AI Section */}
-      <div className="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
+      <div className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
         <Container>
           <div className="max-w-6xl mx-auto text-center">
-            <div className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              COMING SOON
-            </div>
             <h3 className="text-4xl font-bold mb-6 text-gray-900">
               We're Building The Future of Rostering
             </h3>
             <p className="text-xl text-gray-600 mb-12">
-              Otto will soon be able to take action on your behalf, making
-              rostering effortless — always with your approval and oversight.
+              Our AI Rostering Assistant (Otto) will soon be able to take action
+              on your behalf, making rostering effortless - always with your
+              approval and oversight.
             </p>
 
             <AgenticAICarousel />
@@ -301,7 +299,7 @@ export default async function WhyRosterLabPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                <tr className="hover:bg-gray-50 bg-yellow-50 border-l-4 border-yellow-400">
+                <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
                     AI-Powered Rostering
                   </td>
@@ -312,7 +310,7 @@ export default async function WhyRosterLabPage() {
                     ✗
                   </td>
                 </tr>
-                <tr className="hover:bg-gray-50 bg-yellow-50 border-l-4 border-yellow-400">
+                <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
                     Complex Multi-Session Scheduling
                   </td>
@@ -323,7 +321,7 @@ export default async function WhyRosterLabPage() {
                     ✗
                   </td>
                 </tr>
-                <tr className="hover:bg-gray-50 bg-yellow-50 border-l-4 border-yellow-400">
+                <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
                     Staff Preference Optimization
                   </td>
@@ -356,7 +354,7 @@ export default async function WhyRosterLabPage() {
                     ~
                   </td>
                 </tr>
-                <tr className="hover:bg-gray-50 bg-yellow-50 border-l-4 border-yellow-400">
+                <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
                     Workforce Consulting Services
                   </td>
@@ -367,7 +365,7 @@ export default async function WhyRosterLabPage() {
                     ✗
                   </td>
                 </tr>
-                <tr className="hover:bg-gray-50 bg-yellow-50 border-l-4 border-yellow-400">
+                <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
                     Robotic Process Automation (RPA)
                   </td>
