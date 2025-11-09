@@ -697,7 +697,7 @@ export default async function WhyRosterLabPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {/* Metric 1 */}
-            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-lg shadow-lg">
+            <div className="text-center p-8 bg-white rounded-lg shadow-lg">
               <div className="text-5xl font-bold text-blue-600 mb-4">90%</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Time Saved
@@ -708,7 +708,7 @@ export default async function WhyRosterLabPage() {
             </div>
 
             {/* Metric 2 */}
-            <div className="text-center p-8 bg-white rounded-lg shadow-lg">
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-lg shadow-lg">
               <div className="text-5xl font-bold text-blue-600 mb-4">100%</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Compliance
@@ -719,7 +719,7 @@ export default async function WhyRosterLabPage() {
             </div>
 
             {/* Metric 3 */}
-            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-green-50 rounded-lg shadow-lg">
+            <div className="text-center p-8 bg-white rounded-lg shadow-lg">
               <div className="text-5xl font-bold text-blue-600 mb-4">24/7</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 Support
