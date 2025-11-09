@@ -244,7 +244,7 @@ export default async function WhyRosterLabPage() {
               COMING SOON
             </div>
             <h3 className="text-4xl font-bold mb-6 text-gray-900">
-              The Future of Rostering is Here
+              We're Building The Future of Rostering
             </h3>
             <p className="text-xl text-gray-600 mb-12">
               Otto will soon be able to take action on your behalf, making
