@@ -543,41 +543,6 @@ export default async function WhyRosterLabPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Metric 1 */}
-            <div className="text-center p-8 bg-white rounded-lg shadow-lg">
-              <div className="text-5xl font-bold text-blue-600 mb-4">90%</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Time Saved
-              </h3>
-              <p className="text-gray-600">
-                Reduce admin time by 90% with AI-powered automation
-              </p>
-            </div>
-
-            {/* Metric 2 */}
-            <div className="text-center p-8 bg-white rounded-lg shadow-lg">
-              <div className="text-5xl font-bold text-blue-600 mb-4">100%</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Compliance
-              </h3>
-              <p className="text-gray-600">
-                Ensure 100% compliance with complex rostering rules
-              </p>
-            </div>
-
-            {/* Metric 3 */}
-            <div className="text-center p-8 bg-white rounded-lg shadow-lg">
-              <div className="text-5xl font-bold text-blue-600 mb-4">24/7</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Support
-              </h3>
-              <p className="text-gray-600">
-                Access expert support and consulting services anytime
-              </p>
-            </div>
-          </div>
-
           {/* Loved by our users - Image and Quote Widget */}
           <div className="max-w-6xl mx-auto mt-20">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
