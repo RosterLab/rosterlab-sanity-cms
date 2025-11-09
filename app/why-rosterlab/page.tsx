@@ -344,17 +344,6 @@ export default async function WhyRosterLabPage() {
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-700">
-                    Real-Time Staffing Analytics
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-orange-500 text-xl">
-                    ~
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
                     Workforce Consulting Services
                   </td>
