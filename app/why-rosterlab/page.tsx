@@ -687,7 +687,7 @@ export default async function WhyRosterLabPage() {
       )}
 
       {/* Metrics Section */}
-      <div className="py-20 bg-white">
+      <div className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
