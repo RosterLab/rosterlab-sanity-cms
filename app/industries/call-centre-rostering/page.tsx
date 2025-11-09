@@ -6,7 +6,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import NightShiftFatigueModule from "@/components/sections/animations/NightShiftFatigueModule";
+import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 
 export const metadata = withHreflang(
   {
@@ -289,7 +289,7 @@ export default function CallCentresPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <NightShiftFatigueModule />
+              <StaffingEnvelopeChartSmall />
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">

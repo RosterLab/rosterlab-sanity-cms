@@ -4,10 +4,10 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 import WeekendRotationModule from "@/app/feature/shift-swaps/WeekendRotationModule";
 import MobileAppPreferencesModule from "@/components/sections/animations/MobileAppPreferencesModule";
 import RosterGenerationModule from "@/components/sections/animations/RosterGenerationModule";
-import StaffingOptimisationModule from "@/components/sections/animations/StaffingOptimisationModule";
 
 interface BenefitTab {
   id: string;
@@ -213,7 +213,7 @@ export default function Benefits() {
                     <div
                       className={`w-full flex items-center justify-center transition-opacity duration-300 ${activeTab === "optimisation" ? "opacity-100 z-10" : "opacity-0 absolute inset-0 pointer-events-none"}`}
                     >
-                      <StaffingOptimisationModule />
+                      <StaffingEnvelopeChartSmall />
                     </div>
                     {benefitTabs.map(
                       (tab) =>
