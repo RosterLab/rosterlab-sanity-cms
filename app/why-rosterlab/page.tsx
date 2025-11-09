@@ -176,12 +176,6 @@ export default async function WhyRosterLabPage() {
                 create the best possible schedule - automatically. That means
                 you can reduce your admin by 90%.
               </p>
-              <Button
-                href="/book-a-demo"
-                className="bg-blue-600 text-white hover:bg-blue-700"
-              >
-                See How We Do It
-              </Button>
             </div>
             <div>
               <Image
@@ -225,12 +219,6 @@ export default async function WhyRosterLabPage() {
                 . Others feel impossible. RosterLab was built for the most
                 complex ones and handles lots of different rostering scenarios.
               </p>
-              <Button
-                href="/book-a-demo"
-                className="bg-blue-600 text-white hover:bg-blue-700"
-              >
-                See How We Do It
-              </Button>
             </div>
           </div>
         </Container>
