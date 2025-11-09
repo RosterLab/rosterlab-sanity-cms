@@ -3,7 +3,6 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -48,12 +47,7 @@ const faqItems = [
   {
     question: "How does AI make call centre rostering more effective?",
     answer:
-      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In call centre operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes. When call volumes and staffing demands change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team morale.",
-  },
-  {
-    question: "How does call centre roster planning work with RosterLab?",
-    answer:
-      "RosterLab's call centre roster scheduling supports planning for multiple weeks ahead, focusing on shift allocations and leave management. The system ensures fair distribution of night shifts, weekend work, and premium duties across the full period, with powerful re-rostering features that let you adjust specific periods while maintaining overall fairness. This is essential when call volumes change or operational demands shift throughout the planning period.",
+      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In call centre operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes.",
   },
 ];
 
@@ -72,7 +66,7 @@ export default function CallCentresPage() {
                 Call Centre Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Optimize call centre operations with smarter workforce
+                Optimise call centre operations with smarter workforce
                 management for 24/7 customer service operations.
               </p>
               <div className="mb-8 space-y-2">
@@ -90,7 +84,7 @@ export default function CallCentresPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Meet service level agreements with optimized staffing
+                  Meet service level agreements with optimised staffing
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -138,7 +132,7 @@ export default function CallCentresPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Match skilled agents to specialized service queues
+                  Ensure skilled agents are on the right shifts
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -177,7 +171,7 @@ export default function CallCentresPage() {
               Better Call Centre Operations Start with Smart Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build optimized and fair call centre rosters in minutes, not days.
+              Build optimised and fair call centre rosters in minutes, not days.
               Discover how:
             </p>
           </div>
@@ -253,10 +247,10 @@ export default function CallCentresPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Skills-based scheduling
+                Skills-based staff rostering
               </h3>
               <p className="text-gray-600">
-                Match agents with specialized skills to the right queues and
+                Match call-centre agents with specialised skills to the right
                 shifts for optimal customer service.
               </p>
             </div>
@@ -279,7 +273,7 @@ export default function CallCentresPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduce Agent Burnout
+                Manage staff fatigue for 24/7 operations
               </h3>
               <p className="text-gray-600">
                 Distribute night shifts fairly and enforce rest periods to
@@ -320,11 +314,11 @@ export default function CallCentresPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimized Coverage for Peak Hours
+                      Optimised Coverage for Peak Hours
                     </h3>
                     <p className="text-gray-600">
                       Ensure the right number of agents with the right skills
-                      during peak call times. Balance experienced and junior
+                      during peak call times. Balance experience and skilled
                       agents for efficient operations.
                     </p>
                   </div>
@@ -548,8 +542,8 @@ export default function CallCentresPage() {
                       Publish roster to mobile
                     </h3>
                     <p className="text-gray-600">
-                      Distribute rosters digitally to agents and track
-                      attendance, compliance, and performance metrics.
+                      Distribute rosters digitally to agents. They see their
+                      shifts, can request swaps, and get real-time updates.
                     </p>
                   </div>
                 </div>
@@ -709,23 +703,8 @@ export default function CallCentresPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white pb-20">
-        <TrustedBy />
-        <Container>
-          <div className="text-center mt-0">
-            <Button
-              href="/case-studies"
-              className="bg-teal-600 text-white hover:bg-teal-700"
-            >
-              View Case Studies
-            </Button>
-          </div>
-        </Container>
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
