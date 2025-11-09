@@ -560,8 +560,8 @@ export default async function WhyRosterLabPage() {
                 <Image
                   src="/images/logos/department-of-health-western-australia.png"
                   alt="Department of Health Western Australia"
-                  width={140}
-                  height={60}
+                  width={202}
+                  height={86}
                   className="max-w-full h-auto grayscale"
                 />
               </div>
@@ -569,8 +569,8 @@ export default async function WhyRosterLabPage() {
                 <Image
                   src="/images/logos/royal-flying-doctor.png"
                   alt="Royal Flying Doctor Service"
-                  width={140}
-                  height={60}
+                  width={88}
+                  height={38}
                   className="max-w-full h-auto grayscale"
                 />
               </div>
