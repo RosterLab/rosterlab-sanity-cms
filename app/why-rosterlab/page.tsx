@@ -13,8 +13,6 @@ import { validatedToken } from "@/sanity/lib/token";
 import { groq } from "next-sanity";
 import { formatDate } from "@/lib/utils";
 import AgenticAICarousel from "@/app/feature/ai-roster-assistant/AgenticAICarousel";
-import WaitlistForm from "@/app/feature/ai-roster-assistant/WaitlistForm";
-import ShareButton from "@/app/feature/ai-roster-assistant/ShareButton";
 
 export const metadata = withHreflang(
   {
@@ -238,39 +236,6 @@ export default async function WhyRosterLabPage() {
         </Container>
       </div>
 
-      {/* Mission Section Clone 2 - Gradient Background */}
-      <div className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                We're building the future of rostering
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Our AI considers every rule, constraint, and preference to
-                create the best possible schedule - automatically. That means
-                you can reduce your admin by 90%.
-              </p>
-              <Button
-                href="/feature/ai-roster-assistant"
-                className="bg-blue-600 text-white hover:bg-blue-700"
-              >
-                Discover Agentic AI
-              </Button>
-            </div>
-            <div>
-              <Image
-                src="/images/generating.webp"
-                alt="AI roster generator in action"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </Container>
-      </div>
-
       {/* Coming Soon: Agentic AI Section */}
       <div className="py-20 bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
         <Container>
@@ -295,33 +260,6 @@ export default async function WhyRosterLabPage() {
                   Agentic AI
                 </span>
               </p>
-            </div>
-
-            {/* Waitlist Section */}
-            <div className="mt-16 max-w-xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Join the Waitlist
-                </h3>
-                <div className="flex justify-center mb-6">
-                  <Image
-                    src="/images/ottopus.png"
-                    alt="Otto"
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
-                </div>
-                <p className="text-gray-600 mb-6">
-                  Be among the first to experience the future of rostering
-                </p>
-                <WaitlistForm />
-
-                {/* Tell a Friend Button */}
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <ShareButton />
-                </div>
-              </div>
             </div>
           </div>
         </Container>
