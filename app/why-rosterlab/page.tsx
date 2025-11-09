@@ -284,6 +284,9 @@ export default async function WhyRosterLabPage() {
                   <th className="py-4 px-6 text-center text-white font-semibold">
                     Other Competitors
                   </th>
+                  <th className="py-4 px-6 text-center text-white font-semibold">
+                    Manual Rostering
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -293,6 +296,9 @@ export default async function WhyRosterLabPage() {
                   </td>
                   <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
                     ✓
+                  </td>
+                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
+                    ✗
                   </td>
                   <td className="py-4 px-6 text-center text-gray-400 text-xl">
                     ✗
@@ -308,6 +314,9 @@ export default async function WhyRosterLabPage() {
                   <td className="py-4 px-6 text-center text-gray-400 text-xl">
                     ✗
                   </td>
+                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
+                    ✗
+                  </td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
@@ -315,6 +324,9 @@ export default async function WhyRosterLabPage() {
                   </td>
                   <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
                     ✓
+                  </td>
+                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
+                    ✗
                   </td>
                   <td className="py-4 px-6 text-center text-gray-400 text-xl">
                     ✗
@@ -330,6 +342,9 @@ export default async function WhyRosterLabPage() {
                   <td className="py-4 px-6 text-center text-orange-500 text-xl">
                     ~
                   </td>
+                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
+                    ✗
+                  </td>
                 </tr>
                 <tr className="hover:bg-gray-50">
                   <td className="py-4 px-6 text-gray-900 font-semibold">
@@ -337,6 +352,9 @@ export default async function WhyRosterLabPage() {
                   </td>
                   <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
                     ✓
+                  </td>
+                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
+                    ✗
                   </td>
                   <td className="py-4 px-6 text-center text-gray-400 text-xl">
                     ✗
@@ -351,6 +369,9 @@ export default async function WhyRosterLabPage() {
                   </td>
                   <td className="py-4 px-6 text-center text-orange-500 text-xl">
                     ~
+                  </td>
+                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
+                    ✗
                   </td>
                 </tr>
               </tbody>
