@@ -558,17 +558,17 @@ export default async function WhyRosterLabPage() {
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
               <div className="flex items-center justify-center">
                 <Image
-                  src="/images/logos/whanganui.png"
-                  alt="Whanganui"
-                  width={120}
+                  src="/images/logos/department-of-health-western-australia.png"
+                  alt="Department of Health Western Australia"
+                  width={140}
                   height={60}
                   className="max-w-full h-auto grayscale"
                 />
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/images/logos/western.png"
-                  alt="Western Health"
+                  src="/images/logos/royal-flying-doctor.png"
+                  alt="Royal Flying Doctor Service"
                   width={140}
                   height={60}
                   className="max-w-full h-auto grayscale"
