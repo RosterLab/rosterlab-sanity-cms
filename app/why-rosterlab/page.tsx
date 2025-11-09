@@ -626,50 +626,62 @@ export default async function WhyRosterLabPage() {
                   ? `/case-studies/${post.slug.current}`
                   : "/case-studies";
                 return (
-                  <article
+                  <Link
                     key={post._id}
-                    className="bg-gray-50 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow"
+                    href={postUrl}
+                    className="bg-gray-50 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow group"
                   >
                     {post.mainImage?.asset && (
-                      <Link href={postUrl}>
-                        <div className="relative h-56 w-full">
-                          <Image
-                            src={urlFor(post.mainImage)
-                              .width(640)
-                              .height(360)
-                              .url()}
-                            alt={post.mainImage?.alt || post.title}
-                            fill
-                            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                            className="object-cover"
-                          />
-                        </div>
-                      </Link>
+                      <div className="relative h-56 w-full">
+                        <Image
+                          src={urlFor(post.mainImage)
+                            .width(640)
+                            .height(360)
+                            .url()}
+                          alt={post.mainImage?.alt || post.title}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      </div>
                     )}
                     <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-                        <Link
-                          href={postUrl}
-                          className="hover:text-blue-600 transition-colors"
-                        >
-                          {post.title}
-                        </Link>
+                      <h3 className="text-2xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                        {post.title}
                       </h3>
                       {post.excerpt && (
                         <p className="text-gray-600 mb-6 line-clamp-3">
                           {post.excerpt}
                         </p>
                       )}
-                      <div className="mt-auto flex items-center justify-between text-sm text-gray-500">
-                        <span>{post.author?.name || "RosterLab Team"}</span>
-                        {post.publishedAt && (
-                          <time dateTime={post.publishedAt}>
-                            {formatDate(post.publishedAt)}
-                          </time>
-                        )}
+                      <div className="mt-auto">
+                        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                          <span>{post.author?.name || "RosterLab Team"}</span>
+                          {post.publishedAt && (
+                            <time dateTime={post.publishedAt}>
+                              {formatDate(post.publishedAt)}
+                            </time>
+                          )}
+                        </div>
+                        <div className="text-blue-600 font-medium flex items-center group-hover:text-blue-700">
+                          Read More
+                          <svg
+                            className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </div>
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 );
               })}
             </div>
