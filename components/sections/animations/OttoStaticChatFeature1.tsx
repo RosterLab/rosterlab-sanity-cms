@@ -47,55 +47,44 @@ const messagesByCategory = {
       answer: "Would you like me to show you how to add that rule?",
     },
   ],
-  "How can I manage staff fatigue risks?": [
+  "Are there any risks for staff fatigue?": [
     {
-      question: "How can I manage staff fatigue risks?",
+      question: "Are there any risks for staff fatigue?",
       answer:
         "Fatigue is a critical safety concern. Based on your roster data, I've identified some potential fatigue risks: Sarah is scheduled for 6 consecutive shifts, and Tom has only 9 hours between shifts.",
     },
     {
-      question: "How can I manage staff fatigue risks?",
+      question: "Are there any risks for staff fatigue?",
       answer:
         "To reduce fatigue, I recommend: maximum 5 consecutive shifts before a break, and minimum 12 hours rest after night shifts.",
     },
     {
-      question: "How can I manage staff fatigue risks?",
+      question: "Are there any risks for staff fatigue?",
       answer:
         "Would you like me to show you how to set up these fatigue management rules?",
     },
   ],
-  "How compliant is my roster with union rules?": [
+  "How do I set up EBA compliant rules for staff?": [
     {
-      question: "How compliant is my roster with union rules?",
-      answer:
-        "I've found 2 potential issues: Jessica is rostered for 44 hours this week (exceeds 38-hour standard), and Alex has only 1 day off this week.",
-    },
-    {
-      question: "How compliant is my roster with union rules?",
+      question: "How do I set up EBA compliant rules for staff?",
       answer:
         "EBA compliance requires maximum 38 hours per week for standard employment, and minimum 2 consecutive days off per week.",
     },
     {
-      question: "How compliant is my roster with union rules?",
+      question: "How do I set up EBA compliant rules for staff?",
       answer:
-        "I can show you how to adjust the roster to meet these requirements if you'd like?",
+        "Would you like me to tell you how to set up some EBA compliant rules to get started?",
     },
   ],
-  "Am I giving staff enough rest between shifts?": [
+  "How do I ensure staff are given enough rest?": [
     {
-      question: "Am I giving staff enough rest between shifts?",
-      answer:
-        "Rest between shifts is crucial for safety. I found 3 shifts with insufficient breaks: Tom has 8 hours between Friday night and Saturday day shifts (minimum is 12 hours after nights).",
-    },
-    {
-      question: "Am I giving staff enough rest between shifts?",
+      question: "How do I ensure staff are given enough rest?",
       answer:
         "Best practice break requirements: minimum 10 hours between standard shifts, and 12 hours after night shifts.",
     },
     {
-      question: "Am I giving staff enough rest between shifts?",
-      answer:
-        "Would you like help flagging any future shifts that don't meet minimum break requirements?",
+      question: "How do I ensure staff are given enough rest?",
+      answer: "Would you like guidance on implementing those rules?",
     },
   ],
 };
@@ -148,14 +137,14 @@ export default function OttoStaticChatFeature1() {
           <option value="How can I distribute weekend shifts fairly?">
             How can I distribute weekend shifts fairly?
           </option>
-          <option value="How can I manage staff fatigue risks?">
-            How can I manage staff fatigue risks?
+          <option value="Are there any risks for staff fatigue?">
+            Are there any risks for staff fatigue?
           </option>
-          <option value="How compliant is my roster with union rules?">
-            How compliant is my roster with union rules?
+          <option value="How do I set up EBA compliant rules for staff?">
+            How do I set up EBA compliant rules for staff?
           </option>
-          <option value="Am I giving staff enough rest between shifts?">
-            Am I giving staff enough rest between shifts?
+          <option value="How do I ensure staff are given enough rest?">
+            How do I ensure staff are given enough rest?
           </option>
         </select>
       </div>
