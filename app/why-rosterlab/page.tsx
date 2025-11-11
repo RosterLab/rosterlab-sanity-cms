@@ -17,9 +17,9 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = withHreflang(
   {
-    title: "Why Choose RosterLab - AI-Powered Rostering Solutions",
+    title: "Why Choose Us - RosterLab",
     description:
-      "Discover why healthcare organisations choose RosterLab for their rostering needs. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+      "Discover why teams choose RosterLab as their rostering platform. Our team is dedicated to building smarter, fairer AI rostering tools that put people first.",
     alternates: {
       canonical: "https://rosterlab.com/why-rosterlab",
     },
@@ -27,26 +27,26 @@ export const metadata = withHreflang(
       link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
     },
     openGraph: {
-      title: "Why Choose RosterLab - AI-Powered Rostering Solutions",
+      title: "Why Choose Us - RosterLab",
       description:
-        "Discover why healthcare organisations choose RosterLab for their rostering needs. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+        "Discover why teams choose RosterLab as their rostering platform. Our team is dedicated to building smarter, fairer AI rostering tools that put people first.",
       type: "website",
       url: "https://rosterlab.com/why-rosterlab",
       images: [
         {
-          url: "/images/og-images/About.png",
+          url: "/images/og-images/why-choose-us.png",
           width: 1200,
           height: 630,
-          alt: "Why Choose RosterLab",
+          alt: "Why Choose Us - RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Why Choose RosterLab - AI-Powered Rostering Solutions",
+      title: "Why Choose Us - RosterLab",
       description:
-        "Discover why healthcare organisations choose RosterLab for their rostering needs. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
-      images: ["/images/og-images/About.png"],
+        "Discover why teams choose RosterLab as their rostering platform. Our team is dedicated to building smarter, fairer AI rostering tools that put people first.",
+      images: ["/images/og-images/why-choose-us.png"],
     },
   },
   "/why-rosterlab",
@@ -156,8 +156,8 @@ export default async function WhyRosterLabPage() {
             </h2>
             <p className="text-lg text-gray-600 mb-12">
               Our AI considers every rule, constraint, and preference to create
-              the best possible schedule - automatically. That means you can
-              reduce your admin by 90%.
+              the best possible schedule automatically, giving you time back to
+              focus on your people and patients.
             </p>
 
             {/* Trusted Logos */}
@@ -222,12 +222,67 @@ export default async function WhyRosterLabPage() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 Purpose-Built AI Optimisation
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 mb-6">
                 RosterLab is an optimisation solver dedicated for workforce
                 scheduling. It doesn't guess; it mathematically proves the
                 schedule it finds is the best (or very close to it) under your
                 specific rules.
               </p>
+              <ul className="text-lg text-gray-600 space-y-3">
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>Optimise for safe staffing levels for every shift</span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    Ensure appropriate skill and seniority mix for an optimal
+                    workforce
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    Automatically balance coverage needs with staff preferences
+                  </span>
+                </li>
+              </ul>
             </div>
             <div>
               <Image
@@ -250,7 +305,22 @@ export default async function WhyRosterLabPage() {
               Technology Built For Complexity
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
+              <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <svg
+                    className="w-6 h-6 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   Results From Day One
                 </h3>
@@ -259,22 +329,52 @@ export default async function WhyRosterLabPage() {
                   experience time saved and fewer errors from day one.
                 </p>
               </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
+              <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <svg
+                    className="w-6 h-6 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Easy to transition
+                  Easy To Transition
                 </h3>
                 <p className="text-gray-600">
-                  Import your existing rules and constraints. RosterLab adapts
-                  to your workflow, not the other way around.
+                  Maintain your rostering approach while reducing admin for an
+                  easy, seamless transition.
                 </p>
               </div>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
+              <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <svg
+                    className="w-6 h-6 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                    />
+                  </svg>
+                </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
                   Grows As You Scale
                 </h3>
                 <p className="text-gray-600">
                   Personalised rules for roles and skills make it easy to scale
-                  operations with your team
+                  operations with your team.
                 </p>
               </div>
             </div>
@@ -335,13 +435,70 @@ export default async function WhyRosterLabPage() {
             </div>
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Dedicated to Rostering
+                Dedicated to Better Rostering
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 mb-6">
                 All-in-one platforms claim to do it all - but end up doing
                 nothing exceptionally well. RosterLab is purpose-built for one
                 thing: creating the best possible roster, every time.
               </p>
+              <ul className="text-lg text-gray-600 space-y-3">
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    Designed for healthcare & other complex staffing operations
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    AI-driven efficiency, but with human-led decisions
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    Handles intricate constraints, preferences, and compliance
+                    rules
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
         </Container>
@@ -382,15 +539,14 @@ export default async function WhyRosterLabPage() {
 
       {/* Recent Case Studies */}
       {caseStudies.length > 0 && (
-        <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+        <section className="py-20 bg-white">
           <Container>
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Healthcare Teams We've Recently Helped
+                Teams We've Recently Helped
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                See how teams like yours partner with RosterLab to solve complex
-                rostering challenges.
+                Partner with RosterLab for better team and patient outcomes.
               </p>
             </div>
 
@@ -479,12 +635,12 @@ export default async function WhyRosterLabPage() {
                 {
                   question: "What kind of AI is RosterLab?",
                   answer:
-                    "RosterLab uses mathematical optimisation (operations research), not GenAI. It solves for the best schedule under your constraints.",
+                    "RosterLab uses mathematical optimisation (operations research) to build and solve rosters. The AI applies mathematical, statistical, and computational methods to help make better rostering decisions - especially for complex ones involving limited resources, risks, and trade-offs.",
                 },
                 {
                   question: "Does RosterLab's AI learn from the past?",
                   answer:
-                    "It doesn't need to. You set rules and priorities; the solver finds the optimal plan. Over time, you can tune weights (e.g., fairness) to reflect your policies—no retraining.",
+                    "It doesn't need to. You set rules and priorities; the AI solver then finds the optimal solution. Over time, you can refine your priorities and rules (e.g., fairness) to reflect your policies - no retraining.",
                 },
               ]}
             />
