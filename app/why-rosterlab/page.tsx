@@ -13,6 +13,7 @@ import { validatedToken } from "@/sanity/lib/token";
 import { groq } from "next-sanity";
 import { formatDate } from "@/lib/utils";
 import AgenticAICarousel from "@/app/feature/ai-roster-assistant/AgenticAICarousel";
+import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = withHreflang(
   {
@@ -111,8 +112,8 @@ export default async function WhyRosterLabPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                We transform the way rostering works, making it faster, safer,
-                and more efficient.
+                By combining advanced AI with cutting-edge operations research,
+                we make rostering smarter, faster, and effortless.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -132,32 +133,15 @@ export default async function WhyRosterLabPage() {
 
             {/* Video Player */}
             <div className="flex justify-center lg:justify-end">
-              <div
-                className="w-full max-w-2xl relative group cursor-pointer"
-                style={{ aspectRatio: "16/9" }}
-              >
-                <Image
-                  src="/images/updated-hero/updated-hero-image.webp"
-                  alt="RosterLab video preview"
-                  width={800}
-                  height={450}
-                  className="w-full h-full object-cover rounded-lg shadow-lg"
-                  priority
-                  fetchPriority="high"
-                />
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg group-hover:bg-opacity-40 transition-all">
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
-                    <svg
-                      className="w-10 h-10 text-blue-600 ml-1"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              <Image
+                src="/images/illustration/why-us-new.svg"
+                alt="Why RosterLab illustration"
+                width={600}
+                height={600}
+                className="w-full h-auto max-w-xl"
+                priority
+                fetchPriority="high"
+              />
             </div>
           </div>
         </Container>
@@ -166,25 +150,65 @@ export default async function WhyRosterLabPage() {
       {/* Mission Section */}
       <div className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              Rosters Solved in Minutes, Not Days.
+            </h2>
+            <p className="text-lg text-gray-600 mb-12">
+              Our AI considers every rule, constraint, and preference to create
+              the best possible schedule - automatically. That means you can
+              reduce your admin by 90%.
+            </p>
+
+            {/* Trusted Logos */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Some tools help you make a roster. RosterLab solves it.
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Our AI considers every rule, constraint, and preference to
-                create the best possible schedule - automatically. That means
-                you can reduce your admin by 90%.
-              </p>
-            </div>
-            <div>
-              <Image
-                src="/images/generating.webp"
-                alt="AI roster generator in action"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/logos/department-of-health-western-australia.png"
+                    alt="Department of Health Western Australia"
+                    width={202}
+                    height={86}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/logos/royal-flying-doctor.png"
+                    alt="Royal Flying Doctor Service"
+                    width={88}
+                    height={38}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/logos/rpa.png"
+                    alt="RPA"
+                    width={160}
+                    height={80}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/logos/hawkesbay.png"
+                    alt="Hawkes Bay"
+                    width={160}
+                    height={50}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/logos/nsw-south-eastern.png"
+                    alt="NSW South Eastern"
+                    width={152}
+                    height={40}
+                    className="max-w-full h-auto grayscale"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </Container>
@@ -195,29 +219,128 @@ export default async function WhyRosterLabPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Purpose-Built AI Optimisation
+              </h2>
+              <p className="text-lg text-gray-600">
+                RosterLab is an optimisation solver dedicated for workforce
+                scheduling. It doesn't guess; it mathematically proves the
+                schedule it finds is the best (or very close to it) under your
+                specific rules.
+              </p>
+            </div>
+            <div>
               <Image
-                src="/images/generating.webp"
-                alt="AI roster generator in action"
+                src="/images/new-product-images/svg/preferences/staff-preferences.svg"
+                alt="Staff Preferences widget"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-lg"
               />
             </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Why Teams Switch Section */}
+      <div className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              Technology Built For Complexity
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Results From Day One
+                </h3>
+                <p className="text-gray-600">
+                  From building your first roster with RosterLab, you'll
+                  experience time saved and fewer errors from day one.
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Easy to transition
+                </h3>
+                <p className="text-gray-600">
+                  Import your existing rules and constraints. RosterLab adapts
+                  to your workflow, not the other way around.
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Grows As You Scale
+                </h3>
+                <p className="text-gray-600">
+                  Personalised rules for roles and skills make it easy to scale
+                  operations with your team
+                </p>
+              </div>
+            </div>
+
+            {/* CTA for ROI Calculator */}
+            <div className="mt-12 text-center">
+              <Button
+                href="/tools/roi-calculator"
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
+                Calculate Your ROI
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Purpose-Built Optimisation Section */}
+      <div className="bg-white py-20">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <svg
+                  className="w-10 h-10 text-[#1c82fd] mb-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <blockquote className="text-lg text-gray-700 leading-relaxed mb-4">
+                  "The main benefits of RosterLab is that you can generate the
+                  roster automatically, but you can also switch roster views by
+                  employee and by shift, making it easier to manage - that is
+                  what the staff loved. We trust it. It's made management's life
+                  easier."
+                </blockquote>
+                <div className="mb-4">
+                  <p className="font-bold text-gray-900">
+                    Auckland-based Radiology Department, MRT Lead
+                  </p>
+                </div>
+                <div className="flex justify-center">
+                  <svg
+                    className="w-10 h-10 text-blue-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm11 2H6v10h8V5z"
+                      clipRule="evenodd"
+                    />
+                    <path d="M10 7a1 1 0 011 1v4a1 1 0 11-2 0V8a1 1 0 011-1zM7 11a1 1 0 100 2h6a1 1 0 100-2H7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Some rosters are easy. We handle the complex ones.
+                Dedicated to Rostering
               </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Some rosters are simple and can easily be rostered manually with
-                our{" "}
-                <Link
-                  href="https://app.rosterlab.com/signup"
-                  className="text-blue-600 underline"
-                >
-                  free platform
-                </Link>
-                . Others feel impossible. RosterLab was built for the most
-                complex ones and handles lots of different rostering scenarios.
+              <p className="text-lg text-gray-600">
+                All-in-one platforms claim to do it all - but end up doing
+                nothing exceptionally well. RosterLab is purpose-built for one
+                thing: creating the best possible roster, every time.
               </p>
             </div>
           </div>
@@ -229,7 +352,7 @@ export default async function WhyRosterLabPage() {
         <Container>
           <div className="max-w-6xl mx-auto text-center">
             <h3 className="text-4xl font-bold mb-6 text-gray-900">
-              We're Building The Future of Rostering
+              Evolving for the Future
             </h3>
             <p className="text-xl text-gray-600 mb-12">
               Our AI Rostering Assistant (Otto) will soon be able to take action
@@ -257,215 +380,9 @@ export default async function WhyRosterLabPage() {
         </Container>
       </div>
 
-      {/* Comparison Table Section */}
-      <div className="py-20 bg-white">
-        <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Not all staff rostering software is created equal
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Compare RosterLab's AI-powered features with traditional rostering
-              solutions
-            </p>
-          </div>
-
-          {/* Comparison Table */}
-          <div className="max-w-5xl mx-auto overflow-x-auto">
-            <table className="w-full bg-white rounded-lg shadow-lg">
-              <thead>
-                <tr className="bg-gradient-to-r from-blue-600 to-blue-500">
-                  <th className="py-4 px-6 text-left text-white font-semibold">
-                    Features
-                  </th>
-                  <th className="py-4 px-6 text-center text-white font-semibold">
-                    RosterLab
-                  </th>
-                  <th className="py-4 px-6 text-center text-white font-semibold">
-                    Other Competitors
-                  </th>
-                  <th className="py-4 px-6 text-center text-white font-semibold">
-                    Manual Rostering
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-900 font-semibold">
-                    AI-Powered Rostering
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-900 font-semibold">
-                    Complex Multi-Session Scheduling
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-900 font-semibold">
-                    Staff Preference Optimization
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-700">
-                    Advanced Rules & Compliance
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-orange-500 text-xl">
-                    ~
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-900 font-semibold">
-                    Rostering Build & Onboarding
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="py-4 px-6 text-gray-700">
-                    Enterprise SSO & API Access
-                  </td>
-                  <td className="py-4 px-6 text-center text-green-600 font-bold text-xl">
-                    ✓
-                  </td>
-                  <td className="py-4 px-6 text-center text-orange-500 text-xl">
-                    ~
-                  </td>
-                  <td className="py-4 px-6 text-center text-gray-400 text-xl">
-                    ✗
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            {/* Legend */}
-            <div className="mt-6 flex flex-wrap gap-6 justify-center text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-green-600 font-bold text-xl">✓</span>
-                <span className="text-gray-600">Fully supported</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-orange-500 text-xl">~</span>
-                <span className="text-gray-600">
-                  Limited or partial support
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-gray-400 text-xl">✗</span>
-                <span className="text-gray-600">Not available</span>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      {/* Team Section */}
-      <div className="bg-gray-50 py-20">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Trusted by global teams around the world
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-12">
-              Our diverse team combines expertise in optimisation, AI,
-              healthcare operations, and workforce management to deliver
-              innovative rostering solutions.
-            </p>
-
-            {/* Trusted Logos */}
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/department-of-health-western-australia.png"
-                  alt="Department of Health Western Australia"
-                  width={202}
-                  height={86}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/royal-flying-doctor.png"
-                  alt="Royal Flying Doctor Service"
-                  width={88}
-                  height={38}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/rpa.png"
-                  alt="RPA"
-                  width={160}
-                  height={80}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/hawkesbay.png"
-                  alt="Hawkes Bay"
-                  width={160}
-                  height={50}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/nsw-south-eastern.png"
-                  alt="NSW South Eastern"
-                  width={152}
-                  height={40}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div>
-
       {/* Recent Case Studies */}
       {caseStudies.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
           <Container>
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -503,23 +420,10 @@ export default async function WhyRosterLabPage() {
                       </div>
                     )}
                     <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
                         {post.title}
                       </h3>
-                      {post.excerpt && (
-                        <p className="text-gray-600 mb-6 line-clamp-3">
-                          {post.excerpt}
-                        </p>
-                      )}
                       <div className="mt-auto">
-                        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                          <span>{post.author?.name || "RosterLab Team"}</span>
-                          {post.publishedAt && (
-                            <time dateTime={post.publishedAt}>
-                              {formatDate(post.publishedAt)}
-                            </time>
-                          )}
-                        </div>
                         <div className="text-blue-600 font-medium flex items-center group-hover:text-blue-700">
                           Read More
                           <svg
@@ -555,62 +459,35 @@ export default async function WhyRosterLabPage() {
         </section>
       )}
 
-      {/* Metrics Section */}
+      {/* FAQ Section */}
       <div className="py-20 bg-gray-50">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Better Team & Business Outcomes
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              FAQs
             </h2>
-          </div>
-
-          {/* Loved by our users - Image and Quote Widget */}
-          <div className="max-w-6xl mx-auto mt-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Image */}
-              <div className="order-2 lg:order-1 flex items-center justify-center">
-                <Image
-                  src="/images/illustration/Doctor.svg"
-                  alt="Healthcare professional illustration"
-                  width={400}
-                  height={400}
-                  className="w-full h-auto max-w-md"
-                />
-              </div>
-
-              {/* Speech Bubble */}
-              <div className="relative order-1 lg:order-2">
-                <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-lg">
-                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 lg:hidden">
-                    <div className="w-8 h-8 bg-white transform rotate-45"></div>
-                  </div>
-
-                  <div className="text-center">
-                    <blockquote className="text-xl md:text-2xl text-neutral-700 mb-8 leading-relaxed">
-                      &ldquo;Rostering would take 7-8 days, now it takes 2-3
-                      hours…allowing me to focus more on patient care.&rdquo;
-                    </blockquote>
-
-                    <div className="flex flex-col items-center space-y-4">
-                      <div className="w-20 h-12 relative">
-                        <Image
-                          src="/images/logos/whanganui.png"
-                          alt="Whanganui"
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-neutral-900">Mike</p>
-                        <p className="text-neutral-600">
-                          Associate Clinical Manager Radiology
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="text-center text-gray-600 mb-12 text-lg">
+              Common questions about our AI-powered rostering technology
+            </p>
+            <FAQAccordion
+              items={[
+                {
+                  question: "Is RosterLab an LLM?",
+                  answer:
+                    "No, RosterLab isn't an LLM - and that's a good thing. Language models are great for writing emails, not for deciding who's on the 2 a.m. shift so your team avoid fatigue.",
+                },
+                {
+                  question: "What kind of AI is RosterLab?",
+                  answer:
+                    "RosterLab uses mathematical optimisation (operations research), not GenAI. It solves for the best schedule under your constraints.",
+                },
+                {
+                  question: "Does RosterLab's AI learn from the past?",
+                  answer:
+                    "It doesn't need to. You set rules and priorities; the solver finds the optimal plan. Over time, you can tune weights (e.g., fairness) to reflect your policies—no retraining.",
+                },
+              ]}
+            />
           </div>
         </Container>
       </div>
