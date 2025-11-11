@@ -61,7 +61,7 @@ const messagesByCategory = {
     {
       question: "Are there any risks for staff fatigue?",
       answer:
-        "Would you like me to show you how to set up these fatigue management rules?",
+        "Would you like me to show you how to set up those fatigue management rules?",
     },
   ],
   "How do I set up EBA compliant rules for staff?": [
@@ -84,7 +84,7 @@ const messagesByCategory = {
     },
     {
       question: "How do I ensure staff are given enough rest?",
-      answer: "Would you like guidance on implementing those rules?",
+      answer: "Would you like help adding those rules?",
     },
   ],
 };
