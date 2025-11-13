@@ -372,14 +372,6 @@ export default function RadiologyPage() {
                   </div>
                 </div>
               </div>
-              <div className="mt-8 text-center">
-                <Button
-                  href="/newsroom/whanganui-radiography-department-embraces-ai-rostering"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Read case study
-                </Button>
-              </div>
             </div>
             <div className="relative">
               <Image

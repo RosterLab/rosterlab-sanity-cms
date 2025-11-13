@@ -42,12 +42,12 @@ const faqItems = [
   {
     question: "What is a radiography roster?",
     answer:
-      "A radiography roster is a staff schedule that organises radiographers and support staff across different imaging modalities (CT, MRI, X-ray, ultrasound, etc.) and shifts. It ensures adequate coverage for all equipment, balances subspecialty expertise and manages on-call rotations. Unlike general healthcare rosters, radiography rosters must account for equipment availability, specialized certifications, and varying procedure durations.",
+      "A radiography roster is a staff schedule that organises radiographers and support staff who work with different imaging modalities (CT, MRI, X-ray, ultrasound, etc.). It ensures adequate coverage for all equipment, balances subspecialty expertise and manages on-call rotations.",
   },
   {
     question: "Why is radiography rostering so complex?",
     answer:
-      "Radiography rostering is particularly complex due to multiple overlapping constraints: staff must be certified for specific modalities, equipment has limited availability, subspecialty coverage is required 24/7, interventional procedures require specific team compositions, and training rotations must be balanced. Additionally, managing fair distribution of after-hours duties, emergency coverage, and ensuring appropriate skill mix for each shift while accommodating individual preferences and contractual obligations makes manual scheduling extremely time-consuming and error-prone.",
+      "Radiography rostering is particularly complex due to multiple overlapping constraints: staff must be certified for specific modalities, subspecialty coverage is required 24/7, interventional procedures require specific team compositions, and training rotations must be balanced. Additionally, managing fair distribution of after-hours duties, emergency coverage, and ensuring appropriate skill mix for each shift while accommodating individual preferences and contractual obligations makes manual scheduling extremely time-consuming and error-prone.",
   },
   {
     question: "Have you worked with radiography teams before?",
@@ -76,8 +76,8 @@ export default function RadiographyPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Reduce rostering time by 90%. Optimise radiographer coverage and
-                modality planning with intelligent rostering.
+                Optimise radiographer coverage across all modalities with
+                intelligent AI rostering.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -94,7 +94,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Skill and seniority rostering
+                  Assign radiographers by skill, seniority, and modality for
+                  smooth operations
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -110,7 +111,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Seamlessly integrate your long and short term rosters
+                  Distribute shifts, on-call duties, and training rotations
+                  evenly across all teams
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -126,23 +128,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing from the get go
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Move away from spreadsheets and into the cloud
+                  Reduce rostering time by up to 90% with automatic roster
+                  generation
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -181,9 +168,8 @@ export default function RadiographyPage() {
               Built for specific radiography rostering challenges.
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Balance subspecialty coverage, equipment allocation, and modality
-              assignments while maintaining optimal patient flow and service
-              delivery.
+              Balance shift coverage, compliance and fairness while maintaining
+              smooth patient flow and service delivery.
             </p>
           </div>
 
@@ -205,12 +191,11 @@ export default function RadiographyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Unified Multi-Modality Rostering
+                Multi-Modality Flexibility
               </h3>
               <p className="text-gray-600">
-                Break down silos between modality teams. Create department-wide
-                rosters that balance staffing across CT, MRI, X-ray, and other
-                units.
+                Easily plan rotations across X-ray, CT, MRI, and mobile units.
+                Create department-wide rosters that balance staffing.
               </p>
             </div>
 
@@ -231,11 +216,11 @@ export default function RadiographyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Consistent Fairness Across Teams
+                Equitable Shift Distribution
               </h3>
               <p className="text-gray-600">
-                Ensure equitable shift distribution across all modalities,
-                minimum training rotations, and late or on-call duties.
+                Balance preferred, late, on-call, and weekend shifts evenly
+                across all radiographers for happier, healthier teams.
               </p>
             </div>
 
@@ -273,7 +258,7 @@ export default function RadiographyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Modern Radiography Departments
+                Transform Radiography Rostering with AI
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -294,12 +279,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Track & Allocate Specialised Skills and Seniority
+                      Always Have the Right Radiographer in the Right Place
                     </h3>
                     <p className="text-gray-600">
-                      Maintain a digital record of what skills each team member
-                      has. Let the AI allocate the right person to the right
-                      session.
+                      Keep a live digital record of each radiographer's skills
+                      and seniority. The AI automatically assigns the right
+                      staff to the right sessions for safe, efficient coverage.
                     </p>
                   </div>
                 </div>
@@ -322,12 +307,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamlessly Integrate Long-Term Plans
+                      Plan Ahead Without the Scheduling Headaches
                     </h3>
                     <p className="text-gray-600">
-                      AI optimises weekly rosters around your pre-established
-                      commitments. Preload established fixed dates rotations,
-                      exam dates, and training schedules to avoid mistakes.
+                      Easily roster annual training, study days, and fixed
+                      commitments. Avoid clashes and let managers view the full
+                      year at a glance with everything perfectly aligned.
                     </p>
                   </div>
                 </div>
@@ -350,12 +335,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalised Session Requirements
+                      Stay Compliant with Unions and Agreements
                     </h3>
                     <p className="text-gray-600">
-                      Ensure each radiographer gets their required admin hours,
-                      MRI sessions, or specialty training. Fairly distribute
-                      after-hours and on-call duties.
+                      Automatically enforce union agreements, rest periods, and
+                      training requirements. The system ensures every roster
+                      meets regulatory standards.
                     </p>
                   </div>
                 </div>
@@ -378,23 +363,15 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Smart Cloud-Based Distribution
+                      Self-Rostering for Better Flexibility
                     </h3>
                     <p className="text-gray-600">
-                      Publish rosters instantly to all stakeholders. Managers
-                      see session views while staff receive personalised
-                      calendars on their mobile devices.
+                      Empower radiographers to set their availability and
+                      preferences. The AI automatically builds rosters around
+                      staff input while maintaining coverage and compliance.
                     </p>
                   </div>
                 </div>
-              </div>
-              <div className="mt-8 text-center">
-                <Button
-                  href="/newsroom/whanganui-radiography-department-embraces-ai-rostering"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Read case study
-                </Button>
               </div>
             </div>
             <div className="relative">
@@ -586,8 +563,8 @@ export default function RadiographyPage() {
                   Optimise for skill mix
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Automatically assign radiographers to modalities and
-                  subspecialties for optimal coverage.
+                  Auto assign radiographers to modalities and subspecialties for
+                  optimal coverage.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
@@ -595,7 +572,7 @@ export default function RadiographyPage() {
               </div>
             </Link>
 
-            <Link href="/feature/automated-rostering" className="block">
+            <Link href="/feature/rules-engine" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg

@@ -248,11 +248,11 @@ export default function PortRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                The right skills on the right shifts
+                Increase staff engagement
               </h3>
               <p className="text-gray-600">
-                Empower port workers with flexibility while maintaining fairness
-                and compliance with core rules and requirements.
+                Give port workers flexible control over their availability and
+                preferences while ensuring optimal coverage.
               </p>
             </div>
 
@@ -344,12 +344,12 @@ export default function PortRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Fair Duty Distribution
+                      Reduce Port Worker Fatigue
                     </h3>
                     <p className="text-gray-600">
-                      Track and distribute night shifts, weekend work, and
-                      premium duties fairly across crews. Make fairness
-                      transparent, measurable, and automated.
+                      Help port workers achieve better work-life balance by
+                      considering a high percentage of staff preferences whilst
+                      ensuring critical operational needs are met.
                     </p>
                   </div>
                 </div>
@@ -372,12 +372,12 @@ export default function PortRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Adapt To Vessel Schedules
+                      Fair Duty Distribution
                     </h3>
                     <p className="text-gray-600">
-                      Re-roster when vessel arrivals change without starting
-                      over. Quickly adapt to operational needs while maintaining
-                      compliance and coverage requirements.
+                      Track and distribute night shifts, weekend work, and
+                      premium duties fairly across crews. Make fairness
+                      transparent, measurable, and automated.
                     </p>
                   </div>
                 </div>
@@ -400,12 +400,12 @@ export default function PortRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce port worker fatigue
+                      Adapt To Vessel Schedules
                     </h3>
                     <p className="text-gray-600">
-                      Help port workers achieve better work-life balance by
-                      considering a high percentage of staff preferences whilst
-                      ensuring critical operational needs are met.
+                      Re-roster when vessel arrivals change without starting
+                      over. Quickly adapt to operational needs while maintaining
+                      compliance and coverage requirements.
                     </p>
                   </div>
                 </div>
