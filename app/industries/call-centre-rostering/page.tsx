@@ -67,7 +67,7 @@ export default function CallCentresPage() {
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Optimise call centre operations with smarter workforce
-                management for 24/7 customer service operations.
+                scheduling for 24/7 customer service operations.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -84,7 +84,7 @@ export default function CallCentresPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Meet service level agreements with optimised staffing
+                  Meet service level agreements with optimised staffing levels
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -116,7 +116,7 @@ export default function CallCentresPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Quickly adapt rosters to changing call volume patterns
+                  Quickly adapt rosters to changing call volume demands
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg

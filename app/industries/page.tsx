@@ -348,8 +348,8 @@ export default function IndustriesPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Ports</h3>
                 <p className="text-gray-600 mb-4">
                   Manage dock workers, crane operators, and logistics staff
-                  across shifts while coordinating with vessel schedules and
-                  cargo operations.
+                  across shifts while coordinating with vessel and cargo
+                  operations.
                 </p>
                 <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
@@ -366,7 +366,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Vessel arrival coordination
+                    Staff port rostering coordination
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -382,7 +382,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Equipment operator matching
+                    Safer and more efficient rosters
                   </li>
                   <li className="flex items-start">
                     <svg
