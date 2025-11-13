@@ -16,10 +16,10 @@ export default function Hero() {
           {/* Left side - Text and CTAs */}
           <div className="text-left">
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-normal">
               AI{" "}
               <span
-                className="inline-block"
+                className="inline-block pb-2"
                 style={{
                   background:
                     "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",

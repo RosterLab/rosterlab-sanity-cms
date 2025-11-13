@@ -3,25 +3,25 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 
 export const metadata = withHreflang(
   {
-    title: "Radiology Staff Rostering Software - RosterLab",
+    title: "Call Centre Rostering Software - RosterLab",
     description:
-      "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+      "Build your call centre roster with RosterLab. Automatically generate fair, compliant and flexible call centre rosters that save time and money.",
     openGraph: {
-      title: "Radiology Staff Rostering Software - RosterLab",
+      title: "Call Centre Rostering Software - RosterLab",
       description:
-        "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+        "Build your call centre roster with RosterLab. Automatically generate fair, compliant and flexible call centre rosters that save time and money.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/radiology",
+      url: "https://rosterlab.com/industries/call-centre-rostering",
       images: [
         {
-          url: "/images/og-images/IndustryRadiology.png",
+          url: "/images/call-centre-rostering.jpg",
           width: 1200,
           height: 630,
         },
@@ -29,39 +29,29 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Radiology Staff Rostering Software - RosterLab",
+      title: "Call Centre Rostering Software - RosterLab",
       description:
-        "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
-      images: ["/images/og-images/IndustryRadiology.png"],
+        "Build your call centre roster with RosterLab. Automatically generate fair, compliant and flexible call centre rosters that save time and money.",
+      images: ["/images/call-centre-rostering.jpg"],
     },
   },
-  "/industries/healthcare/radiology",
+  "/industries/call-centre-rostering",
 );
 
 const faqItems = [
   {
-    question: "What is a radiology roster?",
+    question: "What is a call centre roster?",
     answer:
-      "A radiology roster is a schedule that organises radiologists across different imaging modalities (CT, MRI, X-ray, ultrasound, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand.",
+      "Call centre rosters are specialised schedules designed for customer service operations where staffing must adapt to call volume patterns, service level agreements, and 24/7 operational demands. They're used for managing shift workers across inbound support, outbound sales, technical support, and customer service teams. These rosters must balance service level targets with worker wellbeing, compliance requirements, and fair distribution of premium shifts.",
   },
   {
-    question: "Why is radiology rostering so complex?",
+    question: "How does AI make call centre rostering more effective?",
     answer:
-      "Radiology rostering is complex because of overlapping clinical, operational, and training constraints. Radiologists require modality-specific credentials, subspecialty coverage is needed 24/7, and reporting workflows depend on continuity across sites and teams. Interventional procedures demand specific skill combinations, while training rotations and teaching commitments must be balanced. Add in the need for fair after-hours distribution, emergency coverage, and compliance with contractual rules - and manual scheduling becomes extremely time-consuming and error-prone.",
-  },
-  {
-    question: "Have you worked with radiology teams before?",
-    answer:
-      "Yes, RosterLab has extensive experience with radiology departments. We've successfully implemented our AI rostering solution for multiple radiology teams, including Whanganui Hospital's radiology department, which saw a 90% reduction in scheduling time. <a href='/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
-  },
-  {
-    question: "How does long-term roster planning work in radiology?",
-    answer:
-      "RosterLab's radiology rostering supports both <a href='/type/long-roster' class='text-blue-600 hover:underline'>long-term</a> and short-term scheduling. Plan quarterly or annual rosters that include subspecialty rotations, leave blocks, academic and conference commitments, and service coverage requirements. The system automatically maintains continuous modality coverage while respecting radiologist preferences, credentialing, and fatigue limits. Any long-term changes cascade through to daily rosters, ensuring consistency across all timeframes.",
+      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In call centre operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes.",
   },
 ];
 
-export default function RadiologyPage() {
+export default function CallCentresPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -70,14 +60,14 @@ export default function RadiologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build Complex{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Radiology Rosters
-                </span>
+                  Efficient, Compliant
+                </span>{" "}
+                Call Centre Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Optimise modality coverage, subspecialty allocation, and
-                reporting capacity with intelligent AI rostering.
+                Optimise call centre operations with smarter workforce
+                scheduling for 24/7 customer service operations.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -94,7 +84,7 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Skill, seniority, and subspecialty rostering
+                  Meet service level agreements with optimised staffing levels
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -110,7 +100,7 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Seamlessly integrate your long and short term rosters
+                  Fair distribution of night shifts to reduce agent burnout
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -126,7 +116,23 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing across modalities and subspecialties
+                  Quickly adapt rosters to changing call volume demands
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Ensure skilled agents are on the right shifts
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -137,17 +143,17 @@ export default function RadiologyPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/tools/roi-calculator"
+                  href="/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  ROI Calculator
+                  View pricing
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/radiology.svg"
-                alt="Radiology scheduling dashboard"
+                src="/images/illustration/call-centre-rostering.svg"
+                alt="Call centre roster scheduling dashboard"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -157,20 +163,21 @@ export default function RadiologyPage() {
         </Container>
       </section>
 
-      {/* Key Benefits */}
+      {/* Pain Points Section */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Built for specific radiology rostering challenges.
+              Better Call Centre Operations Start with Smart Rostering
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Align radiologist coverage with scanner output to ensure timely,
-              high-quality reporting across all modalities.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Build optimised and fair call centre rosters in minutes, not days.
+              Discover how:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Pain Point 1: Automatic Roster Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -188,14 +195,15 @@ export default function RadiologyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Unified Multi-Modality Rostering
+                Automatic roster generation
               </h3>
               <p className="text-gray-600">
-                Build radiologist rosters across CT, MRI, Ultrasound and X-ray
-                to maintain balanced coverage and reporting capacity.
+                Eliminate the need for manual rostering with our AI roster
+                generation giving you time back to focus on customer service.
               </p>
             </div>
 
+            {/* Pain Point 2: Meet Service Levels */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -208,19 +216,20 @@ export default function RadiologyPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Consistent Fairness Across Teams
+                Meet service level targets
               </h3>
               <p className="text-gray-600">
-                Ensure equitable shift distribution across all modalities,
-                including after-hours, weekend, and on-call duties.
+                Ensure adequate staffing during peak hours to maintain response
+                times and customer satisfaction.
               </p>
             </div>
 
+            {/* Pain Point 3: Match Skills to Queues */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -233,16 +242,42 @@ export default function RadiologyPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Handle Complex Skill-Mix
+                Skills-based staff rostering
               </h3>
               <p className="text-gray-600">
-                Easily define modality and skill specific requirements to match
-                radiologists with appropriate sessions.
+                Match call-centre agents with specialised skills to the right
+                shifts for optimal customer service.
+              </p>
+            </div>
+
+            {/* Pain Point 4: Reduce Agent Burnout */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-teal-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Manage staff fatigue for 24/7 operations
+              </h3>
+              <p className="text-gray-600">
+                Distribute night shifts fairly and enforce rest periods to
+                prevent agent burnout in 24/7 operations.
               </p>
             </div>
           </div>
@@ -253,40 +288,14 @@ export default function RadiologyPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
+              <StaffingEnvelopeChartSmall />
+            </div>
+            <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Modern Radiology Departments
+                Call centre roster planning made simple
               </h2>
               <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Track & Allocate Specialised Skills and Seniority
-                    </h3>
-                    <p className="text-gray-600">
-                      Maintain a digital record of each radiologist's modality
-                      expertise, subspecialty, and credentialing status. AI
-                      automatically assigns the right radiologist to the right
-                      reporting or procedural sessions.
-                    </p>
-                  </div>
-                </div>
-
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
@@ -305,13 +314,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Seamlessly Integrate Long-Term Plans
+                      Optimised Coverage for Peak Hours
                     </h3>
                     <p className="text-gray-600">
-                      AI optimises weekly rosters around your pre-established
-                      commitments. Preload established rotations, exam dates,
-                      and training schedules to maintain coverage continuity and
-                      avoid conflicts.
+                      Ensure the right number of agents with the right skills
+                      during peak call times. Balance experience and skilled
+                      agents for efficient operations.
                     </p>
                   </div>
                 </div>
@@ -334,12 +342,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalised Session Requirements
+                      Fair Shift Distribution
                     </h3>
                     <p className="text-gray-600">
-                      Ensure each radiologist receives the right balance of
-                      reporting, admin, teaching, and modality-specific sessions
-                      to meet operational goals.
+                      Track and distribute night shifts, weekend work, and
+                      premium duties fairly across agents. Make fairness
+                      transparent, measurable, and automated.
                     </p>
                   </div>
                 </div>
@@ -362,165 +370,70 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Smart Cloud-Based Distribution
+                      Adapt To Call Volume Changes
                     </h3>
                     <p className="text-gray-600">
-                      Publish rosters instantly to all stakeholders. Managers
-                      see session views while staff receive personalised
-                      calendars on their mobile devices.
+                      Re-roster when call patterns change without starting over.
+                      Quickly adapt to demand fluctuations while maintaining
+                      compliance and coverage requirements.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Improve Agent Satisfaction
+                    </h3>
+                    <p className="text-gray-600">
+                      Help agents achieve better work-life balance by
+                      considering a high percentage of preferences whilst
+                      ensuring service level targets are met.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/radiology_excellence.png"
-                alt="Radiology department excellence"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Case Study & Image Section */}
-      <section className="py-20 bg-white">
-        <Container>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Radiology Rostering Case Study
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Case Study - Left */}
-            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                How an Auckland Radiology Team Went From 40% Short-Staffed to
-                Fully Staffed Using RosterLab
-              </h3>
-              <div className="space-y-4 mb-6">
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>40% short-staffed</strong> - now consistently fully
-                    staffed for the first time in 28 years
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>Reduced rostering time</strong> from 120 hours to
-                    just 8 hours per month (based on a 4 week roster)
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>$80,000+ per year</strong> in savings
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>Over 600 preferences</strong> met per roster period
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>Zero breaches</strong> of MECA rules
-                  </p>
-                </div>
-              </div>
-
-              <div className="text-center mt-8">
+              <div className="mt-8 text-center">
                 <Button
-                  href="/case-studies/radiology-department-auckland"
+                  href="/solutions/ai-roster-generator"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
-                  Read Full Case Study
+                  Learn about AI Rostering
                 </Button>
               </div>
-            </div>
-
-            {/* Image - Right */}
-            <div className="relative rounded-xl overflow-hidden shadow-lg">
-              <Image
-                src="/images/us-images/radiology-roster.jpg"
-                alt="Radiology scheduling dashboard"
-                width={600}
-                height={800}
-                className="w-full h-full object-cover"
-              />
             </div>
           </div>
         </Container>
       </section>
 
       {/* Workflow Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              Your Complete Radiology Rostering Workflow
+              Your Call Centre Roster Planning Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From long-term planning to daily adjustments, manage every aspect
-              of your imaging department.
+              From planning to execution, manage shift allocations for your call
+              centre operations team.
             </p>
           </div>
 
@@ -534,11 +447,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Define Coverage Needs
+                      Define Coverage Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Set modality requirements, training distributions rules,
-                      and subspecialty coverage targets.
+                      Set shift patterns, team sizes, and skill requirements for
+                      different service queues and time zones.
                     </p>
                   </div>
                 </div>
@@ -552,11 +465,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Input Constraints
+                      Input Agent Details
                     </h3>
                     <p className="text-gray-600">
-                      Add radiologist skills, preferences, contractual rules,
-                      and staffing coverage by modality.
+                      Add agent skills, certifications, language capabilities,
+                      and availability preferences.
                     </p>
                   </div>
                 </div>
@@ -570,11 +483,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Collect staff requests
+                      Set Fairness Rules
                     </h3>
                     <p className="text-gray-600">
-                      Collect and automatically take staff requests into account
-                      while staying compliant.
+                      Define equitable distribution rules for night shifts,
+                      weekend work, and premium duties across the planning
+                      cycle.
                     </p>
                   </div>
                 </div>
@@ -588,11 +502,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate Schedule
+                      Generate Call Centre Roster
                     </h3>
                     <p className="text-gray-600">
-                      AI creates optimal rosters balancing all requirements in
-                      minutes.
+                      AI creates fair shift allocations balancing service level
+                      targets, agent skills, and fairness goals.
                     </p>
                   </div>
                 </div>
@@ -606,11 +520,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Review & Adjust
+                      Adapt to Demand Changes
                     </h3>
                     <p className="text-gray-600">
-                      Fine-tune assignments, add notes, and re-roster a selected
-                      subset to accommodate last-minute changes.
+                      When call volumes shift, re-roster affected periods while
+                      maintaining overall fairness. Respond to demand changes
+                      quickly.
                     </p>
                   </div>
                 </div>
@@ -624,11 +539,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Sync
+                      Publish roster to mobile
                     </h3>
                     <p className="text-gray-600">
-                      Distribute your final rosters through streamlined digital
-                      solution and share them with different teams as needed.
+                      Distribute rosters digitally to agents. They see their
+                      shifts, can request swaps, and get real-time updates.
                     </p>
                   </div>
                 </div>
@@ -638,7 +553,7 @@ export default function RadiologyPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your radiology rostering?
+                Ready to streamline your call centre rostering?
               </p>
               <Button
                 href="/book-a-demo"
@@ -656,15 +571,16 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Radiology Rostering Software for Teams
+              Call Centre Rostering Software for Customer Service Operations
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Secure, accessible, and integrated with your existing systems.
+              Designed for call centre operations where service levels,
+              fairness, and agent satisfaction matter most.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -681,11 +597,12 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Optimise for skill mix
+                  Automatically Generate
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Automatically assign radiologists to modalities and
-                  subspecialties for optimal coverage.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Generate call centre rosters in minutes instead of days. Save
+                  hours of manual planning while ensuring equitable
+                  distribution.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
@@ -694,7 +611,7 @@ export default function RadiologyPage() {
             </Link>
 
             <Link href="/feature/rules-engine" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -711,11 +628,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Compliant with unions
+                  Compliant with regulations
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Ensure all rosters meet union agreements and regulatory
-                  requirements automatically.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Ensure all schedules meet rest period requirements and labour
+                  regulations automatically.
                 </p>
                 <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
                   Learn more →
@@ -723,11 +640,8 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link
-              href="https://rosterlab.com/feature/self-scheduling"
-              className="block"
-            >
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/solutions/ai-roster-generator" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -744,11 +658,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Fairer shift allocation
+                  Fairer duty allocation
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Distribute shifts, on-call duties, and workload equitably
-                  across your team.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Distribute shifts and workload equitably across your team with
+                  transparent tracking.
                 </p>
                 <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →
@@ -757,7 +671,7 @@ export default function RadiologyPage() {
             </Link>
 
             <Link href="/feature/leave-requests" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -774,11 +688,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Streamline staff requests
+                  Streamline agent requests
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Manage leave requests, shift swaps, and preferences
-                  efficiently in one system.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Manage availability, swaps, and preferences efficiently in one
+                  integrated system.
                 </p>
                 <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
                   Learn more →
@@ -789,20 +703,15 @@ export default function RadiologyPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white py-10">
-        <TrustedBy />
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about radiology scheduling
+              Common questions about call centre rostering
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -814,15 +723,15 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Radiology Department Rostering
+              Transform Your Call Centre Rostering
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading imaging centres saving days of scheduling time every
-              month.
+              Join call centres managing schedules fairly and efficiently around
+              the clock.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/staff-rostering-interactive-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action
@@ -843,8 +752,10 @@ export default function RadiologyPage() {
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
-          { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Radiology", url: "/industries/healthcare/radiology" },
+          {
+            name: "Call Centre Rostering",
+            url: "/industries/call-centre-rostering",
+          },
         ]}
       />
     </SiteLayout>
