@@ -279,7 +279,7 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Always Have the Right Radiographer in the Right Place
+                      Optimise Radiography Staff Coverage
                     </h3>
                     <p className="text-gray-600">
                       Keep a live digital record of each radiographer's skills
