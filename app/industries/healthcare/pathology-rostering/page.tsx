@@ -45,9 +45,9 @@ export const metadata = withHreflang(
 const faqItems = [
   {
     question:
-      "How does RosterLab ensure union/EBA compliance for pathology rosters?",
+      "How does RosterLab ensure union compliance for pathology rosters?",
     answer:
-      "RosterLab enforces union and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring pathology staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring pathology staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
     question:
@@ -231,7 +231,7 @@ export default function PathologyRosteringPage() {
               </p>
             </div>
 
-            {/* Pain Point 2: Stay compliant with rules */}
+            {/* Pain Point 2: Integrated Section & Skill Planning */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -244,16 +244,16 @@ export default function PathologyRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Integrated Section & Skill Planning
               </h3>
               <p className="text-gray-600">
-                Maintain legal and union compliance so pathology staff can work
-                safely while having more flexibility.
+                Easily manage rotations and staffing across pathology sections
+                while assigning required skills for each diagnostic session.
               </p>
             </div>
 
@@ -301,11 +301,11 @@ export default function PathologyRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Better engagement, better quality
+                Maintain and Grow Staff Competency
               </h3>
               <p className="text-gray-600">
-                Consider staff preferences while ensuring fairness, reducing
-                burnout and supporting safer night-to-day transitions.
+                Build rotations that ensure staff regularly practise and refresh
+                their skills across different pathology sections.
               </p>
             </div>
           </div>
@@ -342,12 +342,12 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Auto-Schedule Peak Processing Times Without Disrupting
-                      Coverage
+                      Optimise Pathology Staff Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Ensure adequate staffing during specimen arrival peaks and
-                      testing schedules while maintaining department coverage.
+                      Keep a live digital record of each pathologist's skills
+                      and seniority. The AI automatically assigns the right
+                      staff to the right sections for safe, efficient coverage.
                     </p>
                   </div>
                 </div>
@@ -370,12 +370,12 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Shifts for Complex Skill Mix
+                      Plan Ahead Without the Scheduling Headaches
                     </h4>
                     <p className="text-gray-600">
-                      Automatically balance technical staff with support staff
-                      across all testing areas, ensuring proper skill mix and
-                      supervision.
+                      Easily roster annual training, study days, and fixed
+                      commitments. Avoid clashes and let managers view the full
+                      year at a glance with everything perfectly aligned.
                     </p>
                   </div>
                 </div>
@@ -398,12 +398,12 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Manage Your Workforce With Confidence
+                      Stay Compliant with Unions and Agreements
                     </h4>
                     <p className="text-gray-600">
-                      Switch seamlessly between staff and shift perspectives to
-                      gain a clear picture of responsibilities, coverage, and
-                      balance across your laboratory.
+                      Automatically enforce union agreements, rest periods, and
+                      training requirements. The system ensures every roster
+                      meets regulatory standards.
                     </p>
                   </div>
                 </div>
@@ -426,11 +426,12 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Adapt to Staff Changes With Ease and Confidence
+                      Self-Rostering for Better Flexibility
                     </h4>
                     <p className="text-gray-600">
-                      Manage staffing changes in a structured, consistent way -
-                      so your rosters stay accurate, organised, and stress-free.
+                      Empower pathologists to set their availability and
+                      preferences. The AI automatically builds rosters around
+                      staff input while maintaining coverage and compliance.
                     </p>
                   </div>
                 </div>
@@ -453,12 +454,12 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Better Wellbeing, Less Fatigue
+                      Manage Section Rotations Efficiently
                     </h4>
                     <p className="text-gray-600">
-                      Enforce rest periods to prevent dangerous consecutive
-                      shift patterns that lead to burnout and fatigue. Staff can
-                      also input preferences for better work-life balance.
+                      Track competency development and plan rotations across
+                      histology, microbiology, and other sections. Ensure staff
+                      maintain skills while meeting operational demands.
                     </p>
                   </div>
                 </div>
