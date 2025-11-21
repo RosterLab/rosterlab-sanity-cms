@@ -617,6 +617,91 @@ export default function IndustriesPage() {
                     Event staffing flexibility
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/hospitality">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Aviation */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 relative">
+                <Image
+                  src="/images/aviation.jpg"
+                  alt="Aviation industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Aviation
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Schedule crew, pilots, and ground staff while managing complex
+                  rostering, rest requirements, and regulatory compliance.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Complex scheduling
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Skill mix
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Fatigue management
+                  </li>
+                </ul>
+                <div className="mt-6">
+                  <Link href="/industries/aviation">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 
