@@ -45,9 +45,9 @@ export const metadata = withHreflang(
 const faqItems = [
   {
     question:
-      "How does RosterLab ensure union/EBA compliance for telehealth rosters?",
+      "How does RosterLab ensure union compliance for telehealth rosters?",
     answer:
-      "RosterLab enforces union and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring telehealth staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring telehealth staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
     question:
@@ -516,7 +516,7 @@ export default function TelehealthRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, consultation peaks, shift
-                      equity, and union/EBA rules to create compliant rosters.
+                      equity, and union rules to create compliant rosters.
                     </p>
                   </div>
                 </div>
