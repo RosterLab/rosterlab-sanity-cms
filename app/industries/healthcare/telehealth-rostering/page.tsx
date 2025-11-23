@@ -148,7 +148,7 @@ export default function TelehealthRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Manage your entire workforce remotely
+                  Manage your virtual EDs and nurses remotely
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -256,7 +256,7 @@ export default function TelehealthRosteringPage() {
               </p>
             </div>
 
-            {/* Pain Point 4: Ensure safe staffing levels */}
+            {/* Pain Point 3: Better engagement */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -279,6 +279,33 @@ export default function TelehealthRosteringPage() {
               <p className="text-gray-600">
                 Consider staff preferences while ensuring fairness, reducing
                 burnout and supporting work-life balance.
+              </p>
+            </div>
+
+            {/* Pain Point 4: Remote rostering */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Roster your team remotely
+              </h3>
+              <p className="text-gray-600">
+                Manage distributed telehealth teams from anywhere with
+                cloud-based rostering that keeps everyone connected and
+                coordinated.
               </p>
             </div>
           </div>
@@ -349,34 +376,6 @@ export default function TelehealthRosteringPage() {
                       Automatically balance clinical staff with support staff
                       across all service areas, ensuring proper skill mix and
                       supervision.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Manage Your Workforce With Confidence
-                    </h4>
-                    <p className="text-gray-600">
-                      Switch seamlessly between staff and shift perspectives to
-                      gain a clear picture of responsibilities, coverage, and
-                      balance across your telehealth service.
                     </p>
                   </div>
                 </div>
