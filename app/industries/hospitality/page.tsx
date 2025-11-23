@@ -118,7 +118,7 @@ export default function HospitalityPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/hospitality.svg"
+                src="/images/illustration/hospitality-roster.svg"
                 alt="Hospitality workforce scheduling dashboard"
                 width={600}
                 height={400}
@@ -696,7 +696,9 @@ export default function HospitalityPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Restaurants</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Restaurant Chains
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -714,7 +716,7 @@ export default function HospitalityPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Cafes</h4>
+                <h4 className="font-semibold text-gray-900">Cafe Chains</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">

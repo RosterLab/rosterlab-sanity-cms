@@ -276,8 +276,8 @@ export default function AviationPage() {
                 Aviation Regulation Compliant
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Automatically enforce CAA regulations, flight time limitations,
-                and mandatory rest requirements for crew safety.
+                Automatically enforce aviation regulations, flight time
+                limitations, and mandatory rest requirements for crew safety.
               </p>
               <div className="flex items-center text-sky-600 font-medium mt-auto">
                 Learn more
@@ -364,8 +364,8 @@ export default function AviationPage() {
                 Mobile Access & Notifications
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Crew can view flight schedules, bid for trips, request leave,
-                and manage duty changes from any device.
+                Crew can view flight schedules, accept open shifts, request
+                leave, and manage changes from any device.
               </p>
               <div className="flex items-center text-cyan-600 font-medium mt-auto">
                 Learn more
@@ -559,10 +559,9 @@ export default function AviationPage() {
                       Improve Operational Efficiency
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Better utilise crew duty hours, reduce positioning costs,
-                      and ensure optimal qualification coverage across all
-                      flights. Maximise efficiency while maintaining safety
-                      standards.
+                      Better utilise crew duty hours, reduce costs, and ensure
+                      optimal qualification coverage across all flights.
+                      Maximise efficiency while maintaining safety standards.
                     </p>
                   </div>
                 </div>
@@ -623,7 +622,7 @@ export default function AviationPage() {
                       Compliant with Aviation Regulations
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Automatically enforce CAA requirements, flight time
+                      Automatically enforce requirements, flight time
                       limitations, and crew duty regulations, ensuring
                       operational compliance and crew wellbeing.
                     </p>
