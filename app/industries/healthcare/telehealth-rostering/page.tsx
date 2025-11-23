@@ -65,6 +65,12 @@ const faqItems = [
     answer:
       "Yes. There's been a significant culture change in healthcare - telehealth staff now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
+  {
+    question:
+      "How can we achieve 24-hour coverage without requiring night shifts?",
+    answer:
+      "By distributing team members across multiple time zones, each group can work during their normal daytime hours. As one region ends its workday, another region begins, creating seamless round-the-clock coverage.",
+  },
 ];
 
 export default function TelehealthRosteringPage() {
