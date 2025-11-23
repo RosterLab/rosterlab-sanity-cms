@@ -77,12 +77,12 @@ export default function TelehealthRosteringPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Compliant
+                  Flexible, Optimised
                 </span>{" "}
                 Telehealth Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance consultation demands,
+                Create optimised AI rosters that balance consultation demands,
                 fair shift distribution, and telehealth staff wellbeing.
               </p>
               <div className="mb-8 space-y-2">
