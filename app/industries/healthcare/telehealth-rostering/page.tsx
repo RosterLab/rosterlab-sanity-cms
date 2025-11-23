@@ -12,7 +12,7 @@ export const metadata = withHreflang(
   {
     title: "Telehealth Staff Rostering Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant telehealth rosters that maintain safe staffing ratios and respect union rules.",
+      "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
     alternates: {
       canonical:
         "https://rosterlab.com/industries/healthcare/telehealth-rostering",
@@ -20,12 +20,12 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Telehealth Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant telehealth rosters that maintain safe staffing ratios and respect union rules.",
+        "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
       type: "website",
       url: "https://rosterlab.com/industries/healthcare/telehealth-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/iStock-1985167783.jpg",
           width: 1200,
           height: 630,
         },
@@ -35,8 +35,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Telehealth Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant telehealth rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+        "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
+      images: ["/images/us-images/iStock-1985167783.jpg"],
     },
   },
   "/industries/healthcare/telehealth-rostering",

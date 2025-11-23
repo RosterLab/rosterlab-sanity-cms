@@ -8,21 +8,21 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Rostering Software for Aviation - RosterLab",
+    title: "Aviation Crew Rostering Software - RosterLab",
     description:
       "Learn how our rostering software simplifies crew scheduling in aviation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
     alternates: {
       canonical: "https://rosterlab.com/industries/aviation",
     },
     openGraph: {
-      title: "Rostering Software for Aviation - RosterLab",
+      title: "Aviation Crew Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies crew scheduling in aviation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
       type: "website",
       url: "https://rosterlab.com/industries/aviation",
       images: [
         {
-          url: "/images/og-images/IndustryAviation.png",
+          url: "/images/aviation.jpg",
           width: 1200,
           height: 630,
           alt: "Aviation crew scheduling with RosterLab",
@@ -31,10 +31,10 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rostering Software for Aviation - RosterLab",
+      title: "Aviation Crew Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies crew scheduling in aviation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
-      images: ["/images/og-images/IndustryAviation.png"],
+      images: ["/images/aviation.jpg"],
     },
   },
   "/industries/aviation",

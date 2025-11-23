@@ -12,7 +12,7 @@ export const metadata = withHreflang(
   {
     title: "Pathology Staff Rostering Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant pathology rosters that maintain safe staffing ratios and respect union rules.",
+      "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
     alternates: {
       canonical:
         "https://rosterlab.com/industries/healthcare/pathology-rostering",
@@ -20,12 +20,12 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Pathology Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant pathology rosters that maintain safe staffing ratios and respect union rules.",
+        "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
       type: "website",
       url: "https://rosterlab.com/industries/healthcare/pathology-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/pathology-roster.jpg",
           width: 1200,
           height: 630,
         },
@@ -35,8 +35,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Pathology Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant pathology rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+        "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+      images: ["/images/us-images/pathology-roster.jpg"],
     },
   },
   "/industries/healthcare/pathology-rostering",

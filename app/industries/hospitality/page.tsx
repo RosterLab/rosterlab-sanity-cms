@@ -8,21 +8,21 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Rostering Software for Hospitality - RosterLab",
+    title: "Hospitality Staff Rostering Software - RosterLab",
     description:
       "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
     alternates: {
       canonical: "https://rosterlab.com/industries/hospitality",
     },
     openGraph: {
-      title: "Rostering Software for Hospitality - RosterLab",
+      title: "Hospitality Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
       type: "website",
       url: "https://rosterlab.com/industries/hospitality",
       images: [
         {
-          url: "/images/og-images/IndustryHospitality.png",
+          url: "/images/hospitality.webp",
           width: 1200,
           height: 630,
           alt: "Hospitality workforce scheduling with RosterLab",
@@ -31,10 +31,10 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rostering Software for Hospitality - RosterLab",
+      title: "Hospitality Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
-      images: ["/images/og-images/IndustryHospitality.png"],
+      images: ["/images/hospitality.webp"],
     },
   },
   "/industries/hospitality",
