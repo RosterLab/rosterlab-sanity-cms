@@ -47,7 +47,7 @@ const faqItems = [
     question:
       "How does RosterLab ensure union compliance for telehealth rosters?",
     answer:
-      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring telehealth staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules.",
   },
   {
     question:
