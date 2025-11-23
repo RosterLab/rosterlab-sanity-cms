@@ -342,8 +342,7 @@ export default function TelehealthRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Automatically Schedule Peak Periods Without Disrupting
-                      Coverage
+                      Auto-Schedule Peak Periods Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
                       Ensure adequate staffing during appointment peaks and
