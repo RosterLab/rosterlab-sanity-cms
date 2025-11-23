@@ -47,7 +47,7 @@ const faqItems = [
     question:
       "How does RosterLab ensure union compliance for pathology rosters?",
     answer:
-      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring pathology staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules.",
   },
   {
     question:
@@ -101,7 +101,7 @@ export default function PathologyRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Create union compliant rosters
+                  Ensure regular staff rotation to keep skills up to date
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -249,11 +249,11 @@ export default function PathologyRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Integrated Section & Skill Planning
+                Improve pathologists work-life balance
               </h3>
               <p className="text-gray-600">
-                Easily manage rotations and staffing across pathology sections
-                while assigning required skills for each diagnostic session.
+                Create fair and flexible rosters that respect staff preferences
+                and personal commitments while maintaining operational coverage.
               </p>
             </div>
 
@@ -279,7 +279,7 @@ export default function PathologyRosteringPage() {
               </h3>
               <p className="text-gray-600">
                 Schedule appropriate staffing around peak specimen arrival times
-                and testing schedules while maintaining coverage.
+                and testing schedules while maintaining optimal coverage.
               </p>
             </div>
 
@@ -301,11 +301,11 @@ export default function PathologyRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Maintain and Grow Staff Competency
+                Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Build rotations that ensure staff regularly practise and refresh
-                their skills across different pathology sections.
+                Easily manage rotations to ensure that staff regularly practise
+                and refresh their skills across different pathology sections.
               </p>
             </div>
           </div>
@@ -348,34 +348,6 @@ export default function PathologyRosteringPage() {
                       Keep a live digital record of each pathologist's skills
                       and seniority. The AI automatically assigns the right
                       staff to the right sections for safe, efficient coverage.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Plan Ahead Without the Scheduling Headaches
-                    </h4>
-                    <p className="text-gray-600">
-                      Easily roster annual training, study days, and fixed
-                      commitments. Avoid clashes and let managers view the full
-                      year at a glance with everything perfectly aligned.
                     </p>
                   </div>
                 </div>
@@ -545,8 +517,8 @@ export default function PathologyRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, specimen processing peaks,
-                      night shift equity, and union/EBA rules to create
-                      compliant rosters.
+                      night shift equity, and union rules to create compliant
+                      rosters.
                     </p>
                   </div>
                 </div>
