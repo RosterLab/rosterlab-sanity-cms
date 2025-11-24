@@ -18,11 +18,11 @@ const pathname = "/feature/ai-staff-rostering-assistant";
 
 export const metadata = withHreflang(
   {
-    title: "Personal AI Rostering Assistant - RosterLab",
+    title: "Personal AI Staff Rostering Assistant - RosterLab",
     description:
       "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
     openGraph: {
-      title: "Personal AI Rostering Assistant - RosterLab",
+      title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
         "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
       images: [
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Personal AI Rostering Assistant - RosterLab",
+      title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
         "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],

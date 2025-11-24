@@ -16,7 +16,7 @@ import Image from "next/image";
 
 export const metadata = withHreflang(
   {
-    title: "Personal AI Scheduling Assistant - RosterLab",
+    title: "Personal AI Staff Scheduling Assistant - RosterLab",
     description:
       "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
     alternates: {
@@ -24,7 +24,7 @@ export const metadata = withHreflang(
         "https://rosterlab.com/us/feature/ai-staff-scheduling-assistant",
     },
     openGraph: {
-      title: "Personal AI Scheduling Assistant - RosterLab",
+      title: "Personal AI Staff Scheduling Assistant - RosterLab",
       description:
         "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
       images: [
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Personal AI Scheduling Assistant - RosterLab",
+      title: "Personal AI Staff Scheduling Assistant - RosterLab",
       description:
         "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
