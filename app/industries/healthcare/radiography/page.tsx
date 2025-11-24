@@ -563,8 +563,8 @@ export default function RadiographyPage() {
                   Optimise for skill mix
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Auto assign radiographers to modalities and subspecialties for
-                  optimal coverage.
+                  Auto assign radiographers to multi-modalities for optimal
+                  coverage.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
