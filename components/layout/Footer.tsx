@@ -146,14 +146,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/why-rosterlab"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
-                >
-                  Why Choose Us
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/careers"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
