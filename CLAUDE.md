@@ -112,3 +112,51 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Event tracking** - Use `analytics.track()` from `@/components/analytics/Segment`
 - **User identification** - Use `analytics.identify(userId, traits)` for user properties
 - **Dual tracking** - Events sent to both Segment and GTM dataLayer
+
+### Creating US Pages
+
+When creating US equivalent pages from AU/NZ pages, follow these steps:
+
+1. **Page Structure**:
+   - Create pages in `/app/us/` directory maintaining the same folder structure
+   - Add `/us/` prefix to URLs (e.g., `/feature/ai-staff-rostering-assistant` → `/us/feature/ai-staff-scheduling-assistant`)
+   - Convert "roster/rostering" terminology to "schedule/scheduling" in URLs
+
+2. **Terminology Conversion**:
+   - roster/rostering/rosters → schedule/scheduling/schedules
+   - UK to US spelling: optimise→optimize, organised→organized, labour→labor, authorised→authorized
+   - Region-specific terms: union rules→labor laws, EBA→compliance rules, annual leave→vacation time
+
+3. **Metadata Updates**:
+   - Update page titles and descriptions for US terminology
+   - Set canonical URLs to US path
+   - **Keep OpenGraph images with original paths** (do NOT add /us prefix)
+   - Use `withHreflang()` with the current page's path as second parameter
+
+4. **Internal Links**:
+   - Update all internal links to use `/us/` prefix
+   - Update tool links (e.g., `/tools/roi-calculator` → `/us/tools/savings-calculator`)
+   - Update demo links (e.g., `/staff-rostering-interactive-demo` → `/us/product-tour`)
+   - Update all feature/solution/industry links to their US equivalents
+
+5. **Components**:
+   - **CRITICAL**: Check imported components for hard-coded roster terminology
+   - Create US versions of components that contain user-facing text with roster terminology
+   - Place US component versions in appropriate directories:
+     - Page-specific components: `/app/us/[path]/ComponentNameUS.tsx`
+     - Shared components: `/components/sections/animations/ComponentNameUS.tsx`
+   - Update import statements to use US component versions
+   - Examples of components that need US versions:
+     - `RoleTabsModule` → `RoleTabsModuleUS`
+     - `OttoChatWidget` → `OttoChatWidgetUS`
+     - `OttoStaticChatFeature1` → `OttoStaticChatFeature1US`
+
+6. **HreflangTags.tsx Updates**:
+   - Add new page mappings to `US_URL_MAPPINGS` object
+   - Add page paths to `LOCALIZED_PAGES` set
+   - This enables automatic hreflang tag generation
+
+7. **Validation**:
+   - Check for remaining "roster" mentions (acceptable: company name "RosterLab", image paths, component import paths)
+   - Verify all internal links use `/us/` prefix
+   - Test that dropdown menus and interactive components use correct terminology

@@ -66,6 +66,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
           title: "Automated Rostering",
           link: "/feature/automated-rostering",
         },
+        {
+          title: "AI Rostering Assistant",
+          link: "/feature/ai-staff-rostering-assistant",
+        },
         { title: "Open Shifts", link: "/feature/open-shifts" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
         { title: "Leave Requests", link: "/feature/leave-requests" },
@@ -253,7 +257,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                                   "Mobile App",
                                                 )
                                               ? "Keep your team connected with mobile schedules"
-                                              : "")}
+                                              : subItem.title ===
+                                                  "AI Chat Assistant"
+                                                ? "Get instant rostering help with AI chat support"
+                                                : "")}
                                     </div>
                                   </Link>
                                 ))}
@@ -835,7 +842,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               Core Solutions
                             </div>
                             <div className="space-y-1">
-                              {item.subItems.slice(0, 5).map((subItem) => (
+                              {item.subItems.slice(0, 3).map((subItem) => (
                                 <Link
                                   key={subItem.link}
                                   href={subItem.link}
