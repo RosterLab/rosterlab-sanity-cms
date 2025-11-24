@@ -20,11 +20,11 @@ export const metadata = withHreflang(
   {
     title: "Personal AI Staff Rostering Assistant - RosterLab",
     description:
-      "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+      "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
     openGraph: {
       title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
-        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
-        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },

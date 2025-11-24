@@ -18,7 +18,7 @@ export const metadata = withHreflang(
   {
     title: "Personal AI Staff Scheduling Assistant - RosterLab",
     description:
-      "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+      "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/feature/ai-staff-scheduling-assistant",
@@ -26,7 +26,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Personal AI Staff Scheduling Assistant - RosterLab",
       description:
-        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -39,7 +39,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Personal AI Staff Scheduling Assistant - RosterLab",
       description:
-        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
