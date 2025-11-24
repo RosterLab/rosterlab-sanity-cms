@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 const conversations = [
@@ -51,12 +51,19 @@ export default function OttoChatWidgetUS() {
   );
   const [queuePosition, setQueuePosition] = useState(0);
   const [stage, setStage] = useState(0); // 0: typing question, 1: thinking, 2: typing answer
+  const hasAddedMessage = useRef(false);
 
   const currentConversation = conversations[conversationQueue[queuePosition]];
 
   useEffect(() => {
     // Stage 0: Show question immediately
     if (stage === 0) {
+      // Prevent duplicate messages on double render within the same conversation
+      if (hasAddedMessage.current) {
+        return;
+      }
+      hasAddedMessage.current = true;
+
       // Add question to messages immediately
       setMessages((prev) => [
         ...prev,
@@ -109,6 +116,8 @@ export default function OttoChatWidgetUS() {
       const answerTimeout = setTimeout(() => {
         // Clear messages and move to next question in queue
         setMessages([]);
+        // Reset the flag for the next conversation
+        hasAddedMessage.current = false;
 
         const nextPosition = queuePosition + 1;
 
