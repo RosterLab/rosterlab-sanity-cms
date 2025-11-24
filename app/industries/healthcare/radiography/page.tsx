@@ -412,7 +412,7 @@ export default function RadiographyPage() {
                     </h3>
                     <p className="text-gray-600">
                       Set modality requirements, training distributions rules,
-                      and subspecialty coverage targets.
+                      and coverage targets.
                     </p>
                   </div>
                 </div>
