@@ -555,11 +555,12 @@ export default function RadiographyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Optimise for skill mix
+                  Maintain and grow staff competency
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Auto assign radiographers to multi-modalities for optimal
-                  coverage.
+                  Ensure radiographers regularly rotate through different
+                  imaging modalities to maintain competency and broaden skill
+                  sets.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
