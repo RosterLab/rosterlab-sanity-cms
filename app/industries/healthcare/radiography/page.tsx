@@ -71,8 +71,9 @@ export default function RadiographyPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Balance competing priorities while meeting staffing demands
-                across many different modalities with AI rostering.
+                Automatically balance skill requirements, shift patterns, and
+                on-call needs across multiple modalities while ensuring fairness
+                for your entire team.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -160,65 +161,15 @@ export default function RadiographyPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Built for specific radiography rostering challenges.
+              Solve Your Biggest Radiography Rostering Challenges
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Balance shift coverage, compliance and fairness while maintaining
-              smooth patient flow and service delivery.
+              Balance competing priorities across multiple modalities while
+              maintaining fairness, compliance, and smooth patient flow.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Multi-Modality Flexibility
-              </h3>
-              <p className="text-gray-600">
-                Easily plan rotations across X-ray, CT, MRI, and mobile units.
-                Create department-wide rosters that balance staffing.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Equitable shift distribution across teams
-              </h3>
-              <p className="text-gray-600">
-                Balance preferred, late, on-call, and weekend shifts evenly
-                across all radiographers for happier, healthier teams.
-              </p>
-            </div>
-
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -241,6 +192,58 @@ export default function RadiographyPage() {
               <p className="text-gray-600">
                 Ensure radiographers regularly rotate through different imaging
                 modalities to maintain competency and broaden skill sets.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Balance competing priorities automatically
+              </h3>
+              <p className="text-gray-600">
+                Juggle skill requirements, shift patterns, on-call rotations,
+                and individual preferences across all modalities without manual
+                coordination.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-cyan-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Equitable shift distribution across radiographers
+              </h3>
+              <p className="text-gray-600">
+                Easily roster for fairness by automatically considering
+                preferred, late, on-call, and weekend shifts evenly across all
+                radiographers for happier, healthier teams.
               </p>
             </div>
           </div>
@@ -382,8 +385,130 @@ export default function RadiographyPage() {
         </Container>
       </section>
 
-      {/* Workflow Section */}
+      {/* Case Study & Image Section */}
       <section className="py-20 bg-white">
+        <Container>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Radiography Rostering Case Study
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Case Study - Left */}
+            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                How an Auckland Radiography Team Went From 40% Short-Staffed to
+                Fully Staffed Using RosterLab
+              </h3>
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>40% short-staffed</strong> - now consistently fully
+                    staffed for the first time in 28 years
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>Reduced rostering time</strong> from 120 hours to
+                    just 8 hours per month (based on a 4 week roster)
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>$80,000+ per year</strong> in savings
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>Over 600 preferences</strong> met per roster period
+                  </p>
+                </div>
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <p className="text-gray-700">
+                    <strong>Zero breaches</strong> of MECA rules
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-center mt-8">
+                <Button
+                  href="/case-studies/radiology-department-auckland"
+                  className="bg-teal-600 text-white hover:bg-teal-700"
+                >
+                  Read Full Case Study
+                </Button>
+              </div>
+            </div>
+
+            {/* Image - Right */}
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/us-images/radiology-roster.jpg"
+                alt="Radiology scheduling dashboard"
+                width={600}
+                height={800}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Workflow Section */}
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
