@@ -71,8 +71,8 @@ export default function RadiographyPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Optimise radiographer coverage across all modalities with
-                intelligent AI rostering.
+                Balance competing priorities while meeting staffing demands
+                across many different modalities with AI rostering.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
