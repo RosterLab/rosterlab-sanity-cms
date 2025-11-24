@@ -211,7 +211,7 @@ export default function RadiographyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Equitable Shift Distribution
+                Equitable shift distribution across teams
               </h3>
               <p className="text-gray-600">
                 Balance preferred, late, on-call, and weekend shifts evenly
