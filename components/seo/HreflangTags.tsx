@@ -86,7 +86,7 @@ export const LOCALIZED_PAGES = new Set([
   "/feature/leave-requests",
   "/feature/self-scheduling",
   "/feature/re-rostering",
-  "/feature/ai-roster-assistant",
+  "/feature/ai-staff-rostering-assistant",
 
   // Schedule types
   "/type/on-call-roster",
