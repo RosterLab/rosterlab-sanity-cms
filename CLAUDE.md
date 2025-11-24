@@ -119,7 +119,7 @@ When creating US equivalent pages from AU/NZ pages, follow these steps:
 
 1. **Page Structure**:
    - Create pages in `/app/us/` directory maintaining the same folder structure
-   - Add `/us/` prefix to URLs (e.g., `/feature/ai-roster-assistant` → `/us/feature/ai-staff-scheduling-assistant`)
+   - Add `/us/` prefix to URLs (e.g., `/feature/ai-staff-rostering-assistant` → `/us/feature/ai-staff-scheduling-assistant`)
    - Convert "roster/rostering" terminology to "schedule/scheduling" in URLs
 
 2. **Terminology Conversion**:

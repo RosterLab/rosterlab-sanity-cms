@@ -14,7 +14,7 @@ import AgenticAICarousel from "./AgenticAICarousel";
 import ShareButton from "./ShareButton";
 import Image from "next/image";
 
-const pathname = "/feature/ai-roster-assistant";
+const pathname = "/feature/ai-staff-rostering-assistant";
 
 export const metadata = withHreflang(
   {

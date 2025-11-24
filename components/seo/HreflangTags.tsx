@@ -26,7 +26,8 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/feature/leave-requests": "/us/feature/time-off-requests",
   "/feature/self-scheduling": "/us/feature/self-scheduling",
   "/feature/re-rostering": "/us/feature/staff-rescheduling",
-  "/feature/ai-roster-assistant": "/us/feature/ai-staff-scheduling-assistant",
+  "/feature/ai-staff-rostering-assistant":
+    "/us/feature/ai-staff-scheduling-assistant",
 
   // Schedule types
   "/type/on-call-roster": "/us/type/on-call-scheduling",

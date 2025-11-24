@@ -9,9 +9,9 @@ import OttoChatWidgetUS from "@/components/sections/animations/OttoChatWidgetUS"
 import OttoStaticChat from "@/components/sections/animations/OttoStaticChat";
 import OttoStaticChatFeature1US from "@/components/sections/animations/OttoStaticChatFeature1US";
 import RoleTabsModuleUS from "@/app/us/feature/ai-staff-scheduling-assistant/RoleTabsModuleUS";
-import WaitlistForm from "@/app/feature/ai-roster-assistant/WaitlistForm";
-import AgenticAICarousel from "@/app/feature/ai-roster-assistant/AgenticAICarousel";
-import ShareButton from "@/app/feature/ai-roster-assistant/ShareButton";
+import WaitlistForm from "@/app/feature/ai-staff-rostering-assistant/WaitlistForm";
+import AgenticAICarousel from "@/app/feature/ai-staff-rostering-assistant/AgenticAICarousel";
+import ShareButton from "@/app/feature/ai-staff-rostering-assistant/ShareButton";
 import Image from "next/image";
 
 export const metadata = withHreflang(
