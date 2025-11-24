@@ -236,11 +236,11 @@ export default function RadiographyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Handle Complex Skill-Mix
+                Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Easily set up complex skill requirements for each modality and
-                session to improve department planning.
+                Ensure radiographers regularly rotate through different imaging
+                modalities to maintain competency and broaden skill sets.
               </p>
             </div>
           </div>
