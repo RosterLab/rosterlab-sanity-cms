@@ -26,6 +26,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/feature/leave-requests": "/us/feature/time-off-requests",
   "/feature/self-scheduling": "/us/feature/self-scheduling",
   "/feature/re-rostering": "/us/feature/staff-rescheduling",
+  "/feature/ai-roster-assistant": "/us/feature/ai-schedule-assistant",
 
   // Schedule types
   "/type/on-call-roster": "/us/type/on-call-scheduling",
@@ -48,6 +49,9 @@ export const US_URL_MAPPINGS: Record<string, string> = {
     "/us/industries/healthcare/veterinary-scheduling",
   "/industries/healthcare/senior-medical-officer-rostering":
     "/us/industries/healthcare/attending-physician-scheduling",
+  "/industries/transportation/port-rostering":
+    "/us/industries/transportation/port-scheduling",
+  "/industries/call-centre-rostering": "/us/industries/call-center-scheduling",
 };
 
 // Reverse mapping to find original URL from US version
@@ -81,6 +85,7 @@ export const LOCALIZED_PAGES = new Set([
   "/feature/leave-requests",
   "/feature/self-scheduling",
   "/feature/re-rostering",
+  "/feature/ai-roster-assistant",
 
   // Schedule types
   "/type/on-call-roster",
@@ -96,6 +101,8 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/healthcare/nurse-rostering",
   "/industries/healthcare/veterinary-rostering",
   "/industries/healthcare/senior-medical-officer-rostering",
+  "/industries/transportation/port-rostering",
+  "/industries/call-centre-rostering",
 ]);
 
 // Helper function to generate hreflang metadata

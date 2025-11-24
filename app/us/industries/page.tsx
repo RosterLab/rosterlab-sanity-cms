@@ -424,26 +424,24 @@ export default function IndustriesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Education */}
+            {/* Ports */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/Education.webp"
-                  alt="Education industry scheduling"
+                  src="/images/port-roster.jpg"
+                  alt="Ports industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Education
-                </h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Ports</h3>
                 <p className="text-gray-600 mb-4">
-                  Schedule teachers, support staff, and substitutes while
-                  balancing class requirements, specializations, and
-                  professional development.
+                  Manage dock workers, crane operators, and logistics staff
+                  across shifts while coordinating with vessel and cargo
+                  operations.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -458,7 +456,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Subject expertise matching
+                    Staff port scheduling coordination
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -474,7 +472,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Substitute management
+                    Safer and more efficient schedules
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -490,9 +488,14 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Break duty scheduling
+                    24/7 operations management
                   </li>
                 </ul>
+                <Link href="/us/industries/transportation/port-scheduling">
+                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
+                    Learn more
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -501,21 +504,21 @@ export default function IndustriesPage() {
               <div className="h-48 relative">
                 <Image
                   src="/images/call center.webp"
-                  alt="Call centres industry scheduling"
+                  alt="Call centers industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Call Centres
+                  Call Centers
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Optimise agent scheduling to meet service levels while
+                  Optimize agent scheduling to meet service levels while
                   managing breaks, training, and multi-skill routing
                   requirements.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -530,7 +533,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Service level optimisation
+                    Service level optimization
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -565,6 +568,11 @@ export default function IndustriesPage() {
                     Peak hour management
                   </li>
                 </ul>
+                <Link href="/us/industries/call-center-scheduling">
+                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
+                    Learn more
+                  </Button>
+                </Link>
               </div>
             </div>
 
