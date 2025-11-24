@@ -24,7 +24,7 @@ export const usNavItems = [
       },
       {
         title: "AI Scheduling Assistant",
-        link: "/us/feature/ai-schedule-assistant",
+        link: "/us/feature/ai-staff-scheduling-assistant",
       },
       { title: "Open Shifts", link: "/us/feature/open-shifts" },
       {

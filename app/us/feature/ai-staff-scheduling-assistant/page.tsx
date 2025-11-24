@@ -8,7 +8,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import OttoChatWidgetUS from "@/components/sections/animations/OttoChatWidgetUS";
 import OttoStaticChat from "@/components/sections/animations/OttoStaticChat";
 import OttoStaticChatFeature1US from "@/components/sections/animations/OttoStaticChatFeature1US";
-import RoleTabsModuleUS from "@/app/us/feature/ai-schedule-assistant/RoleTabsModuleUS";
+import RoleTabsModuleUS from "@/app/us/feature/ai-staff-scheduling-assistant/RoleTabsModuleUS";
 import WaitlistForm from "@/app/feature/ai-roster-assistant/WaitlistForm";
 import AgenticAICarousel from "@/app/feature/ai-roster-assistant/AgenticAICarousel";
 import ShareButton from "@/app/feature/ai-roster-assistant/ShareButton";
@@ -20,7 +20,8 @@ export const metadata = withHreflang(
     description:
       "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
     alternates: {
-      canonical: "https://rosterlab.com/us/feature/ai-schedule-assistant",
+      canonical:
+        "https://rosterlab.com/us/feature/ai-staff-scheduling-assistant",
     },
     openGraph: {
       title: "Personal AI Scheduling Assistant - RosterLab",
@@ -42,7 +43,7 @@ export const metadata = withHreflang(
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
-  "/us/feature/ai-schedule-assistant",
+  "/us/feature/ai-staff-scheduling-assistant",
 );
 
 const faqItems = [
