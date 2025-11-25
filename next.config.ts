@@ -373,11 +373,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/:dollar",
-        destination: "/",
-        permanent: true,
-      },
-      {
         source: "/case-studies/author/daniel-ge",
         destination: "/blog",
         permanent: true,
