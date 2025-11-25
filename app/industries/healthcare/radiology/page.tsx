@@ -42,12 +42,12 @@ const faqItems = [
   {
     question: "What is a radiology roster?",
     answer:
-      "A radiology roster is a schedule that organises radiologists across different imaging modalities (CT, MRI, X-ray, ultrasound, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand. The roster must balance subspecialty expertise (like neuroradiology, MSK, cardiac imaging) across different session types including reporting, procedures, and teaching.",
+      "A radiology roster is a schedule that organises radiologists across different subspecialty areas (neuro, MSK, cardiac, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand. The roster must balance subspecialty expertise (like neuroradiology, MSK, cardiac imaging) across different session types including reporting, procedures, and teaching.",
   },
   {
     question: "Why is radiology rostering so complex?",
     answer:
-      "Radiology rostering is complex because of overlapping clinical, operational, and training constraints. Radiologists require modality-specific credentials, subspecialty coverage is needed 24/7, and reporting workflows depend on continuity across sites and teams. Interventional procedures demand specific skill combinations, while training rotations and teaching commitments must be balanced. Add in the need for fair after-hours distribution, emergency coverage, and compliance with contractual rules - and manual scheduling becomes extremely time-consuming and error-prone.",
+      "Radiology rostering is complex because of overlapping clinical, operational, and training constraints. Radiologists require subspecialty-specific credentials, subspecialty coverage is needed 24/7, and reporting workflows depend on continuity across sites and teams. Interventional procedures demand specific skill combinations, while training rotations and teaching commitments must be balanced. Add in the need for fair after-hours distribution, emergency coverage, and compliance with contractual rules - and manual scheduling becomes extremely time-consuming and error-prone.",
   },
   {
     question: "Have you worked with radiology teams before?",
@@ -57,7 +57,7 @@ const faqItems = [
   {
     question: "How does long-term roster planning work in radiology?",
     answer:
-      "RosterLab's radiology rostering supports both <a href='/type/long-roster' class='text-blue-600 hover:underline'>long-term</a> and short-term scheduling. Plan quarterly or annual rosters that include subspecialty rotations, leave blocks, academic and conference commitments, and service coverage requirements. The system automatically maintains continuous modality coverage while respecting radiologist preferences, credentialing, and fatigue limits. Any long-term changes cascade through to daily rosters, ensuring consistency across all timeframes.",
+      "RosterLab's radiology rostering supports both <a href='/type/long-roster' class='text-blue-600 hover:underline'>long-term</a> and short-term scheduling. Plan quarterly or annual rosters that include subspecialty rotations, leave blocks, academic and conference commitments, and service coverage requirements. The system automatically maintains continuous subspecialty coverage while respecting radiologist preferences, credentialing, and fatigue limits. Any long-term changes cascade through to daily rosters, ensuring consistency across all timeframes.",
   },
 ];
 
@@ -242,7 +242,7 @@ export default function RadiologyPage() {
                 Consistent Fairness Across Teams
               </h3>
               <p className="text-gray-600">
-                Ensure equitable shift distribution across all modalities,
+                Ensure equitable shift distribution across all subspecialties,
                 including after-hours, weekend, and on-call duties.
               </p>
             </div>
@@ -536,8 +536,8 @@ export default function RadiologyPage() {
                       Define Coverage Needs
                     </h3>
                     <p className="text-gray-600">
-                      Set modality requirements, training distributions rules,
-                      and subspecialty coverage targets.
+                      Set coverage requirements, training distributions rules,
+                      and subspecialty targets.
                     </p>
                   </div>
                 </div>
@@ -555,7 +555,7 @@ export default function RadiologyPage() {
                     </h3>
                     <p className="text-gray-600">
                       Add radiologist skills, preferences, contractual rules,
-                      and staffing coverage by modality.
+                      and staffing coverage by subspecialty.
                     </p>
                   </div>
                 </div>
@@ -683,7 +683,7 @@ export default function RadiologyPage() {
                   Optimise for skill mix
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Automatically assign radiologists to modalities and
+                  Automatically assign radiologists based on their skills and
                   subspecialties for optimal coverage.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
