@@ -421,7 +421,7 @@ export default function ShiftSwapsPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
-          { name: "Features", url: "/us/feature" },
+
           { name: "Shift Swaps and Trades" },
         ]}
       />

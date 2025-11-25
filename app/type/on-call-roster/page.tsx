@@ -598,7 +598,7 @@ export default function OnCallRosterPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
-          { name: "Type", url: "/type" },
+
           { name: "On-Call Roster", url: "/type/on-call-roster" },
         ]}
       />

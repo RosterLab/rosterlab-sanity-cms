@@ -441,11 +441,7 @@ export default function AutoRosterGenerationPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Features", url: "/us/feature" },
-          { name: "Auto Scheduling" },
-        ]}
+        items={[{ name: "Home", url: "/us" }, { name: "Auto Scheduling" }]}
       />
     </SiteLayout>
   );

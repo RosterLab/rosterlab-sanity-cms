@@ -411,11 +411,7 @@ export default function AutoRosterGenerationPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "Automated Rostering" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "Automated Rostering" }]}
       />
     </SiteLayout>
   );

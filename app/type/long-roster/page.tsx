@@ -737,7 +737,7 @@ export default function LongRosterPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
-          { name: "Type", url: "/type" },
+
           { name: "On-Call Roster", url: "/type/on-call-roster" },
         ]}
       />

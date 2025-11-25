@@ -419,11 +419,7 @@ export default function AIRosterAssistantPage() {
 
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "AI Chat Assistant" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "AI Chat Assistant" }]}
       />
     </SiteLayout>
   );

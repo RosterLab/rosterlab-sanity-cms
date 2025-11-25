@@ -598,7 +598,7 @@ export default function OnCallSchedulingPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
-          { name: "Type", url: "/us/type" },
+
           { name: "On-Call Scheduling", url: "/us/type/on-call-scheduling" },
         ]}
       />

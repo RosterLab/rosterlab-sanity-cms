@@ -742,7 +742,7 @@ export default function LongTermSchedulePlanningPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
-          { name: "Type", url: "/us/type" },
+
           {
             name: "Long-Term Schedule Planning",
             url: "/us/type/long-term-schedule-planning",
