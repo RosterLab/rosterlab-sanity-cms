@@ -741,7 +741,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
-          { name: "Healthcare", url: "/us/industries/healthcare" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
           { name: "Attending Physician Scheduling" },
         ]}
       />
