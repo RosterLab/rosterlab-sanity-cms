@@ -701,11 +701,7 @@ export default function AISchedulesPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Solutions", url: "/solutions" },
-          { name: "AI Roster Generator" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "AI Roster Generator" }]}
       />
     </SiteLayout>
   );

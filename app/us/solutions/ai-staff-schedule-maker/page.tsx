@@ -723,7 +723,6 @@ export default function AISchedulesPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
-          { name: "Solutions", url: "/us/solutions" },
           { name: "AI Staff Schedule Maker" },
         ]}
       />
