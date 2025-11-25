@@ -77,8 +77,8 @@ export default function RadiologyPage() {
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Match radiologists to reporting, procedural, and teaching
-                sessions based on their subspecialty expertise with intelligent
-                AI rostering.
+                sessions based on their subspecialty expertise with AI
+                rostering.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -166,8 +166,7 @@ export default function RadiologyPage() {
               Built for specific radiology rostering challenges.
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Align radiologist coverage with scanner output to ensure timely,
-              high-quality reporting across all modalities.
+              Cut roster creation time by 90% with optimised radiology rosters
             </p>
           </div>
 
@@ -198,6 +197,32 @@ export default function RadiologyPage() {
             </div>
 
             <div className="text-center p-6">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Match Subspecialty to Sessions
+              </h3>
+              <p className="text-gray-600">
+                Assign radiologists with specific clinical expertise (neuro,
+                MSK, cardiac, interventional) to the right reporting and
+                procedural sessions automatically.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-10 h-10 text-cyan-600"
@@ -219,32 +244,6 @@ export default function RadiologyPage() {
               <p className="text-gray-600">
                 Ensure equitable shift distribution across all modalities,
                 including after-hours, weekend, and on-call duties.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Match Subspecialty Expertise to Sessions
-              </h3>
-              <p className="text-gray-600">
-                Assign radiologists with specific clinical expertise (neuro,
-                MSK, cardiac, interventional) to the right reporting and
-                procedural sessions automatically.
               </p>
             </div>
           </div>

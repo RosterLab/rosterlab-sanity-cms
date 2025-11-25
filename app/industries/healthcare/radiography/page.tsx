@@ -72,8 +72,8 @@ export default function RadiographyPage() {
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Automatically balance skill requirements, shift patterns, and
-                on-call needs across multiple modalities while ensuring fairness
-                for your entire team.
+                on-call needs across multiple modalities while ensuring
+                fairness.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
