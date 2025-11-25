@@ -161,11 +161,10 @@ export default function RadiographyPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Solve Your Biggest Radiography Rostering Challenges
+              Solve Your Biggest Radiography Challenges
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Balance competing priorities across multiple modalities while
-              maintaining fairness, compliance, and smooth patient flow.
+              Maintain fairness, compliance and smooth patient flow.
             </p>
           </div>
 
@@ -191,7 +190,8 @@ export default function RadiographyPage() {
               </h3>
               <p className="text-gray-600">
                 Ensure radiographers regularly rotate through different imaging
-                modalities to maintain competency and broaden skill sets.
+                modalities to maintain competency and broaden skill sets across
+                all areas of the department.
               </p>
             </div>
 
@@ -277,12 +277,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Radiography Staff Coverage
+                      Generate Complete Rosters in Minutes
                     </h3>
                     <p className="text-gray-600">
-                      Keep a live digital record of each radiographer's skills
-                      and seniority. The AI automatically assigns the right
-                      staff to the right sessions for safe, efficient coverage.
+                      The AI instantly creates full rosters that meet all your
+                      requirements - eliminating hours of manual work and
+                      endless spreadsheet adjustments.
                     </p>
                   </div>
                 </div>
@@ -305,12 +305,13 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Plan Ahead Without the Scheduling Headaches
+                      Handle Last-Minute Changes Without Starting Over
                     </h3>
                     <p className="text-gray-600">
-                      Easily roster annual training, study days, and fixed
-                      commitments. Avoid clashes and let managers view the full
-                      year at a glance with everything perfectly aligned.
+                      When staff call in sick or schedules shift, simply
+                      re-roster the affected period. The AI finds optimal
+                      solutions while preserving your existing roster and
+                      meeting all requirements.
                     </p>
                   </div>
                 </div>
@@ -662,7 +663,7 @@ export default function RadiographyPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/automated-rostering" className="block">
+            <Link href="/feature/ai-roster-assistant" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
@@ -675,17 +676,16 @@ export default function RadiographyPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                     />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Maintain and grow staff competency
+                  Answer roster questions instantly
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Ensure radiographers regularly rotate through different
-                  imaging modalities to maintain competency and broaden skill
-                  sets.
+                  Get immediate answers to scheduling questions with Otto, your
+                  AI assistant that understands your roster's complexity.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →

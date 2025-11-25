@@ -42,7 +42,7 @@ const faqItems = [
   {
     question: "What is a radiology roster?",
     answer:
-      "A radiology roster is a schedule that organises radiologists across different imaging modalities (CT, MRI, X-ray, ultrasound, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand.",
+      "A radiology roster is a schedule that organises radiologists across different imaging modalities (CT, MRI, X-ray, ultrasound, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand. The roster must balance subspecialty expertise (like neuroradiology, MSK, cardiac imaging) across different session types including reporting, procedures, and teaching.",
   },
   {
     question: "Why is radiology rostering so complex?",
@@ -76,8 +76,9 @@ export default function RadiologyPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Optimise subspecialty shift allocation, and reporting capacity
-                with intelligent AI rostering.
+                Match radiologists to reporting, procedural, and teaching
+                sessions based on their subspecialty expertise with intelligent
+                AI rostering.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -238,11 +239,12 @@ export default function RadiologyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Handle Complex Skill-Mix
+                Match Subspecialty Expertise to Sessions
               </h3>
               <p className="text-gray-600">
-                Easily roster for skill specific requirements to match
-                radiologists with appropriate sessions and subspecialties.
+                Assign radiologists with specific clinical expertise (neuro,
+                MSK, cardiac, interventional) to the right reporting and
+                procedural sessions automatically.
               </p>
             </div>
           </div>
@@ -276,13 +278,13 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Track & Allocate Specialised Skills and Seniority
+                      Handle Multiple Session Types Seamlessly
                     </h3>
                     <p className="text-gray-600">
-                      Maintain a digital record of each radiologist's modality
-                      expertise, subspecialty, and credentialing status. AI
-                      automatically assigns the right radiologist to the right
-                      reporting or procedural sessions.
+                      Manage reporting sessions, interventional procedures,
+                      teaching commitments, and on-call duties in one roster
+                      while ensuring proper subspecialty coverage for each
+                      session type.
                     </p>
                   </div>
                 </div>
