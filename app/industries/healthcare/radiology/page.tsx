@@ -52,12 +52,7 @@ const faqItems = [
   {
     question: "Have you worked with radiology teams before?",
     answer:
-      "Yes, RosterLab has extensive experience with radiology departments. We've successfully implemented our AI rostering solution for multiple radiology teams, including Whanganui Hospital's radiology department, which saw a 90% reduction in scheduling time. <a href='/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
-  },
-  {
-    question: "How does long-term roster planning work in radiology?",
-    answer:
-      "RosterLab's radiology rostering supports both <a href='/type/long-roster' class='text-blue-600 hover:underline'>long-term</a> and short-term scheduling. Plan quarterly or annual rosters that include subspecialty rotations, leave blocks, academic and conference commitments, and service coverage requirements. The system automatically maintains continuous subspecialty coverage while respecting radiologist preferences, credentialing, and fatigue limits. Any long-term changes cascade through to daily rosters, ensuring consistency across all timeframes.",
+      "Yes, RosterLab has extensive experience with radiology departments. We've successfully implemented our AI rostering solution for multiple radiology teams.",
   },
 ];
 

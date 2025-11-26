@@ -90,8 +90,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Assign radiographers by skill, seniority, and modality for
-                  smooth operations
+                  Assign radiographers by seniority and modality for smooth
+                  operations
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -663,8 +663,8 @@ export default function RadiographyPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/ai-roster-assistant" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/solutions/ai-roster-generator" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -681,20 +681,20 @@ export default function RadiographyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Answer roster questions instantly
+                  Multi-modality rostering
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Get immediate answers to scheduling questions with Otto, your
-                  AI assistant that understands your roster's complexity.
+                  Automatically generate rosters across multiple imaging
+                  modalities, ensuring optimal coverage.
                 </p>
-                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700 mt-auto">
                   Learn more →
                 </span>
               </div>
             </Link>
 
             <Link href="/feature/rules-engine" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -717,14 +717,14 @@ export default function RadiographyPage() {
                   Ensure all schedules meet union agreements and regulatory
                   requirements automatically.
                 </p>
-                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700 mt-auto">
                   Learn more →
                 </span>
               </div>
             </Link>
 
             <Link href="/feature/self-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -747,14 +747,14 @@ export default function RadiographyPage() {
                   Distribute shifts, on-call duties, and workload equitably
                   across your team.
                 </p>
-                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700 mt-auto">
                   Learn more →
                 </span>
               </div>
             </Link>
 
             <Link href="/feature/leave-requests" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -777,7 +777,7 @@ export default function RadiographyPage() {
                   Manage leave requests, shift swaps, and preferences
                   efficiently in one system.
                 </p>
-                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700 mt-auto">
                   Learn more →
                 </span>
               </div>

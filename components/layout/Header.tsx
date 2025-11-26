@@ -388,7 +388,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Build radiology schedules with the right skill mix and compliance"
-                                      : "Build fair and compliant rosters across radiology subspecialties that balance skill-mix and fatigue"}
+                                      : "Build fair and compliant rosters across radiology subspecialties"}
                                   </div>
                                 </Link>
 
