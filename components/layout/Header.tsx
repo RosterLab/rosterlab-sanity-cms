@@ -394,7 +394,11 @@ export default function Header({ navItems = [] }: HeaderProps) {
 
                                 {/* Radiography Roster */}
                                 <Link
-                                  href="/industries/healthcare/radiography"
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/radiography-scheduling"
+                                      : "/industries/healthcare/radiography"
+                                  }
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
