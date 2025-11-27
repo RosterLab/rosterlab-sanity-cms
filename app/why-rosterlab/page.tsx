@@ -12,7 +12,7 @@ import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
 import { groq } from "next-sanity";
 import { formatDate } from "@/lib/utils";
-import AgenticAICarousel from "@/app/feature/ai-roster-assistant/AgenticAICarousel";
+import AgenticAICarousel from "@/app/feature/ai-staff-rostering-assistant/AgenticAICarousel";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = withHreflang(
