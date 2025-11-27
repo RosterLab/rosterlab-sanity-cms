@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 import CountrySelector from "./CountrySelector";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isUSVersion = pathname?.startsWith("/us");
+
   return (
     <footer
       className="bg-gradient-to-br from-blue-50 via-white to-green-50 text-gray-800 border-t border-gray-200"
@@ -146,7 +152,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/why-rosterlab"
+                  href={isUSVersion ? "/us/why-rosterlab" : "/why-rosterlab"}
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
                   Why Choose Us
