@@ -10,24 +10,22 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title:
-      "Radiography Scheduling Software | AI Staff Schedule Maker - RosterLab",
+    title: "Radiography Staff Scheduling Software - RosterLab",
     description:
-      "Build complex radiography schedules with RosterLab's AI software. Optimize modality coverage, manage competency requirements, and ensure fair shift distribution for your radiography team.",
+      "Build your radiography staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiography schedules that save time and money.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/radiography-scheduling",
     },
     openGraph: {
-      title:
-        "Radiography Scheduling Software | AI Staff Schedule Maker - RosterLab",
+      title: "Radiography Staff Scheduling Software - RosterLab",
       description:
-        "Build complex radiography schedules with RosterLab's AI software. Optimize modality coverage, manage competency requirements, and ensure fair shift distribution for your radiography team.",
+        "Build your radiography staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiography schedules that save time and money.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/radiography-scheduling",
       images: [
         {
-          url: "/images/og images/IndustryRadiography.png",
+          url: "/images/og-images/IndustryRadiology.png",
           width: 1200,
           height: 630,
         },
@@ -35,11 +33,10 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        "Radiography Scheduling Software | AI Staff Schedule Maker - RosterLab",
+      title: "Radiography Staff Scheduling Software - RosterLab",
       description:
-        "Build complex radiography schedules with RosterLab's AI software. Optimize modality coverage, manage competency requirements, and ensure fair shift distribution for your radiography team.",
-      images: ["/images/og images/IndustryRadiography.png"],
+        "Build your radiography staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiography schedules that save time and money.",
+      images: ["/images/og-images/IndustryRadiology.png"],
     },
   },
   "/us/industries/healthcare/radiography-scheduling",
@@ -49,17 +46,17 @@ const faqItems = [
   {
     question: "What is a radiography schedule?",
     answer:
-      "A radiography schedule is a complex timetable that coordinates radiographers across multiple imaging modalities, locations, and shift types. It must balance modality-specific competencies (CT, MRI, X-ray, ultrasound), equipment availability, patient flow patterns, and after-hours coverage requirements. Unlike typical staff scheduling, radiography schedules must ensure appropriate skill mix for each modality while maintaining continuous coverage across all imaging services.",
+      "A radiography schedule is a staff schedule that organizes radiographers and support staff who work with different imaging modalities (CT, MRI, X-ray, ultrasound, etc.). It ensures adequate coverage for all equipment, balances subspecialty expertise and manages on-call rotations.",
   },
   {
-    question: "Can you handle the complexity of a radiography schedule?",
+    question: "Why is radiography scheduling so complex?",
     answer:
-      "Yes, RosterLab is specifically designed to handle radiography's unique scheduling complexities. Our AI manages multiple modality competencies, equipment-specific staffing, skill development rotations, and on-call coverage simultaneously. The system considers certification requirements, modality-specific experience levels, and workload distribution across different imaging types. It automatically balances training needs with operational coverage, ensures appropriate competency mix for all shifts, and maintains compliance with both regulatory requirements and departmental policies.",
+      "Radiography scheduling is particularly complex due to multiple overlapping constraints: staff must be certified for specific modalities, subspecialty coverage is required 24/7, interventional procedures require specific team compositions, and training rotations must be balanced. Additionally, managing fair distribution of after-hours duties, emergency coverage, and ensuring appropriate skill mix for each shift while accommodating individual preferences and contractual obligations makes manual scheduling extremely time-consuming and error-prone.",
   },
   {
-    question: "How does competency tracking work in radiography scheduling?",
+    question: "Have you worked with radiography teams before?",
     answer:
-      "RosterLab's radiography scheduling includes comprehensive competency tracking. You can define modality-specific competencies (CT, MRI, X-ray, ultrasound, fluoroscopy) and experience levels for each radiographer. The system automatically ensures each shift has the required competency mix, tracks individual development needs, and can prioritize training opportunities. This ensures both safe patient care and staff professional development while maintaining efficient operations.",
+      "Yes, RosterLab has extensive experience with radiography departments. We've successfully implemented our AI scheduling solution for multiple radiography teams, including Whanganui Hospital's radiography department, which saw a 90% reduction in scheduling time. <a href='/us/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
   },
 ];
 
@@ -73,26 +70,14 @@ export default function RadiographyPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 Build Complex{" "}
-                <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Radiography Schedules
                 </span>
               </h1>
-
-              {/* Mobile only: Image appears here after H1 */}
-              <div className="block lg:hidden relative mb-8">
-                <Image
-                  src="/images/us-images/radiology-roster.jpg"
-                  alt="Radiography scheduling dashboard"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                />
-              </div>
-
               <p className="text-xl text-gray-600 mb-8">
-                Build complex radiography schedules in minutes, not hours.
-                Optimize modality coverage while ensuring fair shift
-                distribution and skill development.
+                Automatically balance skill requirements, shift patterns, and
+                on-call needs across multiple modalities while ensuring
+                fairness.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -109,7 +94,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Ensure right competency mix for every shift
+                  Assign radiographers by seniority and modality for smooth
+                  operations
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -125,7 +111,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Balance operational priorities with staff development
+                  Distribute shifts, on-call duties, and training rotations
+                  evenly across all teams
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -141,7 +128,8 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair distribution of shifts and modality assignments
+                  Reduce scheduling time by up to 90% with automatic schedule
+                  generation
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -152,21 +140,20 @@ export default function RadiographyPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/product-tour"
+                  href="/us/tools/savings-calculator"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  View Product Tour
+                  Savings Calculator
                 </Button>
               </div>
             </div>
-            {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block relative">
+            <div className="relative">
               <Image
-                src="/images/us-images/radiology-roster.jpg"
+                src="/images/illustration/radiography.svg"
                 alt="Radiography scheduling dashboard"
                 width={600}
                 height={400}
-                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                className="block w-full h-auto"
               />
             </div>
           </div>
@@ -178,19 +165,18 @@ export default function RadiographyPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Radiography Scheduling That Works For Your Team
+              Solve Your Biggest Radiography Challenges
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Build schedules faster while ensuring safer and fairer shifts for
-              your radiography team.
+              Maintain fairness, compliance and smooth patient flow.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-10 h-10 text-teal-600"
+                  className="w-10 h-10 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -199,16 +185,43 @@ export default function RadiographyPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Right Competency for Every Shift
+                Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Ensure each shift has the required modality competencies and
-                experience levels for safe, effective patient care.
+                Ensure radiographers regularly rotate through different imaging
+                modalities to maintain competency and broaden skill sets across
+                all areas of the department.
+              </p>
+            </div>
+
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Balance competing priorities automatically
+              </h3>
+              <p className="text-gray-600">
+                Juggle skill requirements, shift patterns, on-call rotations,
+                and individual preferences across all modalities without manual
+                coordination.
               </p>
             </div>
 
@@ -224,41 +237,17 @@ export default function RadiographyPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Balance Priorities and Development
+                Equitable shift distribution across radiographers
               </h3>
               <p className="text-gray-600">
-                Optimize for operational coverage while providing training
-                opportunities and skill development for your team.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Fair Shift Distribution
-              </h3>
-              <p className="text-gray-600">
-                Fairly distribute desirable and undesirable shifts, modality
-                assignments, and after-hours coverage across your team.
+                Easily schedule for fairness by automatically considering
+                preferred, late, on-call, and weekend shifts evenly across all
+                radiographers for happier, healthier teams.
               </p>
             </div>
           </div>
@@ -271,7 +260,7 @@ export default function RadiographyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Features Built for Radiography Departments
+                Transform Radiography Scheduling with AI
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -292,12 +281,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Modality Competency Management
+                      Generate Complete Schedules in Minutes
                     </h3>
                     <p className="text-gray-600">
-                      Track and allocate radiographers based on their
-                      competencies across CT, MRI, X-ray, ultrasound, and other
-                      modalities.
+                      The AI instantly creates full schedules that meet all your
+                      requirements - eliminating hours of manual work and
+                      endless spreadsheet adjustments.
                     </p>
                   </div>
                 </div>
@@ -320,12 +309,13 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Multi-Site Coordination
+                      Handle Last-Minute Changes Without Starting Over
                     </h3>
                     <p className="text-gray-600">
-                      Coordinate radiographer schedules across multiple sites
-                      and departments with unified planning and coverage
-                      visibility.
+                      When staff call in sick or schedules shift, simply
+                      re-schedule the affected period. The AI finds optimal
+                      solutions while preserving your existing schedule and
+                      meeting all requirements.
                     </p>
                   </div>
                 </div>
@@ -348,12 +338,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Skill Development Planning
+                      Stay Compliant with Labor Laws
                     </h3>
                     <p className="text-gray-600">
-                      Balance operational needs with training requirements,
-                      ensuring radiographers gain experience across different
-                      modalities.
+                      Automatically enforce labor laws, rest periods, and
+                      training requirements. The system ensures every schedule
+                      meets regulatory standards.
                     </p>
                   </div>
                 </div>
@@ -376,22 +366,15 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      After-Hours and On-Call
+                      Self-Scheduling for Better Flexibility
                     </h3>
                     <p className="text-gray-600">
-                      Fairly distribute after-hours coverage and on-call duties
-                      with automatic tracking and workload balancing.
+                      Empower radiographers to set their availability and
+                      preferences. The AI automatically builds schedules around
+                      staff input while maintaining coverage and compliance.
                     </p>
                   </div>
                 </div>
-              </div>
-              <div className="mt-8 text-center">
-                <Button
-                  href="/us/solutions/ai-staff-schedule-maker"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Learn about AI scheduling
-                </Button>
               </div>
             </div>
             <div className="relative">
@@ -418,8 +401,8 @@ export default function RadiographyPage() {
               Your Complete Radiography Scheduling Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From competency planning to daily operations, manage every aspect
-              of your radiography department.
+              From long-term planning to daily adjustments, manage every aspect
+              of your imaging department.
             </p>
           </div>
 
@@ -433,11 +416,11 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Define Modality Requirements
+                      Define Coverage Needs
                     </h3>
                     <p className="text-gray-600">
-                      Set competency requirements for each shift and modality,
-                      defining skill mix and experience levels needed.
+                      Set modality requirements, training distributions rules,
+                      and coverage targets.
                     </p>
                   </div>
                 </div>
@@ -451,11 +434,11 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Configure Staff Competencies
+                      Input Constraints
                     </h3>
                     <p className="text-gray-600">
-                      Add radiographer competencies, certifications, development
-                      goals, and preferred work patterns.
+                      Add radiographer skills, preferences, contractual rules,
+                      and staffing coverage by modality.
                     </p>
                   </div>
                 </div>
@@ -469,11 +452,11 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Gather Preferences
+                      Collect staff requests
                     </h3>
                     <p className="text-gray-600">
-                      Collect leave requests, shift preferences, and training
-                      needs from your radiography team.
+                      Collect and automatically take staff requests into account
+                      while staying compliant.
                     </p>
                   </div>
                 </div>
@@ -487,11 +470,11 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate AI Schedule
+                      Generate Schedule
                     </h3>
                     <p className="text-gray-600">
-                      AI creates optimal schedules balancing competency
-                      requirements, fairness, and development opportunities.
+                      AI creates optimal schedules balancing all requirements in
+                      minutes.
                     </p>
                   </div>
                 </div>
@@ -508,8 +491,8 @@ export default function RadiographyPage() {
                       Review & Adjust
                     </h3>
                     <p className="text-gray-600">
-                      Fine-tune assignments, adjust for training needs, and
-                      accommodate last-minute changes with re-scheduling.
+                      Fine-tune assignments, add notes, and re-schedule a
+                      selected subset to accommodate last-minute changes.
                     </p>
                   </div>
                 </div>
@@ -523,11 +506,12 @@ export default function RadiographyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Communicate
+                      Publish & Sync
                     </h3>
                     <p className="text-gray-600">
-                      Distribute schedules instantly with automatic
-                      notifications and mobile app access for your team.
+                      Distribute your final schedules through streamlined
+                      digital solution and share them with different teams as
+                      needed.
                     </p>
                   </div>
                 </div>
@@ -555,15 +539,18 @@ export default function RadiographyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Everything You Need for Radiography Scheduling
+              Modern Radiography Scheduling Software for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From competency management to mobile access, all in one platform.
+              Secure, accessible, and integrated with your existing systems.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/us/feature/auto-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="block"
+            >
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -575,28 +562,25 @@ export default function RadiographyPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                     />
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Auto-Scheduling
+                  Multi-modality scheduling
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Generate optimal schedules in minutes with AI that considers
-                  competencies, fairness, and coverage.
+                  Automatically generate schedules across multiple imaging
+                  modalities, ensuring optimal coverage.
                 </p>
-                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
+                <span className="text-teal-600 text-base font-medium hover:text-teal-700 mt-auto">
                   Learn more →
                 </span>
               </div>
             </Link>
 
-            <Link
-              href="/us/solutions/ai-staff-schedule-maker"
-              className="block"
-            >
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/us/feature/rules-engine" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -613,20 +597,20 @@ export default function RadiographyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Compliance Rules
+                  Compliant with labor laws
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
                   Ensure all schedules meet labor laws and regulatory
                   requirements automatically.
                 </p>
-                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
+                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700 mt-auto">
                   Learn more →
                 </span>
               </div>
             </Link>
 
             <Link href="/us/feature/self-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -643,23 +627,20 @@ export default function RadiographyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Staff Preferences
+                  Fairer shift allocation
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Collect and incorporate staff preferences while maintaining
-                  competency requirements.
+                  Distribute shifts, on-call duties, and workload equitably
+                  across your team.
                 </p>
-                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700 mt-auto">
                   Learn more →
                 </span>
               </div>
             </Link>
 
-            <Link
-              href="/us/solutions/staff-scheduling-mobile-app"
-              className="block"
-            >
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/us/feature/time-off-requests" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -676,13 +657,13 @@ export default function RadiographyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Mobile Access
+                  Streamline staff requests
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
-                  Give your team instant access to schedules, shift swaps, and
-                  leave requests on mobile.
+                  Manage time-off requests, shift swaps, and preferences
+                  efficiently in one system.
                 </p>
-                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
+                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700 mt-auto">
                   Learn more →
                 </span>
               </div>
@@ -692,7 +673,7 @@ export default function RadiographyPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="py-16 bg-white">
+      <section className="bg-white py-10">
         <USTrustedBy />
       </section>
 
@@ -716,24 +697,24 @@ export default function RadiographyPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Radiography Team Scheduling
+              Transform Your Radiography Department Scheduling
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading imaging centers optimizing radiographer schedules and
-              staff development.
+              Join leading imaging centers saving days of scheduling time every
+              month.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 href="/us/book-a-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
-                Book a Demo
+                See It In Action
               </Button>
               <Button
-                href="/us/contact"
+                href="/us/book-a-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                Talk to an Expert
+                Book a Demo
               </Button>
             </div>
           </div>
@@ -741,12 +722,14 @@ export default function RadiographyPage() {
       </section>
 
       {/* Hidden Breadcrumb Schema for SEO */}
-
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
-          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
+          {
+            name: "Healthcare",
+            url: "/us/industries/healthcare-scheduling",
+          },
           { name: "Radiography" },
         ]}
       />
