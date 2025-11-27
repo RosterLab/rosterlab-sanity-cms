@@ -390,8 +390,8 @@ export default function RadiologyPage() {
             {/* Case Study - Left */}
             <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                How an Auckland Radiology Team Went From 40% Short-Staffed to
-                Fully Staffed Using RosterLab
+                Auckland Tertiary Hospital Improves Fairness for On-Call
+                Radiology Roster
               </h3>
               <div className="space-y-4 mb-6">
                 <div className="flex items-start">
@@ -407,8 +407,8 @@ export default function RadiologyPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>40% short-staffed</strong> - now consistently fully
-                    staffed for the first time in 28 years
+                    Cut scheduling time from 15-20 hours per year to less than
+                    30 minutes based on a 10 week roster cycle.
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -424,8 +424,8 @@ export default function RadiologyPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>Reduced rostering time</strong> from 120 hours to
-                    just 8 hours per month (based on a 4 week roster)
+                    Removed perceptions of bias, significantly improving
+                    fairness and transparency.
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -441,7 +441,7 @@ export default function RadiologyPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>$80,000+ per year</strong> in savings
+                    More leave and preferences were met through optimisation
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -457,7 +457,8 @@ export default function RadiologyPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>Over 600 preferences</strong> met per roster period
+                    Year-long planning and automated fairness balancing ensured
+                    equitable distribution of on-calls
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -473,14 +474,15 @@ export default function RadiologyPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>Zero breaches</strong> of MECA rules
+                    Improved visibility and transparency in workload
+                    distribution
                   </p>
                 </div>
               </div>
 
               <div className="text-center mt-8">
                 <Button
-                  href="/case-studies/radiology-department-auckland"
+                  href="/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Read Full Case Study
@@ -491,7 +493,7 @@ export default function RadiologyPage() {
             {/* Image - Right */}
             <div className="relative rounded-xl overflow-hidden shadow-lg">
               <Image
-                src="/images/us-images/radiology-roster.jpg"
+                src="/images/us-images/iStock-1318508228.jpg"
                 alt="Radiology scheduling dashboard"
                 width={600}
                 height={800}
