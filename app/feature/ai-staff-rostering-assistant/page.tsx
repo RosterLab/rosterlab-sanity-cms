@@ -14,17 +14,17 @@ import AgenticAICarousel from "./AgenticAICarousel";
 import ShareButton from "./ShareButton";
 import Image from "next/image";
 
-const pathname = "/feature/ai-roster-assistant";
+const pathname = "/feature/ai-staff-rostering-assistant";
 
 export const metadata = withHreflang(
   {
-    title: "Personal AI Rostering Assistant - RosterLab",
+    title: "Personal AI Staff Rostering Assistant - RosterLab",
     description:
-      "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+      "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
     openGraph: {
-      title: "Personal AI Rostering Assistant - RosterLab",
+      title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
-        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -35,9 +35,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Personal AI Rostering Assistant - RosterLab",
+      title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
-        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },

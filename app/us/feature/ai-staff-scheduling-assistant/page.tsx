@@ -8,24 +8,25 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import OttoChatWidgetUS from "@/components/sections/animations/OttoChatWidgetUS";
 import OttoStaticChat from "@/components/sections/animations/OttoStaticChat";
 import OttoStaticChatFeature1US from "@/components/sections/animations/OttoStaticChatFeature1US";
-import RoleTabsModuleUS from "@/app/us/feature/ai-schedule-assistant/RoleTabsModuleUS";
-import WaitlistForm from "@/app/feature/ai-roster-assistant/WaitlistForm";
-import AgenticAICarousel from "@/app/feature/ai-roster-assistant/AgenticAICarousel";
-import ShareButton from "@/app/feature/ai-roster-assistant/ShareButton";
+import RoleTabsModuleUS from "@/app/us/feature/ai-staff-scheduling-assistant/RoleTabsModuleUS";
+import WaitlistForm from "@/app/feature/ai-staff-rostering-assistant/WaitlistForm";
+import AgenticAICarousel from "@/app/feature/ai-staff-rostering-assistant/AgenticAICarousel";
+import ShareButton from "@/app/feature/ai-staff-rostering-assistant/ShareButton";
 import Image from "next/image";
 
 export const metadata = withHreflang(
   {
-    title: "Personal AI Scheduling Assistant - RosterLab",
+    title: "Personal AI Staff Scheduling Assistant - RosterLab",
     description:
-      "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+      "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
     alternates: {
-      canonical: "https://rosterlab.com/us/feature/ai-schedule-assistant",
+      canonical:
+        "https://rosterlab.com/us/feature/ai-staff-scheduling-assistant",
     },
     openGraph: {
-      title: "Personal AI Scheduling Assistant - RosterLab",
+      title: "Personal AI Staff Scheduling Assistant - RosterLab",
       description:
-        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -36,13 +37,13 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Personal AI Scheduling Assistant - RosterLab",
+      title: "Personal AI Staff Scheduling Assistant - RosterLab",
       description:
-        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve scheduling scenarios.",
+        "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
-  "/us/feature/ai-schedule-assistant",
+  "/us/feature/ai-staff-scheduling-assistant",
 );
 
 const faqItems = [
