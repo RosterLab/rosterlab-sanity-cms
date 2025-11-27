@@ -161,6 +161,14 @@ export default function USFooter() {
                   Book a Demo
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/us/why-rosterlab"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Why Choose Us
+                </Link>
+              </li>
             </ul>
           </div>
 
