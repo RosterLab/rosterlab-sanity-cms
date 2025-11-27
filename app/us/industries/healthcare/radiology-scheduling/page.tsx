@@ -12,7 +12,7 @@ export const metadata = withHreflang(
   {
     title: "Radiology Staff Scheduling Software - RosterLab",
     description:
-      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology schedules that save time and money.",
+      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
@@ -20,7 +20,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Radiology Staff Scheduling Software - RosterLab",
       description:
-        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology schedules that save time and money.",
+        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
       images: [
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Radiology Staff Scheduling Software - RosterLab",
       description:
-        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiology schedules that save time and money.",
+        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
       images: ["/images/og-images/IndustryRadiology.png"],
     },
   },
