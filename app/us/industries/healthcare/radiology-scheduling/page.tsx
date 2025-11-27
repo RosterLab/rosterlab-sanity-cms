@@ -697,7 +697,7 @@ export default function RadiologyPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/us/book-a-demo"
+                href="/us/product-tour"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action
