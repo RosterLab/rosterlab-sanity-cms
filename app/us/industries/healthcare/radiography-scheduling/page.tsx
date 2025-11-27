@@ -56,7 +56,7 @@ const faqItems = [
   {
     question: "Have you worked with radiography teams before?",
     answer:
-      "Yes, RosterLab has extensive experience with radiography departments. We've successfully implemented our AI scheduling solution for multiple radiography teams, including Whanganui Hospital's radiography department, which saw a 90% reduction in scheduling time. <a href='/us/case-studies' class='text-blue-600 hover:underline'>Read our case studies</a>.",
+      "Yes, RosterLab has extensive experience with radiography departments. We've successfully implemented our AI scheduling solution for multiple radiography teams, including Whanganui Hospital's radiography department, which saw a 90% reduction in scheduling time.",
   },
 ];
 
