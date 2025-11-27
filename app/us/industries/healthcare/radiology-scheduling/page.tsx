@@ -146,11 +146,11 @@ export default function RadiologyPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/radiology.svg"
+                src="/images/us-images/radiography.jpg"
                 alt="Radiology scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="block w-full h-auto rounded-lg shadow-xl"
               />
             </div>
           </div>

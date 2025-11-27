@@ -149,11 +149,11 @@ export default function RadiographyPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/radiography.svg"
+                src="/images/us-images/iStock-1318508228.jpg"
                 alt="Radiography scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="block w-full h-auto rounded-lg shadow-xl"
               />
             </div>
           </div>
