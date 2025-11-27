@@ -123,7 +123,7 @@ export default async function WhyRosterLabPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/solutions/ai-schedule-generator"
+                  href="/us/solutions/ai-staff-schedule-maker"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn about AI scheduling
@@ -527,7 +527,7 @@ export default async function WhyRosterLabPage() {
                 </span>
               </p>
               <Button
-                href="/us/feature/ai-schedule-assistant"
+                href="/us/feature/ai-staff-scheduling-assistant"
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
                 Learn More
@@ -536,84 +536,6 @@ export default async function WhyRosterLabPage() {
           </div>
         </Container>
       </div>
-
-      {/* Recent Case Studies */}
-      {caseStudies.length > 0 && (
-        <section className="py-20 bg-white">
-          <Container>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Teams We've Recently Helped
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Partner with RosterLab for better team and patient outcomes.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {caseStudies.map((post) => {
-                const postUrl = post.slug?.current
-                  ? `/case-studies/${post.slug.current}`
-                  : "/case-studies";
-                return (
-                  <Link
-                    key={post._id}
-                    href={postUrl}
-                    className="bg-gray-50 rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow group"
-                  >
-                    {post.mainImage?.asset && (
-                      <div className="relative h-56 w-full">
-                        <Image
-                          src={urlFor(post.mainImage)
-                            .width(640)
-                            .height(360)
-                            .url()}
-                          alt={post.mainImage?.alt || post.title}
-                          fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
-                        {post.title}
-                      </h3>
-                      <div className="mt-auto">
-                        <div className="text-blue-600 font-medium flex items-center group-hover:text-blue-700">
-                          Read More
-                          <svg
-                            className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="mt-12 text-center">
-              <Button
-                href="/case-studies"
-                className="bg-blue-600 text-white hover:bg-blue-700"
-              >
-                View all case studies
-              </Button>
-            </div>
-          </Container>
-        </section>
-      )}
 
       {/* FAQ Section */}
       <div className="py-20 bg-gray-50">
