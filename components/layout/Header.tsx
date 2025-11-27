@@ -388,7 +388,24 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Build radiology schedules with the right skill mix and compliance"
-                                      : "Balance teams with the right skill mix with compliant rosters"}
+                                      : "Build fair and compliant rosters across radiology subspecialties"}
+                                  </div>
+                                </Link>
+
+                                {/* Radiography Roster */}
+                                <Link
+                                  href="/industries/healthcare/radiography"
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Radiography Scheduling"
+                                      : "Radiography Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Optimize radiographer coverage across imaging modalities"
+                                      : "Optimise radiographer coverage across imaging modalities"}
                                   </div>
                                 </Link>
 
