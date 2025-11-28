@@ -3,29 +3,28 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
 
 export const metadata = withHreflang(
   {
-    title: "Radiology Staff Scheduling Software - RosterLab",
+    title: "Call Center Scheduling Software - RosterLab",
     description:
-      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
+      "Build your call center schedule with RosterLab. Automatically generate fair, compliant and flexible call center schedules that save time and money.",
     alternates: {
-      canonical:
-        "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
+      canonical: "https://rosterlab.com/us/industries/call-center-scheduling",
     },
     openGraph: {
-      title: "Radiology Staff Scheduling Software - RosterLab",
+      title: "Call Center Scheduling Software - RosterLab",
       description:
-        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
+        "Build your call center schedule with RosterLab. Automatically generate fair, compliant and flexible call center schedules that save time and money.",
       type: "website",
-      url: "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
+      url: "https://rosterlab.com/us/industries/call-center-scheduling",
       images: [
         {
-          url: "/images/og-images/IndustryRadiology.png",
+          url: "/images/call-centre-rostering.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,34 +32,29 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Radiology Staff Scheduling Software - RosterLab",
+      title: "Call Center Scheduling Software - RosterLab",
       description:
-        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
-      images: ["/images/og-images/IndustryRadiology.png"],
+        "Build your call center schedule with RosterLab. Automatically generate fair, compliant and flexible call center schedules that save time and money.",
+      images: ["/images/call-centre-rostering.jpg"],
     },
   },
-  "/us/industries/healthcare/radiology-scheduling",
+  "/us/industries/call-center-scheduling",
 );
 
 const faqItems = [
   {
-    question: "What is a radiology schedule?",
+    question: "What is a call center schedule?",
     answer:
-      "A radiology schedule is a schedule that organizes radiologists across different subspecialty areas (neuro, MSK, cardiac, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand. The schedule must balance subspecialty expertise (like neuroradiology, MSK, cardiac imaging) across different session types including reporting, procedures, and teaching.",
+      "Call center schedules are specialized schedules designed for customer service operations where staffing must adapt to call volume patterns, service level agreements, and 24/7 operational demands. They're used for managing shift workers across inbound support, outbound sales, technical support, and customer service teams. These schedules must balance service level targets with worker wellbeing, compliance requirements, and fair distribution of premium shifts.",
   },
   {
-    question: "Why is radiology scheduling so complex?",
+    question: "How does AI make call center scheduling more effective?",
     answer:
-      "Radiology scheduling is complex because of overlapping clinical, operational, and training constraints. Radiologists require subspecialty-specific credentials, subspecialty coverage is needed 24/7, and reporting workflows depend on continuity across sites and teams. Interventional procedures demand specific skill combinations, while training rotations and teaching commitments must be balanced. Add in the need for fair after-hours distribution, emergency coverage, and compliance with contractual rules - and manual scheduling becomes extremely time-consuming and error-prone.",
-  },
-  {
-    question: "Have you worked with radiology teams before?",
-    answer:
-      "Yes, RosterLab has extensive experience with radiology departments. We've successfully implemented our AI scheduling solution for multiple radiology teams.",
+      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In call center operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes.",
   },
 ];
 
-export default function RadiologyPage() {
+export default function CallCentersPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -69,15 +63,14 @@ export default function RadiologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build Complex{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Radiology Schedules
-                </span>
+                  Efficient, Compliant
+                </span>{" "}
+                Call Center Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Match radiologists to reporting, procedural, and teaching
-                sessions based on their subspecialty expertise with AI
-                scheduling.
+                Optimize call center operations with smarter workforce
+                scheduling for 24/7 customer service operations.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -94,7 +87,7 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Skill, seniority, and subspecialty scheduling
+                  Meet service level agreements with optimized staffing levels
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -110,7 +103,7 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing across radiology subspecialties
+                  Fair distribution of night shifts to reduce agent burnout
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -126,7 +119,23 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Build fair, compliant schedules that manage staff fatigue
+                  Quickly adapt schedules to changing call volume demands
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Ensure skilled agents are on the right shifts
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -137,40 +146,41 @@ export default function RadiologyPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/tools/savings-calculator"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Savings Calculator
+                  View pricing
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/images/us-images/radiography.jpg"
-                alt="Radiology scheduling dashboard"
+                src="/images/illustration/call-centre-rostering.svg"
+                alt="Call center schedule scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto rounded-lg shadow-xl"
+                className="block w-full h-auto"
               />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Key Benefits */}
+      {/* Pain Points Section */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Built for specific radiology scheduling challenges.
+              Better Call Center Operations Start with Smart Scheduling
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Cut schedule creation time by 90% with optimized radiology
-              schedules
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Build optimized and fair call center schedules in minutes, not
+              days. Discover how:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Pain Point 1: Automatic Schedule Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -188,40 +198,15 @@ export default function RadiologyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Manage Staff Fatigue Easily
+                Automatic schedule generation
               </h3>
               <p className="text-gray-600">
-                Enhance overall work-life balance and minimize fatigue for your
-                staff with rules to prevent burnout.
+                Eliminate the need for manual scheduling with our AI schedule
+                generation giving you time back to focus on customer service.
               </p>
             </div>
 
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Match Subspecialty to Sessions
-              </h3>
-              <p className="text-gray-600">
-                Assign radiologists with specific clinical expertise (neuro,
-                MSK, cardiac, interventional) to the right reporting and
-                procedural sessions automatically.
-              </p>
-            </div>
-
+            {/* Pain Point 2: Meet Service Levels */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -234,16 +219,68 @@ export default function RadiologyPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Consistent Fairness Across Teams
+                Meet service level targets
               </h3>
               <p className="text-gray-600">
-                Ensure equitable shift distribution across all subspecialties,
-                including after-hours, weekend, and on-call duties.
+                Ensure adequate staffing during peak hours to maintain response
+                times and customer satisfaction.
+              </p>
+            </div>
+
+            {/* Pain Point 3: Match Skills to Queues */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Skills-based staff scheduling
+              </h3>
+              <p className="text-gray-600">
+                Match call-center agents with specialized skills to the right
+                shifts for optimal customer service.
+              </p>
+            </div>
+
+            {/* Pain Point 4: Reduce Agent Burnout */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-teal-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Manage staff fatigue for 24/7 operations
+              </h3>
+              <p className="text-gray-600">
+                Distribute night shifts fairly and enforce rest periods to
+                prevent agent burnout in 24/7 operations.
               </p>
             </div>
           </div>
@@ -254,15 +291,18 @@ export default function RadiologyPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
+              <StaffingEnvelopeChartSmall />
+            </div>
+            <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Modern Radiology Departments
+                AI powered call center scheduling
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
-                      className="w-6 h-6 text-teal-600"
+                      className="w-6 h-6 text-cyan-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -277,13 +317,40 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Handle Multiple Session Types Seamlessly
+                      Optimized Coverage for Peak Hours
                     </h3>
                     <p className="text-gray-600">
-                      Manage reporting sessions, interventional procedures,
-                      teaching commitments, and on-call duties in one schedule
-                      while ensuring proper subspecialty coverage for each
-                      session type.
+                      Ensure the right number of agents with the right skills
+                      during peak call times. Balance experience and skilled
+                      agents for efficient operations.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Fair Shift Distribution
+                    </h3>
+                    <p className="text-gray-600">
+                      Track and distribute night shifts, weekend work, and
+                      premium duties fairly across agents. Make fairness
+                      transparent, measurable, and automated.
                     </p>
                   </div>
                 </div>
@@ -306,39 +373,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Stay Compliant with Labor Laws
+                      Adapt To Call Volume Changes
                     </h3>
                     <p className="text-gray-600">
-                      Automatically enforce labor laws, rest periods, and
-                      training requirements. The system ensures every schedule
-                      meets regulatory standards.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-orange-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      90% Admin Time Reduction
-                    </h3>
-                    <p className="text-gray-600">
-                      Generate complex schedules in minutes instead of days with
-                      our advanced AI algorithms.
+                      Reschedule when call patterns change without starting
+                      over. Quickly adapt to demand fluctuations while
+                      maintaining compliance and coverage requirements.
                     </p>
                   </div>
                 </div>
@@ -361,25 +401,24 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Self-Scheduling for Better Flexibility
+                      Improve Agent Satisfaction
                     </h3>
                     <p className="text-gray-600">
-                      Empower radiologists to set their availability and
-                      preferences. The AI automatically builds schedules around
-                      staff input while maintaining coverage and compliance.
+                      Help agents achieve better work-life balance by
+                      considering a high percentage of preferences whilst
+                      ensuring service level targets are met.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/radiology_excellence.png"
-                alt="Radiology department excellence"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
+              <div className="mt-8 text-center">
+                <Button
+                  href="/us/solutions/ai-staff-schedule-maker"
+                  className="bg-teal-600 text-white hover:bg-teal-700"
+                >
+                  Learn about AI Scheduling
+                </Button>
+              </div>
             </div>
           </div>
         </Container>
@@ -393,11 +432,11 @@ export default function RadiologyPage() {
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              Your Complete Radiology Scheduling Workflow
+              Your Call Center Schedule Planning Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From long-term planning to daily adjustments, manage every aspect
-              of your imaging department.
+              From planning to execution, manage shift allocations for your call
+              center operations team.
             </p>
           </div>
 
@@ -411,11 +450,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Define Coverage Needs
+                      Define Coverage Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Set coverage requirements, training distributions rules,
-                      and subspecialty targets.
+                      Set shift patterns, team sizes, and skill requirements for
+                      different service queues and time zones.
                     </p>
                   </div>
                 </div>
@@ -429,11 +468,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Input Constraints
+                      Input Agent Details
                     </h3>
                     <p className="text-gray-600">
-                      Add radiologist skills, preferences, contractual rules,
-                      and staffing coverage by subspecialty.
+                      Add agent skills, certifications, language capabilities,
+                      and availability preferences.
                     </p>
                   </div>
                 </div>
@@ -447,11 +486,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Collect staff requests
+                      Set Fairness Rules
                     </h3>
                     <p className="text-gray-600">
-                      Collect and automatically take staff requests into account
-                      while staying compliant.
+                      Define equitable distribution rules for night shifts,
+                      weekend work, and premium duties across the planning
+                      cycle.
                     </p>
                   </div>
                 </div>
@@ -465,11 +505,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate Schedule
+                      Generate Call Center Schedule
                     </h3>
                     <p className="text-gray-600">
-                      AI creates optimal schedules balancing all requirements in
-                      minutes.
+                      AI creates fair shift allocations balancing service level
+                      targets, agent skills, and fairness goals.
                     </p>
                   </div>
                 </div>
@@ -483,11 +523,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Review & Adjust
+                      Adapt to Demand Changes
                     </h3>
                     <p className="text-gray-600">
-                      Fine-tune assignments, add notes, and re-schedule a
-                      selected subset to accommodate last-minute changes.
+                      When call volumes shift, reschedule affected periods while
+                      maintaining overall fairness. Respond to demand changes
+                      quickly.
                     </p>
                   </div>
                 </div>
@@ -501,12 +542,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Sync
+                      Publish schedule to mobile
                     </h3>
                     <p className="text-gray-600">
-                      Distribute your final schedules through streamlined
-                      digital solution and share them with different teams as
-                      needed.
+                      Distribute schedules digitally to agents. They see their
+                      shifts, can request swaps, and get real-time updates.
                     </p>
                   </div>
                 </div>
@@ -516,7 +556,7 @@ export default function RadiologyPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your radiology scheduling?
+                Ready to streamline your call center scheduling?
               </p>
               <Button
                 href="/us/book-a-demo"
@@ -534,15 +574,16 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Radiology Scheduling Software for Teams
+              Call Center Scheduling Software for Customer Service Operations
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Secure, accessible, and integrated with your existing systems.
+              Designed for call center operations where service levels,
+              fairness, and agent satisfaction matter most.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/us/feature/auto-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -559,11 +600,12 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Optimize for skill mix
+                  Automatically Generate
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Automatically assign radiologists based on their skills and
-                  subspecialties for optimal coverage.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Generate call center schedules in minutes instead of days.
+                  Save hours of manual planning while ensuring equitable
+                  distribution.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
@@ -572,7 +614,7 @@ export default function RadiologyPage() {
             </Link>
 
             <Link href="/us/feature/rules-engine" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -589,11 +631,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Compliant with labor laws
+                  Compliant with regulations
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Ensure all schedules meet labor laws and regulatory
-                  requirements automatically.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Ensure all schedules meet rest period requirements and labor
+                  regulations automatically.
                 </p>
                 <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
                   Learn more →
@@ -601,8 +643,11 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/us/feature/self-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link
+              href="/us/solutions/ai-staff-schedule-maker"
+              className="block"
+            >
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -619,11 +664,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Fairer shift allocation
+                  Fairer duty allocation
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Distribute shifts, on-call duties, and workload equitably
-                  across your team.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Distribute shifts and workload equitably across your team with
+                  transparent tracking.
                 </p>
                 <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →
@@ -632,7 +677,7 @@ export default function RadiologyPage() {
             </Link>
 
             <Link href="/us/feature/time-off-requests" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -649,11 +694,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Streamline staff requests
+                  Streamline agent requests
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Manage time-off requests, shift swaps, and preferences
-                  efficiently in one system.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Manage availability, swaps, and preferences efficiently in one
+                  integrated system.
                 </p>
                 <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
                   Learn more →
@@ -664,20 +709,15 @@ export default function RadiologyPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white py-10">
-        <USTrustedBy />
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about radiology scheduling
+              Common questions about call center scheduling
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -689,11 +729,11 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Radiology Department Scheduling
+              Transform Your Call Center Scheduling
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading imaging centers saving days of scheduling time every
-              month.
+              Join call centers managing schedules fairly and efficiently around
+              the clock.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -719,10 +759,9 @@ export default function RadiologyPage() {
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           {
-            name: "Healthcare",
-            url: "/us/industries/healthcare-scheduling",
+            name: "Call Center Scheduling",
+            url: "/us/industries/call-center-scheduling",
           },
-          { name: "Radiology" },
         ]}
       />
     </SiteLayout>

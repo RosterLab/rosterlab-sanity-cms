@@ -3,29 +3,25 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import NightShiftFatigueModule from "@/components/sections/animations/NightShiftFatigueModule";
 
 export const metadata = withHreflang(
   {
-    title: "Radiology Staff Scheduling Software - RosterLab",
+    title: "Port Rostering Software - RosterLab",
     description:
-      "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
-    alternates: {
-      canonical:
-        "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
-    },
+      "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
     openGraph: {
-      title: "Radiology Staff Scheduling Software - RosterLab",
+      title: "Port Rostering Software - RosterLab",
       description:
-        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
+        "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
       type: "website",
-      url: "https://rosterlab.com/us/industries/healthcare/radiology-scheduling",
+      url: "https://rosterlab.com/transportation/port-rostering",
       images: [
         {
-          url: "/images/og-images/IndustryRadiology.png",
+          url: "/images/port-roster.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,34 +29,29 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Radiology Staff Scheduling Software - RosterLab",
+      title: "Port Rostering Software - RosterLab",
       description:
-        "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
-      images: ["/images/og-images/IndustryRadiology.png"],
+        "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
+      images: ["/images/port-roster.jpg"],
     },
   },
-  "/us/industries/healthcare/radiology-scheduling",
+  "/transportation/port-rostering",
 );
 
 const faqItems = [
   {
-    question: "What is a radiology schedule?",
+    question: "What is a port roster?",
     answer:
-      "A radiology schedule is a schedule that organizes radiologists across different subspecialty areas (neuro, MSK, cardiac, interventional, etc.) and shifts. It ensures balanced subspecialty coverage, manages on-call rotations, and aligns radiologist availability with imaging demand. The schedule must balance subspecialty expertise (like neuroradiology, MSK, cardiac imaging) across different session types including reporting, procedures, and teaching.",
+      "Port rosters are specialised schedules designed for maritime and port operations where staffing must adapt to vessel arrivals, tide schedules, and 24/7 operational demands. They're used for managing shift workers across cargo handling, stevedoring, crane operations, and vessel services. These rosters must balance operational efficiency with worker safety, regulatory compliance, and fair distribution of premium shifts.",
   },
   {
-    question: "Why is radiology scheduling so complex?",
+    question: "How does AI make port rostering more effective?",
     answer:
-      "Radiology scheduling is complex because of overlapping clinical, operational, and training constraints. Radiologists require subspecialty-specific credentials, subspecialty coverage is needed 24/7, and reporting workflows depend on continuity across sites and teams. Interventional procedures demand specific skill combinations, while training rotations and teaching commitments must be balanced. Add in the need for fair after-hours distribution, emergency coverage, and compliance with contractual rules - and manual scheduling becomes extremely time-consuming and error-prone.",
-  },
-  {
-    question: "Have you worked with radiology teams before?",
-    answer:
-      "Yes, RosterLab has extensive experience with radiology departments. We've successfully implemented our AI scheduling solution for multiple radiology teams.",
+      "AI automates the complex task of balancing fairness over extended periods with operational flexibility. In port operations where fairness in distributing premium shifts, night work, and weekend duties is critical, AI ensures equitable distribution while accommodating last minute changes. When operational demands and vessel schedules change, AI-powered re-rostering adjusts specific periods while automatically maintaining overall fairness. This transforms a process that would take days of manual work into minutes, while ensuring transparency and team morale.",
   },
 ];
 
-export default function RadiologyPage() {
+export default function PortRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -69,15 +60,14 @@ export default function RadiologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build Complex{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Radiology Schedules
-                </span>
+                  Safer, Compliant
+                </span>{" "}
+                Port Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Match radiologists to reporting, procedural, and teaching
-                sessions based on their subspecialty expertise with AI
-                scheduling.
+                Plan port operations with safer and more efficient workforce
+                management for 24/7 maritime operations.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -94,7 +84,8 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Skill, seniority, and subspecialty scheduling
+                  Create union compliant rosters that protect your organisation
+                  and people
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -110,7 +101,7 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Fair workload balancing across radiology subspecialties
+                  Safer distribution of night shifts to reduce staff fatigue
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -126,51 +117,68 @@ export default function RadiologyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Build fair, compliant schedules that manage staff fatigue
+                  Easily re-roster staff as a result of last minute changes
+                </p>
+                <p className="text-gray-600 flex items-center justify-start">
+                  <svg
+                    className="w-5 h-5 text-green-500 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  Maintain optimal skill coverage across 24/7 port operations
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/us/book-a-demo"
+                  href="/book-a-demo"
                   className="bg-teal-600 text-white hover:bg-teal-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/tools/savings-calculator"
+                  href="/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Savings Calculator
+                  View pricing
                 </Button>
               </div>
             </div>
             <div className="relative">
               <Image
-                src="/images/us-images/radiography.jpg"
-                alt="Radiology scheduling dashboard"
+                src="/images/illustration/Port-pana.svg"
+                alt="Port roster scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto rounded-lg shadow-xl"
+                className="block w-full h-auto"
               />
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Key Benefits */}
+      {/* Pain Points Section */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Built for specific radiology scheduling challenges.
+              Safer Port Operations Start with Smart Rostering
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Cut schedule creation time by 90% with optimized radiology
-              schedules
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Build compliant and safe port rosters in minutes, not days.
+              Discover how:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Pain Point 1: Automatic Roster Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -188,40 +196,15 @@ export default function RadiologyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Manage Staff Fatigue Easily
+                Automatic roster generation
               </h3>
               <p className="text-gray-600">
-                Enhance overall work-life balance and minimize fatigue for your
-                staff with rules to prevent burnout.
+                Eliminate the need for manual rostering with our AI roster
+                generation giving you time back to focus on port operations.
               </p>
             </div>
 
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Match Subspecialty to Sessions
-              </h3>
-              <p className="text-gray-600">
-                Assign radiologists with specific clinical expertise (neuro,
-                MSK, cardiac, interventional) to the right reporting and
-                procedural sessions automatically.
-              </p>
-            </div>
-
+            {/* Pain Point 2: Stay compliant with rules */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -234,16 +217,68 @@ export default function RadiologyPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Consistent Fairness Across Teams
+                Stay compliant with union rules
               </h3>
               <p className="text-gray-600">
-                Ensure equitable shift distribution across all subspecialties,
-                including after-hours, weekend, and on-call duties.
+                Never break compliance on contractual requirements, safety
+                regulations or union requirements.
+              </p>
+            </div>
+
+            {/* Pain Point 3: Improve flexibility through self-rostering */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Increase staff engagement
+              </h3>
+              <p className="text-gray-600">
+                Give port workers flexible control over their availability and
+                preferences while ensuring optimal coverage.
+              </p>
+            </div>
+
+            {/* Pain Point 4: Manage port worker fatigue */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-teal-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Manage port worker fatigue
+              </h3>
+              <p className="text-gray-600">
+                Distribute night shifts fairly and enforce rest periods to
+                prevent worker burnout in 24/7 port operations.
               </p>
             </div>
           </div>
@@ -254,15 +289,18 @@ export default function RadiologyPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="order-2 lg:order-1">
+              <NightShiftFatigueModule />
+            </div>
+            <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for Modern Radiology Departments
+                Port roster planning made simple
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
                     <svg
-                      className="w-6 h-6 text-teal-600"
+                      className="w-6 h-6 text-cyan-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -277,13 +315,41 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Handle Multiple Session Types Seamlessly
+                      More Efficient Operations for 24/7 Shift Work
                     </h3>
                     <p className="text-gray-600">
-                      Manage reporting sessions, interventional procedures,
-                      teaching commitments, and on-call duties in one schedule
-                      while ensuring proper subspecialty coverage for each
-                      session type.
+                      Ensure the right blend of skills and experience on every
+                      shift. Balance crane operators, stevedores, and
+                      specialised equipment handlers for safe and efficient
+                      operations.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Reduce Port Worker Fatigue
+                    </h3>
+                    <p className="text-gray-600">
+                      Help port workers achieve better work-life balance by
+                      considering a high percentage of staff preferences whilst
+                      ensuring critical operational needs are met.
                     </p>
                   </div>
                 </div>
@@ -306,39 +372,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Stay Compliant with Labor Laws
+                      Fair Duty Distribution
                     </h3>
                     <p className="text-gray-600">
-                      Automatically enforce labor laws, rest periods, and
-                      training requirements. The system ensures every schedule
-                      meets regulatory standards.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-orange-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      90% Admin Time Reduction
-                    </h3>
-                    <p className="text-gray-600">
-                      Generate complex schedules in minutes instead of days with
-                      our advanced AI algorithms.
+                      Track and distribute night shifts, weekend work, and
+                      premium duties fairly across crews. Make fairness
+                      transparent, measurable, and automated.
                     </p>
                   </div>
                 </div>
@@ -361,25 +400,24 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Self-Scheduling for Better Flexibility
+                      Adapt To Vessel Schedules
                     </h3>
                     <p className="text-gray-600">
-                      Empower radiologists to set their availability and
-                      preferences. The AI automatically builds schedules around
-                      staff input while maintaining coverage and compliance.
+                      Re-roster when vessel arrivals change without starting
+                      over. Quickly adapt to operational needs while maintaining
+                      compliance and coverage requirements.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/radiology_excellence.png"
-                alt="Radiology department excellence"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl w-full h-auto"
-              />
+              <div className="mt-8 text-center">
+                <Button
+                  href="/solutions/ai-roster-generator"
+                  className="bg-teal-600 text-white hover:bg-teal-700"
+                >
+                  Learn about AI Rostering
+                </Button>
+              </div>
             </div>
           </div>
         </Container>
@@ -393,11 +431,11 @@ export default function RadiologyPage() {
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              Your Complete Radiology Scheduling Workflow
+              Your Port Roster Planning Workflow
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From long-term planning to daily adjustments, manage every aspect
-              of your imaging department.
+              From planning to execution, manage shift allocations for your port
+              operations team.
             </p>
           </div>
 
@@ -411,11 +449,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Define Coverage Needs
+                      Define Coverage Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Set coverage requirements, training distributions rules,
-                      and subspecialty targets.
+                      Set shift patterns, crew sizes, and skill requirements for
+                      different operations.
                     </p>
                   </div>
                 </div>
@@ -429,11 +467,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Input Constraints
+                      Input Worker Details
                     </h3>
                     <p className="text-gray-600">
-                      Add radiologist skills, preferences, contractual rules,
-                      and staffing coverage by subspecialty.
+                      Add worker certifications, equipment qualifications, and
+                      availability preferences.
                     </p>
                   </div>
                 </div>
@@ -447,11 +485,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Collect staff requests
+                      Set Fairness Rules
                     </h3>
                     <p className="text-gray-600">
-                      Collect and automatically take staff requests into account
-                      while staying compliant.
+                      Define equitable distribution rules for night shifts,
+                      weekend work, and premium duties across the planning
+                      cycle.
                     </p>
                   </div>
                 </div>
@@ -465,11 +504,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Generate Schedule
+                      Generate Port Roster
                     </h3>
                     <p className="text-gray-600">
-                      AI creates optimal schedules balancing all requirements in
-                      minutes.
+                      AI creates fair shift allocations balancing operational
+                      requirements, worker qualifications, and fairness goals.
                     </p>
                   </div>
                 </div>
@@ -483,11 +522,12 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Review & Adjust
+                      Adapt to Changes
                     </h3>
                     <p className="text-gray-600">
-                      Fine-tune assignments, add notes, and re-schedule a
-                      selected subset to accommodate last-minute changes.
+                      When vessel schedules shift, re-roster affected periods
+                      while maintaining overall fairness. Respond to operational
+                      changes quickly.
                     </p>
                   </div>
                 </div>
@@ -501,12 +541,11 @@ export default function RadiologyPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish & Sync
+                      Publish roster to mobile
                     </h3>
                     <p className="text-gray-600">
-                      Distribute your final schedules through streamlined
-                      digital solution and share them with different teams as
-                      needed.
+                      Distribute rosters digitally to workers and track
+                      attendance, compliance, and performance metrics.
                     </p>
                   </div>
                 </div>
@@ -516,10 +555,10 @@ export default function RadiologyPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your radiology scheduling?
+                Ready to streamline your port rostering?
               </p>
               <Button
-                href="/us/book-a-demo"
+                href="/book-a-demo"
                 className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
               >
                 See How It Works
@@ -534,15 +573,16 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Modern Radiology Scheduling Software for Teams
+              Port Rostering Software for Maritime Operations
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Secure, accessible, and integrated with your existing systems.
+              Designed for port operations where safety, fairness, and
+              operational efficiency matter most.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/us/feature/auto-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/feature/automated-rostering" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-teal-600"
@@ -559,11 +599,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Optimize for skill mix
+                  Automatically Generate
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Automatically assign radiologists based on their skills and
-                  subspecialties for optimal coverage.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Generate port rosters in minutes instead of days. Save hours
+                  of manual planning while ensuring equitable distribution.
                 </p>
                 <span className="text-teal-600 text-base font-medium hover:text-teal-700">
                   Learn more →
@@ -571,8 +611,8 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/us/feature/rules-engine" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/feature/rules-engine" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-cyan-600"
@@ -589,11 +629,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Compliant with labor laws
+                  Compliant with regulations
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Ensure all schedules meet labor laws and regulatory
-                  requirements automatically.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Ensure all schedules meet rest period requirements and safety
+                  regulations automatically.
                 </p>
                 <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
                   Learn more →
@@ -601,8 +641,8 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/us/feature/self-scheduling" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/solutions/ai-roster-generator" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -619,11 +659,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Fairer shift allocation
+                  Fairer duty allocation
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Distribute shifts, on-call duties, and workload equitably
-                  across your team.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Distribute shifts and workload equitably across your team with
+                  transparent tracking.
                 </p>
                 <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →
@@ -631,8 +671,8 @@ export default function RadiologyPage() {
               </div>
             </Link>
 
-            <Link href="/us/feature/time-off-requests" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+            <Link href="/feature/leave-requests" className="block">
+              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -649,11 +689,11 @@ export default function RadiologyPage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Streamline staff requests
+                  Streamline worker requests
                 </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Manage time-off requests, shift swaps, and preferences
-                  efficiently in one system.
+                <p className="text-base text-gray-600 mb-3 flex-grow">
+                  Manage availability, swaps, and preferences efficiently in one
+                  integrated system.
                 </p>
                 <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
                   Learn more →
@@ -664,20 +704,15 @@ export default function RadiologyPage() {
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white py-10">
-        <USTrustedBy />
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about radiology scheduling
+              Common questions about port rostering
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -689,21 +724,21 @@ export default function RadiologyPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Transform Your Radiology Department Scheduling
+              Transform Your Port Rostering
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading imaging centers saving days of scheduling time every
-              month.
+              Join port operations planning fairly and efficiently around the
+              clock.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/us/product-tour"
+                href="/staff-rostering-interactive-demo"
                 className="bg-white text-teal-600 hover:bg-gray-100"
               >
                 See It In Action
               </Button>
               <Button
-                href="/us/book-a-demo"
+                href="/book-a-demo"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
                 Book a Demo
@@ -716,13 +751,9 @@ export default function RadiologyPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/us" },
-          { name: "Industries", url: "/us/industries" },
-          {
-            name: "Healthcare",
-            url: "/us/industries/healthcare-scheduling",
-          },
-          { name: "Radiology" },
+          { name: "Home", url: "/" },
+          { name: "Transportation", url: "/transportation" },
+          { name: "Port Rostering", url: "/transportation/port-rostering" },
         ]}
       />
     </SiteLayout>

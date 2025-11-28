@@ -6,6 +6,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/pricing": "/us/pricing",
   "/contact": "/us/contact",
   "/book-a-demo": "/us/book-a-demo",
+  "/why-rosterlab": "/us/why-rosterlab",
 
   // Tools
   "/tools/roi-calculator": "/us/tools/savings-calculator",
@@ -26,6 +27,8 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/feature/leave-requests": "/us/feature/time-off-requests",
   "/feature/self-scheduling": "/us/feature/self-scheduling",
   "/feature/re-rostering": "/us/feature/staff-rescheduling",
+  "/feature/ai-staff-rostering-assistant":
+    "/us/feature/ai-staff-scheduling-assistant",
 
   // Schedule types
   "/type/on-call-roster": "/us/type/on-call-scheduling",
@@ -40,6 +43,8 @@ export const US_URL_MAPPINGS: Record<string, string> = {
     "/us/industries/healthcare/ed-icu-scheduling",
   "/industries/healthcare/radiology":
     "/us/industries/healthcare/radiology-scheduling",
+  "/industries/healthcare/radiography":
+    "/us/industries/healthcare/radiography-scheduling",
   "/industries/healthcare/junior-medical-officer-rostering":
     "/us/industries/healthcare/physician-scheduling",
   "/industries/healthcare/nurse-rostering":
@@ -48,6 +53,9 @@ export const US_URL_MAPPINGS: Record<string, string> = {
     "/us/industries/healthcare/veterinary-scheduling",
   "/industries/healthcare/senior-medical-officer-rostering":
     "/us/industries/healthcare/attending-physician-scheduling",
+  "/industries/transportation/port-rostering":
+    "/us/industries/transportation/port-scheduling",
+  "/industries/call-centre-rostering": "/us/industries/call-center-scheduling",
 };
 
 // Reverse mapping to find original URL from US version
@@ -63,6 +71,7 @@ export const LOCALIZED_PAGES = new Set([
   "/pricing",
   "/contact",
   "/book-a-demo",
+  "/why-rosterlab",
 
   // Tools
   "/tools/roi-calculator",
@@ -81,6 +90,7 @@ export const LOCALIZED_PAGES = new Set([
   "/feature/leave-requests",
   "/feature/self-scheduling",
   "/feature/re-rostering",
+  "/feature/ai-staff-rostering-assistant",
 
   // Schedule types
   "/type/on-call-roster",
@@ -92,10 +102,13 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/healthcare/aged-care",
   "/industries/healthcare/ed-icu",
   "/industries/healthcare/radiology",
+  "/industries/healthcare/radiography",
   "/industries/healthcare/junior-medical-officer-rostering",
   "/industries/healthcare/nurse-rostering",
   "/industries/healthcare/veterinary-rostering",
   "/industries/healthcare/senior-medical-officer-rostering",
+  "/industries/transportation/port-rostering",
+  "/industries/call-centre-rostering",
 ]);
 
 // Helper function to generate hreflang metadata
