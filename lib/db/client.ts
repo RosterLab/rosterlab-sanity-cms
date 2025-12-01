@@ -10,14 +10,18 @@ neonConfig.fetchConnectionCache = true;
 
 /**
  * Get database connection string from environment
- * Netlify DB sets DATABASE_URL automatically
+ * Netlify DB sets NETLIFY_DATABASE_URL (pooled) or NETLIFY_DATABASE_URL_UNPOOLED
  */
 function getDatabaseUrl(): string {
-  const url = process.env.DATABASE_URL;
+  // Prefer pooled connection for serverless functions (better performance)
+  const url =
+    process.env.NETLIFY_DATABASE_URL ||
+    process.env.NETLIFY_DATABASE_URL_UNPOOLED;
 
   if (!url) {
     throw new Error(
-      "DATABASE_URL environment variable is not set. " +
+      "Database URL environment variable is not set. " +
+        "Expected NETLIFY_DATABASE_URL, or NETLIFY_DATABASE_URL_UNPOOLED. " +
         "Make sure Netlify DB is enabled in your Netlify project.",
     );
   }
