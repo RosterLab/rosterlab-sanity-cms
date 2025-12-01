@@ -717,15 +717,15 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/logistics.webp"
-                  alt="Manufacturing & logistics industry scheduling"
+                  src="/images/manufacturer.jpg"
+                  alt="Manufacturing industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Manufacturing & Logistics
+                  Manufacturing
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Manage shift patterns, skill requirements, and production line
