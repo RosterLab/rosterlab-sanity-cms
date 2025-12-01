@@ -42,15 +42,10 @@ export async function POST(request: NextRequest) {
     const surveyId = survey.id;
     const adminToken = survey.admin_token;
 
-    // Construct URLs
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      process.env.VERCEL_URL ||
-      "http://localhost:3000";
-    const protocol = baseUrl.startsWith("localhost") ? "http://" : "https://";
-    const fullBaseUrl = baseUrl.startsWith("http")
-      ? baseUrl
-      : `${protocol}${baseUrl}`;
+    // Construct URLs - use request headers to get the actual host
+    const host = request.headers.get("host") || "localhost:3000";
+    const protocol = host.includes("localhost") ? "http://" : "https://";
+    const fullBaseUrl = `${protocol}${host}`;
 
     const staffUrl = `${fullBaseUrl}/tools/survey-preferences/s/${surveyId}`;
     const adminUrl = `${fullBaseUrl}/tools/survey-preferences/admin/${surveyId}?token=${adminToken}`;
