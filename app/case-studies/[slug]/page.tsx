@@ -4,7 +4,11 @@ import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { validatedToken } from "@/sanity/lib/token";
-import { formatDate, shouldShowLastUpdated } from "@/lib/utils";
+import {
+  formatDate,
+  formatDateShort,
+  shouldShowLastUpdated,
+} from "@/lib/utils";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import PortableText from "@/components/blog/PortableText";
@@ -230,7 +234,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                       <>
                         <span className="text-purple-200">•</span>
                         <time className="text-purple-200">
-                          Last updated {formatDate(post._updatedAt)}
+                          {formatDateShort(post._updatedAt)}
                         </time>
                       </>
                     )}

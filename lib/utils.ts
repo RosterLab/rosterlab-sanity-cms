@@ -13,6 +13,15 @@ export function formatDate(date: string) {
   });
 }
 
+// Format date as DD/MM/YYYY for short display
+export function formatDateShort(date: string) {
+  return new Date(date).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+}
+
 // Check if two dates are significantly different (more than 1 day apart)
 export function shouldShowLastUpdated(
   publishedAt: string,
