@@ -153,13 +153,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   )}
                   <span className="text-purple-200">•</span>
                   <time className="text-purple-200">
-                    Published {formatDate(post.publishedAt)}
-                    {post._updatedAt &&
-                      shouldShowLastUpdated(
-                        post.publishedAt,
-                        post._updatedAt,
-                      ) && <> • Last updated {formatDate(post._updatedAt)}</>}
+                    {formatDate(post.publishedAt)}
                   </time>
+                  {post._updatedAt &&
+                    shouldShowLastUpdated(
+                      post.publishedAt,
+                      post._updatedAt,
+                    ) && (
+                      <>
+                        <span className="text-purple-200">•</span>
+                        <time className="text-purple-200">
+                          Last updated {formatDate(post._updatedAt)}
+                        </time>
+                      </>
+                    )}
                   <span className="text-purple-200">•</span>
                   <span className="text-purple-200">{readingTime}</span>
                 </div>
