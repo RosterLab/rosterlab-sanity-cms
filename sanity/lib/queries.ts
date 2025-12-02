@@ -176,3 +176,85 @@ export const assetsByCategoryQuery = groq`
     tags
   }
 `;
+
+// Author queries
+export const authorQuery = groq`
+  *[_type == "author" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    title,
+    image,
+    bio,
+    email,
+    socialLinks
+  }
+`;
+
+export const authorWithPostsQuery = groq`
+  *[_type == "author" && slug.current == $slug][0] {
+    _id,
+    name,
+    slug,
+    title,
+    image,
+    bio,
+    email,
+    socialLinks,
+    "blogPosts": *[_type == "post" && references(^._id) && !(_id in path("drafts.**")) && (
+      !defined(categories) ||
+      count(categories) == 0 ||
+      (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
+    )] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt,
+      categories[]->{
+        title,
+        slug
+      }
+    },
+    "caseStudies": *[_type == "post" && references(^._id) && !(_id in path("drafts.**")) && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt,
+      categories[]->{
+        title,
+        slug
+      }
+    },
+    "newsroom": *[_type == "post" && references(^._id) && !(_id in path("drafts.**")) && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt,
+      categories[]->{
+        title,
+        slug
+      }
+    }
+  }
+`;
+
+export const authorsQuery = groq`
+  *[_type == "author"] | order(name asc) {
+    _id,
+    name,
+    slug,
+    title,
+    image,
+    bio
+  }
+`;
+
+export const authorPathsQuery = groq`
+  *[_type == "author" && defined(slug.current)][].slug.current
+`;
