@@ -8,7 +8,7 @@ import {
   blogPostsOnlyQuery,
 } from "@/sanity/lib/queries";
 import { validatedToken } from "@/sanity/lib/token";
-import { formatDate } from "@/lib/utils";
+import { formatDate, shouldShowLastUpdated } from "@/lib/utils";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Button from "@/components/ui/Button";
@@ -153,7 +153,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   )}
                   <span className="text-purple-200">•</span>
                   <time className="text-purple-200">
-                    {formatDate(post.publishedAt)}
+                    Published {formatDate(post.publishedAt)}
+                    {post._updatedAt &&
+                      shouldShowLastUpdated(
+                        post.publishedAt,
+                        post._updatedAt,
+                      ) && <> • Last updated {formatDate(post._updatedAt)}</>}
                   </time>
                   <span className="text-purple-200">•</span>
                   <span className="text-purple-200">{readingTime}</span>
