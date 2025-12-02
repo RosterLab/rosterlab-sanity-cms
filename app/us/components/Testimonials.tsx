@@ -41,6 +41,13 @@ const testimonials = [
     company: "MIT, Hawke's Bay Hospital",
     logo: null,
   },
+  {
+    quote:
+      "RosterLab has been a game-changer for our radiology department with significant time-savings for our on-call schedules. It has allowed us to maximize leave provisions while maintaining a safer schedule",
+    author: "Dr. Fernando",
+    company: "Junior Consultant, Auckland Tertiary Hospital",
+    logo: null,
+  },
 ];
 
 export default function USTestimonials() {

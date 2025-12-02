@@ -539,14 +539,45 @@ export default function OnCallRosterPage() {
       {/* Trusted By */}
       <section className="bg-white pb-20">
         <TrustedBy />
+
+        {/* Testimonial */}
         <Container>
-          <div className="text-center mt-0">
-            <Button
-              href="/case-studies"
-              className="bg-teal-600 text-white hover:bg-teal-700"
-            >
-              View Case Studies
-            </Button>
+          <div className="max-w-4xl mx-auto -mt-8 mb-12">
+            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8 md:p-12 shadow-lg">
+              <blockquote className="text-xl md:text-2xl text-gray-700 mb-6 leading-relaxed text-center">
+                &ldquo;RosterLab has been a game-changer for our radiology
+                department with significant time-savings for our on-call
+                rosters. It has allowed us to maximise leave provisions while
+                maintaining a safer roster&rdquo;
+              </blockquote>
+              <div className="text-center">
+                <p className="font-semibold text-gray-900 text-lg">
+                  Dr. Fernando
+                </p>
+                <p className="text-gray-600 mb-4">
+                  Junior Consultant, Auckland Tertiary Hospital
+                </p>
+                <Link
+                  href="/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster"
+                  className="inline-flex items-center text-teal-600 hover:text-teal-700 font-medium"
+                >
+                  View Case Study
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

@@ -1,39 +1,42 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/client'
-import { formatDate } from '@/lib/utils'
+import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/client";
+import { formatDate } from "@/lib/utils";
 
 interface BlogCardProps {
   post: {
-    _id: string
-    title: string
-    slug: { current: string }
-    excerpt?: string
-    mainImage?: { asset: { _ref: string }; alt?: string }
-    publishedAt: string
+    _id: string;
+    title: string;
+    slug: { current: string };
+    excerpt?: string;
+    mainImage?: { asset: { _ref: string }; alt?: string };
+    publishedAt: string;
     author: {
-      name: string
-      image?: { asset: { _ref: string }; alt?: string }
-    }
+      name: string;
+      slug?: { current: string };
+      image?: { asset: { _ref: string }; alt?: string };
+    };
     categories?: Array<{
-      title: string
-      slug: { current: string }
-    }>
-  }
+      title: string;
+      slug: { current: string };
+    }>;
+  };
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
   // Determine the correct URL path based on categories
   const getPostUrl = () => {
-    if (post.categories?.some(cat => cat.slug.current === 'case-studies')) {
-      return `/case-studies/${post.slug.current}`
-    } else if (post.categories?.some(cat => cat.slug.current === 'newsroom')) {
-      return `/newsroom/${post.slug.current}`
+    if (post.categories?.some((cat) => cat.slug.current === "case-studies")) {
+      return `/case-studies/${post.slug.current}`;
+    } else if (
+      post.categories?.some((cat) => cat.slug.current === "newsroom")
+    ) {
+      return `/newsroom/${post.slug.current}`;
     }
-    return `/blog/${post.slug.current}`
-  }
+    return `/blog/${post.slug.current}`;
+  };
 
-  const postUrl = getPostUrl()
+  const postUrl = getPostUrl();
 
   return (
     <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -49,7 +52,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           </div>
         </Link>
       )}
-      
+
       <div className="p-6">
         {post.categories && post.categories.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-3">
@@ -63,39 +66,57 @@ export default function BlogCard({ post }: BlogCardProps) {
             ))}
           </div>
         )}
-        
+
         <h2 className="text-xl font-bold mb-3 line-clamp-2">
-          <Link 
+          <Link
             href={postUrl}
             className="hover:text-primary-600 transition-colors"
           >
             {post.title}
           </Link>
         </h2>
-        
+
         {post.excerpt && (
-          <p className="text-neutral-600 mb-4 line-clamp-3">
-            {post.excerpt}
-          </p>
+          <p className="text-neutral-600 mb-4 line-clamp-3">{post.excerpt}</p>
         )}
-        
+
         <div className="flex items-center justify-between text-sm text-neutral-500">
-          <div className="flex items-center space-x-2">
-            {post.author?.image && (
-              <div className="relative w-6 h-6">
-                <Image
-                  src={urlFor(post.author.image).width(24).height(24).url()}
-                  alt={post.author.name}
-                  fill
-                  className="rounded-full object-cover"
-                />
-              </div>
-            )}
-            <span>{post.author?.name || 'Unknown Author'}</span>
-          </div>
+          {post.author?.slug ? (
+            <Link
+              href={`/authors/${post.author.slug.current}`}
+              className="flex items-center space-x-2 hover:text-blue-600 transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {post.author?.image && (
+                <div className="relative w-6 h-6">
+                  <Image
+                    src={urlFor(post.author.image).width(24).height(24).url()}
+                    alt={post.author.name}
+                    fill
+                    className="rounded-full object-cover"
+                  />
+                </div>
+              )}
+              <span>{post.author?.name || "Unknown Author"}</span>
+            </Link>
+          ) : (
+            <div className="flex items-center space-x-2">
+              {post.author?.image && (
+                <div className="relative w-6 h-6">
+                  <Image
+                    src={urlFor(post.author.image).width(24).height(24).url()}
+                    alt={post.author.name}
+                    fill
+                    className="rounded-full object-cover"
+                  />
+                </div>
+              )}
+              <span>{post.author?.name || "Unknown Author"}</span>
+            </div>
+          )}
           <time>{formatDate(post.publishedAt)}</time>
         </div>
       </div>
     </article>
-  )
+  );
 }

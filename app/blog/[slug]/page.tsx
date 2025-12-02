@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import {
   blogPostQuery,
@@ -138,7 +139,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
                 {/* Author and Meta */}
                 <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-                  <span className="font-medium">RosterLab</span>
+                  {post.author?.slug ? (
+                    <Link
+                      href={`/authors/${post.author.slug.current}`}
+                      className="font-medium hover:underline"
+                    >
+                      {post.author.name}
+                    </Link>
+                  ) : (
+                    <span className="font-medium">
+                      {post.author?.name || "RosterLab"}
+                    </span>
+                  )}
                   <span className="text-purple-200">•</span>
                   <time className="text-purple-200">
                     {formatDate(post.publishedAt)}
