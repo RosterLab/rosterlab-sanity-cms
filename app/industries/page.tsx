@@ -941,9 +941,9 @@ export default function IndustriesPage() {
                   Public Services
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Coordinate council workers, public facility staff, and service
-                  teams while managing union agreements and community service
-                  requirements.
+                  Coordinate public service workers and facility staff with
+                  union agreements, optimised coverage, and cross-department
+                  coordination.
                 </p>
                 <ul className="text-sm text-gray-600 space-y-2">
                   <li className="flex items-start">
@@ -976,7 +976,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Community service coverage
+                    Optimised service coverage
                   </li>
                   <li className="flex items-start">
                     <svg
