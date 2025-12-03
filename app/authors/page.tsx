@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: "Authors | RosterLab",
   description:
     "Meet the team behind RosterLab - experts in workforce management, AI-powered rostering, and healthcare operations.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: "/authors",
   },

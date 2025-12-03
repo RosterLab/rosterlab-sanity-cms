@@ -49,6 +49,10 @@ export async function generateMetadata({ params }: AuthorPageProps) {
   return {
     title: `${author.name}${author.title ? ` - ${author.title}` : ""} | RosterLab`,
     description: bioText,
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: `${baseUrl}/authors/${slug}`,
     },
