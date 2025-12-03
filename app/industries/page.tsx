@@ -788,7 +788,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/security.webp"
+                  src="/images/security-roster.jpg"
                   alt="Security industry scheduling"
                   fill
                   className="object-cover"
@@ -860,7 +860,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/retail.webp"
+                  src="/images/retail-roster.jpg"
                   alt="Retail industry scheduling"
                   fill
                   className="object-cover"
@@ -930,7 +930,7 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/public-services.webp"
+                  src="/images/public-services-roster.jpg"
                   alt="Public services industry scheduling"
                   fill
                   className="object-cover"
