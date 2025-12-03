@@ -6,7 +6,7 @@ import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManage
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import Segment from "@/components/analytics/Segment";
 import UTMTracker from "@/components/analytics/UTMTracker";
-import Rb2b from "@/components/analytics/Rb2b";
+import MetaPixel from "@/components/analytics/MetaPixel";
 import Apollo from "@/components/analytics/Apollo";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity";
@@ -62,10 +62,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
-        <link
-          rel="dns-prefetch"
-          href="https://b2bjsstore.s3.us-west-2.amazonaws.com"
-        />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://assets.apollo.io" />
         <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
@@ -81,7 +78,7 @@ export default async function RootLayout({
         >
           <Segment writeKey={process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY!} />
           <UTMTracker debug={process.env.NODE_ENV === "development"} />
-          <Rb2b accountKey="5DNXY8H70ZO0" />
+          <MetaPixel pixelId="777741693485350" />
           <Apollo appId="665fe2ad9371d40391dd513a" />
           <GeolocationProvider />
           <ClientHeader />
