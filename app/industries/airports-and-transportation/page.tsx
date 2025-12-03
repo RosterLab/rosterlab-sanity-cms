@@ -8,36 +8,36 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Aviation Crew Rostering Software - RosterLab",
+    title: "Airports & Transportation Crew Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies crew scheduling in aviation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+      "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/aviation",
+      canonical: "https://rosterlab.com/industries/airports-and-transportation",
     },
     openGraph: {
-      title: "Aviation Crew Rostering Software - RosterLab",
+      title: "Airports & Transportation Crew Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in aviation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
       type: "website",
-      url: "https://rosterlab.com/industries/aviation",
+      url: "https://rosterlab.com/industries/airports-and-transportation",
       images: [
         {
           url: "/images/aviation.jpg",
           width: 1200,
           height: 630,
-          alt: "Aviation crew scheduling with RosterLab",
+          alt: "Airports & Transportation crew scheduling with RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Aviation Crew Rostering Software - RosterLab",
+      title: "Airports & Transportation Crew Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in aviation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
       images: ["/images/aviation.jpg"],
     },
   },
-  "/industries/aviation",
+  "/industries/airports-and-transportation",
 );
 
 export default function AviationPage() {
@@ -56,14 +56,14 @@ export default function AviationPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Aviation Rostering
+                  Airports & Transportation
                 </span>{" "}
-                Software for Crews
+                Rostering Software
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
                 Less time rostering, more time ensuring safe operations. We
-                specialise in all types of aviation rosters, from cabin crew to
-                ground staff, no matter how complex.
+                specialise in all types of transportation rosters, from cabin
+                crew to ground staff, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -95,7 +95,7 @@ export default function AviationPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for aviation and complex industries
+                    Made for transportation and complex industries
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -204,7 +204,7 @@ export default function AviationPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Aviation Rostering
+              Everything You Need for Transportation Rostering
             </h2>
           </div>
 
@@ -273,11 +273,11 @@ export default function AviationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Aviation Regulation Compliant
+                Transportation Regulation Compliant
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Automatically enforce aviation regulations, flight time
-                limitations, and mandatory rest requirements for crew safety.
+                Automatically enforce transportation regulations, hours of
+                service, and mandatory rest requirements for crew safety.
               </p>
               <div className="flex items-center text-sky-600 font-medium mt-auto">
                 Learn more
@@ -481,11 +481,11 @@ export default function AviationPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Transform Your Aviation Operations
+              Transform Your Transportation Operations
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Empower your aviation teams with AI-driven rostering that ensures
-              safety, compliance, and operational excellence.
+              Empower your transportation teams with AI-driven rostering that
+              ensures safety, compliance, and operational excellence.
             </p>
           </div>
 
@@ -496,7 +496,7 @@ export default function AviationPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab aviation platform showing AI-powered crew rostering"
+                  alt="RosterLab transportation platform showing AI-powered crew rostering"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -523,8 +523,8 @@ export default function AviationPage() {
                         100% CAA Compliance
                       </p>
                       <p className="text-xs text-gray-600 mt-1">
-                        Ensures optimal crew coverage while meeting all aviation
-                        regulations
+                        Ensures optimal crew coverage while meeting all
+                        transportation regulations
                       </p>
                     </div>
                   </div>
@@ -619,10 +619,10 @@ export default function AviationPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Compliant with Aviation Regulations
+                      Compliant with Transportation Regulations
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Automatically enforce requirements, flight time
+                      Automatically enforce requirements, hours of service
                       limitations, and crew duty regulations, ensuring
                       operational compliance and crew wellbeing.
                     </p>
@@ -649,23 +649,23 @@ export default function AviationPage() {
         </Container>
       </section>
 
-      {/* Aviation Sectors */}
+      {/* Transportation Sectors */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Tailored Solutions for Every Aviation Sector
+              Tailored Solutions for Every Transportation Sector
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built rostering for the unique needs of each aviation
-              operation.
+              Purpose-built rostering for the unique needs of each
+              transportation operation.
             </p>
           </div>
 
-          {/* All Aviation Sectors */}
+          {/* All Transportation Sectors */}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              All Aviation Sectors
+              All Transportation Sectors
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center group cursor-pointer">
@@ -954,16 +954,16 @@ export default function AviationPage() {
             Safer Skies, Better Operations.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When aviation professionals spend less time on scheduling tasks,
-            they can focus on what matters most - delivering safe, efficient,
-            and reliable flight operations.
+            When transportation professionals spend less time on scheduling
+            tasks, they can focus on what matters most - delivering safe,
+            efficient, and reliable operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               href="/book-a-demo"
               className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
-              Schedule an Aviation Demo
+              Schedule a Transportation Demo
             </Button>
             <Button
               href="/solutions/ai-roster-generator"
@@ -981,7 +981,7 @@ export default function AviationPage() {
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
-          { name: "Aviation" },
+          { name: "Airports & Transportation" },
         ]}
       />
     </SiteLayout>

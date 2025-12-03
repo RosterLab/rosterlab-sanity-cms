@@ -61,9 +61,9 @@ export default function IndustriesPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Whether you're managing nurses, teachers, call centre agents, or
-                pilots - RosterLab's intelligent scheduling adapts to your
-                industry's unique requirements.
+                Whether you're managing nurses, doctors, call centre agents, or
+                ground crew staff - RosterLab's intelligent scheduling adapts to
+                your industry's unique requirements.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -76,16 +76,15 @@ export default function IndustriesPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/tools/roi-calculator"
+                  href="/pricing"
                   className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50"
-                  analyticsLabel="View ROI Calculator"
+                  analyticsLabel="View Pricing"
                   analyticsLocation="Industries Hero"
                   analyticsProperties={{
-                    cta_type: "tool",
-                    tool_name: "roi_calculator",
+                    cta_type: "pricing",
                   }}
                 >
-                  View ROI Calculator
+                  View Pricing
                 </Button>
               </div>
             </div>
@@ -490,15 +489,15 @@ export default function IndustriesPage() {
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
                 <Image
-                  src="/images/transportation.webp"
-                  alt="Transportation industry scheduling"
+                  src="/images/airports.webp"
+                  alt="Airports & Transportation industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Transportation
+                  Airports & Transportation
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Schedule drivers, pilots, and crew while managing hours of
@@ -554,6 +553,13 @@ export default function IndustriesPage() {
                     Rest period compliance
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/airports-and-transportation">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -635,84 +641,6 @@ export default function IndustriesPage() {
               </div>
             </div>
 
-            {/* Aviation */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 relative">
-                <Image
-                  src="/images/aviation.jpg"
-                  alt="Aviation industry scheduling"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Aviation
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Schedule crew, pilots, and ground staff while managing complex
-                  rostering, rest requirements, and regulatory compliance.
-                </p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Complex scheduling
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Skill mix
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Fatigue management
-                  </li>
-                </ul>
-                <div className="mt-6">
-                  <Link href="/industries/aviation">
-                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
-                      Learn More
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
             {/* Manufacturing */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-48 relative">
@@ -779,78 +707,6 @@ export default function IndustriesPage() {
                       />
                     </svg>
                     Skill certification tracking
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Airports */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 relative">
-                <Image
-                  src="/images/airports.webp"
-                  alt="Airports industry scheduling"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Airports
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Coordinate ground crew, security, and support staff across
-                  terminals while managing flight schedules and security
-                  clearances.
-                </p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Flight schedule synchronization
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Security clearance management
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Multi-terminal coordination
                   </li>
                 </ul>
               </div>
