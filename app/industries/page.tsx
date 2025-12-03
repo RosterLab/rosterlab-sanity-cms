@@ -783,6 +783,220 @@ export default function IndustriesPage() {
                 </ul>
               </div>
             </div>
+
+            {/* Security */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 relative">
+                <Image
+                  src="/images/security.webp"
+                  alt="Security industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Security
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Manage security guards, patrol officers, and surveillance
+                  teams across multiple sites with 24/7 coverage requirements
+                  and compliance tracking.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Multi-site coordination
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Licence compliance tracking
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Round-the-clock coverage
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Retail */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 relative">
+                <Image
+                  src="/images/retail.webp"
+                  alt="Retail industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Retail</h3>
+                <p className="text-gray-600 mb-4">
+                  Optimise floor staff, stockroom teams, and managers across
+                  peak trading hours, seasonal demands, and varying customer
+                  footfall.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Peak hour optimisation
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Seasonal demand management
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Multi-store coordination
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Public Services */}
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div className="h-48 relative">
+                <Image
+                  src="/images/public-services.webp"
+                  alt="Public services industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Public Services
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Coordinate council workers, public facility staff, and service
+                  teams while managing union agreements and community service
+                  requirements.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Union agreement compliance
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Community service coverage
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Cross-department coordination
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
