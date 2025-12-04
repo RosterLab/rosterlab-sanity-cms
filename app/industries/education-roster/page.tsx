@@ -61,9 +61,8 @@ export default function EducationPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time focusing on student outcomes. We
-                specialise in all types of education rosters, no matter how
-                complex.
+                Spend 90% less time building and adjusting your teacher and
+                student rosters, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -95,7 +94,7 @@ export default function EducationPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for education and complex industries
+                    Made to support educators
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -204,7 +203,7 @@ export default function EducationPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Education Rostering
+              Solve Complex Education Scheduling Challenges
             </h2>
           </div>
 
@@ -233,7 +232,8 @@ export default function EducationPage() {
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
                 Create optimal schedules in minutes using AI that balances all
-                requirements.
+                requirements for teachers, students and support staff throughout
+                the year.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -317,11 +317,11 @@ export default function EducationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Better Staffing Coverage
+                Scenario Planning
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise all the staffing intricacies for better coverage across
-                your campuses.
+                Building a year-long schedule might be daunting. With scenario
+                planning, you can test out what-if scenarios before committing.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -449,11 +449,11 @@ export default function EducationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Higher Staff Retention
+                Optimised Rosters
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Better-quality rosters, self rostering, reduced bias perception,
-                and better work-life balance.
+                Balance teacher qualifications, room availability, and
+                curriculum requirements to find the best schedule every time.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -729,11 +729,12 @@ export default function EducationPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Transform Your Education Operations
+              Match Teachers to Classes With Perfect Precision
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Handle the unique complexities of education rostering with
-              AI-driven scheduling that adapts to your dynamic demands.
+              Coordinate subject specializations, qualifications, room
+              availability, and non-teaching duties while handling last-minute
+              changes with ease.
             </p>
           </div>
 
@@ -868,13 +869,13 @@ export default function EducationPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Reduce Staff Turnover
+                      Long-term Planning
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Combat teacher burnout by respecting preferences and
-                      work-life balance. Fair, transparent rosters that consider
-                      individual needs lead to happier staff, better retention,
-                      and improved student outcomes.
+                      Build schedules for the entire academic year and easily
+                      adapt to changes throughout. Handle staff departures,
+                      illnesses, substitute coverage, and term transitions while
+                      maintaining continuity and coverage across all classes.
                     </p>
                   </div>
                 </div>
@@ -900,13 +901,13 @@ export default function EducationPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Optimise Labour Costs & Compliance
+                      Reduce Admin
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Automatically enforce employment agreements and
-                      qualification requirements while optimising staffing
-                      efficiency. Better utilisation of permanent staff reduces
-                      unnecessary casual teacher costs.
+                      Handle roster changes, substitute requests, and leave
+                      applications in minutes rather than hours. Teachers submit
+                      requests through the mobile app, and AI instantly shows
+                      who's available to cover without disrupting other classes.
                     </p>
                   </div>
                 </div>
@@ -944,9 +945,8 @@ export default function EducationPage() {
             Better Student Outcomes, Happier Staff.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When education professionals spend less time on administrative
-            tasks, they can focus on what matters most - delivering quality
-            education and student support.
+            Spend less time on administrative tasks, so you can focus on what
+            matters most - delivering quality teacher and student support.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
