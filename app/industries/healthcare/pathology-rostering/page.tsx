@@ -10,22 +10,22 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Junior Medical Officer Rostering Software - RosterLab",
+    title: "Pathology Staff Rostering Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+      "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
     alternates: {
       canonical:
-        "https://rosterlab.com/industries/healthcare/junior-medical-officer-rostering",
+        "https://rosterlab.com/industries/healthcare/pathology-rostering",
     },
     openGraph: {
-      title: "Junior Medical Officer Rostering Software - RosterLab",
+      title: "Pathology Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+        "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/junior-medical-officer-rostering",
+      url: "https://rosterlab.com/industries/healthcare/pathology-rostering",
       images: [
         {
-          url: "/images/us-images/iStock-2232242180.jpg",
+          url: "/images/us-images/pathology-roster.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,39 +33,41 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Junior Medical Officer Rostering Software - RosterLab",
+      title: "Pathology Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/iStock-2232242180.jpg"],
+        "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+      images: ["/images/us-images/pathology-roster.jpg"],
     },
   },
-  "/industries/healthcare/junior-medical-officer-rostering",
+  "/industries/healthcare/pathology-rostering",
 );
 
 const faqItems = [
   {
-    question: "How does RosterLab ensure AMA/EBA compliance for JMO rosters?",
+    question:
+      "How does RosterLab ensure union compliance for pathology rosters?",
     answer:
-      "RosterLab enforces AMA and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring JMOs actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules.",
   },
   {
-    question: "How does RosterLab handle training and exam periods for JMOs?",
+    question:
+      "How does RosterLab handle specimen processing peaks and testing schedules?",
     answer:
-      "JMOs can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the roster to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
+      "Staff can request protected time for high-volume processing periods through the mobile app. RosterLab schedules appropriate staffing around peak specimen arrival times and balances the rest of the roster to ensure laboratory coverage while maintaining work-life balance.",
   },
   {
     question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab automatically distributes night shifts equitably across all JMOs, preventing burnout and ensuring fairness. The system can help pair junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
+      "RosterLab automatically distributes night shifts equitably across all pathology staff, preventing burnout and ensuring fairness. The system manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question: "Can RosterLab help improve JMO retention?",
+    question: "Can RosterLab help improve pathology staff retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - JMOs now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect training needs and personal preferences, RosterLab increases JMO engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. By creating safe, fair, and flexible rosters that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better testing quality outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
-export default function JuniorMedicalOfficerRosteringPage() {
+export default function PathologyRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -77,11 +79,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Flexible, Compliant
                 </span>{" "}
-                JMO Rosters
+                Pathology Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance training requirements,
-                fair night shift distribution, and junior doctor wellbeing.
+                Create compliant AI rosters that balance specimen processing
+                demands, fair night shift distribution, and pathology staff
+                wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -98,7 +101,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Create union compliant rosters
+                  Ensure regular staff rotation to keep skills up to date
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -114,7 +117,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Maintain optimal staffing throughout training and exam periods
+                  Maintain optimal staffing throughout specimen processing peaks
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -146,7 +149,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Improve junior doctors' retention and work-life balance
+                  Improve pathology staff retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -166,8 +169,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/jmo.svg"
-                alt="JMO rostering software interface"
+                src="/images/illustration/pathology.svg"
+                alt="Pathology rostering software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -182,10 +185,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI rostering tool for junior doctors
+              The best AI rostering tool for pathology staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for junior doctors. Adapt to changes fast.
+              Fast. Optimised. Made for pathology departments. Adapt to changes
+              fast.
             </p>
           </div>
 
@@ -223,11 +227,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
               </h3>
               <p className="text-gray-600">
                 Eliminate the need for manual rostering - giving you time back
-                to focus on patient care and team wellbeing.
+                to focus on laboratory quality and team wellbeing.
               </p>
             </div>
 
-            {/* Pain Point 2: Stay compliant with rules */}
+            {/* Pain Point 2: Integrated Section & Skill Planning */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -240,16 +244,16 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with union rules
+                Improve pathologists work-life balance
               </h3>
               <p className="text-gray-600">
-                Maintain legal and union compliance so junior doctors can work
-                safely while having more flexibility.
+                Create fair and flexible rosters that respect staff preferences
+                and personal commitments while maintaining operational coverage.
               </p>
             </div>
 
@@ -271,11 +275,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Protect training and exam time
+                Manage specimen processing peaks
               </h3>
               <p className="text-gray-600">
-                Schedule longer days off around exams and ensure complete
-                training programs while maintaining coverage.
+                Schedule appropriate staffing around peak specimen arrival times
+                and testing schedules while maintaining optimal coverage.
               </p>
             </div>
 
@@ -297,11 +301,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Better engagement, better care
+                Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Consider staff preferences while ensuring fairness, reducing
-                burnout and supporting safer night-to-day transitions.
+                Easily manage rotations to ensure that staff regularly practise
+                and refresh their skills across different pathology sections.
               </p>
             </div>
           </div>
@@ -317,7 +321,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For JMO Roster Challenges
+                Perfect For Pathology Roster Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -338,40 +342,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Auto-Schedule Training Without Disrupting Coverage
+                      Optimise Pathology Staff Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure junior
-                      doctors receive complete training while maintaining
-                      department coverage.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Shifts for Complex Skill Mix
-                    </h4>
-                    <p className="text-gray-600">
-                      Automatically pair junior medical officers with senior
-                      registrars for night shifts, ensuring safe supervision and
-                      skill mix across all shifts.
+                      Keep a live digital record of each pathologist's skills
+                      and seniority. The AI automatically assigns the right
+                      staff to the right sections for safe, efficient coverage.
                     </p>
                   </div>
                 </div>
@@ -394,12 +370,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Manage Your Workforce With Confidence
+                      Stay Compliant with Unions and Agreements
                     </h4>
                     <p className="text-gray-600">
-                      Switch seamlessly between staff and shift perspectives to
-                      gain a clear picture of responsibilities, coverage, and
-                      balance across your department.
+                      Automatically enforce union agreements, rest periods, and
+                      training requirements. The system ensures every roster
+                      meets regulatory standards.
                     </p>
                   </div>
                 </div>
@@ -422,11 +398,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Adapt to Cohort Changes With Ease and Confidence
+                      Self-Rostering for Better Flexibility
                     </h4>
                     <p className="text-gray-600">
-                      Manage every term in a structured, consistent way - so
-                      your rosters stay accurate, organised, and stress-free.
+                      Empower pathologists to set their availability and
+                      preferences. The AI automatically builds rosters around
+                      staff input while maintaining coverage and compliance.
                     </p>
                   </div>
                 </div>
@@ -449,12 +426,12 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Better Wellbeing, Less Fatigue
+                      Manage Section Rotations Efficiently
                     </h4>
                     <p className="text-gray-600">
-                      Enforce rest periods to prevent dangerous consecutive
-                      shift patterns that lead to burnout and fatigue. Staff can
-                      also input preferences for better work-life balance.
+                      Track competency development and plan rotations across
+                      histology, microbiology, and other sections. Ensure staff
+                      maintain skills while meeting operational demands.
                     </p>
                   </div>
                 </div>
@@ -479,14 +456,14 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              JMO-FIRST WORKFLOW
+              PATHOLOGY-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How JMOs Engage with Their Rosters
+              How Pathology Staff Engage with Their Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around training requirements, preferences, and wellbeing,
-              not just top-down rostering
+              Built around specimen processing demands, preferences, and
+              wellbeing, not just top-down rostering
             </p>
           </div>
 
@@ -503,9 +480,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Define skill mix needs (senior registrars for night
-                      supervision), term rosters, and department coverage
-                      requirements.
+                      Define skill mix needs (technical and support staff),
+                      testing area requirements, and laboratory coverage needs.
                     </p>
                   </div>
                 </div>
@@ -519,12 +495,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      JMOs Submit Preferences & Training Needs
+                      Staff Submit Preferences & Availability
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, JMOs indicate shift preferences, exam
-                      dates, teaching sessions, and time off requests. No emails
-                      or paper forms.
+                      Via mobile app, staff indicate shift preferences, time off
+                      requests, and availability. No emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -541,9 +516,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       AI Generates Compliant Roster
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, training requirements,
-                      night shift equity, and AMA/EBA rules to create compliant
-                      term rosters.
+                      RosterLab balances preferences, specimen processing peaks,
+                      night shift equity, and union rules to create compliant
+                      rosters.
                     </p>
                   </div>
                 </div>
@@ -560,9 +535,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to junior doctors' phones. They see
-                      their shifts, training time, and can request swaps with
-                      real-time updates.
+                      Rosters sync instantly to staff phones. They see their
+                      shifts and can request swaps with real-time updates.
                     </p>
                   </div>
                 </div>
@@ -576,12 +550,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      JMOs Self-Roster Open Shifts
+                      Staff Self-Roster Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - JMOs can
-                      pick them up directly if qualified, within hour limits,
-                      and training time protected.
+                      Unfilled shifts are posted as "open shifts" - staff can
+                      pick them up directly if qualified and within hour limits.
                     </p>
                   </div>
                 </div>
@@ -609,7 +582,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your JMO rostering?
+                Ready to streamline your pathology rostering?
               </p>
               <Button
                 href="/book-a-demo"
@@ -627,11 +600,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for JMO Rostering
+              Essential Features for Pathology Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of JMO term
-              rosters
+              Purpose-built tools that address the unique complexity of
+              pathology laboratory rosters
             </p>
           </div>
 
@@ -689,8 +662,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Self Scheduling
               </h3>
               <p className="text-gray-600 mb-3">
-                JMOs submit preferences, training needs, exam dates, and manage
-                time-off requests directly from their phones. <br />
+                Staff submit preferences, availability, and manage time-off
+                requests directly from their phones. <br />
                 &nbsp;
               </p>
               <a
@@ -722,8 +695,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Instant Roster Changes
               </h3>
               <p className="text-gray-600 mb-3">
-                When JMOs call in sick, see who's qualified and available to
-                fill the gap without breaking compliance or training
+                When staff call in sick, see who's qualified and available to
+                fill the gap without breaking compliance or skill mix
                 requirements.
               </p>
               <a
@@ -752,10 +725,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Term Roster Management
+                Staff Management
               </h3>
               <p className="text-gray-600 mb-3">
-                Stay on top of cohort changes with ease. Manage every term
+                Stay on top of staff changes with ease. Manage staffing
                 consistently so rosters stay accurate, compliant, and
                 stress-free.
               </p>
@@ -783,7 +756,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from nursing managers
+              Questions we hear from laboratory managers
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -795,11 +768,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer JMO Rosters
+              Build Compliant, Fairer Pathology Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved JMO retention, reduced
-              burnout, and built positive reputations
+              Join laboratories that have improved staff retention, reduced
+              burnout, and built positive team environments
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -825,7 +798,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Junior Medical Officer Rostering" },
+          { name: "Pathology Rostering" },
         ]}
       />
     </SiteLayout>

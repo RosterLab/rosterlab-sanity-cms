@@ -2,117 +2,46 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
 import Link from "next/link";
-import { getClient } from "@/sanity/lib/client";
-import { groq } from "next-sanity";
-import { draftMode } from "next/headers";
-import { validatedToken } from "@/sanity/lib/token";
-import { urlFor } from "@/sanity/lib/client";
-import HealthcareTestimonials from "@/components/sections/HealthcareTestimonials";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Rostering Software for Healthcare - RosterLab",
+    title: "Airports & Transportation Crew Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+      "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare",
+      canonical:
+        "https://rosterlab.com/industries/airports-and-transportation-roster",
     },
     openGraph: {
-      title: "Rostering Software for Healthcare - RosterLab",
+      title: "Airports & Transportation Crew Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
+        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare",
+      url: "https://rosterlab.com/industries/airports-and-transportation-roster",
       images: [
         {
-          url: "/images/og-images/IndustryHealthcare.png",
+          url: "/images/aviation.jpg",
           width: 1200,
           height: 630,
-          alt: "Healthcare workforce scheduling with RosterLab",
+          alt: "Airports & Transportation crew scheduling with RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rostering Software for Healthcare - RosterLab",
+      title: "Airports & Transportation Crew Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
-      images: ["/images/og-images/IndustryHealthcare.png"],
+        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+      images: ["/images/aviation.jpg"],
     },
   },
-  "/industries/healthcare",
+  "/industries/airports-and-transportation-roster",
 );
 
-// Query for the 3 most recent case studies
-const recentCaseStudiesQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
-    _id,
-    title,
-    slug,
-    excerpt,
-    mainImage,
-    publishedAt,
-    author->{
-      name,
-      slug,
-      image
-    },
-    categories[]->{
-      title,
-      slug
-    }
-  }
-`;
-
-const testimonials = [
-  {
-    quote:
-      "It's not just about saving hours. It's about confidence in the roster, about fairness, and about giving senior clinicians time back for patient care - not spreadsheets.",
-    author: "Emergency Physician",
-    company: "South Eastern Sydney Area Health Services",
-  },
-  {
-    quote:
-      "Rostering would take 7-8 days, now it takes 2-3 hours…allowing me to focus more on patient care.",
-    author: "Mike",
-    company: "Associate Clinical Manager Radiology",
-  },
-  {
-    quote:
-      "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical rosters!",
-    author: "Peter",
-    company: "Senior Registrar ICU, Western Australia",
-  },
-  {
-    quote:
-      "If Rosterlab can help with our complicated rostering needs, we are confident it will work for anyone.",
-    author: "Judy Harris",
-    company: "Practice Manager, Dargaville Hospital",
-  },
-  {
-    quote:
-      "We wanted more continuity of care built into the rosters, and RosterLab was easily able to incorporate that into the rosters they generated for us.",
-    author: "Rebecca",
-    company: "Staff Specialist Neonatologist, RPA Newborn Care",
-  },
-  {
-    quote:
-      "Since using RosterLab, I've felt that the rosters are better for my circadian rhythm, with less up-and-down cycling.",
-    author: "Anthea",
-    company: "MIT, Hawke's Bay Hospital",
-  },
-];
-
-export default async function HealthcarePage() {
-  const { isEnabled } = await draftMode();
-  const client = getClient(
-    isEnabled && validatedToken ? { token: validatedToken } : undefined,
-  );
-  const caseStudies = await client.fetch(recentCaseStudiesQuery);
+export default function AviationPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -128,14 +57,14 @@ export default async function HealthcarePage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Healthcare Rostering
+                  Airports & Transportation
                 </span>{" "}
-                Software for Teams
+                Rostering Software
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time caring for patients. We
-                specialise in all types of healthcare rosters, no matter how
-                complex.
+                Less time rostering, more time ensuring safe operations. We
+                specialise in all types of transportation rosters, from cabin
+                crew to ground staff, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -167,7 +96,7 @@ export default async function HealthcarePage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for healthcare and complex industries
+                    Made for transportation and complex industries
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -190,8 +119,8 @@ export default async function HealthcarePage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/doctors.svg"
-                alt="Healthcare workforce scheduling dashboard"
+                src="/images/illustration/aviation.svg"
+                alt="Aviation crew scheduling dashboard"
                 width={600}
                 height={400}
                 className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
@@ -202,25 +131,88 @@ export default async function HealthcarePage() {
       </section>
 
       {/* Trusted By */}
-      <TrustedBy />
+      <section className="pt-1.5 lg:pt-8 pb-12 bg-white">
+        <Container>
+          <div className="text-center mb-12">
+            <h2
+              className="font-semibold text-neutral-700 mb-8"
+              style={{ fontSize: "23px" }}
+            >
+              Trusted by global teams with complex rosters
+            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/images/logos/whanganui.png"
+                  alt="Whanganui"
+                  width={120}
+                  height={60}
+                  className="max-w-full h-auto grayscale"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/images/logos/department-of-health-western-australia.png"
+                  alt="Department of Health Western Australia"
+                  width={202}
+                  height={86}
+                  className="max-w-full h-auto grayscale"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/images/logos/rpa.png"
+                  alt="RPA"
+                  width={160}
+                  height={80}
+                  className="max-w-full h-auto grayscale"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/images/logos/hawkesbay.png"
+                  alt="Hawkes Bay"
+                  width={160}
+                  height={50}
+                  className="max-w-full h-auto grayscale"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/images/logos/nsw-south-eastern.png"
+                  alt="NSW South Eastern"
+                  width={152}
+                  height={40}
+                  className="max-w-full h-auto grayscale"
+                />
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/images/logos/royal-flying-doctor.png"
+                  alt="Royal Flying Doctor Service"
+                  width={88}
+                  height={38}
+                  className="max-w-full h-auto grayscale"
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Core Features */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Healthcare Rostering
+              Everything You Need for Transportation Rostering
             </h2>
-            {/* <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Comprehensive features designed specifically for healthcare
-              workforce management
-            </p> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
               href="/feature/automated-rostering"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+              className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -240,11 +232,11 @@ export default async function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Automatically Generate Rosters
               </h3>
-              <p className="text-gray-600 mb-3">
-                Create optimal schedules in minutes using AI that balances all
-                requirements.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Create optimal crew schedules in minutes using AI that balances
+                all regulatory and operational requirements.
               </p>
-              <div className="flex items-center text-blue-600 font-medium">
+              <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -262,7 +254,10 @@ export default async function HealthcarePage() {
               </div>
             </Link>
 
-            <div className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <Link
+              href="/feature/rules-engine"
+              className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+            >
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-sky-500"
@@ -279,17 +274,33 @@ export default async function HealthcarePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Union Compliant
+                Transportation Regulation Compliant
               </h3>
-              <p className="text-gray-600">
-                Automatically enforce union rules, skill mix, and fairness
-                requirements.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Automatically enforce transportation regulations, hours of
+                service, and mandatory rest requirements for crew safety.
               </p>
-            </div>
+              <div className="flex items-center text-sky-600 font-medium mt-auto">
+                Learn more
+                <svg
+                  className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </div>
+            </Link>
 
             <Link
               href="/feature/open-shifts"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+              className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -307,13 +318,13 @@ export default async function HealthcarePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Better Staffing Coverage
+                Better Crew Coverage
               </h3>
-              <p className="text-gray-600 mb-3">
-                Optimise all the staffing intricacies for better coverage for
-                your hospitals.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Optimise crew qualifications, duty hours, and standby
+                requirements for reliable transport operations.
               </p>
-              <div className="flex items-center text-blue-600 font-medium">
+              <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -333,7 +344,7 @@ export default async function HealthcarePage() {
 
             <Link
               href="/solutions/staff-roster-mobile-app"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+              className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -353,11 +364,11 @@ export default async function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Mobile Access & Notifications
               </h3>
-              <p className="text-gray-600 mb-3">
-                Staff can view schedules, make preferences, request leave,
-                accept open shifts and manage swaps from any device.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Crew can view schedules, accept open shifts, request leave, and
+                manage changes from any device.
               </p>
-              <div className="flex items-center text-cyan-600 font-medium">
+              <div className="flex items-center text-cyan-600 font-medium mt-auto">
                 Learn more
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -377,7 +388,7 @@ export default async function HealthcarePage() {
 
             <Link
               href="/feature/re-rostering"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+              className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -397,11 +408,11 @@ export default async function HealthcarePage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Re-rostering
               </h3>
-              <p className="text-gray-600 mb-3">
-                Handle last-minute changes with minimal disruption during sick
-                calls or emergencies.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Handle transport delays, crew illnesses, and schedule
+                disruptions with minimal operational impact.
               </p>
-              <div className="flex items-center text-indigo-600 font-medium">
+              <div className="flex items-center text-indigo-600 font-medium mt-auto">
                 Learn more
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -421,7 +432,7 @@ export default async function HealthcarePage() {
 
             <Link
               href="/feature/self-scheduling"
-              className="block bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
+              className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
@@ -439,13 +450,13 @@ export default async function HealthcarePage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Higher Staff Retention
+                Higher Crew Retention
               </h3>
-              <p className="text-gray-600 mb-3">
-                Better-quality rosters, self rostering, reduced bias perception,
-                and better work-life balance.
+              <p className="text-gray-600 mb-3 flex-grow">
+                Better work-life balance through fair rostering, open shifts,
+                and transparent scheduling practices.
               </p>
-              <div className="flex items-center text-blue-600 font-medium">
+              <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
                 <svg
                   className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -467,15 +478,15 @@ export default async function HealthcarePage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Transform Your Healthcare Operations
+              Transform Your Transportation Operations
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Empower your healthcare teams with AI-driven rostering that saves
-              time, ensures compliance, and improves staff wellbeing.
+              Empower your transportation teams with AI-driven rostering that
+              ensures safety, compliance, and operational excellence.
             </p>
           </div>
 
@@ -486,39 +497,11 @@ export default async function HealthcarePage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab healthcare platform showing AI-powered rostering"
+                  alt="RosterLab transportation platform showing AI-powered crew rostering"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-4 max-w-xs">
-                  <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0">
-                      <svg
-                        className="w-6 h-6 text-blue-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">
-                        100% Rules Compliance
-                      </p>
-                      <p className="text-xs text-gray-600 mt-1">
-                        Ensures optimal staffing coverage while meeting all
-                        regulations
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -526,68 +509,6 @@ export default async function HealthcarePage() {
             <div>
               <div className="space-y-6">
                 {/* Benefit 1 */}
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Focus on Patient Care
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Create fair rosters that respect preferences and work-life
-                      balance. Transparent rostering boosts staff retention and
-                      engagement, leading to better patient care.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Benefit 2 */}
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center">
-                      <svg
-                        className="w-5 h-5 text-sky-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Compliant with Rules
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Automatically enforce union agreements, fairness, and
-                      fatigue management rules, ensuring clinical safety and
-                      continuity of care.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Benefit 3 */}
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -611,9 +532,72 @@ export default async function HealthcarePage() {
                       Improve Operational Efficiency
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Better utilise ordinary hours to reduce unnecessary
-                      overtime and locums, and ensure higher skill coverage.
-                      Optimise your current staffing with better efficiency.
+                      Better utilise crew duty hours, reduce costs, and ensure
+                      optimal qualification coverage across all flights.
+                      Maximise efficiency while maintaining safety standards.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Benefit 2 */}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      Focus on Crew Safety
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Create compliant rosters that respect crew fatigue
+                      management, overtime limitations, and mandatory rest
+                      periods. Safe, well-rested crews deliver better
+                      performance.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Benefit 3 */}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-sky-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      Compliant with Transportation Regulations
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Automatically enforce requirements, hours of service
+                      limitations, and crew duty regulations, ensuring
+                      operational compliance and crew wellbeing.
                     </p>
                   </div>
                 </div>
@@ -638,170 +622,43 @@ export default async function HealthcarePage() {
         </Container>
       </section>
 
-      {/* Healthcare Verticals */}
+      {/* Transportation Sectors */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Tailored Solutions for Every Department
+              Tailored Solutions for Every Transportation Sector
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built rostering for the unique needs of each healthcare
-              specialty.
+              Purpose-built rostering for the unique needs of each
+              transportation operation.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* ICU/ED Card */}
-            <Link href="/industries/healthcare/ed-icu" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
-                <div className="h-48 relative overflow-hidden">
-                  <Image
-                    src="/images/icu/pexels-shvetsa-4483340.jpg"
-                    alt="ICU and Emergency Department"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                    ICU & Emergency Departments
-                  </h3>
-                  <p className="text-gray-600 mb-3">
-                    24/7 critical care coverage with skill mix optimisation and
-                    surge capacity planning.
-                  </p>
-                  <div className="flex items-center text-blue-600 font-medium">
-                    Learn more
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Radiology Card */}
-            <Link href="/industries/healthcare/radiology" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
-                <div className="h-48 relative overflow-hidden">
-                  <Image
-                    src="/images/radiology/accuray-5VkNa1LrS8A-unsplash.jpg"
-                    alt="Radiology Department"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">
-                    Radiology Departments
-                  </h3>
-                  <p className="text-gray-600 mb-3">
-                    Subspecialty coverage with equipment coordination and
-                    reading room optimisation.
-                  </p>
-                  <div className="flex items-center text-teal-600 font-medium">
-                    Learn more
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
-            {/* Aged Care Card */}
-            <Link href="/industries/healthcare/aged-care" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
-                <div className="h-48 relative overflow-hidden">
-                  <Image
-                    src="/images/aged care/pexels-matthiaszomer-339620.jpg"
-                    alt="Aged Care Facilities"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-                    Aged Care Facilities
-                  </h3>
-                  <p className="text-gray-600 mb-3">
-                    Resident-focused scheduling with care level matching and
-                    compliance assurance.
-                  </p>
-                  <div className="flex items-center text-purple-600 font-medium">
-                    Learn more
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          {/* Other Departments */}
-          <div className="mt-12 bg-white rounded-lg shadow-lg p-8">
+          {/* All Transportation Sectors */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              All Healthcare Departments
+              All Transportation Sectors
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <Link
-                href="/industries/healthcare/nurse-rostering"
-                className="text-center group cursor-pointer"
-              >
+              <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="currentColor"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    {/* Nurse hat */}
                     <path
-                      d="M3 9l9-5 9 5v4c0 5.5-3.5 8.5-9 9-5.5-.5-9-3.5-9-9V9z"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      fill="none"
-                    />
-                    {/* Medical cross */}
-                    <path
-                      d="M10 8h4v3h3v4h-3v3h-4v-3H7v-4h3V8z"
-                      fill="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Nurses</h4>
-              </Link>
+                <h4 className="font-semibold text-gray-900">Airports</h4>
+              </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
@@ -814,16 +671,13 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Pharmacy</h4>
+                <h4 className="font-semibold text-gray-900">Cabin Crew</h4>
               </div>
-              <Link
-                href="/industries/healthcare/pathology-rostering"
-                className="text-center group cursor-pointer"
-              >
+              <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
@@ -835,12 +689,12 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Pathology</h4>
-              </Link>
+                <h4 className="font-semibold text-gray-900">Boat Crew</h4>
+              </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
@@ -853,11 +707,11 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Allied Health</h4>
+                <h4 className="font-semibold text-gray-900">Ground Crew</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -871,13 +725,18 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
                 </div>
-
                 <h4 className="font-semibold text-gray-900">
-                  Large Medical Clinics
+                  Maintenance Crew
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -886,27 +745,21 @@ export default async function HealthcarePage() {
                     className="w-8 h-8 text-pink-500 transition-transform duration-200 group-hover:scale-110"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
                     viewBox="0 0 24 24"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M12 3C13.66 3 15 4.34 15 6C15 7.66 13.66 9 12 9C10.34 9 9 7.66 9 6C9 4.34 10.34 3 12 3Z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16 11C16 11 14 9 12 9C10 9 8 11 8 11C6 13 5 14 5 16C5 18 6 20 8 21H16C18 20 19 18 19 16C19 14 18 13 16 11Z"
+                      strokeWidth={2}
+                      d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Maternity Wards</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Airport Operations
+                </h4>
               </div>
-              <Link
-                href="/industries/healthcare/veterinary-rostering"
-                className="text-center group cursor-pointer"
-              >
+              <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
@@ -918,14 +771,14 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Veterinary Clinics
+                  Cargo Operations
                 </h4>
-              </Link>
+              </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
@@ -938,12 +791,12 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  General Medicine
+                  Charter Services
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -958,55 +811,22 @@ export default async function HealthcarePage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  Mental Health Services
-                </h4>
+                <h4 className="font-semibold text-gray-900">Railway Crew</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2C10 2 8 3 8 5C8 6 7 7 7 8C7 9 8 10 8 11C8 12 7 13 7 14C7 15 7 16 8 17L10 22L12 22L14 22L16 17C17 16 17 15 17 14C17 13 16 12 16 11C16 10 17 9 17 8C17 7 16 6 16 5C16 3 14 2 12 2Z" />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">Dental Chains</h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-blue-600 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 2L12 12M12 12L20 20M12 12L4 20M4 20C3 21 3 22 4 22C5 22 6 21 7 20C8 19 9 18 10 17M20 20C21 21 21 22 20 22C19 22 18 21 17 20C16 19 15 18 14 17"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Operating Theatres
-                </h4>
-              </div>
-              <Link
-                href="/industries/healthcare/junior-medical-officer-rostering"
-                className="text-center group cursor-pointer"
-              >
-                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-red-500 transition-transform duration-200 group-hover:scale-110"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -1020,201 +840,54 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Junior Medical Officers
+                  Medical Aviation
                 </h4>
-              </Link>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-blue-600 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Regional Carriers
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-red-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">24/7 Operations</h4>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Key Statistics */}
-      <section className="py-20 bg-white">
-        <Container>
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-16 text-center">
-              Healthcare Workforce Excellence
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-              <div className="text-center">
-                <div className="mb-4">
-                  <span className="block text-5xl font-bold text-blue-600 mb-2">
-                    90%
-                  </span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    Less Admin Time
-                  </span>
-                </div>
-                <p className="text-gray-600">
-                  Reduce rostering from days to minutes with AI automation
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4">
-                  <span className="block text-5xl font-bold text-sky-600 mb-2">
-                    100%
-                  </span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    Union Compliance
-                  </span>
-                </div>
-                <p className="text-gray-600">
-                  Meet all regulatory requirements and union agreements
-                  automatically
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="mb-4">
-                  <span className="block text-5xl font-bold text-green-600 mb-2">
-                    ~10%
-                  </span>
-                  <span className="text-lg font-semibold text-gray-900">
-                    Higher Efficiency
-                  </span>
-                </div>
-                <p className="text-gray-600">
-                  Reduce staff turnover and improve retention with better
-                  staffing
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-16 text-center">
-              <Button
-                href="/solutions/ai-roster-generator"
-                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
-              >
-                Explore AI Rostering Features
-                <svg
-                  className="w-5 h-5 ml-2 inline"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Case Studies Section */}
-      <section className="py-20 bg-white">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Success Stories in Healthcare
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how healthcare organizations are transforming their workforce
-              management with RosterLab
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            {caseStudies.map((post: any) => (
-              <article
-                key={post._id}
-                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-              >
-                <Link
-                  href={`/case-studies/${post.slug.current}`}
-                  className="block"
-                >
-                  <div className="relative h-48 overflow-hidden group">
-                    {post.mainImage ? (
-                      <Image
-                        src={urlFor(post.mainImage)
-                          .width(400)
-                          .height(200)
-                          .url()}
-                        alt={post.mainImage.alt || post.title}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                        <svg
-                          className="w-24 h-24 text-white/20"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                        </svg>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    {post.excerpt && (
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {post.excerpt}
-                      </p>
-                    )}
-                    <span className="text-blue-600 font-medium hover:underline inline-flex items-center">
-                      Read case study
-                      <svg
-                        className="w-4 h-4 ml-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-
-          {/* View all case studies CTA */}
-          <div className="mt-12 text-center">
-            <Link
-              href="/case-studies"
-              className="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
-            >
-              View all case studies
-              <svg
-                className="w-4 h-4 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
-          </div>
-        </Container>
-      </section>
-
-      {/* Success Story */}
-      <HealthcareTestimonials testimonials={testimonials} />
-
-      {/* ROI Calculator CTA */}
-      <section className="py-16 bg-gray-50">
+      {/* Pricing CTA */}
+      <section className="py-16 bg-white">
         <Container>
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
@@ -1222,13 +895,13 @@ export default async function HealthcarePage() {
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Calculate how much time and money you could save with automated
-              rostering
+              crew rostering
             </p>
             <Button
-              href="/tools/roi-calculator"
+              href="/pricing"
               className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
             >
-              View ROI calculator
+              View Pricing
               <svg
                 className="w-5 h-5 ml-2"
                 fill="none"
@@ -1257,19 +930,19 @@ export default async function HealthcarePage() {
       >
         <Container>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Better Patient Care, Happier Staff.
+            Safer Staff, Better Transport Operations.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When healthcare professionals spend less time on administrative
-            tasks, they can focus on what matters most - delivering exceptional
-            patient care.
+            When transportation professionals spend less time on scheduling
+            tasks, they can focus on what matters most - delivering safe,
+            efficient, and reliable operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               href="/book-a-demo"
               className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
-              Schedule a Healthcare Demo
+              Schedule a Transportation Demo
             </Button>
             <Button
               href="/solutions/ai-roster-generator"
@@ -1287,7 +960,7 @@ export default async function HealthcarePage() {
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
-          { name: "Healthcare" },
+          { name: "Airports & Transportation" },
         ]}
       />
     </SiteLayout>

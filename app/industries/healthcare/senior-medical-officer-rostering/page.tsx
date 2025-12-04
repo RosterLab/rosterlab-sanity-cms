@@ -48,7 +48,7 @@ const faqItems = [
     question:
       "How does RosterLab handle SMOs working across public and private sectors?",
     answer:
-      "RosterLab allows SMOs to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. It supports mixed FTE arrangements, ensuring rosters adapt to SMOs' commitments rather than dictating them.",
+      "RosterLab allows senior doctors to inform their availability across both sectors. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between public hospital work and private practice. It supports mixed FTE arrangements, ensuring rosters adapt to SMOs' commitments rather than dictating them.",
   },
   {
     question: "Can SMOs still maintain autonomy over their rosters?",
@@ -320,7 +320,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalised SMO Rosters
+                      Personalised Senior Doctor Rosters
                     </h4>
                     <p className="text-gray-600">
                       Set your individual constraints within seconds for
@@ -696,7 +696,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               Build Compliant, Fairer SMO Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved SMO rostering, with
+              Join departments that have improved senior doctor rostering, with
               predictable, compliant and fair rosters.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -10,19 +10,19 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Junior Medical Officer Rostering Software - RosterLab",
+    title: "Cardiology Staff Rostering Software - RosterLab",
     description:
-      "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+      "End unsafe rosters and overwork. Build fair, compliant cardiology rosters that maintain safe staffing ratios and respect union rules.",
     alternates: {
       canonical:
-        "https://rosterlab.com/industries/healthcare/junior-medical-officer-rostering",
+        "https://rosterlab.com/industries/healthcare/cardiology-rostering",
     },
     openGraph: {
-      title: "Junior Medical Officer Rostering Software - RosterLab",
+      title: "Cardiology Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe rosters and overwork. Build fair, compliant cardiology rosters that maintain safe staffing ratios and respect union rules.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/junior-medical-officer-rostering",
+      url: "https://rosterlab.com/industries/healthcare/cardiology-rostering",
       images: [
         {
           url: "/images/us-images/iStock-2232242180.jpg",
@@ -33,39 +33,41 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Junior Medical Officer Rostering Software - RosterLab",
+      title: "Cardiology Staff Rostering Software - RosterLab",
       description:
-        "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
+        "End unsafe rosters and overwork. Build fair, compliant cardiology rosters that maintain safe staffing ratios and respect union rules.",
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
-  "/industries/healthcare/junior-medical-officer-rostering",
+  "/industries/healthcare/cardiology-rostering",
 );
 
 const faqItems = [
   {
-    question: "How does RosterLab ensure AMA/EBA compliance for JMO rosters?",
+    question:
+      "How does RosterLab ensure union/EBA compliance for cardiology rosters?",
     answer:
-      "RosterLab enforces AMA and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring JMOs actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring cardiology staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
-    question: "How does RosterLab handle training and exam periods for JMOs?",
+    question:
+      "How does RosterLab handle procedure demands and clinic schedules?",
     answer:
-      "JMOs can request protected time for training sessions and exams through the mobile app. RosterLab schedules longer days off around exam dates and balances the rest of the roster to ensure educational requirements are met while maintaining department coverage. Training requirements can override standard preferences to ensure complete training programs.",
+      "Staff can request protected time for procedure-heavy periods through the mobile app. RosterLab schedules appropriate staffing around catheter lab procedures, clinic times, and balances the rest of the roster to ensure cardiology unit coverage while maintaining work-life balance.",
   },
   {
     question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "RosterLab automatically distributes night shifts equitably across all JMOs, preventing burnout and ensuring fairness. The system can help pair junior doctors with senior registrars for night coverage and manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
+      "RosterLab automatically distributes night shifts equitably across all cardiology staff, preventing burnout and ensuring fairness. The system manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question: "Can RosterLab help improve JMO retention?",
+    question: "Can RosterLab help improve cardiology staff retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - JMOs now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect training needs and personal preferences, RosterLab increases JMO engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - cardiology staff now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
-export default function JuniorMedicalOfficerRosteringPage() {
+export default function CardiologyRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -77,11 +79,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Flexible, Compliant
                 </span>{" "}
-                JMO Rosters
+                Cardiology Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance training requirements,
-                fair night shift distribution, and junior doctor wellbeing.
+                Create compliant AI rosters that balance procedure demands, fair
+                night shift distribution, and cardiology staff wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -114,7 +116,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Maintain optimal staffing throughout training and exam periods
+                  Maintain optimal staffing throughout procedure schedules
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -146,7 +148,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Improve junior doctors' retention and work-life balance
+                  Improve cardiology staff retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -166,8 +168,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/jmo.svg"
-                alt="JMO rostering software interface"
+                src="/images/illustration/pathology.svg"
+                alt="Cardiology rostering software interface"
                 width={600}
                 height={400}
                 className="block w-full h-auto"
@@ -182,10 +184,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI rostering tool for junior doctors
+              The best AI rostering tool for cardiology staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for junior doctors. Adapt to changes fast.
+              Fast. Optimised. Made for cardiology units. Adapt to changes fast.
             </p>
           </div>
 
@@ -248,7 +250,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Stay compliant with union rules
               </h3>
               <p className="text-gray-600">
-                Maintain legal and union compliance so junior doctors can work
+                Maintain legal and union compliance so cardiology staff can work
                 safely while having more flexibility.
               </p>
             </div>
@@ -271,11 +273,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Protect training and exam time
+                Manage procedure demands
               </h3>
               <p className="text-gray-600">
-                Schedule longer days off around exams and ensure complete
-                training programs while maintaining coverage.
+                Schedule appropriate staffing around catheter lab procedures and
+                clinic times while maintaining coverage.
               </p>
             </div>
 
@@ -317,7 +319,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For JMO Roster Challenges
+                Perfect For Cardiology Roster Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -338,12 +340,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Auto-Schedule Training Without Disrupting Coverage
+                      Auto-Schedule Procedure Times Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure junior
-                      doctors receive complete training while maintaining
-                      department coverage.
+                      Ensure adequate staffing during catheter lab procedures
+                      and clinic times while maintaining unit coverage.
                     </p>
                   </div>
                 </div>
@@ -369,9 +370,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Optimise Shifts for Complex Skill Mix
                     </h4>
                     <p className="text-gray-600">
-                      Automatically pair junior medical officers with senior
-                      registrars for night shifts, ensuring safe supervision and
-                      skill mix across all shifts.
+                      Automatically balance cardiac nurses with support staff
+                      across all areas, ensuring proper skill mix and
+                      supervision.
                     </p>
                   </div>
                 </div>
@@ -399,7 +400,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
                     <p className="text-gray-600">
                       Switch seamlessly between staff and shift perspectives to
                       gain a clear picture of responsibilities, coverage, and
-                      balance across your department.
+                      balance across your cardiology unit.
                     </p>
                   </div>
                 </div>
@@ -422,11 +423,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Adapt to Cohort Changes With Ease and Confidence
+                      Adapt to Staff Changes With Ease and Confidence
                     </h4>
                     <p className="text-gray-600">
-                      Manage every term in a structured, consistent way - so
-                      your rosters stay accurate, organised, and stress-free.
+                      Manage staffing changes in a structured, consistent way -
+                      so your rosters stay accurate, organised, and stress-free.
                     </p>
                   </div>
                 </div>
@@ -479,14 +480,14 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              JMO-FIRST WORKFLOW
+              CARDIOLOGY-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How JMOs Engage with Their Rosters
+              How Cardiology Staff Engage with Their Rosters
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around training requirements, preferences, and wellbeing,
-              not just top-down rostering
+              Built around procedure demands, preferences, and wellbeing, not
+              just top-down rostering
             </p>
           </div>
 
@@ -503,9 +504,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Set Staffing Requirements
                     </h3>
                     <p className="text-gray-600">
-                      Define skill mix needs (senior registrars for night
-                      supervision), term rosters, and department coverage
-                      requirements.
+                      Define skill mix needs (cardiac nurses and support staff),
+                      procedure area requirements, and unit coverage needs.
                     </p>
                   </div>
                 </div>
@@ -519,12 +519,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      JMOs Submit Preferences & Training Needs
+                      Staff Submit Preferences & Availability
                     </h3>
                     <p className="text-gray-600">
-                      Via mobile app, JMOs indicate shift preferences, exam
-                      dates, teaching sessions, and time off requests. No emails
-                      or paper forms.
+                      Via mobile app, staff indicate shift preferences, time off
+                      requests, and availability. No emails or paper forms.
                     </p>
                   </div>
                 </div>
@@ -541,9 +540,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       AI Generates Compliant Roster
                     </h3>
                     <p className="text-gray-600">
-                      RosterLab balances preferences, training requirements,
-                      night shift equity, and AMA/EBA rules to create compliant
-                      term rosters.
+                      RosterLab balances preferences, procedure schedules, night
+                      shift equity, and union/EBA rules to create compliant
+                      rosters.
                     </p>
                   </div>
                 </div>
@@ -560,9 +559,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to junior doctors' phones. They see
-                      their shifts, training time, and can request swaps with
-                      real-time updates.
+                      Rosters sync instantly to staff phones. They see their
+                      shifts and can request swaps with real-time updates.
                     </p>
                   </div>
                 </div>
@@ -576,12 +574,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      JMOs Self-Roster Open Shifts
+                      Staff Self-Roster Open Shifts
                     </h3>
                     <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - JMOs can
-                      pick them up directly if qualified, within hour limits,
-                      and training time protected.
+                      Unfilled shifts are posted as "open shifts" - staff can
+                      pick them up directly if qualified and within hour limits.
                     </p>
                   </div>
                 </div>
@@ -609,7 +606,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your JMO rostering?
+                Ready to streamline your cardiology rostering?
               </p>
               <Button
                 href="/book-a-demo"
@@ -627,11 +624,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for JMO Rostering
+              Essential Features for Cardiology Rostering
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of JMO term
-              rosters
+              Purpose-built tools that address the unique complexity of
+              cardiology unit rosters
             </p>
           </div>
 
@@ -689,8 +686,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Self Scheduling
               </h3>
               <p className="text-gray-600 mb-3">
-                JMOs submit preferences, training needs, exam dates, and manage
-                time-off requests directly from their phones. <br />
+                Staff submit preferences, availability, and manage time-off
+                requests directly from their phones. <br />
                 &nbsp;
               </p>
               <a
@@ -722,8 +719,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 Instant Roster Changes
               </h3>
               <p className="text-gray-600 mb-3">
-                When JMOs call in sick, see who's qualified and available to
-                fill the gap without breaking compliance or training
+                When staff call in sick, see who's qualified and available to
+                fill the gap without breaking compliance or skill mix
                 requirements.
               </p>
               <a
@@ -752,10 +749,10 @@ export default function JuniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Term Roster Management
+                Staff Management
               </h3>
               <p className="text-gray-600 mb-3">
-                Stay on top of cohort changes with ease. Manage every term
+                Stay on top of staff changes with ease. Manage staffing
                 consistently so rosters stay accurate, compliant, and
                 stress-free.
               </p>
@@ -783,7 +780,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from nursing managers
+              Questions we hear from cardiology unit managers
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -795,11 +792,11 @@ export default function JuniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer JMO Rosters
+              Build Compliant, Fairer Cardiology Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved JMO retention, reduced
-              burnout, and built positive reputations
+              Join cardiology units that have improved staff retention, reduced
+              burnout, and built positive team environments
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -825,7 +822,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "Junior Medical Officer Rostering" },
+          { name: "Cardiology Rostering" },
         ]}
       />
     </SiteLayout>
