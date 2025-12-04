@@ -201,7 +201,7 @@ export default function AviationPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -346,7 +346,7 @@ export default function AviationPage() {
       </section>
 
       {/* Core Features */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
+      <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -623,7 +623,7 @@ export default function AviationPage() {
       </section>
 
       {/* Transportation Sectors */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -887,7 +887,7 @@ export default function AviationPage() {
       </section>
 
       {/* Pricing CTA */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <Container>
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
