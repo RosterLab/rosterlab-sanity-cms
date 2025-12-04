@@ -61,9 +61,8 @@ export default function HospitalityPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time delivering exceptional guest
-                experiences. We specialise in all types of hospitality rosters,
-                no matter how complex.
+                Reduce hospitality staff rostering admin by 90% with optimised
+                and flexible rosters that can handle last-minute changes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
