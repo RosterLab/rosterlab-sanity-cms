@@ -61,9 +61,8 @@ export default function ManufacturingPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time optimising production. We
-                specialise in all types of manufacturing rosters, no matter how
-                complex.
+                Optimise your manufacturing teams and operations with better
+                staff rostering, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -874,13 +873,14 @@ export default function ManufacturingPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Reduce Staff Turnover
+                      Fatigue Management for 24/7 Operations
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Combat manufacturing staff turnover by respecting
-                      preferences and work-life balance. Fair, transparent
-                      rosters that consider individual needs lead to happier
-                      staff, better retention, and improved productivity.
+                      Maintain safety and productivity in continuous operations
+                      with intelligent fatigue management. Automatically enforce
+                      adequate rest periods, rotate shifts fairly, and prevent
+                      scheduling patterns that lead to exhaustion and workplace
+                      incidents.
                     </p>
                   </div>
                 </div>
