@@ -58,12 +58,11 @@ export default function PublicServicesPage() {
                 >
                   Public Services Rostering
                 </span>{" "}
-                Software for Teams
+                Software
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time serving the community. We
-                specialise in all types of public service rosters, no matter how
-                complex.
+                Roster faster and more efficiently whilst meeting more staff
+                preferences and managing fatigue.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -95,7 +94,7 @@ export default function PublicServicesPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for public services and complex industries
+                    Made for public service organisations
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -204,7 +203,7 @@ export default function PublicServicesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Public Services Rostering
+              Built for 24/7 Public Service Operations
             </h2>
           </div>
 
@@ -317,11 +316,11 @@ export default function PublicServicesPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Better Staffing Coverage
+                Handle Last-Minute Changes
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise all the staffing intricacies for better coverage across
-                your facilities.
+                Quickly fill gaps from sick leave and emergencies while
+                maintaining qualification requirements and avoiding fatigue.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -449,11 +448,11 @@ export default function PublicServicesPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Higher Staff Retention
+                Fair and Balanced Scheduling
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Better-quality rosters, self rostering, reduced bias perception,
-                and better work-life balance.
+                Balance operational demands with staff preferences and welfare,
+                distributing workload fairly across teams.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -564,7 +563,7 @@ export default function PublicServicesPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Community Centres
+                  Road Maintenance Crew
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -583,9 +582,7 @@ export default function PublicServicesPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  Parks & Recreation
-                </h4>
+                <h4 className="font-semibold text-gray-900">Police Force</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -667,9 +664,7 @@ export default function PublicServicesPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  Community Services
-                </h4>
+                <h4 className="font-semibold text-gray-900">Fire Department</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -739,11 +734,11 @@ export default function PublicServicesPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Transform Your Public Service Operations
+              Maintain Coverage During Unpredictable Demands
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Handle the unique complexities of public services rostering with
-              AI-driven scheduling that adapts to your dynamic demands.
+              Balance 24/7 staffing needs, emergency responses, and workforce
+              welfare with AI-driven scheduling built for public services.
             </p>
           </div>
 
@@ -778,10 +773,11 @@ export default function PublicServicesPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-900">
-                        Service Demand Matching
+                        Emergency Response Ready
                       </p>
                       <p className="text-xs text-gray-600 mt-1">
-                        Adapt to peak periods and special events automatically
+                        Maintain coverage during incidents and unpredictable
+                        workloads
                       </p>
                     </div>
                   </div>
@@ -813,13 +809,13 @@ export default function PublicServicesPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Match Service Demand to Coverage
+                      24/7 Coverage Without Gaps
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Handle fluctuating demand during peak periods, special
-                      events, and seasonal variations. Flexibly adjust staffing
-                      levels to maintain service quality while optimising costs
-                      during standard operations.
+                      Ensure continuous staffing across all shifts and
+                      locations. Automatically maintain minimum coverage levels
+                      while adapting to emergencies, special events, and
+                      unpredictable workloads.
                     </p>
                   </div>
                 </div>
@@ -845,13 +841,13 @@ export default function PublicServicesPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Multiple Departments & Locations Made Easy
+                      Match Qualifications to Requirements
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Ensure proper coverage across all departments and
-                      facilities - from frontline staff and technicians to
-                      administrators and managers. Automatically allocate the
-                      right people with the right skills to each service area.
+                      Automatically match staff qualifications, certifications,
+                      and skill levels to role requirements. Ensure proper
+                      supervision ratios and skill mix across all departments
+                      and geographic areas.
                     </p>
                   </div>
                 </div>
@@ -877,13 +873,13 @@ export default function PublicServicesPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Reduce Staff Turnover
+                      Manage Fatigue and Welfare
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Improve staff retention by respecting preferences and
-                      work-life balance. Fair, transparent rosters that consider
-                      individual needs lead to happier staff, better retention,
-                      and improved community service.
+                      Enforce rest periods and maximum shift limits to prevent
+                      fatigue. Balance operational needs with staff welfare by
+                      respecting preferences and distributing workload fairly
+                      across teams.
                     </p>
                   </div>
                 </div>
@@ -909,13 +905,13 @@ export default function PublicServicesPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Optimise Labour Costs & Compliance
+                      Stay Compliant With All Requirements
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Automatically enforce union agreements and rest break
-                      requirements while optimising staffing efficiency. Better
-                      utilisation of permanent staff reduces unnecessary
-                      overtime and agency costs.
+                      Automatically enforce legal obligations, union agreements,
+                      and contractual rules. Maintain audit trails and ensure
+                      compliance with rest requirements, maximum hours, and
+                      qualification mandates.
                     </p>
                   </div>
                 </div>
@@ -950,12 +946,11 @@ export default function PublicServicesPage() {
       >
         <Container>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Better Community Service, Happier Staff.
+            Reliable Coverage, Supported Teams.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When public service professionals spend less time on administrative
-            tasks, they can focus on what matters most - serving their community
-            effectively.
+            Balance 24/7 operational demands with workforce wellbeing. Spend
+            less time on roster admin, more time supporting your community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
