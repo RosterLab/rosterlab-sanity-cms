@@ -22,7 +22,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/manufacturing-roster",
       images: [
         {
-          url: "/images/hospitality.webp",
+          url: "/images/manufacturer.jpg",
           width: 1200,
           height: 630,
           alt: "Manufacturing workforce scheduling with RosterLab",
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Manufacturing Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies staff scheduling in manufacturing. Create fair, efficient rosters that improve production output, compliance & saves time.",
-      images: ["/images/hospitality.webp"],
+      images: ["/images/manufacturer.jpg"],
     },
   },
   "/industries/manufacturing-roster",

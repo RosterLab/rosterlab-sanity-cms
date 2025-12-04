@@ -22,7 +22,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/public-services-roster",
       images: [
         {
-          url: "/images/hospitality.webp",
+          url: "/images/public-services-roster.jpg",
           width: 1200,
           height: 630,
           alt: "Public services workforce scheduling with RosterLab",
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Public Services Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies staff scheduling in public services. Create fair, efficient rosters that improve community service, compliance & saves time.",
-      images: ["/images/hospitality.webp"],
+      images: ["/images/public-services-roster.jpg"],
     },
   },
   "/industries/public-services-roster",

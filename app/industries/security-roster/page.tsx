@@ -22,7 +22,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/security-roster",
       images: [
         {
-          url: "/images/hospitality.webp",
+          url: "/images/security-roster.jpg",
           width: 1200,
           height: 630,
           alt: "Security workforce scheduling with RosterLab",
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Security Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies staff scheduling in security. Create fair, efficient rosters that improve site safety, compliance & saves time.",
-      images: ["/images/hospitality.webp"],
+      images: ["/images/security-roster.jpg"],
     },
   },
   "/industries/security-roster",
@@ -802,13 +802,14 @@ export default function SecurityPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Match Variable Demand to Coverage Requirements
+                      24/7 Coverage with Fatigue Management
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Handle fluctuating demand during events, emergencies, and
-                      seasonal periods. Flexibly adjust staffing levels to
-                      maintain site security during peak times while optimising
-                      costs during standard operations.
+                      Maintain continuous security coverage across all sites
+                      while managing fatigue risks. Automatically enforce rest
+                      periods, limit consecutive night shifts, and ensure safe
+                      transitions between shift patterns to keep guards alert
+                      and effective.
                     </p>
                   </div>
                 </div>
@@ -939,12 +940,12 @@ export default function SecurityPage() {
       >
         <Container>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Better Site Safety, Professional Security.
+            Optimised Rosters. Safer Staff.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When security professionals spend less time on administrative tasks,
-            they can focus on what matters most - ensuring the safety and
-            security of people and property.
+            Well-rested security guards are more alert and effective. Fair
+            rosters with proper fatigue management reduce burnout, improve
+            retention, and ensure your team stays sharp when it matters most.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

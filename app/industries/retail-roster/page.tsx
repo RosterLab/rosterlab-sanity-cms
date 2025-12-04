@@ -22,7 +22,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/industries/retail-roster",
       images: [
         {
-          url: "/images/hospitality.webp",
+          url: "/images/retail-roster.jpg",
           width: 1200,
           height: 630,
           alt: "Retail workforce scheduling with RosterLab",
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Retail Staff Rostering Software - RosterLab",
       description:
         "Learn how our rostering software simplifies staff scheduling in retail. Create fair, efficient rosters that improve customer service, compliance & saves time.",
-      images: ["/images/hospitality.webp"],
+      images: ["/images/retail-roster.jpg"],
     },
   },
   "/industries/retail-roster",
@@ -204,7 +204,7 @@ export default function RetailPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Retail Rostering
+              Complete Retail Scheduling Solution
             </h2>
           </div>
 
@@ -869,10 +869,10 @@ export default function RetailPage() {
                       Reduce Staff Turnover
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Combat high retail staff turnover by respecting
-                      preferences and work-life balance. Fair, transparent
-                      rosters that consider individual needs lead to happier
-                      staff, better retention, and improved customer service.
+                      Let staff set their preferred days and shifts through the
+                      mobile app. The AI honours these preferences wherever
+                      possible while maintaining fair coverage, compliance with
+                      employment laws, and balanced workloads across the team.
                     </p>
                   </div>
                 </div>
@@ -942,9 +942,9 @@ export default function RetailPage() {
             Better Customer Service, Happier Staff.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When retail professionals spend less time on administrative tasks,
-            they can focus on what matters most - delivering exceptional
-            customer experiences.
+            When retail staff preferences are respected, they're more engaged
+            and motivated - leading to better customer service, reduced
+            turnover, and a more positive shopping experience.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
