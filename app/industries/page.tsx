@@ -788,9 +788,9 @@ export default function IndustriesPage() {
                   Education
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Schedule teachers, support staff, and substitutes while
-                  balancing class requirements, specializations, and
-                  professional development.
+                  Roster teachers, support staff, & substitutes while balancing
+                  class requirements, specialisations, and professional
+                  development.
                 </p>
                 <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
