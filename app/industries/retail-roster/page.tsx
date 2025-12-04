@@ -61,9 +61,9 @@ export default function RetailPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time delivering exceptional customer
-                experiences. We specialise in all types of retail rosters, no
-                matter how complex.
+                Create compliant AI rosters that respect your retail staff's
+                preferences, optimises for peak periods, and honours contractual
+                agreements.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -95,7 +95,7 @@ export default function RetailPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for retail and complex industries
+                    Made for retail teams
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -525,7 +525,9 @@ export default function RetailPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Supermarkets</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Supermarket Chains
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -600,7 +602,7 @@ export default function RetailPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Convenience Stores
+                  Customer Service Teams
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -679,7 +681,7 @@ export default function RetailPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Pop-up Stores</h4>
+                <h4 className="font-semibold text-gray-900">Gym Chains</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
