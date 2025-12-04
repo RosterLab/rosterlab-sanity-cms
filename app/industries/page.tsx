@@ -402,7 +402,7 @@ export default function IndustriesPage() {
                 </ul>
                 <Link href="/industries/transportation/port-rostering">
                   <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
-                    Learn more
+                    Explore Port Rostering
                   </Button>
                 </Link>
               </div>
@@ -479,7 +479,7 @@ export default function IndustriesPage() {
                 </ul>
                 <Link href="/industries/call-centre-rostering">
                   <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
-                    Learn more
+                    Explore Call Centre Rostering
                   </Button>
                 </Link>
               </div>
@@ -554,9 +554,9 @@ export default function IndustriesPage() {
                   </li>
                 </ul>
                 <div className="mt-6">
-                  <Link href="/industries/airports-and-transportation">
+                  <Link href="/industries/airports-and-transportation-roster">
                     <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
-                      Learn More
+                      Explore Transportation Rostering
                     </Button>
                   </Link>
                 </div>
@@ -632,9 +632,9 @@ export default function IndustriesPage() {
                   </li>
                 </ul>
                 <div className="mt-6">
-                  <Link href="/industries/hospitality">
+                  <Link href="/industries/hospitality-roster">
                     <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
-                      Learn More
+                      Explore Hospitality Rostering
                     </Button>
                   </Link>
                 </div>
@@ -709,6 +709,13 @@ export default function IndustriesPage() {
                     Skill certification tracking
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/manufacturing-roster">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Explore Manufacturing Rostering
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -781,6 +788,13 @@ export default function IndustriesPage() {
                     Break duty scheduling
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/education-roster">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Explore Education Rostering
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -853,6 +867,13 @@ export default function IndustriesPage() {
                     Round-the-clock coverage
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/security-roster">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Explore Security Rostering
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -923,6 +944,13 @@ export default function IndustriesPage() {
                     Multi-store coordination
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/retail-roster">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Explore Retail Rostering
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -995,6 +1023,13 @@ export default function IndustriesPage() {
                     Cross-department coordination
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <Link href="/industries/public-services-roster">
+                    <Button className="w-full bg-blue-600 text-white hover:bg-blue-700">
+                      Explore Public Services Rostering
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

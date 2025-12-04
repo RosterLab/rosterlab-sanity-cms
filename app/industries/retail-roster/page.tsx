@@ -8,39 +8,39 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Hospitality Staff Rostering Software - RosterLab",
+    title: "Retail Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
+      "Learn how our rostering software simplifies staff scheduling in retail. Create fair, efficient rosters that improve customer service, compliance & saves time.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/hospitality",
+      canonical: "https://rosterlab.com/industries/retail-roster",
     },
     openGraph: {
-      title: "Hospitality Staff Rostering Software - RosterLab",
+      title: "Retail Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
+        "Learn how our rostering software simplifies staff scheduling in retail. Create fair, efficient rosters that improve customer service, compliance & saves time.",
       type: "website",
-      url: "https://rosterlab.com/industries/hospitality",
+      url: "https://rosterlab.com/industries/retail-roster",
       images: [
         {
           url: "/images/hospitality.webp",
           width: 1200,
           height: 630,
-          alt: "Hospitality workforce scheduling with RosterLab",
+          alt: "Retail workforce scheduling with RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Hospitality Staff Rostering Software - RosterLab",
+      title: "Retail Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
+        "Learn how our rostering software simplifies staff scheduling in retail. Create fair, efficient rosters that improve customer service, compliance & saves time.",
       images: ["/images/hospitality.webp"],
     },
   },
-  "/industries/hospitality",
+  "/industries/retail-roster",
 );
 
-export default function HospitalityPage() {
+export default function RetailPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -56,14 +56,14 @@ export default function HospitalityPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Hospitality Rostering
+                  Retail Rostering
                 </span>{" "}
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time delivering exceptional guest
-                experiences. We specialise in all types of hospitality rosters,
-                no matter how complex.
+                Less time rostering, more time delivering exceptional customer
+                experiences. We specialise in all types of retail rosters, no
+                matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -95,7 +95,7 @@ export default function HospitalityPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for hospitality and complex industries
+                    Made for retail and complex industries
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -118,8 +118,8 @@ export default function HospitalityPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/hospitality-roster.svg"
-                alt="Hospitality workforce scheduling dashboard"
+                src="/images/illustration/retail-roster.svg"
+                alt="Retail workforce scheduling dashboard"
                 width={600}
                 height={400}
                 className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
@@ -204,7 +204,7 @@ export default function HospitalityPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Hospitality Rostering
+              Everything You Need for Retail Rostering
             </h2>
           </div>
 
@@ -321,7 +321,7 @@ export default function HospitalityPage() {
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
                 Optimise all the staffing intricacies for better coverage across
-                your venues.
+                your stores.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -476,15 +476,15 @@ export default function HospitalityPage() {
         </Container>
       </section>
 
-      {/* Hospitality Verticals */}
+      {/* Retail Verticals */}
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Tailored Solutions for Every Venue Type
+              Tailored Solutions for Every Retail Sector
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built rostering for the unique needs of each hospitality
+              Purpose-built rostering for the unique needs of each retail
               sector.
             </p>
           </div>
@@ -492,7 +492,7 @@ export default function HospitalityPage() {
           {/* All Departments */}
           <div className="bg-white rounded-lg shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              All Hospitality Sectors
+              All Retail Sectors
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center group cursor-pointer">
@@ -502,10 +502,12 @@ export default function HospitalityPage() {
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-6.18C12.4 5.84 11.3 5 10 5H7c-1.66 0-3 1.34-3 3v1.54c0 1.06.28 2.06.76 2.93L6.5 17l.69 2.04c.14.41.52.69.95.69h10.02c.52 0 .97-.33 1.16-.81l1.62-4.86c.03-.09.05-.18.05-.27V9c0-1.1-.9-2-2-2zm0 9.5l-1.5 4.5H8.85L8 18.65V17H4.75c-.41 0-.75-.34-.75-.75 0-.41.34-.75.75-.75H6V7c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v1h8v7.5z" />
+                    <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Hotels</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Department Stores
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -523,9 +525,7 @@ export default function HospitalityPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  Restaurant Chains
-                </h4>
+                <h4 className="font-semibold text-gray-900">Supermarkets</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -539,11 +539,11 @@ export default function HospitalityPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Cafe Chains</h4>
+                <h4 className="font-semibold text-gray-900">Fashion Retail</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -557,11 +557,13 @@ export default function HospitalityPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.717 2.717 0 003 15.546V6.454c0-.524.15-1.046.453-1.5a2.704 2.704 0 013 0 2.704 2.704 0 003 0 2.704 2.704 0 013 0 2.704 2.704 0 003 0 2.704 2.704 0 013 0c.302.454.453.976.453 1.5v9.092z"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Bars & Pubs</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Electronics Stores
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -575,11 +577,11 @@ export default function HospitalityPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Resort Chains</h4>
+                <h4 className="font-semibold text-gray-900">Pharmacies</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -593,12 +595,12 @@ export default function HospitalityPage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
                     />
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Catering Services
+                  Convenience Stores
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -613,11 +615,13 @@ export default function HospitalityPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">Event Venues</h4>
+                <h4 className="font-semibold text-gray-900">
+                  Shopping Centres
+                </h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -636,7 +640,7 @@ export default function HospitalityPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Fast Food Chains
+                  Specialty Retail
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -656,7 +660,7 @@ export default function HospitalityPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Accommodation Providers
+                  Franchise Chains
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -671,13 +675,11 @@ export default function HospitalityPage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                      d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  Food Service Operations
-                </h4>
+                <h4 className="font-semibold text-gray-900">Pop-up Stores</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -691,13 +693,11 @@ export default function HospitalityPage() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">
-                  Function Centres
-                </h4>
+                <h4 className="font-semibold text-gray-900">Seasonal Retail</h4>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
@@ -715,7 +715,7 @@ export default function HospitalityPage() {
                     />
                   </svg>
                 </div>
-                <h4 className="font-semibold text-gray-900">24/7 Venues</h4>
+                <h4 className="font-semibold text-gray-900">24/7 Stores</h4>
               </div>
             </div>
           </div>
@@ -727,11 +727,11 @@ export default function HospitalityPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Transform Your Hospitality Operations
+              Transform Your Retail Operations
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Handle the unique complexities of hospitality rostering with
-              AI-driven scheduling that adapts to your dynamic demands.
+              Handle the unique complexities of retail rostering with AI-driven
+              scheduling that adapts to your dynamic demands.
             </p>
           </div>
 
@@ -742,7 +742,7 @@ export default function HospitalityPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab hospitality platform showing AI-powered rostering"
+                  alt="RosterLab retail platform showing AI-powered rostering"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -766,10 +766,10 @@ export default function HospitalityPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-900">
-                        Flexible Demand Matching
+                        Footfall Demand Matching
                       </p>
                       <p className="text-xs text-gray-600 mt-1">
-                        Adapt to weekend rushes, events, and seasonal peaks
+                        Adapt to sales events and peak trading periods
                         automatically
                       </p>
                     </div>
@@ -802,12 +802,12 @@ export default function HospitalityPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Match Volatile Demand to Service Level
+                      Match Footfall Demand to Service Level
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Handle fluctuating demand during weekends, special events,
+                      Handle fluctuating demand during weekends, sales events,
                       and holiday seasons. Flexibly adjust staffing levels to
-                      maintain service quality during peak times while
+                      maintain customer service during peak trading while
                       optimising costs during quieter periods.
                     </p>
                   </div>
@@ -834,13 +834,13 @@ export default function HospitalityPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Multiple Roles & Locations Made Easy
+                      Multiple Departments & Locations Made Easy
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Ensure proper coverage across all roles and locations -
-                      from kitchen staff and bartenders to front-of-house and
+                      Ensure proper coverage across all departments and stores -
+                      from cashiers and stock handlers to floor staff and
                       management. Automatically allocate the right people with
-                      the right skills to each venue and station.
+                      the right skills to each department and location.
                     </p>
                   </div>
                 </div>
@@ -866,13 +866,13 @@ export default function HospitalityPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Reduce Churn & Turnover
+                      Reduce Staff Turnover
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Combat high staff turnover by respecting preferences and
-                      work-life balance. Fair, transparent rosters that consider
-                      individual needs lead to happier staff, better retention,
-                      and improved guest experiences.
+                      Combat high retail staff turnover by respecting
+                      preferences and work-life balance. Fair, transparent
+                      rosters that consider individual needs lead to happier
+                      staff, better retention, and improved customer service.
                     </p>
                   </div>
                 </div>
@@ -904,7 +904,7 @@ export default function HospitalityPage() {
                       Automatically enforce employment agreements and rest break
                       requirements while optimising staffing efficiency. Better
                       utilisation of ordinary hours reduces unnecessary overtime
-                      and casual costs, effectively lowering your labour spend.
+                      and casual costs.
                     </p>
                   </div>
                 </div>
@@ -939,19 +939,19 @@ export default function HospitalityPage() {
       >
         <Container>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Better Guest Service, Happier Staff.
+            Better Customer Service, Happier Staff.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When hospitality professionals spend less time on administrative
-            tasks, they can focus on what matters most - delivering exceptional
-            guest experiences.
+            When retail professionals spend less time on administrative tasks,
+            they can focus on what matters most - delivering exceptional
+            customer experiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               href="/book-a-demo"
               className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
-              Schedule a Hospitality Demo
+              Schedule a Retail Demo
             </Button>
             <Button
               href="/solutions/ai-roster-generator"
@@ -969,7 +969,7 @@ export default function HospitalityPage() {
         items={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
-          { name: "Hospitality" },
+          { name: "Retail" },
         ]}
       />
     </SiteLayout>
