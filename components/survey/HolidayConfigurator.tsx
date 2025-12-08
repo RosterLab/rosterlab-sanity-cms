@@ -102,7 +102,7 @@ export default function HolidayConfigurator({
         {/* Survey Details */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-neutral-900">
-            Survey Details
+            Create your Holiday Shift Preference Survey
           </h2>
 
           <div>

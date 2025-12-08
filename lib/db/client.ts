@@ -19,6 +19,16 @@ function getDatabaseUrl(): string {
     process.env.NETLIFY_DATABASE_URL_UNPOOLED;
 
   if (!url) {
+    // In development, provide helpful error message but don't throw
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "⚠️  Database URL not configured. Survey features will not work.\n" +
+          "To enable surveys, add NETLIFY_DATABASE_URL to your .env.local file.\n" +
+          "Get a free database at: https://neon.tech",
+      );
+      return ""; // Return empty string to prevent crashes during build
+    }
+
     throw new Error(
       "Database URL environment variable is not set. " +
         "Expected NETLIFY_DATABASE_URL, or NETLIFY_DATABASE_URL_UNPOOLED. " +
@@ -34,7 +44,20 @@ function getDatabaseUrl(): string {
  * Uses connection pooling for better performance
  */
 export function getDbClient() {
-  const sql = neon(getDatabaseUrl());
+  const url = getDatabaseUrl();
+
+  // In development without a database URL, return a mock client
+  if (!url) {
+    // Return a proxy that throws helpful errors when methods are called
+    return new Proxy(
+      () => Promise.reject(new Error("Database not configured")),
+      {
+        get: () => () => Promise.reject(new Error("Database not configured")),
+      },
+    ) as any;
+  }
+
+  const sql = neon(url);
   return sql;
 }
 

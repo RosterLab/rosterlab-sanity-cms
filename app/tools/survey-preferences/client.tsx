@@ -45,7 +45,7 @@ export default function SurveyPreferencesClient() {
             {/* Header */}
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-4">
-                Holiday Shift Balancer
+                Create your Holiday Shift Preference Survey
               </h1>
               <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
                 Fairly distribute holiday shifts among your team. Survey staff
