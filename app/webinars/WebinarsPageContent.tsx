@@ -93,7 +93,7 @@ export default function WebinarsPageContent({
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {/* Format Badge */}
-                  <div className="absolute top-3 right-3 bg-white px-3 py-1 rounded-full shadow-md">
+                  <div className="absolute bottom-3 right-3 bg-white px-3 py-1 rounded-full shadow-md">
                     <span className="text-xs font-semibold text-primary-600">
                       {webinar.format}
                     </span>

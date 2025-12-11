@@ -440,7 +440,15 @@ export default function WebinarDetailPage() {
               </div>
               <div className="flex items-center">
                 <HiUserGroup className="h-5 w-5 mr-2 text-primary-600" />
-                <span>Mike Peterson & Sunny Feng</span>
+                <span>
+                  Mike Peterson &{" "}
+                  <Link
+                    href="/authors/sunny-feng"
+                    className="text-primary-600 hover:text-primary-700 hover:underline font-medium"
+                  >
+                    Sunny Feng
+                  </Link>
+                </span>
               </div>
             </div>
 
