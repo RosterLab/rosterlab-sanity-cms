@@ -88,7 +88,7 @@ After the initial roster was published, staff would immediately begin making swa
   },
   {
     id: "time-cost-analysis",
-    title: "The True Cost: 205+ Hours Per Year",
+    title: "The True Cost: 170+ Hours Per Year",
     content: `When Mike analyzed the actual time spent on rostering, the numbers were staggering:
 
 **Building Rosters:**
@@ -101,7 +101,7 @@ After the initial roster was published, staff would immediately begin making swa
 • Average 5 minutes per swap (translating handwriting, discussions, approvals)
 • **35 hours per year** just on shift changes
 
-**Total: 205+ hours annually** - and that's not counting leave management, the constant checking, and the time individual staff spent managing their own schedules.
+**Total: 170+ hours annually** - and that's not counting leave management, the constant checking, and the time individual staff spent managing their own schedules.
 
 The cost was three times more than RosterLab's annual subscription, even including Mike's time to use the platform. It was presented as a pure cost-saving measure and was approved immediately.`,
   },
