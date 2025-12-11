@@ -240,6 +240,17 @@ export const authorWithPostsQuery = groq`
         title,
         slug
       }
+    },
+    "webinars": *[_type == "webinar" && references(^._id) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      description,
+      thumbnail,
+      date,
+      duration,
+      format,
+      publishedAt
     }
   }
 `;
@@ -257,4 +268,55 @@ export const authorsQuery = groq`
 
 export const authorPathsQuery = groq`
   *[_type == "author" && defined(slug.current)][].slug.current
+`;
+
+// Webinar queries
+export const webinarsQuery = groq`
+  *[_type == "webinar" && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    description,
+    hosts[]->{
+      name,
+      slug
+    },
+    date,
+    duration,
+    category,
+    format,
+    thumbnail,
+    publishedAt
+  }
+`;
+
+export const webinarQuery = groq`
+  *[_type == "webinar" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    description,
+    hosts[]->{
+      name,
+      slug,
+      image,
+      title
+    },
+    date,
+    duration,
+    category,
+    format,
+    thumbnail,
+    youtubeUrl,
+    publishedAt,
+    seo {
+      metaTitle,
+      metaDescription,
+      ogImage
+    }
+  }
+`;
+
+export const webinarPathsQuery = groq`
+  *[_type == "webinar" && defined(slug.current)][].slug.current
 `;

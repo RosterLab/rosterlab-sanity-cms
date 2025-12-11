@@ -88,6 +88,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
   ];
 
   const totalPosts = allPosts.length;
+  const totalWebinars = author.webinars?.length || 0;
 
   return (
     <>
@@ -154,6 +155,14 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                       </span>{" "}
                       News{" "}
                       {author.newsroom.length === 1 ? "Article" : "Articles"}
+                    </div>
+                  )}
+                  {totalWebinars > 0 && (
+                    <div>
+                      <span className="font-semibold text-gray-900">
+                        {totalWebinars}
+                      </span>{" "}
+                      {totalWebinars === 1 ? "Webinar" : "Webinars"}
                     </div>
                   )}
                 </div>
@@ -359,6 +368,63 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                         <time className="text-sm text-gray-500">
                           {formatDate(post.publishedAt)}
                         </time>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Webinars */}
+            {author.webinars && author.webinars.length > 0 && (
+              <section className="mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                  <span className="w-1 h-8 bg-orange-600 rounded"></span>
+                  Webinars
+                </h3>
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                  {author.webinars.map((webinar: any) => (
+                    <Link
+                      key={webinar._id}
+                      href={`/webinars/${webinar.slug.current}`}
+                      className="group bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all"
+                    >
+                      {webinar.thumbnail && (
+                        <div className="relative h-48 overflow-hidden">
+                          <Image
+                            src={urlFor(webinar.thumbnail)
+                              .width(600)
+                              .height(400)
+                              .url()}
+                            alt={webinar.title}
+                            width={600}
+                            height={400}
+                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                          />
+                          {webinar.format && (
+                            <div className="absolute bottom-3 right-3 bg-white px-3 py-1 rounded-full shadow-md">
+                              <span className="text-xs font-semibold text-orange-600">
+                                {webinar.format}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                          {webinar.title}
+                        </h4>
+                        {webinar.description && (
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                            {webinar.description}
+                          </p>
+                        )}
+                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                          {webinar.date && (
+                            <time>{formatDate(webinar.date)}</time>
+                          )}
+                          {webinar.duration && <span>{webinar.duration}</span>}
+                        </div>
                       </div>
                     </Link>
                   ))}
