@@ -113,17 +113,7 @@ export default function DemoBookingBase({
           {/* Header */}
           <div className="text-center">
             <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-              Speak With A{" "}
-              {region === "us" ? (
-                <>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                    Scheduling
-                  </span>{" "}
-                  Expert
-                </>
-              ) : (
-                regionalContent.terminology.expert
-              )}
+              {regionalContent.title}
             </h1>
           </div>
 
