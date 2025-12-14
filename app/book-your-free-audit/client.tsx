@@ -12,7 +12,7 @@ export default function BookYourFreeAuditClient() {
       contact: "/contact",
       meetingConfirmed: "/meeting-confirmed",
     },
-    calendlyUrl: "https://calendly.com/d/cw2v-vw3-j2z",
+    calendlyUrl: "https://calendly.com/d/cxgr-ksd-j2x",
   };
 
   return <DemoBookingBase region="global" regionalContent={regionalContent} />;
