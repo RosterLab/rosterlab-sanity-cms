@@ -455,7 +455,7 @@ export default function IndustriesPage() {
                     24/7 operations management
                   </li>
                 </ul>
-                <div className="bg-indigo-600 text-white text-center py-2 rounded group-hover:bg-indigo-700 transition-colors w-full">
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
                   Explore Port Rostering
                 </div>
               </div>
@@ -533,7 +533,7 @@ export default function IndustriesPage() {
                     Peak hour management
                   </li>
                 </ul>
-                <div className="bg-indigo-600 text-white text-center py-2 rounded group-hover:bg-indigo-700 transition-colors w-full">
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
                   Explore Call Centre Rostering
                 </div>
               </div>
