@@ -127,6 +127,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/feature/ai-staff-rostering-assistant"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  AI Roster Assistant
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/staff-rostering-interactive-demo"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
@@ -182,6 +190,14 @@ export default function Footer() {
                   Contact Us
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="https://app.rosterlab.com/privacy"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -221,6 +237,14 @@ export default function Footer() {
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
                   All industries
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://help.rosterlab.com/en/"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Help centre
                 </Link>
               </li>
             </ul>

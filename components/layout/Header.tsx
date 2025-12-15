@@ -107,6 +107,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Blog", link: "/blog" },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
+        { title: "Webinars", link: "/webinars" },
+        { title: "Shift Management Tools", link: "/tools" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
         {
@@ -610,7 +612,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     (sub) =>
                                       sub.title === "Blog" ||
                                       sub.title === "Case Studies" ||
-                                      sub.title === "Newsroom",
+                                      sub.title === "Newsroom" ||
+                                      sub.title === "Webinars" ||
+                                      sub.title === "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
@@ -628,7 +632,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                             ? "Success stories from our customers"
                                             : subItem.title === "Newsroom"
                                               ? "Latest updates and announcements"
-                                              : ""}
+                                              : subItem.title === "Webinars"
+                                                ? "Expert-led sessions on workforce management"
+                                                : subItem.title ===
+                                                    "Shift Management Tools"
+                                                  ? "Free tools to optimize your workforce"
+                                                  : ""}
                                       </div>
                                     </Link>
                                   ))}
@@ -646,7 +655,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     (sub) =>
                                       sub.title !== "Blog" &&
                                       sub.title !== "Case Studies" &&
-                                      sub.title !== "Newsroom",
+                                      sub.title !== "Newsroom" &&
+                                      sub.title !== "Webinars" &&
+                                      sub.title !== "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
