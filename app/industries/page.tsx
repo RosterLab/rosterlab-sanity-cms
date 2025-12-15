@@ -693,161 +693,6 @@ export default function IndustriesPage() {
               </div>
             </Link>
 
-            {/* Manufacturing */}
-            <Link
-              href="/industries/manufacturing-roster"
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
-            >
-              <div className="h-48 relative">
-                <Image
-                  src="/images/manufacturer.jpg"
-                  alt="Manufacturing industry scheduling"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Manufacturing
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Manage shift patterns, skill requirements, and production line
-                  coverage while maintaining safety and efficiency standards.
-                </p>
-                <ul className="text-sm text-gray-600 space-y-2 mb-4">
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Production line optimisation
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Shift pattern management
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Skill certification tracking
-                  </li>
-                </ul>
-                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
-                  Explore Manufacturing Rostering
-                </div>
-              </div>
-            </Link>
-
-            {/* Education */}
-            <Link
-              href="/industries/education-roster"
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
-            >
-              <div className="h-48 relative">
-                <Image
-                  src="/images/Education.webp"
-                  alt="Education industry scheduling"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Education
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Roster teachers, support staff, & substitutes while balancing
-                  class requirements, specialisations, and professional
-                  development.
-                </p>
-                <ul className="text-sm text-gray-600 space-y-2 mb-4">
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Subject expertise matching
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Substitute management
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Break duty scheduling
-                  </li>
-                </ul>
-                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
-                  Explore Education Rostering
-                </div>
-              </div>
-            </Link>
-
             {/* Security */}
             <Link
               href="/industries/security-roster"
@@ -1076,6 +921,161 @@ export default function IndustriesPage() {
                 </ul>
                 <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
                   Explore Public Services Rostering
+                </div>
+              </div>
+            </Link>
+
+            {/* Manufacturing */}
+            <Link
+              href="/industries/manufacturing-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
+              <div className="h-48 relative">
+                <Image
+                  src="/images/manufacturer.jpg"
+                  alt="Manufacturing industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Manufacturing
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Manage shift patterns, skill requirements, and production line
+                  coverage while maintaining safety and efficiency standards.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Production line optimisation
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Shift pattern management
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Skill certification tracking
+                  </li>
+                </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Manufacturing Rostering
+                </div>
+              </div>
+            </Link>
+
+            {/* Education */}
+            <Link
+              href="/industries/education-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
+              <div className="h-48 relative">
+                <Image
+                  src="/images/Education.webp"
+                  alt="Education industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Education
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Roster teachers, support staff, & substitutes while balancing
+                  class requirements, specialisations, and professional
+                  development.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Subject expertise matching
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Substitute management
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Break duty scheduling
+                  </li>
+                </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Education Rostering
                 </div>
               </div>
             </Link>
