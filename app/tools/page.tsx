@@ -5,14 +5,14 @@ import SiteLayout from "@/components/layout/SiteLayout";
 export const metadata: Metadata = {
   title: "Free Workforce Management Tools - RosterLab",
   description:
-    "Access free workforce management tools including ROI calculator and personality tests. Streamline your scheduling and team management.",
+    "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
   alternates: {
     canonical: "https://rosterlab.com/tools",
   },
   openGraph: {
     title: "Free Workforce Management Tools - RosterLab",
     description:
-      "Access free workforce management tools including ROI calculator and personality tests. Streamline your scheduling and team management.",
+      "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
     type: "website",
     url: "https://rosterlab.com/tools",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Workforce Management Tools - RosterLab",
     description:
-      "Access free workforce management tools including ROI calculator and personality tests. Streamline your scheduling and team management.",
+      "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
     images: ["/images/og-images/WFM.png"],
   },
 };
@@ -52,6 +52,16 @@ const tools = [
     image: "/images/us-images/iStock-2187596982.jpg",
     format: "Quiz",
     category: "Team Building",
+  },
+  {
+    id: "survey-preferences",
+    title: "Shift Preferences Survey & Balancer",
+    description:
+      "Create custom holiday shift preference surveys for your team. Collect availability and automatically balance shift assignments fairly.",
+    href: "/tools/survey-preferences",
+    image: "/images/us-images/iStock-1399172596.jpg",
+    format: "Survey Tool",
+    category: "Shift Management",
   },
 ];
 
