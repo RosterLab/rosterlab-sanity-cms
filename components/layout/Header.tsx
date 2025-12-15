@@ -108,6 +108,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
         { title: "Webinars", link: "/webinars" },
+        { title: "Shift Management Tools", link: "/tools" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
         {
@@ -596,7 +597,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title === "Blog" ||
                                       sub.title === "Case Studies" ||
                                       sub.title === "Newsroom" ||
-                                      sub.title === "Webinars",
+                                      sub.title === "Webinars" ||
+                                      sub.title === "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
@@ -616,7 +618,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                               ? "Latest updates and announcements"
                                               : subItem.title === "Webinars"
                                                 ? "Expert-led sessions on workforce management"
-                                                : ""}
+                                                : subItem.title ===
+                                                    "Shift Management Tools"
+                                                  ? "Free tools to optimize your workforce"
+                                                  : ""}
                                       </div>
                                     </Link>
                                   ))}
@@ -635,7 +640,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title !== "Blog" &&
                                       sub.title !== "Case Studies" &&
                                       sub.title !== "Newsroom" &&
-                                      sub.title !== "Webinars",
+                                      sub.title !== "Webinars" &&
+                                      sub.title !== "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
