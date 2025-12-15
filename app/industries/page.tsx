@@ -686,6 +686,22 @@ export default function IndustriesPage() {
                     </svg>
                     Event staffing flexibility
                   </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Peak period management
+                  </li>
                 </ul>
                 <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
                   Explore Hospitality Rostering
@@ -865,9 +881,8 @@ export default function IndustriesPage() {
                   Public Services
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Coordinate public service workers and facility staff with
-                  union agreements, optimised coverage, and cross-department
-                  coordination.
+                  Coordinate public service workers with union agreements,
+                  optimised coverage, and cross-department coordination.
                 </p>
                 <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
