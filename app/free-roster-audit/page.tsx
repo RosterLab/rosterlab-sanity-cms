@@ -462,8 +462,8 @@ export default function FreeRosterAuditPage() {
                 Is a Roster Audit Right for You?
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Consider a free audit if you're experiencing any of these
-                challenges:
+                Consider a free audit if you're a large department or team
+                experiencing any of these challenges:
               </p>
             </div>
 
