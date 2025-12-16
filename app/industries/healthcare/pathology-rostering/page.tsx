@@ -667,7 +667,7 @@ export default function PathologyRosteringPage() {
                 &nbsp;
               </p>
               <a
-                href="https://rosterlab.com/feature/self-scheduling"
+                href="/feature/self-scheduling"
                 className="text-teal-600 hover:text-teal-700 font-medium text-sm"
               >
                 Learn more →
