@@ -160,10 +160,10 @@ export default function PathologyRosteringPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/case-studies"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
-                  Read Case Studies
+                  View Pricing
                 </Button>
               </div>
             </div>
