@@ -267,7 +267,7 @@ export default function FreeRosterAuditPage() {
                   </li>
                   <li className="flex items-start">
                     <HiCheck className="w-5 h-5 text-purple-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Award & EBA alignment</span>
+                    <span>Contract compliance</span>
                   </li>
                 </ul>
               </div>
