@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: "Create your Holiday Shift Preference Survey | RosterLab",
   description:
     "Create custom holiday shift preference surveys for your team. Collect availability, shift preferences, and time-off requests without login required.",
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: "Create your Holiday Shift Preference Survey | RosterLab",
     description:

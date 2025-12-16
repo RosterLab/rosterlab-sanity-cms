@@ -53,16 +53,17 @@ const tools = [
     format: "Quiz",
     category: "Team Building",
   },
-  {
-    id: "survey-preferences",
-    title: "Shift Preferences Survey & Balancer",
-    description:
-      "Create custom holiday shift preference surveys for your team. Collect availability and automatically balance shift assignments fairly.",
-    href: "/tools/survey-preferences",
-    image: "/images/us-images/iStock-1399172596.jpg",
-    format: "Survey Tool",
-    category: "Shift Management",
-  },
+  // Survey preferences tool hidden from navigation but pages still exist
+  // {
+  //   id: "survey-preferences",
+  //   title: "Shift Preferences Survey & Balancer",
+  //   description:
+  //     "Create custom holiday shift preference surveys for your team. Collect availability and automatically balance shift assignments fairly.",
+  //   href: "/tools/survey-preferences",
+  //   image: "/images/us-images/iStock-1399172596.jpg",
+  //   format: "Survey Tool",
+  //   category: "Shift Management",
+  // },
 ];
 
 export default function ToolsPage() {
