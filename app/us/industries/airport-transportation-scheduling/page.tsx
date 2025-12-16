@@ -122,7 +122,7 @@ export default function AviationPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/us-images/iStock-1332475767.jpg"
+                src="/images/transport-crew.jpg"
                 alt="Transportation crew scheduling dashboard"
                 width={600}
                 height={400}
