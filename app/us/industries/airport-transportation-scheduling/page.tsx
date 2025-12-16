@@ -99,7 +99,7 @@ export default function AviationPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for transportation and complex industries
+                    Made for transport crew scheduling
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -115,18 +115,18 @@ export default function AviationPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    AI-generated schedules in seconds
+                    AI-generated scheduling
                   </span>
                 </div>
               </div>
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/aviation.svg"
-                alt="Aviation crew scheduling dashboard"
+                src="/images/us-images/iStock-1332475767.jpg"
+                alt="Transportation crew scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
+                className="block w-full h-auto max-w-md mx-auto lg:max-w-full rounded-lg shadow-lg"
               />
             </div>
           </div>
