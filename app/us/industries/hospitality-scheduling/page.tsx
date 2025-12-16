@@ -61,8 +61,8 @@ export default function HospitalityPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Reduce hospitality staff rostering admin by 90% with optimized
-                and flexible rosters that can handle last-minute changes.
+                Reduce hospitality staff scheduling admin by 90% with optimized
+                and flexible schedules that can handle last-minute changes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -110,7 +110,7 @@ export default function HospitalityPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    AI-generated rosters in seconds
+                    AI-generated schedules in seconds
                   </span>
                 </div>
               </div>
@@ -136,7 +136,7 @@ export default function HospitalityPage() {
               className="font-semibold text-neutral-700 mb-8"
               style={{ fontSize: "23px" }}
             >
-              Trusted by global teams with complex rosters
+              Trusted by global teams with complex scheduling
             </h2>
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
               <div className="flex items-center justify-center">
@@ -206,7 +206,7 @@ export default function HospitalityPage() {
               Transform Your Hospitality Operations
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Handle the unique complexities of hospitality rostering with
+              Handle the unique complexities of hospitality scheduling with
               AI-driven scheduling that adapts to your dynamic demands.
             </p>
           </div>
@@ -346,9 +346,9 @@ export default function HospitalityPage() {
                     </h3>
                     <p className="text-gray-600 text-sm">
                       Combat high staff turnover by respecting preferences and
-                      work-life balance. Fair, transparent rosters that consider
-                      individual needs lead to happier staff, better retention,
-                      and improved guest experiences.
+                      work-life balance. Fair, transparent schedules that
+                      consider individual needs lead to happier staff, better
+                      retention, and improved guest experiences.
                     </p>
                   </div>
                 </div>
@@ -394,7 +394,7 @@ export default function HospitalityPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/solutions/ai-roster-generator"
+                  href="/us/solutions/ai-staff-schedule-maker"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -413,7 +413,7 @@ export default function HospitalityPage() {
               Tailored Solutions for Every Venue Type
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built rostering for the unique needs of each hospitality
+              Purpose-built scheduling for the unique needs of each hospitality
               sector.
             </p>
           </div>
@@ -662,7 +662,7 @@ export default function HospitalityPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
-              href="/us/feature/automated-rostering"
+              href="/us/feature/auto-scheduling"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -681,7 +681,7 @@ export default function HospitalityPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Automatically Generate Rosters
+                Automatically Generate Schedules
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
                 Create optimal schedules in minutes using AI that balances all
@@ -794,7 +794,7 @@ export default function HospitalityPage() {
             </Link>
 
             <Link
-              href="/us/solutions/staff-roster-mobile-app"
+              href="/us/solutions/staff-scheduling-mobile-app"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">
@@ -838,7 +838,7 @@ export default function HospitalityPage() {
             </Link>
 
             <Link
-              href="/us/feature/re-rostering"
+              href="/us/feature/staff-rescheduling"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
@@ -857,7 +857,7 @@ export default function HospitalityPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Re-rostering
+                Rescheduling
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
                 Handle last-minute changes with minimal disruption during staff
@@ -904,8 +904,8 @@ export default function HospitalityPage() {
                 Higher Staff Retention
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Better-quality rosters, self rostering, reduced bias perception,
-                and better work-life balance.
+                Better-quality schedules, self-scheduling, reduced bias
+                perception, and better work-life balance.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -953,10 +953,10 @@ export default function HospitalityPage() {
               Schedule a Hospitality Demo
             </Button>
             <Button
-              href="/us/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
-              Learn more about AI rostering
+              Learn more about AI scheduling
             </Button>
           </div>
         </Container>

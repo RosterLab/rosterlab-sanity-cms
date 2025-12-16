@@ -63,7 +63,7 @@ const faqItems = [
   {
     question: "Can RosterLab help improve telehealth staff retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - telehealth staff now prioritise work-life balance more than ever. By creating safe, fair, and flexible rosters that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - telehealth staff now prioritise work-life balance more than ever. By creating safe, fair, and flexible schedules that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
   {
     question:
@@ -88,7 +88,7 @@ export default function TelehealthRosteringPage() {
                 Telehealth Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create optimized AI rosters that balance consultation demands,
+                Create optimized AI schedules that balance consultation demands,
                 fair shift distribution, and telehealth staff wellbeing.
               </p>
               <div className="mb-8 space-y-2">
@@ -190,7 +190,7 @@ export default function TelehealthRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI rostering tool for telehealth staff
+              The best AI scheduling tool for telehealth staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Fast. Optimised. Made for telehealth services. Adapt to changes
@@ -446,7 +446,7 @@ export default function TelehealthRosteringPage() {
           {/* CTA Button */}
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
-              href="/us/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
               Learn about AI Rostering
@@ -637,7 +637,7 @@ export default function TelehealthRosteringPage() {
                 rules and requirements. Reduce roster admin by 90%.
               </p>
               <a
-                href="/us/solutions/ai-roster-generator"
+                href="/us/solutions/ai-staff-schedule-maker"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -703,7 +703,7 @@ export default function TelehealthRosteringPage() {
                 requirements.
               </p>
               <a
-                href="/us/feature/re-rostering"
+                href="/us/feature/staff-rescheduling"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -736,7 +736,7 @@ export default function TelehealthRosteringPage() {
                 stress-free.
               </p>
               <a
-                href="/us/solutions/staff-roster-mobile-app"
+                href="/us/solutions/staff-scheduling-mobile-app"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →

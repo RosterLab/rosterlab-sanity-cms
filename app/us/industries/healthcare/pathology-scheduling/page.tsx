@@ -12,7 +12,7 @@ export const metadata = withHreflang(
   {
     title: "Pathology Staff Scheduling Software - RosterLab",
     description:
-      "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+      "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/pathology-scheduling",
@@ -20,7 +20,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Pathology Staff Scheduling Software - RosterLab",
       description:
-        "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/pathology-scheduling",
       images: [
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Pathology Staff Scheduling Software - RosterLab",
       description:
-        "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
       images: ["/images/us-images/pathology-roster.jpg"],
     },
   },
@@ -63,7 +63,7 @@ const faqItems = [
   {
     question: "Can RosterLab help improve pathology staff retention?",
     answer:
-      "Yes. By creating safe, fair, and flexible rosters that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better testing quality outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. By creating safe, fair, and flexible schedules that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better testing quality outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
@@ -82,9 +82,9 @@ export default function PathologyRosteringPage() {
                 Pathology Rosters
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance specimen processing
-                demands, fair night shift distribution, and pathology staff
-                wellbeing.
+                Create compliant AI-powered schedules that balance specimen
+                processing demands, fair night shift distribution, and pathology
+                staff wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -185,7 +185,7 @@ export default function PathologyRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              The best AI rostering tool for pathology staff
+              The best AI scheduling tool for pathology staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Fast. Optimised. Made for pathology departments. Adapt to changes
@@ -252,8 +252,9 @@ export default function PathologyRosteringPage() {
                 Improve pathologists work-life balance
               </h3>
               <p className="text-gray-600">
-                Create fair and flexible rosters that respect staff preferences
-                and personal commitments while maintaining operational coverage.
+                Create fair and flexible schedules that respect staff
+                preferences and personal commitments while maintaining
+                operational coverage.
               </p>
             </div>
 
@@ -442,7 +443,7 @@ export default function PathologyRosteringPage() {
           {/* CTA Button */}
           <div className="max-w-md mx-auto text-center mt-12">
             <Button
-              href="/us/solutions/ai-roster-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
               Learn about AI Rostering
@@ -634,7 +635,7 @@ export default function PathologyRosteringPage() {
                 rules and requirements. Reduce roster admin by 90%.
               </p>
               <a
-                href="/us/solutions/ai-roster-generator"
+                href="/us/solutions/ai-staff-schedule-maker"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -700,7 +701,7 @@ export default function PathologyRosteringPage() {
                 requirements.
               </p>
               <a
-                href="/us/feature/re-rostering"
+                href="/us/feature/staff-rescheduling"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -733,7 +734,7 @@ export default function PathologyRosteringPage() {
                 stress-free.
               </p>
               <a
-                href="/us/solutions/staff-roster-mobile-app"
+                href="/us/solutions/staff-scheduling-mobile-app"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
