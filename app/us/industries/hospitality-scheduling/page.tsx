@@ -117,11 +117,11 @@ export default function HospitalityPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/hospitality-roster.svg"
+                src="/images/hospitality.jpg"
                 alt="Hospitality workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
+                className="block w-full h-auto max-w-md mx-auto lg:max-w-full rounded-lg shadow-lg"
               />
             </div>
           </div>
