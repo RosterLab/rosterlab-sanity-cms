@@ -86,9 +86,9 @@ export default function IndustriesPage() {
 
               {/* Subheading */}
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Whether you're managing healthcare providers, physicians,
-                teachers, warehouse workers or pilots - RosterLab's intelligent
-                scheduling adapts to your industry's unique requirements.
+                Whether you're managing nurses, doctors, call center agents, or
+                ground crew staff - RosterLab's intelligent scheduling adapts to
+                your industry's unique requirements.
               </p>
 
               {/* Buttons */}
