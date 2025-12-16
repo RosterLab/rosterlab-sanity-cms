@@ -45,15 +45,15 @@ export const metadata = withHreflang(
 const faqItems = [
   {
     question:
-      "How does RosterLab ensure union compliance for pathology rosters?",
+      "How does RosterLab ensure union compliance for pathology schedules?",
     answer:
-      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules.",
   },
   {
     question:
       "How does RosterLab handle specimen processing peaks and testing schedules?",
     answer:
-      "Staff can request protected time for high-volume processing periods through the mobile app. RosterLab schedules appropriate staffing around peak specimen arrival times and balances the rest of the roster to ensure laboratory coverage while maintaining work-life balance.",
+      "Staff can request protected time for high-volume processing periods through the mobile app. RosterLab schedules appropriate staffing around peak specimen arrival times and balances the rest of the schedule to ensure laboratory coverage while maintaining work-life balance.",
   },
   {
     question: "How does RosterLab ensure fair night shift distribution?",
@@ -79,7 +79,7 @@ export default function PathologyRosteringPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
                   Flexible, Compliant
                 </span>{" "}
-                Pathology Rosters
+                Pathology Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Create compliant AI-powered schedules that balance specimen
@@ -322,7 +322,7 @@ export default function PathologyRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Pathology Roster Challenges
+                Perfect For Pathology Scheduling Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -375,7 +375,7 @@ export default function PathologyRosteringPage() {
                     </h4>
                     <p className="text-gray-600">
                       Automatically enforce union agreements, rest periods, and
-                      training requirements. The system ensures every roster
+                      training requirements. The system ensures every schedule
                       meets regulatory standards.
                     </p>
                   </div>
@@ -399,7 +399,7 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Self-Rostering for Better Flexibility
+                      Self-Scheduling for Better Flexibility
                     </h4>
                     <p className="text-gray-600">
                       Empower pathologists to set their availability and
@@ -446,13 +446,13 @@ export default function PathologyRosteringPage() {
               href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
-              Learn about AI Rostering
+              Learn about AI Scheduling
             </Button>
           </div>
         </Container>
       </section>
 
-      {/* Self-Rostering Workflow Section */}
+      {/* Self-Scheduling Workflow Section */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
@@ -460,7 +460,7 @@ export default function PathologyRosteringPage() {
               PATHOLOGY-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Pathology Staff Engage with Their Rosters
+              How Pathology Staff Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around specimen processing demands, preferences, and
@@ -514,7 +514,7 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Compliant Roster
+                      AI Generates Compliant Schedule
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, specimen processing peaks,
@@ -536,7 +536,7 @@ export default function PathologyRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to staff phones. They see their
+                      Schedules sync instantly to staff phones. They see their
                       shifts and can request swaps with real-time updates.
                     </p>
                   </div>
@@ -551,7 +551,7 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Staff Self-Roster Open Shifts
+                      Staff Self-Schedule Open Shifts
                     </h3>
                     <p className="text-gray-600">
                       Unfilled shifts are posted as "open shifts" - staff can
