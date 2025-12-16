@@ -62,7 +62,7 @@ export default function EducationPage() {
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
                 Spend 90% less time building and adjusting your teacher and
-                student rosters, no matter how complex.
+                student schedules, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button

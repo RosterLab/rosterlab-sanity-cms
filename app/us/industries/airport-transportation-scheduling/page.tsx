@@ -60,13 +60,13 @@ export default function AviationPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Airport Airports & Transportation Transportation
+                  Airport & Transportation
                 </span>{" "}
-                Rostering Software
+                Crew Scheduling Software
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time ensuring safe operations. We
-                specialise in all types of transportation rosters, from cabin
+                Less time scheduling, more time ensuring safe operations. We
+                specialize in all types of transportation schedules, from cabin
                 crew to ground staff, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -211,7 +211,7 @@ export default function AviationPage() {
               Transform Your Transportation Operations
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Empower your transportation teams with AI-driven rostering that
+              Empower your transportation teams with AI-driven scheduling that
               ensures safety, compliance, and operational excellence.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function AviationPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab transportation platform showing AI-powered crew rostering"
+                  alt="RosterLab transportation platform showing AI-powered crew scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -289,7 +289,7 @@ export default function AviationPage() {
                       Focus on Crew Safety
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Create compliant rosters that respect crew fatigue
+                      Create compliant schedules that respect crew fatigue
                       management, overtime limitations, and mandatory rest
                       periods. Safe, well-rested crews deliver better
                       performance.
@@ -353,7 +353,7 @@ export default function AviationPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Transportation Rostering
+              Everything You Need for Transportation Scheduling
             </h2>
           </div>
 
@@ -601,7 +601,7 @@ export default function AviationPage() {
                 Higher Crew Retention
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Better work-life balance through fair rostering, open shifts,
+                Better work-life balance through fair scheduling, open shifts,
                 and transparent scheduling practices.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
@@ -898,7 +898,7 @@ export default function AviationPage() {
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               Calculate how much time and money you could save with automated
-              crew rostering
+              crew scheduling
             </p>
             <Button
               href="/pricing"

@@ -61,8 +61,8 @@ export default function SecurityPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time ensuring site security. We
-                specialise in all types of security rosters, no matter how
+                Less time scheduling, more time ensuring site security. We
+                specialize in all types of security schedules, no matter how
                 complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -349,7 +349,7 @@ export default function SecurityPage() {
                     <p className="text-gray-600 text-sm">
                       Combat high security staff turnover by respecting
                       preferences and work-life balance. Fair, transparent
-                      rosters that consider individual needs lead to happier
+                      schedules that consider individual needs lead to happier
                       staff, better retention, and improved site safety.
                     </p>
                   </div>
@@ -940,11 +940,11 @@ export default function SecurityPage() {
       >
         <Container>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Optimised Rosters. Safer Staff.
+            Optimized Schedules. Safer Staff.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
             Well-rested security guards are more alert and effective. Fair
-            rosters with proper fatigue management reduce burnout, improve
+            schedules with proper fatigue management reduce burnout, improve
             retention, and ensure your team stays sharp when it matters most.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

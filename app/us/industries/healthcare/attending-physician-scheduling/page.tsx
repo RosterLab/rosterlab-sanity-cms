@@ -176,7 +176,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             <div className="hidden lg:block relative">
               <Image
                 src="/images/us-images/smo-scheduling.jpg"
-                alt="Attending Physicianrostering software interface"
+                alt="Attending Physician scheduling software interface"
                 width={600}
                 height={400}
                 className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
@@ -383,8 +383,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       Reduce Hours of Admin Work
                     </h4>
                     <p className="text-gray-600">
-                      Turn rostering from a multi-day puzzle into a quick review
-                      process. Generate optimized schedules that balance
+                      Turn scheduling from a multi-day puzzle into a quick
+                      review process. Generate optimized schedules that balance
                       coverage, fairness, and compliance all within minutes.
                     </p>
                   </div>
@@ -461,7 +461,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     />
                   </svg>
                   <p className="text-gray-700">
-                    <strong>300+ hours saved</strong> annually in rostering
+                    <strong>300+ hours saved</strong> annually in scheduling
                     administration
                   </p>
                 </div>

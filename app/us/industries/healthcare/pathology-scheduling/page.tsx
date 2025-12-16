@@ -223,10 +223,10 @@ export default function PathologyRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduce rostering administration
+                Reduce scheduling administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering - giving you time back
+                Eliminate the need for manual scheduling - giving you time back
                 to focus on laboratory quality and team wellbeing.
               </p>
             </div>
@@ -258,7 +258,7 @@ export default function PathologyRosteringPage() {
               </p>
             </div>
 
-            {/* Pain Point 3: Improve flexibility through self-rostering */}
+            {/* Pain Point 3: Improve flexibility through self-scheduling */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -403,7 +403,7 @@ export default function PathologyRosteringPage() {
                     </h4>
                     <p className="text-gray-600">
                       Empower pathologists to set their availability and
-                      preferences. The AI automatically builds rosters around
+                      preferences. The AI automatically builds schedules around
                       staff input while maintaining coverage and compliance.
                     </p>
                   </div>
@@ -464,7 +464,7 @@ export default function PathologyRosteringPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around specimen processing demands, preferences, and
-              wellbeing, not just top-down rostering
+              wellbeing, not just top-down scheduling
             </p>
           </div>
 
@@ -519,7 +519,7 @@ export default function PathologyRosteringPage() {
                     <p className="text-gray-600">
                       RosterLab balances preferences, specimen processing peaks,
                       night shift equity, and union rules to create compliant
-                      rosters.
+                      schedules.
                     </p>
                   </div>
                 </div>
@@ -583,7 +583,7 @@ export default function PathologyRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your pathology rostering?
+                Ready to streamline your pathology scheduling?
               </p>
               <Button
                 href="/us/book-a-demo"
@@ -605,7 +605,7 @@ export default function PathologyRosteringPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Purpose-built tools that address the unique complexity of
-              pathology laboratory rosters
+              pathology laboratory schedules
             </p>
           </div>
 
@@ -631,7 +631,7 @@ export default function PathologyRosteringPage() {
                 Automatic Roster Generation
               </h3>
               <p className="text-gray-600 mb-3">
-                Automatically generate compliant rosters that enforce union
+                Automatically generate compliant schedules that enforce union
                 rules and requirements. Reduce roster admin by 90%.
               </p>
               <a
@@ -730,7 +730,7 @@ export default function PathologyRosteringPage() {
               </h3>
               <p className="text-gray-600 mb-3">
                 Stay on top of staff changes with ease. Manage staffing
-                consistently so rosters stay accurate, compliant, and
+                consistently so schedules stay accurate, compliant, and
                 stress-free.
               </p>
               <a

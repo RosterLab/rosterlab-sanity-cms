@@ -61,8 +61,8 @@ export default function ManufacturingPage() {
                 Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Optimise your manufacturing teams and operations with better
-                staff rostering, no matter how complex.
+                Optimize your manufacturing teams and operations with better
+                staff scheduling, no matter how complex.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button

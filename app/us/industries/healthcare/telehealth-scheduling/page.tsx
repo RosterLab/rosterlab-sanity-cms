@@ -12,7 +12,7 @@ export const metadata = withHreflang(
   {
     title: "Telehealth Staff Scheduling Software - RosterLab",
     description:
-      "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
+      "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth schedules that reduce admin and streamline processes.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/telehealth-scheduling",
@@ -20,7 +20,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Telehealth Staff Scheduling Software - RosterLab",
       description:
-        "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
+        "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth schedules that reduce admin and streamline processes.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/telehealth-scheduling",
       images: [
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Telehealth Staff Scheduling Software - RosterLab",
       description:
-        "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
+        "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth schedules that reduce admin and streamline processes.",
       images: ["/images/us-images/iStock-1985167783.jpg"],
     },
   },
@@ -45,7 +45,7 @@ export const metadata = withHreflang(
 const faqItems = [
   {
     question:
-      "How does RosterLab ensure union compliance for telehealth rosters?",
+      "How does RosterLab ensure union compliance for telehealth schedules?",
     answer:
       "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules.",
   },
@@ -228,15 +228,15 @@ export default function TelehealthRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduce rostering administration
+                Reduce scheduling administration
               </h3>
               <p className="text-gray-600">
-                Eliminate the need for manual rostering - giving you time back
+                Eliminate the need for manual scheduling - giving you time back
                 to focus on service quality and team wellbeing.
               </p>
             </div>
 
-            {/* Pain Point 2: Improve flexibility through self-rostering */}
+            {/* Pain Point 2: Improve flexibility through self-scheduling */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -288,7 +288,7 @@ export default function TelehealthRosteringPage() {
               </p>
             </div>
 
-            {/* Pain Point 4: Remote rostering */}
+            {/* Pain Point 4: Remote scheduling */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -310,7 +310,7 @@ export default function TelehealthRosteringPage() {
               </h3>
               <p className="text-gray-600">
                 Manage distributed telehealth teams from anywhere with
-                cloud-based rostering that keeps everyone connected and
+                cloud-based scheduling that keeps everyone connected and
                 coordinated.
               </p>
             </div>
@@ -407,7 +407,8 @@ export default function TelehealthRosteringPage() {
                     </h4>
                     <p className="text-gray-600">
                       Manage staffing changes in a structured, consistent way -
-                      so your rosters stay accurate, organized, and stress-free.
+                      so your schedules stay accurate, organized, and
+                      stress-free.
                     </p>
                   </div>
                 </div>
@@ -467,7 +468,7 @@ export default function TelehealthRosteringPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around consultation demands, preferences, and wellbeing, not
-              just top-down rostering
+              just top-down scheduling
             </p>
           </div>
 
@@ -521,7 +522,7 @@ export default function TelehealthRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, consultation peaks, shift
-                      equity, and union rules to create compliant rosters.
+                      equity, and union rules to create compliant schedules.
                     </p>
                   </div>
                 </div>
@@ -585,7 +586,7 @@ export default function TelehealthRosteringPage() {
             {/* CTA */}
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-6">
-                Ready to streamline your telehealth rostering?
+                Ready to streamline your telehealth scheduling?
               </p>
               <Button
                 href="/us/book-a-demo"
@@ -607,7 +608,7 @@ export default function TelehealthRosteringPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Purpose-built tools that address the unique complexity of
-              telehealth service rosters
+              telehealth service schedules
             </p>
           </div>
 
@@ -633,7 +634,7 @@ export default function TelehealthRosteringPage() {
                 Automatic Roster Generation
               </h3>
               <p className="text-gray-600 mb-3">
-                Automatically generate compliant rosters that enforce union
+                Automatically generate compliant schedules that enforce union
                 rules and requirements. Reduce roster admin by 90%.
               </p>
               <a
@@ -732,7 +733,7 @@ export default function TelehealthRosteringPage() {
               </h3>
               <p className="text-gray-600 mb-3">
                 Stay on top of staff changes with ease. Manage staffing
-                consistently so rosters stay accurate, compliant, and
+                consistently so schedules stay accurate, compliant, and
                 stress-free.
               </p>
               <a
