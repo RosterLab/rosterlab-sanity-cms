@@ -8,40 +8,39 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Airport & Transport Crew Rostering Software - RosterLab",
+    title: "Retail Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+      "Learn how our scheduling software simplifies staff scheduling in retail. Create fair, efficient staff schedules that improve customer service, compliance & saves time.",
     alternates: {
-      canonical:
-        "https://rosterlab.com/industries/airports-and-transportation-roster",
+      canonical: "https://rosterlab.com/us/industries/retail-scheduling",
     },
     openGraph: {
-      title: "Airport & Transport Crew Rostering Software - RosterLab",
+      title: "Retail Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Learn how our scheduling software simplifies staff scheduling in retail. Create fair, efficient staff schedules that improve customer service, compliance & saves time.",
       type: "website",
-      url: "https://rosterlab.com/industries/airports-and-transportation-roster",
+      url: "https://rosterlab.com/us/industries/retail-scheduling",
       images: [
         {
-          url: "/images/aviation.jpg",
+          url: "/images/retail-roster.jpg",
           width: 1200,
           height: 630,
-          alt: "Airports & Transportation crew scheduling with RosterLab",
+          alt: "Retail workforce scheduling with RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Airport & Transport Crew Rostering Software - RosterLab",
+      title: "Retail Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
-      images: ["/images/aviation.jpg"],
+        "Learn how our scheduling software simplifies staff scheduling in retail. Create fair, efficient staff schedules that improve customer service, compliance & saves time.",
+      images: ["/images/retail-roster.jpg"],
     },
   },
-  "/industries/airports-and-transportation-roster",
+  "/us/industries/retail-scheduling",
 );
 
-export default function AviationPage() {
+export default function RetailPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -57,24 +56,24 @@ export default function AviationPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Airports & Transportation
+                  Retail Scheduling
                 </span>{" "}
-                Rostering Software
+                Software for Teams
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time rostering, more time ensuring safe operations. We
-                specialise in all types of transportation rosters, from cabin
-                crew to ground staff, no matter how complex.
+                Create compliant AI rosters that respect your retail staff's
+                preferences, optimizes for peak periods, and honours contractual
+                agreements.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/contact"
+                  href="/us/contact"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
                 >
                   Learn More
@@ -96,7 +95,7 @@ export default function AviationPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for transportation and complex industries
+                    Made for retail teams
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -119,8 +118,8 @@ export default function AviationPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/aviation.svg"
-                alt="Aviation crew scheduling dashboard"
+                src="/images/illustration/retail-roster.svg"
+                alt="Retail workforce scheduling dashboard"
                 width={600}
                 height={400}
                 className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
@@ -205,11 +204,11 @@ export default function AviationPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Transform Your Transportation Operations
+              Transform Your Retail Operations
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Empower your transportation teams with AI-driven rostering that
-              ensures safety, compliance, and operational excellence.
+              Handle the unique complexities of retail rostering with AI-driven
+              scheduling that adapts to your dynamic demands.
             </p>
           </div>
 
@@ -220,11 +219,39 @@ export default function AviationPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab transportation platform showing AI-powered crew rostering"
+                  alt="RosterLab retail platform showing AI-powered rostering"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
                 />
+                <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-lg p-4 max-w-xs">
+                  <div className="flex items-start space-x-3">
+                    <div className="flex-shrink-0">
+                      <svg
+                        className="w-6 h-6 text-blue-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">
+                        Footfall Demand Matching
+                      </p>
+                      <p className="text-xs text-gray-600 mt-1">
+                        Adapt to sales events and peak trading periods
+                        automatically
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -245,19 +272,20 @@ export default function AviationPage() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
                         />
                       </svg>
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Improve Operational Efficiency
+                      Match Footfall Demand to Service Level
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Better utilise crew duty hours, reduce costs, and ensure
-                      optimal qualification coverage across all flights.
-                      Maximise efficiency while maintaining safety standards.
+                      Handle fluctuating demand during weekends, sales events,
+                      and holiday seasons. Flexibly adjust staffing levels to
+                      maintain customer service during peak trading while
+                      optimising costs during quieter periods.
                     </p>
                   </div>
                 </div>
@@ -276,20 +304,20 @@ export default function AviationPage() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                         />
                       </svg>
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Focus on Crew Safety
+                      Multiple Departments & Locations Made Easy
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Create compliant rosters that respect crew fatigue
-                      management, overtime limitations, and mandatory rest
-                      periods. Safe, well-rested crews deliver better
-                      performance.
+                      Ensure proper coverage across all departments and stores -
+                      from cashiers and stock handlers to floor staff and
+                      management. Automatically allocate the right people with
+                      the right skills to each department and location.
                     </p>
                   </div>
                 </div>
@@ -308,19 +336,52 @@ export default function AviationPage() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                         />
                       </svg>
                     </div>
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Compliant with Transportation Regulations
+                      Reduce Staff Turnover
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Automatically enforce requirements, hours of service
-                      limitations, and crew duty regulations, ensuring
-                      operational compliance and crew wellbeing.
+                      Let staff set their preferred days and shifts through the
+                      mobile app. The AI honours these preferences wherever
+                      possible while maintaining fair coverage, compliance with
+                      employment laws, and balanced workloads across the team.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Benefit 4 */}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <svg
+                        className="w-5 h-5 text-purple-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      Optimise Labour Costs & Compliance
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Automatically enforce employment agreements and rest break
+                      requirements while optimising staffing efficiency. Better
+                      utilisation of ordinary hours reduces unnecessary overtime
+                      and casual costs.
                     </p>
                   </div>
                 </div>
@@ -328,13 +389,13 @@ export default function AviationPage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/solutions/ai-roster-generator"
+                  href="/us/solutions/ai-roster-generator"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -345,18 +406,266 @@ export default function AviationPage() {
         </Container>
       </section>
 
-      {/* Core Features */}
+      {/* Retail Verticals */}
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Transportation Rostering
+              Tailored Solutions for Every Retail Sector
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Purpose-built rostering for the unique needs of each retail
+              sector.
+            </p>
+          </div>
+
+          {/* All Departments */}
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              All Retail Sectors
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Department Stores
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-blue-600 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Supermarket Chains
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Fashion Retail</h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-cyan-600 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Electronics Stores
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-indigo-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Pharmacies</h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-pink-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Customer Service Teams
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Shopping Centres
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-green-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Specialty Retail
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-purple-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">
+                  Franchise Chains
+                </h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Gym Chains</h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-blue-600 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">Seasonal Retail</h4>
+              </div>
+              <div className="text-center group cursor-pointer">
+                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
+                  <svg
+                    className="w-8 h-8 text-red-500 transition-transform duration-200 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h4 className="font-semibold text-gray-900">24/7 Stores</h4>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Core Features */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Complete Retail Scheduling Solution
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
-              href="/feature/automated-rostering"
+              href="/us/feature/automated-rostering"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -378,8 +687,8 @@ export default function AviationPage() {
                 Automatically Generate Rosters
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Create optimal crew schedules in minutes using AI that balances
-                all regulatory and operational requirements.
+                Create optimal schedules in minutes using AI that balances all
+                requirements.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -400,7 +709,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/rules-engine"
+              href="/us/feature/rules-engine"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
@@ -419,11 +728,11 @@ export default function AviationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Transportation Regulation Compliant
+                Employment Law Compliant
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Automatically enforce transportation regulations, hours of
-                service, and mandatory rest requirements for crew safety.
+                Automatically enforce employment agreements, fairness, and rest
+                break requirements.
               </p>
               <div className="flex items-center text-sky-600 font-medium mt-auto">
                 Learn more
@@ -444,7 +753,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/open-shifts"
+              href="/us/feature/open-shifts"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -463,11 +772,11 @@ export default function AviationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Better Crew Coverage
+                Better Staffing Coverage
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise crew qualifications, duty hours, and standby
-                requirements for reliable transport operations.
+                Optimise all the staffing intricacies for better coverage across
+                your stores.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -488,7 +797,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/solutions/staff-roster-mobile-app"
+              href="/us/solutions/staff-roster-mobile-app"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">
@@ -510,8 +819,8 @@ export default function AviationPage() {
                 Mobile Access & Notifications
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Crew can view schedules, accept open shifts, request leave, and
-                manage changes from any device.
+                Staff can view schedules, set preferences, request leave, accept
+                open shifts and manage swaps from any device.
               </p>
               <div className="flex items-center text-cyan-600 font-medium mt-auto">
                 Learn more
@@ -532,7 +841,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/re-rostering"
+              href="/us/feature/re-rostering"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
@@ -554,8 +863,8 @@ export default function AviationPage() {
                 Re-rostering
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Handle transport delays, crew illnesses, and schedule
-                disruptions with minimal operational impact.
+                Handle last-minute changes with minimal disruption during staff
+                call-outs or emergencies.
               </p>
               <div className="flex items-center text-indigo-600 font-medium mt-auto">
                 Learn more
@@ -576,7 +885,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/self-scheduling"
+              href="/us/feature/self-scheduling"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -595,11 +904,11 @@ export default function AviationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Higher Crew Retention
+                Higher Staff Retention
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Better work-life balance through fair rostering, open shifts,
-                and transparent scheduling practices.
+                Better-quality rosters, self rostering, reduced bias perception,
+                and better work-life balance.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
                 Learn more
@@ -622,304 +931,6 @@ export default function AviationPage() {
         </Container>
       </section>
 
-      {/* Transportation Sectors */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Tailored Solutions for Every Transportation Sector
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built rostering for the unique needs of each
-              transportation operation.
-            </p>
-          </div>
-
-          {/* All Transportation Sectors */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              All Transportation Sectors
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">Airports</h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-blue-600 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">Cabin Crew</h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">Boat Crew</h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-cyan-600 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">Ground Crew</h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-indigo-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Maintenance Crew
-                </h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-pink-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Airport Operations
-                </h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-sky-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Cargo Operations
-                </h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-green-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Charter Services
-                </h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-purple-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">Railway Crew</h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Medical Aviation
-                </h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-blue-600 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">
-                  Regional Carriers
-                </h4>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-red-500 transition-transform duration-200 group-hover:scale-110"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h4 className="font-semibold text-gray-900">24/7 Operations</h4>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Pricing CTA */}
-      <section className="py-16 bg-gray-50">
-        <Container>
-          <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              See Your Potential Savings
-            </h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Calculate how much time and money you could save with automated
-              crew rostering
-            </p>
-            <Button
-              href="/pricing"
-              className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
-            >
-              View Pricing
-              <svg
-                className="w-5 h-5 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Button>
-          </div>
-        </Container>
-      </section>
-
       {/* Central Message - Full Width */}
       <div
         className="py-16 text-center"
@@ -930,22 +941,22 @@ export default function AviationPage() {
       >
         <Container>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Safer Staff, Better Transport Operations.
+            Better Customer Service, Happier Staff.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            When transportation professionals spend less time on scheduling
-            tasks, they can focus on what matters most - delivering safe,
-            efficient, and reliable operations.
+            When retail staff preferences are respected, they're more engaged
+            and motivated - leading to better customer service, reduced
+            turnover, and a more positive shopping experience.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              href="/book-a-demo"
+              href="/us/book-a-demo"
               className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
-              Schedule a Transportation Demo
+              Schedule a Retail Demo
             </Button>
             <Button
-              href="/solutions/ai-roster-generator"
+              href="/us/solutions/ai-roster-generator"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
               Learn more about AI rostering
@@ -958,9 +969,9 @@ export default function AviationPage() {
 
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Airports & Transportation" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Retail" },
         ]}
       />
     </SiteLayout>

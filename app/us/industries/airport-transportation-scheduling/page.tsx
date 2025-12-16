@@ -8,37 +8,40 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Airport & Transport Crew Rostering Software - RosterLab",
+    title:
+      "Airport Airport & Transport Crew Rostering Transportation Crew Scheduling Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+      "Learn how our scheduling software simplifies crew scheduling in airports & transportation. Create compliant, efficient schedules that improve safety, operational efficiency & saves time.",
     alternates: {
       canonical:
-        "https://rosterlab.com/industries/airports-and-transportation-roster",
+        "https://rosterlab.com/us/industries/airport-transportation-scheduling",
     },
     openGraph: {
-      title: "Airport & Transport Crew Rostering Software - RosterLab",
+      title:
+        "Airport Airport & Transport Crew Rostering Transportation Crew Scheduling Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Learn how our scheduling software simplifies crew scheduling in airports & transportation. Create compliant, efficient schedules that improve safety, operational efficiency & saves time.",
       type: "website",
-      url: "https://rosterlab.com/industries/airports-and-transportation-roster",
+      url: "https://rosterlab.com/us/industries/airport-transportation-scheduling",
       images: [
         {
           url: "/images/aviation.jpg",
           width: 1200,
           height: 630,
-          alt: "Airports & Transportation crew scheduling with RosterLab",
+          alt: "Airport Airports & Transportation Transportation crew scheduling with RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Airport & Transport Crew Rostering Software - RosterLab",
+      title:
+        "Airport Airport & Transport Crew Rostering Transportation Crew Scheduling Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Learn how our scheduling software simplifies crew scheduling in airports & transportation. Create compliant, efficient schedules that improve safety, operational efficiency & saves time.",
       images: ["/images/aviation.jpg"],
     },
   },
-  "/industries/airports-and-transportation-roster",
+  "/us/industries/airport-transportation-scheduling",
 );
 
 export default function AviationPage() {
@@ -57,7 +60,7 @@ export default function AviationPage() {
                       "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
                   }}
                 >
-                  Airports & Transportation
+                  Airport Airports & Transportation Transportation
                 </span>{" "}
                 Rostering Software
               </h1>
@@ -68,13 +71,13 @@ export default function AviationPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/contact"
+                  href="/us/contact"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
                 >
                   Learn More
@@ -328,13 +331,13 @@ export default function AviationPage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="bg-blue-600 text-white hover:bg-blue-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
-                  href="/solutions/ai-roster-generator"
+                  href="/us/solutions/ai-roster-generator"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -356,7 +359,7 @@ export default function AviationPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
-              href="/feature/automated-rostering"
+              href="/us/feature/automated-rostering"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -400,7 +403,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/rules-engine"
+              href="/us/feature/rules-engine"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
@@ -444,7 +447,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/open-shifts"
+              href="/us/feature/open-shifts"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -488,7 +491,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/solutions/staff-roster-mobile-app"
+              href="/us/solutions/staff-roster-mobile-app"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">
@@ -532,7 +535,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/re-rostering"
+              href="/us/feature/re-rostering"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
@@ -576,7 +579,7 @@ export default function AviationPage() {
             </Link>
 
             <Link
-              href="/feature/self-scheduling"
+              href="/us/feature/self-scheduling"
               className="flex flex-col bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow group"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -939,13 +942,13 @@ export default function AviationPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              href="/book-a-demo"
+              href="/us/book-a-demo"
               className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
               Schedule a Transportation Demo
             </Button>
             <Button
-              href="/solutions/ai-roster-generator"
+              href="/us/solutions/ai-roster-generator"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
               Learn more about AI rostering
@@ -958,9 +961,9 @@ export default function AviationPage() {
 
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Airports & Transportation" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Airport Airports & Transportation Transportation" },
         ]}
       />
     </SiteLayout>

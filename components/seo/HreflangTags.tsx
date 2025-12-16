@@ -56,6 +56,19 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/industries/transportation/port-rostering":
     "/us/industries/transportation/port-scheduling",
   "/industries/call-centre-rostering": "/us/industries/call-center-scheduling",
+  "/industries/hospitality-roster": "/us/industries/hospitality-scheduling",
+  "/industries/retail-roster": "/us/industries/retail-scheduling",
+  "/industries/manufacturing-roster": "/us/industries/manufacturing-scheduling",
+  "/industries/education-roster": "/us/industries/education-scheduling",
+  "/industries/public-services-roster":
+    "/us/industries/emergency-services-scheduling",
+  "/industries/security-roster": "/us/industries/security-scheduling",
+  "/industries/airports-and-transportation-roster":
+    "/us/industries/airport-transportation-scheduling",
+  "/industries/healthcare/pathology-rostering":
+    "/us/industries/healthcare/pathology-scheduling",
+  "/industries/healthcare/telehealth-rostering":
+    "/us/industries/healthcare/telehealth-scheduling",
 };
 
 // Reverse mapping to find original URL from US version
@@ -109,6 +122,15 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/healthcare/senior-medical-officer-rostering",
   "/industries/transportation/port-rostering",
   "/industries/call-centre-rostering",
+  "/industries/hospitality-roster",
+  "/industries/retail-roster",
+  "/industries/manufacturing-roster",
+  "/industries/education-roster",
+  "/industries/public-services-roster",
+  "/industries/security-roster",
+  "/industries/airports-and-transportation-roster",
+  "/industries/healthcare/pathology-rostering",
+  "/industries/healthcare/telehealth-rostering",
 ]);
 
 // Helper function to generate hreflang metadata
