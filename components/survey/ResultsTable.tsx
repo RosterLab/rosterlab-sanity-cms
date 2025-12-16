@@ -59,18 +59,11 @@ export default function ResultsTable({
 
   const exportToCSV = () => {
     // Build CSV content
-    const headers = [
-      "Name",
-      "Email",
-      "Submitted At",
-      "Preference Type",
-      "Preference Data",
-    ];
+    const headers = ["Name", "Email", "Submitted At", "Preferences"];
     const rows = results.responses.map((response) => [
       response.participant.name,
       response.participant.email,
       formatDate(response.participant.submitted_at.toString()),
-      response.preference_type,
       formatPreferenceData(response.preference_data),
     ]);
 
@@ -135,7 +128,7 @@ export default function ResultsTable({
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white p-6 rounded-lg border border-neutral-200 shadow-sm">
           <div className="text-sm text-neutral-600 mb-1">
             Total Participants
@@ -149,13 +142,6 @@ export default function ResultsTable({
           <div className="text-sm text-neutral-600 mb-1">Total Responses</div>
           <div className="text-3xl font-bold text-neutral-900">
             {results.stats.total_responses}
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg border border-neutral-200 shadow-sm">
-          <div className="text-sm text-neutral-600 mb-1">Completion Rate</div>
-          <div className="text-3xl font-bold text-neutral-900">
-            {results.stats.completion_rate}%
           </div>
         </div>
 
@@ -319,10 +305,7 @@ export default function ResultsTable({
                     Email
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                    Preference Type
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                    Data
+                    Preferences
                   </th>
                 </tr>
               </thead>
@@ -330,7 +313,7 @@ export default function ResultsTable({
                 {results.responses.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={4}
+                      colSpan={3}
                       className="px-6 py-8 text-center text-neutral-500"
                     >
                       No responses yet
@@ -346,14 +329,9 @@ export default function ResultsTable({
                         {response.participant.email}
                       </td>
                       <td className="px-6 py-4 text-sm text-neutral-600">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                          {response.preference_type.replace(/_/g, " ")}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-neutral-600">
-                        <pre className="whitespace-pre-wrap max-w-md text-xs">
+                        <div className="max-w-md">
                           {formatPreferenceData(response.preference_data)}
-                        </pre>
+                        </div>
                       </td>
                     </tr>
                   ))

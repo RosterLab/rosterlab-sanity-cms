@@ -55,8 +55,8 @@ export default function SurveyPreferencesClient() {
 
             {/* Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-primary-600"
                     fill="none"
@@ -80,8 +80,8 @@ export default function SurveyPreferencesClient() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200">
-                <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-secondary-600"
                     fill="none"
@@ -97,7 +97,7 @@ export default function SurveyPreferencesClient() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                  Fair & Balanced
+                  Automatically Distribute Shifts
                 </h3>
                 <p className="text-neutral-600">
                   Staff rank their holiday preferences. Algorithm distributes
@@ -105,8 +105,8 @@ export default function SurveyPreferencesClient() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-primary-600"
                     fill="none"
