@@ -289,7 +289,7 @@ export default function IndustriesPage() {
                   <span className="text-gray-700">Fair shift distribution</span>
                 </div>
               </div>
-              <Link href="/us/industries/healthcare">
+              <Link href="/us/industries/healthcare-scheduling">
                 <Button className="bg-blue-600 text-white hover:bg-blue-700">
                   Explore Healthcare Solutions
                 </Button>
