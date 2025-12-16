@@ -85,14 +85,54 @@ export default function ResultsTable({
   };
 
   const exportToCSV = () => {
-    // Build CSV content
+    // Build CSV content with assignments if available
     const headers = ["Name", "Email", "Submitted At", "Preferences"];
-    const rows = results.responses.map((response) => [
-      response.participant.name,
-      response.participant.email,
-      formatDate(response.participant.submitted_at.toString()),
-      formatPreferenceData(response.preference_data),
-    ]);
+
+    // Add assignment column if balancing has been done
+    if (balancingResult) {
+      headers.push("Assigned Shifts");
+    }
+
+    const rows = results.responses.map((response) => {
+      const row = [
+        response.participant.name,
+        response.participant.email,
+        formatDate(response.participant.submitted_at.toString()),
+        formatPreferenceData(response.preference_data),
+      ];
+
+      // Add assignments if balancing has been done
+      if (balancingResult) {
+        const assignments = balancingResult.assignments
+          .filter((assignment) =>
+            assignment.assigned_staff.some(
+              (staff) => staff.participant_id === response.participant_id,
+            ),
+          )
+          .map((assignment) => {
+            const staff = assignment.assigned_staff.find(
+              (s) => s.participant_id === response.participant_id,
+            );
+            const rankText = staff?.preference_rank
+              ? ` (${staff.preference_rank}${
+                  staff.preference_rank === 1
+                    ? "st"
+                    : staff.preference_rank === 2
+                      ? "nd"
+                      : staff.preference_rank === 3
+                        ? "rd"
+                        : "th"
+                } choice)`
+              : " (not ranked)";
+            return `${assignment.holiday_name}${rankText}`;
+          })
+          .join("; ");
+
+        row.push(assignments || "None");
+      }
+
+      return row;
+    });
 
     const csvContent = [
       headers.join(","),
