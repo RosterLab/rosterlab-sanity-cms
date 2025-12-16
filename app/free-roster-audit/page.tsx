@@ -538,7 +538,7 @@ export default function FreeRosterAuditPage() {
                   section: "is_audit_right",
                 }}
               >
-                Book Your Free Audit
+                Book a Discovery Call
               </Button>
             </div>
           </Container>
