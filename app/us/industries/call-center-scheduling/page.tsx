@@ -155,11 +155,11 @@ export default function CallCentersPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/call-centstaff-rescheduling.svg"
+                src="/images/call-center.jpg"
                 alt="Call center schedule scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="block w-full h-auto rounded-lg shadow-lg"
               />
             </div>
           </div>
