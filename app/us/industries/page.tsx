@@ -1344,12 +1344,12 @@ export default function IndustriesPage() {
                     Staff submit leave requests and shift preferences through
                     the{" "}
                     <Link
-                      href="/solutions/staff-roster-mobile-app"
+                      href="/us/solutions/staff-scheduling-mobile-app"
                       className="text-blue-600 hover:underline"
                     >
                       mobile app
                     </Link>
-                    , ready for review and roster planning.
+                    , ready for review and schedule planning.
                   </p>
                 </div>
               </div>
@@ -1378,9 +1378,9 @@ export default function IndustriesPage() {
                     Share and manage schedules
                   </h3>
                   <p className="text-gray-600">
-                    Publish rosters via{" "}
+                    Publish schedules via{" "}
                     <Link
-                      href="/solutions/staff-roster-mobile-app"
+                      href="/us/solutions/staff-scheduling-mobile-app"
                       className="text-blue-600 hover:underline"
                     >
                       mobile app
