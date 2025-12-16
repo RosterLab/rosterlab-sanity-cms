@@ -169,7 +169,7 @@ export default function PathologyRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/pathology.svg"
+                src="/images/us-images/pathology-roster.jpg"
                 alt="Pathology scheduling software interface"
                 width={600}
                 height={400}

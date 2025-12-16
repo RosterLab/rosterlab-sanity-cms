@@ -174,7 +174,7 @@ export default function TelehealthRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/telehealth.svg"
+                src="/images/us-images/iStock-1985167783.jpg"
                 alt="Telehealth scheduling software interface"
                 width={600}
                 height={400}
