@@ -7,16 +7,16 @@ import { withHreflang } from "@/components/seo/HreflangTags";
 
 export const metadata = withHreflang(
   {
-    title: "Staff Scheduling Software For Any Industry - ScheduleLab",
+    title: "Staff Scheduling Software For Any Industry - RosterLab",
     description:
-      "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how ScheduleLab fits your business, industry & goals.",
+      "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
     alternates: {
       canonical: "https://rosterlab.com/us/industries",
     },
     openGraph: {
-      title: "Staff Scheduling Software For Any Industry - ScheduleLab",
+      title: "Staff Scheduling Software For Any Industry - RosterLab",
       description:
-        "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how ScheduleLab fits your business, industry & goals.",
+        "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
       type: "website",
       url: "https://rosterlab.com/us/industries",
       images: [
@@ -29,9 +29,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Staff Scheduling Software For Any Industry - ScheduleLab",
+      title: "Staff Scheduling Software For Any Industry - RosterLab",
       description:
-        "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how ScheduleLab fits your business, industry & goals.",
+        "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
       images: ["/images/og images/Industry.png"],
     },
   },
@@ -87,9 +87,8 @@ export default function IndustriesPage() {
               {/* Subheading */}
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 Whether you're managing healthcare providers, physicians,
-                teachers, warehouse workers or pilots - ScheduleLab's
-                intelligent scheduling adapts to your industry's unique
-                requirements.
+                teachers, warehouse workers or pilots - RosterLab's intelligent
+                scheduling adapts to your industry's unique requirements.
               </p>
 
               {/* Buttons */}
@@ -1197,8 +1196,8 @@ export default function IndustriesPage() {
               Universal Benefits, Industry-Specific Solutions
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              No matter your industry, ScheduleLab delivers the same core
-              benefits while adapting to your unique needs.
+              No matter your industry, RosterLab delivers the same core benefits
+              while adapting to your unique needs.
             </p>
           </div>
 
