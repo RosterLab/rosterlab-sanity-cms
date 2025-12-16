@@ -6,6 +6,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import Image from "next/image";
+import Link from "next/link";
 
 const pathname = "/free-roster-audit";
 
@@ -539,6 +540,100 @@ export default function FreeRosterAuditPage() {
               >
                 Book Your Free Audit
               </Button>
+            </div>
+          </Container>
+        </div>
+
+        {/* Business Case Tools Section */}
+        <div className="py-20 bg-white">
+          <Container>
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Try our other business case tools
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* ROI Calculator */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="h-48 relative">
+                  <Image
+                    src="/images/og-images/ROICalc.png"
+                    alt="ROI Calculator"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    ROI Calculator
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Calculate your potential return on investment with
+                    RosterLab. See how much time and money you could save.
+                  </p>
+                  <Link
+                    href="/tools/roi-calculator"
+                    className="text-[#1c82fd] hover:text-blue-700 font-medium inline-flex items-center"
+                  >
+                    Explore tool →
+                  </Link>
+                </div>
+              </div>
+
+              {/* Case Studies */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="h-48 relative">
+                  <Image
+                    src="/images/og-images/CaseStudies.png"
+                    alt="Case Studies"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Case Studies
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Learn how organisations like yours have transformed their
+                    workforce scheduling with RosterLab.
+                  </p>
+                  <Link
+                    href="/case-studies"
+                    className="text-[#1c82fd] hover:text-blue-700 font-medium inline-flex items-center"
+                  >
+                    Explore tool →
+                  </Link>
+                </div>
+              </div>
+
+              {/* Webinars */}
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="h-48 relative">
+                  <Image
+                    src="/images/us-images/iStock-1332475767.jpg"
+                    alt="Webinars"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    Webinars
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    Join expert-led webinars on AI-powered workforce management
+                    and learn best practices.
+                  </p>
+                  <Link
+                    href="/webinars"
+                    className="text-[#1c82fd] hover:text-blue-700 font-medium inline-flex items-center"
+                  >
+                    Explore tool →
+                  </Link>
+                </div>
+              </div>
             </div>
           </Container>
         </div>
