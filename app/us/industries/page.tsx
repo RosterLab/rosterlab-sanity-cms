@@ -429,7 +429,7 @@ export default function IndustriesPage() {
                     </p>
                   </Link>
                   <Link
-                    href="/us/industries/healthcare"
+                    href="/us/industries/healthcare-scheduling"
                     className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow block relative group"
                   >
                     <div className="absolute top-2 right-2">
