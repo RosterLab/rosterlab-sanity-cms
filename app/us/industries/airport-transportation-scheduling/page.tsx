@@ -8,8 +8,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title:
-      "Airport Airport & Transport Crew Rostering Transportation Crew Scheduling Software - RosterLab",
+    title: "Airport & Transportation Crew Scheduling Software - RosterLab",
     description:
       "Learn how our scheduling software simplifies crew scheduling in airports & transportation. Create compliant, efficient schedules that improve safety, operational efficiency & saves time.",
     alternates: {
@@ -17,8 +16,7 @@ export const metadata = withHreflang(
         "https://rosterlab.com/us/industries/airport-transportation-scheduling",
     },
     openGraph: {
-      title:
-        "Airport Airport & Transport Crew Rostering Transportation Crew Scheduling Software - RosterLab",
+      title: "Airport & Transportation Crew Scheduling Software - RosterLab",
       description:
         "Learn how our scheduling software simplifies crew scheduling in airports & transportation. Create compliant, efficient schedules that improve safety, operational efficiency & saves time.",
       type: "website",
@@ -28,14 +26,13 @@ export const metadata = withHreflang(
           url: "/images/aviation.jpg",
           width: 1200,
           height: 630,
-          alt: "Airport Airports & Transportation Transportation crew scheduling with RosterLab",
+          alt: "Airport & Transportation crew scheduling with RosterLab",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        "Airport Airport & Transport Crew Rostering Transportation Crew Scheduling Software - RosterLab",
+      title: "Airport & Transportation Crew Scheduling Software - RosterLab",
       description:
         "Learn how our scheduling software simplifies crew scheduling in airports & transportation. Create compliant, efficient schedules that improve safety, operational efficiency & saves time.",
       images: ["/images/aviation.jpg"],
@@ -963,7 +960,7 @@ export default function AviationPage() {
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
-          { name: "Airport Airports & Transportation Transportation" },
+          { name: "Airport & Transportation" },
         ]}
       />
     </SiteLayout>
