@@ -178,7 +178,7 @@ export default function TelehealthRosteringPage() {
                 alt="Telehealth scheduling software interface"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="block w-full h-auto rounded-lg shadow-lg"
               />
             </div>
           </div>
