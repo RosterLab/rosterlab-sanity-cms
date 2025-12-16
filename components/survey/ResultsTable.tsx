@@ -46,6 +46,33 @@ export default function ResultsTable({
       return data.join(", ");
     }
     if (typeof data === "object" && data !== null) {
+      // Handle holiday rankings
+      if (data.holiday_rankings && Array.isArray(data.holiday_rankings)) {
+        const rankings = data.holiday_rankings
+          .sort((a: any, b: any) => a.rank - b.rank)
+          .map((ranking: any) => {
+            const holiday = results.survey.config.holidays.find(
+              (h) => h.id === ranking.holiday_id,
+            );
+            const holidayName = holiday ? holiday.name : "Unknown Holiday";
+            const ordinal =
+              ranking.rank === 1
+                ? "1st"
+                : ranking.rank === 2
+                  ? "2nd"
+                  : ranking.rank === 3
+                    ? "3rd"
+                    : `${ranking.rank}th`;
+            return `${holidayName} (${ordinal} choice)`;
+          })
+          .join(", ");
+
+        // Add notes if present
+        if (data.notes) {
+          return `${rankings}\nNotes: ${data.notes}`;
+        }
+        return rankings;
+      }
       if (data.value !== undefined) {
         return data.value.toString();
       }
@@ -329,7 +356,7 @@ export default function ResultsTable({
                         {response.participant.email}
                       </td>
                       <td className="px-6 py-4 text-sm text-neutral-600">
-                        <div className="max-w-md">
+                        <div className="max-w-md whitespace-pre-line">
                           {formatPreferenceData(response.preference_data)}
                         </div>
                       </td>
