@@ -118,11 +118,11 @@ export default function SecurityPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/security.svg"
+                src="/images/security-roster.jpg"
                 alt="Security workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
+                className="block w-full h-auto max-w-md mx-auto lg:max-w-full rounded-lg shadow-lg"
               />
             </div>
           </div>
