@@ -87,7 +87,7 @@ export default function NurseRosteringV2Page() {
                 Nurse Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI schedules that respect your nurse
+                Create compliant AI-powered schedules that respect your nurse
                 preferences, maintain safe ratios, and honour labor agreements.
               </p>
               <div className="mb-8 space-y-2">

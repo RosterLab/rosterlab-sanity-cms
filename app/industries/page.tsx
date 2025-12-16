@@ -61,9 +61,9 @@ export default function IndustriesPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Whether you're managing nurses, teachers, call centre agents, or
-                pilots - RosterLab's intelligent scheduling adapts to your
-                industry's unique requirements.
+                Whether you're managing nurses, doctors, call centre agents, or
+                ground crew staff - RosterLab's intelligent scheduling adapts to
+                your industry's unique requirements.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -76,16 +76,15 @@ export default function IndustriesPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/tools/roi-calculator"
+                  href="/pricing"
                   className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50"
-                  analyticsLabel="View ROI Calculator"
+                  analyticsLabel="View Pricing"
                   analyticsLocation="Industries Hero"
                   analyticsProperties={{
-                    cta_type: "tool",
-                    tool_name: "roi_calculator",
+                    cta_type: "pricing",
                   }}
                 >
-                  View ROI Calculator
+                  View Pricing
                 </Button>
               </div>
             </div>
@@ -288,6 +287,58 @@ export default function IndustriesPage() {
                     </p>
                   </Link>
                   <Link
+                    href="/industries/healthcare/pathology-rostering"
+                    className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow relative group"
+                  >
+                    <div className="absolute top-2 right-2">
+                      <svg
+                        className="w-4 h-4 text-gray-400 group-hover:text-indigo-600 transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Pathology
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Lab staff scheduling
+                    </p>
+                  </Link>
+                  <Link
+                    href="/industries/healthcare/radiography"
+                    className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow relative group"
+                  >
+                    <div className="absolute top-2 right-2">
+                      <svg
+                        className="w-4 h-4 text-gray-400 group-hover:text-emerald-600 transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Radiography
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Imaging tech rostering
+                    </p>
+                  </Link>
+                  <Link
                     href="/industries/healthcare"
                     className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow block relative group"
                   >
@@ -335,7 +386,10 @@ export default function IndustriesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Ports */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <Link
+              href="/industries/port-rostering"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
               <div className="h-48 relative">
                 <Image
                   src="/images/port-roster.jpg"
@@ -401,16 +455,17 @@ export default function IndustriesPage() {
                     24/7 operations management
                   </li>
                 </ul>
-                <Link href="/industries/transportation/port-rostering">
-                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
-                    Learn more
-                  </Button>
-                </Link>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Port Rostering
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Call Centers */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <Link
+              href="/industries/call-centre-rostering"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
               <div className="h-48 relative">
                 <Image
                   src="/images/call center.webp"
@@ -478,33 +533,34 @@ export default function IndustriesPage() {
                     Peak hour management
                   </li>
                 </ul>
-                <Link href="/industries/call-centre-rostering">
-                  <Button className="bg-indigo-600 text-white hover:bg-indigo-700 w-full">
-                    Learn more
-                  </Button>
-                </Link>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Call Centre Rostering
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Transportation */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <Link
+              href="/industries/airports-and-transportation-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
               <div className="h-48 relative">
                 <Image
-                  src="/images/transportation.webp"
-                  alt="Transportation industry scheduling"
+                  src="/images/airports.webp"
+                  alt="Airports & Transportation industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Transportation
+                  Airports & Transportation
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Schedule drivers, pilots, and crew while managing hours of
                   service, route qualifications, and regulatory compliance.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -554,11 +610,17 @@ export default function IndustriesPage() {
                     Rest period compliance
                   </li>
                 </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Transportation Rostering
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Hospitality */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <Link
+              href="/industries/hospitality-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
               <div className="h-48 relative">
                 <Image
                   src="/images/hospitality.webp"
@@ -575,7 +637,7 @@ export default function IndustriesPage() {
                   Balance front desk, housekeeping, kitchen, and service staff
                   across varying occupancy levels and event schedules.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -624,29 +686,282 @@ export default function IndustriesPage() {
                     </svg>
                     Event staffing flexibility
                   </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Peak period management
+                  </li>
                 </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Hospitality Rostering
+                </div>
               </div>
-            </div>
+            </Link>
 
-            {/* Manufacturing */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            {/* Security */}
+            <Link
+              href="/industries/security-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
               <div className="h-48 relative">
                 <Image
-                  src="/images/logistics.webp"
-                  alt="Manufacturing & logistics industry scheduling"
+                  src="/images/security-roster.jpg"
+                  alt="Security industry scheduling"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Manufacturing & Logistics
+                  Security
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Manage security guards, patrol officers, and surveillance
+                  teams across multiple sites with 24/7 coverage requirements
+                  and compliance tracking.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Multi-site coordination
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Licence compliance tracking
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Round-the-clock coverage
+                  </li>
+                </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Security Rostering
+                </div>
+              </div>
+            </Link>
+
+            {/* Retail */}
+            <Link
+              href="/industries/retail-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
+              <div className="h-48 relative">
+                <Image
+                  src="/images/retail-roster.jpg"
+                  alt="Retail industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Retail</h3>
+                <p className="text-gray-600 mb-4">
+                  Optimise floor staff, stockroom teams, and managers across
+                  peak trading hours, seasonal demands, and varying customer
+                  footfall.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Peak hour optimisation
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Seasonal demand management
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Multi-store coordination
+                  </li>
+                </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Retail Rostering
+                </div>
+              </div>
+            </Link>
+
+            {/* Public Services */}
+            <Link
+              href="/industries/public-services-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
+              <div className="h-48 relative">
+                <Image
+                  src="/images/public-services-roster.jpg"
+                  alt="Public services industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Public Services
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Coordinate public service workers with union agreements,
+                  optimised coverage, and cross-department coordination.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Union agreement compliance
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Optimised service coverage
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Cross-department coordination
+                  </li>
+                </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Public Services Rostering
+                </div>
+              </div>
+            </Link>
+
+            {/* Manufacturing */}
+            <Link
+              href="/industries/manufacturing-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
+              <div className="h-48 relative">
+                <Image
+                  src="/images/manufacturer.jpg"
+                  alt="Manufacturing industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Manufacturing
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Manage shift patterns, skill requirements, and production line
                   coverage while maintaining safety and efficiency standards.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -696,83 +1011,17 @@ export default function IndustriesPage() {
                     Skill certification tracking
                   </li>
                 </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Manufacturing Rostering
+                </div>
               </div>
-            </div>
-
-            {/* Airports */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="h-48 relative">
-                <Image
-                  src="/images/airports.webp"
-                  alt="Airports industry scheduling"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Airports
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  Coordinate ground crew, security, and support staff across
-                  terminals while managing flight schedules and security
-                  clearances.
-                </p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Flight schedule synchronization
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Security clearance management
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    Multi-terminal coordination
-                  </li>
-                </ul>
-              </div>
-            </div>
+            </Link>
 
             {/* Education */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <Link
+              href="/industries/education-roster"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
               <div className="h-48 relative">
                 <Image
                   src="/images/Education.webp"
@@ -786,11 +1035,11 @@ export default function IndustriesPage() {
                   Education
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Schedule teachers, support staff, and substitutes while
-                  balancing class requirements, specializations, and
-                  professional development.
+                  Roster teachers, support staff, & substitutes while balancing
+                  class requirements, specialisations, and professional
+                  development.
                 </p>
-                <ul className="text-sm text-gray-600 space-y-2">
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
                   <li className="flex items-start">
                     <svg
                       className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
@@ -840,8 +1089,11 @@ export default function IndustriesPage() {
                     Break duty scheduling
                   </li>
                 </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Education Rostering
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </Container>
       </section>
@@ -925,7 +1177,7 @@ export default function IndustriesPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Cost Optimization
+                Cost Optimisation
               </h3>
               <p className="text-gray-600">
                 Reduce overtime, minimise agency costs, optimise coverage

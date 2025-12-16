@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/call-center-scheduling",
       images: [
         {
-          url: "/images/call-centre-rostering.jpg",
+          url: "/images/call-center.jpg",
           width: 1200,
           height: 630,
         },
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       title: "Call Center Scheduling Software - RosterLab",
       description:
         "Build your call center schedule with RosterLab. Automatically generate fair, compliant and flexible call center schedules that save time and money.",
-      images: ["/images/call-centre-rostering.jpg"],
+      images: ["/images/call-center.jpg"],
     },
   },
   "/us/industries/call-center-scheduling",
@@ -155,11 +155,11 @@ export default function CallCentersPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/call-centre-rostering.svg"
+                src="/images/call-center.jpg"
                 alt="Call center schedule scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto"
+                className="block w-full h-auto rounded-lg shadow-lg"
               />
             </div>
           </div>

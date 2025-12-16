@@ -1,7 +1,6 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
@@ -11,22 +10,22 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Attending Physician Scheduling Software - RosterLab",
+    title: "Pathology Staff Scheduling Software - RosterLab",
     description:
-      "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
+      "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
     alternates: {
       canonical:
-        "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
+        "https://rosterlab.com/us/industries/healthcare/pathology-scheduling",
     },
     openGraph: {
-      title: "Attending Physician Scheduling Software - RosterLab",
+      title: "Pathology Staff Scheduling Software - RosterLab",
       description:
-        "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
+        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
       type: "website",
-      url: "https://rosterlab.com/us/industries/healthcare/attending-physician-scheduling",
+      url: "https://rosterlab.com/us/industries/healthcare/pathology-scheduling",
       images: [
         {
-          url: "/images/us-images/smo-scheduling.jpg",
+          url: "/images/us-images/pathology-roster.jpg",
           width: 1200,
           height: 630,
         },
@@ -34,43 +33,41 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Attending Physician Scheduling Software - RosterLab",
+      title: "Pathology Staff Scheduling Software - RosterLab",
       description:
-        "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
-      images: ["/images/us-images/smo-scheduling.jpg"],
+        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+      images: ["/images/us-images/pathology-roster.jpg"],
     },
   },
-  "/us/industries/healthcare/attending-physician-scheduling",
+  "/us/industries/healthcare/pathology-scheduling",
 );
 
 const faqItems = [
   {
     question:
-      "How does RosterLab handle attending physicians working across multiple facilities?",
+      "How does RosterLab ensure union compliance for pathology schedules?",
     answer:
-      "RosterLab allows attending physicians to inform their availability across multiple facilities. The system tracks unavailability patterns and preferred working days, accommodating complex schedules where doctors split time between hospital work and private practice. It supports mixed FTE arrangements, ensuring schedules adapt to physicians' commitments rather than dictating them.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules.",
   },
   {
     question:
-      "Can attending physicians still maintain autonomy over their schedules?",
+      "How does RosterLab handle specimen processing peaks and testing schedules?",
     answer:
-      "Absolutely. RosterLab empowers attending physicians to put in their availability through self-scheduling. Physicians maintain the level of autonomy they're accustomed to while benefiting from automated scheduling that handles the time-consuming administrative work. Changes can be made whenever needed while the system ensures fairness and coverage.",
+      "Staff can request protected time for high-volume processing periods through the mobile app. RosterLab schedules appropriate staffing around peak specimen arrival times and balances the rest of the schedule to ensure laboratory coverage while maintaining work-life balance.",
   },
   {
-    question:
-      "How does RosterLab handle individual physician preferences and constraints?",
+    question: "How does RosterLab ensure fair night shift distribution?",
     answer:
-      "The system is built for high personalization and flexibility. Attending physicians can input their preferences, leave requests, and unavailability. Each physician's requests are honored while maintaining departmental coverage and fairness.",
+      "RosterLab automatically distributes night shifts equitably across all pathology staff, preventing burnout and ensuring fairness. The system manages appropriate transitions between night and day shifts to reduce sick leave and fatigue.",
   },
   {
-    question:
-      "Is RosterLab easy to transition to for physicians who value stability?",
+    question: "Can RosterLab help improve pathology staff retention?",
     answer:
-      "Yes. RosterLab is designed as an intuitive upgrade rather than a complete change. The interface is straightforward for doctors who may be worried about using new software. It preserves your existing scheduling culture and established practices while eliminating manual administrative burden.",
+      "Yes. By creating safe, fair, and flexible schedules that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better testing quality outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
 ];
 
-export default function SeniorMedicalOfficerRosteringPage() {
+export default function PathologyRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
@@ -80,13 +77,14 @@ export default function SeniorMedicalOfficerRosteringPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Personalized
+                  Flexible, Compliant
                 </span>{" "}
-                Attending Physician Schedules
+                Pathology Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Balance work commitments, personal preferences, and department
-                coverage with ease.
+                Create compliant AI-powered schedules that balance specimen
+                processing demands, fair night shift distribution, and pathology
+                staff wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -103,8 +101,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Balance commitments across hospitals, clinics, & private
-                  practice
+                  Ensure regular staff rotation to keep skills up to date
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -120,8 +117,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Retain full control by reviewing, adjusting, & approving
-                  schedules
+                  Maintain optimal staffing throughout specimen processing peaks
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -137,7 +133,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Reduce admin while ensuring fairness and predictability
+                  Empower staff equity with balanced, transparent scheduling
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -153,8 +149,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Schedule time for teaching, supervision, and professional
-                  development
+                  Improve pathology staff retention and work-life balance
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -172,14 +167,13 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </Button>
               </div>
             </div>
-            {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block relative">
+            <div className="relative">
               <Image
-                src="/images/us-images/smo-scheduling.jpg"
-                alt="Attending Physician scheduling software interface"
+                src="/images/us-images/pathology-roster.jpg"
+                alt="Pathology scheduling software interface"
                 width={600}
                 height={400}
-                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
+                className="block w-full h-auto rounded-lg shadow-lg"
               />
             </div>
           </div>
@@ -191,15 +185,15 @@ export default function SeniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Attending Physician Scheduling That Respects Your Time
+              The best AI scheduling tool for pathology staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built for attending physicians who value autonomy, flexibility,
-              and work-life balance across multiple commitments.
+              Fast. Optimised. Made for pathology departments. Adapt to changes
+              fast.
             </p>
           </div>
 
-          {/* AI Scheduling Image */}
+          {/* AI Rostering Image */}
           <div className="mb-16 max-w-4xl mx-auto">
             <Image
               src="/images/generating.webp"
@@ -210,8 +204,8 @@ export default function SeniorMedicalOfficerRosteringPage() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Benefit 1: Happier Senior Doctors */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Pain Point 1: Automatic Roster Generation */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
@@ -224,24 +218,77 @@ export default function SeniorMedicalOfficerRosteringPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Happier Senior Physicians
+                Reduce scheduling administration
               </h3>
               <p className="text-gray-600">
-                Reduce scheduling stress and administrative burden. Spend more
-                time on patient care and less time managing complex schedules.
+                Eliminate the need for manual scheduling - giving you time back
+                to focus on laboratory quality and team wellbeing.
               </p>
             </div>
 
-            {/* Benefit 2: Maintain Autonomy */}
+            {/* Pain Point 2: Integrated Section & Skill Planning */}
             <div className="text-center p-6">
               <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-10 h-10 text-cyan-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Improve pathologists work-life balance
+              </h3>
+              <p className="text-gray-600">
+                Create fair and flexible schedules that respect staff
+                preferences and personal commitments while maintaining
+                operational coverage.
+              </p>
+            </div>
+
+            {/* Pain Point 3: Improve flexibility through self-scheduling */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Manage specimen processing peaks
+              </h3>
+              <p className="text-gray-600">
+                Schedule appropriate staffing around peak specimen arrival times
+                and testing schedules while maintaining optimal coverage.
+              </p>
+            </div>
+
+            {/* Pain Point 4: Ensure safe staffing levels */}
+            <div className="text-center p-6">
+              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-10 h-10 text-teal-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -255,37 +302,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Maintain Autonomy and Freedom
+                Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Keep the final say over your roster. Set your availability on
-                your terms while ensuring fair coverage across the department.
-              </p>
-            </div>
-
-            {/* Benefit 3: Reduce Conflicts */}
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Manage Multi-Site Commitments
-              </h3>
-              <p className="text-gray-600">
-                Reduce scheduling conflicts by coordinating responsibilities
-                across multiple locations with accuracy and compliance.
+                Easily manage rotations to ensure that staff regularly practise
+                and refresh their skills across different pathology sections.
               </p>
             </div>
           </div>
@@ -293,7 +314,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-gray-100">
+      <section className="py-20 bg-gray-50">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="order-2 lg:order-1">
@@ -301,7 +322,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Built for Attending Physician Needs
+                Perfect For Pathology Scheduling Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -322,42 +343,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Personalized Attending Physician Schedules
+                      Optimise Pathology Staff Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Set your individual constraints within seconds for
-                      non-clinical duties, research time, or multi-site
-                      commitments. The system remembers your patterns and
-                      constraints so you don't re-enter them for every roster
-                      cycle.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Catch Mistakes Before They Impact Patients
-                    </h4>
-                    <p className="text-gray-600">
-                      Instantly flags clashes, fatigue breaches, or overlapping
-                      bookings before they happen - keeping clinics and patient
-                      care running smoothly.
+                      Keep a live digital record of each pathologist's skills
+                      and seniority. The AI automatically assigns the right
+                      staff to the right sections for safe, efficient coverage.
                     </p>
                   </div>
                 </div>
@@ -380,12 +371,40 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Hours of Admin Work
+                      Stay Compliant with Unions and Agreements
                     </h4>
                     <p className="text-gray-600">
-                      Turn scheduling from a multi-day puzzle into a quick
-                      review process. Generate optimized schedules that balance
-                      coverage, fairness, and compliance all within minutes.
+                      Automatically enforce union agreements, rest periods, and
+                      training requirements. The system ensures every schedule
+                      meets regulatory standards.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <svg
+                      className="w-6 h-6 text-orange-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Self-Scheduling for Better Flexibility
+                    </h4>
+                    <p className="text-gray-600">
+                      Empower pathologists to set their availability and
+                      preferences. The AI automatically builds schedules around
+                      staff input while maintaining coverage and compliance.
                     </p>
                   </div>
                 </div>
@@ -408,13 +427,12 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Easy Technology Transition and Adoption
+                      Manage Section Rotations Efficiently
                     </h4>
                     <p className="text-gray-600">
-                      Intuitive interface designed for senior doctors who value
-                      ease of use and stability. Keep your department's way of
-                      working while you review, refine, and approve each
-                      schedule.
+                      Track competency development and plan rotations across
+                      histology, microbiology, and other sections. Ensure staff
+                      maintain skills while meeting operational demands.
                     </p>
                   </div>
                 </div>
@@ -434,109 +452,146 @@ export default function SeniorMedicalOfficerRosteringPage() {
         </Container>
       </section>
 
-      {/* Case Study & Image Section */}
+      {/* Self-Scheduling Workflow Section */}
       <section className="py-20 bg-white">
         <Container>
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Attending Physician Scheduling Case Study
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Case Study - Left */}
-            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Sydney Tertiary Hospital Saves 300 Hours with Attending
-                Physician Scheduling
-              </h3>
-              <div className="space-y-4 mb-6">
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>300+ hours saved</strong> annually in scheduling
-                    administration
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>Transparent fairness</strong> across 60 emergency
-                    consultants
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-teal-600 mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <p className="text-gray-700">
-                    <strong>Complex preferences managed</strong> across hospital
-                    sites and private practice
-                  </p>
+          <div className="text-center mb-12">
+            <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
+              PATHOLOGY-FIRST WORKFLOW
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
+              How Pathology Staff Engage with Their Schedules
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Built around specimen processing demands, preferences, and
+              wellbeing, not just top-down scheduling
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Step 1 */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Set Staffing Requirements
+                    </h3>
+                    <p className="text-gray-600">
+                      Define skill mix needs (technical and support staff),
+                      testing area requirements, and laboratory coverage needs.
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <blockquote className="mt-8 bg-white border-l-4 border-teal-600 px-6 py-4 rounded-r-lg text-left shadow-sm">
-                <p className="text-gray-800 italic">
-                  “We used to manage lots of formulas across multiple
-                  spreadsheets. It worked - but it was incredibly
-                  time-consuming. With RosterLab, we're trading that for
-                  something smarter and more sustainable.”
-                </p>
-                <footer className="mt-3 text-sm font-semibold text-teal-700">
-                  Attending Physician
-                </footer>
-              </blockquote>
+              {/* Step 2 */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Staff Submit Preferences & Availability
+                    </h3>
+                    <p className="text-gray-600">
+                      Via mobile app, staff indicate shift preferences, time off
+                      requests, and availability. No emails or paper forms.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      AI Generates Compliant Schedule
+                    </h3>
+                    <p className="text-gray-600">
+                      RosterLab balances preferences, specimen processing peaks,
+                      night shift equity, and union rules to create compliant
+                      schedules.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">4</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Publish to Mobile
+                    </h3>
+                    <p className="text-gray-600">
+                      Schedules sync instantly to staff phones. They see their
+                      shifts and can request swaps with real-time updates.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">5</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Staff Self-Schedule Open Shifts
+                    </h3>
+                    <p className="text-gray-600">
+                      Unfilled shifts are posted as "open shifts" - staff can
+                      pick them up directly if qualified and within hour limits.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 6 */}
+              <div className="bg-white rounded-xl p-6 shadow-md">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-teal-600 font-bold">6</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      Handle Last-Minute Changes
+                    </h3>
+                    <p className="text-gray-600">
+                      If someone calls in sick, RosterLab shows who can safely
+                      fill the gap without breaking ratios or fatigue rules.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Image - Right */}
-            <div className="relative rounded-xl overflow-hidden shadow-lg">
-              <Image
-                src="/images/us-images/radiology-roster.jpg"
-                alt="Radiology scheduling dashboard"
-                width={600}
-                height={800}
-                className="w-full h-full object-cover"
-              />
+            {/* CTA */}
+            <div className="text-center mt-12">
+              <p className="text-gray-600 mb-6">
+                Ready to streamline your pathology scheduling?
+              </p>
+              <Button
+                href="/us/book-a-demo"
+                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+              >
+                See How It Works
+              </Button>
             </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="pt-4 pb-8 bg-white">
-        <Container>
-          <div className="text-center">
-            <Button
-              href="/us/tools/savings-calculator"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
-            >
-              View Savings Calculator
-            </Button>
           </div>
         </Container>
       </section>
@@ -546,17 +601,17 @@ export default function SeniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for Attending Physician Scheduling
+              Essential Features for Pathology Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Purpose-built tools that address the unique complexity of
-              attending physician term schedules
+              pathology laboratory schedules
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Feature 1 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -575,9 +630,9 @@ export default function SeniorMedicalOfficerRosteringPage() {
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Automatic Roster Generation
               </h3>
-              <p className="text-gray-600 mb-3 flex-grow">
+              <p className="text-gray-600 mb-3">
                 Automatically generate compliant schedules that enforce union
-                rules and requirements. Reduce scheduling admin by 90%.
+                rules and requirements. Reduce roster admin by 90%.
               </p>
               <a
                 href="/us/solutions/ai-staff-schedule-maker"
@@ -588,7 +643,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-teal-600"
@@ -605,14 +660,15 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Availability & Preference Management
+                Self Scheduling
               </h3>
-              <p className="text-gray-600 mb-3 flex-grow">
-                Set availability across hospital sessions, private clinics, and
-                academic commitments. Manage preferences directly from mobile.
+              <p className="text-gray-600 mb-3">
+                Staff submit preferences, availability, and manage time-off
+                requests directly from their phones. <br />
+                &nbsp;
               </p>
               <a
-                href="/us/feature/self-scheduling"
+                href="https://rosterlab.com/feature/self-scheduling"
                 className="text-teal-600 hover:text-teal-700 font-medium text-sm"
               >
                 Learn more →
@@ -620,7 +676,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-cyan-600"
@@ -637,15 +693,15 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Compliance & Fatigue Safeguards
+                Instant Roster Changes
               </h3>
-              <p className="text-gray-600 mb-3 flex-grow">
-                Automatic checks for rest periods, maximum hours, and recovery
-                time between commitments - ensuring safety and contract
-                compliance.
+              <p className="text-gray-600 mb-3">
+                When staff call in sick, see who's qualified and available to
+                fill the gap without breaking compliance or skill mix
+                requirements.
               </p>
               <a
-                href="/us/feature/rules-engine"
+                href="/us/feature/staff-rescheduling"
                 className="text-cyan-600 hover:text-cyan-700 font-medium text-sm"
               >
                 Learn more →
@@ -653,7 +709,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200 flex flex-col">
+            <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg
                   className="w-6 h-6 text-blue-600"
@@ -670,14 +726,15 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Leave Management
+                Staff Management
               </h3>
-              <p className="text-gray-600 mb-3 flex-grow">
-                Submit and track leave requests easily - maximize approved leave
-                while keeping it fair and fully covered.
+              <p className="text-gray-600 mb-3">
+                Stay on top of staff changes with ease. Manage staffing
+                consistently so schedules stay accurate, compliant, and
+                stress-free.
               </p>
               <a
-                href="/us/feature/time-off-requests"
+                href="/us/solutions/staff-scheduling-mobile-app"
                 className="text-blue-600 hover:text-blue-700 font-medium text-sm"
               >
                 Learn more →
@@ -700,7 +757,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from attending physicians
+              Questions we hear from laboratory managers
             </p>
             <FAQAccordion items={faqItems} />
           </div>
@@ -712,11 +769,11 @@ export default function SeniorMedicalOfficerRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer Attending Physician Schedules
+              Build Compliant, Fairer Pathology Rosters
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join departments that have improved attending physician
-              scheduling, with predictable, compliant and fair schedules.
+              Join laboratories that have improved staff retention, reduced
+              burnout, and built positive team environments
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -726,10 +783,10 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Book a Demo
               </Button>
               <Button
-                href="/us/tools/savings-calculator"
+                href="/tools/roi-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
-                See Savings Calculator
+                See ROI Calculator
               </Button>
             </div>
           </div>
@@ -742,7 +799,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           { name: "Healthcare", url: "/us/industries/healthcare" },
-          { name: "Attending Physician Scheduling" },
+          { name: "Pathology Scheduling" },
         ]}
       />
     </SiteLayout>

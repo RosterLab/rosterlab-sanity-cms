@@ -13,12 +13,15 @@ export const metadata = withHreflang(
     title: "Port Rostering Software - RosterLab",
     description:
       "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
+    alternates: {
+      canonical: "https://rosterlab.com/industries/port-rostering",
+    },
     openGraph: {
       title: "Port Rostering Software - RosterLab",
       description:
         "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
       type: "website",
-      url: "https://rosterlab.com/transportation/port-rostering",
+      url: "https://rosterlab.com/industries/port-rostering",
       images: [
         {
           url: "/images/port-roster.jpg",
@@ -35,7 +38,7 @@ export const metadata = withHreflang(
       images: ["/images/port-roster.jpg"],
     },
   },
-  "/transportation/port-rostering",
+  "/industries/port-rostering",
 );
 
 const faqItems = [
