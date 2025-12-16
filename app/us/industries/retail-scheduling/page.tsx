@@ -118,11 +118,11 @@ export default function RetailPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/illustration/retail-roster.svg"
+                src="/images/retail-roster.jpg"
                 alt="Retail workforce scheduling dashboard"
                 width={600}
                 height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
+                className="block w-full h-auto max-w-md mx-auto lg:max-w-full rounded-lg shadow-lg"
               />
             </div>
           </div>
