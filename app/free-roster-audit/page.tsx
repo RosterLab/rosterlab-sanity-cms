@@ -143,7 +143,7 @@ export default function FreeRosterAuditPage() {
           <Container>
             <div className="max-w-4xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                What Our Rostering Architects Analyse
+                Still having trouble justifying RosterLab?
               </h2>
               <p className="text-lg text-gray-600">
                 Our comprehensive audit covers every aspect of your workforce
@@ -298,7 +298,7 @@ export default function FreeRosterAuditPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Why Get a Professional Roster Audit?
+                  Let us help you build a business case for your department
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Even well-intentioned roster practices can develop blind spots
