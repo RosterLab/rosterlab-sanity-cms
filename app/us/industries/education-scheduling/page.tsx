@@ -117,7 +117,7 @@ export default function EducationPage() {
             </div>
             <div className="relative mt-6 lg:mt-0">
               <Image
-                src="/images/Education.webp"
+                src="/images/Education.jpg"
                 alt="Education workforce scheduling dashboard"
                 width={600}
                 height={400}
