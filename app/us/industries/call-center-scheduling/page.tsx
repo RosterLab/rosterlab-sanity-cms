@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/call-center-scheduling",
       images: [
         {
-          url: "/images/call-centstaff-rescheduling.jpg",
+          url: "/images/call-center.jpg",
           width: 1200,
           height: 630,
         },
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       title: "Call Center Scheduling Software - RosterLab",
       description:
         "Build your call center schedule with RosterLab. Automatically generate fair, compliant and flexible call center schedules that save time and money.",
-      images: ["/images/call-centstaff-rescheduling.jpg"],
+      images: ["/images/call-center.jpg"],
     },
   },
   "/us/industries/call-center-scheduling",
