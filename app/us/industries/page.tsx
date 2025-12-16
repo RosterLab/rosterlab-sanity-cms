@@ -477,7 +477,7 @@ export default function IndustriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Ports */}
             <Link
-              href="/us/industries/port-scheduling"
+              href="/us/industries/transportation/port-scheduling"
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
             >
               <div className="h-48 relative">
