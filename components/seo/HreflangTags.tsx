@@ -53,8 +53,7 @@ export const US_URL_MAPPINGS: Record<string, string> = {
     "/us/industries/healthcare/veterinary-scheduling",
   "/industries/healthcare/senior-medical-officer-rostering":
     "/us/industries/healthcare/attending-physician-scheduling",
-  "/industries/transportation/port-rostering":
-    "/us/industries/transportation/port-scheduling",
+  "/industries/port-rostering": "/us/industries/port-scheduling",
   "/industries/call-centre-rostering": "/us/industries/call-center-scheduling",
   "/industries/hospitality-roster": "/us/industries/hospitality-scheduling",
   "/industries/retail-roster": "/us/industries/retail-scheduling",
@@ -120,7 +119,7 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/healthcare/nurse-rostering",
   "/industries/healthcare/veterinary-rostering",
   "/industries/healthcare/senior-medical-officer-rostering",
-  "/industries/transportation/port-rostering",
+  "/industries/port-rostering",
   "/industries/call-centre-rostering",
   "/industries/hospitality-roster",
   "/industries/retail-roster",
