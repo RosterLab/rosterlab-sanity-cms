@@ -192,27 +192,58 @@ export default function AdminDashboardClient({
 
         {/* Info Box */}
         <div className="mt-6 bg-primary-50 border border-primary-200 rounded-lg p-4">
-          <div className="flex">
-            <svg
-              className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0 mt-0.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <div className="text-sm text-primary-900">
-              <p className="font-medium mb-1">Keep this page bookmarked</p>
-              <p>
-                This admin link is the only way to access your survey results.
-                Make sure to save it in a secure location.
-              </p>
+          <div className="flex items-start justify-between">
+            <div className="flex">
+              <svg
+                className="w-5 h-5 text-primary-600 mr-3 flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div className="text-sm text-primary-900">
+                <p className="font-medium mb-1">Keep this page bookmarked</p>
+                <p>
+                  This admin link is the only way to access your survey results.
+                  Make sure to save it in a secure location.
+                </p>
+              </div>
             </div>
+            <button
+              onClick={() => {
+                const adminUrl = window.location.href;
+                const subject = encodeURIComponent(
+                  `Survey Admin Link - ${results.survey.title}`,
+                );
+                const body = encodeURIComponent(
+                  `Here is your admin link to view survey results for "${results.survey.title}":\n\n${adminUrl}\n\nKeep this link secure - it provides access to all survey responses and results.\n\nSurvey: ${results.survey.title}\nOrganization: ${results.survey.org_name}`,
+                );
+                window.location.href = `mailto:?subject=${subject}&body=${body}`;
+                trackButtonClick("Email Admin Link", "Admin Dashboard");
+              }}
+              className="ml-4 inline-flex items-center px-3 py-1.5 border border-primary-300 rounded-lg text-xs font-medium text-primary-700 bg-white hover:bg-primary-50 transition-colors flex-shrink-0"
+            >
+              <svg
+                className="w-4 h-4 mr-1.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              Email Link
+            </button>
           </div>
         </div>
 

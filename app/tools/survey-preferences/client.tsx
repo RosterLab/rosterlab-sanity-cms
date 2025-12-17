@@ -55,7 +55,7 @@ export default function SurveyPreferencesClient() {
 
             {/* Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-center">
                 <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-primary-600"
@@ -80,7 +80,7 @@ export default function SurveyPreferencesClient() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-center">
                 <div className="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-secondary-600"
@@ -105,7 +105,7 @@ export default function SurveyPreferencesClient() {
                 </p>
               </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-neutral-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-center">
                 <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-primary-600"
@@ -228,29 +228,59 @@ export default function SurveyPreferencesClient() {
 
               {/* Warning Box */}
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <div className="flex">
-                  <svg
-                    className="w-5 h-5 text-amber-600 mr-3 flex-shrink-0 mt-0.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                    />
-                  </svg>
-                  <div>
-                    <h4 className="text-sm font-medium text-amber-900 mb-1">
-                      Important: Save Your Links
-                    </h4>
-                    <p className="text-sm text-amber-800">
-                      Make sure to save both links now. If you lose the admin
-                      link, you won't be able to access your survey results.
-                    </p>
+                <div className="flex items-start justify-between">
+                  <div className="flex">
+                    <svg
+                      className="w-5 h-5 text-amber-600 mr-3 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                    <div>
+                      <h4 className="text-sm font-medium text-amber-900 mb-1">
+                        Important: Save Your Links
+                      </h4>
+                      <p className="text-sm text-amber-800">
+                        Make sure to save both links now. If you lose the admin
+                        link, you won't be able to access your survey results.
+                      </p>
+                    </div>
                   </div>
+                  <button
+                    onClick={() => {
+                      const subject = encodeURIComponent(
+                        "Survey Links - Keep these safe!",
+                      );
+                      const body = encodeURIComponent(
+                        `Here are your survey links:\n\nSTAFF LINK (Share with your team):\n${surveyResult.staff_url}\n\nADMIN LINK (Keep this private!):\n${surveyResult.admin_url}\n\nImportant: The admin link is the only way to access your survey results. Keep it secure!`,
+                      );
+                      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+                      trackButtonClick("Email Survey Links", "Survey Success");
+                    }}
+                    className="ml-4 inline-flex items-center px-3 py-1.5 border border-amber-300 rounded-lg text-xs font-medium text-amber-700 bg-white hover:bg-amber-50 transition-colors flex-shrink-0"
+                  >
+                    <svg
+                      className="w-4 h-4 mr-1.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    Email to Myself
+                  </button>
                 </div>
               </div>
 

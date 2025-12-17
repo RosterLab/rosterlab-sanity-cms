@@ -17,10 +17,15 @@ import type {
 } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
 import { trackFormSubmit } from "@/components/analytics/Segment";
+import PreviousSubmissionModal from "@/components/survey/PreviousSubmissionModal";
 
 interface HolidayRankingFormProps {
   survey: Survey;
-  onSuccess?: (response: SubmitPreferencesResponse) => void;
+  onSuccess?: (
+    response: SubmitPreferencesResponse,
+    rankings: HolidayRanking[],
+    notes?: string,
+  ) => void;
 }
 
 export default function HolidayRankingForm({
@@ -31,6 +36,9 @@ export default function HolidayRankingForm({
   const [error, setError] = useState<string | null>(null);
   const [rankings, setRankings] = useState<{ [key: string]: number }>({});
   const [notes, setNotes] = useState("");
+  const [previousSubmission, setPreviousSubmission] = useState<any | null>(
+    null,
+  );
 
   const {
     register,
@@ -101,6 +109,14 @@ export default function HolidayRankingForm({
 
       if (!response.ok) {
         const errorData = await response.json();
+
+        // Handle duplicate submission (409) specially
+        if (response.status === 409 && errorData.previous_submission) {
+          setPreviousSubmission(errorData.previous_submission);
+          setIsSubmitting(false);
+          return;
+        }
+
         throw new Error(errorData.message || "Failed to submit preferences");
       }
 
@@ -114,7 +130,7 @@ export default function HolidayRankingForm({
       });
 
       if (onSuccess) {
-        onSuccess(result);
+        onSuccess(result, holiday_rankings, notes.trim() || undefined);
       }
     } catch (err) {
       console.error("Error submitting preferences:", err);
@@ -281,6 +297,15 @@ export default function HolidayRankingForm({
           </Button>
         </div>
       </form>
+
+      {/* Previous Submission Modal */}
+      {previousSubmission && (
+        <PreviousSubmissionModal
+          previousSubmission={previousSubmission}
+          holidays={holidays}
+          onClose={() => setPreviousSubmission(null)}
+        />
+      )}
     </div>
   );
 }
