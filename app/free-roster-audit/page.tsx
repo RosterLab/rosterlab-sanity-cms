@@ -12,15 +12,13 @@ const pathname = "/free-roster-audit";
 
 export const metadata = withHreflang(
   {
-    title:
-      "Free Roster Audit - Expert Analysis by Rostering Architects | RosterLab",
+    title: "Free Roster Audit - Expert Analysis by Rostering Consultants",
     description:
-      "Get a comprehensive free audit of your staff roster. Our rostering architects assess fairness, operational efficiency, and compliance. Book your expert review today.",
+      "Get a comprehensive free audit of your staff roster. Our rostering consultants assess fairness, operational efficiency, and compliance. Book your expert review today.",
     openGraph: {
-      title:
-        "Free Roster Audit - Expert Analysis by Rostering Architects | RosterLab",
+      title: "Free Roster Audit - Expert Analysis by Rostering Consultants",
       description:
-        "Get a comprehensive free audit of your staff roster. Our rostering architects assess fairness, operational efficiency, and compliance. Book your expert review today.",
+        "Get a comprehensive free audit of your staff roster. Our rostering consultants assess fairness, operational efficiency, and compliance. Book your expert review today.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -31,10 +29,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        "Free Roster Audit - Expert Analysis by Rostering Architects | RosterLab",
+      title: "Free Roster Audit - Expert Analysis by Rostering Consultants",
       description:
-        "Get a comprehensive free audit of your staff roster. Our rostering architects assess fairness, operational efficiency, and compliance. Book your expert review today.",
+        "Get a comprehensive free audit of your staff roster. Our rostering consultants assess fairness, operational efficiency, and compliance. Book your expert review today.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
@@ -45,12 +42,12 @@ const faqItems = [
   {
     question: "What does the free roster audit include?",
     answer:
-      "Our comprehensive audit includes a thorough analysis of your roster's fairness, operational efficiency, and compliance. A rostering architect will review your current scheduling practices, identify areas for improvement, and provide actionable recommendations tailored to your organisation's unique needs.",
+      "Our comprehensive audit includes a thorough analysis of your roster's fairness, operational efficiency, and compliance. A rostering consultant will review your current scheduling practices, identify areas for improvement, and provide actionable recommendations tailored to your organisation's unique needs.",
   },
   {
     question: "Who conducts the roster audit?",
     answer:
-      "Your audit is conducted by one of our experienced rostering architects who specialise in workforce scheduling optimisation. They bring deep industry expertise and have helped organisations across healthcare and other sectors improve their rostering practices.",
+      "Your audit is conducted by one of our experienced rostering consultants who specialise in workforce scheduling optimisation. They bring deep industry expertise and have helped organisations across healthcare and other sectors improve their rostering practices.",
   },
   {
     question: "How long does the audit process take?",
@@ -90,7 +87,7 @@ export default function FreeRosterAuditPage() {
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
                   Get a comprehensive analysis of your staff roster from our
-                  rostering architects. We'll assess fairness, operational
+                  rostering consultants. We'll assess fairness, operational
                   efficiency, and compliance—then provide actionable
                   recommendations to optimise your workforce scheduling.
                 </p>
@@ -351,7 +348,7 @@ export default function FreeRosterAuditPage() {
                         Get Expert Recommendations
                       </p>
                       <p className="text-gray-600">
-                        Receive actionable insights from rostering architects
+                        Receive actionable insights from rostering consultants
                         with years of industry experience
                       </p>
                     </div>
@@ -435,7 +432,7 @@ export default function FreeRosterAuditPage() {
                   Expert Analysis
                 </h3>
                 <p className="text-gray-600">
-                  Our rostering architects conduct a comprehensive review
+                  Our rostering consultants conduct a comprehensive review
                 </p>
               </div>
 
