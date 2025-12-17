@@ -108,6 +108,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
         { title: "Webinars", link: "/webinars" },
+        { title: "Shift Management Tools", link: "/tools" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
         {
@@ -492,7 +493,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Physician Scheduling"
-                                      : "JMO Roster"}
+                                      : "Junior Doctor Roster"}
                                   </div>
                                 </Link>
 
@@ -508,7 +509,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Attending Physician"
-                                      : "SMO Roster"}
+                                      : "Senior Doctor Roster"}
                                   </div>
                                 </Link>
 
@@ -541,6 +542,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     {isUSVersion
                                       ? "Long Term Planning"
                                       : "Long Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* Telehealth Roster */}
+                                <Link
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/telehealth-scheduling"
+                                      : "/industries/healthcare/telehealth-rostering"
+                                  }
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "Telehealth Scheduling"
+                                      : "Telehealth Roster"}
                                   </div>
                                 </Link>
                               </div>
@@ -596,7 +613,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title === "Blog" ||
                                       sub.title === "Case Studies" ||
                                       sub.title === "Newsroom" ||
-                                      sub.title === "Webinars",
+                                      sub.title === "Webinars" ||
+                                      sub.title === "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
@@ -616,7 +634,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                               ? "Latest updates and announcements"
                                               : subItem.title === "Webinars"
                                                 ? "Expert-led sessions on workforce management"
-                                                : ""}
+                                                : subItem.title ===
+                                                    "Shift Management Tools"
+                                                  ? "Free tools to optimize your workforce"
+                                                  : ""}
                                       </div>
                                     </Link>
                                   ))}
@@ -635,7 +656,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title !== "Blog" &&
                                       sub.title !== "Case Studies" &&
                                       sub.title !== "Newsroom" &&
-                                      sub.title !== "Webinars",
+                                      sub.title !== "Webinars" &&
+                                      sub.title !== "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link

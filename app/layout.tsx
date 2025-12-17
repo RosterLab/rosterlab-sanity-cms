@@ -9,7 +9,7 @@ import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import Apollo from "@/components/analytics/Apollo";
 import StructuredData from "@/components/seo/StructuredData";
-import { VisualEditing } from "next-sanity";
+import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";

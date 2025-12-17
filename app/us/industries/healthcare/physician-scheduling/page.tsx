@@ -82,7 +82,7 @@ export default function ResidentPhysicianSchedulingPage() {
                 Physician Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI schedules that balance training
+                Create compliant AI-powered schedules that balance training
                 requirements, fair night shift distribution, and physician
                 wellbeing.
               </p>

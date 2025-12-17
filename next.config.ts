@@ -36,6 +36,9 @@ const nextConfig: NextConfig = {
         ...config.resolve.alias,
         "core-js": false,
         "core-js-pure": false,
+        // Exclude server-only packages from client bundle
+        jsdom: false,
+        "isomorphic-dompurify": false,
       };
     }
     return config;
@@ -409,6 +412,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/blog/te-whatu-ora-workforce-plan-2023-2024",
+        destination: "/blog",
+        permanent: true,
+      },
+      // Test post redirects
+      {
+        source: "/blog//test-test",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/test-test-test",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/test-test-test-test",
         destination: "/blog",
         permanent: true,
       },
