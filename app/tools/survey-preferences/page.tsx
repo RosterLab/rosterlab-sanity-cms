@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     description:
       "Collect preferences for holiday shifts this season. Then use the auto-distribution feature to fairly assignment shifts - no login required.",
     type: "website",
+    images: [
+      {
+        url: "/images/shift-preference-survey.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 };
 
