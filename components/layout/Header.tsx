@@ -293,10 +293,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
                               <Link
-                                href="/free-roster-audit"
+                                href={contactLink}
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                               >
-                                Get a free roster audit
+                                Speak to our team
                                 <svg
                                   className="ml-1 h-4 w-4"
                                   fill="none"
