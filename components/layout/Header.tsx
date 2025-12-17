@@ -493,7 +493,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Physician Scheduling"
-                                      : "JMO Roster"}
+                                      : "Junior Doctor Roster"}
                                   </div>
                                 </Link>
 
@@ -509,7 +509,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Attending Physician"
-                                      : "SMO Roster"}
+                                      : "Senior Doctor Roster"}
                                   </div>
                                 </Link>
 
@@ -542,6 +542,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     {isUSVersion
                                       ? "Long Term Planning"
                                       : "Long Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* Telehealth Roster */}
+                                <Link
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/telehealth-scheduling"
+                                      : "/industries/healthcare/telehealth-rostering"
+                                  }
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "Telehealth Scheduling"
+                                      : "Telehealth Roster"}
                                   </div>
                                 </Link>
                               </div>

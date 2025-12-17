@@ -138,13 +138,13 @@ export default function CallCentresPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   href="/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                 >
                   Book a Demo
                 </Button>
                 <Button
                   href="/pricing"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
+                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   View pricing
                 </Button>
@@ -411,7 +411,7 @@ export default function CallCentresPage() {
               <div className="mt-8 text-center">
                 <Button
                   href="/solutions/ai-roster-generator"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                 >
                   Learn about AI Rostering
                 </Button>
@@ -557,7 +557,7 @@ export default function CallCentresPage() {
               </p>
               <Button
                 href="/book-a-demo"
-                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+                className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
                 See How It Works
               </Button>
@@ -581,9 +581,9 @@ export default function CallCentresPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link href="/feature/automated-rostering" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
-                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
-                    className="w-6 h-6 text-teal-600"
+                    className="w-6 h-6 text-blue-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -604,7 +604,7 @@ export default function CallCentresPage() {
                   hours of manual planning while ensuring equitable
                   distribution.
                 </p>
-                <span className="text-teal-600 text-base font-medium hover:text-teal-700">
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →
                 </span>
               </div>
@@ -612,9 +612,9 @@ export default function CallCentresPage() {
 
             <Link href="/feature/rules-engine" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
-                <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
-                    className="w-6 h-6 text-cyan-600"
+                    className="w-6 h-6 text-blue-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -634,7 +634,7 @@ export default function CallCentresPage() {
                   Ensure all schedules meet rest period requirements and labour
                   regulations automatically.
                 </p>
-                <span className="text-cyan-600 text-base font-medium hover:text-cyan-700">
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →
                 </span>
               </div>
@@ -672,9 +672,9 @@ export default function CallCentresPage() {
 
             <Link href="/feature/leave-requests" className="block">
               <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col">
-                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <svg
-                    className="w-6 h-6 text-indigo-600"
+                    className="w-6 h-6 text-blue-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -694,7 +694,7 @@ export default function CallCentresPage() {
                   Manage availability, swaps, and preferences efficiently in one
                   integrated system.
                 </p>
-                <span className="text-indigo-600 text-base font-medium hover:text-indigo-700">
+                <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →
                 </span>
               </div>
@@ -719,7 +719,7 @@ export default function CallCentresPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">

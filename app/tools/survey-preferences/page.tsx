@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: "Holiday Shift Preferences Survey & Automated Assignment",
   description:
     "Collect preferences for holiday shifts this season. Then use the auto-distribution feature to fairly assignment shifts - no login required.",
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: "Holiday Shift Preferences Survey & Automated Assignment",
     description:

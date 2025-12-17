@@ -81,7 +81,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Create compliant AI rosters that balance training requirements,
-                fair night shift distribution, and JMO wellbeing.
+                fair night shift distribution, and junior doctor wellbeing.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -341,9 +341,9 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Auto-Schedule Training Without Disrupting Coverage
                     </h4>
                     <p className="text-gray-600">
-                      Protect time for education and teaching to ensure JMOs
-                      receive complete training while maintaining department
-                      coverage.
+                      Protect time for education and teaching to ensure junior
+                      doctors receive complete training while maintaining
+                      department coverage.
                     </p>
                   </div>
                 </div>
@@ -560,8 +560,8 @@ export default function JuniorMedicalOfficerRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to JMOs' phones. They see their
-                      shifts, training time, and can request swaps with
+                      Rosters sync instantly to junior doctors' phones. They see
+                      their shifts, training time, and can request swaps with
                       real-time updates.
                     </p>
                   </div>
