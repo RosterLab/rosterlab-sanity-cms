@@ -28,6 +28,7 @@ export default function AdminDashboardClient({
   const [loading, setLoading] = useState(true);
   const [isBalancing, setIsBalancing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const fetchResults = useCallback(async () => {
     try {
@@ -268,11 +269,36 @@ export default function AdminDashboardClient({
                   navigator.clipboard.writeText(
                     `${window.location.origin}/tools/survey-preferences/s/${surveyId}`,
                   );
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
                   trackButtonClick("Copy Staff Link", "Admin Dashboard");
                 }}
-                className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
+                className={`px-6 py-2 rounded-lg transition-colors text-sm font-medium ${
+                  copied
+                    ? "bg-green-600 text-white hover:bg-green-700"
+                    : "bg-primary-600 text-white hover:bg-primary-700"
+                }`}
               >
-                Copy
+                {copied ? (
+                  <span className="flex items-center">
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Copied!
+                  </span>
+                ) : (
+                  "Copy"
+                )}
               </button>
             </div>
           </div>
