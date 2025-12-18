@@ -131,9 +131,68 @@ export default function SurveyPreferencesClient() {
               </div>
             </div>
 
+            {/* Disclaimer */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+              <div className="flex items-start">
+                <svg
+                  className="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                    About This Tool
+                  </h3>
+                  <p className="text-sm text-blue-800 mb-3">
+                    This is a <strong>simplified balancing tool</strong>{" "}
+                    designed to help you fairly distribute holiday shifts based
+                    on staff preferences. It uses a straightforward algorithm
+                    that prioritizes preference matching and workload balance.
+                  </p>
+                  <p className="text-sm text-blue-800">
+                    <strong>RosterLab's full platform</strong> includes advanced
+                    AI-powered scheduling that considers dozens of factors
+                    including skills, certifications, fatigue management, labor
+                    costs, compliance rules, and historical patterns.{" "}
+                    <a
+                      href="https://www.rosterlab.com"
+                      className="text-blue-700 underline hover:text-blue-900 font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Learn more about RosterLab
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* Configurator Form */}
             <div className="bg-white rounded-xl shadow-lg border border-neutral-200 p-8">
               <HolidayConfigurator onSurveyCreated={handleSurveyCreated} />
+            </div>
+
+            {/* Feedback Section */}
+            <div className="mt-8 text-center">
+              <p className="text-neutral-600">
+                Need another tool, or want to give feedback?{" "}
+                <a
+                  href="https://forms.cloud.microsoft/r/YBq05Rsekv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-600 hover:text-primary-700 font-medium underline"
+                >
+                  Tell us about it
+                </a>
+              </p>
             </div>
           </>
         ) : (
@@ -227,11 +286,11 @@ export default function SurveyPreferencesClient() {
               </div>
 
               {/* Warning Box */}
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <div className="bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-lg p-4">
                 <div className="flex items-start justify-between">
                   <div className="flex">
                     <svg
-                      className="w-5 h-5 text-amber-600 mr-3 flex-shrink-0 mt-0.5"
+                      className="w-5 h-5 text-purple-600 mr-3 flex-shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -240,14 +299,14 @@ export default function SurveyPreferencesClient() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
                     <div>
-                      <h4 className="text-sm font-medium text-amber-900 mb-1">
+                      <h4 className="text-sm font-medium text-purple-900 mb-1">
                         Important: Save Your Links
                       </h4>
-                      <p className="text-sm text-amber-800">
+                      <p className="text-sm text-purple-800">
                         Make sure to save both links now. If you lose the admin
                         link, you won't be able to access your survey results.
                       </p>

@@ -119,17 +119,23 @@ export default function StaffSubmissionClient({
                               className="hover:bg-neutral-50"
                             >
                               <td className="px-6 py-4 whitespace-nowrap">
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
-                                  {ranking.rank}
-                                  {ranking.rank === 1
-                                    ? "st"
-                                    : ranking.rank === 2
-                                      ? "nd"
-                                      : ranking.rank === 3
-                                        ? "rd"
-                                        : "th"}{" "}
-                                  choice
-                                </span>
+                                {ranking.rank === -1 ? (
+                                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                    Not Available
+                                  </span>
+                                ) : (
+                                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
+                                    {ranking.rank}
+                                    {ranking.rank === 1
+                                      ? "st"
+                                      : ranking.rank === 2
+                                        ? "nd"
+                                        : ranking.rank === 3
+                                          ? "rd"
+                                          : "th"}{" "}
+                                    choice
+                                  </span>
+                                )}
                               </td>
                               <td className="px-6 py-4 text-sm font-medium text-neutral-900">
                                 {holiday?.name || "Unknown Holiday"}
@@ -191,6 +197,9 @@ export default function StaffSubmissionClient({
                         const holiday = survey.config.holidays.find(
                           (h) => h.id === ranking.holiday_id,
                         );
+                        if (ranking.rank === -1) {
+                          return `Not Available: ${holiday?.name} (${holiday ? new Date(holiday.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : ""})`;
+                        }
                         const ordinal =
                           ranking.rank === 1
                             ? "1st"

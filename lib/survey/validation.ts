@@ -18,7 +18,7 @@ export const holidaySchema = z.object({
 // Holiday ranking schema
 export const holidayRankingSchema = z.object({
   holiday_id: z.string().uuid(),
-  rank: z.number().min(1).max(50), // Support up to 50 holidays
+  rank: z.number().min(-1).max(50), // -1 = Not Available, 1-50 = preference ranking
 });
 
 // Survey config schema
@@ -52,6 +52,20 @@ export const adminTokenSchema = z.string().uuid("Invalid admin token");
 // Survey ID validation
 export const surveyIdSchema = z.string().uuid("Invalid survey ID");
 
+// Update config request schema (for editing staff_needed)
+export const updateConfigRequestSchema = z.object({
+  token: z.string().uuid("Invalid admin token"),
+  holidays: z.array(
+    z.object({
+      id: z.string().uuid(),
+      staff_needed: z
+        .number()
+        .min(1, "At least 1 staff member required")
+        .max(100),
+    }),
+  ),
+});
+
 // Export validation helper functions
 export function validateCreateSurveyRequest(data: unknown) {
   return createSurveyRequestSchema.parse(data);
@@ -67,4 +81,8 @@ export function validateAdminToken(token: unknown) {
 
 export function validateSurveyId(id: unknown) {
   return surveyIdSchema.parse(id);
+}
+
+export function validateUpdateConfigRequest(data: unknown) {
+  return updateConfigRequestSchema.parse(data);
 }

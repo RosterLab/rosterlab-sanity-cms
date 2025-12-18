@@ -29,6 +29,11 @@ export default function AdminDashboardClient({
   const [isBalancing, setIsBalancing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editedStaffNeeded, setEditedStaffNeeded] = useState<{
+    [holidayId: string]: number;
+  }>({});
+  const [isSaving, setIsSaving] = useState(false);
 
   const fetchResults = useCallback(async () => {
     try {
@@ -98,6 +103,73 @@ export default function AdminDashboardClient({
     } finally {
       setIsBalancing(false);
     }
+  };
+
+  const handleEditStaffNeeded = (holidayId: string, value: number) => {
+    setEditedStaffNeeded((prev) => ({
+      ...prev,
+      [holidayId]: value,
+    }));
+  };
+
+  const handleSaveConfig = async () => {
+    if (!results) return;
+
+    try {
+      setIsSaving(true);
+      trackButtonClick("Save Config Changes", "Admin Dashboard");
+
+      // Build the holidays array with updated staff_needed values
+      const holidays = results.survey.config.holidays.map((holiday) => ({
+        id: holiday.id,
+        staff_needed: editedStaffNeeded[holiday.id] ?? holiday.staff_needed,
+      }));
+
+      const response = await fetch(`/api/survey/${surveyId}/config`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token,
+          holidays,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to update configuration");
+      }
+
+      // Refresh results to get updated config
+      await fetchResults();
+
+      // Reset edit mode and clear edited values
+      setIsEditMode(false);
+      setEditedStaffNeeded({});
+
+      // Automatically run balance with new config
+      await handleBalance();
+
+      alert(
+        "Configuration updated successfully! Assignments have been re-balanced.",
+      );
+    } catch (err) {
+      console.error("Error saving configuration:", err);
+      alert(
+        err instanceof Error
+          ? err.message
+          : "Failed to save configuration. Please try again.",
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditMode(false);
+    setEditedStaffNeeded({});
+    trackButtonClick("Cancel Config Edit", "Admin Dashboard");
   };
 
   if (loading) {
@@ -188,6 +260,13 @@ export default function AdminDashboardClient({
             onBalance={handleBalance}
             balancingResult={balancingResult}
             isBalancing={isBalancing}
+            isEditMode={isEditMode}
+            editedStaffNeeded={editedStaffNeeded}
+            onEditStaffNeeded={handleEditStaffNeeded}
+            onSaveConfig={handleSaveConfig}
+            onCancelEdit={handleCancelEdit}
+            isSaving={isSaving}
+            onToggleEditMode={() => setIsEditMode(!isEditMode)}
           />
         </div>
 
@@ -303,6 +382,192 @@ export default function AdminDashboardClient({
             </div>
           </div>
         )}
+
+        {/* Sign Up CTA */}
+        <div className="mt-6 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-lg p-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold text-white mb-3">
+                Want More Advanced Scheduling Features?
+              </h3>
+              <p className="text-white/90 mb-2">
+                RosterLab's full platform offers:
+              </p>
+              <ul className="space-y-2 text-sm text-white/90">
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    <strong>Advanced AI scheduling</strong> that considers
+                    skills, certifications, fatigue, and compliance
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    <strong>Automated shift filling</strong> and real-time
+                    schedule optimization
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    <strong>Staff mobile app</strong> for shift swaps, time off
+                    requests, and notifications
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-white mr-2 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>
+                    <strong>Analytics & reporting</strong> on labor costs,
+                    overtime, and productivity
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://www.rosterlab.com/book-a-demo"
+                className="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors text-center"
+                onClick={() =>
+                  trackButtonClick("Request Demo from Admin", "Admin Dashboard")
+                }
+              >
+                Request a Demo
+              </a>
+              <a
+                href="https://www.rosterlab.com/pricing"
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-primary-600 font-semibold rounded-lg border-2 border-primary-600 hover:bg-primary-50 transition-colors text-center"
+                onClick={() =>
+                  trackButtonClick("View Pricing from Admin", "Admin Dashboard")
+                }
+              >
+                View Pricing
+              </a>
+            </div>
+          </div>
+
+          {/* Share This Tool - Integrated */}
+          <div className="mt-6 pt-6 border-t border-white/20">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex items-start flex-1">
+                <svg
+                  className="w-5 h-5 text-white mr-3 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+                  />
+                </svg>
+                <div>
+                  <p className="text-sm font-medium text-white">
+                    Share This Free Tool
+                  </p>
+                  <p className="text-xs text-white/80 mt-0.5">
+                    Help other managers save time with holiday shift planning
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-2 w-full sm:w-auto">
+                <input
+                  type="text"
+                  value={`${window.location.origin}/tools/survey-preferences`}
+                  readOnly
+                  className="flex-1 sm:w-64 px-3 py-1.5 border border-white/30 rounded text-white bg-white/10 font-mono text-xs placeholder:text-white/50"
+                  onClick={(e) => e.currentTarget.select()}
+                />
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `${window.location.origin}/tools/survey-preferences`,
+                    );
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                    trackButtonClick("Copy Tool Link", "Admin Dashboard");
+                  }}
+                  className={`px-4 py-1.5 rounded transition-colors text-xs font-medium whitespace-nowrap ${
+                    copied
+                      ? "bg-green-600 text-white hover:bg-green-700"
+                      : "bg-white text-blue-600 hover:bg-gray-100"
+                  }`}
+                >
+                  {copied ? (
+                    <span className="flex items-center">
+                      <svg
+                        className="w-3 h-3 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      Copied
+                    </span>
+                  ) : (
+                    "Copy"
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

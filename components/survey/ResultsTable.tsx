@@ -18,6 +18,13 @@ interface ResultsTableProps {
   onBalance?: () => void;
   balancingResult?: BalancingResult | null;
   isBalancing?: boolean;
+  isEditMode?: boolean;
+  editedStaffNeeded?: { [holidayId: string]: number };
+  onEditStaffNeeded?: (holidayId: string, value: number) => void;
+  onSaveConfig?: () => void;
+  onCancelEdit?: () => void;
+  isSaving?: boolean;
+  onToggleEditMode?: () => void;
 }
 
 export default function ResultsTable({
@@ -26,6 +33,13 @@ export default function ResultsTable({
   onBalance,
   balancingResult,
   isBalancing,
+  isEditMode = false,
+  editedStaffNeeded = {},
+  onEditStaffNeeded,
+  onSaveConfig,
+  onCancelEdit,
+  isSaving = false,
+  onToggleEditMode,
 }: ResultsTableProps) {
   const [selectedTab, setSelectedTab] = useState<
     "overview" | "responses" | "assignments"
@@ -33,6 +47,8 @@ export default function ResultsTable({
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"name" | "email" | "date">("date");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [staffLinkCopied, setStaffLinkCopied] = useState(false);
+  const [dataCopied, setDataCopied] = useState(false);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -58,6 +74,11 @@ export default function ResultsTable({
               (h) => h.id === ranking.holiday_id,
             );
             const holidayName = holiday ? holiday.name : "Unknown Holiday";
+
+            if (ranking.rank === -1) {
+              return `${holidayName} (Not Available)`;
+            }
+
             const ordinal =
               ranking.rank === 1
                 ? "1st"
@@ -365,6 +386,109 @@ export default function ResultsTable({
     }
   };
 
+  const copyToClipboard = () => {
+    // Build tab-separated data for Excel/Sheets
+    const headers = ["Name", "Email", "Submitted At", "Preferences"];
+
+    // Add assignment columns if balancing has been done
+    if (balancingResult) {
+      headers.push(
+        "Total Shifts Assigned",
+        "Shifts (Matched Preference)",
+        "Shifts (Not Ranked)",
+        "Preference Satisfaction %",
+        "Assigned Shifts Details",
+      );
+    }
+
+    const rows = results.responses.map((response) => {
+      const row = [
+        response.participant.name,
+        response.participant.email,
+        formatDate(response.participant.submitted_at.toString()),
+        formatPreferenceData(response.preference_data),
+      ];
+
+      // Add assignments if balancing has been done
+      if (balancingResult) {
+        const assignments = balancingResult.assignments.filter((assignment) =>
+          assignment.assigned_staff.some(
+            (staff) => staff.participant_id === response.participant_id,
+          ),
+        );
+
+        const assignmentDetails = assignments.map((assignment) => {
+          const staff = assignment.assigned_staff.find(
+            (s) => s.participant_id === response.participant_id,
+          );
+          return {
+            holiday_name: assignment.holiday_name,
+            preference_rank: staff?.preference_rank,
+          };
+        });
+
+        const rankedCount = assignmentDetails.filter(
+          (a) => a.preference_rank !== null,
+        ).length;
+        const unrankedCount = assignmentDetails.filter(
+          (a) => a.preference_rank === null,
+        ).length;
+        const satisfactionScore =
+          assignments.length > 0
+            ? Math.round((rankedCount / assignments.length) * 100)
+            : 0;
+
+        const assignmentDetailsText = assignments
+          .map((assignment) => {
+            const staff = assignment.assigned_staff.find(
+              (s) => s.participant_id === response.participant_id,
+            );
+            const rankText = staff?.preference_rank
+              ? ` (${staff.preference_rank}${
+                  staff.preference_rank === 1
+                    ? "st"
+                    : staff.preference_rank === 2
+                      ? "nd"
+                      : staff.preference_rank === 3
+                        ? "rd"
+                        : "th"
+                } choice)`
+              : " (not ranked)";
+            return `${assignment.holiday_name}${rankText}`;
+          })
+          .join("; ");
+
+        row.push(
+          String(assignments.length),
+          String(rankedCount),
+          String(unrankedCount),
+          `${satisfactionScore}%`,
+          assignmentDetailsText || "None",
+        );
+      }
+
+      return row;
+    });
+
+    // Create tab-separated text
+    const tsvContent = [
+      headers.join("\t"),
+      ...rows.map((row) => row.join("\t")),
+    ].join("\n");
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(tsvContent).then(
+      () => {
+        setDataCopied(true);
+        setTimeout(() => setDataCopied(false), 2000);
+      },
+      (err) => {
+        console.error("Failed to copy:", err);
+        alert("Failed to copy to clipboard. Please try again.");
+      },
+    );
+  };
+
   const handleSort = (field: "name" | "email" | "date") => {
     if (sortBy === field) {
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
@@ -439,17 +563,68 @@ export default function ResultsTable({
           </p>
         </div>
         <div className="flex gap-3 no-print">
-          {onBalance && (
-            <Button
-              variant="primary"
-              size="md"
-              onClick={onBalance}
-              disabled={isBalancing || results.participants.length === 0}
-              analyticsLabel="Balance Assignments"
-              analyticsLocation="Results Table"
-            >
-              {isBalancing ? "Balancing..." : "Balance Assignments"}
-            </Button>
+          {isEditMode ? (
+            <>
+              <Button
+                variant="primary"
+                size="md"
+                onClick={onSaveConfig}
+                disabled={isSaving}
+                analyticsLabel="Save Config"
+                analyticsLocation="Results Table"
+              >
+                {isSaving ? "Saving..." : "Save & Re-balance"}
+              </Button>
+              <Button
+                variant="outline"
+                size="md"
+                onClick={onCancelEdit}
+                disabled={isSaving}
+                analyticsLabel="Cancel Edit"
+                analyticsLocation="Results Table"
+              >
+                Cancel
+              </Button>
+            </>
+          ) : (
+            <>
+              {onToggleEditMode && (
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={onToggleEditMode}
+                  analyticsLabel="Edit Demand Numbers"
+                  analyticsLocation="Results Table"
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    />
+                  </svg>
+                  Edit Demand
+                </Button>
+              )}
+              {onBalance && (
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={onBalance}
+                  disabled={isBalancing || results.participants.length === 0}
+                  analyticsLabel="Balance Assignments"
+                  analyticsLocation="Results Table"
+                >
+                  {isBalancing ? "Balancing..." : "Balance Assignments"}
+                </Button>
+              )}
+            </>
           )}
           <Button
             variant="outline"
@@ -476,23 +651,55 @@ export default function ResultsTable({
           <Button
             variant="outline"
             size="md"
-            onClick={exportToCSV}
-            analyticsLabel="Export by Staff"
+            onClick={copyToClipboard}
+            analyticsLabel="Copy to Clipboard"
             analyticsLocation="Results Table"
           >
-            Export by Staff
+            {dataCopied ? (
+              <>
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                Copied!
+              </>
+            ) : (
+              <>
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+                Copy Data
+              </>
+            )}
           </Button>
-          {balancingResult && (
-            <Button
-              variant="outline"
-              size="md"
-              onClick={exportByHoliday}
-              analyticsLabel="Export by Holiday"
-              analyticsLocation="Results Table"
-            >
-              Export by Holiday
-            </Button>
-          )}
+          <Button
+            variant="outline"
+            size="md"
+            onClick={exportToCSV}
+            analyticsLabel="Export CSV"
+            analyticsLocation="Results Table"
+          >
+            Export CSV
+          </Button>
           {balancingResult &&
             (() => {
               const assignedIds = new Set(
@@ -740,6 +947,119 @@ export default function ResultsTable({
               </table>
             </div>
           </div>
+
+          {/* Holiday Configuration Section */}
+          <div className="bg-white rounded-lg border border-neutral-200 overflow-hidden">
+            <div className="px-6 py-4 border-b border-neutral-200">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-semibold text-neutral-900">
+                  Holiday Configuration
+                </h2>
+                {isEditMode && (
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                    <svg
+                      className="w-3 h-3 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                    Edit Mode Active
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-neutral-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                      Holiday Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                      Date
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
+                      Staff Needed
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-neutral-200">
+                  {results.survey.config.holidays
+                    .sort((a, b) => a.date.localeCompare(b.date))
+                    .map((holiday) => (
+                      <tr key={holiday.id} className="hover:bg-neutral-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-neutral-900">
+                          {holiday.name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-600">
+                          {formatDate(holiday.date)}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-900">
+                          {isEditMode ? (
+                            <input
+                              type="number"
+                              min="1"
+                              max="100"
+                              value={
+                                editedStaffNeeded[holiday.id] ??
+                                holiday.staff_needed
+                              }
+                              onChange={(e) => {
+                                const value = parseInt(e.target.value, 10);
+                                if (
+                                  !isNaN(value) &&
+                                  value >= 1 &&
+                                  value <= 100
+                                ) {
+                                  onEditStaffNeeded?.(holiday.id, value);
+                                }
+                              }}
+                              className="w-20 px-3 py-1.5 border border-primary-300 rounded focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-primary-50"
+                            />
+                          ) : (
+                            <span>{holiday.staff_needed} staff</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            {isEditMode && (
+              <div className="px-6 py-4 bg-blue-50 border-t border-blue-200">
+                <div className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <div className="text-sm text-blue-800">
+                    <p className="font-medium mb-1">Editing Demand Numbers</p>
+                    <p>
+                      Update the staff needed for each holiday. Click "Save &
+                      Re-balance" to apply your changes and automatically re-run
+                      the assignment algorithm.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
@@ -859,9 +1179,39 @@ export default function ResultsTable({
                           </ul>
                         </div>
                         <p className="text-sm text-amber-800">
-                          <strong>Recommendation:</strong> Share the staff
-                          survey link with more team members before running the
-                          balancing algorithm.
+                          <strong>Recommendation:</strong>{" "}
+                          <button
+                            onClick={() => {
+                              const staffUrl = `${window.location.origin}/tools/survey-preferences/s/${results.survey.id}`;
+                              navigator.clipboard.writeText(staffUrl);
+                              setStaffLinkCopied(true);
+                              setTimeout(() => setStaffLinkCopied(false), 2000);
+                            }}
+                            className="inline-flex items-center text-amber-900 underline hover:text-amber-950 font-medium transition-colors"
+                          >
+                            {staffLinkCopied ? (
+                              <>
+                                <svg
+                                  className="w-3 h-3 mr-1"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M5 13l4 4L19 7"
+                                  />
+                                </svg>
+                                Staff link copied!
+                              </>
+                            ) : (
+                              "Share the staff survey link"
+                            )}
+                          </button>{" "}
+                          with more team members before running the balancing
+                          algorithm.
                         </p>
                       </div>
                     </div>

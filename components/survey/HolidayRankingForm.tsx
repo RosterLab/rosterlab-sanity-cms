@@ -82,14 +82,17 @@ export default function HolidayRankingForm({
     try {
       // Build holiday rankings array
       const holiday_rankings: HolidayRanking[] = Object.entries(rankings)
-        .filter(([_, rank]) => rank > 0) // Only include ranked holidays
+        .filter(([_, rank]) => rank !== 0) // Include both positive ranks and -1 (Not Available)
         .map(([holiday_id, rank]) => ({
           holiday_id,
           rank,
         }));
 
+      // Check if user provided at least one preference (either ranked or marked unavailable)
       if (holiday_rankings.length === 0) {
-        throw new Error("Please rank at least one holiday");
+        throw new Error(
+          "Please indicate your preference for at least one holiday",
+        );
       }
 
       const requestData: SubmitPreferencesRequest = {
@@ -204,9 +207,10 @@ export default function HolidayRankingForm({
               Rank Your Holiday Preferences
             </h2>
             <p className="text-sm text-neutral-600">
-              Select your preference for each holiday: 1 = most preferred, 2 =
-              second choice, etc. Leave blank if you don't want to work that
-              holiday.
+              For each holiday: Select 1st choice, 2nd choice, etc. for holidays
+              you're willing to work. Select "Not Available" if you cannot work
+              that holiday. Leave as "No preference" if you're available but
+              have no strong preference.
             </p>
           </div>
 
@@ -235,9 +239,10 @@ export default function HolidayRankingForm({
                     onChange={(e) =>
                       setRanking(holiday.id, Number(e.target.value))
                     }
-                    className="w-32 px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="w-40 px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
-                    <option value="">Not ranked</option>
+                    <option value="">No preference</option>
+                    <option value="-1">Not Available</option>
                     {sortedHolidays.map((_, index) => (
                       <option key={index + 1} value={index + 1}>
                         {index + 1}
