@@ -194,6 +194,121 @@ export default function ResultsTable({
     }
   };
 
+  const exportByHoliday = () => {
+    if (!balancingResult) return;
+
+    // Build holiday-centric CSV
+    const headers = [
+      "Holiday Name",
+      "Holiday Date",
+      "Staff Needed",
+      "Staff Assigned",
+      "Coverage Status",
+      "Staff Member",
+      "Email",
+      "Preference Match",
+      "Total Assignments",
+      "Matched Preferences",
+      "Satisfaction %",
+    ];
+
+    const rows: string[][] = [];
+
+    // Sort assignments by date
+    const sortedAssignments = [...balancingResult.assignments].sort((a, b) =>
+      a.holiday_date.localeCompare(b.holiday_date),
+    );
+
+    sortedAssignments.forEach((assignment) => {
+      const coverageStatus =
+        assignment.unassigned_count === 0
+          ? "Fully staffed"
+          : `${assignment.unassigned_count} needed`;
+
+      // Sort staff by preference rank (nulls last)
+      const sortedStaff = [...assignment.assigned_staff].sort((a, b) => {
+        if (a.preference_rank === null && b.preference_rank === null) return 0;
+        if (a.preference_rank === null) return 1;
+        if (b.preference_rank === null) return -1;
+        return a.preference_rank - b.preference_rank;
+      });
+
+      sortedStaff.forEach((staff) => {
+        // Calculate staff context
+        const staffAssignments = balancingResult.assignments.filter((a) =>
+          a.assigned_staff.some(
+            (s) => s.participant_id === staff.participant_id,
+          ),
+        );
+        const totalAssignments = staffAssignments.length;
+        const rankedAssignments = staffAssignments.filter(
+          (a) =>
+            a.assigned_staff.find(
+              (s) => s.participant_id === staff.participant_id,
+            )?.preference_rank !== null,
+        ).length;
+        const satisfactionScore =
+          totalAssignments > 0
+            ? Math.round((rankedAssignments / totalAssignments) * 100)
+            : 0;
+
+        // Format preference match text
+        let preferenceMatch = "";
+        if (staff.preference_rank === 1) {
+          preferenceMatch = "Got 1st choice";
+        } else if (staff.preference_rank === 2) {
+          preferenceMatch = "Got 2nd choice";
+        } else if (staff.preference_rank === 3) {
+          preferenceMatch = "Got 3rd choice";
+        } else if (staff.preference_rank && staff.preference_rank > 3) {
+          preferenceMatch = `Got ${staff.preference_rank}th choice`;
+        } else {
+          preferenceMatch = "Filled gap - not ranked";
+        }
+
+        rows.push([
+          assignment.holiday_name,
+          new Date(assignment.holiday_date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          }),
+          String(assignment.staff_needed),
+          String(assignment.assigned_staff.length),
+          coverageStatus,
+          staff.name,
+          staff.email,
+          preferenceMatch,
+          String(totalAssignments),
+          String(rankedAssignments),
+          `${satisfactionScore}%`,
+        ]);
+      });
+    });
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) =>
+        row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(","),
+      ),
+    ].join("\n");
+
+    // Download CSV
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `survey-by-holiday-${results.survey.id}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    if (onExport) {
+      onExport("csv");
+    }
+  };
+
   const exportUnassignedStaff = () => {
     if (!balancingResult) return;
 
@@ -362,11 +477,22 @@ export default function ResultsTable({
             variant="outline"
             size="md"
             onClick={exportToCSV}
-            analyticsLabel="Export CSV"
+            analyticsLabel="Export by Staff"
             analyticsLocation="Results Table"
           >
-            Export CSV
+            Export by Staff
           </Button>
+          {balancingResult && (
+            <Button
+              variant="outline"
+              size="md"
+              onClick={exportByHoliday}
+              analyticsLabel="Export by Holiday"
+              analyticsLocation="Results Table"
+            >
+              Export by Holiday
+            </Button>
+          )}
           {balancingResult &&
             (() => {
               const assignedIds = new Set(
@@ -791,16 +917,16 @@ export default function ResultsTable({
             </div>
           ) : (
             <>
-              {/* Fairness Score */}
+              {/* Overall Quality Score */}
               <div className="bg-white rounded-lg border border-neutral-200 p-6">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-lg font-semibold text-neutral-900">
-                      Fairness Score
+                      Overall Quality Score
                     </h3>
                     <p className="text-sm text-neutral-600 mt-1">
-                      Higher scores indicate better balance and preference
-                      matching
+                      Measures shift coverage, preference matching, and workload
+                      balance
                     </p>
                   </div>
                   <div className="text-right">
@@ -1020,13 +1146,14 @@ export default function ResultsTable({
                       </div>
                       <div>
                         <div className="font-medium mb-1">
-                          4. Score Calculation
+                          4. Quality Score Calculation
                         </div>
                         <p>
-                          Fairness score is based on: (a) how many positions
-                          were filled (40%), (b) how well preferences were
-                          matched (40%), and (c) how evenly assignments were
-                          distributed (20%).
+                          Overall quality is based on: (a) shift coverage - how
+                          many positions were filled (40%), (b) preference
+                          satisfaction - how well staff preferences were matched
+                          (40%), and (c) workload balance - how evenly
+                          assignments were distributed (20%).
                         </p>
                       </div>
                     </div>
