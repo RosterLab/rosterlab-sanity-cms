@@ -18,7 +18,7 @@ export const holidaySchema = z.object({
 // Holiday ranking schema
 export const holidayRankingSchema = z.object({
   holiday_id: z.string().uuid(),
-  rank: z.number().min(-1).max(50), // -1 = Not Available, 1-50 = preference ranking
+  rank: z.number().min(-2).max(50), // -2 = Not applicable, -1 = Not Available, 1-50 = preference ranking
 });
 
 // Survey config schema

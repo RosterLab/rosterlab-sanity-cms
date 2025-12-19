@@ -79,6 +79,10 @@ export default function ResultsTable({
               return `${holidayName} (Not Available)`;
             }
 
+            if (ranking.rank === -2) {
+              return `${holidayName} (Not applicable)`;
+            }
+
             const ordinal =
               ranking.rank === 1
                 ? "1st"

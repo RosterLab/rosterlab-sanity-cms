@@ -209,8 +209,9 @@ export default function HolidayRankingForm({
             <p className="text-sm text-neutral-600">
               For each holiday: Select 1st choice, 2nd choice, etc. for holidays
               you're willing to work. Select "Not Available" if you cannot work
-              that holiday. Leave as "No preference" if you're available but
-              have no strong preference.
+              that holiday. Select "Not applicable" if the holiday doesn't apply
+              to you. Leave as "No preference" if you're available but have no
+              strong preference.
             </p>
           </div>
 
@@ -243,6 +244,7 @@ export default function HolidayRankingForm({
                   >
                     <option value="">No preference</option>
                     <option value="-1">Not Available</option>
+                    <option value="-2">Not applicable</option>
                     {sortedHolidays.map((_, index) => (
                       <option key={index + 1} value={index + 1}>
                         {index + 1}

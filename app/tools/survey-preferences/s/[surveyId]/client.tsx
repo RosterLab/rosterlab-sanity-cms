@@ -123,6 +123,10 @@ export default function StaffSubmissionClient({
                                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
                                     Not Available
                                   </span>
+                                ) : ranking.rank === -2 ? (
+                                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                    Not applicable
+                                  </span>
                                 ) : (
                                   <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
                                     {ranking.rank}
@@ -199,6 +203,9 @@ export default function StaffSubmissionClient({
                         );
                         if (ranking.rank === -1) {
                           return `Not Available: ${holiday?.name} (${holiday ? new Date(holiday.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : ""})`;
+                        }
+                        if (ranking.rank === -2) {
+                          return `Not applicable: ${holiday?.name} (${holiday ? new Date(holiday.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : ""})`;
                         }
                         const ordinal =
                           ranking.rank === 1
