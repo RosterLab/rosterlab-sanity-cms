@@ -66,6 +66,14 @@ export const updateConfigRequestSchema = z.object({
   ),
 });
 
+// Add holidays request schema (for adding new holidays - only allowed with 0 responses)
+export const addHolidaysRequestSchema = z.object({
+  token: z.string().uuid("Invalid admin token"),
+  newHolidays: z
+    .array(holidaySchema)
+    .min(1, "At least one holiday is required"),
+});
+
 // Export validation helper functions
 export function validateCreateSurveyRequest(data: unknown) {
   return createSurveyRequestSchema.parse(data);
@@ -85,4 +93,8 @@ export function validateSurveyId(id: unknown) {
 
 export function validateUpdateConfigRequest(data: unknown) {
   return updateConfigRequestSchema.parse(data);
+}
+
+export function validateAddHolidaysRequest(data: unknown) {
+  return addHolidaysRequestSchema.parse(data);
 }

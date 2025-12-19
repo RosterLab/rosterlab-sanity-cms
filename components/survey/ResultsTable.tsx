@@ -9,8 +9,10 @@ import { useState } from "react";
 import type {
   SurveyResultsResponse,
   BalancingResult,
+  Holiday,
 } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
+import AddHolidayForm from "./AddHolidayForm";
 
 interface ResultsTableProps {
   results: SurveyResultsResponse;
@@ -25,6 +27,7 @@ interface ResultsTableProps {
   onCancelEdit?: () => void;
   isSaving?: boolean;
   onToggleEditMode?: () => void;
+  onAddHolidays?: (holidays: Omit<Holiday, "id">[]) => Promise<void>;
 }
 
 export default function ResultsTable({
@@ -40,6 +43,7 @@ export default function ResultsTable({
   onCancelEdit,
   isSaving = false,
   onToggleEditMode,
+  onAddHolidays,
 }: ResultsTableProps) {
   const [selectedTab, setSelectedTab] = useState<
     "overview" | "responses" | "assignments"
@@ -49,6 +53,7 @@ export default function ResultsTable({
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const [staffLinkCopied, setStaffLinkCopied] = useState(false);
   const [dataCopied, setDataCopied] = useState(false);
+  const [showAddHolidayForm, setShowAddHolidayForm] = useState(false);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -58,6 +63,13 @@ export default function ResultsTable({
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
+
+  const handleAddHolidays = async (holidays: Omit<Holiday, "id">[]) => {
+    if (onAddHolidays) {
+      await onAddHolidays(holidays);
+      setShowAddHolidayForm(false);
+    }
   };
 
   const formatPreferenceData = (data: any) => {
@@ -614,6 +626,30 @@ export default function ResultsTable({
                     />
                   </svg>
                   Edit Demand
+                </Button>
+              )}
+              {onAddHolidays && results.participants.length === 0 && (
+                <Button
+                  variant="secondary"
+                  size="md"
+                  onClick={() => setShowAddHolidayForm(true)}
+                  analyticsLabel="Add Holidays"
+                  analyticsLocation="Results Table"
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                  Add Holidays
                 </Button>
               )}
               {onBalance && (
@@ -1725,6 +1761,15 @@ export default function ResultsTable({
             </>
           )}
         </div>
+      )}
+
+      {/* Add Holiday Form Modal */}
+      {showAddHolidayForm && (
+        <AddHolidayForm
+          onAdd={handleAddHolidays}
+          onCancel={() => setShowAddHolidayForm(false)}
+          existingHolidays={results.survey.config.holidays}
+        />
       )}
     </div>
   );

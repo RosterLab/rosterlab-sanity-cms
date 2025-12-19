@@ -10,6 +10,7 @@ import ResultsTable from "@/components/survey/ResultsTable";
 import type {
   SurveyResultsResponse,
   BalancingResult,
+  Holiday,
 } from "@/lib/survey/types";
 import { trackButtonClick } from "@/components/analytics/Segment";
 
@@ -172,6 +173,46 @@ export default function AdminDashboardClient({
     trackButtonClick("Cancel Config Edit", "Admin Dashboard");
   };
 
+  const handleAddHolidays = async (holidays: Omit<Holiday, "id">[]) => {
+    if (!results) return;
+
+    try {
+      trackButtonClick("Add Holidays", "Admin Dashboard");
+
+      // Generate UUIDs for new holidays
+      const newHolidays = holidays.map((holiday) => ({
+        ...holiday,
+        id: crypto.randomUUID(),
+      }));
+
+      const response = await fetch(`/api/survey/${surveyId}/config`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token,
+          newHolidays,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to add holidays");
+      }
+
+      // Refresh results to show new holidays
+      await fetchResults();
+
+      alert(
+        `Successfully added ${holidays.length} holiday${holidays.length === 1 ? "" : "s"}!`,
+      );
+    } catch (err) {
+      console.error("Error adding holidays:", err);
+      throw err; // Re-throw so AddHolidayForm can handle it
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 flex items-center justify-center px-4">
@@ -267,6 +308,7 @@ export default function AdminDashboardClient({
             onCancelEdit={handleCancelEdit}
             isSaving={isSaving}
             onToggleEditMode={() => setIsEditMode(!isEditMode)}
+            onAddHolidays={handleAddHolidays}
           />
         </div>
 
