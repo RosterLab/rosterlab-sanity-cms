@@ -64,7 +64,7 @@ export async function PATCH(
       // Check response count
       const responseCountResult = await sql`
         SELECT COUNT(*) as count
-        FROM responses
+        FROM survey_participants
         WHERE survey_id = ${surveyId}
       `;
 
