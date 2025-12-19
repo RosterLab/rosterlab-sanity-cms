@@ -243,7 +243,7 @@ export default function HolidayRankingForm({
                     className="w-40 px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
                     <option value="">No preference</option>
-                    <option value="-1">Not Available</option>
+                    <option value="-1">Not available</option>
                     <option value="-2">Not applicable</option>
                     {sortedHolidays.map((_, index) => (
                       <option key={index + 1} value={index + 1}>
