@@ -119,6 +119,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
           title: "Free Excel Template",
           link: "/templates/free-staff-roster-template-excel",
         },
+        {
+          title: "Preferences Survey & Balancer",
+          link: "/tools/survey-preferences",
+        },
       ],
     },
     { title: "About", link: "/about" },
