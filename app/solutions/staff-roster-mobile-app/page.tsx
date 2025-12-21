@@ -588,7 +588,6 @@ export default function EmployeeMobileAppPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
-          { name: "Solutions", url: "/solutions" },
           { name: "Staff Roster Mobile App" },
         ]}
       />

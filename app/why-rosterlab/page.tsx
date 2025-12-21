@@ -527,7 +527,7 @@ export default async function WhyRosterLabPage() {
                 </span>
               </p>
               <Button
-                href="/feature/ai-roster-assistant"
+                href="/feature/ai-staff-rostering-assistant"
                 className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-3"
               >
                 Learn More

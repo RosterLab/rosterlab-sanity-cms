@@ -10,14 +10,14 @@ export const metadata = withHreflang(
   {
     title: "Hospitality Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
+      "Learn how our rostering software simplifies hospitality staff scheduling. Improve service quality, ensure compliance & save time.",
     alternates: {
       canonical: "https://rosterlab.com/industries/hospitality-roster",
     },
     openGraph: {
       title: "Hospitality Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
+        "Learn how our rostering software simplifies hospitality staff scheduling. Improve service quality, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/industries/hospitality-roster",
       images: [
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Hospitality Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in hospitality. Create fair, efficient rosters that improve service quality, compliance & saves time.",
+        "Learn how our rostering software simplifies hospitality staff scheduling. Improve service quality, ensure compliance & save time.",
       images: ["/images/hospitality.webp"],
     },
   },

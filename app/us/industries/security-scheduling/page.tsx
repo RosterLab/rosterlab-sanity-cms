@@ -10,14 +10,14 @@ export const metadata = withHreflang(
   {
     title: "Security Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software simplifies staff scheduling in security. Create fair, efficient staff schedules that improve site safety, compliance & saves time.",
+      "Learn how our scheduling software simplifies security staff scheduling. Improve site safety, ensure compliance & save time.",
     alternates: {
       canonical: "https://rosterlab.com/us/industries/security-scheduling",
     },
     openGraph: {
       title: "Security Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in security. Create fair, efficient staff schedules that improve site safety, compliance & saves time.",
+        "Learn how our scheduling software simplifies security staff scheduling. Improve site safety, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/us/industries/security-scheduling",
       images: [
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Security Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in security. Create fair, efficient staff schedules that improve site safety, compliance & saves time.",
+        "Learn how our scheduling software simplifies security staff scheduling. Improve site safety, ensure compliance & save time.",
       images: ["/images/security-roster.jpg"],
     },
   },

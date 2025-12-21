@@ -330,11 +330,7 @@ export default function LeaveRequestsPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "Leave Requests" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "Leave Requests" }]}
       />
     </SiteLayout>
   );

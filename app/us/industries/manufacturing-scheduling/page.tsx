@@ -10,14 +10,14 @@ export const metadata = withHreflang(
   {
     title: "Manufacturing Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software simplifies staff scheduling in manufacturing. Create fair, efficient staff schedules that improve production output, compliance & saves time.",
+      "Learn how our scheduling software simplifies manufacturing staff scheduling. Improve production output, ensure compliance & save time.",
     alternates: {
       canonical: "https://rosterlab.com/us/industries/manufacturing-scheduling",
     },
     openGraph: {
       title: "Manufacturing Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in manufacturing. Create fair, efficient staff schedules that improve production output, compliance & saves time.",
+        "Learn how our scheduling software simplifies manufacturing staff scheduling. Improve production output, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/us/industries/manufacturing-scheduling",
       images: [
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Manufacturing Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in manufacturing. Create fair, efficient staff schedules that improve production output, compliance & saves time.",
+        "Learn how our scheduling software simplifies manufacturing staff scheduling. Improve production output, ensure compliance & save time.",
       images: ["/images/manufacturer.jpg"],
     },
   },
