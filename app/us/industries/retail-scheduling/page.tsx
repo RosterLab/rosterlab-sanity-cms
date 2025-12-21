@@ -10,14 +10,14 @@ export const metadata = withHreflang(
   {
     title: "Retail Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software simplifies staff scheduling in retail. Create fair, efficient staff schedules that improve customer service, compliance & saves time.",
+      "Learn how our scheduling software simplifies retail staff scheduling. Improve customer service, ensure compliance & save time.",
     alternates: {
       canonical: "https://rosterlab.com/us/industries/retail-scheduling",
     },
     openGraph: {
       title: "Retail Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in retail. Create fair, efficient staff schedules that improve customer service, compliance & saves time.",
+        "Learn how our scheduling software simplifies retail staff scheduling. Improve customer service, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/us/industries/retail-scheduling",
       images: [
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Retail Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in retail. Create fair, efficient staff schedules that improve customer service, compliance & saves time.",
+        "Learn how our scheduling software simplifies retail staff scheduling. Improve customer service, ensure compliance & save time.",
       images: ["/images/retail-roster.jpg"],
     },
   },

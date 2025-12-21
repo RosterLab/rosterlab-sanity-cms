@@ -11,14 +11,14 @@ export const metadata = withHreflang(
   {
     title: "Security Staff Rostering Software - RosterLab",
     description:
-      "Simplify security staff scheduling with RosterLab. Create fair, compliant rosters for guards, patrol officers, and control room staff. Manage 24/7 coverage effortlessly.",
+      "Simplify security staff scheduling with RosterLab. Manage 24/7 coverage for guards, patrol officers & control room staff with compliant rosters.",
     alternates: {
       canonical: "https://rosterlab.com/industries/security",
     },
     openGraph: {
       title: "Security Staff Rostering Software - RosterLab",
       description:
-        "Simplify security staff scheduling with RosterLab. Create fair, compliant rosters for guards, patrol officers, and control room staff. Manage 24/7 coverage effortlessly.",
+        "Simplify security staff scheduling with RosterLab. Manage 24/7 coverage for guards, patrol officers & control room staff with compliant rosters.",
       type: "website",
       url: "https://rosterlab.com/industries/security",
       images: [
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Security Staff Rostering Software - RosterLab",
       description:
-        "Simplify security staff scheduling with RosterLab. Create fair, compliant rosters for guards, patrol officers, and control room staff. Manage 24/7 coverage effortlessly.",
+        "Simplify security staff scheduling with RosterLab. Manage 24/7 coverage for guards, patrol officers & control room staff with compliant rosters.",
       images: ["/images/og-images/IndustryHealthcare.png"],
     },
   },

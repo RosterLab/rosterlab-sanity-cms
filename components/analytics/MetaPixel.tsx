@@ -37,7 +37,7 @@ export default function MetaPixel({ pixelId }: MetaPixelProps) {
           width="1"
           style={{ display: "none" }}
           src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-          alt=""
+          alt="Meta tracking pixel"
         />
       </noscript>
     </>

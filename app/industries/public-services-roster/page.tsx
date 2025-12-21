@@ -10,14 +10,14 @@ export const metadata = withHreflang(
   {
     title: "Public Services Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies staff scheduling in public services. Create fair, efficient rosters that improve community service, compliance & saves time.",
+      "Learn how our rostering software simplifies public services staff scheduling. Improve community service, ensure compliance & save time.",
     alternates: {
       canonical: "https://rosterlab.com/industries/public-services-roster",
     },
     openGraph: {
       title: "Public Services Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in public services. Create fair, efficient rosters that improve community service, compliance & saves time.",
+        "Learn how our rostering software simplifies public services staff scheduling. Improve community service, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/industries/public-services-roster",
       images: [
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Public Services Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in public services. Create fair, efficient rosters that improve community service, compliance & saves time.",
+        "Learn how our rostering software simplifies public services staff scheduling. Improve community service, ensure compliance & save time.",
       images: ["/images/public-services-roster.jpg"],
     },
   },

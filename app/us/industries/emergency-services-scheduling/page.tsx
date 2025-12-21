@@ -10,7 +10,7 @@ export const metadata = withHreflang(
   {
     title: "Emergency Services Staff Scheduling Software - RosterLab",
     description:
-      "Learn how our scheduling software simplifies staff scheduling in emergency services. Create fair, efficient staff schedules that improve community service, compliance & saves time.",
+      "Learn how our scheduling software simplifies emergency services staff scheduling. Improve community service, ensure compliance & save time.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/emergency-services-scheduling",
@@ -18,7 +18,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Emergency Services Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in emergency services. Create fair, efficient staff schedules that improve community service, compliance & saves time.",
+        "Learn how our scheduling software simplifies emergency services staff scheduling. Improve community service, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/us/industries/emergency-services-scheduling",
       images: [
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Emergency Services Staff Scheduling Software - RosterLab",
       description:
-        "Learn how our scheduling software simplifies staff scheduling in emergency services. Create fair, efficient staff schedules that improve community service, compliance & saves time.",
+        "Learn how our scheduling software simplifies emergency services staff scheduling. Improve community service, ensure compliance & save time.",
       images: ["/images/public-services-roster.jpg"],
     },
   },
