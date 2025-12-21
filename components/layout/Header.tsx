@@ -107,6 +107,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Blog", link: "/blog" },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Newsroom", link: "/newsroom" },
+        { title: "Webinars", link: "/webinars" },
+        { title: "Shift Management Tools", link: "/tools" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
         {
@@ -388,7 +390,28 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion
                                       ? "Build radiology schedules with the right skill mix and compliance"
-                                      : "Balance teams with the right skill mix with compliant rosters"}
+                                      : "Build fair and compliant rosters across radiology subspecialties"}
+                                  </div>
+                                </Link>
+
+                                {/* Radiography Roster */}
+                                <Link
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/radiography-scheduling"
+                                      : "/industries/healthcare/radiography"
+                                  }
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
+                                    {isUSVersion
+                                      ? "Radiography Scheduling"
+                                      : "Radiography Roster"}
+                                  </div>
+                                  <div className="text-xs text-gray-600">
+                                    {isUSVersion
+                                      ? "Optimize radiographer coverage across imaging modalities"
+                                      : "Optimise radiographer coverage across imaging modalities"}
                                   </div>
                                 </Link>
 
@@ -470,7 +493,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Physician Scheduling"
-                                      : "JMO Roster"}
+                                      : "Junior Doctor Roster"}
                                   </div>
                                 </Link>
 
@@ -486,7 +509,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Attending Physician"
-                                      : "SMO Roster"}
+                                      : "Senior Doctor Roster"}
                                   </div>
                                 </Link>
 
@@ -519,6 +542,22 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     {isUSVersion
                                       ? "Long Term Planning"
                                       : "Long Roster"}
+                                  </div>
+                                </Link>
+
+                                {/* Telehealth Roster */}
+                                <Link
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/telehealth-scheduling"
+                                      : "/industries/healthcare/telehealth-rostering"
+                                  }
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    {isUSVersion
+                                      ? "Telehealth Scheduling"
+                                      : "Telehealth Roster"}
                                   </div>
                                 </Link>
                               </div>
@@ -573,7 +612,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     (sub) =>
                                       sub.title === "Blog" ||
                                       sub.title === "Case Studies" ||
-                                      sub.title === "Newsroom",
+                                      sub.title === "Newsroom" ||
+                                      sub.title === "Webinars" ||
+                                      sub.title === "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
@@ -591,7 +632,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                             ? "Success stories from our customers"
                                             : subItem.title === "Newsroom"
                                               ? "Latest updates and announcements"
-                                              : ""}
+                                              : subItem.title === "Webinars"
+                                                ? "Expert-led sessions on workforce management"
+                                                : subItem.title ===
+                                                    "Shift Management Tools"
+                                                  ? "Free tools to optimize your workforce"
+                                                  : ""}
                                       </div>
                                     </Link>
                                   ))}
@@ -609,7 +655,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                     (sub) =>
                                       sub.title !== "Blog" &&
                                       sub.title !== "Case Studies" &&
-                                      sub.title !== "Newsroom",
+                                      sub.title !== "Newsroom" &&
+                                      sub.title !== "Webinars" &&
+                                      sub.title !== "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link

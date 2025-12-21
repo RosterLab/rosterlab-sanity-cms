@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 import CountrySelector from "./CountrySelector";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isUSVersion = pathname?.startsWith("/us");
+
   return (
     <footer
       className="bg-gradient-to-br from-blue-50 via-white to-green-50 text-gray-800 border-t border-gray-200"
@@ -121,6 +127,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/feature/ai-staff-rostering-assistant"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  AI Roster Assistant
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/staff-rostering-interactive-demo"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
@@ -146,6 +160,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href={isUSVersion ? "/us/why-rosterlab" : "/why-rosterlab"}
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Why Choose Us
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/careers"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
@@ -166,6 +188,14 @@ export default function Footer() {
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
                   Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://app.rosterlab.com/privacy"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
@@ -207,6 +237,14 @@ export default function Footer() {
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
                   All industries
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://help.rosterlab.com/en/"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Help centre
                 </Link>
               </li>
             </ul>

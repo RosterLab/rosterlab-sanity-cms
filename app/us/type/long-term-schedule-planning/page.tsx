@@ -682,14 +682,26 @@ export default function LongTermSchedulePlanningPage() {
       {/* Trusted By */}
       <section className="bg-white pb-20">
         <TrustedBy />
+
+        {/* Testimonial */}
         <Container>
-          <div className="text-center mt-0">
-            <Button
-              href="/us/pricing"
-              className="bg-teal-600 text-white hover:bg-teal-700"
-            >
-              View Pricing
-            </Button>
+          <div className="max-w-4xl mx-auto -mt-8 mb-12">
+            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8 md:p-12 shadow-lg">
+              <blockquote className="text-xl md:text-2xl text-gray-700 mb-6 leading-relaxed text-center">
+                &ldquo;RosterLab has been a game-changer for our radiology
+                department with significant time-savings for our on-call
+                schedules. It has allowed us to maximize leave provisions while
+                maintaining a safer schedule&rdquo;
+              </blockquote>
+              <div className="text-center">
+                <p className="font-semibold text-gray-900 text-lg">
+                  Dr. Fernando
+                </p>
+                <p className="text-gray-600">
+                  Junior Consultant, Auckland Tertiary Hospital
+                </p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>

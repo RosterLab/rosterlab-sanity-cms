@@ -122,6 +122,14 @@ export default function USFooter() {
               </li>
               <li>
                 <Link
+                  href="/us/feature/ai-staff-scheduling-assistant"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  AI Scheduling Assistant
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/us/product-tour"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
@@ -161,6 +169,22 @@ export default function USFooter() {
                   Book a Demo
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/us/why-rosterlab"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Why Choose Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://app.rosterlab.com/privacy"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -192,6 +216,14 @@ export default function USFooter() {
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
                   Savings Calculator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://help.rosterlab.com/en/"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Help centre
                 </Link>
               </li>
             </ul>
