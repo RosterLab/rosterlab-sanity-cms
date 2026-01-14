@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description:
       "Join our expert-led webinars on AI-powered healthcare workforce management. Learn best practices, discover new features, and connect with industry leaders.",
     type: "website",
-    url: "https://www.rosterlab.com/webinars",
+    url: "https://rosterlab.com/webinars",
     images: [
       {
         url: "/images/us-images/iStock-1332475767.jpg",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     images: ["/images/us-images/iStock-1332475767.jpg"],
   },
   alternates: {
-    canonical: "https://www.rosterlab.com/webinars",
+    canonical: "https://rosterlab.com/webinars",
   },
 };
 
