@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description:
       "Watch our webinar with Mike Peterson and Sunny Feng as they explore how AI-powered rostering can save hundreds of hours and build more resilient healthcare teams.",
     type: "video.other",
-    url: "https://www.rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+    url: "https://rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
     images: [
       {
         url: "/images/webinars/resilient-healthcare-thumbnail.png",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical:
-      "https://www.rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+      "https://rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
   },
 };
 
