@@ -17,10 +17,15 @@ import type {
 } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
 import { trackFormSubmit } from "@/components/analytics/Segment";
+import PreviousSubmissionModal from "@/components/survey/PreviousSubmissionModal";
 
 interface HolidayRankingFormProps {
   survey: Survey;
-  onSuccess?: (response: SubmitPreferencesResponse) => void;
+  onSuccess?: (
+    response: SubmitPreferencesResponse,
+    rankings: HolidayRanking[],
+    notes?: string,
+  ) => void;
 }
 
 export default function HolidayRankingForm({
@@ -31,6 +36,9 @@ export default function HolidayRankingForm({
   const [error, setError] = useState<string | null>(null);
   const [rankings, setRankings] = useState<{ [key: string]: number }>({});
   const [notes, setNotes] = useState("");
+  const [previousSubmission, setPreviousSubmission] = useState<any | null>(
+    null,
+  );
 
   const {
     register,
@@ -74,14 +82,17 @@ export default function HolidayRankingForm({
     try {
       // Build holiday rankings array
       const holiday_rankings: HolidayRanking[] = Object.entries(rankings)
-        .filter(([_, rank]) => rank > 0) // Only include ranked holidays
+        .filter(([_, rank]) => rank !== 0) // Include both positive ranks and -1 (Not Available)
         .map(([holiday_id, rank]) => ({
           holiday_id,
           rank,
         }));
 
+      // Check if user provided at least one preference (either ranked or marked unavailable)
       if (holiday_rankings.length === 0) {
-        throw new Error("Please rank at least one holiday");
+        throw new Error(
+          "Please indicate your preference for at least one holiday",
+        );
       }
 
       const requestData: SubmitPreferencesRequest = {
@@ -101,6 +112,14 @@ export default function HolidayRankingForm({
 
       if (!response.ok) {
         const errorData = await response.json();
+
+        // Handle duplicate submission (409) specially
+        if (response.status === 409 && errorData.previous_submission) {
+          setPreviousSubmission(errorData.previous_submission);
+          setIsSubmitting(false);
+          return;
+        }
+
         throw new Error(errorData.message || "Failed to submit preferences");
       }
 
@@ -114,7 +133,7 @@ export default function HolidayRankingForm({
       });
 
       if (onSuccess) {
-        onSuccess(result);
+        onSuccess(result, holiday_rankings, notes.trim() || undefined);
       }
     } catch (err) {
       console.error("Error submitting preferences:", err);
@@ -188,9 +207,11 @@ export default function HolidayRankingForm({
               Rank Your Holiday Preferences
             </h2>
             <p className="text-sm text-neutral-600">
-              Select your preference for each holiday: 1 = most preferred, 2 =
-              second choice, etc. Leave blank if you don't want to work that
-              holiday.
+              For each holiday: Select 1st choice, 2nd choice, etc. for holidays
+              you're willing to work. Select "Not Available" if you cannot work
+              that holiday. Select "Not applicable" if the holiday doesn't apply
+              to you. Leave as "No preference" if you're available but have no
+              strong preference.
             </p>
           </div>
 
@@ -219,9 +240,11 @@ export default function HolidayRankingForm({
                     onChange={(e) =>
                       setRanking(holiday.id, Number(e.target.value))
                     }
-                    className="w-32 px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="w-40 px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
-                    <option value="">Not ranked</option>
+                    <option value="">No preference</option>
+                    <option value="-1">Not available</option>
+                    <option value="-2">Not applicable</option>
                     {sortedHolidays.map((_, index) => (
                       <option key={index + 1} value={index + 1}>
                         {index + 1}
@@ -281,6 +304,15 @@ export default function HolidayRankingForm({
           </Button>
         </div>
       </form>
+
+      {/* Previous Submission Modal */}
+      {previousSubmission && (
+        <PreviousSubmissionModal
+          previousSubmission={previousSubmission}
+          holidays={holidays}
+          onClose={() => setPreviousSubmission(null)}
+        />
+      )}
     </div>
   );
 }

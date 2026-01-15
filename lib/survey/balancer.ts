@@ -67,7 +67,7 @@ export function balanceHolidayAssignments(
   for (const holiday of sortedHolidays) {
     const assignment = assignments.find((a) => a.holiday_id === holiday.id)!;
 
-    // Get all staff who ranked this holiday
+    // Get all staff who ranked this holiday (excluding those marked as Not Available)
     const candidates: Array<{
       staff: StaffWithPreferences;
       rank: number;
@@ -75,7 +75,8 @@ export function balanceHolidayAssignments(
 
     for (const staff of staffMap.values()) {
       const ranking = staff.rankings.find((r) => r.holiday_id === holiday.id);
-      if (ranking) {
+      if (ranking && ranking.rank > 0) {
+        // Only include positive rankings (exclude -1 = Not Available)
         candidates.push({ staff, rank: ranking.rank });
       }
     }
@@ -119,15 +120,18 @@ export function balanceHolidayAssignments(
   for (const assignment of assignments) {
     if (assignment.unassigned_count > 0) {
       // Get staff who didn't rank this holiday and aren't already assigned to it
+      // Exclude staff who marked themselves as "Not Available" (-1)
       const unrankedStaff = Array.from(staffMap.values())
         .filter((staff) => {
-          const hasRanked = staff.rankings.some(
+          const ranking = staff.rankings.find(
             (r) => r.holiday_id === assignment.holiday_id,
           );
+          const isNotAvailable = ranking && ranking.rank === -1;
+          const hasRanked = ranking && ranking.rank > 0;
           const isAssigned = assignment.assigned_staff.some(
             (a) => a.participant_id === staff.participant.id,
           );
-          return !hasRanked && !isAssigned;
+          return !hasRanked && !isAssigned && !isNotAvailable;
         })
         .sort((a, b) => {
           // Sort by assignment count (fewer is better)

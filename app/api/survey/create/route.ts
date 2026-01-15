@@ -8,6 +8,7 @@ import { getDbClient } from "@/lib/db/client";
 import { validateCreateSurveyRequest } from "@/lib/survey/validation";
 import type { CreateSurveyResponse } from "@/lib/survey/types";
 import { ZodError } from "zod";
+import { notifyTeamsSurveyCreated } from "@/lib/notifications/teams";
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,6 +58,19 @@ export async function POST(request: NextRequest) {
       staff_url: staffUrl,
       admin_token: adminToken,
     };
+
+    // Send Teams notification (fire and forget, non-blocking)
+    notifyTeamsSurveyCreated({
+      survey_id: surveyId,
+      title: validatedData.title,
+      org_name: validatedData.org_name,
+      holiday_count: validatedData.holidays.length,
+      admin_url: adminUrl,
+      created_at: new Date().toISOString(),
+    }).catch((error) => {
+      // Log error but don't fail the request
+      console.error("Failed to send Teams notification:", error);
+    });
 
     return NextResponse.json(response, { status: 201 });
   } catch (error) {

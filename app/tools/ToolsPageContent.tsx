@@ -182,8 +182,23 @@ export default function ToolsPageContent({ tools }: ToolsPageContentProps) {
           </div>
         )}
 
+        {/* Feedback Section */}
+        <div className="mt-12 text-center">
+          <p className="text-neutral-600">
+            Need another tool, or want to give feedback?{" "}
+            <a
+              href="https://forms.cloud.microsoft/r/YBq05Rsekv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-600 hover:text-primary-700 font-medium underline"
+            >
+              Tell us about it
+            </a>
+          </p>
+        </div>
+
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 md:p-12 text-center text-white">
+        <div className="mt-8 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 md:p-12 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">
             Ready to Transform Your Rostering?
           </h2>
