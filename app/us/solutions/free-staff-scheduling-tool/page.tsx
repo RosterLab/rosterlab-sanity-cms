@@ -738,7 +738,6 @@ export default function ManualSchedulingPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
-          { name: "Solutions", url: "/us/solutions" },
           { name: "Free Staff Scheduling Tool" },
         ]}
       />

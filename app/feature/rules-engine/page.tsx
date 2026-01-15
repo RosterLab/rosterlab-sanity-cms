@@ -391,11 +391,7 @@ export default function RulesAndCompliancePage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "Rules and Compliance" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "Rules and Compliance" }]}
       />
     </SiteLayout>
   );

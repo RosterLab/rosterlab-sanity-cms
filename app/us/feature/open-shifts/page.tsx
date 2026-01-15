@@ -425,11 +425,7 @@ export default function OpenShiftsPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Features", url: "/us/feature" },
-          { name: "Open Shifts" },
-        ]}
+        items={[{ name: "Home", url: "/us" }, { name: "Open Shifts" }]}
       />
     </SiteLayout>
   );

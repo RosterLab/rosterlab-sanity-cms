@@ -364,11 +364,7 @@ export default function LeaveRequestsPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Features", url: "/us/feature" },
-          { name: "Time Off Requests" },
-        ]}
+        items={[{ name: "Home", url: "/us" }, { name: "Time Off Requests" }]}
       />
     </SiteLayout>
   );

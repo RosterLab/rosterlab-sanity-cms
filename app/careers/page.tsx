@@ -1,7 +1,6 @@
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import {
-  HiExternalLink,
   HiMail,
   HiLocationMarker,
   HiLightningBolt,
@@ -39,27 +38,6 @@ export const metadata = {
     images: ["/images/og-images/Careers.png"],
   },
 };
-
-const openPositions = [
-  {
-    title: "Software Engineer - React/Node",
-    location: "Auckland, New Zealand (Hybrid)",
-    type: "Full-time",
-    department: "Engineering",
-    linkedinUrl: "https://www.linkedin.com/jobs/view/4250149920",
-    description:
-      "Build and maintain our full-stack web application using React, Node.js, and modern web technologies.",
-  },
-  {
-    title: "Sales Account Executive",
-    location: "Auckland, New Zealand (Hybrid)",
-    type: "Full-time",
-    department: "Sales",
-    linkedinUrl: "https://www.linkedin.com/jobs/view/4250122963",
-    description:
-      "Drive revenue growth by identifying and closing new business opportunities in the healthcare sector.",
-  },
-];
 
 export default function CareersPage() {
   return (
@@ -178,70 +156,24 @@ export default function CareersPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Open Positions
             </h2>
-            <p className="text-xl text-gray-600">
-              Ready to make a difference? Check out our current openings.
-            </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Position
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">
-                      Department
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
-                      Location
-                    </th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Apply
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {openPositions.map((position, index) => (
-                    <tr
-                      key={index}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="px-6 py-4">
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">
-                            {position.title}
-                          </div>
-                          <div className="text-sm text-gray-500 md:hidden">
-                            {position.department} • {position.location}
-                          </div>
-                          <div className="text-sm text-gray-600 mt-1">
-                            {position.description}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 hidden md:table-cell">
-                        {position.department}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 hidden sm:table-cell">
-                        {position.location}
-                      </td>
-                      <td className="px-6 py-4 text-right text-sm font-medium">
-                        <a
-                          href={position.linkedinUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-blue-600 hover:text-blue-900"
-                        >
-                          View on LinkedIn
-                          <HiExternalLink className="ml-1 h-4 w-4" />
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-12 text-center">
+              <p className="text-xl text-gray-600 mb-6">
+                We're not actively hiring right now, but we're always on the
+                lookout for top talent.
+              </p>
+              <p className="text-lg text-gray-600 mb-8">
+                Email your resume to{" "}
+                <a
+                  href="mailto:careers@rosterlab.com"
+                  className="text-blue-600 hover:text-blue-700 font-medium"
+                >
+                  careers@rosterlab.com
+                </a>{" "}
+                if you think you'd be a good fit.
+              </p>
             </div>
           </div>
         </Container>

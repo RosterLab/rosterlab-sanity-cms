@@ -407,11 +407,7 @@ export default function ShiftSwapsPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "Shift Swaps" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "Shift Swaps" }]}
       />
     </SiteLayout>
   );

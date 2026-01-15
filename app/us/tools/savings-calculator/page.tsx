@@ -44,11 +44,7 @@ export default function ROICalculatorPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Tools", url: "/us/tools" },
-          { name: "Savings Calculator" },
-        ]}
+        items={[{ name: "Home", url: "/us" }, { name: "Savings Calculator" }]}
       />
     </SiteLayout>
   );

@@ -701,7 +701,6 @@ export default function ManualSchedulingPage() {
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
-          { name: "Solutions", url: "/solutions" },
           { name: "Free Staff Rostering Software" },
         ]}
       />

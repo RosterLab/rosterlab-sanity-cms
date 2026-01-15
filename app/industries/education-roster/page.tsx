@@ -10,14 +10,14 @@ export const metadata = withHreflang(
   {
     title: "Education Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies staff scheduling in education. Create fair, efficient rosters that improve student outcomes, compliance & saves time.",
+      "Learn how our rostering software simplifies education staff scheduling. Improve student outcomes, ensure compliance & save time.",
     alternates: {
       canonical: "https://rosterlab.com/industries/education-roster",
     },
     openGraph: {
       title: "Education Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in education. Create fair, efficient rosters that improve student outcomes, compliance & saves time.",
+        "Learn how our rostering software simplifies education staff scheduling. Improve student outcomes, ensure compliance & save time.",
       type: "website",
       url: "https://rosterlab.com/industries/education-roster",
       images: [
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Education Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies staff scheduling in education. Create fair, efficient rosters that improve student outcomes, compliance & saves time.",
+        "Learn how our rostering software simplifies education staff scheduling. Improve student outcomes, ensure compliance & save time.",
       images: ["/images/Education.webp"],
     },
   },

@@ -434,11 +434,7 @@ export default function ReRosteringPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Features", url: "/us/feature" },
-          { name: "Staff Rescheduling" },
-        ]}
+        items={[{ name: "Home", url: "/us" }, { name: "Staff Rescheduling" }]}
       />
     </SiteLayout>
   );

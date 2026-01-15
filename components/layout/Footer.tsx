@@ -274,10 +274,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/schedge"
+                  href="/tools"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
-                  Schedge
+                  Free WFM Tools
                 </Link>
               </li>
               <li>

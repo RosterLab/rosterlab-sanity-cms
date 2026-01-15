@@ -28,6 +28,16 @@ export function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
+  // Redirect old transportation/port-rostering paths to new location
+  if (pathname === "/industries/transportation/port-rostering") {
+    url.pathname = "/industries/port-rostering";
+    return NextResponse.redirect(url, { status: 301 });
+  }
+  if (pathname === "/us/industries/transportation/port-scheduling") {
+    url.pathname = "/us/industries/port-scheduling";
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
   // Detect user's country from various sources
   // 1. Vercel geo object (if deployed on Vercel)
   // 2. Netlify x-country header (if deployed on Netlify)

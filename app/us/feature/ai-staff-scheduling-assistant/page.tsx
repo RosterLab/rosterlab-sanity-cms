@@ -421,11 +421,7 @@ export default function AIScheduleAssistantPage() {
 
       {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/us" },
-          { name: "Features", url: "/us/feature" },
-          { name: "AI Chat Assistant" },
-        ]}
+        items={[{ name: "Home", url: "/us" }, { name: "AI Chat Assistant" }]}
       />
     </SiteLayout>
   );

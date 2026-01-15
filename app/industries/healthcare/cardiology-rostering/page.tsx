@@ -45,9 +45,9 @@ export const metadata = withHreflang(
 const faqItems = [
   {
     question:
-      "How does RosterLab ensure union/EBA compliance for cardiology rosters?",
+      "How does RosterLab ensure union compliance for cardiology rosters?",
     answer:
-      "RosterLab enforces union and EBA rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring cardiology staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules, ensuring cardiology staff actually work the rosters rather than calling in sick or not showing up due to unsafe conditions.",
   },
   {
     question:
@@ -168,7 +168,7 @@ export default function CardiologyRosteringPage() {
             </div>
             <div className="relative">
               <Image
-                src="/images/illustration/pathology.svg"
+                src="/images/illustration/cardiology.svg"
                 alt="Cardiology rostering software interface"
                 width={600}
                 height={400}
@@ -541,8 +541,7 @@ export default function CardiologyRosteringPage() {
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, procedure schedules, night
-                      shift equity, and union/EBA rules to create compliant
-                      rosters.
+                      shift equity, and union rules to create compliant rosters.
                     </p>
                   </div>
                 </div>

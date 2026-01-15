@@ -369,11 +369,7 @@ export default function SelfSchedulingPage() {
       {/* Hidden Breadcrumb Schema for SEO */}
 
       <BreadcrumbSchema
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Features", url: "/feature" },
-          { name: "Self Scheduling" },
-        ]}
+        items={[{ name: "Home", url: "/" }, { name: "Self Scheduling" }]}
       />
     </SiteLayout>
   );

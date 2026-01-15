@@ -10,7 +10,7 @@ export const metadata = withHreflang(
   {
     title: "Airport & Transport Crew Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+      "Simplify airport & transportation crew scheduling with RosterLab. Ensure safety, operational efficiency & compliance with 24/7 rostering.",
     alternates: {
       canonical:
         "https://rosterlab.com/industries/airports-and-transportation-roster",
@@ -18,7 +18,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Airport & Transport Crew Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Simplify airport & transportation crew scheduling with RosterLab. Ensure safety, operational efficiency & compliance with 24/7 rostering.",
       type: "website",
       url: "https://rosterlab.com/industries/airports-and-transportation-roster",
       images: [
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Airport & Transport Crew Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software simplifies crew scheduling in airports & transportation. Create compliant, efficient rosters that improve safety, operational efficiency & saves time.",
+        "Simplify airport & transportation crew scheduling with RosterLab. Ensure safety, operational efficiency & compliance with 24/7 rostering.",
       images: ["/images/aviation.jpg"],
     },
   },
