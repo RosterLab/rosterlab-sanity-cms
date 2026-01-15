@@ -63,6 +63,17 @@ const templates = [
     format: "Excel",
     category: "Rostering",
   },
+  {
+    id: "employee-of-month",
+    title: "Free Employee of the Month Certificate",
+    description:
+      "Recognise outstanding team members with our professionally designed, customisable Canva certificate template.",
+    href: "/templates/free-employee-of-the-month-certificate",
+    image:
+      "/images/employee-certificate/employee-of-month-editable-certificate-preview.png",
+    format: "Canva",
+    category: "Recognition",
+  },
 ];
 
 export default function TemplatesPage() {
