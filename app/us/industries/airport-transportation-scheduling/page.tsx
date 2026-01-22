@@ -695,7 +695,10 @@ export default function AviationPage() {
                 </div>
                 <h4 className="font-semibold text-gray-900">Boat Crew</h4>
               </div>
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/us/industries/airports-and-transportation-schedule/ground-crew"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-cyan-600 transition-transform duration-200 group-hover:scale-110"
@@ -712,7 +715,7 @@ export default function AviationPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">Ground Crew</h4>
-              </div>
+              </Link>
               <div className="text-center group cursor-pointer">
                 <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg

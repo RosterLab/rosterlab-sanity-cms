@@ -966,7 +966,10 @@ export default async function HealthcarePage() {
                   Mental Health Services
                 </h4>
               </div>
-              <div className="text-center group cursor-pointer">
+              <Link
+                href="/industries/healthcare/dental-clinic-rostering"
+                className="text-center group cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-200 group-hover:scale-110 group-hover:shadow-lg">
                   <svg
                     className="w-8 h-8 text-blue-500 transition-transform duration-200 group-hover:scale-110"
@@ -979,7 +982,7 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">Dental Chains</h4>
-              </div>
+              </Link>
               <Link
                 href="/industries/healthcare/cardiology-rostering"
                 className="text-center group cursor-pointer"
