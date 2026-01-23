@@ -73,10 +73,10 @@ export default function ConstructionPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/contact"
+                  href="/us/pricing"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
                 >
-                  Learn More
+                  View Pricing
                 </Button>
               </div>
 
@@ -396,7 +396,7 @@ export default function ConstructionPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/us/solutions/ai-schedule-generator"
+                  href="/us/contact"
                   className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
                 >
                   Learn More
@@ -620,7 +620,7 @@ export default function ConstructionPage() {
               Book a Construction Demo
             </Button>
             <Button
-              href="/us/solutions/ai-schedule-generator"
+              href="/us/solutions/ai-staff-schedule-maker"
               className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 font-semibold hover:shadow-xl hover:-translate-y-1 transform transition-all duration-200"
             >
               Learn more about AI scheduling
