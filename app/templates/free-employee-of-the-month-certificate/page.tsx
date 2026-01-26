@@ -14,7 +14,7 @@ import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Employee of the Month Certificate Template - RosterLab",
+  title: "Free Editable Employee of the Month Template",
   description:
     "Download our free, editable Employee of the Month certificate template on Canva. Recognise outstanding team members with a professionally designed certificate.",
   alternates: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "https://rosterlab.com/templates/free-employee-of-the-month-certificate",
   },
   openGraph: {
-    title: "Free Employee of the Month Certificate Template - RosterLab",
+    title: "Free Editable Employee of the Month Template",
     description:
       "Download our free, editable Employee of the Month certificate template on Canva. Recognise outstanding team members with a professionally designed certificate.",
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Employee of the Month Certificate Template - RosterLab",
+    title: "Free Editable Employee of the Month Template",
     description:
       "Download our free, editable Employee of the Month certificate template on Canva. Recognise outstanding team members with a professionally designed certificate.",
     images: [
