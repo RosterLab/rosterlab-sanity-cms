@@ -22,10 +22,10 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/construction-scheduling",
       images: [
         {
-          url: "/images/construction-scheduling.jpg",
+          url: "/images/construction.jpg",
           width: 1200,
           height: 630,
-          alt: "Construction workforce scheduling with RosterLab",
+          alt: "Construction workforce scheduling dashboard",
         },
       ],
     },
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Construction Scheduling Software - RosterLab",
       description:
         "Streamline construction workforce scheduling with AI. Coordinate contractors, subcontractors, and trades across multiple project sites for on-time delivery.",
-      images: ["/images/construction-scheduling.jpg"],
+      images: ["/images/construction.jpg"],
     },
   },
   "/us/industries/construction-scheduling",

@@ -24,9 +24,10 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/airports-and-transportation-schedule/ground-crew",
       images: [
         {
-          url: "/images/illustration/ground-crew-roster.svg",
+          url: "/images/ground-crew.jpg",
           width: 1200,
           height: 630,
+          alt: "Ground crew scheduling software interface",
         },
       ],
     },
@@ -35,7 +36,7 @@ export const metadata = withHreflang(
       title: "Ground Crew Scheduling Software - RosterLab",
       description:
         "Streamline airport ground crew scheduling with AI. Balance baggage handlers, ramp agents, and GSE operators across shifts for optimal airport operations.",
-      images: ["/images/illustration/ground-crew-roster.svg"],
+      images: ["/images/ground-crew.jpg"],
     },
   },
   "/us/industries/airports-and-transportation-schedule/ground-crew",

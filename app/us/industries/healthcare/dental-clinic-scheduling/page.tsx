@@ -25,9 +25,10 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/dental-clinic-scheduling",
       images: [
         {
-          url: "/images/illustration/test2.svg",
+          url: "/images/dentist.jpg",
           width: 1200,
           height: 630,
+          alt: "Dental clinic scheduling software interface",
         },
       ],
     },
@@ -36,7 +37,7 @@ export const metadata = withHreflang(
       title: "Dental Clinic Scheduling Software - RosterLab",
       description:
         "Streamline dental clinic scheduling with AI. Balance hygienists, dentists, and specialist staff across chairs and procedures for optimal patient care.",
-      images: ["/images/illustration/test2.svg"],
+      images: ["/images/dentist.jpg"],
     },
   },
   "/us/industries/healthcare/dental-clinic-scheduling",
