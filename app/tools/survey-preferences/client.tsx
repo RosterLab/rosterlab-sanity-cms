@@ -3,6 +3,7 @@
 /**
  * Survey Preferences Client Component
  * Handles survey creation and displays generated links
+ * shift
  */
 
 import { useState } from "react";
@@ -48,8 +49,8 @@ export default function SurveyPreferencesClient() {
                 Collect Staff Preferences, Distribute Shifts Automatically
               </h1>
               <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-                Fairly distribute holiday shifts among your team. Survey staff
-                preferences and automatically balance assignments.
+                Survey staff preferences for holiday shifts and automatically
+                distribute them fairly across your team.
               </p>
             </div>
 
