@@ -40,15 +40,25 @@ export async function POST(
 
     // Check if email already submitted (never allow multiple submissions)
     const existingSubmission = await sql`
-      SELECT id FROM survey_participants
+      SELECT id, name, email, submitted_at FROM survey_participants
       WHERE survey_id = ${surveyId} AND email = ${validatedData.email}
     `;
 
     if (existingSubmission && existingSubmission.length > 0) {
+      // Fetch their previous response to show them
+      const previousResponse = await sql`
+        SELECT preference_data, created_at FROM survey_responses
+        WHERE participant_id = ${existingSubmission[0].id}
+      `;
+
       return NextResponse.json(
         {
           error: "Already submitted",
           message: "You have already submitted preferences for this survey",
+          previous_submission: {
+            participant: existingSubmission[0],
+            response: previousResponse[0] || null,
+          },
         },
         { status: 409 },
       );

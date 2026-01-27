@@ -7,18 +7,21 @@ import { Metadata } from "next";
 import SurveyPreferencesClient from "./client";
 
 export const metadata: Metadata = {
-  title: "Create your Holiday Shift Preference Survey | RosterLab",
+  title: "Holiday Shift Preferences Survey & Automated Assignment",
   description:
-    "Create custom holiday shift preference surveys for your team. Collect availability, shift preferences, and time-off requests without login required.",
-  robots: {
-    index: false,
-    follow: false,
-  },
+    "Collect preferences for holiday shifts this season. Then use the auto-distribution feature to fairly assignment shifts - no login required.",
   openGraph: {
-    title: "Create your Holiday Shift Preference Survey | RosterLab",
+    title: "Holiday Shift Preferences Survey & Automated Assignment",
     description:
-      "Create custom holiday shift preference surveys for your team. Collect availability, shift preferences, and time-off requests.",
+      "Collect preferences for holiday shifts this season. Then use the auto-distribution feature to fairly assignment shifts - no login required.",
     type: "website",
+    images: [
+      {
+        url: "/images/shift-preference-survey.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
 };
 

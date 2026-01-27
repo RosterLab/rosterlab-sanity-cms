@@ -119,6 +119,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
           title: "Free Excel Template",
           link: "/templates/free-staff-roster-template-excel",
         },
+        {
+          title: "Preferences Optimiser",
+          link: "/tools/survey-preferences",
+          description:
+            "Fairly distribute holiday shifts based on staff preferences",
+        },
       ],
     },
     { title: "About", link: "/about" },
@@ -669,19 +675,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                         {subItem.title}
                                       </div>
                                       <div className="text-sm text-gray-600">
-                                        {subItem.title.includes("Calculator")
-                                          ? "Calculate your savings"
-                                          : subItem.title === "Schedge"
-                                            ? "We love rostering so much that we made a mini game - Try it out!"
-                                            : subItem.title.includes(
-                                                  "Personality Test",
-                                                )
-                                              ? "Discover your scheduling style"
+                                        {subItem.description ||
+                                          (subItem.title.includes("Calculator")
+                                            ? "Calculate your savings"
+                                            : subItem.title === "Schedge"
+                                              ? "We love rostering so much that we made a mini game - Try it out!"
                                               : subItem.title.includes(
-                                                    "Excel Template",
+                                                    "Personality Test",
                                                   )
-                                                ? "Download our roster template"
-                                                : ""}
+                                                ? "Discover your scheduling style"
+                                                : subItem.title.includes(
+                                                      "Excel Template",
+                                                    )
+                                                  ? "Download our roster template"
+                                                  : "")}
                                       </div>
                                     </Link>
                                   ))}
