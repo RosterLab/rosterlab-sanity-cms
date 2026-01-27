@@ -68,6 +68,12 @@ export const US_URL_MAPPINGS: Record<string, string> = {
     "/us/industries/healthcare/pathology-scheduling",
   "/industries/healthcare/telehealth-rostering":
     "/us/industries/healthcare/telehealth-scheduling",
+  "/industries/construction-rostering":
+    "/us/industries/construction-scheduling",
+  "/industries/healthcare/dental-clinic-rostering":
+    "/us/industries/healthcare/dental-clinic-scheduling",
+  "/industries/airports-and-transportation-roster/ground-crew":
+    "/us/industries/airports-and-transportation-schedule/ground-crew",
 };
 
 // Reverse mapping to find original URL from US version
@@ -130,6 +136,9 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/airports-and-transportation-roster",
   "/industries/healthcare/pathology-rostering",
   "/industries/healthcare/telehealth-rostering",
+  "/industries/construction-rostering",
+  "/industries/healthcare/dental-clinic-rostering",
+  "/industries/airports-and-transportation-roster/ground-crew",
 ]);
 
 // Helper function to generate hreflang metadata

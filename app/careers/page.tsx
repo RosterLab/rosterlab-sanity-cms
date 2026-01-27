@@ -8,6 +8,7 @@ import {
   HiGlobeAlt,
 } from "react-icons/hi";
 import Image from "next/image";
+import JobListing from "./JobListing";
 
 export const metadata = {
   title: "Careers - Join our talented team at RosterLab",
@@ -158,23 +159,218 @@ export default function CareersPage() {
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg p-12 text-center">
-              <p className="text-xl text-gray-600 mb-6">
-                We're not actively hiring right now, but we're always on the
-                lookout for top talent.
-              </p>
-              <p className="text-lg text-gray-600 mb-8">
-                Email your resume to{" "}
-                <a
-                  href="mailto:careers@rosterlab.com"
-                  className="text-blue-600 hover:text-blue-700 font-medium"
-                >
-                  careers@rosterlab.com
-                </a>{" "}
-                if you think you'd be a good fit.
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto">
+            <JobListing
+              title="Implementation Engineer/Specialist"
+              location="Auckland, NZ"
+              type="Full-time"
+              compensation="Salary + ESOP"
+              description={`
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                    About Us
+                  </h4>
+                  <p>
+                    We are a fast-growing, seed-funded SaaS startup
+                    revolutionising hospital rostering through a cutting-edge,
+                    user-friendly optimisation platform. Our mission is to fully
+                    automate and optimise the rostering process. In doing so, we
+                    save valuable time for healthcare professionals, improve
+                    work-life balance and improve operating efficiency. By
+                    joining us, you'll be able to have a positive impact on the
+                    lives of healthcare professionals worldwide.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                    What You'll Do
+                  </h4>
+                  <p class="font-medium mb-2">
+                    Build roster optimisation models using our application
+                  </p>
+                  <ul class="list-disc pl-5 space-y-2 mb-4">
+                    <li>
+                      Set up data, configurate roster optimisation model within
+                      app, testing, and user training
+                    </li>
+                    <li>
+                      Gather and validate contractual and operational rostering
+                      requirements from hospital stakeholders
+                    </li>
+                    <li>
+                      Implement these requirements as clear, logical rules that
+                      our software can execute
+                    </li>
+                  </ul>
+
+                  <p class="font-medium mb-2">
+                    Excel Modelling & Process Improvement
+                  </p>
+                  <ul class="list-disc pl-5 space-y-2 mb-4">
+                    <li>
+                      Conduct analyses to test, refine, and validate roster
+                      scenarios. This requires strong logical thinking skills
+                    </li>
+                    <li>
+                      Spot opportunities to enhance or automate our processes
+                      and help clients adopt best practices in rostering
+                    </li>
+                  </ul>
+
+                  <p class="font-medium mb-2">
+                    Project Management and Stakeholder Engagement
+                  </p>
+                  <ul class="list-disc pl-5 space-y-2 mb-4">
+                    <li>
+                      Work with healthcare providers, hospital administrators,
+                      and internal teams to understand scheduling challenges and
+                      suggest solutions
+                    </li>
+                    <li>
+                      Advise customers on best-practice use of RosterLab
+                      software to maximise functionality and data insights
+                    </li>
+                    <li>
+                      Ensure success in every onboarding from account creation
+                      to fully automated rostering
+                    </li>
+                    <li>
+                      Maintain relationships with our clients for their long
+                      term success
+                    </li>
+                  </ul>
+
+                  <p class="font-medium mb-2">Product Management</p>
+                  <p>
+                    Contribute ideas to our product roadmap, focusing on
+                    features and improvements for our optimisation engine and
+                    interface
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                    About You
+                  </h4>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>
+                      You <strong>must</strong> have a minimum of bachelors degree. Ideally from
+                      engineering, stats, infosys, data, economics, maths, or
+                      any optimisation related degrees.
+                    </li>
+                    <li>
+                      Agile in a fast-paced environment, with a strong ability
+                      to adapt and remain resilient through challenges and
+                      changes.
+                    </li>
+                    <li>
+                      Logical Thinker: You excel at breaking down complex
+                      problems and translating them into clear, step-by-step
+                      solutions.
+                    </li>
+                    <li>
+                      Detail-Orientated: Accuracy is key in building robust
+                      rostering models that serve critical healthcare needs.
+                    </li>
+                    <li>
+                      Excellent Communicator: Comfortable engaging with
+                      stakeholders at various levels, from front-line staff to
+                      executives.
+                    </li>
+                    <li>
+                      Likes Puzzles: The analytical challenge of creating roster
+                      models can often be like a brain teaser.
+                    </li>
+                    <li>
+                      Adaptable & Flexible: You thrive in a fast-paced startup
+                      environment and enjoy tackling new challenges.
+                    </li>
+                    <li>
+                      Analytical Skills: Familiarity with Excel or other data
+                      tools for modelling and analysis.
+                    </li>
+                    <li>
+                      Open to All Levels: Whether you're a fresh graduate eager
+                      to learn or an experienced professional ready for a new
+                      challenge, we want to hear from you.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                    What We Offer
+                  </h4>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>
+                      Equity/ESOP: Own a piece of the company you're helping to
+                      build.
+                    </li>
+                    <li>
+                      Rapid Growth: As an early-stage startup, you'll have the
+                      opportunity to scale your career quickly.
+                    </li>
+                    <li>
+                      Global Impact: Your work will directly improve the lives
+                      of healthcare professionals and patients worldwide.
+                    </li>
+                    <li>
+                      Product Influence: Play a pivotal role in shaping our core
+                      offering and driving the evolution of our platform.
+                    </li>
+                    <li>
+                      Collaborative Culture: Join a supportive, driven team that
+                      values new ideas, experimentation, and continuous
+                      learning.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                    Why Join Us
+                  </h4>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>
+                      Meaningful Work: We are making a big difference in
+                      improving the lives of healthcare professionals, and we
+                      have studies to prove it!
+                    </li>
+                    <li>
+                      Venture Capital levels of growth: As our company scales
+                      exponentially, so will your opportunities for growth,
+                      influence, and long-term rewards.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
+                    How to Apply
+                  </h4>
+                  <p class="mb-2">
+                    If you're excited about transforming healthcare rostering
+                    and want to contribute to a groundbreaking SaaS solution,
+                    we'd love to hear from you! Please send the following to
+                    <a
+                      href="mailto:careers@rosterlab.com"
+                      class="text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                      careers@rosterlab.com
+                    </a>:
+                  </p>
+                  <ul class="list-disc pl-5 space-y-2">
+                    <li>Your CV and LinkedIn profile</li>
+                    <li>
+                      A brief note on why you're interested in the role and any
+                      relevant experiences—formal or informal—that demonstrate
+                      your logical approach and stakeholder management skills.
+                    </li>
+                  </ul>
+                </div>
+              `}
+            />
           </div>
         </Container>
       </section>

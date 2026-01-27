@@ -1184,6 +1184,84 @@ export default function IndustriesPage() {
                 </div>
               </div>
             </Link>
+
+            {/* Construction */}
+            <Link
+              href="/us/industries/construction-scheduling"
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 block group"
+            >
+              <div className="h-48 relative">
+                <Image
+                  src="/images/construction-scheduling.jpg"
+                  alt="Construction industry scheduling"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Construction
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Coordinate contractors, subcontractors, and trades across
+                  multiple project sites while managing certifications and
+                  project dependencies.
+                </p>
+                <ul className="text-sm text-gray-600 space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Multi-site coordination
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Trade certification tracking
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    Contractor & subcontractor management
+                  </li>
+                </ul>
+                <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
+                  Explore Construction Scheduling
+                </div>
+              </div>
+            </Link>
           </div>
         </Container>
       </section>
