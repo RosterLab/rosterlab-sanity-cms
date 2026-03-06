@@ -27,7 +27,7 @@ export const metadata = withHreflang(
         "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
       images: [
         {
-          url: "/images/og-images/AutoRosterGeneration.png",
+          url: "/images/og-images/Otto Link Preview.png",
           width: 1200,
           height: 630,
         },
@@ -38,7 +38,7 @@ export const metadata = withHreflang(
       title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:
         "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
-      images: ["/images/og-images/AutoRosterGeneration.png"],
+      images: ["/images/og-images/Otto Link Preview.png"],
     },
   },
   pathname,
