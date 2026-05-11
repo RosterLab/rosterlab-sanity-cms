@@ -12,7 +12,7 @@ import type {
   BalancingResult,
   Holiday,
 } from "@/lib/survey/types";
-import { trackButtonClick } from "@/components/analytics/Segment";
+import { trackButtonClick } from "@/components/analytics/tracking";
 
 interface AdminDashboardClientProps {
   surveyId: string;

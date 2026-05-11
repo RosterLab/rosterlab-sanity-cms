@@ -4,10 +4,10 @@ import ClientHeader from "@/components/layout/ClientHeader";
 import ClientFooter from "@/components/layout/ClientFooter";
 import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
-import Segment from "@/components/analytics/Segment";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import Apollo from "@/components/analytics/Apollo";
+import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { draftMode } from "next/headers";
@@ -76,7 +76,7 @@ export default async function RootLayout({
         <ClientProviders
           intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
         >
-          <Segment writeKey={process.env.NEXT_PUBLIC_SEGMENT_WRITE_KEY!} />
+          <RlTracker />
           <UTMTracker debug={process.env.NODE_ENV === "development"} />
           <MetaPixel pixelId="777741693485350" />
           <Apollo appId="665fe2ad9371d40391dd513a" />

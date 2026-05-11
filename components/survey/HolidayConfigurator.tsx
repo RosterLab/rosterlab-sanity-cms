@@ -14,7 +14,7 @@ import type {
   CreateSurveyResponse,
 } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
-import { trackFormSubmit } from "@/components/analytics/Segment";
+import { trackFormSubmit } from "@/components/analytics/tracking";
 
 interface HolidayConfiguratorProps {
   onSurveyCreated?: (response: CreateSurveyResponse) => void;

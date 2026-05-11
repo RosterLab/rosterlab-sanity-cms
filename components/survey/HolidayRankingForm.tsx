@@ -16,7 +16,7 @@ import type {
   HolidayRanking,
 } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
-import { trackFormSubmit } from "@/components/analytics/Segment";
+import { trackFormSubmit } from "@/components/analytics/tracking";
 import PreviousSubmissionModal from "@/components/survey/PreviousSubmissionModal";
 
 interface HolidayRankingFormProps {

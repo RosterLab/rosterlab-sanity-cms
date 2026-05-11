@@ -13,7 +13,7 @@ import {
   HiUser,
   HiHeart,
 } from "react-icons/hi";
-import { trackSmartButtonClick } from "@/components/analytics/Segment";
+import { trackSmartButtonClick } from "@/components/analytics/tracking";
 
 interface SubMenuItem {
   title: string;

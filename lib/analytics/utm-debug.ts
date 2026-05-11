@@ -3,7 +3,7 @@
  * Tools for debugging and analyzing attribution data in Amplitude
  */
 
-import { analytics } from "@/components/analytics/Segment";
+import { analytics } from "@/components/analytics/tracking";
 import {
   getUTMDebugInfo,
   getFirstTouchData,

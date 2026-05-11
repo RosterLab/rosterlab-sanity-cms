@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import { HiCheck, HiExternalLink } from "react-icons/hi";
-import { trackButtonClick } from "@/components/analytics/Segment";
+import { trackButtonClick } from "@/components/analytics/tracking";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 
 // Add HubSpot type declaration

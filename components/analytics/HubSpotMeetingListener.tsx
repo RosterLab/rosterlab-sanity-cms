@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
-import { analytics } from "@/components/analytics/Segment";
+import { analytics } from "@/components/analytics/tracking";
 
 interface HubSpotMeetingPayload {
   meetingBookSucceeded: boolean;

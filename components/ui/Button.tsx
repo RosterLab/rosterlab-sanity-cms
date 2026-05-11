@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   trackButtonClick,
   trackSmartButtonClick,
-} from "@/components/analytics/Segment";
+} from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
 
 interface ButtonProps {

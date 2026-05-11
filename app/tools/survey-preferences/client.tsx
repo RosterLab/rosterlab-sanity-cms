@@ -10,7 +10,7 @@ import { useState } from "react";
 import HolidayConfigurator from "@/components/survey/HolidayConfigurator";
 import type { CreateSurveyResponse } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
-import { trackButtonClick } from "@/components/analytics/Segment";
+import { trackButtonClick } from "@/components/analytics/tracking";
 
 export default function SurveyPreferencesClient() {
   const [surveyResult, setSurveyResult] = useState<CreateSurveyResponse | null>(
