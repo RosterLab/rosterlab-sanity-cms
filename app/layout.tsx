@@ -6,7 +6,6 @@ import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManage
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
-import Apollo from "@/components/analytics/Apollo";
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
@@ -63,7 +62,6 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
-        <link rel="dns-prefetch" href="https://assets.apollo.io" />
         <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
@@ -79,7 +77,6 @@ export default async function RootLayout({
           <RlTracker />
           <UTMTracker debug={process.env.NODE_ENV === "development"} />
           <MetaPixel pixelId="777741693485350" />
-          <Apollo appId="665fe2ad9371d40391dd513a" />
           <GeolocationProvider />
           <ClientHeader />
           <main id="main-content" className="flex-grow" role="main">

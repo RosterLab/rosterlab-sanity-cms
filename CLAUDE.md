@@ -2,27 +2,31 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Package Manager
+
+This project uses **pnpm**. Do not use `npm` or `yarn` — only `pnpm-lock.yaml` is committed.
+
 ## Commands
 
 ### Development
 
-- `npm run dev` - Start Next.js development server (localhost:3000)
-- `npm run sanity` - Start Sanity Studio CMS interface (localhost:3333)
-- `npm run build` - Build production application
-- `npm run lint` - Run ESLint linting
+- `pnpm dev` - Start Next.js development server (localhost:3000)
+- `pnpm sanity` - Start Sanity Studio CMS interface (localhost:3333)
+- `pnpm build` - Build production application
+- `pnpm lint` - Run ESLint linting
 
 ### Testing
 
-- `npm test` - Run Jest test suite
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:coverage` - Generate test coverage report
+- `pnpm test` - Run Jest test suite
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:coverage` - Generate test coverage report
 
 ### Sanity CMS
 
-- `npm run sanity:seed` - Seed development data
-- `npm run sanity:reset` - Reset all CMS data
-- `npm run sanity:build` - Build Sanity Studio
-- `npm run sanity:deploy` - Deploy Sanity Studio
+- `pnpm sanity:seed` - Seed development data
+- `pnpm sanity:reset` - Reset all CMS data
+- `pnpm sanity:build` - Build Sanity Studio
+- `pnpm sanity:deploy` - Deploy Sanity Studio
 
 ## Architecture
 
@@ -89,10 +93,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Development Workflow
 
-- Start both Next.js (`npm run dev`) and Sanity Studio (`npm run sanity`) for full development environment
-- Use `npm run sanity:seed` to populate development data
-- Run tests with `npm test` before committing changes
-- Lint code with `npm run lint` to ensure code quality
+- Start both Next.js (`pnpm dev`) and Sanity Studio (`pnpm sanity`) for full development environment
+- Use `pnpm sanity:seed` to populate development data
+- Run tests with `pnpm test` before committing changes
+- Lint code with `pnpm lint` to ensure code quality
 
 ### Security
 
@@ -101,17 +105,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Configured via `.secretlintrc.json` and runs automatically on staged files
 - Pre-commit hook also runs ESLint and Prettier for code quality
 
-### Analytics with Segment
+### Analytics
 
-- **Client-side analytics** - Uses Segment Analytics.js 2.0 (`@segment/analytics-next`)
-- **Proxy URLs** - Analytics requests are proxied through:
-  - Production: `https://public.rosterlab.com/telemetry/s/`
-  - Test/Development: `https://public-test.rosterlab.com/telemetry/s/`
-- **UTM Tracking** - Automatic first-touch and current-touch attribution
-- **Cross-domain tracking** - Device ID preservation between marketing site and app
-- **Event tracking** - Use `analytics.track()` from `@/components/analytics/Segment`
-- **User identification** - Use `analytics.identify(userId, traits)` for user properties
-- **Dual tracking** - Events sent to both Segment and GTM dataLayer
+- **Client-side analytics** - Uses RosterLab tracker (`ops.rosterlab.com/tracker.js`) loaded via `components/analytics/RlTracker.tsx`
+- **Event tracking** - Use `analytics.track()` from `@/components/analytics/tracking`
+- **User identification** - Use `analytics.identify(userId, traits)` from `@/components/analytics/tracking`
+- **UTM Tracking** - Automatic first-touch and current-touch attribution via `UTMTracker` component
+- **Cross-domain tracking** - `_rl_anon_id` cookie on `.rosterlab.com`
+- **Dual tracking** - Events sent to both rlTracker and GTM dataLayer
+- **Custom events** - Use `window.rlTracker.track(event, props)` directly, or the `analytics` utility for UTM-enriched events
 
 ### Creating US Pages
 
