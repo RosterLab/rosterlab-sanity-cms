@@ -6,9 +6,12 @@ import {
   HiLightningBolt,
   HiUserGroup,
   HiGlobeAlt,
+  HiBriefcase,
+  HiCurrencyDollar,
+  HiArrowRight,
 } from "react-icons/hi";
 import Image from "next/image";
-import JobListing from "./JobListing";
+import Link from "next/link";
 
 export const metadata = {
   title: "Careers - Join our talented team at RosterLab",
@@ -160,217 +163,63 @@ export default function CareersPage() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <JobListing
-              title="Implementation Engineer/Specialist"
-              location="Auckland, NZ"
-              type="Full-time"
-              compensation="Salary + ESOP"
-              description={`
-                <div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                    About Us
-                  </h4>
-                  <p>
-                    We are a fast-growing, seed-funded SaaS startup
-                    revolutionising hospital rostering through a cutting-edge,
-                    user-friendly optimisation platform. Our mission is to fully
-                    automate and optimise the rostering process. In doing so, we
-                    save valuable time for healthcare professionals, improve
-                    work-life balance and improve operating efficiency. By
-                    joining us, you'll be able to have a positive impact on the
-                    lives of healthcare professionals worldwide.
+            <Link href="/careers/marketing-content-specialist">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-transparent hover:border-blue-500 transition-all duration-300 cursor-pointer group">
+                <div className="p-8 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-green-50/50 transition-all duration-300 relative">
+                  {/* Decorative gradient bar */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Badge */}
+                  <div className="mb-4">
+                    <span className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      Now Hiring
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                    B2B Marketing Specialist - Healthcare
+                  </h3>
+
+                  <p className="text-gray-600 mb-6 text-lg">
+                    Produce marketing content and market intelligence for
+                    healthcare workforce planning. Deeply understand our buyers
+                    and translate complex products into compelling, credible
+                    content.
                   </p>
+
+                  <div className="flex flex-wrap gap-4 mb-6 text-sm">
+                    <span className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg text-gray-700 font-medium">
+                      <HiLocationMarker className="w-4 h-4 text-blue-600" />
+                      Auckland — Hybrid — NZ
+                    </span>
+                    <span className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg text-gray-700 font-medium">
+                      <HiBriefcase className="w-4 h-4 text-green-600" />
+                      Full-time
+                    </span>
+                    <span className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-lg text-gray-700 font-medium">
+                      <HiCurrencyDollar className="w-4 h-4 text-purple-600" />
+                      Salary + ESOP
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-gray-600">
+                      <p className="font-medium mb-2">Key responsibilities:</p>
+                      <ul className="space-y-1 text-sm">
+                        <li>• Content creation & marketing collateral</li>
+                        <li>• Market research & buyer insights</li>
+                        <li>• Growth & lead generation</li>
+                        <li>• Strategic positioning</li>
+                      </ul>
+                    </div>
+                    <div className="flex items-center gap-2 text-blue-600 font-medium group-hover:text-blue-700">
+                      View Full Details
+                      <HiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
-
-                <div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                    What You'll Do
-                  </h4>
-                  <p class="font-medium mb-2">
-                    Build roster optimisation models using our application
-                  </p>
-                  <ul class="list-disc pl-5 space-y-2 mb-4">
-                    <li>
-                      Set up data, configurate roster optimisation model within
-                      app, testing, and user training
-                    </li>
-                    <li>
-                      Gather and validate contractual and operational rostering
-                      requirements from hospital stakeholders
-                    </li>
-                    <li>
-                      Implement these requirements as clear, logical rules that
-                      our software can execute
-                    </li>
-                  </ul>
-
-                  <p class="font-medium mb-2">
-                    Excel Modelling & Process Improvement
-                  </p>
-                  <ul class="list-disc pl-5 space-y-2 mb-4">
-                    <li>
-                      Conduct analyses to test, refine, and validate roster
-                      scenarios. This requires strong logical thinking skills
-                    </li>
-                    <li>
-                      Spot opportunities to enhance or automate our processes
-                      and help clients adopt best practices in rostering
-                    </li>
-                  </ul>
-
-                  <p class="font-medium mb-2">
-                    Project Management and Stakeholder Engagement
-                  </p>
-                  <ul class="list-disc pl-5 space-y-2 mb-4">
-                    <li>
-                      Work with healthcare providers, hospital administrators,
-                      and internal teams to understand scheduling challenges and
-                      suggest solutions
-                    </li>
-                    <li>
-                      Advise customers on best-practice use of RosterLab
-                      software to maximise functionality and data insights
-                    </li>
-                    <li>
-                      Ensure success in every onboarding from account creation
-                      to fully automated rostering
-                    </li>
-                    <li>
-                      Maintain relationships with our clients for their long
-                      term success
-                    </li>
-                  </ul>
-
-                  <p class="font-medium mb-2">Product Management</p>
-                  <p>
-                    Contribute ideas to our product roadmap, focusing on
-                    features and improvements for our optimisation engine and
-                    interface
-                  </p>
-                </div>
-
-                <div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                    About You
-                  </h4>
-                  <ul class="list-disc pl-5 space-y-2">
-                    <li>
-                      You <strong>must</strong> have a minimum of bachelors degree. Ideally from
-                      engineering, stats, infosys, data, economics, maths, or
-                      any optimisation related degrees.
-                    </li>
-                    <li>
-                      Agile in a fast-paced environment, with a strong ability
-                      to adapt and remain resilient through challenges and
-                      changes.
-                    </li>
-                    <li>
-                      Logical Thinker: You excel at breaking down complex
-                      problems and translating them into clear, step-by-step
-                      solutions.
-                    </li>
-                    <li>
-                      Detail-Orientated: Accuracy is key in building robust
-                      rostering models that serve critical healthcare needs.
-                    </li>
-                    <li>
-                      Excellent Communicator: Comfortable engaging with
-                      stakeholders at various levels, from front-line staff to
-                      executives.
-                    </li>
-                    <li>
-                      Likes Puzzles: The analytical challenge of creating roster
-                      models can often be like a brain teaser.
-                    </li>
-                    <li>
-                      Adaptable & Flexible: You thrive in a fast-paced startup
-                      environment and enjoy tackling new challenges.
-                    </li>
-                    <li>
-                      Analytical Skills: Familiarity with Excel or other data
-                      tools for modelling and analysis.
-                    </li>
-                    <li>
-                      Open to All Levels: Whether you're a fresh graduate eager
-                      to learn or an experienced professional ready for a new
-                      challenge, we want to hear from you.
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                    What We Offer
-                  </h4>
-                  <ul class="list-disc pl-5 space-y-2">
-                    <li>
-                      Equity/ESOP: Own a piece of the company you're helping to
-                      build.
-                    </li>
-                    <li>
-                      Rapid Growth: As an early-stage startup, you'll have the
-                      opportunity to scale your career quickly.
-                    </li>
-                    <li>
-                      Global Impact: Your work will directly improve the lives
-                      of healthcare professionals and patients worldwide.
-                    </li>
-                    <li>
-                      Product Influence: Play a pivotal role in shaping our core
-                      offering and driving the evolution of our platform.
-                    </li>
-                    <li>
-                      Collaborative Culture: Join a supportive, driven team that
-                      values new ideas, experimentation, and continuous
-                      learning.
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                    Why Join Us
-                  </h4>
-                  <ul class="list-disc pl-5 space-y-2">
-                    <li>
-                      Meaningful Work: We are making a big difference in
-                      improving the lives of healthcare professionals, and we
-                      have studies to prove it!
-                    </li>
-                    <li>
-                      Venture Capital levels of growth: As our company scales
-                      exponentially, so will your opportunities for growth,
-                      influence, and long-term rewards.
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-3">
-                    How to Apply
-                  </h4>
-                  <p class="mb-2">
-                    If you're excited about transforming healthcare rostering
-                    and want to contribute to a groundbreaking SaaS solution,
-                    we'd love to hear from you! Please send the following to
-                    <a
-                      href="mailto:careers@rosterlab.com"
-                      class="text-blue-600 hover:text-blue-700 font-medium"
-                    >
-                      careers@rosterlab.com
-                    </a>:
-                  </p>
-                  <ul class="list-disc pl-5 space-y-2">
-                    <li>Your CV and LinkedIn profile</li>
-                    <li>
-                      A brief note on why you're interested in the role and any
-                      relevant experiences—formal or informal—that demonstrate
-                      your logical approach and stakeholder management skills.
-                    </li>
-                  </ul>
-                </div>
-              `}
-            />
+              </div>
+            </Link>
           </div>
         </Container>
       </section>
@@ -445,11 +294,11 @@ export default function CareersPage() {
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Software engineers with experience in React/Node
+                    Marketing professionals with B2B SaaS and content experience
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Product marketeers who understand enterprise SaaS and B2B
+                    Software engineers with experience in React/Node
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
