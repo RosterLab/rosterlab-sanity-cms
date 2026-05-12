@@ -1,12 +1,11 @@
-/**
- * Centralized Conversion Events for Segment
- *
- * This file contains all conversion-related events for easy management
- * by multiple team members. Each event is well-documented with its
- * properties and usage.
- */
-
 import { analytics } from "@/components/analytics/tracking";
+import {
+  metaTrackLead,
+  metaTrackSchedule,
+  metaTrackContact,
+  metaTrackSubscribe,
+  metaTrackViewContent,
+} from "@/lib/analytics/meta-pixel";
 
 // Event names as constants for consistency
 export const CONVERSION_EVENTS = {
@@ -108,6 +107,24 @@ export const trackDemoBookingComplete = (
       ...properties,
     });
   }
+
+  // Meta Pixel: Lead + Schedule
+  const nameParts = properties.user_name?.split(" ") || [];
+  const metaUserData = {
+    email: properties.user_email,
+    firstName: nameParts[0],
+    lastName: nameParts.slice(1).join(" ") || undefined,
+    phone: properties.phone_number,
+  };
+  metaTrackLead({
+    contentName: "Demo Booking",
+    value: 500,
+    userData: metaUserData,
+  });
+  metaTrackSchedule({
+    contentName: `Demo - ${properties.organizer_name}`,
+    userData: metaUserData,
+  });
 };
 
 /**
@@ -151,6 +168,12 @@ export const trackContactFormSubmitted = (
     subject,
     ...properties,
     timestamp: new Date().toISOString(),
+  });
+
+  metaTrackContact({
+    contentName: subject || "Contact Form",
+    value: 200,
+    userData: properties?.email ? { email: properties.email } : undefined,
   });
 };
 
@@ -215,6 +238,31 @@ export const trackFormSubmission = (properties: {
       amplitude_event_sent: true,
     });
   }
+
+  // Meta Pixel: Subscribe for newsletters, Lead for other forms
+  const formNameParts = properties.user_name?.split(" ") || [];
+  const metaFormUserData = {
+    email: properties.user_email,
+    firstName: formNameParts[0],
+    lastName: formNameParts.slice(1).join(" ") || undefined,
+    phone: properties.phone_number,
+  };
+  const isNewsletter = properties.form_name
+    ?.toLowerCase()
+    .includes("newsletter");
+  if (isNewsletter) {
+    metaTrackSubscribe({
+      contentName: properties.form_name || "Newsletter Signup",
+      value: 10,
+      userData: metaFormUserData,
+    });
+  } else {
+    metaTrackLead({
+      contentName: properties.form_name || "HubSpot Form",
+      value: 50,
+      userData: metaFormUserData,
+    });
+  }
 };
 
 /**
@@ -264,5 +312,11 @@ export const trackPricingViewed = (properties?: {
   analytics.track(CONVERSION_EVENTS.PRICING_VIEWED, {
     ...properties,
     timestamp: new Date().toISOString(),
+  });
+
+  metaTrackViewContent({
+    contentName: "Pricing Page",
+    contentCategory: "pricing",
+    contentType: "page",
   });
 };

@@ -76,7 +76,7 @@ export default async function RootLayout({
         >
           <RlTracker />
           <UTMTracker debug={process.env.NODE_ENV === "development"} />
-          <MetaPixel pixelId="777741693485350" />
+          <MetaPixel />
           <GeolocationProvider />
           <ClientHeader />
           <main id="main-content" className="flex-grow" role="main">

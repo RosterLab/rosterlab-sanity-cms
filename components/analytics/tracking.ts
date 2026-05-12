@@ -1,4 +1,8 @@
 import { getCurrentTouchData } from "@/lib/analytics/utm-tracker";
+import {
+  metaTrackInitiateCheckout,
+  metaTrackViewContent,
+} from "@/lib/analytics/meta-pixel";
 
 function getUTMData(): Record<string, any> {
   const currentTouchData = getCurrentTouchData();
@@ -220,4 +224,18 @@ export const trackSmartButtonClick = (
   }
 
   analytics.track("cta_clicked", eventProperties);
+
+  if (ctaType === "signup") {
+    metaTrackInitiateCheckout({
+      contentName: ctaName,
+      value: 50,
+      contentCategory: "signup",
+    });
+  } else if (ctaType === "demo") {
+    metaTrackViewContent({
+      contentName: ctaName,
+      contentCategory: "demo_intent",
+      contentType: "cta",
+    });
+  }
 };

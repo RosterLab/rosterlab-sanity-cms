@@ -1,16 +1,8 @@
 import Script from "next/script";
 
-interface MetaPixelProps {
-  pixelId: string;
-}
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "777741693485350";
 
-/**
- * Meta Pixel (Facebook Pixel)
- *
- * Tracks conversions, optimizes ads, and builds audiences for remarketing.
- * Implements the official Meta Pixel code with PageView tracking.
- */
-export default function MetaPixel({ pixelId }: MetaPixelProps) {
+export default function MetaPixel() {
   return (
     <>
       <Script
@@ -26,7 +18,7 @@ export default function MetaPixel({ pixelId }: MetaPixelProps) {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '${pixelId}');
+            fbq('init', '${PIXEL_ID}');
             fbq('track', 'PageView');
           `,
         }}
@@ -36,8 +28,8 @@ export default function MetaPixel({ pixelId }: MetaPixelProps) {
           height="1"
           width="1"
           style={{ display: "none" }}
-          src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
-          alt="Meta tracking pixel"
+          src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
         />
       </noscript>
     </>

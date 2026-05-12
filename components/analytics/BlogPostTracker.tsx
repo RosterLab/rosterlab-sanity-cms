@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { analytics } from "@/components/analytics/tracking";
+import { metaTrackViewContent } from "@/lib/analytics/meta-pixel";
 
 interface BlogPostTrackerProps {
   title: string;
@@ -33,10 +34,11 @@ export default function BlogPostTracker({
       page_title: title,
     });
 
-    console.log("Blog post view tracked:", {
-      title,
-      slug,
-      sessionId: analytics.getSessionId?.() || "N/A",
+    metaTrackViewContent({
+      contentName: title,
+      contentCategory: category || "blog",
+      contentIds: [slug],
+      contentType: "blog_post",
     });
   }, [title, slug, author, category, publishedAt]);
 
