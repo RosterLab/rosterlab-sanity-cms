@@ -137,9 +137,9 @@ export default function MarketingContentSpecialistPage() {
               SaaS competitor, but the status quo.
             </p>
 
-            {/* Why join now */}
+            {/* What makes this role different */}
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why join now
+              What makes this role different
             </h2>
             <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-8">
               <li>
@@ -268,7 +268,7 @@ export default function MarketingContentSpecialistPage() {
             </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 mb-3">
-              Strategic input
+              Market & messaging input
             </h3>
             <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-6">
               <li>
