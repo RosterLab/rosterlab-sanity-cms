@@ -180,6 +180,10 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         slug={post.slug?.current || slug}
         author={post.author?.name}
         category="Case Studies"
+        categories={post.categories?.map((c: any) => ({
+          slug: c.slug?.current || c.slug,
+          title: c.title,
+        }))}
         publishedAt={post.publishedAt}
       />
       <ArticleSchema
