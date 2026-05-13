@@ -9,13 +9,16 @@ import MetaPixel from "@/components/analytics/MetaPixel";
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
-import { draftMode } from "next/headers";
+import { cookies, draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
 import GeolocationProvider from "@/components/layout/GeolocationProvider";
 import { headers } from "next/headers";
 import SkipLink from "@/components/accessibility/SkipLink";
+import StatsigProvider from "@/components/analytics/StatsigProvider";
+import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
+import { getClientBootstrapValues } from "@/lib/statsig/client-bootstrap";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -48,6 +51,13 @@ export default async function RootLayout({
     headersList.get("x-pathname") || headersList.get("x-url") || "";
   const isUSPage = pathname.startsWith("/us/");
 
+  // Statsig bootstrap: read visitor ID and pre-compute experiment values
+  const cookieStore = await cookies();
+  const anonId = cookieStore.get("_rl_anon_id")?.value || null;
+  const detectedCountry = headersList.get("x-detected-country") || null;
+  const { user: statsigUser, values: statsigValues } =
+    await getClientBootstrapValues(anonId, detectedCountry);
+
   return (
     <html lang="en" className={poppins.variable}>
       <head>
@@ -62,6 +72,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://featuregates.org" />
         <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
@@ -71,21 +82,28 @@ export default async function RootLayout({
       >
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <SkipLink />
-        <ClientProviders
-          intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
+        <StatsigProvider
+          clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
+          user={statsigUser}
+          initialValues={statsigValues ? JSON.stringify(statsigValues) : null}
         >
-          <RlTracker />
-          <UTMTracker debug={process.env.NODE_ENV === "development"} />
-          <MetaPixel />
-          <GeolocationProvider />
-          <ClientHeader />
-          <main id="main-content" className="flex-grow" role="main">
-            {children}
-          </main>
-          <ClientFooter />
-          {isEnabled && <VisualEditing />}
-          <LazyStyles />
-        </ClientProviders>
+          <ClientProviders
+            intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
+          >
+            <StatsigExposureLogger />
+            <RlTracker />
+            <UTMTracker debug={process.env.NODE_ENV === "development"} />
+            <MetaPixel />
+            <GeolocationProvider />
+            <ClientHeader />
+            <main id="main-content" className="flex-grow" role="main">
+              {children}
+            </main>
+            <ClientFooter />
+            {isEnabled && <VisualEditing />}
+            <LazyStyles />
+          </ClientProviders>
+        </StatsigProvider>
       </body>
     </html>
   );
