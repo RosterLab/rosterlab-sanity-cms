@@ -1,4 +1,7 @@
-import Link from 'next/link'
+"use client";
+
+import Link from "next/link";
+import { trackSmartButtonClick } from "@/components/analytics/tracking";
 
 interface BlogCTAProps {
   title?: string
@@ -33,12 +36,26 @@ export default function BlogCTA({
         <Link
           href={primaryButton.href}
           className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-neutral-100 transition-all transform hover:scale-105"
+          onClick={() =>
+            trackSmartButtonClick(
+              primaryButton.text,
+              primaryButton.href,
+              "Blog CTA",
+            )
+          }
         >
           {primaryButton.text}
         </Link>
         <Link
           href={secondaryButton.href}
           className="inline-flex items-center justify-center px-6 py-3 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white/10 transition-all"
+          onClick={() =>
+            trackSmartButtonClick(
+              secondaryButton.text,
+              secondaryButton.href,
+              "Blog CTA",
+            )
+          }
         >
           {secondaryButton.text}
         </Link>

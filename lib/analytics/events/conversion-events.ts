@@ -16,6 +16,7 @@ export const CONVERSION_EVENTS = {
   CONTACT_FORM_SUBMITTED: "contact_form_submitted",
   CTA_CLICKED: "cta_clicked",
   PRICING_VIEWED: "pricing_viewed",
+  SIGNUP_STARTED: "signup_started",
 } as const;
 
 // Type definitions for event properties
@@ -288,6 +289,16 @@ export const trackCTAClicked = (properties: {
   [key: string]: any;
 }) => {
   analytics.track(CONVERSION_EVENTS.CTA_CLICKED, {
+    ...properties,
+    timestamp: new Date().toISOString(),
+  });
+};
+
+/**
+ * Track signup intent (fired alongside cta_clicked when cta_type is 'signup')
+ */
+export const trackSignupStarted = (properties?: Record<string, any>) => {
+  analytics.track(CONVERSION_EVENTS.SIGNUP_STARTED, {
     ...properties,
     timestamp: new Date().toISOString(),
   });

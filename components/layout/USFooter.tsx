@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 import CountrySelector from "./CountrySelector";
+import { trackSmartButtonClick } from "@/components/analytics/tracking";
+import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
 
 export default function USFooter() {
   return (
@@ -36,14 +38,29 @@ export default function USFooter() {
               <Link
                 href="/us/book-a-demo"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors text-sm"
+                onClick={() =>
+                  trackSmartButtonClick(
+                    "Book a demo",
+                    "/us/book-a-demo",
+                    "Footer US",
+                  )
+                }
               >
                 Book a demo
               </Link>
               <Link
                 href="https://app.rosterlab.com"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-white text-gray-800 px-4 py-2 rounded-md font-medium hover:bg-gray-50 transition-colors border border-gray-300 text-sm"
-                target="_blank"
-                rel="noopener"
+                onClick={handleCrossDomainLink(
+                  "https://app.rosterlab.com",
+                  () => {
+                    trackSmartButtonClick(
+                      "Login",
+                      "https://app.rosterlab.com",
+                      "Footer US",
+                    );
+                  },
+                )}
               >
                 Login
               </Link>

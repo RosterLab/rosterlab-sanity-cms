@@ -1,6 +1,10 @@
+"use client";
+
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { HiCheck } from "react-icons/hi";
+import { trackSmartButtonClick } from "@/components/analytics/tracking";
 
 interface PricingPlan {
   name: string;
@@ -163,6 +167,12 @@ export default function Pricing({
                   href={plan.buttonLink || "/book-a-demo"}
                   variant={plan.highlighted ? "primary" : "outline"}
                   className="w-full"
+                  analyticsLabel={plan.buttonText || "Get Started"}
+                  analyticsLocation={`Pricing - ${plan.name}`}
+                  analyticsProperties={{
+                    plan_name: plan.name,
+                    plan_price: plan.price,
+                  }}
                 >
                   {plan.buttonText || "Get Started"}
                 </Button>
@@ -178,9 +188,19 @@ export default function Pricing({
           </p>
           <p className="text-sm text-neutral-500">
             Need a custom solution?{" "}
-            <a href="/contact" className="text-primary-600 hover:underline">
+            <Link
+              href="/contact"
+              className="text-primary-600 hover:underline"
+              onClick={() =>
+                trackSmartButtonClick(
+                  "Contact our sales team",
+                  "/contact",
+                  "Pricing Footer",
+                )
+              }
+            >
               Contact our sales team
-            </a>
+            </Link>
           </p>
         </div>
       </Container>

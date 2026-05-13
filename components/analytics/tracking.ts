@@ -223,9 +223,22 @@ export const trackSmartButtonClick = (
     eventProperties.current_page_url = window.location.href;
   }
 
+  eventProperties.cta_text = buttonText;
+  eventProperties.cta_location = location;
+  eventProperties.page_path =
+    typeof window !== "undefined" ? window.location.pathname : undefined;
+
   analytics.track("cta_clicked", eventProperties);
 
   if (ctaType === "signup") {
+    analytics.track("signup_started", {
+      cta_name: ctaName,
+      button_text: buttonText,
+      cta_text: buttonText,
+      destination_url: href,
+      page_location: location,
+      cta_location: location,
+    });
     metaTrackInitiateCheckout({
       contentName: ctaName,
       value: 50,

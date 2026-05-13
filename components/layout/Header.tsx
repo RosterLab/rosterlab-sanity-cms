@@ -302,6 +302,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <Link
                                 href={contactLink}
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                                onClick={() =>
+                                  trackSmartButtonClick(
+                                    "Speak to our team",
+                                    contactLink,
+                                    "Header - Solutions Dropdown",
+                                  )
+                                }
                               >
                                 Speak to our team
                                 <svg
@@ -321,6 +328,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <Link
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                                onClick={() =>
+                                  trackSmartButtonClick(
+                                    "Book a demo",
+                                    demoLink,
+                                    "Header - Solutions Dropdown",
+                                  )
+                                }
                               >
                                 Book a demo
                               </Link>
@@ -597,6 +611,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <Link
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                                onClick={() =>
+                                  trackSmartButtonClick(
+                                    "Book a demo",
+                                    demoLink,
+                                    "Header - Industries Dropdown",
+                                  )
+                                }
                               >
                                 Book a demo
                               </Link>
@@ -702,6 +723,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <Link
                                 href="/templates"
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
+                                onClick={() =>
+                                  trackSmartButtonClick(
+                                    "Explore workforce templates",
+                                    "/templates",
+                                    "Header - Resources Dropdown",
+                                  )
+                                }
                               >
                                 Explore workforce templates
                                 <svg
@@ -721,6 +749,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <Link
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                                onClick={() =>
+                                  trackSmartButtonClick(
+                                    "Book a demo",
+                                    demoLink,
+                                    "Header - Resources Dropdown",
+                                  )
+                                }
                               >
                                 Book a demo
                               </Link>
