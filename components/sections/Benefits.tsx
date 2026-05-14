@@ -1,13 +1,27 @@
 "use client";
 
 import { useState, useRef } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSmall";
-import WeekendRotationModule from "@/app/feature/shift-swaps/WeekendRotationModule";
-import MobileAppPreferencesModule from "@/components/sections/animations/MobileAppPreferencesModule";
-import RosterGenerationModule from "@/components/sections/animations/RosterGenerationModule";
+
+const StaffingEnvelopeChartSmall = dynamic(
+  () => import("@/components/ui/StaffingEnvelopeChartSmall"),
+  { ssr: false },
+);
+const WeekendRotationModule = dynamic(
+  () => import("@/app/feature/shift-swaps/WeekendRotationModule"),
+  { ssr: false },
+);
+const MobileAppPreferencesModule = dynamic(
+  () => import("@/components/sections/animations/MobileAppPreferencesModule"),
+  { ssr: false },
+);
+const RosterGenerationModule = dynamic(
+  () => import("@/components/sections/animations/RosterGenerationModule"),
+  { ssr: false },
+);
 
 interface BenefitTab {
   id: string;

@@ -1,10 +1,29 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function ContactFormWrapper() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
   useEffect(() => {
-    // Check if HubSpot is already loaded
+    if (!containerRef.current) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+    observer.observe(containerRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!isVisible) return
+
     if (window.hbspt) {
       window.hbspt.forms.create({
         portalId: "20646833",
@@ -14,14 +33,12 @@ export default function ContactFormWrapper() {
       })
       return
     }
-    
-    // Create script element
+
     const script = document.createElement('script')
     script.src = 'https://js.hsforms.net/forms/embed/v2.js'
     script.charset = 'utf-8'
     script.type = 'text/javascript'
-    
-    // When script loads, create the form
+
     script.onload = () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
@@ -32,20 +49,17 @@ export default function ContactFormWrapper() {
         })
       }
     }
-    
-    // Append script to body
+
     document.body.appendChild(script)
-    
-    // Cleanup
+
     return () => {
-      // Remove script if component unmounts
       if (document.body.contains(script)) {
         document.body.removeChild(script)
       }
     }
-  }, [])
+  }, [isVisible])
 
-  return <div id="contact-form-container" style={{ minHeight: '100px' }}>
+  return <div ref={containerRef} id="contact-form-container" style={{ minHeight: '100px' }}>
     <p className="text-sm text-gray-500">Loading form...</p>
   </div>
 }
