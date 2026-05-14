@@ -154,10 +154,3 @@ export function metaTrackInitiateCheckout(params: {
   return eventId;
 }
 
-export function metaGrantConsent(): void {
-  callFbq("consent", "grant");
-}
-
-export function metaRevokeConsent(): void {
-  callFbq("consent", "revoke");
-}
