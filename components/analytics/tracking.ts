@@ -134,6 +134,7 @@ export const trackSmartButtonClick = (
   const normalizedHref = href.toLowerCase().trim();
 
   let ctaType: string;
+  let ctaSlug: string;
   let ctaName: string;
   const eventProperties: Record<string, any> = {
     button_text: buttonText,
@@ -147,6 +148,7 @@ export const trackSmartButtonClick = (
     normalizedHref === "https://app.rosterlab.com/signup"
   ) {
     ctaType = "signup";
+    ctaSlug = "signup";
     ctaName = location
       ? `${location}: ${buttonText}`
       : `Free Signup: ${buttonText}`;
@@ -156,6 +158,7 @@ export const trackSmartButtonClick = (
     normalizedHref.includes("/book-a-demo")
   ) {
     ctaType = "demo";
+    ctaSlug = "book-demo";
     ctaName = location
       ? `${location}: ${buttonText}`
       : `Book Demo: ${buttonText}`;
@@ -165,6 +168,7 @@ export const trackSmartButtonClick = (
     normalizedHref.includes("/staff-rostering-interactive-demo")
   ) {
     ctaType = "example";
+    ctaSlug = "interactive-demo";
     ctaName = location
       ? `${location}: ${buttonText}`
       : `Interactive Demo: ${buttonText}`;
@@ -175,6 +179,7 @@ export const trackSmartButtonClick = (
     normalizedHref.includes("/contact")
   ) {
     ctaType = "contact";
+    ctaSlug = "contact";
     ctaName = location
       ? `${location}: ${buttonText}`
       : `Contact: ${buttonText}`;
@@ -184,6 +189,7 @@ export const trackSmartButtonClick = (
     normalizedHref === "https://app.rosterlab.com/"
   ) {
     ctaType = "login";
+    ctaSlug = "login";
     ctaName = location ? `${location}: ${buttonText}` : `Login: ${buttonText}`;
     eventProperties.external = true;
   } else if (
@@ -191,12 +197,14 @@ export const trackSmartButtonClick = (
     normalizedHref.includes("/pricing")
   ) {
     ctaType = "pricing";
+    ctaSlug = "pricing";
     ctaName = location
       ? `${location}: ${buttonText}`
       : `Pricing: ${buttonText}`;
     eventProperties.external = false;
   } else if (normalizedHref.includes("mailto:")) {
     ctaType = "email";
+    ctaSlug = "email";
     ctaName = location ? `${location}: ${buttonText}` : `Email: ${buttonText}`;
     eventProperties.email_address = normalizedHref.replace("mailto:", "");
     eventProperties.external = true;
@@ -205,22 +213,26 @@ export const trackSmartButtonClick = (
     normalizedHref.includes("meetings.")
   ) {
     ctaType = "meeting";
+    ctaSlug = "meeting";
     ctaName = location
       ? `${location}: ${buttonText}`
       : `Schedule Meeting: ${buttonText}`;
     eventProperties.external = true;
   } else {
     ctaType = "other";
+    ctaSlug = "other";
     ctaName = location ? `${location}: ${buttonText}` : buttonText;
     eventProperties.external = normalizedHref.startsWith("http");
   }
 
   eventProperties.cta_name = ctaName;
   eventProperties.cta_type = ctaType;
+  eventProperties.cta = ctaSlug;
 
   if (typeof window !== "undefined") {
     eventProperties.current_page_path = window.location.pathname;
     eventProperties.current_page_url = window.location.href;
+    eventProperties.page = window.location.pathname;
   }
 
   eventProperties.cta_text = buttonText;
