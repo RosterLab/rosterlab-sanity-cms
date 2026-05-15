@@ -30,7 +30,12 @@ export default function RlTracker() {
   useEffect(() => {
     if (typeof window.rlTracker !== "undefined") {
       const industry = detectIndustry(pathname);
-      window.rlTracker.page(document.title, { path: pathname, industry });
+      window.rlTracker.page(document.title, {
+        path: pathname,
+        url: window.location.href,
+        app: false,
+        industry,
+      });
 
       if (industry) {
         window.rlTracker.track("industry.viewed", { industry, path: pathname });

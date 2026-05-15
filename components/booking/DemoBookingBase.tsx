@@ -57,9 +57,7 @@ export default function DemoBookingBase({
       config: {
         baseUrl: regionalContent.calendlyUrl,
         queryParams: {
-          utm_content: analytics.getUserId()
-            ? `amplitude_${analytics.getUserId()}`
-            : "no_user_id",
+          utm_content: analytics.getDeviceId() || "no_anon_id",
         },
         region,
         redirectPath: regionalContent.links.meetingConfirmed,
