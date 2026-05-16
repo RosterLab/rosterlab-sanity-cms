@@ -8,6 +8,7 @@ import {
   getFirstTouchData,
   getUTMDebugInfo,
 } from "@/lib/analytics/utm-tracker";
+import { fetchServerGeo } from "@/lib/analytics/client-context";
 
 interface UTMTrackerProps {
   onUTMsDetected?: (data: { firstTouch: any; currentTouch: any }) => void;
@@ -35,7 +36,8 @@ function UTMTrackerInner({ onUTMsDetected, debug = false }: UTMTrackerProps) {
     // Update the ref to current pathname for next navigation
     previousPathnameRef.current = pathname;
 
-    // Initialize UTM tracking on mount and route changes
+    fetchServerGeo();
+
     const trackingData = initializeUTMTracking();
 
     if (trackingData) {

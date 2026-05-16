@@ -38,34 +38,61 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // Detect user's country from various sources
-  // 1. Vercel geo object (if deployed on Vercel)
-  // 2. Netlify x-country header (if deployed on Netlify)
-  // 3. Standard geo headers
+  // Extract geo data from available sources
+  const geo = (request as any).geo || {};
   const detectedCountry =
-    (request as any).geo?.country ||
+    geo.country ||
     request.headers.get("x-country") ||
     request.headers.get("CF-IPCountry") ||
     request.headers.get("X-Country-Code") ||
     null;
 
-  // Handle /us routes - no redirects, just pass through
+  const nfGeoHeader = request.headers.get("x-nf-geo");
+  let nfGeo: Record<string, any> = {};
+  if (nfGeoHeader) {
+    try {
+      nfGeo = JSON.parse(nfGeoHeader);
+    } catch {}
+  }
+
+  const geoData = {
+    country: detectedCountry,
+    city: geo.city || nfGeo.city || request.headers.get("x-nf-city") || null,
+    region:
+      geo.region ||
+      nfGeo.subdivision?.code ||
+      request.headers.get("x-nf-region") ||
+      null,
+    timezone:
+      nfGeo.timezone || request.headers.get("x-nf-timezone") || null,
+    latitude:
+      geo.latitude || nfGeo.latitude || null,
+    longitude:
+      geo.longitude || nfGeo.longitude || null,
+  };
+
+  const setGeoHeaders = (response: NextResponse) => {
+    if (geoData.country)
+      response.headers.set("x-detected-country", geoData.country);
+    if (geoData.city) response.headers.set("x-detected-city", geoData.city);
+    if (geoData.region)
+      response.headers.set("x-detected-region", geoData.region);
+    if (geoData.timezone)
+      response.headers.set("x-detected-timezone", geoData.timezone);
+    if (geoData.latitude)
+      response.headers.set("x-detected-latitude", String(geoData.latitude));
+    if (geoData.longitude)
+      response.headers.set("x-detected-longitude", String(geoData.longitude));
+  };
+
   if (pathname.startsWith("/us")) {
     const response = NextResponse.next();
-    // Add detected country as header for client components
-    if (detectedCountry) {
-      response.headers.set("x-detected-country", detectedCountry);
-    }
+    setGeoHeaders(response);
     return response;
   }
 
   const response = NextResponse.next();
-
-  // Add detected country as header for client components
-  if (detectedCountry) {
-    response.headers.set("x-detected-country", detectedCountry);
-  }
-
+  setGeoHeaders(response);
   return response;
 }
 

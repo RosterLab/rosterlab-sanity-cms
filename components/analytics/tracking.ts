@@ -3,6 +3,11 @@ import {
   metaTrackInitiateCheckout,
   metaTrackViewContent,
 } from "@/lib/analytics/meta-pixel";
+import {
+  getClientContext,
+  fetchServerGeo,
+  getServerGeoSync,
+} from "@/lib/analytics/client-context";
 
 function getUTMData(): Record<string, any> {
   const currentTouchData = getCurrentTouchData();
@@ -19,10 +24,47 @@ function getUTMData(): Record<string, any> {
   };
 }
 
+function getEnrichmentData(): Record<string, any> {
+  const ctx = getClientContext();
+  const geo = getServerGeoSync();
+
+  return {
+    $timezone: ctx.timezone,
+    $timezone_offset: ctx.timezone_offset,
+    $locale: ctx.locale,
+    $languages: ctx.languages,
+    $screen_width: ctx.screen_width,
+    $screen_height: ctx.screen_height,
+    $viewport_width: ctx.viewport_width,
+    $viewport_height: ctx.viewport_height,
+    $device_pixel_ratio: ctx.device_pixel_ratio,
+    $device_type: ctx.device_type,
+    $touch_capable: ctx.touch_capable,
+    $platform: ctx.platform,
+    $connection_type: ctx.connection_type,
+    $dark_mode: ctx.dark_mode,
+    $do_not_track: ctx.do_not_track,
+    $ad_blocker_likely: ctx.ad_blocker_likely,
+    ...(geo && {
+      $geo_country: geo.country,
+      $geo_city: geo.city,
+      $geo_region: geo.region,
+      $geo_timezone: geo.timezone,
+      $geo_latitude: geo.latitude,
+      $geo_longitude: geo.longitude,
+    }),
+    ...(ctx.timezone_country && {
+      $tz_country: ctx.timezone_country,
+      $tz_region: ctx.timezone_region,
+    }),
+  };
+}
+
 export const analytics = {
   track: (eventName: string, eventProperties?: Record<string, any>) => {
     if (typeof window === "undefined") return;
     const enhancedProperties = {
+      ...getEnrichmentData(),
       ...getUTMData(),
       ...eventProperties,
       current_page_path: window.location.pathname,
@@ -188,10 +230,16 @@ export const trackSmartButtonClick = (
     normalizedHref === "https://app.rosterlab.com" ||
     normalizedHref === "https://app.rosterlab.com/"
   ) {
-    ctaType = "login";
-    ctaSlug = "login";
-    ctaName = location ? `${location}: ${buttonText}` : `Login: ${buttonText}`;
-    eventProperties.external = true;
+    analytics.track("navigation_clicked", {
+      button_text: buttonText,
+      destination_url: href,
+      nav_type: "login",
+      page_location: location,
+      current_page_path:
+        typeof window !== "undefined" ? window.location.pathname : undefined,
+      ...additionalProperties,
+    });
+    return;
   } else if (
     normalizedHref === "/pricing" ||
     normalizedHref.includes("/pricing")
