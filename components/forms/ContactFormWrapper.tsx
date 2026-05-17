@@ -44,7 +44,23 @@ export default function ContactFormWrapper() {
       formId: "77e5a8c4-4303-4681-8c92-afa7b070380c",
       region: "na1",
       target: "#contact-form-container",
+      onFormReady: () => {
+        window.rlTracker?.formStart('contact')
+
+        const container = document.getElementById('contact-form-container')
+        if (container) {
+          const inputs = container.querySelectorAll('input, textarea, select')
+          inputs.forEach((input) => {
+            input.addEventListener('blur', () => {
+              const name = (input as HTMLInputElement).name
+              if (name) window.rlTracker?.formField('contact', name)
+            })
+          })
+        }
+      },
       onFormSubmit: ($form: HTMLFormElement) => {
+        window.rlTracker?.formSubmit('contact')
+
         const values = extractFormValues($form)
         const email = values.email
         if (email) {

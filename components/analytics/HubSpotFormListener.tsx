@@ -6,7 +6,7 @@ import { analytics } from "@/components/analytics/tracking";
 
 interface HubSpotFormCallback {
   type: "hsFormCallback";
-  eventName: "onFormSubmitted";
+  eventName: "onFormReady" | "onFormSubmitted";
   id: string; // Form GUID
   data?: {
     submissionValues?: Record<string, any>;
@@ -18,6 +18,16 @@ interface HubSpotFormCallback {
     formName?: string;
   };
 }
+
+const FORM_GUID_TO_NAME: Record<string, string> = {
+  "77e5a8c4-4303-4681-8c92-afa7b070380c": "contact",
+  "8b313479-637e-4725-8b9e-3fe8cdae6077": "excel-template",
+  "b49cff03-442a-490a-8357-aa1672058a31": "timesheet-template",
+  "af8acfa7-f7fc-4da6-8d08-1c3f2458fb5e": "shift-swap-template",
+  "0dae293b-6e69-4fb0-9af9-dec04f54865a": "employee-of-month-template",
+  "dc7c7138-f03a-40b1-bc97-335fc28ddcd6": "newsletter",
+  "7a140682-3e29-470f-a3b0-10c8d97beb02": "hubspot-default",
+};
 
 /**
  * HubSpot Form Listener Component
@@ -36,15 +46,19 @@ export default function HubSpotFormListener() {
     );
 
     const handleMessage = (event: MessageEvent) => {
-      // Log all message events for debugging
-      console.log("[HubSpotFormListener] Message received:", event.data);
+      if (!event.data || event.data.type !== "hsFormCallback") return;
+
+      const formGuid = event.data.id;
+      const formName = FORM_GUID_TO_NAME[formGuid] || formGuid;
+
+      if (event.data.eventName === "onFormReady") {
+        window.rlTracker?.formStart(formName);
+        return;
+      }
 
       // Type guard to check if it's a HubSpot form submission event
-      if (
-        event.data &&
-        event.data.type === "hsFormCallback" &&
-        event.data.eventName === "onFormSubmitted"
-      ) {
+      if (event.data.eventName === "onFormSubmitted") {
+        window.rlTracker?.formSubmit(formName);
         console.log("[HubSpotFormListener] HubSpot form submission detected!");
         const formData = event.data as HubSpotFormCallback;
 

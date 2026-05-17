@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -21,6 +21,10 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    window.rlTracker?.formStart('contact');
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -29,6 +33,10 @@ export default function ContactForm() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  const handleFieldBlur = (fieldName: string) => {
+    window.rlTracker?.formField('contact', fieldName);
+  };
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -51,6 +59,7 @@ export default function ContactForm() {
       });
 
       if (response.ok) {
+        window.rlTracker?.formSubmit('contact');
         setIsSubmitted(true);
         reset();
 
@@ -126,7 +135,7 @@ export default function ContactForm() {
             Name *
           </label>
           <input
-            {...register("name")}
+            {...register("name", { onBlur: () => handleFieldBlur('name') })}
             type="text"
             id="name"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -154,7 +163,7 @@ export default function ContactForm() {
             Email *
           </label>
           <input
-            {...register("email")}
+            {...register("email", { onBlur: () => handleFieldBlur('email') })}
             type="email"
             id="email"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -182,7 +191,7 @@ export default function ContactForm() {
             Company
           </label>
           <input
-            {...register("company")}
+            {...register("company", { onBlur: () => handleFieldBlur('company') })}
             type="text"
             id="company"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -198,7 +207,7 @@ export default function ContactForm() {
             Phone
           </label>
           <input
-            {...register("phone")}
+            {...register("phone", { onBlur: () => handleFieldBlur('phone') })}
             type="tel"
             id="phone"
             className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -215,7 +224,7 @@ export default function ContactForm() {
           Message *
         </label>
         <textarea
-          {...register("message")}
+          {...register("message", { onBlur: () => handleFieldBlur('message') })}
           id="message"
           rows={5}
           className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"

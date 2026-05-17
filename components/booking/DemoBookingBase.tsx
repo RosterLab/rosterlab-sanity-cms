@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
@@ -73,9 +74,16 @@ export default function DemoBookingBase({
       enablePerformanceOptimizations: true,
     });
 
+  useEffect(() => {
+    if (shouldLoadWidget && calendlyUrl) {
+      window.rlTracker?.formStart('book-demo');
+    }
+  }, [shouldLoadWidget, calendlyUrl]);
+
   // Handle Calendly events
   useCalendlyEventListener({
     onEventScheduled: async (e: any) => {
+      window.rlTracker?.formSubmit('book-demo');
       const eventData = e?.data || e?.detail || e;
 
       // Track in Amplitude

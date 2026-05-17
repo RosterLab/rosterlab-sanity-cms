@@ -4,6 +4,9 @@ interface Window {
     track: (event: string, properties?: Record<string, unknown>) => void;
     identify: (userId: string, traits?: Record<string, unknown>) => void;
     page: (name?: string, properties?: Record<string, unknown>) => void;
+    formStart: (formName: string) => void;
+    formField: (formName: string, fieldName: string) => void;
+    formSubmit: (formName: string) => void;
   };
 
   // Meta Pixel (Facebook Pixel)
