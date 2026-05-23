@@ -12,10 +12,16 @@ export default function Intercom({ appId }: IntercomProps) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            window.intercomSettings = {
-              api_base: "https://api-iam.intercom.io",
-              app_id: "${appId}",
-            };
+            (function() {
+              var anonId = (document.cookie.match(/(?:^|; )_rl_anon_id=([^;]*)/) || [])[1];
+              window.intercomSettings = {
+                api_base: "https://api-iam.intercom.io",
+                app_id: "${appId}",
+              };
+              if (anonId) {
+                window.intercomSettings.rl_anon_id = decodeURIComponent(anonId);
+              }
+            })();
           `,
         }}
       />

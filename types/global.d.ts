@@ -14,6 +14,8 @@ declare global {
       };
     };
     dataLayer?: any[];
+    intercomSettings?: Record<string, any>;
+    Intercom?: (...args: any[]) => void;
   }
 }
 
