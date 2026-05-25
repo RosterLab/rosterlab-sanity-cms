@@ -9,6 +9,58 @@ import {
   getServerGeoSync,
 } from "@/lib/analytics/client-context";
 
+// Storage key for UTM campaign context
+const CAMPAIGN_STORAGE_KEY = "rl_campaign_context";
+
+/**
+ * Get campaign context from UTM parameters
+ * Persists in sessionStorage for first-touch attribution
+ */
+function getCampaignContext(): {
+  source: string | null;
+  medium: string | null;
+  name: string | null;
+  term: string | null;
+  content: string | null;
+} | null {
+  if (typeof window === "undefined") return null;
+
+  // Check if we already have campaign data in sessionStorage
+  const stored = sessionStorage.getItem(CAMPAIGN_STORAGE_KEY);
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch {
+      // Invalid stored data, continue to parse from URL
+    }
+  }
+
+  // Parse UTM parameters from current URL
+  const params = new URLSearchParams(window.location.search);
+  const utmSource = params.get("utm_source");
+  const utmMedium = params.get("utm_medium");
+  const utmCampaign = params.get("utm_campaign");
+  const utmTerm = params.get("utm_term");
+  const utmContent = params.get("utm_content");
+
+  // Only create campaign context if we have at least utm_source
+  if (utmSource) {
+    const campaignContext = {
+      source: utmSource,
+      medium: utmMedium,
+      name: utmCampaign, // utm_campaign maps to 'name'
+      term: utmTerm,
+      content: utmContent,
+    };
+
+    // Store in sessionStorage for persistence across pages
+    sessionStorage.setItem(CAMPAIGN_STORAGE_KEY, JSON.stringify(campaignContext));
+    return campaignContext;
+  }
+
+  return null;
+}
+
 function getUTMData(): Record<string, any> {
   const currentTouchData = getCurrentTouchData();
   if (!currentTouchData) return {};
@@ -63,12 +115,30 @@ function getEnrichmentData(): Record<string, any> {
 export const analytics = {
   track: (eventName: string, eventProperties?: Record<string, any>) => {
     if (typeof window === "undefined") return;
+
+    // Build context object
+    const context: Record<string, any> = {
+      page: {
+        url: window.location.href,
+        path: window.location.pathname,
+        referrer: document.referrer || null,
+      },
+      ip: undefined, // Server will populate this
+    };
+
+    // Add campaign context if available
+    const campaignContext = getCampaignContext();
+    if (campaignContext) {
+      context.campaign = campaignContext;
+    }
+
     const enhancedProperties = {
       ...getEnrichmentData(),
       ...getUTMData(),
       ...eventProperties,
       current_page_path: window.location.pathname,
       current_page_url: window.location.href,
+      context, // Add context object
     };
     window.rlTracker?.track(eventName, enhancedProperties);
     if (window.dataLayer) {
