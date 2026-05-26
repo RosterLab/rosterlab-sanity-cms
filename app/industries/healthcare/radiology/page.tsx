@@ -12,11 +12,11 @@ export const metadata = withHreflang(
   {
     title: "Radiology Staff Rostering Software - RosterLab",
     description:
-      "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+      "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across multiple modalities — balancing staff skills, on-call, and availability in one place.",
     openGraph: {
       title: "Radiology Staff Rostering Software - RosterLab",
       description:
-        "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+        "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across multiple modalities — balancing staff skills, on-call, and availability in one place.",
       type: "website",
       url: "https://rosterlab.com/industries/healthcare/radiology",
       images: [
@@ -31,7 +31,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Radiology Staff Rostering Software - RosterLab",
       description:
-        "Build your radiology staff roster with RosterLab. Automatically generate fair, compliant and flexible radiology rosters that save time and money.",
+        "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across multiple modalities — balancing staff skills, on-call, and availability in one place.",
       images: ["/images/og-images/IndustryRadiology.png"],
     },
   },

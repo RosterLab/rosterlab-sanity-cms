@@ -9,16 +9,16 @@ import { withHreflang } from "@/components/seo/HreflangTags";
 
 export const metadata = withHreflang(
   {
-    title: "RosterLab - AI Staff Rostering Software for Complex Teams",
+    title: "AI-Powered Staff Rostering Software | RosterLab",
     description:
-      "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+      "RosterLab uses AI to generate fair, optimised staff rosters for complex teams in minutes. Built for healthcare, 24/7 operations, and large shift-based teams.",
     alternates: {
       canonical: "https://rosterlab.com",
     },
     openGraph: {
-      title: "RosterLab - AI Staff Rostering Software for Complex Teams",
+      title: "AI-Powered Staff Rostering Software | RosterLab",
       description:
-        "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+        "RosterLab uses AI to generate fair, optimised staff rosters for complex teams in minutes. Built for healthcare, 24/7 operations, and large shift-based teams.",
       type: "website",
       url: "https://rosterlab.com",
       images: [
@@ -32,9 +32,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "RosterLab - AI Staff Rostering Software for Complex Teams",
+      title: "AI-Powered Staff Rostering Software | RosterLab",
       description:
-        "Generate fair, optimised shift rosters with AI. RosterLab schedules complex patterns, balances workloads, and reduces admin by 95%.",
+        "RosterLab uses AI to generate fair, optimised staff rosters for complex teams in minutes. Built for healthcare, 24/7 operations, and large shift-based teams.",
       images: ["/images/og-images/Home.png"],
     },
   },

@@ -9,9 +9,9 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "About Us - Meet the Team Behind RosterLab",
+    title: "About RosterLab | AI Rostering Software Built for Healthcare",
     description:
-      "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+      "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We specialise in complex healthcare scheduling — replacing spreadsheets with AI that actually works.",
     alternates: {
       canonical: "https://rosterlab.com/about",
     },
@@ -19,9 +19,9 @@ export const metadata = withHreflang(
       link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
     },
     openGraph: {
-      title: "About Us - Meet the Team Behind RosterLab",
+      title: "About RosterLab | AI Rostering Software Built for Healthcare",
       description:
-        "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+        "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We specialise in complex healthcare scheduling — replacing spreadsheets with AI that actually works.",
       type: "website",
       url: "https://rosterlab.com/about",
       images: [
@@ -35,9 +35,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "About Us - Meet the Team Behind RosterLab",
+      title: "About RosterLab | AI Rostering Software Built for Healthcare",
       description:
-        "Learn about us and the people behind RosterLab. Our team is dedicated to building smarter, fairer rostering solutions that put people first.",
+        "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We specialise in complex healthcare scheduling — replacing spreadsheets with AI that actually works.",
       images: ["/images/og-images/About.png"],
     },
   },

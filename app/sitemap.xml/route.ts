@@ -149,7 +149,22 @@ async function generateSitemap() {
   // Add static routes (default version)
   for (const route of staticRoutes) {
     const lastmod = new Date().toISOString();
-    const priority = route === "" ? 1 : route.includes("/feature/") ? 0.9 : 0.8;
+
+    // Determine priority based on route
+    let priority = 0.8; // default
+    if (route === "") {
+      priority = 1;
+    } else if (route === "/industries/healthcare") {
+      priority = 0.96;
+    } else if (route === "/solutions/ai-roster-generator") {
+      priority = 0.95;
+    } else if (route === "/feature/ai-staff-rostering-assistant") {
+      priority = 0.94;
+    } else if (route === "/pricing" || route === "/solutions/free-staff-rostering-software" || route === "/about") {
+      priority = 0.93;
+    } else if (route.includes("/feature/")) {
+      priority = 0.9;
+    }
 
     entries.push(`  <url>
     <loc>${baseUrl}${route}</loc>
@@ -163,8 +178,22 @@ async function generateSitemap() {
   for (const originalPath of LOCALIZED_PAGES) {
     const usPath = US_URL_MAPPINGS[originalPath] || `/us${originalPath}`;
     const lastmod = new Date().toISOString();
-    const priority =
-      originalPath === "/" ? 1 : originalPath.includes("/feature/") ? 0.9 : 0.8;
+
+    // Determine priority based on original route
+    let priority = 0.8; // default
+    if (originalPath === "/") {
+      priority = 1;
+    } else if (originalPath === "/industries/healthcare") {
+      priority = 0.96;
+    } else if (originalPath === "/solutions/ai-roster-generator") {
+      priority = 0.95;
+    } else if (originalPath === "/feature/ai-staff-rostering-assistant") {
+      priority = 0.94;
+    } else if (originalPath === "/pricing" || originalPath === "/solutions/free-staff-rostering-software" || originalPath === "/about") {
+      priority = 0.93;
+    } else if (originalPath.includes("/feature/")) {
+      priority = 0.9;
+    }
 
     entries.push(`  <url>
     <loc>${baseUrl}${usPath}</loc>

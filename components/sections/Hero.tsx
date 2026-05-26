@@ -17,7 +17,6 @@ export default function Hero() {
           <div className="text-left">
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-normal">
-              AI{" "}
               <span
                 className="inline-block pb-2"
                 style={{
@@ -29,15 +28,16 @@ export default function Hero() {
                   color: "transparent",
                 }}
               >
-                Staff Rostering
+                AI-Powered
               </span>{" "}
-              for Complex Teams
+              Staff Rostering Software for Complex Teams
             </h1>
 
             {/* Subheading */}
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              We help teams with complex scheduling needs generate and optimise
-              staff rosters within minutes, not days.
+              Generate and optimise staff rosters in minutes, not days. Built
+              for healthcare, 24/7 operations, and teams with rules too complex
+              for spreadsheets.
             </p>
 
             {/* Buttons */}
