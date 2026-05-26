@@ -10,13 +10,13 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "ED & ICU Staff Rostering Software - RosterLab",
+    title: "ED and ICU Staff Rostering Software - RosterLab",
     description:
-      "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+      "Handle complex shift requirements across ED and ICU with RosterLab. Manage staff fatigue, ensure safe staffing levels, and let clinicians focus on patient care instead.",
     openGraph: {
-      title: "ED & ICU Staff Rostering Software - RosterLab",
+      title: "ED and ICU Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+        "Handle complex shift requirements across ED and ICU with RosterLab. Manage staff fatigue, ensure safe staffing levels, and let clinicians focus on patient care instead.",
       type: "website",
       url: "https://rosterlab.com/industries/healthcare/ed-icu",
       images: [
@@ -29,9 +29,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "ED & ICU Staff Rostering Software - RosterLab",
+      title: "ED and ICU Staff Rostering Software - RosterLab",
       description:
-        "Learn how our rostering software handles complex shift scheduling in the ED & ICU. Manage staff fatigue, save admin time & improve continuity of care.",
+        "Handle complex shift requirements across ED and ICU with RosterLab. Manage staff fatigue, ensure safe staffing levels, and let clinicians focus on patient care instead.",
       images: ["/images/og-images/IndustryICUED.png"],
     },
   },

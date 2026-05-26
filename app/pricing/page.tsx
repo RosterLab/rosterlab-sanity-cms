@@ -10,16 +10,16 @@ import PricingPageTracker from "@/components/analytics/PricingPageTracker";
 
 export const metadata = withHreflang(
   {
-    title: "Pricing - Affordable AI Staff Rostering Software",
+    title: "Pricing | AI Staff Scheduling Software",
     description:
-      "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+      "RosterLab pricing scales with your team. AI-powered rostering for healthcare and complex shift teams — see plans and request a demo.",
     alternates: {
       canonical: "https://rosterlab.com/pricing",
     },
     openGraph: {
-      title: "Pricing - Affordable AI Staff Rostering Software",
+      title: "Pricing | AI Staff Scheduling Software",
       description:
-        "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+        "RosterLab pricing scales with your team. AI-powered rostering for healthcare and complex shift teams — see plans and request a demo.",
       type: "website",
       url: "https://rosterlab.com/pricing",
       images: [
@@ -32,9 +32,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Pricing - Affordable AI Staff Rostering Software",
+      title: "Pricing | AI Staff Scheduling Software",
       description:
-        "Explore RosterLab's flexible pricing for AI-powered staff rostering. Save time, ensure compliance, and build fairer rosters effortlessly.",
+        "RosterLab pricing scales with your team. AI-powered rostering for healthcare and complex shift teams — see plans and request a demo.",
       images: ["/images/og-images/Pricing.png"],
     },
   },
@@ -316,8 +316,9 @@ export default function PricingPage() {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Unlock the power of automatic rostering today! See immediate
-                improvements in rostering efficiency and staff satisfaction.
+                Most customers recover the cost within the first month. See
+                immediate improvements in rostering efficiency, admin time, and
+                staff satisfaction.
               </p>
             </div>
           </Container>

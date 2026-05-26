@@ -30,9 +30,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "RosterLab - Workforce Management Solutions",
+  title: {
+    default: "AI-Powered Staff Rostering Software | RosterLab",
+    template: "%s | RosterLab",
+  },
   description:
-    "Simplifying workforce management with intelligent scheduling solutions.",
+    "RosterLab uses AI to generate fair, optimised staff rosters for complex teams in minutes. Built for healthcare, 24/7 operations, and large shift-based teams.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com",
   ),
