@@ -6,6 +6,12 @@ export async function getClientBootstrapValues(
 ) {
   const statsig = await getStatsigServer();
   const user = getStatsigUser(anonId, country);
+
+  // If Statsig is not configured, return null values
+  if (!statsig) {
+    return { user, values: null };
+  }
+
   const values = statsig.getClientInitializeResponse(user);
   return { user, values };
 }

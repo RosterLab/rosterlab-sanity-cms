@@ -7,7 +7,7 @@ import { StatsigSessionReplayPlugin } from "@statsig/session-replay";
 
 interface StatsigProviderProps {
   children: ReactNode;
-  clientKey: string;
+  clientKey: string | undefined;
   user: { userID?: string; country?: string };
   initialValues: string | null;
 }
@@ -19,6 +19,11 @@ export default function StatsigProvider({
   initialValues,
 }: StatsigProviderProps) {
   const clientRef = useRef<StatsigClient | null>(null);
+
+  // If no client key is provided, skip Statsig initialization
+  if (!clientKey) {
+    return <>{children}</>;
+  }
 
   if (!clientRef.current) {
     const client = new StatsigClient(clientKey, user);

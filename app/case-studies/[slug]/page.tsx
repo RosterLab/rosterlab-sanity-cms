@@ -16,6 +16,7 @@ import { draftMode } from "next/headers";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 import ArticleSchema from "@/components/seo/ArticleSchema";
+import CaseStudyGateCheck from "@/components/modals/CaseStudyGateCheck";
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -173,7 +174,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
 
   return (
-    <article>
+    <CaseStudyGateCheck slug={slug}>
+      <article>
       <HubSpotFormListener />
       <BlogPostTracker
         title={post.title}
@@ -366,5 +368,6 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </Container>
       </div>
     </article>
+    </CaseStudyGateCheck>
   );
 }
