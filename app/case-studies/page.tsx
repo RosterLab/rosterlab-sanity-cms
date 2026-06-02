@@ -4,6 +4,9 @@ import { validatedToken } from "@/sanity/lib/token";
 import CaseStudiesPageContent from "@/components/case-studies/CaseStudiesPageContent";
 import { draftMode } from "next/headers";
 
+// ISR: Revalidate every 5 minutes
+export const revalidate = 300;
+
 export const metadata = {
   title: "RosterLab Case Studies - Better Rosters, Impactful Results",
   description:

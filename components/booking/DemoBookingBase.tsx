@@ -74,6 +74,27 @@ export default function DemoBookingBase({
       enablePerformanceOptimizations: true,
     });
 
+  // Track page load and UTM parameters
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmSource = urlParams.get("utm_source");
+      const utmMedium = urlParams.get("utm_medium");
+      const utmCampaign = urlParams.get("utm_campaign");
+      const utmContent = urlParams.get("utm_content");
+
+      // Track demo page view with UTM parameters
+      analytics.track("demo_page_viewed", {
+        utm_source: utmSource || undefined,
+        utm_medium: utmMedium || undefined,
+        utm_campaign: utmCampaign || undefined,
+        utm_content: utmContent || undefined,
+        page_location: window.location.pathname,
+        page_url: window.location.href,
+      });
+    }
+  }, []);
+
   useEffect(() => {
     if (shouldLoadWidget && calendlyUrl) {
       window.rlTracker?.formStart('book-demo');
@@ -85,6 +106,13 @@ export default function DemoBookingBase({
     onEventScheduled: async (e: any) => {
       window.rlTracker?.formSubmit('book-demo');
       const eventData = e?.data || e?.detail || e;
+
+      // Get UTM parameters from URL if present
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmSource = urlParams.get("utm_source");
+      const utmMedium = urlParams.get("utm_medium");
+      const utmCampaign = urlParams.get("utm_campaign");
+      const utmContent = urlParams.get("utm_content");
 
       // Track in Amplitude
       trackDemoBookingComplete(
@@ -101,6 +129,11 @@ export default function DemoBookingBase({
           page_location: window.location.pathname,
           user_email: eventData?.invitee?.email || eventData?.email,
           user_name: eventData?.invitee?.name || eventData?.name,
+          // Include UTM tracking
+          utm_source: utmSource || "direct",
+          utm_medium: utmMedium || undefined,
+          utm_campaign: utmCampaign || undefined,
+          utm_content: utmContent || undefined,
         },
         {
           email: eventData?.invitee?.email || eventData?.email,

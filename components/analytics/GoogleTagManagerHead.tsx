@@ -1,12 +1,18 @@
+import Script from "next/script";
+
 interface GoogleTagManagerHeadProps {
-  gtmId: string
+  gtmId: string;
 }
 
-export default function GoogleTagManagerHead({ gtmId }: GoogleTagManagerHeadProps) {
-  if (!gtmId) return null
-  
+export default function GoogleTagManagerHead({
+  gtmId,
+}: GoogleTagManagerHeadProps) {
+  if (!gtmId) return null;
+
   return (
-    <script
+    <Script
+      id="gtm-base"
+      strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: `
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -17,5 +23,5 @@ export default function GoogleTagManagerHead({ gtmId }: GoogleTagManagerHeadProp
         `,
       }}
     />
-  )
+  );
 }

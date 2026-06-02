@@ -104,11 +104,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Resources",
       subItems: [
-        { title: "Blog", link: "/blog" },
+        { title: "Whitepapers", link: "/whitepapers/rostering-as-a-strategic-workforce-lever" },
         { title: "Case Studies", link: "/case-studies" },
-        { title: "Newsroom", link: "/newsroom" },
         { title: "Webinars", link: "/webinars" },
+        { title: "Blogs", link: "/blog" },
         { title: "Shift Management Tools", link: "/tools" },
+        { title: "Newsroom", link: "/newsroom" },
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
         {
@@ -637,10 +638,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 {item.subItems
                                   ?.filter(
                                     (sub) =>
-                                      sub.title === "Blog" ||
+                                      sub.title === "Whitepapers" ||
                                       sub.title === "Case Studies" ||
-                                      sub.title === "Newsroom" ||
                                       sub.title === "Webinars" ||
+                                      sub.title === "Blogs" ||
                                       sub.title === "Shift Management Tools",
                                   )
                                   .map((subItem) => (
@@ -653,14 +654,14 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                         {subItem.title}
                                       </div>
                                       <div className="text-sm text-gray-600">
-                                        {subItem.title === "Blog"
-                                          ? "Insights and best practices"
+                                        {subItem.title === "Whitepapers"
+                                          ? "How executives use rostering as a strategic lever"
                                           : subItem.title === "Case Studies"
                                             ? "Success stories from our customers"
-                                            : subItem.title === "Newsroom"
-                                              ? "Latest updates and announcements"
-                                              : subItem.title === "Webinars"
-                                                ? "Expert-led sessions on workforce management"
+                                            : subItem.title === "Webinars"
+                                              ? "Expert-led sessions on workforce management"
+                                              : subItem.title === "Blogs"
+                                                ? "Insights and best practices"
                                                 : subItem.title ===
                                                     "Shift Management Tools"
                                                   ? "Free tools to optimize your workforce"
@@ -680,11 +681,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 {item.subItems
                                   ?.filter(
                                     (sub) =>
-                                      sub.title !== "Blog" &&
+                                      sub.title !== "Whitepapers" &&
                                       sub.title !== "Case Studies" &&
-                                      sub.title !== "Newsroom" &&
                                       sub.title !== "Webinars" &&
-                                      sub.title !== "Shift Management Tools",
+                                      sub.title !== "Blogs" &&
+                                      sub.title !== "Shift Management Tools" &&
+                                      sub.title !== "Newsroom",
                                   )
                                   .map((subItem) => (
                                     <Link

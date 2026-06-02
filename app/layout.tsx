@@ -19,6 +19,7 @@ import SkipLink from "@/components/accessibility/SkipLink";
 import StatsigProvider from "@/components/analytics/StatsigProvider";
 import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
 import { getClientBootstrapValues } from "@/lib/statsig/client-bootstrap";
+import CTAModalManager from "@/components/modals/CTAModalManager";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -86,14 +87,14 @@ export default async function RootLayout({
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <SkipLink />
         <StatsigProvider
-          clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY!}
+          clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}
           user={statsigUser}
           initialValues={statsigValues ? JSON.stringify(statsigValues) : null}
         >
           <ClientProviders
             intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
           >
-            <StatsigExposureLogger />
+            {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && <StatsigExposureLogger />}
             <RlTracker />
             <UTMTracker debug={process.env.NODE_ENV === "development"} />
             <MetaPixel />
@@ -105,6 +106,7 @@ export default async function RootLayout({
             <ClientFooter />
             {isEnabled && <VisualEditing />}
             <LazyStyles />
+            <CTAModalManager />
           </ClientProviders>
         </StatsigProvider>
       </body>

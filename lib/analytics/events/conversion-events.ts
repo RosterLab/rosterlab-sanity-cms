@@ -21,6 +21,11 @@ export interface DemoBookingProperties {
   company_size?: string;
   user_role?: string;
   phone_number?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+  utm_term?: string;
 }
 
 const CONTACT_FORM_GUID = "77e5a8c4-4303-4681-8c92-afa7b070380c";

@@ -9,6 +9,10 @@ export async function getServerExperiment(experimentName: string) {
   const country = headersList.get("x-detected-country") || null;
 
   const statsig = await getStatsigServer();
+  if (!statsig) {
+    return { value: {} };
+  }
+
   const user = getStatsigUser(anonId, country);
 
   return statsig.getExperiment(user, experimentName);
@@ -22,6 +26,10 @@ export async function checkServerGate(gateName: string) {
   const country = headersList.get("x-detected-country") || null;
 
   const statsig = await getStatsigServer();
+  if (!statsig) {
+    return false;
+  }
+
   const user = getStatsigUser(anonId, country);
 
   return statsig.checkGate(user, gateName);

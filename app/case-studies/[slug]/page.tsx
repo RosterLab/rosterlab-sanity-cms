@@ -16,6 +16,10 @@ import { draftMode } from "next/headers";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 import ArticleSchema from "@/components/seo/ArticleSchema";
+import CaseStudyGateCheck from "@/components/modals/CaseStudyGateCheck";
+
+// ISR: Revalidate every 1 hour (case studies rarely change)
+export const revalidate = 3600;
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -143,14 +147,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(caseStudyQuery, { slug });
+
+  // Fetch post and related case studies in parallel
+  const [post, allCaseStudies] = await Promise.all([
+    clientToUse.fetch(caseStudyQuery, { slug }),
+    clientToUse.fetch(allCaseStudiesQuery),
+  ]);
 
   if (!post) {
     notFound();
   }
-
-  // Fetch all case studies for the related posts section
-  const allCaseStudies = await clientToUse.fetch(allCaseStudiesQuery);
 
   // Calculate reading time
   const calculateReadingTime = (text: any[]) => {
@@ -173,7 +179,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
 
   return (
-    <article>
+    <CaseStudyGateCheck slug={slug}>
+      <article>
       <HubSpotFormListener />
       <BlogPostTracker
         title={post.title}
@@ -366,5 +373,6 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         </Container>
       </div>
     </article>
+    </CaseStudyGateCheck>
   );
 }
