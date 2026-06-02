@@ -94,25 +94,25 @@ export default function WhitepaperUnlockedPage() {
             </div>
 
             {/* Key Stats */}
-            <div className="bg-white rounded-3xl shadow-xl p-8 mb-8">
-              <h2 className="text-3xl font-bold text-neutral-900 mb-6 text-center">
-                Key Results from Auckland Radiology
+            <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-5 sm:p-8 mb-8">
+              <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-neutral-900 mb-4 sm:mb-6 text-center">
+                Key Results
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600 mb-2">93%</div>
-                  <div className="text-sm text-neutral-600">Reduction in rostering time</div>
-                  <div className="text-xs text-neutral-500 mt-1">120hrs to 8hrs per month</div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 mb-1 sm:mb-2">93%</div>
+                  <div className="text-xs sm:text-sm md:text-base text-neutral-600 leading-tight">Reduction in rostering time</div>
+                  <div className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1">120hrs to 8hrs</div>
+                </div>
+                <div className="text-center border-x border-neutral-200">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 mb-1 sm:mb-2">$80K+</div>
+                  <div className="text-xs sm:text-sm md:text-base text-neutral-600 leading-tight">Annual savings</div>
+                  <div className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1">One FTE equiv.</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600 mb-2">$80K+</div>
-                  <div className="text-sm text-neutral-600">Annual savings</div>
-                  <div className="text-xs text-neutral-500 mt-1">Equivalent to one FTE</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600 mb-2">600+</div>
-                  <div className="text-sm text-neutral-600">Staff preferences met</div>
-                  <div className="text-xs text-neutral-500 mt-1">Per roster cycle</div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 mb-1 sm:mb-2">600+</div>
+                  <div className="text-xs sm:text-sm md:text-base text-neutral-600 leading-tight">Staff preferences met</div>
+                  <div className="text-[10px] sm:text-xs text-neutral-500 mt-0.5 sm:mt-1">Per cycle</div>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function WhitepaperUnlockedPage() {
                 See how RosterLab can help your organization achieve similar results
               </p>
               <a
-                href="/book-demo"
+                href="/book-a-demo"
                 className="inline-flex items-center gap-2 bg-white text-blue-600 hover:bg-neutral-100 font-semibold py-4 px-8 rounded-lg transition-colors shadow-lg hover:shadow-xl text-lg"
                 onClick={() => {
                   analytics.track("book_demo_clicked", {

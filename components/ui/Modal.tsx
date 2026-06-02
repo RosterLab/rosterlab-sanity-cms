@@ -56,7 +56,7 @@ export default function Modal({
         aria-modal="true"
         aria-labelledby={titleId.current}
         aria-describedby={description ? descId.current : undefined}
-        className="relative bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto m-4 focus:outline-none"
+        className="relative bg-white rounded-lg lg:rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto mx-4 my-4 sm:my-8 focus:outline-none"
         style={style}
       >
         {/* Hidden title for accessibility if not in children */}

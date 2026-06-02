@@ -127,14 +127,14 @@ export default function WhitepaperPage() {
   return (
     <>
         <SiteLayout>
-          <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen py-20">
+          <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen py-12 sm:py-16 lg:py-20">
             <Container>
                 <div className="max-w-7xl mx-auto">
                   {/* Header */}
-                  <div className="text-center mb-12">
-                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                  <div className="text-center mb-8 sm:mb-12">
+                    <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
                       <svg
-                        className="w-4 h-4"
+                        className="w-3 h-3 sm:w-4 sm:h-4"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -146,27 +146,27 @@ export default function WhitepaperPage() {
                       </svg>
                       Free Whitepaper
                     </div>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4 sm:mb-6 leading-tight px-4">
                       Rostering as a{" "}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                         Strategic Workforce Lever
                       </span>
                     </h1>
-                    <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                    <p className="text-base sm:text-lg lg:text-xl text-neutral-600 max-w-3xl mx-auto px-4">
                       How healthcare executives can use intelligent scheduling to solve their most pressing workforce challenges
                     </p>
                   </div>
 
-                  {/* Two Column Layout */}
-                  <div className="grid lg:grid-cols-2 gap-12 items-start">
-                    {/* Left Column - Preview */}
+                  {/* Two Column Layout with Reordering on Mobile */}
+                  <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    {/* Left Column - Preview, Stats, and What's Inside */}
                     <div className="space-y-8">
                       {/* Whitepaper Preview Pages - Layered Book Effect */}
-                      <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-12">
-                        <div className="relative h-[500px]">
+                      <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10 overflow-hidden">
+                        <div className="relative h-[200px] sm:h-[280px] lg:h-[340px] max-w-full">
                           {/* Start Page - Left (Angled) */}
-                          <div className="absolute left-0 top-16 w-[55%] z-10 transform -rotate-[20deg] hover:scale-105 transition-transform duration-300">
-                            <div className="rounded-xl overflow-hidden shadow-2xl">
+                          <div className="absolute left-[5%] top-8 sm:top-10 lg:top-12 w-[42%] sm:w-[45%] z-10 transform -rotate-[12deg] sm:-rotate-[15deg] hover:scale-105 transition-transform duration-300">
+                            <div className="rounded-lg overflow-hidden shadow-xl">
                               <img
                                 src="/images/og-images/whitepaper start.png"
                                 alt="Whitepaper Cover - Rostering as a Strategic Workforce Lever"
@@ -176,8 +176,8 @@ export default function WhitepaperPage() {
                           </div>
 
                           {/* RosterLab Change Page - Center (Behind right) */}
-                          <div className="absolute left-1/2 top-0 w-[70%] z-20 transform -translate-x-1/2 hover:scale-105 transition-transform duration-300">
-                            <div className="rounded-xl overflow-hidden shadow-2xl">
+                          <div className="absolute left-1/2 top-0 w-[55%] sm:w-[58%] z-20 transform -translate-x-1/2 hover:scale-105 transition-transform duration-300">
+                            <div className="rounded-lg overflow-hidden shadow-xl">
                               <img
                                 src="/images/og-images/rosterlab change.png"
                                 alt="Whitepaper Preview - The Decision to Change and What Changed with RosterLab"
@@ -187,8 +187,8 @@ export default function WhitepaperPage() {
                           </div>
 
                           {/* Guide Page - Right (Angled, On Top) */}
-                          <div className="absolute right-0 top-16 w-[55%] z-30 transform rotate-[20deg] hover:scale-105 transition-transform duration-300">
-                            <div className="rounded-xl overflow-hidden shadow-2xl">
+                          <div className="absolute right-[5%] top-8 sm:top-10 lg:top-12 w-[42%] sm:w-[45%] z-30 transform rotate-[12deg] sm:rotate-[15deg] hover:scale-105 transition-transform duration-300">
+                            <div className="rounded-lg overflow-hidden shadow-xl">
                               <img
                                 src="/images/og-images/guide.png"
                                 alt="Whitepaper Preview - Understanding That Scheduling Matters"
@@ -200,31 +200,31 @@ export default function WhitepaperPage() {
                       </div>
 
                       {/* Key Stats Preview */}
-                      <div className="grid grid-cols-3 gap-4">
-                        <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                          <div className="text-3xl font-bold text-blue-600 mb-1">93%</div>
-                          <div className="text-sm text-neutral-600">Time Reduction</div>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 text-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">93%</div>
+                          <div className="text-xs sm:text-sm text-neutral-600">Time Reduction</div>
                         </div>
-                        <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                          <div className="text-3xl font-bold text-blue-600 mb-1">$80K+</div>
-                          <div className="text-sm text-neutral-600">Annual Savings</div>
+                        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 text-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">$80K+</div>
+                          <div className="text-xs sm:text-sm text-neutral-600">Annual Savings</div>
                         </div>
-                        <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
-                          <div className="text-3xl font-bold text-blue-600 mb-1">600+</div>
-                          <div className="text-sm text-neutral-600">Preferences Met</div>
+                        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 text-center col-span-2 sm:col-span-1">
+                          <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">600+</div>
+                          <div className="text-xs sm:text-sm text-neutral-600">Preferences Met</div>
                         </div>
                       </div>
 
-                      {/* What's Inside */}
-                      <div className="bg-white rounded-3xl shadow-xl p-8">
-                        <h3 className="text-2xl font-bold text-neutral-900 mb-4">
+                      {/* What's Inside - Desktop Only (Hidden on Mobile) */}
+                      <div className="hidden lg:block bg-white rounded-3xl shadow-xl p-6 sm:p-8">
+                        <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-4">
                           What&apos;s Inside
                         </h3>
-                        <div className="space-y-4">
-                          <div className="flex items-start gap-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
                               <svg
-                                className="w-4 h-4 text-blue-600"
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -235,15 +235,15 @@ export default function WhitepaperPage() {
                                 />
                               </svg>
                             </div>
-                            <p className="text-neutral-700">
+                            <p className="text-sm sm:text-base text-neutral-700">
                               Poor rostering is silently costing your hospital — in turnover, agency spend, compliance risk, and burnout — and most executives never measure it
                             </p>
                           </div>
 
-                          <div className="flex items-start gap-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
                               <svg
-                                className="w-4 h-4 text-blue-600"
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -254,15 +254,15 @@ export default function WhitepaperPage() {
                                 />
                               </svg>
                             </div>
-                            <p className="text-neutral-700">
+                            <p className="text-sm sm:text-base text-neutral-700">
                               Workforce shortages are real, but many are compounded by scheduling systems that are unfair, opaque, and administratively broken
                             </p>
                           </div>
 
-                          <div className="flex items-start gap-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
                               <svg
-                                className="w-4 h-4 text-blue-600"
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -273,15 +273,15 @@ export default function WhitepaperPage() {
                                 />
                               </svg>
                             </div>
-                            <p className="text-neutral-700">
+                            <p className="text-sm sm:text-base text-neutral-700">
                               A real Auckland radiology department went from 40% understaffed to fully staffed for the first time in 28 years — by fixing how they scheduled
                             </p>
                           </div>
 
-                          <div className="flex items-start gap-3">
-                            <div className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
                               <svg
-                                className="w-4 h-4 text-blue-600"
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                               >
@@ -292,7 +292,7 @@ export default function WhitepaperPage() {
                                 />
                               </svg>
                             </div>
-                            <p className="text-neutral-700">
+                            <p className="text-sm sm:text-base text-neutral-700">
                               The financial case is concrete: $800k+ in annual savings, 93% less time on rostering, zero compliance breaches
                             </p>
                           </div>
@@ -302,23 +302,23 @@ export default function WhitepaperPage() {
 
                     {/* Right Column - Form */}
                     <div className="lg:sticky lg:top-24">
-                      <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10">
-                        <div className="text-center mb-8">
-                          <h2 className="text-3xl font-bold text-neutral-900 mb-3">
+                      <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10">
+                        <div className="text-center mb-6 sm:mb-8">
+                          <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
                             Get Your Free Whitepaper
                           </h2>
-                          <p className="text-neutral-600">
+                          <p className="text-sm sm:text-base text-neutral-600">
                             Instant access to the full case study and strategic framework
                           </p>
                         </div>
 
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
                           {/* Name and Email */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                               <label
                                 htmlFor="name"
-                                className="block text-sm font-medium text-neutral-700 mb-2"
+                                className="block text-xs sm:text-sm font-medium text-neutral-700 mb-1.5 sm:mb-2"
                               >
                                 Name *
                               </label>
@@ -326,11 +326,11 @@ export default function WhitepaperPage() {
                                 {...register("name")}
                                 type="text"
                                 id="name"
-                                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="Your name"
                               />
                               {errors.name && (
-                                <p className="mt-1 text-sm text-red-600">
+                                <p className="mt-1 text-xs sm:text-sm text-red-600">
                                   {errors.name.message}
                                 </p>
                               )}
@@ -339,7 +339,7 @@ export default function WhitepaperPage() {
                             <div>
                               <label
                                 htmlFor="email"
-                                className="block text-sm font-medium text-neutral-700 mb-2"
+                                className="block text-xs sm:text-sm font-medium text-neutral-700 mb-1.5 sm:mb-2"
                               >
                                 Email *
                               </label>
@@ -347,11 +347,11 @@ export default function WhitepaperPage() {
                                 {...register("email")}
                                 type="email"
                                 id="email"
-                                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="your@email.com"
                               />
                               {errors.email && (
-                                <p className="mt-1 text-sm text-red-600">
+                                <p className="mt-1 text-xs sm:text-sm text-red-600">
                                   {errors.email.message}
                                 </p>
                               )}
@@ -362,7 +362,7 @@ export default function WhitepaperPage() {
                           <div>
                             <label
                               htmlFor="company"
-                              className="block text-sm font-medium text-neutral-700 mb-2"
+                              className="block text-xs sm:text-sm font-medium text-neutral-700 mb-1.5 sm:mb-2"
                             >
                               Company
                             </label>
@@ -370,17 +370,17 @@ export default function WhitepaperPage() {
                               {...register("company")}
                               type="text"
                               id="company"
-                              className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                               placeholder="Your organization"
                             />
                           </div>
 
                           {/* Industry and Role */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                               <label
                                 htmlFor="industry"
-                                className="block text-sm font-medium text-neutral-700 mb-2"
+                                className="block text-xs sm:text-sm font-medium text-neutral-700 mb-1.5 sm:mb-2"
                               >
                                 Industry *
                               </label>
@@ -388,7 +388,7 @@ export default function WhitepaperPage() {
                                 <button
                                   type="button"
                                   onClick={() => setIndustryDropdownOpen(!industryDropdownOpen)}
-                                  className="w-full px-4 py-3 pr-10 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-left bg-white"
+                                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 text-sm sm:text-base border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-left bg-white"
                                 >
                                   <span className={selectedIndustry ? "text-neutral-900" : "text-neutral-500"}>
                                     {selectedIndustry || "Select industry"}
@@ -414,7 +414,7 @@ export default function WhitepaperPage() {
                                           setValue("industry", option, { shouldValidate: true });
                                           setIndustryDropdownOpen(false);
                                         }}
-                                        className="w-full text-left px-4 py-3 hover:bg-blue-50 transition-colors text-neutral-900"
+                                        className="w-full text-left px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base hover:bg-blue-50 transition-colors text-neutral-900"
                                       >
                                         {option}
                                       </button>
@@ -423,7 +423,7 @@ export default function WhitepaperPage() {
                                 )}
                               </div>
                               {errors.industry && (
-                                <p className="mt-1 text-sm text-red-600">
+                                <p className="mt-1 text-xs sm:text-sm text-red-600">
                                   {errors.industry.message}
                                 </p>
                               )}
@@ -432,7 +432,7 @@ export default function WhitepaperPage() {
                             <div>
                               <label
                                 htmlFor="role"
-                                className="block text-sm font-medium text-neutral-700 mb-2"
+                                className="block text-xs sm:text-sm font-medium text-neutral-700 mb-1.5 sm:mb-2"
                               >
                                 Role *
                               </label>
@@ -440,11 +440,11 @@ export default function WhitepaperPage() {
                                 {...register("role")}
                                 type="text"
                                 id="role"
-                                className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="e.g., Operations Manager"
                               />
                               {errors.role && (
-                                <p className="mt-1 text-sm text-red-600">
+                                <p className="mt-1 text-xs sm:text-sm text-red-600">
                                   {errors.role.message}
                                 </p>
                               )}
@@ -455,7 +455,7 @@ export default function WhitepaperPage() {
                           <button
                             type="submit"
                             disabled={isSubmitting || !isValid}
-                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-neutral-300 disabled:to-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-neutral-300 disabled:to-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:shadow-none flex items-center justify-center gap-2 text-sm sm:text-base"
                           >
                             {isSubmitting ? (
                               <>
@@ -501,9 +501,9 @@ export default function WhitepaperPage() {
                           </button>
 
                           {/* Privacy note */}
-                          <div className="flex items-center justify-center gap-2 text-sm text-neutral-500">
+                          <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-neutral-500">
                             <svg
-                              className="w-4 h-4 text-green-500"
+                              className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 flex-shrink-0"
                               fill="currentColor"
                               viewBox="0 0 20 20"
                             >
@@ -516,6 +516,92 @@ export default function WhitepaperPage() {
                             <span>Instant download • 100% free</span>
                           </div>
                         </form>
+                      </div>
+                    </div>
+
+                    {/* What's Inside - Mobile Only (After Form) */}
+                    <div className="lg:hidden">
+                      <div className="bg-white rounded-3xl shadow-xl p-6 sm:p-8">
+                        <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-4">
+                          What&apos;s Inside
+                        </h3>
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                              <svg
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                            <p className="text-sm sm:text-base text-neutral-700">
+                              Poor rostering is silently costing your hospital — in turnover, agency spend, compliance risk, and burnout — and most executives never measure it
+                            </p>
+                          </div>
+
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                              <svg
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                            <p className="text-sm sm:text-base text-neutral-700">
+                              Workforce shortages are real, but many are compounded by scheduling systems that are unfair, opaque, and administratively broken
+                            </p>
+                          </div>
+
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                              <svg
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                            <p className="text-sm sm:text-base text-neutral-700">
+                              A real Auckland radiology department went from 40% understaffed to fully staffed for the first time in 28 years — by fixing how they scheduled
+                            </p>
+                          </div>
+
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                              <svg
+                                className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                            <p className="text-sm sm:text-base text-neutral-700">
+                              The financial case is concrete: $800k+ in annual savings, 93% less time on rostering, zero compliance breaches
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -90,7 +90,7 @@ export default function CTAModalWebinarRecording({
 
       {/* Modal */}
       <div
-        className="relative bg-white rounded-3xl shadow-2xl max-w-7xl w-full overflow-hidden animate-slide-up"
+        className="relative bg-white rounded-2xl lg:rounded-3xl shadow-2xl max-w-5xl w-full max-h-[95vh] overflow-auto animate-slide-up"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-heading"
@@ -98,7 +98,7 @@ export default function CTAModalWebinarRecording({
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-6 right-6 z-10 text-neutral-400 hover:text-neutral-900 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 text-neutral-400 hover:text-neutral-900 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white shadow-lg"
           aria-label="Close modal"
         >
           <svg
@@ -117,9 +117,9 @@ export default function CTAModalWebinarRecording({
         </button>
 
         {/* Two-column layout */}
-        <div className="grid md:grid-cols-5 gap-0">
+        <div className="flex flex-col lg:grid lg:grid-cols-5 gap-0">
           {/* Left column - Video */}
-          <div className="relative bg-gradient-to-br from-[#1a3a52] to-[#0f2537] p-10 md:p-16 flex items-center justify-center min-h-[500px] md:min-h-[700px] md:col-span-2">
+          <div className="relative bg-gradient-to-br from-[#1a3a52] to-[#0f2537] p-4 pt-14 sm:p-6 sm:pt-20 md:p-6 md:pt-20 lg:p-10 lg:pt-10 flex items-center justify-center min-h-[260px] sm:min-h-[340px] md:min-h-[360px] lg:min-h-[480px] lg:col-span-2">
             {/* Grid pattern overlay */}
             <div className="absolute inset-0 opacity-10">
               <div
@@ -132,9 +132,9 @@ export default function CTAModalWebinarRecording({
             </div>
 
             {/* Video thumbnail */}
-            <div className="relative w-full max-w-md z-10">
+            <div className="relative w-full max-w-[280px] sm:max-w-sm md:max-w-sm lg:max-w-md z-10">
               {/* Video card */}
-              <div className="bg-gradient-to-br from-[#234a63] to-[#1a3a52] rounded-2xl overflow-hidden shadow-2xl mb-6">
+              <div className="bg-gradient-to-br from-[#234a63] to-[#1a3a52] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl mb-2 sm:mb-3 lg:mb-4">
                 {/* Webinar thumbnail - clickable */}
                 <a
                   href={WEBINAR_URL}
@@ -148,7 +148,7 @@ export default function CTAModalWebinarRecording({
                     });
                     onConversion();
                   }}
-                  className="relative w-full aspect-video group cursor-pointer overflow-hidden block"
+                  className="relative w-full aspect-video group cursor-pointer overflow-hidden block scale-90 sm:scale-95 lg:scale-100"
                   aria-label="Play webinar recording"
                 >
                   {/* Background Image */}
@@ -160,39 +160,39 @@ export default function CTAModalWebinarRecording({
                 </a>
 
                 {/* Video info */}
-                <div className="p-6">
-                  <h3 className="text-white font-bold text-lg mb-1">
+                <div className="p-2.5 sm:p-3 lg:p-4">
+                  <h3 className="text-white font-bold text-xs sm:text-sm lg:text-base mb-0.5">
                     Building a Resilient Workforce
                   </h3>
-                  <p className="text-teal-300 text-sm">
+                  <p className="text-teal-300 text-[10px] sm:text-xs line-clamp-1 sm:line-clamp-2">
                     A frontline perspective on AI rostering at Whanganui Hospital
                   </p>
                 </div>
               </div>
 
               {/* Host profiles - stacked vertically */}
-              <div className="flex flex-col items-stretch gap-3 w-full max-w-xs">
-                <div className="flex items-center gap-3 bg-[#2a4a5e] rounded-full py-2 px-4 shadow-lg w-full animate-float">
+              <div className="flex flex-col items-stretch gap-1.5 sm:gap-2 lg:gap-2.5 w-full max-w-[280px] sm:max-w-xs">
+                <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-2.5 bg-[#2a4a5e] rounded-full py-1 px-2 sm:py-1.5 sm:px-3 lg:py-2 lg:px-4 shadow-lg w-full animate-float">
                   <img
                     src="/images/og-images/Mike_profile.jpeg"
                     alt="Mike Peterson"
-                    className="w-12 h-12 rounded-full object-cover border-3 border-teal-400 flex-shrink-0"
+                    className="w-8 h-8 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full object-cover border-2 border-teal-400 flex-shrink-0"
                   />
-                  <div className="text-sm min-w-0 flex-1">
-                    <div className="text-white font-semibold">Mike Peterson</div>
-                    <div className="text-teal-300 text-xs">Associate Radiology Manager</div>
+                  <div className="text-[11px] sm:text-xs min-w-0 flex-1">
+                    <div className="text-white font-semibold truncate">Mike Peterson</div>
+                    <div className="text-teal-300 text-[9px] sm:text-[10px] truncate">Associate Radiology Manager</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-[#2a4a5e] rounded-full py-2 px-4 shadow-lg w-full animate-float-delayed">
+                <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-2.5 bg-[#2a4a5e] rounded-full py-1 px-2 sm:py-1.5 sm:px-3 lg:py-2 lg:px-4 shadow-lg w-full animate-float-delayed">
                   <img
                     src="/images/team/headshot-sunny.webp"
                     alt="Sunny Feng"
-                    className="w-12 h-12 rounded-full object-cover border-3 border-teal-400 flex-shrink-0"
+                    className="w-8 h-8 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-full object-cover border-2 border-teal-400 flex-shrink-0"
                   />
-                  <div className="text-sm min-w-0 flex-1">
-                    <div className="text-white font-semibold">Sunny Feng</div>
-                    <div className="text-teal-300 text-xs">Co-Founder of RosterLab</div>
+                  <div className="text-[11px] sm:text-xs min-w-0 flex-1">
+                    <div className="text-white font-semibold truncate">Sunny Feng</div>
+                    <div className="text-teal-300 text-[9px] sm:text-[10px] truncate">Co-Founder of RosterLab</div>
                   </div>
                 </div>
               </div>
@@ -200,11 +200,11 @@ export default function CTAModalWebinarRecording({
           </div>
 
           {/* Right column - Content */}
-          <div className="p-10 md:p-16 flex flex-col justify-center md:col-span-3">
+          <div className="p-4 pt-10 sm:p-6 sm:pt-14 md:p-6 md:pt-14 lg:p-10 lg:pt-14 flex flex-col justify-center lg:col-span-3">
             {/* Badge */}
-            <div className="flex items-center gap-2 mb-8">
-              <div className="w-2 h-2 bg-teal-500 rounded-full" />
-              <span className="text-teal-600 font-semibold text-sm uppercase tracking-wide">
+            <div className="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3 lg:mb-4">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-teal-500 rounded-full" />
+              <span className="text-teal-600 font-semibold text-[10px] sm:text-xs lg:text-sm uppercase tracking-wide">
                 Webinar • On Demand
               </span>
             </div>
@@ -212,7 +212,7 @@ export default function CTAModalWebinarRecording({
             {/* Heading */}
             <h2
               id="modal-heading"
-              className="text-4xl md:text-5xl font-bold text-neutral-900 mb-8 leading-tight"
+              className="text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neutral-900 mb-2 sm:mb-3 md:mb-4 lg:mb-6 leading-tight"
             >
               Watch how radiology team saved{" "}
               <span className="text-teal-500">170+ hours a year</span> on staff
@@ -220,7 +220,7 @@ export default function CTAModalWebinarRecording({
             </h2>
 
             {/* Description */}
-            <div className="text-neutral-600 text-xl mb-10 leading-relaxed space-y-4">
+            <div className="text-neutral-600 text-xs sm:text-sm md:text-sm lg:text-base xl:text-lg mb-3 sm:mb-4 md:mb-5 lg:mb-8 leading-relaxed space-y-2 sm:space-y-3 md:space-y-3 lg:space-y-4">
               <p>
                 Mike Peterson (Associate Radiology Manager) sits down with{" "}
                 <a
@@ -241,16 +241,16 @@ export default function CTAModalWebinarRecording({
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row md:flex-row gap-2.5 sm:gap-3 md:gap-3 lg:gap-4 mb-4 sm:mb-6 md:mb-6 lg:mb-8">
               <a
                 href={WEBINAR_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleWatchRecording}
-                className="flex-1 bg-teal-500 hover:bg-teal-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                className="flex-1 bg-teal-500 hover:bg-teal-600 text-white font-semibold text-sm sm:text-base md:text-sm py-2.5 sm:py-3 md:py-2.5 lg:py-4 px-4 sm:px-5 md:px-4 lg:px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-1.5 sm:gap-2"
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -262,11 +262,11 @@ export default function CTAModalWebinarRecording({
               <a
                 href="/case-studies?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_c_secondary"
                 onClick={handleCaseStudies}
-                className="flex-1 bg-white hover:bg-neutral-50 text-neutral-900 font-semibold py-4 px-6 rounded-lg transition-colors duration-200 border-2 border-neutral-200 hover:border-neutral-300 flex items-center justify-center gap-2"
+                className="flex-1 bg-white hover:bg-neutral-50 text-neutral-900 font-semibold text-sm sm:text-base md:text-sm py-2.5 sm:py-3 md:py-2.5 lg:py-4 px-4 sm:px-5 md:px-4 lg:px-6 rounded-lg transition-colors duration-200 border-2 border-neutral-200 hover:border-neutral-300 flex items-center justify-center gap-1.5 sm:gap-2"
               >
                 See more case studies
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -283,62 +283,62 @@ export default function CTAModalWebinarRecording({
 
             {/* Trust indicators - Rolling logos */}
             <div>
-              <div className="text-xs text-neutral-400 uppercase tracking-wide mb-4">
+              <div className="text-[10px] sm:text-xs text-neutral-400 uppercase tracking-wide mb-2 sm:mb-3 lg:mb-4">
                 Trusted by
               </div>
               <div className="relative overflow-hidden">
-                <div className="flex gap-8 animate-scroll hover:[animation-play-state:paused]">
+                <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-scroll hover:[animation-play-state:paused]">
                   {/* First set of logos */}
                   <img
                     src="/images/logos/whanganui.png"
                     alt="Whanganui Hospital"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/department-of-health-western-australia.png"
                     alt="Department of Health Western Australia"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/rpa.png"
                     alt="RPA Hospital"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/hawkesbay.png"
                     alt="Hawke's Bay Hospital"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/nsw-south-eastern.png"
                     alt="NSW State Emergency Service"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   {/* Duplicate set for seamless loop */}
                   <img
                     src="/images/logos/whanganui.png"
                     alt="Whanganui Hospital"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/department-of-health-western-australia.png"
                     alt="Department of Health Western Australia"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/rpa.png"
                     alt="RPA Hospital"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/hawkesbay.png"
                     alt="Hawke's Bay Hospital"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                   <img
                     src="/images/logos/nsw-south-eastern.png"
                     alt="NSW State Emergency Service"
-                    className="h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
                   />
                 </div>
               </div>
