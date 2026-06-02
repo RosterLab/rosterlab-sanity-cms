@@ -192,9 +192,9 @@ export const analytics = {
     try {
       const cookieValue = document.cookie
         .split("; ")
-        .find((row) => row.startsWith("ajs_user_id="))
+        .find((row) => row.startsWith("rl_authenticated="))
         ?.split("=")[1];
-      return cookieValue ? decodeURIComponent(cookieValue) : null;
+      return cookieValue && cookieValue !== "0" ? cookieValue : null;
     } catch {
       return null;
     }

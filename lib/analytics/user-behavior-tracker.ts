@@ -15,6 +15,7 @@ const FREQUENCY_CAP_DAYS = 30; // Reset modal counter after 30 days
 const MAX_MODALS_PER_PERIOD = 8; // Maximum modals to show per 30-day period
 const MIN_TIME_ON_HIGH_INTENT_PAGES = 15; // Seconds required on high-intent pages
 const MIN_TIME_ON_SITE_RETURNING = 15; // Seconds required for returning visitors
+const COOLDOWN_DAYS = 3; // Days to wait after dismissal before showing another modal
 
 export interface UserBehavior {
   totalPageViews: number;
@@ -37,7 +38,6 @@ export interface ModalState {
   converted: boolean;
   convertedAt: string | null;
   variantsShown: Array<"A" | "B" | "C" | "D">; // Track which variants user has seen across sessions
-  sessionModalShown: boolean; // Track if modal shown in current session
   totalShown: number; // Total number of modals shown in current 30-day period
   periodStartDate: string | null; // ISO date when current 30-day period started
 }
@@ -256,7 +256,6 @@ export function getModalState(): ModalState {
       ...defaultModalState,
       ...modalState,
       variantsShown: modalState.variantsShown || [],
-      sessionModalShown: modalState.sessionModalShown || false,
       totalShown,
       periodStartDate: resetPeriodStartDate,
     };
@@ -310,26 +309,18 @@ function getCurrentPageTimeSpent(): number {
 
 /**
  * Check if user is authenticated/logged in
- * Uses ajs_user_id cookie or any other auth indicator
+ * Uses rl_authenticated cookie set by the app on .rosterlab.com
  */
 function isUserAuthenticated(): boolean {
   if (typeof window === "undefined") return false;
 
   try {
-    // Check for Segment/Analytics user ID cookie
-    const userIdCookie = document.cookie
+    const authCookie = document.cookie
       .split("; ")
-      .find((row) => row.startsWith("ajs_user_id="))
+      .find((row) => row.startsWith("rl_authenticated="))
       ?.split("=")[1];
 
-    if (userIdCookie && userIdCookie !== "null" && userIdCookie !== "undefined") {
-      return true;
-    }
-
-    // Add additional auth checks here if needed
-    // e.g., check for auth tokens, session cookies, etc.
-
-    return false;
+    return !!authCookie && authCookie !== "0";
   } catch {
     return false;
   }
@@ -375,9 +366,13 @@ export function shouldShowModal(): boolean {
   const behavior = getUserBehavior();
   const modalState = getModalState();
 
-  // Don't show if already shown in this session
-  if (modalState.sessionModalShown) {
-    return false;
+  // Don't show if dismissed within the cooldown period
+  if (modalState.dismissedAt) {
+    const daysSinceDismissal =
+      (Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24);
+    if (daysSinceDismissal < COOLDOWN_DAYS) {
+      return false;
+    }
   }
 
   // Don't show if demo already booked
@@ -474,18 +469,6 @@ export function assignVariant(): "A" | "B" | "C" | "D" {
   return variant;
 }
 
-/**
- * Reset session modal flag (called at start of new session)
- */
-export function resetSessionModalFlag(): void {
-  if (typeof window === "undefined") return;
-
-  updateModalState({
-    sessionModalShown: false,
-    shown: false,
-    dismissed: false,
-  });
-}
 
 /**
  * Get the trigger type that caused modal to show
@@ -564,9 +547,9 @@ export function getTrackingStatus() {
       variant: modalState.variant,
       shown: modalState.shown,
       dismissed: modalState.dismissed,
+      dismissedAt: modalState.dismissedAt,
       converted: modalState.converted,
       variantsShown: modalState.variantsShown,
-      sessionModalShown: modalState.sessionModalShown,
       totalShown: modalState.totalShown,
       periodStartDate: modalState.periodStartDate,
     },
@@ -590,8 +573,19 @@ export function getTrackingStatus() {
     },
     requirements: {
       noDemoBooked: !behavior.hasDemoBooked,
-      notShownInSession: !modalState.sessionModalShown,
+      cooldownExpired: !modalState.dismissedAt ||
+        (Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24) >= COOLDOWN_DAYS,
       notAuthenticated: !isUserAuthenticated(),
+    },
+    cooldown: {
+      dismissedAt: modalState.dismissedAt,
+      cooldownDays: COOLDOWN_DAYS,
+      daysSinceDismissal: modalState.dismissedAt
+        ? Math.round((Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24) * 10) / 10
+        : null,
+      isInCooldown: modalState.dismissedAt
+        ? (Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24) < COOLDOWN_DAYS
+        : false,
     },
     frequencyCap: {
       totalShown: modalState.totalShown || 0,
@@ -640,7 +634,6 @@ function getDefaultModalState(): ModalState {
     converted: false,
     convertedAt: null,
     variantsShown: [],
-    sessionModalShown: false,
     totalShown: 0,
     periodStartDate: null,
   };

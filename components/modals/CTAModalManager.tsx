@@ -95,10 +95,9 @@ export default function CTAModalManager() {
         setVariant(assignedVariant);
         setIsModalOpen(true);
 
-        // Mark as shown in this session
         updateModalState({
           shown: true,
-          sessionModalShown: true,
+          dismissedAt: new Date().toISOString(),
         });
 
         // Track assignment with trigger type
