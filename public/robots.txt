@@ -7,6 +7,7 @@ Disallow: /studio/
 
 # Disallow test pages
 Disallow: /test-2/
+Disallow: /test-modal/
 
 # Disallow favicon indexing
 Disallow: /favicon.ico

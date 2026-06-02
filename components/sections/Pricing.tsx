@@ -114,12 +114,12 @@ export default function Pricing({
               } transition-all duration-300`}
             >
               {plan.highlighted && (
-                <div className="absolute top-0 left-0 right-0 bg-primary-500 text-white text-center py-2 text-sm font-medium">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-primary-500 text-white text-center px-4 py-1.5 sm:px-6 sm:py-2 text-xs sm:text-sm font-semibold rounded-b-lg shadow-md whitespace-nowrap uppercase tracking-wide">
                   Most Popular
                 </div>
               )}
 
-              <div className={`p-8 ${plan.highlighted ? "pt-12" : ""}`}>
+              <div className={`p-6 sm:p-8 ${plan.highlighted ? "pt-14 sm:pt-16" : ""}`}>
                 {/* Plan Header */}
                 <div className="text-center mb-8">
                   <h3 className="text-xl font-bold text-neutral-900 mb-2">

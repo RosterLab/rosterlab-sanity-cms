@@ -326,42 +326,42 @@ export default function PricingPage() {
 
         {/* Pricing Cards */}
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
             {pricingPlans.map((plan, index) => (
               <div
                 key={index}
-                className={`relative bg-white rounded-2xl shadow-xl p-8 ${
-                  plan.highlighted ? "ring-2 ring-blue-500 scale-105" : ""
+                className={`relative bg-white rounded-2xl shadow-xl p-6 md:p-8 ${
+                  plan.highlighted ? "ring-2 ring-blue-500 md:scale-105" : ""
                 }`}
               >
                 {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                  <div className="absolute -top-3 sm:-top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-blue-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap uppercase tracking-wide shadow-md">
                       MOST POPULAR
                     </span>
                   </div>
                 )}
 
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <div className="text-center mb-6 md:mb-8">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">
                     {plan.name}
                   </h3>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold text-blue-600">
+                  <div className="mb-3 md:mb-4">
+                    <span className="text-3xl md:text-4xl font-bold text-blue-600">
                       {plan.price}
                     </span>
                     {plan.period && (
-                      <span className="text-gray-600 ml-2">{plan.period}</span>
+                      <span className="text-sm md:text-base text-gray-600 ml-2">{plan.period}</span>
                     )}
                   </div>
-                  <p className="text-gray-600">{plan.description}</p>
+                  <p className="text-sm md:text-base text-gray-600">{plan.description}</p>
                 </div>
 
-                <ul className="space-y-4 mb-8">
+                <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
-                      <HiCheck className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700 flex items-center gap-2">
+                      <HiCheck className="w-4 h-4 md:w-5 md:h-5 text-green-500 mr-2 md:mr-3 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm md:text-base text-gray-700 flex items-center gap-2">
                         {feature}
                         {feature === "Workforce scheduling consulting" && (
                           <div className="relative group">
@@ -380,7 +380,7 @@ export default function PricingPage() {
 
                 <Button
                   href={plan.ctaLink}
-                  className={`w-full py-4 text-lg font-semibold ${
+                  className={`w-full py-3 md:py-4 text-base md:text-lg font-semibold ${
                     plan.highlighted
                       ? "bg-blue-600 text-white hover:bg-blue-700"
                       : plan.name === "Digital Rostering"

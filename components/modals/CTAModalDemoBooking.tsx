@@ -94,7 +94,7 @@ export default function CTAModalDemoBooking({
 
       {/* Modal */}
       <div
-        className="relative bg-white rounded-3xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-auto animate-slide-up"
+        className="relative bg-white rounded-2xl lg:rounded-3xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-auto animate-slide-up"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-heading"
@@ -110,7 +110,7 @@ export default function CTAModalDemoBooking({
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-6 right-6 z-10 text-neutral-400 hover:text-neutral-600 transition-colors bg-white/80 backdrop-blur-sm rounded-full p-2 hover:bg-white"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 text-neutral-400 hover:text-neutral-600 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white shadow-lg"
           aria-label="Close modal"
         >
           <svg
@@ -128,13 +128,13 @@ export default function CTAModalDemoBooking({
           </svg>
         </button>
 
-        <div className="grid lg:grid-cols-2">
+        <div className="flex flex-col lg:grid lg:grid-cols-2">
           {/* Left Side - Illustration */}
-          <div className="relative bg-gradient-to-br from-cyan-50 via-teal-50 to-cyan-100 p-6 lg:p-8 flex items-center justify-center min-h-[400px] lg:min-h-[600px]">
+          <div className="relative bg-gradient-to-br from-cyan-50 via-teal-50 to-cyan-100 p-6 pt-20 sm:p-8 sm:pt-24 md:p-8 md:pt-24 lg:p-8 lg:pt-8 flex items-center justify-center min-h-[320px] md:min-h-[380px] lg:min-h-[500px]">
             {/* Live Demonstration Badge */}
-            <div className="absolute top-6 left-6 z-10">
-              <div className="flex items-center gap-2 bg-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide shadow-lg">
-                <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 max-w-[calc(100%-100px)] sm:max-w-[calc(100%-80px)]">
+              <div className="flex items-center gap-2 bg-cyan-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-2 rounded-full text-xs sm:text-sm md:text-sm font-semibold tracking-wide shadow-lg">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse" />
                 LIVE DEMONSTRATION
               </div>
             </div>
@@ -153,18 +153,18 @@ export default function CTAModalDemoBooking({
           </div>
 
           {/* Right Side - Content */}
-          <div className="p-8 pt-20 lg:p-12 lg:pt-20 flex flex-col justify-between">
+          <div className="p-6 pt-14 sm:p-8 sm:pt-16 md:p-10 md:pt-14 lg:p-12 lg:pt-16 flex flex-col justify-between">
             <div>
               {/* Heading - Smaller size, stays on one line */}
               <h2
                 id="modal-heading"
-                className="text-3xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-bold text-neutral-900 mb-6 leading-tight"
+                className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-neutral-900 mb-3 sm:mb-4 md:mb-4 leading-tight"
               >
                 See RosterLab <span className="bg-gradient-to-r from-cyan-500 to-teal-500 bg-clip-text text-transparent">in action!</span>
               </h2>
 
               {/* Description */}
-              <p className="text-base lg:text-lg text-neutral-600 mb-4 lg:mb-6 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-base lg:text-lg text-neutral-600 mb-3 md:mb-3 lg:mb-4 leading-relaxed">
                 Book a{" "}
                 <span className="font-semibold text-neutral-900">
                   FREE walkthrough
@@ -173,7 +173,7 @@ export default function CTAModalDemoBooking({
                 minutes.
               </p>
 
-              <p className="text-base lg:text-lg text-neutral-600 mb-6 lg:mb-8 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-base lg:text-lg text-neutral-600 mb-4 md:mb-5 lg:mb-6 leading-relaxed">
                 Start saving{" "}
                 <span className="font-semibold text-neutral-900">
                   90% of your admin work
@@ -184,7 +184,7 @@ export default function CTAModalDemoBooking({
               {/* CTA Button - Full width */}
               <button
                 onClick={handleBookDemo}
-                className="w-full bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-extrabold text-[25px] px-8 lg:px-12 py-4 lg:py-5 rounded-2xl hover:from-cyan-600 hover:to-teal-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-3 group"
+                className="w-full bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-extrabold text-lg sm:text-xl md:text-lg lg:text-xl xl:text-2xl px-6 sm:px-8 md:px-8 lg:px-10 xl:px-12 py-3 sm:py-4 md:py-3.5 lg:py-4 xl:py-5 rounded-xl lg:rounded-2xl hover:from-cyan-600 hover:to-teal-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2 sm:gap-3 group"
               >
                 BOOK YOUR SPOT NOW
                 <svg
@@ -204,7 +204,7 @@ export default function CTAModalDemoBooking({
             </div>
 
             {/* Trust Indicators with Rolling Animation */}
-            <div className="mt-8 lg:mt-12 pt-6 lg:pt-8 border-t border-neutral-200 overflow-hidden">
+            <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 pt-4 sm:pt-6 md:pt-6 lg:pt-8 border-t border-neutral-200 overflow-hidden">
               <p className="text-xs font-semibold text-neutral-500 tracking-wider uppercase mb-4 lg:mb-6 text-center">
                 TRUSTED BY LEADING HEALTHCARE ORGANISATIONS
               </p>
