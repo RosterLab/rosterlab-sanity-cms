@@ -7,6 +7,9 @@ import Testimonials from "@/components/sections/Testimonials";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { withHreflang } from "@/components/seo/HreflangTags";
 
+// ISR: Revalidate every 1 hour
+export const revalidate = 3600;
+
 export const metadata = withHreflang(
   {
     title: "AI-Powered Staff Rostering Software | RosterLab",

@@ -104,7 +104,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Resources",
       subItems: [
-        { title: "Whitepapers", link: "/whitepaper" },
+        { title: "Whitepapers", link: "/whitepapers/rostering-as-a-strategic-workforce-lever" },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Webinars", link: "/webinars" },
         { title: "Blogs", link: "/blog" },

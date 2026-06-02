@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Intercom } from "react-live-chat-loader";
 
 interface IntercomLazyProps {
@@ -13,7 +13,20 @@ function getAnonId(): string | null {
 }
 
 export default function IntercomLazy({ appId }: IntercomLazyProps) {
+  const [shouldLoad, setShouldLoad] = useState(false);
+
   useEffect(() => {
+    // Delay Intercom load by 5 seconds to prioritize critical resources
+    const timer = setTimeout(() => {
+      setShouldLoad(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+
     const anonId = getAnonId();
     if (!anonId) return;
 
@@ -26,9 +39,9 @@ export default function IntercomLazy({ appId }: IntercomLazyProps) {
     if (typeof window.Intercom === "function") {
       window.Intercom("update", { rl_anon_id: anonId });
     }
-  }, [appId]);
+  }, [appId, shouldLoad]);
 
-  if (!appId) return null;
+  if (!appId || !shouldLoad) return null;
 
   return (
     <Intercom color="#219BC6" containerClass="fixed bottom-6 right-6 z-40" />

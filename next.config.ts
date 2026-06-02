@@ -127,6 +127,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Whitepaper redirect
+      {
+        source: "/whitepaper",
+        destination: "/whitepapers/rostering-as-a-strategic-workforce-lever",
+        permanent: true,
+      },
       // Author and test redirects to blog
       {
         source: "/author/:path*",

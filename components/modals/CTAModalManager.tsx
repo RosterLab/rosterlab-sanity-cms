@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { usePathname } from "next/navigation";
-import CTAModalDemoBooking from "./CTAModalDemoBooking";
-import CTAModalCaseStudy from "./CTAModalCaseStudy";
-import CTAModalWebinarRecording from "./CTAModalWebinarRecording";
-import CTAModalDemoVideo from "./CTAModalDemoVideo";
+
+// Lazy load modal components - they'll be preloaded at 15s
+const CTAModalDemoBooking = lazy(() => import("./CTAModalDemoBooking"));
+const CTAModalCaseStudy = lazy(() => import("./CTAModalCaseStudy"));
+const CTAModalWebinarRecording = lazy(() => import("./CTAModalWebinarRecording"));
+const CTAModalDemoVideo = lazy(() => import("./CTAModalDemoVideo"));
 import {
   trackPageView,
   shouldShowModal,
@@ -63,10 +65,27 @@ export default function CTAModalManager() {
     return () => clearTimeout(readyTimer);
   }, []);
 
+  // Predictive preload: Download modal components at 15s (before 20s trigger)
+  useEffect(() => {
+    const preloadTimer = setTimeout(() => {
+      // Preload all modal variants in background (doesn't show them)
+      // This ensures instant appearance when trigger conditions are met at 20s+
+      import('./CTAModalDemoBooking');
+      import('./CTAModalCaseStudy');
+      import('./CTAModalWebinarRecording');
+      import('./CTAModalDemoVideo');
+    }, 15000); // 15 seconds = 5s before earliest possible trigger
+
+    return () => clearTimeout(preloadTimer);
+  }, []);
+
   // Check periodically if modal should be shown (only after ready)
   useEffect(() => {
     // Don't check if modal already shown or not ready yet
     if (!isReady || isModalOpen || variant) return;
+
+    // Don't show modals on whitepaper pages
+    if (pathname.startsWith('/whitepapers')) return;
 
     const checkInterval = setInterval(() => {
       if (shouldShowModal()) {
@@ -95,7 +114,7 @@ export default function CTAModalManager() {
     }, 1000); // Check every 1 second for better responsiveness
 
     return () => clearInterval(checkInterval);
-  }, [isReady, isModalOpen, variant]);
+  }, [isReady, isModalOpen, variant, pathname]);
 
   const handleClose = () => {
     const triggerType = getModalTriggerType();
@@ -142,7 +161,7 @@ export default function CTAModalManager() {
   if (!variant) return null;
 
   return (
-    <>
+    <Suspense fallback={null}>
       {variant === "A" && (
         <CTAModalDemoBooking
           isOpen={isModalOpen}
@@ -171,6 +190,6 @@ export default function CTAModalManager() {
           onConversion={handleConversion}
         />
       )}
-    </>
+    </Suspense>
   );
 }

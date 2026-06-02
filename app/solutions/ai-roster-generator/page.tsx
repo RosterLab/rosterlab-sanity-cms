@@ -6,6 +6,9 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import RosterLoadingBar from "@/components/ui/RosterLoadingBar";
 import { withHreflang } from "@/components/seo/HreflangTags";
+
+// ISR: Revalidate every 1 hour (solution pages rarely change)
+export const revalidate = 3600;
 import {
   HiCheck,
   HiClock,

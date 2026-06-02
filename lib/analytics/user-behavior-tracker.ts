@@ -13,8 +13,8 @@ const SESSION_START_KEY = "rl_session_start";
 // Frequency cap and timing constants
 const FREQUENCY_CAP_DAYS = 30; // Reset modal counter after 30 days
 const MAX_MODALS_PER_PERIOD = 8; // Maximum modals to show per 30-day period
-const MIN_TIME_ON_HIGH_INTENT_PAGES = 20; // Seconds required on high-intent pages
-const MIN_TIME_ON_SITE_RETURNING = 20; // Seconds required for returning visitors
+const MIN_TIME_ON_HIGH_INTENT_PAGES = 15; // Seconds required on high-intent pages
+const MIN_TIME_ON_SITE_RETURNING = 15; // Seconds required for returning visitors
 
 export interface UserBehavior {
   totalPageViews: number;
@@ -183,8 +183,12 @@ function checkHighIntentPage(pathname: string): boolean {
     /\/case-stud(y|ies)/i,
     /\/roi/i,
     /\/solution/i,
+    /\/about/i, // About us page
+    /\/blog\//i, // Blog posts
     /\/industries\//i, // Industry pages are solution pages
     /\/feature\//i, // Feature pages are solution pages
+    /\/tools\//i, // Tools pages
+    /\/templates\//i, // Template pages
   ];
 
   return highIntentPatterns.some((pattern) => pattern.test(pathname));

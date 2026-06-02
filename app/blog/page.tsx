@@ -4,6 +4,9 @@ import { validatedToken } from "@/sanity/lib/token";
 import BlogPageContent from "@/components/blog/BlogPageContent";
 import { draftMode } from "next/headers";
 
+// ISR: Revalidate every 5 minutes (blog content changes frequently)
+export const revalidate = 300;
+
 export const metadata = {
   title: "Blog - AI Staff Rostering and Scheduling Guides",
   description:
