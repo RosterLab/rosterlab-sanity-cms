@@ -60,6 +60,12 @@ export default function CTAModalWebinarRecording({
       test_name: "cta_modal_ab_test",
       action: "case_studies_click",
     });
+
+    // Restore body scroll before navigation
+    document.body.style.overflow = "";
+
+    // Close the modal
+    onClose();
   };
 
   const handleClose = () => {
@@ -254,7 +260,7 @@ export default function CTAModalWebinarRecording({
               </a>
 
               <a
-                href="https://rosterlab.com/case-studies?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_c_secondary"
+                href="/case-studies?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_c_secondary"
                 onClick={handleCaseStudies}
                 className="flex-1 bg-white hover:bg-neutral-50 text-neutral-900 font-semibold py-4 px-6 rounded-lg transition-colors duration-200 border-2 border-neutral-200 hover:border-neutral-300 flex items-center justify-center gap-2"
               >

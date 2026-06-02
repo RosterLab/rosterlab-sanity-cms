@@ -51,9 +51,16 @@ export default function CaseStudyGateCheck({
     setTimeout(() => {
       setIsModalOpen(true);
     }, 500);
+
+    // Cleanup: Ensure scroll is restored when component unmounts
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [slug, isLocked]);
 
   const handleConversion = () => {
+    // Ensure body scroll is restored
+    document.body.style.overflow = "";
     // Mark as unlocked
     localStorage.setItem("case_study_unlocked", "true");
     setHasAccess(true);
@@ -61,6 +68,8 @@ export default function CaseStudyGateCheck({
   };
 
   const handleClose = () => {
+    // Ensure body scroll is restored before navigation
+    document.body.style.overflow = "";
     // Redirect back to case studies page if they close without submitting
     router.push("/case-studies");
   };
