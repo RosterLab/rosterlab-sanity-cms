@@ -141,10 +141,44 @@ export const analytics = {
       current_page_url: window.location.href,
       context, // Add context object
     };
+
+    // Send to RosterLab tracker
     window.rlTracker?.track(eventName, enhancedProperties);
+
+    // Send to GTM
     if (window.dataLayer) {
       window.dataLayer.push({ event: eventName, ...enhancedProperties });
     }
+
+    // Send to CDP /api/batch endpoint (rosterlab-inngest)
+    const cdpEndpoint = process.env.NEXT_PUBLIC_CDP_ENDPOINT || 'https://rosterlab-inngest.netlify.app/api/batch';
+
+    fetch(cdpEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        batch: [{
+          type: 'track',
+          event: eventName,
+          anonymousId: analytics.getDeviceId() || undefined,
+          userId: analytics.getUserId() || undefined,
+          properties: eventProperties || {},
+          context: {
+            ...context,
+            ...getEnrichmentData(),
+            library: {
+              name: 'rosterlab-website',
+              version: '1.0.0',
+            },
+          },
+          timestamp: new Date().toISOString(),
+        }],
+      }),
+      keepalive: true, // Ensure request completes even if page unloads
+    }).catch((error) => {
+      // Silently fail - don't break user experience
+      console.debug('[CDP] Track failed:', error);
+    });
   },
 
   identify: (userId: string, userProperties?: Record<string, any>) => {
