@@ -24,11 +24,11 @@ import { analytics } from "@/components/analytics/tracking";
  *
  * Trigger 1 (High-Intent):
  * - Visited at least 1 high-intent page (excluding home)
- * - Spent at least 20 seconds on high-intent page(s)
+ * - Spent at least 30 seconds on high-intent page(s)
  *
  * Trigger 2 (Returning Visitor):
  * - User has visited the site before (is a returning visitor)
- * - Has been on site for at least 20 seconds this session
+ * - Has been on site for at least 45 seconds this session
  *
  * Variants:
  * - A: Demo Booking (Live Demo showcase with illustration)

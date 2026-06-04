@@ -13,8 +13,8 @@ const SESSION_START_KEY = "rl_session_start";
 // Frequency cap and timing constants
 const FREQUENCY_CAP_DAYS = 30; // Reset modal counter after 30 days
 const MAX_MODALS_PER_PERIOD = 8; // Maximum modals to show per 30-day period
-const MIN_TIME_ON_HIGH_INTENT_PAGES = 15; // Seconds required on high-intent pages
-const MIN_TIME_ON_SITE_RETURNING = 15; // Seconds required for returning visitors
+const MIN_TIME_ON_HIGH_INTENT_PAGES = 30; // Seconds required on high-intent pages
+const MIN_TIME_ON_SITE_RETURNING = 45; // Seconds required for returning visitors
 const COOLDOWN_DAYS = 3; // Days to wait after dismissal before showing another modal
 
 export interface UserBehavior {
@@ -359,8 +359,8 @@ function shouldShowHighIntentModal(): boolean {
 /**
  * Check if user should see the modal
  * Combines both trigger conditions:
- * 1. High-intent page trigger: Visited high-intent page + 20s spent
- * 2. Returning visitor trigger: Is returning visitor + 20s on site
+ * 1. High-intent page trigger: Visited high-intent page + 30s spent
+ * 2. Returning visitor trigger: Is returning visitor + 45s on site
  */
 export function shouldShowModal(): boolean {
   const behavior = getUserBehavior();
