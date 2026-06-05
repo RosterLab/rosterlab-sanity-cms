@@ -127,6 +127,21 @@ export default function CTAModalCaseStudy({
   const onSubmit = async (data: CaseStudyFormData) => {
     setIsSubmitting(true);
 
+    // CRITICAL: Identify user FIRST before any other tracking
+    // This links the anonymous session to the user's email
+    const nameParts = data.name.trim().split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    await analytics.identify(data.email, {
+      email: data.email,
+      firstName: firstName,
+      lastName: lastName,
+      company: data.company || undefined,
+      industry: data.industry,
+      role: data.role,
+    });
+
     // Track form submission
     analytics.track("cta_modal_form_submitted", {
       variant: "B",

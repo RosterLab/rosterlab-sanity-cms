@@ -114,6 +114,19 @@ export default function DemoBookingBase({
       const utmCampaign = urlParams.get("utm_campaign");
       const utmContent = urlParams.get("utm_content");
 
+      // CRITICAL: Identify the user when they book via Calendly
+      const userEmail = eventData?.invitee?.email || eventData?.email;
+      const userName = eventData?.invitee?.name || eventData?.name;
+
+      if (userEmail) {
+        const nameParts = userName?.split(" ") || [];
+        await analytics.identify(userEmail, {
+          email: userEmail,
+          firstName: nameParts[0] || undefined,
+          lastName: nameParts.slice(1).join(" ") || undefined,
+        });
+      }
+
       // Track in Amplitude
       trackDemoBookingComplete(
         {
@@ -127,8 +140,8 @@ export default function DemoBookingBase({
           duration_minutes: 30,
           meeting_type: "demo",
           page_location: window.location.pathname,
-          user_email: eventData?.invitee?.email || eventData?.email,
-          user_name: eventData?.invitee?.name || eventData?.name,
+          user_email: userEmail,
+          user_name: userName,
           // Include UTM tracking
           utm_source: utmSource || "direct",
           utm_medium: utmMedium || undefined,
@@ -136,8 +149,8 @@ export default function DemoBookingBase({
           utm_content: utmContent || undefined,
         },
         {
-          email: eventData?.invitee?.email || eventData?.email,
-          name: eventData?.invitee?.name || eventData?.name,
+          email: userEmail,
+          name: userName,
         },
       );
     },

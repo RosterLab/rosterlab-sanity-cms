@@ -181,9 +181,45 @@ export const analytics = {
     });
   },
 
-  identify: (userId: string, userProperties?: Record<string, any>) => {
+  identify: async (userId: string, userProperties?: Record<string, any>) => {
     if (typeof window === "undefined") return;
+
+    // Send to RosterLab tracker
     window.rlTracker?.identify(userId, userProperties);
+
+    // Send to CDP /api/batch endpoint (rosterlab-inngest)
+    const cdpEndpoint = process.env.NEXT_PUBLIC_CDP_ENDPOINT || 'https://rosterlab-inngest.netlify.app/api/batch';
+
+    try {
+      await fetch(cdpEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          batch: [{
+            type: 'identify',
+            anonymousId: analytics.getDeviceId() || undefined,
+            userId: userId,
+            traits: userProperties || {},
+            context: {
+              page: {
+                url: window.location.href,
+                path: window.location.pathname,
+                referrer: document.referrer || null,
+              },
+              ...getEnrichmentData(),
+              library: {
+                name: 'rosterlab-website',
+                version: '1.0.0',
+              },
+            },
+            timestamp: new Date().toISOString(),
+          }],
+        }),
+        keepalive: true,
+      });
+    } catch (error) {
+      console.debug('[CDP] Identify failed:', error);
+    }
   },
 
   setUserProperties: (properties: Record<string, any>) => {

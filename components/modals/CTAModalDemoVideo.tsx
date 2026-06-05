@@ -110,6 +110,21 @@ export default function CTAModalDemoVideo({
   const onSubmit = async (data: DemoVideoFormData) => {
     setIsSubmitting(true);
 
+    // CRITICAL: Identify user FIRST before any other tracking
+    // This links the anonymous session to the user's email
+    const nameParts = data.name.trim().split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    await analytics.identify(data.email, {
+      email: data.email,
+      firstName: firstName,
+      lastName: lastName,
+      industry: data.industry,
+      role: data.role,
+      lookingFor: data.lookingFor,
+    });
+
     // Track form submission
     analytics.track("cta_modal_form_submitted", {
       variant: "D",
