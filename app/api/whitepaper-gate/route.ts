@@ -16,6 +16,13 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = whitepaperGateSchema.parse(body);
 
+    console.log("✅ Form data validated:", {
+      email: validatedData.email,
+      hasName: !!validatedData.name,
+      hasIndustry: !!validatedData.industry,
+      hasRole: !!validatedData.role,
+    });
+
     // Split name into first and last
     const nameParts = validatedData.name.trim().split(" ");
     const firstname = nameParts[0] || "";
@@ -23,6 +30,12 @@ export async function POST(request: NextRequest) {
 
     // Send to HubSpot Contacts API
     const hubspotToken = process.env.HUBSPOT_ACCESS_TOKEN;
+
+    console.log("🔑 HubSpot token check:", {
+      configured: !!hubspotToken,
+      length: hubspotToken ? hubspotToken.length : 0,
+      prefix: hubspotToken ? hubspotToken.substring(0, 7) + "..." : "NOT_SET",
+    });
 
     if (hubspotToken) {
       try {
@@ -188,10 +201,16 @@ export async function POST(request: NextRequest) {
         // Don't fail the request if HubSpot fails
       }
     } else {
-      console.error("❌ HubSpot access token not configured - check HUBSPOT_ACCESS_TOKEN in .env.local");
+      console.error("❌ CRITICAL: HubSpot access token not configured!");
+      console.error("   Expected environment variable: HUBSPOT_ACCESS_TOKEN");
+      console.error("   Check Netlify environment variables or .env.local");
+      console.error("   Contact will NOT be synced to HubSpot");
     }
 
-    console.log("Whitepaper gate form submission:", validatedData);
+    console.log("✅ Whitepaper gate form processing complete:", {
+      email: validatedData.email,
+      hubspotAttempted: !!hubspotToken,
+    });
 
     return NextResponse.json(
       {

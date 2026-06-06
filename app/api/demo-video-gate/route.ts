@@ -16,6 +16,14 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = demoVideoGateSchema.parse(body);
 
+    console.log("✅ Demo video form data validated:", {
+      email: validatedData.email,
+      hasName: !!validatedData.name,
+      hasIndustry: !!validatedData.industry,
+      hasRole: !!validatedData.role,
+      lookingForCount: validatedData.lookingFor.length,
+    });
+
     // Split name into first and last
     const nameParts = validatedData.name.trim().split(" ");
     const firstname = nameParts[0] || "";
@@ -23,6 +31,11 @@ export async function POST(request: NextRequest) {
 
     // Send to HubSpot Contacts API
     const hubspotToken = process.env.HUBSPOT_ACCESS_TOKEN;
+
+    console.log("🔑 HubSpot token check (demo-video-gate):", {
+      configured: !!hubspotToken,
+      length: hubspotToken ? hubspotToken.length : 0,
+    });
 
     if (hubspotToken) {
       try {
@@ -188,10 +201,16 @@ export async function POST(request: NextRequest) {
         // Don't fail the request if HubSpot fails
       }
     } else {
-      console.error("❌ HubSpot access token not configured - check HUBSPOT_ACCESS_TOKEN in .env.local");
+      console.error("❌ CRITICAL: HubSpot access token not configured!");
+      console.error("   Endpoint: /api/demo-video-gate");
+      console.error("   Expected environment variable: HUBSPOT_ACCESS_TOKEN");
+      console.error("   Contact will NOT be synced to HubSpot");
     }
 
-    console.log("Demo video gate form submission:", validatedData);
+    console.log("✅ Demo video gate form processing complete:", {
+      email: validatedData.email,
+      hubspotAttempted: !!hubspotToken,
+    });
 
     return NextResponse.json(
       {
