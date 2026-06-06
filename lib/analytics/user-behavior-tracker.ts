@@ -414,6 +414,16 @@ export function shouldShowModal(): boolean {
  * Returning visits: Show a variant they haven't seen yet, cycling through all options
  */
 export function assignVariant(): "A" | "B" | "C" | "D" {
+  // Check for URL parameter override (for testing)
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search);
+    const forceVariant = params.get("modal_variant") as "A" | "B" | "C" | "D" | null;
+    if (forceVariant && ["A", "B", "C", "D"].includes(forceVariant)) {
+      console.log(`🧪 [Modal] Forcing variant ${forceVariant} via URL parameter`);
+      return forceVariant;
+    }
+  }
+
   const modalState = getModalState();
   const behavior = getUserBehavior();
 
