@@ -133,7 +133,13 @@ export default function CTAModalCaseStudy({
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
 
-    await analytics.identify(data.email, {
+    console.log("🔍 [Variant B] About to identify user:", {
+      email: data.email,
+      anonymousId: analytics.getDeviceId(),
+      timestamp: new Date().toISOString(),
+    });
+
+    analytics.identify(data.email, {
       email: data.email,
       firstName: firstName,
       lastName: lastName,
@@ -141,6 +147,8 @@ export default function CTAModalCaseStudy({
       industry: data.industry,
       role: data.role,
     });
+
+    console.log("✅ [Variant B] User identification called");
 
     // Track form submission
     analytics.track("cta_modal_form_submitted", {

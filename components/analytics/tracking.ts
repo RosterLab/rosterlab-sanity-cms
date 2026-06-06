@@ -142,83 +142,35 @@ export const analytics = {
       context, // Add context object
     };
 
-    // Send to RosterLab tracker
-    window.rlTracker?.track(eventName, enhancedProperties);
+    // Send to RosterLab tracker (handles sendBeacon + fetch fallback automatically)
+    if (window.rlTracker) {
+      window.rlTracker.track(eventName, enhancedProperties);
+    } else {
+      console.warn('[Analytics] rlTracker not available for track event:', eventName);
+    }
 
     // Send to GTM
     if (window.dataLayer) {
       window.dataLayer.push({ event: eventName, ...enhancedProperties });
     }
-
-    // Send to CDP /api/batch endpoint (rosterlab-inngest)
-    const cdpEndpoint = process.env.NEXT_PUBLIC_CDP_ENDPOINT || 'https://rosterlab-inngest.netlify.app/api/batch';
-
-    fetch(cdpEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        batch: [{
-          type: 'track',
-          event: eventName,
-          anonymousId: analytics.getDeviceId() || undefined,
-          userId: analytics.getUserId() || undefined,
-          properties: eventProperties || {},
-          context: {
-            ...context,
-            ...getEnrichmentData(),
-            library: {
-              name: 'rosterlab-website',
-              version: '1.0.0',
-            },
-          },
-          timestamp: new Date().toISOString(),
-        }],
-      }),
-      keepalive: true, // Ensure request completes even if page unloads
-    }).catch((error) => {
-      // Silently fail - don't break user experience
-      console.debug('[CDP] Track failed:', error);
-    });
   },
 
-  identify: async (userId: string, userProperties?: Record<string, any>) => {
+  identify: (userId: string, userProperties?: Record<string, any>) => {
     if (typeof window === "undefined") return;
 
-    // Send to RosterLab tracker
-    window.rlTracker?.identify(userId, userProperties);
+    console.log('📧 [Analytics] identify() called:', {
+      userId,
+      anonymousId: analytics.getDeviceId(),
+      traits: userProperties,
+      timestamp: new Date().toISOString(),
+    });
 
-    // Send to CDP /api/batch endpoint (rosterlab-inngest)
-    const cdpEndpoint = process.env.NEXT_PUBLIC_CDP_ENDPOINT || 'https://rosterlab-inngest.netlify.app/api/batch';
-
-    try {
-      await fetch(cdpEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          batch: [{
-            type: 'identify',
-            anonymousId: analytics.getDeviceId() || undefined,
-            userId: userId,
-            traits: userProperties || {},
-            context: {
-              page: {
-                url: window.location.href,
-                path: window.location.pathname,
-                referrer: document.referrer || null,
-              },
-              ...getEnrichmentData(),
-              library: {
-                name: 'rosterlab-website',
-                version: '1.0.0',
-              },
-            },
-            timestamp: new Date().toISOString(),
-          }],
-        }),
-        keepalive: true,
-      });
-    } catch (error) {
-      console.debug('[CDP] Identify failed:', error);
+    // Send to RosterLab tracker (handles sendBeacon + fetch fallback automatically)
+    if (window.rlTracker) {
+      window.rlTracker.identify(userId, userProperties);
+      console.log('✅ [Analytics] identify() sent to rlTracker');
+    } else {
+      console.error('❌ [Analytics] rlTracker NOT AVAILABLE - tracker script may not be loaded yet or blocked by ad blocker');
     }
   },
 

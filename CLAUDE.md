@@ -21,6 +21,73 @@ This project uses **pnpm**. Do not use `npm` or `yarn` — only `pnpm-lock.yaml`
 - `pnpm test:watch` - Run tests in watch mode
 - `pnpm test:coverage` - Generate test coverage report
 
+#### Browser Testing with Puppeteer
+
+This project uses **Puppeteer** (already installed) for automated browser testing. Use it to test modals, forms, and analytics integrations.
+
+**Setup:**
+```bash
+# Install Chrome for Puppeteer (one-time setup)
+npx puppeteer browsers install chrome
+```
+
+**Running Browser Tests:**
+```bash
+# Start dev server first
+pnpm dev
+
+# In another terminal, run a test script
+node scripts/test-variant-d-modal.js
+```
+
+**Creating Test Scripts:**
+
+Example test script structure (see `scripts/test-variant-d-modal.js`):
+
+```javascript
+const puppeteer = require('puppeteer');
+
+async function testFeature() {
+  const browser = await puppeteer.launch({
+    headless: false, // Show browser window
+    devtools: true,  // Open DevTools automatically
+  });
+  
+  const page = await browser.newPage();
+  
+  // Capture console logs
+  page.on('console', msg => {
+    console.log(`[Browser Console] ${msg.text()}`);
+  });
+  
+  // Capture network requests
+  page.on('request', request => {
+    if (request.url().includes('/api/')) {
+      console.log(`📤 API Request: ${request.url()}`);
+    }
+  });
+  
+  await page.goto('http://localhost:3000/your-page');
+  
+  // Your test interactions here
+  await page.click('button');
+  await page.type('input[name="email"]', 'test@example.com');
+  
+  await browser.close();
+}
+```
+
+**Test Pages:**
+
+The project includes dedicated test pages for debugging:
+- `/test-modal-d` - Test Variant D modal with analytics logging
+
+**Best Practices:**
+- Always start with `headless: false` and `devtools: true` to see what's happening
+- Capture console logs to debug analytics calls
+- Monitor network requests for API calls
+- Use `page.waitForTimeout()` sparingly - prefer `page.waitForSelector()` when possible
+
 ### Sanity CMS
 
 - `pnpm sanity:seed` - Seed development data
@@ -108,12 +175,31 @@ This project uses **pnpm**. Do not use `npm` or `yarn` — only `pnpm-lock.yaml`
 ### Analytics
 
 - **Client-side analytics** - Uses RosterLab tracker (`ops.rosterlab.com/tracker.js`) loaded via `components/analytics/RlTracker.tsx`
-- **Event tracking** - Use `analytics.track()` from `@/components/analytics/tracking`
+- **Event tracking** - Use `analytics.track(eventName, properties)` from `@/components/analytics/tracking`
 - **User identification** - Use `analytics.identify(userId, traits)` from `@/components/analytics/tracking`
 - **UTM Tracking** - Automatic first-touch and current-touch attribution via `UTMTracker` component
 - **Cross-domain tracking** - `_rl_anon_id` cookie on `.rosterlab.com`
 - **Dual tracking** - Events sent to both rlTracker and GTM dataLayer
-- **Custom events** - Use `window.rlTracker.track(event, props)` directly, or the `analytics` utility for UTM-enriched events
+- **Direct tracker access** - Use `window.rlTracker.track(event, props)` or `window.rlTracker.identify(userId, traits)` directly if needed
+
+#### Analytics Implementation Details
+
+**Single Source of Truth**: All analytics calls go through `window.rlTracker` (from ops.rosterlab.com/tracker.js), which handles:
+- Session management and anonymous ID tracking
+- Automatic `sendBeacon` + `fetch` fallback for reliability
+- Event batching and sending to ops.rosterlab.com/api/batch
+- Form tracking and page duration tracking
+
+**The `analytics` utility** (`components/analytics/tracking.ts`) is a wrapper that:
+- Enriches events with UTM data, device context, and geo data
+- Sends to both `window.rlTracker` AND `window.dataLayer` (GTM)
+- Provides logging to debug tracking issues
+
+**Debugging Analytics**:
+- Check browser console for `[Analytics]` prefixed logs
+- Look for `✅ identify() sent to rlTracker` (success) or `❌ rlTracker NOT AVAILABLE` (failure)
+- If rlTracker isn't loading, check for ad blockers or CSP issues
+- Use the `/test-modal-d` test page to debug modal analytics
 
 ### Creating US Pages
 

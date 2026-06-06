@@ -116,7 +116,13 @@ export default function CTAModalDemoVideo({
     const firstName = nameParts[0] || "";
     const lastName = nameParts.slice(1).join(" ") || "";
 
-    await analytics.identify(data.email, {
+    console.log("🔍 [Variant D] About to identify user:", {
+      email: data.email,
+      anonymousId: analytics.getDeviceId(),
+      timestamp: new Date().toISOString(),
+    });
+
+    analytics.identify(data.email, {
       email: data.email,
       firstName: firstName,
       lastName: lastName,
@@ -124,6 +130,8 @@ export default function CTAModalDemoVideo({
       role: data.role,
       lookingFor: data.lookingFor,
     });
+
+    console.log("✅ [Variant D] User identification called");
 
     // Track form submission
     analytics.track("cta_modal_form_submitted", {
