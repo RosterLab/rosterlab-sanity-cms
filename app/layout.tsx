@@ -6,7 +6,8 @@ import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManage
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
-import PostHogProvider from "@/components/analytics/PostHogProvider";
+import Contentsquare from "@/components/analytics/Contentsquare";
+// PostHog: pnpm add posthog-js @posthog/react | key: phc_syjvwfhiP9hzL4mfVUzZC6bZHBZHKVmfqVK5DMM7p7au | host: https://us.i.posthog.com
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
@@ -78,7 +79,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://featuregates.org" />
-        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
+        <link rel="dns-prefetch" href="https://t.contentsquare.net" />
         <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
@@ -88,7 +89,6 @@ export default async function RootLayout({
       >
         <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <SkipLink />
-        <PostHogProvider>
         <StatsigProvider
           clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}
           user={statsigUser}
@@ -101,6 +101,7 @@ export default async function RootLayout({
             <RlTracker />
             <UTMTracker debug={process.env.NODE_ENV === "development"} />
             <MetaPixel />
+            <Contentsquare />
             <GeolocationProvider />
             <ClientHeader />
             <main id="main-content" className="flex-grow" role="main">
@@ -112,7 +113,6 @@ export default async function RootLayout({
             <CTAModalManager />
           </ClientProviders>
         </StatsigProvider>
-        </PostHogProvider>
       </body>
     </html>
   );
