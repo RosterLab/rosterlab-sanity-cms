@@ -62,6 +62,8 @@ export default function RosterAnalysisClient() {
   const [statusMessage, setStatusMessage] = useState("");
   const [markdownContent, setMarkdownContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [pdfFilename, setPdfFilename] = useState("roster-analysis.pdf");
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
@@ -72,6 +74,12 @@ export default function RosterAnalysisClient() {
       page: "/tools/roster-analysis",
     });
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+    };
+  }, [pdfUrl]);
 
   useEffect(() => {
     if (pageState === "streaming" && resultRef.current) {
@@ -155,7 +163,7 @@ export default function RosterAnalysisClient() {
   };
 
   const handleStreamEvent = useCallback(
-    (event: { type: string; content?: string; statusCode?: number }) => {
+    (event: { type: string; content?: string; filename?: string; mimeType?: string; statusCode?: number }) => {
       switch (event.type) {
         case "message.start":
           break;
@@ -165,11 +173,29 @@ export default function RosterAnalysisClient() {
         case "text":
           setMarkdownContent((prev) => prev + (event.content || ""));
           break;
+        case "file": {
+          if (!event.content) break;
+          const [header, base64] = event.content.split(",");
+          const mime = header.match(/:(.*?);/)?.[1] || "application/pdf";
+          const bytes = atob(base64);
+          const array = new Uint8Array(bytes.length);
+          for (let i = 0; i < bytes.length; i++) {
+            array[i] = bytes.charCodeAt(i);
+          }
+          const blob = new Blob([array], { type: mime });
+          setPdfUrl(URL.createObjectURL(blob));
+          setPdfFilename(event.filename || "roster-analysis.pdf");
+          analytics.track("roster_analysis_pdf_generated", {
+            filename: event.filename,
+          });
+          break;
+        }
         case "message.stop":
           setPageState("complete");
           analytics.track("roster_analysis_complete", {
             duration_ms: Date.now() - analysisStartTime.current,
             content_length: markdownContent.length,
+            has_pdf: !!pdfUrl,
           });
           break;
         case "error":
@@ -191,7 +217,7 @@ export default function RosterAnalysisClient() {
           break;
       }
     },
-    [markdownContent.length],
+    [markdownContent.length, pdfUrl],
   );
 
   const startAnalysis = async () => {
@@ -201,6 +227,9 @@ export default function RosterAnalysisClient() {
     setMarkdownContent("");
     setStatusMessage("Preparing your roster...");
     setErrorMessage("");
+    if (pdfUrl) URL.revokeObjectURL(pdfUrl);
+    setPdfUrl(null);
+    setPdfFilename("roster-analysis.pdf");
     analysisStartTime.current = Date.now();
 
     analytics.track("roster_analysis_started", {
@@ -612,6 +641,36 @@ export default function RosterAnalysisClient() {
                     >
                       Book a Free Roster Audit
                     </Button>
+                  </div>
+                )}
+
+                {/* PDF Download */}
+                {pdfUrl && (
+                  <div className="mt-6 bg-white rounded-2xl shadow-lg p-6 flex items-center justify-between animate-fade-in">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <HiOutlineDocumentText className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{pdfFilename}</p>
+                        <p className="text-sm text-gray-500">PDF Report</p>
+                      </div>
+                    </div>
+                    <a
+                      href={pdfUrl}
+                      download={pdfFilename}
+                      className="inline-flex items-center gap-2 bg-primary-600 text-white hover:bg-primary-700 px-4 py-2 rounded-lg font-semibold text-sm transition-colors"
+                      onClick={() => {
+                        analytics.track("roster_analysis_pdf_downloaded", {
+                          filename: pdfFilename,
+                        });
+                      }}
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      Download
+                    </a>
                   </div>
                 )}
 
