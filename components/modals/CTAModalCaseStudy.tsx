@@ -45,6 +45,7 @@ export default function CTAModalCaseStudy({
   const [industryDropdownOpen, setIndustryDropdownOpen] = useState(false);
   const [dropdownOpenUpward, setDropdownOpenUpward] = useState(false);
   const industryDropdownRef = useRef<HTMLDivElement>(null);
+  const hasTrackedView = useRef(false);
 
   const {
     register,
@@ -89,14 +90,17 @@ export default function CTAModalCaseStudy({
   }, [industryDropdownOpen]);
 
   useEffect(() => {
-    if (isOpen) {
-      // Track modal impression
+    if (isOpen && !hasTrackedView.current) {
+      // Track modal impression ONCE per session
       analytics.track("cta_modal_viewed", {
         variant: "B",
         test_name: "cta_modal_ab_test",
         modal_type: "case_study",
       });
+      hasTrackedView.current = true;
+    }
 
+    if (isOpen) {
       // Prevent body scroll
       document.body.style.overflow = "hidden";
 
@@ -117,6 +121,8 @@ export default function CTAModalCaseStudy({
       // Reset form when modal closes
       setIsSubmitted(false);
       reset();
+      // Reset tracking flag when modal closes for next session
+      hasTrackedView.current = false;
     }
 
     return () => {

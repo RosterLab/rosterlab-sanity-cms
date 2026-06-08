@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { analytics } from "@/components/analytics/tracking";
 
 interface CTAModalWebinarRecordingProps {
@@ -21,19 +21,26 @@ export default function CTAModalWebinarRecording({
   onClose,
   onConversion,
 }: CTAModalWebinarRecordingProps) {
+  const hasTrackedView = useRef(false);
+
   useEffect(() => {
-    if (isOpen) {
-      // Track modal impression
+    if (isOpen && !hasTrackedView.current) {
+      // Track modal impression ONCE per session
       analytics.track("cta_modal_viewed", {
         variant: "C",
         test_name: "cta_modal_ab_test",
         modal_type: "webinar_recording",
       });
+      hasTrackedView.current = true;
+    }
 
+    if (isOpen) {
       // Prevent body scroll
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      // Reset tracking flag when modal closes for next session
+      hasTrackedView.current = false;
     }
 
     return () => {
