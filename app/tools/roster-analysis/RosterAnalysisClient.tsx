@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const API_URL =
   process.env.NEXT_PUBLIC_ANALYZE_API_URL ||
-  "https://analyze-api.rosterlab.com";
+  "https://analyze-api-test.rosterlab.com";
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 const MAX_CONTEXT_LENGTH = 500;
