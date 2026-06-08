@@ -62,11 +62,14 @@ export default function CTAModalWebinarRecording({
   };
 
   const handleCaseStudies = () => {
-    analytics.track("cta_modal_secondary_action", {
+    // Track as conversion - user is clicking to view case studies
+    analytics.track("cta_modal_converted", {
       variant: "C",
       test_name: "cta_modal_ab_test",
-      action: "case_studies_click",
+      conversion_type: "case_study_view",
     });
+
+    onConversion();
 
     // Restore body scroll before navigation
     document.body.style.overflow = "";
