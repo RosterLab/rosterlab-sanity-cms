@@ -122,14 +122,19 @@ export default function RlTracker() {
     }
   }, [pathname]);
 
-  if (process.env.NODE_ENV !== "production") {
-    return null;
-  }
-
+  // Load tracker in all environments (production, staging, development)
+  // This ensures identify() calls work properly for testing
   return (
     <Script
       src="https://ops.rosterlab.com/tracker.js"
       strategy="afterInteractive"
+      onLoad={() => {
+        console.log('✅ [RlTracker] Script loaded successfully');
+      }}
+      onError={(e) => {
+        console.error('❌ [RlTracker] Script failed to load:', e);
+        console.warn('[RlTracker] Will use fallback API calls for tracking');
+      }}
     />
   );
 }

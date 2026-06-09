@@ -170,7 +170,46 @@ export const analytics = {
       window.rlTracker.identify(userId, userProperties);
       console.log('✅ [Analytics] identify() sent to rlTracker');
     } else {
-      console.error('❌ [Analytics] rlTracker NOT AVAILABLE - tracker script may not be loaded yet or blocked by ad blocker');
+      console.error('❌ [Analytics] rlTracker NOT AVAILABLE - using fallback API call');
+
+      // FALLBACK: Send directly to API if rlTracker isn't available
+      const identifyPayload = {
+        userId,
+        anonymousId: analytics.getDeviceId(),
+        traits: {
+          ...userProperties,
+          ...getEnrichmentData(),
+        },
+        timestamp: new Date().toISOString(),
+        context: {
+          page: {
+            url: window.location.href,
+            path: window.location.pathname,
+            referrer: document.referrer || null,
+          },
+        },
+      };
+
+      // Use sendBeacon for reliable delivery (won't be cancelled on page unload)
+      const blob = new Blob([JSON.stringify(identifyPayload)], {
+        type: 'application/json',
+      });
+
+      const sent = navigator.sendBeacon('https://ops.rosterlab.com/api/identify', blob);
+
+      if (sent) {
+        console.log('✅ [Analytics] identify() sent via fallback sendBeacon');
+      } else {
+        // If sendBeacon fails, try fetch as last resort
+        fetch('https://ops.rosterlab.com/api/identify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(identifyPayload),
+          keepalive: true,
+        })
+          .then(() => console.log('✅ [Analytics] identify() sent via fallback fetch'))
+          .catch(err => console.error('❌ [Analytics] All identify() methods failed:', err));
+      }
     }
   },
 
