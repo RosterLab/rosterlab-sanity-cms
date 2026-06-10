@@ -129,11 +129,10 @@ export default function CTAModalDemoVideo({
     });
 
     analytics.identify(data.email, {
-      email: data.email,
       firstName: firstName,
       lastName: lastName,
       industry: data.industry,
-      role: data.role,
+      title: data.role,
       lookingFor: data.lookingFor,
     });
 

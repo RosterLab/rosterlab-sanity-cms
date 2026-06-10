@@ -146,12 +146,11 @@ export default function CTAModalCaseStudy({
     });
 
     analytics.identify(data.email, {
-      email: data.email,
       firstName: firstName,
       lastName: lastName,
       company: data.company || undefined,
       industry: data.industry,
-      role: data.role,
+      title: data.role,
     });
 
     console.log("✅ [Variant B] User identification called");

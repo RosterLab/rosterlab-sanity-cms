@@ -75,6 +75,20 @@ export default function WhitepaperPage() {
   const onSubmit = async (data: WhitepaperFormData) => {
     setIsSubmitting(true);
 
+    // Parse name into firstName and lastName
+    const nameParts = data.name.trim().split(/\s+/);
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+
+    // Identify the user with their information
+    analytics.identify(data.email, {
+      firstName: firstName,
+      lastName: lastName,
+      company: data.company,
+      industry: data.industry,
+      title: data.role,
+    });
+
     analytics.track("whitepaper_form_submitted", {
       industry: data.industry,
       role: data.role,
