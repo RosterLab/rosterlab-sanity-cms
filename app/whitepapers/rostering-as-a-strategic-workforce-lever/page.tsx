@@ -82,6 +82,7 @@ export default function WhitepaperPage() {
 
     // Identify the user with their information
     analytics.identify(data.email, {
+      email: data.email,
       firstName: firstName,
       lastName: lastName,
       company: data.company,

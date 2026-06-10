@@ -65,8 +65,8 @@ export default function ContactFormWrapper() {
         const email = values.email
         if (email) {
           const userProps: Record<string, string> = { email }
-          if (values.firstname) userProps.first_name = values.firstname
-          if (values.lastname) userProps.last_name = values.lastname
+          if (values.firstname) userProps.firstName = values.firstname
+          if (values.lastname) userProps.lastName = values.lastname
           if (values.company) userProps.company = values.company
           if (values.phone || values.mobilephone) {
             userProps.phone = values.phone || values.mobilephone

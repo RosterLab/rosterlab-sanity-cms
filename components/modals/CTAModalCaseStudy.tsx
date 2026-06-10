@@ -146,6 +146,7 @@ export default function CTAModalCaseStudy({
     });
 
     analytics.identify(data.email, {
+      email: data.email,
       firstName: firstName,
       lastName: lastName,
       company: data.company || undefined,

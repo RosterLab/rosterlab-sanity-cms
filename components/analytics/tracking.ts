@@ -248,16 +248,16 @@ export const analytics = {
     }
   },
 
-  getUserId: () => {
-    if (typeof window === "undefined") return null;
+  isAuthenticated: () => {
+    if (typeof window === "undefined") return false;
     try {
       const cookieValue = document.cookie
         .split("; ")
         .find((row) => row.startsWith("rl_authenticated="))
         ?.split("=")[1];
-      return cookieValue && cookieValue !== "0" ? cookieValue : null;
+      return !!cookieValue && cookieValue !== "0";
     } catch {
-      return null;
+      return false;
     }
   },
 
@@ -269,7 +269,7 @@ export const analytics = {
     if (typeof window === "undefined") return null;
     const state = {
       anonymousId: analytics.getDeviceId(),
-      userId: analytics.getUserId(),
+      isAuthenticated: analytics.isAuthenticated(),
       sessionId: getUTMData().session_id,
     };
     console.log("[Analytics] Current state:", state);

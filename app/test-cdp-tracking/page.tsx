@@ -43,7 +43,7 @@ export default function TestCDPTracking() {
   const checkState = () => {
     const state = {
       anonymousId: analytics.getDeviceId(),
-      userId: analytics.getUserId(),
+      isAuthenticated: analytics.isAuthenticated(),
       sessionId: analytics.getSessionId(),
     };
 

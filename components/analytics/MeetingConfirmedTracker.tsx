@@ -62,15 +62,15 @@ export default function MeetingConfirmedTracker() {
     if (sessionData) {
       console.log("[MeetingConfirmedTracker] Current Amplitude state:", {
         deviceId: analytics.getDeviceId(),
-        userId: analytics.getUserId(),
+        isAuthenticated: analytics.isAuthenticated(),
       });
 
-      // If we have user info, ensure they're identified
-      if (sessionData.email || sessionData.userId) {
+      // Only identify if we have a real email — sessionData.userId is just a login flag ("1"), not an identifier
+      if (sessionData.email) {
         console.log(
           "[MeetingConfirmedTracker] Re-identifying user after redirect",
         );
-        analytics.identify(sessionData.email || sessionData.userId, {
+        analytics.identify(sessionData.email, {
           email: sessionData.email,
           came_from_demo_booking: true,
         });

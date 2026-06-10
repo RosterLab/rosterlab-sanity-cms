@@ -85,10 +85,10 @@ export default function HubSpotFormListener() {
             };
 
             if (submissionValues.firstname) {
-              userProperties.first_name = submissionValues.firstname;
+              userProperties.firstName = submissionValues.firstname;
             }
             if (submissionValues.lastname) {
-              userProperties.last_name = submissionValues.lastname;
+              userProperties.lastName = submissionValues.lastname;
             }
             if (submissionValues.company) {
               userProperties.company = submissionValues.company;
@@ -115,7 +115,7 @@ export default function HubSpotFormListener() {
           // Log current session before tracking
           console.log("[HubSpotFormListener] Session before form tracking:", {
             deviceId: analytics.getDeviceId(),
-            userId: analytics.getUserId(),
+            isAuthenticated: analytics.isAuthenticated(),
           });
 
           trackFormSubmission({

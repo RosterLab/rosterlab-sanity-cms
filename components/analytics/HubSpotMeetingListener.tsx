@@ -61,16 +61,14 @@ export default function HubSpotMeetingListener() {
           // Log current session info before tracking
           console.log("[HubSpotMeetingListener] Session before demo booking:", {
             deviceId: analytics.getDeviceId(),
-            userId: analytics.getUserId(),
+            isAuthenticated: analytics.isAuthenticated(),
           });
 
           // Store flag to maintain session across redirect
           if (typeof window !== "undefined") {
             const deviceId = analytics.getDeviceId();
-            const userId = analytics.getUserId();
             const sessionData = {
               deviceId: deviceId || "",
-              userId: userId || "",
               timestamp: Date.now(),
               email: contact?.email || "",
             };
