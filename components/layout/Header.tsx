@@ -685,8 +685,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title !== "Case Studies" &&
                                       sub.title !== "Webinars" &&
                                       sub.title !== "Blogs" &&
-                                      sub.title !== "Shift Management Tools" &&
-                                      sub.title !== "Newsroom",
+                                      sub.title !== "Shift Management Tools",
                                   )
                                   .map((subItem) => (
                                     <Link
