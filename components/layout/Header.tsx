@@ -642,7 +642,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title === "Case Studies" ||
                                       sub.title === "Webinars" ||
                                       sub.title === "Blogs" ||
-                                      sub.title === "Shift Management Tools",
+                                      sub.title === "Newsroom",
                                   )
                                   .map((subItem) => (
                                     <Link
@@ -662,9 +662,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                               ? "Expert-led sessions on workforce management"
                                               : subItem.title === "Blogs"
                                                 ? "Insights and best practices"
-                                                : subItem.title ===
-                                                    "Shift Management Tools"
-                                                  ? "Free tools to optimize your workforce"
+                                                : subItem.title === "Newsroom"
+                                                  ? "Latest news and updates from RosterLab"
                                                   : ""}
                                       </div>
                                     </Link>
@@ -685,7 +684,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       sub.title !== "Case Studies" &&
                                       sub.title !== "Webinars" &&
                                       sub.title !== "Blogs" &&
-                                      sub.title !== "Shift Management Tools",
+                                      sub.title !== "Newsroom",
                                   )
                                   .map((subItem) => (
                                     <Link
@@ -698,19 +697,21 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                       </div>
                                       <div className="text-sm text-gray-600">
                                         {subItem.description ||
-                                          (subItem.title.includes("Calculator")
-                                            ? "Calculate your savings"
-                                            : subItem.title === "Schedge"
-                                              ? "We love rostering so much that we made a mini game - Try it out!"
-                                              : subItem.title.includes(
-                                                    "Personality Test",
-                                                  )
-                                                ? "Discover your scheduling style"
+                                          (subItem.title === "Shift Management Tools"
+                                            ? "Free tools to optimize your workforce"
+                                            : subItem.title.includes("Calculator")
+                                              ? "Calculate your savings"
+                                              : subItem.title === "Schedge"
+                                                ? "We love rostering so much that we made a mini game - Try it out!"
                                                 : subItem.title.includes(
-                                                      "Excel Template",
+                                                      "Personality Test",
                                                     )
-                                                  ? "Download our roster template"
-                                                  : "")}
+                                                  ? "Discover your scheduling style"
+                                                  : subItem.title.includes(
+                                                        "Excel Template",
+                                                      )
+                                                    ? "Download our roster template"
+                                                    : "")}
                                       </div>
                                     </Link>
                                   ))}
