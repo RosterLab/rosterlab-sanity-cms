@@ -95,6 +95,10 @@ export default function RosterAnalysisClient() {
       setEmailError(result.error.errors[0].message);
       return;
     }
+    analytics.identify(email, {
+      email,
+      source: "roster_analysis_tool",
+    });
     analytics.track("roster_analysis_email_entered", {
       email_domain: email.split("@")[1],
     });

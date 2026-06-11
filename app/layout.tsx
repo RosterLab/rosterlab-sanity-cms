@@ -6,7 +6,7 @@ import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManage
 import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
-import Contentsquare from "@/components/analytics/Contentsquare";
+import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
 // PostHog: pnpm add posthog-js @posthog/react | key: phc_syjvwfhiP9hzL4mfVUzZC6bZHBZHKVmfqVK5DMM7p7au | host: https://us.i.posthog.com
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
@@ -79,7 +79,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://featuregates.org" />
-        <link rel="dns-prefetch" href="https://t.contentsquare.net" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <StructuredData type="organization" isUSPage={isUSPage} />
         <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
       </head>
@@ -101,7 +101,7 @@ export default async function RootLayout({
             <RlTracker />
             <UTMTracker debug={process.env.NODE_ENV === "development"} />
             <MetaPixel />
-            <Contentsquare />
+            <MicrosoftClarity />
             <GeolocationProvider />
             <ClientHeader />
             <main id="main-content" className="flex-grow" role="main">
