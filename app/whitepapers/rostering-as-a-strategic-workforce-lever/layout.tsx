@@ -1,16 +1,16 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Healthcare Rostering Software as a Strategic Workforce Lever | RosterLab",
+  title: "Rostering as a Strategic Workforce Lever | Free Whitepaper",
   description:
-    "Discover how intelligent healthcare scheduling software reduces staff turnover, cuts agency spend, and solves chronic understaffing. Real case study with measurable results.",
+    "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
   alternates: {
     canonical: "https://rosterlab.com/whitepapers/rostering-as-a-strategic-workforce-lever",
   },
   openGraph: {
-    title: "Healthcare Rostering Software as a Strategic Workforce Lever",
+    title: "Rostering as a Strategic Workforce Lever | Free Whitepaper",
     description:
-      "Discover how intelligent healthcare scheduling software reduces staff turnover, cuts agency spend, and solves chronic understaffing. Real case study with measurable results.",
+      "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
     type: "website",
     url: "https://rosterlab.com/whitepapers/rostering-as-a-strategic-workforce-lever",
     images: [
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Healthcare Rostering Software as a Strategic Workforce Lever",
+    title: "Rostering as a Strategic Workforce Lever | Free Whitepaper",
     description:
-      "Discover how intelligent healthcare scheduling software reduces staff turnover, cuts agency spend, and solves chronic understaffing. Real case study with measurable results.",
+      "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
     images: ["/images/og-images/whitepaper-og.png"],
   },
   keywords: [

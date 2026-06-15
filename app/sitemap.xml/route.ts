@@ -13,6 +13,7 @@ const excludedPaths = [
   "/api", // API routes
   "/draft", // Draft pages - have noindex
   "/azure-ad", // Azure AD - has noindex
+  "/whitepaper", // Redirect page - not the actual content
 ];
 
 // Import from the centralized location

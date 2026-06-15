@@ -7,14 +7,14 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'The Spreadsheet Sorcerer - Your Roster Personality',
-  description: 'Master of formulas and pivot tables. Discover your rostering personality and learn how to leverage your data-driven approach to create perfectly optimized staff schedules.',
+  description: 'Master of formulas and pivot tables. Leverage your data-driven approach to create perfectly optimized staff schedules.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
     title: 'The Spreadsheet Sorcerer - Your Roster Personality',
-    description: 'Master of formulas and pivot tables. Discover your rostering personality and learn how to leverage your data-driven approach to create perfectly optimized staff schedules.',
+    description: 'Master of formulas and pivot tables. Leverage your data-driven approach to create perfectly optimized staff schedules.',
     images: [
       {
         url: '/images/quiz/og/og.png',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The Spreadsheet Sorcerer - Your Roster Personality',
-    description: 'Master of formulas and pivot tables. Discover your rostering personality and learn how to leverage your data-driven approach to create perfectly optimized staff schedules.',
+    description: 'Master of formulas and pivot tables. Leverage your data-driven approach to create perfectly optimized staff schedules.',
     images: ['/images/quiz/og/og.png']
   }
 }

@@ -3,14 +3,14 @@ import QuizClient from './QuizClient'
 
 export const metadata: Metadata = {
   title: "What's Your Staff Scheduling Personality Type? - RosterLab",
-  description: 'Discover your staff scheduling personality type. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
+  description: 'Discover your staff scheduling personality. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
   robots: {
     index: true,
     follow: true
   },
   openGraph: {
     title: "What's Your Staff Scheduling Personality Type? - RosterLab",
-    description: 'Discover your staff scheduling personality type. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
+    description: 'Discover your staff scheduling personality. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
     images: [
       {
         url: '/images/quiz/og/og.png',

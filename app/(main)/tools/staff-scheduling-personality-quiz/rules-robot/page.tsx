@@ -7,14 +7,14 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'The Rules Robot - Your Roster Personality',
-  description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
+  description: 'Guardian of compliance and protocols. Leverage your systematic approach to create perfectly compliant staff schedules.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
     title: 'The Rules Robot - Your Roster Personality',
-    description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
+    description: 'Guardian of compliance and protocols. Leverage your systematic approach to create perfectly compliant staff schedules.',
     images: [
       {
         url: '/images/quiz/og/og.png',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The Rules Robot - Your Roster Personality',
-    description: 'You\'re the guardian of compliance, the protector of protocols. Discover your rostering personality and learn how to leverage your systematic approach to staff scheduling.',
+    description: 'Guardian of compliance and protocols. Leverage your systematic approach to create perfectly compliant staff schedules.',
     images: ['/images/quiz/og/og.png']
   }
 }

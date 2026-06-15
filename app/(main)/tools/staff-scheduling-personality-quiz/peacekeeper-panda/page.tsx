@@ -7,14 +7,14 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'The Peacekeeper Panda - Your Roster Personality',
-  description: 'Mediator type who balances personalities and conflicts with zen-like calm. Your peaceful approach creates harmony in even the most chaotic scheduling situations.',
+  description: 'Mediator who balances personalities with zen-like calm. Your peaceful approach creates harmony in chaotic scheduling.',
   robots: {
     index: false,
     follow: true
   },
   openGraph: {
     title: 'The Peacekeeper Panda - Your Roster Personality',
-    description: 'Mediator type who balances personalities and conflicts with zen-like calm. Your peaceful approach creates harmony in even the most chaotic scheduling situations.',
+    description: 'Mediator who balances personalities with zen-like calm. Your peaceful approach creates harmony in chaotic scheduling.',
     images: [
       {
         url: '/images/quiz/og/og.png',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'The Peacekeeper Panda - Your Roster Personality',
-    description: 'Mediator type who balances personalities and conflicts with zen-like calm. Your peaceful approach creates harmony in even the most chaotic scheduling situations.',
+    description: 'Mediator who balances personalities with zen-like calm. Your peaceful approach creates harmony in chaotic scheduling.',
     images: ['/images/quiz/og/og.png']
   }
 }
