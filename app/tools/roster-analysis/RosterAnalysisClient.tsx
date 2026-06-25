@@ -4,10 +4,11 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
-import { HiOutlineDocumentText, HiOutlineMail, HiX } from "react-icons/hi";
+import { HiOutlineDocumentText, HiX } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import LogoMarquee from "./LogoMarquee";
 import { analytics } from "@/components/analytics/tracking";
 import { cn } from "@/lib/utils";
 
@@ -22,12 +23,32 @@ const ALLOWED_EXTENSIONS = [".xlsx", ".csv"];
 const emailSchema = z.string().email("Please enter a valid email address");
 
 type PageState =
-  | "email"
   | "upload"
+  | "details"
   | "streaming"
   | "complete"
   | "error"
   | "rate_limited";
+
+const SPECIALISATIONS = [
+  "Nursing",
+  "Medical / Physicians",
+  "Allied health",
+  "Aged care",
+  "Emergency services",
+  "Hospitality",
+  "Retail",
+  "Manufacturing",
+  "Other",
+];
+
+const ROSTER_SIZES = [
+  "1–10 staff",
+  "11–25 staff",
+  "26–50 staff",
+  "51–100 staff",
+  "100+ staff",
+];
 
 function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -52,9 +73,17 @@ function formatFileSize(bytes: number): string {
 }
 
 export default function RosterAnalysisClient() {
-  const [pageState, setPageState] = useState<PageState>("email");
+  const [pageState, setPageState] = useState<PageState>("upload");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [name, setName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [location, setLocation] = useState("");
+  const [locationError, setLocationError] = useState("");
+  const [specialisation, setSpecialisation] = useState("");
+  const [specialisationError, setSpecialisationError] = useState("");
+  const [rosterSize, setRosterSize] = useState("");
+  const [rosterSizeError, setRosterSizeError] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [context, setContext] = useState("");
   const [isDragging, setIsDragging] = useState(false);
@@ -86,24 +115,6 @@ export default function RosterAnalysisClient() {
       resultRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [markdownContent, pageState]);
-
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setEmailError("");
-    const result = emailSchema.safeParse(email);
-    if (!result.success) {
-      setEmailError(result.error.errors[0].message);
-      return;
-    }
-    analytics.identify(email, {
-      email,
-      source: "roster_analysis_tool",
-    });
-    analytics.track("roster_analysis_email_entered", {
-      email_domain: email.split("@")[1],
-    });
-    setPageState("upload");
-  };
 
   const validateFile = useCallback((f: File): string | null => {
     const ext = getFileExtension(f.name);
@@ -224,6 +235,56 @@ export default function RosterAnalysisClient() {
     [markdownContent.length, pdfUrl],
   );
 
+  const handleDetailsSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    let hasError = false;
+    setEmailError("");
+    setNameError("");
+    setLocationError("");
+    setSpecialisationError("");
+    setRosterSizeError("");
+
+    const emailResult = emailSchema.safeParse(email);
+    if (!emailResult.success) {
+      setEmailError(emailResult.error.errors[0].message);
+      hasError = true;
+    }
+    if (!name.trim()) {
+      setNameError("Please enter your name");
+      hasError = true;
+    }
+    if (!location.trim()) {
+      setLocationError("Please enter your location name");
+      hasError = true;
+    }
+    if (!specialisation) {
+      setSpecialisationError("Please select a specialisation");
+      hasError = true;
+    }
+    if (!rosterSize) {
+      setRosterSizeError("Please select an approximate roster size");
+      hasError = true;
+    }
+    if (hasError) return;
+
+    analytics.identify(email, {
+      email,
+      name,
+      location,
+      specialisation,
+      roster_size: rosterSize,
+      source: "roster_analysis_tool",
+    });
+    analytics.track("roster_analysis_details_submitted", {
+      email_domain: email.split("@")[1],
+      specialisation,
+      roster_size: rosterSize,
+    });
+
+    startAnalysis();
+  };
+
   const startAnalysis = async () => {
     if (!file) return;
 
@@ -312,116 +373,34 @@ export default function RosterAnalysisClient() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-      {/* Hero */}
-      <div className="pt-20 pb-12">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              AI-POWERED ANALYSIS
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Instant{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                Roster Analysis
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Upload your roster file and get AI-powered insights in seconds.
-              Identify fairness issues, coverage gaps, and optimisation
-              opportunities.
-            </p>
-          </div>
-        </Container>
-      </div>
-
-      {/* Main interaction area */}
-      <div className="pb-20">
-        <Container>
-          <div className="max-w-2xl mx-auto">
-            {/* Email Step */}
-            {pageState === "email" && (
-              <div className="bg-white rounded-2xl shadow-lg p-8 animate-fade-in">
-                <div className="text-center mb-6">
-                  <div className="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <HiOutlineMail className="w-7 h-7 text-primary-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Get started
-                  </h2>
-                  <p className="text-gray-600">
-                    Enter your email to receive your analysis report.
-                  </p>
+      {/* Hero — 2 column: upload on left, visual on right */}
+      {pageState === "upload" && (
+        <div className="min-h-screen flex flex-col justify-center pt-20 pb-12 relative">
+          <Container>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left column: copy + upload */}
+              <div>
+                <div className="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                  AI-POWERED ANALYSIS
                 </div>
-                <form onSubmit={handleEmailSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="email" className="sr-only">
-                      Email address
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (emailError) setEmailError("");
-                      }}
-                      placeholder="you@company.com"
-                      className={cn(
-                        "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
-                        emailError ? "border-red-300" : "border-gray-300",
-                      )}
-                      aria-invalid={!!emailError}
-                      aria-describedby={emailError ? "email-error" : undefined}
-                      autoFocus
-                    />
-                    {emailError && (
-                      <p
-                        id="email-error"
-                        className="mt-2 text-sm text-red-600"
-                        role="alert"
-                      >
-                        {emailError}
-                      </p>
-                    )}
-                  </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-primary-600 text-white hover:bg-primary-700 py-3 text-lg font-semibold"
-                    analyticsLabel="Roster Analysis Continue"
-                    analyticsLocation="Roster Analysis Page"
-                  >
-                    Continue
-                  </Button>
-                  <p className="text-xs text-gray-500 text-center">
-                    We&apos;ll only use this to send your analysis results. No
-                    spam.
-                  </p>
-                </form>
-              </div>
-            )}
-
-            {/* Upload Step */}
-            {pageState === "upload" && (
-              <div className="bg-white rounded-2xl shadow-lg p-8 animate-fade-in">
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Upload your roster
-                  </h2>
-                  <p className="text-gray-600">
-                    Drag and drop your file, or click to browse. Supports .xlsx
-                    and .csv files up to 2MB.
-                  </p>
-                </div>
+                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Get expert feedback on your roster, instantly
+                </h1>
+                <p className="text-lg text-gray-600 mb-8">
+                  Upload your roster and our AI will score it on fairness,
+                  coverage and compliance. Get actionable steps to improve it
+                  in seconds.
+                </p>
 
                 {/* Drop zone */}
                 <div
                   className={cn(
-                    "border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer mb-6",
+                    "border-2 border-dashed rounded-xl p-8 text-center transition-all cursor-pointer mb-4",
                     isDragging
                       ? "border-primary-500 bg-primary-50 scale-[1.02]"
                       : file
                         ? "border-green-300 bg-green-50"
-                        : "border-gray-300 hover:border-primary-400 hover:bg-gray-50",
+                        : "border-gray-300 bg-white hover:border-primary-400 hover:bg-gray-50",
                   )}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
@@ -472,64 +451,325 @@ export default function RosterAnalysisClient() {
                       <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
                         <HiOutlineDocumentText className="w-6 h-6 text-gray-400" />
                       </div>
-                      <p className="text-gray-600 font-medium">
+                      <p className="text-gray-700 font-semibold">
                         {isDragging
                           ? "Drop your file here"
-                          : "Drag and drop your roster file here"}
+                          : "Drop your roster here or choose a file"}
                       </p>
-                      <p className="text-sm text-gray-400 mt-1">
-                        or click to browse
+                      <p className="text-sm text-gray-500 mt-1">
+                        .xlsx or .csv, max 2MB
                       </p>
                     </>
                   )}
                 </div>
 
                 {fileError && (
-                  <p className="text-sm text-red-600 mb-4 text-center" role="alert">
+                  <p className="text-sm text-red-600 mb-4" role="alert">
                     {fileError}
                   </p>
                 )}
 
-                {/* Context textarea */}
-                <div className="mb-6">
-                  <label
-                    htmlFor="context"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Context{" "}
-                    <span className="text-gray-400 font-normal">
-                      (optional)
-                    </span>
-                  </label>
-                  <textarea
-                    id="context"
-                    value={context}
-                    onChange={(e) => setContext(e.target.value.slice(0, MAX_CONTEXT_LENGTH))}
-                    placeholder="e.g. This is a nursing ward roster for ICU, covering 4 weeks..."
-                    rows={3}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
-                    maxLength={MAX_CONTEXT_LENGTH}
-                  />
-                  <p className="text-xs text-gray-400 text-right mt-1">
-                    {context.length}/{MAX_CONTEXT_LENGTH}
+                {/* Reveal once a file is selected */}
+                {file && (
+                  <div className="animate-fade-in">
+                    <Button
+                      onClick={() => setPageState("details")}
+                      className="w-full bg-primary-600 text-white hover:bg-primary-700 py-3 text-lg font-semibold"
+                      analyticsLabel="Roster Analysis Upload Continue"
+                      analyticsLocation="Roster Analysis Page"
+                      analyticsProperties={{
+                        file_type: getFileExtension(file.name),
+                      }}
+                    >
+                      Continue
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              {/* Right column: placeholder visual */}
+              <div className="hidden lg:block">
+                <div className="aspect-[4/3] w-full rounded-2xl border-2 border-dashed border-gray-300 bg-white/50 flex items-center justify-center">
+                  <p className="text-gray-400 text-sm">
+                    Image placeholder
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Container>
+
+          {/* Scroll cue */}
+          <a
+            href="#learn-more"
+            className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center text-gray-500 hover:text-primary-600 transition-colors group"
+            aria-label="Learn more"
+          >
+            <span className="text-sm font-medium mb-2">Learn more</span>
+            <svg
+              className="w-6 h-6 animate-bounce"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
+            </svg>
+          </a>
+        </div>
+      )}
+
+      {/* Details step */}
+      {pageState === "details" && (
+        <div className="min-h-screen flex flex-col justify-center pt-20 pb-12">
+          <Container>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-lg p-8 animate-fade-in">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                    A few details before we analyse
+                  </h2>
+                  <p className="text-gray-600">
+                    We&apos;ll send the report to your inbox and tailor the
+                    analysis to your context.
                   </p>
                 </div>
 
-                <Button
-                  onClick={startAnalysis}
-                  disabled={!file}
-                  className="w-full bg-primary-600 text-white hover:bg-primary-700 py-3 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-                  analyticsLabel="Roster Analysis Analyze"
-                  analyticsLocation="Roster Analysis Page"
-                  analyticsProperties={{
-                    has_context: context.length > 0,
-                    file_type: file ? getFileExtension(file.name) : undefined,
-                  }}
-                >
-                  Analyse My Roster
-                </Button>
+                <form onSubmit={handleDetailsSubmit} className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => {
+                          setName(e.target.value);
+                          if (nameError) setNameError("");
+                        }}
+                        placeholder="Jane Smith"
+                        className={cn(
+                          "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
+                          nameError ? "border-red-300" : "border-gray-300",
+                        )}
+                        aria-invalid={!!nameError}
+                      />
+                      {nameError && (
+                        <p className="mt-2 text-sm text-red-600" role="alert">
+                          {nameError}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Email address
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          if (emailError) setEmailError("");
+                        }}
+                        placeholder="you@company.com"
+                        className={cn(
+                          "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
+                          emailError ? "border-red-300" : "border-gray-300",
+                        )}
+                        aria-invalid={!!emailError}
+                      />
+                      {emailError && (
+                        <p className="mt-2 text-sm text-red-600" role="alert">
+                          {emailError}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="location"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Location / department name
+                    </label>
+                    <input
+                      id="location"
+                      type="text"
+                      value={location}
+                      onChange={(e) => {
+                        setLocation(e.target.value);
+                        if (locationError) setLocationError("");
+                      }}
+                      placeholder="e.g. Auckland Hospital, ICU"
+                      className={cn(
+                        "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
+                        locationError ? "border-red-300" : "border-gray-300",
+                      )}
+                      aria-invalid={!!locationError}
+                    />
+                    {locationError && (
+                      <p className="mt-2 text-sm text-red-600" role="alert">
+                        {locationError}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="specialisation"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Specialisation
+                      </label>
+                      <select
+                        id="specialisation"
+                        value={specialisation}
+                        onChange={(e) => {
+                          setSpecialisation(e.target.value);
+                          if (specialisationError) setSpecialisationError("");
+                        }}
+                        className={cn(
+                          "w-full px-4 py-3 rounded-lg border text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors bg-white",
+                          specialisationError
+                            ? "border-red-300"
+                            : "border-gray-300",
+                        )}
+                        aria-invalid={!!specialisationError}
+                      >
+                        <option value="">Select one…</option>
+                        {SPECIALISATIONS.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      </select>
+                      {specialisationError && (
+                        <p className="mt-2 text-sm text-red-600" role="alert">
+                          {specialisationError}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="rosterSize"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Approximate roster size
+                      </label>
+                      <select
+                        id="rosterSize"
+                        value={rosterSize}
+                        onChange={(e) => {
+                          setRosterSize(e.target.value);
+                          if (rosterSizeError) setRosterSizeError("");
+                        }}
+                        className={cn(
+                          "w-full px-4 py-3 rounded-lg border text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors bg-white",
+                          rosterSizeError
+                            ? "border-red-300"
+                            : "border-gray-300",
+                        )}
+                        aria-invalid={!!rosterSizeError}
+                      >
+                        <option value="">Select one…</option>
+                        {ROSTER_SIZES.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      </select>
+                      {rosterSizeError && (
+                        <p className="mt-2 text-sm text-red-600" role="alert">
+                          {rosterSizeError}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="context"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Context{" "}
+                      <span className="text-gray-400 font-normal">
+                        (optional)
+                      </span>
+                    </label>
+                    <textarea
+                      id="context"
+                      value={context}
+                      onChange={(e) =>
+                        setContext(
+                          e.target.value.slice(0, MAX_CONTEXT_LENGTH),
+                        )
+                      }
+                      placeholder="Anything else we should know about this roster?"
+                      rows={2}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
+                      maxLength={MAX_CONTEXT_LENGTH}
+                    />
+                    <p className="text-xs text-gray-400 text-right mt-1">
+                      {context.length}/{MAX_CONTEXT_LENGTH}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <Button
+                      onClick={() => setPageState("upload")}
+                      className="sm:w-auto bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 py-3 px-6 font-semibold"
+                      analyticsLabel="Roster Analysis Details Back"
+                      analyticsLocation="Roster Analysis Page"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="flex-1 bg-primary-600 text-white hover:bg-primary-700 py-3 text-lg font-semibold"
+                      analyticsLabel="Roster Analysis Analyze"
+                      analyticsLocation="Roster Analysis Page"
+                      analyticsProperties={{
+                        has_context: context.length > 0,
+                        file_type: file ? getFileExtension(file.name) : undefined,
+                        specialisation,
+                        roster_size: rosterSize,
+                      }}
+                    >
+                      Analyse My Roster
+                    </Button>
+                  </div>
+                  <p className="text-xs text-gray-500 text-center">
+                    We&apos;ll only use this to send your analysis results. No
+                    spam.
+                  </p>
+                </form>
               </div>
-            )}
+            </div>
+          </Container>
+        </div>
+      )}
+
+      {/* Main interaction area (streaming / results) */}
+      <div className="pb-20">
+        <Container>
+          <div className="max-w-2xl mx-auto">
+            {/* Email/Upload steps now live in the hero above */}
 
             {/* Streaming / Complete / Error / Rate Limited */}
             {(pageState === "streaming" ||
@@ -715,6 +955,198 @@ export default function RosterAnalysisClient() {
           </div>
         </Container>
       </div>
+
+      {/* Below the fold */}
+      {pageState === "upload" && (
+        <div id="learn-more">
+          {/* Trusted by carousel */}
+          <LogoMarquee />
+
+          {/* What's inside the report */}
+          <div className="bg-white border-t border-gray-100 py-20">
+            <Container>
+              <div className="max-w-3xl mx-auto text-center mb-12">
+                <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-3">
+                  What&apos;s inside
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                  What&apos;s in your report
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Placeholder copy — describe the sections of the report
+                  (fairness, coverage gaps, compliance, recommendations).
+                </p>
+              </div>
+
+              <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {["Fairness score", "Coverage gaps", "Compliance flags", "Skill mix", "Cost insights", "Recommendations"].map(
+                  (item) => (
+                    <div
+                      key={item}
+                      className="bg-gray-50 border border-gray-200 rounded-xl p-6"
+                    >
+                      <div className="w-10 h-10 rounded-lg border-2 border-dashed border-gray-300 mb-4" />
+                      <h3 className="font-semibold text-gray-900 mb-2">
+                        {item}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        Short description placeholder.
+                      </p>
+                    </div>
+                  ),
+                )}
+              </div>
+            </Container>
+          </div>
+
+          {/* What is RosterLab — Z-pattern */}
+          <div className="bg-gray-50 border-t border-gray-100 py-20">
+            <Container>
+              <div className="max-w-6xl mx-auto space-y-24">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-3">
+                      What is RosterLab
+                    </div>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                      AI-powered rostering for complex teams
+                    </h2>
+                    <p className="text-lg text-gray-600 mb-4">
+                      Placeholder copy introducing RosterLab — what it does,
+                      who it&apos;s for, and the headline outcome.
+                    </p>
+                    <p className="text-lg text-gray-600">
+                      Add a second supporting paragraph here.
+                    </p>
+                  </div>
+                  <div className="aspect-[4/3] w-full rounded-2xl border-2 border-dashed border-gray-300 bg-white flex items-center justify-center">
+                    <p className="text-gray-400 text-sm">Image placeholder</p>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </div>
+
+          {/* Case studies / success stories */}
+          <div className="bg-white border-t border-gray-100 py-20">
+            <Container>
+              <div className="max-w-3xl mx-auto text-center mb-12">
+                <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-3">
+                  Success stories
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                  Teams getting better rosters with RosterLab
+                </h2>
+                <p className="text-lg text-gray-600">
+                  See how healthcare teams are saving hours and improving
+                  fairness with smarter rostering.
+                </p>
+              </div>
+
+              <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mb-12">
+                {[1, 2, 3].map((i) => (
+                  <a
+                    key={i}
+                    href="/case-studies"
+                    className="group bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all"
+                  >
+                    <div className="aspect-[16/9] border-b-2 border-dashed border-gray-300 bg-white flex items-center justify-center">
+                      <p className="text-gray-400 text-sm">Image placeholder</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="text-xs font-semibold text-primary-600 uppercase tracking-wide mb-2">
+                        Case study {i}
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2">
+                        Customer name
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-4">
+                        Short outcome summary placeholder.
+                      </p>
+                      <span className="text-sm font-semibold text-primary-600 group-hover:underline">
+                        Read story →
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              <div className="max-w-4xl mx-auto bg-gradient-to-r from-primary-50 to-cyan-50 border border-primary-100 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+                <div className="w-16 h-16 rounded-xl bg-white shadow-sm flex items-center justify-center flex-shrink-0">
+                  <HiOutlineDocumentText className="w-8 h-8 text-primary-600" />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    Whitepaper: Rostering as a strategic workforce lever
+                  </h3>
+                  <p className="text-gray-600">
+                    A deeper read on how rostering decisions drive retention,
+                    cost and patient outcomes.
+                  </p>
+                </div>
+                <Button
+                  href="/whitepapers/rostering-as-a-strategic-workforce-lever"
+                  className="bg-primary-600 text-white hover:bg-primary-700 px-6 py-3 font-semibold whitespace-nowrap"
+                  analyticsLabel="Roster Analysis Whitepaper"
+                  analyticsLocation="Roster Analysis Page"
+                >
+                  Read whitepaper
+                </Button>
+              </div>
+            </Container>
+          </div>
+
+          {/* Pricing */}
+          <div className="bg-gray-50 border-t border-gray-100 py-20">
+            <Container>
+              <div className="max-w-3xl mx-auto text-center mb-12">
+                <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-3">
+                  Pricing
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                  Simple, transparent pricing
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Placeholder — short intro to pricing.
+                </p>
+              </div>
+
+              <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+                {["Starter", "Team", "Enterprise"].map((tier) => (
+                  <div
+                    key={tier}
+                    className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col"
+                  >
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {tier}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-6">
+                      Tagline placeholder.
+                    </p>
+                    <div className="mb-6">
+                      <span className="text-4xl font-bold text-gray-900">$—</span>
+                      <span className="text-gray-500"> /mo</span>
+                    </div>
+                    <ul className="space-y-2 mb-8 flex-1">
+                      <li className="text-sm text-gray-600">Feature placeholder</li>
+                      <li className="text-sm text-gray-600">Feature placeholder</li>
+                      <li className="text-sm text-gray-600">Feature placeholder</li>
+                    </ul>
+                    <Button
+                      href="/pricing"
+                      className="w-full bg-primary-600 text-white hover:bg-primary-700 py-2 font-semibold"
+                      analyticsLabel={`Roster Analysis Pricing ${tier}`}
+                      analyticsLocation="Roster Analysis Page"
+                    >
+                      Choose {tier}
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
