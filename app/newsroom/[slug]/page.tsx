@@ -198,7 +198,7 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
           <div className="py-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left side - Title and Meta */}
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-6">
                 {/* Title */}
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
                   {post.title}
@@ -241,12 +241,12 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
 
               {/* Right side - Hero Image */}
               {post.mainImage && (
-                <div className="lg:col-span-5 relative hidden lg:block">
+                <div className="lg:col-span-6 relative hidden lg:block">
                   <div className="relative rounded-lg overflow-hidden shadow-2xl">
                     <Image
-                      src={urlFor(post.mainImage).width(500).height(350).url()}
+                      src={urlFor(post.mainImage).width(700).height(350).url()}
                       alt={post.title}
-                      width={500}
+                      width={700}
                       height={350}
                       className="w-full h-auto object-cover"
                     />
