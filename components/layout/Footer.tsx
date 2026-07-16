@@ -307,6 +307,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/tools/fte-calculator"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  FTE Calculator
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/tools/staff-scheduling-personality-quiz"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >

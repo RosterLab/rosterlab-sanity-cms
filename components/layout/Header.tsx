@@ -113,6 +113,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
         { title: "Schedge", link: "/schedge" },
         { title: "ROI Calculator", link: "/tools/roi-calculator" },
         {
+          title: "FTE Calculator",
+          link: "/tools/fte-calculator",
+          description:
+            "Convert weekly demand into required full-time equivalents",
+        },
+        {
           title: "Personality Test",
           link: "/tools/staff-scheduling-personality-quiz",
         },

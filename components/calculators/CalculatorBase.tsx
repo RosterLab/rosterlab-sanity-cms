@@ -56,6 +56,7 @@ interface CalculatorBaseProps {
     portalId: string;
     formId: string;
   };
+  conversionPoint?: "ROI Calculator" | "FTE calculator";
   className?: string;
 }
 
@@ -64,6 +65,7 @@ export default function CalculatorBase({
   reportType,
   regionalContent,
   hubspotConfig,
+  conversionPoint,
   className = "",
 }: CalculatorBaseProps) {
   // Input states
@@ -174,6 +176,28 @@ export default function CalculatorBase({
 
         // Get the company name from the form submission
         const companyField = formData.submissionValues?.company || "";
+
+        // Stamp the conversion_point on the contact (fire-and-forget)
+        if (conversionPoint) {
+          const email = formData.submissionValues?.email;
+          const firstname = formData.submissionValues?.firstname || "";
+          const lastname = formData.submissionValues?.lastname || "";
+          if (email) {
+            fetch("/api/conversion-point", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email,
+                firstname,
+                lastname,
+                company: companyField,
+                conversion_point: conversionPoint,
+              }),
+            }).catch((err) => {
+              console.error("Failed to stamp conversion_point", err);
+            });
+          }
+        }
 
         // Generate and download the PDF
         setIsSubmitting(true);

@@ -44,6 +44,16 @@ const tools = [
     category: "Financial Analysis",
   },
   {
+    id: "fte-calculator",
+    title: "FTE Requirement Calculator",
+    description:
+      "Turn your weekly staffing demand model into the number of full-time equivalents (FTE) required, and compare it against the FTE you have available.",
+    href: "/tools/fte-calculator",
+    image: "/images/og-images/ROICalc.png",
+    format: "Interactive",
+    category: "Workforce Planning",
+  },
+  {
     id: "personality-test",
     title: "Rostering Personality Type",
     description:

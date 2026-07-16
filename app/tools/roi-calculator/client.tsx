@@ -50,6 +50,7 @@ export default function ROICalculatorClient() {
       region="global"
       reportType="roi"
       regionalContent={regionalContent}
+      conversionPoint="ROI Calculator"
       hubspotConfig={{
         portalId: "20646833",
         formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",

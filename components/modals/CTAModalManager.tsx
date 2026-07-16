@@ -87,6 +87,9 @@ export default function CTAModalManager() {
     // Don't show modals on whitepaper pages
     if (pathname.startsWith('/whitepapers')) return;
 
+    // Don't show modals on the mini tools pages (ROI/FTE/other calculators, quizzes, etc.)
+    if (pathname.startsWith('/tools') || pathname.startsWith('/us/tools')) return;
+
     const checkInterval = setInterval(() => {
       if (shouldShowModal()) {
         const assignedVariant = assignVariant();
