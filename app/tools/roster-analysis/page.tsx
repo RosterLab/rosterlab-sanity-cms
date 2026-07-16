@@ -1,7 +1,11 @@
 import RosterAnalysisClient from "./RosterAnalysisClient";
 import SiteLayout from "@/components/layout/SiteLayout";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import { getClient, urlFor } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
 import type { Metadata } from "next";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "AI Roster Analysis - Instant Scheduling Insights | RosterLab",
@@ -31,10 +35,38 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RosterAnalysisPage() {
+const caseStudiesQuery = groq`
+  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
+    title,
+    "slug": slug.current,
+    excerpt,
+    mainImage
+  }
+`;
+
+type RawCaseStudy = {
+  title: string;
+  slug: string;
+  excerpt?: string;
+  mainImage?: { asset: { _ref: string }; alt?: string };
+};
+
+export default async function RosterAnalysisPage() {
+  const client = getClient();
+  const raw = await client.fetch<RawCaseStudy[]>(caseStudiesQuery);
+  const caseStudies = (raw || []).map((p) => ({
+    title: p.title,
+    slug: p.slug,
+    excerpt: p.excerpt || "",
+    imageUrl: p.mainImage
+      ? urlFor(p.mainImage).width(800).height(450).url()
+      : null,
+    imageAlt: p.mainImage?.alt || p.title,
+  }));
+
   return (
     <SiteLayout>
-      <RosterAnalysisClient />
+      <RosterAnalysisClient caseStudies={caseStudies} />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
