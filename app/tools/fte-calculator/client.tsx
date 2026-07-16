@@ -718,7 +718,7 @@ export default function FTECalculatorClient() {
         : "text-neutral-900";
 
   return (
-    <div className="bg-[#F7F9FB] py-12 print:bg-white print:py-0">
+    <div className="bg-[#F7F9FB] py-8 sm:py-12 print:bg-white print:py-0">
       <style jsx global>{`
         @media print {
           header,
@@ -733,11 +733,11 @@ export default function FTECalculatorClient() {
         }
       `}</style>
       <Container className="max-w-[1400px]">
-        <section className="mb-7">
-          <h1 className="text-3xl md:text-[30px] font-semibold leading-tight pl-3.5 border-l-[5px] border-[#03F9BE]">
+        <section className="mb-6 sm:mb-7">
+          <h1 className="text-2xl sm:text-3xl md:text-[30px] font-semibold leading-tight pl-3 sm:pl-3.5 border-l-[5px] border-[#03F9BE]">
             FTE Requirement Calculator
           </h1>
-          <p className="mt-2.5 text-[15px] text-[#55606B] max-w-none">
+          <p className="mt-2.5 text-sm sm:text-[15px] text-[#55606B] max-w-none">
             Enter each shift in your demand model with its times and how many staff you need on each day of the week. We&apos;ll total the weekly hours and convert them into the full-time equivalents (FTE) required to cover the roster.
           </p>
           {printDate && (
@@ -748,7 +748,7 @@ export default function FTECalculatorClient() {
         </section>
 
         <section className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#03F9BE] rounded-[10px] shadow-[0_2px_10px_rgba(26,26,46,0.05)] overflow-hidden">
-          <div className="overflow-x-auto print:overflow-visible">
+          <div className="hidden xl:block overflow-x-auto print:overflow-visible">
             <table className="w-full min-w-[1200px] print:min-w-0 border-collapse">
               <thead>
                 <tr>
@@ -894,15 +894,135 @@ export default function FTECalculatorClient() {
               </tbody>
             </table>
           </div>
-          <div className="flex flex-wrap justify-between items-center gap-3 px-5 py-3.5 bg-[#FAFBFC] border-t border-[#E4E8EC] print:hidden">
+
+          {/* Mobile / tablet card layout — shown below lg breakpoint */}
+          <div className="xl:hidden print:hidden divide-y divide-[#E4E8EC]">
+            {rows.map((row, idx) => {
+              const hrs = weeklyByRow.get(row.id) ?? 0;
+              return (
+                <div key={row.id} className="p-4 sm:p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-[11px] font-medium uppercase tracking-wider text-[#55606B]">
+                      Shift {idx + 1}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeRow(row.id)}
+                      className="text-[#9AA3AC] hover:text-[#F67D00] hover:bg-[#FFF4E8] rounded-md px-2.5 py-1 text-lg leading-none transition-colors"
+                      aria-label="Remove shift"
+                      title="Remove shift"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="block text-[11px] font-medium text-[#55606B] mb-1">
+                      Shift name <span className="font-light">(optional)</span>
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full border border-[#E4E8EC] rounded-md py-2 px-3 text-sm bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                      placeholder="e.g. Morning"
+                      value={row.name}
+                      onChange={(e) => updateRow(row.id, { name: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2 mb-3">
+                    <div>
+                      <label className="block text-[11px] font-medium text-[#55606B] mb-1">
+                        Start
+                      </label>
+                      <input
+                        type="time"
+                        className="w-full border border-[#E4E8EC] rounded-md py-2 px-2 text-sm bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                        value={row.start}
+                        onChange={(e) =>
+                          handleTimeChange(row.id, "start", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-medium text-[#55606B] mb-1">
+                        Finish
+                      </label>
+                      <input
+                        type="time"
+                        className="w-full border border-[#E4E8EC] rounded-md py-2 px-2 text-sm bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                        value={row.finish}
+                        onChange={(e) =>
+                          handleTimeChange(row.id, "finish", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-medium text-[#55606B] mb-1">
+                        Duration (hrs)
+                      </label>
+                      <input
+                        type="number"
+                        className="w-full border border-[#E4E8EC] rounded-md py-2 px-2 text-sm text-center bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                        min="0"
+                        max="24"
+                        step="0.25"
+                        placeholder="hrs"
+                        value={row.duration}
+                        onChange={(e) => handleDurationChange(row.id, e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="text-[11px] font-medium uppercase tracking-wider text-[#55606B] mb-1.5">
+                      Staff required per day
+                    </div>
+                    <div className="grid grid-cols-7 gap-1">
+                      {DAYS.map((d) => (
+                        <div key={d.key}>
+                          <div className="text-[10px] font-medium uppercase text-[#55606B] text-center mb-0.5">
+                            {d.label}
+                          </div>
+                          <input
+                            type="number"
+                            className={
+                              "w-full border border-[#E4E8EC] rounded-md py-2 px-1 text-sm text-center bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none " +
+                              (d.weekend ? "bg-[#FAFBFC]" : "")
+                            }
+                            min="0"
+                            step="1"
+                            value={row.qty[d.key]}
+                            onChange={(e) =>
+                              updateRowQty(row.id, d.key, e.target.value)
+                            }
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex justify-between items-center pt-3 border-t border-[#F0F3F6]">
+                    <span className="text-xs font-medium uppercase tracking-wider text-[#55606B]">
+                      Weekly hours
+                    </span>
+                    <span className="font-semibold text-sm">
+                      {hrs > 0 ? fmt(hrs, hrs % 1 ? 2 : 0) : "—"}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-between sm:items-center gap-3 px-4 sm:px-5 py-3.5 bg-[#FAFBFC] border-t border-[#E4E8EC] print:hidden">
             <button
               type="button"
               onClick={addRow}
-              className="border-2 border-[#2D3BEA] text-[#2D3BEA] bg-white font-semibold text-sm px-4 py-2 rounded-lg hover:bg-[#2D3BEA] hover:text-white transition-colors"
+              className="w-full sm:w-auto border-2 border-[#2D3BEA] text-[#2D3BEA] bg-white font-semibold text-sm px-4 py-2 rounded-lg hover:bg-[#2D3BEA] hover:text-white transition-colors"
             >
               + Add shift
             </button>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -930,7 +1050,7 @@ export default function FTECalculatorClient() {
                 type="button"
                 onClick={handlePdf}
                 title="Download this demand model as a PDF report"
-                className="border-2 border-[#03F9BE] bg-[#03F9BE] text-[#0D0D0D] font-semibold text-sm px-4 py-2 rounded-lg hover:brightness-95 transition"
+                className="col-span-2 sm:col-auto border-2 border-[#03F9BE] bg-[#03F9BE] text-[#0D0D0D] font-semibold text-sm px-4 py-2 rounded-lg hover:brightness-95 transition"
               >
                 Download PDF report
               </button>
@@ -938,28 +1058,28 @@ export default function FTECalculatorClient() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-7">
-          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
+        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5 mt-6 sm:mt-7">
+          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-4 sm:p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2">
               Total weekly demand
             </div>
-            <div className="text-[34px] font-semibold leading-tight">
+            <div className="text-[28px] sm:text-[34px] font-semibold leading-tight">
               {fmt(totalHours, totalHours % 1 ? 1 : 0)}{" "}
-              <span className="text-lg font-normal">hrs</span>
+              <span className="text-base sm:text-lg font-normal">hrs</span>
             </div>
             <div className="text-xs font-light text-[#6B7280] mt-1.5">
               Sum of all shift hours across the week
             </div>
           </div>
 
-          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
+          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-4 sm:p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2">
               Hours per FTE
             </div>
             <div>
               <input
                 type="number"
-                className="w-[110px] text-[26px] font-semibold text-center py-1 px-2 border border-[#E4E8EC] rounded-md focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                className="w-[100px] sm:w-[110px] text-[22px] sm:text-[26px] font-semibold text-center py-1 px-2 border border-[#E4E8EC] rounded-md focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
                 min="1"
                 step="0.5"
                 value={hoursPerFte}
@@ -971,7 +1091,7 @@ export default function FTECalculatorClient() {
             </div>
           </div>
 
-          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
+          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-4 sm:p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2 flex items-center gap-1.5">
               <span>Scaling factor</span>
               <span className="group relative inline-flex">
@@ -981,27 +1101,27 @@ export default function FTECalculatorClient() {
                 />
                 <span
                   role="tooltip"
-                  className="pointer-events-none absolute left-full top-1/2 z-20 ml-3 w-[420px] -translate-y-1/2 rounded-lg bg-neutral-900 px-4 py-3 text-[13px] font-normal normal-case tracking-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+                  className="pointer-events-none absolute left-1/2 sm:left-full top-full sm:top-1/2 z-20 mt-2 sm:mt-0 sm:ml-3 w-[280px] sm:w-[420px] max-w-[calc(100vw-2rem)] -translate-x-1/2 sm:translate-x-0 sm:-translate-y-1/2 rounded-lg bg-neutral-900 px-4 py-3 text-[13px] font-normal normal-case tracking-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
                 >
                   With a 0% scaling factor, this is the FTE needed to cover
                   demand exactly as entered. Since staff take annual leave,
                   sick leave and training, the FTE you employ typically needs
                   to be higher. A common starting point is 15–20% — tune it
                   to your team&apos;s historical leave and absence rates.
-                  <span className="absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rotate-45 bg-neutral-900" />
+                  <span className="hidden sm:block absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rotate-45 bg-neutral-900" />
                 </span>
               </span>
             </div>
             <div>
               <input
                 type="number"
-                className="w-[90px] text-[26px] font-semibold text-center py-1 px-2 border border-[#E4E8EC] rounded-md focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                className="w-[80px] sm:w-[90px] text-[22px] sm:text-[26px] font-semibold text-center py-1 px-2 border border-[#E4E8EC] rounded-md focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
                 min="0"
                 step="1"
                 value={scaleFactor}
                 onChange={(e) => setScaleFactor(e.target.value)}
               />
-              <span className="text-[22px] font-medium text-[#55606B] ml-1">%</span>
+              <span className="text-[20px] sm:text-[22px] font-medium text-[#55606B] ml-1">%</span>
             </div>
             <div className="text-xs font-light text-[#6B7280] mt-1.5">
               Uplift for annual leave, sick leave, training and other systemic
@@ -1009,11 +1129,11 @@ export default function FTECalculatorClient() {
             </div>
           </div>
 
-          <div className="bg-[#E6FDF8] border border-[#E4E8EC] border-t-4 border-t-[#03F9BE] rounded-[10px] p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
+          <div className="bg-[#E6FDF8] border border-[#E4E8EC] border-t-4 border-t-[#03F9BE] rounded-[10px] p-4 sm:p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2">
               Required FTE
             </div>
-            <div className="text-[42px] font-semibold leading-tight">
+            <div className="text-[32px] sm:text-[42px] font-semibold leading-tight">
               {requiredFteDisplay}
             </div>
             <div className="text-xs font-light text-[#6B7280] mt-1.5">
@@ -1022,15 +1142,15 @@ export default function FTECalculatorClient() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
+        <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mt-4 sm:mt-5">
+          <div className="bg-white border border-[#E4E8EC] border-t-4 border-t-[#24D9DC] rounded-[10px] p-4 sm:p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)]">
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2">
               FTE available
             </div>
             <div>
               <input
                 type="number"
-                className="w-[110px] text-[26px] font-semibold text-center py-1 px-2 border border-[#E4E8EC] rounded-md focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
+                className="w-[100px] sm:w-[110px] text-[22px] sm:text-[26px] font-semibold text-center py-1 px-2 border border-[#E4E8EC] rounded-md focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
                 min="0"
                 step="0.1"
                 placeholder="—"
@@ -1045,14 +1165,14 @@ export default function FTECalculatorClient() {
 
           <div
             className={
-              "bg-white border border-[#E4E8EC] border-t-4 rounded-[10px] p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)] " +
+              "bg-white border border-[#E4E8EC] border-t-4 rounded-[10px] p-4 sm:p-5 shadow-[0_2px_10px_rgba(26,26,46,0.05)] " +
               balanceBorder
             }
           >
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2">
               {balance.label}
             </div>
-            <div className={"text-[42px] font-semibold leading-tight " + balanceValueClass}>
+            <div className={"text-[32px] sm:text-[42px] font-semibold leading-tight " + balanceValueClass}>
               {balance.value}
             </div>
             <div className="text-xs font-light text-[#6B7280] mt-1.5">
@@ -1061,10 +1181,10 @@ export default function FTECalculatorClient() {
           </div>
         </section>
 
-        <section className="mt-14 print:hidden">
-          <div className="mb-6">
-            <h2 className="text-2xl font-semibold text-neutral-900">
-              Keep going
+        <section className="mt-10 sm:mt-14 print:hidden">
+          <div className="mb-5 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900">
+              More useful pieces for you
             </h2>
             <p className="mt-1 text-sm text-[#55606B]">
               Now that you know your FTE requirement, here&apos;s what to look
@@ -1072,7 +1192,7 @@ export default function FTECalculatorClient() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <Link
               href="/tools/roi-calculator"
               className="group bg-white rounded-[10px] border border-[#E4E8EC] shadow-[0_2px_10px_rgba(26,26,46,0.05)] overflow-hidden hover:shadow-lg transition-shadow"
@@ -1230,20 +1350,20 @@ export default function FTECalculatorClient() {
 
       {showGate && (
         <div
-          className="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center p-4 print:hidden"
+          className="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto print:hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby="fte-gate-title"
           onClick={() => setShowGate(false)}
         >
           <div
-            className="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl"
+            className="bg-white rounded-xl max-w-md w-full p-5 sm:p-6 shadow-2xl my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-3">
               <h3
                 id="fte-gate-title"
-                className="text-2xl font-semibold text-neutral-900"
+                className="text-xl sm:text-2xl font-semibold text-neutral-900"
               >
                 Download your FTE report
               </h3>

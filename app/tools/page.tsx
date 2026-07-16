@@ -33,6 +33,7 @@ export const metadata: Metadata = {
 };
 
 const tools = [
+  // Row 1
   {
     id: "roi-calculator",
     title: "ROI Calculator",
@@ -54,6 +55,27 @@ const tools = [
     category: "Workforce Planning",
   },
   {
+    id: "survey-preferences",
+    title: "Shift Preferences Survey & Balancer",
+    description:
+      "Create custom holiday shift preference surveys for your team. Collect availability and automatically balance shift assignments fairly.",
+    href: "/tools/survey-preferences",
+    image: "/images/shift-preference-survey.jpg",
+    format: "Survey Tool",
+    category: "Shift Management",
+  },
+  // Row 2
+  {
+    id: "excel-template",
+    title: "Free Excel Roster Template",
+    description:
+      "Download a ready-to-use Excel template to get started with staff rostering, whether you're planning shifts by hand or moving off paper.",
+    href: "/templates/free-staff-roster-template-excel",
+    image: "/images/og-images/Excel.png",
+    format: "Template",
+    category: "Templates",
+  },
+  {
     id: "personality-test",
     title: "Rostering Personality Type",
     description:
@@ -64,14 +86,14 @@ const tools = [
     category: "Team Building",
   },
   {
-    id: "survey-preferences",
-    title: "Shift Preferences Survey & Balancer",
+    id: "schedge",
+    title: "Schedge",
     description:
-      "Create custom holiday shift preference surveys for your team. Collect availability and automatically balance shift assignments fairly.",
-    href: "/tools/survey-preferences",
-    image: "/images/shift-preference-survey.jpg",
-    format: "Survey Tool",
-    category: "Shift Management",
+      "We love rostering so much that we built a mini game about it. See how well you can plan a schedule in under a minute.",
+    href: "/schedge",
+    image: "/images/og-images/Schedge.png",
+    format: "Mini Game",
+    category: "Just for Fun",
   },
 ];
 

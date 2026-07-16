@@ -19,6 +19,7 @@ interface SubMenuItem {
   title: string;
   link: string;
   description?: string;
+  group?: "Mini Tools" | "Templates" | "Games";
 }
 
 interface NavItem {
@@ -104,33 +105,53 @@ export default function Header({ navItems = [] }: HeaderProps) {
     {
       title: "Resources",
       subItems: [
+        // Content & Learning
         { title: "Whitepapers", link: "/whitepapers/rostering-as-a-strategic-workforce-lever" },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Webinars", link: "/webinars" },
         { title: "Blogs", link: "/blog" },
-        { title: "Shift Management Tools", link: "/tools" },
         { title: "Newsroom", link: "/newsroom" },
-        { title: "Schedge", link: "/schedge" },
-        { title: "ROI Calculator", link: "/tools/roi-calculator" },
+
+        // Mini Tools
+        {
+          title: "ROI Calculator",
+          link: "/tools/roi-calculator",
+          description: "Estimate your savings with RosterLab",
+          group: "Mini Tools",
+        },
         {
           title: "FTE Calculator",
           link: "/tools/fte-calculator",
-          description:
-            "Convert weekly demand into required full-time equivalents",
-        },
-        {
-          title: "Personality Test",
-          link: "/tools/staff-scheduling-personality-quiz",
-        },
-        {
-          title: "Free Excel Template",
-          link: "/templates/free-staff-roster-template-excel",
+          description: "Convert weekly demand into required FTE",
+          group: "Mini Tools",
         },
         {
           title: "Preferences Optimiser",
           link: "/tools/survey-preferences",
-          description:
-            "Fairly distribute holiday shifts based on staff preferences",
+          description: "Fairly distribute shifts by staff preference",
+          group: "Mini Tools",
+        },
+
+        // Games
+        {
+          title: "Schedge",
+          link: "/schedge",
+          description: "Our rostering mini game",
+          group: "Games",
+        },
+        {
+          title: "Personality Test",
+          link: "/tools/staff-scheduling-personality-quiz",
+          description: "Discover your rostering style",
+          group: "Games",
+        },
+
+        // Templates
+        {
+          title: "Free Excel Template",
+          link: "/templates/free-staff-roster-template-excel",
+          description: "Ready-to-use roster spreadsheet",
+          group: "Templates",
         },
       ],
     },
@@ -232,11 +253,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
                       aria-orientation="vertical"
                       className={cn(
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
-                        item.title === "Solutions" ||
-                          item.title === "Industries" ||
-                          item.title === "Resources"
-                          ? "left-0 w-[600px]"
-                          : "left-0 w-64",
+                        item.title === "Resources"
+                          ? "left-0 w-[720px]"
+                          : item.title === "Solutions" ||
+                              item.title === "Industries"
+                            ? "left-0 w-[600px]"
+                            : "left-0 w-64",
                       )}
                       onMouseEnter={() => setActiveDropdown(item.title)}
                       onMouseLeave={() => setActiveDropdown(null)}
@@ -637,7 +659,7 @@ export default function Header({ navItems = [] }: HeaderProps) {
                           <div className="grid grid-cols-2 gap-6">
                             {/* Content & Learning Column */}
                             <div>
-                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3">
                                 Content & Learning
                               </h3>
                               <div className="space-y-1">
@@ -677,83 +699,116 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               </div>
                             </div>
 
-                            {/* Tools Column */}
+                            {/* Tools Column — grouped by category */}
                             <div>
-                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-3">
                                 Tools
                               </h3>
-                              <div className="space-y-1">
-                                {item.subItems
-                                  ?.filter(
-                                    (sub) =>
-                                      sub.title !== "Whitepapers" &&
-                                      sub.title !== "Case Studies" &&
-                                      sub.title !== "Webinars" &&
-                                      sub.title !== "Blogs" &&
-                                      sub.title !== "Newsroom",
-                                  )
-                                  .map((subItem) => (
-                                    <Link
-                                      key={subItem.link}
-                                      href={subItem.link}
-                                      className="group block p-3 rounded-lg hover:bg-teal-50 transition-colors"
-                                    >
-                                      <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] mb-1">
-                                        {subItem.title}
+                              <div className="space-y-4">
+                                {(() => {
+                                  const renderGroup = (
+                                    groupName: "Mini Tools" | "Games" | "Templates",
+                                  ) => {
+                                    const groupItems = item.subItems?.filter(
+                                      (sub) => sub.group === groupName,
+                                    );
+                                    if (!groupItems || !groupItems.length)
+                                      return null;
+                                    return (
+                                      <div key={groupName}>
+                                        <div className="mx-3 mb-1.5 pb-1 border-b border-[#2c6b60]/25 text-[11px] font-bold text-[#2c6b60] uppercase tracking-wider">
+                                          {groupName}
+                                        </div>
+                                        <div className="space-y-0.5">
+                                          {groupItems.map((subItem) => (
+                                            <Link
+                                              key={subItem.link}
+                                              href={subItem.link}
+                                              className="group block px-3 py-2 rounded-lg hover:bg-teal-50 transition-colors"
+                                            >
+                                              <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm leading-tight">
+                                                {subItem.title}
+                                              </div>
+                                              {subItem.description && (
+                                                <div className="text-xs text-gray-600 mt-0.5">
+                                                  {subItem.description}
+                                                </div>
+                                              )}
+                                            </Link>
+                                          ))}
+                                        </div>
                                       </div>
-                                      <div className="text-sm text-gray-600">
-                                        {subItem.description ||
-                                          (subItem.title === "Shift Management Tools"
-                                            ? "Free tools to optimize your workforce"
-                                            : subItem.title.includes("Calculator")
-                                              ? "Calculate your savings"
-                                              : subItem.title === "Schedge"
-                                                ? "We love rostering so much that we made a mini game - Try it out!"
-                                                : subItem.title.includes(
-                                                      "Personality Test",
-                                                    )
-                                                  ? "Discover your scheduling style"
-                                                  : subItem.title.includes(
-                                                        "Excel Template",
-                                                      )
-                                                    ? "Download our roster template"
-                                                    : "")}
+                                    );
+                                  };
+                                  return (
+                                    <>
+                                      {renderGroup("Mini Tools")}
+                                      {renderGroup("Games")}
+
+                                      {/* See all tools — covers Mini Tools + Games */}
+                                      <div className="!-mt-2 pb-3">
+                                        <Link
+                                          href="/tools"
+                                          className="inline-flex items-center gap-1 text-xs font-semibold text-[#4a9288] hover:text-[#3a7268] px-3"
+                                        >
+                                          See all tools
+                                          <svg
+                                            className="w-3 h-3"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M9 5l7 7-7 7"
+                                            />
+                                          </svg>
+                                        </Link>
                                       </div>
-                                    </Link>
-                                  ))}
+
+                                      {renderGroup("Templates")}
+
+                                      {/* Explore all templates */}
+                                      <div className="!-mt-2">
+                                        <Link
+                                          href="/templates"
+                                          onClick={() =>
+                                            trackSmartButtonClick(
+                                              "Explore all templates",
+                                              "/templates",
+                                              "Header - Resources Dropdown",
+                                            )
+                                          }
+                                          className="inline-flex items-center gap-1 text-xs font-semibold text-[#4a9288] hover:text-[#3a7268] px-3"
+                                        >
+                                          Explore all templates
+                                          <svg
+                                            className="w-3 h-3"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
+                                              strokeWidth={2}
+                                              d="M9 5l7 7-7 7"
+                                            />
+                                          </svg>
+                                        </Link>
+                                      </div>
+                                    </>
+                                  );
+                                })()}
                               </div>
                             </div>
                           </div>
 
                           {/* Call to Action */}
                           <div className="mt-6 pt-6 border-t border-gray-200">
-                            <div className="flex items-center justify-between">
-                              <Link
-                                href="/templates"
-                                className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
-                                onClick={() =>
-                                  trackSmartButtonClick(
-                                    "Explore workforce templates",
-                                    "/templates",
-                                    "Header - Resources Dropdown",
-                                  )
-                                }
-                              >
-                                Explore workforce templates
-                                <svg
-                                  className="ml-1 h-4 w-4"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 5l7 7-7 7"
-                                  />
-                                </svg>
-                              </Link>
+                            <div className="flex items-center justify-end">
                               <Link
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
@@ -970,6 +1025,79 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               ))}
                             </div>
                           </div>
+                        </>
+                      ) : item.title === "Resources" ? (
+                        <>
+                          {/* Ungrouped items (Content & Learning) */}
+                          {item.subItems
+                            .filter((sub) => !sub.group)
+                            .map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
+
+                          {(() => {
+                            const renderMobileGroup = (
+                              groupName: "Mini Tools" | "Games" | "Templates",
+                            ) => {
+                              const groupItems = item.subItems?.filter(
+                                (sub) => sub.group === groupName,
+                              );
+                              if (!groupItems || !groupItems.length) return null;
+                              return (
+                                <div
+                                  key={groupName}
+                                  className="mt-3 pt-3 border-t border-gray-100"
+                                >
+                                  <div className="mx-3 mb-1 pb-1 border-b border-[#2c6b60]/25 text-[11px] font-bold text-[#2c6b60] uppercase tracking-wider">
+                                    {groupName}
+                                  </div>
+                                  {groupItems.map((subItem) => (
+                                    <Link
+                                      key={subItem.link}
+                                      href={subItem.link}
+                                      className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                      onClick={() => setIsMenuOpen(false)}
+                                    >
+                                      {subItem.title}
+                                    </Link>
+                                  ))}
+                                </div>
+                              );
+                            };
+
+                            return (
+                              <>
+                                {renderMobileGroup("Mini Tools")}
+                                {renderMobileGroup("Games")}
+                                <div className="mt-1 px-3">
+                                  <Link
+                                    href="/tools"
+                                    className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    See all tools →
+                                  </Link>
+                                </div>
+                                {renderMobileGroup("Templates")}
+                                <div className="mt-1 px-3">
+                                  <Link
+                                    href="/templates"
+                                    className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    Explore all templates →
+                                  </Link>
+                                </div>
+                              </>
+                            );
+                          })()}
                         </>
                       ) : (
                         item.subItems.map((subItem) => (
