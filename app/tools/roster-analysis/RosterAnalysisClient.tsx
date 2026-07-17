@@ -6,11 +6,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { z } from "zod";
-import {
-  HiCheck,
-  HiOutlineDocumentText,
-  HiX,
-} from "react-icons/hi";
+import { HiCheck, HiOutlineDocumentText, HiX } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
@@ -24,6 +20,7 @@ const API_URL =
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
 const MAX_CONTEXT_LENGTH = 500;
+const MAX_ORG_NAME_LENGTH = 80;
 const ALLOWED_EXTENSIONS = [".xlsx", ".csv"];
 
 const emailSchema = z.string().email("Please enter a valid email address");
@@ -35,7 +32,6 @@ type PageState =
   | "complete"
   | "error"
   | "rate_limited";
-
 
 function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -79,6 +75,7 @@ export default function RosterAnalysisClient({
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [organisationName, setOrganisationName] = useState("");
   const [context, setContext] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const [fileError, setFileError] = useState("");
@@ -172,7 +169,13 @@ export default function RosterAnalysisClient({
   };
 
   const handleStreamEvent = useCallback(
-    (event: { type: string; content?: string; filename?: string; mimeType?: string; statusCode?: number }) => {
+    (event: {
+      type: string;
+      content?: string;
+      filename?: string;
+      mimeType?: string;
+      statusCode?: number;
+    }) => {
       switch (event.type) {
         case "message.start":
           break;
@@ -248,6 +251,31 @@ export default function RosterAnalysisClient({
       has_context: context.length > 0,
     });
 
+    // non-blocking: HubSpot sync failure must not affect analysis.
+    // Failures are reported to analytics, never to the browser console.
+    fetch("/api/roster-analysis-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        organisationName: organisationName || undefined,
+      }),
+    })
+      .then(async (res) => {
+        const data = await res.json().catch(() => null);
+        if (!res.ok || data?.hubspot === "error") {
+          analytics.track("roster_analysis_lead_sync_failed", {
+            reason: data?.hubspot ?? `http_${res.status}`,
+          });
+        }
+      })
+      .catch((err) => {
+        analytics.track("roster_analysis_lead_sync_failed", {
+          reason: "network_error",
+          error_message: err instanceof Error ? err.message : "Unknown error",
+        });
+      });
+
     startAnalysis();
   };
 
@@ -280,6 +308,7 @@ export default function RosterAnalysisClient({
           file: base64,
           filename: file.name,
           context: context || undefined,
+          organisationName: organisationName || undefined,
         }),
       });
 
@@ -415,7 +444,9 @@ export default function RosterAnalysisClient({
                     <div className="flex items-center justify-center gap-3">
                       <HiOutlineDocumentText className="w-8 h-8 text-green-600 flex-shrink-0" />
                       <div className="text-left">
-                        <p className="font-medium text-gray-900 text-base">{file.name}</p>
+                        <p className="font-medium text-gray-900 text-base">
+                          {file.name}
+                        </p>
                         <p className="text-base text-gray-500">
                           {formatFileSize(file.size)}
                         </p>
@@ -457,7 +488,7 @@ export default function RosterAnalysisClient({
                         )}
                       </p>
                       <p className="text-sm text-gray-500 mt-1">
-                        Please use a CSV. Max file size 5mb
+                        Upload a .xlsx or .csv file. Max size 2MB.
                       </p>
                     </>
                   )}
@@ -595,6 +626,35 @@ export default function RosterAnalysisClient({
 
                   <div>
                     <label
+                      htmlFor="organisationName"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Organisation / team name{" "}
+                      <span className="text-gray-400 font-normal">
+                        (optional)
+                      </span>
+                    </label>
+                    <input
+                      id="organisationName"
+                      type="text"
+                      value={organisationName}
+                      onChange={(e) =>
+                        setOrganisationName(
+                          e.target.value.slice(0, MAX_ORG_NAME_LENGTH),
+                        )
+                      }
+                      placeholder="e.g. Auckland City Hospital — ICU"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      maxLength={MAX_ORG_NAME_LENGTH}
+                    />
+                    <p className="text-xs text-gray-500 mt-2">
+                      We&apos;ll add this to the &quot;Prepared for&quot; line
+                      on your report.
+                    </p>
+                  </div>
+
+                  <div>
+                    <label
                       htmlFor="context"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
@@ -607,9 +667,7 @@ export default function RosterAnalysisClient({
                       id="context"
                       value={context}
                       onChange={(e) =>
-                        setContext(
-                          e.target.value.slice(0, MAX_CONTEXT_LENGTH),
-                        )
+                        setContext(e.target.value.slice(0, MAX_CONTEXT_LENGTH))
                       }
                       placeholder="e.g. ICU nursing roster covering 4 weeks, 25 staff, mix of full-time and part-time, EBA applies…"
                       rows={5}
@@ -642,7 +700,9 @@ export default function RosterAnalysisClient({
                       analyticsLocation="Roster Analysis Page"
                       analyticsProperties={{
                         has_context: context.length > 0,
-                        file_type: file ? getFileExtension(file.name) : undefined,
+                        file_type: file
+                          ? getFileExtension(file.name)
+                          : undefined,
                       }}
                     >
                       Analyse My Roster
@@ -664,7 +724,7 @@ export default function RosterAnalysisClient({
         pageState === "complete" ||
         pageState === "error" ||
         pageState === "rate_limited") && (
-        <div className="pb-20">
+        <div className="pt-28 pb-20">
           <Container>
             <div className="max-w-2xl mx-auto">
               <div ref={resultRef}>
@@ -729,7 +789,9 @@ export default function RosterAnalysisClient({
                     <h3 className="text-2xl sm:text-[28px] font-bold text-gray-900 mb-4 leading-[1.2]">
                       Something went wrong
                     </h3>
-                    <p className="text-base sm:text-[20px] text-gray-600 mb-6 leading-[1.5]">{errorMessage}</p>
+                    <p className="text-base sm:text-[20px] text-gray-600 mb-6 leading-[1.5]">
+                      {errorMessage}
+                    </p>
                     <Button
                       onClick={handleRetry}
                       className="bg-primary-600 text-white hover:bg-primary-700 min-h-12 px-8 py-3 text-base font-semibold"
@@ -762,7 +824,9 @@ export default function RosterAnalysisClient({
                     <h3 className="text-2xl sm:text-[28px] font-bold text-gray-900 mb-4 leading-[1.2]">
                       Analysis limit reached
                     </h3>
-                    <p className="text-base sm:text-[20px] text-gray-600 mb-4 leading-[1.5]">{errorMessage}</p>
+                    <p className="text-base sm:text-[20px] text-gray-600 mb-4 leading-[1.5]">
+                      {errorMessage}
+                    </p>
                     <p className="text-base sm:text-[20px] text-gray-600 mb-6 leading-[1.5]">
                       Want a more comprehensive review? Our rostering
                       consultants can help.
@@ -787,7 +851,9 @@ export default function RosterAnalysisClient({
                         <HiOutlineDocumentText className="w-5 h-5 text-red-600" />
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{pdfFilename}</p>
+                        <p className="font-medium text-gray-900">
+                          {pdfFilename}
+                        </p>
                         <p className="text-sm text-gray-500">PDF Report</p>
                       </div>
                     </div>
@@ -801,8 +867,18 @@ export default function RosterAnalysisClient({
                         });
                       }}
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                        />
                       </svg>
                       Download
                     </a>
@@ -1006,19 +1082,19 @@ export default function RosterAnalysisClient({
           <LogoMarquee />
 
           {/* Case studies / success stories */}
-          <div className="bg-white border-t border-gray-100 py-16 lg:py-[120px]">
-            <Container>
-              <div className="max-w-3xl mx-auto text-center mb-12">
-                <h2 className="text-3xl sm:text-[40px] font-bold text-gray-900 mb-4 leading-[1.15]">
-                  Case Studies
-                </h2>
-                <p className="text-base sm:text-[20px] text-gray-600 leading-[1.5]">
-                  See how global organizations are transforming their workforce
-                  management with RosterLab.
-                </p>
-              </div>
+          {caseStudies.length > 0 && (
+            <div className="bg-white border-t border-gray-100 py-16 lg:py-[120px]">
+              <Container>
+                <div className="max-w-3xl mx-auto text-center mb-12">
+                  <h2 className="text-3xl sm:text-[40px] font-bold text-gray-900 mb-4 leading-[1.15]">
+                    Case Studies
+                  </h2>
+                  <p className="text-base sm:text-[20px] text-gray-600 leading-[1.5]">
+                    See how global organizations are transforming their
+                    workforce management with RosterLab.
+                  </p>
+                </div>
 
-              {caseStudies.length > 0 && (
                 <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mb-12">
                   {caseStudies.map((cs) => (
                     <Link
@@ -1056,11 +1132,9 @@ export default function RosterAnalysisClient({
                     </Link>
                   ))}
                 </div>
-              )}
-
-            </Container>
-          </div>
-
+              </Container>
+            </div>
+          )}
         </div>
       )}
     </div>
