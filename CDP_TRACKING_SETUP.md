@@ -359,7 +359,7 @@ Required in `.env.local`:
 NEXT_PUBLIC_CDP_ENDPOINT=https://rosterlab-inngest.netlify.app/api/batch
 
 # HubSpot (for CRM sync)
-HUBSPOT_ACCESS_TOKEN=your_token_here
+HUBSPOT_PRIVATE_APP_TOKEN=your_token_here
 ```
 
 ## Key Implementation Notes

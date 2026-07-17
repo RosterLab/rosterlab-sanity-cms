@@ -23,11 +23,11 @@ export async function upsertHubSpotContact(
   input: UpsertContactInput,
 ): Promise<UpsertContactResult> {
   const { email, conversionPoint, properties = {}, noteBody } = input;
-  const token = process.env.HUBSPOT_ACCESS_TOKEN;
+  const token = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
 
   if (!token) {
     console.error("❌ CRITICAL: HubSpot access token not configured!");
-    console.error("   Expected environment variable: HUBSPOT_ACCESS_TOKEN");
+    console.error("   Expected environment variable: HUBSPOT_PRIVATE_APP_TOKEN");
     console.error("   Contact will NOT be synced to HubSpot");
     return { status: "skipped", reason: "no_token" };
   }
