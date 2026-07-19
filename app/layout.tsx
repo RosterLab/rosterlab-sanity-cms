@@ -22,6 +22,7 @@ import StatsigProvider from "@/components/analytics/StatsigProvider";
 import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
 import { getClientBootstrapValues } from "@/lib/statsig/client-bootstrap";
 import CTAModalManager from "@/components/modals/CTAModalManager";
+import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -55,7 +56,16 @@ export default async function RootLayout({
   const headersList = await headers();
   const pathname =
     headersList.get("x-pathname") || headersList.get("x-url") || "";
-  const isUSPage = pathname.startsWith("/us/");
+  const isUSPage = pathname === "/us" || pathname.startsWith("/us/");
+  // Internal / admin surfaces should NOT show the marketing widget.
+  // Routes excluded from middleware (studio, static, etc.) arrive with an
+  // empty pathname — treat those as internal too.
+  const isInternalRoute =
+    !pathname ||
+    pathname.startsWith("/studio") ||
+    pathname.startsWith("/draft") ||
+    pathname.startsWith("/azure-ad") ||
+    pathname.startsWith("/api");
 
   // Statsig bootstrap: read visitor ID and pre-compute experiment values
   const cookieStore = await cookies();
@@ -111,6 +121,15 @@ export default async function RootLayout({
             {isEnabled && <VisualEditing />}
             <LazyStyles />
             <CTAModalManager />
+            {!isInternalRoute && (
+              <AskAiShareWidget
+                learnFromUrl={
+                  isUSPage
+                    ? "https://rosterlab.com/us"
+                    : "https://rosterlab.com"
+                }
+              />
+            )}
           </ClientProviders>
         </StatsigProvider>
       </body>

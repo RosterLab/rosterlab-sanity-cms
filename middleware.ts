@@ -83,15 +83,17 @@ export function middleware(request: NextRequest) {
       response.headers.set("x-detected-latitude", String(geoData.latitude));
     if (geoData.longitude)
       response.headers.set("x-detected-longitude", String(geoData.longitude));
+    // Expose the current pathname to server components (the layout uses this
+    // to detect US vs global pages).
+    response.headers.set("x-pathname", pathname);
   };
 
-  if (pathname.startsWith("/us")) {
-    const response = NextResponse.next();
-    setGeoHeaders(response);
-    return response;
-  }
+  // Forward the pathname on the *request* headers so server components that
+  // call headers() can read it (response headers aren't visible there).
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
 
-  const response = NextResponse.next();
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
   setGeoHeaders(response);
   return response;
 }
