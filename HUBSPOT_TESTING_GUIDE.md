@@ -4,14 +4,14 @@
 
 **Problem:** Gated content form submissions (Whitepaper, Case Study, Demo Video) are unlocking content successfully, but contacts are not being created in HubSpot.
 
-**Most Likely Cause:** `HUBSPOT_ACCESS_TOKEN` environment variable is not configured in Netlify production environment.
+**Most Likely Cause:** `HUBSPOT_PRIVATE_APP_TOKEN` environment variable is not configured in Netlify production environment.
 
 **Affected Forms:**
 1. 📄 **Whitepaper Gate** → Conversion Point: "Gated Whitepaper"
 2. 📊 **Case Study Gate** → Conversion Point: "Pop-up Case Study"
 3. 🎥 **Demo Video Gate** → Conversion Point: "Pop-up Demo Video"
 
-All three forms use the **same** `HUBSPOT_ACCESS_TOKEN` environment variable.
+All three forms use the **same** `HUBSPOT_PRIVATE_APP_TOKEN` environment variable.
 
 ---
 
@@ -21,13 +21,13 @@ All three forms use the **same** `HUBSPOT_ACCESS_TOKEN` environment variable.
 
 **Option A: Via Netlify Dashboard**
 1. Go to https://app.netlify.com/sites/[your-site]/configuration/env
-2. Search for `HUBSPOT_ACCESS_TOKEN`
+2. Search for `HUBSPOT_PRIVATE_APP_TOKEN`
 3. If not found → **This is the problem!**
 
 **Option B: Via Netlify CLI**
 ```bash
 netlify env:list
-# Should show: HUBSPOT_ACCESS_TOKEN
+# Should show: HUBSPOT_PRIVATE_APP_TOKEN
 ```
 
 **Option C: Via Test Endpoints**
@@ -77,14 +77,14 @@ This page tests all three gates and shows a diagnostic table.
 **Via Dashboard:**
 1. Go to https://app.netlify.com/sites/[your-site]/configuration/env
 2. Click "Add a variable"
-3. Key: `HUBSPOT_ACCESS_TOKEN`
+3. Key: `HUBSPOT_PRIVATE_APP_TOKEN`
 4. Value: (paste your token)
 5. Scopes: Select "All" or specific deploy contexts
 6. Click "Create variable"
 
 **Via CLI:**
 ```bash
-netlify env:set HUBSPOT_ACCESS_TOKEN "pat-ap1-your-token-here"
+netlify env:set HUBSPOT_PRIVATE_APP_TOKEN "pat-ap1-your-token-here"
 ```
 
 ### Step 3: Trigger a Redeploy
@@ -300,7 +300,7 @@ When a contact already exists (email match):
 1. **Check token in .env.local:**
    ```bash
    cat .env.local | grep HUBSPOT
-   # Should show: HUBSPOT_ACCESS_TOKEN=pat-ap1-...
+   # Should show: HUBSPOT_PRIVATE_APP_TOKEN=pat-ap1-...
    ```
 
 2. **Start dev server:**
