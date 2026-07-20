@@ -24,7 +24,7 @@ import { analytics } from "@/components/analytics/tracking";
  *
  * Trigger 1 (High-Intent):
  * - Visited at least 1 high-intent page (excluding home)
- * - Spent at least 30 seconds on high-intent page(s)
+ * - Spent at least 60 seconds on high-intent page(s)
  *
  * Trigger 2 (Returning Visitor):
  * - User has visited the site before (is a returning visitor)
@@ -89,6 +89,10 @@ export default function CTAModalManager() {
 
     // Don't show modals on the mini tools pages (ROI/FTE/other calculators, quizzes, etc.)
     if (pathname.startsWith('/tools') || pathname.startsWith('/us/tools')) return;
+
+    // Don't show modals on pricing or about pages
+    if (pathname.startsWith('/pricing') || pathname.startsWith('/us/pricing')) return;
+    if (pathname.startsWith('/about') || pathname.startsWith('/us/about')) return;
 
     const checkInterval = setInterval(() => {
       if (shouldShowModal()) {
