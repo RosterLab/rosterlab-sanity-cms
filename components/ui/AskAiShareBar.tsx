@@ -45,7 +45,7 @@ export default function AskAiShareBar({
     chatgpt: `https://chatgpt.com/?q=${encodedPrompt}`,
     claude: `https://claude.ai/new?q=${encodedPrompt}`,
     perplexity: `https://www.perplexity.ai/?q=${encodedPrompt}`,
-    gemini: `https://gemini.google.com/app?q=${encodedPrompt}`,
+    gemini: `https://aistudio.google.com/prompts/new_chat?prompt=${encodedPrompt}`,
   }
 
   // RosterLab social accounts (from footer).
@@ -147,8 +147,8 @@ export default function AskAiShareBar({
           target="_blank"
           rel="noopener noreferrer"
           className={iconBtn}
-          aria-label="Ask Gemini about RosterLab"
-          title="Gemini"
+          aria-label="Ask Gemini (AI Studio) about RosterLab"
+          title="Gemini (AI Studio)"
         >
           <svg
             className="w-5 h-5"
