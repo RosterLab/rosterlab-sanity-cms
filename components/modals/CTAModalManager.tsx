@@ -94,6 +94,9 @@ export default function CTAModalManager() {
     if (pathname.startsWith('/pricing') || pathname.startsWith('/us/pricing')) return;
     if (pathname.startsWith('/about') || pathname.startsWith('/us/about')) return;
 
+    // Don't show auto-popup on internal modal preview page
+    if (pathname.startsWith('/test-modals')) return;
+
     const checkInterval = setInterval(() => {
       if (shouldShowModal()) {
         const assignedVariant = assignVariant();

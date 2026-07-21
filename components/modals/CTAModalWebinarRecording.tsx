@@ -14,7 +14,6 @@ const WEBINAR_URL = "https://rosterlab.com/webinars/building-a-resilient-workfor
 
 const trustedLogos = [
   { src: "/images/logos/new-logos/aus_gov.svg", alt: "Australian Government" },
-  { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
   { src: "/images/logos/new-logos/hospice_west_auckland.svg", alt: "Hospice West Auckland" },
   { src: "/images/logos/new-logos/legalaid.svg", alt: "Legal Aid" },
   { src: "/images/logos/new-logos/monash.svg", alt: "Monash Health" },
@@ -27,6 +26,7 @@ const trustedLogos = [
   { src: "/images/logos/new-logos/ver_services_hawkes_bay.svg", alt: "Veterinary Services Hawke's Bay" },
   { src: "/images/logos/new-logos/legal_aid_wa.svg", alt: "Legal Aid WA" },
   { src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg", alt: "Women's and Children's Hospital Adelaide" },
+  { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
 ];
 
 /**
@@ -314,7 +314,7 @@ export default function CTAModalWebinarRecording({
                 Trusted by
               </div>
               <div className="relative overflow-hidden">
-                <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-scroll hover:[animation-play-state:paused]">
+                <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-scroll [animation-duration:15s] hover:[animation-play-state:paused]">
                   {[...trustedLogos, ...trustedLogos].map((logo, i) => (
                     <img
                       key={`${logo.src}-${i}`}

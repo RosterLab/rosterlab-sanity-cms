@@ -19,7 +19,6 @@ type DemoVideoFormData = z.infer<typeof demoVideoFormSchema>;
 
 const trustedLogos = [
   { src: "/images/logos/new-logos/aus_gov.svg", alt: "Australian Government" },
-  { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
   { src: "/images/logos/new-logos/hospice_west_auckland.svg", alt: "Hospice West Auckland" },
   { src: "/images/logos/new-logos/legalaid.svg", alt: "Legal Aid" },
   { src: "/images/logos/new-logos/monash.svg", alt: "Monash Health" },
@@ -32,6 +31,7 @@ const trustedLogos = [
   { src: "/images/logos/new-logos/ver_services_hawkes_bay.svg", alt: "Veterinary Services Hawke's Bay" },
   { src: "/images/logos/new-logos/legal_aid_wa.svg", alt: "Legal Aid WA" },
   { src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg", alt: "Women's and Children's Hospital Adelaide" },
+  { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
 ];
 
 interface CTAModalDemoVideoProps {
@@ -638,7 +638,7 @@ export default function CTAModalDemoVideo({
         }
 
         .logo-scroll {
-          animation: logoScroll 20s linear infinite;
+          animation: logoScroll 15s linear infinite;
         }
 
         .logo-scroll:hover {

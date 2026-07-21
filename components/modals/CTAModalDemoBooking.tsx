@@ -82,7 +82,6 @@ export default function CTAModalDemoBooking({
 
   const logos = [
     { src: "/images/logos/new-logos/aus_gov.svg", alt: "Australian Government" },
-    { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
     { src: "/images/logos/new-logos/hospice_west_auckland.svg", alt: "Hospice West Auckland" },
     { src: "/images/logos/new-logos/legalaid.svg", alt: "Legal Aid" },
     { src: "/images/logos/new-logos/monash.svg", alt: "Monash Health" },
@@ -95,6 +94,7 @@ export default function CTAModalDemoBooking({
     { src: "/images/logos/new-logos/ver_services_hawkes_bay.svg", alt: "Veterinary Services Hawke's Bay" },
     { src: "/images/logos/new-logos/legal_aid_wa.svg", alt: "Legal Aid WA" },
     { src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg", alt: "Women's and Children's Hospital Adelaide" },
+    { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
   ];
 
   return (
@@ -279,7 +279,7 @@ export default function CTAModalDemoBooking({
         }
 
         .animate-scroll-logos {
-          animation: scroll-logos 15s linear infinite;
+          animation: scroll-logos 90s linear infinite;
         }
 
         .animate-scroll-logos:hover {
