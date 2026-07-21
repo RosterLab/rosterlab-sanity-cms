@@ -81,12 +81,20 @@ export default function CTAModalDemoBooking({
   if (!isOpen) return null;
 
   const logos = [
-    { src: "/images/logos/rpa.png", alt: "Royal Prince Alfred Hospital" },
-    { src: "/images/logos/whanganui.png", alt: "Te Whatu Ora Whanganui" },
-    { src: "/images/logos/western.png", alt: "Western Australia Health" },
-    { src: "/images/logos/nsw-south-eastern.png", alt: "NSW South Eastern Sydney" },
-    { src: "/images/logos/hawkesbay.png", alt: "Hawke's Bay District Health Board" },
-    { src: "/images/logos/department-of-health-western-australia.png", alt: "Department of Health Western Australia" },
+    { src: "/images/logos/new-logos/aus_gov.svg", alt: "Australian Government" },
+    { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
+    { src: "/images/logos/new-logos/hospice_west_auckland.svg", alt: "Hospice West Auckland" },
+    { src: "/images/logos/new-logos/legalaid.svg", alt: "Legal Aid" },
+    { src: "/images/logos/new-logos/monash.svg", alt: "Monash Health" },
+    { src: "/images/logos/new-logos/nsw.svg", alt: "NSW Health" },
+    { src: "/images/logos/new-logos/peticare.svg", alt: "Peticare" },
+    { src: "/images/logos/new-logos/royal_prince.svg", alt: "Royal Prince Alfred" },
+    { src: "/images/logos/new-logos/singhealth.svg", alt: "SingHealth" },
+    { src: "/images/logos/new-logos/st_george.svg", alt: "St George" },
+    { src: "/images/logos/new-logos/syd_kids.svg", alt: "Sydney Children's Hospital" },
+    { src: "/images/logos/new-logos/ver_services_hawkes_bay.svg", alt: "Veterinary Services Hawke's Bay" },
+    { src: "/images/logos/new-logos/legal_aid_wa.svg", alt: "Legal Aid WA" },
+    { src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg", alt: "Women's and Children's Hospital Adelaide" },
   ];
 
   return (

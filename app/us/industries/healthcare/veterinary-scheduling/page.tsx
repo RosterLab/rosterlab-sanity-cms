@@ -544,6 +544,11 @@ export default function VeterinarySchedulingPage() {
         </Container>
       </section>
 
+      {/* Trusted By */}
+      <section className="py-10 bg-white">
+        <USTrustedBy />
+      </section>
+
       {/* Self-Scheduling Workflow Section */}
       <section className="py-20 bg-gray-50">
         <Container>
@@ -886,11 +891,6 @@ export default function VeterinarySchedulingPage() {
             <FAQAccordion items={faqItems} />
           </div>
         </Container>
-      </section>
-
-      {/* Trusted By */}
-      <section className="py-10 bg-white">
-        <USTrustedBy />
       </section>
 
       {/* CTA Section */}

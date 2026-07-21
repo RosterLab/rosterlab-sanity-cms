@@ -544,6 +544,11 @@ export default function VeterinaryRosteringPage() {
         </Container>
       </section>
 
+      {/* Trusted By */}
+      <section className="py-10 bg-white">
+        <TrustedBy />
+      </section>
+
       {/* Self-Rostering Workflow Section */}
       <section className="py-20 bg-gray-50">
         <Container>
@@ -886,11 +891,6 @@ export default function VeterinaryRosteringPage() {
             <FAQAccordion items={faqItems} />
           </div>
         </Container>
-      </section>
-
-      {/* Trusted By */}
-      <section className="py-10 bg-white">
-        <TrustedBy />
       </section>
 
       {/* CTA Section */}

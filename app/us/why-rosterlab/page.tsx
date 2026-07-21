@@ -7,6 +7,7 @@ import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 import { getClient, urlFor } from "@/sanity/lib/client";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
@@ -161,55 +162,7 @@ export default async function WhyRosterLabPage() {
             </p>
 
             {/* Trusted Logos */}
-            <div>
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
-                <div className="flex items-center justify-center">
-                  <Image
-                    src="/images/logos/department-of-health-western-australia.png"
-                    alt="Department of Health Western Australia"
-                    width={202}
-                    height={86}
-                    className="max-w-full h-auto grayscale"
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <Image
-                    src="/images/logos/royal-flying-doctor.png"
-                    alt="Royal Flying Doctor Service"
-                    width={88}
-                    height={38}
-                    className="max-w-full h-auto grayscale"
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <Image
-                    src="/images/logos/rpa.png"
-                    alt="RPA"
-                    width={160}
-                    height={80}
-                    className="max-w-full h-auto grayscale"
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <Image
-                    src="/images/logos/hawkesbay.png"
-                    alt="Hawkes Bay"
-                    width={160}
-                    height={50}
-                    className="max-w-full h-auto grayscale"
-                  />
-                </div>
-                <div className="flex items-center justify-center">
-                  <Image
-                    src="/images/logos/nsw-south-eastern.png"
-                    alt="NSW South Eastern"
-                    width={152}
-                    height={40}
-                    className="max-w-full h-auto grayscale"
-                  />
-                </div>
-              </div>
-            </div>
+            <USTrustedBy bare heading={null} />
           </div>
         </Container>
       </div>
