@@ -245,36 +245,13 @@ export default function RosterAnalysisClient({
     analytics.identify(email, {
       email,
       source: "roster_analysis_tool",
+      conversion_point: "Roster Analysis Report",
+      ...(organisationName ? { company: organisationName } : {}),
     });
     analytics.track("roster_analysis_details_submitted", {
       email_domain: email.split("@")[1],
       has_context: context.length > 0,
     });
-
-    // non-blocking: HubSpot sync failure must not affect analysis.
-    // Failures are reported to analytics, never to the browser console.
-    fetch("/api/roster-analysis-lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        organisationName: organisationName || undefined,
-      }),
-    })
-      .then(async (res) => {
-        const data = await res.json().catch(() => null);
-        if (!res.ok || data?.hubspot === "error") {
-          analytics.track("roster_analysis_lead_sync_failed", {
-            reason: data?.hubspot ?? `http_${res.status}`,
-          });
-        }
-      })
-      .catch((err) => {
-        analytics.track("roster_analysis_lead_sync_failed", {
-          reason: "network_error",
-          error_message: err instanceof Error ? err.message : "Unknown error",
-        });
-      });
 
     startAnalysis();
   };
