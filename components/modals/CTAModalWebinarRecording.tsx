@@ -12,6 +12,23 @@ interface CTAModalWebinarRecordingProps {
 // Webinar URL with UTM tracking
 const WEBINAR_URL = "https://rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_c";
 
+const trustedLogos = [
+  { src: "/images/logos/new-logos/aus_gov.svg", alt: "Australian Government" },
+  { src: "/images/logos/new-logos/hospice_west_auckland.svg", alt: "Hospice West Auckland" },
+  { src: "/images/logos/new-logos/legalaid.svg", alt: "Legal Aid" },
+  { src: "/images/logos/new-logos/monash.svg", alt: "Monash Health" },
+  { src: "/images/logos/new-logos/nsw.svg", alt: "NSW Health" },
+  { src: "/images/logos/new-logos/peticare.svg", alt: "Peticare" },
+  { src: "/images/logos/new-logos/royal_prince.svg", alt: "Royal Prince Alfred" },
+  { src: "/images/logos/new-logos/singhealth.svg", alt: "SingHealth" },
+  { src: "/images/logos/new-logos/st_george.svg", alt: "St George" },
+  { src: "/images/logos/new-logos/syd_kids.svg", alt: "Sydney Children's Hospital" },
+  { src: "/images/logos/new-logos/ver_services_hawkes_bay.svg", alt: "Veterinary Services Hawke's Bay" },
+  { src: "/images/logos/new-logos/legal_aid_wa.svg", alt: "Legal Aid WA" },
+  { src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg", alt: "Women's and Children's Hospital Adelaide" },
+  { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
+];
+
 /**
  * Webinar Recording Modal: On-demand webinar case study
  * Target: Users interested in case studies and social proof
@@ -297,59 +314,16 @@ export default function CTAModalWebinarRecording({
                 Trusted by
               </div>
               <div className="relative overflow-hidden">
-                <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-scroll hover:[animation-play-state:paused]">
-                  {/* First set of logos */}
-                  <img
-                    src="/images/logos/whanganui.png"
-                    alt="Whanganui Hospital"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/department-of-health-western-australia.png"
-                    alt="Department of Health Western Australia"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/rpa.png"
-                    alt="RPA Hospital"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/hawkesbay.png"
-                    alt="Hawke's Bay Hospital"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/nsw-south-eastern.png"
-                    alt="NSW State Emergency Service"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  {/* Duplicate set for seamless loop */}
-                  <img
-                    src="/images/logos/whanganui.png"
-                    alt="Whanganui Hospital"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/department-of-health-western-australia.png"
-                    alt="Department of Health Western Australia"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/rpa.png"
-                    alt="RPA Hospital"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/hawkesbay.png"
-                    alt="Hawke's Bay Hospital"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
-                  <img
-                    src="/images/logos/nsw-south-eastern.png"
-                    alt="NSW State Emergency Service"
-                    className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                  />
+                <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-scroll [animation-duration:15s] hover:[animation-play-state:paused]">
+                  {[...trustedLogos, ...trustedLogos].map((logo, i) => (
+                    <img
+                      key={`${logo.src}-${i}`}
+                      src={logo.src}
+                      alt={logo.alt}
+                      className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
+                      aria-hidden={i >= trustedLogos.length ? "true" : undefined}
+                    />
+                  ))}
                 </div>
               </div>
             </div>

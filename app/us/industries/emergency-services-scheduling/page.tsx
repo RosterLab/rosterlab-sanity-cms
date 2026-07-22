@@ -5,6 +5,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import USTrustedBy from "@/app/us/components/TrustedBy";
 
 export const metadata = withHreflang(
   {
@@ -130,74 +131,7 @@ export default function PublicServicesPage() {
       </section>
 
       {/* Trusted By */}
-      <section className="pt-1.5 lg:pt-8 pb-12 bg-white">
-        <Container>
-          <div className="text-center mb-12">
-            <h2
-              className="font-semibold text-neutral-700 mb-8"
-              style={{ fontSize: "23px" }}
-            >
-              Trusted by global teams with complex scheduling
-            </h2>
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-10">
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/whanganui.png"
-                  alt="Whanganui"
-                  width={120}
-                  height={60}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/department-of-health-western-australia.png"
-                  alt="Department of Health Western Australia"
-                  width={202}
-                  height={86}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/rpa.png"
-                  alt="RPA"
-                  width={160}
-                  height={80}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/hawkesbay.png"
-                  alt="Hawkes Bay"
-                  width={160}
-                  height={50}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/nsw-south-eastern.png"
-                  alt="NSW South Eastern"
-                  width={152}
-                  height={40}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/images/logos/royal-flying-doctor.png"
-                  alt="Royal Flying Doctor Service"
-                  width={88}
-                  height={38}
-                  className="max-w-full h-auto grayscale"
-                />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <USTrustedBy heading="Trusted by global teams with complex scheduling" />
 
       {/* Benefits Section */}
       <section className="py-20 bg-gray-50">

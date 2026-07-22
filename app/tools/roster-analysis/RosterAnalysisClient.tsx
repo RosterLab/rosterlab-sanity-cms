@@ -10,7 +10,7 @@ import { HiCheck, HiOutlineDocumentText, HiX } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
-import LogoMarquee from "./LogoMarquee";
+import LogoMarquee from "@/components/sections/LogoMarquee";
 import { analytics } from "@/components/analytics/tracking";
 import { cn } from "@/lib/utils";
 
