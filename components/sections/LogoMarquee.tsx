@@ -50,7 +50,7 @@ export default function LogoMarquee() {
             "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
         }}
       >
-        <div className="flex w-max items-center gap-12 md:gap-16 animate-scroll [animation-duration:60s]">
+        <div className="flex w-max items-center gap-12 md:gap-16 animate-scroll [animation-duration:120s]">
           {loop.map((logo, i) => (
             <div
               key={`${logo.src}-${i}`}
