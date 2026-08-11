@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 132" width="520" height="264">
+<!-- rl-keyframes-injected -->
+<style>
+    @keyframes rlDash {
+      to { stroke-dashoffset: -48; }
+    }
+  
+
+    @keyframes rlPulse {
+      0%, 100% { opacity: 0.4; transform: scale(1);    }
+      50%      { opacity: 1;   transform: scale(1.04); }
+    }
+  
+    svg [style*="animation"] {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-play-state: var(--rl-play, paused) !important;
+    }
+  </style>
+<g fill="none" stroke="#2D3BEA" stroke-opacity=".4" stroke-width="1.6" stroke-dasharray="6 6" style="animation:rlDash 1.8s linear infinite">
+          <path d="M84 30c30 0 26 30 54 32"></path>
+          <path d="M84 66h54"></path>
+          <path d="M84 102c30 0 26-30 54-32"></path>
+        </g>
+        <g>
+          <circle cx="56" cy="30" r="17" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".45" stroke-width="1.4"></circle>
+          <circle cx="56" cy="26" r="5.4" fill="#2D3BEA" fill-opacity=".65"></circle>
+          <path d="M46.5 40a10 10 0 0 1 19 0z" fill="#2D3BEA" fill-opacity=".65"></path>
+          <circle cx="56" cy="66" r="17" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".45" stroke-width="1.4"></circle>
+          <circle cx="56" cy="62" r="5.4" fill="#2D3BEA" fill-opacity=".65"></circle>
+          <path d="M46.5 76a10 10 0 0 1 19 0z" fill="#2D3BEA" fill-opacity=".65"></path>
+          <circle cx="56" cy="102" r="17" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".45" stroke-width="1.4"></circle>
+          <circle cx="56" cy="98" r="5.4" fill="#2D3BEA" fill-opacity=".65"></circle>
+          <path d="M46.5 112a10 10 0 0 1 19 0z" fill="#2D3BEA" fill-opacity=".65"></path>
+        </g>
+        <rect x="148" y="30" width="80" height="76" rx="12" fill="#2D3BEA" fill-opacity=".05"></rect>
+        <rect x="144" y="26" width="80" height="76" rx="12" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".45" stroke-width="1.4"></rect>
+        <rect x="156" y="36" width="34" height="5" rx="2.5" fill="#2D3BEA" fill-opacity=".3"></rect>
+        <g fill="#2D3BEA" fill-opacity=".14">
+          <rect x="156" y="50" width="56" height="12" rx="4"></rect>
+          <rect x="156" y="86" width="56" height="12" rx="4"></rect>
+        </g>
+        <rect x="156" y="68" width="56" height="12" rx="4" fill="#03F9BE" style="animation:rlPulse 2.6s ease-in-out infinite"></rect>
+        <path d="M163 74l4 4 8-9" fill="none" stroke="#0D3B33" stroke-opacity=".55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+      
+</svg>
