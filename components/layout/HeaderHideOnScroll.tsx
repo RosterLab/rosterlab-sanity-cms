@@ -15,9 +15,7 @@ export default function HeaderHideOnScroll({
   threshold?: number;
 } = {}) {
   useEffect(() => {
-    const header = document.querySelector<HTMLElement>(
-      'header[role="banner"]',
-    );
+    const header = document.querySelector<HTMLElement>('header[role="banner"]');
     if (!header) return;
 
     const prevTransition = header.style.transition;
