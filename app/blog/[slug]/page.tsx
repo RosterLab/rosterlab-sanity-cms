@@ -8,7 +8,7 @@ import {
   blogPostsOnlyQuery,
 } from "@/sanity/lib/queries";
 import { validatedToken } from "@/sanity/lib/token";
-import { formatDateShort, shouldShowLastUpdated } from "@/lib/utils";
+import { formatDateShort } from "@/lib/utils";
 import Container from "@/components/ui/Container";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import Button from "@/components/ui/Button";
@@ -155,18 +155,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <time className="text-purple-200">
                     {formatDateShort(post.publishedAt)}
                   </time>
-                  {post._updatedAt &&
-                    shouldShowLastUpdated(
-                      post.publishedAt,
-                      post._updatedAt,
-                    ) && (
-                      <>
-                        <span className="text-purple-200">•</span>
-                        <time className="text-purple-200">
-                          Last Updated: {formatDateShort(post._updatedAt)}
-                        </time>
-                      </>
-                    )}
                   <span className="text-purple-200">•</span>
                   <span className="text-purple-200">{readingTime}</span>
                 </div>

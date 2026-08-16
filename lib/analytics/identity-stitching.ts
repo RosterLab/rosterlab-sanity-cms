@@ -3,10 +3,14 @@
  * Handles cross-domain tracking and identity merging between marketing site and app
  */
 
-import { getFirstTouchData } from "./utm-tracker";
+import { getCurrentTouchData, getFirstTouchData } from "./utm-tracker";
 
 /**
- * Generate URL with UTM data for cross-domain tracking
+ * Generate URL with UTM data for cross-domain tracking.
+ *
+ * Appends a minimal attribution payload: current-touch utm_source/medium/campaign
+ * plus landing_page (the click origin), and first-touch utm_source/medium for
+ * original acquisition channel.
  */
 export function appendUTMsToUrl(
   targetUrl: string,
@@ -14,33 +18,31 @@ export function appendUTMsToUrl(
 ): string {
   try {
     const url = new URL(targetUrl);
-    const firstTouchData = getFirstTouchData();
-
-    if (!firstTouchData || !includeFirstTouch) {
-      return targetUrl;
-    }
-
-    // Append first-touch UTMs to the URL
     const params = new URLSearchParams(url.search);
 
-    // Add UTM parameters
-    if (firstTouchData.utm_source)
-      params.set("utm_source_first", firstTouchData.utm_source);
-    if (firstTouchData.utm_medium)
-      params.set("utm_medium_first", firstTouchData.utm_medium);
-    if (firstTouchData.utm_campaign)
-      params.set("utm_campaign_first", firstTouchData.utm_campaign);
-    if (firstTouchData.utm_content)
-      params.set("utm_content_first", firstTouchData.utm_content);
-    if (firstTouchData.utm_term)
-      params.set("utm_term_first", firstTouchData.utm_term);
+    const currentTouch = getCurrentTouchData();
+    if (currentTouch.utm_source)
+      params.set("utm_source", currentTouch.utm_source);
+    if (currentTouch.utm_medium)
+      params.set("utm_medium", currentTouch.utm_medium);
+    if (currentTouch.utm_campaign)
+      params.set("utm_campaign", currentTouch.utm_campaign);
+    if (currentTouch.landing_page)
+      params.set("landing_page", currentTouch.landing_page);
 
-    // Add additional tracking data
-    if (firstTouchData.first_referrer)
-      params.set("first_referrer", firstTouchData.first_referrer);
-    if (firstTouchData.first_landing_page)
-      params.set("first_landing_page", firstTouchData.first_landing_page);
-    params.set("first_touch_ts", firstTouchData.first_touch_ts.toString());
+    if (includeFirstTouch) {
+      const firstTouchData = getFirstTouchData();
+      if (firstTouchData) {
+        const sameAsCurrent =
+          firstTouchData.utm_source === currentTouch.utm_source &&
+          firstTouchData.utm_medium === currentTouch.utm_medium;
+        if (firstTouchData.utm_source && !sameAsCurrent) {
+          params.set("utm_source_first", firstTouchData.utm_source);
+          if (firstTouchData.utm_medium)
+            params.set("utm_medium_first", firstTouchData.utm_medium);
+        }
+      }
+    }
 
     url.search = params.toString();
     return url.toString();
