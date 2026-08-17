@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import SolutionHero from "@/components/sections/SolutionHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -94,170 +95,55 @@ export default function AISchedulesPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <div className="bg-white pt-16 pb-0">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div className="pb-8 lg:pb-12">
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                AI{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Roster Generator
-                </span>{" "}
-                for Better Staff Scheduling
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Unlock the full power of AI roster creation to save time and
-                optimise staff allocation
-              </p>
-              <div className="space-y-3 mb-8">
-                <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700 font-medium">
-                    Reduce scheduling from days to minutes
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700 font-medium">
-                    Comply with union rules and requirements
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700 font-medium">
-                    Easily identify your staffing needs for each day
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-gray-700 font-medium">
-                    Keep all your rostering data and knowledge in one place
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
-                  analyticsLabel="Book a Demo"
-                  analyticsLocation="Solution Page AI Staff Scheduling"
-                  analyticsProperties={{
-                    cta_type: "demo",
-                    page_name: "AI Staff Scheduling",
-                    section: "hero",
-                  }}
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/staff-rostering-interactive-demo"
-                  className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                  analyticsLabel="See an Example"
-                  analyticsLocation="Solution Page AI Staff Scheduling"
-                  analyticsProperties={{
-                    cta_type: "demo",
-                    page_name: "AI Staff Scheduling",
-                    section: "hero",
-                  }}
-                >
-                  See an Example
-                </Button>
-              </div>
-
-              {/* Feature ticks below CTA */}
-              <div className="mt-6">
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-6 text-sm text-gray-600">
-                  <span className="font-medium flex items-center">
-                    <svg
-                      className="w-4 h-4 text-gray-500 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Automatic roster generation
-                  </span>
-                  <span className="font-medium flex items-center">
-                    <svg
-                      className="w-4 h-4 text-gray-500 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Staff mobile app
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/images/illustration/Version control-pana.svg"
-                alt="AI Scheduling Illustration"
-                width={600}
-                height={400}
-                className="w-full max-w-[600px] h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </div>
+      <SolutionHero
+        title="AI Roster Generator for Better Staff Scheduling"
+        description="Unlock the full power of AI roster creation to save time and optimise staff allocation"
+        bullets={[
+          "Reduce scheduling from days to minutes",
+          "Comply with union rules and requirements",
+          "Easily identify your staffing needs for each day",
+          "Keep all your rostering data and knowledge in one place",
+        ]}
+        analyticsLocation="Solution Page AI Staff Scheduling"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "AI Staff Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/staff-rostering-interactive-demo",
+          label: "See an Example",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "AI Staff Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/updated-hero/ai-rostering.webp",
+          alt: "AI Scheduling Illustration",
+          width: 1620,
+          height: 1080,
+          // The laptop is only ~57% of this asset's height and sits in a
+          // wide laptop+phone composition, so it needs to render well over
+          // its cell to stand as tall as the text. Widths are % of the grid
+          // cell (not vw) so the mockup tracks the text column across
+          // breakpoints; the overhang falls in the image's transparent side
+          // margins, and -my clips the transparent top/bottom bands so they
+          // don't inflate the hero's height.
+          className:
+            "lg:w-[160%] lg:-mr-[30%] lg:-my-[23%] 2xl:w-[175%] 2xl:-mr-[42%]",
+          // Widest of the solution mockups — peaks at 1274px once the
+          // container stops growing, so it needs a bigger slot hint
+          // than the shared default.
+          sizes:
+            "(min-width: 1536px) 1280px, (min-width: 1024px) 84vw, 90vw",
+        }}
+      />
 
       {/* AI Benefits Section */}
       <div className="bg-gray-50 py-20">

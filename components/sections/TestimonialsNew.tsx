@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import {
+  trackButtonClick,
+  trackSmartButtonClick,
+} from "@/components/analytics/tracking";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Testimonials";
 
 /**
  * A quote is a list of fragments. Plain strings render as normal text;
@@ -19,22 +26,10 @@ interface Testimonial {
   link?: { href: string; label: string } | null;
 }
 
+// Mike (Whanganui, "7-8 days → 2-3 hours") is deliberately absent: he is the
+// featured quote in <FeatureTestimonial> higher up the page, and carrying him
+// here as well showed the same testimonial twice on one screen.
 const testimonials: Testimonial[] = [
-  {
-    quote: [
-      "Rostering would take ",
-      { highlight: "7-8 days" },
-      ", now it takes ",
-      { highlight: "2-3 hours" },
-      ", allowing me to focus more on patient care.",
-    ],
-    author: "Mike",
-    role: "Associate Clinical Manager Radiology",
-    link: {
-      href: "/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
-      label: "Watch the webinar →",
-    },
-  },
   {
     quote: [
       "RosterLab has ",
@@ -127,7 +122,10 @@ export default function TestimonialsNew() {
 
             <div className="hidden lg:flex mt-10 items-center gap-3">
               <button
-                onClick={prev}
+                onClick={() => {
+                  trackButtonClick("Testimonials: Previous", LOCATION);
+                  prev();
+                }}
                 aria-label="Previous testimonial"
                 className="w-14 h-14 rounded-full border-2 border-blue-600 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition"
               >
@@ -147,7 +145,10 @@ export default function TestimonialsNew() {
                 </svg>
               </button>
               <button
-                onClick={next}
+                onClick={() => {
+                  trackButtonClick("Testimonials: Next", LOCATION);
+                  next();
+                }}
                 aria-label="Next testimonial"
                 className="w-14 h-14 rounded-full border-2 border-blue-600 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition"
               >
@@ -217,6 +218,14 @@ export default function TestimonialsNew() {
               {current.link && (
                 <Link
                   href={current.link.href}
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      current.link!.label,
+                      current.link!.href,
+                      LOCATION,
+                      { testimonial_author: current.author },
+                    )
+                  }
                   className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   {current.link.label}
@@ -225,6 +234,14 @@ export default function TestimonialsNew() {
               {!current.link && current.caseStudyLink && (
                 <Link
                   href={current.caseStudyLink}
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      "Read case study",
+                      current.caseStudyLink!,
+                      LOCATION,
+                      { testimonial_author: current.author },
+                    )
+                  }
                   className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   Read case study →
@@ -240,7 +257,12 @@ export default function TestimonialsNew() {
                   key={i}
                   type="button"
                   aria-label={`Go to testimonial ${i + 1}`}
-                  onClick={() => setIndex(i)}
+                  onClick={() => {
+                    trackButtonClick("Testimonials: Dot", LOCATION, {
+                      dot_index: i,
+                    });
+                    setIndex(i);
+                  }}
                   className={`h-2 rounded-full transition-all ${
                     i === index
                       ? "w-6 bg-blue-600"

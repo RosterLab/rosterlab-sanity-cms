@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import SolutionHero from "@/components/sections/SolutionHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
@@ -89,131 +90,46 @@ export default function ManualSchedulingPage() {
     <SiteLayout>
       <>
         {/* Hero Section */}
-        <div className="bg-white pt-16 pb-0">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div className="pb-8 lg:pb-12">
-                <h1 className="text-[40px] sm:text-5xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                    Staff Rostering
-                  </span>{" "}
-                  Software
-                </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                  Build rosters manually in the cloud with simple rule checking,
-                  live statistics, and free mobile apps for your team.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Move away from spreadsheets and into the cloud
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Manage your preferences without constant emails
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Notify your staff immediately when shifts change
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Alert yourself to any mistakes you make
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    href="https://app.rosterlab.com/signup"
-                    className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
-                    analyticsLabel="Start for Free"
-                    analyticsLocation="Solution Page Free Staff Scheduling"
-                    analyticsProperties={{
-                      cta_type: "signup",
-                      page_name: "Free Staff Scheduling",
-                      section: "hero",
-                    }}
-                  >
-                    Start for Free
-                  </Button>
-                  <Button
-                    href="/solutions/ai-roster-generator"
-                    variant="outline"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                    analyticsLabel="Discover AI Rosters"
-                    analyticsLocation="Solution Page Free Staff Scheduling"
-                    analyticsProperties={{
-                      cta_type: "upgrade",
-                      page_name: "Free Staff Scheduling",
-                      section: "hero",
-                    }}
-                  >
-                    Discover AI Rosters
-                  </Button>
-                </div>
-              </div>
-              <div className="relative flex justify-center items-center">
-                <div className="w-full max-w-lg">
-                  <Image
-                    src="/images/illustration/test5 copy.svg"
-                    alt="Free Staff Scheduling Illustration"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
+        <SolutionHero
+          title="Free Staff Rostering Software"
+          description="Build rosters manually in the cloud with simple rule checking, live statistics, and free mobile apps for your team."
+          bullets={[
+            "Move away from spreadsheets and into the cloud",
+            "Manage your preferences without constant emails",
+            "Notify your staff immediately when shifts change",
+            "Alert yourself to any mistakes you make",
+          ]}
+          analyticsLocation="Solution Page Free Staff Scheduling"
+          primaryCta={{
+            href: "https://app.rosterlab.com/signup",
+            label: "Start for Free",
+            analyticsProperties: {
+              cta_type: "signup",
+              page_name: "Free Staff Scheduling",
+              section: "hero",
+            },
+          }}
+          secondaryCta={{
+            href: "/solutions/ai-roster-generator",
+            label: "Discover AI Rosters",
+            analyticsProperties: {
+              cta_type: "upgrade",
+              page_name: "Free Staff Scheduling",
+              section: "hero",
+            },
+          }}
+          image={{
+            src: "/images/updated-hero/free-app.webp",
+            alt: "Free Staff Scheduling Illustration",
+            width: 1620,
+            height: 1080,
+            // Sized so the laptop stands as tall as the text block; the
+            // overhang falls in the image's transparent left margin.
+            className: "lg:w-[130%]",
+            // The 130% override peaks at 946px, above the shared default.
+            sizes: "(min-width: 1536px) 950px, (min-width: 1024px) 66vw, 90vw",
+          }}
+        />
 
         {/* Intelligent Scheduling Section */}
         <div className="bg-gray-50 py-20">
@@ -285,7 +201,10 @@ export default function ManualSchedulingPage() {
                   width={600}
                   height={400}
                   className="w-full h-auto"
-                  priority
+                  // Sits ~900px down the page at every breakpoint, so
+                  // preloading it only competed with the hero LCP.
+                  loading="lazy"
+                  sizes="(min-width: 1440px) 600px, (min-width: 1024px) 46vw, 92vw"
                 />
               </div>
             </div>
@@ -296,7 +215,7 @@ export default function ManualSchedulingPage() {
         <div className="bg-white py-20">
           <Container>
             <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
                 GETTING STARTED
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

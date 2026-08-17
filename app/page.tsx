@@ -1,9 +1,10 @@
-import Hero from "@/components/sections/Hero";
-import TrustedBy from "@/components/sections/TrustedBy";
-import Benefits from "@/components/sections/Benefits";
-import Onboarding from "@/components/sections/Onboarding";
-import IndustrySolutions from "@/components/sections/IndustrySolutions";
-import Testimonials from "@/components/sections/Testimonials";
+import HeroNew from "@/components/sections/HeroNew";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
+import BenefitsNew from "@/components/sections/BenefitsNew";
+import FeaturesGrid from "@/components/sections/FeaturesGrid";
+import IndustrySolutionsNew from "@/components/sections/IndustrySolutionsNew";
+import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FinalCTA from "@/components/sections/FinalCTA";
 import { withHreflang } from "@/components/seo/HreflangTags";
 
@@ -46,15 +47,40 @@ export const metadata = withHreflang(
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-
-      <TrustedBy />
-      <Benefits />
-      <Onboarding />
-      <IndustrySolutions />
-      <Testimonials />
-      <FinalCTA />
-    </>
+    <div className="relative bg-white">
+      {/* Page-wide dot overlay — masked to concentrate around 3 focal
+          points down the page instead of blanketing every section. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #d4d8de 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+          maskImage: [
+            "radial-gradient(ellipse 40% 18% at 50% 22%, black 0%, transparent 70%)",
+            "radial-gradient(ellipse 45% 15% at 50% 55%, black 0%, transparent 70%)",
+            "radial-gradient(ellipse 40% 15% at 50% 85%, black 0%, transparent 70%)",
+          ].join(", "),
+          WebkitMaskImage: [
+            "radial-gradient(ellipse 40% 18% at 50% 22%, black 0%, transparent 70%)",
+            "radial-gradient(ellipse 45% 15% at 50% 55%, black 0%, transparent 70%)",
+            "radial-gradient(ellipse 40% 15% at 50% 85%, black 0%, transparent 70%)",
+          ].join(", "),
+          maskComposite: "add",
+          WebkitMaskComposite: "source-over",
+        }}
+      />
+      <div className="relative z-10">
+        <HeroNew />
+        <TrustedByDualRow />
+        <FeatureTestimonial />
+        <BenefitsNew />
+        <IndustrySolutionsNew />
+        <TestimonialsNew />
+        <FeaturesGrid />
+        <FinalCTA />
+      </div>
+    </div>
   );
 }

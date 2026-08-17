@@ -4,6 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import { trackSmartButtonClick } from "@/components/analytics/tracking";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Featured Testimonial";
 
 /**
  * Single hero-adjacent testimonial. Sits directly under the trusted-by row
@@ -34,7 +38,7 @@ export default function FeatureTestimonial() {
   }, []);
 
   return (
-    <section className="py-12 md:py-16">
+    <section className="pt-12 md:pt-16 pb-4 md:pb-6">
       <Container>
         <div
           ref={ref}
@@ -78,6 +82,13 @@ export default function FeatureTestimonial() {
               Associate Clinical Manager Radiology
             </p>
             <Link
+              onClick={() =>
+                trackSmartButtonClick(
+                  "Watch the webinar",
+                  "/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+                  LOCATION,
+                )
+              }
               href="/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare"
               className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 hover:underline"
             >

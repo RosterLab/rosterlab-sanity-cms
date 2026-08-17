@@ -1,7 +1,10 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import Link from "next/link";
 import Container from "@/components/ui/Container";
+import TrackedLink from "@/components/ui/TrackedLink";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Features";
 
 interface Feature {
   title: string;
@@ -14,42 +17,42 @@ const features: Feature[] = [
   {
     title: "Automated Rostering",
     description:
-      "Generate a full roster in minutes from your rules, staff, and demands.",
+      "Generate optimal, safe, fair, and flexible complex rosters at the click of a button.",
     href: "/feature/automated-rostering",
     image: "01-automated-rostering.svg",
   },
   {
     title: "AI Rostering Assistant",
     description:
-      "Chat with an AI to build, adjust, and troubleshoot your roster.",
+      "Ask AI to build or update rosters, investigate issues, and run the reports you need.",
     href: "/feature/ai-staff-rostering-assistant",
     image: "02-ai-rostering-assistant.svg",
   },
   {
     title: "Open Shifts",
     description:
-      "Publish unfilled shifts so staff can claim them on their phone.",
+      "Fill unfulfilled shifts instantly with the right people and the right skills.",
     href: "/feature/open-shifts",
     image: "03-open-shifts.svg",
   },
   {
     title: "Shift Swaps",
     description:
-      "Peer-to-peer swaps with rules enforced. No manager back-and-forth.",
+      "Automatically approve routine swaps while flagging critical changes.",
     href: "/feature/shift-swaps",
     image: "04-shift-swaps.svg",
   },
   {
     title: "Leave Requests",
     description:
-      "Approve, decline, and factor leave into upcoming rosters in one flow.",
+      "Approve leave with confidence by seeing how every request affects shift coverage.",
     href: "/feature/leave-requests",
     image: "05-leave-requests.svg",
   },
   {
     title: "Staff Preferences",
     description:
-      "Let staff submit availability and shift preferences the AI honors.",
+      "AI self-rostering for better work-life balance, without compromising coverage or rules.",
     href: "/feature/self-scheduling",
     image: "06-staff-preferences.svg",
   },
@@ -63,7 +66,7 @@ const features: Feature[] = [
   {
     title: "Rules Engine",
     description:
-      "EBAs, awards, fatigue laws, skill mix. Configured once, enforced always.",
+      "Union requirements, clinical safety, fatigue laws, skill mix. Configured once, enforced always.",
     href: "/feature/rules-engine",
     image: "08-rules-engine.svg",
   },
@@ -75,10 +78,7 @@ const features: Feature[] = [
 const svgMarkup = Object.fromEntries(
   features.map((f) => [
     f.image,
-    readFileSync(
-      join(process.cwd(), "public", "landing", f.image),
-      "utf8",
-    ),
+    readFileSync(join(process.cwd(), "public", "landing", f.image), "utf8"),
   ]),
 );
 
@@ -91,7 +91,7 @@ export default function FeaturesGrid() {
             Features
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Everything you need to run a roster.
+            Everything you need to run a perfect roster.
           </h2>
           <p className="mt-4 text-base md:text-lg text-gray-600">
             A connected toolkit for planning, publishing, and adjusting your
@@ -101,9 +101,11 @@ export default function FeaturesGrid() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {features.map(({ title, description, href, image }) => (
-            <Link
+            <TrackedLink
               key={title}
               href={href}
+              label={title}
+              location={LOCATION}
               className="group bg-gray-50 rounded-2xl p-6 md:p-7 flex flex-col border border-gray-100 hover:border-blue-300 hover:bg-white hover:shadow-md transition [--rl-play:paused] hover:[--rl-play:running] focus-visible:[--rl-play:running]"
             >
               <div
@@ -116,7 +118,7 @@ export default function FeaturesGrid() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 {description}
               </p>
-            </Link>
+            </TrackedLink>
           ))}
         </div>
       </Container>

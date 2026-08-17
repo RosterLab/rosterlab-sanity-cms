@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import {
+  trackButtonClick,
+  trackSmartButtonClick,
+} from "@/components/analytics/tracking";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Industries";
 
 interface Industry {
   name: string;
@@ -78,6 +85,11 @@ function IndustryCard({ industry, className }: IndustryCardProps) {
     >
       <Link
         href={industry.href}
+        onClick={() =>
+          trackSmartButtonClick(industry.name, industry.href, LOCATION, {
+            industry_category: industry.category,
+          })
+        }
         className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-gray-800"
       >
       {/* Background image or gradient placeholder */}
@@ -131,8 +143,90 @@ function IndustryCard({ industry, className }: IndustryCardProps) {
   );
 }
 
+/**
+ * Click-and-drag horizontal scrolling for the card track.
+ *
+ * The track is already `overflow-x-auto`, so trackpads and touch work — but
+ * with a mouse there was no way to move it except the arrow buttons. Mouse
+ * only: touch scrolls natively and hijacking it would break momentum.
+ *
+ * While dragging, scroll snapping and smooth scrolling are switched off —
+ * both fight per-frame scrollLeft updates and make the drag feel like it is
+ * sticking.
+ */
+const useDragScroll = (ref: React.RefObject<HTMLDivElement | null>) => {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let startX = 0;
+    let startScroll = 0;
+    let dragging = false;
+    let moved = 0;
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      dragging = true;
+      moved = 0;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+      el.style.scrollSnapType = "none";
+      el.style.scrollBehavior = "auto";
+      el.style.cursor = "grabbing";
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      if (moved > 3) el.setPointerCapture?.(e.pointerId);
+      el.scrollLeft = startScroll - dx;
+    };
+
+    const end = () => {
+      if (!dragging) return;
+      dragging = false;
+      el.style.scrollSnapType = "";
+      el.style.scrollBehavior = "";
+      el.style.cursor = "";
+    };
+
+    // A drag that ends over a card would otherwise follow its link.
+    const onClickCapture = (e: MouseEvent) => {
+      if (moved > 5) {
+        e.preventDefault();
+        e.stopPropagation();
+        moved = 0;
+      }
+    };
+
+    // Each card is an <a>, and Chrome starts its own native link-drag as soon
+    // as the pointer moves — which cancels the pointer stream and leaves the
+    // track stuck. Suppressing dragstart is what makes the drag work at all.
+    const onDragStart = (e: DragEvent) => e.preventDefault();
+
+    el.addEventListener("dragstart", onDragStart);
+    el.addEventListener("pointerdown", onPointerDown);
+    el.addEventListener("pointermove", onPointerMove);
+    el.addEventListener("pointerup", end);
+    el.addEventListener("pointercancel", end);
+    el.addEventListener("pointerleave", end);
+    el.addEventListener("click", onClickCapture, true);
+    return () => {
+      el.removeEventListener("dragstart", onDragStart);
+      el.removeEventListener("pointerdown", onPointerDown);
+      el.removeEventListener("pointermove", onPointerMove);
+      el.removeEventListener("pointerup", end);
+      el.removeEventListener("pointercancel", end);
+      el.removeEventListener("pointerleave", end);
+      el.removeEventListener("click", onClickCapture, true);
+    };
+  }, [ref]);
+};
+
 export default function IndustrySolutionsNew() {
   const trackRef = useRef<HTMLDivElement>(null);
+  useDragScroll(trackRef);
   // Which card index sits at the left edge of the visible window.
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -170,7 +264,7 @@ export default function IndustrySolutionsNew() {
   const pageCount = Math.max(1, industries.length - 3);
 
   return (
-    <section className="py-20 md:py-24">
+    <section className="pt-8 md:pt-10 pb-20 md:pb-24">
       <Container>
         {/* Header row: heading + description on the left, arrows on the right. */}
         <div className="grid lg:grid-cols-[minmax(0,1fr),auto] gap-6 items-end mb-12 md:mb-14">
@@ -189,7 +283,10 @@ export default function IndustrySolutionsNew() {
           <div className="hidden lg:flex items-center gap-2 self-end">
             <button
               type="button"
-              onClick={() => scrollByCard(-1)}
+              onClick={() => {
+                trackButtonClick("Industries: Previous", LOCATION);
+                scrollByCard(-1);
+              }}
               aria-label="Previous industry"
               className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-700 hover:border-gray-900 hover:text-gray-900 transition"
             >
@@ -208,7 +305,10 @@ export default function IndustrySolutionsNew() {
             </button>
             <button
               type="button"
-              onClick={() => scrollByCard(1)}
+              onClick={() => {
+                trackButtonClick("Industries: Next", LOCATION);
+                scrollByCard(1);
+              }}
               aria-label="Next industry"
               className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-700 hover:border-gray-900 hover:text-gray-900 transition"
             >
@@ -232,7 +332,7 @@ export default function IndustrySolutionsNew() {
             (containerWidth − 3 gaps) ÷ 4 of the row width. */}
         <div
           ref={trackRef}
-          className="hidden lg:flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="hidden lg:flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth cursor-grab select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {industries.map((industry) => (
             <IndustryCard
@@ -251,7 +351,12 @@ export default function IndustrySolutionsNew() {
               <button
                 key={i}
                 type="button"
-                onClick={() => scrollToIndex(i)}
+                onClick={() => {
+                  trackButtonClick("Industries: Dot", LOCATION, {
+                    dot_index: i,
+                  });
+                  scrollToIndex(i);
+                }}
                 aria-label={`Go to industry group ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
                   isActive ? "w-8 bg-gray-900" : "w-4 bg-gray-300 hover:bg-gray-400"

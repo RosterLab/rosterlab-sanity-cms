@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import { trackButtonClick } from "@/components/analytics/tracking";
 
 const StaffingEnvelopeChartSmall = dynamic(
   () => import("@/components/ui/StaffingEnvelopeChartSmall"),
@@ -23,6 +24,16 @@ const GenerateScreenEmbed = dynamic(
   { ssr: false },
 );
 
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Benefits";
+
+// Before/after timings for the tab visuals. The default 3s lead-in reads as
+// "nothing is happening" when the tab has only just come into view, so the
+// flip lands early and the result is held long enough to be read before the
+// cycle restarts.
+const START_MS = 900;
+const HOLD_MS = 3200;
+
 interface BenefitTab {
   id: string;
   label: string;
@@ -38,8 +49,11 @@ const benefitTabs: BenefitTab[] = [
     label: "Save Time",
     title: "Generate rosters in minutes",
     description:
-      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps.",
-    cta: { label: "Explore AI generation", href: "/feature/ai-staff-rostering-assistant" },
+      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
+    cta: {
+      label: "Explore AI generation",
+      href: "/feature/ai-staff-rostering-assistant",
+    },
   },
   {
     id: "optimisation",
@@ -47,7 +61,10 @@ const benefitTabs: BenefitTab[] = [
     title: "Optimise your workforce with AI",
     description:
       "Harness our advanced mathematical optimisation engine to allocate staff efficiently. Reduce penalty costs, improve coverage, and plan ahead with confidence.",
-    cta: { label: "Explore optimisation", href: "/solutions/ai-roster-generator" },
+    cta: {
+      label: "Explore optimisation",
+      href: "/solutions/ai-roster-generator",
+    },
     image: "/images/illustration/optimise_workforce.svg",
   },
   {
@@ -56,11 +73,14 @@ const benefitTabs: BenefitTab[] = [
     title: "Improve staff retention",
     description:
       "Empower your team to plan ahead and manage their rosters with confidence, while staying aligned with business needs. Fewer shift swaps, reduced absenteeism, and better-matched preferences drive engagement.",
-    cta: { label: "Explore retention", href: "/feature/preferences-and-requests" },
+    cta: {
+      label: "Explore retention",
+      href: "/feature/preferences-and-requests",
+    },
   },
   {
     id: "safety",
-    label: "Safety & Security",
+    label: "Safety & Fairness",
     title: "Ensure compliance and equity",
     description:
       "Ensure clinical safety and fairness with every roster. By embedding equity and fatigue-management rules into our AI, you eliminate favouritism, reduce staff fatigue, and create safer, more inclusive rosters.",
@@ -74,14 +94,11 @@ export default function BenefitsNew() {
 
   const active = benefitTabs[activeIndex] ?? benefitTabs[0];
 
-  // Scroll budget for the pinned section: ~half a viewport per tab plus one
-  // full viewport for the initial sticky pin. Tuned so each tab advances
-  // after a comfortable but not laborious scroll.
-  const perTabVh = 50;
-  const scrollBudgetVh = useMemo(
-    () => 100 + benefitTabs.length * perTabVh,
-    [],
-  );
+  // Scroll budget for the pinned section: a full viewport per tab plus one
+  // more for the initial sticky pin. Each tab holds twice as long as it used
+  // to, so its animation has room to loop before the next one takes over.
+  const perTabVh = 100;
+  const scrollBudgetVh = useMemo(() => 100 + benefitTabs.length * perTabVh, []);
 
   useEffect(() => {
     const wrapper = scrollWrapperRef.current;
@@ -128,13 +145,34 @@ export default function BenefitsNew() {
     // to enable on all of them — an offscreen tab isn't in the tree.
     switch (id) {
       case "safety":
-        return <WeekendRotationModule autoplay />;
+        return (
+          <WeekendRotationModule
+            autoplay
+            loop
+            autoplayIntervalMs={START_MS}
+            loopHoldMs={HOLD_MS}
+          />
+        );
       case "turnover":
-        return <MobileAppPreferencesModule autoplay />;
+        return (
+          <MobileAppPreferencesModule
+            autoplay
+            loop
+            autoplayIntervalMs={START_MS}
+            loopHoldMs={HOLD_MS}
+          />
+        );
       case "time":
         return <GenerateScreenEmbed />;
       case "optimisation":
-        return <StaffingEnvelopeChartSmall autoplay />;
+        return (
+          <StaffingEnvelopeChartSmall
+            autoplay
+            loop
+            autoplayIntervalMs={START_MS}
+            loopHoldMs={HOLD_MS}
+          />
+        );
       default:
         return active.image ? (
           <Image
@@ -169,7 +207,15 @@ export default function BenefitsNew() {
       className="relative"
       style={{ height: `${scrollBudgetVh}vh` }}
     >
-      <section className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      {/* Top-aligned rather than centred: the content is ~580px in a ~950px
+          viewport, so centring parked a large dead band above the tab bar.
+          The 60px term clears the sticky site header — this section also pins
+          at top:0, so it sits UNDERNEATH the header and padding below that
+          height is invisible. Keep the two in sync if the condensed header
+          height changes. The vh term is the actual breathing room, and being
+          viewport-relative it gives way on short screens instead of pushing
+          the mockup out of the pinned area. */}
+      <section className="sticky top-0 flex flex-col justify-start overflow-hidden pt-[calc(60px+6vh)] h-[max(720px,calc(100vh-100px))]">
         <Container className="w-full">
           {/* Tab bar. On mobile all 4 pills fit in one row by wrapping
               their labels to 2 lines; on desktop a single-line pill bar. */}
@@ -186,7 +232,13 @@ export default function BenefitsNew() {
                     key={tab.id}
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => jumpToTab(i)}
+                    onClick={() => {
+                      trackButtonClick(`Tab: ${tab.label}`, LOCATION, {
+                        tab_id: tab.id,
+                        tab_index: i,
+                      });
+                      jumpToTab(i);
+                    }}
                     className={`px-2 py-2 lg:px-5 xl:px-6 lg:py-2.5 rounded-2xl lg:rounded-full text-xs sm:text-sm md:text-base font-medium leading-tight lg:whitespace-nowrap transition-colors ${
                       isActive
                         ? "bg-blue-600 text-white"
@@ -213,6 +265,8 @@ export default function BenefitsNew() {
               </p>
               <Button
                 href={active.cta.href}
+                analyticsLabel={active.cta.label}
+                analyticsLocation={LOCATION}
                 className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold hover:bg-blue-700 transition"
               >
                 {active.cta.label}

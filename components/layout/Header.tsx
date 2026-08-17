@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 import {
@@ -14,6 +14,42 @@ import {
   HiHeart,
 } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
+
+/**
+ * True once the page has been scrolled away from the top, which the header
+ * uses to stretch full-bleed and tighten vertically.
+ *
+ * Hysteresis (on at 48px, off at 16px) rather than a single threshold — with
+ * one boundary, a scroll that lands right on it flips the state every frame
+ * and the bar visibly buzzes.
+ */
+const useCondenseOnScroll = () => {
+  const [condensed, setCondensed] = useState(false);
+
+  useEffect(() => {
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      setCondensed((was) => {
+        const y = window.scrollY;
+        if (was) return y > 16;
+        return y > 48;
+      });
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(read);
+    };
+
+    read(); // a reload partway down the page should start condensed
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return condensed;
+};
 
 interface SubMenuItem {
   title: string;
@@ -159,15 +195,31 @@ export default function Header({ navItems = [] }: HeaderProps) {
   ];
 
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
+  const condensed = useCondenseOnScroll();
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm" role="banner">
+    <header
+      className={cn(
+        "sticky top-0 z-50 bg-white motion-safe:transition-shadow motion-safe:duration-300 motion-safe:ease-out",
+        condensed ? "shadow-md" : "shadow-sm",
+      )}
+      role="banner"
+    >
       <nav
-        className="container mx-auto px-4 sm:px-6 lg:px-8"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 motion-safe:transition-[max-width] motion-safe:duration-300 motion-safe:ease-out"
+        // No inline style at the top, so `.container` governs and the bar keeps
+        // its per-breakpoint width. Once condensed we override to 100%, and the
+        // computed max-width animates between the two.
+        style={condensed ? { maxWidth: "100%" } : undefined}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="flex h-20 items-center justify-between">
+        <div
+          className={cn(
+            "flex items-center justify-between motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
+            condensed ? "h-[60px]" : "h-20",
+          )}
+        >
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
@@ -180,7 +232,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 alt="RosterLab"
                 width={180}
                 height={48}
-                className="h-10 w-auto"
+                className={cn(
+                  "w-auto motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
+                  condensed ? "h-8" : "h-10",
+                )}
                 priority
               />
             </Link>
