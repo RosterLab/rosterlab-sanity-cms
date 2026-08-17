@@ -123,7 +123,6 @@ export default function AISchedulesPage() {
             section: "hero",
           },
         }}
-        footnotes={["Automatic roster generation", "Staff mobile app"]}
         image={{
           src: "/images/updated-hero/ai-rostering.webp",
           alt: "AI Scheduling Illustration",

@@ -3,6 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import {
+  trackButtonClick,
+  trackSmartButtonClick,
+} from "@/components/analytics/tracking";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Industries";
 
 interface Industry {
   name: string;
@@ -78,6 +85,11 @@ function IndustryCard({ industry, className }: IndustryCardProps) {
     >
       <Link
         href={industry.href}
+        onClick={() =>
+          trackSmartButtonClick(industry.name, industry.href, LOCATION, {
+            industry_category: industry.category,
+          })
+        }
         className="group relative block aspect-[3/4] rounded-2xl overflow-hidden bg-gray-800"
       >
       {/* Background image or gradient placeholder */}
@@ -271,7 +283,10 @@ export default function IndustrySolutionsNew() {
           <div className="hidden lg:flex items-center gap-2 self-end">
             <button
               type="button"
-              onClick={() => scrollByCard(-1)}
+              onClick={() => {
+                trackButtonClick("Industries: Previous", LOCATION);
+                scrollByCard(-1);
+              }}
               aria-label="Previous industry"
               className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-700 hover:border-gray-900 hover:text-gray-900 transition"
             >
@@ -290,7 +305,10 @@ export default function IndustrySolutionsNew() {
             </button>
             <button
               type="button"
-              onClick={() => scrollByCard(1)}
+              onClick={() => {
+                trackButtonClick("Industries: Next", LOCATION);
+                scrollByCard(1);
+              }}
               aria-label="Next industry"
               className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-700 hover:border-gray-900 hover:text-gray-900 transition"
             >
@@ -333,7 +351,12 @@ export default function IndustrySolutionsNew() {
               <button
                 key={i}
                 type="button"
-                onClick={() => scrollToIndex(i)}
+                onClick={() => {
+                  trackButtonClick("Industries: Dot", LOCATION, {
+                    dot_index: i,
+                  });
+                  scrollToIndex(i);
+                }}
                 aria-label={`Go to industry group ${i + 1}`}
                 className={`h-1.5 rounded-full transition-all ${
                   isActive ? "w-8 bg-gray-900" : "w-4 bg-gray-300 hover:bg-gray-400"

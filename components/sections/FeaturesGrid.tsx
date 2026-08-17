@@ -1,7 +1,10 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import Link from "next/link";
 import Container from "@/components/ui/Container";
+import TrackedLink from "@/components/ui/TrackedLink";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Features";
 
 interface Feature {
   title: string;
@@ -98,9 +101,11 @@ export default function FeaturesGrid() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {features.map(({ title, description, href, image }) => (
-            <Link
+            <TrackedLink
               key={title}
               href={href}
+              label={title}
+              location={LOCATION}
               className="group bg-gray-50 rounded-2xl p-6 md:p-7 flex flex-col border border-gray-100 hover:border-blue-300 hover:bg-white hover:shadow-md transition [--rl-play:paused] hover:[--rl-play:running] focus-visible:[--rl-play:running]"
             >
               <div
@@ -113,7 +118,7 @@ export default function FeaturesGrid() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 {description}
               </p>
-            </Link>
+            </TrackedLink>
           ))}
         </div>
       </Container>

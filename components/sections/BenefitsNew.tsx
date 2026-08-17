@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import { trackButtonClick } from "@/components/analytics/tracking";
 
 const StaffingEnvelopeChartSmall = dynamic(
   () => import("@/components/ui/StaffingEnvelopeChartSmall"),
@@ -22,6 +23,9 @@ const GenerateScreenEmbed = dynamic(
   () => import("@/components/sections/animations/GenerateScreenEmbed"),
   { ssr: false },
 );
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Benefits";
 
 // Before/after timings for the tab visuals. The default 3s lead-in reads as
 // "nothing is happening" when the tab has only just come into view, so the
@@ -228,7 +232,13 @@ export default function BenefitsNew() {
                     key={tab.id}
                     role="tab"
                     aria-selected={isActive}
-                    onClick={() => jumpToTab(i)}
+                    onClick={() => {
+                      trackButtonClick(`Tab: ${tab.label}`, LOCATION, {
+                        tab_id: tab.id,
+                        tab_index: i,
+                      });
+                      jumpToTab(i);
+                    }}
                     className={`px-2 py-2 lg:px-5 xl:px-6 lg:py-2.5 rounded-2xl lg:rounded-full text-xs sm:text-sm md:text-base font-medium leading-tight lg:whitespace-nowrap transition-colors ${
                       isActive
                         ? "bg-blue-600 text-white"
@@ -255,6 +265,8 @@ export default function BenefitsNew() {
               </p>
               <Button
                 href={active.cta.href}
+                analyticsLabel={active.cta.label}
+                analyticsLocation={LOCATION}
                 className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold hover:bg-blue-700 transition"
               >
                 {active.cta.label}
