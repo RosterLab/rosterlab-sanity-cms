@@ -34,8 +34,24 @@ interface SolutionHeroProps {
      * image. Must be a literal class string so Tailwind can see it.
      */
     className?: string;
+    /**
+     * Slot width hint for the responsive srcset. Without it Next emits
+     * only a 1x/2x pair off `width`, so phones download the 3840px
+     * candidate to paint a ~350px image. Pages that override
+     * `className` render wider than the default and need a matching
+     * override here — the value must never undershoot the painted
+     * width, or the browser picks a candidate that renders soft.
+     */
+    sizes?: string;
   };
 }
+
+/**
+ * Tracks the default `lg:w-[118%]` mockup: ~90vw stacked, ~60vw beside
+ * the text, then fixed once the container stops growing at 1536px.
+ */
+const DEFAULT_HERO_SIZES =
+  "(min-width: 1536px) 860px, (min-width: 1024px) 60vw, 90vw";
 
 /**
  * Rounded blue hero shared by the solution pages. Text stack on the
@@ -167,6 +183,8 @@ export default function SolutionHero({
                 width={image.width ?? 1200}
                 height={image.height ?? 800}
                 priority
+                fetchPriority="high"
+                sizes={image.sizes ?? DEFAULT_HERO_SIZES}
                 className={cn(
                   "w-full max-w-2xl sm:max-w-3xl lg:max-w-none lg:w-[118%] lg:shrink-0 lg:-mr-[6vw] h-auto",
                   image.className,

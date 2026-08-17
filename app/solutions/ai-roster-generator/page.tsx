@@ -138,6 +138,11 @@ export default function AISchedulesPage() {
           // don't inflate the hero's height.
           className:
             "lg:w-[160%] lg:-mr-[30%] lg:-my-[23%] 2xl:w-[175%] 2xl:-mr-[42%]",
+          // Widest of the solution mockups — peaks at 1274px once the
+          // container stops growing, so it needs a bigger slot hint
+          // than the shared default.
+          sizes:
+            "(min-width: 1536px) 1280px, (min-width: 1024px) 84vw, 90vw",
         }}
       />
 

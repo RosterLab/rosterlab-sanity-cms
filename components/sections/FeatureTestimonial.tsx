@@ -34,7 +34,7 @@ export default function FeatureTestimonial() {
   }, []);
 
   return (
-    <section className="py-12 md:py-16">
+    <section className="pt-12 md:pt-16 pb-4 md:pb-6">
       <Container>
         <div
           ref={ref}

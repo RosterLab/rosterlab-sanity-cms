@@ -11,11 +11,17 @@ interface StaffingEnvelopeChartSmallProps {
   autoplay?: boolean;
   /** Time in ms each state is held during autoplay (default 3000). */
   autoplayIntervalMs?: number;
+  /** Cycle back to "before" and replay instead of stopping after one pass. */
+  loop?: boolean;
+  /** How long "after" is held before looping back. Ignored unless `loop`. */
+  loopHoldMs?: number;
 }
 
 export default function StaffingEnvelopeChartSmall({
   autoplay = false,
   autoplayIntervalMs = 3000,
+  loop = false,
+  loopHoldMs = 3000,
 }: StaffingEnvelopeChartSmallProps = {}) {
   const [isOptimized, setIsOptimized] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -98,12 +104,22 @@ export default function StaffingEnvelopeChartSmall({
     if (!autoplay || !inView) return;
     setIsOptimized(false);
     setFinished(false);
-    const id = window.setTimeout(() => {
-      setIsOptimized(true);
-      setFinished(true);
-    }, autoplayIntervalMs);
-    return () => window.clearTimeout(id);
-  }, [autoplay, autoplayIntervalMs, inView, playToken]);
+    const timers: number[] = [];
+    timers.push(
+      window.setTimeout(() => {
+        setIsOptimized(true);
+        if (loop) {
+          // Bumping playToken re-runs this effect, which resets to "before".
+          timers.push(
+            window.setTimeout(() => setPlayToken((n) => n + 1), loopHoldMs),
+          );
+        } else {
+          setFinished(true);
+        }
+      }, autoplayIntervalMs),
+    );
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [autoplay, autoplayIntervalMs, loop, loopHoldMs, inView, playToken]);
 
   const replay = () => setPlayToken((n) => n + 1);
 

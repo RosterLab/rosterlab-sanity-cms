@@ -1,4 +1,3 @@
-import HeaderHideOnScroll from "@/components/layout/HeaderHideOnScroll";
 import HeroNew from "@/components/sections/HeroNew";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
@@ -73,7 +72,6 @@ export default function Home() {
         }}
       />
       <div className="relative z-10">
-        <HeaderHideOnScroll />
         <HeroNew />
         <TrustedByDualRow />
         <FeatureTestimonial />

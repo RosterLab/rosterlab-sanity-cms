@@ -1,101 +1,41 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import HeroStoolPoster from "@/components/sections/animations/roster-mockup/HeroStoolPoster";
 
 const HERO_BLUE = "#3779DD";
 
-const IFRAME_CSS = `
-  html, body {
-    overflow: hidden !important;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-    background: ${HERO_BLUE} !important;
-    min-height: 0 !important;
-  }
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar,
-  *::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
-  /* Hide the demo's playback bar. */
-  [style*="rgba(20, 20, 20, 0.92)"] {
-    display: none !important;
-  }
-  #dc-root,
-  #dc-root > div,
-  #dc-root > div > div,
-  #dc-root > div > div > div {
-    background-color: ${HERO_BLUE} !important;
-  }
-  [style*="rgb(10, 10, 10)"],
-  [style*="#0a0a0a"] {
-    background-color: ${HERO_BLUE} !important;
-  }
-`;
+// The animated scene is a few hundred nodes; keeping it out of the server
+// render keeps the document small so the headline still paints first. The
+// poster below is the same artwork, so there is nothing to see swapping in.
+const HeroStoolMockup = dynamic(
+  () =>
+    import("@/components/sections/animations/roster-mockup/HeroStoolMockup"),
+  { ssr: false },
+);
 
-// Hook: inject CSS overrides + repaint scene backdrops into a mockup
-// iframe. Handles both desktop and mobile instances the same way.
-const useIframeOverrides = (
-  ref: React.RefObject<HTMLIFrameElement | null>,
-) => {
+/**
+ * The hero lays the mockup out twice — absolutely positioned on desktop,
+ * in flow on mobile — but only one of them is ever visible. Mount the
+ * animation into whichever one that is, so we aren't running two timelines.
+ */
+const useIsDesktopHero = () => {
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
   useEffect(() => {
-    const iframe = ref.current;
-    if (!iframe) return;
-
-    const injectStyles = () => {
-      const doc = iframe.contentDocument;
-      if (!doc?.head) return false;
-      if (!doc.getElementById("__rl_iframe_style_overrides__")) {
-        const style = doc.createElement("style");
-        style.id = "__rl_iframe_style_overrides__";
-        style.textContent = IFRAME_CSS;
-        doc.head.appendChild(style);
-      }
-      const win = doc.defaultView;
-      if (!win) return true;
-      const vw = win.innerWidth;
-      const vh = win.innerHeight;
-      doc.querySelectorAll<HTMLElement>("div").forEach((el) => {
-        const r = el.getBoundingClientRect();
-        // Repaint any big scene backdrop to blue so the letterbox disappears.
-        if (r.width >= vw * 0.7 || r.height >= vh * 0.7) {
-          const style = win.getComputedStyle(el);
-          const bg = style.backgroundColor;
-          const isSceneBg =
-            bg === "rgb(255, 255, 255)" ||
-            bg === "rgb(250, 249, 245)" ||
-            bg === "rgb(230, 231, 232)" ||
-            bg === "rgb(10, 10, 10)";
-          if (isSceneBg) {
-            el.style.setProperty("background-color", HERO_BLUE, "important");
-          }
-          if (style.boxShadow && style.boxShadow !== "none") {
-            el.style.setProperty("box-shadow", "none", "important");
-          }
-        }
-      });
-      return true;
-    };
-
-    let attempts = 0;
-    const interval = setInterval(() => {
-      attempts += 1;
-      injectStyles();
-      if (attempts > 40) clearInterval(interval);
-    }, 250);
-    return () => clearInterval(interval);
-  }, [ref]);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return isDesktop;
 };
 
 export default function HeroNew() {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const mobileIframeRef = useRef<HTMLIFrameElement>(null);
-  useIframeOverrides(iframeRef);
-  useIframeOverrides(mobileIframeRef);
+  const isDesktop = useIsDesktopHero();
 
   return (
     // On mobile the hero fits within one viewport (100dvh minus a small
@@ -133,15 +73,12 @@ export default function HeroNew() {
             height: "180%",
           }}
         >
-          <iframe
-            ref={iframeRef}
-            src="/landing/stool-mockup.html"
-            title="RosterLab Interactive Demo"
-            loading="lazy"
-            scrolling="no"
-            style={{ background: HERO_BLUE }}
-            className="absolute inset-0 w-full h-full border-0 pointer-events-auto"
-          />
+          <HeroStoolPoster />
+          {isDesktop === true && (
+            <div className="absolute inset-0">
+              <HeroStoolMockup />
+            </div>
+          )}
         </div>
 
         {/* Text content. On mobile: only H1 + description; the CTAs are
@@ -151,12 +88,13 @@ export default function HeroNew() {
           <div className="flex flex-col lg:justify-center h-full pt-8 pb-0 sm:pt-10 sm:pb-0 md:py-20 lg:py-24">
             <div className="max-w-xl text-white">
               <h1 className="text-[2rem] leading-tight sm:text-4xl md:text-5xl lg:text-6xl font-bold sm:leading-[1.05] tracking-tight">
-                Rostering solved. In minutes, not days.
+                AI rostering software built for complex teams.
               </h1>
 
               <p className="mt-3 sm:mt-6 text-sm sm:text-base md:text-lg text-white/85 leading-relaxed max-w-md">
-                AI-built rosters for healthcare and 24/7 teams. Every rule,
-                preference, and skill mix respected.
+                Generate and optimise staff rosters in minutes, not days. Built
+                for healthcare, 24/7 operations, and teams with rules too
+                complex for spreadsheets.
               </p>
 
               {/* Desktop CTA row — inline with the text stack. */}
@@ -186,21 +124,18 @@ export default function HeroNew() {
             text. CTAs float ON TOP of the mockup at the bottom, so
             the mockup itself is never cropped. */}
         <div className="lg:hidden relative w-full flex-1 min-h-[200px] overflow-hidden -mt-2">
-          <iframe
-            ref={mobileIframeRef}
-            src="/landing/stool-mockup.html"
-            title="RosterLab Interactive Demo"
-            loading="lazy"
-            scrolling="no"
+          <div
+            className="absolute"
             style={{
-              background: HERO_BLUE,
               top: "-4%",
               left: "-25%",
               width: "150%",
               height: "160%",
             }}
-            className="absolute border-0"
-          />
+          >
+            <HeroStoolPoster />
+            {isDesktop === false && <HeroStoolMockup />}
+          </div>
 
           {/* Mobile CTA row — absolutely positioned over the mockup's
               bottom edge, so the mockup keeps its full framing. */}

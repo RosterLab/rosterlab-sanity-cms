@@ -126,6 +126,8 @@ export default function ManualSchedulingPage() {
             // Sized so the laptop stands as tall as the text block; the
             // overhang falls in the image's transparent left margin.
             className: "lg:w-[130%]",
+            // The 130% override peaks at 946px, above the shared default.
+            sizes: "(min-width: 1536px) 950px, (min-width: 1024px) 66vw, 90vw",
           }}
         />
 
@@ -199,7 +201,10 @@ export default function ManualSchedulingPage() {
                   width={600}
                   height={400}
                   className="w-full h-auto"
-                  priority
+                  // Sits ~900px down the page at every breakpoint, so
+                  // preloading it only competed with the hero LCP.
+                  loading="lazy"
+                  sizes="(min-width: 1440px) 600px, (min-width: 1024px) 46vw, 92vw"
                 />
               </div>
             </div>
@@ -210,7 +215,7 @@ export default function ManualSchedulingPage() {
         <div className="bg-white py-20">
           <Container>
             <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
                 GETTING STARTED
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

@@ -333,7 +333,7 @@ export default function ManualSchedulingPage() {
         <div className="bg-white py-20">
           <Container>
             <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+              <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
                 GETTING STARTED
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

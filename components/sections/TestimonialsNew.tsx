@@ -19,22 +19,10 @@ interface Testimonial {
   link?: { href: string; label: string } | null;
 }
 
+// Mike (Whanganui, "7-8 days → 2-3 hours") is deliberately absent: he is the
+// featured quote in <FeatureTestimonial> higher up the page, and carrying him
+// here as well showed the same testimonial twice on one screen.
 const testimonials: Testimonial[] = [
-  {
-    quote: [
-      "Rostering would take ",
-      { highlight: "7-8 days" },
-      ", now it takes ",
-      { highlight: "2-3 hours" },
-      ", allowing me to focus more on patient care.",
-    ],
-    author: "Mike",
-    role: "Associate Clinical Manager Radiology",
-    link: {
-      href: "/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
-      label: "Watch the webinar →",
-    },
-  },
   {
     quote: [
       "RosterLab has ",
