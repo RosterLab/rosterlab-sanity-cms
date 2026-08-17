@@ -558,12 +558,12 @@ export default function RosterAnalysisClient({
             className="hidden lg:block absolute inset-y-0 right-0 w-[58%] xl:w-[55%]"
           >
             <Image
-              src="/images/tools/hero.png"
-              alt="Free AI roster analysis report — Roster Summary, Potential Problems and Improvement Opportunities"
+              src="/images/tools/hero.webp"
+              alt="Pages from the free roster report — EBA compliance and night fairness, night shift distribution and hours balance across staff"
               fill
-              className="object-cover object-left"
+              className="object-cover object-center"
               priority
-              sizes="(min-width: 1024px) 58vw, 0vw"
+              sizes="(min-width: 1024px) 100vw, 0vw"
             />
             {/* Left-edge shadow fade over the image */}
             <div
@@ -1003,10 +1003,10 @@ export default function RosterAnalysisClient({
                   </div>
                   <div className="lg:col-span-6 relative flex lg:justify-end">
                     <Image
-                      src="/images/tools/whats-in-your-report.png"
-                      alt="What's in your roster analysis report — Roster Summary, Potential Problems, Improvement Opportunities, How We Can Help"
-                      width={990}
-                      height={743}
+                      src="/images/tools/whats-in-your-report.webp"
+                      alt="Printed free roster report open to the EBA compliance and night shift distribution pages, next to the report cover"
+                      width={1920}
+                      height={1280}
                       className="w-full lg:w-[80%] h-auto rounded-2xl"
                     />
                   </div>

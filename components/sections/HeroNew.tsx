@@ -1,102 +1,40 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 
 const HERO_BLUE = "#3779DD";
 
-const IFRAME_CSS = `
-  html, body {
-    overflow: hidden !important;
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-    background: ${HERO_BLUE} !important;
-    min-height: 0 !important;
-  }
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar,
-  *::-webkit-scrollbar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
-  /* Hide the demo's playback bar. */
-  [style*="rgba(20, 20, 20, 0.92)"] {
-    display: none !important;
-  }
-  #dc-root,
-  #dc-root > div,
-  #dc-root > div > div,
-  #dc-root > div > div > div {
-    background-color: ${HERO_BLUE} !important;
-  }
-  [style*="rgb(10, 10, 10)"],
-  [style*="#0a0a0a"] {
-    background-color: ${HERO_BLUE} !important;
-  }
-`;
-
-// Hook: inject CSS overrides + repaint scene backdrops into a mockup
-// iframe. Handles both desktop and mobile instances the same way.
-const useIframeOverrides = (
-  ref: React.RefObject<HTMLIFrameElement | null>,
-) => {
-  useEffect(() => {
-    const iframe = ref.current;
-    if (!iframe) return;
-
-    const injectStyles = () => {
-      const doc = iframe.contentDocument;
-      if (!doc?.head) return false;
-      if (!doc.getElementById("__rl_iframe_style_overrides__")) {
-        const style = doc.createElement("style");
-        style.id = "__rl_iframe_style_overrides__";
-        style.textContent = IFRAME_CSS;
-        doc.head.appendChild(style);
-      }
-      const win = doc.defaultView;
-      if (!win) return true;
-      const vw = win.innerWidth;
-      const vh = win.innerHeight;
-      doc.querySelectorAll<HTMLElement>("div").forEach((el) => {
-        const r = el.getBoundingClientRect();
-        // Repaint any big scene backdrop to blue so the letterbox disappears.
-        if (r.width >= vw * 0.7 || r.height >= vh * 0.7) {
-          const style = win.getComputedStyle(el);
-          const bg = style.backgroundColor;
-          const isSceneBg =
-            bg === "rgb(255, 255, 255)" ||
-            bg === "rgb(250, 249, 245)" ||
-            bg === "rgb(230, 231, 232)" ||
-            bg === "rgb(10, 10, 10)";
-          if (isSceneBg) {
-            el.style.setProperty("background-color", HERO_BLUE, "important");
-          }
-          if (style.boxShadow && style.boxShadow !== "none") {
-            el.style.setProperty("box-shadow", "none", "important");
-          }
-        }
-      });
-      return true;
-    };
-
-    let attempts = 0;
-    const interval = setInterval(() => {
-      attempts += 1;
-      injectStyles();
-      if (attempts > 40) clearInterval(interval);
-    }, 250);
-    return () => clearInterval(interval);
-  }, [ref]);
-};
+// Pre-rendered loop of the product mockup animation. This used to be an
+// exported artifact bundle in an iframe, which shipped React, ReactDOM and
+// @babel/standalone and compiled its JSX in the browser — ~2 MB and several
+// seconds of main-thread work on the most important page we have.
+// Regenerate with scripts/record-hero-mockup.js + scripts/encode-hero-mockup.sh.
+const MockupVideo = ({
+  className,
+  style,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+}) => (
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    poster="/landing/hero-mockup-poster.webp"
+    aria-hidden="true"
+    className={className}
+    // `contain` reproduces how the old iframe framed this: the Stage scaled
+    // the scene to fit its box and let the blue background fill the rest,
+    // rather than cropping to fill.
+    style={{ background: HERO_BLUE, objectFit: "contain", ...style }}
+  >
+    <source src="/landing/hero-mockup.webm" type="video/webm" />
+    <source src="/landing/hero-mockup.mp4" type="video/mp4" />
+  </video>
+);
 
 export default function HeroNew() {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const mobileIframeRef = useRef<HTMLIFrameElement>(null);
-  useIframeOverrides(iframeRef);
-  useIframeOverrides(mobileIframeRef);
-
   return (
     // On mobile the hero fits within one viewport (100dvh minus a small
     // gutter). Text stack is compact, mockup fills the remaining space
@@ -133,15 +71,7 @@ export default function HeroNew() {
             height: "180%",
           }}
         >
-          <iframe
-            ref={iframeRef}
-            src="/landing/stool-mockup.html"
-            title="RosterLab Interactive Demo"
-            loading="lazy"
-            scrolling="no"
-            style={{ background: HERO_BLUE }}
-            className="absolute inset-0 w-full h-full border-0 pointer-events-auto"
-          />
+          <MockupVideo className="absolute inset-0 w-full h-full border-0" />
         </div>
 
         {/* Text content. On mobile: only H1 + description; the CTAs are
@@ -186,20 +116,14 @@ export default function HeroNew() {
             text. CTAs float ON TOP of the mockup at the bottom, so
             the mockup itself is never cropped. */}
         <div className="lg:hidden relative w-full flex-1 min-h-[200px] overflow-hidden -mt-2">
-          <iframe
-            ref={mobileIframeRef}
-            src="/landing/stool-mockup.html"
-            title="RosterLab Interactive Demo"
-            loading="lazy"
-            scrolling="no"
+          <MockupVideo
+            className="absolute border-0"
             style={{
-              background: HERO_BLUE,
               top: "-4%",
               left: "-25%",
               width: "150%",
               height: "160%",
             }}
-            className="absolute border-0"
           />
 
           {/* Mobile CTA row — absolutely positioned over the mockup's
