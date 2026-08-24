@@ -18,6 +18,28 @@ import { Sprite, useTime, interpolate, Easing, clamp } from "./stage";
 
 const React = { Fragment };
 
+/**
+ * Locale for the handful of strings inside the mockup that read as
+ * rostering-vs-scheduling copy. Everything else in here is either product
+ * chrome or a proper noun, so this stays deliberately tiny — pass
+ * `locale="us"` to <DesktopScene> on the US landing page.
+ */
+const SceneLocaleContext = createContext("au");
+const useSceneCopy = () => COPY[useContext(SceneLocaleContext)] ?? COPY.au;
+
+const COPY = {
+  au: {
+    myRoster: "My Roster",
+    modalTitle: "Generating Rosters For You...",
+    modalTease: "Our rostering A.I. could beat you at battleship ⚔️",
+  },
+  us: {
+    myRoster: "My Schedule",
+    modalTitle: "Generating Schedules For You...",
+    modalTease: "Our scheduling A.I. could beat you at battleship ⚔️",
+  },
+};
+
 // The two mockups differ only in the roster rows they show.
 const StaffContext = createContext(null);
 const useStaff = () => useContext(StaffContext) ?? STOOL_STAFF;
@@ -88,14 +110,22 @@ const SHIFT = {
 };
 
 // ── Timeline ────────────────────────────────────────────────────────────────
+// Negative marks are pre-roll: they have already resolved by t=0, so the
+// loop opens on a populated app rather than building it. Everything from
+// genHover on is the visible story — cursor reaches Generate, clicks, the
+// solver runs, the roster fills in.
+//
+// The lead-in is deliberately tight. A viewer landing on the hero sees the
+// first movement almost immediately; anything longer reads as a static
+// screenshot, and on a loop that dead air is paid again every cycle.
 export const TL = {
   addStart: -3.0, addStep: 0.0,
   open: -1.0,
-  genHover: 1.5, genClick: 2.5,
-  modalStart: 3.3, modalEnd: 8.7,
-  revealStart: 9.1, revStepC: 0.10, revStepR: 0.04,
-  payoff: 16.1,
-  end: 20.8,
+  genHover: 0.5, genClick: 1.2,
+  modalStart: 1.9, modalEnd: 6.0,
+  revealStart: 6.4, revStepC: 0.10, revStepR: 0.04,
+  payoff: 13.4,
+  end: 18.1,
 };
 
 
@@ -257,7 +287,7 @@ function TopNav(){
 
 // ── Sidebar ─────────────────────────────────────────────────────────────────
 const SIDE_ITEMS = [
-  {ic:'clipboard-text', label:'My Roster', y:210},
+  {ic:'clipboard-text', label:null, labelKey:'myRoster', y:210},
   {ic:'user-plus', label:'Employees', y:279},
   {ic:'clock-clockwise', label:'Shift/Shift\nGroups', y:340},
   {ic:'list-checks', label:'Tasks', y:402},
@@ -270,6 +300,7 @@ const SIDE_ITEMS = [
 ];
 
 function Sidebar({time}){
+  const copy = useSceneCopy();
   const empActive = time>=TL.addStart-0.2 && time<TL.open-0.3;
   const shiftActive = time>=TL.open-0.3 && time<TL.genHover-0.2;
   let gScale=1, gGlow=false;
@@ -279,7 +310,8 @@ function Sidebar({time}){
     <div style={{position:'absolute', left:SIDE_X, top:APP_T+NAV_H+2, width:SIDE_W, bottom:H-WIN.y-WIN.h,
       background:'#fff', borderRight:`1px solid ${C.line}`}}>
       {SIDE_ITEMS.map((it,i)=>{
-        const two = it.label.indexOf('\n')>=0;
+        const label = it.labelKey ? copy[it.labelKey] : it.label;
+        const two = label.indexOf('\n')>=0;
         const active = i===0 || (it.ic==='user-plus'&&empActive) || (it.ic==='clock-clockwise'&&shiftActive);
         const col = active ? '#1479B8' : '#219BC6';
         const top = it.y - (two?40:36) - (APP_T+NAV_H+2);
@@ -290,7 +322,7 @@ function Sidebar({time}){
             {active && <div style={{position:'absolute', left:-4, top:2, bottom:2, width:3, background:col, borderRadius:2}}/>}
             <Ph n={it.ic} size={23} color={col} weight={it.ic==='sparkle'?'fill':'regular'}/>
             <div style={{fontFamily:UI, fontSize:9.5, fontWeight:500, lineHeight:1.15, textAlign:'center',
-              whiteSpace:'pre', color:col}}>{it.label}</div>
+              whiteSpace:'pre', color:col}}>{label}</div>
           </div>
         );
       })}
@@ -541,13 +573,15 @@ function Footer(){
 
 // ── Generating modal ────────────────────────────────────────────────────────
 const MODAL_MSGS = [
-  'Our rostering A.I. could beat you at battleship ⚔️',
+  null, // locale-dependent teaser, filled in at render
   'Balancing 14 days across 10 staff…',
   'Respecting every fixed shift, leave and request…',
   'Checking hundreds of rules at once…',
 ];
 
 function GenModal({time}){
+  const copy = useSceneCopy();
+  const msgs = MODAL_MSGS.map((m) => m ?? copy.modalTease);
   return (
     <Sprite start={TL.modalStart} end={TL.modalEnd+0.4}>
       {({localTime,duration})=>{
@@ -556,7 +590,7 @@ function GenModal({time}){
         if(localTime<0.35){const t=Easing.easeOutBack(localTime/0.35); op=clamp(localTime/0.35,0,1); sc=0.86+0.14*t;}
         else if(localTime>ex){const t=Easing.easeInCubic((localTime-ex)/0.4); op=1-t; sc=1+0.04*t; by=-t*10;}
         const pct = Math.round(clamp((time-(TL.modalStart+0.4))/((TL.modalEnd-0.4)-(TL.modalStart+0.4)),0,1)*100);
-        const msgIdx = Math.min(MODAL_MSGS.length-1, Math.floor(localTime/1.85));
+        const msgIdx = Math.min(msgs.length-1, Math.floor(localTime/1.85));
         return (
           <div style={{position:'absolute', left:WIN.x, top:WIN.y, width:WIN.w, height:WIN.h, borderRadius:12,
             background:'rgba(90,104,116,0.45)', zIndex:20, opacity:op,
@@ -564,7 +598,7 @@ function GenModal({time}){
             <div style={{width:660, background:'#fff', borderRadius:20, padding:'42px 50px',
               boxShadow:'0 30px 80px rgba(20,40,60,0.35)', transform:`scale(${sc}) translateY(${by}px)`}}>
               <div style={{fontFamily:FONT, fontSize:32, fontWeight:700, color:C.modalTitle, marginBottom:24}}>
-                Generating Rosters For You...
+                {copy.modalTitle}
               </div>
               <div style={{display:'flex', alignItems:'center', gap:18}}>
                 <div style={{flex:1, height:24, borderRadius:13, background:'#EEF1F4', overflow:'hidden',
@@ -574,7 +608,7 @@ function GenModal({time}){
                 </div>
                 <div style={{fontFamily:FONT, fontSize:24, fontWeight:700, color:C.blueDk, width:64, textAlign:'right'}}>{pct}%</div>
               </div>
-              <div style={{fontFamily:UI, fontSize:17, color:C.ink, marginTop:24}}>{MODAL_MSGS[msgIdx]}</div>
+              <div style={{fontFamily:UI, fontSize:17, color:C.ink, marginTop:24}}>{msgs[msgIdx]}</div>
               <div style={{textAlign:'right', marginTop:16}}>
                 <span style={{fontFamily:UI, fontSize:17, color:C.sub, textDecoration:'underline'}}>Dismiss</span>
               </div>
@@ -588,10 +622,13 @@ function GenModal({time}){
 
 // ── Cursor ──────────────────────────────────────────────────────────────────
 function Cursor({time}){
-  const ks=[0,0.25,TL.genHover,TL.end];
+  // Leaves the corner almost at once — the hold here is what the viewer
+  // reads as the mockup "not doing anything", so it stays short enough to
+  // feel like the cursor was already on its way in.
+  const ks=[0,0.08,TL.genHover,TL.end];
   const cx = interpolate(ks,[1200,1200,95,95],Easing.easeInOutCubic)(time);
   const cy = interpolate(ks,[900,900,778,778],Easing.easeInOutCubic)(time);
-  const op = interpolate([0,0.1,0.45,TL.genClick+0.2,TL.genClick+0.7,TL.end],[0,0,1,1,0,0])(time);
+  const op = interpolate([0,0.04,0.28,TL.genClick+0.2,TL.genClick+0.7,TL.end],[0,0,1,1,0,0])(time);
   const clicks=[TL.genClick];
   return (
     <React.Fragment>
@@ -735,9 +772,10 @@ function Dock(){
   );
 }
 
-export function DesktopScene(){
+export function DesktopScene({locale = "au"}){
   const time = useTime();
   return (
+    <SceneLocaleContext.Provider value={locale}>
     <div style={{position:'absolute', inset:0, overflow:'hidden', background:'#2a6fb5'}}>
       <img src="/landing/mockup/desktop-wallpaper.webp" alt="" style={{position:'absolute', inset:0, width:'100%',
         height:'100%', objectFit:'cover', display:'block'}}/>
@@ -749,5 +787,6 @@ export function DesktopScene(){
       </div>
       <Dock/>
     </div>
+    </SceneLocaleContext.Provider>
   );
 }

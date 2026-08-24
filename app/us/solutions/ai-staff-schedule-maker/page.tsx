@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import SolutionHero from "@/components/sections/SolutionHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -95,196 +96,43 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 export default function AISchedulesPage() {
   return (
     <SiteLayout>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
-        <Container>
-          {/* Mobile: flex column, Desktop: grid 2 columns */}
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
-            {/* Text content - shows first on mobile */}
-            <div className="w-full pb-8 lg:pb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                AI Staff Schedule{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Maker
-                </span>
-              </h1>
-
-              {/* Mobile only: Image appears here after H1 */}
-              <div className="block lg:hidden w-full relative mb-8">
-                <Image
-                  src="/images/updated-hero/ai-staff-schedule-maker.webp"
-                  alt="AI Staff Schedule Maker"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
-                />
-              </div>
-
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Make scheduling faster than ever before.
-              </p>
-              <div className="space-y-3 mb-8">
-                <div className="flex items-start space-x-3">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700 font-medium">
-                    Reduce scheduling from days to minutes
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700 font-medium">
-                    Comply with union rules and requirements
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700 font-medium">
-                    Easily identify your staffing needs for each day
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700 font-medium">
-                    Keep all your scheduling data and knowledge in one place
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
-                  analyticsLabel="Book a Demo"
-                  analyticsLocation="Solution Page AI Staff Scheduling"
-                  analyticsProperties={{
-                    cta_type: "demo",
-                    page_name: "AI Staff Scheduling",
-                    section: "hero",
-                  }}
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/product-tour"
-                  className="bg-transparent border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                  analyticsLabel="View Product Tour"
-                  analyticsLocation="Solution Page AI Staff Scheduling"
-                  analyticsProperties={{
-                    cta_type: "demo",
-                    page_name: "AI Staff Scheduling",
-                    section: "hero",
-                  }}
-                >
-                  View Product Tour
-                </Button>
-              </div>
-
-              {/* Feature ticks below CTA */}
-              <div className="mt-6">
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-6 text-sm text-gray-600">
-                  <span className="font-medium flex items-center">
-                    <svg
-                      className="w-4 h-4 text-gray-500 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Automatic schedule generation
-                  </span>
-                  <span className="font-medium flex items-center">
-                    <svg
-                      className="w-4 h-4 text-gray-500 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Staff mobile app
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block w-full relative">
-              <Image
-                src="/images/updated-hero/ai-staff-schedule-maker.webp"
-                alt="AI Staff Schedule Maker"
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-
-        {/* Wave separator */}
-        <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
-          <svg
-            className="relative block w-full h-3 lg:h-16"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 80"
-            preserveAspectRatio="none"
-          >
-            <path
-              fill="#f9fafb"
-              d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
-              opacity="0.5"
-            />
-            <path
-              fill="#f9fafb"
-              d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
-            />
-          </svg>
-        </div>
-      </section>
+      <SolutionHero
+        title="AI Staff Schedule Maker"
+        description="Make scheduling faster than ever before."
+        bullets={[
+          "Reduce scheduling from days to minutes",
+          "Comply with union rules and requirements",
+          "Easily identify your staffing needs for each day",
+          "Keep all your scheduling data and knowledge in one place",
+        ]}
+        analyticsLocation="Solution Page AI Staff Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "AI Staff Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/product-tour",
+          label: "View Product Tour",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "AI Staff Scheduling",
+            section: "hero",
+          },
+        }}
+        footnotes={["Automatic schedule generation", "Staff mobile app"]}
+        image={{
+          src: "/images/updated-hero/ai-staff-schedule-maker.webp",
+          alt: "AI Staff Schedule Maker",
+          // US asset is cropped tight to the mockup, so it needs no
+          // padding compensation the way the AU one does.
+          scale: 1,
+        }}
+      />
 
       {/* AI Benefits Section */}
       <div className="bg-gray-50 py-20">

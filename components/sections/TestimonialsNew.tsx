@@ -16,9 +16,9 @@ const LOCATION = "Landing Testimonials";
  * fragments wrapped as `{ highlight: "…" }` render in the brand blue so
  * the section can lean on colour to draw the eye to key phrases.
  */
-type QuoteFragment = string | { highlight: string };
+export type QuoteFragment = string | { highlight: string };
 
-interface Testimonial {
+export interface Testimonial {
   quote: QuoteFragment[];
   author: string;
   role: string;
@@ -29,7 +29,7 @@ interface Testimonial {
 // Mike (Whanganui, "7-8 days → 2-3 hours") is deliberately absent: he is the
 // featured quote in <FeatureTestimonial> higher up the page, and carrying him
 // here as well showed the same testimonial twice on one screen.
-const testimonials: Testimonial[] = [
+export const TESTIMONIALS_AU: Testimonial[] = [
   {
     quote: [
       "RosterLab has ",
@@ -87,7 +87,11 @@ const testimonials: Testimonial[] = [
 
 const AUTOPLAY_MS = 7000;
 
-export default function TestimonialsNew() {
+export default function TestimonialsNew({
+  testimonials = TESTIMONIALS_AU,
+}: {
+  testimonials?: Testimonial[];
+} = {}) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<number | null>(null);
   const current = testimonials[index];
@@ -103,11 +107,11 @@ export default function TestimonialsNew() {
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
     };
-  }, [index]);
+  }, [index, testimonials.length]);
 
   return (
     <section className="py-20 md:py-24">
-      <Container>
+      <Container className="lg:px-12 xl:px-20">
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
           {/* Left: heading + description + arrow controls */}
           <div>
@@ -209,7 +213,8 @@ export default function TestimonialsNew() {
                   </span>
                 ),
               )}
-              <span className="text-gray-400">&rdquo;</span>
+              {/* Matches the opening glyph above — the pair reads as one mark. */}
+              <span className="text-blue-600">&rdquo;</span>
             </blockquote>
 
             <div className="mt-10">

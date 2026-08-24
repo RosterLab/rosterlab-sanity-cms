@@ -121,13 +121,8 @@ export default function ManualSchedulingPage() {
           image={{
             src: "/images/updated-hero/free-app.webp",
             alt: "Free Staff Scheduling Illustration",
-            width: 1620,
-            height: 1080,
-            // Sized so the laptop stands as tall as the text block; the
-            // overhang falls in the image's transparent left margin.
-            className: "lg:w-[130%]",
-            // The 130% override peaks at 946px, above the shared default.
-            sizes: "(min-width: 1536px) 950px, (min-width: 1024px) 66vw, 90vw",
+            // Content sits in ~72% of the asset's height.
+            scale: 1.3,
           }}
         />
 

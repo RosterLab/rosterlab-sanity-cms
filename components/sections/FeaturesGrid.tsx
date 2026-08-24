@@ -6,14 +6,14 @@ import TrackedLink from "@/components/ui/TrackedLink";
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Features";
 
-interface Feature {
+export interface Feature {
   title: string;
   description: string;
   href: string;
   image: string;
 }
 
-const features: Feature[] = [
+export const FEATURES_AU: Feature[] = [
   {
     title: "Automated Rostering",
     description:
@@ -75,27 +75,40 @@ const features: Feature[] = [
 // Read each SVG at build/server time and inline the markup. Inlining lets the
 // parent card's `:hover` state flip a CSS variable inside the SVG, which
 // controls the animation-play-state of every animated element.
+// Keyed by filename, so any locale's feature list can reuse the same icons —
+// only the copy varies between AU and US, never the artwork.
 const svgMarkup = Object.fromEntries(
-  features.map((f) => [
+  FEATURES_AU.map((f) => [
     f.image,
     readFileSync(join(process.cwd(), "public", "landing", f.image), "utf8"),
   ]),
 );
 
-export default function FeaturesGrid() {
+export const FEATURES_HEADING_AU = {
+  title: "Everything you need to run a perfect roster.",
+  subtitle:
+    "A connected toolkit for planning, publishing, and adjusting your rosters.",
+};
+
+export default function FeaturesGrid({
+  features = FEATURES_AU,
+  heading = FEATURES_HEADING_AU,
+}: {
+  features?: Feature[];
+  heading?: { title: string; subtitle: string };
+} = {}) {
   return (
     <section className="py-20 md:py-24">
-      <Container>
+      <Container className="lg:px-12 xl:px-20">
         <div className="max-w-3xl mx-auto text-center mb-14 md:mb-16">
           <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
             Features
           </span>
           <h2 className="mt-3 text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Everything you need to run a perfect roster.
+            {heading.title}
           </h2>
           <p className="mt-4 text-base md:text-lg text-gray-600">
-            A connected toolkit for planning, publishing, and adjusting your
-            rosters.
+            {heading.subtitle}
           </p>
         </div>
 

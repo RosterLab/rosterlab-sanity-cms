@@ -72,7 +72,7 @@ function solveHomography(w, h, q) {
 
 const SCREEN_TF = solveHomography(DW, DH, QUAD);
 
-function StoolScene() {
+function StoolScene({ locale }) {
   return (
     // The photo is cut out; let the hero's own background show through
     // instead of the mockup painting its own backdrop.
@@ -111,13 +111,13 @@ function StoolScene() {
           background: "#0b3a4a",
         }}
       >
-        <DesktopScene />
+        <DesktopScene locale={locale} />
       </div>
     </div>
   );
 }
 
-export default function HeroStoolMockup() {
+export default function HeroStoolMockup({ locale = "au" }) {
   return (
     <Stage
       width={SM.w}
@@ -125,7 +125,7 @@ export default function HeroStoolMockup() {
       duration={TL.end}
       background="transparent"
     >
-      <StoolScene />
+      <StoolScene locale={locale} />
     </Stage>
   );
 }

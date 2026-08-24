@@ -25,33 +25,49 @@ interface SolutionHeroProps {
   image: {
     src: string;
     alt: string;
-    width?: number;
-    height?: number;
     /**
-     * Per-page width override for the mockup, e.g. `lg:w-[170%]`. Each
-     * asset carries a different amount of transparent padding, so the
-     * width needed to make the device read at a given size varies by
-     * image. Must be a literal class string so Tailwind can see it.
+     * Scale applied to the mockup *inside* its fixed-height media box.
+     * This is a transform, so it never feeds back into layout — the blue
+     * section is the same height on every solution page regardless of
+     * what this is set to. Use it only to compensate for how much
+     * transparent margin a given asset carries; 1 means "this asset is
+     * cropped tight to its content".
      */
+    scale?: number;
+    /** Optional position nudge, e.g. `lg:translate-x-6`. */
     className?: string;
-    /**
-     * Slot width hint for the responsive srcset. Without it Next emits
-     * only a 1x/2x pair off `width`, so phones download the 3840px
-     * candidate to paint a ~350px image. Pages that override
-     * `className` render wider than the default and need a matching
-     * override here — the value must never undershoot the painted
-     * width, or the browser picks a candidate that renders soft.
-     */
-    sizes?: string;
   };
 }
 
 /**
- * Tracks the default `lg:w-[118%]` mockup: ~90vw stacked, ~60vw beside
- * the text, then fixed once the container stops growing at 1536px.
+ * Fixed height of the media box per breakpoint. The mockup is contained
+ * inside this box, so swapping an asset for one with a different aspect
+ * ratio or a different amount of transparent padding cannot change the
+ * height of the blue section. `MEDIA_BOX` and `SECTION_MIN_H` are the
+ * only two things that set the hero's size.
  */
-const DEFAULT_HERO_SIZES =
-  "(min-width: 1536px) 860px, (min-width: 1024px) 60vw, 90vw";
+const MEDIA_BOX = "h-[220px] sm:h-[300px] lg:h-[420px] xl:h-[480px]";
+
+/**
+ * Floor for the blue section so pages whose headline wraps to fewer
+ * lines still match the others. Sized to the tallest text column
+ * (4 bullets + 2 CTAs + a 3-line headline) plus the vertical padding.
+ */
+const SECTION_MIN_H = "lg:min-h-[672px]";
+
+/**
+ * Slot width hint for the responsive srcset. The unscaled media box is
+ * ~55vw beside the text and ~92vw once stacked (860px once the container
+ * stops growing at 1536px), but `scale` paints the asset wider than its
+ * box — so the hint has to be scaled with it. Undershooting here makes
+ * the browser pick a candidate that renders soft.
+ */
+function heroSizes(scale: number) {
+  const fixed = Math.round(860 * scale);
+  const lg = Math.round(55 * scale);
+  const base = Math.min(100, Math.round(92 * scale));
+  return `(min-width: 1536px) ${fixed}px, (min-width: 1024px) ${lg}vw, ${base}vw`;
+}
 
 /**
  * Rounded blue hero shared by the solution pages. Text stack on the
@@ -74,7 +90,10 @@ export default function SolutionHero({
     <div className="px-4 pt-4 lg:px-6 lg:pt-6">
       <section
         style={{ backgroundColor: HERO_BLUE }}
-        className="relative overflow-hidden rounded-3xl lg:rounded-[48px]"
+        className={cn(
+          "relative overflow-hidden rounded-3xl lg:rounded-[48px]",
+          SECTION_MIN_H,
+        )}
       >
         {/* Dot pattern overlay, concentrated behind the mockup. */}
         <div
@@ -173,22 +192,24 @@ export default function SolutionHero({
               )}
             </div>
 
-            {/* The mockup runs wider than its grid cell and bleeds past the
-              container's right gutter, so it reads at full size. The
-              section's overflow-hidden clips it at the rounded edge. */}
-            <div className="relative flex justify-center lg:justify-end">
+            {/* Fixed-height media box. The mockup is contained within it and
+              any `scale` is a transform, so the asset can grow past the
+              container's right gutter (clipped by the section's rounded
+              edge) without ever changing the hero's height. */}
+            <div className={cn("relative w-full", MEDIA_BOX)}>
               <Image
                 src={image.src}
                 alt={image.alt}
-                width={image.width ?? 1200}
-                height={image.height ?? 800}
+                fill
                 priority
                 fetchPriority="high"
-                sizes={image.sizes ?? DEFAULT_HERO_SIZES}
-                className={cn(
-                  "w-full max-w-2xl sm:max-w-3xl lg:max-w-none lg:w-[118%] lg:shrink-0 lg:-mr-[6vw] h-auto",
-                  image.className,
-                )}
+                sizes={heroSizes(image.scale ?? 1)}
+                style={
+                  image.scale && image.scale !== 1
+                    ? { transform: `scale(${image.scale})` }
+                    : undefined
+                }
+                className={cn("object-contain object-center", image.className)}
               />
             </div>
           </div>

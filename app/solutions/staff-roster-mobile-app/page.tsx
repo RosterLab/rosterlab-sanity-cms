@@ -151,8 +151,8 @@ export default function EmployeeMobileAppPage() {
           image={{
             src: "/images/updated-hero/mobile-app.webp",
             alt: "RosterLab Mobile App Interface",
-            width: 1620,
-            height: 1080,
+            // Content sits in ~76% of the asset's height.
+            scale: 1.25,
           }}
         />
 

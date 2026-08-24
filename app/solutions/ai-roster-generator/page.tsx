@@ -126,22 +126,9 @@ export default function AISchedulesPage() {
         image={{
           src: "/images/updated-hero/ai-rostering.webp",
           alt: "AI Scheduling Illustration",
-          width: 1620,
-          height: 1080,
-          // The laptop is only ~57% of this asset's height and sits in a
-          // wide laptop+phone composition, so it needs to render well over
-          // its cell to stand as tall as the text. Widths are % of the grid
-          // cell (not vw) so the mockup tracks the text column across
-          // breakpoints; the overhang falls in the image's transparent side
-          // margins, and -my clips the transparent top/bottom bands so they
-          // don't inflate the hero's height.
-          className:
-            "lg:w-[160%] lg:-mr-[30%] lg:-my-[23%] 2xl:w-[175%] 2xl:-mr-[42%]",
-          // Widest of the solution mockups — peaks at 1274px once the
-          // container stops growing, so it needs a bigger slot hint
-          // than the shared default.
-          sizes:
-            "(min-width: 1536px) 1280px, (min-width: 1024px) 84vw, 90vw",
+          // Content sits in ~59% of the asset's height, so it needs
+          // scaling up to read at the same size as the other mockups.
+          scale: 1.55,
         }}
       />
 

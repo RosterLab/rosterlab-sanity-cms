@@ -34,16 +34,18 @@ const LOCATION = "Landing Benefits";
 const START_MS = 900;
 const HOLD_MS = 3200;
 
-interface BenefitTab {
+export interface BenefitTab {
   id: string;
   label: string;
   title: string;
   description: string;
+  /** Short capability bullets shown under the description. */
+  highlights: string[];
   cta: { label: string; href: string };
   image?: string;
 }
 
-const benefitTabs: BenefitTab[] = [
+export const BENEFIT_TABS_AU: BenefitTab[] = [
   {
     id: "time",
     label: "Save Time",
@@ -54,6 +56,12 @@ const benefitTabs: BenefitTab[] = [
       label: "Explore AI generation",
       href: "/feature/ai-staff-rostering-assistant",
     },
+    highlights: [
+      "Generate Rosters Automatically",
+      "Handle Complex Rules and Staffing Requirements",
+      "Reduce Admin for Last-minute Changes",
+      "Dynamically re-roster staff",
+    ],
   },
   {
     id: "optimisation",
@@ -65,6 +73,12 @@ const benefitTabs: BenefitTab[] = [
       label: "Explore optimisation",
       href: "/solutions/ai-roster-generator",
     },
+    highlights: [
+      "Optimise Skill Mix",
+      "Allocate Staff Efficiently",
+      "Minimise Costs",
+      "Dynamic Scenario Planning",
+    ],
     image: "/images/illustration/optimise_workforce.svg",
   },
   {
@@ -75,8 +89,14 @@ const benefitTabs: BenefitTab[] = [
       "Empower your team to plan ahead and manage their rosters with confidence, while staying aligned with business needs. Fewer shift swaps, reduced absenteeism, and better-matched preferences drive engagement.",
     cta: {
       label: "Explore retention",
-      href: "/feature/preferences-and-requests",
+      href: "/feature/self-scheduling",
     },
+    highlights: [
+      "Improve Work-Life Balance and Staff Satisfaction",
+      "Meet a High Percentage of Preferences",
+      "Reduce Unnecessary Sick Leave",
+      "Reduce Staff Turnover",
+    ],
   },
   {
     id: "safety",
@@ -85,10 +105,21 @@ const benefitTabs: BenefitTab[] = [
     description:
       "Ensure clinical safety and fairness with every roster. By embedding equity and fatigue-management rules into our AI, you eliminate favouritism, reduce staff fatigue, and create safer, more inclusive rosters.",
     cta: { label: "Explore safety", href: "/feature/rules-engine" },
+    highlights: [
+      "Eliminate Favouritism",
+      "Distribute Shifts Fairly",
+      "Reduce Clinical Risks",
+      "Reduce Fatigue",
+    ],
   },
 ];
 
-export default function BenefitsNew() {
+export default function BenefitsNew({
+  tabs = BENEFIT_TABS_AU,
+}: {
+  tabs?: BenefitTab[];
+} = {}) {
+  const benefitTabs = tabs;
   const scrollWrapperRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -98,7 +129,10 @@ export default function BenefitsNew() {
   // more for the initial sticky pin. Each tab holds twice as long as it used
   // to, so its animation has room to loop before the next one takes over.
   const perTabVh = 100;
-  const scrollBudgetVh = useMemo(() => 100 + benefitTabs.length * perTabVh, []);
+  const scrollBudgetVh = useMemo(
+    () => 100 + benefitTabs.length * perTabVh,
+    [benefitTabs.length],
+  );
 
   useEffect(() => {
     const wrapper = scrollWrapperRef.current;
@@ -138,7 +172,7 @@ export default function BenefitsNew() {
       window.removeEventListener("resize", onScroll);
       if (raf) window.cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [benefitTabs.length]);
 
   const renderVisual = (id: string) => {
     // Each visual is only mounted for the active tab, so autoplay is safe
@@ -215,11 +249,11 @@ export default function BenefitsNew() {
           height changes. The vh term is the actual breathing room, and being
           viewport-relative it gives way on short screens instead of pushing
           the mockup out of the pinned area. */}
-      <section className="sticky top-0 flex flex-col justify-start overflow-hidden pt-[calc(60px+6vh)] h-[max(720px,calc(100vh-100px))]">
-        <Container className="w-full">
+      <section className="sticky top-0 flex flex-col justify-start overflow-hidden pt-[calc(60px+2.5vh)] h-[max(720px,calc(100vh-100px))]">
+        <Container className="w-full lg:px-12 xl:px-20">
           {/* Tab bar. On mobile all 4 pills fit in one row by wrapping
               their labels to 2 lines; on desktop a single-line pill bar. */}
-          <div className="mb-8 md:mb-14">
+          <div className="mb-6 md:mb-8">
             <div
               role="tablist"
               aria-label="Benefits"
@@ -257,12 +291,25 @@ export default function BenefitsNew() {
             className="grid lg:grid-cols-[minmax(0,1fr),minmax(0,1.4fr)] gap-6 lg:gap-16 items-center animate-fade-in"
           >
             <div className="max-w-md">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3 md:mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3 md:mb-4">
                 {active.title}
               </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 md:mb-8">
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 md:mb-5">
                 {active.description}
               </p>
+              <ul className="mb-5 md:mb-6 space-y-2">
+                {active.highlights.map((highlight) => (
+                  <li key={highlight} className="flex items-start">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[0.5em] mr-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"
+                    />
+                    <span className="text-sm md:text-base font-semibold text-gray-800">
+                      {highlight}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <Button
                 href={active.cta.href}
                 analyticsLabel={active.cta.label}
@@ -281,7 +328,7 @@ export default function BenefitsNew() {
           </div>
 
           {/* Progress dots — visual cue that there's more to scroll through. */}
-          <div className="flex justify-center gap-2 mt-6 md:mt-10">
+          <div className="flex justify-center gap-2 mt-4 md:mt-5">
             {benefitTabs.map((tab, i) => (
               <div
                 key={tab.id}
