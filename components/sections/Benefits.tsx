@@ -78,7 +78,7 @@ const benefitTabs: BenefitTab[] = [
   {
     id: "safety",
     label: "Ensure Safety & Fairness",
-    title: "Ensure compliance and equity",
+    title: "Ensure compliance & equity",
     description:
       "Ensure clinical safety and fairness with every roster. By embedding equity and fatigue-management rules into our AI, you eliminate favoritism, reduce staff fatigue, and create safer, more inclusive rosters that build trust and improve care delivery.",
     highlights: [

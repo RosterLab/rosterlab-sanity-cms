@@ -6,12 +6,19 @@ import Image from "next/image";
 
 interface MobileAppPreferencesModuleProps {
   autoplay?: boolean;
+  /** How long "before" is held before flipping to "after". */
   autoplayIntervalMs?: number;
+  /** Cycle back to "before" and replay instead of stopping after one pass. */
+  loop?: boolean;
+  /** How long "after" is held before looping back. Ignored unless `loop`. */
+  loopHoldMs?: number;
 }
 
 export default function MobileAppPreferencesModule({
   autoplay = false,
   autoplayIntervalMs = 3000,
+  loop = false,
+  loopHoldMs = 3000,
 }: MobileAppPreferencesModuleProps = {}) {
   const [showAfter, setShowAfter] = useState(false);
 
@@ -22,12 +29,22 @@ export default function MobileAppPreferencesModule({
     if (!autoplay) return;
     setShowAfter(false);
     setFinished(false);
-    const id = window.setTimeout(() => {
-      setShowAfter(true);
-      setFinished(true);
-    }, autoplayIntervalMs);
-    return () => window.clearTimeout(id);
-  }, [autoplay, autoplayIntervalMs, playToken]);
+    const timers: number[] = [];
+    timers.push(
+      window.setTimeout(() => {
+        setShowAfter(true);
+        if (loop) {
+          // Bumping playToken re-runs this effect, which resets to "before".
+          timers.push(
+            window.setTimeout(() => setPlayToken((n) => n + 1), loopHoldMs),
+          );
+        } else {
+          setFinished(true);
+        }
+      }, autoplayIntervalMs),
+    );
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [autoplay, autoplayIntervalMs, loop, loopHoldMs, playToken]);
 
   const replay = () => setPlayToken((n) => n + 1);
 
