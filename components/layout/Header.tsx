@@ -994,7 +994,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
       {/* Mobile menu backdrop */}
       {isMenuOpen && (
         <div
-          className="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-20"
+          className={cn(
+            // Sits directly under the bar, which shrinks from 80px to 60px
+            // once the page is scrolled — a fixed offset left a strip of page
+            // showing through between the two.
+            "xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 motion-safe:transition-[top] motion-safe:duration-300",
+            condensed ? "top-[60px]" : "top-20",
+          )}
           onClick={() => setIsMenuOpen(false)}
           aria-hidden="true"
         />
@@ -1007,7 +1013,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
         aria-modal="true"
         aria-label="Mobile navigation menu"
         className={cn(
-          "xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40",
+          "xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 bottom-0 bg-white z-40",
+          // Tracks the header's condensed height, see the backdrop above.
+          condensed ? "top-[60px]" : "top-20",
           isMenuOpen ? "block" : "hidden",
         )}
       >

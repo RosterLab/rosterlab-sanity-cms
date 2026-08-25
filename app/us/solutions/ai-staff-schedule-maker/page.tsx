@@ -124,7 +124,6 @@ export default function AISchedulesPage() {
             section: "hero",
           },
         }}
-        footnotes={["Automatic schedule generation", "Staff mobile app"]}
         image={{
           src: "/images/updated-hero/ai-staff-schedule-maker.webp",
           alt: "AI Staff Schedule Maker",

@@ -95,19 +95,30 @@ export default function FeatureTestimonial({
           <div className="mt-8 flex flex-col items-center">
             <span aria-hidden="true" className="h-px w-10 bg-gray-300" />
 
-            <p className="mt-6 text-base font-semibold text-gray-900">
-              {content.author}
-            </p>
-            <p className="mt-0.5 text-sm text-gray-600">{content.role}</p>
+            {/* Logo sits beside the name so the person and the organisation
+                read as one attribution line. */}
+            <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              <Image
+                src="/images/logos/whanganui.png"
+                alt="Te Whatu Ora Whanganui"
+                width={140}
+                height={70}
+                className="h-8 md:h-9 w-auto object-contain opacity-75"
+                style={{ filter: "brightness(0)" }}
+              />
 
-            <Image
-              src="/images/logos/whanganui.png"
-              alt="Te Whatu Ora Whanganui"
-              width={140}
-              height={70}
-              className="mt-4 h-8 md:h-9 w-auto object-contain opacity-75"
-              style={{ filter: "brightness(0)" }}
-            />
+              <span
+                aria-hidden="true"
+                className="hidden sm:block self-stretch w-px bg-gray-300"
+              />
+
+              <div className="text-center sm:text-left">
+                <p className="text-base font-semibold text-gray-900">
+                  {content.author}
+                </p>
+                <p className="mt-0.5 text-sm text-gray-600">{content.role}</p>
+              </div>
+            </div>
 
             <Link
               onClick={() =>

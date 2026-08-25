@@ -11,6 +11,9 @@ import {
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Industries";
 
+// How long each set of cards holds before the row creeps on by one.
+const AUTOPLAY_MS = 4000;
+
 export interface Industry {
   name: string;
   category: string;
@@ -237,6 +240,9 @@ export default function IndustrySolutionsNew({
   useDragScroll(trackRef);
   // Which card index sits at the left edge of the visible window.
   const [activeIndex, setActiveIndex] = useState(0);
+  // Autoplay yields to anyone touching the row — hover, drag or keyboard. A
+  // ref rather than state: the pause must not tear down and restart the timer.
+  const autoplayPausedRef = useRef(false);
 
   const scrollByCard = (dir: 1 | -1) => {
     const track = trackRef.current;
@@ -265,6 +271,58 @@ export default function IndustrySolutionsNew({
     };
     track.addEventListener("scroll", onScroll, { passive: true });
     return () => track.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Creeps one card to the right on its own, then rewinds to the start.
+  // Desktop only: the mobile track is finger-driven and moving it under the
+  // reader's thumb would fight them.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const desktop = window.matchMedia("(min-width: 1024px)");
+
+    // No point animating a row nobody is looking at.
+    let inView = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(track);
+
+    const pause = () => {
+      autoplayPausedRef.current = true;
+    };
+    const resume = () => {
+      autoplayPausedRef.current = false;
+    };
+    track.addEventListener("pointerenter", pause);
+    track.addEventListener("pointerleave", resume);
+    track.addEventListener("focusin", pause);
+    track.addEventListener("focusout", resume);
+
+    const id = window.setInterval(() => {
+      if (!inView || autoplayPausedRef.current || !desktop.matches) return;
+      const card = track.querySelector<HTMLElement>("[data-card]");
+      const cardWidth = card ? card.offsetWidth + 24 : 320;
+      const atEnd =
+        track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      track.scrollTo({
+        left: atEnd ? 0 : track.scrollLeft + cardWidth,
+        behavior: "smooth",
+      });
+    }, AUTOPLAY_MS);
+
+    return () => {
+      window.clearInterval(id);
+      observer.disconnect();
+      track.removeEventListener("pointerenter", pause);
+      track.removeEventListener("pointerleave", resume);
+      track.removeEventListener("focusin", pause);
+      track.removeEventListener("focusout", resume);
+    };
   }, []);
 
   // How many "pages" (start positions) exist for the dot tracker. On desktop

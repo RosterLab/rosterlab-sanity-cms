@@ -145,7 +145,7 @@ interface TrustedByDualRowProps {
 }
 
 export default function TrustedByDualRow({
-  heading = "Join over 150+ teams already optimising their rosters",
+  heading = "Join hundreds of teams already optimising their rosters",
 }: TrustedByDualRowProps = {}) {
   return (
     <section className="py-6 md:py-16">

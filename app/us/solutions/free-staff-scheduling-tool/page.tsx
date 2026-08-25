@@ -194,7 +194,7 @@ export default function ManualSchedulingPage() {
               </div>
               <div className="w-full max-w-[600px]">
                 <Image
-                  src="/images/illustration/free_platform.png"
+                  src="/images/illustration/free_platform.webp"
                   alt="Your Digital Scheduling Platform"
                   width={600}
                   height={400}

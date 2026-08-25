@@ -26,7 +26,7 @@ export const HERO_CONTENT_US: HeroNewContent = {
 };
 
 export const TRUSTED_BY_HEADING_US =
-  "Join over 150+ teams already optimizing their schedules";
+  "Join hundreds of teams already optimizing their schedules";
 
 export const FEATURE_TESTIMONIAL_US: FeatureTestimonialContent = {
   lead: "Scheduling would take ",
@@ -98,10 +98,12 @@ export const BENEFIT_TABS_US: BenefitTab[] = [
   {
     id: "safety",
     label: "Safety & Fairness",
-    title: "Ensure compliance and equity",
+    title: "Ensure compliance & equity",
     description:
       "Ensure clinical safety and fairness with every schedule. By embedding equity and fatigue-management rules into our AI, you eliminate favoritism, reduce staff fatigue, and create safer, more inclusive schedules.",
     cta: { label: "Explore safety", href: "/us/feature/rules-engine" },
+    // Longest of the four titles — one step down at lg so it holds 2 lines.
+    titleClassName: "lg:text-[2.5rem]",
     highlights: [
       "Eliminate Favoritism",
       "Distribute Shifts Fairly",

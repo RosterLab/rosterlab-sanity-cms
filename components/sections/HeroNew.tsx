@@ -110,9 +110,7 @@ export default function HeroNew({
           )}
         </div>
 
-        {/* Text content. On mobile: only H1 + description; the CTAs are
-            pinned to the bottom of the blue box below. On desktop the
-            CTAs sit inline in the text stack. */}
+        {/* Text content — H1, description and the CTAs, on every size. */}
         <Container className="relative z-10 lg:h-full shrink-0 lg:shrink">
           <div className="flex flex-col lg:justify-center h-full pt-8 pb-0 sm:pt-10 sm:pb-0 md:py-20 lg:py-24">
             <div className="max-w-xl text-white">
@@ -123,6 +121,28 @@ export default function HeroNew({
               <p className="mt-3 sm:mt-6 text-sm sm:text-base md:text-lg text-white/85 leading-relaxed max-w-md">
                 {content.description}
               </p>
+
+              {/* Mobile CTA row — above the mockup, so the buttons are the
+                  first thing under the pitch rather than floating over the
+                  screenshot. */}
+              <div className="lg:hidden mt-5 sm:mt-6 flex flex-row gap-2">
+                <Button
+                  href={content.primaryCta.href}
+                  className="flex-1 inline-flex items-center justify-center whitespace-nowrap bg-blue-900 text-white px-3 py-3 rounded-full text-[13px] sm:text-sm font-semibold hover:bg-blue-950 transition shadow-lg"
+                  analyticsLabel="Book a Demo"
+                  analyticsLocation="Landing New Hero"
+                >
+                  {content.primaryCta.label}
+                </Button>
+                <Button
+                  href={content.secondaryCta.href}
+                  className="flex-1 inline-flex items-center justify-center whitespace-nowrap bg-white text-blue-700 px-3 py-3 rounded-full text-[13px] sm:text-sm font-semibold hover:bg-blue-50 transition shadow-lg"
+                  analyticsLabel="See an example"
+                  analyticsLocation="Landing New Hero"
+                >
+                  {content.secondaryCta.label}
+                </Button>
+              </div>
 
               {/* Desktop CTA row — inline with the text stack. */}
               <div className="hidden lg:flex mt-8 flex-row gap-3">
@@ -147,9 +167,7 @@ export default function HeroNew({
           </div>
         </Container>
 
-        {/* Mobile mockup — fills the whole remaining space below the
-            text. CTAs float ON TOP of the mockup at the bottom, so
-            the mockup itself is never cropped. */}
+        {/* Mobile mockup — fills whatever space is left below the text. */}
         <div className="lg:hidden relative w-full flex-1 min-h-[200px] overflow-hidden -mt-2">
           <div
             className="absolute"
@@ -162,27 +180,6 @@ export default function HeroNew({
           >
             <HeroStoolPoster />
             {isDesktop === false && <HeroStoolMockup locale={locale} />}
-          </div>
-
-          {/* Mobile CTA row — absolutely positioned over the mockup's
-              bottom edge, so the mockup keeps its full framing. */}
-          <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-5 flex flex-row gap-2">
-            <Button
-              href={content.primaryCta.href}
-              className="flex-1 inline-flex items-center justify-center bg-blue-900 text-white py-3 rounded-full text-sm font-semibold hover:bg-blue-950 transition shadow-lg"
-              analyticsLabel="Book a Demo"
-              analyticsLocation="Landing New Hero"
-            >
-              {content.primaryCta.label}
-            </Button>
-            <Button
-              href={content.secondaryCta.href}
-              className="flex-1 inline-flex items-center justify-center bg-white text-blue-700 py-3 rounded-full text-sm font-semibold hover:bg-blue-50 transition shadow-lg"
-              analyticsLabel="See an example"
-              analyticsLocation="Landing New Hero"
-            >
-              {content.secondaryCta.label}
-            </Button>
           </div>
         </div>
       </section>

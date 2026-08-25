@@ -11,6 +11,11 @@ import {
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Testimonials";
 
+// A wash of the brand blue — light enough that the page dot grid still shows
+// through. The curved edges below are filled with the same value so the band
+// reads as one shape.
+const BAND_TINT = "rgba(55, 121, 221, 0.07)";
+
 /**
  * A quote is a list of fragments. Plain strings render as normal text;
  * fragments wrapped as `{ highlight: "…" }` render in the brand blue so
@@ -109,8 +114,40 @@ export default function TestimonialsNew({
     };
   }, [index, testimonials.length]);
 
+  // Tinted band — alternates with the white sections either side. Both edges
+  // arc rather than cutting straight across, echoing the hero's soft corners.
   return (
-    <section className="py-20 md:py-24">
+    <section
+      className="relative py-20 md:py-24"
+      style={{ backgroundColor: BAND_TINT }}
+    >
+      {/* One long S across the full width — two cubics meeting at the
+          midpoint, control points at 1/3 and 2/3 of each span so the tangents
+          line up and the curve has no crease. The edges butt up against the
+          band exactly: overlapping them would double the translucent fill and
+          draw a visible hairline. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1440 64"
+        preserveAspectRatio="none"
+        className="absolute inset-x-0 top-0 -translate-y-full w-full h-10 md:h-20"
+      >
+        <path
+          d="M0,32 C240,8 480,8 720,32 C960,56 1200,56 1440,32 L1440,64 L0,64 Z"
+          fill={BAND_TINT}
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1440 64"
+        preserveAspectRatio="none"
+        className="absolute inset-x-0 bottom-0 translate-y-full w-full h-10 md:h-20"
+      >
+        <path
+          d="M0,32 C240,56 480,56 720,32 C960,8 1200,8 1440,32 L1440,0 L0,0 Z"
+          fill={BAND_TINT}
+        />
+      </svg>
       <Container className="lg:px-12 xl:px-20">
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
           {/* Left: heading + description + arrow controls */}
