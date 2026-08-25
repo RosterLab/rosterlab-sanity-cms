@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import SolutionHero from "@/components/sections/SolutionHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
@@ -119,140 +120,41 @@ export default function EmployeeMobileAppPage() {
     <SiteLayout>
       <>
         {/* Hero Section */}
-        <div className="bg-white pt-16 pb-0">
-          <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div className="pb-8 lg:pb-12">
-                <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  Staff Roster{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                    Mobile App
-                  </span>{" "}
-                  On The Go
-                </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                  Give your staff instant access to their schedules, enable easy
-                  shift management, and improve communication with our intuitive
-                  mobile app.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Streamline communication
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Increase staff engagement
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Works on all devices
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-sm flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="w-3 h-3 text-white"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-gray-700 font-medium">
-                      Available free on iOS and Android
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    href="/book-a-demo"
-                    className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
-                    analyticsLabel="Book a Demo"
-                    analyticsLocation="Solution Page Staff Roster Mobile App"
-                    analyticsProperties={{
-                      cta_type: "demo",
-                      page_name: "Staff Roster Mobile App",
-                      section: "hero",
-                    }}
-                  >
-                    Book a Demo
-                  </Button>
-                  <Button
-                    href="/pricing"
-                    variant="outline"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                    analyticsLabel="View Pricing"
-                    analyticsLocation="Solution Page Staff Roster Mobile App"
-                    analyticsProperties={{
-                      cta_type: "pricing",
-                      page_name: "Staff Roster Mobile App",
-                      section: "hero",
-                    }}
-                  >
-                    View Pricing
-                  </Button>
-                </div>
-              </div>
-              <div className="relative flex justify-center items-end">
-                <div className="w-full max-w-lg">
-                  <Image
-                    src="/images/illustration/test5.svg"
-                    alt="RosterLab Mobile App Interface"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
+        <SolutionHero
+          title="Staff Roster Mobile App On The Go"
+          description="Give your staff instant access to their schedules, enable easy shift management, and improve communication with our intuitive mobile app."
+          bullets={[
+            "Streamline communication",
+            "Increase staff engagement",
+            "Works on all devices",
+            "Available free on iOS and Android",
+          ]}
+          analyticsLocation="Solution Page Staff Roster Mobile App"
+          primaryCta={{
+            href: "/book-a-demo",
+            label: "Book a Demo",
+            analyticsProperties: {
+              cta_type: "demo",
+              page_name: "Staff Roster Mobile App",
+              section: "hero",
+            },
+          }}
+          secondaryCta={{
+            href: "/pricing",
+            label: "View Pricing",
+            analyticsProperties: {
+              cta_type: "pricing",
+              page_name: "Staff Roster Mobile App",
+              section: "hero",
+            },
+          }}
+          image={{
+            src: "/images/updated-hero/mobile-app.webp",
+            alt: "RosterLab Mobile App Interface",
+            // Content sits in ~76% of the asset's height.
+            scale: 1.25,
+          }}
+        />
 
         {/* Key Features Section */}
         <div className="bg-gray-50 py-20">

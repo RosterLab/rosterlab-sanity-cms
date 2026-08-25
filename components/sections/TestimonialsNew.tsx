@@ -3,15 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import {
+  trackButtonClick,
+  trackSmartButtonClick,
+} from "@/components/analytics/tracking";
+
+// Analytics `location` for every click originating in this section.
+const LOCATION = "Landing Testimonials";
+
+// A wash of the brand blue — light enough that the page dot grid still shows
+// through. The curved edges below are filled with the same value so the band
+// reads as one shape.
+const BAND_TINT = "rgba(55, 121, 221, 0.07)";
 
 /**
  * A quote is a list of fragments. Plain strings render as normal text;
  * fragments wrapped as `{ highlight: "…" }` render in the brand blue so
  * the section can lean on colour to draw the eye to key phrases.
  */
-type QuoteFragment = string | { highlight: string };
+export type QuoteFragment = string | { highlight: string };
 
-interface Testimonial {
+export interface Testimonial {
   quote: QuoteFragment[];
   author: string;
   role: string;
@@ -19,22 +31,10 @@ interface Testimonial {
   link?: { href: string; label: string } | null;
 }
 
-const testimonials: Testimonial[] = [
-  {
-    quote: [
-      "Rostering would take ",
-      { highlight: "7-8 days" },
-      ", now it takes ",
-      { highlight: "2-3 hours" },
-      ", allowing me to focus more on patient care.",
-    ],
-    author: "Mike",
-    role: "Associate Clinical Manager Radiology",
-    link: {
-      href: "/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
-      label: "Watch the webinar →",
-    },
-  },
+// Mike (Whanganui, "7-8 days → 2-3 hours") is deliberately absent: he is the
+// featured quote in <FeatureTestimonial> higher up the page, and carrying him
+// here as well showed the same testimonial twice on one screen.
+export const TESTIMONIALS_AU: Testimonial[] = [
   {
     quote: [
       "RosterLab has ",
@@ -92,7 +92,11 @@ const testimonials: Testimonial[] = [
 
 const AUTOPLAY_MS = 7000;
 
-export default function TestimonialsNew() {
+export default function TestimonialsNew({
+  testimonials = TESTIMONIALS_AU,
+}: {
+  testimonials?: Testimonial[];
+} = {}) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<number | null>(null);
   const current = testimonials[index];
@@ -108,11 +112,43 @@ export default function TestimonialsNew() {
     return () => {
       if (timerRef.current) window.clearTimeout(timerRef.current);
     };
-  }, [index]);
+  }, [index, testimonials.length]);
 
+  // Tinted band — alternates with the white sections either side. Both edges
+  // arc rather than cutting straight across, echoing the hero's soft corners.
   return (
-    <section className="py-20 md:py-24">
-      <Container>
+    <section
+      className="relative py-20 md:py-24"
+      style={{ backgroundColor: BAND_TINT }}
+    >
+      {/* One long S across the full width — two cubics meeting at the
+          midpoint, control points at 1/3 and 2/3 of each span so the tangents
+          line up and the curve has no crease. The edges butt up against the
+          band exactly: overlapping them would double the translucent fill and
+          draw a visible hairline. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1440 64"
+        preserveAspectRatio="none"
+        className="absolute inset-x-0 top-0 -translate-y-full w-full h-10 md:h-20"
+      >
+        <path
+          d="M0,32 C240,8 480,8 720,32 C960,56 1200,56 1440,32 L1440,64 L0,64 Z"
+          fill={BAND_TINT}
+        />
+      </svg>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1440 64"
+        preserveAspectRatio="none"
+        className="absolute inset-x-0 bottom-0 translate-y-full w-full h-10 md:h-20"
+      >
+        <path
+          d="M0,32 C240,56 480,56 720,32 C960,8 1200,8 1440,32 L1440,0 L0,0 Z"
+          fill={BAND_TINT}
+        />
+      </svg>
+      <Container className="lg:px-12 xl:px-20">
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
           {/* Left: heading + description + arrow controls */}
           <div>
@@ -127,7 +163,10 @@ export default function TestimonialsNew() {
 
             <div className="hidden lg:flex mt-10 items-center gap-3">
               <button
-                onClick={prev}
+                onClick={() => {
+                  trackButtonClick("Testimonials: Previous", LOCATION);
+                  prev();
+                }}
                 aria-label="Previous testimonial"
                 className="w-14 h-14 rounded-full border-2 border-blue-600 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition"
               >
@@ -147,7 +186,10 @@ export default function TestimonialsNew() {
                 </svg>
               </button>
               <button
-                onClick={next}
+                onClick={() => {
+                  trackButtonClick("Testimonials: Next", LOCATION);
+                  next();
+                }}
                 aria-label="Next testimonial"
                 className="w-14 h-14 rounded-full border-2 border-blue-600 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition"
               >
@@ -208,7 +250,8 @@ export default function TestimonialsNew() {
                   </span>
                 ),
               )}
-              <span className="text-gray-400">&rdquo;</span>
+              {/* Matches the opening glyph above — the pair reads as one mark. */}
+              <span className="text-blue-600">&rdquo;</span>
             </blockquote>
 
             <div className="mt-10">
@@ -217,6 +260,14 @@ export default function TestimonialsNew() {
               {current.link && (
                 <Link
                   href={current.link.href}
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      current.link!.label,
+                      current.link!.href,
+                      LOCATION,
+                      { testimonial_author: current.author },
+                    )
+                  }
                   className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   {current.link.label}
@@ -225,6 +276,14 @@ export default function TestimonialsNew() {
               {!current.link && current.caseStudyLink && (
                 <Link
                   href={current.caseStudyLink}
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      "Read case study",
+                      current.caseStudyLink!,
+                      LOCATION,
+                      { testimonial_author: current.author },
+                    )
+                  }
                   className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
                 >
                   Read case study →
@@ -240,7 +299,12 @@ export default function TestimonialsNew() {
                   key={i}
                   type="button"
                   aria-label={`Go to testimonial ${i + 1}`}
-                  onClick={() => setIndex(i)}
+                  onClick={() => {
+                    trackButtonClick("Testimonials: Dot", LOCATION, {
+                      dot_index: i,
+                    });
+                    setIndex(i);
+                  }}
                   className={`h-2 rounded-full transition-all ${
                     i === index
                       ? "w-6 bg-blue-600"
