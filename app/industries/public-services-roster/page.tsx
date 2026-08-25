@@ -1,11 +1,12 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import TrustedBy from "@/components/sections/TrustedBy";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 
 export const metadata = withHreflang(
   {
@@ -45,92 +46,36 @@ export default function PublicServicesPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                <span
-                  className="text-transparent bg-clip-text"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                  }}
-                >
-                  Public Services Rostering
-                </span>{" "}
-                Software
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Roster faster and more efficiently whilst meeting more staff
-                preferences and managing fatigue.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/contact"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
-                >
-                  Learn More
-                </Button>
-              </div>
-
-              {/* Feature Ticks */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-sm text-gray-700">
-                    Made for public service organisations
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-sm text-gray-700">
-                    AI-generated rosters in seconds
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="relative mt-6 lg:mt-0">
-              <Image
-                src="/images/illustration/public-services.svg"
-                alt="Public services workforce scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Public Services Rostering Software"
+        description="Roster faster and more efficiently whilst meeting more staff preferences and managing fatigue."
+        analyticsLocation="Industry Page Public Services Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Public Services Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/contact",
+          label: "Learn More",
+          analyticsProperties: {
+            cta_type: "contact",
+            page_name: "Public Services Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/public-services.webp",
+          alt: "Public services staff at work",
+        }}
+      />
 
       {/* Trusted By */}
-      <TrustedBy heading="Trusted by global teams with complex rosters" />
+      <TrustedByDualRow heading="Trusted by global teams with complex rosters" />
 
       {/* Benefits Section */}
       <section className="py-20 bg-gray-50">

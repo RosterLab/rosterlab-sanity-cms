@@ -1,6 +1,6 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
@@ -55,113 +55,33 @@ export default function CallCentresPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Efficient, Compliant
-                </span>{" "}
-                Call Centre Rosters
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Optimise call centre operations with smarter workforce
-                scheduling for 24/7 customer service operations.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Meet service level agreements with optimised staffing levels
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Fair distribution of night shifts to reduce agent burnout
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Quickly adapt rosters to changing call volume demands
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Ensure skilled agents are on the right shifts
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/pricing"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
-                >
-                  View pricing
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/call-centre-rostering.svg"
-                alt="Call centre roster scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Efficient, Compliant Call Centre Rosters"
+        description="Optimise call centre operations with smarter workforce scheduling for 24/7 customer service operations."
+        analyticsLocation="Industry Page Call Centre Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Call Centre Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/pricing",
+          label: "View pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Call Centre Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/call-centre.webp",
+          alt: "Call centre agents at their desks",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">

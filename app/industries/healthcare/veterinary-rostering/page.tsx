@@ -1,8 +1,8 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -80,113 +80,33 @@ export default function VeterinaryRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-50 via-white to-teal-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">
-                  Optimised, Flexible
-                </span>{" "}
-                Veterinary Rosters
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create efficient AI rosters that respect your vet preferences,
-                maintain the right skill mix, and ensure work-life balance.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Optimise staff skill mix for every shift
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Reduce your time rostering with automatic roster generation
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  24/7 emergency coverage management
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Flexible preference based self-rostering
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-green-600 text-white hover:bg-green-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/case-studies"
-                  className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50"
-                >
-                  Read Case Studies
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/vets.svg"
-                alt="Veterinary rostering software interface"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Optimised, Flexible Veterinary Rosters"
+        description="Create efficient AI rosters that respect your vet preferences, maintain the right skill mix, and ensure work-life balance."
+        analyticsLocation="Industry Page Veterinary Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Veterinary Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/case-studies",
+          label: "Read Case Studies",
+          analyticsProperties: {
+            cta_type: "case_studies",
+            page_name: "Veterinary Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/veterinary.webp",
+          alt: "Veterinary team treating an animal",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
@@ -546,7 +466,7 @@ export default function VeterinaryRosteringPage() {
 
       {/* Trusted By */}
       <section className="py-10 bg-white">
-        <TrustedBy />
+        <TrustedByDualRow heading="Trusted by leading healthcare organisations" />
       </section>
 
       {/* Self-Rostering Workflow Section */}

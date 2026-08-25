@@ -1,9 +1,10 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -61,115 +62,33 @@ export default function AgedCarePage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Optimise{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Aged Care
-                </span>{" "}
-                Staff Rosters
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Deliver better care with smart rostering. Achieve 5% efficiency
-                gains while reducing scheduling errors and ensuring full
-                compliance.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  More efficiently allocate staffing hours
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Eliminate costly scheduling errors
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Digitise your rostering practices
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Easily fill open shifts
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/contact"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  Contact Us
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/aged-care.svg"
-                alt="Aged care rostering dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Optimise Aged Care Staff Rosters"
+        description="Deliver better care with smart rostering. Achieve 5% efficiency gains while reducing scheduling errors and ensuring full compliance."
+        analyticsLocation="Industry Page Aged Care Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Aged Care Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/contact",
+          label: "Contact Us",
+          analyticsProperties: {
+            cta_type: "contact",
+            page_name: "Aged Care Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/aged-care.webp",
+          alt: "Aged care staff supporting a resident",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">
@@ -719,7 +638,7 @@ export default function AgedCarePage() {
 
       {/* Trusted By */}
       <section className="bg-white pb-20">
-        <TrustedBy />
+        <TrustedByDualRow heading="Trusted by leading healthcare organisations" />
         <Container>
           <div className="text-center mt-0">
             <Button
