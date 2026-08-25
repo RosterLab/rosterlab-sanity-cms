@@ -558,12 +558,12 @@ export default function RosterAnalysisClient({
             className="hidden lg:block absolute inset-y-0 right-0 w-[58%] xl:w-[55%]"
           >
             <Image
-              src="/images/tools/hero.png"
-              alt="Free AI roster analysis report — Roster Summary, Potential Problems and Improvement Opportunities"
+              src="/images/tools/hero.webp"
+              alt="Pages from the free roster report — EBA compliance and night fairness, night shift distribution and hours balance across staff"
               fill
-              className="object-cover object-left"
+              className="object-cover object-center"
               priority
-              sizes="(min-width: 1024px) 58vw, 0vw"
+              sizes="(min-width: 1024px) 100vw, 0vw"
             />
             {/* Left-edge shadow fade over the image */}
             <div
@@ -1003,10 +1003,14 @@ export default function RosterAnalysisClient({
                   </div>
                   <div className="lg:col-span-6 relative flex lg:justify-end">
                     <Image
-                      src="/images/tools/whats-in-your-report.png"
-                      alt="What's in your roster analysis report — Roster Summary, Potential Problems, Improvement Opportunities, How We Can Help"
-                      width={990}
-                      height={743}
+                      src="/images/tools/whats-in-your-report.webp"
+                      alt="Printed free roster report open to the EBA compliance and night shift distribution pages, next to the report cover"
+                      width={1920}
+                      height={1280}
+                      // Half of a max-w-7xl grid, then 80% of that — without
+                      // this the browser took the 2x candidate off a 1920px
+                      // width and pulled a 3840px render.
+                      sizes="(min-width: 1024px) 500px, 100vw"
                       className="w-full lg:w-[80%] h-auto rounded-2xl"
                     />
                   </div>
@@ -1022,10 +1026,12 @@ export default function RosterAnalysisClient({
                 <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                   <div className="lg:col-span-7 relative flex lg:justify-start order-2 lg:order-1">
                     <Image
-                      src="/images/tools/about-us-image-mockup.png"
+                      src="/images/tools/about-us-image-mockup.webp"
                       alt="RosterLab — AI-powered staff rostering software"
                       width={1320}
                       height={990}
+                      // 7 of 12 columns of a max-w-7xl grid, then 80% of that.
+                      sizes="(min-width: 1024px) 580px, 100vw"
                       className="w-full lg:w-[80%] h-auto rounded-2xl"
                     />
                   </div>
