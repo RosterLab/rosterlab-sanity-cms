@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -70,127 +71,33 @@ export default function ICUEDPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Generate your ED Staff Schedule in{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Minutes
-                </span>
-              </h1>
-
-              {/* Mobile only: Image appears here after H1 */}
-              <div className="block lg:hidden w-full relative mb-8">
-                <Image
-                  src="/images/us-images/iStock-2190085149.jpg"
-                  alt="ICU/ED scheduling dashboard"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                />
-              </div>
-
-              <p className="text-xl text-gray-600 mb-8">
-                Cut schedule creation time by 90% with AI automation. Build
-                compliant schedules that balance critical care demands with
-                staff wellbeing.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Tailor-made for specific ICU and ED scheduling challenges
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Reduce your time spent scheduling by 90%
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Make safer and fairer schedules for your team
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Increase continuity of care
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/product-tour"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  View Product Tour
-                </Button>
-              </div>
-            </div>
-            {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block w-full relative">
-              <Image
-                src="/images/us-images/iStock-2190085149.jpg"
-                alt="ICU/ED scheduling dashboard"
-                width={600}
-                height={600}
-                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Generate your ED Staff Schedule in Minutes"
+        description="Cut schedule creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff wellbeing."
+        analyticsLocation="US Industry Page ED & ICU Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "ED & ICU Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/product-tour",
+          label: "View Product Tour",
+          analyticsProperties: {
+            cta_type: "product_tour",
+            page_name: "ED & ICU Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/icu-ed.webp",
+          alt: "Emergency and intensive care staff on shift",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">

@@ -11,11 +11,25 @@ export default function ClientHeader() {
   /*
     Every page under /industries/ except the index itself opens with
     `IndustryHero`, whose mobile layout is a flat blue field starting at the
-    very top — so the bar blends into it there. Matched on the path rather
-    than signalled by the hero, which renders after the header and could only
-    tell it after first paint.
+    very top — so the bar blends into it there. The /type/ pages listed below
+    use the same hero and sit in the same Industries menu. Matched on the
+    path rather than signalled by the hero, which renders after the header
+    and could only tell it after first paint.
+
+    The /us/ paths mirror the same set: the US pages run the same hero, so
+    they need the same treatment.
   */
-  const hasBlueHero = pathname.startsWith("/industries/");
+  const TYPE_PAGES_WITH_BLUE_HERO = [
+    "/type/on-call-roster",
+    "/type/long-roster",
+    "/us/type/on-call-scheduling",
+    "/us/type/long-term-schedule-planning",
+  ];
+
+  const hasBlueHero =
+    pathname.startsWith("/industries/") ||
+    pathname.startsWith("/us/industries/") ||
+    TYPE_PAGES_WITH_BLUE_HERO.includes(pathname);
 
   // Use US navigation items for US pages, default for others
   return (
