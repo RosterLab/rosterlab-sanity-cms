@@ -26,7 +26,18 @@ const FOCAL_POINTS = [
 
 export default function DotFocalOverlay() {
   return (
-    <>
+    /*
+      The clip is load-bearing. Bands are positioned as a share of the page
+      height but sized in fixed px, so the last one overhangs the bottom of the
+      page wrapper — and because the fade is painted rather than masked, that
+      overhang is opaque page-colour. The wrapper is `position: relative`, so it
+      paints above the non-positioned <footer> below it and blanked out the
+      footer's link columns. Clipping to the wrapper keeps the paint inside.
+    */
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+    >
       {FOCAL_POINTS.map(({ top, height, spread }) => (
         <div
           key={top}
@@ -47,6 +58,6 @@ export default function DotFocalOverlay() {
           }}
         />
       ))}
-    </>
+    </div>
   );
 }

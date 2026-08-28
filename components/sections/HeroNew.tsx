@@ -8,12 +8,12 @@ import HeroStoolPoster from "@/components/sections/animations/roster-mockup/Hero
 
 const HERO_BLUE = "#3779DD";
 
-// The animated scene is a few hundred nodes; keeping it out of the server
-// render keeps the document small so the headline still paints first. The
-// poster below is the same artwork, so there is nothing to see swapping in.
-const HeroStoolMockup = dynamic(
-  () =>
-    import("@/components/sections/animations/roster-mockup/HeroStoolMockup"),
+// The mockup is now a warped screen recording rather than a DOM scene, but it
+// still stays out of the server render: the poster below is the same artwork, so
+// there is nothing to see swapping in, and the video's bytes never compete with
+// the headline's first paint.
+const HeroStoolVideo = dynamic(
+  () => import("@/components/sections/animations/roster-mockup/HeroStoolVideo"),
   { ssr: false },
 );
 
@@ -44,7 +44,12 @@ export interface HeroNewContent {
   description: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  /** Locale for the copy rendered *inside* the laptop mockup. */
+  /**
+   * Locale for the copy rendered *inside* the laptop mockup. Currently unused:
+   * the mockup is a pre-recorded video, so the wording on the laptop screen is
+   * baked into the recording. Kept so a US recording can be wired up without
+   * changing every call site.
+   */
   locale?: "au" | "us";
 }
 
@@ -66,7 +71,6 @@ export default function HeroNew({
   content?: HeroNewContent;
 } = {}) {
   const isDesktop = useIsDesktopHero();
-  const locale = content.locale ?? "au";
 
   return (
     // On mobile the hero fits within one viewport (100dvh minus a small
@@ -109,7 +113,7 @@ export default function HeroNew({
           <HeroStoolPoster />
           {isDesktop === true && (
             <div className="absolute inset-0">
-              <HeroStoolMockup locale={locale} />
+              <HeroStoolVideo />
             </div>
           )}
         </div>

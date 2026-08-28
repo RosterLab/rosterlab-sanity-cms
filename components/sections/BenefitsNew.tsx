@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { trackButtonClick } from "@/components/analytics/tracking";
+import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 
 const StaffingEnvelopeChartSmall = dynamic(
   () => import("@/components/ui/StaffingEnvelopeChartSmall"),
@@ -34,6 +35,17 @@ const LOCATION = "Landing Benefits";
 // long enough to register the problem, short of feeling stalled.
 const START_MS = 1800;
 const HOLD_MS = 3200;
+
+// How long each tab holds before the carousel advances. Comfortably longer
+// than a visual's START_MS + HOLD_MS beat, so the before/after lands and is
+// read before the tab changes under you.
+const TAB_MS = 8000;
+
+// Longest frame delta the timer will credit. Without this, a main-thread stall
+// — an extension, a devtools pause, an HMR recompile — is added to elapsed in
+// one go when frames resume, so the bar appears to stick and then jump or
+// hand over early. Capped, a stall just pauses the bar.
+const MAX_FRAME_MS = 50;
 
 export interface BenefitTab {
   id: string;
@@ -118,26 +130,6 @@ export const BENEFIT_TABS_AU: BenefitTab[] = [
     ],
   },
 ];
-
-/**
- * Geometry the tab-switching maths runs on.
- *
- * `totalScrollable` is the distance the page scrolls while the section stays
- * pinned: the wrapper height minus the pinned child, because the pin releases
- * when the wrapper bottom reaches the child bottom (the child is capped below
- * one viewport on tall screens, so it is measured, not assumed).
- *
- * `entry` is the approach — from the moment the section's top crosses the
- * bottom of the viewport it is on screen reading as tab one, a whole viewport
- * before it ever pins, so that distance counts towards the first tab's share.
- */
-function measureSection(wrapper: HTMLElement, sticky: HTMLElement | null) {
-  const stickyH = sticky?.offsetHeight ?? window.innerHeight;
-  return {
-    totalScrollable: wrapper.offsetHeight - stickyH,
-    entry: window.innerHeight,
-  };
-}
 
 /**
  * Holds a tab's visual until the slot first scrolls into view.
@@ -238,89 +230,99 @@ export default function BenefitsNew({
   tabs?: BenefitTab[];
 } = {}) {
   const benefitTabs = tabs;
-  const scrollWrapperRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLElement>(null);
-  // Set while a tab-bar click is animating its smooth scroll. The scroll
-  // crosses every tab in between on the way, so without this the pills flicker
-  // through them before settling on the one that was clicked.
-  const jumpTargetRef = useRef<{ index: number; y: number } | null>(null);
-  const jumpTimerRef = useRef<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const tablistRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  // Autoplay only while the section is actually on screen.
+  //
+  // There is deliberately no hover or focus pause. Both looked reasonable and
+  // both broke clicking: reaching a tab puts the pointer inside the section,
+  // and clicking a button focuses it, so the timer was pinned paused from the
+  // moment you picked a tab — the bar sat at 0 and never moved. Clicking a tab
+  // restarts its 8s instead, which covers the same "do not change under the
+  // reader" ground without a state that can stick.
+  const [inView, setInView] = useState(false);
+  const reduceMotion = usePrefersReducedMotion();
 
   const active = benefitTabs[activeIndex] ?? benefitTabs[0];
+  const timerRunning = inView && !reduceMotion;
 
-  // Scroll budget for the pinned section: a full viewport per tab plus one
-  // more for the initial sticky pin. Each tab holds twice as long as it used
-  // to, so its animation has room to loop before the next one takes over.
-  const perTabVh = 100;
-  const scrollBudgetVh = useMemo(
-    () => 100 + benefitTabs.length * perTabVh,
-    [benefitTabs.length],
-  );
+  // The timer bar is written straight to the node instead of going through
+  // state: a 50ms setState re-rendered this whole section — the mounted visual
+  // included — twenty times a second, and that is what made the bar stutter.
+  const barRef = useRef<HTMLSpanElement>(null);
+  // Elapsed lives in a ref so pausing and resuming picks up where it left off
+  // rather than restarting the tab.
+  const elapsedRef = useRef(0);
+
+  const advance = () => setActiveIndex((i) => (i + 1) % benefitTabs.length);
+
+  // Zero the bar on every tab change, before the loop below picks it up.
+  useEffect(() => {
+    elapsedRef.current = 0;
+    if (barRef.current) barRef.current.style.width = "0%";
+  }, [activeIndex]);
 
   useEffect(() => {
-    const wrapper = scrollWrapperRef.current;
-    if (!wrapper) return;
+    const bar = barRef.current;
+    if (!bar) return;
+    if (reduceMotion) {
+      bar.style.width = "100%";
+      return;
+    }
+    if (!timerRunning) return;
 
     let raf = 0;
-    const compute = () => {
-      const jump = jumpTargetRef.current;
-      if (jump) {
-        // Hold the clicked tab until the animation lands on it.
-        if (Math.abs(window.scrollY - jump.y) > 2) return;
-        jumpTargetRef.current = null;
+    let last = performance.now();
+    const tick = (now: number) => {
+      elapsedRef.current += Math.min(now - last, MAX_FRAME_MS);
+      last = now;
+      const fraction = Math.min(elapsedRef.current / TAB_MS, 1);
+      bar.style.width = `${fraction * 100}%`;
+      // Hand over the moment the bar lands, not on the next tick.
+      if (fraction >= 1) {
+        advance();
+        return;
       }
-      const rect = wrapper.getBoundingClientRect();
-      const { totalScrollable, entry } = measureSection(
-        wrapper,
-        stickyRef.current,
-      );
-      if (totalScrollable <= 0) return;
-      // Counting from the pin start gave the first tab an extra viewport of
-      // dwell — it is already on screen for the whole approach. Counting from
-      // the moment the section enters view instead makes all four equal.
-      const travelled = Math.min(
-        Math.max(entry - rect.top, 0),
-        totalScrollable + entry,
-      );
-      const progress = travelled / (totalScrollable + entry);
-      const idx = Math.min(
-        benefitTabs.length - 1,
-        Math.floor(progress * benefitTabs.length),
-      );
-      setActiveIndex((prev) => (prev === idx ? prev : idx));
+      raf = requestAnimationFrame(tick);
     };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // advance is re-created every render; activeIndex is what restarts the run.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, timerRunning, reduceMotion, benefitTabs.length]);
 
-    const onScroll = () => {
-      if (raf) return;
-      raf = window.requestAnimationFrame(() => {
-        compute();
-        raf = 0;
-      });
-    };
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    // Start as soon as the section is meaningfully on screen. Waiting for half
+    // of it left the first tab sitting idle while the reader was already
+    // looking at it.
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-    // Grabbing the page mid-animation cancels the jump, so drop the hold and
-    // let the scroll position drive the tabs again.
-    const releaseJump = () => {
-      jumpTargetRef.current = null;
-    };
-
-    compute();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    window.addEventListener("wheel", releaseJump, { passive: true });
-    window.addEventListener("touchstart", releaseJump, { passive: true });
-    window.addEventListener("keydown", releaseJump);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      window.removeEventListener("wheel", releaseJump);
-      window.removeEventListener("touchstart", releaseJump);
-      window.removeEventListener("keydown", releaseJump);
-      if (jumpTimerRef.current) window.clearTimeout(jumpTimerRef.current);
-      if (raf) window.cancelAnimationFrame(raf);
-    };
-  }, [benefitTabs.length]);
+  // Roving tabindex: arrows move between tabs, which is what a tablist owes a
+  // keyboard user now that the tabs are the only way to navigate.
+  const onTabKeyDown = (e: React.KeyboardEvent) => {
+    const delta = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (!delta) return;
+    e.preventDefault();
+    const next =
+      (activeIndex + delta + benefitTabs.length) % benefitTabs.length;
+    setActiveIndex(next);
+    tablistRef.current
+      ?.querySelectorAll<HTMLButtonElement>('[role="tab"]')
+      [next]?.focus();
+  };
 
   const renderVisual = (tab: BenefitTab) => {
     // Each visual is only mounted for the tab on screen, so autoplay is safe
@@ -369,43 +371,17 @@ export default function BenefitsNew({
     }
   };
 
-  const jumpToTab = (idx: number) => {
-    const wrapper = scrollWrapperRef.current;
-    if (!wrapper) return;
-    const { totalScrollable, entry } = measureSection(
-      wrapper,
-      stickyRef.current,
-    );
-    if (totalScrollable <= 0) {
-      setActiveIndex(idx);
-      return;
-    }
-    // Inverse of compute(): land in the middle of the tab's slice. Clamped to
-    // the document, otherwise an unreachable target would leave the tab held
-    // forever (see jumpTargetRef).
-    const progress = (idx + 0.5) / benefitTabs.length;
-    const maxScroll = Math.max(
-      0,
-      document.documentElement.scrollHeight - window.innerHeight,
-    );
-    const target = Math.round(
-      Math.min(
-        Math.max(
-          wrapper.offsetTop - entry + progress * (totalScrollable + entry),
-          0,
-        ),
-        maxScroll,
-      ),
-    );
-    jumpTargetRef.current = { index: idx, y: target };
+  const selectTab = (idx: number, tab: BenefitTab) => {
+    trackButtonClick(`Tab: ${tab.label}`, LOCATION, {
+      tab_id: tab.id,
+      tab_index: idx,
+    });
     setActiveIndex(idx);
-    window.scrollTo({ top: target, behavior: "smooth" });
-    // Belt and braces: if the animation is cut short and never lands exactly
-    // on the target, hand control back rather than freezing the tabs.
-    if (jumpTimerRef.current) window.clearTimeout(jumpTimerRef.current);
-    jumpTimerRef.current = window.setTimeout(() => {
-      jumpTargetRef.current = null;
-    }, 1500);
+    // Re-picking the current tab restarts its timer, which is the only sane
+    // reading of clicking the tab you are already on. The reset effect misses
+    // that case, because setting the same index is a no-op for React.
+    elapsedRef.current = 0;
+    if (barRef.current) barRef.current.style.width = "0%";
   };
 
   return (
@@ -417,124 +393,119 @@ export default function BenefitsNew({
         ))}
       </div>
 
-      {/* Desktop: the pinned tab scroller. Hidden below lg, so the wrapper
-          measures 0 there and the scroll maths bails out. */}
+      {/* Desktop: a timed tab carousel. Each tab holds for TAB_MS with the
+          remaining time drawn under the active tab, then hands over to the
+          next one; clicking a tab takes it immediately and restarts its run. This used to be a
+          500vh scroll-pinned scroller, which spent ~1,100px of wheeling per
+          tab to produce four discrete jump-cuts — nearly half the page's
+          scroll length for a section that now reads in place. */}
       <div
-        ref={scrollWrapperRef}
-        className="relative hidden lg:block"
-        style={{ height: `${scrollBudgetVh}vh` }}
+        ref={sectionRef}
+        className="hidden lg:block py-16 xl:py-20"
       >
-        {/* Top-aligned rather than centred: the content is ~580px in a ~950px
-          viewport, so centring parked a large dead band above the tab bar.
-          The 60px term clears the sticky site header — this section also pins
-          at top:0, so it sits UNDERNEATH the header and padding below that
-          height is invisible. Keep the two in sync if the condensed header
-          height changes. The vh term is the actual breathing room, and being
-          viewport-relative it gives way on short screens instead of pushing
-          the mockup out of the pinned area.
+        <Container className="w-full lg:px-12 xl:px-20">
+          {/* Tab bar: four connected cells under one hairline border, with the
+              active tab's remaining time drawn along the box's bottom edge.
+              Both rows are grid-cols-4 inside the same border, which is what
+              keeps a segment aligned to its tab without measuring anything.
 
-          Heights are pinned to what the content actually measures — 763px at
-          lg (where the copy column is narrowest and wraps most) and 663px
-          from xl up. A viewport-height pin left a few hundred px of white
-          between the last tab and the next section on tall screens. Below lg
-          the layout stacks, so the height is left to the content. */}
-        <section
-          ref={stickyRef}
-          className="sticky top-0 flex flex-col justify-start overflow-hidden pt-[calc(60px+2.5vh)] pb-10 lg:pb-0 lg:h-[800px] xl:h-[700px]"
-        >
-          <Container className="w-full lg:px-12 xl:px-20">
-            {/* Tab bar. On mobile all 4 pills fit in one row by wrapping
-              their labels to 2 lines; on desktop a single-line pill bar. */}
-            <div className="mb-6 md:mb-8">
-              <div
-                role="tablist"
-                aria-label="Benefits"
-                className="flex justify-center gap-1 bg-white rounded-full p-1.5 shadow-sm border border-gray-200 w-fit mx-auto"
-              >
-                {benefitTabs.map((tab, i) => {
-                  const isActive = i === activeIndex;
-                  return (
-                    <button
-                      key={tab.id}
-                      role="tab"
-                      aria-selected={isActive}
-                      onClick={() => {
-                        trackButtonClick(`Tab: ${tab.label}`, LOCATION, {
-                          tab_id: tab.id,
-                          tab_index: i,
-                        });
-                        jumpToTab(i);
-                      }}
-                      className={`px-2 py-2 lg:px-5 xl:px-6 lg:py-2.5 rounded-2xl lg:rounded-full text-xs sm:text-sm md:text-base font-medium leading-tight lg:whitespace-nowrap transition-colors ${
-                        isActive
-                          ? "bg-blue-600 text-white"
-                          : "bg-white lg:bg-transparent text-gray-700 lg:text-gray-600 border border-gray-200 lg:border-0 hover:bg-gray-50 lg:hover:bg-transparent lg:hover:text-gray-900"
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
+              The timer stays out of the <button>: performance.css gives every
+              button `transform: translateZ(0)`, and a child of that whose
+              geometry changes inside the cell's clip can stop painting
+              altogether while keeping its box and hit-testing. */}
+          <div className="mx-auto mb-8 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
             <div
-              key={active.id}
-              className="grid lg:grid-cols-[minmax(0,1fr),minmax(0,1.4fr)] gap-6 lg:gap-16 items-center animate-fade-in"
+              ref={tablistRef}
+              role="tablist"
+              aria-label="Benefits"
+              onKeyDown={onTabKeyDown}
+              className="grid grid-cols-4 divide-x divide-gray-200"
             >
-              <div className="max-w-md">
-                <h2
-                  className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3 md:mb-4 ${active.titleClassName ?? ""}`}
-                >
-                  {active.title}
-                </h2>
-                <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 md:mb-5">
-                  {active.description}
-                </p>
-                <ul className="mb-5 md:mb-6 space-y-2">
-                  {active.highlights.map((highlight) => (
-                    <li key={highlight} className="flex items-start">
-                      <span
-                        aria-hidden="true"
-                        className="mt-[0.5em] mr-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"
-                      />
-                      <span className="text-sm md:text-base font-semibold text-gray-800">
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  href={active.cta.href}
-                  analyticsLabel={active.cta.label}
-                  analyticsLocation={LOCATION}
-                  className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold hover:bg-blue-700 transition"
-                >
-                  {active.cta.label}
-                </Button>
-              </div>
-
-              <div className="relative">
-                <LazyVisual className="relative min-h-[280px] sm:min-h-[320px] md:min-h-[420px] flex items-center justify-center [&>*]:w-full">
-                  {renderVisual(active)}
-                </LazyVisual>
-              </div>
+              {benefitTabs.map((tab, i) => {
+                const isActive = i === activeIndex;
+                return (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    id={`benefit-tab-${tab.id}`}
+                    aria-selected={isActive}
+                    aria-controls={`benefit-panel-${tab.id}`}
+                    tabIndex={isActive ? 0 : -1}
+                    onClick={() => selectTab(i, tab)}
+                    className={`px-3 py-3.5 text-sm xl:text-base font-medium leading-tight transition-colors ${
+                      isActive
+                        ? "text-gray-900"
+                        : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Progress dots — visual cue that there's more to scroll through. */}
-            <div className="flex justify-center gap-2 mt-4 md:mt-5">
-              {benefitTabs.map((tab, i) => (
-                <div
-                  key={tab.id}
-                  aria-hidden="true"
-                  className={`h-1.5 rounded-full transition-all ${
-                    i === activeIndex ? "w-8 bg-blue-600" : "w-4 bg-gray-300"
-                  }`}
-                />
-              ))}
+            {/* Inside the same bordered box as the tabs, so both grids share one
+                content box and a segment is exactly as wide as its tab. Square
+                ends, flush to the box's bottom edge — a rounded bar floating
+                below the border read as a stray lozenge. */}
+            <div aria-hidden="true" className="grid grid-cols-4">
+              <span
+                ref={barRef}
+                className="h-[3px] w-0 bg-blue-600"
+                style={{ gridColumnStart: activeIndex + 1 }}
+              />
             </div>
-          </Container>
-        </section>
+          </div>
+
+          {/* Fixed minimum height so an auto-advance never reflows the page
+              under the reader. Sized to the tallest panel: the copy column is
+              narrowest at lg and wraps most there. */}
+          <div
+            key={active.id}
+            id={`benefit-panel-${active.id}`}
+            role="tabpanel"
+            aria-labelledby={`benefit-tab-${active.id}`}
+            className="grid lg:grid-cols-[minmax(0,1fr),minmax(0,1.4fr)] gap-6 lg:gap-16 items-center animate-fade-in lg:min-h-[520px] xl:min-h-[480px]"
+          >
+            <div className="max-w-md">
+              <h2
+                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3 md:mb-4 ${active.titleClassName ?? ""}`}
+              >
+                {active.title}
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed mb-4 md:mb-5">
+                {active.description}
+              </p>
+              <ul className="mb-5 md:mb-6 space-y-2">
+                {active.highlights.map((highlight) => (
+                  <li key={highlight} className="flex items-start">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[0.5em] mr-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"
+                    />
+                    <span className="text-sm md:text-base font-semibold text-gray-800">
+                      {highlight}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                href={active.cta.href}
+                analyticsLabel={active.cta.label}
+                analyticsLocation={LOCATION}
+                className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full text-sm md:text-base font-semibold hover:bg-blue-700 transition"
+              >
+                {active.cta.label}
+              </Button>
+            </div>
+
+            <div className="relative">
+              <LazyVisual className="relative min-h-[280px] sm:min-h-[320px] md:min-h-[420px] flex items-center justify-center [&>*]:w-full">
+                {renderVisual(active)}
+              </LazyVisual>
+            </div>
+          </div>
+        </Container>
       </div>
     </>
   );
