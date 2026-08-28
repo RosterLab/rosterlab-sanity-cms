@@ -6,6 +6,7 @@ import FeaturesGrid from "@/components/sections/FeaturesGrid";
 import IndustrySolutionsNew from "@/components/sections/IndustrySolutionsNew";
 import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FinalCTA from "@/components/sections/FinalCTA";
+import DotFocalOverlay from "@/components/sections/DotFocalOverlay";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HERO_CONTENT_US,
@@ -60,29 +61,7 @@ export const metadata = withHreflang(
 export default function Home() {
   return (
     <div className="relative bg-white">
-      {/* Page-wide dot overlay — masked to concentrate around 3 focal
-          points down the page instead of blanketing every section. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #d4d8de 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
-          maskImage: [
-            "radial-gradient(ellipse 40% 18% at 50% 22%, black 0%, transparent 70%)",
-            "radial-gradient(ellipse 45% 15% at 50% 55%, black 0%, transparent 70%)",
-            "radial-gradient(ellipse 40% 15% at 50% 85%, black 0%, transparent 70%)",
-          ].join(", "),
-          WebkitMaskImage: [
-            "radial-gradient(ellipse 40% 18% at 50% 22%, black 0%, transparent 70%)",
-            "radial-gradient(ellipse 45% 15% at 50% 55%, black 0%, transparent 70%)",
-            "radial-gradient(ellipse 40% 15% at 50% 85%, black 0%, transparent 70%)",
-          ].join(", "),
-          maskComposite: "add",
-          WebkitMaskComposite: "source-over",
-        }}
-      />
+      <DotFocalOverlay />
       <div className="relative z-10">
         <HeroNew content={HERO_CONTENT_US} />
         <TrustedByDualRow heading={TRUSTED_BY_HEADING_US} />

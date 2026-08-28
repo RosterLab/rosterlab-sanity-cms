@@ -8,19 +8,24 @@ import HeroStoolPoster from "@/components/sections/animations/roster-mockup/Hero
 
 const HERO_BLUE = "#3779DD";
 
-// The animated scene is a few hundred nodes; keeping it out of the server
-// render keeps the document small so the headline still paints first. The
-// poster below is the same artwork, so there is nothing to see swapping in.
-const HeroStoolMockup = dynamic(
-  () =>
-    import("@/components/sections/animations/roster-mockup/HeroStoolMockup"),
+// The mockup is now a warped screen recording rather than a DOM scene, but it
+// still stays out of the server render: the poster below is the same artwork, so
+// there is nothing to see swapping in, and the video's bytes never compete with
+// the headline's first paint.
+const HeroStoolVideo = dynamic(
+  () => import("@/components/sections/animations/roster-mockup/HeroStoolVideo"),
   { ssr: false },
 );
 
 /**
- * The hero lays the mockup out twice — absolutely positioned on desktop,
- * in flow on mobile — but only one of them is ever visible. Mount the
- * animation into whichever one that is, so we aren't running two timelines.
+ * The hero lays the mockup out twice — absolutely positioned on desktop, in
+ * flow on mobile — but only one of them is ever visible, and only the desktop
+ * one animates. Mobile keeps the static poster: the animated scene draws a
+ * 2283x1457 3D-transformed window with a large drop-shadow and two
+ * backdrop-filters, each of which forces its own render surface. At phone DPR
+ * those pass the 16,384px texture cap around 3x pinch-zoom, and over the cap
+ * the layer is dropped and the hero paints white. At mobile's ~40% scale the
+ * animation detail is mostly clipped anyway.
  */
 const useIsDesktopHero = () => {
   const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
@@ -39,7 +44,12 @@ export interface HeroNewContent {
   description: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  /** Locale for the copy rendered *inside* the laptop mockup. */
+  /**
+   * Locale for the copy rendered *inside* the laptop mockup. Currently unused:
+   * the mockup is a pre-recorded video, so the wording on the laptop screen is
+   * baked into the recording. Kept so a US recording can be wired up without
+   * changing every call site.
+   */
   locale?: "au" | "us";
 }
 
@@ -61,20 +71,18 @@ export default function HeroNew({
   content?: HeroNewContent;
 } = {}) {
   const isDesktop = useIsDesktopHero();
-  const locale = content.locale ?? "au";
 
   return (
     // On mobile the hero fits within one viewport (100dvh minus a small
     // gutter). Text stack is compact, mockup fills the remaining space
     // below the CTAs. On desktop we go full-bleed with the mockup
     // absolutely positioned on the right.
-    // The desktop hero is full-bleed, so its only separation from the white
-    // header is this top padding — without it the blue butts straight up
-    // against the nav.
-    <div className="px-4 pt-4 lg:px-0 lg:pt-5">
+    // On mobile the hero is an inset card, so it keeps a small top gutter.
+    // On desktop it is full-bleed and sits flush under the white header.
+    <div className="px-4 pt-4 lg:px-0 lg:pt-0">
       <section
         style={{ backgroundColor: HERO_BLUE }}
-        className="relative lg:w-screen lg:left-1/2 lg:right-1/2 lg:-ml-[50vw] lg:-mr-[50vw] overflow-hidden rounded-3xl lg:rounded-[48px] flex flex-col h-[calc(100dvh-320px)] min-h-[500px] lg:min-h-[640px] lg:h-screen lg:max-h-[900px]"
+        className="relative lg:w-screen lg:left-1/2 lg:right-1/2 lg:-ml-[50vw] lg:-mr-[50vw] overflow-hidden rounded-3xl lg:rounded-[48px] flex flex-col h-[calc(100dvh-320px)] min-h-[500px] lg:min-h-[520px] lg:h-[calc(100vh-140px)] lg:max-h-[620px] xl:max-h-[740px]"
       >
         {/* Dot pattern overlay */}
         <div
@@ -105,14 +113,14 @@ export default function HeroNew({
           <HeroStoolPoster />
           {isDesktop === true && (
             <div className="absolute inset-0">
-              <HeroStoolMockup locale={locale} />
+              <HeroStoolVideo />
             </div>
           )}
         </div>
 
         {/* Text content — H1, description and the CTAs, on every size. */}
         <Container className="relative z-10 lg:h-full shrink-0 lg:shrink">
-          <div className="flex flex-col lg:justify-center h-full pt-8 pb-0 sm:pt-10 sm:pb-0 md:py-20 lg:py-24">
+          <div className="flex flex-col lg:justify-center h-full pt-8 pb-0 sm:pt-10 sm:pb-0 md:py-20 lg:py-14">
             <div className="max-w-xl text-white">
               <h1 className="text-[2rem] leading-tight sm:text-4xl md:text-5xl lg:text-6xl font-bold sm:leading-[1.05] tracking-tight">
                 {content.headline}
@@ -179,7 +187,6 @@ export default function HeroNew({
             }}
           >
             <HeroStoolPoster />
-            {isDesktop === false && <HeroStoolMockup locale={locale} />}
           </div>
         </div>
       </section>

@@ -155,15 +155,24 @@ export default function MobileAppPreferencesModule({
               ))}
             </div>
 
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1 sm:gap-1.5 md:gap-2">
-              <AnimatePresence mode="wait">
+            {/* Calendar Grid. One keyed child inside AnimatePresence, not one
+                per cell: "wait" mode renders a single child at a time, so a
+                mapped list warns on every render and the grid would otherwise
+                have to hold both sets while they cross-faded. */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={showAfter ? "after" : "before"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="grid grid-cols-7 gap-1 sm:gap-1.5 md:gap-2"
+              >
                 {currentSchedule.map((schedule, index) => (
                   <motion.div
-                    key={`${showAfter ? "after" : "before"}-${index}`}
+                    key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className="aspect-square"
                   >
@@ -189,8 +198,8 @@ export default function MobileAppPreferencesModule({
                     </div>
                   </motion.div>
                 ))}
-              </AnimatePresence>
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Preferences Summary */}
