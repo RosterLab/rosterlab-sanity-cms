@@ -9,6 +9,7 @@ import { useCalendlyEventListener } from "react-calendly";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
 import { analytics } from "@/components/analytics/tracking";
 import dynamic from "next/dynamic";
+import TrustedBy from "@/components/sections/TrustedBy";
 
 // Lazy load the Calendly widget
 const LazyInlineWidget = dynamic(
@@ -45,12 +46,14 @@ interface DemoBookingBaseProps {
   region: "us" | "global";
   regionalContent: RegionalContent;
   className?: string;
+  showTrustedBy?: boolean;
 }
 
 export default function DemoBookingBase({
   region,
   regionalContent,
   className = "",
+  showTrustedBy = false,
 }: DemoBookingBaseProps) {
   // Calendly widget integration
   const { isBooking, calendlyUrl, shouldLoadWidget, widgetContainerRef } =
@@ -213,7 +216,7 @@ export default function DemoBookingBase({
           </div>
 
           {/* Contact alternative - Hidden on mobile and tablet */}
-          <div className="hidden lg:block text-center -mt-4 pb-8">
+          <div className="hidden lg:block text-center -mt-10 pb-8">
             <p className="text-gray-600">
               Can't find a suitable time?{" "}
               <Link
@@ -225,6 +228,8 @@ export default function DemoBookingBase({
             </p>
           </div>
         </Container>
+
+        {showTrustedBy && <TrustedBy />}
       </div>
     </SiteLayout>
   );

@@ -15,5 +15,11 @@ export default function BookADemoClient() {
     calendlyUrl: "https://calendly.com/d/cw2v-vw3-j2z",
   };
 
-  return <DemoBookingBase region="global" regionalContent={regionalContent} />;
+  return (
+    <DemoBookingBase
+      region="global"
+      regionalContent={regionalContent}
+      showTrustedBy
+    />
+  );
 }
