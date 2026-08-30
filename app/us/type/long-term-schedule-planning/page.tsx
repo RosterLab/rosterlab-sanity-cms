@@ -11,7 +11,7 @@ import FairnessAcrossYearModule from "@/components/sections/animations/FairnessA
 
 export const metadata = withHreflang(
   {
-    title: "Long-Term Schedule Planning Software - RosterLab",
+    title: "Long-Term Schedule Planning Software",
     description:
       "Build your long-term schedule with RosterLab. Automatically generate fair, compliant and flexible long-term schedules that save time and money.",
     alternates: {

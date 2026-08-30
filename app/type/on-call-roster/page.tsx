@@ -11,7 +11,7 @@ import FairnessAcrossYearModule from "@/components/sections/animations/FairnessA
 
 export const metadata = withHreflang(
   {
-    title: "On-Call Roster Software - RosterLab",
+    title: "On-Call Roster Software",
     description:
       "Create fair and predictable on-call rosters. Built for all specialties handling urgent and emergency cases.",
     alternates: {

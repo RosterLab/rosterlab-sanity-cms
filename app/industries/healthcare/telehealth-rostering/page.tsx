@@ -11,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Telehealth Staff Rostering Software - RosterLab",
+    title: "Telehealth Staff Rostering Software",
     description:
       "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth rosters that reduce admin and streamline processes.",
     alternates: {

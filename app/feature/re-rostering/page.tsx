@@ -11,7 +11,7 @@ const pathname = "/feature/re-rostering";
 
 export const metadata = withHreflang(
   {
-    title: "Re-Rostering - RosterLab",
+    title: "Re-Rostering - Fix Sick Leave Gaps in Seconds",
     description:
       "Adjust rosters on the go when staff call in sick or require changes. AI re-optimises shifts in seconds with minimal disruption to the roster.",
     alternates: {

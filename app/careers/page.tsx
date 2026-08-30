@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Careers - Join our talented team at RosterLab",
+  title: "Careers - Join Our Talented Team",
   description:
     "Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.",
   alternates: {

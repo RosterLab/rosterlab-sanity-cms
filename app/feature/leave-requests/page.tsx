@@ -11,7 +11,7 @@ const pathname = "/feature/leave-requests";
 
 export const metadata = withHreflang(
   {
-    title: "Employee Leave Requests - RosterLab",
+    title: "Employee Leave Requests",
     description:
       "Give staff an easy and streamline way to submit leave requests. Staff can submit different leave types via the staff mobile app to streamline leave management.",
     alternates: {

@@ -10,7 +10,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Veterinary Scheduling Software - RosterLab",
+    title: "Veterinary Scheduling Software",
     description:
       "End chaotic vet schedules and overwork. Build fair, efficient schedules that maintain proper staffing coverage and respect work-life balance.",
     alternates: {

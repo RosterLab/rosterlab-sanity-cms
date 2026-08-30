@@ -12,7 +12,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Senior Care Staff Scheduling Software - RosterLab",
+    title: "Senior Care Staff Scheduling Software",
     description:
       "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
     alternates: {

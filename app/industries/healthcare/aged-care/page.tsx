@@ -12,7 +12,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Aged Care Staff Rostering Software - RosterLab",
+    title: "Aged Care Staff Rostering Software",
     description:
       "Learn how our rostering software improves shift scheduling in Aged Care. Create better rosters that boost team wellbeing, ensure compliance & saves time.",
     alternates: {

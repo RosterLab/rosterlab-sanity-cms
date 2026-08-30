@@ -11,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Cardiology Staff Rostering Software - RosterLab",
+    title: "Cardiology Staff Rostering Software",
     description:
       "End unsafe rosters and overwork. Build fair, compliant cardiology rosters that maintain safe staffing ratios and respect union rules.",
     alternates: {

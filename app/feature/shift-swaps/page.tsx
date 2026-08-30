@@ -11,7 +11,7 @@ const pathname = "/feature/shift-swaps";
 
 export const metadata = withHreflang(
   {
-    title: "Shift Swaps - RosterLab",
+    title: "Automated Shift Swaps for Staff Rosters",
     description:
       "Automate shift swaps with RosterLab AI, ensuring optimal staffing and compliance while saving time and reducing administration. Oversight where it matters.",
     alternates: {

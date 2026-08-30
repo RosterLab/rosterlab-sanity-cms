@@ -11,7 +11,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Radiology Staff Scheduling Software - RosterLab",
+    title: "Radiology Staff Scheduling Software",
     description:
       "Build your radiology staff schedule with RosterLab. Automatically generate fair, compliant radiology schedules based on their subspecialty expertise.",
     alternates: {

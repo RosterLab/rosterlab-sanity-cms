@@ -11,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Junior Medical Officer Rostering Software - RosterLab",
+    title: "Junior Medical Officer Rostering Software",
     description:
       "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
     alternates: {

@@ -10,7 +10,7 @@ import USTrustedBy from "@/app/us/components/TrustedBy";
 
 export const metadata = withHreflang(
   {
-    title: "Education Staff Scheduling Software - RosterLab",
+    title: "Education Staff Scheduling Software",
     description:
       "Learn how our scheduling software simplifies education staff scheduling. Improve student outcomes, ensure compliance & save time.",
     alternates: {

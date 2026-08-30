@@ -12,7 +12,7 @@ const pathname = "/feature/automated-rostering";
 
 export const metadata = withHreflang(
   {
-    title: "Automatic Rostering - RosterLab",
+    title: "Automatic Rostering",
     description:
       "Generate fully optimised staff rosters in minutes with automatic rostering. Balance staffing, skills, preferences, and compliance automatically.",
     alternates: {

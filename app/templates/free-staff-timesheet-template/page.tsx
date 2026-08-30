@@ -20,7 +20,7 @@ import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Staff Timesheet Template - RosterLab",
+  title: "Free Staff Timesheet Template",
   description:
     "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
   alternates: {

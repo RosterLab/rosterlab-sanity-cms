@@ -10,7 +10,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Nurse Rostering Software - RosterLab",
+    title: "Nurse Rostering Software",
     description:
       "End unsafe rosters and overwork. Build fair, compliant nurse rosters that maintain safe staffing ratios and respect union rules.",
     alternates: {

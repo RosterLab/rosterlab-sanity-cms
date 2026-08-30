@@ -11,7 +11,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "ED & ICU Staff Scheduling Software - RosterLab",
+    title: "ED & ICU Staff Scheduling Software",
     description:
       "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
     alternates: {

@@ -11,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Pathology Staff Rostering Software - RosterLab",
+    title: "Pathology Staff Rostering Software",
     description:
       "Create compliant AI rosters that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
     alternates: {

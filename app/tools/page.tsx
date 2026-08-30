@@ -3,7 +3,7 @@ import ToolsPageContent from "./ToolsPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
 export const metadata: Metadata = {
-  title: "Free Workforce Management Tools - RosterLab",
+  title: "Free Workforce Management Tools",
   description:
     "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
   alternates: {

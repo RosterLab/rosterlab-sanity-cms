@@ -11,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Attending Physician Scheduling Software - RosterLab",
+    title: "Attending Physician Scheduling Software",
     description:
       "End unsafe schedules and overwork. Build fair, compliant attending physician schedules that maintain safe staffing ratios and respect union rules.",
     alternates: {

@@ -9,7 +9,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Flexible Self-Scheduling - RosterLab",
+    title: "Flexible Self-Scheduling",
     description:
       "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
     alternates: {

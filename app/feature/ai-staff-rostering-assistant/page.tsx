@@ -18,7 +18,7 @@ const pathname = "/feature/ai-staff-rostering-assistant";
 
 export const metadata = withHreflang(
   {
-    title: "Personal AI Staff Rostering Assistant - RosterLab",
+    title: "Personal AI Staff Rostering Assistant",
     description:
       "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
     alternates: {

@@ -12,7 +12,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Senior Medical Officer Rostering Software - RosterLab",
+    title: "Senior Medical Officer Rostering Software",
     description:
       "End unsafe rosters and overwork. Build fair, compliant SMO rosters that maintain safe staffing ratios and respect union rules.",
     alternates: {

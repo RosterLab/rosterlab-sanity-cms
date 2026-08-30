@@ -10,7 +10,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Dental Clinic Scheduling Software - RosterLab",
+    title: "Dental Clinic Scheduling Software",
     description:
       "Streamline dental clinic scheduling with AI. Balance hygienists, dentists, and specialist staff across chairs and procedures for optimal patient care.",
     alternates: {

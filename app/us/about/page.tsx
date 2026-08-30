@@ -9,7 +9,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "About Us - RosterLab",
+    title: "About Us - AI Scheduling Built for Healthcare",
     description:
       "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
     alternates: {

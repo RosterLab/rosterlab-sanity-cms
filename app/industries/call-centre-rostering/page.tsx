@@ -10,7 +10,7 @@ import StaffingEnvelopeChartSmall from "@/components/ui/StaffingEnvelopeChartSma
 
 export const metadata = withHreflang(
   {
-    title: "Call Centre Rostering Software - RosterLab",
+    title: "Call Centre Rostering Software",
     description:
       "Build your call centre roster with RosterLab. Automatically generate fair, compliant and flexible call centre rosters that save time and money.",
     alternates: {

@@ -16,7 +16,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Rostering Software for Healthcare - RosterLab",
+    title: "Rostering Software for Healthcare",
     description:
       "Learn how our rostering software simplifies staff scheduling in healthcare. Create fair, efficient rosters that improve patient care, compliance & saves time.",
     alternates: {

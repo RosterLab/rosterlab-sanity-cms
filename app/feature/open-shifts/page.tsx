@@ -11,7 +11,7 @@ const pathname = "/feature/open-shifts";
 
 export const metadata = withHreflang(
   {
-    title: "Open Shifts - RosterLab",
+    title: "Open Shifts - Fill Last-Minute Roster Gaps",
     description:
       "Use open shifts to help fill last-minute staffing gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
     alternates: {

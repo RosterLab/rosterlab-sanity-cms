@@ -10,7 +10,7 @@ import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 
 export const metadata = withHreflang(
   {
-    title: "Airport & Transport Crew Rostering Software - RosterLab",
+    title: "Airport & Transport Crew Rostering Software",
     description:
       "Simplify airport & transportation crew scheduling with RosterLab. Ensure safety, operational efficiency & compliance with 24/7 rostering.",
     alternates: {

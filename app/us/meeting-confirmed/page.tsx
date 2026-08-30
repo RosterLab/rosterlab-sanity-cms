@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Meeting Confirmed - RosterLab",
+  title: "Meeting Confirmed",
   description:
     "Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.",
   robots: {

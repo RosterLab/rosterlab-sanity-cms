@@ -9,7 +9,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Ground Crew Rostering Software - RosterLab",
+    title: "Ground Crew Rostering Software",
     description:
       "Streamline airport ground crew rostering with AI. Balance baggage handlers, ramp agents, and GSE operators across shifts for optimal airport operations.",
     alternates: {

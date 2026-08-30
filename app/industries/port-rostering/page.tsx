@@ -10,7 +10,7 @@ import NightShiftFatigueModule from "@/components/sections/animations/NightShift
 
 export const metadata = withHreflang(
   {
-    title: "Port Rostering Software - RosterLab",
+    title: "Port Rostering Software",
     description:
       "Build your port roster with RosterLab. Automatically generate fair, compliant and flexible port rosters that save time and money.",
     alternates: {
