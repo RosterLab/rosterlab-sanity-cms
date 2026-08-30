@@ -26,7 +26,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling",
       images: [
         {
-          url: "/images/og images/IndustryICUED.png",
+          url: "/images/og-images/IndustryICUED.png",
           width: 1200,
           height: 630,
         },
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       title: "ED & ICU Staff Scheduling Software - RosterLab",
       description:
         "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
-      images: ["/images/og images/IndustryICUED.png"],
+      images: ["/images/og-images/IndustryICUED.png"],
     },
   },
   "/us/industries/healthcare/ed-icu-scheduling",

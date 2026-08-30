@@ -12,6 +12,9 @@ export const metadata = withHreflang(
       index: true,
       follow: true,
     },
+    alternates: {
+      canonical: "https://rosterlab.com/tools/roi-calculator",
+    },
     openGraph: {
       title: "ROI Calculator - RosterLab",
       description:

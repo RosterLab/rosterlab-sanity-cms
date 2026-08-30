@@ -21,6 +21,9 @@ export const metadata = withHreflang(
     title: "Personal AI Staff Rostering Assistant - RosterLab",
     description:
       "Get instant rostering help with an AI-powered assistant. Answer questions, get recommendations, and solve staff rostering scenarios.",
+    alternates: {
+      canonical: "https://rosterlab.com/feature/ai-staff-rostering-assistant",
+    },
     openGraph: {
       title: "Personal AI Staff Rostering Assistant - RosterLab",
       description:

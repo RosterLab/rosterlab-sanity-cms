@@ -21,7 +21,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries",
       images: [
         {
-          url: "/images/og images/Industry.png",
+          url: "/images/og-images/Industry.png",
           width: 1200,
           height: 630,
         },
@@ -32,7 +32,7 @@ export const metadata = withHreflang(
       title: "Staff Scheduling Software For Any Industry - RosterLab",
       description:
         "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
-      images: ["/images/og images/Industry.png"],
+      images: ["/images/og-images/Industry.png"],
     },
   },
   "/us/industries",

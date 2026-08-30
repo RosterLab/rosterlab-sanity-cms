@@ -27,7 +27,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
       images: [
         {
-          url: "/images/og images/IndustryAgedCare.png",
+          url: "/images/og-images/IndustryAgedCare.png",
           width: 1200,
           height: 630,
         },
@@ -38,7 +38,7 @@ export const metadata = withHreflang(
       title: "Senior Care Staff Scheduling Software - RosterLab",
       description:
         "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
-      images: ["/images/og images/IndustryAgedCare.png"],
+      images: ["/images/og-images/IndustryAgedCare.png"],
     },
   },
   "/us/industries/healthcare/senior-care-scheduling",

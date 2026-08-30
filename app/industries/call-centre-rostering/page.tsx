@@ -13,6 +13,9 @@ export const metadata = withHreflang(
     title: "Call Centre Rostering Software - RosterLab",
     description:
       "Build your call centre roster with RosterLab. Automatically generate fair, compliant and flexible call centre rosters that save time and money.",
+    alternates: {
+      canonical: "https://rosterlab.com/industries/call-centre-rostering",
+    },
     openGraph: {
       title: "Call Centre Rostering Software - RosterLab",
       description:
