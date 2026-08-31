@@ -1,8 +1,8 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -11,7 +11,7 @@ import FairnessAcrossYearModule from "@/components/sections/animations/FairnessA
 
 export const metadata = withHreflang(
   {
-    title: "On-Call Scheduling Software - RosterLab",
+    title: "On-Call Scheduling Software",
     description:
       "Create fair and predictable on-call schedules. Built for all specialties handling urgent and emergency cases.",
     alternates: {
@@ -59,114 +59,33 @@ export default function OnCallSchedulingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Manage{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  On-Call Schedules
-                </span>{" "}
-                Efficiently
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create compliant, fair on-call schedules that balance workload
-                and reduce administrative burden.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Match skills and seniority to coverage needs
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Enforce fatigue rules and rest periods automatically
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Re-schedule last-minute changes while preserving fairness
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Track weekend and holiday duty distribution transparently
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/tools/savings-calculator"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  Savings Calculator
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/on-call-roster.svg"
-                alt="On-call scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Manage On-Call Schedules Efficiently"
+        description="Create compliant, fair on-call schedules that balance workload and reduce administrative burden."
+        analyticsLocation="US Type Page On-Call Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "On-Call Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/tools/savings-calculator",
+          label: "Savings Calculator",
+          analyticsProperties: {
+            cta_type: "savings_calculator",
+            page_name: "On-Call Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/on-call.webp",
+          alt: "Clinician taking an on-call phone call outside a hospital",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">

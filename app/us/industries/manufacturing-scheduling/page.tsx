@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Link from "next/link";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -9,7 +10,7 @@ import USTrustedBy from "@/app/us/components/TrustedBy";
 
 export const metadata = withHreflang(
   {
-    title: "Manufacturing Staff Scheduling Software - RosterLab",
+    title: "Manufacturing Staff Scheduling Software",
     description:
       "Learn how our scheduling software simplifies manufacturing staff scheduling. Improve production output, ensure compliance & save time.",
     alternates: {
@@ -45,89 +46,33 @@ export default function ManufacturingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                <span
-                  className="text-transparent bg-clip-text"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                  }}
-                >
-                  Manufacturing Scheduling
-                </span>{" "}
-                Software for Teams
-              </h1>
-              <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Optimize your manufacturing teams and operations with better
-                staff scheduling, no matter how complex.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/contact"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
-                >
-                  Learn More
-                </Button>
-              </div>
-
-              {/* Feature Ticks */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-sm text-gray-700">
-                    Made for manufacturing and complex industries
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg
-                    className="w-5 h-5 text-green-500 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-sm text-gray-700">
-                    AI-generated schedules in seconds
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="relative mt-6 lg:mt-0">
-              <Image
-                src="/images/manufacturer.jpg"
-                alt="Manufacturing workforce scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto max-w-md mx-auto lg:max-w-full rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Manufacturing Scheduling Software for Teams"
+        description="Optimize your manufacturing teams and operations with better staff scheduling, no matter how complex."
+        analyticsLocation="US Industry Page Manufacturing Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Manufacturing Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/contact",
+          label: "Learn More",
+          analyticsProperties: {
+            cta_type: "contact",
+            page_name: "Manufacturing Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/manufacturing.webp",
+          alt: "Manufacturing team on the production floor",
+        }}
+      />
 
       {/* Trusted By */}
       <USTrustedBy heading="Trusted by global teams with complex scheduling" />

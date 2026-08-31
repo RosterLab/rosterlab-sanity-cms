@@ -9,7 +9,7 @@ import { withHreflang } from "@/components/seo/HreflangTags";
 
 export const metadata = withHreflang(
   {
-    title: "Contact Us - RosterLab",
+    title: "Contact Us - Get Help with Your Team Schedules",
     description:
       "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
     alternates: {

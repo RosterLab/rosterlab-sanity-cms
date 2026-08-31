@@ -10,7 +10,7 @@ import PricingPageTracker from "@/components/analytics/PricingPageTracker";
 
 export const metadata = withHreflang(
   {
-    title: "Pricing - RosterLab",
+    title: "Pricing | AI Staff Scheduling Software",
     description:
       "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
     alternates: {

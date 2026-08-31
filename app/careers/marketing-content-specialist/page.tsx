@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 export const metadata = {
-  title: "B2B Marketing Specialist - Healthcare - RosterLab Careers",
+  title: "B2B Marketing Specialist - Healthcare Careers",
   description:
     "Join RosterLab as a B2B Marketing Specialist - Healthcare. Produce marketing content and market intelligence for healthcare workforce planning.",
   alternates: {

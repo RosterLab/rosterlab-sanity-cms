@@ -12,13 +12,13 @@ const pathname = "/free-roster-audit";
 
 export const metadata = withHreflang(
   {
-    title: "Free Roster Audit - Expert Analysis by Rostering Consultants",
+    title: "Free Roster Audit - Expert Roster Analysis",
     description:
-      "Get a comprehensive free audit of your staff roster. Our rostering consultants assess fairness, operational efficiency, and compliance. Book your expert review today.",
+      "Get a free audit of your staff roster. Our consultants assess fairness, efficiency and compliance. Book your expert review today.",
     openGraph: {
       title: "Free Roster Audit - Expert Analysis by Rostering Consultants",
       description:
-        "Get a comprehensive free audit of your staff roster. Our rostering consultants assess fairness, operational efficiency, and compliance. Book your expert review today.",
+        "Get a free audit of your staff roster. Our consultants assess fairness, efficiency and compliance. Book your expert review today.",
       images: [
         {
           url: "/images/og-images/AutoRosterGeneration.png",
@@ -31,7 +31,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Free Roster Audit - Expert Analysis by Rostering Consultants",
       description:
-        "Get a comprehensive free audit of your staff roster. Our rostering consultants assess fairness, operational efficiency, and compliance. Book your expert review today.",
+        "Get a free audit of your staff roster. Our consultants assess fairness, efficiency and compliance. Book your expert review today.",
       images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },

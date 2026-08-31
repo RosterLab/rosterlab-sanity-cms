@@ -19,7 +19,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Free Staff Rostering Software - RosterLab",
+    title: "Free Staff Rostering Software",
     description:
       "Free staff rostering software for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff roster for free, no credit card required.",
     alternates: {

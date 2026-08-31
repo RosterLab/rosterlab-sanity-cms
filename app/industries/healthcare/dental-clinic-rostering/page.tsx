@@ -1,8 +1,8 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -10,7 +10,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Dental Clinic Rostering Software - RosterLab",
+    title: "Dental Clinic Rostering Software",
     description:
       "Streamline dental clinic rostering with AI. Balance hygienists, dentists, and specialist staff across chairs and procedures for optimal patient care.",
     alternates: {
@@ -64,113 +64,33 @@ export default function DentalClinicRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
-                  Optimised, Flexible
-                </span>{" "}
-                Dental Clinic Rosters
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create efficient AI rosters that balance hygienists, dentists,
-                and specialist staff across chairs and procedures.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Match staff to hygienist and dentist chairs
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Ensure specialist staff for sedation and surgical setups
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Track assistants with radiography and impression skills
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Senior nurse requirements for specific procedures
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/pricing"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
-                >
-                  View Pricing
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/dentist-roster.svg"
-                alt="Dental clinic rostering software interface"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Optimised, Flexible Dental Clinic Rosters"
+        description="Create efficient AI rosters that balance hygienists, dentists, and specialist staff across chairs and procedures."
+        analyticsLocation="Industry Page Dental Clinic Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Dental Clinic Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/pricing",
+          label: "View Pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Dental Clinic Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/_placeholder.webp",
+          alt: "Dental clinic team treating a patient",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
@@ -633,7 +553,7 @@ export default function DentalClinicRosteringPage() {
 
       {/* Trusted By */}
       <section className="py-10 bg-white">
-        <TrustedBy />
+        <TrustedByDualRow heading="Trusted by leading healthcare organisations" />
       </section>
 
       {/* CTA Section */}

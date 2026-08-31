@@ -365,6 +365,11 @@ const nextConfig: NextConfig = {
         destination: "/industries",
         permanent: true,
       },
+      {
+        source: "/industries/security",
+        destination: "/industries/security-roster",
+        permanent: true,
+      },
       // Healthcare industry redirects
       {
         source: "/industries/healthcare/edicu",

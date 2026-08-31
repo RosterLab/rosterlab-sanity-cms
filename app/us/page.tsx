@@ -26,7 +26,7 @@ export const revalidate = 3600;
 
 export const metadata = withHreflang(
   {
-    title: "RosterLab - AI Staff Scheduling Software for Complex Teams",
+    title: "AI Staff Scheduling Software for Complex Teams",
     description:
       "AI staff scheduling software that automatically builds fair, compliant schedules for healthcare & other complex teams - cut admin by 90% and boost coverage.",
     alternates: {

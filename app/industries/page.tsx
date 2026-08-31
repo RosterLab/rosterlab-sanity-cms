@@ -8,7 +8,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "AI Rostering Software for All Industries - RosterLab",
+    title: "AI Rostering Software for All Industries",
     description:
       "Simplify your staff roster, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
     alternates: {

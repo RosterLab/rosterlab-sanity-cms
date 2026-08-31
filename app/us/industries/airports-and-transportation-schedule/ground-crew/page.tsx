@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -9,7 +9,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Ground Crew Scheduling Software - RosterLab",
+    title: "Ground Crew Scheduling Software",
     description:
       "Streamline airport ground crew scheduling with AI. Balance baggage handlers, ramp agents, and GSE operators across shifts for optimal airport operations.",
     alternates: {
@@ -69,97 +69,33 @@ export default function GroundCrewSchedulingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-sky-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">
-                  Optimized, Efficient
-                </span>{" "}
-                Ground Crew Schedules
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create intelligent AI schedules that balance baggage handlers,
-                ramp agents, and GSE operators across shifts.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Ensure certified staff for GSE and specialist operations
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Balance workload across ramp, baggage, and service teams
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-blue-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Safety compliance and fatigue management
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/pricing"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
-                >
-                  View Pricing
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/ground-crew.jpg"
-                alt="Ground crew scheduling software interface"
-                width={600}
-                height={400}
-                className="block w-full h-auto rounded-lg"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Optimized, Efficient Ground Crew Schedules"
+        description="Create intelligent AI schedules that balance baggage handlers, ramp agents, and GSE operators across shifts."
+        analyticsLocation="US Industry Page Ground Crew Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Ground Crew Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/pricing",
+          label: "View Pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Ground Crew Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/airports.webp",
+          alt: "Airport ground crew on the apron",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">

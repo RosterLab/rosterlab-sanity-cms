@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -10,7 +11,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Radiography Staff Scheduling Software - RosterLab",
+    title: "Radiography Staff Scheduling Software",
     description:
       "Build your radiography staff schedule with RosterLab. Automatically generate fair, compliant and flexible radiography schedules that balance priorities.",
     alternates: {
@@ -64,101 +65,33 @@ export default function RadiographyPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build Complex{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Radiography Schedules
-                </span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Automatically balance skill requirements, shift patterns, and
-                on-call needs across multiple modalities while ensuring
-                fairness.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Assign radiographers by seniority and modality for smooth
-                  operations
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Distribute shifts, on-call duties, and training rotations
-                  evenly across all teams
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Reduce scheduling time by up to 90% with automatic schedule
-                  generation
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/tools/savings-calculator"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  Savings Calculator
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/us-images/iStock-1318508228.jpg"
-                alt="Radiography scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto rounded-lg shadow-xl"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Build Complex Radiography Schedules"
+        description="Automatically balance skill requirements, shift patterns, and on-call needs across multiple modalities while ensuring fairness."
+        analyticsLocation="US Industry Page Radiography Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Radiography Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/tools/savings-calculator",
+          label: "Savings Calculator",
+          analyticsProperties: {
+            cta_type: "savings_calculator",
+            page_name: "Radiography Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/radiography.webp",
+          alt: "Radiographer operating imaging equipment",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">
