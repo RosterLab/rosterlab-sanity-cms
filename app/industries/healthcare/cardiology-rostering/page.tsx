@@ -95,8 +95,9 @@ export default function CardiologyRosteringPage() {
           },
         }}
         image={{
-          src: "/images/industries/_placeholder.webp",
-          alt: "Cardiology team at work",
+          src: "/images/industries/cardiology.webp",
+          alt: "Cardiologist reviewing an ECG beside an anatomical heart model",
+          objectPosition: "center top",
         }}
       />
 

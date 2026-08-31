@@ -89,6 +89,7 @@ export default function RadiologyPage() {
         image={{
           src: "/images/industries/radiology.webp",
           alt: "Radiologist reviewing medical images",
+          objectPosition: "center top",
         }}
       />
 

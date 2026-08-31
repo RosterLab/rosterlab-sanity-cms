@@ -1,4 +1,6 @@
 import Container from "@/components/ui/Container";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
@@ -42,66 +44,37 @@ export const metadata = withHreflang(
 export default function IndustriesPage() {
   return (
     <SiteLayout>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Text content */}
-            <div className="text-left">
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                AI Rostering Software for{" "}
-                <span
-                  className="text-transparent bg-clip-text"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                  }}
-                >
-                  all industries
-                </span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Whether you're managing nurses, doctors, call centre agents, or
-                ground crew staff - RosterLab's intelligent scheduling adapts to
-                your industry's unique requirements.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-indigo-600 text-white hover:bg-indigo-700"
-                  analyticsLabel="Book a Demo"
-                  analyticsLocation="Industries Hero"
-                  analyticsProperties={{ cta_type: "demo" }}
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/pricing"
-                  className="bg-white text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-50"
-                  analyticsLabel="View Pricing"
-                  analyticsLocation="Industries Hero"
-                  analyticsProperties={{
-                    cta_type: "pricing",
-                  }}
-                >
-                  View Pricing
-                </Button>
-              </div>
-            </div>
+      <IndustryHero
+        title="AI Rostering Software for All Industries"
+        description="Whether you're managing nurses, doctors, call centre agents, or ground crew staff - RosterLab's intelligent scheduling adapts to your industry's unique requirements."
+        analyticsLocation="Industries Hero"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Industries",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/pricing",
+          label: "View Pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Industries",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/industries.webp",
+          alt: "Colleagues meeting in an office atrium, viewed from above",
+          objectPosition: "center 25%",
+        }}
+      />
 
-            {/* Right side - Image */}
-            <div className="flex justify-center lg:justify-end">
-              <Image
-                src="/images/illustration/Manufacturing Process-pana.svg"
-                alt="Manufacturing process illustration"
-                width={600}
-                height={400}
-                className="w-full max-w-xl h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      {/* Trusted By */}
+      <TrustedByDualRow heading="Trusted by global teams with complex rosters" />
 
       {/* Healthcare Section */}
       <section className="py-20 bg-white">

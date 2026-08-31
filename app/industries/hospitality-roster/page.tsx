@@ -71,6 +71,7 @@ export default function HospitalityPage() {
         image={{
           src: "/images/industries/hospitality.webp",
           alt: "Hospitality team working in a venue",
+          objectPosition: "center 20%",
         }}
       />
 

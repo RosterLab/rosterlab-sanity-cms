@@ -71,6 +71,7 @@ export default function EducationPage() {
         image={{
           src: "/images/industries/education.webp",
           alt: "Teaching staff at school",
+          objectPosition: "center 20%",
         }}
       />
 

@@ -84,6 +84,7 @@ export default function OnCallSchedulingPage() {
         image={{
           src: "/images/industries/on-call.webp",
           alt: "Clinician taking an on-call phone call outside a hospital",
+          objectPosition: "center 25%",
         }}
       />
 

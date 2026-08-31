@@ -103,6 +103,7 @@ export default function TelehealthRosteringPage() {
         image={{
           src: "/images/industries/telehealth.webp",
           alt: "Clinician on a telehealth consultation",
+          objectPosition: "center 25%",
         }}
       />
 

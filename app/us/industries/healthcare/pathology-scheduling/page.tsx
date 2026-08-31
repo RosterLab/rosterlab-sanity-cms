@@ -95,8 +95,8 @@ export default function PathologyRosteringPage() {
           },
         }}
         image={{
-          src: "/images/industries/_placeholder.webp",
-          alt: "Pathology staff working in a laboratory",
+          src: "/images/industries/pathology.webp",
+          alt: "Pathology scientist examining a culture plate in a laboratory",
         }}
       />
 

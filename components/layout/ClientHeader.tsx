@@ -9,7 +9,7 @@ export default function ClientHeader() {
   const isUSVersion = pathname === "/us" || pathname.startsWith("/us/");
 
   /*
-    Every page under /industries/ except the index itself opens with
+    Every page under /industries/, the index included, opens with
     `IndustryHero`, whose mobile layout is a flat blue field starting at the
     very top — so the bar blends into it there. The /type/ pages listed below
     use the same hero and sit in the same Industries menu. Matched on the
@@ -27,6 +27,8 @@ export default function ClientHeader() {
   ];
 
   const hasBlueHero =
+    pathname === "/industries" ||
+    pathname === "/us/industries" ||
     pathname.startsWith("/industries/") ||
     pathname.startsWith("/us/industries/") ||
     TYPE_PAGES_WITH_BLUE_HERO.includes(pathname);

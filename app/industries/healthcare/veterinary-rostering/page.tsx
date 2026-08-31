@@ -105,6 +105,7 @@ export default function VeterinaryRosteringPage() {
         image={{
           src: "/images/industries/veterinary.webp",
           alt: "Veterinary team treating an animal",
+          objectPosition: "center top",
         }}
       />
 
