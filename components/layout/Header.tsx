@@ -123,17 +123,33 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
-        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
         { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
+        {
+          title: "Radiography Roster",
+          link: "/industries/healthcare/radiography",
+        },
+        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        {
+          title: "Veterinary Roster",
+          link: "/industries/healthcare/veterinary-rostering",
+        },
         {
           title: "Nurse Roster",
           link: "/industries/healthcare/nurse-rostering",
-          description: "Fair, safe and compliant nurse rostering software",
         },
         {
-          title: "JMO Roster",
+          title: "Junior Doctor Roster",
           link: "/industries/healthcare/junior-medical-officer-rostering",
-          description: "Compliant rostering for junior medical officers",
+        },
+        {
+          title: "Senior Doctor Roster",
+          link: "/industries/healthcare/senior-medical-officer-rostering",
+        },
+        { title: "On-Call Roster", link: "/type/on-call-roster" },
+        { title: "Long Roster", link: "/type/long-roster" },
+        {
+          title: "Telehealth Roster",
+          link: "/industries/healthcare/telehealth-rostering",
         },
       ],
     },
@@ -1087,6 +1103,51 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                 </Link>
                               ))}
                             </div>
+                          </div>
+                        </>
+                      ) : item.title === "Industries" ? (
+                        <>
+                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                            SPECIALTY HEALTHCARE ROSTERS
+                          </div>
+                          {item.subItems.slice(0, 6).map((subItem) => (
+                            <Link
+                              key={subItem.link}
+                              href={subItem.link}
+                              className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                          <div className="px-3 pt-2 pb-3">
+                            <Link
+                              href={
+                                isUSVersion
+                                  ? "https://rosterlab.com/us/industries"
+                                  : "https://rosterlab.com/industries"
+                              }
+                              className="inline-flex items-center py-1 text-sm font-semibold text-blue-600 hover:text-blue-700"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              View all industries
+                              <HiChevronRight className="ml-1 h-4 w-4" />
+                            </Link>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                              ROSTER BY TYPE
+                            </div>
+                            {item.subItems.slice(6).map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
                           </div>
                         </>
                       ) : item.title === "Resources" ? (
