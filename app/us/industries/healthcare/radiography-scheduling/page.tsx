@@ -90,6 +90,7 @@ export default function RadiographyPage() {
         image={{
           src: "/images/industries/radiography.webp",
           alt: "Radiographer operating imaging equipment",
+          objectPosition: "center 20%",
         }}
       />
 

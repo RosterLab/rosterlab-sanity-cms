@@ -88,8 +88,9 @@ export default function DentalClinicSchedulingPage() {
           },
         }}
         image={{
-          src: "/images/industries/_placeholder.webp",
-          alt: "Dental clinic team treating a patient",
+          src: "/images/industries/dental.webp",
+          alt: "Dentist treating a patient in a dental chair",
+          objectPosition: "center top",
         }}
       />
 

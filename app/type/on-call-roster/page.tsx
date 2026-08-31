@@ -91,6 +91,7 @@ export default function OnCallRosterPage() {
         image={{
           src: "/images/industries/on-call.webp",
           alt: "Clinician taking an on-call phone call outside a hospital",
+          objectPosition: "center 25%",
         }}
       />
 
