@@ -10,7 +10,7 @@ import USTrustedBy from "@/app/us/components/TrustedBy";
 
 export const metadata = withHreflang(
   {
-    title: "Airport & Transportation Crew Scheduling Software",
+    title: "Airport & Transport Crew Scheduling Software",
     description:
       "Simplify airport & transportation crew scheduling with RosterLab. Ensure safety, operational efficiency & compliance with 24/7 scheduling.",
     alternates: {
