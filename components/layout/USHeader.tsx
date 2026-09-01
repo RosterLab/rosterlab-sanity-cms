@@ -46,28 +46,42 @@ export const usNavItems = [
       { title: "Healthcare", link: "/us/industries/healthcare-scheduling" },
       { title: "ICU/ED", link: "/us/industries/healthcare/ed-icu-scheduling" },
       {
+        title: "Radiology",
+        link: "/us/industries/healthcare/radiology-scheduling",
+      },
+      {
+        title: "Radiography Scheduling",
+        link: "/us/industries/healthcare/radiography-scheduling",
+      },
+      {
         title: "Senior Care Scheduling",
         link: "/us/industries/healthcare/senior-care-scheduling",
         description: "Efficient scheduling for nursing homes & assisted living",
       },
       {
-        title: "Radiology",
-        link: "/us/industries/healthcare/radiology-scheduling",
+        title: "Veterinary Scheduling",
+        link: "/us/industries/healthcare/veterinary-scheduling",
       },
       {
         title: "Nurse Scheduling",
         link: "/us/industries/healthcare/nurse-scheduling",
-        description: "Fair, compliant nurse schedules that reduce burnout",
       },
       {
         title: "Physician Scheduling",
         link: "/us/industries/healthcare/physician-scheduling",
-        description: "Compliant and flexible staff schedules for physicians",
       },
       {
-        title: "On-Call Scheduling",
-        link: "/us/type/on-call-scheduling",
-        description: "Maintain rapid response coverage across every specialty",
+        title: "Attending Physician",
+        link: "/us/industries/healthcare/attending-physician-scheduling",
+      },
+      { title: "On-Call Scheduling", link: "/us/type/on-call-scheduling" },
+      {
+        title: "Long Term Planning",
+        link: "/us/type/long-term-schedule-planning",
+      },
+      {
+        title: "Telehealth Scheduling",
+        link: "/us/industries/healthcare/telehealth-scheduling",
       },
     ],
   },
