@@ -7,6 +7,10 @@ import {
   trackSmartButtonClick,
 } from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
+import {
+  isFreeSignupHref,
+  useMarketAccess,
+} from "@/components/market-access/MarketAccessProvider";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -39,6 +43,7 @@ export default function Button({
   ariaLabel,
   ariaPressed,
 }: ButtonProps) {
+  const { canSignUpFree } = useMarketAccess();
   const baseStyles =
     "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
@@ -58,6 +63,10 @@ export default function Button({
   };
 
   const classes = cn(baseStyles, variants[variant], sizes[size], className);
+
+  if (href && isFreeSignupHref(href) && !canSignUpFree) {
+    return null;
+  }
 
   const handleClick = () => {
     if (analyticsLabel && href) {

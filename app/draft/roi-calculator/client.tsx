@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useCallback } from "react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 
 export default function ROICalculatorClient() {
   // Input states
@@ -18,7 +18,6 @@ export default function ROICalculatorClient() {
   // Form states
   const [showReportForm, setShowReportForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formContainerRef = useRef<HTMLDivElement>(null);
 
   // Calculations
   const weeklyPayroll = employees * avgHourlyWage * hoursPerWeek;
@@ -295,108 +294,6 @@ Savings Breakdown:
       turnoverSavings,
     ],
   );
-
-  // Load HubSpot form when modal opens
-  useEffect(() => {
-    if (showReportForm) {
-      // Small delay to ensure DOM is ready
-      const timer = setTimeout(() => {
-        // Check if HubSpot is already loaded
-        if (window.hbspt) {
-          window.hbspt.forms.create({
-            portalId: "20646833",
-            formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",
-            region: "na1",
-            target: "#hubspot-form-container",
-            onFormSubmitted: async (formData: any) => {
-              // Hide the form immediately after submission
-              const formContainer = document.getElementById(
-                "hubspot-form-container",
-              );
-              if (formContainer) {
-                formContainer.style.display = "none";
-              }
-
-              // Get the company name from the form submission
-              const companyField = formData.submissionValues?.company || "";
-
-              // Generate and download the PDF
-              setIsSubmitting(true);
-              const success = await generatePDF(companyField);
-              setIsSubmitting(false);
-
-              if (success) {
-                // Close the modal after a short delay
-                setTimeout(() => {
-                  setShowReportForm(false);
-                  alert("Your personalised ROI report has been downloaded!");
-                }, 1000);
-              }
-            },
-          });
-          return;
-        }
-
-        // Load HubSpot forms script
-        const script = document.createElement("script");
-        script.src = "https://js.hsforms.net/forms/embed/v2.js";
-        script.charset = "utf-8";
-        script.type = "text/javascript";
-
-        script.onload = () => {
-          if (window.hbspt && window.hbspt.forms) {
-            window.hbspt.forms.create({
-              portalId: "20646833",
-              formId: "d06fa4b4-4f8c-4eef-b674-47dc86ac918b",
-              region: "na1",
-              target: "#hubspot-form-container",
-              onFormSubmitted: async (formData: any) => {
-                // Hide the form immediately after submission
-                const formContainer = document.getElementById(
-                  "hubspot-form-container",
-                );
-                if (formContainer) {
-                  formContainer.style.display = "none";
-                }
-
-                // Get the company name from the form submission
-                const companyField =
-                  formData.submissionValues?.company || "Your Company";
-
-                // Generate and download the PDF
-                setIsSubmitting(true);
-                const success = await generatePDF(companyField);
-                setIsSubmitting(false);
-
-                if (success) {
-                  // Close the modal after a short delay
-                  setTimeout(() => {
-                    setShowReportForm(false);
-                    alert("Your personalised ROI report has been downloaded!");
-                  }, 1000);
-                }
-              },
-            });
-          }
-        };
-
-        document.body.appendChild(script);
-      }, 100); // 100ms delay to ensure DOM is ready
-
-      // Cleanup function
-      return () => {
-        // Clear the timer
-        clearTimeout(timer);
-
-        // Remove the form container's content when unmounting
-        const formContainer = document.getElementById("hubspot-form-container");
-        if (formContainer) {
-          formContainer.innerHTML = "";
-          formContainer.style.display = "block"; // Reset display property
-        }
-      };
-    }
-  }, [showReportForm, generatePDF]);
 
   return (
     <>
@@ -719,17 +616,24 @@ Savings Breakdown:
               RosterLab.
             </p>
 
-            {/* HubSpot Form Container */}
-            <div
-              id="hubspot-form-container"
-              ref={formContainerRef}
-              style={{ minHeight: "100px" }}
-            >
-              <p className="text-sm text-gray-500 text-center">
-                Loading form...
-              </p>
-            </div>
-            <HubSpotFormListener />
+            <LeadCaptureForm
+              source="calculator-roi"
+              submitLabel="Download report"
+              metadata={{ employees, reportType: "roi-draft" }}
+              onSuccess={async (values) => {
+                setIsSubmitting(true);
+                const success = await generatePDF(
+                  values.company || "Your Company",
+                );
+                setIsSubmitting(false);
+                if (success) {
+                  setTimeout(() => {
+                    setShowReportForm(false);
+                    alert("Your personalised ROI report has been downloaded!");
+                  }, 1000);
+                }
+              }}
+            />
 
             {isSubmitting && (
               <div className="text-center py-4">

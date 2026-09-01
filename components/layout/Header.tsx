@@ -5,14 +5,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-import {
-  HiMenu,
-  HiX,
-  HiChevronDown,
-  HiUser,
-  HiHeart,
-} from "react-icons/hi";
+import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
+import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
 
 /**
  * True once the page has been scrolled away from the top, which the header
@@ -102,6 +97,7 @@ export default function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const { canSignUpFree } = useMarketAccess();
 
   // Determine if this is a US page by checking if navItems contain US-specific links
   const isUSVersion = navItems.some(
@@ -188,7 +184,10 @@ export default function Header({
       title: "Resources",
       subItems: [
         // Content & Learning
-        { title: "Whitepapers", link: "/whitepapers/rostering-as-a-strategic-workforce-lever" },
+        {
+          title: "Whitepapers",
+          link: "/whitepapers/rostering-as-a-strategic-workforce-lever",
+        },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Webinars", link: "/webinars" },
         { title: "Blogs", link: "/blog" },
@@ -254,7 +253,9 @@ export default function Header({
     <header
       className={cn(
         "sticky top-0 z-50 motion-safe:transition-shadow motion-safe:duration-300 motion-safe:ease-out",
-        seamless ? cn(HERO_BLUE, HERO_DOTS, "lg:bg-white lg:bg-none") : "bg-white",
+        seamless
+          ? cn(HERO_BLUE, HERO_DOTS, "lg:bg-white lg:bg-none")
+          : "bg-white",
         seamless
           ? "shadow-none lg:shadow-sm"
           : condensed
@@ -827,7 +828,10 @@ export default function Header({
                               <div className="space-y-4">
                                 {(() => {
                                   const renderGroup = (
-                                    groupName: "Mini Tools" | "Games" | "Templates",
+                                    groupName:
+                                      | "Mini Tools"
+                                      | "Games"
+                                      | "Templates",
                                   ) => {
                                     const groupItems = item.subItems?.filter(
                                       (sub) => sub.group === groupName,
@@ -1013,23 +1017,25 @@ export default function Header({
             >
               Book a Demo
             </Link>
-            <Link
-              href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                trackSmartButtonClick(
-                  "Start for free",
-                  "https://app.rosterlab.com/signup",
-                  "Header Desktop",
-                );
-                setTimeout(() => {
-                  window.location.href = "https://app.rosterlab.com/signup";
-                }, 100);
-              }}
-            >
-              Start for free
-            </Link>
+            {canSignUpFree && (
+              <Link
+                href="/start-free"
+                className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  trackSmartButtonClick(
+                    "Start for free",
+                    "/start-free",
+                    "Header Desktop",
+                  );
+                  setTimeout(() => {
+                    window.location.href = "/start-free";
+                  }, 100);
+                }}
+              >
+                Start for free
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -1232,7 +1238,8 @@ export default function Header({
                               const groupItems = item.subItems?.filter(
                                 (sub) => sub.group === groupName,
                               );
-                              if (!groupItems || !groupItems.length) return null;
+                              if (!groupItems || !groupItems.length)
+                                return null;
                               return (
                                 <div
                                   key={groupName}
@@ -1345,24 +1352,26 @@ export default function Header({
             >
               Book a Demo
             </Link>
-            <Link
-              href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                trackSmartButtonClick(
-                  "Start for free",
-                  "https://app.rosterlab.com/signup",
-                  "Header Mobile",
-                );
-                setIsMenuOpen(false);
-                setTimeout(() => {
-                  window.location.href = "https://app.rosterlab.com/signup";
-                }, 100);
-              }}
-            >
-              Start for free
-            </Link>
+            {canSignUpFree && (
+              <Link
+                href="/start-free"
+                className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={(e) => {
+                  e.preventDefault();
+                  trackSmartButtonClick(
+                    "Start for free",
+                    "/start-free",
+                    "Header Mobile",
+                  );
+                  setIsMenuOpen(false);
+                  setTimeout(() => {
+                    window.location.href = "/start-free";
+                  }, 100);
+                }}
+              >
+                Start for free
+              </Link>
+            )}
           </div>
         </div>
       </div>

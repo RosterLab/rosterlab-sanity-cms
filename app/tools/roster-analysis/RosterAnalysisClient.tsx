@@ -251,7 +251,7 @@ export default function RosterAnalysisClient({
       has_context: context.length > 0,
     });
 
-    // non-blocking: HubSpot sync failure must not affect analysis.
+    // Non-blocking: CRM sync failure must not affect analysis.
     // Failures are reported to analytics, never to the browser console.
     fetch("/api/roster-analysis-lead", {
       method: "POST",
@@ -263,9 +263,9 @@ export default function RosterAnalysisClient({
     })
       .then(async (res) => {
         const data = await res.json().catch(() => null);
-        if (!res.ok || data?.hubspot === "error") {
+        if (!res.ok || data?.attio === "error") {
           analytics.track("roster_analysis_lead_sync_failed", {
-            reason: data?.hubspot ?? `http_${res.status}`,
+            reason: data?.attio ?? `http_${res.status}`,
           });
         }
       })

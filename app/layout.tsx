@@ -21,6 +21,7 @@ import StatsigProvider from "@/components/analytics/StatsigProvider";
 import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
 import CTAModalManager from "@/components/modals/CTAModalManager";
 import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
+import { MarketAccessProvider } from "@/components/market-access/MarketAccessProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -94,6 +95,7 @@ export default async function RootLayout({
       >
         <SkipLink />
         <StatsigProvider clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}>
+          <MarketAccessProvider>
           <ClientProviders
             intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
           >
@@ -123,6 +125,7 @@ export default async function RootLayout({
               />
             )}
           </ClientProviders>
+          </MarketAccessProvider>
         </StatsigProvider>
       </body>
     </html>

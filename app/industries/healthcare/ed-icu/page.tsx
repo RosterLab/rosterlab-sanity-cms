@@ -84,7 +84,7 @@ export default function ICUEDPage() {
           },
         }}
         secondaryCta={{
-          href: "https://app.rosterlab.com/signup",
+          href: "/start-free",
           label: "Get Started",
           analyticsProperties: {
             cta_type: "signup",

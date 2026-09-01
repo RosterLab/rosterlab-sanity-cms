@@ -1,0 +1,1750 @@
+{
+  "policyVersion": "wb-fy2027-gni-2025",
+  "generatedAt": "2026-09-01T05:34:30.780Z",
+  "fiscalYear": 2027,
+  "gniDataYear": 2025,
+  "demoGniThresholdUsd": 30000,
+  "sources": {
+    "incomeGroups": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+    "gniPerCapita": "https://data.worldbank.org/indicator/NY.GNP.PCAP.CD"
+  },
+  "overrides": {},
+  "countries": {
+    "AD": {
+      "iso2": "AD",
+      "iso3": "AND",
+      "name": "Andorra",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 53230,
+      "gniDataYear": 2025
+    },
+    "AE": {
+      "iso2": "AE",
+      "iso3": "ARE",
+      "name": "United Arab Emirates",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 51550,
+      "gniDataYear": 2024
+    },
+    "AF": {
+      "iso2": "AF",
+      "iso3": "AFG",
+      "name": "Afghanistan",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 390,
+      "gniDataYear": 2024
+    },
+    "AG": {
+      "iso2": "AG",
+      "iso3": "ATG",
+      "name": "Antigua and Barbuda",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 23790,
+      "gniDataYear": 2025
+    },
+    "AL": {
+      "iso2": "AL",
+      "iso3": "ALB",
+      "name": "Albania",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 12060,
+      "gniDataYear": 2025
+    },
+    "AM": {
+      "iso2": "AM",
+      "iso3": "ARM",
+      "name": "Armenia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 9020,
+      "gniDataYear": 2025
+    },
+    "AO": {
+      "iso2": "AO",
+      "iso3": "AGO",
+      "name": "Angola",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2860,
+      "gniDataYear": 2025
+    },
+    "AR": {
+      "iso2": "AR",
+      "iso3": "ARG",
+      "name": "Argentina",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 14650,
+      "gniDataYear": 2025
+    },
+    "AS": {
+      "iso2": "AS",
+      "iso3": "ASM",
+      "name": "American Samoa",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "AT": {
+      "iso2": "AT",
+      "iso3": "AUT",
+      "name": "Austria",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 60360,
+      "gniDataYear": 2025
+    },
+    "AU": {
+      "iso2": "AU",
+      "iso3": "AUS",
+      "name": "Australia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 64120,
+      "gniDataYear": 2025
+    },
+    "AW": {
+      "iso2": "AW",
+      "iso3": "ABW",
+      "name": "Aruba",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 35200,
+      "gniDataYear": 2024
+    },
+    "AZ": {
+      "iso2": "AZ",
+      "iso3": "AZE",
+      "name": "Azerbaijan",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7360,
+      "gniDataYear": 2025
+    },
+    "BA": {
+      "iso2": "BA",
+      "iso3": "BIH",
+      "name": "Bosnia and Herzegovina",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 9940,
+      "gniDataYear": 2025
+    },
+    "BB": {
+      "iso2": "BB",
+      "iso3": "BRB",
+      "name": "Barbados",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 27080,
+      "gniDataYear": 2025
+    },
+    "BD": {
+      "iso2": "BD",
+      "iso3": "BGD",
+      "name": "Bangladesh",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2840,
+      "gniDataYear": 2025
+    },
+    "BE": {
+      "iso2": "BE",
+      "iso3": "BEL",
+      "name": "Belgium",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 59500,
+      "gniDataYear": 2025
+    },
+    "BF": {
+      "iso2": "BF",
+      "iso3": "BFA",
+      "name": "Burkina Faso",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 980,
+      "gniDataYear": 2025
+    },
+    "BG": {
+      "iso2": "BG",
+      "iso3": "BGR",
+      "name": "Bulgaria",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 17780,
+      "gniDataYear": 2025
+    },
+    "BH": {
+      "iso2": "BH",
+      "iso3": "BHR",
+      "name": "Bahrain",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 28790,
+      "gniDataYear": 2025
+    },
+    "BI": {
+      "iso2": "BI",
+      "iso3": "BDI",
+      "name": "Burundi",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 240,
+      "gniDataYear": 2025
+    },
+    "BJ": {
+      "iso2": "BJ",
+      "iso3": "BEN",
+      "name": "Benin",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1600,
+      "gniDataYear": 2025
+    },
+    "BM": {
+      "iso2": "BM",
+      "iso3": "BMU",
+      "name": "Bermuda",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 139370,
+      "gniDataYear": 2024
+    },
+    "BN": {
+      "iso2": "BN",
+      "iso3": "BRN",
+      "name": "Brunei Darussalam",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 34790,
+      "gniDataYear": 2025
+    },
+    "BO": {
+      "iso2": "BO",
+      "iso3": "BOL",
+      "name": "Bolivia",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 4420,
+      "gniDataYear": 2025
+    },
+    "BR": {
+      "iso2": "BR",
+      "iso3": "BRA",
+      "name": "Brazil",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 10550,
+      "gniDataYear": 2025
+    },
+    "BS": {
+      "iso2": "BS",
+      "iso3": "BHS",
+      "name": "Bahamas, The",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 37020,
+      "gniDataYear": 2024
+    },
+    "BT": {
+      "iso2": "BT",
+      "iso3": "BTN",
+      "name": "Bhutan",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 4310,
+      "gniDataYear": 2025
+    },
+    "BW": {
+      "iso2": "BW",
+      "iso3": "BWA",
+      "name": "Botswana",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7390,
+      "gniDataYear": 2025
+    },
+    "BY": {
+      "iso2": "BY",
+      "iso3": "BLR",
+      "name": "Belarus",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 9160,
+      "gniDataYear": 2025
+    },
+    "BZ": {
+      "iso2": "BZ",
+      "iso3": "BLZ",
+      "name": "Belize",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7530,
+      "gniDataYear": 2025
+    },
+    "CA": {
+      "iso2": "CA",
+      "iso3": "CAN",
+      "name": "Canada",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 56420,
+      "gniDataYear": 2025
+    },
+    "CD": {
+      "iso2": "CD",
+      "iso3": "COD",
+      "name": "Congo, Dem. Rep.",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 720,
+      "gniDataYear": 2025
+    },
+    "CF": {
+      "iso2": "CF",
+      "iso3": "CAF",
+      "name": "Central African Republic",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 560,
+      "gniDataYear": 2025
+    },
+    "CG": {
+      "iso2": "CG",
+      "iso3": "COG",
+      "name": "Congo, Rep.",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2280,
+      "gniDataYear": 2025
+    },
+    "CH": {
+      "iso2": "CH",
+      "iso3": "CHE",
+      "name": "Switzerland",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 110330,
+      "gniDataYear": 2025
+    },
+    "CI": {
+      "iso2": "CI",
+      "iso3": "CIV",
+      "name": "Cote d'Ivoire",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2780,
+      "gniDataYear": 2025
+    },
+    "CL": {
+      "iso2": "CL",
+      "iso3": "CHL",
+      "name": "Chile",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 16960,
+      "gniDataYear": 2025
+    },
+    "CM": {
+      "iso2": "CM",
+      "iso3": "CMR",
+      "name": "Cameroon",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1860,
+      "gniDataYear": 2025
+    },
+    "CN": {
+      "iso2": "CN",
+      "iso3": "CHN",
+      "name": "China",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 14230,
+      "gniDataYear": 2025
+    },
+    "CO": {
+      "iso2": "CO",
+      "iso3": "COL",
+      "name": "Colombia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7900,
+      "gniDataYear": 2025
+    },
+    "CR": {
+      "iso2": "CR",
+      "iso3": "CRI",
+      "name": "Costa Rica",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 17930,
+      "gniDataYear": 2025
+    },
+    "CU": {
+      "iso2": "CU",
+      "iso3": "CUB",
+      "name": "Cuba",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "CV": {
+      "iso2": "CV",
+      "iso3": "CPV",
+      "name": "Cabo Verde",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5590,
+      "gniDataYear": 2025
+    },
+    "CW": {
+      "iso2": "CW",
+      "iso3": "CUW",
+      "name": "Curacao",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 22570,
+      "gniDataYear": 2024
+    },
+    "CY": {
+      "iso2": "CY",
+      "iso3": "CYP",
+      "name": "Cyprus",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 36110,
+      "gniDataYear": 2025
+    },
+    "CZ": {
+      "iso2": "CZ",
+      "iso3": "CZE",
+      "name": "Czechia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 32960,
+      "gniDataYear": 2025
+    },
+    "DE": {
+      "iso2": "DE",
+      "iso3": "DEU",
+      "name": "Germany",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 60200,
+      "gniDataYear": 2025
+    },
+    "DJ": {
+      "iso2": "DJ",
+      "iso3": "DJI",
+      "name": "Djibouti",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3960,
+      "gniDataYear": 2025
+    },
+    "DK": {
+      "iso2": "DK",
+      "iso3": "DNK",
+      "name": "Denmark",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 77190,
+      "gniDataYear": 2025
+    },
+    "DM": {
+      "iso2": "DM",
+      "iso3": "DMA",
+      "name": "Dominica",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 10690,
+      "gniDataYear": 2025
+    },
+    "DO": {
+      "iso2": "DO",
+      "iso3": "DOM",
+      "name": "Dominican Republic",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 10620,
+      "gniDataYear": 2025
+    },
+    "DZ": {
+      "iso2": "DZ",
+      "iso3": "DZA",
+      "name": "Algeria",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5850,
+      "gniDataYear": 2025
+    },
+    "EC": {
+      "iso2": "EC",
+      "iso3": "ECU",
+      "name": "Ecuador",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6890,
+      "gniDataYear": 2025
+    },
+    "EE": {
+      "iso2": "EE",
+      "iso3": "EST",
+      "name": "Estonia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 32310,
+      "gniDataYear": 2025
+    },
+    "EG": {
+      "iso2": "EG",
+      "iso3": "EGY",
+      "name": "Egypt, Arab Rep.",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3260,
+      "gniDataYear": 2025
+    },
+    "ER": {
+      "iso2": "ER",
+      "iso3": "ERI",
+      "name": "Eritrea",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "ES": {
+      "iso2": "ES",
+      "iso3": "ESP",
+      "name": "Spain",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 37120,
+      "gniDataYear": 2025
+    },
+    "ET": {
+      "iso2": "ET",
+      "iso3": "ETH",
+      "name": "Ethiopia",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 1110,
+      "gniDataYear": 2025
+    },
+    "FI": {
+      "iso2": "FI",
+      "iso3": "FIN",
+      "name": "Finland",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 55250,
+      "gniDataYear": 2025
+    },
+    "FJ": {
+      "iso2": "FJ",
+      "iso3": "FJI",
+      "name": "Fiji",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6230,
+      "gniDataYear": 2025
+    },
+    "FM": {
+      "iso2": "FM",
+      "iso3": "FSM",
+      "name": "Micronesia, Fed. Sts.",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 4760,
+      "gniDataYear": 2025
+    },
+    "FO": {
+      "iso2": "FO",
+      "iso3": "FRO",
+      "name": "Faroe Islands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 73120,
+      "gniDataYear": 2024
+    },
+    "FR": {
+      "iso2": "FR",
+      "iso3": "FRA",
+      "name": "France",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 48630,
+      "gniDataYear": 2025
+    },
+    "GA": {
+      "iso2": "GA",
+      "iso3": "GAB",
+      "name": "Gabon",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 8090,
+      "gniDataYear": 2025
+    },
+    "GB": {
+      "iso2": "GB",
+      "iso3": "GBR",
+      "name": "United Kingdom",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 54550,
+      "gniDataYear": 2025
+    },
+    "GD": {
+      "iso2": "GD",
+      "iso3": "GRD",
+      "name": "Grenada",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 11660,
+      "gniDataYear": 2025
+    },
+    "GE": {
+      "iso2": "GE",
+      "iso3": "GEO",
+      "name": "Georgia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 8990,
+      "gniDataYear": 2025
+    },
+    "GH": {
+      "iso2": "GH",
+      "iso3": "GHA",
+      "name": "Ghana",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2630,
+      "gniDataYear": 2025
+    },
+    "GI": {
+      "iso2": "GI",
+      "iso3": "GIB",
+      "name": "Gibraltar",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "GL": {
+      "iso2": "GL",
+      "iso3": "GRL",
+      "name": "Greenland",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "GM": {
+      "iso2": "GM",
+      "iso3": "GMB",
+      "name": "Gambia, The",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 930,
+      "gniDataYear": 2025
+    },
+    "GN": {
+      "iso2": "GN",
+      "iso3": "GIN",
+      "name": "Guinea",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1730,
+      "gniDataYear": 2025
+    },
+    "GQ": {
+      "iso2": "GQ",
+      "iso3": "GNQ",
+      "name": "Equatorial Guinea",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5890,
+      "gniDataYear": 2025
+    },
+    "GR": {
+      "iso2": "GR",
+      "iso3": "GRC",
+      "name": "Greece",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 25360,
+      "gniDataYear": 2025
+    },
+    "GT": {
+      "iso2": "GT",
+      "iso3": "GTM",
+      "name": "Guatemala",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6360,
+      "gniDataYear": 2025
+    },
+    "GU": {
+      "iso2": "GU",
+      "iso3": "GUM",
+      "name": "Guam",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "GW": {
+      "iso2": "GW",
+      "iso3": "GNB",
+      "name": "Guinea-Bissau",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 1090,
+      "gniDataYear": 2025
+    },
+    "GY": {
+      "iso2": "GY",
+      "iso3": "GUY",
+      "name": "Guyana",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 28470,
+      "gniDataYear": 2025
+    },
+    "HK": {
+      "iso2": "HK",
+      "iso3": "HKG",
+      "name": "Hong Kong SAR, China",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 62500,
+      "gniDataYear": 2025
+    },
+    "HN": {
+      "iso2": "HN",
+      "iso3": "HND",
+      "name": "Honduras",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3270,
+      "gniDataYear": 2025
+    },
+    "HR": {
+      "iso2": "HR",
+      "iso3": "HRV",
+      "name": "Croatia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 25360,
+      "gniDataYear": 2025
+    },
+    "HT": {
+      "iso2": "HT",
+      "iso3": "HTI",
+      "name": "Haiti",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2010,
+      "gniDataYear": 2025
+    },
+    "HU": {
+      "iso2": "HU",
+      "iso3": "HUN",
+      "name": "Hungary",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 23850,
+      "gniDataYear": 2025
+    },
+    "ID": {
+      "iso2": "ID",
+      "iso3": "IDN",
+      "name": "Indonesia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5120,
+      "gniDataYear": 2025
+    },
+    "IE": {
+      "iso2": "IE",
+      "iso3": "IRL",
+      "name": "Ireland",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 87360,
+      "gniDataYear": 2025
+    },
+    "IL": {
+      "iso2": "IL",
+      "iso3": "ISR",
+      "name": "Israel",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 56180,
+      "gniDataYear": 2025
+    },
+    "IM": {
+      "iso2": "IM",
+      "iso3": "IMN",
+      "name": "Isle of Man",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 87030,
+      "gniDataYear": 2023
+    },
+    "IN": {
+      "iso2": "IN",
+      "iso3": "IND",
+      "name": "India",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2760,
+      "gniDataYear": 2025
+    },
+    "IQ": {
+      "iso2": "IQ",
+      "iso3": "IRQ",
+      "name": "Iraq",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5690,
+      "gniDataYear": 2025
+    },
+    "IR": {
+      "iso2": "IR",
+      "iso3": "IRN",
+      "name": "Iran, Islamic Rep.",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 4650,
+      "gniDataYear": 2025
+    },
+    "IS": {
+      "iso2": "IS",
+      "iso3": "ISL",
+      "name": "Iceland",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 89220,
+      "gniDataYear": 2025
+    },
+    "IT": {
+      "iso2": "IT",
+      "iso3": "ITA",
+      "name": "Italy",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 42080,
+      "gniDataYear": 2025
+    },
+    "JG": {
+      "iso2": "JG",
+      "iso3": "CHI",
+      "name": "Channel Islands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "JM": {
+      "iso2": "JM",
+      "iso3": "JAM",
+      "name": "Jamaica",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7790,
+      "gniDataYear": 2025
+    },
+    "JO": {
+      "iso2": "JO",
+      "iso3": "JOR",
+      "name": "Jordan",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5260,
+      "gniDataYear": 2025
+    },
+    "JP": {
+      "iso2": "JP",
+      "iso3": "JPN",
+      "name": "Japan",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 38340,
+      "gniDataYear": 2025
+    },
+    "KE": {
+      "iso2": "KE",
+      "iso3": "KEN",
+      "name": "Kenya",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2200,
+      "gniDataYear": 2025
+    },
+    "KG": {
+      "iso2": "KG",
+      "iso3": "KGZ",
+      "name": "Kyrgyz Republic",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2800,
+      "gniDataYear": 2025
+    },
+    "KH": {
+      "iso2": "KH",
+      "iso3": "KHM",
+      "name": "Cambodia",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2750,
+      "gniDataYear": 2025
+    },
+    "KI": {
+      "iso2": "KI",
+      "iso3": "KIR",
+      "name": "Kiribati",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3930,
+      "gniDataYear": 2025
+    },
+    "KM": {
+      "iso2": "KM",
+      "iso3": "COM",
+      "name": "Comoros",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1950,
+      "gniDataYear": 2025
+    },
+    "KN": {
+      "iso2": "KN",
+      "iso3": "KNA",
+      "name": "St. Kitts and Nevis",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 24530,
+      "gniDataYear": 2025
+    },
+    "KP": {
+      "iso2": "KP",
+      "iso3": "PRK",
+      "name": "Korea, Dem. People's Rep.",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "KR": {
+      "iso2": "KR",
+      "iso3": "KOR",
+      "name": "Korea, Rep.",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 37880,
+      "gniDataYear": 2025
+    },
+    "KW": {
+      "iso2": "KW",
+      "iso3": "KWT",
+      "name": "Kuwait",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 41110,
+      "gniDataYear": 2024
+    },
+    "KY": {
+      "iso2": "KY",
+      "iso3": "CYM",
+      "name": "Cayman Islands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 81920,
+      "gniDataYear": 2024
+    },
+    "KZ": {
+      "iso2": "KZ",
+      "iso3": "KAZ",
+      "name": "Kazakhstan",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 13740,
+      "gniDataYear": 2025
+    },
+    "LA": {
+      "iso2": "LA",
+      "iso3": "LAO",
+      "name": "Lao PDR",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2150,
+      "gniDataYear": 2025
+    },
+    "LB": {
+      "iso2": "LB",
+      "iso3": "LBN",
+      "name": "Lebanon",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3560,
+      "gniDataYear": 2024
+    },
+    "LC": {
+      "iso2": "LC",
+      "iso3": "LCA",
+      "name": "St. Lucia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 13410,
+      "gniDataYear": 2025
+    },
+    "LI": {
+      "iso2": "LI",
+      "iso3": "LIE",
+      "name": "Liechtenstein",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "LK": {
+      "iso2": "LK",
+      "iso3": "LKA",
+      "name": "Sri Lanka",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 4670,
+      "gniDataYear": 2025
+    },
+    "LR": {
+      "iso2": "LR",
+      "iso3": "LBR",
+      "name": "Liberia",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 830,
+      "gniDataYear": 2025
+    },
+    "LS": {
+      "iso2": "LS",
+      "iso3": "LSO",
+      "name": "Lesotho",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1280,
+      "gniDataYear": 2025
+    },
+    "LT": {
+      "iso2": "LT",
+      "iso3": "LTU",
+      "name": "Lithuania",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 30500,
+      "gniDataYear": 2025
+    },
+    "LU": {
+      "iso2": "LU",
+      "iso3": "LUX",
+      "name": "Luxembourg",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 95720,
+      "gniDataYear": 2025
+    },
+    "LV": {
+      "iso2": "LV",
+      "iso3": "LVA",
+      "name": "Latvia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 24980,
+      "gniDataYear": 2025
+    },
+    "LY": {
+      "iso2": "LY",
+      "iso3": "LBY",
+      "name": "Libya",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7250,
+      "gniDataYear": 2025
+    },
+    "MA": {
+      "iso2": "MA",
+      "iso3": "MAR",
+      "name": "Morocco",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 4360,
+      "gniDataYear": 2025
+    },
+    "MC": {
+      "iso2": "MC",
+      "iso3": "MCO",
+      "name": "Monaco",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "MD": {
+      "iso2": "MD",
+      "iso3": "MDA",
+      "name": "Moldova",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 8050,
+      "gniDataYear": 2025
+    },
+    "ME": {
+      "iso2": "ME",
+      "iso3": "MNE",
+      "name": "Montenegro",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 14150,
+      "gniDataYear": 2025
+    },
+    "MF": {
+      "iso2": "MF",
+      "iso3": "MAF",
+      "name": "St. Martin (French part)",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "MG": {
+      "iso2": "MG",
+      "iso3": "MDG",
+      "name": "Madagascar",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 560,
+      "gniDataYear": 2025
+    },
+    "MH": {
+      "iso2": "MH",
+      "iso3": "MHL",
+      "name": "Marshall Islands",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 9710,
+      "gniDataYear": 2025
+    },
+    "MK": {
+      "iso2": "MK",
+      "iso3": "MKD",
+      "name": "North Macedonia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 9490,
+      "gniDataYear": 2025
+    },
+    "ML": {
+      "iso2": "ML",
+      "iso3": "MLI",
+      "name": "Mali",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 1120,
+      "gniDataYear": 2025
+    },
+    "MM": {
+      "iso2": "MM",
+      "iso3": "MMR",
+      "name": "Myanmar",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1320,
+      "gniDataYear": 2025
+    },
+    "MN": {
+      "iso2": "MN",
+      "iso3": "MNG",
+      "name": "Mongolia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6210,
+      "gniDataYear": 2025
+    },
+    "MO": {
+      "iso2": "MO",
+      "iso3": "MAC",
+      "name": "Macao SAR, China",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 69920,
+      "gniDataYear": 2024
+    },
+    "MP": {
+      "iso2": "MP",
+      "iso3": "MNP",
+      "name": "Northern Mariana Islands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "MR": {
+      "iso2": "MR",
+      "iso3": "MRT",
+      "name": "Mauritania",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2210,
+      "gniDataYear": 2025
+    },
+    "MT": {
+      "iso2": "MT",
+      "iso3": "MLT",
+      "name": "Malta",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 41440,
+      "gniDataYear": 2025
+    },
+    "MU": {
+      "iso2": "MU",
+      "iso3": "MUS",
+      "name": "Mauritius",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 14040,
+      "gniDataYear": 2025
+    },
+    "MV": {
+      "iso2": "MV",
+      "iso3": "MDV",
+      "name": "Maldives",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 12950,
+      "gniDataYear": 2025
+    },
+    "MW": {
+      "iso2": "MW",
+      "iso3": "MWI",
+      "name": "Malawi",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 600,
+      "gniDataYear": 2025
+    },
+    "MX": {
+      "iso2": "MX",
+      "iso3": "MEX",
+      "name": "Mexico",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 13730,
+      "gniDataYear": 2025
+    },
+    "MY": {
+      "iso2": "MY",
+      "iso3": "MYS",
+      "name": "Malaysia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 12380,
+      "gniDataYear": 2025
+    },
+    "MZ": {
+      "iso2": "MZ",
+      "iso3": "MOZ",
+      "name": "Mozambique",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 570,
+      "gniDataYear": 2025
+    },
+    "NA": {
+      "iso2": "NA",
+      "iso3": "NAM",
+      "name": "Namibia",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 4340,
+      "gniDataYear": 2025
+    },
+    "NC": {
+      "iso2": "NC",
+      "iso3": "NCL",
+      "name": "New Caledonia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 30070,
+      "gniDataYear": 2024
+    },
+    "NE": {
+      "iso2": "NE",
+      "iso3": "NER",
+      "name": "Niger",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 750,
+      "gniDataYear": 2025
+    },
+    "NG": {
+      "iso2": "NG",
+      "iso3": "NGA",
+      "name": "Nigeria",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1360,
+      "gniDataYear": 2025
+    },
+    "NI": {
+      "iso2": "NI",
+      "iso3": "NIC",
+      "name": "Nicaragua",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2850,
+      "gniDataYear": 2025
+    },
+    "NL": {
+      "iso2": "NL",
+      "iso3": "NLD",
+      "name": "Netherlands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 68530,
+      "gniDataYear": 2025
+    },
+    "NO": {
+      "iso2": "NO",
+      "iso3": "NOR",
+      "name": "Norway",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 97310,
+      "gniDataYear": 2025
+    },
+    "NP": {
+      "iso2": "NP",
+      "iso3": "NPL",
+      "name": "Nepal",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1570,
+      "gniDataYear": 2025
+    },
+    "NR": {
+      "iso2": "NR",
+      "iso3": "NRU",
+      "name": "Naoero",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 20690,
+      "gniDataYear": 2025
+    },
+    "NZ": {
+      "iso2": "NZ",
+      "iso3": "NZL",
+      "name": "New Zealand",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 46630,
+      "gniDataYear": 2025
+    },
+    "OM": {
+      "iso2": "OM",
+      "iso3": "OMN",
+      "name": "Oman",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 19520,
+      "gniDataYear": 2024
+    },
+    "PA": {
+      "iso2": "PA",
+      "iso3": "PAN",
+      "name": "Panama",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 19140,
+      "gniDataYear": 2025
+    },
+    "PE": {
+      "iso2": "PE",
+      "iso3": "PER",
+      "name": "Peru",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 8430,
+      "gniDataYear": 2025
+    },
+    "PF": {
+      "iso2": "PF",
+      "iso3": "PYF",
+      "name": "French Polynesia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 24100,
+      "gniDataYear": 2024
+    },
+    "PG": {
+      "iso2": "PG",
+      "iso3": "PNG",
+      "name": "Papua New Guinea",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2890,
+      "gniDataYear": 2025
+    },
+    "PH": {
+      "iso2": "PH",
+      "iso3": "PHL",
+      "name": "Philippines",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 4850,
+      "gniDataYear": 2025
+    },
+    "PK": {
+      "iso2": "PK",
+      "iso3": "PAK",
+      "name": "Pakistan",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1500,
+      "gniDataYear": 2025
+    },
+    "PL": {
+      "iso2": "PL",
+      "iso3": "POL",
+      "name": "Poland",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 25520,
+      "gniDataYear": 2025
+    },
+    "PR": {
+      "iso2": "PR",
+      "iso3": "PRI",
+      "name": "Puerto Rico (US)",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 27320,
+      "gniDataYear": 2025
+    },
+    "PS": {
+      "iso2": "PS",
+      "iso3": "PSE",
+      "name": "West Bank and Gaza",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3250,
+      "gniDataYear": 2025
+    },
+    "PT": {
+      "iso2": "PT",
+      "iso3": "PRT",
+      "name": "Portugal",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 29930,
+      "gniDataYear": 2025
+    },
+    "PW": {
+      "iso2": "PW",
+      "iso3": "PLW",
+      "name": "Palau",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 19890,
+      "gniDataYear": 2025
+    },
+    "PY": {
+      "iso2": "PY",
+      "iso3": "PRY",
+      "name": "Paraguay",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6750,
+      "gniDataYear": 2025
+    },
+    "QA": {
+      "iso2": "QA",
+      "iso3": "QAT",
+      "name": "Qatar",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 74330,
+      "gniDataYear": 2025
+    },
+    "RO": {
+      "iso2": "RO",
+      "iso3": "ROU",
+      "name": "Romania",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 20190,
+      "gniDataYear": 2025
+    },
+    "RS": {
+      "iso2": "RS",
+      "iso3": "SRB",
+      "name": "Serbia",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 13480,
+      "gniDataYear": 2025
+    },
+    "RU": {
+      "iso2": "RU",
+      "iso3": "RUS",
+      "name": "Russian Federation",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 15960,
+      "gniDataYear": 2025
+    },
+    "RW": {
+      "iso2": "RW",
+      "iso3": "RWA",
+      "name": "Rwanda",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 1150,
+      "gniDataYear": 2025
+    },
+    "SA": {
+      "iso2": "SA",
+      "iso3": "SAU",
+      "name": "Saudi Arabia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 36070,
+      "gniDataYear": 2025
+    },
+    "SB": {
+      "iso2": "SB",
+      "iso3": "SLB",
+      "name": "Solomon Islands",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2020,
+      "gniDataYear": 2025
+    },
+    "SC": {
+      "iso2": "SC",
+      "iso3": "SYC",
+      "name": "Seychelles",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 19200,
+      "gniDataYear": 2025
+    },
+    "SD": {
+      "iso2": "SD",
+      "iso3": "SDN",
+      "name": "Sudan",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 900,
+      "gniDataYear": 2025
+    },
+    "SE": {
+      "iso2": "SE",
+      "iso3": "SWE",
+      "name": "Sweden",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 63010,
+      "gniDataYear": 2025
+    },
+    "SG": {
+      "iso2": "SG",
+      "iso3": "SGP",
+      "name": "Singapore",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 81760,
+      "gniDataYear": 2025
+    },
+    "SI": {
+      "iso2": "SI",
+      "iso3": "SVN",
+      "name": "Slovenia",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 35520,
+      "gniDataYear": 2025
+    },
+    "SK": {
+      "iso2": "SK",
+      "iso3": "SVK",
+      "name": "Slovak Republic",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 26410,
+      "gniDataYear": 2025
+    },
+    "SL": {
+      "iso2": "SL",
+      "iso3": "SLE",
+      "name": "Sierra Leone",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 830,
+      "gniDataYear": 2025
+    },
+    "SM": {
+      "iso2": "SM",
+      "iso3": "SMR",
+      "name": "San Marino",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 53910,
+      "gniDataYear": 2023
+    },
+    "SN": {
+      "iso2": "SN",
+      "iso3": "SEN",
+      "name": "Senegal",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1780,
+      "gniDataYear": 2025
+    },
+    "SO": {
+      "iso2": "SO",
+      "iso3": "SOM",
+      "name": "Somalia, Fed. Rep.",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 640,
+      "gniDataYear": 2025
+    },
+    "SR": {
+      "iso2": "SR",
+      "iso3": "SUR",
+      "name": "Suriname",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6140,
+      "gniDataYear": 2025
+    },
+    "SS": {
+      "iso2": "SS",
+      "iso3": "SSD",
+      "name": "South Sudan",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "ST": {
+      "iso2": "ST",
+      "iso3": "STP",
+      "name": "Sao Tome and Principe",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3800,
+      "gniDataYear": 2025
+    },
+    "SV": {
+      "iso2": "SV",
+      "iso3": "SLV",
+      "name": "El Salvador",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5410,
+      "gniDataYear": 2025
+    },
+    "SX": {
+      "iso2": "SX",
+      "iso3": "SXM",
+      "name": "Sint Maarten (Dutch part)",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 38950,
+      "gniDataYear": 2024
+    },
+    "SY": {
+      "iso2": "SY",
+      "iso3": "SYR",
+      "name": "Syrian Arab Republic",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "SZ": {
+      "iso2": "SZ",
+      "iso3": "SWZ",
+      "name": "Eswatini",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3730,
+      "gniDataYear": 2025
+    },
+    "TC": {
+      "iso2": "TC",
+      "iso3": "TCA",
+      "name": "Turks and Caicos Islands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 36760,
+      "gniDataYear": 2024
+    },
+    "TD": {
+      "iso2": "TD",
+      "iso3": "TCD",
+      "name": "Chad",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 970,
+      "gniDataYear": 2025
+    },
+    "TG": {
+      "iso2": "TG",
+      "iso3": "TGO",
+      "name": "Togo",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1350,
+      "gniDataYear": 2025
+    },
+    "TH": {
+      "iso2": "TH",
+      "iso3": "THA",
+      "name": "Thailand",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7690,
+      "gniDataYear": 2025
+    },
+    "TJ": {
+      "iso2": "TJ",
+      "iso3": "TJK",
+      "name": "Tajikistan",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2080,
+      "gniDataYear": 2025
+    },
+    "TL": {
+      "iso2": "TL",
+      "iso3": "TLS",
+      "name": "Timor-Leste",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1510,
+      "gniDataYear": 2025
+    },
+    "TM": {
+      "iso2": "TM",
+      "iso3": "TKM",
+      "name": "Turkmenistan",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6340,
+      "gniDataYear": 2025
+    },
+    "TN": {
+      "iso2": "TN",
+      "iso3": "TUN",
+      "name": "Tunisia",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 4300,
+      "gniDataYear": 2025
+    },
+    "TO": {
+      "iso2": "TO",
+      "iso3": "TON",
+      "name": "Tonga",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6840,
+      "gniDataYear": 2025
+    },
+    "TR": {
+      "iso2": "TR",
+      "iso3": "TUR",
+      "name": "Turkiye",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 16300,
+      "gniDataYear": 2025
+    },
+    "TT": {
+      "iso2": "TT",
+      "iso3": "TTO",
+      "name": "Trinidad and Tobago",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 18550,
+      "gniDataYear": 2025
+    },
+    "TV": {
+      "iso2": "TV",
+      "iso3": "TUV",
+      "name": "Tuvalu",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 9780,
+      "gniDataYear": 2025
+    },
+    "TZ": {
+      "iso2": "TZ",
+      "iso3": "TZA",
+      "name": "Tanzania",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1270,
+      "gniDataYear": 2025
+    },
+    "UA": {
+      "iso2": "UA",
+      "iso3": "UKR",
+      "name": "Ukraine",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5510,
+      "gniDataYear": 2025
+    },
+    "UG": {
+      "iso2": "UG",
+      "iso3": "UGA",
+      "name": "Uganda",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": 1120,
+      "gniDataYear": 2025
+    },
+    "US": {
+      "iso2": "US",
+      "iso3": "USA",
+      "name": "United States",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 88810,
+      "gniDataYear": 2025
+    },
+    "UY": {
+      "iso2": "UY",
+      "iso3": "URY",
+      "name": "Uruguay",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": 24020,
+      "gniDataYear": 2025
+    },
+    "UZ": {
+      "iso2": "UZ",
+      "iso3": "UZB",
+      "name": "Uzbekistan",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3670,
+      "gniDataYear": 2025
+    },
+    "VC": {
+      "iso2": "VC",
+      "iso3": "VCT",
+      "name": "St. Vincent and the Grenadines",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 12000,
+      "gniDataYear": 2025
+    },
+    "VE": {
+      "iso2": "VE",
+      "iso3": "VEN",
+      "name": "Venezuela, RB",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 3860,
+      "gniDataYear": 2025
+    },
+    "VG": {
+      "iso2": "VG",
+      "iso3": "VGB",
+      "name": "British Virgin Islands",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "VI": {
+      "iso2": "VI",
+      "iso3": "VIR",
+      "name": "Virgin Islands (U.S.)",
+      "incomeLevel": "HIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "VN": {
+      "iso2": "VN",
+      "iso3": "VNM",
+      "name": "Viet Nam",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 4970,
+      "gniDataYear": 2025
+    },
+    "VU": {
+      "iso2": "VU",
+      "iso3": "VUT",
+      "name": "Vanuatu",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 4410,
+      "gniDataYear": 2025
+    },
+    "WS": {
+      "iso2": "WS",
+      "iso3": "WSM",
+      "name": "Samoa",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 5640,
+      "gniDataYear": 2025
+    },
+    "XK": {
+      "iso2": "XK",
+      "iso3": "XKX",
+      "name": "Kosovo",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 7760,
+      "gniDataYear": 2025
+    },
+    "YE": {
+      "iso2": "YE",
+      "iso3": "YEM",
+      "name": "Yemen, Rep.",
+      "incomeLevel": "LIC",
+      "gniPerCapitaUsd": null,
+      "gniDataYear": null
+    },
+    "ZA": {
+      "iso2": "ZA",
+      "iso3": "ZAF",
+      "name": "South Africa",
+      "incomeLevel": "UMC",
+      "gniPerCapitaUsd": 6270,
+      "gniDataYear": 2025
+    },
+    "ZM": {
+      "iso2": "ZM",
+      "iso3": "ZMB",
+      "name": "Zambia",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 1200,
+      "gniDataYear": 2025
+    },
+    "ZW": {
+      "iso2": "ZW",
+      "iso3": "ZWE",
+      "name": "Zimbabwe",
+      "incomeLevel": "LMC",
+      "gniPerCapitaUsd": 2660,
+      "gniDataYear": 2025
+    }
+  }
+}
