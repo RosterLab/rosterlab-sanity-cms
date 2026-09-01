@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ClientHeader from "@/components/layout/ClientHeader";
 import ClientFooter from "@/components/layout/ClientFooter";
-import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
-import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
@@ -83,13 +82,16 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://featuregates.org" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <StructuredData type="organization" isUSPage={isUSPage} />
-        <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics
+            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          />
+        )}
       </head>
       <body
         className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`}
         suppressHydrationWarning={true}
       >
-        <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <SkipLink />
         <StatsigProvider clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}>
           <ClientProviders

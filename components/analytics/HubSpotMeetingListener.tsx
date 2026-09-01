@@ -36,7 +36,7 @@ interface HubSpotMeetingPayload {
  * HubSpot Meeting Listener Component
  *
  * This component listens for HubSpot meeting booking events and tracks them
- * in both Amplitude and GTM. It should be included on any page that has a
+ * in both the RosterLab tracker and GA4. It should be included on any page that has a
  * HubSpot meeting scheduler.
  *
  * @example
@@ -135,7 +135,7 @@ export default function HubSpotMeetingListener() {
             "[HubSpotMeetingListener] Demo booking tracked, expecting redirect to /meeting-confirmed",
           );
 
-          // GTM dataLayer push is already handled by trackDemoBookingComplete()
+          // GA4 event is already sent by trackDemoBookingComplete()
           // Removed duplicate push to prevent double tracking
 
           // Log for debugging (remove in production)

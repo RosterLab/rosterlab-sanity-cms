@@ -33,7 +33,7 @@ const FORM_GUID_TO_NAME: Record<string, string> = {
  * HubSpot Form Listener Component
  *
  * This component listens for HubSpot form submission events and tracks them
- * in both Amplitude and GTM. It should be included on any page that has a
+ * in both the RosterLab tracker and GA4. It should be included on any page that has a
  * HubSpot form.
  *
  * @example
@@ -163,7 +163,7 @@ export default function HubSpotFormListener() {
           );
         }
 
-        // GTM dataLayer push is already handled by trackFormSubmission()
+        // GA4 event is already sent by trackFormSubmission()
         // Removed duplicate push to prevent double tracking
 
         // Log for debugging (remove in production)
