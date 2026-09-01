@@ -55,7 +55,10 @@ function getCampaignContext(): {
     };
 
     // Store in sessionStorage for persistence across pages
-    sessionStorage.setItem(CAMPAIGN_STORAGE_KEY, JSON.stringify(campaignContext));
+    sessionStorage.setItem(
+      CAMPAIGN_STORAGE_KEY,
+      JSON.stringify(campaignContext),
+    );
     return campaignContext;
   }
 
@@ -146,19 +149,23 @@ export const analytics = {
     if (window.rlTracker) {
       window.rlTracker.track(eventName, enhancedProperties);
     } else {
-      console.warn('[Analytics] rlTracker not available for track event:', eventName);
+      console.warn(
+        "[Analytics] rlTracker not available for track event:",
+        eventName,
+      );
     }
 
-    // Send to GTM
-    if (window.dataLayer) {
-      window.dataLayer.push({ event: eventName, ...enhancedProperties });
+    // Send to GA4. gtag.js only consumes `arguments`-shaped dataLayer entries,
+    // so this call is the only path into GA4 now that GTM is gone.
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, enhancedProperties);
     }
   },
 
   identify: (userId: string, userProperties?: Record<string, any>) => {
     if (typeof window === "undefined") return;
 
-    console.log('📧 [Analytics] identify() called:', {
+    console.log("📧 [Analytics] identify() called:", {
       userId,
       anonymousId: analytics.getDeviceId(),
       traits: userProperties,
@@ -168,9 +175,11 @@ export const analytics = {
     // Send to RosterLab tracker (handles sendBeacon + fetch fallback automatically)
     if (window.rlTracker) {
       window.rlTracker.identify(userId, userProperties);
-      console.log('✅ [Analytics] identify() sent to rlTracker');
+      console.log("✅ [Analytics] identify() sent to rlTracker");
     } else {
-      console.error('❌ [Analytics] rlTracker NOT AVAILABLE - using fallback API call');
+      console.error(
+        "❌ [Analytics] rlTracker NOT AVAILABLE - using fallback API call",
+      );
 
       // FALLBACK: Send directly to API if rlTracker isn't available
       const identifyPayload = {
@@ -192,23 +201,30 @@ export const analytics = {
 
       // Use sendBeacon for reliable delivery (won't be cancelled on page unload)
       const blob = new Blob([JSON.stringify(identifyPayload)], {
-        type: 'application/json',
+        type: "application/json",
       });
 
-      const sent = navigator.sendBeacon('https://ops.rosterlab.com/api/identify', blob);
+      const sent = navigator.sendBeacon(
+        "https://ops.rosterlab.com/api/identify",
+        blob,
+      );
 
       if (sent) {
-        console.log('✅ [Analytics] identify() sent via fallback sendBeacon');
+        console.log("✅ [Analytics] identify() sent via fallback sendBeacon");
       } else {
         // If sendBeacon fails, try fetch as last resort
-        fetch('https://ops.rosterlab.com/api/identify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        fetch("https://ops.rosterlab.com/api/identify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(identifyPayload),
           keepalive: true,
         })
-          .then(() => console.log('✅ [Analytics] identify() sent via fallback fetch'))
-          .catch(err => console.error('❌ [Analytics] All identify() methods failed:', err));
+          .then(() =>
+            console.log("✅ [Analytics] identify() sent via fallback fetch"),
+          )
+          .catch((err) =>
+            console.error("❌ [Analytics] All identify() methods failed:", err),
+          );
       }
     }
   },

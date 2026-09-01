@@ -119,14 +119,6 @@ export const trackFormSubmission = (properties: {
     }
   }
 
-  // Legacy GTM event name for existing triggers
-  if (typeof window !== "undefined" && (window as any).dataLayer) {
-    (window as any).dataLayer.push({
-      event: "hubspot-form-success",
-      "hs-form-guid": properties.form_guid,
-    });
-  }
-
   // Meta Pixel: Contact for contact form, Subscribe for newsletters, Lead for others
   const formNameParts = properties.user_name?.split(" ") || [];
   const metaFormUserData = {
