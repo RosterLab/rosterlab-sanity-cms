@@ -9,7 +9,6 @@ import {
   HiMenu,
   HiX,
   HiChevronDown,
-  HiChevronRight,
   HiUser,
   HiHeart,
 } from "react-icons/hi";
@@ -448,7 +447,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Healthcare Sectors Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Specialty Healthcare Rosters
+                                {isUSVersion
+                                  ? "Specialty Healthcare Schedules"
+                                  : "Specialty Healthcare Rosters"}
                               </h3>
                               <div className="space-y-1">
                                 {/* Healthcare Roster */}
@@ -582,7 +583,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Roster By Type Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Roster By Type
+                                {isUSVersion
+                                  ? "Schedule By Type"
+                                  : "Roster By Type"}
                               </h3>
                               <div className="space-y-1">
                                 {/* Nurse Roster */}
@@ -1107,36 +1110,41 @@ export default function Header({ navItems = [] }: HeaderProps) {
                         </>
                       ) : item.title === "Industries" ? (
                         <>
-                          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
-                            SPECIALTY HEALTHCARE ROSTERS
+                          <div>
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                              {isUSVersion
+                                ? "SPECIALTY HEALTHCARE SCHEDULES"
+                                : "SPECIALTY HEALTHCARE ROSTERS"}
+                            </div>
+                            {item.subItems.slice(0, 6).map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
                           </div>
-                          {item.subItems.slice(0, 6).map((subItem) => (
-                            <Link
-                              key={subItem.link}
-                              href={subItem.link}
-                              className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              {subItem.title}
-                            </Link>
-                          ))}
-                          <div className="px-3 pt-2 pb-3">
+                          <div className="mt-1 px-3">
                             <Link
                               href={
                                 isUSVersion
                                   ? "https://rosterlab.com/us/industries"
                                   : "https://rosterlab.com/industries"
                               }
-                              className="inline-flex items-center py-1 text-sm font-semibold text-blue-600 hover:text-blue-700"
+                              className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
                               onClick={() => setIsMenuOpen(false)}
                             >
-                              View all industries
-                              <HiChevronRight className="ml-1 h-4 w-4" />
+                              View all industries →
                             </Link>
                           </div>
                           <div className="mt-3 pt-3 border-t border-gray-200">
                             <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
-                              ROSTER BY TYPE
+                              {isUSVersion
+                                ? "SCHEDULE BY TYPE"
+                                : "ROSTER BY TYPE"}
                             </div>
                             {item.subItems.slice(6).map((subItem) => (
                               <Link
