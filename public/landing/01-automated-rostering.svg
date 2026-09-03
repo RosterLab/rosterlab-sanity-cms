@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 132" width="520" height="264">
+<!-- rl-keyframes-injected -->
+<style>
+    @keyframes rlFade {
+      0%, 100% { fill-opacity: 0.08; }
+      50%      { fill-opacity: 1; }
+    }
+  
+    svg [style*="animation"] {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-play-state: var(--rl-play, paused) !important;
+    }
+  </style>
+<rect x="40" y="22" width="188" height="92" rx="13" fill="#2D3BEA" fill-opacity=".05"></rect>
+        <rect x="36" y="18" width="188" height="92" rx="13" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".35"></rect>
+        <rect x="48" y="30" width="44" height="7" rx="3.5" fill="#2D3BEA" fill-opacity=".18"></rect>
+        <rect x="176" y="30" width="36" height="7" rx="3.5" fill="#03F9BE" fill-opacity=".55"></rect>
+        <g fill="#2D3BEA">
+          <rect x="48" y="50" width="26" height="9" rx="3" fill-opacity=".85" style="animation:rlFade 4.2s ease-in-out 0s infinite"></rect><rect x="80" y="50" width="26" height="9" rx="3" fill-opacity=".14"></rect><rect x="112" y="50" width="26" height="9" rx="3" fill-opacity=".85" style="animation:rlFade 4.2s ease-in-out .3s infinite"></rect><rect x="144" y="50" width="26" height="9" rx="3" fill-opacity=".14"></rect><rect x="176" y="50" width="36" height="9" rx="3" fill-opacity=".3" style="animation:rlFade 4.2s ease-in-out .6s infinite"></rect>
+          <rect x="48" y="66" width="26" height="9" rx="3" fill-opacity=".14"></rect><rect x="80" y="66" width="26" height="9" rx="3" fill-opacity=".85" style="animation:rlFade 4.2s ease-in-out .9s infinite"></rect><rect x="112" y="66" width="26" height="9" rx="3" fill-opacity=".14"></rect><rect x="144" y="66" width="26" height="9" rx="3" fill-opacity=".85" style="animation:rlFade 4.2s ease-in-out 1.2s infinite"></rect><rect x="176" y="66" width="36" height="9" rx="3" fill-opacity=".14"></rect>
+          <rect x="48" y="82" width="26" height="9" rx="3" fill-opacity=".85" style="animation:rlFade 4.2s ease-in-out 1.5s infinite"></rect><rect x="80" y="82" width="26" height="9" rx="3" fill-opacity=".14"></rect><rect x="112" y="82" width="26" height="9" rx="3" fill-opacity=".3" style="animation:rlFade 4.2s ease-in-out 1.8s infinite"></rect><rect x="144" y="82" width="26" height="9" rx="3" fill-opacity=".14"></rect>
+        </g>
+        <rect x="176" y="82" width="36" height="9" rx="3" fill="#03F9BE" fill-opacity=".8" style="animation:rlFade 4.2s ease-in-out 2.1s infinite"></rect>
+      
+</svg>

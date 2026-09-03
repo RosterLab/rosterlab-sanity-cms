@@ -9,9 +9,9 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "About RosterLab | AI Rostering Software Built for Healthcare",
+    title: "About Us - AI Rostering Built for Healthcare",
     description:
-      "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We specialise in complex healthcare scheduling — replacing spreadsheets with AI that actually works.",
+      "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We replace healthcare spreadsheets with AI that works.",
     alternates: {
       canonical: "https://rosterlab.com/about",
     },
@@ -21,7 +21,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "About RosterLab | AI Rostering Software Built for Healthcare",
       description:
-        "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We specialise in complex healthcare scheduling — replacing spreadsheets with AI that actually works.",
+        "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We replace healthcare spreadsheets with AI that works.",
       type: "website",
       url: "https://rosterlab.com/about",
       images: [
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "About RosterLab | AI Rostering Software Built for Healthcare",
       description:
-        "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We specialise in complex healthcare scheduling — replacing spreadsheets with AI that actually works.",
+        "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We replace healthcare spreadsheets with AI that works.",
       images: ["/images/og-images/About.png"],
     },
   },

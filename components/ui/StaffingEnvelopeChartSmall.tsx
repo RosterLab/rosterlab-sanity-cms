@@ -1,9 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function StaffingEnvelopeChartSmall() {
+interface StaffingEnvelopeChartSmallProps {
+  /**
+   * When true, the chart cycles between "before" and "after" automatically.
+   * Cycling pauses while the pointer is hovering the chart.
+   */
+  autoplay?: boolean;
+  /** Time in ms each state is held during autoplay (default 3000). */
+  autoplayIntervalMs?: number;
+  /** Cycle back to "before" and replay instead of stopping after one pass. */
+  loop?: boolean;
+  /** How long "after" is held before looping back. Ignored unless `loop`. */
+  loopHoldMs?: number;
+}
+
+export default function StaffingEnvelopeChartSmall({
+  autoplay = false,
+  autoplayIntervalMs = 3000,
+  loop = false,
+  loopHoldMs = 3000,
+}: StaffingEnvelopeChartSmallProps = {}) {
   const [isOptimized, setIsOptimized] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -49,13 +68,73 @@ export default function StaffingEnvelopeChartSmall() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // One-shot autoplay: play Before → After once, then stop and show a
+  // replay button. `playToken` bumps to trigger a fresh cycle on replay.
+  const [playToken, setPlayToken] = useState(0);
+  const [finished, setFinished] = useState(false);
+  // Wait until the chart is actually on-screen before running autoplay.
+  // Otherwise it fires while the section is still below the fold.
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    if (!autoplay) return;
+    const el = containerRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      // Trigger once ~50% of the chart is visible — i.e. it's near the
+      // middle of the viewport rather than just poking in.
+      { threshold: 0.5 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [autoplay]);
+
+  useEffect(() => {
+    if (!autoplay || !inView) return;
+    setIsOptimized(false);
+    setFinished(false);
+    const timers: number[] = [];
+    timers.push(
+      window.setTimeout(() => {
+        setIsOptimized(true);
+        if (loop) {
+          // Bumping playToken re-runs this effect, which resets to "before".
+          timers.push(
+            window.setTimeout(() => setPlayToken((n) => n + 1), loopHoldMs),
+          );
+        } else {
+          setFinished(true);
+        }
+      }, autoplayIntervalMs),
+    );
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [autoplay, autoplayIntervalMs, loop, loopHoldMs, inView, playToken]);
+
+  const replay = () => setPlayToken((n) => n + 1);
+
   const width = dimensions.width;
   const height = dimensions.height;
   const padding = {
-    top: 25,
+    // Top padding leaves room for the "Staff" title on mobile (which
+    // replaces the rotated y-axis label that clipped).
+    top: isMobile ? 40 : 25,
     right: isMobile ? 15 : 25,
-    bottom: 45,
-    left: isMobile ? 30 : 45,
+    // Bottom padding leaves room for tick labels + the "Days" title.
+    bottom: 55,
+    // More left padding on mobile so the y-axis tick labels (30, 35, 40)
+    // don't sit flush against the SVG's left edge.
+    left: isMobile ? 44 : 45,
   };
   const chartWidth = width - padding.left - padding.right;
   const chartHeight = height - padding.top - padding.bottom;
@@ -135,8 +214,46 @@ export default function StaffingEnvelopeChartSmall() {
     .join(" ");
 
   return (
-    <div className="w-full h-full flex flex-col justify-center">
+    <div
+      ref={containerRef}
+      className="w-full h-full flex flex-col justify-center"
+    >
       <div className="flex flex-col items-center w-full">
+        {autoplay && (
+          <div className="mb-4 flex items-center gap-2">
+            <span
+              className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
+                isOptimized
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {isOptimized ? "After RosterLab" : "Before RosterLab"}
+            </span>
+            {finished && (
+              <button
+                type="button"
+                onClick={replay}
+                aria-label="Replay animation"
+                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:text-blue-600 hover:border-blue-600 transition"
+              >
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12a9 9 0 1 0 3-6.7" />
+                  <path d="M3 4v5h5" />
+                </svg>
+              </button>
+            )}
+          </div>
+        )}
         <div className="w-full max-w-[336px] sm:max-w-[480px] md:max-w-[588px] mx-auto">
           <svg
             width={width}
@@ -171,7 +288,7 @@ export default function StaffingEnvelopeChartSmall() {
                     x={-8}
                     y={yScale(value) + 4}
                     textAnchor="end"
-                    className="text-xs fill-gray-600"
+                    className={`${isMobile ? "text-[11px]" : "text-xs"} fill-gray-600`}
                   >
                     {value}
                   </text>
@@ -272,70 +389,84 @@ export default function StaffingEnvelopeChartSmall() {
                 UNDERSTAFFED
               </text>
 
-              {/* X-axis labels */}
+              {/* X-axis tick labels */}
               {days.map((day) => (
                 <text
                   key={day}
                   x={xScale(day)}
                   y={chartHeight + 15}
                   textAnchor="middle"
-                  className="text-xs fill-gray-600"
+                  className={`${isMobile ? "text-[11px]" : "text-xs"} fill-gray-600`}
                 >
                   {day}
                 </text>
               ))}
 
-              {/* Axis labels */}
+              {/* Axis titles. On mobile the y-axis title sits horizontal
+                  above the chart to avoid clipping when rotated. */}
               <text
                 x={chartWidth / 2}
-                y={chartHeight + 40}
+                y={chartHeight + (isMobile ? 40 : 40)}
                 textAnchor="middle"
-                className="text-xs font-medium fill-gray-700"
+                className={`${isMobile ? "text-[11px]" : "text-xs"} font-medium fill-gray-700`}
               >
                 Days
               </text>
-              <text
-                x={-chartHeight / 2}
-                y={-30}
-                textAnchor="middle"
-                transform="rotate(-90)"
-                className="text-xs font-medium fill-gray-700"
-              >
-                Staffing Numbers
-              </text>
+              {isMobile ? (
+                <text
+                  x={-8}
+                  y={-14}
+                  textAnchor="end"
+                  className="text-[11px] font-medium fill-gray-700"
+                >
+                  Staff
+                </text>
+              ) : (
+                <text
+                  x={-chartHeight / 2}
+                  y={-30}
+                  textAnchor="middle"
+                  transform="rotate(-90)"
+                  className="text-xs font-medium fill-gray-700"
+                >
+                  Staffing Numbers
+                </text>
+              )}
             </g>
           </svg>
         </div>
 
-        {/* Optimization Button */}
-        <div className="mt-4 text-center">
-          <motion.button
-            onClick={() => setIsOptimized(!isOptimized)}
-            className="px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md"
-            style={{
-              backgroundColor: "#24D9DC",
-              color: "#323232",
-            }}
-            animate={{
-              scale: [1, 1.1, 1],
-              rotate: [0, -5, 5, -5, 5, 0],
-            }}
-            transition={{
-              duration: 0.8,
-              repeat: Infinity,
-              repeatDelay: 3.2,
-              ease: "easeInOut",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#5AE4E7";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#24D9DC";
-            }}
-          >
-            {isOptimized ? "← Before RosterLab" : "After RosterLab →"}
-          </motion.button>
-        </div>
+        {/* Manual toggle button — only shown when not in autoplay mode. */}
+        {!autoplay && (
+          <div className="mt-4 text-center">
+            <motion.button
+              onClick={() => setIsOptimized(!isOptimized)}
+              className="px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md"
+              style={{
+                backgroundColor: "#24D9DC",
+                color: "#323232",
+              }}
+              animate={{
+                scale: [1, 1.1, 1],
+                rotate: [0, -5, 5, -5, 5, 0],
+              }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+                repeatDelay: 3.2,
+                ease: "easeInOut",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#5AE4E7";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#24D9DC";
+              }}
+            >
+              {isOptimized ? "← Before RosterLab" : "After RosterLab →"}
+            </motion.button>
+          </div>
+        )}
       </div>
     </div>
   );

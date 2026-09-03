@@ -4,7 +4,16 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function RosterGenerationModule() {
+interface RosterGenerationModuleProps {
+  autoplay?: boolean;
+}
+
+export default function RosterGenerationModule({
+  autoplay = false,
+}: RosterGenerationModuleProps = {}) {
+  // In autoplay mode: start with an empty roster, hold briefly, then flip
+  // to the solved state. Any user with `autoplay` off keeps the manual
+  // "Before RosterLab" starting state.
   const [isGenerated, setIsGenerated] = useState(false);
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -20,9 +29,57 @@ export default function RosterGenerationModule() {
     "3-3": "Off",
     "4-2": "AM",
   };
+  // Autoplay shows a fully blank roster before flipping to solved — clearer
+  // "before/after" contrast than the partially-filled manual state.
   const [manualRosterState, setManualRosterState] = useState<{
     [key: string]: string;
-  }>(initialRoster);
+  }>(autoplay ? {} : initialRoster);
+
+  const [playToken, setPlayToken] = useState(0);
+  const [finished, setFinished] = useState(false);
+  // Autoplay phases:
+  //   idle    → empty roster shown, cursor drifting toward the Generate button
+  //   clicked → cursor has just landed on the button; button visibly held down
+  //             but label + icon haven't changed yet (feels like a real click).
+  //   loading → spinner + "Generating…" label — the actual "thinking" beat.
+  //   done    → roster fills in, overlay fades.
+  const [autoplayPhase, setAutoplayPhase] = useState<
+    "idle" | "clicked" | "loading" | "done"
+  >("idle");
+
+  useEffect(() => {
+    if (!autoplay) return;
+    // Reset state and run the sequence.
+    //  0    → 1400ms: idle     (cursor drifts toward the button)
+    //  1400 → 1600ms: clicked  (cursor lands; button held; label unchanged)
+    //  1600 → 3200ms: loading  (label swaps to Generating…, spinner)
+    //  3200ms       : done     (overlay fades, roster fills)
+    setIsGenerated(false);
+    setFinished(false);
+    setAutoplayPhase("idle");
+    setManualRosterState({});
+    setShowDropdown(false);
+    setSelectedCell(null);
+    setViolationCells([]);
+
+    const t1 = window.setTimeout(() => setAutoplayPhase("clicked"), 1400);
+    const t2 = window.setTimeout(() => setAutoplayPhase("loading"), 1600);
+    const t3 = window.setTimeout(() => {
+      setAutoplayPhase("done");
+      setIsGenerated(true);
+    }, 3200);
+    // Wait for the cell wave to finish before showing the replay button.
+    // Last cell delay = (4+4) * 140ms = 1120ms, plus 750ms of animation.
+    const t4 = window.setTimeout(() => setFinished(true), 3200 + 1120 + 750);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+      window.clearTimeout(t4);
+    };
+  }, [autoplay, playToken]);
+
+  const replay = () => setPlayToken((n) => n + 1);
 
   const staff = ["Sarah", "James", "Maria", "David", "Emma"];
   const dates = ["Mon 15", "Tue 16", "Wed 17", "Thu 18", "Fri 19"];
@@ -62,13 +119,13 @@ export default function RosterGenerationModule() {
   const getShiftColor = (shift: string) => {
     switch (shift) {
       case "AM":
-        return "bg-yellow-100 text-yellow-800";
+        return "bg-amber-50 text-amber-700";
       case "PM":
-        return "bg-blue-100 text-blue-800";
+        return "bg-sky-50 text-sky-700";
       case "Night":
-        return "bg-purple-100 text-purple-800";
+        return "bg-indigo-50 text-indigo-700";
       case "Off":
-        return "bg-gray-100 text-gray-600";
+        return "bg-slate-100 text-slate-500";
       default:
         return "bg-white";
     }
@@ -80,8 +137,10 @@ export default function RosterGenerationModule() {
     { key: "1-2", shift: "AM" }, // James, Wed, AM
   ];
 
-  // Animate cell selection
+  // Animate cell selection — skipped entirely in autoplay mode so the
+  // empty roster stays truly empty for the hold beat.
   useEffect(() => {
+    if (autoplay) return;
     if (!isGenerated && !isAnimating) {
       const timer = setTimeout(() => {
         if (animationCount < animationSequence.length) {
@@ -132,18 +191,125 @@ export default function RosterGenerationModule() {
 
       return () => clearTimeout(timer);
     }
-  }, [isGenerated, isAnimating, animationCount]);
+  }, [autoplay, isGenerated, isAnimating, animationCount]);
 
   return (
     <div className="relative w-full px-4 sm:px-0">
       <div className="max-w-lg sm:max-w-xl md:max-w-2xl mx-auto">
+        {autoplay && (
+          <div className="flex justify-center items-center gap-2 mb-4">
+            <span
+              className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
+                isGenerated
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {isGenerated ? "After RosterLab" : "Before RosterLab"}
+            </span>
+            {finished && (
+              <button
+                type="button"
+                onClick={replay}
+                aria-label="Replay animation"
+                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:text-blue-600 hover:border-blue-600 transition"
+              >
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12a9 9 0 1 0 3-6.7" />
+                  <path d="M3 4v5h5" />
+                </svg>
+              </button>
+            )}
+          </div>
+        )}
         <div className="relative min-h-[240px] h-[240px] sm:h-[270px] md:h-[320px] lg:h-[340px] flex flex-col">
           {/* Roster Interface */}
-          <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative">
+          <div className="bg-white rounded-xl shadow-lg h-full flex flex-col relative overflow-hidden">
+            {/* Autoplay overlay: Generate button that appears to be pressed */}
+            {autoplay && autoplayPhase !== "done" && (
+              <motion.div
+                className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px]" />
+                <motion.button
+                  type="button"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="relative inline-flex items-center gap-2 bg-blue-600 text-white font-semibold text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg"
+                  animate={
+                    autoplayPhase === "clicked" || autoplayPhase === "loading"
+                      ? { scale: 0.94, y: 1 }
+                      : { scale: 1, y: 0 }
+                  }
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                >
+                  {autoplayPhase === "loading" ? (
+                    <>
+                      <svg
+                        className="w-4 h-4 animate-spin"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                        strokeLinecap="round"
+                      >
+                        <path d="M21 12a9 9 0 1 1-6.2-8.55" />
+                      </svg>
+                      Generating…
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        className="w-4 h-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 2 9 9l-7 1 5 5-1 7 6-3 6 3-1-7 5-5-7-1z" />
+                      </svg>
+                      Generate roster
+                    </>
+                  )}
+                  {/* Simulated cursor arrow — glides toward the button during
+                      `idle`, snaps into the pressed position on `clicked`,
+                      then stays there through `loading`. */}
+                  <motion.span
+                    aria-hidden="true"
+                    className="absolute -bottom-3 -right-3 pointer-events-none"
+                    initial={{ opacity: 0, x: 40, y: 40 }}
+                    animate={{
+                      opacity: 1,
+                      x: autoplayPhase === "idle" ? 8 : -4,
+                      y: autoplayPhase === "idle" ? 8 : -4,
+                    }}
+                    transition={{
+                      duration: autoplayPhase === "idle" ? 1.1 : 0.15,
+                      ease: autoplayPhase === "idle" ? "easeOut" : "easeIn",
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" className="drop-shadow">
+                      <path d="M3 3l7 18 2-8 8-2z" fill="#111827" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round" />
+                    </svg>
+                  </motion.span>
+                </motion.button>
+              </motion.div>
+            )}
             {/* Header */}
             <div
               className="px-2 sm:px-4 md:px-5 py-1 sm:py-2 md:py-2.5 border-b flex items-center"
-              style={{ backgroundColor: "#219BC6" }}
+              style={{ backgroundColor: "#2563EB" }}
             >
               <div className="w-16 sm:w-24 flex items-center justify-start pl-1 sm:pl-2">
                 <div className="w-4 h-4 sm:w-6 sm:h-6 relative">
@@ -213,6 +379,7 @@ export default function RosterGenerationModule() {
                               <div className="relative">
                                 <motion.div
                                   id={`cell-${key}`}
+                                  key={`${key}-${isGenerated ? "gen" : "man"}`}
                                   className={`
                               rounded text-center flex items-center justify-center
                               text-[9px] sm:text-[10px] md:text-xs font-medium
@@ -221,18 +388,25 @@ export default function RosterGenerationModule() {
                               ${!isGenerated && !shift ? "border-2 border-dashed border-gray-300" : ""}
                               ${selectedCell === key ? "ring-2 ring-[#24D9DC] ring-offset-2" : ""}
                               ${violationCells.includes(key) ? "ring-2 ring-red-500 ring-offset-2 animate-pulse" : ""}
-                              transition-all duration-200
                             `}
-                                  initial={false}
-                                  animate={{
-                                    scale:
-                                      shift && isGenerated ? [0, 1.1, 1] : 1,
-                                  }}
+                                  // Cells populate in a diagonal wave. Each
+                                  // cell fades + gently scales in with a
+                                  // stagger tied to its row + column index.
+                                  // Longer duration + softer easing so the
+                                  // wave reads as calm rather than snappy.
+                                  initial={
+                                    shift && isGenerated
+                                      ? { scale: 0.82, opacity: 0, y: 4 }
+                                      : false
+                                  }
+                                  animate={{ scale: 1, opacity: 1, y: 0 }}
                                   transition={{
-                                    duration: 0.3,
-                                    delay: isGenerated
-                                      ? (staffIndex * 5 + dateIndex) * 0.05
-                                      : 0,
+                                    duration: 0.75,
+                                    ease: [0.16, 1, 0.3, 1],
+                                    delay:
+                                      shift && isGenerated
+                                        ? (staffIndex + dateIndex) * 0.14
+                                        : 0,
                                   }}
                                 >
                                   {shift || (
@@ -330,53 +504,55 @@ export default function RosterGenerationModule() {
           </div>
         </div>
 
-        {/* Toggle Button */}
-        <div className="flex justify-center mt-12 sm:mt-10 md:mt-12">
-          <motion.button
-            onClick={() => {
-              setIsGenerated(!isGenerated);
-              if (isGenerated) {
-                // Reset to initial state when going back to manual
-                setManualRosterState(initialRoster);
-                setIsAnimating(false);
-                setAnimationCount(0);
-                setViolationCells([]);
-                setShowDropdown(false);
-                setSelectedCell(null);
-              } else {
-                // Clear any active states when switching to generated
-                setShowDropdown(false);
-                setSelectedCell(null);
-                setViolationCells([]);
+        {/* Toggle Button - only shown when not autoplaying */}
+        {!autoplay && (
+          <div className="flex justify-center mt-12 sm:mt-10 md:mt-12">
+            <motion.button
+              onClick={() => {
+                setIsGenerated(!isGenerated);
+                if (isGenerated) {
+                  // Reset to initial state when going back to manual
+                  setManualRosterState(initialRoster);
+                  setIsAnimating(false);
+                  setAnimationCount(0);
+                  setViolationCells([]);
+                  setShowDropdown(false);
+                  setSelectedCell(null);
+                } else {
+                  // Clear any active states when switching to generated
+                  setShowDropdown(false);
+                  setSelectedCell(null);
+                  setViolationCells([]);
+                }
+              }}
+              className="px-4 py-3 sm:px-5 sm:py-2.5 md:px-6 md:py-2.5 text-xs sm:text-sm md:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md min-h-[44px] sm:min-h-0"
+              style={{
+                backgroundColor: "#24D9DC",
+                color: "#323232",
+              }}
+              animate={
+                buttonAnimation
+                  ? {
+                      scale: [1, 1.1, 1],
+                      rotate: [0, -5, 5, -5, 5, 0],
+                    }
+                  : {}
               }
-            }}
-            className="px-4 py-3 sm:px-5 sm:py-2.5 md:px-6 md:py-2.5 text-xs sm:text-sm md:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md min-h-[44px] sm:min-h-0"
-            style={{
-              backgroundColor: "#24D9DC",
-              color: "#323232",
-            }}
-            animate={
-              buttonAnimation
-                ? {
-                    scale: [1, 1.1, 1],
-                    rotate: [0, -5, 5, -5, 5, 0],
-                  }
-                : {}
-            }
-            transition={{
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#5AE4E7";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#24D9DC";
-            }}
-          >
-            {isGenerated ? "← Before RosterLab" : "After RosterLab →"}
-          </motion.button>
-        </div>
+              transition={{
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#5AE4E7";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#24D9DC";
+              }}
+            >
+              {isGenerated ? "← Before RosterLab" : "After RosterLab →"}
+            </motion.button>
+          </div>
+        )}
       </div>
     </div>
   );

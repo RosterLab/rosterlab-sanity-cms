@@ -73,41 +73,41 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Blog pages should have shorter cache
+      // HTML documents: let the CDN serve them.
+      //
+      // These routes are still `ƒ` dynamic (the root layout reads headers() for
+      // the pathname and draftMode() for Sanity preview), but the rendered HTML
+      // is now a pure function of the pathname — the per-visitor Statsig
+      // bootstrap that used to be inlined moved into the browser. So the
+      // response is safe to cache and share.
+      //
+      // Split browser vs CDN deliberately:
+      //   Cache-Control            -> the browser revalidates every navigation,
+      //                               so nobody sees stale HTML, and the absence
+      //                               of `no-store` lets the page into the
+      //                               back/forward cache (Next.js's default for
+      //                               dynamic routes includes `no-store`, which
+      //                               is what was disqualifying bfcache).
+      //   Netlify-CDN-Cache-Control -> the edge + durable cache absorb the
+      //                               traffic, which is what removes the ~740ms
+      //                               of function TTFB from every navigation.
+      //                               `stale-while-revalidate` means the refresh
+      //                               after each 5-minute window happens in the
+      //                               background rather than in a visitor's
+      //                               request.
+      //
+      // Scoped away from /_next/* (immutable assets), /api/*, and the
+      // authenticated/preview surfaces, which must never be shared-cached.
       {
-        source: "/blog",
+        source: "/:path((?!_next/|api/|studio|draft|azure-ad).*)",
         headers: [
           {
             key: "Cache-Control",
-            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
+            value: "public, max-age=0, must-revalidate",
           },
-        ],
-      },
-      {
-        source: "/blog/page/:page",
-        headers: [
           {
-            key: "Cache-Control",
-            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
-          },
-        ],
-      },
-      // Case studies pages should have shorter cache
-      {
-        source: "/case-studies",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
-          },
-        ],
-      },
-      {
-        source: "/case-studies/:slug*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, s-maxage=300, stale-while-revalidate=60", // 5 min cache
+            key: "Netlify-CDN-Cache-Control",
+            value: "public, s-maxage=300, stale-while-revalidate=3600, durable",
           },
         ],
       },
@@ -363,6 +363,11 @@ const nextConfig: NextConfig = {
       {
         source: "/industries/others",
         destination: "/industries",
+        permanent: true,
+      },
+      {
+        source: "/industries/security",
+        destination: "/industries/security-roster",
         permanent: true,
       },
       // Healthcare industry redirects

@@ -14,7 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Careers - Join our talented team at RosterLab",
+  title: "Careers - Join Our Talented Team",
   description:
     "Help shape the future of AI scheduling - explore open roles at RosterLab and join a mission-driven team creating smarter, fairer workforce solutions.",
   alternates: {
@@ -163,7 +163,7 @@ export default function CareersPage() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Link href="/careers/marketing-content-specialist">
+            <Link href="/careers/optimisation-engineer">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-transparent hover:border-blue-500 transition-all duration-300 cursor-pointer group">
                 <div className="p-8 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-green-50/50 transition-all duration-300 relative">
                   {/* Decorative gradient bar */}
@@ -177,14 +177,13 @@ export default function CareersPage() {
                   </div>
 
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
-                    B2B Marketing Specialist - Healthcare
+                    Optimisation Engineer — Mathematical Optimisation &amp; AI
                   </h3>
 
                   <p className="text-gray-600 mb-6 text-lg">
-                    Produce marketing content and market intelligence for
-                    healthcare workforce planning. Deeply understand our buyers
-                    and translate complex products into compelling, credible
-                    content.
+                    Develop the mathematical optimisation and AI systems behind
+                    hospital rostering, improving solution quality, robustness,
+                    and computational performance.
                   </p>
 
                   <div className="flex flex-wrap gap-4 mb-6 text-sm">
@@ -206,10 +205,10 @@ export default function CareersPage() {
                     <div className="text-gray-600">
                       <p className="font-medium mb-2">Key responsibilities:</p>
                       <ul className="space-y-1 text-sm">
-                        <li>• Content creation & marketing collateral</li>
-                        <li>• Market research & buyer insights</li>
-                        <li>• Growth & lead generation</li>
-                        <li>• Strategic positioning</li>
+                        <li>• Mathematical optimisation models</li>
+                        <li>• Integer programming &amp; metaheuristics</li>
+                        <li>• AI rostering agents</li>
+                        <li>• Research, prototyping &amp; benchmarking</li>
                       </ul>
                     </div>
                     <div className="flex items-center gap-2 text-blue-600 font-medium group-hover:text-blue-700">
@@ -294,7 +293,7 @@ export default function CareersPage() {
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>
-                    Marketing professionals with B2B SaaS and content experience
+                    Optimisation engineers and operations research specialists
                   </li>
                   <li className="flex items-start">
                     <span className="text-blue-600 mr-2">•</span>

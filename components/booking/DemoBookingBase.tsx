@@ -9,6 +9,10 @@ import { useCalendlyEventListener } from "react-calendly";
 import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-events";
 import { analytics } from "@/components/analytics/tracking";
 import dynamic from "next/dynamic";
+import TrustedBy from "@/components/sections/TrustedBy";
+import CommercialReviewForm from "./CommercialReviewForm";
+import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
+import { markDemoBooked } from "@/lib/analytics/user-behavior-tracker";
 
 // Embed size. Driven by CSS variables in app/globals.css so the height can be
 // tuned (and made responsive) in one place.
@@ -45,25 +49,40 @@ interface RegionalContent {
     contact: string;
     meetingConfirmed: string;
   };
-  calendlyUrl: string;
+  calendlyUrls: {
+    standard: string;
+    usExtended: string;
+  };
 }
 
 interface DemoBookingBaseProps {
   region: "us" | "global";
   regionalContent: RegionalContent;
   className?: string;
+  showTrustedBy?: boolean;
 }
 
 export default function DemoBookingBase({
   region,
   regionalContent,
   className = "",
+  showTrustedBy = false,
 }: DemoBookingBaseProps) {
+  const { status: marketAccessStatus, decision } = useMarketAccess();
+  const canViewCalendar =
+    marketAccessStatus === "ready" &&
+    decision !== null &&
+    decision.demo !== "request_review";
+  const selectedCalendlyUrl =
+    decision?.demo === "us_24_7"
+      ? regionalContent.calendlyUrls.usExtended
+      : regionalContent.calendlyUrls.standard;
+
   // Calendly widget integration
   const { isBooking, calendlyUrl, shouldLoadWidget, widgetContainerRef } =
     useCalendlyWidget({
       config: {
-        baseUrl: regionalContent.calendlyUrl,
+        baseUrl: canViewCalendar ? selectedCalendlyUrl : "",
         queryParams: {
           utm_content: analytics.getDeviceId() || "no_anon_id",
         },
@@ -74,7 +93,7 @@ export default function DemoBookingBase({
           hideGdprBanner: true,
         },
       },
-      shouldLoad: true,
+      shouldLoad: canViewCalendar,
       enablePerformanceOptimizations: true,
     });
 
@@ -101,14 +120,15 @@ export default function DemoBookingBase({
 
   useEffect(() => {
     if (shouldLoadWidget && calendlyUrl) {
-      window.rlTracker?.formStart('book-demo');
+      window.rlTracker?.formStart("book-demo");
     }
   }, [shouldLoadWidget, calendlyUrl]);
 
   // Handle Calendly events
   useCalendlyEventListener({
     onEventScheduled: async (e: any) => {
-      window.rlTracker?.formSubmit('book-demo');
+      markDemoBooked();
+      window.rlTracker?.formSubmit("book-demo");
       const eventData = e?.data || e?.detail || e;
 
       // Get UTM parameters from URL if present
@@ -169,63 +189,93 @@ export default function DemoBookingBase({
           {/* Header */}
           <div className="text-center">
             <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-              {regionalContent.title}
+              {decision?.demo === "request_review"
+                ? "Request a Commercial Review"
+                : regionalContent.title}
             </h1>
-          </div>
-
-          {/* Calendly Meeting Scheduler Embed */}
-          <div
-            ref={widgetContainerRef}
-            className="relative pb-8 lg:pb-0"
-            style={{ minHeight: CALENDLY_EMBED_STYLES.height }}
-          >
-            {shouldLoadWidget && calendlyUrl ? (
-              <LazyInlineWidget
-                url={calendlyUrl}
-                styles={CALENDLY_EMBED_STYLES}
-                pageSettings={{
-                  hideGdprBanner: true,
-                }}
-              />
-            ) : (
-              <div
-                className="flex items-center justify-center bg-gray-50 rounded-lg"
-                style={{ height: CALENDLY_EMBED_STYLES.height }}
-              >
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading calendar...</p>
-                </div>
-              </div>
-            )}
-            {isBooking && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-lg z-50">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                  <p className="text-gray-900 font-medium text-lg mb-2">
-                    Confirming your booking...
-                  </p>
-                  <p className="text-gray-600 text-sm">
-                    Please wait while we secure your time slot
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Contact alternative - Hidden on mobile and tablet */}
-          <div className="hidden lg:block text-center -mt-4 pb-8">
-            <p className="text-gray-600">
-              Can't find a suitable time?{" "}
-              <Link
-                href={regionalContent.links.contact}
-                className="text-blue-600 hover:text-blue-700 underline"
-              >
-                Get in touch
-              </Link>
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600">
+              RosterLab&apos;s paid solution starts at US$20 per employee per
+              month. Team size is collected for context and does not determine
+              calendar access.
             </p>
           </div>
+
+          {marketAccessStatus === "loading" ? (
+            <div className="flex min-h-[420px] items-center justify-center rounded-lg bg-gray-50">
+              <div className="text-center">
+                <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600" />
+                <p className="text-gray-600">Checking demo availability…</p>
+              </div>
+            </div>
+          ) : decision?.demo === "request_review" || !decision ? (
+            <div className="pb-12">
+              <CommercialReviewForm
+                decision={
+                  decision ?? {
+                    policyVersion: "unavailable",
+                    countryCode: null,
+                    freeSignup: "hide",
+                    demo: "request_review",
+                    reasonCode: "unknown_country",
+                  }
+                }
+              />
+            </div>
+          ) : (
+            <>
+              <div
+                ref={widgetContainerRef}
+                className="relative pb-8 lg:pb-0"
+                style={{ minHeight: CALENDLY_EMBED_STYLES.height }}
+              >
+                {shouldLoadWidget && calendlyUrl ? (
+                  <LazyInlineWidget
+                    url={calendlyUrl}
+                    styles={CALENDLY_EMBED_STYLES}
+                    pageSettings={{ hideGdprBanner: true }}
+                  />
+                ) : (
+                  <div
+                    className="flex items-center justify-center bg-gray-50 rounded-lg"
+                    style={{ height: CALENDLY_EMBED_STYLES.height }}
+                  >
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
+                      <p className="text-gray-600">Loading calendar...</p>
+                    </div>
+                  </div>
+                )}
+                {isBooking && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-lg z-50">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
+                      <p className="text-gray-900 font-medium text-lg mb-2">
+                        Confirming your booking...
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        Please wait while we secure your time slot
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="hidden lg:block text-center -mt-10 pb-8">
+                <p className="text-gray-600">
+                  Can&apos;t find a suitable time?{" "}
+                  <Link
+                    href={regionalContent.links.contact}
+                    className="text-blue-600 hover:text-blue-700 underline"
+                  >
+                    Get in touch
+                  </Link>
+                </p>
+              </div>
+            </>
+          )}
         </Container>
+
+        {showTrustedBy && <TrustedBy />}
       </div>
     </SiteLayout>
   );

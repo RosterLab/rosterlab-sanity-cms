@@ -1,10 +1,12 @@
-import Hero from "@/components/sections/Hero";
-import TrustedBy from "@/components/sections/TrustedBy";
-import Benefits from "@/components/sections/Benefits";
-import Onboarding from "@/components/sections/Onboarding";
-import IndustrySolutions from "@/components/sections/IndustrySolutions";
-import Testimonials from "@/components/sections/Testimonials";
+import HeroNew from "@/components/sections/HeroNew";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
+import BenefitsNew from "@/components/sections/BenefitsNew";
+import FeaturesGrid from "@/components/sections/FeaturesGrid";
+import IndustrySolutionsNew from "@/components/sections/IndustrySolutionsNew";
+import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FinalCTA from "@/components/sections/FinalCTA";
+import DotFocalOverlay from "@/components/sections/DotFocalOverlay";
 import { withHreflang } from "@/components/seo/HreflangTags";
 
 // ISR: Revalidate every 1 hour
@@ -46,15 +48,18 @@ export const metadata = withHreflang(
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-
-      <TrustedBy />
-      <Benefits />
-      <Onboarding />
-      <IndustrySolutions />
-      <Testimonials />
-      <FinalCTA />
-    </>
+    <div className="relative bg-white">
+      <DotFocalOverlay />
+      <div className="relative z-10">
+        <HeroNew />
+        <TrustedByDualRow />
+        <FeatureTestimonial />
+        <BenefitsNew />
+        <IndustrySolutionsNew />
+        <TestimonialsNew />
+        <FeaturesGrid />
+        <FinalCTA />
+      </div>
+    </div>
   );
 }

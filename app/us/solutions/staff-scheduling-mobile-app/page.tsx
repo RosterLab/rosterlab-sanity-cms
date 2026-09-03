@@ -1,4 +1,5 @@
 import Container from "@/components/ui/Container";
+import SolutionHero from "@/components/sections/SolutionHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
@@ -22,7 +23,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Staff Scheduling Mobile App - RosterLab",
+    title: "Staff Scheduling Mobile App",
     description:
       "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     alternates: {
@@ -118,162 +119,40 @@ export default function StaffMobileAppPage() {
   return (
     <SiteLayout>
       <>
-        {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
-          <Container>
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start">
-              <div className="w-full pb-8 lg:pb-12">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Free Staff Scheduling{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                    Mobile App
-                  </span>
-                </h1>
-
-                {/* Mobile only: Image appears here after H1 */}
-                <div className="block lg:hidden w-full relative mb-8">
-                  <Image
-                    src="/images/updated-hero/staff-mobile-app.webp"
-                    alt="Free Staff Scheduling Mobile App"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto"
-                  />
-                </div>
-
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                  Give staff instant access to their schedule with easy shift
-                  management and improved communication.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Streamline communication
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Increase staff engagement
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Works on all devices
-                    </span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <svg
-                      className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="text-gray-700 font-medium">
-                      Available free on iOS and Android
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    href="/us/book-a-demo"
-                    className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg"
-                    analyticsLabel="Book a Demo"
-                    analyticsLocation="Solution Page Staff Schedule Mobile App"
-                    analyticsProperties={{
-                      cta_type: "demo",
-                      page_name: "Staff Schedule Mobile App",
-                      section: "hero",
-                    }}
-                  >
-                    Book a Demo
-                  </Button>
-                  <Button
-                    href="/us/contact"
-                    variant="outline"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg"
-                    analyticsLabel="Contact Us"
-                    analyticsLocation="Solution Page Staff Schedule Mobile App"
-                    analyticsProperties={{
-                      cta_type: "contact",
-                      page_name: "Staff Schedule Mobile App",
-                      section: "hero",
-                    }}
-                  >
-                    Contact Us
-                  </Button>
-                </div>
-              </div>
-              {/* Desktop only: Image in right column */}
-              <div className="hidden lg:block w-full relative">
-                <Image
-                  src="/images/updated-hero/staff-mobile-app.webp"
-                  alt="Free Staff Scheduling Mobile App"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </Container>
-
-          {/* Wave separator */}
-          <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
-            <svg
-              className="relative block w-full h-3 lg:h-16"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1440 80"
-              preserveAspectRatio="none"
-            >
-              <path
-                fill="#f9fafb"
-                d="M0,40 Q360,25 720,40 T1440,40 L1440,80 L0,80 Z"
-                opacity="0.5"
-              />
-              <path
-                fill="#f9fafb"
-                d="M0,50 C240,35 480,55 720,45 C960,35 1200,55 1440,50 L1440,80 L0,80 Z"
-              />
-            </svg>
-          </div>
-        </section>
+        <SolutionHero
+          title="Free Staff Scheduling Mobile App"
+          description="Give staff instant access to their schedule with easy shift management and improved communication."
+          bullets={[
+            "Streamline communication",
+            "Increase staff engagement",
+            "Works on all devices",
+            "Available free on iOS and Android",
+          ]}
+          analyticsLocation="Solution Page Staff Schedule Mobile App"
+          primaryCta={{
+            href: "/us/book-a-demo",
+            label: "Book a Demo",
+            analyticsProperties: {
+              cta_type: "demo",
+              page_name: "Staff Schedule Mobile App",
+              section: "hero",
+            },
+          }}
+          secondaryCta={{
+            href: "/us/contact",
+            label: "Contact Us",
+            analyticsProperties: {
+              cta_type: "contact",
+              page_name: "Staff Schedule Mobile App",
+              section: "hero",
+            },
+          }}
+          image={{
+            src: "/images/updated-hero/staff-mobile-app.webp",
+            alt: "Staff Scheduling Mobile App",
+            scale: 1,
+          }}
+        />
 
         {/* Intelligent Scheduling Section */}
         <div className="bg-gray-50 py-20">

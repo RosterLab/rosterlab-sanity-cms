@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ClientHeader from "@/components/layout/ClientHeader";
 import ClientFooter from "@/components/layout/ClientFooter";
-import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
-import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
 import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
@@ -11,7 +10,7 @@ import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
-import { cookies, draftMode } from "next/headers";
+import { draftMode } from "next/headers";
 import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
@@ -20,9 +19,9 @@ import { headers } from "next/headers";
 import SkipLink from "@/components/accessibility/SkipLink";
 import StatsigProvider from "@/components/analytics/StatsigProvider";
 import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
-import { getClientBootstrapValues } from "@/lib/statsig/client-bootstrap";
 import CTAModalManager from "@/components/modals/CTAModalManager";
 import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
+import { MarketAccessProvider } from "@/components/market-access/MarketAccessProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -67,13 +66,6 @@ export default async function RootLayout({
     pathname.startsWith("/azure-ad") ||
     pathname.startsWith("/api");
 
-  // Statsig bootstrap: read visitor ID and pre-compute experiment values
-  const cookieStore = await cookies();
-  const anonId = cookieStore.get("_rl_anon_id")?.value || null;
-  const detectedCountry = headersList.get("x-detected-country") || null;
-  const { user: statsigUser, values: statsigValues } =
-    await getClientBootstrapValues(anonId, detectedCountry);
-
   return (
     <html lang="en" className={poppins.variable}>
       <head>
@@ -91,23 +83,25 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://featuregates.org" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <StructuredData type="organization" isUSPage={isUSPage} />
-        <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics
+            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          />
+        )}
       </head>
       <body
         className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`}
         suppressHydrationWarning={true}
       >
-        <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <SkipLink />
-        <StatsigProvider
-          clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}
-          user={statsigUser}
-          initialValues={statsigValues ? JSON.stringify(statsigValues) : null}
-        >
+        <StatsigProvider clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}>
+          <MarketAccessProvider>
           <ClientProviders
             intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
           >
-            {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && <StatsigExposureLogger />}
+            {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && (
+              <StatsigExposureLogger />
+            )}
             <RlTracker />
             <UTMTracker debug={process.env.NODE_ENV === "development"} />
             <MetaPixel />
@@ -131,6 +125,7 @@ export default async function RootLayout({
               />
             )}
           </ClientProviders>
+          </MarketAccessProvider>
         </StatsigProvider>
       </body>
     </html>

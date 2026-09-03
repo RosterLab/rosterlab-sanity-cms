@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
+import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -13,17 +15,29 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Validate the request body
-    contactSchema.parse(body);
+    const data = contactSchema.parse(body);
+    const [firstName, ...lastName] = data.name.trim().split(/\s+/);
+    const result = await submitWebsiteLead({
+      source: "contact",
+      email: data.email,
+      firstName,
+      lastName: lastName.join(" "),
+      company: data.company,
+      phone: data.phone,
+      message: data.message,
+      detectedCountry: detectRequestCountry(request),
+    });
 
-    // Here you would typically:
-    // 1. Send an email notification
-    // 2. Save to database
-    // 3. Send to CRM (HubSpot, Salesforce, etc.)
-    // 4. Send confirmation email to user
-
-    // For now, just simulate a successful submission
-    // In production, replace this with your actual form handling logic
+    if (result.status !== "submitted") {
+      console.error("Required contact lead was not accepted", {
+        delivery: result.delivery,
+        result: result.status,
+      });
+      return NextResponse.json(
+        { error: "Unable to submit right now", attio: result.status },
+        { status: result.status === "skipped" ? 503 : 502 },
+      );
+    }
 
     return NextResponse.json(
       { message: "Form submitted successfully" },

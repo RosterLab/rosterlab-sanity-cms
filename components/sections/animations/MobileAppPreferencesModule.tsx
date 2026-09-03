@@ -1,11 +1,52 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-export default function MobileAppPreferencesModule() {
+interface MobileAppPreferencesModuleProps {
+  autoplay?: boolean;
+  /** How long "before" is held before flipping to "after". */
+  autoplayIntervalMs?: number;
+  /** Cycle back to "before" and replay instead of stopping after one pass. */
+  loop?: boolean;
+  /** How long "after" is held before looping back. Ignored unless `loop`. */
+  loopHoldMs?: number;
+}
+
+export default function MobileAppPreferencesModule({
+  autoplay = false,
+  autoplayIntervalMs = 3000,
+  loop = false,
+  loopHoldMs = 3000,
+}: MobileAppPreferencesModuleProps = {}) {
   const [showAfter, setShowAfter] = useState(false);
+
+  const [playToken, setPlayToken] = useState(0);
+  const [finished, setFinished] = useState(false);
+
+  useEffect(() => {
+    if (!autoplay) return;
+    setShowAfter(false);
+    setFinished(false);
+    const timers: number[] = [];
+    timers.push(
+      window.setTimeout(() => {
+        setShowAfter(true);
+        if (loop) {
+          // Bumping playToken re-runs this effect, which resets to "before".
+          timers.push(
+            window.setTimeout(() => setPlayToken((n) => n + 1), loopHoldMs),
+          );
+        } else {
+          setFinished(true);
+        }
+      }, autoplayIntervalMs),
+    );
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [autoplay, autoplayIntervalMs, loop, loopHoldMs, playToken]);
+
+  const replay = () => setPlayToken((n) => n + 1);
 
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const dates = ["11", "12", "13", "14", "15", "16", "17"];
@@ -37,13 +78,48 @@ export default function MobileAppPreferencesModule() {
   return (
     <div className="relative w-full px-4 sm:px-0">
       <div className="max-w-sm sm:max-w-md md:max-w-lg mx-auto">
+        {autoplay && (
+          <div className="flex justify-center items-center gap-2 mb-4">
+            <span
+              className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
+                showAfter
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {showAfter ? "After RosterLab" : "Before RosterLab"}
+            </span>
+            {finished && (
+              <button
+                type="button"
+                onClick={replay}
+                aria-label="Replay animation"
+                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-600 hover:text-blue-600 hover:border-blue-600 transition"
+              >
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12a9 9 0 1 0 3-6.7" />
+                  <path d="M3 4v5h5" />
+                </svg>
+              </button>
+            )}
+          </div>
+        )}
         <div className="relative min-h-[260px] h-[260px] sm:h-[290px] md:h-[350px] flex flex-col">
           {/* Mobile App Interface */}
           <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col">
         {/* App Header */}
         <div
           className="px-4 sm:px-5 md:px-6 py-3 sm:py-3.5 md:py-4 flex items-center"
-          style={{ backgroundColor: "#219BC6" }}
+          style={{ backgroundColor: "#2563EB" }}
         >
           <div className="w-16 sm:w-20 flex items-center justify-start pl-2">
             <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 relative">
@@ -79,15 +155,24 @@ export default function MobileAppPreferencesModule() {
               ))}
             </div>
 
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1 sm:gap-1.5 md:gap-2">
-              <AnimatePresence mode="wait">
+            {/* Calendar Grid. One keyed child inside AnimatePresence, not one
+                per cell: "wait" mode renders a single child at a time, so a
+                mapped list warns on every render and the grid would otherwise
+                have to hold both sets while they cross-faded. */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={showAfter ? "after" : "before"}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="grid grid-cols-7 gap-1 sm:gap-1.5 md:gap-2"
+              >
                 {currentSchedule.map((schedule, index) => (
                   <motion.div
-                    key={`${showAfter ? "after" : "before"}-${index}`}
+                    key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className="aspect-square"
                   >
@@ -102,7 +187,7 @@ export default function MobileAppPreferencesModule() {
                       <span
                         className={`text-[8px] sm:text-[10px] md:text-xs font-bold mt-0 sm:mt-0.5 ${
                           schedule.shift === "OFF"
-                            ? "text-[#219BC6]"
+                            ? "text-[#2563EB]"
                             : schedule.preferred
                               ? "text-green-700"
                               : showAfter ? "text-orange-700" : "text-red-700"
@@ -113,8 +198,8 @@ export default function MobileAppPreferencesModule() {
                     </div>
                   </motion.div>
                 ))}
-              </AnimatePresence>
-            </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Preferences Summary */}
@@ -195,35 +280,37 @@ export default function MobileAppPreferencesModule() {
           </div>
         </div>
 
-        {/* Toggle Button */}
-        <div className="flex justify-center mt-6 sm:mt-8 md:mt-10">
-        <motion.button
-          onClick={() => setShowAfter(!showAfter)}
-          className="px-4 py-3 sm:px-5 sm:py-2.5 md:px-6 md:py-2.5 text-xs sm:text-sm md:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md min-h-[44px] sm:min-h-0"
-          style={{
-            backgroundColor: '#24D9DC',
-            color: '#323232'
-          }}
-          animate={{
-            scale: [1, 1.15, 1],
-            rotate: [0, -8, 8, -8, 8, 0],
-          }}
-          transition={{
-            duration: 0.8,
-            repeat: Infinity,
-            repeatDelay: 2.2,
-            ease: "easeInOut"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#5AE4E7';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#24D9DC';
-          }}
-        >
-          {showAfter ? "← Before RosterLab" : "After RosterLab →"}
-        </motion.button>
-        </div>
+        {/* Toggle Button - only shown when not autoplaying */}
+        {!autoplay && (
+          <div className="flex justify-center mt-6 sm:mt-8 md:mt-10">
+            <motion.button
+              onClick={() => setShowAfter(!showAfter)}
+              className="px-4 py-3 sm:px-5 sm:py-2.5 md:px-6 md:py-2.5 text-xs sm:text-sm md:text-sm rounded-lg font-semibold transition-all transform hover:scale-105 hover:shadow-lg shadow-md min-h-[44px] sm:min-h-0"
+              style={{
+                backgroundColor: '#24D9DC',
+                color: '#323232'
+              }}
+              animate={{
+                scale: [1, 1.15, 1],
+                rotate: [0, -8, 8, -8, 8, 0],
+              }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+                repeatDelay: 2.2,
+                ease: "easeInOut"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#5AE4E7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#24D9DC';
+              }}
+            >
+              {showAfter ? "← Before RosterLab" : "After RosterLab →"}
+            </motion.button>
+          </div>
+        )}
       </div>
     </div>
   );

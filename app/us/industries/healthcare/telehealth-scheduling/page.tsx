@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -10,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Telehealth Staff Scheduling Software - RosterLab",
+    title: "Telehealth Staff Scheduling Software",
     description:
       "Manage virtual EDs and nurses remotely. Build fair, compliant telehealth schedules that reduce admin and streamline processes.",
     alternates: {
@@ -77,113 +78,34 @@ export default function TelehealthRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Optimised
-                </span>{" "}
-                Telehealth Rosters
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create optimized AI schedules that balance consultation demands,
-                fair shift distribution, and telehealth staff wellbeing.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Maintain optimal staffing throughout consultation peaks
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Empower staff with balanced, equitable shift distribution
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Improve telehealth staff retention and work-life balance
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Manage your virtual EDs and nurses remotely
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/pricing"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  View Pricing
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/us-images/iStock-1985167783.jpg"
-                alt="Telehealth scheduling software interface"
-                width={600}
-                height={400}
-                className="block w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Flexible, Optimised Telehealth Rosters"
+        description="Create optimized AI schedules that balance consultation demands, fair shift distribution, and telehealth staff wellbeing."
+        analyticsLocation="US Industry Page Telehealth Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Telehealth Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/pricing",
+          label: "View Pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Telehealth Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/telehealth.webp",
+          alt: "Clinician on a telehealth consultation",
+          objectPosition: "center 25%",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">

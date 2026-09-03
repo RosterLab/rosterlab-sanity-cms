@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 132" width="520" height="264">
+<!-- rl-keyframes-injected -->
+<style>
+    @keyframes rlCompressMid {
+      0%, 100% { transform: translateY(0);   }
+      50%      { transform: translateY(2px); }
+    }
+  
+
+    @keyframes rlCompressTop {
+      0%, 100% { transform: translateY(0);   }
+      50%      { transform: translateY(4px); }
+    }
+  
+
+    @keyframes rlFloatShadow {
+      0%, 100% { transform: scale(1);    opacity: 0.7; }
+      50%      { transform: scale(0.9);  opacity: 0.35; }
+    }
+  
+
+    @keyframes rlFloat {
+      0%, 100% { transform: translateY(0);   }
+      50%      { transform: translateY(-8px);}
+    }
+  
+    svg [style*="animation"] {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-play-state: var(--rl-play, paused) !important;
+    }
+  </style>
+<path d="M130 80l76 26-76 26-76-26z" fill="#2D3BEA" fill-opacity=".05" stroke="#2D3BEA" stroke-opacity=".22" stroke-linejoin="round"></path>
+        <path d="M130 64l76 26-76 26-76-26z" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".35" stroke-linejoin="round" style="animation:rlCompressMid 3.6s cubic-bezier(.65,0,.35,1) infinite"></path>
+        <path d="M130 48l76 26-76 26-76-26z" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".5" stroke-linejoin="round" style="animation:rlCompressTop 3.6s cubic-bezier(.65,0,.35,1) infinite"></path>
+        <g stroke="#2D3BEA" stroke-opacity=".18" style="animation:rlCompressTop 3.6s cubic-bezier(.65,0,.35,1) infinite"><path d="M92 61l76 26M168 61l-76 26"></path></g>
+        <path d="M130 6l24 7v18c0 14-10 22-24 27-14-5-24-13-24-27V13z" fill="#2D3BEA" fill-opacity=".07" style="animation:rlFloatShadow 3.6s ease-in-out infinite"></path>
+        <path d="M130 6l24 7v18c0 14-10 22-24 27-14-5-24-13-24-27V13z" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".55" stroke-width="1.6" stroke-linejoin="round" style="animation:rlFloat 3.6s ease-in-out infinite"></path>
+        <path d="M120 30l7 7 14-15" fill="none" stroke="#03F9BE" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="32" style="animation:rlFloat 3.6s ease-in-out infinite, rlDrawCheck 3.6s ease-out infinite"></path>
+      
+</svg>

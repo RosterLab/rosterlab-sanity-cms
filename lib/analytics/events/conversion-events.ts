@@ -28,8 +28,6 @@ export interface DemoBookingProperties {
   utm_term?: string;
 }
 
-const CONTACT_FORM_GUID = "77e5a8c4-4303-4681-8c92-afa7b070380c";
-
 export const trackDemoBookingComplete = (
   properties: DemoBookingProperties,
   userProperties?: {
@@ -98,7 +96,7 @@ export const trackFormSubmission = (properties: {
   analytics.track("form_submission", {
     ...properties,
     timestamp: new Date().toISOString(),
-    source: "hubspot_form",
+    source: "native_form",
   });
 
   if (properties.user_email) {
@@ -119,14 +117,6 @@ export const trackFormSubmission = (properties: {
     }
   }
 
-  // Legacy GTM event name for existing triggers
-  if (typeof window !== "undefined" && (window as any).dataLayer) {
-    (window as any).dataLayer.push({
-      event: "hubspot-form-success",
-      "hs-form-guid": properties.form_guid,
-    });
-  }
-
   // Meta Pixel: Contact for contact form, Subscribe for newsletters, Lead for others
   const formNameParts = properties.user_name?.split(" ") || [];
   const metaFormUserData = {
@@ -138,7 +128,7 @@ export const trackFormSubmission = (properties: {
   const isNewsletter = properties.form_name
     ?.toLowerCase()
     .includes("newsletter");
-  const isContactForm = properties.form_guid === CONTACT_FORM_GUID;
+  const isContactForm = properties.form_name?.toLowerCase() === "contact";
 
   if (isNewsletter) {
     metaTrackSubscribe({
@@ -154,7 +144,7 @@ export const trackFormSubmission = (properties: {
     });
   } else {
     metaTrackLead({
-      contentName: properties.form_name || "HubSpot Form",
+      contentName: properties.form_name || "Website Form",
       value: 50,
       userData: metaFormUserData,
     });

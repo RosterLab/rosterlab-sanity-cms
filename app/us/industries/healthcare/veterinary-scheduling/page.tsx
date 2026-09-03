@@ -1,7 +1,7 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -10,7 +10,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Veterinary Scheduling Software - RosterLab",
+    title: "Veterinary Scheduling Software",
     description:
       "End chaotic vet schedules and overwork. Build fair, efficient schedules that maintain proper staffing coverage and respect work-life balance.",
     alternates: {
@@ -80,113 +80,34 @@ export default function VeterinarySchedulingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-green-50 via-white to-teal-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">
-                  Optimised, Flexible
-                </span>{" "}
-                Vet Staff Schedules
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create efficient AI schedules that respect your vet preferences,
-                maintain the right skill mix, and ensure work-life balance.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Optimise staff skill mix for every shift
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Reduce your time scheduling with automatic schedule generation
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  24/7 emergency coverage management
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Flexible preference based self-scheduling
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-green-600 text-white hover:bg-green-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/pricing"
-                  className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50"
-                >
-                  View Pricing
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/us-images/iStock-1397394446.jpg"
-                alt="Veterinary scheduling software interface"
-                width={600}
-                height={600}
-                className="block w-full h-auto rounded-lg"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Optimised, Flexible Vet Staff Schedules"
+        description="Create efficient AI schedules that respect your vet preferences, maintain the right skill mix, and ensure work-life balance."
+        analyticsLocation="US Industry Page Veterinary Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Veterinary Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/pricing",
+          label: "View Pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Veterinary Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/veterinary.webp",
+          alt: "Veterinary team treating an animal",
+          objectPosition: "center top",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
@@ -553,7 +474,7 @@ export default function VeterinarySchedulingPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
               VET-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

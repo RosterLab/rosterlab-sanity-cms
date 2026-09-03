@@ -117,15 +117,24 @@ export default function FairnessAcrossYearModule() {
             {/* Chart View */}
             <div className="flex-1 p-3 sm:p-4 md:p-6 pb-2 sm:pb-2.5 md:pb-3 flex flex-col">
               <div className="flex-1">
-                {/* Monthly Grid */}
-                <div className="grid grid-cols-12 gap-0.5 sm:gap-1 md:gap-1.5">
-                  <AnimatePresence mode="wait">
+                {/* Monthly Grid. One keyed child inside AnimatePresence, not one
+                    per column: "wait" mode renders a single child at a time, so
+                    a mapped list warns on every render and the grid would
+                    otherwise hold both sets while they cross-faded. */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={showAfter ? "after" : "before"}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="grid grid-cols-12 gap-0.5 sm:gap-1 md:gap-1.5"
+                  >
                     {currentDistribution.map((month, index) => (
                       <motion.div
-                        key={`${showAfter ? "after" : "before"}-${index}`}
+                        key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, delay: index * 0.03 }}
                         className="flex flex-col items-center"
                       >
@@ -172,8 +181,8 @@ export default function FairnessAcrossYearModule() {
                         </div>
                       </motion.div>
                     ))}
-                  </AnimatePresence>
-                </div>
+                  </motion.div>
+                </AnimatePresence>
 
                 {/* Legend */}
                 <div className="mt-3 sm:mt-4 md:mt-5 flex justify-center gap-2 sm:gap-3 md:gap-4">

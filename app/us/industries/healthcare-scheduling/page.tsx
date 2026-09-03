@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import USTestimonials from "@/app/us/components/Testimonials";
 import Link from "next/link";
@@ -15,7 +16,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Healthcare Scheduling Software - RosterLab",
+    title: "Healthcare Scheduling Software",
     description:
       "Create fair, efficient healthcare schedules that improve patient care, compliance & saves admin time. Try our healthcare scheduling software today.",
     alternates: {
@@ -77,69 +78,33 @@ export default async function HealthcarePage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-8 sm:py-12 md:py-16">
-        <Container>
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
-            <div className="w-full">
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
-                Staff Scheduling
-                <br />
-                for{" "}
-                <span
-                  className="text-transparent bg-clip-text"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                  }}
-                >
-                  Healthcare
-                </span>
-              </h1>
-
-              {/* Mobile only: Image appears here after H1 */}
-              <div className="block lg:hidden w-full relative mt-6 mb-6">
-                <Image
-                  src="/images/updated-hero/healthcare.webp"
-                  alt="Healthcare workforce scheduling dashboard"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
-                />
-              </div>
-
-              <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Less time scheduling, more time caring for patients. We
-                specialise in all types of healthcare schedules, no matter how
-                complex.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-blue-600 text-white hover:bg-blue-700 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/product-tour"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 hover:-translate-y-1 transform transition-all duration-200 hover:shadow-lg"
-                >
-                  View Product Tour
-                </Button>
-              </div>
-            </div>
-            {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block relative mt-6 lg:mt-0">
-              <Image
-                src="/images/updated-hero/healthcare.webp"
-                alt="Healthcare workforce scheduling dashboard"
-                width={600}
-                height={400}
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Staff Scheduling for Healthcare"
+        description="Less time scheduling, more time caring for patients. We specialise in all types of healthcare schedules, no matter how complex."
+        analyticsLocation="US Industry Page Healthcare Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Healthcare Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/product-tour",
+          label: "View Product Tour",
+          analyticsProperties: {
+            cta_type: "product_tour",
+            page_name: "Healthcare Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/healthcare-hero.webp",
+          alt: "Healthcare staff walking through a hospital corridor",
+        }}
+      />
 
       {/* Trusted By */}
       <section className="py-16 bg-white">

@@ -182,7 +182,7 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 
 ## Component Migration Status
 
-This project recreates all functionality from the original HubSpot implementation:
+This project recreates all functionality from the original website implementation:
 
 ### ✅ Completed
 - Project setup and configuration
@@ -197,14 +197,14 @@ This project recreates all functionality from the original HubSpot implementatio
 - Pricing section
 
 ### 📋 Planned
-- All 26 HubSpot modules recreated as modern React components
+- All legacy modules recreated as modern React components
 - Form submissions and integrations
 - SEO and analytics setup
 - Performance optimizations
 
 ## Architecture
 
-This is a completely independent implementation that shares no code with the existing HubSpot version. It's designed to:
+This is a completely independent implementation that shares no code with the legacy website. It's designed to:
 
 - Maintain visual parity with the existing site
 - Provide better performance and developer experience

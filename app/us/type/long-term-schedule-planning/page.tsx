@@ -1,8 +1,8 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import TrustedBy from "@/components/sections/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -11,7 +11,7 @@ import FairnessAcrossYearModule from "@/components/sections/animations/FairnessA
 
 export const metadata = withHreflang(
   {
-    title: "Long-Term Schedule Planning Software - RosterLab",
+    title: "Long-Term Schedule Planning Software",
     description:
       "Build your long-term schedule with RosterLab. Automatically generate fair, compliant and flexible long-term schedules that save time and money.",
     alternates: {
@@ -64,98 +64,33 @@ export default function LongTermSchedulePlanningPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Fair, Predictable
-                </span>{" "}
-                Long-Term Schedules
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Plan long-term schedule cycles with fair on-call and leave
-                allocation for small senior medical teams.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Fair distribution of weekend and on-call duties
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Re-schedule with maintained fairness across the cycle
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Built for long-term planning across complex teams and
-                  commitments
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/tools/savings-calculator"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  Savings Calculator
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/us-images/long-term-scheduling.jpg"
-                alt="Long-term schedule planning dashboard"
-                width={600}
-                height={400}
-                className="hidden lg:block w-full h-auto rounded-lg shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Fair, Predictable Long-Term Schedules"
+        description="Plan long-term schedule cycles with fair on-call and leave allocation for small senior medical teams."
+        analyticsLocation="US Type Page Long-Term Schedule Planning"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Long-Term Schedule Planning",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/tools/savings-calculator",
+          label: "Savings Calculator",
+          analyticsProperties: {
+            cta_type: "savings_calculator",
+            page_name: "Long-Term Schedule Planning",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/long-roster.webp",
+          alt: "Clinical team talking together on a hospital walkway",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">
@@ -394,7 +329,7 @@ export default function LongTermSchedulePlanningPage() {
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 132" width="520" height="264">
+<!-- rl-keyframes-injected -->
+<style>
+    @keyframes rlSwapA {
+      0%, 40%   { transform: translate(0, 0); }
+      50%, 90%  { transform: translate(108px, 44px); }
+      100%      { transform: translate(0, 0); }
+    }
+  
+
+    @keyframes rlSwapB {
+      0%, 40%   { transform: translate(0, 0); }
+      50%, 90%  { transform: translate(-108px, -44px); }
+      100%      { transform: translate(0, 0); }
+    }
+  
+    svg [style*="animation"] {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation-play-state: var(--rl-play, paused) !important;
+    }
+  </style>
+<g style="animation:rlSwapA 4.4s cubic-bezier(.65,0,.35,1) infinite">
+        <rect x="42" y="26" width="76" height="40" rx="10" fill="#2D3BEA" fill-opacity=".05"></rect>
+        <rect x="38" y="22" width="76" height="40" rx="10" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".4"></rect>
+        <circle cx="56" cy="42" r="9" fill="#2D3BEA" fill-opacity=".16"></circle>
+        <circle cx="56" cy="39" r="3.4" fill="#2D3BEA" fill-opacity=".7"></circle>
+        <path d="M50 47a6 6 0 0 1 12 0z" fill="#2D3BEA" fill-opacity=".7"></path>
+        <rect x="72" y="35" width="32" height="4" rx="2" fill="#2D3BEA" fill-opacity=".35"></rect>
+        <rect x="72" y="44" width="22" height="4" rx="2" fill="#2D3BEA" fill-opacity=".16"></rect>
+        </g>
+        <g style="animation:rlSwapB 4.4s cubic-bezier(.65,0,.35,1) infinite">
+        <rect x="150" y="70" width="76" height="40" rx="10" fill="#2D3BEA" fill-opacity=".05"></rect>
+        <rect x="146" y="66" width="76" height="40" rx="10" fill="#FFFFFF" stroke="#2D3BEA" stroke-opacity=".4"></rect>
+        <circle cx="164" cy="86" r="9" fill="#03F9BE" fill-opacity=".3"></circle>
+        <circle cx="164" cy="83" r="3.4" fill="#2D3BEA" fill-opacity=".7"></circle>
+        <path d="M158 91a6 6 0 0 1 12 0z" fill="#2D3BEA" fill-opacity=".7"></path>
+        <rect x="180" y="79" width="32" height="4" rx="2" fill="#2D3BEA" fill-opacity=".35"></rect>
+        <rect x="180" y="88" width="22" height="4" rx="2" fill="#2D3BEA" fill-opacity=".16"></rect>
+        </g>
+        <g fill="none" stroke="#2D3BEA" stroke-width="1.8" stroke-linecap="round">
+          <path d="M122 38h34a16 16 0 0 1 16 16v6" stroke-opacity=".45"></path>
+          <path d="M166 54l6 8 6-8" stroke-opacity=".55" stroke-linejoin="round"></path>
+          <path d="M138 90h-34a16 16 0 0 1-16-16v-6" stroke-opacity=".45"></path>
+          <path d="M82 74l6-8 6 8" stroke-opacity=".45" stroke-linejoin="round"></path>
+        </g>
+      
+</svg>

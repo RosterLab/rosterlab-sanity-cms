@@ -1,8 +1,8 @@
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -10,7 +10,7 @@ import NightShiftFatigueModule from "@/components/sections/animations/NightShift
 
 export const metadata = withHreflang(
   {
-    title: "Port Scheduling Software - RosterLab",
+    title: "Port Scheduling Software",
     description:
       "Build your port schedule with RosterLab. Automatically generate fair, compliant and flexible port schedules that save time and money.",
     alternates: {
@@ -58,114 +58,33 @@ export default function PortSchedulingPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Safer, Compliant
-                </span>{" "}
-                Port Schedules
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Plan port operations with safer and more efficient workforce
-                management for 24/7 maritime operations.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Create compliant with labor laws schedules that protect your
-                  organization and people
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Safer distribution of night shifts to reduce staff fatigue
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Easily reschedule staff as a result of last minute changes
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Maintain optimal skill coverage across 24/7 port operations
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/pricing"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  View pricing
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/Port-pana.svg"
-                alt="Port schedule scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Safer, Compliant Port Schedules"
+        description="Plan port operations with safer and more efficient workforce management for 24/7 maritime operations."
+        analyticsLocation="US Industry Page Port Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Port Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/pricing",
+          label: "View pricing",
+          analyticsProperties: {
+            cta_type: "pricing",
+            page_name: "Port Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/ports.webp",
+          alt: "Port workers on the dock",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
@@ -430,7 +349,7 @@ export default function PortSchedulingPage() {
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

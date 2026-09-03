@@ -1,22 +1,26 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Radiology Staff Rostering Software - RosterLab",
+    title: "Radiology Staff Rostering Software",
     description:
-      "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across multiple modalities — balancing staff skills, on-call, and availability in one place.",
+      "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across modalities, balancing staff skills, on-call and availability.",
+    alternates: {
+      canonical: "https://rosterlab.com/industries/healthcare/radiology",
+    },
     openGraph: {
       title: "Radiology Staff Rostering Software - RosterLab",
       description:
-        "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across multiple modalities — balancing staff skills, on-call, and availability in one place.",
+        "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across modalities, balancing staff skills, on-call and availability.",
       type: "website",
       url: "https://rosterlab.com/industries/healthcare/radiology",
       images: [
@@ -31,7 +35,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Radiology Staff Rostering Software - RosterLab",
       description:
-        "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across multiple modalities — balancing staff skills, on-call, and availability in one place.",
+        "Build your radiology roster with RosterLab. Automatically generate fair, compliant rosters across modalities, balancing staff skills, on-call and availability.",
       images: ["/images/og-images/IndustryRadiology.png"],
     },
   },
@@ -60,98 +64,34 @@ export default function RadiologyPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Build Complex{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Radiology Rosters
-                </span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Match radiologists to reporting, procedural, and teaching
-                sessions based on their subspecialty expertise with AI
-                rostering.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Skill, seniority, and subspecialty rostering
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Fair workload balancing across radiology subspecialties
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Build fair, compliant rosters that manage staff fatigue
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/tools/roi-calculator"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  ROI Calculator
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/radiology.svg"
-                alt="Radiology scheduling dashboard"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Build Complex Radiology Rosters"
+        description="Match radiologists to reporting, procedural, and teaching sessions based on their subspecialty expertise with AI rostering."
+        analyticsLocation="Industry Page Radiology Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Radiology Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/tools/roi-calculator",
+          label: "ROI Calculator",
+          analyticsProperties: {
+            cta_type: "roi_calculator",
+            page_name: "Radiology Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/radiology.webp",
+          alt: "Radiologist reviewing medical images",
+          objectPosition: "center top",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">
@@ -508,7 +448,7 @@ export default function RadiologyPage() {
       <section className="py-20 bg-gray-50">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
@@ -787,7 +727,7 @@ export default function RadiologyPage() {
 
       {/* Trusted By */}
       <section className="bg-white py-10">
-        <TrustedBy />
+        <TrustedByDualRow heading="Trusted by leading healthcare organisations" />
       </section>
 
       {/* FAQ Section */}

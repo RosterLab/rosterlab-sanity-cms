@@ -3,6 +3,7 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import USTrustedBy from "@/app/us/components/TrustedBy";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import StaffingEnvelopeChart from "@/components/ui/StaffingEnvelopeChart";
@@ -11,7 +12,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Senior Care Staff Scheduling Software - RosterLab",
+    title: "Senior Care Staff Scheduling Software",
     description:
       "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
     alternates: {
@@ -26,7 +27,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
       images: [
         {
-          url: "/images/og images/IndustryAgedCare.png",
+          url: "/images/og-images/IndustryAgedCare.png",
           width: 1200,
           height: 630,
         },
@@ -37,7 +38,7 @@ export const metadata = withHreflang(
       title: "Senior Care Staff Scheduling Software - RosterLab",
       description:
         "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
-      images: ["/images/og images/IndustryAgedCare.png"],
+      images: ["/images/og-images/IndustryAgedCare.png"],
     },
   },
   "/us/industries/healthcare/senior-care-scheduling",
@@ -65,127 +66,33 @@ export default function AgedCarePage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Senior Care
-                </span>{" "}
-                Staff Scheduling
-              </h1>
-
-              {/* Mobile only: Image appears here after H1 */}
-              <div className="block lg:hidden relative mb-8">
-                <Image
-                  src="/images/updated-hero/iStock-1307432645.jpg"
-                  alt="Senior care scheduling dashboard"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-                />
-              </div>
-
-              <p className="text-xl text-gray-600 mb-8">
-                Deliver better care with smart scheduling. Achieve 5% efficiency
-                gains while reducing scheduling errors and ensuring full
-                compliance.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  More efficiently allocate staffing hours
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Eliminate costly scheduling errors
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Digitise your scheduling practices
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Easily fill open shifts
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/us/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/us/contact"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  Contact Us
-                </Button>
-              </div>
-            </div>
-            {/* Desktop only: Image in right column */}
-            <div className="hidden lg:block relative">
-              <Image
-                src="/images/updated-hero/iStock-1307432645.jpg"
-                alt="Senior care scheduling dashboard"
-                width={600}
-                height={400}
-                className="w-full h-auto rounded-lg object-cover shadow-2xl hover:shadow-3xl transition-shadow duration-300"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Senior Care Staff Scheduling"
+        description="Deliver better care with smart scheduling. Achieve 5% efficiency gains while reducing scheduling errors and ensuring full compliance."
+        analyticsLocation="US Industry Page Senior Care Scheduling"
+        primaryCta={{
+          href: "/us/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "Senior Care Scheduling",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/us/contact",
+          label: "Contact Us",
+          analyticsProperties: {
+            cta_type: "contact",
+            page_name: "Senior Care Scheduling",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/aged-care.webp",
+          alt: "Senior care staff supporting a resident",
+        }}
+      />
 
       {/* Key Benefits */}
       <section className="py-20 bg-white">
@@ -452,7 +359,7 @@ export default function AgedCarePage() {
       <section className="py-20 bg-white">
         <Container>
           <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-green-600 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-green-700 uppercase tracking-wide">
               COMPLETE WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">

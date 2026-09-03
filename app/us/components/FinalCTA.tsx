@@ -87,7 +87,7 @@ export default function USFinalCTA() {
                   />
                 </svg>
                 <span className="text-sm text-white/90">
-                  User-friendly & simple to use
+                  User-friendly
                 </span>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { withHreflang } from "@/components/seo/HreflangTags";
 
 export const metadata: Metadata = withHreflang(
   {
-    title: "Interactive Demo - RosterLab",
+    title: "Interactive Demo - Try AI Rostering Free",
     description:
       "Experience RosterLab's interactive demo and see how AI instantly builds fair, compliant staff rosters. Create rosters for complex teams in minutes, not days.",
     alternates: {

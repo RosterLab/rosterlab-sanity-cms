@@ -5,7 +5,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = withHreflang(
   {
-    title: "Book a Demo - Talk to Us About Your Rostering Challenges",
+    title: "Book a Demo - Solve Your Rostering Challenges",
     description:
       "Book a live demo with RosterLab to see how AI-powered rostering slashes admin time, optimises shifts, and fixes your toughest scheduling challenges.",
     alternates: {

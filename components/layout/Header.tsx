@@ -2,18 +2,48 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-import {
-  HiMenu,
-  HiX,
-  HiChevronDown,
-  HiChevronRight,
-  HiUser,
-  HiHeart,
-} from "react-icons/hi";
+import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
+import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
+
+/**
+ * True once the page has been scrolled away from the top, which the header
+ * uses to stretch full-bleed and tighten vertically.
+ *
+ * Hysteresis (on at 48px, off at 16px) rather than a single threshold — with
+ * one boundary, a scroll that lands right on it flips the state every frame
+ * and the bar visibly buzzes.
+ */
+const useCondenseOnScroll = () => {
+  const [condensed, setCondensed] = useState(false);
+
+  useEffect(() => {
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      setCondensed((was) => {
+        const y = window.scrollY;
+        if (was) return y > 16;
+        return y > 48;
+      });
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(read);
+    };
+
+    read(); // a reload partway down the page should start condensed
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return condensed;
+};
 
 interface SubMenuItem {
   title: string;
@@ -30,12 +60,44 @@ interface NavItem {
 
 interface HeaderProps {
   navItems?: NavItem[];
+  /**
+   * Set on routes whose hero is the flat blue field below `lg` (the industry
+   * pages, see `IndustryHero`). The bar paints itself that same blue and
+   * flips the logo and menu button to white, so the two read as one surface.
+   * Only while the page is at the top: once scrolled, the bar is over
+   * ordinary white content and has to go back to being opaque white.
+   */
+  onHeroBackground?: boolean;
 }
 
-export default function Header({ navItems = [] }: HeaderProps) {
+/**
+ * Kept in step with `PANEL_FILL` in `IndustryHero` by hand — the hero is a
+ * server component, so importing the value would drag it into this client
+ * bundle. If one changes, change the other.
+ */
+const HERO_BLUE = "bg-[#3779DD]";
+
+/**
+ * The hero dots, carried up through the bar so the blue reads as one surface
+ * rather than a plain band above a dotted one.
+ *
+ * The offset is what keeps the two in one rhythm. The hero starts at the
+ * bottom of the 80px bar and tiles from its own origin, putting dot centres
+ * at 89px, 107px, ... in page coordinates; stepping back by 18px lands the
+ * bar's rows at 17px, 35px, 53px, 71px, so the tile has to start at 8px. If
+ * the bar's uncondensed height ever changes, this changes with it.
+ */
+const HERO_DOTS =
+  "bg-[radial-gradient(circle,rgba(255,255,255,0.10)_1.2px,transparent_1.2px)] bg-[length:18px_18px] bg-[position:0_8px]";
+
+export default function Header({
+  navItems = [],
+  onHeroBackground = false,
+}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const { canSignUpFree } = useMarketAccess();
 
   // Determine if this is a US page by checking if navItems contain US-specific links
   const isUSVersion = navItems.some(
@@ -87,17 +149,33 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
-        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
         { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
+        {
+          title: "Radiography Roster",
+          link: "/industries/healthcare/radiography",
+        },
+        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        {
+          title: "Veterinary Roster",
+          link: "/industries/healthcare/veterinary-rostering",
+        },
         {
           title: "Nurse Roster",
           link: "/industries/healthcare/nurse-rostering",
-          description: "Fair, safe and compliant nurse rostering software",
         },
         {
-          title: "JMO Roster",
+          title: "Junior Doctor Roster",
           link: "/industries/healthcare/junior-medical-officer-rostering",
-          description: "Compliant rostering for junior medical officers",
+        },
+        {
+          title: "Senior Doctor Roster",
+          link: "/industries/healthcare/senior-medical-officer-rostering",
+        },
+        { title: "On-Call Roster", link: "/type/on-call-roster" },
+        { title: "Long Roster", link: "/type/long-roster" },
+        {
+          title: "Telehealth Roster",
+          link: "/industries/healthcare/telehealth-rostering",
         },
       ],
     },
@@ -106,7 +184,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
       title: "Resources",
       subItems: [
         // Content & Learning
-        { title: "Whitepapers", link: "/whitepapers/rostering-as-a-strategic-workforce-lever" },
+        {
+          title: "Whitepapers",
+          link: "/whitepapers/rostering-as-a-strategic-workforce-lever",
+        },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Webinars", link: "/webinars" },
         { title: "Blogs", link: "/blog" },
@@ -159,15 +240,45 @@ export default function Header({ navItems = [] }: HeaderProps) {
   ];
 
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
+  const condensed = useCondenseOnScroll();
+
+  /*
+    `lg` rather than the `xl` the nav itself switches at: the industry hero
+    goes to its desktop layout at `lg`, and past that point there is no blue
+    behind the bar to blend into — only the hamburger stays.
+  */
+  const seamless = onHeroBackground && !condensed;
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm" role="banner">
+    <header
+      className={cn(
+        "sticky top-0 z-50 motion-safe:transition-shadow motion-safe:duration-300 motion-safe:ease-out",
+        seamless
+          ? cn(HERO_BLUE, HERO_DOTS, "lg:bg-white lg:bg-none")
+          : "bg-white",
+        seamless
+          ? "shadow-none lg:shadow-sm"
+          : condensed
+            ? "shadow-md"
+            : "shadow-sm",
+      )}
+      role="banner"
+    >
       <nav
-        className="container mx-auto px-4 sm:px-6 lg:px-8"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 motion-safe:transition-[max-width] motion-safe:duration-300 motion-safe:ease-out"
+        // No inline style at the top, so `.container` governs and the bar keeps
+        // its per-breakpoint width. Once condensed we override to 100%, and the
+        // computed max-width animates between the two.
+        style={condensed ? { maxWidth: "100%" } : undefined}
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="flex h-20 items-center justify-between">
+        <div
+          className={cn(
+            "flex items-center justify-between motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
+            condensed ? "h-[60px]" : "h-20",
+          )}
+        >
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
@@ -180,7 +291,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 alt="RosterLab"
                 width={180}
                 height={48}
-                className="h-10 w-auto"
+                className={cn(
+                  "w-auto motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
+                  condensed ? "h-8" : "h-10",
+                  // The logo is a PNG, so it is knocked out to flat white
+                  // rather than swapped for a second asset.
+                  seamless && "brightness-0 invert lg:filter-none",
+                )}
                 priority
               />
             </Link>
@@ -377,7 +494,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Healthcare Sectors Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Specialty Healthcare Rosters
+                                {isUSVersion
+                                  ? "Specialty Healthcare Schedules"
+                                  : "Specialty Healthcare Rosters"}
                               </h3>
                               <div className="space-y-1">
                                 {/* Healthcare Roster */}
@@ -511,7 +630,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Roster By Type Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Roster By Type
+                                {isUSVersion
+                                  ? "Schedule By Type"
+                                  : "Roster By Type"}
                               </h3>
                               <div className="space-y-1">
                                 {/* Nurse Roster */}
@@ -707,7 +828,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-4">
                                 {(() => {
                                   const renderGroup = (
-                                    groupName: "Mini Tools" | "Games" | "Templates",
+                                    groupName:
+                                      | "Mini Tools"
+                                      | "Games"
+                                      | "Templates",
                                   ) => {
                                     const groupItems = item.subItems?.filter(
                                       (sub) => sub.group === groupName,
@@ -893,30 +1017,37 @@ export default function Header({ navItems = [] }: HeaderProps) {
             >
               Book a Demo
             </Link>
-            <Link
-              href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                trackSmartButtonClick(
-                  "Start for free",
-                  "https://app.rosterlab.com/signup",
-                  "Header Desktop",
-                );
-                setTimeout(() => {
-                  window.location.href = "https://app.rosterlab.com/signup";
-                }, 100);
-              }}
-            >
-              Start for free
-            </Link>
+            {canSignUpFree && (
+              <Link
+                href="/start-free"
+                className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  trackSmartButtonClick(
+                    "Start for free",
+                    "/start-free",
+                    "Header Desktop",
+                  );
+                  setTimeout(() => {
+                    window.location.href = "/start-free";
+                  }, 100);
+                }}
+              >
+                Start for free
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
           <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className={cn(
+                "inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset",
+                seamless
+                  ? "text-white hover:bg-white/15 focus:ring-white lg:text-neutral-700 lg:hover:text-blue-600 lg:hover:bg-neutral-100 lg:focus:ring-blue-500"
+                  : "text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:ring-blue-500",
+              )}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={
@@ -939,7 +1070,13 @@ export default function Header({ navItems = [] }: HeaderProps) {
       {/* Mobile menu backdrop */}
       {isMenuOpen && (
         <div
-          className="xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 top-20"
+          className={cn(
+            // Sits directly under the bar, which shrinks from 80px to 60px
+            // once the page is scrolled — a fixed offset left a strip of page
+            // showing through between the two.
+            "xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 motion-safe:transition-[top] motion-safe:duration-300",
+            condensed ? "top-[60px]" : "top-20",
+          )}
           onClick={() => setIsMenuOpen(false)}
           aria-hidden="true"
         />
@@ -952,7 +1089,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
         aria-modal="true"
         aria-label="Mobile navigation menu"
         className={cn(
-          "xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 top-20 bottom-0 bg-white z-40",
+          "xl:hidden transition-all duration-300 ease-in-out fixed inset-x-0 bottom-0 bg-white z-40",
+          // Tracks the header's condensed height, see the backdrop above.
+          condensed ? "top-[60px]" : "top-20",
           isMenuOpen ? "block" : "hidden",
         )}
       >
@@ -1026,6 +1165,56 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             </div>
                           </div>
                         </>
+                      ) : item.title === "Industries" ? (
+                        <>
+                          <div>
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                              {isUSVersion
+                                ? "SPECIALTY HEALTHCARE SCHEDULES"
+                                : "SPECIALTY HEALTHCARE ROSTERS"}
+                            </div>
+                            {item.subItems.slice(0, 6).map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="mt-1 px-3">
+                            <Link
+                              href={
+                                isUSVersion
+                                  ? "https://rosterlab.com/us/industries"
+                                  : "https://rosterlab.com/industries"
+                              }
+                              className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              View all industries →
+                            </Link>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                              {isUSVersion
+                                ? "SCHEDULE BY TYPE"
+                                : "ROSTER BY TYPE"}
+                            </div>
+                            {item.subItems.slice(6).map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </>
                       ) : item.title === "Resources" ? (
                         <>
                           {/* Ungrouped items (Content & Learning) */}
@@ -1049,7 +1238,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               const groupItems = item.subItems?.filter(
                                 (sub) => sub.group === groupName,
                               );
-                              if (!groupItems || !groupItems.length) return null;
+                              if (!groupItems || !groupItems.length)
+                                return null;
                               return (
                                 <div
                                   key={groupName}
@@ -1162,24 +1352,26 @@ export default function Header({ navItems = [] }: HeaderProps) {
             >
               Book a Demo
             </Link>
-            <Link
-              href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                trackSmartButtonClick(
-                  "Start for free",
-                  "https://app.rosterlab.com/signup",
-                  "Header Mobile",
-                );
-                setIsMenuOpen(false);
-                setTimeout(() => {
-                  window.location.href = "https://app.rosterlab.com/signup";
-                }, 100);
-              }}
-            >
-              Start for free
-            </Link>
+            {canSignUpFree && (
+              <Link
+                href="/start-free"
+                className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={(e) => {
+                  e.preventDefault();
+                  trackSmartButtonClick(
+                    "Start for free",
+                    "/start-free",
+                    "Header Mobile",
+                  );
+                  setIsMenuOpen(false);
+                  setTimeout(() => {
+                    window.location.href = "/start-free";
+                  }, 100);
+                }}
+              >
+                Start for free
+              </Link>
+            )}
           </div>
         </div>
       </div>

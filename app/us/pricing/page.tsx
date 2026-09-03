@@ -10,7 +10,7 @@ import PricingPageTracker from "@/components/analytics/PricingPageTracker";
 
 export const metadata = withHreflang(
   {
-    title: "Pricing - RosterLab",
+    title: "Pricing | AI Staff Scheduling Software",
     description:
       "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
     alternates: {
@@ -55,7 +55,7 @@ const pricingPlans = [
       "Staff mobile app",
     ],
     cta: "Sign up for free",
-    ctaLink: "https://app.rosterlab.com/signup",
+    ctaLink: "/start-free",
     highlighted: false,
   },
   {
@@ -268,7 +268,7 @@ const faqItems = [
   {
     question: "Which plan suits me the best?",
     answer:
-      "We strongly recommend <a href='/us/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, feel free to <a href='https://app.rosterlab.com/signup' class='text-blue-600 hover:underline'>sign up for free</a>. If you're interested in using AI to generate and optimise schedules, <a href='/us/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
+      "We strongly recommend <a href='/us/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, our free digital scheduling option may be suitable where available. If you're interested in using AI to generate and optimise schedules, <a href='/us/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
   },
   {
     question: "How are my savings calculated?",
@@ -353,7 +353,9 @@ export default function PricingPage() {
                       <span className="text-gray-600 ml-2">{plan.period}</span>
                     )}
                   </div>
-                  <p className="text-sm md:text-base text-gray-600">{plan.description}</p>
+                  <p className="text-sm md:text-base text-gray-600">
+                    {plan.description}
+                  </p>
                 </div>
 
                 <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8">
@@ -550,7 +552,7 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="https://app.rosterlab.com/signup"
+                href="/start-free"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
                 analyticsLabel="Sign up for free"
                 analyticsLocation="Pricing CTA Bottom"

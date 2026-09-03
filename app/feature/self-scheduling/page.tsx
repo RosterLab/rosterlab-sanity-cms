@@ -10,7 +10,7 @@ const pathname = "/feature/self-scheduling";
 
 export const metadata = withHreflang(
   {
-    title: "AI-Powered Self-Scheduling - RosterLab",
+    title: "AI-Powered Self-Scheduling",
     description:
       "Empower your team with AI-powered self-rostering. Staff can request preferred shifts while our intelligent system ensures optimal coverage & compliance.",
     alternates: {

@@ -153,7 +153,9 @@ export default function AskAiShareWidget({
 
   return (
     <div
-      className={`fixed bottom-4 left-4 z-40 print:hidden transition-all duration-500 ${
+      // Centred on phones — hugging the left edge left it looking off-balance
+      // and crowded the chat launcher. Back to the left corner from sm up.
+      className={`fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 z-40 print:hidden transition-all duration-500 ${
         entered
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-4 pointer-events-none'
@@ -161,7 +163,7 @@ export default function AskAiShareWidget({
       onMouseEnter={handleHoverOrFocus}
       onFocus={handleHoverOrFocus}
     >
-      <div className="relative flex items-center gap-2 rounded-full bg-white border border-primary-100 shadow-lg pl-3 pr-1.5 py-1.5 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 ease-out">
+      <div className="relative flex items-center gap-1.5 sm:gap-2 max-w-[calc(100vw-2rem)] rounded-full bg-white border border-primary-100 shadow-lg pl-2.5 sm:pl-3 pr-1.5 py-1.5 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 ease-out">
         {/* Label with brand-gradient sparkle */}
         <span className="relative flex items-center gap-1.5 text-sm font-semibold pr-1">
           <span
@@ -177,8 +179,11 @@ export default function AskAiShareWidget({
               <path d="M12 2 14 9l7 2-7 2-2 7-2-7-7-2 7-2 2-7Z" />
             </svg>
           </span>
+          {/* The full label plus four icons runs past a 375px screen, so the
+              phone gets the short form. */}
           <span className="bg-gradient-to-r from-primary-700 via-primary-600 to-secondary-600 bg-clip-text text-transparent whitespace-nowrap">
-            Ask AI about RosterLab:
+            <span className="sm:hidden">Ask AI:</span>
+            <span className="hidden sm:inline">Ask AI about RosterLab:</span>
           </span>
         </span>
 

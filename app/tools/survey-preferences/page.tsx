@@ -7,7 +7,7 @@ import { Metadata } from "next";
 import SurveyPreferencesClient from "./client";
 
 export const metadata: Metadata = {
-  title: "Holiday Shift Preferences Survey & Automated Assignment",
+  title: "Holiday Shift Preference Survey & Assignment",
   description:
     "Collect preferences for holiday shifts this season. Then use the auto-distribution feature to fairly assignment shifts - no login required.",
   openGraph: {

@@ -1,101 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { HiCheck, HiExternalLink } from "react-icons/hi";
 import { trackButtonClick } from "@/components/analytics/tracking";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
-
-// Add HubSpot type declaration
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (config: {
-          region: string;
-          portalId: string;
-          formId: string;
-          target: string;
-          onFormSubmitted?: (formData: any) => void;
-        }) => void;
-      };
-    };
-  }
-}
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 
 export default function EmployeeOfMonthFormClient() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // Load HubSpot form on component mount
-  useEffect(() => {
-    // Check if HubSpot is already loaded
-    try {
-      if (window.hbspt && window.hbspt.forms) {
-        window.hbspt.forms.create({
-          portalId: "20646833",
-          formId: "0dae293b-6e69-4fb0-9af9-dec04f54865a",
-          region: "ap1",
-          target: "#hubspot-form-container",
-          onFormSubmitted: () => {
-            // Track form submission
-            trackButtonClick(
-              "Employee of the Month Form Submitted",
-              "Employee of the Month Template Page",
-              {
-                form_type: "employee_of_month_certificate",
-              },
-            );
-
-            // Update UI to show success with Canva link
-            setIsSubmitted(true);
-          },
-        });
-        return;
-      }
-    } catch {
-      return;
-    }
-
-    // Load HubSpot script if not already loaded
-    const script = document.createElement("script");
-    script.src = "//js-ap1.hsforms.net/forms/embed/v2.js";
-    script.type = "text/javascript";
-    script.charset = "utf-8";
-    script.defer = true;
-
-    script.onload = () => {
-      if (window.hbspt && window.hbspt.forms) {
-        window.hbspt.forms.create({
-          portalId: "20646833",
-          formId: "0dae293b-6e69-4fb0-9af9-dec04f54865a",
-          region: "ap1",
-          target: "#hubspot-form-container",
-          onFormSubmitted: () => {
-            // Track form submission
-            trackButtonClick(
-              "Employee of the Month Form Submitted",
-              "Employee of the Month Template Page",
-              {
-                form_type: "employee_of_month_certificate",
-              },
-            );
-
-            // Update UI to show success with Canva link
-            setIsSubmitted(true);
-          },
-        });
-      }
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8">
@@ -109,13 +21,18 @@ export default function EmployeeOfMonthFormClient() {
             template
           </p>
 
-          {/* HubSpot Form Container */}
-          <div id="hubspot-form-container" className="mb-4">
-            <div className="text-center py-8">
-              <p className="text-gray-600">Loading form...</p>
-            </div>
-          </div>
-          <HubSpotFormListener />
+          <LeadCaptureForm
+            source="template-employee-of-month"
+            submitLabel="Access Canva template"
+            onSuccess={() => {
+              trackButtonClick(
+                "Employee of the Month Form Submitted",
+                "Employee of the Month Template Page",
+                { form_type: "employee_of_month_certificate" },
+              );
+              setIsSubmitted(true);
+            }}
+          />
         </>
       ) : (
         <div className="text-center py-8">
