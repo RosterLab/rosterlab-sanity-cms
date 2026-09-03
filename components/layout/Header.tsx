@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
 import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 /**
  * True once the page has been scrolled away from the top, which the header
@@ -482,7 +483,9 @@ export default function Header({
                                   )
                                 }
                               >
-                                Book a demo
+                                <DemoCtaLabel href={demoLink}>
+                                  Book a demo
+                                </DemoCtaLabel>
                               </Link>
                             </div>
                           </div>
@@ -769,7 +772,9 @@ export default function Header({
                                   )
                                 }
                               >
-                                Book a demo
+                                <DemoCtaLabel href={demoLink}>
+                                  Book a demo
+                                </DemoCtaLabel>
                               </Link>
                             </div>
                           </div>
@@ -944,7 +949,9 @@ export default function Header({
                                   )
                                 }
                               >
-                                Book a demo
+                                <DemoCtaLabel href={demoLink}>
+                                  Book a demo
+                                </DemoCtaLabel>
                               </Link>
                             </div>
                           </div>
@@ -1015,7 +1022,7 @@ export default function Header({
                 trackSmartButtonClick("Book a Demo", demoLink, "Header Desktop")
               }
             >
-              Book a Demo
+              <DemoCtaLabel href={demoLink}>Book a Demo</DemoCtaLabel>
             </Link>
             {canSignUpFree && (
               <Link
@@ -1350,7 +1357,7 @@ export default function Header({
                 setIsMenuOpen(false);
               }}
             >
-              Book a Demo
+              <DemoCtaLabel href={demoLink}>Book a Demo</DemoCtaLabel>
             </Link>
             {canSignUpFree && (
               <Link

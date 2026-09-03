@@ -1,5 +1,6 @@
 "use client";
 
+import { Children, type ReactNode } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
@@ -8,9 +9,21 @@ import {
 } from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
 import {
+  isDemoBookingHref,
   isFreeSignupHref,
+  toRequestDemoLabel,
   useMarketAccess,
 } from "@/components/market-access/MarketAccessProvider";
+
+/**
+ * Rewrites the plain-text parts of a label. Non-string children (icons and the
+ * like) are handed back untouched.
+ */
+function rewriteTextChildren(children: ReactNode): ReactNode {
+  return Children.map(children, (child) =>
+    typeof child === "string" ? toRequestDemoLabel(child) : child,
+  );
+}
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -43,7 +56,7 @@ export default function Button({
   ariaLabel,
   ariaPressed,
 }: ButtonProps) {
-  const { canSignUpFree } = useMarketAccess();
+  const { canSignUpFree, decision } = useMarketAccess();
   const baseStyles =
     "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
@@ -67,6 +80,13 @@ export default function Button({
   if (href && isFreeSignupHref(href) && !canSignUpFree) {
     return null;
   }
+
+  // Visitors routed to the request form can't pick a time, so the booking
+  // promise in the label would be wrong.
+  const label =
+    href && decision?.demo === "request_review" && isDemoBookingHref(href)
+      ? rewriteTextChildren(children)
+      : children;
 
   const handleClick = () => {
     if (analyticsLabel && href) {
@@ -122,7 +142,7 @@ export default function Button({
         aria-pressed={ariaPressed}
         aria-disabled={disabled}
       >
-        {children}
+        {label}
       </Link>
     );
   }
@@ -136,7 +156,7 @@ export default function Button({
       aria-label={ariaLabel}
       aria-pressed={ariaPressed}
     >
-      {children}
+      {label}
     </button>
   );
 }

@@ -6,6 +6,7 @@ import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 import CountrySelector from "./CountrySelector";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 export default function USFooter() {
   return (
@@ -46,7 +47,7 @@ export default function USFooter() {
                   )
                 }
               >
-                Book a demo
+                <DemoCtaLabel href="/us/book-a-demo">Book a demo</DemoCtaLabel>
               </Link>
               <Link
                 href="https://app.rosterlab.com"
@@ -183,7 +184,9 @@ export default function USFooter() {
                   href="/us/book-a-demo"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
-                  Book a Demo
+                  <DemoCtaLabel href="/us/book-a-demo">
+                    Book a Demo
+                  </DemoCtaLabel>
                 </Link>
               </li>
               <li>

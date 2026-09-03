@@ -8,7 +8,32 @@
     "incomeGroups": "https://api.worldbank.org/v2/country?format=json&per_page=400",
     "gniPerCapita": "https://data.worldbank.org/indicator/NY.GNP.PCAP.CD"
   },
-  "overrides": {},
+  "overrides": {
+    "CN": {
+      "freeSignup": "show",
+      "reason": "Free signup only. Upper-middle-income ($14,230 GNI) but a large affluent segment the country average hides; demo stays a request form.",
+      "owner": "sunny@rosterlab.com",
+      "reviewDate": "2027-03-03"
+    },
+    "TH": {
+      "freeSignup": "show",
+      "reason": "Free signup only. Target SEA market; private hospital operators run the shift patterns we serve. Demo stays a request form.",
+      "owner": "sunny@rosterlab.com",
+      "reviewDate": "2027-03-03"
+    },
+    "VN": {
+      "freeSignup": "show",
+      "reason": "Free signup only. Target SEA market alongside Thailand. Demo stays a request form.",
+      "owner": "sunny@rosterlab.com",
+      "reviewDate": "2027-03-03"
+    },
+    "ZA": {
+      "freeSignup": "show",
+      "reason": "Free signup only. Well-capitalised private hospital groups despite $6,270 GNI; household income understates the B2B opportunity. Demo stays a request form.",
+      "owner": "sunny@rosterlab.com",
+      "reviewDate": "2027-03-03"
+    }
+  },
   "countries": {
     "AD": {
       "iso2": "AD",

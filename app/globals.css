@@ -7,6 +7,39 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Calendly booking embed (see components/booking/DemoBookingBase.tsx).
+     Tweak these two values to resize the routing form + calendar. */
+  --calendly-embed-height: 700px;
+  --calendly-embed-min-width: 320px;
+}
+
+/* Mobile: Calendly stacks the routing form questions and the calendar,
+   so give it fixed room rather than a viewport height. */
+@media only screen and (max-width: 767px) {
+  :root {
+    --calendly-embed-height: 820px;
+  }
+}
+
+/* Desktop: fill the viewport below the page heading, within sane bounds. */
+@media only screen and (min-width: 768px) {
+  :root {
+    --calendly-embed-height: clamp(700px, calc(100vh - 260px), 850px);
+  }
+}
+
+/* The embed follows the height Calendly reports for its current step (see
+   DemoBookingBase), so ease between the short routing form and the taller
+   calendar rather than snapping. */
+.calendly-inline-widget {
+  transition: height 250ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendly-inline-widget {
+    transition: none;
+  }
 }
 
 body {

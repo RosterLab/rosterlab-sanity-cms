@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createStars } from '@/lib/personality-quiz/stars'
+import DemoCtaLabel from '@/components/market-access/DemoCtaLabel'
 
 // Star component for background animation
 function Star({ style }: { style: React.CSSProperties }) {
@@ -455,7 +456,7 @@ export default function QuizClient() {
               href="/book-a-demo"
               className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-primary-600 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 transition-colors duration-200"
             >
-              Book a demo
+              <DemoCtaLabel href="/book-a-demo">Book a demo</DemoCtaLabel>
             </Link>
             <Link
               href="/contact"
