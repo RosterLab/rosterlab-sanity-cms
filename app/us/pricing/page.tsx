@@ -51,7 +51,7 @@ const pricingPlans = [
       "Manual scheduling platform",
       "Simple rule violations check",
       "Dynamic statistics counts",
-      "Colour coding by shifts",
+      "Color coding by shifts",
       "Staff mobile app",
     ],
     cta: "Sign up for free",
@@ -59,8 +59,8 @@ const pricingPlans = [
     highlighted: false,
   },
   {
-    name: "AI Optimised Scheduling",
-    price: "$20",
+    name: "AI Optimized Scheduling",
+    price: "$15 USD",
     period: "per person per month",
     description: "Complex 24/7 AI-powered scheduling",
     features: [
@@ -68,7 +68,7 @@ const pricingPlans = [
       "Multiple sessions per shift",
       "Dynamic re-scheduling",
       "Legal and contractual compliance",
-      "Optimised staffing resources",
+      "Optimized staffing resources",
       "Scenario simulation",
     ],
     cta: "Book a demo",
@@ -84,7 +84,7 @@ const pricingPlans = [
       "API access",
       "Workforce scheduling consulting",
       "Integrations",
-      "Customised rules",
+      "Customized rules",
       "Priority support",
     ],
     cta: "Contact us",
@@ -131,14 +131,14 @@ const features = [
       {
         name: "Staff preferences",
         digital: "Collect through app",
-        ai: "Optimised by AI",
-        enterprise: "Optimised by AI",
+        ai: "Optimized by AI",
+        enterprise: "Optimized by AI",
       },
       {
         name: "Scheduling rules",
         digital: "Simple checks",
         ai: "Complex rules",
-        enterprise: "Customised rules",
+        enterprise: "Customized rules",
       },
 
       {
@@ -173,7 +173,7 @@ const features = [
       },
 
       {
-        name: "Re-scheduling (reschedule a subset of your schedule)",
+        name: "Rescheduling (reschedule a subset of your schedule)",
         digital: false,
         ai: true,
         enterprise: true,
