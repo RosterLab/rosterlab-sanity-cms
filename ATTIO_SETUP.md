@@ -1,13 +1,17 @@
-# Attio website lead setup
+# Durable Attio website lead setup
 
-The website sends every lead type to one server-side Attio workflow webhook. The webhook URL never reaches the browser.
+The website stores each accepted submission in the automation service's Neon
+queue before showing success. A Netlify background worker then calls the Attio
+workflow. Attio owns CRM updates, tasks, and notifications.
 
-## 1. Create the Attio workflow
+## Attio workflow payload
 
-In Attio, create a workflow with a **Webhook received** trigger and copy its URL. A test submission has this shape:
+The workflow receives the existing lead fields plus stable delivery fields:
 
 ```json
 {
+  "submissionId": "98c03be9-f878-4ca5-99f5-7c8ade16ad92",
+  "environment": "production",
   "source": "contact",
   "email": "person@example.com",
   "firstName": "Person",
@@ -23,36 +27,71 @@ In Attio, create a workflow with a **Webhook received** trigger and copy its URL
     "utmMedium": "cpc",
     "utmCampaign": "brand"
   },
-  "submittedAt": "2026-09-01T00:00:00.000Z"
+  "submittedAt": "2026-09-03T00:00:00.000Z"
 }
 ```
 
-## 2. Configure the workflow actions
+## Required workflow changes
 
-Recommended first version:
+1. Parse and require `submissionId` and `environment`.
+2. If `environment` is `preview`, route to a QA-only branch that creates no
+   production task or notification.
+3. Create or update the Person using email.
+4. Add a text attribute named `Submission ID` to the Website Leads list.
+5. Find a Website Leads entry whose `Submission ID` equals the payload value.
+6. Only when no entry exists, add the Person to Website Leads, populate the
+   lead attributes, and create the appropriate follow-up task/notification.
+7. At the end of both the new-entry and already-exists branches, use **Send HTTP
+   request** to call the automation service:
 
-1. Find or create a Person using `email` as the unique value.
-2. Update the person's name, email, phone and company.
-3. Add the person to an **Inbound website leads** list.
-4. Store `source`, `detectedCountry`, `pageUrl`, `submittedAt` and `metadata` on the list entry.
-5. Branch on `source`:
-   - `contact` and `commercial-review`: notify sales and create a follow-up task.
-   - `calculator-*`, `template-*`, `personality-quiz`, `case-study`, `demo-video`, `whitepaper` and `newsletter`: capture the lead without creating an immediate sales task.
-   - `ai-assistant-waitlist`: add the person to the waitlist view/list.
-6. For `commercial-review`, prioritise when `metadata.fundingAvailable` is `yes` and `metadata.estimatedAnnualValueUsd` clears your chosen sales threshold.
+```text
+POST https://your-automations-site.netlify.app/api/website-lead-acknowledge
+Authorization: Bearer <ATTIO_LEAD_CALLBACK_TOKEN>
+Content-Type: application/json
 
-The website validates and normalises the payload. Attio owns deduplication, record updates, list membership and sales routing, so those rules can be changed without another website deployment.
-
-## 3. Configure deployment
-
-Set the following server-side environment variable in every deployed environment that should capture leads:
-
-```bash
-ATTIO_LEAD_WEBHOOK_URL=https://app.attio.com/webhook/your-workflow-webhook
+{"submissionId":"<submissionId from the webhook payload>"}
 ```
 
-Production requires an HTTPS webhook. Contact, newsletter, waitlist and commercial-review forms show an error if the webhook is unavailable. Downloadable content gates fail open so visitors are not denied the promised asset because the CRM is down.
+The callback is intentionally last. A submission remains `accepted` until the
+complete workflow acknowledges it, and is retried if no callback arrives.
 
-## 4. Verify
+## Netlify configuration
 
-Submit one contact form and one content gate in the deployed preview. Confirm that Attio updates one Person, creates the expected list entries, and only creates a sales task for the contact/commercial route.
+Marketing website:
+
+```text
+LEAD_DELIVERY_MODE=queue
+WEBSITE_LEAD_INGEST_URL=https://your-automations-site.netlify.app/api/website-leads
+WEBSITE_LEAD_INGEST_TOKEN=<production or preview token for this context>
+SENTRY_DSN=<optional shared Sentry project DSN>
+```
+
+Automation service:
+
+```text
+WEBSITE_LEAD_INGEST_TOKEN=<production token>
+WEBSITE_LEAD_PREVIEW_TOKEN=<preview token>
+ATTIO_LEAD_WEBHOOK_URL=<production Attio workflow webhook>
+ATTIO_LEAD_WEBHOOK_URL_PREVIEW=<preview-safe Attio workflow webhook>
+ATTIO_LEAD_CALLBACK_TOKEN=<callback bearer token>
+SENTRY_DSN=<optional shared Sentry project DSN>
+```
+
+Apply `011-website-lead-queue.sql` before enabling queue mode. Keep direct mode
+available for one week as rollback, then remove the direct webhook secret from
+the marketing site.
+
+## Rollout checklist
+
+1. Apply the migration and deploy the automation service.
+2. Configure its production and preview tokens, Attio webhooks, callback token,
+   and optional Sentry DSN.
+3. Add Attio's idempotency check and final acknowledgement callback.
+4. Set the marketing deploy-preview context to `LEAD_DELIVERY_MODE=queue` with
+   the preview intake token.
+5. Submit one contact form and one content gate. Confirm each queue row reaches
+   `delivered`, each Attio entry is created once, and preview traffic creates no
+   production sales task or notification.
+6. Add a Sentry alert for errors tagged `subsystem=website-leads`, then enable
+   queue mode in production. Switching `LEAD_DELIVERY_MODE` back to `direct` is
+   the rollback.

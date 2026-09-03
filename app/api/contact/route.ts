@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
+import { reportLeadError } from "@/lib/monitoring/leadErrors";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -17,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     const data = contactSchema.parse(body);
     const [firstName, ...lastName] = data.name.trim().split(/\s+/);
-    const result = await submitAttioLead({
+    const result = await submitWebsiteLead({
       source: "contact",
       email: data.email,
       firstName,
@@ -29,6 +30,14 @@ export async function POST(request: NextRequest) {
     });
 
     if (result.status !== "submitted") {
+      await reportLeadError(new Error("Required lead was not accepted"), {
+        operation: "contact-submit",
+        source: "contact",
+        delivery: result.delivery,
+        result: result.status,
+        submissionId:
+          "submissionId" in result ? result.submissionId : undefined,
+      });
       return NextResponse.json(
         { error: "Unable to submit right now", attio: result.status },
         { status: result.status === "skipped" ? 503 : 502 },
@@ -48,6 +57,8 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
+
+    await reportLeadError(error, { operation: "contact-route" });
 
     return NextResponse.json(
       { error: "Internal server error" },

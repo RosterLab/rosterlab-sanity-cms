@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const caseStudyGateSchema = z.object({
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = caseStudyGateSchema.parse(body);
     const [firstName, ...lastName] = validatedData.name.trim().split(/\s+/);
-    const result = await submitAttioLead({
+    const result = await submitWebsiteLead({
       source: "case-study",
       email: validatedData.email,
       firstName,

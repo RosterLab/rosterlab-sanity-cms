@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { evaluateMarketAccess } from "@/lib/market-access/policy";
+import { reportLeadError } from "@/lib/monitoring/leadErrors";
 
 const reviewSchema = z.object({
   name: z.string().trim().min(2).max(120),
@@ -21,7 +22,7 @@ export async function POST(request: NextRequest) {
     const decision = evaluateMarketAccess(detectedCountry);
     const funded = input.fundingAvailable === "yes";
     const [firstName, ...lastNameParts] = input.name.split(/\s+/);
-    const attio = await submitAttioLead({
+    const delivery = await submitWebsiteLead({
       source: "commercial-review",
       email: input.email,
       firstName,
@@ -41,13 +42,33 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    if (attio.status === "error") {
+    if (delivery.status === "error") {
+      await reportLeadError(new Error("Required lead was not accepted"), {
+        operation: "commercial-review-submit",
+        source: "commercial-review",
+        delivery: delivery.delivery,
+        result: delivery.status,
+        submissionId:
+          "submissionId" in delivery ? delivery.submissionId : undefined,
+      });
       return NextResponse.json(
         { error: "Unable to submit the request" },
         { status: 502 },
       );
     }
-    if (attio.status === "skipped" && process.env.NODE_ENV === "production") {
+    if (
+      delivery.status === "skipped" &&
+      process.env.NODE_ENV === "production"
+    ) {
+      await reportLeadError(
+        new Error("Required lead delivery is not configured"),
+        {
+          operation: "commercial-review-submit",
+          source: "commercial-review",
+          delivery: delivery.delivery,
+          result: delivery.status,
+        },
+      );
       return NextResponse.json(
         { error: "Commercial review is not configured" },
         { status: 503 },
@@ -66,6 +87,7 @@ export async function POST(request: NextRequest) {
       );
     }
     console.error("Commercial review request failed", error);
+    await reportLeadError(error, { operation: "commercial-review-route" });
     return NextResponse.json({ error: "Unable to submit" }, { status: 500 });
   }
 }

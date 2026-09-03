@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const CONVERSION_POINT = "Roster Analysis Report";
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, organisationName } = rosterAnalysisLeadSchema.parse(body);
 
-    const result = await submitAttioLead({
+    const result = await submitWebsiteLead({
       source: "roster-analysis",
       email,
       company: organisationName || undefined,

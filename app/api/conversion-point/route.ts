@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const conversionPointSchema = z.object({
@@ -14,7 +14,7 @@ const conversionPointSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const data = conversionPointSchema.parse(await request.json());
-    const result = await submitAttioLead({
+    const result = await submitWebsiteLead({
       source:
         data.conversion_point === "FTE calculator"
           ? "calculator-fte"
