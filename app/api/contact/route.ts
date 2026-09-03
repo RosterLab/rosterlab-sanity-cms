@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
+import { captureServerException } from "@/lib/monitoring/posthog-server";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -29,6 +30,14 @@ export async function POST(request: NextRequest) {
     });
 
     if (result.status !== "submitted") {
+      await captureServerException(
+        new Error("Required contact lead was not durably accepted"),
+        {
+          route: "/api/contact",
+          delivery: result.delivery,
+          result: result.status,
+        },
+      );
       console.error("Required contact lead was not accepted", {
         delivery: result.delivery,
         result: result.status,
@@ -44,14 +53,15 @@ export async function POST(request: NextRequest) {
       { status: 200 },
     );
   } catch (error) {
-    console.error("Contact form error:", error);
-
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: "Invalid form data", details: error.errors },
         { status: 400 },
       );
     }
+
+    await captureServerException(error, { route: "/api/contact" });
+    console.error("Contact form error:", error);
 
     return NextResponse.json(
       { error: "Internal server error" },

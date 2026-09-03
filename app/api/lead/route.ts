@@ -3,6 +3,7 @@ import { z } from "zod";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { LEAD_SOURCES, mustRecordLead } from "@/lib/leads/sources";
+import { captureServerException } from "@/lib/monitoring/posthog-server";
 
 const noStoreHeaders = { "Cache-Control": "no-store" };
 
@@ -59,6 +60,15 @@ export async function POST(request: NextRequest) {
     });
 
     if (mustRecordLead(input.source) && result.status !== "submitted") {
+      await captureServerException(
+        new Error("Required website lead was not durably accepted"),
+        {
+          route: "/api/lead",
+          source: input.source,
+          delivery: result.delivery,
+          result: result.status,
+        },
+      );
       console.error("Required lead was not accepted", {
         source: input.source,
         delivery: result.delivery,
@@ -84,6 +94,7 @@ export async function POST(request: NextRequest) {
         { status: 400, headers: noStoreHeaders },
       );
     }
+    await captureServerException(error, { route: "/api/lead" });
     console.error("Lead submission failed", error);
     return NextResponse.json(
       { error: "Unable to submit" },

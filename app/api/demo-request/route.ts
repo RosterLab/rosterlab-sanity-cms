@@ -6,6 +6,7 @@ import {
   type AttioAttributeValue,
 } from "@/lib/attio/submitLead";
 import { demoRequestWebhookUrl } from "@/lib/attio/webhooks";
+import { captureServerException } from "@/lib/monitoring/posthog-server";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { evaluateMarketAccess } from "@/lib/market-access/policy";
 import {
@@ -96,6 +97,14 @@ export async function POST(request: NextRequest) {
     );
 
     if (result.status !== "submitted") {
+      await captureServerException(
+        new Error("Demo request was not accepted by Attio"),
+        {
+          route: "/api/demo-request",
+          result: result.status,
+          detail: result.status === "error" ? result.detail : undefined,
+        },
+      );
       console.error("Demo request was not accepted by Attio", result);
       return NextResponse.json(
         { error: "Unable to submit the request" },
@@ -109,6 +118,10 @@ export async function POST(request: NextRequest) {
     // duplicate it.
     const personUpdate = await assertAttioPerson(personValues);
     if (personUpdate.status === "error") {
+      await captureServerException(
+        new Error("Demo request attributes were not written to Attio"),
+        { route: "/api/demo-request", detail: personUpdate.detail },
+      );
       console.error("Demo request attributes were not written to Attio", {
         email: input.email,
         detail: personUpdate.detail,
@@ -123,6 +136,7 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
+    await captureServerException(error, { route: "/api/demo-request" });
     console.error("Demo request failed", error);
     return NextResponse.json({ error: "Unable to submit" }, { status: 500 });
   }
