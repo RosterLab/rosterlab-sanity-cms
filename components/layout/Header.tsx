@@ -207,6 +207,12 @@ export default function Header({
           group: "Mini Tools",
         },
         {
+          title: "Roster Analyser",
+          link: "/tools/roster-analysis",
+          description: "Get instant AI insights on your roster",
+          group: "Mini Tools",
+        },
+        {
           title: "Preferences Optimiser",
           link: "/tools/survey-preferences",
           description: "Fairly distribute shifts by staff preference",
