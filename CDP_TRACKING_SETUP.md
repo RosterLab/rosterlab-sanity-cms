@@ -9,6 +9,7 @@ This document describes the Customer Data Platform (CDP) event tracking implemen
 The CDP is hosted at: `https://rosterlab-inngest.netlify.app/api/batch`
 
 This can be configured via the environment variable:
+
 ```
 NEXT_PUBLIC_CDP_ENDPOINT=https://rosterlab-inngest.netlify.app/api/batch
 ```
@@ -20,6 +21,7 @@ NEXT_PUBLIC_CDP_ENDPOINT=https://rosterlab-inngest.netlify.app/api/batch
 The `analytics` object provides three main methods:
 
 #### `analytics.track(eventName, properties)`
+
 - Sends events to RosterLab tracker, GTM dataLayer, AND CDP
 - Automatically enriches events with:
   - UTM parameters (source, medium, campaign, content, term)
@@ -29,6 +31,7 @@ The `analytics` object provides three main methods:
   - Anonymous ID from `_rl_anon_id` cookie
 
 #### `analytics.identify(userId, userProperties)` ✅ **ENHANCED**
+
 - **CRITICAL**: Links anonymous sessions to known users via email
 - Sends to both RosterLab tracker AND CDP
 - Creates the connection between `anonymousId` and `userId`
@@ -46,6 +49,7 @@ The `analytics` object provides three main methods:
   ```
 
 #### Helper Methods
+
 - `analytics.getDeviceId()` - Returns `_rl_anon_id` cookie value
 - `analytics.getUserId()` - Returns authenticated user ID from `rl_authenticated` cookie
 - `analytics.getSessionId()` - Returns current session ID
@@ -55,35 +59,40 @@ The `analytics` object provides three main methods:
 All CTA modals automatically track:
 
 #### **Modal Viewed**
+
 ```typescript
 analytics.track("cta_modal_viewed", {
   variant: "A" | "B" | "C" | "D",
   test_name: "cta_modal_ab_test",
   modal_type: "live_demo" | "case_study" | "webinar_recording" | "demo_video",
-  trigger_type: "high_intent" | "returning_visitor"
+  trigger_type: "high_intent" | "returning_visitor",
 });
 ```
 
 #### **Modal Dismissed**
+
 ```typescript
 analytics.track("cta_modal_dismissed", {
   variant: "A" | "B" | "C" | "D",
-  test_name: "cta_modal_ab_test"
+  test_name: "cta_modal_ab_test",
 });
 ```
 
 #### **Modal Converted**
+
 ```typescript
 analytics.track("cta_modal_converted", {
   variant: "A" | "B" | "C" | "D",
   test_name: "cta_modal_ab_test",
-  conversion_type: "demo_booking" | "case_study_view" | "webinar_view" | "demo_video_view"
+  conversion_type:
+    "demo_booking" | "case_study_view" | "webinar_view" | "demo_video_view",
 });
 ```
 
 ### 3. User Identification on Form Submissions ✅ **IMPLEMENTED**
 
 #### **Variant A - Demo Booking Modal** (`CTAModalDemoBooking.tsx`)
+
 - **Action**: Redirects to `/book-a-demo` (no form submission in modal)
 - **Calendly Integration**: Calendly events captured in `DemoBookingBase.tsx`
 - When user books via Calendly:
@@ -96,8 +105,9 @@ analytics.track("cta_modal_converted", {
   ```
 
 #### **Variant B - Case Study Modal** (`CTAModalCaseStudy.tsx`) ✅
+
 ```typescript
-// BEFORE submitting to HubSpot or any other action
+// BEFORE submitting to the CRM or taking any redirect action
 await analytics.identify(data.email, {
   email: data.email,
   firstName: firstName,
@@ -109,11 +119,13 @@ await analytics.identify(data.email, {
 ```
 
 #### **Variant C - Webinar Recording Modal** (`CTAModalWebinarRecording.tsx`)
+
 - **No form required** - Direct link to webinar page
 - Opens webinar in new tab with UTM tracking
 - No user identification needed (ungated content)
 
 #### **Variant D - Demo Video Modal** (`CTAModalDemoVideo.tsx`) ✅
+
 ```typescript
 // BEFORE submitting to API
 await analytics.identify(data.email, {
@@ -129,6 +141,7 @@ await analytics.identify(data.email, {
 ### 4. Calendly Integration (`DemoBookingBase.tsx`) ✅
 
 When a user schedules a demo via Calendly:
+
 ```typescript
 useCalendlyEventListener({
   onEventScheduled: async (e: any) => {
@@ -154,11 +167,12 @@ useCalendlyEventListener({
 ### 5. Contact Form (`ContactFormWrapper.tsx`) ✅
 
 Already implemented - identifies users on form submission:
+
 ```typescript
 onFormSubmit: ($form: HTMLFormElement) => {
   const values = extractFormValues($form);
   const email = values.email;
-  
+
   if (email) {
     analytics.identify(email, {
       email: email,
@@ -168,7 +182,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
       phone: values.phone || values.mobilephone,
     });
   }
-}
+};
 ```
 
 ## Event Flow Examples
@@ -180,6 +194,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
    - Page view tracked with `anonymousId: "anon_abc123"`
 
 2. **Modal triggers after 30s**
+
    ```json
    {
      "type": "track",
@@ -194,6 +209,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
    ```
 
 3. **User submits email form**
+
    ```json
    {
      "type": "identify",
@@ -232,6 +248,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
    - Calendly internal tracking
 
 3. **Calendly event fires: `calendly.event_scheduled`**
+
    ```json
    {
      "type": "identify",
@@ -263,6 +280,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
 ## CDP Data Schema
 
 ### Track Event Schema
+
 ```typescript
 {
   type: 'track',
@@ -287,6 +305,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
 ```
 
 ### Identify Event Schema
+
 ```typescript
 {
   type: 'identify',
@@ -307,6 +326,7 @@ onFormSubmit: ($form: HTMLFormElement) => {
 ### Local Development Testing
 
 1. **Test Anonymous Tracking**
+
    ```bash
    # Open browser console
    # Visit homepage
@@ -334,9 +354,11 @@ onFormSubmit: ($form: HTMLFormElement) => {
 ### Production Verification
 
 1. **Check CDP Dashboard**
+
    ```bash
    curl 'https://rosterlab-inngest.netlify.app/.netlify/functions/dashboard-popup-conversions?days=7'
    ```
+
    Should return conversions with email addresses
 
 2. **Verify Event Linkage**
@@ -354,12 +376,13 @@ onFormSubmit: ($form: HTMLFormElement) => {
 ## Environment Variables
 
 Required in `.env.local`:
+
 ```bash
 # CDP Endpoint (optional - defaults to rosterlab-inngest)
 NEXT_PUBLIC_CDP_ENDPOINT=https://rosterlab-inngest.netlify.app/api/batch
 
-# HubSpot (for CRM sync)
-HUBSPOT_PRIVATE_APP_TOKEN=your_token_here
+# Attio workflow webhook (server-side CRM sync)
+ATTIO_LEAD_WEBHOOK_URL=https://app.attio.com/webhook/your-workflow-webhook
 ```
 
 ## Key Implementation Notes
@@ -367,14 +390,15 @@ HUBSPOT_PRIVATE_APP_TOKEN=your_token_here
 ### ⚠️ Critical Best Practices
 
 1. **Always call `identify()` BEFORE redirects**
+
    ```typescript
    // ✅ CORRECT
    await analytics.identify(email, traits);
-   router.push('/thank-you');
+   router.push("/thank-you");
 
    // ❌ WRONG - identify may not complete before redirect
    analytics.identify(email, traits);
-   router.push('/thank-you');
+   router.push("/thank-you");
    ```
 
 2. **Call identify on EVERY form submission**
@@ -402,6 +426,7 @@ Browser → analytics.track/identify
 ### 📊 What Gets Captured
 
 **For every conversion, we capture:**
+
 - Who: `userId` (email) + `traits` (name, company, role, etc.)
 - When: `timestamp`
 - Where: `page.url`, `page.path`
@@ -410,6 +435,7 @@ Browser → analytics.track/identify
 - Context: Device, geo, browser info
 
 **This allows answering:**
+
 - Which modal variant converts best?
 - Which UTM campaigns drive the most conversions?
 - What's the typical journey before conversion?
@@ -435,16 +461,19 @@ Browser → analytics.track/identify
 ### Common Issues
 
 **Issue: Identify calls not showing in CDP**
+
 - Check Network tab - is request being sent?
 - Check CDP endpoint is correct
 - Verify `NEXT_PUBLIC_CDP_ENDPOINT` is set (if overriding default)
 
 **Issue: userId not linking to anonymousId**
+
 - Ensure `_rl_anon_id` cookie exists before identify
 - Check that identify is called BEFORE page redirects
 - Verify both events have same `anonymousId`
 
 **Issue: Missing UTM parameters in conversions**
+
 - UTM parameters are captured at page load
 - Ensure user has UTM params in their landing URL
 - Check `getCurrentTouchData()` is working
@@ -455,31 +484,32 @@ Browser → analytics.track/identify
 // In browser console:
 
 // Check current analytics state
-analytics.logState()
+analytics.logState();
 
 // Get device ID (anonymousId)
-analytics.getDeviceId()
+analytics.getDeviceId();
 
 // Get user ID
-analytics.getUserId()
+analytics.getUserId();
 
 // Get session ID
-analytics.getSessionId()
+analytics.getSessionId();
 
 // Manually trigger identify (testing)
-analytics.identify('test@example.com', {
-  email: 'test@example.com',
-  firstName: 'Test',
-  lastName: 'User'
-})
+analytics.identify("test@example.com", {
+  email: "test@example.com",
+  firstName: "Test",
+  lastName: "User",
+});
 
 // Check cookies
-document.cookie.split(';').filter(c => c.includes('rl_'))
+document.cookie.split(";").filter((c) => c.includes("rl_"));
 ```
 
 ## Future Enhancements
 
 Potential improvements:
+
 - [ ] Add page view tracking to CDP (currently only sent to rlTracker/GTM)
 - [ ] Implement batch queuing for offline/poor network conditions
 - [ ] Add retry logic for failed identify calls

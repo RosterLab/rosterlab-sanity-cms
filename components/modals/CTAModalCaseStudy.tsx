@@ -64,7 +64,10 @@ export default function CTAModalCaseStudy({
   // Close dropdown when clicking outside and check if should open upward
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (industryDropdownRef.current && !industryDropdownRef.current.contains(event.target as Node)) {
+      if (
+        industryDropdownRef.current &&
+        !industryDropdownRef.current.contains(event.target as Node)
+      ) {
         setIndustryDropdownOpen(false);
       }
     };
@@ -80,7 +83,9 @@ export default function CTAModalCaseStudy({
         const spaceAbove = rect.top;
 
         // Open upward if not enough space below and more space above
-        setDropdownOpenUpward(spaceBelow < dropdownHeight && spaceAbove > spaceBelow);
+        setDropdownOpenUpward(
+          spaceBelow < dropdownHeight && spaceAbove > spaceBelow,
+        );
       }
     }
 
@@ -169,8 +174,7 @@ export default function CTAModalCaseStudy({
     });
 
     try {
-      // Submit to your backend/CRM (e.g., HubSpot, custom API)
-      console.log("📤 Submitting to HubSpot API...", data);
+      console.log("📤 Submitting case study lead...", data);
       const response = await fetch("/api/case-study-gate", {
         method: "POST",
         headers: {
@@ -186,7 +190,7 @@ export default function CTAModalCaseStudy({
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log("✅ HubSpot submission successful:", responseData);
+        console.log("✅ Lead submission successful:", responseData);
 
         analytics.track("cta_modal_converted", {
           variant: "B",
@@ -211,9 +215,16 @@ export default function CTAModalCaseStudy({
           // Handle redirect based on context (only for non-gated flow)
           if (!isContentGate && !testMode) {
             // Exit intent modal - redirect to the case study page using client-side navigation
-            router.push("/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b");
+            router.push(
+              "/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b",
+            );
           } else if (testMode) {
-            console.log("🎯 TEST MODE:", isContentGate ? "Content unlocked, modal will close" : "Would redirect to case study page");
+            console.log(
+              "🎯 TEST MODE:",
+              isContentGate
+                ? "Content unlocked, modal will close"
+                : "Would redirect to case study page",
+            );
           }
           // If isContentGate, modal closes via onConversion and content shows
         }, 800);
@@ -356,7 +367,11 @@ export default function CTAModalCaseStudy({
                   <div className="flex flex-wrap gap-1 sm:gap-1.5 lg:gap-2 mb-1.5 sm:mb-2 lg:mb-3">
                     {/* Popular Tag */}
                     <span className="inline-flex items-center gap-1 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-[10px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-semibold shadow-sm">
-                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <svg
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                       Popular
@@ -372,7 +387,9 @@ export default function CTAModalCaseStudy({
                   </h2>
 
                   <p className="text-neutral-600 mb-0 line-clamp-2 sm:line-clamp-3 text-[11px] sm:text-xs lg:text-sm">
-                    Saved thousands per week from the first roster: how a junior doctor department with complex healthcare rostering needs moved from spreadsheets to evidence-based planning.
+                    Saved thousands per week from the first roster: how a junior
+                    doctor department with complex healthcare rostering needs
+                    moved from spreadsheets to evidence-based planning.
                   </p>
                 </div>
               </article>
@@ -386,18 +403,39 @@ export default function CTAModalCaseStudy({
 
                   {/* Main bubble */}
                   <div className="relative bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 md:px-4 md:py-1.5 lg:px-6 lg:py-3 rounded-full shadow-lg flex items-center gap-1.5 sm:gap-2 font-semibold text-xs sm:text-sm md:text-xs whitespace-nowrap">
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-3 md:h-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                    <svg
+                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-3 md:h-3 animate-bounce"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+                      />
                     </svg>
                     <span>Fill form to unlock</span>
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-3 md:h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3 sm:w-4 sm:h-4 md:w-3 md:h-3 animate-pulse"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
 
                   {/* Sparkles */}
                   <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 md:-top-0.5 md:-right-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-1.5 md:h-1.5 bg-yellow-300 rounded-full animate-ping"></div>
-                  <div className="absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 md:-bottom-0.5 md:-left-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-1.5 md:h-1.5 bg-yellow-300 rounded-full animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                  <div
+                    className="absolute -bottom-0.5 -left-0.5 sm:-bottom-1 sm:-left-1 md:-bottom-0.5 md:-left-0.5 w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-1.5 md:h-1.5 bg-yellow-300 rounded-full animate-ping"
+                    style={{ animationDelay: "0.5s" }}
+                  ></div>
                 </div>
               </div>
             </div>
@@ -427,12 +465,23 @@ export default function CTAModalCaseStudy({
                   {isContentGate ? "Case Study Unlocked!" : "Thank you!"}
                 </h3>
                 <p className="text-sm sm:text-base text-neutral-600 mb-3 sm:mb-4">
-                  {isContentGate ? "Loading your case study..." : "Redirecting you to the case study..."}
+                  {isContentGate
+                    ? "Loading your case study..."
+                    : "Redirecting you to the case study..."}
                 </p>
                 <div className="flex items-center justify-center gap-1.5">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  <div
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full animate-bounce"
+                    style={{ animationDelay: "0ms" }}
+                  ></div>
+                  <div
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full animate-bounce"
+                    style={{ animationDelay: "150ms" }}
+                  ></div>
+                  <div
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full animate-bounce"
+                    style={{ animationDelay: "300ms" }}
+                  ></div>
                 </div>
               </div>
             ) : (
@@ -452,9 +501,7 @@ export default function CTAModalCaseStudy({
                   className="text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neutral-900 mb-1.5 sm:mb-2 md:mb-2.5 lg:mb-3 leading-tight"
                 >
                   Read How One Hospital Department{" "}
-                  <span className="text-emerald-600">
-                    Cut 15% in Costs
-                  </span>{" "}
+                  <span className="text-emerald-600">Cut 15% in Costs</span>{" "}
                   with Less Overtime
                 </h2>
 
@@ -462,12 +509,14 @@ export default function CTAModalCaseStudy({
                 <p className="text-xs sm:text-sm lg:text-base text-neutral-600 mb-3 sm:mb-4 lg:mb-5">
                   {isContentGate
                     ? "Enter your details below to unlock this case study and see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."
-                    : "Enter your details to see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."
-                  }
+                    : "Enter your details to see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."}
                 </p>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-2.5 sm:space-y-3 lg:space-y-4">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-2.5 sm:space-y-3 lg:space-y-4"
+                >
                   {/* Name and Email */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2.5 sm:gap-3 lg:gap-4">
                     <div>
@@ -525,10 +574,18 @@ export default function CTAModalCaseStudy({
                       <div className="relative" ref={industryDropdownRef}>
                         <button
                           type="button"
-                          onClick={() => setIndustryDropdownOpen(!industryDropdownOpen)}
+                          onClick={() =>
+                            setIndustryDropdownOpen(!industryDropdownOpen)
+                          }
                           className="w-full px-2.5 py-1.5 sm:px-3 sm:py-2 pr-8 sm:pr-10 text-sm border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-left bg-white"
                         >
-                          <span className={selectedIndustry ? "text-neutral-900" : "text-neutral-500"}>
+                          <span
+                            className={
+                              selectedIndustry
+                                ? "text-neutral-900"
+                                : "text-neutral-500"
+                            }
+                          >
                             {selectedIndustry || "Select industry"}
                           </span>
                           <svg
@@ -539,22 +596,38 @@ export default function CTAModalCaseStudy({
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </button>
                         {industryDropdownOpen && (
                           <div
                             className={`absolute z-[10000] w-full bg-white border border-neutral-300 rounded-lg shadow-xl overflow-hidden ${
-                              dropdownOpenUpward ? 'bottom-full mb-1' : 'top-full mt-1'
+                              dropdownOpenUpward
+                                ? "bottom-full mb-1"
+                                : "top-full mt-1"
                             }`}
                           >
                             <div className="max-h-40 sm:max-h-48 overflow-y-auto overflow-x-hidden">
-                              {["Healthcare", "Retail", "Manufacturing", "Transportation", "Business Services", "Others"].map((option) => (
+                              {[
+                                "Healthcare",
+                                "Retail",
+                                "Manufacturing",
+                                "Transportation",
+                                "Business Services",
+                                "Others",
+                              ].map((option) => (
                                 <button
                                   key={option}
                                   type="button"
                                   onClick={() => {
-                                    setValue("industry", option, { shouldValidate: true });
+                                    setValue("industry", option, {
+                                      shouldValidate: true,
+                                    });
                                     setIndustryDropdownOpen(false);
                                   }}
                                   className="w-full text-left px-3 py-2 sm:px-4 sm:py-3 text-sm hover:bg-emerald-50 transition-colors text-neutral-900 border-b border-neutral-100 last:border-b-0"
@@ -669,7 +742,8 @@ export default function CTAModalCaseStudy({
 
       <style jsx>{`
         @keyframes float {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px);
           }
           50% {

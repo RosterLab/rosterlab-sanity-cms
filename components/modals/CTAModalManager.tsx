@@ -6,14 +6,15 @@ import { usePathname } from "next/navigation";
 // Lazy load modal components - they'll be preloaded at 15s
 const CTAModalDemoBooking = lazy(() => import("./CTAModalDemoBooking"));
 const CTAModalCaseStudy = lazy(() => import("./CTAModalCaseStudy"));
-const CTAModalWebinarRecording = lazy(() => import("./CTAModalWebinarRecording"));
+const CTAModalWebinarRecording = lazy(
+  () => import("./CTAModalWebinarRecording"),
+);
 const CTAModalDemoVideo = lazy(() => import("./CTAModalDemoVideo"));
 import {
   trackPageView,
   shouldShowModal,
   assignVariant,
   updateModalState,
-  markDemoBooked,
   getModalTriggerType,
 } from "@/lib/analytics/user-behavior-tracker";
 import { analytics } from "@/components/analytics/tracking";
@@ -70,10 +71,10 @@ export default function CTAModalManager() {
     const preloadTimer = setTimeout(() => {
       // Preload all modal variants in background (doesn't show them)
       // This ensures instant appearance when trigger conditions are met at 20s+
-      import('./CTAModalDemoBooking');
-      import('./CTAModalCaseStudy');
-      import('./CTAModalWebinarRecording');
-      import('./CTAModalDemoVideo');
+      import("./CTAModalDemoBooking");
+      import("./CTAModalCaseStudy");
+      import("./CTAModalWebinarRecording");
+      import("./CTAModalDemoVideo");
     }, 15000); // 15 seconds = 5s before earliest possible trigger
 
     return () => clearTimeout(preloadTimer);
@@ -85,17 +86,20 @@ export default function CTAModalManager() {
     if (!isReady || isModalOpen || variant) return;
 
     // Don't show modals on whitepaper pages
-    if (pathname.startsWith('/whitepapers')) return;
+    if (pathname.startsWith("/whitepapers")) return;
 
     // Don't show modals on the mini tools pages (ROI/FTE/other calculators, quizzes, etc.)
-    if (pathname.startsWith('/tools') || pathname.startsWith('/us/tools')) return;
+    if (pathname.startsWith("/tools") || pathname.startsWith("/us/tools"))
+      return;
 
     // Don't show modals on pricing or about pages
-    if (pathname.startsWith('/pricing') || pathname.startsWith('/us/pricing')) return;
-    if (pathname.startsWith('/about') || pathname.startsWith('/us/about')) return;
+    if (pathname.startsWith("/pricing") || pathname.startsWith("/us/pricing"))
+      return;
+    if (pathname.startsWith("/about") || pathname.startsWith("/us/about"))
+      return;
 
     // Don't show auto-popup on internal modal preview page
-    if (pathname.startsWith('/test-modals')) return;
+    if (pathname.startsWith("/test-modals")) return;
 
     const checkInterval = setInterval(() => {
       if (shouldShowModal()) {
@@ -152,11 +156,6 @@ export default function CTAModalManager() {
       converted: true,
       convertedAt: new Date().toISOString(),
     });
-
-    // If variant A (demo booking), mark demo as booked
-    if (variant === "A") {
-      markDemoBooked();
-    }
 
     // Track conversion
     analytics.track("ab_test_converted", {

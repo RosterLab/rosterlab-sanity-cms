@@ -42,7 +42,11 @@ function defaultQty(all: number = 1): Record<DayKey, string> {
 }
 
 let nextRowId = 1;
-function makeRow(preset: Partial<Omit<ShiftRow, "id" | "qty">> & { qty?: Partial<Record<DayKey, string | number>> } = {}): ShiftRow {
+function makeRow(
+  preset: Partial<Omit<ShiftRow, "id" | "qty">> & {
+    qty?: Partial<Record<DayKey, string | number>>;
+  } = {},
+): ShiftRow {
   const qty = defaultQty(1);
   if (preset.qty) {
     (Object.keys(preset.qty) as DayKey[]).forEach((d) => {
@@ -246,7 +250,11 @@ export default function FTECalculatorClient() {
   const balance = useMemo(() => {
     const avail = parseFloat(fteAvailable);
     if (requiredFte === null || isNaN(avail) || avail < 0) {
-      return { label: "Surplus / deficit", value: "—", state: "neutral" as const };
+      return {
+        label: "Surplus / deficit",
+        value: "—",
+        state: "neutral" as const,
+      };
     }
     const diff = avail - requiredFte;
     const shown = Math.round(diff * 100) / 100;
@@ -420,7 +428,11 @@ export default function FTECalculatorClient() {
 
   const generatePdfSnapshot = useCallback(async () => {
     const { default: jsPDF } = await import("jspdf");
-    const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+    const doc = new jsPDF({
+      orientation: "landscape",
+      unit: "pt",
+      format: "a4",
+    });
     const pageW = doc.internal.pageSize.getWidth();
     const marginX = 40;
     let y = 48;
@@ -474,10 +486,7 @@ export default function FTECalculatorClient() {
       ["Total weekly demand", `${fmt(totalHours, totalHours % 1 ? 1 : 0)} hrs`],
       ["Hours per FTE", hoursPerFte || "—"],
       ["Scaling factor", `${fmt(scaleClean, scaleClean % 1 ? 1 : 0)}%`],
-      [
-        "Required FTE",
-        requiredFte === null ? "—" : fmt(requiredFte, 2),
-      ],
+      ["Required FTE", requiredFte === null ? "—" : fmt(requiredFte, 2)],
       ["FTE available", fteAvailable || "—"],
       [balance.label, balance.value],
     ];
@@ -518,9 +527,7 @@ export default function FTECalculatorClient() {
       "Sun",
       "Weekly (h)",
     ];
-    const colWidths = [
-      120, 55, 55, 55, 44, 44, 44, 44, 44, 44, 44, 70,
-    ];
+    const colWidths = [120, 55, 55, 55, 44, 44, 44, 44, 44, 44, 44, 70];
     const tableW = colWidths.reduce((a, b) => a + b, 0);
     const startX = marginX;
 
@@ -648,8 +655,7 @@ export default function FTECalculatorClient() {
       setGateError(null);
       setGateSubmitting(true);
 
-      // Fire the API call, but don't block the download on it — HubSpot upsert
-      // can take ~1s. If it fails we still let the user download.
+      // Fire the CRM call without blocking the download.
       const apiPromise = fetch("/api/conversion-point", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -694,8 +700,7 @@ export default function FTECalculatorClient() {
     [gateFirstName, gateLastName, gateEmail, gateCompany, runPrint],
   );
 
-  const requiredFteDisplay =
-    requiredFte === null ? "—" : fmt(requiredFte, 2);
+  const requiredFteDisplay = requiredFte === null ? "—" : fmt(requiredFte, 2);
   const requiredFteSub =
     scaleNumber > 0
       ? `Total weekly demand ÷ hours per FTE, scaled up by ${fmt(
@@ -738,7 +743,10 @@ export default function FTECalculatorClient() {
             FTE Requirement Calculator
           </h1>
           <p className="mt-2.5 text-sm sm:text-[15px] text-[#55606B] max-w-none">
-            Enter each shift in your demand model with its times and how many staff you need on each day of the week. We&apos;ll total the weekly hours and convert them into the full-time equivalents (FTE) required to cover the roster.
+            Enter each shift in your demand model with its times and how many
+            staff you need on each day of the week. We&apos;ll total the weekly
+            hours and convert them into the full-time equivalents (FTE) required
+            to cover the roster.
           </p>
           {printDate && (
             <p className="hidden print:block mt-2 text-xs font-light text-[#6B7280]">
@@ -812,14 +820,19 @@ export default function FTECalculatorClient() {
                 {rows.map((row) => {
                   const hrs = weeklyByRow.get(row.id) ?? 0;
                   return (
-                    <tr key={row.id} className="border-b border-[#E4E8EC] last:border-b-0">
+                    <tr
+                      key={row.id}
+                      className="border-b border-[#E4E8EC] last:border-b-0"
+                    >
                       <td className="pl-3 pr-1 py-2.5 text-left align-middle">
                         <input
                           type="text"
                           className="w-full min-w-[200px] border border-[#E4E8EC] rounded-md py-2 px-3 text-sm bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
                           placeholder="e.g. Morning"
                           value={row.name}
-                          onChange={(e) => updateRow(row.id, { name: e.target.value })}
+                          onChange={(e) =>
+                            updateRow(row.id, { name: e.target.value })
+                          }
                         />
                       </td>
                       <td className="pl-3 pr-1 py-2.5 text-left align-middle">
@@ -851,7 +864,9 @@ export default function FTECalculatorClient() {
                           step="0.25"
                           placeholder="hrs"
                           value={row.duration}
-                          onChange={(e) => handleDurationChange(row.id, e.target.value)}
+                          onChange={(e) =>
+                            handleDurationChange(row.id, e.target.value)
+                          }
                         />
                       </td>
                       {DAYS.map((d) => (
@@ -925,7 +940,9 @@ export default function FTECalculatorClient() {
                       className="w-full border border-[#E4E8EC] rounded-md py-2 px-3 text-sm bg-white focus:outline-none focus:border-[#24D9DC] focus:ring-2 focus:ring-[#24D9DC]/20"
                       placeholder="e.g. Morning"
                       value={row.name}
-                      onChange={(e) => updateRow(row.id, { name: e.target.value })}
+                      onChange={(e) =>
+                        updateRow(row.id, { name: e.target.value })
+                      }
                     />
                   </div>
 
@@ -968,7 +985,9 @@ export default function FTECalculatorClient() {
                         step="0.25"
                         placeholder="hrs"
                         value={row.duration}
-                        onChange={(e) => handleDurationChange(row.id, e.target.value)}
+                        onChange={(e) =>
+                          handleDurationChange(row.id, e.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -1104,10 +1123,10 @@ export default function FTECalculatorClient() {
                   className="pointer-events-none absolute left-1/2 sm:left-full top-full sm:top-1/2 z-20 mt-2 sm:mt-0 sm:ml-3 w-[280px] sm:w-[420px] max-w-[calc(100vw-2rem)] -translate-x-1/2 sm:translate-x-0 sm:-translate-y-1/2 rounded-lg bg-neutral-900 px-4 py-3 text-[13px] font-normal normal-case tracking-normal leading-relaxed text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
                 >
                   With a 0% scaling factor, this is the FTE needed to cover
-                  demand exactly as entered. Since staff take annual leave,
-                  sick leave and training, the FTE you employ typically needs
-                  to be higher. A common starting point is 15–20% — tune it
-                  to your team&apos;s historical leave and absence rates.
+                  demand exactly as entered. Since staff take annual leave, sick
+                  leave and training, the FTE you employ typically needs to be
+                  higher. A common starting point is 15–20% — tune it to your
+                  team&apos;s historical leave and absence rates.
                   <span className="hidden sm:block absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rotate-45 bg-neutral-900" />
                 </span>
               </span>
@@ -1121,7 +1140,9 @@ export default function FTECalculatorClient() {
                 value={scaleFactor}
                 onChange={(e) => setScaleFactor(e.target.value)}
               />
-              <span className="text-[20px] sm:text-[22px] font-medium text-[#55606B] ml-1">%</span>
+              <span className="text-[20px] sm:text-[22px] font-medium text-[#55606B] ml-1">
+                %
+              </span>
             </div>
             <div className="text-xs font-light text-[#6B7280] mt-1.5">
               Uplift for annual leave, sick leave, training and other systemic
@@ -1172,7 +1193,12 @@ export default function FTECalculatorClient() {
             <div className="text-xs font-medium uppercase tracking-wider text-[#55606B] mb-2">
               {balance.label}
             </div>
-            <div className={"text-[32px] sm:text-[42px] font-semibold leading-tight " + balanceValueClass}>
+            <div
+              className={
+                "text-[32px] sm:text-[42px] font-semibold leading-tight " +
+                balanceValueClass
+              }
+            >
               {balance.value}
             </div>
             <div className="text-xs font-light text-[#6B7280] mt-1.5">
@@ -1288,9 +1314,27 @@ export default function FTECalculatorClient() {
                 viewBox="0 0 200 200"
                 fill="none"
               >
-                <circle cx="100" cy="100" r="90" stroke="currentColor" strokeWidth="1.5" />
-                <circle cx="100" cy="100" r="65" stroke="currentColor" strokeWidth="1.5" />
-                <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="1.5" />
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="65"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="40"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
               </svg>
 
               {/* Floating icon */}
@@ -1322,8 +1366,8 @@ export default function FTECalculatorClient() {
                 </h3>
                 <p className="text-sm opacity-90 mb-6 leading-relaxed max-w-[85%]">
                   Book a walkthrough with our experts. See how RosterLab plans
-                  your coverage across every skill, rule and preference — so
-                  you can focus on the work that matters.
+                  your coverage across every skill, rule and preference — so you
+                  can focus on the work that matters.
                 </p>
                 <span className="mt-auto inline-flex items-center text-sm font-semibold group-hover:gap-2 gap-1 transition-all">
                   Book a demo
@@ -1345,7 +1389,6 @@ export default function FTECalculatorClient() {
             </Link>
           </div>
         </section>
-
       </Container>
 
       {showGate && (

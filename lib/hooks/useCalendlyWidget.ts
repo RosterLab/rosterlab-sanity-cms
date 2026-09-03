@@ -113,7 +113,7 @@ export function useCalendlyWidget({
 
   // Performance optimizations
   useEffect(() => {
-    if (!enablePerformanceOptimizations) return;
+    if (!enablePerformanceOptimizations || !shouldLoad) return;
 
     // Check if mobile and load immediately
     if (window.innerWidth < 768) {
@@ -190,6 +190,7 @@ export function useCalendlyWidget({
     config.redirectPath,
     calendlyUrl,
     router,
+    shouldLoad,
   ]);
 
   // Extract event data from Calendly events

@@ -4,7 +4,6 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { HiClock, HiCheck } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import { withHreflang } from "@/components/seo/HreflangTags";
 
 export const metadata = withHreflang(
@@ -62,7 +61,6 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <SiteLayout>
-      <HubSpotFormListener />
       <div className="py-16 bg-neutral-50 min-h-screen">
         <Container>
           {/* Header */}
@@ -86,7 +84,7 @@ export default function ContactPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-            {/* HubSpot Demo Form */}
+            {/* Contact form */}
             <div className="bg-white rounded-lg shadow-sm p-8">
               <h2 className="text-2xl font-bold text-neutral-900 mb-6">
                 Speak to us about your scheduling challenges

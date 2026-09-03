@@ -12,7 +12,6 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import ShareButtons from "@/components/blog/ShareButtons";
 import NewsletterFormWrapper from "@/components/forms/NewsletterFormWrapper";
 import RelatedPosts from "@/components/blog/RelatedPosts";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 import ArticleSchema from "@/components/seo/ArticleSchema";
 import { draftMode } from "next/headers";
@@ -174,7 +173,6 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
 
   return (
     <article>
-      <HubSpotFormListener />
       <BlogPostTracker
         title={post.title}
         slug={post.slug?.current || slug}
@@ -338,7 +336,6 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
                     Subscribe for more insights and product updates
                   </h3>
                   <NewsletterFormWrapper />
-                  <HubSpotFormListener />
                 </div>
 
                 {/* Share Buttons */}

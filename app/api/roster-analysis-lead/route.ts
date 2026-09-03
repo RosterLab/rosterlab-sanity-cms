@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { upsertHubSpotContact } from "@/lib/hubspot/upsertContact";
+import { submitAttioLead } from "@/lib/attio/submitLead";
+import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const CONVERSION_POINT = "Roster Analysis Report";
 
@@ -14,19 +15,18 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { email, organisationName } = rosterAnalysisLeadSchema.parse(body);
 
-    const result = await upsertHubSpotContact({
+    const result = await submitAttioLead({
+      source: "roster-analysis",
       email,
-      conversionPoint: CONVERSION_POINT,
-      properties: organisationName ? { company: organisationName } : undefined,
-      noteBody: `Contact submitted the Roster Analysis tool.\n\nDetails:\n- Organisation: ${
-        organisationName || "N/A"
-      }`,
+      company: organisationName || undefined,
+      detectedCountry: detectRequestCountry(request),
+      metadata: { conversionPoint: CONVERSION_POINT },
     });
 
-    // Always 200 — a HubSpot failure must not break the user's analysis.
+    // Always 200 — a CRM failure must not break the user's analysis.
     // The status is surfaced so the client can report it to analytics.
     return NextResponse.json(
-      { message: "Lead captured successfully", hubspot: result.status },
+      { message: "Lead captured successfully", attio: result.status },
       { status: 200 },
     );
   } catch (error) {

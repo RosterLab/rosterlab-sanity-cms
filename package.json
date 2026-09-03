@@ -10,6 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "refresh:market-access": "node scripts/refresh-market-access-policy.mjs",
     "sanity": "sanity dev",
     "sanity:build": "sanity build",
     "sanity:deploy": "sanity deploy",
@@ -17,7 +18,6 @@
     "sanity:reset": "tsx sanity/scripts/reset.ts",
     "sanity:import-images": "tsx sanity/scripts/import-images.ts",
     "sanity:quick-import": "tsx sanity/scripts/quick-image-import.ts",
-    "add-hubspot-listener": "node scripts/add-hubspot-form-listener.js",
     "prepare": "husky"
   },
   "dependencies": {

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { submitAttioLead } from "@/lib/attio/submitLead";
+import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const demoVideoGateSchema = z.object({
   name: z.string().min(2),
@@ -13,22 +15,35 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const validatedData = demoVideoGateSchema.parse(body);
+    const [firstName, ...lastName] = validatedData.name.trim().split(/\s+/);
+    const result = await submitAttioLead({
+      source: "demo-video",
+      email: validatedData.email,
+      firstName,
+      lastName: lastName.join(" "),
+      detectedCountry: detectRequestCountry(request),
+      metadata: {
+        industry: validatedData.industry,
+        role: validatedData.role,
+        lookingFor: validatedData.lookingFor,
+      },
+    });
 
     return NextResponse.json(
-      { message: "Form submitted successfully", data: validatedData },
-      { status: 200 }
+      { message: "Form submitted successfully", attio: result.status },
+      { status: 200 },
     );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: "Invalid form data", details: error.errors },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
