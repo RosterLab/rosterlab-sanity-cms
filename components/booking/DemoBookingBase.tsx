@@ -10,6 +10,13 @@ import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-even
 import { analytics } from "@/components/analytics/tracking";
 import dynamic from "next/dynamic";
 
+// Embed size. Driven by CSS variables in app/globals.css so the height can be
+// tuned (and made responsive) in one place.
+const CALENDLY_EMBED_STYLES = {
+  height: "var(--calendly-embed-height, 700px)",
+  minWidth: "var(--calendly-embed-min-width, 320px)",
+} as const;
+
 // Lazy load the Calendly widget
 const LazyInlineWidget = dynamic(
   () => import("react-calendly").then((mod) => mod.InlineWidget),
@@ -17,7 +24,7 @@ const LazyInlineWidget = dynamic(
     loading: () => (
       <div
         className="flex items-center justify-center bg-gray-50 rounded-lg"
-        style={{ height: "700px" }}
+        style={{ height: CALENDLY_EMBED_STYLES.height }}
       >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
@@ -62,10 +69,7 @@ export default function DemoBookingBase({
         },
         region,
         redirectPath: regionalContent.links.meetingConfirmed,
-        styles: {
-          height: "700px",
-          minWidth: "320px",
-        },
+        styles: CALENDLY_EMBED_STYLES,
         pageSettings: {
           hideGdprBanner: true,
         },
@@ -173,15 +177,12 @@ export default function DemoBookingBase({
           <div
             ref={widgetContainerRef}
             className="relative pb-8 lg:pb-0"
-            style={{ minHeight: "700px" }}
+            style={{ minHeight: CALENDLY_EMBED_STYLES.height }}
           >
             {shouldLoadWidget && calendlyUrl ? (
               <LazyInlineWidget
                 url={calendlyUrl}
-                styles={{
-                  height: "700px",
-                  minWidth: "320px",
-                }}
+                styles={CALENDLY_EMBED_STYLES}
                 pageSettings={{
                   hideGdprBanner: true,
                 }}
@@ -189,7 +190,7 @@ export default function DemoBookingBase({
             ) : (
               <div
                 className="flex items-center justify-center bg-gray-50 rounded-lg"
-                style={{ height: "700px" }}
+                style={{ height: CALENDLY_EMBED_STYLES.height }}
               >
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
