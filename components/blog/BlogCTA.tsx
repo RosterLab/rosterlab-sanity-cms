@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
 
 interface BlogCTAProps {
@@ -57,7 +58,9 @@ export default function BlogCTA({
             )
           }
         >
-          {secondaryButton.text}
+          <DemoCtaLabel href={secondaryButton.href}>
+            {secondaryButton.text}
+          </DemoCtaLabel>
         </Link>
       </div>
     </div>

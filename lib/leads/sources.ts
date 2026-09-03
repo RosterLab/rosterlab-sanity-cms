@@ -13,7 +13,7 @@ export const LEAD_SOURCES = [
   "case-study",
   "demo-video",
   "whitepaper",
-  "commercial-review",
+  "demo-request",
 ] as const;
 
 export type LeadSource = (typeof LEAD_SOURCES)[number];
@@ -22,7 +22,7 @@ const MUST_BE_RECORDED = new Set<LeadSource>([
   "contact",
   "newsletter",
   "ai-assistant-waitlist",
-  "commercial-review",
+  "demo-request",
 ]);
 
 export function mustRecordLead(source: LeadSource): boolean {

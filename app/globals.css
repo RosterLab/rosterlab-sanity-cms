@@ -29,6 +29,19 @@
   }
 }
 
+/* The embed follows the height Calendly reports for its current step (see
+   DemoBookingBase), so ease between the short routing form and the taller
+   calendar rather than snapping. */
+.calendly-inline-widget {
+  transition: height 250ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendly-inline-widget {
+    transition: none;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

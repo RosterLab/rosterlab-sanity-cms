@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HiInformationCircle } from "react-icons/hi";
 import Container from "@/components/ui/Container";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 const FTE_GATE_KEY = "rl_fte_pdf_gate_v1";
 
@@ -1370,7 +1371,7 @@ export default function FTECalculatorClient() {
                   can focus on the work that matters.
                 </p>
                 <span className="mt-auto inline-flex items-center text-sm font-semibold group-hover:gap-2 gap-1 transition-all">
-                  Book a demo
+                  <DemoCtaLabel href="/book-a-demo">Book a demo</DemoCtaLabel>
                   <svg
                     className="w-4 h-4"
                     fill="none"

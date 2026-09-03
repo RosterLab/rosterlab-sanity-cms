@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 export default function NotFound() {
   return (
@@ -52,7 +53,7 @@ export default function NotFound() {
                 href="/book-a-demo"
                 className="text-blue-600 hover:text-blue-700 transition-colors"
               >
-                Book a Demo
+                <DemoCtaLabel href="/book-a-demo">Book a Demo</DemoCtaLabel>
               </Link>
             </li>
             <li>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
@@ -10,9 +10,10 @@ import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-even
 import { analytics } from "@/components/analytics/tracking";
 import dynamic from "next/dynamic";
 import TrustedBy from "@/components/sections/TrustedBy";
-import CommercialReviewForm from "./CommercialReviewForm";
+import DemoRequestForm from "./DemoRequestForm";
 import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
 import { markDemoBooked } from "@/lib/analytics/user-behavior-tracker";
+import { BRAND_GRADIENT_TEXT } from "@/lib/brand";
 
 // Embed size. Driven by CSS variables in app/globals.css so the height can be
 // tuned (and made responsive) in one place.
@@ -20,6 +21,12 @@ const CALENDLY_EMBED_STYLES = {
   height: "var(--calendly-embed-height, 700px)",
   minWidth: "var(--calendly-embed-min-width, 320px)",
 } as const;
+
+// Calendly reports its own content height via `calendly.page_height`. The
+// routing form is much shorter than the calendar, so we follow that height
+// instead of reserving calendar-sized space for every step. Floored so a bogus
+// or mid-transition value can never collapse the embed.
+const MIN_EMBED_HEIGHT_PX = 480;
 
 // Lazy load the Calendly widget
 const LazyInlineWidget = dynamic(
@@ -69,6 +76,20 @@ export default function DemoBookingBase({
   showTrustedBy = false,
 }: DemoBookingBaseProps) {
   const { status: marketAccessStatus, decision } = useMarketAccess();
+  // Height reported by the Calendly iframe; null until the first event.
+  const [reportedHeight, setReportedHeight] = useState<number | null>(null);
+  const embedHeight = reportedHeight
+    ? `${reportedHeight}px`
+    : CALENDLY_EMBED_STYLES.height;
+  const embedStyles = useMemo(
+    () => ({ ...CALENDLY_EMBED_STYLES, height: embedHeight }),
+    [embedHeight],
+  );
+  // Restricted countries, and any visitor whose decision could not be
+  // resolved, get the request form in place of the calendar.
+  const showsRequestForm =
+    marketAccessStatus !== "loading" &&
+    (decision === null || decision.demo === "request_review");
   const canViewCalendar =
     marketAccessStatus === "ready" &&
     decision !== null &&
@@ -88,7 +109,7 @@ export default function DemoBookingBase({
         },
         region,
         redirectPath: regionalContent.links.meetingConfirmed,
-        styles: CALENDLY_EMBED_STYLES,
+        styles: embedStyles,
         pageSettings: {
           hideGdprBanner: true,
         },
@@ -126,6 +147,12 @@ export default function DemoBookingBase({
 
   // Handle Calendly events
   useCalendlyEventListener({
+    // Shrink the embed to fit the routing form, grow it back for the calendar.
+    onPageHeightResize: (e) => {
+      const height = Number.parseInt(e?.data?.payload?.height ?? "", 10);
+      if (!Number.isFinite(height)) return;
+      setReportedHeight(Math.max(height, MIN_EMBED_HEIGHT_PX));
+    },
     onEventScheduled: async (e: any) => {
       markDemoBooked();
       window.rlTracker?.formSubmit("book-demo");
@@ -182,22 +209,36 @@ export default function DemoBookingBase({
 
   return (
     <SiteLayout>
+      {/* `min-h-screen` only where the calendar goes: it reserves room for the
+          Calendly embed, and the much shorter request form would otherwise be
+          followed by a screen's worth of dead space above the footer. */}
       <div
-        className={`pt-16 bg-gradient-to-b from-blue-50 to-white min-h-screen ${className}`}
+        className={`pt-16 bg-gradient-to-b from-blue-50 to-white ${
+          showsRequestForm ? "" : "min-h-screen"
+        } ${className}`}
       >
         <Container>
           {/* Header */}
           <div className="text-center">
             <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-              {decision?.demo === "request_review"
-                ? "Request a Commercial Review"
-                : regionalContent.title}
+              {showsRequestForm ? (
+                <>
+                  Request for a{" "}
+                  {/* Brand gradient clipped to the word. `pr-[0.08em]` keeps
+                      the italic's overhang inside the clip box, which would
+                      otherwise shave the d. */}
+                  <span
+                    className="bg-clip-text pr-[0.08em] italic text-transparent"
+                    style={{ backgroundImage: BRAND_GRADIENT_TEXT }}
+                  >
+                    personalised
+                  </span>{" "}
+                  demo
+                </>
+              ) : (
+                regionalContent.title
+              )}
             </h1>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600">
-              RosterLab&apos;s paid solution starts at US$20 per employee per
-              month. Team size is collected for context and does not determine
-              calendar access.
-            </p>
           </div>
 
           {marketAccessStatus === "loading" ? (
@@ -208,8 +249,13 @@ export default function DemoBookingBase({
               </div>
             </div>
           ) : decision?.demo === "request_review" || !decision ? (
-            <div className="pb-12">
-              <CommercialReviewForm
+            <div className="pb-12 pt-10 sm:pt-14">
+              <DemoRequestForm
+                interactiveDemoHref={
+                  region === "us"
+                    ? "/us/product-tour"
+                    : "/staff-rostering-interactive-demo"
+                }
                 decision={
                   decision ?? {
                     policyVersion: "unavailable",
@@ -226,12 +272,12 @@ export default function DemoBookingBase({
               <div
                 ref={widgetContainerRef}
                 className="relative pb-8 lg:pb-0"
-                style={{ minHeight: CALENDLY_EMBED_STYLES.height }}
+                style={{ minHeight: embedHeight }}
               >
                 {shouldLoadWidget && calendlyUrl ? (
                   <LazyInlineWidget
                     url={calendlyUrl}
-                    styles={CALENDLY_EMBED_STYLES}
+                    styles={embedStyles}
                     pageSettings={{ hideGdprBanner: true }}
                   />
                 ) : (
@@ -260,7 +306,7 @@ export default function DemoBookingBase({
                 )}
               </div>
 
-              <div className="hidden lg:block text-center -mt-10 pb-8">
+              <div className="hidden lg:block text-center mt-4 pb-8">
                 <p className="text-gray-600">
                   Can&apos;t find a suitable time?{" "}
                   <Link
