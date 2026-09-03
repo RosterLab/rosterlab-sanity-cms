@@ -3,7 +3,6 @@ import { z } from "zod";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { evaluateMarketAccess } from "@/lib/market-access/policy";
-import { reportLeadError } from "@/lib/monitoring/leadErrors";
 
 const reviewSchema = z.object({
   name: z.string().trim().min(2).max(120),
@@ -43,13 +42,9 @@ export async function POST(request: NextRequest) {
     });
 
     if (delivery.status === "error") {
-      await reportLeadError(new Error("Required lead was not accepted"), {
-        operation: "commercial-review-submit",
-        source: "commercial-review",
+      console.error("Required commercial-review lead was not accepted", {
         delivery: delivery.delivery,
         result: delivery.status,
-        submissionId:
-          "submissionId" in delivery ? delivery.submissionId : undefined,
       });
       return NextResponse.json(
         { error: "Unable to submit the request" },
@@ -60,15 +55,7 @@ export async function POST(request: NextRequest) {
       delivery.status === "skipped" &&
       process.env.NODE_ENV === "production"
     ) {
-      await reportLeadError(
-        new Error("Required lead delivery is not configured"),
-        {
-          operation: "commercial-review-submit",
-          source: "commercial-review",
-          delivery: delivery.delivery,
-          result: delivery.status,
-        },
-      );
+      console.error("Commercial-review lead delivery is not configured");
       return NextResponse.json(
         { error: "Commercial review is not configured" },
         { status: 503 },
@@ -87,7 +74,6 @@ export async function POST(request: NextRequest) {
       );
     }
     console.error("Commercial review request failed", error);
-    await reportLeadError(error, { operation: "commercial-review-route" });
     return NextResponse.json({ error: "Unable to submit" }, { status: 500 });
   }
 }

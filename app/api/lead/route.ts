@@ -3,7 +3,6 @@ import { z } from "zod";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { LEAD_SOURCES, mustRecordLead } from "@/lib/leads/sources";
-import { reportLeadError } from "@/lib/monitoring/leadErrors";
 
 const noStoreHeaders = { "Cache-Control": "no-store" };
 
@@ -60,14 +59,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (mustRecordLead(input.source) && result.status !== "submitted") {
-      await reportLeadError(new Error("Required lead was not accepted"), {
-        operation: "submit",
+      console.error("Required lead was not accepted", {
         source: input.source,
         delivery: result.delivery,
         result: result.status,
-        detectedCountry,
-        submissionId:
-          "submissionId" in result ? result.submissionId : undefined,
       });
       return NextResponse.json(
         { error: "Unable to submit right now", delivery: result.status },
@@ -90,7 +85,6 @@ export async function POST(request: NextRequest) {
       );
     }
     console.error("Lead submission failed", error);
-    await reportLeadError(error, { operation: "lead-route" });
     return NextResponse.json(
       { error: "Unable to submit" },
       { status: 500, headers: noStoreHeaders },

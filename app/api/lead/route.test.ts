@@ -7,9 +7,6 @@ import { POST } from "./route";
 jest.mock("@/lib/leads/submitLead", () => ({
   submitWebsiteLead: jest.fn(),
 }));
-jest.mock("@/lib/monitoring/leadErrors", () => ({
-  reportLeadError: jest.fn().mockResolvedValue(undefined),
-}));
 
 const submitWebsiteLeadMock = jest.mocked(submitWebsiteLead);
 

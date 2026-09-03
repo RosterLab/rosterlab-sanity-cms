@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
-import { reportLeadError } from "@/lib/monitoring/leadErrors";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -30,13 +29,9 @@ export async function POST(request: NextRequest) {
     });
 
     if (result.status !== "submitted") {
-      await reportLeadError(new Error("Required lead was not accepted"), {
-        operation: "contact-submit",
-        source: "contact",
+      console.error("Required contact lead was not accepted", {
         delivery: result.delivery,
         result: result.status,
-        submissionId:
-          "submissionId" in result ? result.submissionId : undefined,
       });
       return NextResponse.json(
         { error: "Unable to submit right now", attio: result.status },
@@ -57,8 +52,6 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-
-    await reportLeadError(error, { operation: "contact-route" });
 
     return NextResponse.json(
       { error: "Internal server error" },

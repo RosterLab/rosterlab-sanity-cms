@@ -31,29 +31,18 @@ The workflow receives the existing lead fields plus stable delivery fields:
 }
 ```
 
-## Required workflow changes
+## Attio workflow
 
-1. Parse and require `submissionId` and `environment`.
-2. If `environment` is `preview`, route to a QA-only branch that creates no
-   production task or notification.
-3. Create or update the Person using email.
-4. Add a text attribute named `Submission ID` to the Website Leads list.
-5. Find a Website Leads entry whose `Submission ID` equals the payload value.
-6. Only when no entry exists, add the Person to Website Leads, populate the
-   lead attributes, and create the appropriate follow-up task/notification.
-7. At the end of both the new-entry and already-exists branches, use **Send HTTP
-   request** to call the automation service:
+No workflow changes are required for production. The existing workflow can
+continue to create or update the Person, add the Website Leads entry, and send
+its existing notification. The additional `submissionId` and `environment`
+fields can be ignored.
 
-```text
-POST https://your-automations-site.netlify.app/api/website-lead-acknowledge
-Authorization: Bearer <ATTIO_LEAD_CALLBACK_TOKEN>
-Content-Type: application/json
+If preview submissions must not notify sales, use a separate preview workflow
+or add an `environment=preview` branch later.
 
-{"submissionId":"<submissionId from the webhook payload>"}
-```
-
-The callback is intentionally last. A submission remains `accepted` until the
-complete workflow acknowledges it, and is retried if no callback arrives.
+The queue marks a submission delivered when Attio accepts the webhook with a
+successful HTTP response. No callback action is required in Attio.
 
 ## Netlify configuration
 
@@ -63,7 +52,6 @@ Marketing website:
 LEAD_DELIVERY_MODE=queue
 WEBSITE_LEAD_INGEST_URL=https://your-automations-site.netlify.app/api/website-leads
 WEBSITE_LEAD_INGEST_TOKEN=<production or preview token for this context>
-SENTRY_DSN=<optional shared Sentry project DSN>
 ```
 
 Automation service:
@@ -71,9 +59,9 @@ Automation service:
 ```text
 WEBSITE_LEAD_INGEST_TOKEN=<production token>
 WEBSITE_LEAD_PREVIEW_TOKEN=<preview token>
+WEBSITE_LEAD_WORKER_TOKEN=<worker-only token>
 ATTIO_LEAD_WEBHOOK_URL=<production Attio workflow webhook>
 ATTIO_LEAD_WEBHOOK_URL_PREVIEW=<preview-safe Attio workflow webhook>
-ATTIO_LEAD_CALLBACK_TOKEN=<callback bearer token>
 SENTRY_DSN=<optional shared Sentry project DSN>
 ```
 
@@ -84,14 +72,11 @@ the marketing site.
 ## Rollout checklist
 
 1. Apply the migration and deploy the automation service.
-2. Configure its production and preview tokens, Attio webhooks, callback token,
-   and optional Sentry DSN.
-3. Add Attio's idempotency check and final acknowledgement callback.
-4. Set the marketing deploy-preview context to `LEAD_DELIVERY_MODE=queue` with
-   the preview intake token.
-5. Submit one contact form and one content gate. Confirm each queue row reaches
-   `delivered`, each Attio entry is created once, and preview traffic creates no
-   production sales task or notification.
-6. Add a Sentry alert for errors tagged `subsystem=website-leads`, then enable
-   queue mode in production. Switching `LEAD_DELIVERY_MODE` back to `direct` is
-   the rollback.
+2. Configure its production and preview tokens, Attio webhooks, and optional
+   Sentry DSN.
+3. Set the marketing site to `LEAD_DELIVERY_MODE=queue` with its context-specific
+   intake token.
+4. Submit one contact form and confirm its queue row reaches `delivered` and the
+   expected Attio entry and notification are created.
+5. Optionally add a Sentry alert for errors tagged `subsystem=website-leads`.
+   Switching `LEAD_DELIVERY_MODE` back to `direct` is the rollback.
