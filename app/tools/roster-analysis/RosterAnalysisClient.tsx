@@ -27,6 +27,36 @@ const ALLOWED_EXTENSIONS = [".xlsx", ".csv"];
 
 const emailSchema = z.string().email("Please enter a valid email address");
 
+const MORE_RESOURCES = [
+  {
+    title: "FTE Calculator",
+    link: "/tools/fte-calculator",
+    image: "/images/og-images/WFM.png",
+    eyebrow: "Tool",
+    description:
+      "Convert your weekly staffing demand into the number of full-time equivalents you need to cover it.",
+    cta: "Work out your FTE",
+  },
+  {
+    title: "ROI Calculator",
+    link: "/tools/roi-calculator",
+    image: "/images/og-images/ROICalc.png",
+    eyebrow: "Tool",
+    description:
+      "Estimate the time and money you'd save by automating your rostering with RosterLab.",
+    cta: "Calculate savings",
+  },
+  {
+    title: "Rostering as a strategic workforce lever",
+    link: "/whitepapers/rostering-as-a-strategic-workforce-lever",
+    image: "/images/og-images/whitepaper start.png",
+    eyebrow: "Whitepaper",
+    description:
+      "How executives use rostering to control cost, retain staff and protect care quality.",
+    cta: "Read the whitepaper",
+  },
+];
+
 type PageState =
   | "upload"
   | "details"
@@ -755,10 +785,6 @@ export default function RosterAnalysisClient({
                       Analyse My Roster
                     </Button>
                   </div>
-                  <p className="text-xs text-gray-500 text-center">
-                    We&apos;ll only use this to send your analysis results. No
-                    spam.
-                  </p>
                 </form>
               </div>
             </div>
@@ -1188,6 +1214,55 @@ export default function RosterAnalysisClient({
               </Container>
             </div>
           )}
+
+          {/* More useful pieces */}
+          <div className="bg-gray-50 border-t border-gray-100 py-16 lg:py-[120px]">
+            <Container>
+              <div className="max-w-3xl mx-auto text-center mb-12">
+                <h2 className="text-3xl sm:text-[40px] font-bold text-gray-900 mb-4 leading-[1.15]">
+                  More useful pieces for you
+                </h2>
+                <p className="text-base sm:text-[20px] text-gray-600 leading-[1.5]">
+                  Now that you&apos;ve analysed your roster, here&apos;s what to
+                  look at next.
+                </p>
+              </div>
+
+              <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+                {MORE_RESOURCES.map((item) => (
+                  <Link
+                    key={item.link}
+                    href={item.link}
+                    className="group bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all flex flex-col"
+                  >
+                    <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">
+                        {item.eyebrow}
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-[1.25]">
+                        {item.title}
+                      </h3>
+                      <p className="text-base text-gray-600 mb-4 leading-[1.5]">
+                        {item.description}
+                      </p>
+                      <span className="text-base font-semibold text-primary-600 group-hover:underline mt-auto">
+                        {item.cta} →
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </Container>
+          </div>
         </div>
       )}
     </div>
