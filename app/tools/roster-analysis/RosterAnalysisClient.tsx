@@ -19,7 +19,9 @@ const API_URL =
   "https://analyze-api-test.rosterlab.com";
 
 const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
-const MAX_CONTEXT_LENGTH = 500;
+// Mirrors MAX_FOCUS_LENGTH in the analyze API.
+const MAX_SPECIFIC_FOCUS_LENGTH = 1000;
+const MAX_NAME_LENGTH = 80;
 const MAX_ORG_NAME_LENGTH = 80;
 const ALLOWED_EXTENSIONS = [".xlsx", ".csv"];
 
@@ -74,9 +76,11 @@ export default function RosterAnalysisClient({
   const [heroImageHover, setHeroImageHover] = useState(false);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [nameError, setNameError] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [name, setName] = useState("");
   const [organisationName, setOrganisationName] = useState("");
-  const [context, setContext] = useState("");
+  const [specificFocus, setSpecificFocus] = useState("");
   const [isDragging, setIsDragging] = useState(false);
   const [fileError, setFileError] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
@@ -236,19 +240,27 @@ export default function RosterAnalysisClient({
     e.preventDefault();
 
     setEmailError("");
+    setNameError("");
     const emailResult = emailSchema.safeParse(email);
+    const nameValid = name.trim().length > 0;
     if (!emailResult.success) {
       setEmailError(emailResult.error.errors[0].message);
+    }
+    if (!nameValid) {
+      setNameError("Please enter your name");
+    }
+    if (!emailResult.success || !nameValid) {
       return;
     }
 
     analytics.identify(email, {
       email,
+      name: name.trim(),
       source: "roster_analysis_tool",
     });
     analytics.track("roster_analysis_details_submitted", {
       email_domain: email.split("@")[1],
-      has_context: context.length > 0,
+      has_specific_focus: specificFocus.length > 0,
     });
 
     // Non-blocking: CRM sync failure must not affect analysis.
@@ -258,7 +270,9 @@ export default function RosterAnalysisClient({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
+        name: name.trim(),
         organisationName: organisationName || undefined,
+        specificFocus: specificFocus || undefined,
       }),
     })
       .then(async (res) => {
@@ -292,7 +306,7 @@ export default function RosterAnalysisClient({
     analysisStartTime.current = Date.now();
 
     analytics.track("roster_analysis_started", {
-      has_context: context.length > 0,
+      has_specific_focus: specificFocus.length > 0,
       file_type: getFileExtension(file.name),
     });
 
@@ -307,7 +321,7 @@ export default function RosterAnalysisClient({
           turnstileToken: "",
           file: base64,
           filename: file.name,
-          context: context || undefined,
+          focus: specificFocus || undefined,
           organisationName: organisationName || undefined,
         }),
       });
@@ -585,43 +599,86 @@ export default function RosterAnalysisClient({
                     A few details before we analyse
                   </h2>
                   <p className="text-base sm:text-[20px] text-gray-600 leading-[1.5]">
-                    We&apos;ll send the report to your inbox and tailor the
-                    analysis to your context.
+                    We&apos;ll analyse your roster and tailor the insights to
+                    what matters most to you.
                   </p>
                 </div>
 
-                <form onSubmit={handleDetailsSubmit} className="space-y-5">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Email address
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (emailError) setEmailError("");
-                      }}
-                      placeholder="you@company.com"
-                      className={cn(
-                        "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
-                        emailError ? "border-red-300" : "border-gray-300",
+                <form
+                  onSubmit={handleDetailsSubmit}
+                  className="space-y-5"
+                  noValidate
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Email address{" "}
+                        <span className="text-red-500" aria-hidden="true">
+                          *
+                        </span>
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          if (emailError) setEmailError("");
+                        }}
+                        placeholder="you@company.com"
+                        className={cn(
+                          "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
+                          emailError ? "border-red-300" : "border-gray-300",
+                        )}
+                        required
+                        aria-required="true"
+                        aria-invalid={!!emailError}
+                        autoFocus
+                      />
+                      {emailError && (
+                        <p className="mt-2 text-sm text-red-600" role="alert">
+                          {emailError}
+                        </p>
                       )}
-                      aria-invalid={!!emailError}
-                      autoFocus
-                    />
-                    {emailError && (
-                      <p className="mt-2 text-sm text-red-600" role="alert">
-                        {emailError}
-                      </p>
-                    )}
-                    <p className="text-xs text-gray-500 mt-2">
-                      We&apos;ll send your roster analysis report here.
-                    </p>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Name{" "}
+                        <span className="text-red-500" aria-hidden="true">
+                          *
+                        </span>
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => {
+                          setName(e.target.value.slice(0, MAX_NAME_LENGTH));
+                          if (nameError) setNameError("");
+                        }}
+                        placeholder="e.g. Alex Taylor"
+                        className={cn(
+                          "w-full px-4 py-3 rounded-lg border text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors",
+                          nameError ? "border-red-300" : "border-gray-300",
+                        )}
+                        required
+                        aria-required="true"
+                        aria-invalid={!!nameError}
+                        maxLength={MAX_NAME_LENGTH}
+                      />
+                      {nameError && (
+                        <p className="mt-2 text-sm text-red-600" role="alert">
+                          {nameError}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
                   <div>
@@ -647,41 +704,31 @@ export default function RosterAnalysisClient({
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                       maxLength={MAX_ORG_NAME_LENGTH}
                     />
-                    <p className="text-xs text-gray-500 mt-2">
-                      We&apos;ll add this to the &quot;Prepared for&quot; line
-                      on your report.
-                    </p>
                   </div>
 
                   <div>
                     <label
-                      htmlFor="context"
+                      htmlFor="specificFocus"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Add more context{" "}
-                      <span className="text-gray-400 font-normal">
-                        (optional)
+                      Tell us anything you would like to analyse specifically{" "}
+                      <span className="text-primary-600 font-normal">
+                        (recommended)
                       </span>
                     </label>
                     <textarea
-                      id="context"
-                      value={context}
+                      id="specificFocus"
+                      value={specificFocus}
                       onChange={(e) =>
-                        setContext(e.target.value.slice(0, MAX_CONTEXT_LENGTH))
+                        setSpecificFocus(
+                          e.target.value.slice(0, MAX_SPECIFIC_FOCUS_LENGTH),
+                        )
                       }
-                      placeholder="e.g. ICU nursing roster covering 4 weeks, 25 staff, mix of full-time and part-time, EBA applies…"
-                      rows={5}
+                      placeholder="e.g. I specifically want to know whether this roster allocates night shifts fairly among all the registrars."
+                      rows={3}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
-                      maxLength={MAX_CONTEXT_LENGTH}
+                      maxLength={MAX_SPECIFIC_FOCUS_LENGTH}
                     />
-                    <div className="flex justify-between mt-1">
-                      <p className="text-xs text-gray-500">
-                        The more context you give, the better the analysis.
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        {context.length}/{MAX_CONTEXT_LENGTH}
-                      </p>
-                    </div>
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -699,7 +746,7 @@ export default function RosterAnalysisClient({
                       analyticsLabel="Roster Analysis Analyze"
                       analyticsLocation="Roster Analysis Page"
                       analyticsProperties={{
-                        has_context: context.length > 0,
+                        has_specific_focus: specificFocus.length > 0,
                         file_type: file
                           ? getFileExtension(file.name)
                           : undefined,

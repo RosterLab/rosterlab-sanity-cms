@@ -7,18 +7,28 @@ const CONVERSION_POINT = "Roster Analysis Report";
 
 const rosterAnalysisLeadSchema = z.object({
   email: z.string().email(),
+  name: z.string().max(80).optional(),
   organisationName: z.string().optional(),
+  specificFocus: z.string().max(1000).optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, organisationName } = rosterAnalysisLeadSchema.parse(body);
+    const { email, name, organisationName, specificFocus } =
+      rosterAnalysisLeadSchema.parse(body);
+
+    // Attio stores names split; the form collects a single free-text field.
+    const [firstName, ...lastName] = (name ?? "").trim().split(/\s+/);
 
     const result = await submitAttioLead({
       source: "roster-analysis",
       email,
+      firstName: firstName || undefined,
+      lastName: lastName.length ? lastName.join(" ") : undefined,
       company: organisationName || undefined,
+      // What the user asked the report to focus on, in their own words.
+      message: specificFocus || undefined,
       detectedCountry: detectRequestCountry(request),
       metadata: { conversionPoint: CONVERSION_POINT },
     });
