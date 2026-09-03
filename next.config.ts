@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -452,4 +453,20 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const postHogSourceMapsConfigured = Boolean(
+  process.env.POSTHOG_API_KEY && process.env.POSTHOG_PROJECT_ID,
+);
+
+export default postHogSourceMapsConfigured
+  ? withPostHogConfig(nextConfig, {
+      personalApiKey: process.env.POSTHOG_API_KEY!,
+      projectId: process.env.POSTHOG_PROJECT_ID,
+      host: process.env.NEXT_PUBLIC_POSTHOG_UI_HOST || "https://us.posthog.com",
+      sourcemaps: {
+        enabled: true,
+        releaseName: "rosterlab-marketing",
+        releaseVersion: process.env.COMMIT_REF,
+        deleteAfterUpload: true,
+      },
+    })
+  : nextConfig;

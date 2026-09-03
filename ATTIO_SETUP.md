@@ -62,7 +62,8 @@ WEBSITE_LEAD_PREVIEW_TOKEN=<preview token>
 WEBSITE_LEAD_WORKER_TOKEN=<worker-only token>
 ATTIO_LEAD_WEBHOOK_URL=<production Attio workflow webhook>
 ATTIO_LEAD_WEBHOOK_URL_PREVIEW=<preview-safe Attio workflow webhook>
-SENTRY_DSN=<optional shared Sentry project DSN>
+POSTHOG_PROJECT_TOKEN=<PostHog project token>
+POSTHOG_HOST=https://us.i.posthog.com
 ```
 
 Apply `011-website-lead-queue.sql` before enabling queue mode. Keep direct mode
@@ -72,11 +73,12 @@ the marketing site.
 ## Rollout checklist
 
 1. Apply the migration and deploy the automation service.
-2. Configure its production and preview tokens, Attio webhooks, and optional
-   Sentry DSN.
+2. Configure its production and preview tokens, Attio webhooks, and PostHog
+   project settings.
 3. Set the marketing site to `LEAD_DELIVERY_MODE=queue` with its context-specific
    intake token.
 4. Submit one contact form and confirm its queue row reaches `delivered` and the
    expected Attio entry and notification are created.
-5. Optionally add a Sentry alert for errors tagged `subsystem=website-leads`.
+5. Add a PostHog workflow alert for exceptions tagged
+   `subsystem=website-leads`.
    Switching `LEAD_DELIVERY_MODE` back to `direct` is the rollback.
