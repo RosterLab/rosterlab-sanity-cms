@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { LEAD_SOURCES, mustRecordLead } from "@/lib/leads/sources";
+import { reportLeadError } from "@/lib/monitoring/leadErrors";
+
+const noStoreHeaders = { "Cache-Control": "no-store" };
 
 const metadataValue = z.union([
   z.string().max(2_000),
@@ -32,10 +35,14 @@ export async function POST(request: NextRequest) {
 
     // Honeypot: make bots believe the submission succeeded without forwarding it.
     if (input.website) {
-      return NextResponse.json({ message: "Submitted", attio: "filtered" });
+      return NextResponse.json(
+        { message: "Submitted", delivery: "filtered" },
+        { headers: noStoreHeaders },
+      );
     }
 
-    const result = await submitAttioLead({
+    const detectedCountry = detectRequestCountry(request);
+    const result = await submitWebsiteLead({
       source: input.source,
       email: input.email,
       firstName: input.firstName || undefined,
@@ -49,25 +56,44 @@ export async function POST(request: NextRequest) {
       message: input.message || undefined,
       pageUrl: input.pageUrl,
       metadata: input.metadata,
-      detectedCountry: detectRequestCountry(request),
+      detectedCountry,
     });
 
     if (mustRecordLead(input.source) && result.status !== "submitted") {
+      await reportLeadError(new Error("Required lead was not accepted"), {
+        operation: "submit",
+        source: input.source,
+        delivery: result.delivery,
+        result: result.status,
+        detectedCountry,
+        submissionId:
+          "submissionId" in result ? result.submissionId : undefined,
+      });
       return NextResponse.json(
-        { error: "Unable to submit right now", attio: result.status },
-        { status: result.status === "skipped" ? 503 : 502 },
+        { error: "Unable to submit right now", delivery: result.status },
+        {
+          status: result.status === "skipped" ? 503 : 502,
+          headers: noStoreHeaders,
+        },
       );
     }
 
-    return NextResponse.json({ message: "Submitted", attio: result.status });
+    return NextResponse.json(
+      { message: "Submitted", delivery: result.status },
+      { headers: noStoreHeaders },
+    );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: "Invalid form data", details: error.issues },
-        { status: 400 },
+        { status: 400, headers: noStoreHeaders },
       );
     }
     console.error("Lead submission failed", error);
-    return NextResponse.json({ error: "Unable to submit" }, { status: 500 });
+    await reportLeadError(error, { operation: "lead-route" });
+    return NextResponse.json(
+      { error: "Unable to submit" },
+      { status: 500, headers: noStoreHeaders },
+    );
   }
 }

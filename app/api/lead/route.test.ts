@@ -1,14 +1,17 @@
 /** @jest-environment node */
 
 import { NextRequest } from "next/server";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { POST } from "./route";
 
-jest.mock("@/lib/attio/submitLead", () => ({
-  submitAttioLead: jest.fn(),
+jest.mock("@/lib/leads/submitLead", () => ({
+  submitWebsiteLead: jest.fn(),
+}));
+jest.mock("@/lib/monitoring/leadErrors", () => ({
+  reportLeadError: jest.fn().mockResolvedValue(undefined),
 }));
 
-const submitAttioLeadMock = jest.mocked(submitAttioLead);
+const submitWebsiteLeadMock = jest.mocked(submitWebsiteLead);
 
 function leadRequest(body: Record<string, unknown>) {
   return new NextRequest("http://localhost/api/lead", {
@@ -20,28 +23,31 @@ function leadRequest(body: Record<string, unknown>) {
 
 describe("lead API", () => {
   beforeEach(() => {
-    submitAttioLeadMock.mockReset();
+    submitWebsiteLeadMock.mockReset();
   });
 
   test.each(["newsletter", "ai-assistant-waitlist"] as const)(
     "fails closed when a %s lead cannot reach Attio",
     async (source) => {
-      submitAttioLeadMock.mockResolvedValue({
+      submitWebsiteLeadMock.mockResolvedValue({
         status: "error",
+        delivery: "queue",
         detail: "Attio webhook returned 500",
       });
 
       const response = await POST(leadRequest({ source }));
 
       expect(response.status).toBe(502);
-      expect(await response.json()).toMatchObject({ attio: "error" });
+      expect(await response.json()).toMatchObject({ delivery: "error" });
+      expect(response.headers.get("cache-control")).toBe("no-store");
     },
   );
 
   test("returns unavailable when a required lead webhook is not configured", async () => {
-    submitAttioLeadMock.mockResolvedValue({
+    submitWebsiteLeadMock.mockResolvedValue({
       status: "skipped",
-      reason: "no_webhook",
+      delivery: "queue",
+      reason: "no_queue",
     });
 
     const response = await POST(leadRequest({ source: "newsletter" }));
@@ -50,15 +56,16 @@ describe("lead API", () => {
   });
 
   test("keeps promised download gates fail-open", async () => {
-    submitAttioLeadMock.mockResolvedValue({
+    submitWebsiteLeadMock.mockResolvedValue({
       status: "error",
+      delivery: "queue",
       detail: "Attio webhook returned 500",
     });
 
     const response = await POST(leadRequest({ source: "template-excel" }));
 
     expect(response.status).toBe(200);
-    expect(await response.json()).toMatchObject({ attio: "error" });
+    expect(await response.json()).toMatchObject({ delivery: "error" });
   });
 
   test("returns fake success for a populated honeypot without calling Attio", async () => {
@@ -67,7 +74,7 @@ describe("lead API", () => {
     );
 
     expect(response.status).toBe(200);
-    expect(await response.json()).toMatchObject({ attio: "filtered" });
-    expect(submitAttioLeadMock).not.toHaveBeenCalled();
+    expect(await response.json()).toMatchObject({ delivery: "filtered" });
+    expect(submitWebsiteLeadMock).not.toHaveBeenCalled();
   });
 });

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { submitAttioLead } from "@/lib/attio/submitLead";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const CONVERSION_POINT = "Roster Analysis Report";
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
     // Attio stores names split; the form collects a single free-text field.
     const [firstName, ...lastName] = (name ?? "").trim().split(/\s+/);
 
-    const result = await submitAttioLead({
+    const result = await submitWebsiteLead({
       source: "roster-analysis",
       email,
       firstName: firstName || undefined,
