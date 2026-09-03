@@ -3,6 +3,7 @@ import { z } from "zod";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { evaluateMarketAccess } from "@/lib/market-access/policy";
+import { captureServerException } from "@/lib/monitoring/posthog-server";
 
 const reviewSchema = z.object({
   name: z.string().trim().min(2).max(120),
@@ -42,6 +43,14 @@ export async function POST(request: NextRequest) {
     });
 
     if (delivery.status === "error") {
+      await captureServerException(
+        new Error("Required commercial-review lead was not durably accepted"),
+        {
+          route: "/api/commercial-review",
+          delivery: delivery.delivery,
+          result: delivery.status,
+        },
+      );
       console.error("Required commercial-review lead was not accepted", {
         delivery: delivery.delivery,
         result: delivery.status,
@@ -55,6 +64,10 @@ export async function POST(request: NextRequest) {
       delivery.status === "skipped" &&
       process.env.NODE_ENV === "production"
     ) {
+      await captureServerException(
+        new Error("Commercial-review lead delivery is not configured"),
+        { route: "/api/commercial-review" },
+      );
       console.error("Commercial-review lead delivery is not configured");
       return NextResponse.json(
         { error: "Commercial review is not configured" },
@@ -73,6 +86,7 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
+    await captureServerException(error, { route: "/api/commercial-review" });
     console.error("Commercial review request failed", error);
     return NextResponse.json({ error: "Unable to submit" }, { status: 500 });
   }

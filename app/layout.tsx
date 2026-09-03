@@ -5,8 +5,6 @@ import ClientFooter from "@/components/layout/ClientFooter";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
-import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
-// PostHog: pnpm add posthog-js @posthog/react | key: phc_syjvwfhiP9hzL4mfVUzZC6bZHBZHKVmfqVK5DMM7p7au | host: https://us.i.posthog.com
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
@@ -81,7 +79,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://featuregates.org" />
-        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
         <StructuredData type="organization" isUSPage={isUSPage} />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics
@@ -96,35 +94,34 @@ export default async function RootLayout({
         <SkipLink />
         <StatsigProvider clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}>
           <MarketAccessProvider>
-          <ClientProviders
-            intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
-          >
-            {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && (
-              <StatsigExposureLogger />
-            )}
-            <RlTracker />
-            <UTMTracker debug={process.env.NODE_ENV === "development"} />
-            <MetaPixel />
-            <MicrosoftClarity />
-            <GeolocationProvider />
-            <ClientHeader />
-            <main id="main-content" className="flex-grow" role="main">
-              {children}
-            </main>
-            <ClientFooter />
-            {isEnabled && <VisualEditing />}
-            <LazyStyles />
-            <CTAModalManager />
-            {!isInternalRoute && (
-              <AskAiShareWidget
-                learnFromUrl={
-                  isUSPage
-                    ? "https://rosterlab.com/us"
-                    : "https://rosterlab.com"
-                }
-              />
-            )}
-          </ClientProviders>
+            <ClientProviders
+              intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
+            >
+              {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && (
+                <StatsigExposureLogger />
+              )}
+              <RlTracker />
+              <UTMTracker debug={process.env.NODE_ENV === "development"} />
+              <MetaPixel />
+              <GeolocationProvider />
+              <ClientHeader />
+              <main id="main-content" className="flex-grow" role="main">
+                {children}
+              </main>
+              <ClientFooter />
+              {isEnabled && <VisualEditing />}
+              <LazyStyles />
+              <CTAModalManager />
+              {!isInternalRoute && (
+                <AskAiShareWidget
+                  learnFromUrl={
+                    isUSPage
+                      ? "https://rosterlab.com/us"
+                      : "https://rosterlab.com"
+                  }
+                />
+              )}
+            </ClientProviders>
           </MarketAccessProvider>
         </StatsigProvider>
       </body>
