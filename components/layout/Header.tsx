@@ -212,6 +212,12 @@ export default function Header({
           description: "Fairly distribute shifts by staff preference",
           group: "Mini Tools",
         },
+        {
+          title: "Roster Analyser",
+          link: "/tools/roster-analysis",
+          description: "Get instant AI insights on your roster",
+          group: "Mini Tools",
+        },
 
         // Games
         {
