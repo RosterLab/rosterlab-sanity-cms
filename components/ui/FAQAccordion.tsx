@@ -1,15 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { HiChevronDown } from "react-icons/hi";
+import { HiChevronDown, HiPlus, HiMinus } from "react-icons/hi";
 import { cn } from "@/lib/utils";
 import { generateFAQSchema, FAQItem } from "@/lib/structured-data/faq-schema";
 
 interface FAQAccordionProps {
   items: FAQItem[];
+  /**
+   * "card" (default) gives each question its own bordered white card.
+   * "flat" is the contact page's list: no card, hairline rules between
+   * questions, and a +/- marker instead of a chevron.
+   */
+  variant?: "card" | "flat";
 }
 
-export default function FAQAccordion({ items }: FAQAccordionProps) {
+export default function FAQAccordion({
+  items,
+  variant = "card",
+}: FAQAccordionProps) {
+  const isFlat = variant === "flat";
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   // Generate FAQ schema
@@ -47,31 +57,55 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
 
   return (
     <>
-      <div className="space-y-4">
+      <div className={isFlat ? "border-t border-gray-200" : "space-y-4"}>
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-white border border-gray-200 rounded-lg overflow-hidden"
+            className={cn(
+              "overflow-hidden",
+              isFlat
+                ? "border-b border-gray-200"
+                : "bg-white border border-gray-200 rounded-lg",
+            )}
             style={{ contain: "layout" }}
           >
             <button
               id={`faq-button-${index}`}
               onClick={() => toggleItem(index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded-t-lg"
+              className={cn(
+                "w-full text-left flex items-center justify-between transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2",
+                isFlat
+                  ? "py-5 hover:text-blue-600"
+                  : "px-6 py-4 hover:bg-gray-50 rounded-t-lg",
+              )}
               aria-expanded={openIndex === index}
               aria-controls={`faq-panel-${index}`}
             >
               <span className="text-lg font-semibold text-gray-900 pr-4">
                 {item.question}
               </span>
-              <HiChevronDown
-                className={cn(
-                  "w-5 h-5 text-gray-500 flex-shrink-0 transition-transform duration-200",
-                  openIndex === index && "transform rotate-180",
-                )}
-                aria-hidden="true"
-              />
+              {isFlat ? (
+                openIndex === index ? (
+                  <HiMinus
+                    className="w-5 h-5 text-blue-600 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <HiPlus
+                    className="w-5 h-5 text-blue-600 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                )
+              ) : (
+                <HiChevronDown
+                  className={cn(
+                    "w-5 h-5 text-gray-500 flex-shrink-0 transition-transform duration-200",
+                    openIndex === index && "transform rotate-180",
+                  )}
+                  aria-hidden="true"
+                />
+              )}
             </button>
             <div
               id={`faq-panel-${index}`}
@@ -84,7 +118,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                 willChange: openIndex === index ? "max-height" : "auto",
               }}
             >
-              <div className="px-6 py-4 pb-6">
+              <div className={isFlat ? "pb-6 pr-8" : "px-6 py-4 pb-6"}>
                 <p
                   className="text-gray-600 leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: item.answer }}

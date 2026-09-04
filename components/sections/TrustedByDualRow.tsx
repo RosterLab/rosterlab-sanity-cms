@@ -1,106 +1,99 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 
 interface TrustedLogo {
   src: string;
   alt: string;
-  width: number;
-  height: number;
-  sizeClass?: string;
+  /** Desktop draw height in px — see the note on trustedLogos below. */
+  opticalHeight: number;
 }
 
-const DEFAULT_SIZE = "h-8 md:h-10";
-const LARGER_SIZE = "h-10 md:h-12";
-const SMALLER_SIZE = "h-6 md:h-8";
-
+/**
+ * Height each logo is drawn at, in px, on desktop.
+ *
+ * These are NOT a shared height. Marks this varied cannot be normalised by one:
+ * a single-line wordmark like Legal Aid and a dense stacked crest like St
+ * George put down wildly different amounts of ink at the same height, and the
+ * wall ended up with a 3.7x spread in visual weight — Legal Aid and Monash
+ * shouting while Hospice and St George disappeared.
+ *
+ * So each height is set from the mark's measured ink: every logo was rendered
+ * at a common height and its coverage summed, weighted by how dark each pixel
+ * is, then scaled by 1/sqrt(ink) against the median. Heavy marks come down,
+ * light and detailed ones come up — the detailed crests needed the size to be
+ * legible anyway. Re-measure if a logo is added; do not eyeball it.
+ */
 const trustedLogos: TrustedLogo[] = [
   {
     src: "/images/logos/new-logos/aus_gov.svg",
     alt: "Australian Government",
-    width: 180,
-    height: 60,
+    opticalHeight: 40,
   },
   {
     src: "/images/logos/new-logos/hospice_west_auckland.svg",
     alt: "Hospice West Auckland",
-    width: 160,
-    height: 60,
-    sizeClass: LARGER_SIZE,
+    opticalHeight: 56,
   },
   {
     src: "/images/logos/new-logos/legalaid.svg",
     alt: "Legal Aid",
-    width: 160,
-    height: 60,
+    opticalHeight: 30,
   },
   {
     src: "/images/logos/new-logos/monash.svg",
     alt: "Monash Health",
-    width: 160,
-    height: 60,
+    opticalHeight: 32,
   },
   {
     src: "/images/logos/new-logos/nsw.svg",
     alt: "NSW Health",
-    width: 160,
-    height: 60,
+    opticalHeight: 40,
   },
   {
     src: "/images/logos/new-logos/peticare.svg",
     alt: "Peticare",
-    width: 160,
-    height: 60,
+    opticalHeight: 38,
   },
   {
     src: "/images/logos/new-logos/royal_prince.svg",
     alt: "Royal Prince Alfred",
-    width: 160,
-    height: 60,
+    opticalHeight: 50,
   },
   {
     src: "/images/logos/new-logos/singhealth.svg",
     alt: "SingHealth",
-    width: 160,
-    height: 60,
+    opticalHeight: 40,
   },
   {
     src: "/images/logos/new-logos/st_george.svg",
     alt: "St George",
-    width: 140,
-    height: 60,
+    opticalHeight: 48,
   },
   {
     src: "/images/logos/new-logos/syd_kids.svg",
     alt: "Sydney Children's Hospital",
-    width: 160,
-    height: 60,
+    opticalHeight: 52,
   },
   {
     src: "/images/logos/new-logos/ver_services_hawkes_bay.svg",
     alt: "Veterinary Services Hawke's Bay",
-    width: 160,
-    height: 60,
-    sizeClass: SMALLER_SIZE,
+    opticalHeight: 30,
   },
   {
     src: "/images/logos/new-logos/legal_aid_wa.svg",
     alt: "Legal Aid WA",
-    width: 160,
-    height: 60,
+    opticalHeight: 32,
   },
   {
     src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg",
     alt: "Women's and Children's Hospital Adelaide",
-    width: 160,
-    height: 60,
-    sizeClass: LARGER_SIZE,
+    opticalHeight: 48,
   },
   {
     src: "/images/logos/new-logos/central_island.svg",
     alt: "Central Island",
-    width: 160,
-    height: 60,
-    sizeClass: LARGER_SIZE,
+    opticalHeight: 56,
   },
 ];
 
@@ -130,9 +123,10 @@ function Row({ logos, reverse }: { logos: TrustedLogo[]; reverse?: boolean }) {
           <Image
             src={logo.src}
             alt={logo.alt}
-            width={logo.width}
-            height={logo.height}
-            className={`max-w-full ${logo.sizeClass ?? DEFAULT_SIZE} w-auto object-contain grayscale opacity-70`}
+            width={240}
+            height={logo.opticalHeight}
+            style={{ "--logo-h": `${logo.opticalHeight}px` } as CSSProperties}
+            className="h-[calc(var(--logo-h)*0.72)] w-auto max-w-[220px] object-contain opacity-70 grayscale md:h-[var(--logo-h)]"
           />
         </div>
       ))}
@@ -153,7 +147,7 @@ export default function TrustedByDualRow({
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] gap-8 lg:gap-12 items-center">
           {/* Left: heading */}
           <div className="max-w-md">
-            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 leading-snug">
+            <h2 className="text-balance text-2xl font-semibold leading-snug text-neutral-900 md:text-3xl">
               {heading}
             </h2>
           </div>
@@ -163,9 +157,9 @@ export default function TrustedByDualRow({
             className="relative overflow-hidden space-y-5 md:space-y-6"
             style={{
               maskImage:
-                "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
               WebkitMaskImage:
-                "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
             }}
           >
             {/* Top row: right → left */}

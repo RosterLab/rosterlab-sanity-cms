@@ -1,4 +1,4 @@
-import HeroNew from "@/components/sections/HeroNew";
+import HeroAttio from "@/components/sections/HeroAttio";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
 import BenefitsNew from "@/components/sections/BenefitsNew";
@@ -63,7 +63,7 @@ export default function Home() {
     <div className="relative bg-white">
       <DotFocalOverlay />
       <div className="relative z-10">
-        <HeroNew content={HERO_CONTENT_US} />
+        <HeroAttio content={HERO_CONTENT_US} />
         <TrustedByDualRow heading={TRUSTED_BY_HEADING_US} />
         <FeatureTestimonial content={FEATURE_TESTIMONIAL_US} />
         <BenefitsNew tabs={BENEFIT_TABS_US} />

@@ -1,77 +1,89 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
-import { trackFormSubmission } from '@/lib/analytics/events/conversion-events'
-import { analytics } from '@/components/analytics/tracking'
+import { useEffect, useRef, useState } from "react";
+import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
+import { analytics } from "@/components/analytics/tracking";
 
 function extractFormValues($form: HTMLFormElement): Record<string, string> {
-  const values: Record<string, string> = {}
-  const inputs = $form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
-    'input, textarea, select'
-  )
+  const values: Record<string, string> = {};
+  const inputs = $form.querySelectorAll<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >("input, textarea, select");
   inputs.forEach((input) => {
     if (input.name && input.value) {
-      values[input.name] = input.value
+      values[input.name] = input.value;
     }
-  })
-  return values
+  });
+  return values;
 }
 
-export default function ContactFormWrapper() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+interface ContactFormWrapperProps {
+  /**
+   * Raw CSS handed to HubSpot's embed. HubSpot renders this form inside an
+   * iframe, so page-level styles cannot reach the fields — anything that needs
+   * to restyle them (e.g. the dark contact panel) must go through here.
+   */
+  formCss?: string;
+}
+
+export default function ContactFormWrapper({
+  formCss,
+}: ContactFormWrapperProps = {}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
+          setIsVisible(true);
+          observer.disconnect();
         }
       },
-      { rootMargin: '200px' }
-    )
-    observer.observe(containerRef.current)
-    return () => observer.disconnect()
-  }, [])
+      { rootMargin: "200px" },
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (!isVisible) return
+    if (!isVisible) return;
 
     const formConfig = {
       portalId: "20646833",
       formId: "77e5a8c4-4303-4681-8c92-afa7b070380c",
       region: "na1",
       target: "#contact-form-container",
+      ...(formCss !== undefined ? { css: formCss, cssRequired: "" } : {}),
       onFormReady: () => {
-        window.rlTracker?.formStart('contact')
+        window.rlTracker?.formStart("contact");
 
-        const container = document.getElementById('contact-form-container')
+        const container = document.getElementById("contact-form-container");
         if (container) {
-          const inputs = container.querySelectorAll('input, textarea, select')
+          const inputs = container.querySelectorAll("input, textarea, select");
           inputs.forEach((input) => {
-            input.addEventListener('blur', () => {
-              const name = (input as HTMLInputElement).name
-              if (name) window.rlTracker?.formField('contact', name)
-            })
-          })
+            input.addEventListener("blur", () => {
+              const name = (input as HTMLInputElement).name;
+              if (name) window.rlTracker?.formField("contact", name);
+            });
+          });
         }
       },
       onFormSubmit: ($form: HTMLFormElement) => {
-        window.rlTracker?.formSubmit('contact')
+        window.rlTracker?.formSubmit("contact");
 
-        const values = extractFormValues($form)
-        const email = values.email
+        const values = extractFormValues($form);
+        const email = values.email;
         if (email) {
-          const userProps: Record<string, string> = { email }
-          if (values.firstname) userProps.firstName = values.firstname
-          if (values.lastname) userProps.lastName = values.lastname
-          if (values.company) userProps.company = values.company
+          const userProps: Record<string, string> = { email };
+          if (values.firstname) userProps.firstName = values.firstname;
+          if (values.lastname) userProps.lastName = values.lastname;
+          if (values.company) userProps.company = values.company;
           if (values.phone || values.mobilephone) {
-            userProps.phone = values.phone || values.mobilephone
+            userProps.phone = values.phone || values.mobilephone;
           }
-          analytics.identify(email, userProps)
+          analytics.identify(email, userProps);
         }
         trackFormSubmission({
           form_guid: "77e5a8c4-4303-4681-8c92-afa7b070380c",
@@ -80,40 +92,48 @@ export default function ContactFormWrapper() {
           page_name: document.title,
           page_location: window.location.pathname,
           user_email: email,
-          user_name: [values.firstname, values.lastname].filter(Boolean).join(' ') || undefined,
+          user_name:
+            [values.firstname, values.lastname].filter(Boolean).join(" ") ||
+            undefined,
           company_name: values.company,
           phone_number: values.phone || values.mobilephone,
           submission_data: values,
-        })
+        });
       },
-    }
+    };
 
     if (window.hbspt) {
-      window.hbspt.forms.create(formConfig)
-      return
+      window.hbspt.forms.create(formConfig);
+      return;
     }
 
-    const script = document.createElement('script')
-    script.src = 'https://js.hsforms.net/forms/embed/v2.js'
-    script.charset = 'utf-8'
-    script.type = 'text/javascript'
+    const script = document.createElement("script");
+    script.src = "https://js.hsforms.net/forms/embed/v2.js";
+    script.charset = "utf-8";
+    script.type = "text/javascript";
 
     script.onload = () => {
       if (window.hbspt) {
-        window.hbspt.forms.create(formConfig)
+        window.hbspt.forms.create(formConfig);
       }
-    }
+    };
 
-    document.body.appendChild(script)
+    document.body.appendChild(script);
 
     return () => {
       if (document.body.contains(script)) {
-        document.body.removeChild(script)
+        document.body.removeChild(script);
       }
-    }
-  }, [isVisible])
+    };
+  }, [isVisible, formCss]);
 
-  return <div ref={containerRef} id="contact-form-container" style={{ minHeight: '100px' }}>
-    <p className="text-sm text-gray-500">Loading form...</p>
-  </div>
+  return (
+    <div
+      ref={containerRef}
+      id="contact-form-container"
+      style={{ minHeight: "100px" }}
+    >
+      <p className="text-sm text-gray-500">Loading form...</p>
+    </div>
+  );
 }

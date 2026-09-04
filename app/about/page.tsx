@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import { HiLightBulb, HiScale, HiTrendingUp } from "react-icons/hi";
 import { FaLinkedin } from "react-icons/fa";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -14,9 +15,6 @@ export const metadata = withHreflang(
       "RosterLab was built by optimisation researchers who saw broken rostering firsthand. We replace healthcare spreadsheets with AI that works.",
     alternates: {
       canonical: "https://rosterlab.com/about",
-    },
-    other: {
-      link: '<link rel="preload" href="/images/illustration/Timeline-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
     },
     openGraph: {
       title: "About RosterLab | AI Rostering Software Built for Healthcare",
@@ -48,104 +46,94 @@ export default async function AboutPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <div className="py-16">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                The RosterLab{" "}
-                <span
-                  className="text-transparent bg-clip-text"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                  }}
-                >
-                  Story
-                </span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                We transform the way rostering works, making it faster, safer,
-                and more efficient.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/careers"
-                  className="bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  View Open Positions
-                </Button>
-                <Button
-                  href="/contact"
-                  className="bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"
-                >
-                  Contact Us
-                </Button>
-              </div>
-            </div>
+      <IndustryHero
+        title="The RosterLab Story"
+        panelSize="compact"
+        description="We transform the way rostering works, making it faster, safer, and more efficient."
+        analyticsLocation="About Hero"
+        primaryCta={{
+          href: "/careers",
+          label: "View Open Positions",
+          analyticsProperties: {
+            cta_type: "careers",
+            page_name: "About",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/contact",
+          label: "Contact Us",
+          analyticsProperties: {
+            cta_type: "contact",
+            page_name: "About",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/team/rosterlab-team-photo.webp",
+          alt: "The three RosterLab founders seated together in the office",
+          objectPosition: "center 22%",
+        }}
+      />
 
-            {/* Timeline Illustration */}
-            <div className="flex justify-center lg:justify-end">
-              <div
-                className="w-full max-w-2xl relative"
-                style={{ aspectRatio: "600/400" }}
-              >
-                <Image
-                  src="/images/illustration/Timeline-pana.svg"
-                  alt="Timeline illustration"
-                  width={600}
-                  height={400}
-                  className="w-full h-auto"
-                  priority
-                  fetchPriority="high"
-                  placeholder="empty"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      {/* Mission Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
+      {/* Our Company */}
+      <section className="bg-[#F6F9FE] py-20 lg:py-28">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Our Company
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
+          {/*
+            Brand mint, the hero's only accent (the arch stroke below `lg`),
+            carried down here to mark the section on the left spine that the
+            heading already shares with the hero panel's left edge. With the
+            backdrop layers gone this and that shared spine are what still tie
+            the section to the hero.
+          */}
+          <div
+            aria-hidden="true"
+            className="mb-8 h-[3px] w-14 rounded-full bg-[#03FABF]"
+          />
+
+          <h2 className="text-3xl font-bold text-gray-900">Our Company</h2>
+
+          {/*
+            Two columns from `lg`. The text column stays capped — the
+            container runs to 1336px and an uncapped paragraph would set a
+            ~145 character line, roughly twice a readable measure — and the
+            product shot takes the space the cap leaves over.
+          */}
+          <div className="mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <div className="max-w-3xl">
+              <p className="text-lg leading-relaxed text-gray-700">
                 RosterLab was born from a love of mathematics and a deep respect
                 for the voices of healthcare leaders - those constantly pulled
                 away from critical clinical work to manage rosters.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
-                That's why we are here. We automate the rostering process using
-                world-leading technology that no one else can match, allowing
-                your team to spend less time rostering and more time on what
-                truly matters.
+              <p className="mt-6 text-lg leading-relaxed text-gray-700">
+                That&apos;s why we are here. We automate the rostering process
+                using world-leading technology that no one else can match,
+                allowing your team to spend less time rostering and more time on
+                what truly matters.
               </p>
+
               <Button
                 href="/book-a-demo"
-                className="bg-blue-600 text-white hover:bg-blue-700"
+                className="mt-10 bg-blue-600 text-white hover:bg-blue-700"
               >
                 See How We Do It
               </Button>
             </div>
-            <div>
+
+            <div className="overflow-hidden rounded-2xl shadow-[0_24px_70px_-30px_rgba(10,42,122,0.55)]">
               <Image
-                src="/images/team/rosterlab-team-photo.webp"
-                alt="RosterLab founders"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
+                src="/images/about/product-suite.webp"
+                alt="The RosterLab app on laptops, tablets and phones: roster solutions, staff requests and the Otto AI assistant"
+                width={2000}
+                height={1400}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="h-auto w-full"
               />
             </div>
           </div>
         </Container>
-      </div>
+      </section>
 
       {/* Values Section */}
       <Container>

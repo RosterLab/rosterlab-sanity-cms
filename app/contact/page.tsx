@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
-import ContactFormWrapper from "@/components/forms/ContactFormWrapper";
+import ContactFormPanel from "@/components/forms/ContactFormPanel";
 import SiteLayout from "@/components/layout/SiteLayout";
 import FAQAccordion from "@/components/ui/FAQAccordion";
-import { HiLocationMarker, HiClock, HiCheck } from "react-icons/hi";
+import Button from "@/components/ui/Button";
+import { HiExternalLink } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -63,154 +65,156 @@ export default function ContactPage() {
   return (
     <SiteLayout>
       <HubSpotFormListener />
-      <div className="py-16 bg-neutral-50 min-h-screen">
-        <Container>
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
-              Speak to a rostering{" "}
-              <span
-                className="text-transparent bg-clip-text"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                expert
-              </span>
-            </h1>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-              We&apos;re here to help you solve your complex challenges and
-              requirements.
-            </p>
-          </div>
 
-          {/* Benefits Banner */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiClock className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="font-semibold text-green-800 mb-1">
-                90% Time Saving
-              </h3>
-              <p className="text-green-700 text-sm">
-                Generate rosters in minutes, not hours
-              </p>
-            </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiCheck className="w-6 h-6 text-blue-600" />
-              </div>
-              <h3 className="font-semibold text-blue-800 mb-1">
-                100% Compliant
-              </h3>
-              <p className="text-blue-700 text-sm">
-                Guaranteed to meet union and contract obligations
-              </p>
-            </div>
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <HiCheck className="w-6 h-6 text-purple-600" />
-              </div>
-              <h3 className="font-semibold text-purple-800 mb-1">
-                Better Staff Satisfaction
-              </h3>
-              <p className="text-purple-700 text-sm">
-                Fairer, safer rosters for your team
-              </p>
-            </div>
-          </div>
+      {/*
+        Hero: the form column runs inside the container, the product shot
+        bleeds off the right edge of the viewport beside it. On desktop the
+        shot is absolutely positioned so it fills the section's full height
+        whatever the form does; below `lg` it drops underneath as a band.
+      */}
+      <section className="relative bg-white">
+        <Container className="lg:px-12 xl:px-20">
+          <div className="py-12 md:py-16 lg:w-1/2 lg:pr-12">
+            <ContactFormPanel
+              heading="Speak to a rostering expert"
+              subheading="Fill out the form below and our team will be in touch to discuss how we can help you create the perfect roster for your team."
+            />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* HubSpot Demo Form */}
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-                Speak to us about your rostering challenges
-              </h2>
-              <p className="text-neutral-600 mb-6">
-                Fill out the form below and our team will be in touch to discuss
-                how we can help you create the perfect roster for your team.
-              </p>
-              <ContactFormWrapper />
-            </div>
-
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-lg shadow-sm p-8">
-                <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-                  Get in touch
+            <div className="mt-10 grid grid-cols-1 gap-8 border-t border-neutral-200 pt-8 sm:grid-cols-2">
+              <div>
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                  Headquarters
                 </h2>
+                <p className="mt-3 text-neutral-700">
+                  314/380 Khyber Pass Road
+                  <br />
+                  Newmarket, Auckland 1023, NZ
+                </p>
+              </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <HiLocationMarker className="w-5 h-5 text-primary-600" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-neutral-900 mb-1">
-                        Headquarters
-                      </h3>
-                      <p className="text-neutral-600">
-                        314/380 Khyber Pass Road
-                        <br />
-                        Newmarket, Auckland 1023
-                        <br />
-                        New Zealand
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0">
-                      <h3 className="text-xl font-bold text-neutral-900 mb-3">
-                        Follow Us
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <a
-                      href="https://www.linkedin.com/company/rosterlab"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
-                    >
-                      <FaLinkedin className="w-5 h-5 text-primary-600" />
-                    </a>
-                    <a
-                      href="https://facebook.com/p/RosterLab-100084645549356/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
-                    >
-                      <FaFacebook className="w-5 h-5 text-primary-600" />
-                    </a>
-                    <a
-                      href="https://instagram.com/rosterlab"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center hover:bg-primary-200 transition-colors"
-                    >
-                      <FaInstagram className="w-5 h-5 text-primary-600" />
-                    </a>
-                  </div>
+              <div>
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                  Follow us
+                </h2>
+                <div className="mt-3 flex items-center gap-3">
+                  <a
+                    href="https://www.linkedin.com/company/rosterlab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="RosterLab on LinkedIn"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-600 transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    <FaLinkedin className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://facebook.com/p/RosterLab-100084645549356/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="RosterLab on Facebook"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-600 transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    <FaFacebook className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://instagram.com/rosterlab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="RosterLab on Instagram"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 text-neutral-600 transition-colors hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    <FaInstagram className="h-5 w-5" />
+                  </a>
                 </div>
-              </div>
-
-              {/* FAQ Section */}
-              <div className="bg-white rounded-lg shadow-sm p-8">
-                <h2 className="text-2xl font-bold text-neutral-900 mb-6">
-                  Frequently Asked Questions
-                </h2>
-
-                <FAQAccordion items={faqItems} />
+                <p className="mt-4 text-neutral-700">
+                  <a
+                    href="mailto:support@rosterlab.com"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    support@rosterlab.com
+                  </a>
+                </p>
               </div>
             </div>
           </div>
         </Container>
-      </div>
+
+        <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
+          <Image
+            src="/images/about/product-suite.webp"
+            alt="The RosterLab app on laptops, tablets and phones: roster solutions, staff requests and the Otto AI assistant"
+            fill
+            sizes="50vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <div className="relative h-56 sm:h-72 lg:hidden">
+          <Image
+            src="/images/about/product-suite.webp"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-neutral-50 py-16 md:py-20">
+        <Container className="lg:px-12 xl:px-20">
+          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900">
+            Frequently Asked Questions
+          </h2>
+          <div className="mt-8">
+            <FAQAccordion items={faqItems} variant="flat" />
+          </div>
+          <a
+            href="https://help.rosterlab.com/en/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 text-blue-600 hover:underline"
+          >
+            Visit the Help Centre
+            <HiExternalLink className="w-4 h-4" />
+          </a>
+        </Container>
+      </section>
+
+      {/* Closing CTA */}
+      <section
+        className="py-16 md:py-20"
+        style={{
+          background:
+            "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+        }}
+      >
+        <Container>
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              The AI rostering platform built to handle your complexity
+            </h2>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Button
+                href="/book-a-demo"
+                className="bg-white text-neutral-900 hover:bg-neutral-100"
+                analyticsLabel="Book a demo"
+                analyticsLocation="Contact Page CTA"
+              >
+                Book a demo
+              </Button>
+              <Button
+                href="/pricing"
+                className="bg-transparent border border-white/70 text-white hover:bg-white/10"
+                analyticsLabel="View pricing"
+                analyticsLocation="Contact Page CTA"
+              >
+                View pricing
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* Hidden Breadcrumb Schema for SEO */}
 
