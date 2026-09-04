@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
-import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
+import { FREE_SIGNUP_GATE_CLASS } from "@/lib/market-access/client-gate";
 import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 /**
@@ -98,7 +98,6 @@ export default function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
-  const { canSignUpFree } = useMarketAccess();
 
   // Determine if this is a US page by checking if navItems contain US-specific links
   const isUSVersion = navItems.some(
@@ -1024,25 +1023,23 @@ export default function Header({
             >
               <DemoCtaLabel href={demoLink}>Book a Demo</DemoCtaLabel>
             </Link>
-            {canSignUpFree && (
-              <Link
-                href="/start-free"
-                className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  trackSmartButtonClick(
-                    "Start for free",
-                    "/start-free",
-                    "Header Desktop",
-                  );
-                  setTimeout(() => {
-                    window.location.href = "/start-free";
-                  }, 100);
-                }}
-              >
-                Start for free
-              </Link>
-            )}
+            <Link
+              href="/start-free"
+              className={`bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors ${FREE_SIGNUP_GATE_CLASS}`}
+              onClick={(e) => {
+                e.preventDefault();
+                trackSmartButtonClick(
+                  "Start for free",
+                  "/start-free",
+                  "Header Desktop",
+                );
+                setTimeout(() => {
+                  window.location.href = "/start-free";
+                }, 100);
+              }}
+            >
+              Start for free
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -1359,26 +1356,24 @@ export default function Header({
             >
               <DemoCtaLabel href={demoLink}>Book a Demo</DemoCtaLabel>
             </Link>
-            {canSignUpFree && (
-              <Link
-                href="/start-free"
-                className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={(e) => {
-                  e.preventDefault();
-                  trackSmartButtonClick(
-                    "Start for free",
-                    "/start-free",
-                    "Header Mobile",
-                  );
-                  setIsMenuOpen(false);
-                  setTimeout(() => {
-                    window.location.href = "/start-free";
-                  }, 100);
-                }}
-              >
-                Start for free
-              </Link>
-            )}
+            <Link
+              href="/start-free"
+              className={`bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium ${FREE_SIGNUP_GATE_CLASS}`}
+              onClick={(e) => {
+                e.preventDefault();
+                trackSmartButtonClick(
+                  "Start for free",
+                  "/start-free",
+                  "Header Mobile",
+                );
+                setIsMenuOpen(false);
+                setTimeout(() => {
+                  window.location.href = "/start-free";
+                }, 100);
+              }}
+            >
+              Start for free
+            </Link>
           </div>
         </div>
       </div>
