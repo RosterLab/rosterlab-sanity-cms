@@ -8,20 +8,24 @@ import {
   trackSmartButtonClick,
 } from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
+import DemoLabel from "@/components/market-access/DemoLabel";
 import {
   isDemoBookingHref,
   isFreeSignupHref,
-  toRequestDemoLabel,
-  useMarketAccess,
-} from "@/components/market-access/MarketAccessProvider";
+} from "@/lib/market-access/labels";
+import { FREE_SIGNUP_GATE_CLASS } from "@/lib/market-access/client-gate";
 
 /**
- * Rewrites the plain-text parts of a label. Non-string children (icons and the
- * like) are handed back untouched.
+ * Gates the plain-text parts of a label so CSS can pick the country's wording.
+ * Non-string children (icons and the like) are handed back untouched.
  */
-function rewriteTextChildren(children: ReactNode): ReactNode {
-  return Children.map(children, (child) =>
-    typeof child === "string" ? toRequestDemoLabel(child) : child,
+function gateTextChildren(children: ReactNode): ReactNode {
+  return Children.map(children, (child, index) =>
+    typeof child === "string" ? (
+      <DemoLabel key={index}>{child}</DemoLabel>
+    ) : (
+      child
+    ),
   );
 }
 
@@ -56,7 +60,6 @@ export default function Button({
   ariaLabel,
   ariaPressed,
 }: ButtonProps) {
-  const { canSignUpFree, decision } = useMarketAccess();
   const baseStyles =
     "inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
@@ -75,18 +78,22 @@ export default function Button({
     lg: "px-6 py-3 text-lg",
   };
 
-  const classes = cn(baseStyles, variants[variant], sizes[size], className);
-
-  if (href && isFreeSignupHref(href) && !canSignUpFree) {
-    return null;
-  }
+  const classes = cn(
+    baseStyles,
+    variants[variant],
+    sizes[size],
+    className,
+    // Free signup isn't offered everywhere. The gate hides the CTA in CSS
+    // rather than dropping it from the tree, so the decision lands before
+    // first paint instead of a fetch later — see lib/market-access/client-gate.
+    href && isFreeSignupHref(href) && FREE_SIGNUP_GATE_CLASS,
+  );
 
   // Visitors routed to the request form can't pick a time, so the booking
-  // promise in the label would be wrong.
+  // promise in the label would be wrong. Which wording applies is decided in
+  // CSS, for the same reason as the free-signup gate above.
   const label =
-    href && decision?.demo === "request_review" && isDemoBookingHref(href)
-      ? rewriteTextChildren(children)
-      : children;
+    href && isDemoBookingHref(href) ? gateTextChildren(children) : children;
 
   const handleClick = () => {
     if (analyticsLabel && href) {

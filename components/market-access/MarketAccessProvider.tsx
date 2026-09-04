@@ -11,6 +11,12 @@ import {
 import { analytics } from "@/components/analytics/tracking";
 import { runBestEffort } from "@/lib/analytics/best-effort";
 import type { MarketAccessDecision } from "@/lib/market-access/types";
+import {
+  DEMO_MODE_ATTRIBUTE,
+  FREE_SIGNUP_ATTRIBUTE,
+  MARKET_ACCESS_HINT_KEY,
+  type MarketAccessHint,
+} from "@/lib/market-access/client-gate";
 
 type MarketAccessStatus = "loading" | "ready" | "error";
 
@@ -33,6 +39,36 @@ const FAIL_CLOSED_DECISION: MarketAccessDecision = {
   demo: "request_review",
   reasonCode: "unknown_country",
 };
+
+/**
+ * Publishes a decision to the two places that resolve the CTAs before React
+ * can: the `<html>` attributes the gate CSS reads on this page, and the cached
+ * hint the pre-paint script reads on the next one.
+ */
+function publishDecision(
+  decision: MarketAccessDecision,
+  { cache }: { cache: boolean },
+) {
+  const hint: MarketAccessHint = {
+    freeSignup: decision.freeSignup === "show" ? "show" : "hide",
+    demo: decision.demo === "request_review" ? "request" : "book",
+    ts: Date.now(),
+  };
+
+  const element = document.documentElement;
+  element.setAttribute(FREE_SIGNUP_ATTRIBUTE, hint.freeSignup);
+  element.setAttribute(DEMO_MODE_ATTRIBUTE, hint.demo);
+
+  // A failed request fails closed for this page, but it says nothing about the
+  // visitor's country — caching it would make one flaky response relabel every
+  // later load. The last good answer is the better first-paint guess.
+  if (!cache) return;
+  try {
+    localStorage.setItem(MARKET_ACCESS_HINT_KEY, JSON.stringify(hint));
+  } catch {
+    // Private mode or a full quota: the hint is an optimisation, not the gate.
+  }
+}
 
 export function MarketAccessProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<MarketAccessStatus>("loading");
@@ -60,6 +96,7 @@ export function MarketAccessProvider({ children }: { children: ReactNode }) {
       .then((nextDecision) => {
         setDecision(nextDecision);
         setStatus("ready");
+        publishDecision(nextDecision, { cache: true });
         runBestEffort("market access evaluation", () => {
           analytics.track("market_access_evaluated", {
             market_access_policy_version: nextDecision.policyVersion,
@@ -75,6 +112,7 @@ export function MarketAccessProvider({ children }: { children: ReactNode }) {
           return;
         setDecision(FAIL_CLOSED_DECISION);
         setStatus("error");
+        publishDecision(FAIL_CLOSED_DECISION, { cache: false });
         runBestEffort("market access failure", () => {
           analytics.track("market_access_failed", {
             failure: error instanceof Error ? error.message : "unknown",
@@ -103,42 +141,4 @@ export function MarketAccessProvider({ children }: { children: ReactNode }) {
 
 export function useMarketAccess(): MarketAccessContextValue {
   return useContext(MarketAccessContext);
-}
-
-export function isFreeSignupHref(href: string): boolean {
-  const normalized = href.toLowerCase().replace(/\/$/, "");
-  return (
-    normalized === "/start-free" ||
-    normalized === "https://app.rosterlab.com/signup"
-  );
-}
-
-const DEMO_BOOKING_PATHS = new Set(["/book-a-demo", "/us/book-a-demo"]);
-
-/** True when `href` points at one of the Calendly-backed booking pages. */
-export function isDemoBookingHref(href: string): boolean {
-  const [path = ""] = href.split(/[?#]/);
-  const normalized = path
-    .toLowerCase()
-    .replace(/^https?:\/\/(?:www\.)?rosterlab\.com/, "")
-    .replace(/\/+$/, "");
-  return DEMO_BOOKING_PATHS.has(normalized);
-}
-
-/**
- * Countries without live demo coverage get the request form instead of the
- * calendar, so every CTA pointing there has to promise a request rather than a
- * booking. Only the verb changes; the surrounding casing is left alone so
- * "Book a Demo" and "Book a demo" both keep their own style.
- */
-export function toRequestDemoLabel(label: string): string {
-  return label.replace(/\bbook\b/gi, (match) =>
-    match[0] === match[0].toUpperCase() ? "Request" : "request",
-  );
-}
-
-/** True while the visitor can only request a demo, never book one directly. */
-export function useMustRequestDemo(): boolean {
-  const { decision } = useMarketAccess();
-  return decision?.demo === "request_review";
 }

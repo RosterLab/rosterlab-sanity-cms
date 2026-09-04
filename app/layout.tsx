@@ -20,6 +20,7 @@ import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger"
 import CTAModalManager from "@/components/modals/CTAModalManager";
 import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
 import { MarketAccessProvider } from "@/components/market-access/MarketAccessProvider";
+import { MARKET_ACCESS_HINT_SCRIPT } from "@/lib/market-access/client-gate";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -65,8 +66,14 @@ export default async function RootLayout({
     pathname.startsWith("/api");
 
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
+        {/* Applies the cached market-access decision before first paint, so a
+            visitor never sees the wrong CTAs flash first. See
+            lib/market-access/client-gate.ts. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: MARKET_ACCESS_HINT_SCRIPT }}
+        />
         {/* Critical resource hints */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

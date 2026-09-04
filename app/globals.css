@@ -142,3 +142,22 @@ h3 {
     transform: translateX(100%);
   }
 }
+
+/* Market-access gates. The HTML is CDN-shared across visitors, so it can't know
+   the country: both versions of each country-dependent CTA are rendered and
+   chosen here, from attributes set on <html> before first paint.
+   See lib/market-access/client-gate.ts for the full picture. */
+
+/* Free signup, hidden until the country is known to allow it (fail closed).
+   This only ever hides — it never sets a display — so a shown CTA keeps its own
+   layout and its share of a parent's space-x/gap. */
+html:not([data-free-signup="show"]) .free-signup-gate {
+  display: none;
+}
+
+/* Demo CTA wording. "Book" is the default; countries routed to the request
+   form instead of Calendly get "Request". */
+html:not([data-demo-mode="request"]) .demo-cta-request,
+html[data-demo-mode="request"] .demo-cta-book {
+  display: none;
+}

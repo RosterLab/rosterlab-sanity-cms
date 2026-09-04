@@ -1,10 +1,5 @@
-"use client";
-
-import {
-  isDemoBookingHref,
-  toRequestDemoLabel,
-  useMustRequestDemo,
-} from "./MarketAccessProvider";
+import { isDemoBookingHref } from "@/lib/market-access/labels";
+import DemoLabel from "./DemoLabel";
 
 interface DemoCtaLabelProps {
   /** Text as written for countries that can book straight into the calendar. */
@@ -21,17 +16,10 @@ interface DemoCtaLabelProps {
  * that land on the request form instead of Calendly.
  *
  * `Button` does this on its own. This is for the CTAs built from a raw `Link`
- * or `a`, including the ones inside server components — it is a client
- * component so it can read the market access decision from anywhere.
+ * or `a`.
  */
 export default function DemoCtaLabel({ children, href }: DemoCtaLabelProps) {
-  const mustRequestDemo = useMustRequestDemo();
   const isBookingLink = href === undefined || isDemoBookingHref(href);
-  return (
-    <>
-      {mustRequestDemo && isBookingLink
-        ? toRequestDemoLabel(children)
-        : children}
-    </>
-  );
+  if (!isBookingLink) return <>{children}</>;
+  return <DemoLabel>{children}</DemoLabel>;
 }
