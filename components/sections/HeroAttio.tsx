@@ -131,6 +131,26 @@ function useDeferredSrc(enabled: boolean) {
   return src;
 }
 
+/**
+ * The pin, and the oversized landing scale that feeds it, are desktop-only.
+ *
+ * At phone width the window is a 1.97:1 letterbox roughly 180px tall, so the
+ * 50vh of pin rail below it reads as a field of empty blue rather than as
+ * dwell time on the mockup — and the landing scale pushes its sides past the
+ * section's horizontal clip. Both are switched off below `lg`.
+ */
+function useIsDesktopHero() {
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return isDesktop;
+}
+
 export default function HeroAttio({
   content = HERO_CONTENT_AU,
 }: {
@@ -143,6 +163,7 @@ export default function HeroAttio({
   /** Untransformed wrapper, used for measurement — see targetScale() below. */
   const trackRef = useRef<HTMLDivElement>(null);
   const reduceMotion = usePrefersReducedMotion();
+  const isDesktop = useIsDesktopHero();
   // Under reduced motion the poster is the whole story — never fetch the video.
   const videoSrc = useDeferredSrc(!reduceMotion);
 
@@ -151,8 +172,12 @@ export default function HeroAttio({
     const track = trackRef.current;
     if (!element || !track) return;
 
-    // Someone who has asked for less motion gets the window at its own size.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Someone who has asked for less motion — and everyone below `lg`, where
+    // there is no pin to scale into — gets the window at its own size.
+    if (
+      !isDesktop ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       element.style.transform = "scale(1)";
       return;
     }
@@ -219,7 +244,7 @@ export default function HeroAttio({
       window.removeEventListener("scroll", start);
       window.removeEventListener("resize", start);
     };
-  }, []);
+  }, [isDesktop]);
 
   // The dots' focal point drifts toward the cursor.
   //
@@ -401,7 +426,7 @@ export default function HeroAttio({
             horizontally: it keeps the mockup's square bottom edge clear of the
             section's rounded corner, which it would otherwise sit flush against
             and overhang as the pin releases. */}
-        <div ref={trackRef} className="mt-20 px-4 pb-24">
+        <div ref={trackRef} className="mt-12 px-4 pb-10 lg:mt-20 lg:pb-24">
           {/* Pin rail. The mockup holds the top of this box while the rest of
               it scrolls past, then releases on its own.
 
@@ -410,7 +435,7 @@ export default function HeroAttio({
               padding here adds height the pin cannot use and the mockup just
               scrolls away — which is exactly what it did on the first pass. */}
           <div>
-            <div className="sticky top-24 flex justify-center lg:top-28">
+            <div className="flex justify-center lg:sticky lg:top-28">
               <div
                 ref={windowRef}
                 // Anchored at the top, so shrinking draws the bottom edge up
@@ -419,11 +444,12 @@ export default function HeroAttio({
                 // frame drawn around it would read as a second one. The clip
                 // trims the corner radius baked into the recording; the ring
                 // and shadow are what lift it off the field.
-                className="relative w-full max-w-[1080px] origin-top overflow-hidden rounded-2xl shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-8px_rgba(16,24,40,0.10),0_40px_80px_-32px_rgba(16,24,40,0.22)] ring-1 ring-black/[0.04] will-change-transform lg:w-3/4"
-                style={{
-                  transform: `scale(${LANDING_SCALE})`,
-                  aspectRatio: `${SCREEN.w} / ${SCREEN.h}`,
-                }}
+                className="relative w-full max-w-[1080px] origin-top scale-100 overflow-hidden rounded-2xl lg:scale-[1.25] shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-8px_rgba(16,24,40,0.10),0_40px_80px_-32px_rgba(16,24,40,0.22)] ring-1 ring-black/[0.04] will-change-transform lg:w-3/4"
+                // The landing scale is a class, not an inline style, so the
+                // first paint is already right on both sizes — 1 below `lg`,
+                // oversized above it — before the effect below takes the
+                // transform over.
+                style={{ aspectRatio: `${SCREEN.w} / ${SCREEN.h}` }}
               >
                 <video
                   src={videoSrc}
@@ -441,7 +467,11 @@ export default function HeroAttio({
                 />
               </div>
             </div>
-            <div aria-hidden="true" style={{ height: `${PIN_SCROLL_VH}vh` }} />
+            <div
+              aria-hidden="true"
+              className="hidden lg:block"
+              style={{ height: `${PIN_SCROLL_VH}vh` }}
+            />
           </div>
         </div>
       </div>
