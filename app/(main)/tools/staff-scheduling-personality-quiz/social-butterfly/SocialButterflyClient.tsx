@@ -2,26 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { urlFor } from "@/sanity/lib/client";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
-
-// Add HubSpot type declaration
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (config: {
-          region: string;
-          portalId: string;
-          formId: string;
-          target: string;
-          onFormSubmitted?: (formData: any) => void;
-        }) => void;
-      };
-    };
-  }
-}
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
+import { createStars } from "@/lib/personality-quiz/stars";
 
 // Star component for background animation
 function Star({ style }: { style: React.CSSProperties }) {
@@ -58,17 +42,8 @@ export default function SocialButterflyClient({
   const [showDownloadForm, setShowDownloadForm] = useState(false);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
-  const [isLoadingForm, setIsLoadingForm] = useState(false);
-  const formContainerRef = useRef<HTMLDivElement>(null);
 
-  // Generate random stars
-  const stars = Array.from({ length: 50 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    animationDelay: `${Math.random() * 5}s`,
-    animationDuration: `${3 + Math.random() * 4}s`,
-  }));
+  const stars = createStars();
 
   const handleCopyLink = () => {
     const currentUrl = window.location.href;
@@ -117,7 +92,7 @@ export default function SocialButterflyClient({
     return () => window.removeEventListener("popstate", handlePopstate);
   }, []);
 
-  // Removed handleFormSubmit - now handled by HubSpot
+  // Download submission is handled by the shared lead form.
 
   const generatePDF = useCallback(async () => {
     try {
@@ -697,69 +672,8 @@ export default function SocialButterflyClient({
     }
   }, []);
 
-  const createHubSpotForm = useCallback(() => {
-    if (window.hbspt && formContainerRef.current) {
-      window.hbspt.forms.create({
-        region: "na1",
-        portalId: "20646833",
-        formId: "d6b9c588-9eb1-44ba-bbe2-1d3aa362e5b1",
-        target: "#hubspot-form-container",
-        onFormSubmitted: async () => {
-          // Hide form and show generating message
-          if (formContainerRef.current) {
-            formContainerRef.current.style.display = "none";
-          }
-          setIsGeneratingPDF(true);
-
-          // Generate and download PDF
-          await generatePDF();
-
-          // Close modal after a short delay
-          setTimeout(() => {
-            setIsGeneratingPDF(false);
-            setShowDownloadForm(false);
-          }, 1000);
-        },
-      });
-      setIsLoadingForm(false);
-    }
-  }, [generatePDF]);
-
-  // Load HubSpot form when modal opens
-  useEffect(() => {
-    if (showDownloadForm) {
-      setIsLoadingForm(true);
-
-      // Load HubSpot script if not already loaded
-      if (!window.hbspt) {
-        const script = document.createElement("script");
-        script.src = "https://js.hsforms.net/forms/embed/v2.js";
-        script.charset = "utf-8";
-        script.type = "text/javascript";
-        script.async = true;
-        script.onload = () => {
-          // Small delay to ensure script is fully loaded
-          setTimeout(() => {
-            createHubSpotForm();
-          }, 100);
-        };
-        document.body.appendChild(script);
-      } else {
-        createHubSpotForm();
-      }
-    }
-
-    return () => {
-      // Clean up form when modal closes
-      if (formContainerRef.current) {
-        formContainerRef.current.innerHTML = "";
-      }
-    };
-  }, [showDownloadForm, createHubSpotForm]);
-
   return (
     <div className="bg-white relative">
-      <HubSpotFormListener />
       {/* Hero Section */}
       <section className="relative z-30 py-8 md:py-10 lg:py-12 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -1626,18 +1540,19 @@ export default function SocialButterflyClient({
               Get your personalized rostering personality report as a PDF.
             </p>
 
-            {/* HubSpot Form Container */}
-            <div
-              id="hubspot-form-container"
-              ref={formContainerRef}
-              className="mb-4"
-            >
-              {isLoadingForm && (
-                <div className="text-center py-4">
-                  <p className="text-gray-600">Loading form...</p>
-                </div>
-              )}
-            </div>
+            <LeadCaptureForm
+              source="personality-quiz"
+              submitLabel="Download results"
+              metadata={{ personality: "social-butterfly" }}
+              onSuccess={async () => {
+                setIsGeneratingPDF(true);
+                await generatePDF();
+                setTimeout(() => {
+                  setIsGeneratingPDF(false);
+                  setShowDownloadForm(false);
+                }, 1000);
+              }}
+            />
 
             {isGeneratingPDF && (
               <div className="text-center py-4">

@@ -1,32 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { upsertHubSpotContact } from "@/lib/hubspot/upsertContact";
+import { submitWebsiteLead } from "@/lib/leads/submitLead";
+import { detectRequestCountry } from "@/lib/market-access/geo";
 
 const CONVERSION_POINT = "Roster Analysis Report";
 
 const rosterAnalysisLeadSchema = z.object({
   email: z.string().email(),
+  name: z.string().max(80).optional(),
   organisationName: z.string().optional(),
+  specificFocus: z.string().max(1000).optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, organisationName } = rosterAnalysisLeadSchema.parse(body);
+    const { email, name, organisationName, specificFocus } =
+      rosterAnalysisLeadSchema.parse(body);
 
-    const result = await upsertHubSpotContact({
+    // Attio stores names split; the form collects a single free-text field.
+    const [firstName, ...lastName] = (name ?? "").trim().split(/\s+/);
+
+    const result = await submitWebsiteLead({
+      source: "roster-analysis",
       email,
-      conversionPoint: CONVERSION_POINT,
-      properties: organisationName ? { company: organisationName } : undefined,
-      noteBody: `Contact submitted the Roster Analysis tool.\n\nDetails:\n- Organisation: ${
-        organisationName || "N/A"
-      }`,
+      firstName: firstName || undefined,
+      lastName: lastName.length ? lastName.join(" ") : undefined,
+      company: organisationName || undefined,
+      // What the user asked the report to focus on, in their own words.
+      message: specificFocus || undefined,
+      detectedCountry: detectRequestCountry(request),
+      metadata: { conversionPoint: CONVERSION_POINT },
     });
 
-    // Always 200 — a HubSpot failure must not break the user's analysis.
+    // Always 200 — a CRM failure must not break the user's analysis.
     // The status is surfaced so the client can report it to analytics.
     return NextResponse.json(
-      { message: "Lead captured successfully", hubspot: result.status },
+      { message: "Lead captured successfully", attio: result.status },
       { status: 200 },
     );
   } catch (error) {

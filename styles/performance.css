@@ -44,8 +44,13 @@ img {
 
 /* Optimise progress animations */
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .animate-pulse {
@@ -71,7 +76,8 @@ img {
 
 /* Defer non-critical animations */
 @media (prefers-reduced-motion: no-preference) {
-  .modalText *, .video {
+  .modalText *,
+  .video {
     animation-delay: 0.5s;
   }
 }
@@ -81,15 +87,8 @@ img {
   font-display: swap !important;
 }
 
-/* HubSpot font optimisation */
-[src*="hsappstatic"] {
-  font-display: swap !important;
-}
-
 /* Ensure text visibility during font load */
-.meetings-iframe-container,
-.hs-form,
-iframe[src*="hubspot"] {
+.meetings-iframe-container {
   font-display: swap !important;
   font-synthesis: style weight;
 }

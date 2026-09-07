@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { HiInformationCircle } from "react-icons/hi";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import { useHubSpotForm } from "@/lib/hooks";
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import { PDFGenerator, type PDFReportData } from "@/lib/pdf-generator";
 import { industryConfigs } from "@/lib/calculator/industry-configs";
 import {
@@ -52,10 +52,6 @@ interface CalculatorBaseProps {
   region: "us" | "global";
   reportType: "savings" | "roi";
   regionalContent: RegionalContent;
-  hubspotConfig: {
-    portalId: string;
-    formId: string;
-  };
   conversionPoint?: "ROI Calculator" | "FTE calculator";
   className?: string;
 }
@@ -64,7 +60,6 @@ export default function CalculatorBase({
   region,
   reportType,
   regionalContent,
-  hubspotConfig,
   conversionPoint,
   className = "",
 }: CalculatorBaseProps) {
@@ -90,7 +85,6 @@ export default function CalculatorBase({
   // Form states
   const [showReportForm, setShowReportForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formContainerRef = useRef<HTMLDivElement>(null);
 
   // Get current industry configuration
   const currentIndustry = industryConfigs[industry] || industryConfigs.nursing;
@@ -160,63 +154,6 @@ export default function CalculatorBase({
     setAnnualSalaryInput("");
     setManualRosteringDays(null);
   }, [industry]);
-
-  // HubSpot form integration
-  useHubSpotForm({
-    config: {
-      portalId: hubspotConfig.portalId,
-      formId: hubspotConfig.formId,
-      target: "#hubspot-form-container",
-      onFormSubmitted: async (formData: any) => {
-        // Hide the form immediately after submission
-        const formContainer = document.getElementById("hubspot-form-container");
-        if (formContainer) {
-          formContainer.style.display = "none";
-        }
-
-        // Get the company name from the form submission
-        const companyField = formData.submissionValues?.company || "";
-
-        // Stamp the conversion_point on the contact (fire-and-forget)
-        if (conversionPoint) {
-          const email = formData.submissionValues?.email;
-          const firstname = formData.submissionValues?.firstname || "";
-          const lastname = formData.submissionValues?.lastname || "";
-          if (email) {
-            fetch("/api/conversion-point", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                email,
-                firstname,
-                lastname,
-                company: companyField,
-                conversion_point: conversionPoint,
-              }),
-            }).catch((err) => {
-              console.error("Failed to stamp conversion_point", err);
-            });
-          }
-        }
-
-        // Generate and download the PDF
-        setIsSubmitting(true);
-        const success = await generatePDF(companyField);
-        setIsSubmitting(false);
-
-        if (success) {
-          // Close the modal after a short delay
-          setTimeout(() => {
-            setShowReportForm(false);
-            alert(
-              `Your personalised ${reportType === "savings" ? "savings" : "ROI"} report has been downloaded!`,
-            );
-          }, 1000);
-        }
-      },
-    },
-    shouldLoad: showReportForm,
-  });
 
   return (
     <>
@@ -1004,16 +941,34 @@ export default function CalculatorBase({
               report showing your potential savings with RosterLab.
             </p>
 
-            {/* HubSpot Form Container */}
-            <div
-              id="hubspot-form-container"
-              ref={formContainerRef}
-              style={{ minHeight: "100px" }}
-            >
-              <p className="text-sm text-gray-500 text-center">
-                Loading form...
-              </p>
-            </div>
+            <LeadCaptureForm
+              source={
+                conversionPoint === "FTE calculator"
+                  ? "calculator-fte"
+                  : "calculator-roi"
+              }
+              submitLabel="Download report"
+              metadata={{
+                reportType,
+                region,
+                industry,
+                employees,
+                conversionPoint: conversionPoint ?? "calculator",
+              }}
+              onSuccess={async (values) => {
+                setIsSubmitting(true);
+                const success = await generatePDF(values.company);
+                setIsSubmitting(false);
+                if (success) {
+                  setTimeout(() => {
+                    setShowReportForm(false);
+                    alert(
+                      `Your personalised ${reportType === "savings" ? "savings" : "ROI"} report has been downloaded!`,
+                    );
+                  }, 1000);
+                }
+              }}
+            />
 
             {isSubmitting && (
               <div className="text-center py-4">

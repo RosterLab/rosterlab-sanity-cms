@@ -8,7 +8,6 @@ import {
   fetchServerGeo,
   getServerGeoSync,
 } from "@/lib/analytics/client-context";
-import { markDemoBooked } from "@/lib/analytics/user-behavior-tracker";
 
 // Storage key for UTM campaign context
 const CAMPAIGN_STORAGE_KEY = "rl_campaign_context";
@@ -335,7 +334,8 @@ export const trackSmartButtonClick = (
 
   if (
     normalizedHref.includes("app.rosterlab.com/signup") ||
-    normalizedHref === "https://app.rosterlab.com/signup"
+    normalizedHref === "https://app.rosterlab.com/signup" ||
+    normalizedHref === "/start-free"
   ) {
     ctaType = "signup";
     ctaSlug = "signup";
@@ -453,7 +453,6 @@ export const trackSmartButtonClick = (
       contentCategory: "signup",
     });
   } else if (ctaType === "demo") {
-    markDemoBooked();
     metaTrackViewContent({
       contentName: ctaName,
       contentCategory: "demo_intent",

@@ -6,7 +6,6 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Button from "@/components/ui/Button";
 import { HiExternalLink } from "react-icons/hi";
 import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
@@ -64,8 +63,6 @@ const faqItems = [
 export default function ContactPage() {
   return (
     <SiteLayout>
-      <HubSpotFormListener />
-
       {/*
         Hero: the form column runs inside the container, the product shot
         bleeds off the right edge of the viewport beside it. On desktop the

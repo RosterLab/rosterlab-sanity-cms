@@ -105,7 +105,7 @@ export default function ManualSchedulingPage() {
           ]}
           analyticsLocation="Solution Page Free Staff Scheduling"
           primaryCta={{
-            href: "https://app.rosterlab.com/signup",
+            href: "/start-free",
             label: "Start for Free",
             analyticsProperties: {
               cta_type: "signup",
@@ -579,7 +579,7 @@ export default function ManualSchedulingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  href="https://app.rosterlab.com/signup"
+                  href="/start-free"
                   className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
                   analyticsLabel="Start for Free"
                   analyticsLocation="Solution Page Free Staff Scheduling"
