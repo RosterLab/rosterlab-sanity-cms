@@ -12,6 +12,8 @@ describe("market access policy", () => {
     ["TH", "show", "request_review"],
     ["VN", "show", "request_review"],
     ["ZA", "show", "request_review"],
+    // Absent from the World Bank feed, so it reaches full access by override.
+    ["TW", "show", "nzt_business_hours"],
   ])("%s returns free=%s and demo=%s", (countryCode, freeSignup, demo) => {
     expect(evaluateMarketAccess(countryCode)).toMatchObject({
       countryCode,
@@ -34,7 +36,7 @@ describe("market access policy", () => {
     });
   });
 
-  test("overrides open free signup without granting a live demo", () => {
+  test("the demo-gated overrides open free signup without granting a live demo", () => {
     for (const countryCode of ["CN", "TH", "VN", "ZA"]) {
       expect(evaluateMarketAccess(countryCode)).toMatchObject({
         countryCode,
@@ -43,6 +45,27 @@ describe("market access policy", () => {
         reasonCode: "manual_override",
       });
     }
+  });
+
+  test("an override speaks for an economy the feed doesn't cover", () => {
+    // Taiwan isn't a World Bank member, so it has no countries entry at all.
+    expect(marketAccessPolicy.countries.TW).toBeUndefined();
+    expect(evaluateMarketAccess("TW")).toMatchObject({
+      countryCode: "TW",
+      freeSignup: "show",
+      demo: "nzt_business_hours",
+      reasonCode: "manual_override",
+    });
+  });
+
+  test("an uncovered economy without an override still fails closed", () => {
+    expect(marketAccessPolicy.countries.ZZ).toBeUndefined();
+    expect(marketAccessPolicy.overrides.ZZ).toBeUndefined();
+    expect(evaluateMarketAccess("ZZ")).toMatchObject({
+      freeSignup: "hide",
+      demo: "request_review",
+      reasonCode: "unknown_country",
+    });
   });
 
   test("only the four overridden markets are added", () => {
