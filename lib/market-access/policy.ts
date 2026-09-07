@@ -26,37 +26,30 @@ export function evaluateMarketAccess(
     };
   }
 
-  if (!countryCode) {
-    return {
-      policyVersion: marketAccessPolicy.policyVersion,
-      countryCode: null,
-      freeSignup: "hide",
-      demo: "request_review",
-      reasonCode: "unknown_country",
-    };
-  }
+  const country = countryCode
+    ? marketAccessPolicy.countries[countryCode]
+    : null;
 
-  const country = marketAccessPolicy.countries[countryCode];
-  if (!country) {
-    return {
-      policyVersion: marketAccessPolicy.policyVersion,
-      countryCode,
-      freeSignup: "hide",
-      demo: "request_review",
-      reasonCode: "unknown_country",
-    };
-  }
+  // The country list mirrors the World Bank feed, which only covers its own
+  // members — so an economy can be missing from it without being unknown to us.
+  // The base decision fails closed for those, and an override can then speak
+  // for the ones we've actually reviewed.
+  const { freeSignup, demo } = country
+    ? {
+        freeSignup: country.incomeLevel === "HIC" ? "show" : "hide",
+        demo:
+          country.gniPerCapitaUsd !== null &&
+          country.gniPerCapitaUsd >= marketAccessPolicy.demoGniThresholdUsd
+            ? countryCode === "US"
+              ? "us_24_7"
+              : "nzt_business_hours"
+            : "request_review",
+      }
+    : { freeSignup: "hide", demo: "request_review" };
 
-  const freeSignup = country.incomeLevel === "HIC" ? "show" : "hide";
-  const demo =
-    country.gniPerCapitaUsd !== null &&
-    country.gniPerCapitaUsd >= marketAccessPolicy.demoGniThresholdUsd
-      ? countryCode === "US"
-        ? "us_24_7"
-        : "nzt_business_hours"
-      : "request_review";
-
-  const override = marketAccessPolicy.overrides[countryCode];
+  const override = countryCode
+    ? marketAccessPolicy.overrides[countryCode]
+    : undefined;
   if (override) {
     return {
       policyVersion: marketAccessPolicy.policyVersion,
@@ -64,6 +57,16 @@ export function evaluateMarketAccess(
       freeSignup: override.freeSignup ?? freeSignup,
       demo: override.demo ?? demo,
       reasonCode: "manual_override",
+    };
+  }
+
+  if (!country) {
+    return {
+      policyVersion: marketAccessPolicy.policyVersion,
+      countryCode,
+      freeSignup: "hide",
+      demo: "request_review",
+      reasonCode: "unknown_country",
     };
   }
 

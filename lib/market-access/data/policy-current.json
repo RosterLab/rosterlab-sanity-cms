@@ -21,6 +21,13 @@
       "owner": "sunny@rosterlab.com",
       "reviewDate": "2027-03-03"
     },
+    "TW": {
+      "freeSignup": "show",
+      "demo": "nzt_business_hours",
+      "reason": "Full access. Not a World Bank member, so it has no row in the source feed and was failing closed as unknown_country. High-income economy at ~US$34,000 GNI per capita (Taiwan DGBAS, 2025), above both the high-income bar and the $30,000 demo threshold.",
+      "owner": "sunny@rosterlab.com",
+      "reviewDate": "2027-03-03"
+    },
     "VN": {
       "freeSignup": "show",
       "reason": "Free signup only. Target SEA market alongside Thailand. Demo stays a request form.",
