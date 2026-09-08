@@ -74,13 +74,11 @@ export default async function RootLayout({
         <script
           dangerouslySetInnerHTML={{ __html: MARKET_ACCESS_HINT_SCRIPT }}
         />
-        {/* Critical resource hints */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        {/* Critical resource hints.
+
+            No font preconnects: `next/font/google` self-hosts Poppins at build
+            time, so nothing is ever fetched from fonts.googleapis.com or
+            fonts.gstatic.com and Lighthouse flagged both hints as unused. */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />

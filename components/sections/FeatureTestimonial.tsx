@@ -98,11 +98,21 @@ export default function FeatureTestimonial({
             {/* Logo sits beside the name so the person and the organisation
                 read as one attribution line. */}
             <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              {/*
+                Drawn at h-8/h-9, i.e. 83-93px wide at this 2.58 ratio. `sizes`
+                is what keeps the optimizer honest about that: without it Next
+                treats a fixed-width image as full-bleed and was serving a
+                384px-wide copy for a 93px slot. Quality is low on purpose —
+                `brightness(0)` renders the mark as a flat silhouette, so
+                there is no colour detail left for artefacts to show up in.
+              */}
               <Image
                 src="/images/logos/whanganui.png"
                 alt="Te Whatu Ora Whanganui"
-                width={140}
-                height={70}
+                width={93}
+                height={36}
+                sizes="93px"
+                quality={55}
                 className="h-8 md:h-9 w-auto object-contain opacity-75"
                 style={{ filter: "brightness(0)" }}
               />

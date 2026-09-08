@@ -76,7 +76,7 @@ export default function AboutPage() {
       />
 
       {/* Our Company */}
-      <section className="bg-[#F6F9FE] py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <Container>
           {/*
             Brand mint, the hero's only accent (the arch stroke below `lg`),
@@ -134,51 +134,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Values Section */}
-      <Container>
-        <div className="py-20">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Our Values
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HiLightBulb className="w-8 h-8 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
-                Innovation
-              </h3>
-              <p className="text-gray-600">
-                We push the boundaries of what&apos;s possible with cutting-edge
-                AI and optimisation algorithms.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HiScale className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
-              <p className="text-gray-600">
-                The solution we build prioritises workplace safety, staff
-                equity, and operational efficiency.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HiTrendingUp className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Impact</h3>
-              <p className="text-gray-600">
-                We measure success by time saved, stress reduced & lives
-                improved through better scheduling.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Container>
-
       {/* Team Section */}
-      <div className="bg-gray-50 py-20">
+      <div className="bg-[#F6F9FE] py-20">
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -620,6 +577,49 @@ export default function AboutPage() {
           </div>
         </Container>
       </div>
+
+      {/* Values Section */}
+      <section className="bg-[#F6F9FE] py-20">
+        <Container>
+          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            Our Values
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <HiLightBulb className="w-8 h-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Innovation
+              </h3>
+              <p className="text-gray-600">
+                We push the boundaries of what&apos;s possible with cutting-edge
+                AI and optimisation algorithms.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <HiScale className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
+              <p className="text-gray-600">
+                The solution we build prioritises workplace safety, staff
+                equity, and operational efficiency.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <HiTrendingUp className="w-8 h-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Impact</h3>
+              <p className="text-gray-600">
+                We measure success by time saved, stress reduced & lives
+                improved through better scheduling.
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
 
       {/* CTA Section */}
       <div

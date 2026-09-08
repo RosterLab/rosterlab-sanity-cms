@@ -1,5 +1,4 @@
-import HeroAttio from "@/components/sections/HeroAttio";
-import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import LandingHero from "@/components/sections/LandingHero";
 import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
 import BenefitsNew from "@/components/sections/BenefitsNew";
 import FeaturesGrid from "@/components/sections/FeaturesGrid";
@@ -23,8 +22,7 @@ export default function TestHeroPage() {
     <div className="relative bg-white">
       <DotFocalOverlay />
       <div className="relative z-10">
-        <HeroAttio />
-        <TrustedByDualRow />
+        <LandingHero />
         <FeatureTestimonial />
         <BenefitsNew />
         <IndustrySolutionsNew />

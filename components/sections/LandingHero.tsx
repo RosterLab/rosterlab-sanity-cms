@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import Container from "@/components/ui/Container";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import Button from "@/components/ui/Button";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 import {
@@ -11,11 +12,11 @@ import {
 } from "@/components/sections/HeroNew";
 
 /**
- * Layout study modelled on attio.com's hero: a centred text stack over a
- * dotted blue field, with an app window below it that grows to full size as
- * it scrolls into view.
+ * The landing page hero: a centred text stack over a dotted blue field, with
+ * an app window below it that grows to full size as it scrolls into view and
+ * then holds while the logo wall rises into the blue beneath it.
  *
- * Proportions taken from the reference measured at 1440x1000:
+ * Proportions were taken from a design reference measured at 1440x1000:
  *  - text column 864px wide, centred; 36px pill-to-headline gap
  *  - headline weight 600, leading 0.95, tracking -0.024em
  *  - window 75% of viewport width, 16px radius
@@ -78,34 +79,68 @@ const SPOT_SMOOTHING = 0.08;
 const SPOT_EPSILON = 0.01;
 
 /**
- * How far the mockup holds still, as a share of the viewport height.
+ * Two cuts of the same recording, chosen at fetch time.
  *
- * This is a sticky pin, not wheel interception: the reader's scroll always does
- * exactly what they asked, the mockup simply stays put while this much of the
- * page passes behind it. Long enough that the roster generating is hard to miss,
- * short enough that nobody feels held. The whole value is empty field below the
- * mockup, so raising it buys dwell time at the cost of dead blue.
+ * The frame paints ~2560 device px on a retina laptop and ~720 on a phone, so
+ * one file cannot serve both without either softening the desktop or handing a
+ * phone four times the pixels it can show. `desktop` is 2560 wide — 1:1 at the
+ * settled size — and `mobile` is 960, which saves the phone about 1.1MB and
+ * the decode that goes with it.
+ *
+ * Picked in JS rather than with <source media>, because the src is attached
+ * after load anyway (see useDeferredSrc) and doing it here keeps one code path.
  */
-const PIN_SCROLL_VH = 50;
+const VIDEO_SRC = {
+  desktop: "/landing/mockup/hero-browser.mp4",
+  mobile: "/landing/mockup/hero-browser-mobile.mp4",
+};
 
-const VIDEO_SRC = "/landing/mockup/hero-browser.mp4";
-const VIDEO_POSTER = "/landing/mockup/hero-browser-poster.webp";
+/** Below this width the phone cut is the one worth fetching. */
+const MOBILE_VIDEO_MAX_W = 640;
+/**
+ * The still that stands in for the video, in two sizes.
+ *
+ * It is frame 0 of the recording, so nothing moves when the video takes over,
+ * and it is the hero's LCP element — which is why it is an <img srcset> rather
+ * than the video's `poster` attribute. `poster` takes a single URL with no
+ * responsive variants, so one file had to serve both a 716px phone and a
+ * 2560px retina laptop; the phone was downloading four times the pixels it
+ * could show.
+ */
+const POSTER = {
+  mobile: "/landing/mockup/hero-browser-poster-960.webp",
+  desktop: "/landing/mockup/hero-browser-poster.webp",
+};
+const POSTER_SRCSET = `${POSTER.mobile} 960w, ${POSTER.desktop} 1920w`;
 
 /**
- * The recording's own pixel size, which sets the screen's aspect ratio. The
- * source export sat on a grey backdrop with a drop shadow around the window;
- * both were cropped off on encode, so this is the browser window edge to edge
- * and the frame below can sit flush against it.
+ * How wide the frame is at each breakpoint, so the browser can pick a
+ * candidate before any layout exists. Mirrors the frame's own classes:
+ * full width inside the section's padding below `lg`, three quarters of the
+ * viewport capped at 1080px above it.
  */
-const SCREEN = { w: 1812, h: 920 };
+const POSTER_SIZES = "(min-width: 1024px) min(75vw, 1080px), 100vw";
 
 /**
- * Holds the video's bytes back until the page has loaded.
+ * The recording's own pixel size, which the frame draws its aspect ratio from
+ * so the box is reserved at the right shape before the video loads.
+ *
+ * Must match whatever is in VIDEO_SRC. A stale value here crops the recording
+ * under `object-cover` and takes the poster with it. This export is the
+ * browser window edge to edge; an earlier one carried a grey backdrop around
+ * the window, which had to be cropped back off in CSS — check a re-export for
+ * one before trusting these numbers.
+ */
+const SCREEN = { w: 2560, h: 1300 };
+
+/**
+ * Holds the video's bytes back until the page has loaded, then fetches the cut
+ * that suits the screen.
  *
  * Same reasoning as HeroStoolVideo, which measured it: the hero is the LCP
- * element, and starting a 1.4MB fetch in that contention window costs more
- * than the animation is worth. The poster carries the screen until then,
- * and it is the video's own first frame, so nothing moves when the src lands.
+ * element, and starting the video in that contention window costs more than
+ * the animation is worth. The poster carries the screen until then, and it is
+ * the video's own first frame, so nothing moves when the src lands.
  */
 function useDeferredSrc(enabled: boolean) {
   const [src, setSrc] = useState<string | undefined>(undefined);
@@ -117,9 +152,12 @@ function useDeferredSrc(enabled: boolean) {
       const idle = (
         window as unknown as { requestIdleCallback?: typeof setTimeout }
       ).requestIdleCallback;
-      if (typeof idle === "function")
-        idle(() => !cancelled && setSrc(VIDEO_SRC));
-      else window.setTimeout(() => !cancelled && setSrc(VIDEO_SRC), 300);
+      const chosen = window.matchMedia(`(max-width: ${MOBILE_VIDEO_MAX_W}px)`)
+        .matches
+        ? VIDEO_SRC.mobile
+        : VIDEO_SRC.desktop;
+      if (typeof idle === "function") idle(() => !cancelled && setSrc(chosen));
+      else window.setTimeout(() => !cancelled && setSrc(chosen), 300);
     };
     if (document.readyState === "complete") start();
     else window.addEventListener("load", start, { once: true });
@@ -151,10 +189,13 @@ function useIsDesktopHero() {
   return isDesktop;
 }
 
-export default function HeroAttio({
+export default function LandingHero({
   content = HERO_CONTENT_AU,
+  trustedHeading,
 }: {
   content?: HeroNewContent;
+  /** Heading for the logo wall carried inside the blue field. */
+  trustedHeading?: string;
 } = {}) {
   const windowRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -164,6 +205,17 @@ export default function HeroAttio({
   const trackRef = useRef<HTMLDivElement>(null);
   const reduceMotion = usePrefersReducedMotion();
   const isDesktop = useIsDesktopHero();
+  /** The logo wall in the blue field below the mockup, and whether it is in. */
+  const trustedRef = useRef<HTMLDivElement>(null);
+  const [trustedIn, setTrustedIn] = useState(false);
+  /**
+   * The reveal is applied only after mount, so the wall is plain visible in
+   * the server HTML: hiding it there would leave it invisible to anyone whose
+   * JS never arrives. It sits well below the fold, so the hide-then-fade on
+   * hydration is not something a reader can see.
+   */
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   // Under reduced motion the poster is the whole story — never fetch the video.
   const videoSrc = useDeferredSrc(!reduceMotion);
 
@@ -245,6 +297,31 @@ export default function HeroAttio({
       window.removeEventListener("resize", start);
     };
   }, [isDesktop]);
+
+  // The logo wall fades up as the pin rail brings it into the blue.
+  //
+  // One-shot: it stays put once it has arrived, so scrolling back up does not
+  // replay it. `threshold` is low because on desktop only the top band of the
+  // wall clears the pinned mockup before it should be on.
+  useEffect(() => {
+    const element = trustedRef.current;
+    if (!element) return;
+    if (reduceMotion) {
+      setTrustedIn(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTrustedIn(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
 
   // The dots' focal point drifts toward the cursor.
   //
@@ -341,6 +418,23 @@ export default function HeroAttio({
     // The rounding moved onto the background layer, which is the only thing
     // that needed clipping to the radius.
     <section ref={sectionRef} className="relative overflow-x-clip bg-white">
+      {/*
+        The poster is the hero's LCP candidate, and it is only discoverable
+        inside the <video> tag's `poster` attribute — which the preload scanner
+        does not follow. This hoists it to <head> (React 19) so the fetch starts
+        with the document rather than after the video element is parsed, and
+        marks it high priority so it outranks the below-the-fold images the
+        scanner finds first. Same URL as `poster` below, or the browser fetches
+        the image twice.
+      */}
+      <link
+        rel="preload"
+        as="image"
+        href={POSTER.desktop}
+        imageSrcSet={POSTER_SRCSET}
+        imageSizes={POSTER_SIZES}
+        fetchPriority="high"
+      />
       {/* Background — the same treatment as the live hero (HeroNew): the flat
           brand blue with a 22px grid of white dots over it, concentrated at a
           focal point and dissolving toward the edges.
@@ -398,7 +492,7 @@ export default function HeroAttio({
           <div className="mt-8 flex flex-row items-center justify-center gap-3">
             <Button
               href={content.primaryCta.href}
-              className="inline-flex items-center justify-center rounded-full bg-blue-900 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-blue-950"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-950 sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={content.primaryCta.label}
               analyticsLocation="Hero"
             >
@@ -406,7 +500,7 @@ export default function HeroAttio({
             </Button>
             <Button
               href={content.secondaryCta.href}
-              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-semibold text-blue-700 transition hover:bg-blue-50"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={content.secondaryCta.label}
               analyticsLocation="Hero"
             >
@@ -435,7 +529,7 @@ export default function HeroAttio({
               padding here adds height the pin cannot use and the mockup just
               scrolls away — which is exactly what it did on the first pass. */}
           <div>
-            <div className="flex justify-center lg:sticky lg:top-28">
+            <div className="flex flex-col items-center lg:sticky lg:top-20">
               <div
                 ref={windowRef}
                 // Anchored at the top, so shrinking draws the bottom edge up
@@ -451,27 +545,95 @@ export default function HeroAttio({
                 // transform over.
                 style={{ aspectRatio: `${SCREEN.w} / ${SCREEN.h}` }}
               >
-                <video
-                  src={videoSrc}
-                  poster={VIDEO_POSTER}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  // src is attached after load, so there is nothing to preload
-                  // before then and nothing to guess about afterwards.
-                  preload="none"
+                {/*
+                  The still, and the hero's LCP element. Sized per screen by
+                  the browser off POSTER_SIZES, and preloaded above with the
+                  same srcset so the fetch starts with the document.
+
+                  A plain <img> on purpose: both files are already WebP at the
+                  exact widths served, so next/image would only add an
+                  optimizer hop in front of the one fetch on the critical path.
+                */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={POSTER.desktop}
+                  srcSet={POSTER_SRCSET}
+                  sizes={POSTER_SIZES}
+                  alt=""
                   aria-hidden="true"
-                  tabIndex={-1}
-                  className="block h-full w-full object-cover"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="absolute inset-0 block h-full w-full object-cover"
                 />
+
+                {/*
+                  Mounted only once its src is ready, so there is never an
+                  empty video box over the still. It paints frame 0 first,
+                  which is the still, so the swap is invisible.
+                */}
+                {videoSrc && (
+                  <video
+                    src={videoSrc}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    // The bytes are held back until the page has loaded (see
+                    // useDeferredSrc), so there is nothing to preload before
+                    // then and nothing to guess about after: `none` keeps the
+                    // fetch off the critical path and out of the still's way.
+                    preload="none"
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    className="absolute inset-0 block h-full w-full object-cover"
+                  />
+                )}
+              </div>
+
+              {/*
+                The logo wall, pinned with the mockup rather than after it.
+
+                It has to be inside the sticky box: anything following the
+                mockup in the rail scrolls *under* it while the pin holds, so
+                a wall placed there is covered by the mockup for exactly as
+                long as the pin lasts. Riding along means it holds in the band
+                below the mockup instead, which is the blue this was meant to
+                fill.
+              */}
+              <div
+                ref={trustedRef}
+                // Gap kept tight: the sticky group is the mockup plus this,
+                // and it has to clear the 80px header and still fit a laptop
+                // viewport while the pin holds.
+                className="mt-8 w-full lg:mt-10"
+                style={
+                  mounted
+                    ? {
+                        opacity: trustedIn ? 1 : 0,
+                        transform: trustedIn ? "none" : "translateY(24px)",
+                        transition:
+                          "opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1)",
+                      }
+                    : undefined
+                }
+              >
+                <TrustedByDualRow onDark heading={trustedHeading} />
               </div>
             </div>
-            <div
-              aria-hidden="true"
-              className="hidden lg:block"
-              style={{ height: `${PIN_SCROLL_VH}vh` }}
-            />
+            {/*
+              The rail is what the mockup holds still against: it stays put
+              while this much of the page passes it, which is a sticky pin
+              rather than wheel interception — the reader's scroll always does
+              exactly what they asked. It used to be half a screen of bare
+              spacer, i.e. dead blue under the mockup; the logo wall above now
+              rides the pin with it and fills that band, so the rail only has
+              to be long enough to hold the pair still for a beat.
+
+              A class rather than the old JS constant, so the rail is the right
+              length in the server HTML — before the hero's media query has
+              been read.
+            */}
+            <div aria-hidden="true" className="hidden lg:block lg:h-[28vh]" />
           </div>
         </div>
       </div>
