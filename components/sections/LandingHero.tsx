@@ -91,12 +91,26 @@ const SPOT_EPSILON = 0.01;
  * after load anyway (see useDeferredSrc) and doing it here keeps one code path.
  */
 const VIDEO_SRC = {
-  desktop: "/landing/mockup/hero-browser.mp4",
-  mobile: "/landing/mockup/hero-browser-mobile.mp4",
+  au: {
+    desktop: "/landing/mockup/hero-browser.mp4",
+    mobile: "/landing/mockup/hero-browser-mobile.mp4",
+  },
+  us: {
+    desktop: "/landing/mockup/hero-browser-us.mp4",
+    mobile: "/landing/mockup/hero-browser-us-mobile.mp4",
+  },
 };
 
 /** Below this width the phone cut is the one worth fetching. */
 const MOBILE_VIDEO_MAX_W = 640;
+
+/**
+ * Which recording plays. The two are the same walkthrough captured against
+ * the app in each region's wording — the US one says "RosterLab Schedule" and
+ * "Generating Schedules For You...", so the laptop screen matches the copy
+ * above it. Both encode to the same pixel size, so SCREEN covers both.
+ */
+type Locale = "au" | "us";
 /**
  * The still that stands in for the video, in two sizes.
  *
@@ -108,10 +122,17 @@ const MOBILE_VIDEO_MAX_W = 640;
  * could show.
  */
 const POSTER = {
-  mobile: "/landing/mockup/hero-browser-poster-960.webp",
-  desktop: "/landing/mockup/hero-browser-poster.webp",
+  au: {
+    mobile: "/landing/mockup/hero-browser-poster-960.webp",
+    desktop: "/landing/mockup/hero-browser-poster.webp",
+  },
+  us: {
+    mobile: "/landing/mockup/hero-browser-us-poster-960.webp",
+    desktop: "/landing/mockup/hero-browser-us-poster.webp",
+  },
 };
-const POSTER_SRCSET = `${POSTER.mobile} 960w, ${POSTER.desktop} 1920w`;
+const posterSrcSet = (l: Locale) =>
+  `${POSTER[l].mobile} 960w, ${POSTER[l].desktop} 1920w`;
 
 /**
  * How wide the frame is at each breakpoint, so the browser can pick a
@@ -142,7 +163,7 @@ const SCREEN = { w: 2560, h: 1300 };
  * the animation is worth. The poster carries the screen until then, and it is
  * the video's own first frame, so nothing moves when the src lands.
  */
-function useDeferredSrc(enabled: boolean) {
+function useDeferredSrc(enabled: boolean, locale: Locale) {
   const [src, setSrc] = useState<string | undefined>(undefined);
   useEffect(() => {
     if (!enabled) return;
@@ -152,10 +173,11 @@ function useDeferredSrc(enabled: boolean) {
       const idle = (
         window as unknown as { requestIdleCallback?: typeof setTimeout }
       ).requestIdleCallback;
+      const cuts = VIDEO_SRC[locale];
       const chosen = window.matchMedia(`(max-width: ${MOBILE_VIDEO_MAX_W}px)`)
         .matches
-        ? VIDEO_SRC.mobile
-        : VIDEO_SRC.desktop;
+        ? cuts.mobile
+        : cuts.desktop;
       if (typeof idle === "function") idle(() => !cancelled && setSrc(chosen));
       else window.setTimeout(() => !cancelled && setSrc(chosen), 300);
     };
@@ -165,7 +187,7 @@ function useDeferredSrc(enabled: boolean) {
       cancelled = true;
       window.removeEventListener("load", start);
     };
-  }, [enabled]);
+  }, [enabled, locale]);
   return src;
 }
 
@@ -217,7 +239,9 @@ export default function LandingHero({
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   // Under reduced motion the poster is the whole story — never fetch the video.
-  const videoSrc = useDeferredSrc(!reduceMotion);
+  // The content object already carries the region; the recording follows it.
+  const locale: Locale = content.locale === "us" ? "us" : "au";
+  const videoSrc = useDeferredSrc(!reduceMotion, locale);
 
   useEffect(() => {
     const element = windowRef.current;
@@ -430,8 +454,8 @@ export default function LandingHero({
       <link
         rel="preload"
         as="image"
-        href={POSTER.desktop}
-        imageSrcSet={POSTER_SRCSET}
+        href={POSTER[locale].desktop}
+        imageSrcSet={posterSrcSet(locale)}
         imageSizes={POSTER_SIZES}
         fetchPriority="high"
       />
@@ -556,8 +580,8 @@ export default function LandingHero({
                 */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={POSTER.desktop}
-                  srcSet={POSTER_SRCSET}
+                  src={POSTER[locale].desktop}
+                  srcSet={posterSrcSet(locale)}
                   sizes={POSTER_SIZES}
                   alt=""
                   aria-hidden="true"
