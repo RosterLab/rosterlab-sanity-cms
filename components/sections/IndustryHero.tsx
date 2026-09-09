@@ -49,6 +49,14 @@ interface HeroCta {
 interface IndustryHeroProps {
   title: string;
   description: string;
+  /**
+   * Size of the blue text panel at `lg` and up, where it overlays the photo.
+   * "compact" pulls it in a little on every side — About uses it because its
+   * copy is a single short line and the default panel reads oversized beside
+   * the team photo. Below `lg` the panel is the whole section, so this has
+   * no effect there.
+   */
+  panelSize?: "default" | "compact";
   primaryCta: HeroCta;
   secondaryCta?: HeroCta;
   analyticsLocation?: string;
@@ -80,6 +88,7 @@ interface IndustryHeroProps {
 export default function IndustryHero({
   title,
   description,
+  panelSize = "default",
   primaryCta,
   secondaryCta,
   analyticsLocation,
@@ -143,10 +152,17 @@ export default function IndustryHero({
           <div
             className={cn(
               "contents text-white",
-              "lg:block lg:absolute lg:bottom-0 lg:left-0 lg:z-10 lg:w-[53%]",
+              "lg:block lg:absolute lg:bottom-0 lg:left-0 lg:z-10",
+              panelSize === "compact"
+                ? // Held at 50% through `lg`: below ~1280 the full 46% leaves
+                  // too little room for the two CTAs and they wrap to a stack.
+                  "lg:w-[50%] xl:w-[46%]"
+                : "lg:w-[53%]",
               PANEL_FILL_LG,
               DOTS_LG,
-              "lg:px-12 lg:pt-12 lg:pb-20",
+              panelSize === "compact"
+                ? "lg:px-10 lg:pt-10 lg:pb-14"
+                : "lg:px-12 lg:pt-12 lg:pb-20",
               "lg:rounded-tl-2xl lg:rounded-tr-[9rem]",
             )}
           >

@@ -18,6 +18,9 @@ export default function ClientHeader() {
 
     The /us/ paths mirror the same set: the US pages run the same hero, so
     they need the same treatment.
+
+    /about and /us/about run the same hero too, but sit outside the Industries
+    menu, so they are matched exactly rather than by prefix.
   */
   const TYPE_PAGES_WITH_BLUE_HERO = [
     "/type/on-call-roster",
@@ -29,6 +32,8 @@ export default function ClientHeader() {
   const hasBlueHero =
     pathname === "/industries" ||
     pathname === "/us/industries" ||
+    pathname === "/about" ||
+    pathname === "/us/about" ||
     pathname.startsWith("/industries/") ||
     pathname.startsWith("/us/industries/") ||
     TYPE_PAGES_WITH_BLUE_HERO.includes(pathname);

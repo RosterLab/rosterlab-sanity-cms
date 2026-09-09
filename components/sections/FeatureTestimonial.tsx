@@ -98,13 +98,24 @@ export default function FeatureTestimonial({
             {/* Logo sits beside the name so the person and the organisation
                 read as one attribution line. */}
             <div className="mt-6 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+              {/*
+                Drawn at h-8/h-9, i.e. 83-93px wide at this 2.58 ratio, so this
+                asset is a pre-baked 186x72 (2x) copy of the shared logo. It is
+                flat black with the original alpha because the mark was always
+                painted as a silhouette here — going through the optimizer meant
+                shipping colour detail that `brightness(0)` then threw away, for
+                10.5KB. Baking the silhouette instead is 2.5KB, and serving it
+                straight from /images skips a resize that can only ever upscale
+                past the source. The shared whanganui.png stays full-colour for
+                the Testimonials carousels, which draw it un-filtered.
+              */}
               <Image
-                src="/images/logos/whanganui.png"
+                src="/images/logos/whanganui-mark.webp"
                 alt="Te Whatu Ora Whanganui"
-                width={140}
-                height={70}
+                width={186}
+                height={72}
+                unoptimized
                 className="h-8 md:h-9 w-auto object-contain opacity-75"
-                style={{ filter: "brightness(0)" }}
               />
 
               <span

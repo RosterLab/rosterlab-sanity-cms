@@ -5,6 +5,8 @@ import { DemoBookingBase } from "@/components/booking";
 export default function BookADemoClient() {
   const regionalContent = {
     title: "Speak With A Rostering Expert",
+    description:
+      "See how RosterLab turns complex staffing requirements into smarter rosters with AI built for workforce rostering.",
     terminology: {
       expert: "Rostering Expert",
     },

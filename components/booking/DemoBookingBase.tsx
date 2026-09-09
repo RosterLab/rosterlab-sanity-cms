@@ -49,6 +49,7 @@ const LazyInlineWidget = dynamic(
 
 interface RegionalContent {
   title: string;
+  description?: string;
   terminology: {
     expert: string; // "Scheduling Expert" or "Rostering Expert"
   };
@@ -239,6 +240,11 @@ export default function DemoBookingBase({
                 regionalContent.title
               )}
             </h1>
+            {regionalContent.description ? (
+              <p className="mx-auto mb-4 max-w-2xl text-lg text-gray-600">
+                {regionalContent.description}
+              </p>
+            ) : null}
           </div>
 
           {marketAccessStatus === "loading" ? (
