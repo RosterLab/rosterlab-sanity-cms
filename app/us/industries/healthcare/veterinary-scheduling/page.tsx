@@ -60,7 +60,7 @@ const faqItems = [
       "RosterLab identifies replacement vets who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe coverage by alerting you if a shift can't be properly staffed.",
   },
   {
-    question: "How does RosterLab prevent schedule-based favouritism?",
+    question: "How does RosterLab prevent schedule-based favoritism?",
     answer:
       "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules.",
   },
@@ -86,7 +86,7 @@ export default function VeterinarySchedulingPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">
-                  Optimised, Flexible
+                  Optimized, Flexible
                 </span>{" "}
                 Vet Staff Schedules
               </h1>
@@ -109,7 +109,7 @@ export default function VeterinarySchedulingPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Optimise staff skill mix for every shift
+                  Optimize staff skill mix for every shift
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -359,7 +359,7 @@ export default function VeterinarySchedulingPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Shifts for Skill Mix
+                      Optimize Shifts for Skill Mix
                     </h4>
                     <p className="text-gray-600">
                       Ensure veterinary staff are working safely, enhancing
@@ -502,7 +502,7 @@ export default function VeterinarySchedulingPage() {
               Paw-sitive Veterinary Scheduling Impact
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve veterinary staff wellbeing and animal
+              Real outcomes that improve veterinary staff well-being and animal
               care
             </p>
           </div>
@@ -906,7 +906,7 @@ export default function VeterinarySchedulingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                href="/book-a-demo"
+                href="/us/book-a-demo"
                 className="bg-white text-green-600 hover:bg-gray-100"
               >
                 Book a Demo

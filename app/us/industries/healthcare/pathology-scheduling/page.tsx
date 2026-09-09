@@ -12,7 +12,7 @@ export const metadata = withHreflang(
   {
     title: "Pathology Staff Scheduling Software - RosterLab",
     description:
-      "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+      "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff well-being.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/pathology-scheduling",
@@ -20,7 +20,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Pathology Staff Scheduling Software - RosterLab",
       description:
-        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff well-being.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/pathology-scheduling",
       images: [
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Pathology Staff Scheduling Software - RosterLab",
       description:
-        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff wellbeing.",
+        "Create compliant AI-powered schedules that balance specimen processing demands, skill rotation, fair night shift distribution, and pathology staff well-being.",
       images: ["/images/us-images/pathology-roster.jpg"],
     },
   },
@@ -84,7 +84,7 @@ export default function PathologyRosteringPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Create compliant AI-powered schedules that balance specimen
                 processing demands, fair night shift distribution, and pathology
-                staff wellbeing.
+                staff well-being.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -188,16 +188,16 @@ export default function PathologyRosteringPage() {
               The best AI scheduling tool for pathology staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for pathology departments. Adapt to changes
+              Fast. Optimized. Made for pathology departments. Adapt to changes
               fast.
             </p>
           </div>
 
-          {/* AI Rostering Image */}
+          {/* AI Scheduling Image */}
           <div className="mb-16 max-w-4xl mx-auto">
             <Image
               src="/images/generating.webp"
-              alt="AI-generated roster interface"
+              alt="AI-generated schedule interface"
               width={600}
               height={500}
               className="rounded-lg shadow-lg mx-auto"
@@ -227,7 +227,7 @@ export default function PathologyRosteringPage() {
               </h3>
               <p className="text-gray-600">
                 Eliminate the need for manual scheduling - giving you time back
-                to focus on laboratory quality and team wellbeing.
+                to focus on laboratory quality and team well-being.
               </p>
             </div>
 
@@ -305,7 +305,7 @@ export default function PathologyRosteringPage() {
                 Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Easily manage rotations to ensure that staff regularly practise
+                Easily manage rotations to ensure that staff regularly practice
                 and refresh their skills across different pathology sections.
               </p>
             </div>
@@ -343,7 +343,7 @@ export default function PathologyRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Pathology Staff Coverage
+                      Optimize Pathology Staff Coverage
                     </h4>
                     <p className="text-gray-600">
                       Keep a live digital record of each pathologist's skills
@@ -464,7 +464,7 @@ export default function PathologyRosteringPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Built around specimen processing demands, preferences, and
-              wellbeing, not just top-down scheduling
+              well-being, not just top-down scheduling
             </p>
           </div>
 
@@ -628,11 +628,11 @@ export default function PathologyRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Automatic Roster Generation
+                Automatic Schedule Generation
               </h3>
               <p className="text-gray-600 mb-3">
                 Automatically generate compliant schedules that enforce union
-                rules and requirements. Reduce roster admin by 90%.
+                rules and requirements. Reduce schedule admin by 90%.
               </p>
               <a
                 href="/us/solutions/ai-staff-schedule-maker"
@@ -693,7 +693,7 @@ export default function PathologyRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Roster Changes
+                Instant Schedule Changes
               </h3>
               <p className="text-gray-600 mb-3">
                 When staff call in sick, see who's qualified and available to
@@ -769,7 +769,7 @@ export default function PathologyRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer Pathology Rosters
+              Build Compliant, Fairer Pathology Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join laboratories that have improved staff retention, reduced
@@ -783,7 +783,7 @@ export default function PathologyRosteringPage() {
                 Book a Demo
               </Button>
               <Button
-                href="/tools/roi-calculator"
+                href="/us/tools/savings-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
                 See ROI Calculator

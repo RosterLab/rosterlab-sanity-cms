@@ -152,7 +152,7 @@ export default function HospitalityPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab hospitality platform showing AI-powered rostering"
+                  alt="RosterLab hospitality platform showing AI-powered scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -218,7 +218,7 @@ export default function HospitalityPage() {
                       Handle fluctuating demand during weekends, special events,
                       and holiday seasons. Flexibly adjust staffing levels to
                       maintain service quality during peak times while
-                      optimising costs during quieter periods.
+                      optimizing costs during quieter periods.
                     </p>
                   </div>
                 </div>
@@ -308,13 +308,13 @@ export default function HospitalityPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Optimise Labour Costs & Compliance
+                      Optimize Labor Costs & Compliance
                     </h3>
                     <p className="text-gray-600 text-sm">
                       Automatically enforce employment agreements and rest break
-                      requirements while optimising staffing efficiency. Better
-                      utilisation of ordinary hours reduces unnecessary overtime
-                      and casual costs, effectively lowering your labor spend.
+                      requirements while optimizing staffing efficiency. Better
+                      utilization of regular work hours reduces unnecessary overtime
+                      and temporary staffing costs, effectively lowering your labor spend.
                     </p>
                   </div>
                 </div>
@@ -559,7 +559,7 @@ export default function HospitalityPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Function Centres
+                  Function Centers
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -706,7 +706,7 @@ export default function HospitalityPage() {
                 Better Staffing Coverage
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise all the staffing intricacies for better coverage across
+                Optimize all the staffing intricacies for better coverage across
                 your venues.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">

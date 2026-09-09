@@ -27,6 +27,7 @@ export interface Testimonial {
   quote: QuoteFragment[];
   author: string;
   role: string;
+  roleExplanation?: string;
   caseStudyLink?: string | null;
   link?: { href: string; label: string } | null;
 }
@@ -94,8 +95,10 @@ const AUTOPLAY_MS = 7000;
 
 export default function TestimonialsNew({
   testimonials = TESTIMONIALS_AU,
+  isUS = false,
 }: {
   testimonials?: Testimonial[];
+  isUS?: boolean;
 } = {}) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<number | null>(null);
@@ -157,7 +160,7 @@ export default function TestimonialsNew({
               <span className="block text-gray-900">community.</span>
             </h2>
             <p className="mt-8 text-base md:text-lg text-gray-600 max-w-sm leading-relaxed">
-              Here&rsquo;s what other rostering leads had to say about
+              Here&rsquo;s what other {isUS ? "scheduling" : "rostering"} leads had to say about
               RosterLab.
             </p>
 
@@ -257,6 +260,9 @@ export default function TestimonialsNew({
             <div className="mt-10">
               <p className="font-semibold text-gray-900">{current.author}</p>
               <p className="text-sm text-gray-600">{current.role}</p>
+              {current.roleExplanation && (
+                <p className="mt-1 text-sm text-gray-600">{current.roleExplanation}</p>
+              )}
               {current.link && (
                 <Link
                   href={current.link.href}

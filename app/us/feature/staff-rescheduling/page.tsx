@@ -21,7 +21,7 @@ export const metadata = withHreflang(
         "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
       images: [
         {
-          url: "/images/og images/FeatureReRostering.png",
+          url: "/images/og-images/FeatureReRostering.png",
           width: 1200,
           height: 630,
         },
@@ -32,7 +32,7 @@ export const metadata = withHreflang(
       title: "Fast Rescheduling & Scenario Planning - RosterLab",
       description:
         "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
-      images: ["/images/og images/FeatureReRostering.png"],
+      images: ["/images/og-images/FeatureReRostering.png"],
     },
   },
   "/us/feature/staff-rescheduling",
@@ -115,7 +115,7 @@ export default function ReRosteringPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Minimise disruption to keep shifts safe, fair, and
+                      Minimize disruption to keep shifts safe, fair, and
                       optimally staffed
                     </span>
                   </li>

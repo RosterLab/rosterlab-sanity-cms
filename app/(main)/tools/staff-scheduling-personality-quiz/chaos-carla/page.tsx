@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
@@ -5,7 +7,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import ChaosCarlaClient from './ChaosCarlaClient'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: 'Chaos Carla - Your Roster Personality',
   description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
   robots: {
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     description: 'Navigate scheduling chaos while hiding under your desk. Master of duct-taping gaps and smoothing swaps while muttering "I knew this would happen" - but always saving the day.',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz/chaos-carla`)
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

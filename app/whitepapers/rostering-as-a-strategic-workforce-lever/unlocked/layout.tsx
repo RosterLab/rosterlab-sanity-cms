@@ -1,6 +1,8 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Whitepaper Unlocked - AI Scheduling | RosterLab",
   description:
     "Access your free whitepaper on using intelligent healthcare scheduling software to reduce staff turnover and solve chronic understaffing.",
@@ -15,8 +17,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/whitepaper thumbnail.png",
-        width: 1200,
-        height: 630,
+        width: 1190,
+        height: 892,
         alt: "Rostering as a Strategic Workforce Lever - RosterLab Whitepaper",
       },
     ],
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
       "Access your free whitepaper on using intelligent healthcare scheduling software to reduce staff turnover and solve chronic understaffing.",
     images: ["/images/whitepaper thumbnail.png"],
   },
-};
+}, `/whitepapers/rostering-as-a-strategic-workforce-lever/unlocked`);
 
 export default function WhitepaperUnlockedLayout({
   children,

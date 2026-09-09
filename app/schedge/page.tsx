@@ -1,10 +1,12 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
 import SchedgeGame from "@/components/games/SchedgeGame";
 
-export const metadata = {
+export const metadata = resourceMetadata({
   title: "Schedge - Puzzle Scheduling Game to Test your Skills",
   description:
     "Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 roster fast. Test your shift planning speed and strategy!",
@@ -36,7 +38,7 @@ export const metadata = {
     "link:0":
       '<link rel="preload" href="/images/illustration/Choose-pana.svg" as="image" type="image/svg+xml" fetchpriority="high" />',
   },
-};
+}, `/schedge`);
 
 export default function SchedgePage() {
   return (

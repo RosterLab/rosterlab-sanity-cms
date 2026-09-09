@@ -7,6 +7,14 @@ import nextConfig from "@/next.config";
 // Base URL for the site
 const baseUrl = "https://rosterlab.com";
 
+// A date is optional. Never invent a fresh modification date or let missing
+// legacy CMS dates make the entire sitemap fail.
+function lastmodElement(value: unknown): string {
+  if (typeof value !== "string" || !value) return "";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "" : `<lastmod>${date.toISOString()}</lastmod>`;
+}
+
 // Pages to exclude from sitemap
 const excludedPaths = [
   "/studio", // Sanity Studio - has noindex
@@ -116,7 +124,7 @@ function findPages(dir: string, basePath: string = ""): string[] {
 }
 
 // Query for dynamic content
-const postQuery = groq`*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+const postQuery = groq`*[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc) {
   "slug": slug.current,
   publishedAt,
   _updatedAt,
@@ -149,7 +157,7 @@ async function generateSitemap() {
 
   // Add static routes (default version)
   for (const route of staticRoutes) {
-    const lastmod = new Date().toISOString();
+    if (redirectSourcePaths.has(route || "/")) continue;
 
     // Determine priority based on route
     let priority = 0.8; // default
@@ -169,7 +177,6 @@ async function generateSitemap() {
 
     entries.push(`  <url>
     <loc>${baseUrl}${route}</loc>
-    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
   </url>`);
@@ -178,7 +185,8 @@ async function generateSitemap() {
   // Add US versions of localized pages
   for (const originalPath of LOCALIZED_PAGES) {
     const usPath = US_URL_MAPPINGS[originalPath] || `/us${originalPath}`;
-    const lastmod = new Date().toISOString();
+    if (redirectSourcePaths.has(usPath)) continue;
+    if (hasNoIndex(join(appDir, usPath, "page.tsx"))) continue;
 
     // Determine priority based on original route
     let priority = 0.8; // default
@@ -198,7 +206,6 @@ async function generateSitemap() {
 
     entries.push(`  <url>
     <loc>${baseUrl}${usPath}</loc>
-    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
   </url>`);
@@ -218,12 +225,16 @@ async function generateSitemap() {
   for (const post of blogPosts) {
     const blogUrl = `/blog/${post.slug}`;
     if (!redirectSourcePaths.has(blogUrl)) {
-      const lastmod = new Date(
-        post._updatedAt || post.publishedAt,
-      ).toISOString();
+      const lastmod = lastmodElement(post._updatedAt || post.publishedAt);
       entries.push(`  <url>
     <loc>${baseUrl}${blogUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
+    ${lastmod}
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`);
+      entries.push(`  <url>
+    <loc>${baseUrl}/us${blogUrl}</loc>
+    ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);
@@ -239,12 +250,16 @@ async function generateSitemap() {
   for (const post of caseStudies) {
     const caseStudyUrl = `/case-studies/${post.slug}`;
     if (!redirectSourcePaths.has(caseStudyUrl)) {
-      const lastmod = new Date(
-        post._updatedAt || post.publishedAt,
-      ).toISOString();
+      const lastmod = lastmodElement(post._updatedAt || post.publishedAt);
       entries.push(`  <url>
     <loc>${baseUrl}${caseStudyUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
+    ${lastmod}
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`);
+      entries.push(`  <url>
+    <loc>${baseUrl}/us${caseStudyUrl}</loc>
+    ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);
@@ -260,12 +275,16 @@ async function generateSitemap() {
   for (const post of newsroomPosts) {
     const newsroomUrl = `/newsroom/${post.slug}`;
     if (!redirectSourcePaths.has(newsroomUrl)) {
-      const lastmod = new Date(
-        post._updatedAt || post.publishedAt,
-      ).toISOString();
+      const lastmod = lastmodElement(post._updatedAt || post.publishedAt);
       entries.push(`  <url>
     <loc>${baseUrl}${newsroomUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
+    ${lastmod}
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`);
+      entries.push(`  <url>
+    <loc>${baseUrl}/us${newsroomUrl}</loc>
+    ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);

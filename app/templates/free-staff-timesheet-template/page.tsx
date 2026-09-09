@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -19,7 +21,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Free Staff Timesheet Template - RosterLab",
   description:
     "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
@@ -32,9 +34,9 @@ export const metadata: Metadata = {
       "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
     images: [
       {
-        url: "/images/og-images/timesheet.png",
-        width: 1200,
-        height: 600,
+        url: "/images/timesheet/timesheet-preview.png",
+        width: 3730,
+        height: 1628,
         alt: "Timesheet template preview",
       },
     ],
@@ -46,9 +48,9 @@ export const metadata: Metadata = {
     title: "Free Staff Timesheet Template - RosterLab",
     description:
       "Download our free staff timesheet template for Excel. Track employee hours, overtime, and customise our professionally designed template.",
-    images: ["/images/og-images/timesheet.png"],
+    images: ["/images/timesheet/timesheet-preview.png"],
   },
-};
+}, `/templates/free-staff-timesheet-template`);
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

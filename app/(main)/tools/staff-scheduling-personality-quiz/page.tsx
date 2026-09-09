@@ -1,7 +1,9 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from 'next'
 import QuizClient from './QuizClient'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "What's Your Staff Scheduling Personality Type? - RosterLab",
   description: 'Discover your staff scheduling personality. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
   robots: {
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
     description: 'Discover your staff scheduling personality type. Take our fun 2-minute quiz!',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz`)
 
 export default function StaffSchedulingPersonalityQuizPage() {
   return <QuizClient />

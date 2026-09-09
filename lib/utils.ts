@@ -14,8 +14,8 @@ export function formatDate(date: string) {
 }
 
 // Format date as DD/MM/YYYY for short display
-export function formatDateShort(date: string) {
-  return new Date(date).toLocaleDateString("en-GB", {
+export function formatDateShort(date: string, locale = "en-GB") {
+  return new Date(date).toLocaleDateString(locale, {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",

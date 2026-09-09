@@ -137,7 +137,7 @@ const onboardingSteps = [
       </svg>
     ),
     description:
-      "Run hypothetical schedule scenarios to assess feasibility of changes without impacting your live schedule - perfect for planning and optimisation.",
+      "Run hypothetical schedule scenarios to assess feasibility of changes without impacting your live schedule - perfect for planning and optimization.",
     link: "/us/feature/staff-rescheduling",
   },
   {
@@ -178,7 +178,7 @@ export default function USOnboarding() {
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Our streamlined platform takes you from complex scheduling
-            challenges to optimised schedules in just six simple steps.
+            challenges to optimized schedules in just six simple steps.
           </p>
         </div>
 

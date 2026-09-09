@@ -19,9 +19,10 @@ interface BlogPost {
 interface BlogPageContentProps {
   posts: BlogPost[]
   currentPage?: number
+  basePath?: string
 }
 
-export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageContentProps) {
+export default function BlogPageContent({ posts, currentPage = 1, basePath = "/blog" }: BlogPageContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const postsPerPage = 12
 
@@ -113,7 +114,7 @@ export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageCont
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {paginatedPosts.map((post) => (
-                <BlogCard key={post._id} post={post} />
+                <BlogCard key={post._id} post={post} basePath={basePath} />
               ))}
             </div>
             {/* Pagination - only show when not searching and there's more than 1 page */}
@@ -121,7 +122,7 @@ export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageCont
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                basePath="/blog"
+                basePath={basePath}
               />
             )}
           </>

@@ -189,9 +189,9 @@ export default function AviationPage() {
                       Improve Operational Efficiency
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Better utilise crew duty hours, reduce costs, and ensure
+                      Better utilize crew duty hours, reduce costs, and ensure
                       optimal qualification coverage across all flights.
-                      Maximise efficiency while maintaining safety standards.
+                      Maximize efficiency while maintaining safety standards.
                     </p>
                   </div>
                 </div>
@@ -254,7 +254,7 @@ export default function AviationPage() {
                     <p className="text-gray-600 text-sm">
                       Automatically enforce requirements, hours of service
                       limitations, and crew duty regulations, ensuring
-                      operational compliance and crew wellbeing.
+                      operational compliance and crew well-being.
                     </p>
                   </div>
                 </div>
@@ -400,7 +400,7 @@ export default function AviationPage() {
                 Better Crew Coverage
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise crew qualifications, duty hours, and standby
+                Optimize crew qualifications, duty hours, and standby
                 requirements for reliable transport operations.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">
@@ -835,7 +835,7 @@ export default function AviationPage() {
               crew scheduling
             </p>
             <Button
-              href="/pricing"
+              href="/us/pricing"
               className="inline-flex items-center bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full font-medium transition-all text-lg shadow-lg hover:shadow-xl"
             >
               View Pricing

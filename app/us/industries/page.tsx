@@ -21,7 +21,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries",
       images: [
         {
-          url: "/images/og images/Industry.png",
+          url: "/images/og-images/Industry.png",
           width: 1200,
           height: 630,
         },
@@ -32,7 +32,7 @@ export const metadata = withHreflang(
       title: "Staff Scheduling Software For Any Industry - RosterLab",
       description:
         "Simplify your staff schedule, and reduce your costs, no matter your industry. Discover how RosterLab fits your business, industry & goals.",
-      images: ["/images/og images/Industry.png"],
+      images: ["/images/og-images/Industry.png"],
     },
   },
   "/us/industries",
@@ -220,7 +220,7 @@ export default function IndustriesPage() {
               <p className="text-lg text-gray-600 mb-8">
                 From ICU to senior care facilities, optimize staffing while
                 ensuring compliance, skill mix requirements, and staff
-                wellbeing. Our AI understands the complexities of 24/7
+                well-being. Our AI understands the complexities of 24/7
                 healthcare operations.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -425,7 +425,7 @@ export default function IndustriesPage() {
                       Radiography
                     </h3>
                     <p className="text-sm text-gray-600">
-                      Imaging tech rostering
+                      Imaging tech scheduling
                     </p>
                   </Link>
                   <Link
@@ -510,7 +510,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Staff port rostering coordination
+                    Staff port scheduling coordination
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -526,7 +526,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Safer and more efficient rosters
+                    Safer and more efficient schedules
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -559,7 +559,7 @@ export default function IndustriesPage() {
               <div className="h-48 relative">
                 <Image
                   src="/images/call center.webp"
-                  alt="Call centres industry scheduling"
+                  alt="Call centers industry scheduling"
                   fill
                   className="object-cover"
                 />
@@ -569,7 +569,7 @@ export default function IndustriesPage() {
                   Call Centers
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Optimise agent scheduling to meet service levels while
+                  Optimize agent scheduling to meet service levels while
                   managing breaks, training, and multi-skill routing
                   requirements.
                 </p>
@@ -624,7 +624,7 @@ export default function IndustriesPage() {
                   </li>
                 </ul>
                 <div className="bg-blue-600 text-white text-center py-2 rounded group-hover:bg-blue-700 transition-colors w-full">
-                  Explore Call Centre Scheduling
+                  Explore Call Center Scheduling
                 </div>
               </div>
             </Link>
@@ -852,7 +852,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Licence compliance tracking
+                    License compliance tracking
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -893,7 +893,7 @@ export default function IndustriesPage() {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Retail</h3>
                 <p className="text-gray-600 mb-4">
-                  Optimise floor staff, stockroom teams, and managers across
+                  Optimize floor staff, stockroom teams, and managers across
                   peak trading hours, seasonal demands, and varying customer
                   footfall.
                 </p>
@@ -1005,7 +1005,7 @@ export default function IndustriesPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Optimised service coverage
+                    Optimized service coverage
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -1345,10 +1345,10 @@ export default function IndustriesPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Cost Optimisation
+                Cost Optimization
               </h3>
               <p className="text-gray-600">
-                Reduce overtime, minimise agency costs, optimize coverage
+                Reduce overtime, minimize agency costs, optimize coverage
               </p>
             </div>
 
@@ -1388,7 +1388,7 @@ export default function IndustriesPage() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our streamlined process takes you from complex scheduling
-              challenges to optimized rosters in just a few simple steps.
+              challenges to optimized schedules in just a few simple steps.
             </p>
           </div>
 
@@ -1404,7 +1404,7 @@ export default function IndustriesPage() {
                   </h3>
                   <p className="text-gray-600">
                     Configure industry-specific rules, compliance requirements,
-                    skill mix, and coverage demands to ensure complete roster
+                    skill mix, and coverage demands to ensure complete schedule
                     compliance.
                   </p>
                 </div>
@@ -1438,7 +1438,7 @@ export default function IndustriesPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Automatically generate rosters
+                    Automatically generate schedules
                   </h3>
                   <p className="text-gray-600">
                     Our AI creates optimal, compliant schedules that balance
@@ -1496,7 +1496,7 @@ export default function IndustriesPage() {
               Ready to Transform Your Workforce Scheduling?
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join thousands of organisations saving time and money with
+              Join thousands of organizations saving time and money with
               intelligent scheduling.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

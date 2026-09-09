@@ -28,6 +28,7 @@ export const blogPostsOnlyQuery = groq`
     title,
     slug,
     excerpt,
+    usLocalization {title, excerpt, protectedTerms},
     mainImage,
     publishedAt,
     author->{
@@ -84,6 +85,7 @@ export const blogPostQuery = groq`
     mainImage,
     publishedAt,
     body,
+    usLocalization,
     author->{
       name,
       slug,

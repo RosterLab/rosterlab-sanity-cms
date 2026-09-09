@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { validatedToken } from "@/sanity/lib/token";
@@ -32,10 +34,10 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { page } = await params;
-  const pageNumber = parseInt(page, 10);
+  const pageNumber = (/^\d+$/.test(page) ? Number(page) : NaN);
 
   if (isNaN(pageNumber) || pageNumber < 1) {
-    return {};
+    return resourceMetadata({}, `/newsroom/page/${page}`);
   }
 
   // De-optimise title and description for pages beyond 1
@@ -51,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
 
-  return {
+  return resourceMetadata({
     title,
     description,
     robots: {
@@ -83,7 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: ["/images/og-images/Newsroom.png"],
     },
-  };
+  }, `/newsroom/page/${page}`);
 }
 
 // Generate static params for better performance
@@ -113,7 +115,7 @@ export async function generateStaticParams() {
 
 export default async function NewsroomPaginationPage({ params }: Props) {
   const { page } = await params;
-  const pageNumber = parseInt(page, 10);
+  const pageNumber = (/^\d+$/.test(page) ? Number(page) : NaN);
 
   // Redirect to main newsroom page if page is 1
   if (pageNumber === 1) {

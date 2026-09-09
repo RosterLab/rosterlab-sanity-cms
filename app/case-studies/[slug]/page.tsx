@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -95,9 +97,9 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   const post = await clientToUse.fetch(caseStudyQuery, { slug });
 
   if (!post) {
-    return {
+    return resourceMetadata({
       title: "Case Study Not Found",
-    };
+    }, `/case-studies/${slug}`);
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
@@ -121,7 +123,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
     metaDescription = metaDescription.slice(0, 152) + "...";
   }
 
-  return {
+  return resourceMetadata({
     title: post.seo?.metaTitle || post.title,
     description: metaDescription,
     alternates: {
@@ -138,7 +140,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
           ? [urlFor(post.mainImage).url()]
           : undefined,
     },
-  };
+  }, `/case-studies/${slug}`);
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
@@ -306,7 +308,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </aside>
 
             {/* Main Article Content */}
-            <main className="lg:col-span-6">
+            <main className="min-w-0 lg:col-span-6 [overflow-wrap:anywhere]">
               {/* Article Body */}
               <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
                 <PortableText value={post.body} />

@@ -13,7 +13,7 @@ export const metadata = withHreflang(
   {
     title: "Senior Care Staff Scheduling Software - RosterLab",
     description:
-      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
+      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible senior care schedules that save time and money and boost well-being.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
@@ -21,12 +21,12 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Senior Care Staff Scheduling Software - RosterLab",
       description:
-        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
+        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible senior care schedules that save time and money and boost well-being.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
       images: [
         {
-          url: "/images/og images/IndustryAgedCare.png",
+          url: "/images/og-images/IndustryAgedCare.png",
           width: 1200,
           height: 630,
         },
@@ -36,8 +36,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Senior Care Staff Scheduling Software - RosterLab",
       description:
-        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible aged care rosters that save time, money & boosts wellbeing.",
-      images: ["/images/og images/IndustryAgedCare.png"],
+        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible senior care schedules that save time and money and boost well-being.",
+      images: ["/images/og-images/IndustryAgedCare.png"],
     },
   },
   "/us/industries/healthcare/senior-care-scheduling",
@@ -139,7 +139,7 @@ export default function AgedCarePage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Digitise your scheduling practices
+                  Digitize your scheduling practices
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
                   <svg
@@ -195,7 +195,7 @@ export default function AgedCarePage() {
               Compassionate Care Starts with Smart Scheduling
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Balance resident needs, staff wellbeing, and regulatory
+              Balance resident needs, staff well-being, and regulatory
               requirements with intelligent scheduling designed specifically for
               skilled nursing facilities (SNF).
             </p>
@@ -253,8 +253,8 @@ export default function AgedCarePage() {
                 Reduce Scheduling Costs
               </h3>
               <p className="text-gray-600">
-                Improve schedule planning efficiency by reducing locum use,
-                overtime costs, and sick calls through fully optimised staff
+                Improve schedule planning efficiency by reducing temporary clinician use,
+                overtime costs, and sick calls through fully optimized staff
                 coverage.
               </p>
             </div>
@@ -382,7 +382,7 @@ export default function AgedCarePage() {
                     <p className="text-gray-600">
                       Incorporate rules into schedules to ensure continuity of
                       care. Distribute shifts fairly and safely based on skill
-                      sets to maximise staff engagement.
+                      sets to maximize staff engagement.
                     </p>
                   </div>
                 </div>
@@ -408,7 +408,7 @@ export default function AgedCarePage() {
                       Reduce Scheduling Mistakes
                     </h3>
                     <p className="text-gray-600">
-                      Eliminate human errors by digitising and standardising the
+                      Eliminate human errors by digitizing and standardising the
                       scheduling process. All requirements are automatically
                       handled by AI.
                     </p>
@@ -437,7 +437,7 @@ export default function AgedCarePage() {
                     </h3>
                     <p className="text-gray-600">
                       Access and share schedules from anywhere, with your
-                      scheduling know-how stored digitally. Standardise rules
+                      scheduling know-how stored digitally. Standardize rules
                       and processes to build resilient, high-quality schedules.
                     </p>
                   </div>
@@ -686,7 +686,7 @@ export default function AgedCarePage() {
                 </h3>
                 <p className="text-base text-gray-600 mb-3">
                   Create compliant schedules in minutes with AI-powered
-                  optimisation.
+                  optimization.
                 </p>
                 <span className="text-blue-600 text-base font-medium hover:text-blue-700">
                   Learn more →

@@ -1,3 +1,5 @@
+import { getResourcesNavigation } from "./resources-navigation";
+
 // US-specific navigation configuration
 export const usNavItems = [
   {
@@ -72,6 +74,7 @@ export const usNavItems = [
     ],
   },
   { title: "Pricing", link: "/us/pricing" },
+  getResourcesNavigation(true),
   { title: "About", link: "/us/about" },
   { title: "Contact", link: "/us/contact" },
 ];

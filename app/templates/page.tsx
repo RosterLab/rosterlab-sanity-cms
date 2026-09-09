@@ -1,8 +1,10 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import TemplatesPageContent from "./TemplatesPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Free Workforce Management Templates - RosterLab",
   description:
     "Download free workforce management templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
       "Download free workforce management templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
     images: ["/images/og-images/WFM.png"],
   },
-};
+}, `/templates`);
 
 const templates = [
   {

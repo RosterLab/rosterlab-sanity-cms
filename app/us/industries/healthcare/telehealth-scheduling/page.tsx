@@ -47,13 +47,13 @@ const faqItems = [
     question:
       "How does RosterLab ensure union compliance for telehealth schedules?",
     answer:
-      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag rosters that violate compliance rules.",
+      "RosterLab enforces union rules automatically, including maximum consecutive shifts, minimum rest periods, and fatigue management requirements. The AI will flag schedules that violate compliance rules.",
   },
   {
     question:
       "How does RosterLab handle consultation peaks and appointment schedules?",
     answer:
-      "Staff can request protected time for high-volume consultation periods through the mobile app. RosterLab schedules appropriate staffing around peak appointment times and balances the rest of the roster to ensure telehealth service coverage while maintaining work-life balance.",
+      "Staff can request protected time for high-volume consultation periods through the mobile app. RosterLab schedules appropriate staffing around peak appointment times and balances the rest of the schedule to ensure telehealth service coverage while maintaining work-life balance.",
   },
   {
     question: "How does RosterLab ensure fair shift distribution?",
@@ -63,7 +63,7 @@ const faqItems = [
   {
     question: "Can RosterLab help improve telehealth staff retention?",
     answer:
-      "Yes. There's been a significant culture change in healthcare - telehealth staff now prioritise work-life balance more than ever. By creating safe, fair, and flexible schedules that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
+      "Yes. There's been a significant culture change in healthcare - telehealth staff now prioritize work-life balance more than ever. By creating safe, fair, and flexible schedules that respect personal preferences, RosterLab increases staff engagement and job satisfaction. High engagement leads to better patient care outcomes. The system balances preferences with staffing requirements, making it easier for working parents and those with other commitments to stay in the workforce.",
   },
   {
     question:
@@ -83,13 +83,13 @@ export default function TelehealthRosteringPage() {
             <div>
               <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Optimised
+                  Flexible, Optimized
                 </span>{" "}
-                Telehealth Rosters
+                Telehealth Schedules
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 Create optimized AI schedules that balance consultation demands,
-                fair shift distribution, and telehealth staff wellbeing.
+                fair shift distribution, and telehealth staff well-being.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -165,7 +165,7 @@ export default function TelehealthRosteringPage() {
                   Book a Demo
                 </Button>
                 <Button
-                  href="/pricing"
+                  href="/us/pricing"
                   className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
                 >
                   View Pricing
@@ -193,16 +193,16 @@ export default function TelehealthRosteringPage() {
               The best AI scheduling tool for telehealth staff
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Fast. Optimised. Made for telehealth services. Adapt to changes
+              Fast. Optimized. Made for telehealth services. Adapt to changes
               fast.
             </p>
           </div>
 
-          {/* AI Rostering Image */}
+          {/* AI Scheduling Image */}
           <div className="mb-16 max-w-4xl mx-auto">
             <Image
               src="/images/generating.webp"
-              alt="AI-generated roster interface"
+              alt="AI-generated schedule interface"
               width={600}
               height={500}
               className="rounded-lg shadow-lg mx-auto"
@@ -232,7 +232,7 @@ export default function TelehealthRosteringPage() {
               </h3>
               <p className="text-gray-600">
                 Eliminate the need for manual scheduling - giving you time back
-                to focus on service quality and team wellbeing.
+                to focus on service quality and team well-being.
               </p>
             </div>
 
@@ -306,7 +306,7 @@ export default function TelehealthRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Roster your team remotely
+                Schedule your team remotely
               </h3>
               <p className="text-gray-600">
                 Manage distributed telehealth teams from anywhere with
@@ -327,7 +327,7 @@ export default function TelehealthRosteringPage() {
             </div>
             <div className="order-1 lg:order-2">
               <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Telehealth Roster Challenges
+                Perfect For Telehealth Schedule Challenges
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start">
@@ -375,7 +375,7 @@ export default function TelehealthRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Shifts for Complex Skill Mix
+                      Optimize Shifts for Complex Skill Mix
                     </h4>
                     <p className="text-gray-600">
                       Automatically balance clinical staff with support staff
@@ -431,7 +431,7 @@ export default function TelehealthRosteringPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Better Wellbeing, Less Fatigue
+                      Better Well-being, Less Fatigue
                     </h4>
                     <p className="text-gray-600">
                       Enforce rest periods to prevent dangerous consecutive
@@ -450,7 +450,7 @@ export default function TelehealthRosteringPage() {
               href="/us/solutions/ai-staff-schedule-maker"
               className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
             >
-              Learn about AI Rostering
+              Learn about AI Scheduling
             </Button>
           </div>
         </Container>
@@ -464,10 +464,10 @@ export default function TelehealthRosteringPage() {
               TELEHEALTH-FIRST WORKFLOW
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Telehealth Staff Engage with Their Rosters
+              How Telehealth Staff Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around consultation demands, preferences, and wellbeing, not
+              Built around consultation demands, preferences, and well-being, not
               just top-down scheduling
             </p>
           </div>
@@ -518,7 +518,7 @@ export default function TelehealthRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Compliant Roster
+                      AI Generates Compliant Schedule
                     </h3>
                     <p className="text-gray-600">
                       RosterLab balances preferences, consultation peaks, shift
@@ -539,7 +539,7 @@ export default function TelehealthRosteringPage() {
                       Publish to Mobile
                     </h3>
                     <p className="text-gray-600">
-                      Rosters sync instantly to staff phones. They see their
+                      Schedules sync instantly to staff phones. They see their
                       shifts and can request swaps with real-time updates.
                     </p>
                   </div>
@@ -554,7 +554,7 @@ export default function TelehealthRosteringPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Staff Self-Roster Open Shifts
+                      Staff Self-Schedule Open Shifts
                     </h3>
                     <p className="text-gray-600">
                       Unfilled shifts are posted as "open shifts" - staff can
@@ -631,11 +631,11 @@ export default function TelehealthRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Automatic Roster Generation
+                Automatic Schedule Generation
               </h3>
               <p className="text-gray-600 mb-3">
                 Automatically generate compliant schedules that enforce union
-                rules and requirements. Reduce roster admin by 90%.
+                rules and requirements. Reduce schedule admin by 90%.
               </p>
               <a
                 href="/us/solutions/ai-staff-schedule-maker"
@@ -696,7 +696,7 @@ export default function TelehealthRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Roster Changes
+                Instant Schedule Changes
               </h3>
               <p className="text-gray-600 mb-3">
                 When staff call in sick, see who's qualified and available to
@@ -772,7 +772,7 @@ export default function TelehealthRosteringPage() {
         <Container>
           <div className="text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Compliant, Fairer Telehealth Rosters
+              Build Compliant, Fairer Telehealth Schedules
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               Join telehealth services that have improved staff retention,
@@ -786,7 +786,7 @@ export default function TelehealthRosteringPage() {
                 Book a Demo
               </Button>
               <Button
-                href="/tools/roi-calculator"
+                href="/us/tools/savings-calculator"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
               >
                 See ROI Calculator

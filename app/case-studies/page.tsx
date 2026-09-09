@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { validatedToken } from "@/sanity/lib/token";
@@ -7,7 +9,7 @@ import { draftMode } from "next/headers";
 // ISR: Revalidate every 5 minutes
 export const revalidate = 300;
 
-export const metadata = {
+export const metadata = resourceMetadata({
   title: "RosterLab Case Studies - Better Rosters, Impactful Results",
   description:
     "Explore real-world case studies showing how RosterLab's AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.",
@@ -35,7 +37,7 @@ export const metadata = {
       "Explore real-world case studies showing how RosterLab's AI rostering improved coverage, cut admin time, and delivered fair schedules for complex teams.",
     images: ["/images/og-images/CaseStudies.png"],
   },
-};
+}, `/case-studies`);
 
 const caseStudiesQuery = groq`
   *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {

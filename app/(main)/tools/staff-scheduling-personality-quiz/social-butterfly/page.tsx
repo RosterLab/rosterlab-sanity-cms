@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
@@ -5,7 +7,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import SocialButterflyClient from './SocialButterflyClient'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: 'The Social Butterfly - Your Roster Personality',
   description: 'Focuses on fairness, vibes, and keeping everyone happy. Your scheduling approach prioritizes team morale and interpersonal dynamics.',
   robots: {
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     description: 'Focuses on fairness, vibes, and keeping everyone happy. Your scheduling approach prioritizes team morale and interpersonal dynamics.',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz/social-butterfly`)
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

@@ -7,6 +7,7 @@ import { urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/utils";
 
 interface BlogCardProps {
+  basePath?: string;
   post: {
     _id: string;
     title: string;
@@ -26,7 +27,7 @@ interface BlogCardProps {
   };
 }
 
-export default function BlogCard({ post }: BlogCardProps) {
+export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
 
   // Define locked case studies
@@ -43,13 +44,13 @@ export default function BlogCard({ post }: BlogCardProps) {
   // Determine the correct URL path based on categories
   const getPostUrl = () => {
     if (post.categories?.some((cat) => cat.slug.current === "case-studies")) {
-      return `/case-studies/${post.slug.current}`;
+      return `${basePath.startsWith("/us/") ? "/us" : ""}/case-studies/${post.slug.current}`;
     } else if (
       post.categories?.some((cat) => cat.slug.current === "newsroom")
     ) {
-      return `/newsroom/${post.slug.current}`;
+      return `${basePath.startsWith("/us/") ? "/us" : ""}/newsroom/${post.slug.current}`;
     }
-    return `/blog/${post.slug.current}`;
+    return `${basePath}/${post.slug.current}`;
   };
 
   const postUrl = getPostUrl();

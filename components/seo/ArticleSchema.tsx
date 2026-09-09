@@ -8,6 +8,7 @@ export interface ArticleSchemaProps {
   modifiedTime?: string;
   image?: string;
   url: string;
+  inLanguage?: string;
 }
 
 export default function ArticleSchema({
@@ -18,11 +19,13 @@ export default function ArticleSchema({
   modifiedTime,
   image,
   url,
+  inLanguage = "en",
 }: ArticleSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
+    inLanguage,
     description: description,
     author: {
       "@type": "Person",

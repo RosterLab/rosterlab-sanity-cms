@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/solutions/ai-staff-schedule-maker",
       images: [
         {
-          url: "/images/og images/SolutionAIGen.png",
+          url: "/images/og-images/SolutionAIGen.png",
           width: 1200,
           height: 630,
           alt: "AI Staff Schedule Generator",
@@ -46,7 +46,7 @@ export const metadata = withHreflang(
       title: "AI Staff Schedule Maker - RosterLab",
       description:
         "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
-      images: ["/images/og images/SolutionAIGen.png"],
+      images: ["/images/og-images/SolutionAIGen.png"],
     },
   },
   "/us/solutions/ai-staff-schedule-maker",
@@ -56,7 +56,7 @@ const faqItems = [
   {
     question: "What is an AI staff schedule maker?",
     answer:
-      'An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff information including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information analyses the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href="/us/book-a-demo" class="text-blue-600 hover:text-blue-700 underline">Book a demo</a> to learn more.',
+      'An AI staff schedule maker is an intelligent scheduling software that uses artificial intelligence to automatically create work schedules for your team. You begin by inputting all of your staff information including staff availability, skills, preferences, compliance requirements, and workload demands. The AI takes this information, analyzes the best solution and generates an optimal schedule in minutes rather than hours or days. Unlike manual scheduling, AI ensures perfect compliance, fair shift distribution, and maximum efficiency while considering thousands of variables simultaneously. <a href="/us/book-a-demo" class="text-blue-600 hover:text-blue-700 underline">Book a demo</a> to learn more.',
   },
   {
     question: "How does AI-powered scheduling actually work?",
@@ -66,7 +66,7 @@ const faqItems = [
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
     answer:
-      "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, app handover and training, and initial AI model calibration to achieve your specific requirements.",
+      "Implementation typically takes 2-4 weeks depending on your organization's size and complexity. This includes data migration, system configuration, app handoff and training, and initial AI model calibration to achieve your specific requirements.",
   },
   {
     question: "Can the AI handle complex compliance and union rules?",
@@ -88,7 +88,7 @@ const faqItems = [
     question:
       "Why is it important to keep all your data and knowledge digitally?",
     answer:
-      "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handovers, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimises human error but also saves time spent recalling minor details and enhances the efficiency of communications.",
+      "One of the most valuable assets within a team is the knowledge housed within each individual's mind. Rather than dedicating extensive time to training, handoffs, and the extraction of information from people's minds, consider structuring all your scheduling rules and staffing requirements digitally. This approach not only minimizes human error but also saves time spent recalling minor details and enhances the efficiency of communications.",
   },
 ];
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -142,7 +142,7 @@ export default function AISchedulesPage() {
                 Intelligent AI Scheduling
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our AI algorithms analyse thousands of variables to create
+                Our AI algorithms analyze thousands of variables to create
                 optimal schedules that balance staff preferences, operational
                 requirements, and compliance needs. Experience the future of
                 workforce management.
@@ -168,11 +168,11 @@ export default function AISchedulesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      Optimised Staffing Coverage
+                      Optimized Staffing Coverage
                     </h3>
                     <p className="text-gray-600">
-                      Mathematical optimisation ensures the most efficient staff
-                      allocation and resource utilisation
+                      Mathematical optimization ensures the most efficient staff
+                      allocation and resource utilization
                     </p>
                   </div>
                 </div>
@@ -221,7 +221,7 @@ export default function AISchedulesPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">
-                      AI-Optimised Schedules
+                      AI-Optimized Schedules
                     </h3>
                     <p className="text-gray-600 mb-4">
                       Assigns the right staff with the right skills to each
@@ -373,7 +373,7 @@ export default function AISchedulesPage() {
               </h2>
               <p className="text-lg text-gray-600 mb-8">
                 Our award-winning algorithms handle the most complex scheduling
-                challenges with ease, ensuring compliance and optimisation
+                challenges with ease, ensuring compliance and optimization
                 across all scenarios.
               </p>
               <div className="space-y-4">
@@ -392,7 +392,7 @@ export default function AISchedulesPage() {
                 <div className="flex items-center">
                   <HiCheck className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
                   <span className="text-gray-700">
-                    Real-time optimisation and adjustments
+                    Real-time optimization and adjustments
                   </span>
                 </div>
                 <div className="flex items-center">

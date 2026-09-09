@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
@@ -5,7 +7,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import PeacekeeperPandaClient from './PeacekeeperPandaClient'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: 'The Peacekeeper Panda - Your Roster Personality',
   description: 'Mediator who balances personalities with zen-like calm. Your peaceful approach creates harmony in chaotic scheduling.',
   robots: {
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     description: 'Mediator who balances personalities with zen-like calm. Your peaceful approach creates harmony in chaotic scheduling.',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz/peacekeeper-panda`)
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

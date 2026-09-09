@@ -57,7 +57,7 @@ const faqItems = [
   {
     question: "How does RosterLab save dental clinics money?",
     answer:
-      "RosterLab reduces costs through less locum usage and more effective staffing. By optimizing your existing staff schedules and ensuring proper skill mix coverage across chairs and procedures, you can minimize expensive agency staff and overtime costs. Our AI-powered scheduling helps you identify the right staffing levels, reducing both overstaffing and understaffing. <a href='https://rosterlab.com/us/tools/savings-calculator' class='text-blue-600 hover:text-blue-700 underline'>Use our savings calculator</a> to see your potential cost reduction.",
+      "RosterLab reduces costs through less temporary dentist coverage and more effective staffing. By optimizing your existing staff schedules and ensuring proper skill mix coverage across chairs and procedures, you can minimize expensive agency staff and overtime costs. Our AI-powered scheduling helps you identify the right staffing levels, reducing both overstaffing and understaffing. <a href='https://rosterlab.com/us/tools/savings-calculator' class='text-blue-600 hover:text-blue-700 underline'>Use our savings calculator</a> to see your potential cost reduction.",
   },
 ];
 

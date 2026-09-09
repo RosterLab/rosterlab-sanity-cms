@@ -153,7 +153,7 @@ export default function EducationPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab education platform showing AI-powered rostering"
+                  alt="RosterLab education platform showing AI-powered scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -312,7 +312,7 @@ export default function EducationPage() {
                       Reduce Admin
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Handle roster changes, substitute requests, and leave
+                      Handle schedule changes, substitute requests, and leave
                       applications in minutes rather than hours. Teachers submit
                       requests through the mobile app, and AI instantly shows
                       who's available to cover without disrupting other classes.
@@ -462,7 +462,7 @@ export default function EducationPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Tutoring Centres
+                  Tutoring Centers
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -482,7 +482,7 @@ export default function EducationPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Training Organisations
+                  Training Organizations
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -839,7 +839,7 @@ export default function EducationPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Optimised Rosters
+                Optimized Schedules
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
                 Balance teacher qualifications, room availability, and

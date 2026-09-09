@@ -25,7 +25,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/healthcare/ed-icu-scheduling",
       images: [
         {
-          url: "/images/og images/IndustryICUED.png",
+          url: "/images/og-images/IndustryICUED.png",
           width: 1200,
           height: 630,
         },
@@ -36,7 +36,7 @@ export const metadata = withHreflang(
       title: "ED & ICU Staff Scheduling Software - RosterLab",
       description:
         "Easily build and automate ED & ICU schedules with RosterLab. Reduce staff fatigue, save admin time, and improve continuity of care for patients.",
-      images: ["/images/og images/IndustryICUED.png"],
+      images: ["/images/og-images/IndustryICUED.png"],
     },
   },
   "/us/industries/healthcare/ed-icu-scheduling",
@@ -47,12 +47,12 @@ const faqItems = [
     question:
       "How quickly can I generate my emergency department staff schedule?",
     answer:
-      "The time it takes RosterLab’s AI to generate a schedule depends on the complexity of your departments. It scales with department size and the number of rules and requirements. For a typical ED or ICU ward, it takes about 10–20 minutes to solve.",
+      "The time it takes RosterLab’s AI to generate a schedule depends on the complexity of your departments. It scales with department size and the number of rules and requirements. For a typical ED or ICU unit, it takes about 10–20 minutes to solve.",
   },
   {
     question: "How does the platform automate my ICU schedule?",
     answer:
-      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Input your scheduling information so the AI develops a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised schedules for your staff.",
+      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Input your scheduling information so the AI develops a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimized schedules for your staff.",
   },
   {
     question: "Where is my schedule stored?",
@@ -95,7 +95,7 @@ export default function ICUEDPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Cut schedule creation time by 90% with AI automation. Build
                 compliant schedules that balance critical care demands with
-                staff wellbeing.
+                staff well-being.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -254,7 +254,7 @@ export default function ICUEDPage() {
               </h3>
               <p className="text-gray-600">
                 Ensure at least one team member from previous shifts continues
-                caring for each patient, minimising handover errors and
+                caring for each patient, minimizing handoff errors and
                 improving outcomes.
               </p>
             </div>

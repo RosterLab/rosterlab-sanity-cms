@@ -1,3 +1,4 @@
+import { withHreflang } from "@/components/seo/HreflangTags";
 import { getClient } from "@/sanity/lib/client";
 import { blogPostsOnlyQuery } from "@/sanity/lib/queries";
 import { validatedToken } from "@/sanity/lib/token";
@@ -12,7 +13,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { page } = await params;
-  const pageNumber = parseInt(page, 10);
+  const pageNumber = /^\d+$/.test(page) ? Number(page) : NaN;
 
   if (isNaN(pageNumber) || pageNumber < 1) {
     return {};
@@ -31,39 +32,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
 
-  return {
-    title,
-    description,
-    robots: {
-      index: false, // Pagination pages should not be indexed
-      follow: true,
-    },
-    alternates: {
-      canonical:
-        pageNumber === 1
-          ? `${baseUrl}/blog`
-          : `${baseUrl}/blog/page/${pageNumber}`,
-    },
-    openGraph: {
+  return withHreflang(
+    {
       title,
       description,
-      type: "website",
-      url: `${baseUrl}/blog/page/${pageNumber}`,
-      images: [
-        {
-          url: "/images/og-images/Blog.png",
-          width: 1200,
-          height: 630,
-        },
-      ],
+      robots: {
+        index: false, // Pagination pages should not be indexed
+        follow: true,
+      },
+      alternates: {
+        canonical:
+          pageNumber === 1
+            ? `${baseUrl}/blog`
+            : `${baseUrl}/blog/page/${pageNumber}`,
+      },
+      openGraph: {
+        title,
+        description,
+        type: "website",
+        url: `${baseUrl}/blog/page/${pageNumber}`,
+        images: [
+          {
+            url: "/images/og-images/Blog.png",
+            width: 1200,
+            height: 630,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: ["/images/og-images/Blog.png"],
+      },
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/images/og-images/Blog.png"],
-    },
-  };
+    `/blog/page/${pageNumber}`,
+  );
 }
 
 // Generate static params for better performance
@@ -90,7 +94,7 @@ export async function generateStaticParams() {
 
 export default async function BlogPaginationPage({ params }: Props) {
   const { page } = await params;
-  const pageNumber = parseInt(page, 10);
+  const pageNumber = /^\d+$/.test(page) ? Number(page) : NaN;
 
   // Redirect to main blog page if page is 1
   if (pageNumber === 1) {

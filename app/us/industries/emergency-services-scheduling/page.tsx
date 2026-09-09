@@ -63,7 +63,7 @@ export default function PublicServicesPage() {
                 Software
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
-                Roster faster and more efficiently whilst meeting more staff
+                Schedule faster and more efficiently whilst meeting more staff
                 preferences and managing fatigue.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -96,7 +96,7 @@ export default function PublicServicesPage() {
                     />
                   </svg>
                   <span className="text-sm text-gray-700">
-                    Made for emergency service organisations
+                    Made for emergency service organizations
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -153,7 +153,7 @@ export default function PublicServicesPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab emergency services platform showing AI-powered rostering"
+                  alt="RosterLab emergency services platform showing AI-powered scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -884,8 +884,8 @@ export default function PublicServicesPage() {
             Reliable Coverage, Supported Teams.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            Balance 24/7 operational demands with workforce wellbeing. Spend
-            less time on roster admin, more time supporting your community.
+            Balance 24/7 operational demands with workforce well-being. Spend
+            less time on schedule admin, more time supporting your community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

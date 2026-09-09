@@ -45,7 +45,7 @@ const faqItems = [
   {
     question: "What is a call center schedule?",
     answer:
-      "Call center schedules are specialized schedules designed for customer service operations where staffing must adapt to call volume patterns, service level agreements, and 24/7 operational demands. They're used for managing shift workers across inbound support, outbound sales, technical support, and customer service teams. These schedules must balance service level targets with worker wellbeing, compliance requirements, and fair distribution of premium shifts.",
+      "Call center schedules are specialized schedules designed for customer service operations where staffing must adapt to call volume patterns, service level agreements, and 24/7 operational demands. They're used for managing shift workers across inbound support, outbound sales, technical support, and customer service teams. These schedules must balance service level targets with worker well-being, compliance requirements, and fair distribution of premium shifts.",
   },
   {
     question: "How does AI make call center scheduling more effective?",

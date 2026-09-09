@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -19,7 +21,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Free Shift Swap Template - RosterLab",
   description:
     "Download our free shift swap request form template. Streamline staff shift exchanges with our professionally designed Word template.",
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
       "Download our free shift swap request form template. Streamline staff shift exchanges with our professionally designed Word template.",
     images: ["/images/shift-swap/shift-swap-preview.png"],
   },
-};
+}, `/templates/free-shift-swap-template`);
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

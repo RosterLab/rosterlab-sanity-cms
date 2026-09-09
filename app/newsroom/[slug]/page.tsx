@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -91,9 +93,9 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
   const post = await clientToUse.fetch(newsroomPostQuery, { slug });
 
   if (!post) {
-    return {
+    return resourceMetadata({
       title: "Newsroom Post Not Found",
-    };
+    }, `/newsroom/${slug}`);
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
@@ -117,7 +119,7 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
     metaDescription = metaDescription.slice(0, 152) + "...";
   }
 
-  return {
+  return resourceMetadata({
     title: post.seo?.metaTitle || post.title,
     description: metaDescription,
     alternates: {
@@ -134,7 +136,7 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
           ? [urlFor(post.mainImage).url()]
           : undefined,
     },
-  };
+  }, `/newsroom/${slug}`);
 }
 
 export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
@@ -283,7 +285,7 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
             </aside>
 
             {/* Main Article Content */}
-            <main className="lg:col-span-6">
+            <main className="min-w-0 lg:col-span-6 [overflow-wrap:anywhere]">
               {/* Article Body */}
               <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
                 <PortableText value={post.body} />

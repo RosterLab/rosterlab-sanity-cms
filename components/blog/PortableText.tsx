@@ -71,6 +71,7 @@ const components = {
     number: ({ children }: any) => <li className="pl-2">{children}</li>,
   },
   marks: {
+    usPreserve: ({ children }: any) => <>{children}</>,
     strong: ({ children }: any) => (
       <strong className="font-semibold text-neutral-900">{children}</strong>
     ),

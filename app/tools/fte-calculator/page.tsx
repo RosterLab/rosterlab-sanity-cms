@@ -1,9 +1,11 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import FTECalculatorClient from "./client";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
-export const metadata = withHreflang(
+export const metadata = resourceMetadata(withHreflang(
   {
     title: "FTE Requirement Calculator - RosterLab",
     description:
@@ -35,7 +37,7 @@ export const metadata = withHreflang(
     },
   },
   "/tools/fte-calculator",
-);
+), `/tools/fte-calculator`);
 
 export default function FTECalculatorPage() {
   return (

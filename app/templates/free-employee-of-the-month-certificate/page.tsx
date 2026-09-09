@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -13,7 +15,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Free Editable Employee of the Month Template",
   description:
     "Download our free, editable Employee of the Month certificate template on Canva. Recognise outstanding team members with a professionally designed certificate.",
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
       "/images/employee-certificate/employee-of-month-editable-certificate-preview.png",
     ],
   },
-};
+}, `/templates/free-employee-of-the-month-certificate`);
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

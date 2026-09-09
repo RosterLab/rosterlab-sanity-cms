@@ -46,7 +46,7 @@ const faqItems = [
   {
     question: "How does RosterLab maintain safe nurse-to-patient ratios?",
     answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag schedules that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by ward and shift type.",
+      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag schedules that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by unit and shift type.",
   },
   {
     question: "Can nurses submit their own preferences?",
@@ -497,7 +497,7 @@ export default function NurseRosteringV2Page() {
               Modern Nurse Scheduling Software for Teams
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve nurse wellbeing and patient care
+              Real outcomes that improve nurse well-being and patient care
             </p>
           </div>
 
@@ -569,7 +569,7 @@ export default function NurseRosteringV2Page() {
                     </h3>
                     <p className="text-gray-600">
                       Define minimum ratios, skill mix needs (ICU-trained,
-                      paeds, etc.), and ward coverage requirements.
+                      pediatrics, etc.), and unit coverage requirements.
                     </p>
                   </div>
                 </div>
@@ -717,7 +717,7 @@ export default function NurseRosteringV2Page() {
                 Safe Staffing Enforcement
               </h3>
               <p className="text-gray-600">
-                Configurable patient-to-nurse ratios by ward and shift. The
+                Configurable patient-to-nurse ratios by unit and shift. The
                 system will flag unsafe and understaffed schedules.
               </p>
             </div>

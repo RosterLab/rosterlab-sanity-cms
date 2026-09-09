@@ -5,9 +5,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { HiX } from "react-icons/hi";
 import {
-  US_URL_MAPPINGS,
-  REVERSE_US_MAPPINGS,
-  LOCALIZED_PAGES,
+  getUSPath,
+  getGlobalPath,
 } from "@/components/seo/HreflangTags";
 
 // Function to check if a page exists
@@ -66,10 +65,10 @@ export default function GeolocationBanner() {
 
           if (data.country === "US" && !isUSPath) {
             // US user on global site - check if page has a US equivalent
-            shouldShowBanner = LOCALIZED_PAGES.has(pathname);
+            shouldShowBanner = !!getUSPath(pathname);
           } else if (data.country !== "US" && isUSPath) {
             // Non-US user on US site - check if we can map back to a global page
-            const globalPath = REVERSE_US_MAPPINGS[pathname];
+            const globalPath = getGlobalPath(pathname);
             // Show banner if we can find a global equivalent
             shouldShowBanner =
               !!globalPath || pathname === "/us" || pathname === "/us/";
@@ -80,7 +79,7 @@ export default function GeolocationBanner() {
             isUSPath,
             pathname,
             shouldShowBanner,
-            hasUSEquivalent: LOCALIZED_PAGES.has(pathname),
+            hasUSEquivalent: !!getUSPath(pathname),
           });
 
           // Show banner if there's a mismatch and target page exists
@@ -113,7 +112,7 @@ export default function GeolocationBanner() {
   const getSuggestedPath = useCallback(async (): Promise<string> => {
     if (isUSUser && !isUSPath) {
       // User is from US but on global site - suggest US version
-      const usPath = US_URL_MAPPINGS[pathname];
+      const usPath = getUSPath(pathname);
       if (usPath) {
         const pageExists = await checkIfPageExists(usPath);
         return pageExists ? usPath : "/us";
@@ -122,7 +121,7 @@ export default function GeolocationBanner() {
       return "/us";
     } else if (!isUSUser && isUSPath) {
       // User is not from US but on US site - suggest global version
-      const globalPath = REVERSE_US_MAPPINGS[pathname];
+      const globalPath = getGlobalPath(pathname);
       if (globalPath) {
         const pageExists = await checkIfPageExists(globalPath);
         return pageExists ? globalPath : "/";

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "localize:resources": "node --import tsx scripts/generate-us-resources.ts",
+    "localize:resources:check": "node --import tsx scripts/generate-us-resources.ts --check",
+    "prebuild": "npm run localize:resources:check",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -1,46 +1,52 @@
-import { defineType, defineArrayMember } from 'sanity'
+import { defineType, defineArrayMember } from "sanity";
 
 export default defineType({
-  title: 'Block Content',
-  name: 'blockContent',
-  type: 'array',
+  title: "Block Content",
+  name: "blockContent",
+  type: "array",
   of: [
     defineArrayMember({
-      title: 'Block',
-      type: 'block',
+      title: "Block",
+      type: "block",
       styles: [
-        { title: 'Normal', value: 'normal' },
-        { title: 'H1', value: 'h1' },
-        { title: 'H2', value: 'h2' },
-        { title: 'H3', value: 'h3' },
-        { title: 'H4', value: 'h4' },
-        { title: 'Quote', value: 'blockquote' },
+        { title: "Normal", value: "normal" },
+        { title: "H1", value: "h1" },
+        { title: "H2", value: "h2" },
+        { title: "H3", value: "h3" },
+        { title: "H4", value: "h4" },
+        { title: "Quote", value: "blockquote" },
       ],
       lists: [
-        { title: 'Bullet', value: 'bullet' },
-        { title: 'Numbered', value: 'number' },
+        { title: "Bullet", value: "bullet" },
+        { title: "Numbered", value: "number" },
       ],
       marks: {
         decorators: [
-          { title: 'Strong', value: 'strong' },
-          { title: 'Emphasis', value: 'em' },
-          { title: 'Code', value: 'code' },
+          { title: "Strong", value: "strong" },
+          { title: "Emphasis", value: "em" },
+          { title: "Code", value: "code" },
         ],
         annotations: [
           {
-            title: 'URL',
-            name: 'link',
-            type: 'object',
+            title: "Keep original wording in US version",
+            name: "usPreserve",
+            type: "object",
+            fields: [{ name: "note", title: "Editorial note", type: "string" }],
+          },
+          {
+            title: "URL",
+            name: "link",
+            type: "object",
             fields: [
               {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
+                title: "URL",
+                name: "href",
+                type: "url",
               },
               {
-                title: 'Open in new tab',
-                name: 'blank',
-                type: 'boolean',
+                title: "Open in new tab",
+                name: "blank",
+                type: "boolean",
               },
             ],
           },
@@ -48,18 +54,18 @@ export default defineType({
       },
     }),
     defineArrayMember({
-      type: 'image',
+      type: "image",
       options: { hotspot: true },
       fields: [
         {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
         },
       ],
     }),
     defineArrayMember({
-      type: 'youtube',
+      type: "youtube",
     }),
   ],
-})
+});

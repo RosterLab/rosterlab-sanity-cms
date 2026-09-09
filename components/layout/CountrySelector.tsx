@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { HiGlobeAlt, HiChevronDown } from "react-icons/hi";
 import {
-  US_URL_MAPPINGS,
-  REVERSE_US_MAPPINGS,
+  getUSPath,
+  getGlobalPath,
 } from "@/components/seo/HreflangTags";
 import { cn } from "@/lib/utils";
 
@@ -38,8 +38,8 @@ export default function CountrySelector() {
     // If we're on a US page, convert back to AU/NZ
     if (isUSVersion) {
       // First check if we have a specific reverse mapping
-      if (REVERSE_US_MAPPINGS[pathname]) {
-        return REVERSE_US_MAPPINGS[pathname];
+      if (getGlobalPath(pathname)) {
+        return getGlobalPath(pathname)!;
       }
 
       // Handle the /us homepage
@@ -59,8 +59,8 @@ export default function CountrySelector() {
     // If we're on an AU/NZ page, convert to US
     if (!isUSVersion) {
       // First check if we have a specific mapping
-      if (US_URL_MAPPINGS[pathname]) {
-        return US_URL_MAPPINGS[pathname];
+      if (getUSPath(pathname)) {
+        return getUSPath(pathname)!;
       }
 
       // Handle the homepage

@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
@@ -19,7 +21,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Free Staff Roster Template Excel - RosterLab",
   description:
     "Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
       "Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.",
     images: ["/images/og-images/Excel.png"],
   },
-};
+}, `/templates/free-staff-roster-template-excel`);
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`

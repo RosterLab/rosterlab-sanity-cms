@@ -46,7 +46,7 @@ const faqItems = [
   {
     question: "What is a radiography schedule?",
     answer:
-      "A radiography schedule is a staff schedule that organizes radiographers and support staff who work with different imaging modalities (CT, MRI, X-ray, ultrasound, etc.). It ensures adequate coverage for all equipment, balances subspecialty expertise and manages on-call rotations.",
+      "A radiography schedule is a staff schedule that organizes imaging technologists and support staff who work with different imaging modalities (CT, MRI, X-ray, ultrasound, etc.). It ensures adequate coverage for all equipment, balances subspecialty expertise and manages on-call rotations.",
   },
   {
     question: "Why is radiography scheduling so complex?",
@@ -94,7 +94,7 @@ export default function RadiographyPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  Assign radiographers by seniority and modality for smooth
+                  Assign imaging technologists by seniority and modality for smooth
                   operations
                 </p>
                 <p className="text-gray-600 flex items-center justify-start">
@@ -193,7 +193,7 @@ export default function RadiographyPage() {
                 Maintain and grow staff competency
               </h3>
               <p className="text-gray-600">
-                Ensure radiographers regularly rotate through different imaging
+                Ensure imaging technologists regularly rotate through different imaging
                 modalities to maintain competency and broaden skill sets across
                 all areas of the department.
               </p>
@@ -242,12 +242,12 @@ export default function RadiographyPage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Equitable shift distribution across radiographers
+                Equitable shift distribution across imaging technologists
               </h3>
               <p className="text-gray-600">
                 Easily schedule for fairness by automatically considering
                 preferred, late, on-call, and weekend shifts evenly across all
-                radiographers for happier, healthier teams.
+                imaging technologists for happier, healthier teams.
               </p>
             </div>
           </div>
@@ -369,7 +369,7 @@ export default function RadiographyPage() {
                       Self-Scheduling for Better Flexibility
                     </h3>
                     <p className="text-gray-600">
-                      Empower radiographers to set their availability and
+                      Empower imaging technologists to set their availability and
                       preferences. The AI automatically builds schedules around
                       staff input while maintaining coverage and compliance.
                     </p>
@@ -437,7 +437,7 @@ export default function RadiographyPage() {
                       Input Constraints
                     </h3>
                     <p className="text-gray-600">
-                      Add radiographer skills, preferences, contractual rules,
+                      Add imaging technologist skills, preferences, contractual rules,
                       and staffing coverage by modality.
                     </p>
                   </div>

@@ -152,7 +152,7 @@ export default function ManufacturingPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab manufacturing platform showing AI-powered rostering"
+                  alt="RosterLab manufacturing platform showing AI-powered scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -218,7 +218,7 @@ export default function ManufacturingPage() {
                       Handle fluctuating demand during peak production periods,
                       seasonal variations, and maintenance shutdowns. Flexibly
                       adjust staffing levels to maintain output targets while
-                      optimising costs during standard operations.
+                      optimizing costs during standard operations.
                     </p>
                   </div>
                 </div>
@@ -309,12 +309,12 @@ export default function ManufacturingPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Optimise Labour Costs & Compliance
+                      Optimize Labor Costs & Compliance
                     </h3>
                     <p className="text-gray-600 text-sm">
                       Automatically enforce safety regulations and rest break
-                      requirements while optimising staffing efficiency. Better
-                      utilisation of ordinary hours reduces unnecessary overtime
+                      requirements while optimizing staffing efficiency. Better
+                      utilization of regular work hours reduces unnecessary overtime
                       and agency costs.
                     </p>
                   </div>
@@ -510,7 +510,7 @@ export default function ManufacturingPage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Distribution Centres
+                  Distribution Centers
                 </h4>
               </div>
               <div className="text-center group cursor-pointer">
@@ -715,7 +715,7 @@ export default function ManufacturingPage() {
                 Better Staffing Coverage
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise all the staffing intricacies for better coverage across
+                Optimize all the staffing intricacies for better coverage across
                 your production lines.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">

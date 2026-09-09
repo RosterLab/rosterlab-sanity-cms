@@ -84,7 +84,7 @@ export default function ResidentPhysicianSchedulingPage() {
               <p className="text-xl text-gray-600 mb-8">
                 Create compliant AI-powered schedules that balance training
                 requirements, fair night shift distribution, and physician
-                wellbeing.
+                well-being.
               </p>
               <div className="mb-8 space-y-2">
                 <p className="text-gray-600 flex items-center justify-start">
@@ -228,7 +228,7 @@ export default function ResidentPhysicianSchedulingPage() {
               </h3>
               <p className="text-gray-600">
                 Eliminate the need for manual scheduling - giving you time back
-                to focus on patient care and team wellbeing.
+                to focus on patient care and team well-being.
               </p>
             </div>
 
@@ -371,7 +371,7 @@ export default function ResidentPhysicianSchedulingPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Optimise Shifts for Complex Skill Mix
+                      Optimize Shifts for Complex Skill Mix
                     </h4>
                     <p className="text-gray-600">
                       Automatically pair resident physicians with attending
@@ -454,7 +454,7 @@ export default function ResidentPhysicianSchedulingPage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Better Wellbeing, Less Fatigue
+                      Better Well-being, Less Fatigue
                     </h4>
                     <p className="text-gray-600">
                       Enforce rest periods to prevent dangerous consecutive
@@ -490,7 +490,7 @@ export default function ResidentPhysicianSchedulingPage() {
               How Physicians Engage with Their Schedules
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around training requirements, preferences, and wellbeing,
+              Built around training requirements, preferences, and well-being,
               not just top-down scheduling
             </p>
           </div>

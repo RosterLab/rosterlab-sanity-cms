@@ -275,7 +275,7 @@ export default function AIScheduleAssistantPage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Otto is your single source of truth for all schedule
-                  knowledge. Make schedule handovers and transitions easier
+                  knowledge. Make schedule handoffs and transitions easier
                   between administrators. Understand schedule information and
                   changes to eliminate confusion.
                 </p>
@@ -289,7 +289,7 @@ export default function AIScheduleAssistantPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Learn your schedule without reading lengthy handover notes
+                      Learn your schedule without reading lengthy handoff notes
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -319,7 +319,7 @@ export default function AIScheduleAssistantPage() {
                 scheduling effortless — always with your approval and oversight.
               </p>
 
-              <AgenticAICarousel />
+              <AgenticAICarousel isUS />
 
               <div className="mt-12">
                 <p className="text-xl text-gray-600">

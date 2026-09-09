@@ -1,0 +1,67 @@
+// Generated from app/(main)/tools/staff-scheduling-personality-quiz/last-minute-magician/page.tsx. Run npm run localize:resources; do not edit directly.
+
+import { localizeUSResourceResult } from "@/lib/localization/us-resources";
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
+import { getClient } from '@/sanity/lib/client'
+import { groq } from 'next-sanity'
+import { draftMode } from 'next/headers'
+import { validatedToken } from '@/sanity/lib/token'
+import LastMinuteMagicianClient from "@/app/us/tools/staff-scheduling-personality-quiz/last-minute-magician/LastMinuteMagicianClient"
+import { Metadata } from 'next'
+
+export const metadata: Metadata = resourceMetadata({
+  title: "The Last-Minute Magician - Your Schedule Personality",
+  description: "Thrives under pressure, makes magic happen at the last moment. Pull together perfect schedules when time is running out.",
+  robots: {
+    index: false,
+    follow: true
+  },
+  openGraph: {
+    title: "The Last-Minute Magician - Your Schedule Personality",
+    description: "Thrives under pressure, makes magic happen at the last moment. Pull together perfect schedules when time is running out.",
+    images: [
+      {
+        url: '/images/quiz/og/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'RosterLab Personality Quiz - Last-Minute Magician'
+      }
+    ],
+    type: 'website',
+    url: "/us/tools/staff-scheduling-personality-quiz/last-minute-magician"
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "The Last-Minute Magician - Your Schedule Personality",
+    description: "Thrives under pressure, makes magic happen at the last moment. Pull together perfect schedules when time is running out.",
+    images: ['/images/quiz/og/og.png']
+  }
+}, "/us/tools/staff-scheduling-personality-quiz/last-minute-magician")
+
+// Query for recommended blog posts
+const recommendedPostsQuery = groq`
+  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+    (slug.current in ["how-to-optimise-shifts-during-a-hiring-freeze", 
+                      "staff-rostering-to-payroll-the-right-way-to-do-it", 
+                      "manage-night-shift-planning-wellbeing-effectively"])] {
+    _id,
+    usLocalization,
+    title,
+    slug,
+    excerpt,
+    mainImage,
+    publishedAt,
+    author->{name}
+  }
+`
+
+export default async function LastMinuteMagicianPage() {
+  const { isEnabled } = await draftMode()
+  const client = getClient(isEnabled && validatedToken ? { token: validatedToken } : undefined)
+  
+  // Fetch the recommended blog posts
+  const recommendedPosts = await client.fetch(recommendedPostsQuery).then(localizeUSResourceResult)
+  
+  return <LastMinuteMagicianClient recommendedPosts={recommendedPosts} />
+}

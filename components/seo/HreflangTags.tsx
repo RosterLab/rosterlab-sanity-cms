@@ -1,6 +1,13 @@
+import {
+  RESOURCE_PATHS,
+  RESOURCE_US_MAPPINGS,
+} from "@/lib/localization/resource-routes";
+
 // URL mappings for US version
 export const US_URL_MAPPINGS: Record<string, string> = {
+  ...RESOURCE_US_MAPPINGS,
   // Main pages
+  "/blog": "/us/blog",
   "/": "/us",
   "/about": "/us/about",
   "/pricing": "/us/pricing",
@@ -83,7 +90,9 @@ export const REVERSE_US_MAPPINGS: Record<string, string> = Object.entries(
 
 // Pages that have US versions
 export const LOCALIZED_PAGES = new Set([
+  ...RESOURCE_PATHS,
   // Main pages
+  "/blog",
   "/",
   "/about",
   "/pricing",
@@ -141,6 +150,28 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/airports-and-transportation-roster/ground-crew",
 ]);
 
+// Blog translations retain the published source slug. Pagination has the same
+// route structure in both regions; unknown resource types remain global.
+export function getUSPath(pathname: string): string | undefined {
+  return (
+    US_URL_MAPPINGS[pathname] ||
+    (/^\/(?:blog|case-studies|newsroom)\/(?:page\/[1-9]\d*|[^/]+)$/.test(
+      pathname,
+    )
+      ? `/us${pathname}`
+      : undefined)
+  );
+}
+
+export function getGlobalPath(pathname: string): string | undefined {
+  return (
+    REVERSE_US_MAPPINGS[pathname] ||
+    (pathname.startsWith("/us/") && getUSPath(pathname.slice(3))
+      ? pathname.slice(3)
+      : undefined)
+  );
+}
+
 // Helper function to generate hreflang metadata
 export function generateHreflangMetadata(pathname: string) {
   const baseUrl = "https://rosterlab.com";
@@ -160,7 +191,7 @@ export function generateHreflangMetadata(pathname: string) {
 
   if (isUSPage) {
     // For US pages, find the original path using reverse mapping
-    originalPath = REVERSE_US_MAPPINGS[normalizedPathname];
+    originalPath = getGlobalPath(normalizedPathname)!;
 
     if (!originalPath) {
       // If no reverse mapping found, this US page doesn't have a corresponding original page
@@ -174,11 +205,11 @@ export function generateHreflangMetadata(pathname: string) {
     originalPath = normalizedPathname;
 
     // Check if this page has localized versions
-    if (!LOCALIZED_PAGES.has(originalPath)) {
+    if (!getUSPath(originalPath)) {
       return {};
     }
 
-    usPath = US_URL_MAPPINGS[originalPath];
+    usPath = getUSPath(originalPath)!;
 
     if (!usPath) {
       // This shouldn't happen if LOCALIZED_PAGES and US_URL_MAPPINGS are in sync
@@ -197,6 +228,7 @@ export function generateHreflangMetadata(pathname: string) {
   return {
     alternates: {
       languages: {
+        en: formatUrl(originalPath),
         "en-AU": formatUrl(originalPath),
         "en-NZ": formatUrl(originalPath),
         "en-US": formatUrl(usPath),
@@ -208,10 +240,26 @@ export function generateHreflangMetadata(pathname: string) {
 
 // Helper to merge hreflang metadata into existing metadata
 export function withHreflang(metadata: any, pathname: string) {
-  const hreflangData = generateHreflangMetadata(pathname);
+  const noindex =
+    typeof metadata.robots === "string"
+      ? /\bnoindex\b/i.test(metadata.robots)
+      : metadata.robots?.index === false;
+  const hreflangData = noindex
+    ? { alternates: { languages: {} } }
+    : generateHreflangMetadata(pathname);
 
   return {
     ...metadata,
+    // The root layout appends " | RosterLab". Already branded titles must be
+    // absolute to avoid a second brand suffix in the rendered title element.
+    ...(typeof metadata.title === "string" &&
+    /\brosterlab\b/i.test(metadata.title)
+      ? { title: { absolute: metadata.title } }
+      : {}),
+    ...((pathname === "/us" || pathname.startsWith("/us/")) &&
+    metadata.openGraph
+      ? { openGraph: { ...metadata.openGraph, locale: "en_US" } }
+      : {}),
     ...hreflangData,
     // Preserve any existing alternates
     alternates: {

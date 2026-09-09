@@ -50,10 +50,25 @@ const agenticFeatures = [
   },
 ];
 
-export default function AgenticAICarousel() {
+const usFeatureCopy = [
+  {
+    title: '"Build me a draft schedule"',
+    description: "Upload your Excel or CSV files and let Otto create a draft schedule for you automatically, saving hours of manual work.",
+  },
+  {
+    title: '"Create a night shift"',
+    description: "Otto will perform tasks such as adding employees, creating shifts, and managing your schedule with simple commands.",
+  },
+  {
+    title: '"Help improve my schedule"',
+    description: "Receive intelligent suggestions for schedule optimization and staff well-being based on your scheduling data.",
+  },
+];
+
+export default function AgenticAICarousel({ isUS = false }: { isUS?: boolean } = {}) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-      {agenticFeatures.map((feature) => (
+      {agenticFeatures.map((feature, index) => (
         <div
           key={feature.id}
           className="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-105 cursor-pointer"
@@ -71,9 +86,9 @@ export default function AgenticAICarousel() {
             </svg>
           </div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            {feature.title}
+            {isUS ? usFeatureCopy[index].title : feature.title}
           </h3>
-          <p className="text-gray-600">{feature.description}</p>
+          <p className="text-gray-600">{isUS ? usFeatureCopy[index].description : feature.description}</p>
         </div>
       ))}
     </div>
