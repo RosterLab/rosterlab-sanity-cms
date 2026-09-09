@@ -18,7 +18,7 @@ import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = withHreflang(
   {
-    title: "Why Choose Us - RosterLab",
+    title: "Why Teams Choose Us for Staff Rostering",
     description:
       "Discover why teams choose RosterLab as their rostering platform. Our team is dedicated to building smarter, fairer AI rostering tools that put people first.",
     alternates: {

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { HiCheck, HiDownload } from "react-icons/hi";
 import { trackButtonClick } from "@/components/analytics/tracking";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
+import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 
 // Download function
 const downloadTimesheetFile = () => {
@@ -23,84 +23,8 @@ const downloadTimesheetFile = () => {
   document.body.removeChild(link);
 };
 
-// Add HubSpot type declaration
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (config: {
-          region: string;
-          portalId: string;
-          formId: string;
-          target: string;
-          onFormSubmitted?: (formData: any) => void;
-        }) => void;
-      };
-    };
-  }
-}
-
 export default function TimesheetFormClient() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // Load HubSpot form on component mount
-  useEffect(() => {
-    // Check if HubSpot is already loaded
-    try {
-      if (window.hbspt && window.hbspt.forms) {
-        window.hbspt.forms.create({
-          portalId: "20646833",
-          formId: "b49cff03-442a-490a-8357-aa1672058a31",
-          region: "na1",
-          target: "#hubspot-form-container",
-          onFormSubmitted: () => {
-            // Download the timesheet file
-            downloadTimesheetFile();
-
-            // Update UI to show success
-            setIsSubmitted(true);
-          },
-        });
-        return;
-      }
-    } catch {
-      return;
-    }
-
-    // Load HubSpot script if not already loaded
-    const script = document.createElement("script");
-    script.src = "//js.hsforms.net/forms/v2.js";
-    script.type = "text/javascript";
-    script.charset = "utf-8";
-    script.defer = true;
-
-    script.onload = () => {
-      if (window.hbspt && window.hbspt.forms) {
-        window.hbspt.forms.create({
-          portalId: "20646833",
-          formId: "b49cff03-442a-490a-8357-aa1672058a31",
-          region: "na1",
-          target: "#hubspot-form-container",
-          onFormSubmitted: () => {
-            // Download the timesheet file
-            downloadTimesheetFile();
-
-            // Update UI to show success
-            setIsSubmitted(true);
-          },
-        });
-      }
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8">
@@ -113,13 +37,14 @@ export default function TimesheetFormClient() {
             Fill out the form below to download your timesheet template
           </p>
 
-          {/* HubSpot Form Container */}
-          <div id="hubspot-form-container" className="mb-4">
-            <div className="text-center py-8">
-              <p className="text-gray-600">Loading form...</p>
-            </div>
-          </div>
-          <HubSpotFormListener />
+          <LeadCaptureForm
+            source="template-timesheet"
+            submitLabel="Download template"
+            onSuccess={() => {
+              downloadTimesheetFile();
+              setIsSubmitted(true);
+            }}
+          />
         </>
       ) : (
         <div className="text-center py-8">

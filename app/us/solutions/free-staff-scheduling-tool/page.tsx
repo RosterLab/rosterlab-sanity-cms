@@ -19,7 +19,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Free Staff Scheduling Tool - RosterLab",
+    title: "Free Staff Scheduling Tool",
     description:
       "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
     alternates: {
@@ -105,7 +105,7 @@ export default function ManualSchedulingPage() {
           ]}
           analyticsLocation="Solution Page Free Staff Scheduling"
           primaryCta={{
-            href: "https://app.rosterlab.com/signup",
+            href: "/start-free",
             label: "Start for Free",
             analyticsProperties: {
               cta_type: "signup",
@@ -579,7 +579,7 @@ export default function ManualSchedulingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  href="https://app.rosterlab.com/signup"
+                  href="/start-free"
                   className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
                   analyticsLabel="Start for Free"
                   analyticsLocation="Solution Page Free Staff Scheduling"

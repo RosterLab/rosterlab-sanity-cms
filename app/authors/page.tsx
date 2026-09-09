@@ -6,7 +6,7 @@ import Container from "@/components/ui/Container";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Authors | RosterLab",
+  title: "Authors",
   description:
     "Meet the team behind RosterLab - experts in workforce management, AI-powered rostering, and healthcare operations.",
   robots: {

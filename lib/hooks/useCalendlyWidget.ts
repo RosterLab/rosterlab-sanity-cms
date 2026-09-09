@@ -4,6 +4,7 @@ import {
   getCurrentTouchData,
   getFirstTouchData,
 } from "@/lib/analytics/utm-tracker";
+import { analytics } from "@/components/analytics/tracking";
 
 interface CalendlyEventData {
   event?: {
@@ -112,7 +113,7 @@ export function useCalendlyWidget({
 
   // Performance optimizations
   useEffect(() => {
-    if (!enablePerformanceOptimizations) return;
+    if (!enablePerformanceOptimizations || !shouldLoad) return;
 
     // Check if mobile and load immediately
     if (window.innerWidth < 768) {
@@ -189,6 +190,7 @@ export function useCalendlyWidget({
     config.redirectPath,
     calendlyUrl,
     router,
+    shouldLoad,
   ]);
 
   // Extract event data from Calendly events
@@ -213,17 +215,13 @@ export function useCalendlyWidget({
 
       console.log("=== CALENDLY EVENT SCHEDULED ===", eventData);
 
-      // Track in GA4 via dataLayer
-      if (typeof window !== "undefined" && (window as any).dataLayer) {
-        (window as any).dataLayer.push({
-          event: "calendly_meeting_scheduled",
-          calendly_event_type: eventData.event?.event_type_name || "demo",
-          calendly_event_uri: eventData.uri,
-          calendly_invitee_email: eventData.email,
-          calendly_invitee_name: eventData.name,
-          calendly_scheduled_date: eventData.start_time,
-        });
-      }
+      analytics.track("calendly_meeting_scheduled", {
+        calendly_event_type: eventData.event?.event_type_name || "demo",
+        calendly_event_uri: eventData.uri,
+        calendly_invitee_email: eventData.email,
+        calendly_invitee_name: eventData.name,
+        calendly_scheduled_date: eventData.start_time,
+      });
 
       // Call custom handler
       if (eventHandlers?.onEventScheduled) {
@@ -248,16 +246,10 @@ export function useCalendlyWidget({
       // Track widget view in GA4 (only once per page load)
       const trackingKey = `__calendlyViewed:${window.location.pathname}`;
 
-      if (
-        !hasTrackedViewRef.current &&
-        !(window as any)[trackingKey] &&
-        typeof window !== "undefined" &&
-        (window as any).dataLayer
-      ) {
+      if (!hasTrackedViewRef.current && !(window as any)[trackingKey]) {
         hasTrackedViewRef.current = true;
         (window as any)[trackingKey] = true;
-        (window as any).dataLayer.push({
-          event: "calendly_widget_viewed",
+        analytics.track("calendly_widget_viewed", {
           page_location: window.location.pathname,
         });
       }

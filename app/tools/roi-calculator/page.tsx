@@ -5,12 +5,15 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "ROI Calculator - RosterLab",
+    title: "ROI Calculator - Rostering Time & Cost Savings",
     description:
       "Calculate your ROI with RosterLab. See how much time and money you can save with AI-powered rosters.",
     robots: {
       index: true,
       follow: true,
+    },
+    alternates: {
+      canonical: "https://rosterlab.com/tools/roi-calculator",
     },
     openGraph: {
       title: "ROI Calculator - RosterLab",

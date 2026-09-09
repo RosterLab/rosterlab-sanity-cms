@@ -10,7 +10,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Auto Scheduling Staff - RosterLab",
+    title: "Auto Scheduling Staff",
     description:
       "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
     alternates: {

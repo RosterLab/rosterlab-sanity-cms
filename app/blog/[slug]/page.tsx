@@ -18,7 +18,6 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import NewsletterFormWrapper from "@/components/forms/NewsletterFormWrapper";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import { draftMode } from "next/headers";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 import ArticleSchema from "@/components/seo/ArticleSchema";
 
@@ -107,7 +106,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article>
-      <HubSpotFormListener />
       <BlogPostTracker
         title={post.title}
         slug={post.slug?.current || slug}

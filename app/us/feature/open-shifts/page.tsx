@@ -9,7 +9,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Open Shifts for Staff - RosterLab",
+    title: "Open Shifts for Staff",
     description:
       "Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
     alternates: {

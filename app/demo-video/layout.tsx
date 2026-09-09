@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "RosterLab Demo - AI Staff Rostering Software Walkthrough",
+  title: "Demo - AI Staff Rostering Software Walkthrough",
   description:
     "Watch how RosterLab helps healthcare teams optimize rostering, reduce admin time drastically, and boost staff autonomy.",
   openGraph: {

@@ -20,7 +20,7 @@ import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Shift Swap Template - RosterLab",
+  title: "Free Shift Swap Template",
   description:
     "Download our free shift swap request form template. Streamline staff shift exchanges with our professionally designed Word template.",
   alternates: {

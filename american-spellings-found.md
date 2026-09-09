@@ -33,7 +33,6 @@ This document lists all American spellings found that need to be changed to Brit
   - `/README.md`: Line 17 - "SEO optimized"
   - `/CLAUDE.md`: Lines 58, 70, 76 - "optimization" references
   - `/next.config.ts`: Lines 19-20 - `optimizeCss`, `optimizePackageImports`
-  - `/styles/hubspot-fonts.css`: Line 36 - `text-rendering: optimizeLegibility`
   - `/utils/performance.ts`: Line 2 - "optimizing third-party script loading"
   - `/sanity/fixtures/posts.ts`: Line 58 - "workforce optimization"
 

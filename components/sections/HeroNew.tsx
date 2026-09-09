@@ -45,10 +45,10 @@ export interface HeroNewContent {
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   /**
-   * Locale for the copy rendered *inside* the laptop mockup. Currently unused:
-   * the mockup is a pre-recorded video, so the wording on the laptop screen is
-   * baked into the recording. Kept so a US recording can be wired up without
-   * changing every call site.
+   * Region for the mockup on the laptop screen. LandingHero uses it to pick
+   * which recording plays: the US capture shows the app in US wording
+   * ("RosterLab Schedule", "Generating Schedules For You..."), so the screen
+   * matches the copy beside it.
    */
   locale?: "au" | "us";
 }

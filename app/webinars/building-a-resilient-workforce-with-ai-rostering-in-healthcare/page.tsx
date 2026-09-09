@@ -6,15 +6,14 @@ import Link from "next/link";
 import { HiCalendar, HiClock, HiUserGroup } from "react-icons/hi";
 
 export const metadata: Metadata = {
-  title:
-    "Building a Resilient Healthcare Workforce with AI Staff Rosters - Webinar",
+  title: "Webinar - Building a Resilient Health Workforce",
   description:
-    "Watch our webinar with Mike Peterson and Sunny Feng as they explore how AI-powered rostering can save hundreds of hours and build more resilient healthcare teams.",
+    "Watch our webinar on how AI-powered rostering saves hundreds of hours and builds more resilient healthcare teams.",
   openGraph: {
     title:
       "Building a Resilient Healthcare Workforce with AI Staff Rosters | RosterLab",
     description:
-      "Watch our webinar with Mike Peterson and Sunny Feng as they explore how AI-powered rostering can save hundreds of hours and build more resilient healthcare teams.",
+      "Watch our webinar on how AI-powered rostering saves hundreds of hours and builds more resilient healthcare teams.",
     type: "video.other",
     url: "https://rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
     images: [
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
     title:
       "Building a Resilient Healthcare Workforce with AI Staff Rosters | RosterLab",
     description:
-      "Watch our webinar with Mike Peterson and Sunny Feng as they explore how AI-powered rostering can save hundreds of hours and build more resilient healthcare teams.",
+      "Watch our webinar on how AI-powered rostering saves hundreds of hours and builds more resilient healthcare teams.",
     images: ["/images/webinars/resilient-healthcare-thumbnail.png"],
   },
   alternates: {

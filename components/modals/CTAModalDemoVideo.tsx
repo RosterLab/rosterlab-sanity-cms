@@ -19,18 +19,33 @@ type DemoVideoFormData = z.infer<typeof demoVideoFormSchema>;
 
 const trustedLogos = [
   { src: "/images/logos/new-logos/aus_gov.svg", alt: "Australian Government" },
-  { src: "/images/logos/new-logos/hospice_west_auckland.svg", alt: "Hospice West Auckland" },
+  {
+    src: "/images/logos/new-logos/hospice_west_auckland.svg",
+    alt: "Hospice West Auckland",
+  },
   { src: "/images/logos/new-logos/legalaid.svg", alt: "Legal Aid" },
   { src: "/images/logos/new-logos/monash.svg", alt: "Monash Health" },
   { src: "/images/logos/new-logos/nsw.svg", alt: "NSW Health" },
   { src: "/images/logos/new-logos/peticare.svg", alt: "Peticare" },
-  { src: "/images/logos/new-logos/royal_prince.svg", alt: "Royal Prince Alfred" },
+  {
+    src: "/images/logos/new-logos/royal_prince.svg",
+    alt: "Royal Prince Alfred",
+  },
   { src: "/images/logos/new-logos/singhealth.svg", alt: "SingHealth" },
   { src: "/images/logos/new-logos/st_george.svg", alt: "St George" },
-  { src: "/images/logos/new-logos/syd_kids.svg", alt: "Sydney Children's Hospital" },
-  { src: "/images/logos/new-logos/ver_services_hawkes_bay.svg", alt: "Veterinary Services Hawke's Bay" },
+  {
+    src: "/images/logos/new-logos/syd_kids.svg",
+    alt: "Sydney Children's Hospital",
+  },
+  {
+    src: "/images/logos/new-logos/ver_services_hawkes_bay.svg",
+    alt: "Veterinary Services Hawke's Bay",
+  },
   { src: "/images/logos/new-logos/legal_aid_wa.svg", alt: "Legal Aid WA" },
-  { src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg", alt: "Women's and Children's Hospital Adelaide" },
+  {
+    src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg",
+    alt: "Women's and Children's Hospital Adelaide",
+  },
   { src: "/images/logos/new-logos/central_island.svg", alt: "Central Island" },
 ];
 
@@ -79,16 +94,25 @@ export default function CTAModalDemoVideo({
   const toggleLookingFor = (value: string) => {
     const currentValues = lookingForValues;
     if (currentValues.includes(value)) {
-      setValue("lookingFor", currentValues.filter((v) => v !== value), { shouldValidate: true });
+      setValue(
+        "lookingFor",
+        currentValues.filter((v) => v !== value),
+        { shouldValidate: true },
+      );
     } else {
-      setValue("lookingFor", [...currentValues, value], { shouldValidate: true });
+      setValue("lookingFor", [...currentValues, value], {
+        shouldValidate: true,
+      });
     }
   };
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (industryDropdownRef.current && !industryDropdownRef.current.contains(event.target as Node)) {
+      if (
+        industryDropdownRef.current &&
+        !industryDropdownRef.current.contains(event.target as Node)
+      ) {
         setIndustryDropdownOpen(false);
       }
     };
@@ -167,7 +191,7 @@ export default function CTAModalDemoVideo({
     });
 
     try {
-      // Submit to your backend/CRM (e.g., HubSpot, custom API)
+      // Submit to the server-side CRM intake.
       const response = await fetch("/api/demo-video-gate", {
         method: "POST",
         headers: {
@@ -188,7 +212,9 @@ export default function CTAModalDemoVideo({
 
         // Redirect to demo video after a brief delay using client-side navigation
         setTimeout(() => {
-          router.push("/demo-video?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_d");
+          router.push(
+            "/demo-video?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_d",
+          );
         }, 1500);
       } else {
         throw new Error("Failed to submit form");
@@ -358,9 +384,18 @@ export default function CTAModalDemoVideo({
                   Opening demo video...
                 </p>
                 <div className="flex items-center justify-center gap-1.5">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                  <div
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce"
+                    style={{ animationDelay: "0ms" }}
+                  ></div>
+                  <div
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce"
+                    style={{ animationDelay: "150ms" }}
+                  ></div>
+                  <div
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce"
+                    style={{ animationDelay: "300ms" }}
+                  ></div>
                 </div>
               </div>
             ) : (
@@ -380,16 +415,22 @@ export default function CTAModalDemoVideo({
                   className="text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neutral-900 mb-2 sm:mb-3 md:mb-3 lg:mb-4 leading-tight"
                 >
                   See RosterLab in action:{" "}
-                  <span className="text-purple-600">5-minute high-level product tour</span>
+                  <span className="text-purple-600">
+                    5-minute high-level product tour
+                  </span>
                 </h2>
 
                 {/* Subheading */}
                 <p className="text-xs sm:text-sm md:text-sm lg:text-base text-neutral-600 mb-3 sm:mb-4 md:mb-4 lg:mb-5">
-                  Watch a quick overview of how RosterLab automates scheduling, ensures compliance, and saves you hours every week.
+                  Watch a quick overview of how RosterLab automates scheduling,
+                  ensures compliance, and saves you hours every week.
                 </p>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-4">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-2.5 sm:space-y-3 md:space-y-3 lg:space-y-4"
+                >
                   {/* Name and Email */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-2.5 sm:gap-3 lg:gap-4">
                     <div>
@@ -467,10 +508,18 @@ export default function CTAModalDemoVideo({
                       <div className="relative" ref={industryDropdownRef}>
                         <button
                           type="button"
-                          onClick={() => setIndustryDropdownOpen(!industryDropdownOpen)}
+                          onClick={() =>
+                            setIndustryDropdownOpen(!industryDropdownOpen)
+                          }
                           className="w-full px-2.5 py-1.5 sm:px-3 sm:py-2 pr-8 sm:pr-10 text-sm border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white cursor-pointer hover:border-neutral-400 transition-colors text-left"
                         >
-                          <span className={selectedIndustry ? "text-neutral-900" : "text-neutral-500"}>
+                          <span
+                            className={
+                              selectedIndustry
+                                ? "text-neutral-900"
+                                : "text-neutral-500"
+                            }
+                          >
                             {selectedIndustry || "Select industry"}
                           </span>
                           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-neutral-500">
@@ -503,7 +552,9 @@ export default function CTAModalDemoVideo({
                                 key={option}
                                 type="button"
                                 onClick={() => {
-                                  setValue("industry", option, { shouldValidate: true });
+                                  setValue("industry", option, {
+                                    shouldValidate: true,
+                                  });
                                   setIndustryDropdownOpen(false);
                                 }}
                                 className="w-full px-2.5 py-1.5 sm:px-3 sm:py-2 text-sm text-left hover:bg-purple-50 transition-colors text-neutral-900"
@@ -529,13 +580,28 @@ export default function CTAModalDemoVideo({
                     </label>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {[
-                        { value: "Automate scheduling", label: "Automate scheduling" },
+                        {
+                          value: "Automate scheduling",
+                          label: "Automate scheduling",
+                        },
                         { value: "Save time", label: "Save time" },
                         { value: "Reduce costs", label: "Reduce costs" },
-                        { value: "Improve compliance", label: "Improve compliance" },
-                        { value: "Reduce staff fatigue", label: "Reduce staff fatigue" },
-                        { value: "Better quality schedules", label: "Better quality schedules" },
-                        { value: "More efficient staffing", label: "More efficient staffing" },
+                        {
+                          value: "Improve compliance",
+                          label: "Improve compliance",
+                        },
+                        {
+                          value: "Reduce staff fatigue",
+                          label: "Reduce staff fatigue",
+                        },
+                        {
+                          value: "Better quality schedules",
+                          label: "Better quality schedules",
+                        },
+                        {
+                          value: "More efficient staffing",
+                          label: "More efficient staffing",
+                        },
                       ].map((option) => (
                         <button
                           key={option.value}
@@ -617,7 +683,9 @@ export default function CTAModalDemoVideo({
                       src={logo.src}
                       alt={logo.alt}
                       className="h-6 sm:h-7 lg:h-8 object-contain grayscale opacity-60 flex-shrink-0"
-                      aria-hidden={i >= trustedLogos.length ? "true" : undefined}
+                      aria-hidden={
+                        i >= trustedLogos.length ? "true" : undefined
+                      }
                     />
                   ))}
                 </div>

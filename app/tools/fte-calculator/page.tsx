@@ -5,7 +5,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "FTE Requirement Calculator - RosterLab",
+    title: "FTE Requirement Calculator",
     description:
       "Convert your weekly staffing demand model into the number of full-time equivalents (FTE) required to cover it, and compare against FTE available.",
     robots: {

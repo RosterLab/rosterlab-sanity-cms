@@ -12,7 +12,7 @@ import {
 } from "react-icons/hi";
 
 export const metadata = {
-  title: "Why Choose Us - RosterLab",
+  title: "Why Choose Us",
   description:
     "Why do clients choose RosterLab as their staff scheduling solution? Our unique AI scheduling generator solves even the most complex staff schedules. Learn more.",
   robots: {

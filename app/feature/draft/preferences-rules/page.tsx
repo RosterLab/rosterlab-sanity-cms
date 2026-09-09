@@ -6,7 +6,7 @@ import { HiCheck } from "react-icons/hi";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 
 export const metadata = {
-  title: "Shift Preferences & Fairness Rules - RosterLab",
+  title: "Shift Preferences & Fairness Rules",
   description:
     "Let staff set shift preferences and apply fairness rules automatically to boost satisfaction, compliance, and retention.",
   robots: {

@@ -197,6 +197,10 @@ export function generateHreflangMetadata(pathname: string) {
   return {
     alternates: {
       languages: {
+        // Language-only tag: every English market without a dedicated page
+        // (UK, Canada, Ireland, Singapore, etc). Region codes below are more
+        // specific, so en-US still wins for US searchers.
+        en: formatUrl(originalPath),
         "en-AU": formatUrl(originalPath),
         "en-NZ": formatUrl(originalPath),
         "en-US": formatUrl(usPath),

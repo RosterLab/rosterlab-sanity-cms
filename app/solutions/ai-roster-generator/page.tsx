@@ -23,7 +23,7 @@ import {
 
 export const metadata = withHreflang(
   {
-    title: "AI Roster Generator - RosterLab",
+    title: "AI Roster Generator",
     description:
       "AI roster generator that builds rosters in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     alternates: {

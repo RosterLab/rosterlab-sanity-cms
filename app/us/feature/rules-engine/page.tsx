@@ -13,7 +13,7 @@ const pathname = "/us/feature/rules-engine";
 
 export const metadata = withHreflang(
   {
-    title: "Scheduling Rules Engine - RosterLab",
+    title: "Scheduling Rules Engine",
     description:
       "Create a mix of fixed and flexible scheduling rules to help manage fatigue, ensure fairness, and meet all contractual and union requirements.",
     alternates: {

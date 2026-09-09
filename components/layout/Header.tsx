@@ -5,15 +5,10 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-import {
-  HiMenu,
-  HiX,
-  HiChevronDown,
-  HiChevronRight,
-  HiUser,
-  HiHeart,
-} from "react-icons/hi";
+import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
+import { FREE_SIGNUP_GATE_CLASS } from "@/lib/market-access/client-gate";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 /**
  * True once the page has been scrolled away from the top, which the header
@@ -66,9 +61,40 @@ interface NavItem {
 
 interface HeaderProps {
   navItems?: NavItem[];
+  /**
+   * Set on routes whose hero is the flat blue field below `lg` (the industry
+   * pages, see `IndustryHero`). The bar paints itself that same blue and
+   * flips the logo and menu button to white, so the two read as one surface.
+   * Only while the page is at the top: once scrolled, the bar is over
+   * ordinary white content and has to go back to being opaque white.
+   */
+  onHeroBackground?: boolean;
 }
 
-export default function Header({ navItems = [] }: HeaderProps) {
+/**
+ * Kept in step with `PANEL_FILL` in `IndustryHero` by hand — the hero is a
+ * server component, so importing the value would drag it into this client
+ * bundle. If one changes, change the other.
+ */
+const HERO_BLUE = "bg-[#3779DD]";
+
+/**
+ * The hero dots, carried up through the bar so the blue reads as one surface
+ * rather than a plain band above a dotted one.
+ *
+ * The offset is what keeps the two in one rhythm. The hero starts at the
+ * bottom of the 80px bar and tiles from its own origin, putting dot centres
+ * at 89px, 107px, ... in page coordinates; stepping back by 18px lands the
+ * bar's rows at 17px, 35px, 53px, 71px, so the tile has to start at 8px. If
+ * the bar's uncondensed height ever changes, this changes with it.
+ */
+const HERO_DOTS =
+  "bg-[radial-gradient(circle,rgba(255,255,255,0.10)_1.2px,transparent_1.2px)] bg-[length:18px_18px] bg-[position:0_8px]";
+
+export default function Header({
+  navItems = [],
+  onHeroBackground = false,
+}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
@@ -123,17 +149,33 @@ export default function Header({ navItems = [] }: HeaderProps) {
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
         { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
-        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
         { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
+        {
+          title: "Radiography Roster",
+          link: "/industries/healthcare/radiography",
+        },
+        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        {
+          title: "Veterinary Roster",
+          link: "/industries/healthcare/veterinary-rostering",
+        },
         {
           title: "Nurse Roster",
           link: "/industries/healthcare/nurse-rostering",
-          description: "Fair, safe and compliant nurse rostering software",
         },
         {
-          title: "JMO Roster",
+          title: "Junior Doctor Roster",
           link: "/industries/healthcare/junior-medical-officer-rostering",
-          description: "Compliant rostering for junior medical officers",
+        },
+        {
+          title: "Senior Doctor Roster",
+          link: "/industries/healthcare/senior-medical-officer-rostering",
+        },
+        { title: "On-Call Roster", link: "/type/on-call-roster" },
+        { title: "Long Roster", link: "/type/long-roster" },
+        {
+          title: "Telehealth Roster",
+          link: "/industries/healthcare/telehealth-rostering",
         },
       ],
     },
@@ -142,7 +184,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
       title: "Resources",
       subItems: [
         // Content & Learning
-        { title: "Whitepapers", link: "/whitepapers/rostering-as-a-strategic-workforce-lever" },
+        {
+          title: "Whitepapers",
+          link: "/whitepapers/rostering-as-a-strategic-workforce-lever",
+        },
         { title: "Case Studies", link: "/case-studies" },
         { title: "Webinars", link: "/webinars" },
         { title: "Blogs", link: "/blog" },
@@ -197,11 +242,25 @@ export default function Header({ navItems = [] }: HeaderProps) {
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
   const condensed = useCondenseOnScroll();
 
+  /*
+    `lg` rather than the `xl` the nav itself switches at: the industry hero
+    goes to its desktop layout at `lg`, and past that point there is no blue
+    behind the bar to blend into — only the hamburger stays.
+  */
+  const seamless = onHeroBackground && !condensed;
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-white motion-safe:transition-shadow motion-safe:duration-300 motion-safe:ease-out",
-        condensed ? "shadow-md" : "shadow-sm",
+        "sticky top-0 z-50 motion-safe:transition-shadow motion-safe:duration-300 motion-safe:ease-out",
+        seamless
+          ? cn(HERO_BLUE, HERO_DOTS, "lg:bg-white lg:bg-none")
+          : "bg-white",
+        seamless
+          ? "shadow-none lg:shadow-sm"
+          : condensed
+            ? "shadow-md"
+            : "shadow-sm",
       )}
       role="banner"
     >
@@ -235,6 +294,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 className={cn(
                   "w-auto motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
                   condensed ? "h-8" : "h-10",
+                  // The logo is a PNG, so it is knocked out to flat white
+                  // rather than swapped for a second asset.
+                  seamless && "brightness-0 invert lg:filter-none",
                 )}
                 priority
               />
@@ -420,7 +482,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   )
                                 }
                               >
-                                Book a demo
+                                <DemoCtaLabel href={demoLink}>
+                                  Book a demo
+                                </DemoCtaLabel>
                               </Link>
                             </div>
                           </div>
@@ -432,7 +496,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Healthcare Sectors Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Specialty Healthcare Rosters
+                                {isUSVersion
+                                  ? "Specialty Healthcare Schedules"
+                                  : "Specialty Healthcare Rosters"}
                               </h3>
                               <div className="space-y-1">
                                 {/* Healthcare Roster */}
@@ -566,7 +632,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             {/* Roster By Type Column */}
                             <div>
                               <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                Roster By Type
+                                {isUSVersion
+                                  ? "Schedule By Type"
+                                  : "Roster By Type"}
                               </h3>
                               <div className="space-y-1">
                                 {/* Nurse Roster */}
@@ -703,7 +771,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   )
                                 }
                               >
-                                Book a demo
+                                <DemoCtaLabel href={demoLink}>
+                                  Book a demo
+                                </DemoCtaLabel>
                               </Link>
                             </div>
                           </div>
@@ -762,7 +832,10 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               <div className="space-y-4">
                                 {(() => {
                                   const renderGroup = (
-                                    groupName: "Mini Tools" | "Games" | "Templates",
+                                    groupName:
+                                      | "Mini Tools"
+                                      | "Games"
+                                      | "Templates",
                                   ) => {
                                     const groupItems = item.subItems?.filter(
                                       (sub) => sub.group === groupName,
@@ -875,7 +948,9 @@ export default function Header({ navItems = [] }: HeaderProps) {
                                   )
                                 }
                               >
-                                Book a demo
+                                <DemoCtaLabel href={demoLink}>
+                                  Book a demo
+                                </DemoCtaLabel>
                               </Link>
                             </div>
                           </div>
@@ -946,20 +1021,20 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 trackSmartButtonClick("Book a Demo", demoLink, "Header Desktop")
               }
             >
-              Book a Demo
+              <DemoCtaLabel href={demoLink}>Book a Demo</DemoCtaLabel>
             </Link>
             <Link
-              href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
+              href="/start-free"
+              className={`bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors ${FREE_SIGNUP_GATE_CLASS}`}
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(
                   "Start for free",
-                  "https://app.rosterlab.com/signup",
+                  "/start-free",
                   "Header Desktop",
                 );
                 setTimeout(() => {
-                  window.location.href = "https://app.rosterlab.com/signup";
+                  window.location.href = "/start-free";
                 }, 100);
               }}
             >
@@ -971,7 +1046,12 @@ export default function Header({ navItems = [] }: HeaderProps) {
           <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className={cn(
+                "inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset",
+                seamless
+                  ? "text-white hover:bg-white/15 focus:ring-white lg:text-neutral-700 lg:hover:text-blue-600 lg:hover:bg-neutral-100 lg:focus:ring-blue-500"
+                  : "text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:ring-blue-500",
+              )}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={
@@ -1089,6 +1169,56 @@ export default function Header({ navItems = [] }: HeaderProps) {
                             </div>
                           </div>
                         </>
+                      ) : item.title === "Industries" ? (
+                        <>
+                          <div>
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                              {isUSVersion
+                                ? "SPECIALTY HEALTHCARE SCHEDULES"
+                                : "SPECIALTY HEALTHCARE ROSTERS"}
+                            </div>
+                            {item.subItems.slice(0, 6).map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="mt-1 px-3">
+                            <Link
+                              href={
+                                isUSVersion
+                                  ? "https://rosterlab.com/us/industries"
+                                  : "https://rosterlab.com/industries"
+                              }
+                              className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              View all industries →
+                            </Link>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
+                              {isUSVersion
+                                ? "SCHEDULE BY TYPE"
+                                : "ROSTER BY TYPE"}
+                            </div>
+                            {item.subItems.slice(6).map((subItem) => (
+                              <Link
+                                key={subItem.link}
+                                href={subItem.link}
+                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </>
                       ) : item.title === "Resources" ? (
                         <>
                           {/* Ungrouped items (Content & Learning) */}
@@ -1112,7 +1242,8 @@ export default function Header({ navItems = [] }: HeaderProps) {
                               const groupItems = item.subItems?.filter(
                                 (sub) => sub.group === groupName,
                               );
-                              if (!groupItems || !groupItems.length) return null;
+                              if (!groupItems || !groupItems.length)
+                                return null;
                               return (
                                 <div
                                   key={groupName}
@@ -1223,21 +1354,21 @@ export default function Header({ navItems = [] }: HeaderProps) {
                 setIsMenuOpen(false);
               }}
             >
-              Book a Demo
+              <DemoCtaLabel href={demoLink}>Book a Demo</DemoCtaLabel>
             </Link>
             <Link
-              href="https://app.rosterlab.com/signup"
-              className="bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium"
+              href="/start-free"
+              className={`bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium ${FREE_SIGNUP_GATE_CLASS}`}
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(
                   "Start for free",
-                  "https://app.rosterlab.com/signup",
+                  "/start-free",
                   "Header Mobile",
                 );
                 setIsMenuOpen(false);
                 setTimeout(() => {
-                  window.location.href = "https://app.rosterlab.com/signup";
+                  window.location.href = "/start-free";
                 }, 100);
               }}
             >

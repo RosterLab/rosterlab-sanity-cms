@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ClientHeader from "@/components/layout/ClientHeader";
 import ClientFooter from "@/components/layout/ClientFooter";
-import { GoogleTagManagerNoscript } from "@/components/analytics/GoogleTagManager";
-import GoogleTagManagerHead from "@/components/analytics/GoogleTagManagerHead";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import UTMTracker from "@/components/analytics/UTMTracker";
 import MetaPixel from "@/components/analytics/MetaPixel";
-import MicrosoftClarity from "@/components/analytics/MicrosoftClarity";
-// PostHog: pnpm add posthog-js @posthog/react | key: phc_syjvwfhiP9hzL4mfVUzZC6bZHBZHKVmfqVK5DMM7p7au | host: https://us.i.posthog.com
 import RlTracker from "@/components/analytics/RlTracker";
 import StructuredData from "@/components/seo/StructuredData";
 import { VisualEditing } from "next-sanity/visual-editing";
@@ -22,6 +19,8 @@ import StatsigProvider from "@/components/analytics/StatsigProvider";
 import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
 import CTAModalManager from "@/components/modals/CTAModalManager";
 import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
+import { MarketAccessProvider } from "@/components/market-access/MarketAccessProvider";
+import { MARKET_ACCESS_HINT_SCRIPT } from "@/lib/market-access/client-gate";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -67,60 +66,68 @@ export default async function RootLayout({
     pathname.startsWith("/api");
 
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
-        {/* Critical resource hints */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
+        {/* Applies the cached market-access decision before first paint, so a
+            visitor never sees the wrong CTAs flash first. See
+            lib/market-access/client-gate.ts. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: MARKET_ACCESS_HINT_SCRIPT }}
         />
+        {/* Critical resource hints.
+
+            No font preconnects: `next/font/google` self-hosts Poppins at build
+            time, so nothing is ever fetched from fonts.googleapis.com or
+            fonts.gstatic.com and Lighthouse flagged both hints as unused. */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://widget.intercom.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://featuregates.org" />
-        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://us.i.posthog.com" />
         <StructuredData type="organization" isUSPage={isUSPage} />
-        <GoogleTagManagerHead gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics
+            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+          />
+        )}
       </head>
       <body
         className={`${poppins.className} min-h-screen bg-white text-neutral-900 antialiased`}
         suppressHydrationWarning={true}
       >
-        <GoogleTagManagerNoscript gtmId={process.env.NEXT_PUBLIC_GTM_ID!} />
         <SkipLink />
         <StatsigProvider clientKey={process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY}>
-          <ClientProviders
-            intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
-          >
-            {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && (
-              <StatsigExposureLogger />
-            )}
-            <RlTracker />
-            <UTMTracker debug={process.env.NODE_ENV === "development"} />
-            <MetaPixel />
-            <MicrosoftClarity />
-            <GeolocationProvider />
-            <ClientHeader />
-            <main id="main-content" className="flex-grow" role="main">
-              {children}
-            </main>
-            <ClientFooter />
-            {isEnabled && <VisualEditing />}
-            <LazyStyles />
-            <CTAModalManager />
-            {!isInternalRoute && (
-              <AskAiShareWidget
-                learnFromUrl={
-                  isUSPage
-                    ? "https://rosterlab.com/us"
-                    : "https://rosterlab.com"
-                }
-              />
-            )}
-          </ClientProviders>
+          <MarketAccessProvider>
+            <ClientProviders
+              intercomAppId={process.env.NEXT_PUBLIC_INTERCOM_APP_ID!}
+            >
+              {process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY && (
+                <StatsigExposureLogger />
+              )}
+              <RlTracker />
+              <UTMTracker debug={process.env.NODE_ENV === "development"} />
+              <MetaPixel />
+              <GeolocationProvider />
+              <ClientHeader />
+              <main id="main-content" className="flex-grow" role="main">
+                {children}
+              </main>
+              <ClientFooter />
+              {isEnabled && <VisualEditing />}
+              <LazyStyles />
+              <CTAModalManager />
+              {!isInternalRoute && (
+                <AskAiShareWidget
+                  learnFromUrl={
+                    isUSPage
+                      ? "https://rosterlab.com/us"
+                      : "https://rosterlab.com"
+                  }
+                />
+              )}
+            </ClientProviders>
+          </MarketAccessProvider>
         </StatsigProvider>
       </body>
     </html>
