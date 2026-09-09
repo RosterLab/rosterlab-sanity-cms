@@ -37,6 +37,17 @@ export function getResourcesNavigation(isUS = false): {
         description: "Convert weekly demand into required FTE",
         group: "Mini Tools",
       },
+      // No US equivalent of the analyser page exists yet, so it stays off that menu.
+      ...(isUS
+        ? []
+        : [
+            {
+              title: "Roster Analyser",
+              link: "/tools/roster-analysis",
+              description: "Get instant AI insights on your roster",
+              group: "Mini Tools",
+            },
+          ]),
       {
         title: isUS ? "Preferences Optimizer" : "Preferences Optimiser",
         link: "/tools/survey-preferences",

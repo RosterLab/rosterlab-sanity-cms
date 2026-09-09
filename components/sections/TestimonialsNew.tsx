@@ -155,7 +155,16 @@ export default function TestimonialsNew({
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
           {/* Left: heading + description + arrow controls */}
           <div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+            {/*
+              Sized in steps that match the container's, because this column
+              is a fraction of it and so widens in the same jumps: 332px at
+              `lg`, 407px at `xl`, 454px once the container hits its 1400px
+              cap. "community." is a single unbreakable word, so the type has
+              to fit the column outright — a flat text-7xl needs 437px and was
+              clipping the whole way from 1024px to 1400px. Each step below
+              leaves the longest word ~15px of room.
+            */}
+            <h2 className="text-5xl md:text-6xl lg:text-[3.25rem] xl:text-[4rem] 2xl:text-7xl font-bold leading-[1.05] tracking-tight">
               <span className="block text-gray-900">From our</span>
               <span className="block text-gray-900">community.</span>
             </h2>
