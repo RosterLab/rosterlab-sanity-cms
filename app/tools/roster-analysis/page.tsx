@@ -8,14 +8,17 @@ import type { Metadata } from "next";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "AI Roster Analysis - Instant Scheduling Insights",
+  title: "Free AI Roster Analyser - Instant Roster Analysis",
   description:
-    "Upload your roster and get instant AI-powered analysis. Identify fairness issues, compliance gaps, and optimisation opportunities in seconds.",
-  robots: { index: false, follow: false },
+    "Upload your roster for a free AI report in minutes. Spot fairness, compliance and coverage gaps, focused on what matters most to your team.",
+  robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://rosterlab.com/tools/roster-analysis",
+  },
   openGraph: {
-    title: "AI Roster Analysis - Instant Scheduling Insights | RosterLab",
+    title: "Free AI Roster Analyser - Instant Roster Analysis | RosterLab",
     description:
-      "Upload your roster and get instant AI-powered analysis. Identify fairness issues, compliance gaps, and optimisation opportunities in seconds.",
+      "Upload your roster for a free AI report in minutes. Spot fairness, compliance and coverage gaps, focused on what matters most to your team.",
     type: "website",
     url: "https://rosterlab.com/tools/roster-analysis",
     images: [
@@ -28,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Roster Analysis - Instant Scheduling Insights | RosterLab",
+    title: "Free AI Roster Analyser - Instant Roster Analysis | RosterLab",
     description:
-      "Upload your roster and get instant AI-powered analysis. Identify fairness issues, compliance gaps, and optimisation opportunities in seconds.",
+      "Upload your roster for a free AI report in minutes. Spot fairness, compliance and coverage gaps, focused on what matters most to your team.",
     images: ["/images/og-images/AutoRosterGeneration.png"],
   },
 };
