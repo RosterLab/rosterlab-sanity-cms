@@ -9,7 +9,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Shift Swaps & Shift Trades - RosterLab",
+    title: "Shift Swaps & Shift Trades",
     description:
       "Automate routine shift trades, ensuring optimal staffing and compliance while reducing admin. When a shift trade impacts coverage, managers get full oversight.",
     alternates: {

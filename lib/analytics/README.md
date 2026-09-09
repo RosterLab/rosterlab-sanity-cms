@@ -17,14 +17,14 @@ lib/analytics/
 
 ### Overview
 
-The demo booking conversion event (`demo_booking_complete`) tracks when a user successfully books a demo through HubSpot meeting scheduler. This event is tracked in both Segment and Google Tag Manager (dual tracking).
+The demo booking conversion event (`demo_booking_complete`) tracks when a user successfully books a demo through Calendly. This event is tracked in both Segment and Google Tag Manager (dual tracking).
 
 ### Implementation
 
-1. **HubSpot Meeting Listener Component** (`/components/analytics/HubSpotMeetingListener.tsx`)
-   - Listens for HubSpot meeting booking events
+1. **Calendly event listener** (`/components/booking/DemoBookingBase.tsx`)
+   - Listens for confirmed Calendly scheduling events
    - Automatically tracks to both Segment and GTM
-   - Captures user information from the form
+   - Captures invitee information when Calendly provides it
 
 2. **Pages with Demo Booking**
    - `/book-a-demo` - Main demo booking page
@@ -36,7 +36,7 @@ The `demo_booking_complete` event includes:
 
 | Property           | Type    | Description                    |
 | ------------------ | ------- | ------------------------------ |
-| `form_guid`        | string  | HubSpot form identifier        |
+| `form_guid`        | string  | Calendly event identifier      |
 | `organizer_name`   | string  | Name of the meeting organizer  |
 | `is_meeting_paid`  | boolean | Whether this is a paid meeting |
 | `meeting_date`     | string  | Date of the scheduled meeting  |
@@ -58,16 +58,15 @@ When a demo is booked, the system:
 
 ### Adding to New Pages
 
-To add demo booking tracking to a new page with HubSpot meetings:
+To add demo booking tracking to a new page, use the shared booking component:
 
 ```tsx
-import HubSpotMeetingListener from "@/components/analytics/HubSpotMeetingListener";
+import DemoBookingBase from "@/components/booking/DemoBookingBase";
 
 export default function YourPage() {
   return (
     <div>
-      <HubSpotMeetingListener />
-      {/* Your page content */}
+      <DemoBookingBase region="global" regionalContent={regionalContent} />
     </div>
   );
 }

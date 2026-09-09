@@ -6,7 +6,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import WebinarsPageContent from "@/app/us/webinars/WebinarsPageContent";
 
 export const metadata: Metadata = resourceMetadata({
-  title: "AI in Healthcare Webinars - RosterLab",
+  title: "AI in Healthcare Webinars",
   description:
     "Watch on-demand conversations about healthcare staff scheduling. Explore practical experiences with AI-powered scheduling and workforce management.",
   openGraph: {

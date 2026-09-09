@@ -24,7 +24,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Free Staff Roster Mobile App - RosterLab",
+    title: "Free Staff Roster Mobile App",
     description:
       "Free staff roster mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
     alternates: {

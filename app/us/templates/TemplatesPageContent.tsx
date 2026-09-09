@@ -6,6 +6,7 @@ import Container from "@/components/ui/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { HiDownload, HiSearch } from "react-icons/hi";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 interface Template {
   id: string;
@@ -185,7 +186,7 @@ export default function TemplatesPageContent({
               href="/us/book-a-demo"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-neutral-100 transition-colors"
             >
-              Book a Demo
+              <DemoCtaLabel href="/us/book-a-demo">Book a Demo</DemoCtaLabel>
             </Link>
             <Link
               href="/us/solutions/ai-staff-schedule-maker"

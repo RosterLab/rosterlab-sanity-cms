@@ -1,5 +1,6 @@
 "use client";
 
+import { Children, type ReactNode } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
@@ -7,6 +8,26 @@ import {
   trackSmartButtonClick,
 } from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
+import DemoLabel from "@/components/market-access/DemoLabel";
+import {
+  isDemoBookingHref,
+  isFreeSignupHref,
+} from "@/lib/market-access/labels";
+import { FREE_SIGNUP_GATE_CLASS } from "@/lib/market-access/client-gate";
+
+/**
+ * Gates the plain-text parts of a label so CSS can pick the country's wording.
+ * Non-string children (icons and the like) are handed back untouched.
+ */
+function gateTextChildren(children: ReactNode): ReactNode {
+  return Children.map(children, (child, index) =>
+    typeof child === "string" ? (
+      <DemoLabel key={index}>{child}</DemoLabel>
+    ) : (
+      child
+    ),
+  );
+}
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -57,7 +78,22 @@ export default function Button({
     lg: "px-6 py-3 text-lg",
   };
 
-  const classes = cn(baseStyles, variants[variant], sizes[size], className);
+  const classes = cn(
+    baseStyles,
+    variants[variant],
+    sizes[size],
+    className,
+    // Free signup isn't offered everywhere. The gate hides the CTA in CSS
+    // rather than dropping it from the tree, so the decision lands before
+    // first paint instead of a fetch later — see lib/market-access/client-gate.
+    href && isFreeSignupHref(href) && FREE_SIGNUP_GATE_CLASS,
+  );
+
+  // Visitors routed to the request form can't pick a time, so the booking
+  // promise in the label would be wrong. Which wording applies is decided in
+  // CSS, for the same reason as the free-signup gate above.
+  const label =
+    href && isDemoBookingHref(href) ? gateTextChildren(children) : children;
 
   const handleClick = () => {
     if (analyticsLabel && href) {
@@ -113,7 +149,7 @@ export default function Button({
         aria-pressed={ariaPressed}
         aria-disabled={disabled}
       >
-        {children}
+        {label}
       </Link>
     );
   }
@@ -127,7 +163,7 @@ export default function Button({
       aria-label={ariaLabel}
       aria-pressed={ariaPressed}
     >
-      {children}
+      {label}
     </button>
   );
 }

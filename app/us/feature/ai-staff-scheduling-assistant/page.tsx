@@ -16,7 +16,7 @@ import Image from "next/image";
 
 export const metadata = withHreflang(
   {
-    title: "Personal AI Staff Scheduling Assistant - RosterLab",
+    title: "Personal AI Staff Scheduling Assistant",
     description:
       "Get instant scheduling help with an AI-powered assistant. Answer questions, get recommendations, and solve staff scheduling scenarios.",
     alternates: {

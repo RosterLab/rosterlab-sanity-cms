@@ -1,8 +1,9 @@
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
-import TrustedBy from "@/components/sections/TrustedBy";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -10,7 +11,7 @@ import MobileAppPreferencesModule from "@/components/sections/animations/MobileA
 
 export const metadata = withHreflang(
   {
-    title: "Junior Medical Officer Rostering Software - RosterLab",
+    title: "Junior Medical Officer Rostering Software",
     description:
       "End unsafe rosters and overwork. Build fair, compliant JMO rosters that maintain safe staffing ratios and respect union rules.",
     alternates: {
@@ -69,113 +70,33 @@ export default function JuniorMedicalOfficerRosteringPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-cyan-50 py-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">
-                  Flexible, Compliant
-                </span>{" "}
-                JMO Rosters
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Create compliant AI rosters that balance training requirements,
-                fair night shift distribution, and junior doctor wellbeing.
-              </p>
-              <div className="mb-8 space-y-2">
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Create union compliant rosters
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Maintain optimal staffing throughout training and exam periods
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Empower staff equity with balanced, transparent scheduling
-                </p>
-                <p className="text-gray-600 flex items-center justify-start">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Improve junior doctors' retention and work-life balance
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  href="/book-a-demo"
-                  className="bg-teal-600 text-white hover:bg-teal-700"
-                >
-                  Book a Demo
-                </Button>
-                <Button
-                  href="/case-studies"
-                  className="bg-white text-teal-600 border-2 border-teal-600 hover:bg-teal-50"
-                >
-                  Read Case Studies
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <Image
-                src="/images/illustration/jmo.svg"
-                alt="JMO rostering software interface"
-                width={600}
-                height={400}
-                className="block w-full h-auto"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <IndustryHero
+        title="Flexible, Compliant JMO Rosters"
+        description="Create compliant AI rosters that balance training requirements, fair night shift distribution, and junior doctor wellbeing."
+        analyticsLocation="Industry Page JMO Rostering"
+        primaryCta={{
+          href: "/book-a-demo",
+          label: "Book a Demo",
+          analyticsProperties: {
+            cta_type: "demo",
+            page_name: "JMO Rostering",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "/case-studies",
+          label: "Read Case Studies",
+          analyticsProperties: {
+            cta_type: "case_studies",
+            page_name: "JMO Rostering",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/industries/junior-doctor.webp",
+          alt: "Junior medical officers on a hospital ward",
+        }}
+      />
 
       {/* Pain Points Section */}
       <section className="py-20 bg-white">
@@ -772,7 +693,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
 
       {/* Trusted By */}
       <section className="py-10 bg-white">
-        <TrustedBy />
+        <TrustedByDualRow heading="Trusted by leading healthcare organisations" />
       </section>
 
       {/* FAQ Section */}

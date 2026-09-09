@@ -22,7 +22,7 @@ import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = resourceMetadata({
-  title: "Free Staff Roster Template Excel - RosterLab",
+  title: "Free Staff Roster Template Excel",
   description:
     "Download our free staff roster template for Excel. Pre-formatted 6-week roster ready for assigning shifts and tracking workload automatically.",
   alternates: {

@@ -137,7 +137,7 @@ async function generateSitemap() {
   // Get redirects from next.config
   const redirects = await nextConfig.redirects?.();
   const redirectSourcePaths = new Set(
-    redirects?.map((r) =>
+    redirects?.map((r: { source: string }) =>
       r.source.replace("/:path*", "").replace("/:slug*", ""),
     ) || [],
   );

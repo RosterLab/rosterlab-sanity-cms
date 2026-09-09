@@ -2,20 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../styles/performance.css';
+/* Reflow isolation. These used to live in styles/performance.css, pulled in
+   with @import. css-loader resolved that import at build time but emitted it as
+   its own chunk, so the page paid a second render-blocking <link> for a few
+   hundred bytes. Inlining here makes it one stylesheet instead of two.
+
+   `contain` only isolates layout/style recalculation. Deliberately no
+   `will-change` or `translateZ(0)`: those hold a GPU compositing layer for the
+   element's whole lifetime, which costs mobile memory rather than saving it.
+   Promote on interaction instead, if ever. */
+section {
+  contain: layout style;
+}
+
+.bg-white.rounded-xl.shadow-xl {
+  contain: layout;
+}
+
+/* Keep text visible while Poppins loads. */
+.meetings-iframe-container {
+  font-synthesis: style weight;
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Calendly booking embed (see components/booking/DemoBookingBase.tsx).
+     Tweak these two values to resize the routing form + calendar. */
+  --calendly-embed-height: 700px;
+  --calendly-embed-min-width: 320px;
+}
+
+/* Mobile: Calendly stacks the routing form questions and the calendar,
+   so give it fixed room rather than a viewport height. */
+@media only screen and (max-width: 767px) {
+  :root {
+    --calendly-embed-height: 820px;
+  }
+}
+
+/* Desktop: fill the viewport below the page heading, within sane bounds. */
+@media only screen and (min-width: 768px) {
+  :root {
+    --calendly-embed-height: clamp(700px, calc(100vh - 260px), 850px);
+  }
+}
+
+/* The embed follows the height Calendly reports for its current step (see
+   DemoBookingBase), so ease between the short routing form and the taller
+   calendar rather than snapping. */
+.calendly-inline-widget {
+  transition: height 250ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendly-inline-widget {
+    transition: none;
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  font-family:
+    var(--font-poppins),
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
 }
@@ -36,76 +98,33 @@ h3 {
   text-wrap: balance;
 }
 
-/* Hero Section Responsive Styles */
-@media only screen and (max-width: 1200px) {
-  .hero-section {
-    padding: 150px 20px 100px 20px !important;
-  }
-  
-  .hero-container {
-    max-width: 1000px !important;
-  }
-  
-  .hero-content {
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 30px !important;
-  }
-  
-  .hero-left,
-  .hero-right {
-    flex: 1 !important;
-    min-height: auto !important;
-  }
-  
-  .hero-left {
-    padding: 10px 20px !important;
-  }
-  
-  .hero-image {
-    max-width: 750px !important;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .hero-subheading {
-    font-size: 1rem !important;
-  }
-  
-  .hero-heading {
-    font-size: 2rem !important;
-  }
-  
-  .hero-buttons {
-    gap: 15px !important;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .hero-section {
-    padding: 120px 20px 50px 20px !important;
-  }
-  
-  .hero-heading {
-    font-size: 1.7rem !important;
-  }
-  
-  .hero-left {
-    padding: 0 !important;
-  }
-  
-  .hero-buttons {
-    margin-top: 10px !important;
-    gap: 5px !important;
-  }
-}
-
 /* Custom shimmer animation - one pass with long pause */
 @keyframes shimmer {
-  0%, 20%, 100% {
+  0%,
+  20%,
+  100% {
     transform: translateX(-100%);
   }
   10% {
     transform: translateX(100%);
   }
+}
+
+/* Market-access gates. The HTML is CDN-shared across visitors, so it can't know
+   the country: both versions of each country-dependent CTA are rendered and
+   chosen here, from attributes set on <html> before first paint.
+   See lib/market-access/client-gate.ts for the full picture. */
+
+/* Free signup, hidden until the country is known to allow it (fail closed).
+   This only ever hides — it never sets a display — so a shown CTA keeps its own
+   layout and its share of a parent's space-x/gap. */
+html:not([data-free-signup="show"]) .free-signup-gate {
+  display: none;
+}
+
+/* Demo CTA wording. "Book" is the default; countries routed to the request
+   form instead of Calendly get "Request". */
+html:not([data-demo-mode="request"]) .demo-cta-request,
+html[data-demo-mode="request"] .demo-cta-book {
+  display: none;
 }

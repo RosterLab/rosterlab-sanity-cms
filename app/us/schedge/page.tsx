@@ -8,7 +8,7 @@ import Image from "next/image";
 import SchedgeGame from "@/components/us-resources/games/SchedgeGame";
 
 export const metadata = resourceMetadata({
-  title: "Schedge - Puzzle Scheduling Game to Test your Skills",
+  title: "Schedge - The Puzzle Scheduling Game",
   description:
     "Play Schedge, the puzzle scheduling game that challenges you to create a 7×6 schedule fast. Test your shift planning speed and strategy!",
   alternates: {

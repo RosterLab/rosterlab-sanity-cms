@@ -25,7 +25,7 @@ import Button from "@/components/ui/Button";
 import { Metadata } from "next";
 
 export const metadata: Metadata = resourceMetadata({
-  title: "Free Staff Schedule Template Excel - RosterLab",
+  title: "Free Staff Schedule Template Excel",
   description:
     "Download our free staff schedule template for Excel. Pre-formatted 6-week schedule ready for assigning shifts and tracking workload automatically.",
   alternates: {

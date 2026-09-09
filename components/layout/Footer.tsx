@@ -7,6 +7,7 @@ import CountrySelector from "./CountrySelector";
 import { usePathname } from "next/navigation";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
 import { handleCrossDomainLink } from "@/lib/analytics/identity-stitching";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -44,14 +45,10 @@ export default function Footer() {
                 href="/book-a-demo"
                 className="flex-1 lg:flex-none inline-flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-md font-medium hover:bg-blue-700 transition-colors text-sm"
                 onClick={() =>
-                  trackSmartButtonClick(
-                    "Book a demo",
-                    "/book-a-demo",
-                    "Footer",
-                  )
+                  trackSmartButtonClick("Book a demo", "/book-a-demo", "Footer")
                 }
               >
-                Book a demo
+                <DemoCtaLabel href="/book-a-demo">Book a demo</DemoCtaLabel>
               </Link>
               <Link
                 href="https://app.rosterlab.com"
@@ -278,7 +275,7 @@ export default function Footer() {
                   href="/book-a-demo"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
-                  Book a demo
+                  <DemoCtaLabel href="/book-a-demo">Book a demo</DemoCtaLabel>
                 </Link>
               </li>
               <li>

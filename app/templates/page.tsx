@@ -5,7 +5,7 @@ import TemplatesPageContent from "./TemplatesPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
 export const metadata: Metadata = resourceMetadata({
-  title: "Free Workforce Management Templates - RosterLab",
+  title: "Free Workforce Management Templates",
   description:
     "Download free workforce management templates. Streamline your workforce management with our professionally designed Excel and Word templates.",
   alternates: {

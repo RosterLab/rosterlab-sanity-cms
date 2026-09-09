@@ -4,6 +4,7 @@ import { localizeUSResourceResult } from "@/lib/localization/us-resources";
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound } from "next/navigation";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import Link from "next/link";
 import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
@@ -18,7 +19,6 @@ import ShareButtons from "@/components/blog/ShareButtons";
 import NewsletterFormWrapper from "@/components/forms/NewsletterFormWrapper";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import { draftMode } from "next/headers";
-import HubSpotFormListener from "@/components/analytics/HubSpotFormListener";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 import ArticleSchema from "@/components/seo/ArticleSchema";
 import CaseStudyGateCheck from "@/components/us-resources/modals/CaseStudyGateCheck";
@@ -171,7 +171,6 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   return (
     <CaseStudyGateCheck slug={slug}>
       <article>
-      <HubSpotFormListener />
       <BlogPostTracker
         title={post.title}
         slug={post.slug?.current || slug}
@@ -330,7 +329,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                     href="/us/book-a-demo"
                     className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
                   >
-                    Book a Demo
+                    <DemoCtaLabel href="/us/book-a-demo">Book a Demo</DemoCtaLabel>
                   </Link>
                   <Link
                     href="/us/pricing"

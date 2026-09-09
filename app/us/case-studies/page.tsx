@@ -13,7 +13,7 @@ import { draftMode } from "next/headers";
 export const revalidate = 300;
 
 export const metadata = resourceMetadata({
-  title: "RosterLab Case Studies - Better Schedules, Impactful Results",
+  title: "Case Studies - Better Schedules, Impactful Results",
   description:
     "Explore real-world case studies showing how RosterLab's AI scheduling improved coverage, cut admin time, and delivered fair schedules for complex teams.",
   alternates: {

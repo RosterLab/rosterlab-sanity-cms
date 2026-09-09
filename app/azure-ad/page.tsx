@@ -3,7 +3,7 @@ import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Azure AD Registration Success - RosterLab",
+  title: "Azure AD Registration Success",
   description:
     "Your Microsoft Entra ID (Azure AD) has been successfully connected with RosterLab.",
   robots: {

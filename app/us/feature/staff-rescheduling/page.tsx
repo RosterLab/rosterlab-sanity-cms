@@ -9,7 +9,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Staff Rescheduling - RosterLab",
+    title: "Staff Rescheduling",
     description:
       "Automatically re-schedule last-minute shift changes easily. See the impact on coverage, compliance, and staff so you can respond with confidence.",
     alternates: {

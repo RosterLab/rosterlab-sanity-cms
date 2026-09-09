@@ -10,7 +10,7 @@ import NewsroomPageContent from "@/components/us-resources/newsroom/NewsroomPage
 import { draftMode } from "next/headers";
 
 export const metadata = resourceMetadata({
-  title: "RosterLab Newsroom - Press Releases & Updates",
+  title: "Newsroom - Press Releases & Updates",
   description:
     "Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI scheduling innovations.",
   alternates: {

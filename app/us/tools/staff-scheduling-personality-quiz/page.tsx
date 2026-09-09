@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import QuizClient from "@/app/us/tools/staff-scheduling-personality-quiz/QuizClient"
 
 export const metadata: Metadata = resourceMetadata({
-  title: "What's Your Staff Scheduling Personality Type? - RosterLab",
+  title: "What's Your Staff Scheduling Personality Type?",
   description: 'Discover your staff scheduling personality. Are you a Spreadsheet Sorcerer, Rules Robot, or Last-Minute Magician? Take our fun 2-minute quiz!',
   robots: {
     index: true,

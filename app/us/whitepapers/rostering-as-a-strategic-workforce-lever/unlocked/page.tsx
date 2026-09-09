@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import { useRouter } from "next/navigation";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Container from "@/components/ui/Container";
@@ -151,7 +152,7 @@ export default function WhitepaperUnlockedPage() {
                   });
                 }}
               >
-                Book a Demo
+                <DemoCtaLabel href="/us/book-a-demo">Book a Demo</DemoCtaLabel>
                 <svg
                   className="w-5 h-5"
                   fill="none"

@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "AI Roster Analysis - Instant Scheduling Insights | RosterLab",
+  title: "AI Roster Analysis - Instant Scheduling Insights",
   description:
     "Upload your roster and get instant AI-powered analysis. Identify fairness issues, compliance gaps, and optimisation opportunities in seconds.",
   robots: { index: false, follow: false },

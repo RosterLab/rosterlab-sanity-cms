@@ -9,7 +9,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata = withHreflang(
   {
-    title: "Employee Time-Off Requests - RosterLab",
+    title: "Employee Time-Off Requests",
     description:
       "Give staff an easy and streamline way to submit time-off requests. Staff can submit different types of time-off requests via the staff mobile app.",
     alternates: {

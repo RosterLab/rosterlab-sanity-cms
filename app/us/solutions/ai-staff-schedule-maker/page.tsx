@@ -20,7 +20,7 @@ import {
 
 export const metadata = withHreflang(
   {
-    title: "AI Staff Schedule Maker - RosterLab",
+    title: "AI Staff Schedule Maker",
     description:
       "AI schedule maker that makes schedules in minutes, not days. Automatically solve complex shift patterns & distribute shifts fairly. Reduce admin by 90%.",
     alternates: {

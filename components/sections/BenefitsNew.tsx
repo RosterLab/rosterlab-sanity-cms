@@ -177,6 +177,31 @@ function LazyVisual({
 }
 
 /**
+ * Height held for each visual before it mounts.
+ *
+ * `LazyVisual` leaves the slot empty until it scrolls into view, so this
+ * reservation is the only thing stopping the rest of the page from moving when
+ * the visual finally lands. One flat 280px guess was short by 5/16/24/124px
+ * across the four cards — 169px in total, and essentially the whole of the
+ * homepage's 0.207 mobile CLS.
+ *
+ * Keyed by tab id rather than set per tab object so AU and US share it: the
+ * visuals come from `renderVisual`, which switches on the same ids. Values are
+ * the measured rendered heights at the widest point each breakpoint covers, so
+ * the slot is never short; each visual steps at `sm` and again at `md`, so
+ * the reservation does too. `time` is the one fluid visual — it tracks the
+ * container width — and on phones it lands under its reservation anyway.
+ */
+const VISUAL_RESERVE: Record<string, string> = {
+  time: "min-h-[285px] sm:min-h-[370px] md:min-h-[405px]",
+  optimisation: "min-h-[310px] sm:min-h-[328px] md:min-h-[342px]",
+  turnover: "min-h-[305px] sm:min-h-[338px] md:min-h-[398px]",
+  safety: "min-h-[404px] sm:min-h-[472px] md:min-h-[480px]",
+};
+
+const DEFAULT_VISUAL_RESERVE = "min-h-[280px] sm:min-h-[320px]";
+
+/**
  * One benefit as a plain, self-contained block — the mobile layout.
  *
  * The pinned tab scroller only works when the whole panel fits the viewport.
@@ -216,7 +241,9 @@ function BenefitCard({ tab, visual }: { tab: BenefitTab; visual: ReactNode }) {
         >
           {tab.cta.label}
         </Button>
-        <LazyVisual className="mt-8 relative min-h-[280px] sm:min-h-[320px] flex items-center justify-center [&>*]:w-full">
+        <LazyVisual
+          className={`mt-8 relative ${VISUAL_RESERVE[tab.id] ?? DEFAULT_VISUAL_RESERVE} flex items-center justify-center [&>*]:w-full`}
+        >
           {visual}
         </LazyVisual>
       </Container>
@@ -399,20 +426,19 @@ export default function BenefitsNew({
           500vh scroll-pinned scroller, which spent ~1,100px of wheeling per
           tab to produce four discrete jump-cuts — nearly half the page's
           scroll length for a section that now reads in place. */}
-      <div
-        ref={sectionRef}
-        className="hidden lg:block py-16 xl:py-20"
-      >
+      <div ref={sectionRef} className="hidden lg:block py-16 xl:py-20">
         <Container className="w-full lg:px-12 xl:px-20">
           {/* Tab bar: four connected cells under one hairline border, with the
               active tab's remaining time drawn along the box's bottom edge.
               Both rows are grid-cols-4 inside the same border, which is what
               keeps a segment aligned to its tab without measuring anything.
 
-              The timer stays out of the <button>: performance.css gives every
-              button `transform: translateZ(0)`, and a child of that whose
-              geometry changes inside the cell's clip can stop painting
-              altogether while keeping its box and hit-testing. */}
+              The timer stays out of the <button> so both rows stay siblings in
+              the same grid. It also used to be a hard requirement: a global
+              `button { transform: translateZ(0) }` meant a child whose geometry
+              changed inside the cell's clip could stop painting while keeping
+              its box and hit-testing. That rule is gone, but there's no reason
+              to move the timer back in. */}
           <div className="mx-auto mb-8 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
             <div
               ref={tablistRef}

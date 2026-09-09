@@ -5,7 +5,7 @@ import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 
 export const metadata: Metadata = withHreflang(
   {
-    title: "Book Your Free Audit - Expert Roster Analysis | RosterLab",
+    title: "Book Your Free Audit - Expert Roster Analysis",
     description:
       "Book a free roster audit with RosterLab's rostering architects. Get expert analysis of fairness, efficiency, and compliance in your staff scheduling.",
     alternates: {

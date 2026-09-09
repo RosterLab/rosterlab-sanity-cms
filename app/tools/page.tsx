@@ -5,16 +5,16 @@ import ToolsPageContent from "./ToolsPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
 export const metadata: Metadata = resourceMetadata({
-  title: "Free Workforce Management Tools - RosterLab",
+  title: "Free Workforce Management Tools",
   description:
-    "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
+    "Free workforce management tools: ROI calculator, personality tests and shift preference surveys. Streamline scheduling and team management.",
   alternates: {
     canonical: "https://rosterlab.com/tools",
   },
   openGraph: {
     title: "Free Workforce Management Tools - RosterLab",
     description:
-      "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
+      "Free workforce management tools: ROI calculator, personality tests and shift preference surveys. Streamline scheduling and team management.",
     type: "website",
     url: "https://rosterlab.com/tools",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = resourceMetadata({
     card: "summary_large_image",
     title: "Free Workforce Management Tools - RosterLab",
     description:
-      "Access free workforce management tools including ROI calculator, personality tests, and shift preference surveys. Streamline your scheduling and team management.",
+      "Free workforce management tools: ROI calculator, personality tests and shift preference surveys. Streamline scheduling and team management.",
     images: ["/images/og-images/WFM.png"],
   },
 }, `/tools`);

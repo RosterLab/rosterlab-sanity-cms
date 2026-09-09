@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Link from "next/link";
@@ -10,6 +10,23 @@ import { trackDemoBookingComplete } from "@/lib/analytics/events/conversion-even
 import { analytics } from "@/components/analytics/tracking";
 import dynamic from "next/dynamic";
 import TrustedBy from "@/components/sections/TrustedBy";
+import DemoRequestForm from "./DemoRequestForm";
+import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
+import { markDemoBooked } from "@/lib/analytics/user-behavior-tracker";
+import { BRAND_GRADIENT_TEXT } from "@/lib/brand";
+
+// Embed size. Driven by CSS variables in app/globals.css so the height can be
+// tuned (and made responsive) in one place.
+const CALENDLY_EMBED_STYLES = {
+  height: "var(--calendly-embed-height, 700px)",
+  minWidth: "var(--calendly-embed-min-width, 320px)",
+} as const;
+
+// Calendly reports its own content height via `calendly.page_height`. The
+// routing form is much shorter than the calendar, so we follow that height
+// instead of reserving calendar-sized space for every step. Floored so a bogus
+// or mid-transition value can never collapse the embed.
+const MIN_EMBED_HEIGHT_PX = 480;
 
 // Lazy load the Calendly widget
 const LazyInlineWidget = dynamic(
@@ -18,7 +35,7 @@ const LazyInlineWidget = dynamic(
     loading: () => (
       <div
         className="flex items-center justify-center bg-gray-50 rounded-lg"
-        style={{ height: "700px" }}
+        style={{ height: CALENDLY_EMBED_STYLES.height }}
       >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
@@ -32,6 +49,7 @@ const LazyInlineWidget = dynamic(
 
 interface RegionalContent {
   title: string;
+  description?: string;
   terminology: {
     expert: string; // "Scheduling Expert" or "Rostering Expert"
   };
@@ -39,7 +57,10 @@ interface RegionalContent {
     contact: string;
     meetingConfirmed: string;
   };
-  calendlyUrl: string;
+  calendlyUrls: {
+    standard: string;
+    usExtended: string;
+  };
 }
 
 interface DemoBookingBaseProps {
@@ -55,25 +76,46 @@ export default function DemoBookingBase({
   className = "",
   showTrustedBy = false,
 }: DemoBookingBaseProps) {
+  const { status: marketAccessStatus, decision } = useMarketAccess();
+  // Height reported by the Calendly iframe; null until the first event.
+  const [reportedHeight, setReportedHeight] = useState<number | null>(null);
+  const embedHeight = reportedHeight
+    ? `${reportedHeight}px`
+    : CALENDLY_EMBED_STYLES.height;
+  const embedStyles = useMemo(
+    () => ({ ...CALENDLY_EMBED_STYLES, height: embedHeight }),
+    [embedHeight],
+  );
+  // Restricted countries, and any visitor whose decision could not be
+  // resolved, get the request form in place of the calendar.
+  const showsRequestForm =
+    marketAccessStatus !== "loading" &&
+    (decision === null || decision.demo === "request_review");
+  const canViewCalendar =
+    marketAccessStatus === "ready" &&
+    decision !== null &&
+    decision.demo !== "request_review";
+  const selectedCalendlyUrl =
+    decision?.demo === "us_24_7"
+      ? regionalContent.calendlyUrls.usExtended
+      : regionalContent.calendlyUrls.standard;
+
   // Calendly widget integration
   const { isBooking, calendlyUrl, shouldLoadWidget, widgetContainerRef } =
     useCalendlyWidget({
       config: {
-        baseUrl: regionalContent.calendlyUrl,
+        baseUrl: canViewCalendar ? selectedCalendlyUrl : "",
         queryParams: {
           utm_content: analytics.getDeviceId() || "no_anon_id",
         },
         region,
         redirectPath: regionalContent.links.meetingConfirmed,
-        styles: {
-          height: "700px",
-          minWidth: "320px",
-        },
+        styles: embedStyles,
         pageSettings: {
           hideGdprBanner: true,
         },
       },
-      shouldLoad: true,
+      shouldLoad: canViewCalendar,
       enablePerformanceOptimizations: true,
     });
 
@@ -100,14 +142,21 @@ export default function DemoBookingBase({
 
   useEffect(() => {
     if (shouldLoadWidget && calendlyUrl) {
-      window.rlTracker?.formStart('book-demo');
+      window.rlTracker?.formStart("book-demo");
     }
   }, [shouldLoadWidget, calendlyUrl]);
 
   // Handle Calendly events
   useCalendlyEventListener({
+    // Shrink the embed to fit the routing form, grow it back for the calendar.
+    onPageHeightResize: (e) => {
+      const height = Number.parseInt(e?.data?.payload?.height ?? "", 10);
+      if (!Number.isFinite(height)) return;
+      setReportedHeight(Math.max(height, MIN_EMBED_HEIGHT_PX));
+    },
     onEventScheduled: async (e: any) => {
-      window.rlTracker?.formSubmit('book-demo');
+      markDemoBooked();
+      window.rlTracker?.formSubmit("book-demo");
       const eventData = e?.data || e?.detail || e;
 
       // Get UTM parameters from URL if present
@@ -161,72 +210,121 @@ export default function DemoBookingBase({
 
   return (
     <SiteLayout>
+      {/* `min-h-screen` only where the calendar goes: it reserves room for the
+          Calendly embed, and the much shorter request form would otherwise be
+          followed by a screen's worth of dead space above the footer. */}
       <div
-        className={`pt-16 bg-gradient-to-b from-blue-50 to-white min-h-screen ${className}`}
+        className={`pt-16 bg-gradient-to-b from-blue-50 to-white ${
+          showsRequestForm ? "" : "min-h-screen"
+        } ${className}`}
       >
         <Container>
           {/* Header */}
           <div className="text-center">
             <h1 className="text-[40px] sm:text-5xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-              {regionalContent.title}
+              {showsRequestForm ? (
+                <>
+                  Request for a{" "}
+                  {/* Brand gradient clipped to the word. `pr-[0.08em]` keeps
+                      the italic's overhang inside the clip box, which would
+                      otherwise shave the d. */}
+                  <span
+                    className="bg-clip-text pr-[0.08em] italic text-transparent"
+                    style={{ backgroundImage: BRAND_GRADIENT_TEXT }}
+                  >
+                    personalised
+                  </span>{" "}
+                  demo
+                </>
+              ) : (
+                regionalContent.title
+              )}
             </h1>
+            {regionalContent.description ? (
+              <p className="mx-auto mb-4 max-w-2xl text-lg text-gray-600">
+                {regionalContent.description}
+              </p>
+            ) : null}
           </div>
 
-          {/* Calendly Meeting Scheduler Embed */}
-          <div
-            ref={widgetContainerRef}
-            className="relative pb-8 lg:pb-0"
-            style={{ minHeight: "700px" }}
-          >
-            {shouldLoadWidget && calendlyUrl ? (
-              <LazyInlineWidget
-                url={calendlyUrl}
-                styles={{
-                  height: "700px",
-                  minWidth: "320px",
-                }}
-                pageSettings={{
-                  hideGdprBanner: true,
-                }}
+          {marketAccessStatus === "loading" ? (
+            <div className="flex min-h-[420px] items-center justify-center rounded-lg bg-gray-50">
+              <div className="text-center">
+                <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600" />
+                <p className="text-gray-600">Checking demo availability…</p>
+              </div>
+            </div>
+          ) : decision?.demo === "request_review" || !decision ? (
+            <div className="pb-12 pt-10 sm:pt-14">
+              <DemoRequestForm
+                interactiveDemoHref={
+                  region === "us"
+                    ? "/us/product-tour"
+                    : "/staff-rostering-interactive-demo"
+                }
+                decision={
+                  decision ?? {
+                    policyVersion: "unavailable",
+                    countryCode: null,
+                    freeSignup: "hide",
+                    demo: "request_review",
+                    reasonCode: "unknown_country",
+                  }
+                }
               />
-            ) : (
+            </div>
+          ) : (
+            <>
               <div
-                className="flex items-center justify-center bg-gray-50 rounded-lg"
-                style={{ height: "700px" }}
+                ref={widgetContainerRef}
+                className="relative pb-8 lg:pb-0"
+                style={{ minHeight: embedHeight }}
               >
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Loading calendar...</p>
-                </div>
+                {shouldLoadWidget && calendlyUrl ? (
+                  <LazyInlineWidget
+                    url={calendlyUrl}
+                    styles={embedStyles}
+                    pageSettings={{ hideGdprBanner: true }}
+                  />
+                ) : (
+                  <div
+                    className="flex items-center justify-center bg-gray-50 rounded-lg"
+                    style={{ height: CALENDLY_EMBED_STYLES.height }}
+                  >
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
+                      <p className="text-gray-600">Loading calendar...</p>
+                    </div>
+                  </div>
+                )}
+                {isBooking && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-lg z-50">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
+                      <p className="text-gray-900 font-medium text-lg mb-2">
+                        Confirming your booking...
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        Please wait while we secure your time slot
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-            {isBooking && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-lg z-50">
-                <div className="text-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                  <p className="text-gray-900 font-medium text-lg mb-2">
-                    Confirming your booking...
-                  </p>
-                  <p className="text-gray-600 text-sm">
-                    Please wait while we secure your time slot
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
 
-          {/* Contact alternative - Hidden on mobile and tablet */}
-          <div className="hidden lg:block text-center -mt-10 pb-8">
-            <p className="text-gray-600">
-              Can't find a suitable time?{" "}
-              <Link
-                href={regionalContent.links.contact}
-                className="text-blue-600 hover:text-blue-700 underline"
-              >
-                Get in touch
-              </Link>
-            </p>
-          </div>
+              <div className="hidden lg:block text-center mt-4 pb-8">
+                <p className="text-gray-600">
+                  Can&apos;t find a suitable time?{" "}
+                  <Link
+                    href={regionalContent.links.contact}
+                    className="text-blue-600 hover:text-blue-700 underline"
+                  >
+                    Get in touch
+                  </Link>
+                </p>
+              </div>
+            </>
+          )}
         </Container>
 
         {showTrustedBy && <TrustedBy />}
