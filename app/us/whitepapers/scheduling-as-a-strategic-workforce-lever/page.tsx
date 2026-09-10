@@ -45,7 +45,7 @@ export default function WhitepaperPage() {
 
     if (unlocked) {
       // Redirect to unlocked page if already unlocked
-      window.location.href = "/us/whitepapers/rostering-as-a-strategic-workforce-lever/unlocked";
+      window.location.href = "/us/whitepapers/scheduling-as-a-strategic-workforce-lever/unlocked";
     } else {
       // Track page view
       analytics.track("whitepaper_page_viewed", {
@@ -125,7 +125,7 @@ export default function WhitepaperPage() {
 
         // Redirect to unlocked page
         setTimeout(() => {
-          window.location.href = "/us/whitepapers/rostering-as-a-strategic-workforce-lever/unlocked";
+          window.location.href = "/us/whitepapers/scheduling-as-a-strategic-workforce-lever/unlocked";
         }, 500);
       } else {
         throw new Error("Failed to submit form");
@@ -309,7 +309,7 @@ export default function WhitepaperPage() {
                               </svg>
                             </div>
                             <p className="text-sm sm:text-base text-neutral-700">
-                              The financial case is concrete: $800k+ in annual savings, 93% less time on scheduling, zero compliance breaches
+                              The financial case is concrete: $80K+ in annual savings, 93% less time on scheduling, zero compliance breaches
                             </p>
                           </div>
                         </div>
@@ -614,7 +614,7 @@ export default function WhitepaperPage() {
                               </svg>
                             </div>
                             <p className="text-sm sm:text-base text-neutral-700">
-                              The financial case is concrete: $800k+ in annual savings, 93% less time on scheduling, zero compliance breaches
+                              The financial case is concrete: $80K+ in annual savings, 93% less time on scheduling, zero compliance breaches
                             </p>
                           </div>
                         </div>

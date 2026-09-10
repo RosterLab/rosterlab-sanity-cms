@@ -12,6 +12,7 @@ import {
   localizeUSText,
   localizeUSResourceLink,
 } from "../lib/localization/us-resources";
+import { localizeUSPathname } from "../lib/localization/us-slug";
 
 const roots = [
   "app/case-studies",
@@ -49,9 +50,12 @@ const sources = [
   "app/tools/ToolsPageContent.tsx",
   ...shared,
 ];
+// Route directories are localized with the copy: a US reader gets
+// /us/templates/free-staff-schedule-template-excel, not the roster spelling.
+// Component paths are code, not URLs, and keep their source names.
 const destination = (file: string) =>
   file.startsWith("app/")
-    ? file.replace(/^app\/(?:\(main\)\/)?/, "app/us/")
+    ? localizeUSPathname(file.replace(/^app\/(?:\(main\)\/)?/, "app/us/"))
     : file.replace(/^components\//, "components/us-resources/");
 const destinations = new Map(sources.map((file) => [file, destination(file)]));
 const copyKeys = new Set([
@@ -98,6 +102,49 @@ function localizeCopy(value: string): string {
     (_, before, href, after) => before + localizeUSResourceLink(href) + after,
   );
 }
+// The CMS-backed article routes generated under /us. Both need the editorial
+// description and the slug redirect; a third article route added here picks up
+// both without further change.
+const articleRoutes = [
+  "app/case-studies/[slug]/page.tsx",
+  "app/newsroom/[slug]/page.tsx",
+];
+
+// A visitor who follows the global slug under /us has to be redirected to the
+// localized URL, or the article stays reachable at two US addresses that each
+// claim to be the canonical US page. Mirrors components/blog/BlogPostPage.tsx,
+// which does this for /us/blog. The section comes from the source path, so this
+// needs no per-route knowledge.
+function injectSlugRedirect(generated: string, file: string): string {
+  const section = `/us/${path.basename(path.dirname(path.dirname(file)))}`;
+  const pageEntry =
+    /(export default async function \w+\([\s\S]*?\) \{\n)(  const \{ slug \} = await params;\n)/;
+  const slugImport =
+    'import { localizeUSSlug, globalizeUSSlug } from "@/lib/localization/us-slug";';
+  const navigationImport = 'import { notFound } from "next/navigation";';
+  if (
+    !pageEntry.test(generated) ||
+    !generated.includes(slugImport) ||
+    !generated.includes(navigationImport)
+  )
+    throw new Error(`Cannot inject the US slug redirect into ${file}`);
+  return generated
+    .replace(
+      pageEntry,
+      (_match, signature, slugLine) =>
+        `${signature}${slugLine}  const redirectTarget = usSlugRedirectTarget(slug);\n` +
+        `  if (redirectTarget) permanentRedirect(\`${section}/\${redirectTarget}\`);\n`,
+    )
+    .replace(
+      slugImport,
+      'import { localizeUSSlug, globalizeUSSlug, usSlugRedirectTarget } from "@/lib/localization/us-slug";',
+    )
+    .replace(
+      navigationImport,
+      'import { notFound, permanentRedirect } from "next/navigation";',
+    );
+}
+
 type Edit = { start: number; end: number; text: string };
 function transform(
   source: string,
@@ -114,9 +161,12 @@ function transform(
   const edits: Edit[] = [];
   let needsMetadata = false;
   let needsResult = false;
+  let needsSlug = false;
   const route =
     "/" + path.dirname(filename).replace(/^app\/(?:\(main\)\/)?/, "");
-  const regionalRoute = `${globalMetadataOnly ? "" : "/us"}${route}`;
+  const regionalRoute = globalMetadataOnly
+    ? route
+    : `/us${localizeUSPathname(route)}`;
   const routeExpression =
     "`" +
     regionalRoute
@@ -137,7 +187,44 @@ function transform(
     }
     return false;
   }
+  function enclosingFunctionName(node: ts.Node): string | undefined {
+    for (
+      let parent: ts.Node | undefined = node.parent;
+      parent;
+      parent = parent.parent
+    ) {
+      if (ts.isFunctionDeclaration(parent)) return parent.name?.text;
+    }
+    return undefined;
+  }
   function visit(node: ts.Node) {
+    // US article URLs carry the localized slug. generateStaticParams emits the
+    // US slug; every CMS lookup converts it back to the published global slug.
+    if (
+      !globalMetadataOnly &&
+      ts.isShorthandPropertyAssignment(node) &&
+      node.name.text === "slug"
+    ) {
+      const inStaticParams =
+        enclosingFunctionName(node) === "generateStaticParams";
+      const call = ts.isObjectLiteralExpression(node.parent)
+        ? node.parent.parent
+        : undefined;
+      const isFetchArgument =
+        call &&
+        ts.isCallExpression(call) &&
+        ts.isPropertyAccessExpression(call.expression) &&
+        call.expression.name.text === "fetch";
+      if (inStaticParams || isFetchArgument) {
+        needsSlug = true;
+        edit(
+          node,
+          inStaticParams
+            ? "slug: localizeUSSlug(slug)"
+            : "slug: globalizeUSSlug(slug)",
+        );
+      }
+    }
     // Metadata is wrapped by insertion, so nested copy/URL edits remain valid.
     const staticMeta =
       ts.isVariableDeclaration(node) &&
@@ -337,6 +424,9 @@ function transform(
     needsResult
       ? 'import { localizeUSResourceResult } from "@/lib/localization/us-resources";'
       : "",
+    needsSlug
+      ? 'import { localizeUSSlug, globalizeUSSlug } from "@/lib/localization/us-slug";'
+      : "",
   ]
     .filter(Boolean)
     .join("\n");
@@ -371,13 +461,14 @@ for (const file of sources) {
     '"https://rosterlab.com"',
   );
   generated = generated.replaceAll("<ArticleSchema", '<ArticleSchema inLanguage="en-US"');
-  if (["app/case-studies/[slug]/page.tsx", "app/newsroom/[slug]/page.tsx"].includes(file)) {
+  if (articleRoutes.includes(file)) {
     // Preserve editorial descriptions: Google has no fixed 155-character limit.
     // The global source's legacy padding/clipping must not override US CMS copy.
     const descriptionLogic = /  \/\/ Ensure meta description[\s\S]*?(?=  return resourceMetadata\(\{)/;
     if (!descriptionLogic.test(generated)) throw new Error(`Missing article metadata marker: ${file}`);
     generated = generated.replace(descriptionLogic,
       '  const metaDescription = post.seo?.metaDescription?.trim() || post.excerpt?.trim() || `Read ${post.title} on RosterLab.`;\n\n');
+    generated = injectSlugRedirect(generated, file);
   }
   if (file === "app/newsroom/[slug]/page.tsx") {
     generated = generated.replaceAll("Whanganui DHB radiography department", "Whanganui radiography department in New Zealand");

@@ -367,7 +367,7 @@ export default function VeterinarySchedulingPage() {
                     </h4>
                     <p className="text-gray-600">
                       Help veterinary staff achieve better work-life balance by
-                      considering a high percentage of staff preferences whilst
+                      considering a high percentage of staff preferences while
                       ensuring critical business needs are met.
                     </p>
                   </div>

@@ -2,6 +2,7 @@ import {
   RESOURCE_PATHS,
   RESOURCE_US_MAPPINGS,
 } from "@/lib/localization/resource-routes";
+import { localizeUSSlug, globalizeUSSlug } from "@/lib/localization/us-slug";
 
 // URL mappings for US version
 export const US_URL_MAPPINGS: Record<string, string> = {
@@ -150,26 +151,32 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/airports-and-transportation-roster/ground-crew",
 ]);
 
-// Blog translations retain the published source slug. Pagination has the same
-// route structure in both regions; unknown resource types remain global.
+// US article URLs localize the published slug (rostering-basics becomes
+// scheduling-basics). Pagination keeps the same route structure in both
+// regions; unknown resource types remain global.
+const ARTICLE_PATH = /^\/(blog|case-studies|newsroom)\/(?!page(?:\/|$))([^/]+)$/;
+const PAGINATION_PATH = /^\/(?:blog|case-studies|newsroom)\/page\/[1-9]\d*$/;
+
 export function getUSPath(pathname: string): string | undefined {
-  return (
-    US_URL_MAPPINGS[pathname] ||
-    (/^\/(?:blog|case-studies|newsroom)\/(?:page\/[1-9]\d*|[^/]+)$/.test(
-      pathname,
-    )
-      ? `/us${pathname}`
-      : undefined)
-  );
+  const mapped = US_URL_MAPPINGS[pathname];
+  if (mapped) return mapped;
+  if (PAGINATION_PATH.test(pathname)) return `/us${pathname}`;
+  const article = ARTICLE_PATH.exec(pathname);
+  return article
+    ? `/us/${article[1]}/${localizeUSSlug(article[2])}`
+    : undefined;
 }
 
 export function getGlobalPath(pathname: string): string | undefined {
-  return (
-    REVERSE_US_MAPPINGS[pathname] ||
-    (pathname.startsWith("/us/") && getUSPath(pathname.slice(3))
-      ? pathname.slice(3)
-      : undefined)
-  );
+  const mapped = REVERSE_US_MAPPINGS[pathname];
+  if (mapped) return mapped;
+  if (!pathname.startsWith("/us/")) return undefined;
+  const rest = pathname.slice(3);
+  if (PAGINATION_PATH.test(rest)) return rest;
+  const article = ARTICLE_PATH.exec(rest);
+  return article
+    ? `/${article[1]}/${globalizeUSSlug(article[2])}`
+    : undefined;
 }
 
 // Helper function to generate hreflang metadata

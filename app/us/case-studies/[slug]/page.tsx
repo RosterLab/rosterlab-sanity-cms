@@ -1,9 +1,10 @@
 // Generated from app/case-studies/[slug]/page.tsx. Run npm run localize:resources; do not edit directly.
 
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
+import { localizeUSSlug, globalizeUSSlug, usSlugRedirectTarget } from "@/lib/localization/us-slug";
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import Link from "next/link";
 import Image from "next/image";
@@ -90,7 +91,7 @@ const allCaseStudiesQuery = groq`
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(caseStudyPathsQuery);
-  return slugs.map((slug: string) => ({ slug }));
+  return slugs.map((slug: string) => ({ slug: localizeUSSlug(slug) }));
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps) {
@@ -99,7 +100,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(caseStudyQuery, { slug }).then(localizeUSResourceResult);
+  const post = await clientToUse.fetch(caseStudyQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult);
 
   if (!post) {
     return resourceMetadata({
@@ -133,6 +134,8 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
+  const redirectTarget = usSlugRedirectTarget(slug);
+  if (redirectTarget) permanentRedirect(`/us/case-studies/${redirectTarget}`);
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
@@ -140,7 +143,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   // Fetch post and related case studies in parallel
   const [post, allCaseStudies] = await Promise.all([
-    clientToUse.fetch(caseStudyQuery, { slug }).then(localizeUSResourceResult),
+    clientToUse.fetch(caseStudyQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult),
     clientToUse.fetch(allCaseStudiesQuery).then(localizeUSResourceResult),
   ]);
 

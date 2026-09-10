@@ -88,7 +88,7 @@ const features = [
   },
   {
     icon: HiClipboardList,
-    title: "Customisable",
+    title: "Customizable",
     description:
       "Easily modify fields, add your logo, and adjust the template to match your needs.",
   },
@@ -98,7 +98,7 @@ const benefits = [
   "Track employee hours accurately",
   "Track overtime",
   "Printable and easy to edit",
-  "Customisable for your business needs",
+  "Customizable for your business needs",
 ];
 
 const faqItems = [
@@ -110,7 +110,7 @@ const faqItems = [
   {
     question: "Can I customize the timesheet template?",
     answer:
-      "Yes! Our template is fully customisable. You can add your company logo, modify the fields to include specific information you need, and change the formatting to match your brand colors. The word doc format makes it easy to adapt to your specific requirements.",
+      "Yes! Our template is fully customizable. You can add your company logo, modify the fields to include specific information you need, and change the formatting to match your brand colors. The word doc format makes it easy to adapt to your specific requirements.",
   },
   {
     question:

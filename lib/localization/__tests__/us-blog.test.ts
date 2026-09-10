@@ -99,7 +99,7 @@ test("preserves blockquotes, code and editorial annotations while routing intern
   ];
   const result = localizeUSBody(source)!;
   expect(text(result)).toBe("optimise rostering\nroster Organisation optimize");
-  expect(result[1].markDefs[1].href).toBe("/us/blog/roster#section");
+  expect(result[1].markDefs[1].href).toBe("/us/blog/schedule#section");
 });
 test("protects phrases crossing spans and leaves assets and embed URLs intact", () => {
   const source = [
@@ -164,7 +164,7 @@ test("handles nullable Sanity fields and unset/empty overrides", () => {
 test("routes supported internal destinations while preserving query, anchors and external URLs", () => {
   expect(
     localizeUSLink("https://rosterlab.com/blog/rostering?utm_source=email#abc"),
-  ).toBe("/us/blog/rostering?utm_source=email#abc");
+  ).toBe("/us/blog/scheduling?utm_source=email#abc");
   expect(localizeUSLink("/blog")).toBe("/us/blog");
   expect(localizeUSLink("/case-studies/example")).toBe(
     "/us/case-studies/example",
@@ -181,18 +181,27 @@ test("routes supported internal destinations while preserving query, anchors and
   ])
     expect(localizeUSLink(href)).toBe(href);
 });
-test("regional article and pagination mappings have reciprocal hreflang and stable slugs", () => {
+test("regional article and pagination mappings have reciprocal hreflang and localized slugs", () => {
   const path = "/blog/rostering-guide";
-  expect(getUSPath(path)).toBe("/us" + path);
-  expect(getGlobalPath("/us" + path)).toBe(path);
-  expect(generateHreflangMetadata(path)).toEqual(
-    generateHreflangMetadata("/us" + path),
+  // Unregistered slugs still localize forward; the reverse falls back to the
+  // identity, so the pair is only reciprocal for registered articles.
+  expect(getUSPath(path)).toBe("/us/blog/scheduling-guide");
+  expect(getUSPath("/blog/rostering-basics")).toBe(
+    "/us/blog/scheduling-basics",
+  );
+  expect(getGlobalPath("/us/blog/scheduling-basics")).toBe(
+    "/blog/rostering-basics",
+  );
+  expect(getUSPath("/blog/shift-types")).toBe("/us/blog/shift-types");
+  expect(getGlobalPath("/us/blog/shift-types")).toBe("/blog/shift-types");
+  expect(generateHreflangMetadata("/blog/rostering-basics")).toEqual(
+    generateHreflangMetadata("/us/blog/scheduling-basics"),
   );
   expect(getUSPath("/blog/page/2")).toBe("/us/blog/page/2");
   expect(getUSPath("/blog/page/2oops")).toBeUndefined();
-  expect(generateHreflangMetadata(path).alternates?.languages.en).toBe(
-    "https://rosterlab.com" + path,
-  );
+  expect(
+    generateHreflangMetadata("/blog/rostering-basics").alternates?.languages.en,
+  ).toBe("https://rosterlab.com/blog/rostering-basics");
 });
 
 test("localizes spelling gaps found in the content audit while preserving quotes", () => {

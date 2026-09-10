@@ -55,7 +55,7 @@ const webinars: Webinar[] = [
     title: "Building a Resilient Healthcare Workforce with AI Staff Schedules",
     description:
       "Watch Mike Peterson (Associate Radiology Manager) and Sunny Feng (Co-Founder of RosterLab) discuss how AI can support a more resilient healthcare workforce and reduce time spent on staff scheduling.",
-    href: "/us/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+    href: "/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
     image: "/images/webinars/resilient-healthcare-thumbnail.png",
     format: "Recording",
     category: "Healthcare",

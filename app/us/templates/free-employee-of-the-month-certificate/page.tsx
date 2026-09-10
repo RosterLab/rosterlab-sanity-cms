@@ -93,7 +93,7 @@ const features = [
 
 const benefits = [
   "Recognize employee achievements professionally",
-  "Fully customisable template - edit in Canva",
+  "Fully customizable template - edit in Canva",
   "Print or share digitally with your team",
 ];
 

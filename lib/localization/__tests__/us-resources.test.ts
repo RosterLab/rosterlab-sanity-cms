@@ -4,6 +4,7 @@ import path from "node:path";
 import ts from "typescript";
 import { formatDateShort } from "@/lib/utils";
 import { RESOURCE_PATHS } from "../resource-routes";
+import { localizeUSPathname } from "../us-slug";
 import { getUSPath, getGlobalPath } from "@/components/seo/HreflangTags";
 import {
   localizeUSResourceLink,
@@ -14,7 +15,8 @@ import {
 
 test("all public resources have reciprocal routes and self canonicals", () => {
   for (const source of RESOURCE_PATHS) {
-    const us = `/us${source}`;
+    // US resource URLs localize roster terminology in the path itself.
+    const us = `/us${localizeUSPathname(source)}`;
     expect(getUSPath(source)).toBe(us);
     expect(getGlobalPath(us)).toBe(source);
     expect(fs.existsSync(path.join(process.cwd(), "app", us, "page.tsx"))).toBe(
@@ -73,7 +75,7 @@ test("survey links keep their preview origin, IDs and tokens, and stay out of pu
   expect(getUSPath("/tools/survey-preferences/admin/abc-123")).toBeUndefined();
   const metadata = resourceMetadata(
     {},
-    "/us/whitepapers/rostering-as-a-strategic-workforce-lever/unlocked",
+    "/us/whitepapers/scheduling-as-a-strategic-workforce-lever/unlocked",
   );
   expect(metadata.robots).toEqual({ index: false, follow: false });
   expect(metadata.alternates?.languages).toEqual({});

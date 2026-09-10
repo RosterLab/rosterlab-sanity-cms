@@ -305,7 +305,7 @@ export default function DentalClinicSchedulingPage() {
                     </h4>
                     <p className="text-gray-600">
                       Help dental staff achieve better work-life balance by
-                      considering preferences whilst ensuring critical patient
+                      considering preferences while ensuring critical patient
                       care needs are met.
                     </p>
                   </div>

@@ -270,7 +270,7 @@ export default function PortSchedulingPage() {
                     </h3>
                     <p className="text-gray-600">
                       Help port workers achieve better work-life balance by
-                      considering a high percentage of staff preferences whilst
+                      considering a high percentage of staff preferences while
                       ensuring critical operational needs are met.
                     </p>
                   </div>

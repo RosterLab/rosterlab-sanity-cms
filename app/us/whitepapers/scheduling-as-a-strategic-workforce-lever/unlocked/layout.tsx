@@ -32,7 +32,7 @@ export const metadata: Metadata = resourceMetadata({
       "Access your free whitepaper on using intelligent healthcare scheduling software to reduce staff turnover and solve chronic understaffing.",
     images: ["/images/whitepaper thumbnail.png"],
   },
-}, "/us/whitepapers/rostering-as-a-strategic-workforce-lever/unlocked");
+}, "/us/whitepapers/scheduling-as-a-strategic-workforce-lever/unlocked");
 
 export default function WhitepaperUnlockedLayout({
   children,

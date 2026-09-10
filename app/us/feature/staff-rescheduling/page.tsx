@@ -165,7 +165,7 @@ export default function ReRosteringPage() {
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Automatically generate the most optimal rescheduling solution
-                  based on your new changes whilst still considering staff
+                  based on your new changes while still considering staff
                   availability, skills, preferences, and compliance
                   requirements.
                 </p>

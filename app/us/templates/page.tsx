@@ -61,7 +61,7 @@ const templates = [
     title: "Free Staff Schedule Template",
     description:
       "Create and manage staff schedules efficiently with our comprehensive Excel schedule template.",
-    href: "/us/templates/free-staff-roster-template-excel",
+    href: "/us/templates/free-staff-schedule-template-excel",
     image: "/images/excel/excel-preview-new-1.png",
     format: "Excel",
     category: "Scheduling",
@@ -70,7 +70,7 @@ const templates = [
     id: "employee-of-month",
     title: "Free Employee of the Month Certificate",
     description:
-      "Recognize outstanding team members with our professionally designed, customisable Canva certificate template.",
+      "Recognize outstanding team members with our professionally designed, customizable Canva certificate template.",
     href: "/us/templates/free-employee-of-the-month-certificate",
     image:
       "/images/employee-certificate/employee-of-month-editable-certificate-preview.png",

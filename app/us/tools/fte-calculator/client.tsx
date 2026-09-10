@@ -1264,7 +1264,7 @@ export default function FTECalculatorClient() {
             </Link>
 
             <Link
-              href="/us/whitepapers/rostering-as-a-strategic-workforce-lever"
+              href="/us/whitepapers/scheduling-as-a-strategic-workforce-lever"
               className="group bg-white rounded-[10px] border border-[#E4E8EC] shadow-[0_2px_10px_rgba(26,26,46,0.05)] overflow-hidden hover:shadow-lg transition-shadow"
             >
               <div className="relative h-40 bg-gradient-to-br from-[#E6FDF8] to-[#F7F9FB]">

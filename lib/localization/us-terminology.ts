@@ -1,3 +1,14 @@
+// Per-slug US editorial data for CMS-backed articles, all of it applied by
+// localizeUSPost: narrative adaptations (profiles), terminology a body must
+// keep (bodyTerminologyToKeep) and US SERP titles (usMetaTitles). Keyed by the
+// published global slug, and always overridable from the usLocalization fields
+// in Sanity, so an editor never has to wait on a deploy.
+//
+// Route metadata for authored and generated pages lives elsewhere, in
+// US_METADATA_OVERRIDES in ./us-resources.ts, keyed by US path. Rule of thumb:
+// if the copy comes from Sanity it belongs here, if it comes from a page file
+// it belongs there.
+//
 // Reviewed narrative adaptations, scoped to resources whose context is known.
 // Never globally equate consultants, registrars, fellows or employment classes.
 // us-blog applies these through the same quote/annotation protections as spelling.
@@ -146,6 +157,99 @@ const profiles: Record<string, Record<string, string>> = {
     "casual employees": "employees with variable hours",
   },
 };
+
+// Articles whose subject is the vocabulary itself have to keep the word readers
+// search for, even when it is the British-leaning one. rostering-basics is the
+// site's largest untapped US term ("roster meaning", 15k/mo): US searchers use
+// the word, so swapping every instance for "schedule" removes the term the page
+// competes on. Applied to the body only - titles and metadata still localize,
+// so the US page keeps its own headline. Matching is substring and
+// case-insensitive, so "roster" also covers rosters/rostering/rostered.
+const bodyTerminologyToKeep: Record<string, readonly string[]> = {
+  "rostering-basics": ["roster"],
+};
+
+// US SERP titles for articles whose global headline survives localization
+// unchanged, because it contains no roster terminology to swap. The title is
+// the line searchers actually read, so on a US result these were reading as the
+// AU/NZ page. Each is written to land 50-60 characters once the layout appends
+// " | RosterLab", and keeps every fact from the global title.
+//
+// This is a fallback, not an override: usLocalization.metaTitle (or US title)
+// set in Sanity always wins, so an editor can retire any entry here by filling
+// the CMS field. Keyed by the published global slug.
+export const usMetaTitles: Record<string, { when: string; use: string }> = {
+  "4-on-4-off-rotating-shift-pattern": {
+    when: "4 On 4 Off Rotating Shifts: Pros and Cons",
+    use: "4 On 4 Off: Is This Shift Pattern Worth It?",
+  },
+  "fairer-scheduling-at-work-reducing-shift-bias": {
+    when: "Fairer Scheduling: How to Reduce Shift Bias",
+    use: "How to Remove Bias From Shift Schedules",
+  },
+  "shift-bidding-guide-how-to-implement": {
+    when: "The Complete Guide to Shift Bidding",
+    use: "Shift Bidding: How to Implement It at Work",
+  },
+  "skeleton-staffing-guide-lean-operations-management": {
+    when: "Skeleton Staffing: Managing Lean Operations",
+    use: "Skeleton Crew Staffing: How to Run Lean",
+  },
+  "auckland-tertiary-hospital-improves-fairness-for-on-call-roster": {
+    when: "Auckland Hospital Improves On-Call Fairness",
+    use: "Fairer On-Call Scheduling for Physicians",
+  },
+  "icu-unit-western-australia": {
+    when: "Case Study: ICU in Western Australia",
+    use: "ICU Case Study: Safer 24/7 Nurse Coverage",
+  },
+  "radiology-department-auckland": {
+    when: "Auckland Radiology Boosts Staff Retention",
+    use: "Radiology Case Study: Retaining Techs Longer",
+  },
+  "sydney-tertiary-hospital-saves-300-hours-with-ai-rostering": {
+    when: "Sydney Hospital Saves 300+ Hours With AI",
+    use: "AI Saves 300+ Hours on Physician Schedules",
+  },
+  "whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab":
+    {
+      when: "Whanganui Radiography Cuts Admin With AI",
+      use: "Radiography Team Wins Back 179 Admin Hours",
+    },
+  "digital-health-week-2025-hinz": {
+    when: "RosterLab at Digital Health Week 2025 (Hinz)",
+    use: "Inside Digital Health Week 2025 With RosterLab",
+  },
+  "government-agency-chooses-rosterlab-to-help-streamline-staff-schedules": {
+    when: "Government Agency Chooses AI Scheduling",
+    use: "Public Sector Agency Adopts AI Scheduling",
+  },
+  "westernaustralia-oldest-tertiary-hospital-expands-partnership-with-rosterlab":
+    {
+      when: "AI Scheduling Expands in Western Australia",
+      use: "Hospital Expands AI Physician Scheduling",
+    },
+};
+
+// `when` records the global title each US title was written against. If an
+// editor later rewrites the global headline, this override steps aside rather
+// than pinning a US title to a version of the article that no longer exists -
+// the localizer's own conversion is more current at that point.
+export function usMetaTitleForResource(
+  slug: unknown,
+  globalMetaTitle: string | undefined,
+): string | undefined {
+  const entry = typeof slug === "string" ? usMetaTitles[slug] : undefined;
+  return entry && entry.when === globalMetaTitle?.trim()
+    ? entry.use
+    : undefined;
+}
+
+export function protectedBodyTermsForResource(slug: unknown): string[] {
+  return typeof slug === "string"
+    ? [...(bodyTerminologyToKeep[slug] || [])]
+    : [];
+}
 
 export function terminologyForResource(slug: unknown): Record<string, string> {
   return Object.fromEntries(

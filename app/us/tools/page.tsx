@@ -73,7 +73,7 @@ const tools = [
     title: "Free Excel Schedule Template",
     description:
       "Download a ready-to-use Excel template to get started with staff scheduling, whether you're planning shifts by hand or moving off paper.",
-    href: "/us/templates/free-staff-roster-template-excel",
+    href: "/us/templates/free-staff-schedule-template-excel",
     image: "/images/og-images/Excel.png",
     format: "Template",
     category: "Templates",

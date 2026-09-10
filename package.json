@@ -5,7 +5,7 @@
   "scripts": {
     "localize:resources": "node --import tsx scripts/generate-us-resources.ts",
     "localize:resources:check": "node --import tsx scripts/generate-us-resources.ts --check",
-    "prebuild": "npm run localize:resources:check",
+    "verify": "pnpm localize:resources:check && pnpm test",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

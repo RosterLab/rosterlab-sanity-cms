@@ -14,7 +14,7 @@ export const metadata = withHreflang(
   {
     title: "Senior Care Staff Scheduling Software",
     description:
-      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible senior care schedules that save time and money and boost well-being.",
+      "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible schedules that save time and money and boost well-being.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
@@ -22,7 +22,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Senior Care Staff Scheduling Software - RosterLab",
       description:
-        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible senior care schedules that save time and money and boost well-being.",
+        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible schedules that save time and money and boost well-being.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/senior-care-scheduling",
       images: [
@@ -37,7 +37,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Senior Care Staff Scheduling Software - RosterLab",
       description:
-        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible senior care schedules that save time and money and boost well-being.",
+        "Build your senior care schedule with RosterLab. Automatically generate fair, compliant & flexible schedules that save time and money and boost well-being.",
       images: ["/images/og-images/IndustryAgedCare.png"],
     },
   },

@@ -8,14 +8,14 @@ export const metadata: Metadata = resourceMetadata({
   description:
     "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
   alternates: {
-    canonical: "https://rosterlab.com/us/whitepapers/rostering-as-a-strategic-workforce-lever",
+    canonical: "https://rosterlab.com/us/whitepapers/scheduling-as-a-strategic-workforce-lever",
   },
   openGraph: {
     title: "Scheduling as a Strategic Workforce Lever | Free Whitepaper",
     description:
       "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
     type: "website",
-    url: "https://rosterlab.com/us/whitepapers/rostering-as-a-strategic-workforce-lever",
+    url: "https://rosterlab.com/us/whitepapers/scheduling-as-a-strategic-workforce-lever",
     images: [
       {
         url: "/images/whitepaper thumbnail.png",
@@ -45,7 +45,7 @@ export const metadata: Metadata = resourceMetadata({
     "whitepaper",
     "executive guide",
   ],
-}, "/us/whitepapers/rostering-as-a-strategic-workforce-lever");
+}, "/us/whitepapers/scheduling-as-a-strategic-workforce-lever");
 
 export default function WhitepaperLayout({
   children,

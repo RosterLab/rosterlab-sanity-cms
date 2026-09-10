@@ -37,7 +37,7 @@ export const FEATURE_TESTIMONIAL_US: FeatureTestimonialContent = {
   role: "Associate Clinical Manager Radiology",
   // Use the US-localized webinar page.
   link: {
-    href: "/us/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+    href: "/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
     label: "Watch the webinar",
   },
 };
@@ -228,7 +228,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
     role: "Junior Consultant, Auckland Tertiary Hospital",
     roleExplanation: "Early-career specialist physician, comparable to a US attending.",
     caseStudyLink:
-      "/us/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster",
+      "/us/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-schedule",
   },
 ];
 

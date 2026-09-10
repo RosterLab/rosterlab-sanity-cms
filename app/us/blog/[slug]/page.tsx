@@ -1,7 +1,7 @@
 import BlogPostPage, {
   getBlogPostMetadata,
 } from "@/components/blog/BlogPostPage";
-export { generateStaticParams } from "@/components/blog/BlogPostPage";
+export { generateUSStaticParams as generateStaticParams } from "@/components/blog/BlogPostPage";
 export const revalidate = 300;
 type Props = { params: Promise<{ slug: string }> };
 export const generateMetadata = ({ params }: Props) =>

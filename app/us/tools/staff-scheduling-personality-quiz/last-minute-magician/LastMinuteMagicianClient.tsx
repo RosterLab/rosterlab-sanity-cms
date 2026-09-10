@@ -611,7 +611,7 @@ export default function LastMinuteMagicianClient({
       const blog2Width = doc.getTextWidth(blog2Text);
       doc.text(blog2Text, 28, currentY);
       doc.link(28, currentY - 3, blog2Width, 4, {
-        url: "https://rosterlab.com/us/blog/staff-rostering-to-payroll-the-right-way-to-do-it",
+        url: "https://rosterlab.com/us/blog/staff-scheduling-to-payroll-the-right-way-to-do-it",
       });
       currentY += 8;
 

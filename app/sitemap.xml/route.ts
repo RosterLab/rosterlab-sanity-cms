@@ -3,6 +3,7 @@ import { client } from "@/sanity/lib/client";
 import { readdirSync, statSync, readFileSync } from "fs";
 import { join } from "path";
 import nextConfig from "@/next.config";
+import { localizeUSSlug } from "@/lib/localization/us-slug";
 
 // Base URL for the site
 const baseUrl = "https://rosterlab.com";
@@ -233,7 +234,7 @@ async function generateSitemap() {
     <priority>0.7</priority>
   </url>`);
       entries.push(`  <url>
-    <loc>${baseUrl}/us${blogUrl}</loc>
+    <loc>${baseUrl}/us/blog/${localizeUSSlug(post.slug)}</loc>
     ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -258,7 +259,7 @@ async function generateSitemap() {
     <priority>0.7</priority>
   </url>`);
       entries.push(`  <url>
-    <loc>${baseUrl}/us${caseStudyUrl}</loc>
+    <loc>${baseUrl}/us/case-studies/${localizeUSSlug(post.slug)}</loc>
     ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -283,7 +284,7 @@ async function generateSitemap() {
     <priority>0.7</priority>
   </url>`);
       entries.push(`  <url>
-    <loc>${baseUrl}/us${newsroomUrl}</loc>
+    <loc>${baseUrl}/us/newsroom/${localizeUSSlug(post.slug)}</loc>
     ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

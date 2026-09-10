@@ -1,3 +1,4 @@
+import { localizeUSPathname } from "./us-slug";
 // Resource route pairs, including non-indexed quiz results used for navigation.
 // Sitemap and metadata indexing policy is evaluated separately.
 export const RESOURCE_PATHS = [
@@ -26,6 +27,8 @@ export const RESOURCE_PATHS = [
   ].map((slug) => `/tools/staff-scheduling-personality-quiz/${slug}`),
 ];
 
+// US resource URLs use American terminology, so the path is localized as well
+// as the copy: /whitepapers/rostering-... becomes /us/whitepapers/scheduling-...
 export const RESOURCE_US_MAPPINGS = Object.fromEntries(
-  RESOURCE_PATHS.map((path) => [path, `/us${path}`]),
+  RESOURCE_PATHS.map((path) => [path, `/us${localizeUSPathname(path)}`]),
 );

@@ -325,7 +325,7 @@ export default function CallCentersPage() {
                     </h3>
                     <p className="text-gray-600">
                       Help agents achieve better work-life balance by
-                      considering a high percentage of preferences whilst
+                      considering a high percentage of preferences while
                       ensuring service level targets are met.
                     </p>
                   </div>

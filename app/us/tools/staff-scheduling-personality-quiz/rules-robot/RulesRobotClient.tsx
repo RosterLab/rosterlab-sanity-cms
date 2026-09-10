@@ -613,7 +613,7 @@ export default function RulesRobotClient({
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/us/blog/staff-rostering-to-payroll-the-right-way-to-do-it",
+        url: "https://rosterlab.com/us/blog/staff-scheduling-to-payroll-the-right-way-to-do-it",
       });
       currentY += 17;
 

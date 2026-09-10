@@ -20,7 +20,7 @@ export default function WhitepaperUnlockedPage() {
 
     if (!unlocked) {
       // Redirect back to the main page if not unlocked
-      router.push("/us/whitepapers/rostering-as-a-strategic-workforce-lever");
+      router.push("/us/whitepapers/scheduling-as-a-strategic-workforce-lever");
     } else {
       setIsLoading(false);
       analytics.track("whitepaper_unlocked_page_viewed", {

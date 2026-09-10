@@ -1,4 +1,5 @@
 import { localizeUSPost, localizeUSText } from "../us-blog";
+import { usMetaTitles } from "../us-terminology";
 
 test.each([
   ["2-2-3-panama-shift-scheduling", "casual or relief staff", "temporary or relief staff"],
@@ -114,4 +115,94 @@ test("editorial US overrides and blockquotes take precedence over terminology ru
   });
   expect(result.title).toBe("Consultants: an international case study");
   expect(rendered(result)).toBe("Consultants");
+});
+
+// "roster meaning" is the site's largest untapped US term and this article is
+// what ranks for it, so the US body must keep the word while the headline still
+// localizes. Scrubbing it removes the term the page competes on.
+test("the rostering-basics body keeps roster terminology while its title localizes", () => {
+  const result = localizeUSPost({
+    title: "Rostering 101: Understanding the Basics of Rostering",
+    slug: "rostering-basics",
+    body: body([
+      "What is a staff roster? At its core, a roster is a plan that outlines ",
+      "the shifts assigned to workers. Rostering is the process of building it.",
+    ]),
+  });
+  expect(result.title).toBe(
+    "Scheduling 101: Understanding the Basics of Scheduling",
+  );
+  const text = rendered(result);
+  expect(text).toContain("What is a staff roster?");
+  expect(text).toContain("a roster is a plan");
+  expect(text).toContain("Rostering is the process");
+  expect(text).not.toContain("schedule is a plan");
+});
+
+test("body-scoped protection does not leak into other articles", () => {
+  const result = localizeUSPost({
+    title: "Rostering basics elsewhere",
+    slug: "guide-to-rostering",
+    body: body(["Rostering a ward roster takes time."]),
+  });
+  expect(rendered(result)).toBe("Scheduling a unit schedule takes time.");
+});
+
+describe("US SERP titles for articles whose global headline does not localize", () => {
+  // Written to land 50-60 characters once the layout appends " | RosterLab":
+  // past 60 Google truncates, under 50 leaves the result line half empty.
+  it.each(Object.entries(usMetaTitles))(
+    "%s renders within the SERP band",
+    (_slug, { use, when }) => {
+      const rendered = use.length + " | RosterLab".length;
+      expect({ use, rendered }).toEqual({ use, rendered: expect.any(Number) });
+      expect(rendered).toBeGreaterThanOrEqual(50);
+      expect(rendered).toBeLessThanOrEqual(60);
+      // An entry whose US title matches the global one differentiates nothing.
+      expect(use).not.toBe(when);
+    },
+  );
+
+  it("fills the gap where the global headline localizes to itself", () => {
+    const result = localizeUSPost({
+      title: "The Complete Guide to Shift Bidding",
+      slug: "shift-bidding-guide-how-to-implement",
+      seo: { metaTitle: "The Complete Guide to Shift Bidding" },
+    });
+    expect(result.seo.metaTitle).toBe(
+      "Shift Bidding: How to Implement It at Work",
+    );
+  });
+
+  it("yields to a US SEO title set in the CMS", () => {
+    const result = localizeUSPost({
+      title: "The Complete Guide to Shift Bidding",
+      slug: "shift-bidding-guide-how-to-implement",
+      seo: { metaTitle: "The Complete Guide to Shift Bidding" },
+      usLocalization: { metaTitle: "An editor's own US title" },
+    });
+    expect(result.seo.metaTitle).toBe("An editor's own US title");
+  });
+
+  it("steps aside once the global headline has been rewritten", () => {
+    const result = localizeUSPost({
+      title: "The Complete Guide to Shift Bidding",
+      slug: "shift-bidding-guide-how-to-implement",
+      seo: { metaTitle: "Shift Bidding in 2027: A Rostering Guide" },
+    });
+    // The global title moved on, so the override yields to the localizer
+    // rather than pinning a US title to an article that no longer exists.
+    expect(result.seo.metaTitle).toBe(
+      "Shift Bidding in 2027: A Scheduling Guide",
+    );
+  });
+
+  it("leaves articles outside the map to the normal dictionary", () => {
+    const result = localizeUSPost({
+      title: "Rostering guide",
+      slug: "guide-to-rostering",
+      seo: { metaTitle: "A guide to staff rostering" },
+    });
+    expect(result.seo.metaTitle).toBe("A guide to staff scheduling");
+  });
 });

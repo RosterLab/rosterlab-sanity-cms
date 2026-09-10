@@ -596,7 +596,7 @@ export default function ChaosCarlaClient({
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/us/blog/rostering-basics",
+        url: "https://rosterlab.com/us/blog/scheduling-basics",
       });
       currentY += 17;
 

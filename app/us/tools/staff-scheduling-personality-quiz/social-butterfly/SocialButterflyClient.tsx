@@ -621,7 +621,7 @@ export default function SocialButterflyClient({
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/us/blog/rotating-rosters",
+        url: "https://rosterlab.com/us/blog/rotating-schedules",
       });
       currentY += 17;
 

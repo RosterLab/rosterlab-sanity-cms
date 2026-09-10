@@ -1,6 +1,11 @@
 import { localizeUSPost } from "@/lib/localization/us-blog";
+import {
+  localizeUSSlug,
+  globalizeUSSlug,
+  usSlugRedirectTarget,
+} from "@/lib/localization/us-slug";
 import { withHreflang } from "@/components/seo/HreflangTags";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
@@ -35,17 +40,28 @@ export async function generateStaticParams() {
   return slugs.map((slug: string) => ({ slug }));
 }
 
+// US article URLs carry the localized slug, so the prerendered params differ
+// from the global route even though both read the same published document.
+export async function generateUSStaticParams() {
+  const slugs = await client.fetch(blogPostPathsQuery);
+  return slugs.map((slug: string) => ({ slug: localizeUSSlug(slug) }));
+}
+
 export async function getBlogPostMetadata({
   params,
   isUS = false,
 }: BlogPostPageProps) {
   const { slug } = await params;
+  const requested = slug.trim();
+  // Under /us the incoming slug is the localized one; the document is stored
+  // against the published global slug.
+  const sourceSlug = isUS ? globalizeUSSlug(requested) : requested;
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
   const sourcePost = await clientToUse.fetch(blogPostQuery, {
-    slug: slug.trim(),
+    slug: sourceSlug,
   });
   const post = sourcePost && (isUS ? localizeUSPost(sourcePost) : sourcePost);
   const blogPath = isUS ? "/us/blog" : "/blog";
@@ -56,7 +72,8 @@ export async function getBlogPostMetadata({
     };
   }
 
-  const canonicalSlug = post.slug?.current || slug.trim();
+  const publishedSlug = post.slug?.current || sourceSlug;
+  const canonicalSlug = isUS ? localizeUSSlug(publishedSlug) : publishedSlug;
   const baseUrl = "https://rosterlab.com";
 
   return withHreflang(
@@ -97,13 +114,21 @@ export default async function BlogPostPage({
   isUS = false,
 }: BlogPostPageProps) {
   const { slug } = await params;
+  const requested = slug.trim();
+  // A visitor who follows the global slug under /us is sent to the localized
+  // URL so the article is never reachable at two US addresses.
+  if (isUS) {
+    const target = usSlugRedirectTarget(requested);
+    if (target) permanentRedirect(`/us/blog/${target}`);
+  }
+  const sourceSlug = isUS ? globalizeUSSlug(requested) : requested;
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
 
   const sourcePost = await clientToUse.fetch(blogPostQuery, {
-    slug: slug.trim(),
+    slug: sourceSlug,
   });
   const post = sourcePost && (isUS ? localizeUSPost(sourcePost) : sourcePost);
   const blogPath = isUS ? "/us/blog" : "/blog";
@@ -132,7 +157,8 @@ export default async function BlogPostPage({
 
   const readingTime = calculateReadingTime(post.body);
 
-  const canonicalSlug = post.slug?.current || slug.trim();
+  const publishedSlug = post.slug?.current || sourceSlug;
+  const canonicalSlug = isUS ? localizeUSSlug(publishedSlug) : publishedSlug;
   const baseUrl = "https://rosterlab.com";
   const articleUrl = `${baseUrl}${blogPath}/${canonicalSlug}`;
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
@@ -141,7 +167,7 @@ export default async function BlogPostPage({
     <article>
       <BlogPostTracker
         title={post.title}
-        slug={post.slug?.current || slug}
+        slug={post.slug?.current || sourceSlug}
         author={post.author?.name}
         category={post.category?.title}
         publishedAt={post.publishedAt}

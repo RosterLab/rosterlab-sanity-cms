@@ -1,9 +1,10 @@
 // Generated from app/newsroom/[slug]/page.tsx. Run npm run localize:resources; do not edit directly.
 
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
+import { localizeUSSlug, globalizeUSSlug, usSlugRedirectTarget } from "@/lib/localization/us-slug";
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
@@ -86,7 +87,7 @@ const allNewsroomQuery = groq`
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(newsroomPathsQuery);
-  return slugs.map((slug: string) => ({ slug }));
+  return slugs.map((slug: string) => ({ slug: localizeUSSlug(slug) }));
 }
 
 export async function generateMetadata({ params }: NewsroomPageProps) {
@@ -95,7 +96,7 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(newsroomPostQuery, { slug }).then(localizeUSResourceResult);
+  const post = await clientToUse.fetch(newsroomPostQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult);
 
   if (!post) {
     return resourceMetadata({
@@ -129,11 +130,13 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
 
 export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
   const { slug } = await params;
+  const redirectTarget = usSlugRedirectTarget(slug);
+  if (redirectTarget) permanentRedirect(`/us/newsroom/${redirectTarget}`);
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(newsroomPostQuery, { slug }).then(localizeUSResourceResult);
+  const post = await clientToUse.fetch(newsroomPostQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult);
 
   if (!post) {
     notFound();

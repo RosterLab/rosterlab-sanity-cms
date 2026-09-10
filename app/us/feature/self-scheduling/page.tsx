@@ -215,7 +215,7 @@ export default function SelfSchedulingPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Customisable rules for individual staff members
+                      Customizable rules for individual staff members
                     </span>
                   </li>
                   <li className="flex items-start">

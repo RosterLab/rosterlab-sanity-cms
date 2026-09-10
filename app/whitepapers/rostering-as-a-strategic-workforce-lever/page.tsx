@@ -308,7 +308,7 @@ export default function WhitepaperPage() {
                               </svg>
                             </div>
                             <p className="text-sm sm:text-base text-neutral-700">
-                              The financial case is concrete: $800k+ in annual savings, 93% less time on rostering, zero compliance breaches
+                              The financial case is concrete: $80K+ in annual savings, 93% less time on rostering, zero compliance breaches
                             </p>
                           </div>
                         </div>
@@ -613,7 +613,7 @@ export default function WhitepaperPage() {
                               </svg>
                             </div>
                             <p className="text-sm sm:text-base text-neutral-700">
-                              The financial case is concrete: $800k+ in annual savings, 93% less time on rostering, zero compliance breaches
+                              The financial case is concrete: $80K+ in annual savings, 93% less time on rostering, zero compliance breaches
                             </p>
                           </div>
                         </div>

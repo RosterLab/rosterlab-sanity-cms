@@ -305,6 +305,63 @@ describe("Survey Validation", () => {
       );
     });
 
+    // The ranking form submits -1 for "Not Available" and -2 for "Not
+    // applicable", and the results view renders both. Nothing else enforces
+    // that the API keeps accepting them.
+    it.each([
+      ["-1 (Not Available)", -1],
+      ["-2 (Not applicable)", -2],
+    ])("should accept the %s sentinel", (_label, rank) => {
+      const validData = {
+        name: "John Doe",
+        email: "john@example.com",
+        holiday_rankings: [
+          {
+            holiday_id: randomUUID(),
+            rank,
+          },
+        ],
+      };
+
+      expect(
+        validateSubmitPreferencesRequest(validData).holiday_rankings[0].rank,
+      ).toBe(rank);
+    });
+
+    it("should reject a sentinel below -2", () => {
+      const invalidData = {
+        name: "John Doe",
+        email: "john@example.com",
+        holiday_rankings: [
+          {
+            holiday_id: randomUUID(),
+            rank: -3,
+          },
+        ],
+      };
+
+      expect(() => validateSubmitPreferencesRequest(invalidData)).toThrow(
+        ZodError,
+      );
+    });
+
+    it("should reject a fractional rank", () => {
+      const invalidData = {
+        name: "John Doe",
+        email: "john@example.com",
+        holiday_rankings: [
+          {
+            holiday_id: randomUUID(),
+            rank: 1.5,
+          },
+        ],
+      };
+
+      expect(() => validateSubmitPreferencesRequest(invalidData)).toThrow(
+        ZodError,
+      );
+    });
+
     it("should reject notes longer than 1000 characters", () => {
       const invalidData = {
         name: "John Doe",

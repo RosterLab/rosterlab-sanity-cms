@@ -1,6 +1,11 @@
 import { getUSPath } from "@/components/seo/HreflangTags";
-import { terminologyForResource } from "./us-terminology";
+import {
+  terminologyForResource,
+  protectedBodyTermsForResource,
+  usMetaTitleForResource,
+} from "./us-terminology";
 import { explainUSRegionalTerms } from "./us-regional-context";
+import { glossUSQuotedTerms, isCaseStudy } from "./us-quote-gloss";
 
 // Deliberately exclude contextual terms such as leave, employee, aged care,
 // holidays and professional titles. Editors can adapt these in US overrides.
@@ -47,6 +52,8 @@ const dictionary: Record<string, string> = {
   analysing: "analyzing",
   customise: "customize",
   customised: "customized",
+  customisable: "customizable",
+  customising: "customizing",
   customisation: "customization",
   standardise: "standardize",
   standardised: "standardized",
@@ -113,6 +120,7 @@ const dictionary: Record<string, string> = {
   licence: "license",
   licences: "licenses",
   licencing: "licensing",
+  whilst: "while",
 };
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const terms = new RegExp(
@@ -306,7 +314,10 @@ export function localizeUSPost<
   seo: { metaTitle?: string; metaDescription?: string; ogImage?: any };
 } {
   const overrides = post.usLocalization || {};
-  const terminology = terminologyForResource(post.slug?.current ?? post.slug);
+  // Sanity returns a slug object on documents and a bare string on the
+  // projections used by listings, so every per-slug lookup normalizes here.
+  const slug = post.slug?.current ?? post.slug;
+  const terminology = terminologyForResource(slug);
   const protectedTerms = [
     // Official names found in the published resource audit. American spelling
     // must never rename these organizations; editors can protect new names below.
@@ -320,24 +331,42 @@ export function localizeUSPost<
     value == null
       ? undefined
       : localizeUSText(value, protectedTerms, terminology);
+  // Some articles are found by the very term the localizer would replace, so
+  // their body keeps it while the headline and metadata still localize.
+  const bodyProtectedTerms = [
+    ...protectedTerms,
+    ...protectedBodyTermsForResource(slug),
+  ];
+  const gloss = (body: any[] | undefined) =>
+    isCaseStudy(post) ? glossUSQuotedTerms(body) : body;
   return {
     ...post,
     title: overrides.title ?? convert(post.title)!,
     excerpt: overrides.excerpt ?? convert(post.excerpt),
+    // Case-study quotations keep their wording but gain an inline gloss, so a
+    // US reader sees "roster (schedule)" without the quote being rewritten.
     body: overrides.body?.length
       ? localizeUSBodyLinks(overrides.body)
-      : explainUSRegionalTerms(
-          localizeUSBody(post.body, protectedTerms, terminology),
-          post.slug?.current ?? post.slug,
+      : gloss(
+          explainUSRegionalTerms(
+            localizeUSBody(post.body, bodyProtectedTerms, terminology),
+            slug,
+          ),
         ),
     mainImage: post.mainImage
       ? { ...post.mainImage, alt: convert(post.mainImage.alt) }
       : post.mainImage,
     seo: {
       ...post.seo,
+      // A CMS value always wins; the code map only fills the gap where the
+      // global headline localizes to itself and the US result would otherwise
+      // read as the AU/NZ page.
       metaTitle:
         overrides.metaTitle ??
-        (overrides.title ? overrides.title : convert(post.seo?.metaTitle)),
+        (overrides.title
+          ? overrides.title
+          : (usMetaTitleForResource(slug, post.seo?.metaTitle) ??
+            convert(post.seo?.metaTitle))),
       metaDescription:
         overrides.metaDescription ??
         (overrides.excerpt

@@ -44,3 +44,6 @@ next-env.d.ts
 .next-dev/*
 # Local Netlify folder
 .netlify
+
+# pnpm content-addressable store (machine-local)
+.pnpm-store/

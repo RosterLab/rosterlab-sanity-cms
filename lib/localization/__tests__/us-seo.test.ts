@@ -10,23 +10,64 @@ import {
 } from "@/components/seo/HreflangTags";
 import { resourceMetadata } from "../us-resources";
 
+// Reading a route's metadata means evaluating the object literal it exports,
+// because most of them are wrapped in resourceMetadata()/withHreflang() and the
+// resolved title, canonical and languages only exist after those run.
+function metadataExpression(file: string): string | undefined {
+  if (!fs.existsSync(file)) return undefined;
+  const tree = ts.createSourceFile(
+    file,
+    fs.readFileSync(file, "utf8"),
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TSX,
+  );
+  let expression: string | undefined;
+  const visit = (node: ts.Node) => {
+    if (
+      ts.isVariableDeclaration(node) &&
+      node.name.getText(tree) === "metadata"
+    )
+      expression = node.initializer?.getText(tree);
+    ts.forEachChild(node, visit);
+  };
+  visit(tree);
+  return expression;
+}
+
+function evaluateMetadata(expression: string, pathname: string) {
+  const context = {
+    module: { exports: {} as any },
+    pathname,
+    withHreflang,
+    resourceMetadata,
+    URL,
+  };
+  vm.runInNewContext(
+    ts.transpileModule(`module.exports = ${expression}`, {
+      compilerOptions: {
+        target: ts.ScriptTarget.ES2020,
+        module: ts.ModuleKind.CommonJS,
+      },
+    }).outputText,
+    context,
+  );
+  return context.module.exports;
+}
+
+// page.tsx wins over layout.tsx, matching Next's own precedence.
+const routeFiles = (pathname: string) => [
+  `app${pathname}/page.tsx`,
+  `app${pathname}/layout.tsx`,
+];
+
 test("all 67 mapped US pages expose specific metadata and existing social images", () => {
   for (const pathname of Object.values(US_URL_MAPPINGS)) {
-    let expression: string | undefined;
-    for (const file of [`app${pathname}/page.tsx`, `app${pathname}/layout.tsx`]) {
-      if (!fs.existsSync(file)) continue;
-      const tree = ts.createSourceFile(file, fs.readFileSync(file, "utf8"), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
-      const visit = (node: ts.Node) => {
-        if (ts.isVariableDeclaration(node) && node.name.getText(tree) === "metadata") expression = node.initializer?.getText(tree);
-        ts.forEachChild(node, visit);
-      };
-      visit(tree);
-      if (expression) break;
-    }
+    const expression = routeFiles(pathname)
+      .map(metadataExpression)
+      .find(Boolean);
     expect({ pathname, hasMetadata: !!expression }).toEqual({ pathname, hasMetadata: true });
-    const context = {module: {exports: {} as any}, pathname, withHreflang, resourceMetadata, URL};
-    vm.runInNewContext(ts.transpileModule(`module.exports = ${expression}`, {compilerOptions: {target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS}}).outputText, context);
-    const metadata = context.module.exports;
+    const metadata = evaluateMetadata(expression!, pathname);
     expect(metadata.title).toBeTruthy();
     expect(metadata.description?.trim()).toBeTruthy();
     expect(metadata.alternates.canonical).toBe("https://rosterlab.com" + pathname);
@@ -110,4 +151,61 @@ test("generated article metadata retains editorial descriptions and production a
     expect(source).not.toContain("process.env.NEXT_PUBLIC_SITE_URL");
     expect(source).toContain('<ArticleSchema inLanguage="en-US"');
   }
+});
+
+// A title that renders past 60 characters truncates mid-phrase, and a
+// description outside 70-160 invites Google to write its own. Branding belongs
+// in the appended title template, never inside the description field. Walks the
+// routes on disk rather than US_URL_MAPPINGS: the whitepaper that prompted this
+// guard is indexable but absent from the hreflang registry.
+test("every indexable US route renders a title and description within SERP range", () => {
+  const walk = (dir: string): string[] =>
+    fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+      const name = `${dir}/${entry.name}`;
+      return entry.isDirectory()
+        ? walk(name)
+        : /\/(page|layout)\.tsx$/.test(name)
+          ? [name]
+          : [];
+    });
+  const offenders: Record<string, unknown>[] = [];
+  const unevaluated: Record<string, unknown>[] = [];
+  let checked = 0;
+  for (const file of walk("app/us")) {
+    // Dynamic routes take their metadata from the CMS, not from source.
+    // lib/localization/__tests__/us-terminology.test.ts covers those titles.
+    if (/\[(slug|page|surveyId)\]/.test(file)) continue;
+    const expression = metadataExpression(file);
+    if (!expression) continue;
+    const pathname =
+      "/" + file.replace(/^app\//, "").replace(/\/(page|layout)\.tsx$/, "");
+    let metadata;
+    try {
+      metadata = evaluateMetadata(expression, pathname);
+    } catch (error) {
+      // Never swallow this: a route whose metadata cannot be evaluated is a
+      // route this guard is not checking, which is how the whitepaper's
+      // 71-character title survived the previous check.
+      unevaluated.push({ pathname, reason: String((error as Error).message) });
+      continue;
+    }
+    if (!metadata) {
+      unevaluated.push({ pathname, reason: "metadata did not evaluate" });
+      continue;
+    }
+    // noindex pages are deliberately exempt: they never reach a SERP.
+    if (metadata.robots?.index === false) continue;
+    checked++;
+    const title = resolveTitle(metadata.title, "%s | RosterLab").absolute || "";
+    const description = (metadata.description || "").trim();
+    if (title.length > 60)
+      offenders.push({ pathname, titleLength: title.length, title });
+    if (description.length < 70 || description.length > 160)
+      offenders.push({ pathname, descriptionLength: description.length });
+    if (/\|\s*RosterLab/.test(description))
+      offenders.push({ pathname, brandSuffixInDescription: description });
+  }
+  expect(offenders).toEqual([]);
+  expect(unevaluated).toEqual([]);
+  expect(checked).toBeGreaterThan(55);
 });

@@ -88,7 +88,7 @@ const features = [
   },
   {
     icon: HiClipboardCheck,
-    title: "Customisable Template",
+    title: "Customizable Template",
     description:
       "Easily modify fields to match your organization's specific requirements and approval process.",
   },
@@ -97,7 +97,7 @@ const features = [
 const benefits = [
   "Standardize shift swaps across your organization",
   "Track and document all shift exchanges manually",
-  "Customisable and printable template",
+  "Customizable and printable template",
 ];
 
 const faqItems = [

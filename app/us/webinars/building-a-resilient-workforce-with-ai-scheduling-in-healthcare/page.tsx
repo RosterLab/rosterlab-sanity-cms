@@ -18,7 +18,7 @@ export const metadata: Metadata = resourceMetadata({
     description:
       "Watch our webinar on how AI-powered scheduling saves hundreds of hours and builds more resilient healthcare teams.",
     type: "video.other",
-    url: "https://rosterlab.com/us/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+    url: "https://rosterlab.com/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
     images: [
       {
         url: "/images/webinars/resilient-healthcare-thumbnail.png",
@@ -38,9 +38,9 @@ export const metadata: Metadata = resourceMetadata({
   },
   alternates: {
     canonical:
-      "https://rosterlab.com/us/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+      "https://rosterlab.com/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
   },
-}, "/us/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare");
+}, "/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare");
 
 // Transcript sections with actual webinar content
 const transcriptSections: AccordionItem[] = [

@@ -217,7 +217,7 @@ export default function CTAModalCaseStudy({
           if (!isContentGate && !testMode) {
             // Exit intent modal - redirect to the case study page using client-side navigation
             router.push(
-              "/us/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b",
+              "/us/case-studies/how-plastics-department-used-schedule-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b",
             );
           } else if (testMode) {
             console.log(

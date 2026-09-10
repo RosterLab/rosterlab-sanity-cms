@@ -2,9 +2,7 @@
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
-import { validatedToken } from "@/sanity/lib/token";
 import CaseStudiesPageContent from "@/components/case-studies/CaseStudiesPageContent";
-import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
@@ -88,30 +86,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }, `/case-studies/page/${page}`);
 }
 
-// Generate static params for better performance
-export async function generateStaticParams() {
-  try {
-    const client = getClient();
-    const posts = await client.fetch(caseStudiesQuery);
-
-    const postsPerPage = 12;
-    const totalPages = Math.ceil((posts?.length || 0) / postsPerPage);
-
-    if (totalPages <= 1) {
-      return [];
-    }
-
-    return Array.from({ length: totalPages - 1 }, (_, i) => ({
-      page: String(i + 2), // Start from page 2
-    }));
-  } catch (error) {
-    console.error(
-      "Error generating static params for case studies pagination:",
-      error,
-    );
-    return [];
-  }
-}
+// Rendered per request. These pages are noindex and low traffic, so
+// prerendering buys nothing - and a static route whose generateStaticParams
+// list can be empty cannot be rendered on demand at all, which is what made
+// /case-studies/page/2 and /newsroom/page/2 return 500. Rendering per request
+// also means a newly needed page works before the next deploy.
+export const dynamic = "force-dynamic";
 
 export default async function CaseStudiesPaginationPage({ params }: Props) {
   const { page } = await params;
@@ -126,10 +106,9 @@ export default async function CaseStudiesPaginationPage({ params }: Props) {
     notFound();
   }
 
-  const { isEnabled } = await draftMode();
-  const client = getClient(
-    isEnabled && validatedToken ? { token: validatedToken } : undefined,
-  );
+  // No draftMode(): pagination has no preview value, and a dynamic API here
+  // previously forced the route into a broken static/dynamic hybrid.
+  const client = getClient();
   const posts = await client.fetch(caseStudiesQuery);
 
   const postsPerPage = 12;

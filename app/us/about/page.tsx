@@ -594,7 +594,7 @@ export default function AboutPage() {
               </h3>
               <p className="text-gray-600">
                 We push the boundaries of what&apos;s possible with cutting-edge
-                AI and optimisation algorithms.
+                AI and optimization algorithms.
               </p>
             </div>
             <div className="text-center">
@@ -603,7 +603,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
               <p className="text-gray-600">
-                The solution we build prioritises workplace safety, staff
+                The solution we build prioritizes workplace safety, staff
                 equity, and operational efficiency.
               </p>
             </div>
