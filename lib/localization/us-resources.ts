@@ -74,7 +74,11 @@ const US_METADATA_OVERRIDES: Record<
   },
 };
 
-export function resourceMetadata(metadata: Metadata, path: string): Metadata {
+export function resourceMetadata(
+  metadata: Metadata,
+  path: string,
+  options: { singleMarket?: boolean } = {},
+): Metadata {
   const canonical = `https://rosterlab.com${path}`;
   const override = US_METADATA_OVERRIDES[path];
   if (override) {
@@ -102,11 +106,11 @@ export function resourceMetadata(metadata: Metadata, path: string): Metadata {
   };
   return privatePage
     ? {
-        ...withHreflang(result, path),
+        ...withHreflang(result, path, options),
         robots: { index: false, follow: false },
         alternates: { canonical, languages: {} },
       }
-    : withHreflang(result, path);
+    : withHreflang(result, path, options);
 }
 
 export { localizeUSText };

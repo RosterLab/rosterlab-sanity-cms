@@ -213,3 +213,102 @@ test("localizes spelling gaps found in the content audit while preserving quotes
     'Specialized teams realize gains by utilizing tools that summarize results and personalize programs. "We specialised in rostering."',
   );
 });
+
+describe("US image overrides", () => {
+  const asset = (ref: string) => ({
+    _type: "image",
+    asset: { _type: "reference", _ref: ref },
+  });
+
+  it("reuses the global image with localized alt text when no override is set", () => {
+    const result = localizeUSPost({
+      title: "Rostering",
+      slug: "guide-to-rostering",
+      mainImage: { ...asset("image-global"), alt: "A roster on screen" },
+    });
+    expect(result.mainImage).toEqual({
+      ...asset("image-global"),
+      alt: "A schedule on screen",
+    });
+  });
+
+  it("replaces the artwork when a US main image is set", () => {
+    const result = localizeUSPost({
+      title: "Rostering",
+      slug: "guide-to-rostering",
+      mainImage: { ...asset("image-global"), alt: "A roster on screen" },
+      usLocalization: {
+        mainImage: { ...asset("image-us"), alt: "A US schedule" },
+      },
+    });
+    expect(result.mainImage).toEqual({
+      ...asset("image-us"),
+      alt: "A US schedule",
+    });
+  });
+
+  it("prefers a US Open Graph image and falls back to the global one", () => {
+    const global = { title: "T", slug: "guide-to-rostering", seo: { ogImage: asset("og-global") } };
+    expect(localizeUSPost({ ...global }).seo.ogImage).toEqual(asset("og-global"));
+    expect(
+      localizeUSPost({
+        ...global,
+        usLocalization: { ogImage: asset("og-us") },
+      }).seo.ogImage,
+    ).toEqual(asset("og-us"));
+  });
+});
+
+describe("US fields beside their global counterparts", () => {
+  it("reads the new top-level fields", () => {
+    const result = localizeUSPost({
+      title: "Rostering guide",
+      slug: "guide-to-rostering",
+      excerpt: "A roster guide",
+      seo: { metaTitle: "Rostering", metaDescription: "About rostering" },
+      usTitle: "The US headline",
+      usExcerpt: "The US summary",
+      usSeo: { metaTitle: "US meta title", metaDescription: "US meta desc" },
+    });
+    expect(result.title).toBe("The US headline");
+    expect(result.excerpt).toBe("The US summary");
+    expect(result.seo.metaTitle).toBe("US meta title");
+    expect(result.seo.metaDescription).toBe("US meta desc");
+  });
+
+  // 36 posts still hold their values in the old object; they must keep
+  // rendering without being migrated.
+  it("falls back to the legacy usLocalization object", () => {
+    const result = localizeUSPost({
+      title: "Rostering guide",
+      slug: "guide-to-rostering",
+      seo: { metaTitle: "Rostering" },
+      usLocalization: {
+        title: "Legacy US headline",
+        metaTitle: "Legacy US meta",
+      },
+    });
+    expect(result.title).toBe("Legacy US headline");
+    expect(result.seo.metaTitle).toBe("Legacy US meta");
+  });
+
+  it("prefers a new field over the legacy one for the same value", () => {
+    const result = localizeUSPost({
+      title: "Rostering guide",
+      slug: "guide-to-rostering",
+      usTitle: "New",
+      usLocalization: { title: "Legacy" },
+    });
+    expect(result.title).toBe("New");
+  });
+
+  it("still localizes automatically when every US field is empty", () => {
+    const result = localizeUSPost({
+      title: "Rostering guide",
+      slug: "guide-to-rostering",
+      seo: { metaTitle: "A rostering guide" },
+    });
+    expect(result.title).toBe("Scheduling guide");
+    expect(result.seo.metaTitle).toBe("A scheduling guide");
+  });
+})

@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 
 // Blog queries
 export const postsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "us") && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -10,6 +10,11 @@ export const postsQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image
@@ -23,15 +28,24 @@ export const postsQuery = groq`
 
 // Blog posts only (excluding case studies and newsroom)
 export const blogPostsOnlyQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && (!defined(categories) || (count(categories) == 0) || (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)))] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != $excludedSite) && !(_id in path("drafts.**")) && defined(slug.current) && (!defined(categories) || (count(categories) == 0) || (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current)))] | order(publishedAt desc) {
     _id,
     title,
     slug,
     excerpt,
-    usLocalization {title, excerpt, protectedTerms},
+    usLocalization {title, excerpt, protectedTerms, mainImage},
+    usTitle,
+    usExcerpt,
+    usMainImage,
+    usProtectedTerms,
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image
@@ -44,7 +58,7 @@ export const blogPostsOnlyQuery = groq`
 `;
 
 export const postQuery = groq`
-  *[_type == "post" && slug.current == $slug][0] {
+  *[_type == "post" && (!defined(sites) || sites != "us") && slug.current == $slug][0] {
     _id,
     title,
     slug,
@@ -53,6 +67,12 @@ export const postQuery = groq`
     publishedAt,
     body,
     author->{
+      name,
+      slug,
+      image,
+      bio
+    },
+    "authors": authors[]->{
       name,
       slug,
       image,
@@ -72,21 +92,39 @@ export const postQuery = groq`
 
 // Query specifically for blog posts - excludes case studies and newsroom
 export const blogPostQuery = groq`
-  *[_type == "post" && slug.current == $slug && (
+  *[_type == "post" && (!defined(sites) || sites != $excludedSite) && (usSlug.current == $usSlug || slug.current == $slug) && (
     !defined(categories) || 
     count(categories) == 0 || 
     (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
   )][0] {
     _id,
     _updatedAt,
+    sites,
+    usSlug,
     title,
     slug,
     excerpt,
     mainImage,
     publishedAt,
     body,
-    usLocalization,
+    usLocalization {protectedTerms, title, excerpt, body, metaTitle, metaDescription, mainImage, ogImage},
+    usTitle,
+    usExcerpt,
+    usBody,
+    usMainImage,
+    usProtectedTerms,
+    usSeo {
+      metaTitle,
+      metaDescription,
+      ogImage
+    },
     author->{
+      name,
+      slug,
+      image,
+      bio
+    },
+    "authors": authors[]->{
       name,
       slug,
       image,
@@ -105,12 +143,12 @@ export const blogPostQuery = groq`
 `;
 
 export const postPathsQuery = groq`
-  *[_type == "post" && defined(slug.current)][].slug.current
+  *[_type == "post" && (!defined(sites) || sites != "us") && defined(slug.current)][].slug.current
 `;
 
 // Query for blog post paths only - excludes case studies and newsroom
 export const blogPostPathsQuery = groq`
-  *[_type == "post" && defined(slug.current) && (
+  *[_type == "post" && (!defined(sites) || sites != $excludedSite) && defined(slug.current) && (
     !defined(categories) || 
     count(categories) == 0 || 
     (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
@@ -129,7 +167,7 @@ export const categoriesQuery = groq`
 
 // Related posts query
 export const relatedPostsQuery = groq`
-  *[_type == "post" && _id != $currentId && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...4] {
+  *[_type == "post" && (!defined(sites) || sites != "us") && _id != $currentId && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...4] {
     _id,
     title,
     slug,
@@ -137,6 +175,9 @@ export const relatedPostsQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name
+    },
+    "authors": authors[]->{
       name
     }
   }
@@ -203,7 +244,7 @@ export const authorWithPostsQuery = groq`
     bio,
     email,
     socialLinks,
-    "blogPosts": *[_type == "post" && references(^._id) && !(_id in path("drafts.**")) && (
+    "blogPosts": *[_type == "post" && (!defined(sites) || sites != "us") && references(^._id) && !(_id in path("drafts.**")) && (
       !defined(categories) ||
       count(categories) == 0 ||
       (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
@@ -219,7 +260,7 @@ export const authorWithPostsQuery = groq`
         slug
       }
     },
-    "caseStudies": *[_type == "post" && references(^._id) && !(_id in path("drafts.**")) && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
+    "caseStudies": *[_type == "post" && (!defined(sites) || sites != "us") && references(^._id) && !(_id in path("drafts.**")) && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
       _id,
       title,
       slug,
@@ -231,7 +272,7 @@ export const authorWithPostsQuery = groq`
         slug
       }
     },
-    "newsroom": *[_type == "post" && references(^._id) && !(_id in path("drafts.**")) && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+    "newsroom": *[_type == "post" && (!defined(sites) || sites != "us") && references(^._id) && !(_id in path("drafts.**")) && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
       _id,
       title,
       slug,

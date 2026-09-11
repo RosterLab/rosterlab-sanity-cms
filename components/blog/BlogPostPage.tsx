@@ -2,12 +2,14 @@ import { localizeUSPost } from "@/lib/localization/us-blog";
 import {
   localizeUSSlug,
   globalizeUSSlug,
-  usSlugRedirectTarget,
+  effectiveUSSlug,
 } from "@/lib/localization/us-slug";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import { notFound, permanentRedirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import AuthorLinks from "@/components/blog/AuthorLinks";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import {
   blogPostQuery,
@@ -36,14 +38,18 @@ interface BlogPostPageProps {
 }
 
 export async function generateStaticParams() {
-  const slugs = await client.fetch(blogPostPathsQuery);
+  const slugs = await client.fetch(blogPostPathsQuery, {
+    excludedSite: "us",
+  });
   return slugs.map((slug: string) => ({ slug }));
 }
 
 // US article URLs carry the localized slug, so the prerendered params differ
 // from the global route even though both read the same published document.
 export async function generateUSStaticParams() {
-  const slugs = await client.fetch(blogPostPathsQuery);
+  const slugs = await client.fetch(blogPostPathsQuery, {
+    excludedSite: "global",
+  });
   return slugs.map((slug: string) => ({ slug: localizeUSSlug(slug) }));
 }
 
@@ -62,6 +68,9 @@ export async function getBlogPostMetadata({
   );
   const sourcePost = await clientToUse.fetch(blogPostQuery, {
     slug: sourceSlug,
+    usSlug: requested,
+    // A US route must not serve a global-only article, and the reverse.
+    excludedSite: isUS ? "global" : "us",
   });
   const post = sourcePost && (isUS ? localizeUSPost(sourcePost) : sourcePost);
   const blogPath = isUS ? "/us/blog" : "/blog";
@@ -73,7 +82,8 @@ export async function getBlogPostMetadata({
   }
 
   const publishedSlug = post.slug?.current || sourceSlug;
-  const canonicalSlug = isUS ? localizeUSSlug(publishedSlug) : publishedSlug;
+  // The canonical is the URL the article publishes at, override included.
+  const canonicalSlug = isUS ? effectiveUSSlug(post) : publishedSlug;
   const baseUrl = "https://rosterlab.com";
 
   return withHreflang(
@@ -106,6 +116,8 @@ export async function getBlogPostMetadata({
       },
     },
     `${blogPath}/${canonicalSlug}`,
+    // A one-site article has no twin to advertise.
+    { singleMarket: post.sites === "global" || post.sites === "us" },
   );
 }
 
@@ -115,12 +127,6 @@ export default async function BlogPostPage({
 }: BlogPostPageProps) {
   const { slug } = await params;
   const requested = slug.trim();
-  // A visitor who follows the global slug under /us is sent to the localized
-  // URL so the article is never reachable at two US addresses.
-  if (isUS) {
-    const target = usSlugRedirectTarget(requested);
-    if (target) permanentRedirect(`/us/blog/${target}`);
-  }
   const sourceSlug = isUS ? globalizeUSSlug(requested) : requested;
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
@@ -129,6 +135,9 @@ export default async function BlogPostPage({
 
   const sourcePost = await clientToUse.fetch(blogPostQuery, {
     slug: sourceSlug,
+    usSlug: requested,
+    // A US route must not serve a global-only article, and the reverse.
+    excludedSite: isUS ? "global" : "us",
   });
   const post = sourcePost && (isUS ? localizeUSPost(sourcePost) : sourcePost);
   const blogPath = isUS ? "/us/blog" : "/blog";
@@ -137,8 +146,19 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  // The article's canonical US URL can be an editor-chosen slug, which only
+  // the fetched document knows. Anything else that resolves to it - including
+  // the pre-localization URL - redirects here once.
+  if (isUS) {
+    const canonicalUSSlug = effectiveUSSlug(sourcePost);
+    if (canonicalUSSlug && canonicalUSSlug !== requested)
+      permanentRedirect(`/us/blog/${canonicalUSSlug}`);
+  }
+
   // Fetch all blog posts for the related posts section
-  const sourcePosts = await clientToUse.fetch(blogPostsOnlyQuery);
+  const sourcePosts = await clientToUse.fetch(blogPostsOnlyQuery, {
+    excludedSite: isUS ? "global" : "us",
+  });
   const allPosts = isUS ? sourcePosts.map(localizeUSPost) : sourcePosts;
 
   // Calculate reading time
@@ -158,7 +178,8 @@ export default async function BlogPostPage({
   const readingTime = calculateReadingTime(post.body);
 
   const publishedSlug = post.slug?.current || sourceSlug;
-  const canonicalSlug = isUS ? localizeUSSlug(publishedSlug) : publishedSlug;
+  // The canonical is the URL the article publishes at, override included.
+  const canonicalSlug = isUS ? effectiveUSSlug(post) : publishedSlug;
   const baseUrl = "https://rosterlab.com";
   const articleUrl = `${baseUrl}${blogPath}/${canonicalSlug}`;
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
@@ -168,7 +189,7 @@ export default async function BlogPostPage({
       <BlogPostTracker
         title={post.title}
         slug={post.slug?.current || sourceSlug}
-        author={post.author?.name}
+        author={authorByline(postAuthors(post))}
         category={post.category?.title}
         publishedAt={post.publishedAt}
       />
@@ -176,7 +197,7 @@ export default async function BlogPostPage({
         inLanguage={isUS ? "en-US" : "en"}
         title={post.title}
         description={post.excerpt || ""}
-        author={{ name: post.author?.name || "RosterLab" }}
+        author={postAuthors(post).map((a) => ({ name: a.name || "RosterLab" }))}
         publishedTime={post.publishedAt}
         modifiedTime={post._updatedAt}
         image={imageUrl}
@@ -197,21 +218,13 @@ export default async function BlogPostPage({
 
                 {/* Author and Meta */}
                 <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-                  {post.author?.slug ? (
-                    <Link
-                      href={`/authors/${post.author.slug.current}`}
-                      className="font-medium hover:underline"
-                    >
-                      {post.author.name}
-                    </Link>
-                  ) : (
-                    <span className="font-medium">
-                      {post.author?.name || "RosterLab"}
-                    </span>
-                  )}
+                  <AuthorLinks post={post} className="font-medium" />
                   <span className="text-purple-200">•</span>
                   <time className="text-purple-200">
-                    {formatDateShort(post.publishedAt, isUS ? "en-US" : "en-GB")}
+                    {formatDateShort(
+                      post.publishedAt,
+                      isUS ? "en-US" : "en-GB",
+                    )}
                   </time>
                   <span className="text-purple-200">•</span>
                   <span className="text-purple-200">{readingTime}</span>

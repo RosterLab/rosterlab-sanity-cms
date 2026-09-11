@@ -1,11 +1,12 @@
 // Generated from app/newsroom/[slug]/page.tsx. Run npm run localize:resources; do not edit directly.
 
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
-import { localizeUSSlug, globalizeUSSlug, usSlugRedirectTarget } from "@/lib/localization/us-slug";
-
+import { localizeUSSlug, globalizeUSSlug, effectiveUSSlug } from "@/lib/localization/us-slug";
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
+import AuthorLinks from "@/components/blog/AuthorLinks";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
@@ -31,10 +32,18 @@ interface NewsroomPageProps {
 
 // Query for a single newsroom post
 const newsroomPostQuery = groq`
-  *[_type == "post" && slug.current == $slug && "newsroom" in categories[]->slug.current][0] {
+  *[_type == "post" && (!defined(sites) || sites != "global") && (usSlug.current == $usSlug || slug.current == $slug) && "newsroom" in categories[]->slug.current][0] {
     _id,
     _updatedAt,
-    usLocalization,
+    sites,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage, body },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usBody,
+    usMainImage,
+    usSeo { metaTitle, metaDescription, ogImage },
     title,
     slug,
     excerpt,
@@ -51,6 +60,11 @@ const newsroomPostQuery = groq`
       slug,
       image
     },
+    "authors": authors[]->{
+      name,
+      slug,
+      image
+    },
     categories[]->{
       title,
       slug
@@ -60,20 +74,30 @@ const newsroomPostQuery = groq`
 
 // Query for newsroom slugs
 const newsroomPathsQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current][].slug.current
+  *[_type == "post" && (!defined(sites) || sites != "global") && "newsroom" in categories[]->slug.current][]{"slug": slug.current, "usSlug": usSlug.current}
 `;
 
 // Query for all newsroom posts (for related posts)
 const allNewsroomQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "global") && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
-    usLocalization,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usMainImage,
     title,
     slug,
     excerpt,
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image
@@ -87,7 +111,9 @@ const allNewsroomQuery = groq`
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(newsroomPathsQuery);
-  return slugs.map((slug: string) => ({ slug: localizeUSSlug(slug) }));
+  return slugs.map((post: { slug: string; usSlug?: string }) => ({
+    slug: effectiveUSSlug(post),
+  }));
 }
 
 export async function generateMetadata({ params }: NewsroomPageProps) {
@@ -96,51 +122,62 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(newsroomPostQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult);
+  const post = await clientToUse.fetch(newsroomPostQuery, { slug: globalizeUSSlug(slug), usSlug: slug }).then(localizeUSResourceResult);
 
   if (!post) {
-    return resourceMetadata({
-      title: "Newsroom Post Not Found",
-    }, `/us/newsroom/${slug}`);
+    return resourceMetadata(
+      {
+        title: "Newsroom Post Not Found",
+      },
+      `/us/newsroom/${slug}`,
+    );
   }
 
   const baseUrl = "https://rosterlab.com";
 
   const metaDescription = post.seo?.metaDescription?.trim() || post.excerpt?.trim() || `Read ${post.title} on RosterLab.`;
 
-  return resourceMetadata({
-    title: post.seo?.metaTitle || post.title,
-    description: metaDescription,
-    alternates: {
-      canonical: `${baseUrl}/us/newsroom/${slug}`,
-    },
-    openGraph: {
+  return resourceMetadata(
+    {
       title: post.seo?.metaTitle || post.title,
       description: metaDescription,
-      type: "article",
-      url: `https://rosterlab.com/us/newsroom/${slug}`,
-      images: post.seo?.ogImage
-        ? [urlFor(post.seo.ogImage).url()]
-        : post.mainImage
-          ? [urlFor(post.mainImage).url()]
-          : undefined,
+      alternates: {
+        canonical: `${baseUrl}/us/newsroom/${slug}`,
+      },
+      openGraph: {
+        title: post.seo?.metaTitle || post.title,
+        description: metaDescription,
+        type: "article",
+        url: `https://rosterlab.com/us/newsroom/${slug}`,
+        images: post.seo?.ogImage
+          ? [urlFor(post.seo.ogImage).url()]
+          : post.mainImage
+            ? [urlFor(post.mainImage).url()]
+            : undefined,
+      },
     },
-  }, `/us/newsroom/${slug}`);
+    `/us/newsroom/${slug}`,
+    {
+      // A one-site article has no twin to advertise.
+      singleMarket: post.sites === "global" || post.sites === "us",
+    },
+  );
 }
 
 export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
   const { slug } = await params;
-  const redirectTarget = usSlugRedirectTarget(slug);
-  if (redirectTarget) permanentRedirect(`/us/newsroom/${redirectTarget}`);
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(newsroomPostQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult);
+  const post = await clientToUse.fetch(newsroomPostQuery, { slug: globalizeUSSlug(slug), usSlug: slug }).then(localizeUSResourceResult);
 
   if (!post) {
     notFound();
   }
+  const canonicalUSSlug = effectiveUSSlug(post);
+  if (canonicalUSSlug && canonicalUSSlug !== slug)
+    permanentRedirect(`/us/newsroom/${canonicalUSSlug}`);
 
   // Fetch all newsroom posts for the related posts section
   const allNewsroom = await clientToUse.fetch(allNewsroomQuery).then(localizeUSResourceResult);
@@ -170,14 +207,14 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
       <BlogPostTracker
         title={post.title}
         slug={post.slug?.current || slug}
-        author={post.author?.name}
+        author={authorByline(postAuthors(post))}
         category="Newsroom"
         publishedAt={post.publishedAt}
       />
       <ArticleSchema inLanguage="en-US"
         title={post.title}
         description={post.excerpt || ""}
-        author={{ name: post.author?.name || "RosterLab" }}
+        author={postAuthors(post).map((a) => ({ name: a.name || "RosterLab" }))}
         publishedTime={post.publishedAt}
         modifiedTime={post._updatedAt}
         image={imageUrl}
@@ -198,18 +235,7 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
 
                 {/* Author and Meta */}
                 <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-                  {post.author?.slug ? (
-                    <Link
-                      href={`/authors/${post.author.slug.current}`}
-                      className="font-medium hover:underline"
-                    >
-                      {post.author.name}
-                    </Link>
-                  ) : (
-                    <span className="font-medium">
-                      {post.author?.name || "RosterLab"}
-                    </span>
-                  )}
+                  <AuthorLinks post={post} className="font-medium" />
                   <span className="text-purple-200">•</span>
                   <time className="text-purple-200">
                     {formatDateShort(post.publishedAt, "en-US")}

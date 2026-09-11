@@ -4,6 +4,7 @@ import {
   localizeUSSlug,
   globalizeUSSlug,
   usSlugRedirectTarget,
+  effectiveUSSlug,
   US_SLUG_SOURCES,
 } from "../us-slug";
 
@@ -12,14 +13,16 @@ describe("localizeUSSlug", () => {
     expect(localizeUSSlug("rostering-basics")).toBe("scheduling-basics");
     expect(localizeUSSlug("rotating-rosters")).toBe("rotating-schedules");
     expect(localizeUSSlug("guide-to-rostering")).toBe("guide-to-scheduling");
-    expect(localizeUSSlug("should-your-next-staff-roster-be-built-with-ai")).toBe(
-      "should-your-next-staff-schedule-be-built-with-ai",
-    );
+    expect(
+      localizeUSSlug("should-your-next-staff-roster-be-built-with-ai"),
+    ).toBe("should-your-next-staff-schedule-be-built-with-ai");
   });
 
   it("never rewrites the RosterLab brand name", () => {
     expect(
-      localizeUSSlug("hospital-in-perth-partners-with-rosterlab-for-smarter-rosters"),
+      localizeUSSlug(
+        "hospital-in-perth-partners-with-rosterlab-for-smarter-rosters",
+      ),
     ).toBe("hospital-in-perth-partners-with-rosterlab-for-smarter-schedules");
     expect(
       localizeUSSlug(
@@ -110,18 +113,65 @@ describe("usSlugRedirectTarget", () => {
   });
 });
 
-// Each US article route must send the global slug to the localized URL. Missing
-// the call is invisible at runtime - the page renders a duplicate that
-// self-canonicalizes - so assert the wiring rather than the behaviour.
-describe("US article routes redirect the pre-localization slug", () => {
+// Each US article route must send every other URL that resolves to an article
+// to the one it publishes at. The redirect runs after the lookup, because an
+// editor-chosen usSlug is only known from the fetched document - missing it
+// leaves the article reachable at two US addresses, which is how the
+// duplicate-URL defect happened the first time.
+describe("US article routes redirect to the canonical US URL", () => {
   it.each([
     ["components/blog/BlogPostPage.tsx", "/us/blog/"],
     ["app/us/newsroom/[slug]/page.tsx", "/us/newsroom/"],
     ["app/us/case-studies/[slug]/page.tsx", "/us/case-studies/"],
   ])("%s redirects to %s", (route, prefix) => {
     const source = readFileSync(join(__dirname, "../../..", route), "utf8");
-    expect(source).toContain("usSlugRedirectTarget(");
+    expect(source).toContain("effectiveUSSlug(");
     expect(source).toContain("permanentRedirect(");
     expect(source).toContain("`" + prefix + "${");
+    // The redirect must sit after the lookup: before it, the override is
+    // unknown and the article would 404 at its previous URL.
+    expect(source.indexOf("permanentRedirect(")).toBeGreaterThan(
+      source.indexOf("notFound()"),
+    );
+  });
+
+  it.each([
+    ["app/us/newsroom/[slug]/page.tsx"],
+    ["app/us/case-studies/[slug]/page.tsx"],
+  ])("%s resolves an override or the derived slug", (route) => {
+    const source = readFileSync(join(__dirname, "../../..", route), "utf8");
+    expect(source).toContain(
+      "usSlug.current == $usSlug || slug.current == $slug",
+    );
+  });
+});
+
+describe("effectiveUSSlug", () => {
+  it("derives from the global slug when no override is set", () => {
+    expect(effectiveUSSlug({ slug: { current: "rostering-basics" } })).toBe(
+      "scheduling-basics",
+    );
+  });
+
+  it("uses an editor's override verbatim", () => {
+    expect(
+      effectiveUSSlug({
+        slug: { current: "2-2-3-panama-shift-scheduling" },
+        usSlug: { current: "2-2-3-schedule" },
+      }),
+    ).toBe("2-2-3-schedule");
+  });
+
+  it("accepts the bare strings listing projections return", () => {
+    expect(effectiveUSSlug({ slug: "rotating-rosters" })).toBe(
+      "rotating-schedules",
+    );
+    expect(
+      effectiveUSSlug({ slug: "anything", usSlug: "chosen-us-slug" }),
+    ).toBe("chosen-us-slug");
+  });
+
+  it("is empty for a post with no slug rather than throwing", () => {
+    expect(effectiveUSSlug({})).toBe("");
   });
 });

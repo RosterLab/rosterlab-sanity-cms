@@ -313,7 +313,7 @@ export default function SchedgeGame({
               <p>
                 <ol>
                   <li>Create 7 employees</li>
-                  <li>Create 5 shifts, labelled A-E</li>
+                  <li>Create 5 shifts, labeled A-E</li>
                   <li>
                     Create the following rules: max days in a row, forbid
                     relevant shift changes, max shifts per week for each shift

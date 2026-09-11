@@ -90,3 +90,18 @@ export function usSlugRedirectTarget(requested: string): string | undefined {
     ? localized
     : undefined;
 }
+
+// The US slug an article actually publishes at: an editor's override when set,
+// otherwise the derived one. Every consumer - routing, redirect, sitemap and
+// hreflang - resolves through here so they cannot disagree about the URL.
+export function effectiveUSSlug(post: {
+  slug?: { current?: string } | string | null;
+  usSlug?: { current?: string } | string | null;
+}): string {
+  const override =
+    typeof post.usSlug === "string" ? post.usSlug : post.usSlug?.current;
+  if (override) return override;
+  const global =
+    typeof post.slug === "string" ? post.slug : (post.slug?.current ?? "");
+  return localizeUSSlug(global);
+}

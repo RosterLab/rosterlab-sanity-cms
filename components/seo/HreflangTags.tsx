@@ -154,7 +154,8 @@ export const LOCALIZED_PAGES = new Set([
 // US article URLs localize the published slug (rostering-basics becomes
 // scheduling-basics). Pagination keeps the same route structure in both
 // regions; unknown resource types remain global.
-const ARTICLE_PATH = /^\/(blog|case-studies|newsroom)\/(?!page(?:\/|$))([^/]+)$/;
+const ARTICLE_PATH =
+  /^\/(blog|case-studies|newsroom)\/(?!page(?:\/|$))([^/]+)$/;
 const PAGINATION_PATH = /^\/(?:blog|case-studies|newsroom)\/page\/[1-9]\d*$/;
 
 export function getUSPath(pathname: string): string | undefined {
@@ -174,9 +175,7 @@ export function getGlobalPath(pathname: string): string | undefined {
   const rest = pathname.slice(3);
   if (PAGINATION_PATH.test(rest)) return rest;
   const article = ARTICLE_PATH.exec(rest);
-  return article
-    ? `/${article[1]}/${globalizeUSSlug(article[2])}`
-    : undefined;
+  return article ? `/${article[1]}/${globalizeUSSlug(article[2])}` : undefined;
 }
 
 // Helper function to generate hreflang metadata
@@ -249,14 +248,22 @@ export function generateHreflangMetadata(pathname: string) {
 }
 
 // Helper to merge hreflang metadata into existing metadata
-export function withHreflang(metadata: any, pathname: string) {
+// `singleMarket` is for articles published to one site only: there is no twin
+// to point at, and advertising an alternate that 404s is worse than none. The
+// page keeps its self-canonical.
+export function withHreflang(
+  metadata: any,
+  pathname: string,
+  options: { singleMarket?: boolean } = {},
+) {
   const noindex =
     typeof metadata.robots === "string"
       ? /\bnoindex\b/i.test(metadata.robots)
       : metadata.robots?.index === false;
-  const hreflangData = noindex
-    ? { alternates: { languages: {} } }
-    : generateHreflangMetadata(pathname);
+  const hreflangData =
+    noindex || options.singleMarket
+      ? { alternates: { languages: {} } }
+      : generateHreflangMetadata(pathname);
 
   return {
     ...metadata,

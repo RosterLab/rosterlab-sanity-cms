@@ -1,12 +1,13 @@
 // Generated from app/case-studies/[slug]/page.tsx. Run npm run localize:resources; do not edit directly.
 
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
-import { localizeUSSlug, globalizeUSSlug, usSlugRedirectTarget } from "@/lib/localization/us-slug";
-
+import { localizeUSSlug, globalizeUSSlug, effectiveUSSlug } from "@/lib/localization/us-slug";
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound, permanentRedirect } from "next/navigation";
 import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import Link from "next/link";
+import AuthorLinks from "@/components/blog/AuthorLinks";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
@@ -35,10 +36,18 @@ interface CaseStudyPageProps {
 
 // Query for a single case study post
 const caseStudyQuery = groq`
-  *[_type == "post" && slug.current == $slug && "case-studies" in categories[]->slug.current][0] {
+  *[_type == "post" && (!defined(sites) || sites != "global") && (usSlug.current == $usSlug || slug.current == $slug) && "case-studies" in categories[]->slug.current][0] {
     _id,
     _updatedAt,
-    usLocalization,
+    sites,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage, body },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usBody,
+    usMainImage,
+    usSeo { metaTitle, metaDescription, ogImage },
     title,
     slug,
     excerpt,
@@ -55,6 +64,11 @@ const caseStudyQuery = groq`
       slug,
       image
     },
+    "authors": authors[]->{
+      name,
+      slug,
+      image
+    },
     categories[]->{
       title,
       slug
@@ -64,20 +78,30 @@ const caseStudyQuery = groq`
 
 // Query for case study slugs
 const caseStudyPathsQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current][].slug.current
+  *[_type == "post" && (!defined(sites) || sites != "global") && "case-studies" in categories[]->slug.current][]{"slug": slug.current, "usSlug": usSlug.current}
 `;
 
 // Query for all case studies (for related posts)
 const allCaseStudiesQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "global") && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
-    usLocalization,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usMainImage,
     title,
     slug,
     excerpt,
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image
@@ -91,7 +115,9 @@ const allCaseStudiesQuery = groq`
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(caseStudyPathsQuery);
-  return slugs.map((slug: string) => ({ slug: localizeUSSlug(slug) }));
+  return slugs.map((post: { slug: string; usSlug?: string }) => ({
+    slug: effectiveUSSlug(post),
+  }));
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps) {
@@ -100,42 +126,50 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const post = await clientToUse.fetch(caseStudyQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult);
+  const post = await clientToUse.fetch(caseStudyQuery, { slug: globalizeUSSlug(slug), usSlug: slug }).then(localizeUSResourceResult);
 
   if (!post) {
-    return resourceMetadata({
-      title: "Case Study Not Found",
-    }, `/us/case-studies/${slug}`);
+    return resourceMetadata(
+      {
+        title: "Case Study Not Found",
+      },
+      `/us/case-studies/${slug}`,
+    );
   }
 
   const baseUrl = "https://rosterlab.com";
 
   const metaDescription = post.seo?.metaDescription?.trim() || post.excerpt?.trim() || `Read ${post.title} on RosterLab.`;
 
-  return resourceMetadata({
-    title: post.seo?.metaTitle || post.title,
-    description: metaDescription,
-    alternates: {
-      canonical: `${baseUrl}/us/case-studies/${slug}`,
-    },
-    openGraph: {
+  return resourceMetadata(
+    {
       title: post.seo?.metaTitle || post.title,
       description: metaDescription,
-      type: "article",
-      url: `https://rosterlab.com/us/case-studies/${slug}`,
-      images: post.seo?.ogImage
-        ? [urlFor(post.seo.ogImage).url()]
-        : post.mainImage
-          ? [urlFor(post.mainImage).url()]
-          : undefined,
+      alternates: {
+        canonical: `${baseUrl}/us/case-studies/${slug}`,
+      },
+      openGraph: {
+        title: post.seo?.metaTitle || post.title,
+        description: metaDescription,
+        type: "article",
+        url: `https://rosterlab.com/us/case-studies/${slug}`,
+        images: post.seo?.ogImage
+          ? [urlFor(post.seo.ogImage).url()]
+          : post.mainImage
+            ? [urlFor(post.mainImage).url()]
+            : undefined,
+      },
     },
-  }, `/us/case-studies/${slug}`);
+    `/us/case-studies/${slug}`,
+    {
+      // A one-site article has no twin to advertise.
+      singleMarket: post.sites === "global" || post.sites === "us",
+    },
+  );
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const redirectTarget = usSlugRedirectTarget(slug);
-  if (redirectTarget) permanentRedirect(`/us/case-studies/${redirectTarget}`);
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
@@ -143,13 +177,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   // Fetch post and related case studies in parallel
   const [post, allCaseStudies] = await Promise.all([
-    clientToUse.fetch(caseStudyQuery, { slug: globalizeUSSlug(slug) }).then(localizeUSResourceResult),
+    clientToUse.fetch(caseStudyQuery, { slug: globalizeUSSlug(slug), usSlug: slug }).then(localizeUSResourceResult),
     clientToUse.fetch(allCaseStudiesQuery).then(localizeUSResourceResult),
   ]);
 
   if (!post) {
     notFound();
   }
+  const canonicalUSSlug = effectiveUSSlug(post);
+  if (canonicalUSSlug && canonicalUSSlug !== slug)
+    permanentRedirect(`/us/case-studies/${canonicalUSSlug}`);
 
   // Calculate reading time
   const calculateReadingTime = (text: any[]) => {
@@ -174,197 +211,193 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   return (
     <CaseStudyGateCheck slug={slug}>
       <article>
-      <BlogPostTracker
-        title={post.title}
-        slug={post.slug?.current || slug}
-        author={post.author?.name}
-        category="Case Studies"
-        categories={post.categories?.map((c: any) => ({
-          slug: c.slug?.current || c.slug,
-          title: c.title,
-        }))}
-        publishedAt={post.publishedAt}
-      />
-      <ArticleSchema inLanguage="en-US"
-        title={post.title}
-        description={post.excerpt || ""}
-        author={{ name: post.author?.name || "RosterLab" }}
-        publishedTime={post.publishedAt}
-        modifiedTime={post._updatedAt}
-        image={imageUrl}
-        url={articleUrl}
-      />
-      {/* Purple Gradient Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        <Container className="relative">
-          <div className="py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left side - Title and Meta */}
-              <div className="lg:col-span-6">
-                {/* Title */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
-                  {post.title}
-                </h1>
+        <BlogPostTracker
+          title={post.title}
+          slug={post.slug?.current || slug}
+          author={authorByline(postAuthors(post))}
+          category="Case Studies"
+          categories={post.categories?.map((c: any) => ({
+            slug: c.slug?.current || c.slug,
+            title: c.title,
+          }))}
+          publishedAt={post.publishedAt}
+        />
+        <ArticleSchema inLanguage="en-US"
+          title={post.title}
+          description={post.excerpt || ""}
+          author={postAuthors(post).map((a) => ({
+            name: a.name || "RosterLab",
+          }))}
+          publishedTime={post.publishedAt}
+          modifiedTime={post._updatedAt}
+          image={imageUrl}
+          url={articleUrl}
+        />
+        {/* Purple Gradient Header */}
+        <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
+          <div className="absolute inset-0 bg-black/10" />
+          <Container className="relative">
+            <div className="py-20">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Left side - Title and Meta */}
+                <div className="lg:col-span-6">
+                  {/* Title */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+                    {post.title}
+                  </h1>
 
-                {/* Author and Meta */}
-                <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-                  {post.author?.slug ? (
-                    <Link
-                      href={`/authors/${post.author.slug.current}`}
-                      className="font-medium hover:underline"
-                    >
-                      {post.author.name}
-                    </Link>
-                  ) : (
-                    <span className="font-medium">
-                      {post.author?.name || "RosterLab"}
-                    </span>
-                  )}
-                  <span className="text-purple-200">•</span>
-                  <time className="text-purple-200">
-                    {formatDateShort(post.publishedAt, "en-US")}
-                  </time>
-                  {post._updatedAt &&
-                    shouldShowLastUpdated(
-                      post.publishedAt,
-                      post._updatedAt,
-                    ) && (
-                      <>
-                        <span className="text-purple-200">•</span>
-                        <time className="text-purple-200">
-                          Last Updated: {formatDateShort(post._updatedAt, "en-US")}
-                        </time>
-                      </>
-                    )}
-                  <span className="text-purple-200">•</span>
-                  <span className="text-purple-200">{readingTime}</span>
-                </div>
-              </div>
-
-              {/* Right side - Hero Image */}
-              {post.mainImage && (
-                <div className="lg:col-span-6 relative hidden lg:block">
-                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
-                    <Image
-                      src={urlFor(post.mainImage).width(700).height(350).url()}
-                      alt={post.title}
-                      width={700}
-                      height={350}
-                      className="w-full h-auto object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                  {/* Author and Meta */}
+                  <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
+                    <AuthorLinks post={post} className="font-medium" />
+                    <span className="text-purple-200">•</span>
+                    <time className="text-purple-200">
+                      {formatDateShort(post.publishedAt, "en-US")}
+                    </time>
+                    {post._updatedAt &&
+                      shouldShowLastUpdated(
+                        post.publishedAt,
+                        post._updatedAt,
+                      ) && (
+                        <>
+                          <span className="text-purple-200">•</span>
+                          <time className="text-purple-200">
+                            Last Updated: {formatDateShort(post._updatedAt, "en-US")}
+                          </time>
+                        </>
+                      )}
+                    <span className="text-purple-200">•</span>
+                    <span className="text-purple-200">{readingTime}</span>
                   </div>
                 </div>
-              )}
+
+                {/* Right side - Hero Image */}
+                {post.mainImage && (
+                  <div className="lg:col-span-6 relative hidden lg:block">
+                    <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                      <Image
+                        src={urlFor(post.mainImage)
+                          .width(700)
+                          .height(350)
+                          .url()}
+                        alt={post.title}
+                        width={700}
+                        height={350}
+                        className="w-full h-auto object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </Container>
+          </Container>
 
-        {/* Decorative circles */}
-        <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
-      </div>
+          {/* Decorative circles */}
+          <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
+        </div>
 
-      {/* Breadcrumb below header - Hidden on mobile and tablet */}
-      <div className="bg-gray-50 border-b hidden lg:block">
-        <Container>
-          <div className="py-2">
-            <Breadcrumb
-              items={[
-                { label: "Home", href: "/us" },
-                { label: "Case Studies", href: "/us/case-studies" },
-                { label: post.title },
-              ]}
-            />
-          </div>
-        </Container>
-      </div>
+        {/* Breadcrumb below header - Hidden on mobile and tablet */}
+        <div className="bg-gray-50 border-b hidden lg:block">
+          <Container>
+            <div className="py-2">
+              <Breadcrumb
+                items={[
+                  { label: "Home", href: "/us" },
+                  { label: "Case Studies", href: "/us/case-studies" },
+                  { label: post.title },
+                ]}
+              />
+            </div>
+          </Container>
+        </div>
 
-      {/* Main Content Area */}
-      <div className="bg-white">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12">
-            {/* Left Sidebar - Table of Contents */}
-            <aside className="lg:col-span-3">
-              <div className="lg:sticky lg:top-8">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">
-                    TABLE OF CONTENTS
+        {/* Main Content Area */}
+        <div className="bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12">
+              {/* Left Sidebar - Table of Contents */}
+              <aside className="lg:col-span-3">
+                <div className="lg:sticky lg:top-8">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">
+                      TABLE OF CONTENTS
+                    </h3>
+                    <TableOfContents />
+                  </div>
+                </div>
+              </aside>
+
+              {/* Main Article Content */}
+              <main className="min-w-0 lg:col-span-6 [overflow-wrap:anywhere]">
+                {/* Article Body */}
+                <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
+                  <PortableText value={post.body} />
+                </div>
+
+                {/* Related Posts */}
+                {allCaseStudies.length > 0 && (
+                  <RelatedPosts basePath="/us/blog"
+                    posts={allCaseStudies}
+                    currentPostId={post._id}
+                    currentPostDate={post.publishedAt}
+                  />
+                )}
+
+                {/* Bottom CTA */}
+                <div
+                  className="mt-16 p-8 text-white rounded-lg text-center"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  }}
+                >
+                  <h3 className="text-2xl font-bold mb-4">
+                    Ready to Transform Your Workforce Management?
                   </h3>
-                  <TableOfContents />
+                  <p className="mb-6 text-lg opacity-90">
+                    Join thousands using RosterLab to streamline scheduling.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link
+                      href="/us/book-a-demo"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                    >
+                      <DemoCtaLabel href="/us/book-a-demo">
+                        Book a Demo
+                      </DemoCtaLabel>
+                    </Link>
+                    <Link
+                      href="/us/pricing"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
+                    >
+                      Start Free Trial
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </aside>
+              </main>
 
-            {/* Main Article Content */}
-            <main className="min-w-0 lg:col-span-6 [overflow-wrap:anywhere]">
-              {/* Article Body */}
-              <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
-                <PortableText value={post.body} />
-              </div>
+              {/* Right Sidebar - Newsletter */}
+              <aside className="lg:col-span-3">
+                <div className="lg:sticky lg:top-8 space-y-6">
+                  {/* Newsletter Signup */}
+                  <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                      Subscribe for more insights and product updates
+                    </h3>
+                    <NewsletterFormWrapper />
+                  </div>
 
-              {/* Related Posts */}
-              {allCaseStudies.length > 0 && (
-                <RelatedPosts basePath="/us/blog"
-                  posts={allCaseStudies}
-                  currentPostId={post._id}
-                  currentPostDate={post.publishedAt}
-                />
-              )}
-
-              {/* Bottom CTA */}
-              <div
-                className="mt-16 p-8 text-white rounded-lg text-center"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                <h3 className="text-2xl font-bold mb-4">
-                  Ready to Transform Your Workforce Management?
-                </h3>
-                <p className="mb-6 text-lg opacity-90">
-                  Join thousands using RosterLab to streamline scheduling.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/us/book-a-demo"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
-                  >
-                    <DemoCtaLabel href="/us/book-a-demo">Book a Demo</DemoCtaLabel>
-                  </Link>
-                  <Link
-                    href="/us/pricing"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
-                  >
-                    Start Free Trial
-                  </Link>
+                  {/* Share Buttons */}
+                  <div className="hidden lg:block bg-gray-50 p-6 rounded-lg">
+                    <ShareButtons title={post.title} />
+                  </div>
                 </div>
-              </div>
-            </main>
-
-            {/* Right Sidebar - Newsletter */}
-            <aside className="lg:col-span-3">
-              <div className="lg:sticky lg:top-8 space-y-6">
-                {/* Newsletter Signup */}
-                <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Subscribe for more insights and product updates
-                  </h3>
-                  <NewsletterFormWrapper />
-                </div>
-
-                {/* Share Buttons */}
-                <div className="hidden lg:block bg-gray-50 p-6 rounded-lg">
-                  <ShareButtons title={post.title} />
-                </div>
-              </div>
-            </aside>
-          </div>
-        </Container>
-      </div>
-    </article>
+              </aside>
+            </div>
+          </Container>
+        </div>
+      </article>
     </CaseStudyGateCheck>
   );
 }

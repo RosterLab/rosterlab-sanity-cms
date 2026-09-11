@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/utils";
@@ -172,7 +173,7 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
                   />
                 </div>
               )}
-              <span>{post.author?.name || "Unknown Author"}</span>
+              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
             </Link>
           ) : (
             <div className="flex items-center space-x-2">
@@ -186,7 +187,7 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
                   />
                 </div>
               )}
-              <span>{post.author?.name || "Unknown Author"}</span>
+              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
             </div>
           )}
           <time>{formatDate(post.publishedAt)}</time>

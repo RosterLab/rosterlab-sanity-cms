@@ -117,27 +117,31 @@ const articleRoutes = [
 // needs no per-route knowledge.
 function injectSlugRedirect(generated: string, file: string): string {
   const section = `/us/${path.basename(path.dirname(path.dirname(file)))}`;
-  const pageEntry =
-    /(export default async function \w+\([\s\S]*?\) \{\n)(  const \{ slug \} = await params;\n)/;
+  // After the lookup, not before: the article's canonical US URL can be an
+  // editor-chosen slug, which only the fetched document knows. Anything else
+  // that resolves to the article - including the pre-localization URL -
+  // redirects here once, so there is never a chain or a second live URL.
+  const notFoundBlock = "  if (!post) {\n    notFound();\n  }\n";
   const slugImport =
-    'import { localizeUSSlug, globalizeUSSlug } from "@/lib/localization/us-slug";';
+    'import { localizeUSSlug, globalizeUSSlug, effectiveUSSlug } from "@/lib/localization/us-slug";';
   const navigationImport = 'import { notFound } from "next/navigation";';
   if (
-    !pageEntry.test(generated) ||
+    !generated.includes(notFoundBlock) ||
     !generated.includes(slugImport) ||
     !generated.includes(navigationImport)
   )
     throw new Error(`Cannot inject the US slug redirect into ${file}`);
   return generated
     .replace(
-      pageEntry,
-      (_match, signature, slugLine) =>
-        `${signature}${slugLine}  const redirectTarget = usSlugRedirectTarget(slug);\n` +
-        `  if (redirectTarget) permanentRedirect(\`${section}/\${redirectTarget}\`);\n`,
+      notFoundBlock,
+      notFoundBlock +
+        `  const canonicalUSSlug = effectiveUSSlug(post);\n` +
+        `  if (canonicalUSSlug && canonicalUSSlug !== slug)\n` +
+        `    permanentRedirect(\`${section}/\${canonicalUSSlug}\`);\n`,
     )
     .replace(
       slugImport,
-      'import { localizeUSSlug, globalizeUSSlug, usSlugRedirectTarget } from "@/lib/localization/us-slug";',
+      'import { localizeUSSlug, globalizeUSSlug, effectiveUSSlug } from "@/lib/localization/us-slug";',
     )
     .replace(
       navigationImport,
@@ -217,11 +221,13 @@ function transform(
         call.expression.name.text === "fetch";
       if (inStaticParams || isFetchArgument) {
         needsSlug = true;
+        // A lookup matches an editor's usSlug first and the derived slug
+        // otherwise, so an overridden URL resolves without a reverse map.
         edit(
           node,
           inStaticParams
-            ? "slug: localizeUSSlug(slug)"
-            : "slug: globalizeUSSlug(slug)",
+            ? "slug: effectiveUSSlug(post)"
+            : "slug: globalizeUSSlug(slug), usSlug: slug",
         );
       }
     }
@@ -315,9 +321,53 @@ function transform(
         node.tag.getText(ast) === "groq" &&
         node.template.getText(ast).includes('_type == "post"')
       ) {
-        const query = node.template
+        // Mirror only the US counterparts of the global fields this query
+        // already selects. A card listing asks for title/excerpt/image, so it
+        // must not be made to fetch whole US article bodies.
+        // A US route must exclude global-only articles, exactly as the global
+        // route excludes US-only ones. Flipping the predicate keeps the two
+        // filters in step without the generated file being edited by hand.
+        const source = node.template
           .getText(ast)
-          .replace(/(\n\s*)title,/, "$1usLocalization,$1title,");
+          .replaceAll('sites != "us"', 'sites != "global"');
+        const selects = (field: string) =>
+          new RegExp(`\\n\\s*${field}[,\\s{]`).test(source);
+        // A paths query returns bare slug strings globally; the US build needs
+        // the override too, so it can emit the URL the article publishes at.
+        const usFields = ["usProtectedTerms", "usSlug"];
+        if (selects("title")) usFields.push("usTitle");
+        if (selects("excerpt")) usFields.push("usExcerpt");
+        if (selects("body")) usFields.push("usBody");
+        if (selects("mainImage")) usFields.push("usMainImage");
+        if (selects("seo"))
+          usFields.push("usSeo { metaTitle, metaDescription, ogImage }");
+        // The legacy object is projected rather than taken wholesale for the
+        // same reason: it carries a body too.
+        const legacyFields = [
+          "protectedTerms",
+          "title",
+          "excerpt",
+          "metaTitle",
+          "metaDescription",
+          "mainImage",
+          "ogImage",
+          ...(selects("body") ? ["body"] : []),
+        ].join(", ");
+        // A paths query returns bare slug strings for the global build; the US
+        // build needs the override too, so generateStaticParams can prerender
+        // the URL the article actually publishes at.
+        const withPaths = source.replace(
+          /\[\]\.slug\.current/g,
+          '[]{"slug": slug.current, "usSlug": usSlug.current}',
+        );
+        const withSlugMatch = withPaths.replace(
+          /slug\.current == \$slug/g,
+          '(usSlug.current == $usSlug || slug.current == $slug)',
+        );
+        const query = withSlugMatch.replace(
+          /(\n\s*)title,/,
+          `$1usLocalization { ${legacyFields} },$1${usFields.join(",$1")},$1title,`,
+        );
         if (query !== node.template.getText(ast)) edit(node.template, query);
       }
       return; // Never translate GROQ/SQL, slugs or query identifiers.
@@ -425,7 +475,7 @@ function transform(
       ? 'import { localizeUSResourceResult } from "@/lib/localization/us-resources";'
       : "",
     needsSlug
-      ? 'import { localizeUSSlug, globalizeUSSlug } from "@/lib/localization/us-slug";'
+      ? 'import { localizeUSSlug, globalizeUSSlug, effectiveUSSlug } from "@/lib/localization/us-slug";'
       : "",
   ]
     .filter(Boolean)
@@ -460,11 +510,17 @@ for (const file of sources) {
     'process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com"',
     '"https://rosterlab.com"',
   );
+  // generateStaticParams maps over the {slug, usSlug} pairs the paths query
+  // now returns, so a prerendered path is the URL the article publishes at.
+  generated = generated.replaceAll(
+    "slugs.map((slug: string) => ({ slug: effectiveUSSlug(post) }))",
+    "slugs.map((post: { slug: string; usSlug?: string }) => ({\n    slug: effectiveUSSlug(post),\n  }))",
+  );
   generated = generated.replaceAll("<ArticleSchema", '<ArticleSchema inLanguage="en-US"');
   if (articleRoutes.includes(file)) {
     // Preserve editorial descriptions: Google has no fixed 155-character limit.
     // The global source's legacy padding/clipping must not override US CMS copy.
-    const descriptionLogic = /  \/\/ Ensure meta description[\s\S]*?(?=  return resourceMetadata\(\{)/;
+    const descriptionLogic = /  \/\/ Ensure meta description[\s\S]*?(?=  return resourceMetadata\(\s*\{)/;
     if (!descriptionLogic.test(generated)) throw new Error(`Missing article metadata marker: ${file}`);
     generated = generated.replace(descriptionLogic,
       '  const metaDescription = post.seo?.metaDescription?.trim() || post.excerpt?.trim() || `Read ${post.title} on RosterLab.`;\n\n');

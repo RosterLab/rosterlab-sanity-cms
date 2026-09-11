@@ -1,7 +1,8 @@
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import AuthorLinks from "@/components/blog/AuthorLinks";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
@@ -27,9 +28,10 @@ interface NewsroomPageProps {
 
 // Query for a single newsroom post
 const newsroomPostQuery = groq`
-  *[_type == "post" && slug.current == $slug && "newsroom" in categories[]->slug.current][0] {
+  *[_type == "post" && (!defined(sites) || sites != "us") && slug.current == $slug && "newsroom" in categories[]->slug.current][0] {
     _id,
     _updatedAt,
+    sites,
     title,
     slug,
     excerpt,
@@ -46,6 +48,11 @@ const newsroomPostQuery = groq`
       slug,
       image
     },
+    "authors": authors[]->{
+      name,
+      slug,
+      image
+    },
     categories[]->{
       title,
       slug
@@ -55,12 +62,12 @@ const newsroomPostQuery = groq`
 
 // Query for newsroom slugs
 const newsroomPathsQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current][].slug.current
+  *[_type == "post" && (!defined(sites) || sites != "us") && "newsroom" in categories[]->slug.current][].slug.current
 `;
 
 // Query for all newsroom posts (for related posts)
 const allNewsroomQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -68,6 +75,11 @@ const allNewsroomQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image
@@ -93,9 +105,12 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
   const post = await clientToUse.fetch(newsroomPostQuery, { slug });
 
   if (!post) {
-    return resourceMetadata({
-      title: "Newsroom Post Not Found",
-    }, `/newsroom/${slug}`);
+    return resourceMetadata(
+      {
+        title: "Newsroom Post Not Found",
+      },
+      `/newsroom/${slug}`,
+    );
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
@@ -119,24 +134,31 @@ export async function generateMetadata({ params }: NewsroomPageProps) {
     metaDescription = metaDescription.slice(0, 152) + "...";
   }
 
-  return resourceMetadata({
-    title: post.seo?.metaTitle || post.title,
-    description: metaDescription,
-    alternates: {
-      canonical: `${baseUrl}/newsroom/${slug}`,
-    },
-    openGraph: {
+  return resourceMetadata(
+    {
       title: post.seo?.metaTitle || post.title,
       description: metaDescription,
-      type: "article",
-      url: `https://rosterlab.com/newsroom/${slug}`,
-      images: post.seo?.ogImage
-        ? [urlFor(post.seo.ogImage).url()]
-        : post.mainImage
-          ? [urlFor(post.mainImage).url()]
-          : undefined,
+      alternates: {
+        canonical: `${baseUrl}/newsroom/${slug}`,
+      },
+      openGraph: {
+        title: post.seo?.metaTitle || post.title,
+        description: metaDescription,
+        type: "article",
+        url: `https://rosterlab.com/newsroom/${slug}`,
+        images: post.seo?.ogImage
+          ? [urlFor(post.seo.ogImage).url()]
+          : post.mainImage
+            ? [urlFor(post.mainImage).url()]
+            : undefined,
+      },
     },
-  }, `/newsroom/${slug}`);
+    `/newsroom/${slug}`,
+    {
+      // A one-site article has no twin to advertise.
+      singleMarket: post.sites === "global" || post.sites === "us",
+    },
+  );
 }
 
 export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
@@ -179,14 +201,14 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
       <BlogPostTracker
         title={post.title}
         slug={post.slug?.current || slug}
-        author={post.author?.name}
+        author={authorByline(postAuthors(post))}
         category="Newsroom"
         publishedAt={post.publishedAt}
       />
       <ArticleSchema
         title={post.title}
         description={post.excerpt || ""}
-        author={{ name: post.author?.name || "RosterLab" }}
+        author={postAuthors(post).map((a) => ({ name: a.name || "RosterLab" }))}
         publishedTime={post.publishedAt}
         modifiedTime={post._updatedAt}
         image={imageUrl}
@@ -207,18 +229,7 @@ export default async function NewsroomPostPage({ params }: NewsroomPageProps) {
 
                 {/* Author and Meta */}
                 <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-                  {post.author?.slug ? (
-                    <Link
-                      href={`/authors/${post.author.slug.current}`}
-                      className="font-medium hover:underline"
-                    >
-                      {post.author.name}
-                    </Link>
-                  ) : (
-                    <span className="font-medium">
-                      {post.author?.name || "RosterLab"}
-                    </span>
-                  )}
+                  <AuthorLinks post={post} className="font-medium" />
                   <span className="text-purple-200">•</span>
                   <time className="text-purple-200">
                     {formatDateShort(post.publishedAt)}

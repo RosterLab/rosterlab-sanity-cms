@@ -3,7 +3,11 @@ import { client } from "@/sanity/lib/client";
 import { readdirSync, statSync, readFileSync } from "fs";
 import { join } from "path";
 import nextConfig from "@/next.config";
-import { localizeUSSlug } from "@/lib/localization/us-slug";
+import {
+  publishesToGlobal,
+  publishesToUS,
+} from "@/lib/localization/site-scope";
+import { effectiveUSSlug } from "@/lib/localization/us-slug";
 
 // Base URL for the site
 const baseUrl = "https://rosterlab.com";
@@ -13,7 +17,9 @@ const baseUrl = "https://rosterlab.com";
 function lastmodElement(value: unknown): string {
   if (typeof value !== "string" || !value) return "";
   const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? "" : `<lastmod>${date.toISOString()}</lastmod>`;
+  return Number.isNaN(date.getTime())
+    ? ""
+    : `<lastmod>${date.toISOString()}</lastmod>`;
 }
 
 // Pages to exclude from sitemap
@@ -125,8 +131,12 @@ function findPages(dir: string, basePath: string = ""): string[] {
 }
 
 // Query for dynamic content
+// No site filter here: the sitemap emits both the global and the US section,
+// so it needs every article and decides per section which URLs to include.
 const postQuery = groq`*[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current)] | order(publishedAt desc) {
   "slug": slug.current,
+  "usSlug": usSlug.current,
+  sites,
   publishedAt,
   _updatedAt,
   categories[]->{
@@ -170,7 +180,11 @@ async function generateSitemap() {
       priority = 0.95;
     } else if (route === "/feature/ai-staff-rostering-assistant") {
       priority = 0.94;
-    } else if (route === "/pricing" || route === "/solutions/free-staff-rostering-software" || route === "/about") {
+    } else if (
+      route === "/pricing" ||
+      route === "/solutions/free-staff-rostering-software" ||
+      route === "/about"
+    ) {
       priority = 0.93;
     } else if (route.includes("/feature/")) {
       priority = 0.9;
@@ -199,7 +213,11 @@ async function generateSitemap() {
       priority = 0.95;
     } else if (originalPath === "/feature/ai-staff-rostering-assistant") {
       priority = 0.94;
-    } else if (originalPath === "/pricing" || originalPath === "/solutions/free-staff-rostering-software" || originalPath === "/about") {
+    } else if (
+      originalPath === "/pricing" ||
+      originalPath === "/solutions/free-staff-rostering-software" ||
+      originalPath === "/about"
+    ) {
       priority = 0.93;
     } else if (originalPath.includes("/feature/")) {
       priority = 0.9;
@@ -225,7 +243,7 @@ async function generateSitemap() {
 
   for (const post of blogPosts) {
     const blogUrl = `/blog/${post.slug}`;
-    if (!redirectSourcePaths.has(blogUrl)) {
+    if (publishesToGlobal(post) && !redirectSourcePaths.has(blogUrl)) {
       const lastmod = lastmodElement(post._updatedAt || post.publishedAt);
       entries.push(`  <url>
     <loc>${baseUrl}${blogUrl}</loc>
@@ -233,8 +251,9 @@ async function generateSitemap() {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);
-      entries.push(`  <url>
-    <loc>${baseUrl}/us/blog/${localizeUSSlug(post.slug)}</loc>
+      if (publishesToUS(post))
+        entries.push(`  <url>
+    <loc>${baseUrl}/us/blog/${effectiveUSSlug(post)}</loc>
     ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -250,7 +269,7 @@ async function generateSitemap() {
 
   for (const post of caseStudies) {
     const caseStudyUrl = `/case-studies/${post.slug}`;
-    if (!redirectSourcePaths.has(caseStudyUrl)) {
+    if (publishesToGlobal(post) && !redirectSourcePaths.has(caseStudyUrl)) {
       const lastmod = lastmodElement(post._updatedAt || post.publishedAt);
       entries.push(`  <url>
     <loc>${baseUrl}${caseStudyUrl}</loc>
@@ -258,8 +277,9 @@ async function generateSitemap() {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);
-      entries.push(`  <url>
-    <loc>${baseUrl}/us/case-studies/${localizeUSSlug(post.slug)}</loc>
+      if (publishesToUS(post))
+        entries.push(`  <url>
+    <loc>${baseUrl}/us/case-studies/${effectiveUSSlug(post)}</loc>
     ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -275,7 +295,7 @@ async function generateSitemap() {
 
   for (const post of newsroomPosts) {
     const newsroomUrl = `/newsroom/${post.slug}`;
-    if (!redirectSourcePaths.has(newsroomUrl)) {
+    if (publishesToGlobal(post) && !redirectSourcePaths.has(newsroomUrl)) {
       const lastmod = lastmodElement(post._updatedAt || post.publishedAt);
       entries.push(`  <url>
     <loc>${baseUrl}${newsroomUrl}</loc>
@@ -283,8 +303,9 @@ async function generateSitemap() {
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>`);
-      entries.push(`  <url>
-    <loc>${baseUrl}/us/newsroom/${localizeUSSlug(post.slug)}</loc>
+      if (publishesToUS(post))
+        entries.push(`  <url>
+    <loc>${baseUrl}/us/newsroom/${effectiveUSSlug(post)}</loc>
     ${lastmod}
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

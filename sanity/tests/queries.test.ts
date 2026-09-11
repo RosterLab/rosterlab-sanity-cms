@@ -15,7 +15,7 @@ import { postsQuery, postQuery, categoriesQuery } from "../lib/queries";
 
 describe("Sanity Query Validation", () => {
   test("postsQuery should be valid GROQ", () => {
-    expect(postsQuery).toContain('_type == "post"');
+    expect(postsQuery).toContain('_type == "post" && (!defined(sites) || sites != "us")');
     // The listing must never surface drafts or slugless posts. Asserting the
     // guards individually keeps this from re-pinning to one exact filter string.
     expect(postsQuery).toContain('!(_id in path("drafts.**"))');
@@ -27,7 +27,7 @@ describe("Sanity Query Validation", () => {
 
   test("postQuery should fetch single post with slug parameter", () => {
     expect(postQuery).toContain(
-      '*[_type == "post" && slug.current == $slug][0]',
+      '*[_type == "post" && (!defined(sites) || sites != "us") && slug.current == $slug][0]',
     );
     expect(postQuery).toContain("author->");
     expect(postQuery).toContain("categories[]->");

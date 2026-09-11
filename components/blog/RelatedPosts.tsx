@@ -1,3 +1,4 @@
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
@@ -90,9 +91,9 @@ export default function RelatedPosts({ posts, currentPostId, currentPostDate, ba
                   {post.title}
                 </h3>
                 <div className="flex items-center text-sm text-gray-500">
-                  {post.author?.name && (
+                  {authorByline(postAuthors(post)) && (
                     <>
-                      <span>{post.author.name}</span>
+                      <span>{authorByline(postAuthors(post))}</span>
                       <span className="mx-2">·</span>
                     </>
                   )}

@@ -37,7 +37,7 @@ export const metadata = resourceMetadata({
 }, `/newsroom`);
 
 const newsroomQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -45,6 +45,11 @@ const newsroomQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image

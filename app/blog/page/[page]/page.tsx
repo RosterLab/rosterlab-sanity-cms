@@ -91,7 +91,9 @@ export default async function BlogPaginationPage({ params }: Props) {
   // No draftMode(): pagination has no preview value, and a dynamic API here
   // previously forced the route into a broken static/dynamic hybrid.
   const client = getClient();
-  const posts = await client.fetch(blogPostsOnlyQuery);
+  const posts = await client.fetch(blogPostsOnlyQuery, {
+    excludedSite: "us",
+  });
 
   const postsPerPage = 12;
   const totalPages = Math.ceil(posts.length / postsPerPage);

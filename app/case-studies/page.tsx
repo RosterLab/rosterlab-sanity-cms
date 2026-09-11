@@ -40,7 +40,7 @@ export const metadata = resourceMetadata({
 }, `/case-studies`);
 
 const caseStudiesQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -48,6 +48,11 @@ const caseStudiesQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image

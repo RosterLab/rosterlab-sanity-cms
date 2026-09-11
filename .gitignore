@@ -47,3 +47,6 @@ next-env.d.ts
 
 # pnpm content-addressable store (machine-local)
 .pnpm-store/
+
+# Sanity Studio build output (pnpm sanity:build)
+dist/

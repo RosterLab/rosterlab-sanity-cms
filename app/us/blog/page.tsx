@@ -47,7 +47,9 @@ export default async function BlogPage() {
   const client = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const posts = await client.fetch(blogPostsOnlyQuery);
+  const posts = await client.fetch(blogPostsOnlyQuery, {
+    excludedSite: "global",
+  });
 
   return (
     <BlogPageContent posts={posts.map(localizeUSPost)} basePath="/us/blog" />

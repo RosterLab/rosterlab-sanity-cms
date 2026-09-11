@@ -1,5 +1,6 @@
 'use client'
 
+import { postAuthors } from "@/lib/posts/authors";
 import { useState, useMemo } from 'react'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
@@ -38,7 +39,8 @@ export default function NewsroomPageContent({ posts, currentPage = 1 }: Newsroom
       if (post.excerpt && post.excerpt.toLowerCase().includes(query)) return true
       
       // Search in author name
-      if (post.author?.name?.toLowerCase().includes(query)) return true
+      if (postAuthors(post).some((a) => a.name?.toLowerCase().includes(query)))
+        return true
       
       // Search in categories
       if (post.categories?.some(cat => cat.title?.toLowerCase().includes(query))) return true

@@ -1,8 +1,9 @@
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound } from "next/navigation";
 import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import Link from "next/link";
+import AuthorLinks from "@/components/blog/AuthorLinks";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
@@ -31,9 +32,10 @@ interface CaseStudyPageProps {
 
 // Query for a single case study post
 const caseStudyQuery = groq`
-  *[_type == "post" && slug.current == $slug && "case-studies" in categories[]->slug.current][0] {
+  *[_type == "post" && (!defined(sites) || sites != "us") && slug.current == $slug && "case-studies" in categories[]->slug.current][0] {
     _id,
     _updatedAt,
+    sites,
     title,
     slug,
     excerpt,
@@ -50,6 +52,11 @@ const caseStudyQuery = groq`
       slug,
       image
     },
+    "authors": authors[]->{
+      name,
+      slug,
+      image
+    },
     categories[]->{
       title,
       slug
@@ -59,12 +66,12 @@ const caseStudyQuery = groq`
 
 // Query for case study slugs
 const caseStudyPathsQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current][].slug.current
+  *[_type == "post" && (!defined(sites) || sites != "us") && "case-studies" in categories[]->slug.current][].slug.current
 `;
 
 // Query for all case studies (for related posts)
 const allCaseStudiesQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "case-studies" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -72,6 +79,11 @@ const allCaseStudiesQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image
@@ -97,9 +109,12 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   const post = await clientToUse.fetch(caseStudyQuery, { slug });
 
   if (!post) {
-    return resourceMetadata({
-      title: "Case Study Not Found",
-    }, `/case-studies/${slug}`);
+    return resourceMetadata(
+      {
+        title: "Case Study Not Found",
+      },
+      `/case-studies/${slug}`,
+    );
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
@@ -123,24 +138,31 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
     metaDescription = metaDescription.slice(0, 152) + "...";
   }
 
-  return resourceMetadata({
-    title: post.seo?.metaTitle || post.title,
-    description: metaDescription,
-    alternates: {
-      canonical: `${baseUrl}/case-studies/${slug}`,
-    },
-    openGraph: {
+  return resourceMetadata(
+    {
       title: post.seo?.metaTitle || post.title,
       description: metaDescription,
-      type: "article",
-      url: `https://rosterlab.com/case-studies/${slug}`,
-      images: post.seo?.ogImage
-        ? [urlFor(post.seo.ogImage).url()]
-        : post.mainImage
-          ? [urlFor(post.mainImage).url()]
-          : undefined,
+      alternates: {
+        canonical: `${baseUrl}/case-studies/${slug}`,
+      },
+      openGraph: {
+        title: post.seo?.metaTitle || post.title,
+        description: metaDescription,
+        type: "article",
+        url: `https://rosterlab.com/case-studies/${slug}`,
+        images: post.seo?.ogImage
+          ? [urlFor(post.seo.ogImage).url()]
+          : post.mainImage
+            ? [urlFor(post.mainImage).url()]
+            : undefined,
+      },
     },
-  }, `/case-studies/${slug}`);
+    `/case-studies/${slug}`,
+    {
+      // A one-site article has no twin to advertise.
+      singleMarket: post.sites === "global" || post.sites === "us",
+    },
+  );
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
@@ -183,197 +205,193 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   return (
     <CaseStudyGateCheck slug={slug}>
       <article>
-      <BlogPostTracker
-        title={post.title}
-        slug={post.slug?.current || slug}
-        author={post.author?.name}
-        category="Case Studies"
-        categories={post.categories?.map((c: any) => ({
-          slug: c.slug?.current || c.slug,
-          title: c.title,
-        }))}
-        publishedAt={post.publishedAt}
-      />
-      <ArticleSchema
-        title={post.title}
-        description={post.excerpt || ""}
-        author={{ name: post.author?.name || "RosterLab" }}
-        publishedTime={post.publishedAt}
-        modifiedTime={post._updatedAt}
-        image={imageUrl}
-        url={articleUrl}
-      />
-      {/* Purple Gradient Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        <Container className="relative">
-          <div className="py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left side - Title and Meta */}
-              <div className="lg:col-span-6">
-                {/* Title */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
-                  {post.title}
-                </h1>
+        <BlogPostTracker
+          title={post.title}
+          slug={post.slug?.current || slug}
+          author={authorByline(postAuthors(post))}
+          category="Case Studies"
+          categories={post.categories?.map((c: any) => ({
+            slug: c.slug?.current || c.slug,
+            title: c.title,
+          }))}
+          publishedAt={post.publishedAt}
+        />
+        <ArticleSchema
+          title={post.title}
+          description={post.excerpt || ""}
+          author={postAuthors(post).map((a) => ({
+            name: a.name || "RosterLab",
+          }))}
+          publishedTime={post.publishedAt}
+          modifiedTime={post._updatedAt}
+          image={imageUrl}
+          url={articleUrl}
+        />
+        {/* Purple Gradient Header */}
+        <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800 text-white overflow-hidden">
+          <div className="absolute inset-0 bg-black/10" />
+          <Container className="relative">
+            <div className="py-20">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Left side - Title and Meta */}
+                <div className="lg:col-span-6">
+                  {/* Title */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
+                    {post.title}
+                  </h1>
 
-                {/* Author and Meta */}
-                <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
-                  {post.author?.slug ? (
-                    <Link
-                      href={`/authors/${post.author.slug.current}`}
-                      className="font-medium hover:underline"
-                    >
-                      {post.author.name}
-                    </Link>
-                  ) : (
-                    <span className="font-medium">
-                      {post.author?.name || "RosterLab"}
-                    </span>
-                  )}
-                  <span className="text-purple-200">•</span>
-                  <time className="text-purple-200">
-                    {formatDateShort(post.publishedAt)}
-                  </time>
-                  {post._updatedAt &&
-                    shouldShowLastUpdated(
-                      post.publishedAt,
-                      post._updatedAt,
-                    ) && (
-                      <>
-                        <span className="text-purple-200">•</span>
-                        <time className="text-purple-200">
-                          Last Updated: {formatDateShort(post._updatedAt)}
-                        </time>
-                      </>
-                    )}
-                  <span className="text-purple-200">•</span>
-                  <span className="text-purple-200">{readingTime}</span>
-                </div>
-              </div>
-
-              {/* Right side - Hero Image */}
-              {post.mainImage && (
-                <div className="lg:col-span-6 relative hidden lg:block">
-                  <div className="relative rounded-lg overflow-hidden shadow-2xl">
-                    <Image
-                      src={urlFor(post.mainImage).width(700).height(350).url()}
-                      alt={post.title}
-                      width={700}
-                      height={350}
-                      className="w-full h-auto object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                  {/* Author and Meta */}
+                  <div className="flex items-center gap-2 sm:gap-6 text-sm sm:text-base">
+                    <AuthorLinks post={post} className="font-medium" />
+                    <span className="text-purple-200">•</span>
+                    <time className="text-purple-200">
+                      {formatDateShort(post.publishedAt)}
+                    </time>
+                    {post._updatedAt &&
+                      shouldShowLastUpdated(
+                        post.publishedAt,
+                        post._updatedAt,
+                      ) && (
+                        <>
+                          <span className="text-purple-200">•</span>
+                          <time className="text-purple-200">
+                            Last Updated: {formatDateShort(post._updatedAt)}
+                          </time>
+                        </>
+                      )}
+                    <span className="text-purple-200">•</span>
+                    <span className="text-purple-200">{readingTime}</span>
                   </div>
                 </div>
-              )}
+
+                {/* Right side - Hero Image */}
+                {post.mainImage && (
+                  <div className="lg:col-span-6 relative hidden lg:block">
+                    <div className="relative rounded-lg overflow-hidden shadow-2xl">
+                      <Image
+                        src={urlFor(post.mainImage)
+                          .width(700)
+                          .height(350)
+                          .url()}
+                        alt={post.title}
+                        width={700}
+                        height={350}
+                        className="w-full h-auto object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </Container>
+          </Container>
 
-        {/* Decorative circles */}
-        <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
-      </div>
+          {/* Decorative circles */}
+          <div className="absolute top-10 right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-20 w-48 h-48 bg-purple-400/20 rounded-full blur-3xl" />
+        </div>
 
-      {/* Breadcrumb below header - Hidden on mobile and tablet */}
-      <div className="bg-gray-50 border-b hidden lg:block">
-        <Container>
-          <div className="py-2">
-            <Breadcrumb
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Case Studies", href: "/case-studies" },
-                { label: post.title },
-              ]}
-            />
-          </div>
-        </Container>
-      </div>
+        {/* Breadcrumb below header - Hidden on mobile and tablet */}
+        <div className="bg-gray-50 border-b hidden lg:block">
+          <Container>
+            <div className="py-2">
+              <Breadcrumb
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Case Studies", href: "/case-studies" },
+                  { label: post.title },
+                ]}
+              />
+            </div>
+          </Container>
+        </div>
 
-      {/* Main Content Area */}
-      <div className="bg-white">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12">
-            {/* Left Sidebar - Table of Contents */}
-            <aside className="lg:col-span-3">
-              <div className="lg:sticky lg:top-8">
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">
-                    TABLE OF CONTENTS
+        {/* Main Content Area */}
+        <div className="bg-white">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-12">
+              {/* Left Sidebar - Table of Contents */}
+              <aside className="lg:col-span-3">
+                <div className="lg:sticky lg:top-8">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="font-semibold text-gray-900 mb-4 uppercase text-sm tracking-wider">
+                      TABLE OF CONTENTS
+                    </h3>
+                    <TableOfContents />
+                  </div>
+                </div>
+              </aside>
+
+              {/* Main Article Content */}
+              <main className="min-w-0 lg:col-span-6 [overflow-wrap:anywhere]">
+                {/* Article Body */}
+                <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
+                  <PortableText value={post.body} />
+                </div>
+
+                {/* Related Posts */}
+                {allCaseStudies.length > 0 && (
+                  <RelatedPosts
+                    posts={allCaseStudies}
+                    currentPostId={post._id}
+                    currentPostDate={post.publishedAt}
+                  />
+                )}
+
+                {/* Bottom CTA */}
+                <div
+                  className="mt-16 p-8 text-white rounded-lg text-center"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
+                  }}
+                >
+                  <h3 className="text-2xl font-bold mb-4">
+                    Ready to Transform Your Workforce Management?
                   </h3>
-                  <TableOfContents />
+                  <p className="mb-6 text-lg opacity-90">
+                    Join thousands using RosterLab to streamline rostering.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link
+                      href="/book-a-demo"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+                    >
+                      <DemoCtaLabel href="/book-a-demo">
+                        Book a Demo
+                      </DemoCtaLabel>
+                    </Link>
+                    <Link
+                      href="/pricing"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
+                    >
+                      Start Free Trial
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </aside>
+              </main>
 
-            {/* Main Article Content */}
-            <main className="min-w-0 lg:col-span-6 [overflow-wrap:anywhere]">
-              {/* Article Body */}
-              <div className="prose prose-lg max-w-none prose-headings:scroll-mt-24">
-                <PortableText value={post.body} />
-              </div>
+              {/* Right Sidebar - Newsletter */}
+              <aside className="lg:col-span-3">
+                <div className="lg:sticky lg:top-8 space-y-6">
+                  {/* Newsletter Signup */}
+                  <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                      Subscribe for more insights and product updates
+                    </h3>
+                    <NewsletterFormWrapper />
+                  </div>
 
-              {/* Related Posts */}
-              {allCaseStudies.length > 0 && (
-                <RelatedPosts
-                  posts={allCaseStudies}
-                  currentPostId={post._id}
-                  currentPostDate={post.publishedAt}
-                />
-              )}
-
-              {/* Bottom CTA */}
-              <div
-                className="mt-16 p-8 text-white rounded-lg text-center"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                <h3 className="text-2xl font-bold mb-4">
-                  Ready to Transform Your Workforce Management?
-                </h3>
-                <p className="mb-6 text-lg opacity-90">
-                  Join thousands using RosterLab to streamline rostering.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/book-a-demo"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-all transform hover:scale-105"
-                  >
-                    <DemoCtaLabel href="/book-a-demo">Book a Demo</DemoCtaLabel>
-                  </Link>
-                  <Link
-                    href="/pricing"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-600/20 text-white font-semibold rounded-lg hover:bg-blue-600/30 transition-all border border-white/20"
-                  >
-                    Start Free Trial
-                  </Link>
+                  {/* Share Buttons */}
+                  <div className="hidden lg:block bg-gray-50 p-6 rounded-lg">
+                    <ShareButtons title={post.title} />
+                  </div>
                 </div>
-              </div>
-            </main>
-
-            {/* Right Sidebar - Newsletter */}
-            <aside className="lg:col-span-3">
-              <div className="lg:sticky lg:top-8 space-y-6">
-                {/* Newsletter Signup */}
-                <div className="bg-teal-50 border border-teal-200 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Subscribe for more insights and product updates
-                  </h3>
-                  <NewsletterFormWrapper />
-                </div>
-
-                {/* Share Buttons */}
-                <div className="hidden lg:block bg-gray-50 p-6 rounded-lg">
-                  <ShareButtons title={post.title} />
-                </div>
-              </div>
-            </aside>
-          </div>
-        </Container>
-      </div>
-    </article>
+              </aside>
+            </div>
+          </Container>
+        </div>
+      </article>
     </CaseStudyGateCheck>
   );
 }

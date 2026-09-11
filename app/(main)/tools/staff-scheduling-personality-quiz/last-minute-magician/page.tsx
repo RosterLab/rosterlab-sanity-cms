@@ -38,7 +38,7 @@ export const metadata: Metadata = resourceMetadata({
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+  *[_type == "post" && (!defined(sites) || sites != "us") && !(_id in path("drafts.**")) && defined(slug.current) && 
     (slug.current in ["how-to-optimise-shifts-during-a-hiring-freeze", 
                       "staff-rostering-to-payroll-the-right-way-to-do-it", 
                       "manage-night-shift-planning-wellbeing-effectively"])] {
@@ -48,7 +48,8 @@ const recommendedPostsQuery = groq`
     excerpt,
     mainImage,
     publishedAt,
-    author->{name}
+    author->{name},
+    "authors": authors[]->{name}
   }
 `
 

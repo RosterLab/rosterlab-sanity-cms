@@ -10,15 +10,25 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 const newsroomQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "global") && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
-    usLocalization,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usMainImage,
     title,
     slug,
     excerpt,
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image

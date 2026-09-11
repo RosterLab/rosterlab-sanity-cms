@@ -57,18 +57,24 @@ export const metadata: Metadata = resourceMetadata({
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+  *[_type == "post" && (!defined(sites) || sites != "global") && !(_id in path("drafts.**")) && defined(slug.current) && 
     (slug.current in ["should-your-next-staff-roster-be-built-with-ai", 
                       "overstaffed-understaffed-workforce-planning-paradox", 
                       "fairer-scheduling-at-work-reducing-shift-bias"])] {
     _id,
-    usLocalization,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usMainImage,
     title,
     slug,
     excerpt,
     mainImage,
     publishedAt,
-    author->{name}
+    author->{name},
+    "authors": authors[]->{name}
   }
 `;
 

@@ -41,18 +41,24 @@ export const metadata: Metadata = resourceMetadata({
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+  *[_type == "post" && (!defined(sites) || sites != "global") && !(_id in path("drafts.**")) && defined(slug.current) && 
     (slug.current in ["manage-night-shift-planning-wellbeing-effectively", 
                       "fairer-scheduling-at-work-reducing-shift-bias", 
                       "staff-rostering-to-payroll-the-right-way-to-do-it"])] {
     _id,
-    usLocalization,
+    usLocalization { protectedTerms, title, excerpt, metaTitle, metaDescription, mainImage, ogImage },
+    usProtectedTerms,
+    usSlug,
+    usTitle,
+    usExcerpt,
+    usMainImage,
     title,
     slug,
     excerpt,
     mainImage,
     publishedAt,
-    author->{name}
+    author->{name},
+    "authors": authors[]->{name}
   }
 `
 
