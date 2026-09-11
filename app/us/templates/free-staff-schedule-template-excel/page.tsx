@@ -7,7 +7,7 @@ import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
-import ExcelFormClient from "@/app/us/templates/free-staff-schedule-template-excel/ExcelFormClient";
+import ExcelFormClient from "@/app/templates/free-staff-roster-template-excel/ExcelFormClient";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
@@ -182,7 +182,7 @@ export default async function FreeStaffRosterTemplateExcelPage() {
               </div>
 
               {/* Form Section - Client Component */}
-              <ExcelFormClient />
+              <ExcelFormClient isUS />
             </div>
           </Container>
         </div>

@@ -7,7 +7,7 @@ import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
-import EmployeeOfMonthFormClient from "@/app/us/templates/free-employee-of-the-month-certificate/EmployeeOfMonthFormClient";
+import EmployeeOfMonthFormClient from "@/app/templates/free-employee-of-the-month-certificate/EmployeeOfMonthFormClient";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
@@ -179,7 +179,7 @@ export default async function FreeEmployeeOfMonthCertificatePage() {
               </div>
 
               {/* Form Section - Client Component */}
-              <EmployeeOfMonthFormClient />
+              <EmployeeOfMonthFormClient isUS />
             </div>
           </Container>
         </div>

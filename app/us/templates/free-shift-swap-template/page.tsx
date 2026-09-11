@@ -7,7 +7,7 @@ import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
-import ShiftSwapFormClient from "@/app/us/templates/free-shift-swap-template/ShiftSwapFormClient";
+import ShiftSwapFormClient from "@/app/templates/free-shift-swap-template/ShiftSwapFormClient";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
@@ -178,7 +178,7 @@ export default async function FreeShiftSwapTemplatePage() {
               </div>
 
               {/* Form Section - Client Component */}
-              <ShiftSwapFormClient />
+              <ShiftSwapFormClient isUS />
             </div>
           </Container>
         </div>

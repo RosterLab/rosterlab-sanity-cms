@@ -6,7 +6,7 @@ import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { validatedToken } from "@/sanity/lib/token";
-import CaseStudiesPageContent from "@/components/us-resources/case-studies/CaseStudiesPageContent";
+import CaseStudiesPageContent from "@/components/case-studies/CaseStudiesPageContent";
 import { draftMode } from "next/headers";
 
 // ISR: Revalidate every 5 minutes
@@ -80,5 +80,5 @@ export default async function CaseStudiesPage() {
   );
   const posts = await client.fetch(caseStudiesQuery).then(localizeUSResourceResult);
 
-  return <CaseStudiesPageContent posts={posts} />;
+  return <CaseStudiesPageContent isUS posts={posts} />;
 }

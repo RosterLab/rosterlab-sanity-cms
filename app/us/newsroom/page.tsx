@@ -6,7 +6,7 @@ import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { validatedToken } from "@/sanity/lib/token";
-import NewsroomPageContent from "@/components/us-resources/newsroom/NewsroomPageContent";
+import NewsroomPageContent from "@/components/newsroom/NewsroomPageContent";
 import { draftMode } from "next/headers";
 
 export const metadata = resourceMetadata({
@@ -77,5 +77,5 @@ export default async function NewsroomPage() {
   );
   const posts = await client.fetch(newsroomQuery).then(localizeUSResourceResult);
 
-  return <NewsroomPageContent posts={posts} />;
+  return <NewsroomPageContent isUS posts={posts} />;
 }

@@ -5,7 +5,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
-import SchedgeGame from "@/components/us-resources/games/SchedgeGame";
+import SchedgeGame from "@/components/games/SchedgeGame";
 
 export const metadata = resourceMetadata({
   title: "Schedge - The Puzzle Scheduling Game",
@@ -94,7 +94,7 @@ export default function SchedgePage() {
               <h2 className="text-4xl font-bold text-gray-900 mb-12">
                 Can you solve the schedule?
               </h2>
-              <SchedgeGame
+              <SchedgeGame isUS
                 initialGrid={[
                   ["A", "", "", "", "", ""],
                   ["", "B", "", "", "", ""],

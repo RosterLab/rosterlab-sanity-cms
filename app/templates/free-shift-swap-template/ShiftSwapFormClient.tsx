@@ -24,7 +24,11 @@ const downloadShiftSwapFile = () => {
   document.body.removeChild(link);
 };
 
-export default function ShiftSwapFormClient() {
+export default function ShiftSwapFormClient({
+  isUS = false,
+}: {
+  isUS?: boolean;
+}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
@@ -72,10 +76,14 @@ export default function ShiftSwapFormClient() {
 
           <div className="mt-8 pt-8 border-t border-gray-200">
             <p className="text-gray-600 mb-4">
-              Ready to digitise your shift swap process?
+              {isUS ? (
+                <>Ready to digitize your shift swap process?</>
+              ) : (
+                <>Ready to digitise your shift swap process?</>
+              )}
             </p>
             <Button
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               variant="outline"
               className="border-blue-600 text-blue-600 hover:bg-blue-50"
             >

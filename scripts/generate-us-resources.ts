@@ -24,7 +24,8 @@ const roots = [
   "app/tools/survey-preferences",
   "app/schedge",
 ];
-const shared = [
+// These components render both locales; only their route wrappers are generated.
+const sharedResources = new Set([
   "components/case-studies/CaseStudiesPageContent.tsx",
   "components/newsroom/NewsroomPageContent.tsx",
   "components/modals/CaseStudyGateCheck.tsx",
@@ -32,7 +33,20 @@ const shared = [
   "components/games/SchedgeGame.tsx",
   "components/survey/HolidayConfigurator.tsx",
   "components/survey/ResultsTable.tsx",
-];
+  "app/tools/fte-calculator/client.tsx",
+  "app/tools/survey-preferences/client.tsx",
+  "app/tools/survey-preferences/s/[surveyId]/client.tsx",
+  "app/tools/survey-preferences/admin/[surveyId]/client.tsx",
+  "app/tools/ToolsPageContent.tsx",
+  "app/templates/TemplatesPageContent.tsx",
+  "app/webinars/WebinarsPageContent.tsx",
+  "app/templates/free-staff-roster-template-excel/ExcelFormClient.tsx",
+  "app/templates/free-shift-swap-template/ShiftSwapFormClient.tsx",
+  "app/templates/free-staff-timesheet-template/TimesheetFormClient.tsx",
+  "app/templates/free-employee-of-the-month-certificate/EmployeeOfMonthFormClient.tsx",
+  "app/whitepapers/rostering-as-a-strategic-workforce-lever/WhitepaperContent.tsx",
+  "app/whitepapers/rostering-as-a-strategic-workforce-lever/unlocked/WhitepaperUnlockedContent.tsx",
+]);
 function files(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const name = `${dir}/${entry.name}`;
@@ -47,8 +61,7 @@ const sources = [
   ...roots.flatMap(files),
   "app/tools/page.tsx",
   "app/tools/ToolsPageContent.tsx",
-  ...shared,
-];
+].filter((file) => !sharedResources.has(file));
 // Route directories are localized with the copy: a US reader gets
 // /us/templates/free-staff-schedule-template-excel, not the roster spelling.
 // Component paths are code, not URLs, and keep their source names.
@@ -162,6 +175,23 @@ function transform(
     ts.ScriptKind.TSX,
   );
   const edits: Edit[] = [];
+  const sharedComponentNames = new Set<string>();
+  for (const node of ast.statements) {
+    if (
+      !ts.isImportDeclaration(node) ||
+      !ts.isStringLiteral(node.moduleSpecifier)
+    )
+      continue;
+    const specifier = node.moduleSpecifier.text;
+    const resolved = specifier.startsWith("@/")
+      ? specifier.slice(2)
+      : path.posix.normalize(
+          path.posix.join(path.posix.dirname(filename), specifier),
+        );
+    if (sharedResources.has(resolved + ".tsx") && node.importClause?.name)
+      sharedComponentNames.add(node.importClause.name.text);
+  }
+
   let needsMetadata = false;
   let needsResult = false;
   let needsSlug = false;
@@ -282,6 +312,16 @@ function transform(
     }
     if (
       (ts.isJsxSelfClosingElement(node) || ts.isJsxOpeningElement(node)) &&
+      sharedComponentNames.has(node.tagName.getText(ast))
+    ) {
+      edits.push({
+        start: node.tagName.end,
+        end: node.tagName.end,
+        text: " isUS",
+      });
+    }
+    if (
+      (ts.isJsxSelfClosingElement(node) || ts.isJsxOpeningElement(node)) &&
       ["BlogCard", "RelatedPosts"].includes(node.tagName.getText(ast))
     ) {
       edits.push({
@@ -361,7 +401,7 @@ function transform(
         );
         const withSlugMatch = withPaths.replace(
           /slug\.current == \$slug/g,
-          '(usSlug.current == $usSlug || slug.current == $slug)',
+          "(usSlug.current == $usSlug || slug.current == $slug)",
         );
         const query = withSlugMatch.replace(
           /(\n\s*)title,/,
@@ -515,27 +555,28 @@ for (const file of sources) {
     "slugs.map((slug: string) => ({ slug: effectiveUSSlug(post) }))",
     "slugs.map((post: { slug: string; usSlug?: string }) => ({\n    slug: effectiveUSSlug(post),\n  }))",
   );
-  generated = generated.replaceAll("<ArticleSchema", '<ArticleSchema inLanguage="en-US"');
+  generated = generated.replaceAll(
+    "<ArticleSchema",
+    '<ArticleSchema inLanguage="en-US"',
+  );
   if (articleRoutes.includes(file)) {
     // Preserve editorial descriptions: Google has no fixed 155-character limit.
     // The global source's legacy padding/clipping must not override US CMS copy.
-    const descriptionLogic = /  \/\/ Ensure meta description[\s\S]*?(?=  return resourceMetadata\(\s*\{)/;
-    if (!descriptionLogic.test(generated)) throw new Error(`Missing article metadata marker: ${file}`);
-    generated = generated.replace(descriptionLogic,
-      '  const metaDescription = post.seo?.metaDescription?.trim() || post.excerpt?.trim() || `Read ${post.title} on RosterLab.`;\n\n');
+    const descriptionLogic =
+      /  \/\/ Ensure meta description[\s\S]*?(?=  return resourceMetadata\(\s*\{)/;
+    if (!descriptionLogic.test(generated))
+      throw new Error(`Missing article metadata marker: ${file}`);
+    generated = generated.replace(
+      descriptionLogic,
+      "  const metaDescription = post.seo?.metaDescription?.trim() || post.excerpt?.trim() || `Read ${post.title} on RosterLab.`;\n\n",
+    );
     generated = injectSlugRedirect(generated, file);
   }
   if (file === "app/newsroom/[slug]/page.tsx") {
-    generated = generated.replaceAll("Whanganui DHB radiography department", "Whanganui radiography department in New Zealand");
-  }
-  if (file === "components/modals/CTAModalCaseStudy.tsx") {
     generated = generated.replaceAll(
-      "junior doctor department",
-      "department of physicians in training",
+      "Whanganui DHB radiography department",
+      "Whanganui radiography department in New Zealand",
     );
-  }
-  if (file === "components/survey/HolidayConfigurator.tsx") {
-    generated = generated.replaceAll("Public Holidays", "Holidays");
   }
   if (file.startsWith("app/webinars/")) {
     generated = generated
@@ -545,30 +586,6 @@ for (const file of sources) {
         "Three inpatient units at Whanganui Hospital",
       )
       .replaceAll("Three hospital wards", "Three hospital units");
-  }
-  if (file.startsWith("app/templates/") && file.endsWith("FormClient.tsx")) {
-    const submitText = file.endsWith("/ExcelFormClient.tsx")
-      ? '"Download the Schedule Template"'
-      : "";
-    generated = generated
-      .replace(
-        "import { useState, useEffect }",
-        'import { usHubSpotFormOptions } from "@/lib/localization/us-hubspot-form";\nimport { useState, useEffect }',
-      )
-      .replaceAll(
-        'target: "#hubspot-form-container",',
-        `target: "#hubspot-form-container",\n          ...usHubSpotFormOptions(${submitText}),`,
-      );
-  }
-  if (file === "app/tools/fte-calculator/client.tsx") {
-    // Generic calculator allowances, not quoted customer or legal terminology.
-    generated = generated
-      .replace(/\bannual leave\b/g, "vacation")
-      .replaceAll("ROI Calculator", "Savings Calculator")
-      .replaceAll(
-        "rosterlab.com/tools/fte-calculator",
-        "rosterlab.com/us/tools/fte-calculator",
-      );
   }
   if (file === "app/tools/page.tsx") {
     generated = generated
@@ -588,12 +605,6 @@ for (const file of sources) {
       "Watch on-demand conversations about healthcare staff scheduling. Explore practical experiences with AI-powered scheduling and workforce management.",
     );
   }
-  if (file === "app/webinars/WebinarsPageContent.tsx") {
-    generated = generated.replace(
-      /Join our expert-led webinars to discover how AI-powered workforce\s+management can transform your healthcare operations\. Learn from\s+industry leaders and get your questions answered\./,
-      "Watch on-demand conversations about AI-powered healthcare scheduling. Learn from practical experiences and explore the questions discussed by our guests.",
-    );
-  }
   if (
     file ===
     "app/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare/page.tsx"
@@ -604,18 +615,6 @@ for (const file of sources) {
         "<Accordion items={transcriptSections} />",
         '<p className="text-neutral-600 mb-6">Recorded December 10, 2025. This summary and the Q&amp;A below reflect the product capabilities discussed at the time of recording.</p>\n              <Accordion items={transcriptSections} />',
       );
-  }
-  // Runtime URL values produced by the survey API use the same database and
-  // tokens; localize only the UI's returned links, never submitted data.
-  if (file === "app/tools/survey-preferences/client.tsx") {
-    generated = generated.replace(
-      "setSurveyResult(response);",
-      "setSurveyResult({ ...response, staff_url: localizeUSSurveyURL(response.staff_url), admin_url: localizeUSSurveyURL(response.admin_url) });",
-    );
-    generated = generated.replace(
-      "import { useState }",
-      'import { localizeUSSurveyURL } from "@/lib/localization/us-resources";\nimport { useState }',
-    );
   }
   generated =
     `// Generated from ${file}. Run npm run localize:resources; do not edit directly.\n` +

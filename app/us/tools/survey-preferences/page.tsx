@@ -7,7 +7,7 @@ import { resourceMetadata } from "@/lib/localization/us-resources";
  */
 
 import { Metadata } from "next";
-import SurveyPreferencesClient from "@/app/us/tools/survey-preferences/client";
+import SurveyPreferencesClient from "@/app/tools/survey-preferences/client";
 
 export const metadata: Metadata = resourceMetadata({
   title: "Holiday Shift Preference Survey & Assignment",
@@ -29,5 +29,5 @@ export const metadata: Metadata = resourceMetadata({
 }, "/us/tools/survey-preferences");
 
 export default function SurveyPreferencesPage() {
-  return <SurveyPreferencesClient />;
+  return <SurveyPreferencesClient isUS />;
 }

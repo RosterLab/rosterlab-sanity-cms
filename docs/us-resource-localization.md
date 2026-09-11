@@ -6,19 +6,22 @@ calculator. Nothing in this change publishes the site or writes CMS documents.
 
 ## Source and maintenance
 
-The global resource files are the source of truth for layouts, static content,
-forms and tool logic. `npm run localize:resources` regenerates the checked-in US
-variants; do not edit files with the generated banner directly. Run
-`npm run localize:resources:check` to detect stale output after editing a source.
-The generator records each source path and uses the TypeScript syntax tree to
-localize visible copy and known page destinations, preserving APIs, storage
-keys, assets and identifiers. The resource regression tests independently
-compare calculator numbers and form/storage/CSV call arguments with the sources.
+Resource tools, surveys, games, template forms, listing components, case-study
+modals and whitepaper screens share their global implementation. US route
+wrappers pass `isUS` to select the existing US copy, links and formatting.
+Nested shared components receive the same flag. Calculations, API payloads,
+storage keys, assets and user data remain common to both locales.
 
-The personality quiz uses shared client components with an `isUS` prop for copy
-and destinations, including downloadable reports. Its global and US route files
-retain their own metadata and recommended-post queries. Quiz files are maintained
-directly and are excluded from resource generation.
+`npm run localize:resources` generates the remaining US route wrappers and
+content pages. The `sharedResources` registry in the generator prevents shared
+components from being copied and passes `isUS` when a generated route renders
+them. Do not edit files with the generated banner directly. Run
+`npm run localize:resources:check` after editing a source route to detect stale
+output.
+
+The personality quiz also uses shared client components with an `isUS` prop,
+including downloadable reports. Its global and US route files retain their own
+metadata and recommended-post queries and are maintained directly.
 
 CMS articles still use the same Sanity documents. Case studies and newsroom
 support the same `US resource localization` overrides, protected terms and

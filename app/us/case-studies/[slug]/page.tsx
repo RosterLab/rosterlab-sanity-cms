@@ -23,7 +23,7 @@ import RelatedPosts from "@/components/blog/RelatedPosts";
 import { draftMode } from "next/headers";
 import BlogPostTracker from "@/components/analytics/BlogPostTracker";
 import ArticleSchema from "@/components/seo/ArticleSchema";
-import CaseStudyGateCheck from "@/components/us-resources/modals/CaseStudyGateCheck";
+import CaseStudyGateCheck from "@/components/modals/CaseStudyGateCheck";
 
 // ISR: Revalidate every 1 hour (case studies rarely change)
 export const revalidate = 3600;
@@ -209,7 +209,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const imageUrl = post.mainImage ? urlFor(post.mainImage).url() : undefined;
 
   return (
-    <CaseStudyGateCheck slug={slug}>
+    <CaseStudyGateCheck isUS slug={slug}>
       <article>
         <BlogPostTracker
           title={post.title}

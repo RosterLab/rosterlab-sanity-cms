@@ -15,11 +15,13 @@ import type {
 import { trackButtonClick } from "@/components/analytics/tracking";
 
 interface AdminDashboardClientProps {
+  isUS?: boolean;
   surveyId: string;
   token: string;
 }
 
 export default function AdminDashboardClient({
+  isUS = false,
   surveyId,
   token,
 }: AdminDashboardClientProps) {
@@ -296,6 +298,7 @@ export default function AdminDashboardClient({
         {/* Results Table */}
         <div className="bg-white rounded-xl shadow-lg border border-neutral-200 p-8">
           <ResultsTable
+            isUS={isUS}
             results={results}
             onExport={handleExport}
             onBalance={handleBalance}
@@ -381,14 +384,20 @@ export default function AdminDashboardClient({
             <div className="flex gap-3">
               <input
                 type="text"
-                value={`${window.location.origin}/tools/survey-preferences/s/${surveyId}`}
+                value={
+                  isUS
+                    ? `${window.location.origin}/us/tools/survey-preferences/s/${surveyId}`
+                    : `${window.location.origin}/tools/survey-preferences/s/${surveyId}`
+                }
                 readOnly
                 className="flex-1 px-4 py-2 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-900 font-mono text-sm"
               />
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `${window.location.origin}/tools/survey-preferences/s/${surveyId}`,
+                    isUS
+                      ? `${window.location.origin}/us/tools/survey-preferences/s/${surveyId}`
+                      : `${window.location.origin}/tools/survey-preferences/s/${surveyId}`,
                   );
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
@@ -516,7 +525,11 @@ export default function AdminDashboardClient({
             </div>
             <div className="flex flex-col gap-3">
               <a
-                href="https://www.rosterlab.com/book-a-demo"
+                href={
+                  isUS
+                    ? "https://www.rosterlab.com/us/book-a-demo"
+                    : "https://www.rosterlab.com/book-a-demo"
+                }
                 className="inline-flex items-center justify-center px-8 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors text-center"
                 onClick={() =>
                   trackButtonClick("Request Demo from Admin", "Admin Dashboard")
@@ -525,7 +538,11 @@ export default function AdminDashboardClient({
                 Request a Demo
               </a>
               <a
-                href="https://www.rosterlab.com/pricing"
+                href={
+                  isUS
+                    ? "https://www.rosterlab.com/us/pricing"
+                    : "https://www.rosterlab.com/pricing"
+                }
                 className="inline-flex items-center justify-center px-8 py-3 bg-white text-primary-600 font-semibold rounded-lg border-2 border-primary-600 hover:bg-primary-50 transition-colors text-center"
                 onClick={() =>
                   trackButtonClick("View Pricing from Admin", "Admin Dashboard")
@@ -565,7 +582,11 @@ export default function AdminDashboardClient({
               <div className="flex gap-2 w-full sm:w-auto">
                 <input
                   type="text"
-                  value={`${window.location.origin}/tools/survey-preferences`}
+                  value={
+                    isUS
+                      ? `${window.location.origin}/us/tools/survey-preferences`
+                      : `${window.location.origin}/tools/survey-preferences`
+                  }
                   readOnly
                   className="flex-1 sm:w-64 px-3 py-1.5 border border-white/30 rounded text-white bg-white/10 font-mono text-xs placeholder:text-white/50"
                   onClick={(e) => e.currentTarget.select()}
@@ -573,7 +594,9 @@ export default function AdminDashboardClient({
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `${window.location.origin}/tools/survey-preferences`,
+                      isUS
+                        ? `${window.location.origin}/us/tools/survey-preferences`
+                        : `${window.location.origin}/tools/survey-preferences`,
                     );
                     setCopied(true);
                     setTimeout(() => setCopied(false), 2000);

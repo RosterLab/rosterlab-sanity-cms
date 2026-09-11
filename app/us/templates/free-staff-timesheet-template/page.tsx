@@ -7,7 +7,7 @@ import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { draftMode } from "next/headers";
 import { validatedToken } from "@/sanity/lib/token";
-import TimesheetFormClient from "@/app/us/templates/free-staff-timesheet-template/TimesheetFormClient";
+import TimesheetFormClient from "@/app/templates/free-staff-timesheet-template/TimesheetFormClient";
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Image from "next/image";
@@ -179,7 +179,7 @@ export default async function FreeStaffTimesheetTemplatePage() {
               </div>
 
               {/* Form Section - Client Component */}
-              <TimesheetFormClient />
+              <TimesheetFormClient isUS />
             </div>
           </Container>
         </div>

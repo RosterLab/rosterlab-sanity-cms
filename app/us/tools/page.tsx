@@ -2,7 +2,7 @@
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
-import ToolsPageContent from "@/app/us/tools/ToolsPageContent";
+import ToolsPageContent from "@/app/tools/ToolsPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
 export const metadata: Metadata = resourceMetadata({
@@ -103,7 +103,7 @@ const tools = [
 export default function ToolsPage() {
   return (
     <SiteLayout>
-      <ToolsPageContent tools={tools} />
+      <ToolsPageContent isUS tools={tools} />
     </SiteLayout>
   );
 }

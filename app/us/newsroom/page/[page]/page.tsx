@@ -5,7 +5,7 @@ import { localizeUSResourceResult } from "@/lib/localization/us-resources";
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
-import NewsroomPageContent from "@/components/us-resources/newsroom/NewsroomPageContent";
+import NewsroomPageContent from "@/components/newsroom/NewsroomPageContent";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
@@ -132,5 +132,5 @@ export default async function NewsroomPaginationPage({ params }: Props) {
     notFound();
   }
 
-  return <NewsroomPageContent posts={posts} currentPage={pageNumber} />;
+  return <NewsroomPageContent isUS posts={posts} currentPage={pageNumber} />;
 }

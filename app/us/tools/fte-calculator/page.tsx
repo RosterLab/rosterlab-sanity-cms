@@ -1,7 +1,7 @@
 // Generated from app/tools/fte-calculator/page.tsx. Run npm run localize:resources; do not edit directly.
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
-import FTECalculatorClient from "@/app/us/tools/fte-calculator/client";
+import FTECalculatorClient from "@/app/tools/fte-calculator/client";
 import SiteLayout from "@/components/layout/SiteLayout";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -43,7 +43,7 @@ export const metadata = resourceMetadata(withHreflang(
 export default function FTECalculatorPage() {
   return (
     <SiteLayout>
-      <FTECalculatorClient />
+      <FTECalculatorClient isUS />
 
       <BreadcrumbSchema
         items={[

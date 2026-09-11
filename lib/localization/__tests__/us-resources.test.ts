@@ -64,9 +64,6 @@ test("US article dates use month/day ordering while global dates stay unchanged"
 });
 
 test("survey links keep their preview origin, IDs and tokens, and stay out of public SEO pairs", () => {
-  const admin = fs.readFileSync("app/us/tools/survey-preferences/admin/[surveyId]/client.tsx", "utf8");
-  expect(admin).toContain('${window.location.origin}/us/tools/survey-preferences`');
-  expect(admin).not.toContain('${window.location.origin}/tools/survey-preferences');
   const original =
     "http://localhost:3000/tools/survey-preferences/admin/abc-123?token=a%2Fb%2Bc&source=test#results";
   expect(localizeUSSurveyURL(original)).toBe(
@@ -164,7 +161,6 @@ test("generated resources preserve numeric logic, storage keys, delimiters, API 
   }
   for (const file of [
     ...generatedFiles("app/us"),
-    ...generatedFiles("components/us-resources"),
   ]) {
     const output = fs.readFileSync(file, "utf8");
     const sourcePath = /^\/\/ Generated from (.+?)\. Run /.exec(output)![1];
