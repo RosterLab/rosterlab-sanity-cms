@@ -18,7 +18,16 @@ export const holidaySchema = z.object({
 // Holiday ranking schema
 export const holidayRankingSchema = z.object({
   holiday_id: z.string().uuid(),
-  rank: z.number().min(-2).max(50), // -2 = Not applicable, -1 = Not Available, 1-50 = preference ranking
+  // -2 = Not applicable, -1 = Not Available, 1-50 = preference ranking.
+  // 0 is the ranking form's "no answer" state and is filtered out before
+  // submission, so it is never a value the API should accept. A plain
+  // min(-2)/max(50) range would let 0 and fractional positions through.
+  rank: z
+    .number()
+    .int("Rank must be a whole number")
+    .refine((rank) => rank === -2 || rank === -1 || (rank >= 1 && rank <= 50), {
+      message: "Rank must be -2, -1, or a position between 1 and 50",
+    }),
 });
 
 // Survey config schema

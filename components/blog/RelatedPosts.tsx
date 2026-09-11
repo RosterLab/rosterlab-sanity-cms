@@ -1,3 +1,4 @@
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
@@ -27,17 +28,18 @@ interface RelatedPostsProps {
   posts: Post[]
   currentPostId: string
   currentPostDate: string
+  basePath?: string
 }
 
-export default function RelatedPosts({ posts, currentPostId, currentPostDate }: RelatedPostsProps) {
+export default function RelatedPosts({ posts, currentPostId, currentPostDate, basePath = "/blog" }: RelatedPostsProps) {
   // Helper function to determine the correct URL path based on categories
   const getPostUrl = (post: Post) => {
     if (post.categories?.some(cat => cat.slug.current === 'case-studies')) {
-      return `/case-studies/${post.slug.current}`
+      return `${basePath.startsWith("/us/") ? "/us" : ""}/case-studies/${post.slug.current}`
     } else if (post.categories?.some(cat => cat.slug.current === 'newsroom')) {
-      return `/newsroom/${post.slug.current}`
+      return `${basePath.startsWith("/us/") ? "/us" : ""}/newsroom/${post.slug.current}`
     }
-    return `/blog/${post.slug.current}`
+    return `${basePath}/${post.slug.current}`
   }
 
   // Find next and previous posts based on date
@@ -89,9 +91,9 @@ export default function RelatedPosts({ posts, currentPostId, currentPostDate }: 
                   {post.title}
                 </h3>
                 <div className="flex items-center text-sm text-gray-500">
-                  {post.author?.name && (
+                  {authorByline(postAuthors(post)) && (
                     <>
-                      <span>{post.author.name}</span>
+                      <span>{authorByline(postAuthors(post))}</span>
                       <span className="mx-2">·</span>
                     </>
                   )}

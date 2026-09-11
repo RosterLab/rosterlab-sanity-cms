@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/pricing",
       images: [
         {
-          url: "/images/og images/Pricing.png",
+          url: "/images/og-images/Pricing.png",
           width: 1200,
           height: 630,
         },
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       title: "Pricing - RosterLab",
       description:
         "Affordable pricing for staff scheduling software. Save time, ensure compliance, and build fairer schedules effortlessly.",
-      images: ["/images/og images/Pricing.png"],
+      images: ["/images/og-images/Pricing.png"],
     },
   },
   "/us/pricing",
@@ -263,17 +263,17 @@ const faqItems = [
     question:
       "What’s the difference between your AI schedules and traditional scheduling tools?",
     answer:
-      "Traditional scheduling tools help you build schedules manually, often by dragging shifts around in a calendar or check your manual schedules against some simple rules (what our <a href='/us/solutions/free-staff-scheduling-tool' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/us/solutions/ai-staff-schedule-maker' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the schedule for you. Our algorithms consider your staffing requirements, staff preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimised, compliant, and fair schedule in a fraction of the time, with better outcomes for staff and management alike.",
+      "Traditional scheduling tools help you build schedules manually, often by dragging shifts around in a calendar or check your manual schedules against some simple rules (what our <a href='/us/solutions/free-staff-scheduling-tool' class='text-blue-600 hover:underline'>free product</a> offers). You're still doing the thinking, and the tool just makes it neater.<br><br><a href='/us/solutions/ai-staff-schedule-maker' class='text-blue-600 hover:underline'>RosterLab's AI</a> goes several steps further. It actually <em>builds</em> the schedule for you. Our algorithms consider your staffing requirements, staff preferences, fatigue and union rules, skill coverage, and fairness - all at once. The result is a fully optimized, compliant, and fair schedule in a fraction of the time, with better outcomes for staff and management alike.",
   },
   {
     question: "Which plan suits me the best?",
     answer:
-      "We strongly recommend <a href='/us/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, our free digital scheduling option may be suitable where available. If you're interested in using AI to generate and optimise schedules, <a href='/us/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
+      "We strongly recommend <a href='/us/contact' class='text-blue-600 hover:underline'>contacting us</a> if you're scheduling for healthcare or non-healthcare teams with a minimum size of 30.<br><br>If you're simply looking for a digital solution to move away from Excel, our free digital scheduling option may be suitable where available. If you're interested in using AI to generate and optimize schedules, <a href='/us/book-a-demo' class='text-blue-600 hover:underline'>book a chat</a> or start a live conversation with us to learn more.",
   },
   {
     question: "How are my savings calculated?",
     answer:
-      "RosterLab delivers savings by significantly reducing the time spent on scheduling, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimised schedules also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see significant savings within the first few months, with some recovering costs in their very first schedule.",
+      "RosterLab delivers savings by significantly reducing the time spent on scheduling, often by up to 90%, while improving staff satisfaction and retention through fair, preference-aware schedules. <br><br> Our AI enforces fatigue and union rules, helping lower sick leave and burnout risk, and ensures better coverage with fewer gaps, reducing costly last-minute changes and improving staff retention. <br><br>Optimized schedules also streamline onboarding for new departments or teams, enabling you to scale without increasing manual workload. Many customers see significant savings within the first few months, with some recovering costs in their very first schedule.",
   },
   {
     question: "How is pricing calculated?",

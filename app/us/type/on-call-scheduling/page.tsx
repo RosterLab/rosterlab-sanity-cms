@@ -187,7 +187,7 @@ export default function OnCallSchedulingPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <FairnessAcrossYearModule />
+              <FairnessAcrossYearModule isUS />
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -476,6 +476,9 @@ export default function OnCallSchedulingPage() {
                 </p>
                 <p className="text-gray-600">
                   Junior Consultant, Auckland Tertiary Hospital
+                </p>
+                <p className="mt-1 text-sm text-gray-600">
+                  Early-career specialist physician, comparable to a US attending.
                 </p>
               </div>
             </div>

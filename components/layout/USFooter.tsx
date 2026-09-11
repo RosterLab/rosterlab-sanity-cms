@@ -15,8 +15,8 @@ export default function USFooter() {
       role="contentinfo"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Main Footer Content - Changed from 5 columns to 4 columns since no Resources */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
           {/* Section 1: Logo and Social */}
           <div className="lg:col-span-1 col-span-full lg:col-start-auto">
             <div className="text-center lg:text-left">
@@ -243,13 +243,68 @@ export default function USFooter() {
                   href="https://help.rosterlab.com/en/"
                   className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
                 >
-                  Help centre
+                  Help center
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Resources section removed for US version */}
+          {/* Section 5: Resources */}
+          <div className="hidden lg:block">
+            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+              Resources
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/us/book-a-demo"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Book a demo
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/us/blog"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/us/tools"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Free WFM Tools
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/us/tools/savings-calculator"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Savings Calculator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/us/tools/fte-calculator"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  FTE Calculator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/us/tools/staff-scheduling-personality-quiz"
+                  className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+                >
+                  Personality Quiz
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* App Store Links */}

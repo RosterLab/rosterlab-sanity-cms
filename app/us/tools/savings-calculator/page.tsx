@@ -18,7 +18,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/tools/savings-calculator",
       images: [
         {
-          url: "/images/og images/ROICalc.png",
+          url: "/images/og-images/ROICalc.png",
           width: 1200,
           height: 630,
         },
@@ -29,7 +29,7 @@ export const metadata = withHreflang(
       title: "Savings Calculator - RosterLab",
       description:
         "Calculate your savings with RosterLab. See how much time and money you can save with AI-powered staff scheduling.",
-      images: ["/images/og images/ROICalc.png"],
+      images: ["/images/og-images/ROICalc.png"],
     },
   },
   "/us/tools/savings-calculator",

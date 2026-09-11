@@ -1,8 +1,10 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";
 import WebinarsPageContent from "./WebinarsPageContent";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "AI in Healthcare Webinars",
   description:
     "Join our expert-led webinars on AI-powered healthcare workforce management. Learn best practices, discover new features, and connect with industry leaders.",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://rosterlab.com/webinars",
   },
-};
+}, `/webinars`);
 
 export interface Webinar {
   id: string;
@@ -51,7 +53,7 @@ const webinars: Webinar[] = [
     id: "resilient-workforce-ai-rostering",
     title: "Building a Resilient Healthcare Workforce with AI Staff Rosters",
     description:
-      "Passionate about building smarter, more sustainable healthcare operations? There's still time to register for our first ever AI in Healthcare webinar this week. Join Mike Peterson (Associate Radiology Manager) and Sunny Feng (Co-Founder of RosterLab) as they dive into how AI can help you save hundreds of hours on staff rostering.",
+      "Watch Mike Peterson (Associate Radiology Manager) and Sunny Feng (Co-Founder of RosterLab) discuss how AI can support a more resilient healthcare workforce and reduce time spent on staff rostering.",
     href: "/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
     image: "/images/webinars/resilient-healthcare-thumbnail.png",
     format: "Recording",

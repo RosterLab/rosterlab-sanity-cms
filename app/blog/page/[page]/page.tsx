@@ -1,8 +1,7 @@
+import { withHreflang } from "@/components/seo/HreflangTags";
 import { getClient } from "@/sanity/lib/client";
 import { blogPostsOnlyQuery } from "@/sanity/lib/queries";
-import { validatedToken } from "@/sanity/lib/token";
 import BlogPageContent from "@/components/blog/BlogPageContent";
-import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
@@ -12,7 +11,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { page } = await params;
-  const pageNumber = parseInt(page, 10);
+  const pageNumber = /^\d+$/.test(page) ? Number(page) : NaN;
 
   if (isNaN(pageNumber) || pageNumber < 1) {
     return {};
@@ -31,66 +30,54 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com";
 
-  return {
-    title,
-    description,
-    robots: {
-      index: false, // Pagination pages should not be indexed
-      follow: true,
-    },
-    alternates: {
-      canonical:
-        pageNumber === 1
-          ? `${baseUrl}/blog`
-          : `${baseUrl}/blog/page/${pageNumber}`,
-    },
-    openGraph: {
+  return withHreflang(
+    {
       title,
       description,
-      type: "website",
-      url: `${baseUrl}/blog/page/${pageNumber}`,
-      images: [
-        {
-          url: "/images/og-images/Blog.png",
-          width: 1200,
-          height: 630,
-        },
-      ],
+      robots: {
+        index: false, // Pagination pages should not be indexed
+        follow: true,
+      },
+      alternates: {
+        canonical:
+          pageNumber === 1
+            ? `${baseUrl}/blog`
+            : `${baseUrl}/blog/page/${pageNumber}`,
+      },
+      openGraph: {
+        title,
+        description,
+        type: "website",
+        url: `${baseUrl}/blog/page/${pageNumber}`,
+        images: [
+          {
+            url: "/images/og-images/Blog.png",
+            width: 1200,
+            height: 630,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: ["/images/og-images/Blog.png"],
+      },
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/images/og-images/Blog.png"],
-    },
-  };
+    `/blog/page/${pageNumber}`,
+  );
 }
 
-// Generate static params for better performance
-export async function generateStaticParams() {
-  try {
-    const client = getClient();
-    const posts = await client.fetch(blogPostsOnlyQuery);
-
-    const postsPerPage = 12;
-    const totalPages = Math.ceil((posts?.length || 0) / postsPerPage);
-
-    if (totalPages <= 1) {
-      return [];
-    }
-
-    return Array.from({ length: totalPages - 1 }, (_, i) => ({
-      page: String(i + 2), // Start from page 2
-    }));
-  } catch (error) {
-    console.error("Error generating static params for blog pagination:", error);
-    return [];
-  }
-}
+// Rendered per request. These pages are noindex and low traffic, so
+// prerendering buys nothing - and a static route whose generateStaticParams
+// list can be empty cannot be rendered on demand at all, which is what made
+// /case-studies/page/2 and /newsroom/page/2 return 500. Rendering per request
+// also means a newly needed page works before the next deploy.
+export const dynamic = "force-dynamic";
 
 export default async function BlogPaginationPage({ params }: Props) {
   const { page } = await params;
-  const pageNumber = parseInt(page, 10);
+  const pageNumber = /^\d+$/.test(page) ? Number(page) : NaN;
 
   // Redirect to main blog page if page is 1
   if (pageNumber === 1) {
@@ -101,11 +88,12 @@ export default async function BlogPaginationPage({ params }: Props) {
     notFound();
   }
 
-  const { isEnabled } = await draftMode();
-  const client = getClient(
-    isEnabled && validatedToken ? { token: validatedToken } : undefined,
-  );
-  const posts = await client.fetch(blogPostsOnlyQuery);
+  // No draftMode(): pagination has no preview value, and a dynamic API here
+  // previously forced the route into a broken static/dynamic hybrid.
+  const client = getClient();
+  const posts = await client.fetch(blogPostsOnlyQuery, {
+    excludedSite: "us",
+  });
 
   const postsPerPage = 12;
   const totalPages = Math.ceil(posts.length / postsPerPage);

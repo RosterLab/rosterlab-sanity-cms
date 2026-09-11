@@ -72,7 +72,7 @@ export default function Home() {
           industries={INDUSTRIES_US}
           heading={INDUSTRIES_HEADING_US}
         />
-        <TestimonialsNew testimonials={TESTIMONIALS_US} />
+        <TestimonialsNew testimonials={TESTIMONIALS_US} isUS />
         <FeaturesGrid features={FEATURES_US} heading={FEATURES_HEADING_US} />
         <FinalCTA heading={FINAL_CTA_HEADING_US} />
       </div>

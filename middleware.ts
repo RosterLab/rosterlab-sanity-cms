@@ -4,14 +4,41 @@ import type { NextRequest } from "next/server";
 // Middleware for handling localized routes
 // No automatic redirects - users choose their preferred version
 export function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone();
+  // A plain URL preserves our explicit trailing-slash normalization; NextURL
+  // can reapply the original trailing slash when it serializes a redirect.
+  const url = new URL(request.url);
   const hostname = request.headers.get("host") || "";
+
+  // request.url carries the origin the Next runtime sees, which behind a CDN is
+  // the internal one. Redirecting to that would either downgrade to http - and
+  // cost a second hop through the CDN's HTTPS rule on every www and trailing
+  // slash URL on the site - or point at an internal host. The forwarded headers
+  // are the public origin, so prefer them whenever they are present.
+  const forwardedProto = request.headers
+    .get("x-forwarded-proto")
+    ?.split(",")[0]
+    .trim();
+  if (forwardedProto) url.protocol = `${forwardedProto}:`;
+  if (hostname) {
+    url.host = hostname;
+    // The host setter keeps any existing port, so clear it explicitly when
+    // the forwarded host carries none.
+    if (!hostname.includes(":")) url.port = "";
+  }
+
+  // Accept common US blog URL variants while preserving article slugs and queries.
+  const canonicalBlogPath = url.pathname.replace(
+    /^\/us\/blogs?(?=\/|$)/i,
+    "/us/blog",
+  );
+  const hasBlogAlias = canonicalBlogPath !== url.pathname;
 
   // Handle www removal and trailing slash in a single redirect
   const hasWww = hostname.startsWith("www.");
   const hasTrailingSlash = url.pathname !== "/" && url.pathname.endsWith("/");
 
-  if (hasWww || hasTrailingSlash) {
+  if (hasWww || hasTrailingSlash || hasBlogAlias) {
+    url.pathname = canonicalBlogPath;
     // Remove www from hostname
     if (hasWww) {
       url.hostname = hostname.replace(/^www\./, "");
@@ -63,12 +90,9 @@ export function middleware(request: NextRequest) {
       nfGeo.subdivision?.code ||
       request.headers.get("x-nf-region") ||
       null,
-    timezone:
-      nfGeo.timezone || request.headers.get("x-nf-timezone") || null,
-    latitude:
-      geo.latitude || nfGeo.latitude || null,
-    longitude:
-      geo.longitude || nfGeo.longitude || null,
+    timezone: nfGeo.timezone || request.headers.get("x-nf-timezone") || null,
+    latitude: geo.latitude || nfGeo.latitude || null,
+    longitude: geo.longitude || nfGeo.longitude || null,
   };
 
   const setGeoHeaders = (response: NextResponse) => {

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 const caseStudiesQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
     title,
     "slug": slug.current,
     excerpt,

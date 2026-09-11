@@ -23,7 +23,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/feature/self-scheduling",
       images: [
         {
-          url: "/images/og images/SelfScheduling.png",
+          url: "/images/og-images/SelfScheduling.png",
           width: 1200,
           height: 630,
         },
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Flexible Self-Scheduling - RosterLab",
       description:
         "Flexible self-scheduling allows staff to request their preferred shifts, tasks & days off. Our AI schedule builder balances preferences with full coverage.",
-      images: ["/images/og images/SelfScheduling.png"],
+      images: ["/images/og-images/SelfScheduling.png"],
     },
   },
   "/us/feature/self-scheduling",
@@ -87,7 +87,7 @@ export default function SelfSchedulingPage() {
 
                 <p className="text-xl text-gray-600 mb-8">
                   Let staff request their preferred shifts, tasks and days off -
-                  our AI optimises to meet 90%+ of preferences while ensuring
+                  our AI optimizes to meet 90%+ of preferences while ensuring
                   coverage.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -189,7 +189,7 @@ export default function SelfSchedulingPage() {
               <div className="order-2 lg:order-1">
                 <Image
                   src="/images/new-product-images/ png/self-scheduling/2-compliance.png"
-                  alt="AI-Optimised Compliant Schedules illustration"
+                  alt="AI-Optimized Compliant Schedules illustration"
                   width={500}
                   height={500}
                   className="w-full h-auto max-w-lg mx-auto"
@@ -215,7 +215,7 @@ export default function SelfSchedulingPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Customisable rules for individual staff members
+                      Customizable rules for individual staff members
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -300,7 +300,7 @@ export default function SelfSchedulingPage() {
                   Plan your ideal schedule by specifying preferred shifts, days
                   off, and weekend availability. Whether you want full control
                   or just the essentials, RosterLab AI creates fair, equitable
-                  schedules that maximise everyone's preferences.
+                  schedules that maximize everyone's preferences.
                 </p>
                 <ul className="space-y-4">
                   <li className="flex items-start">

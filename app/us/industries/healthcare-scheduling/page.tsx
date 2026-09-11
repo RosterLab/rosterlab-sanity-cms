@@ -80,7 +80,7 @@ export default async function HealthcarePage() {
       {/* Hero Section */}
       <IndustryHero
         title="Staff Scheduling for Healthcare"
-        description="Less time scheduling, more time caring for patients. We specialise in all types of healthcare schedules, no matter how complex."
+        description="Less time scheduling, more time caring for patients. We specialize in all types of healthcare schedules, no matter how complex."
         analyticsLocation="US Industry Page Healthcare Scheduling"
         primaryCta={{
           href: "/us/book-a-demo",
@@ -256,9 +256,9 @@ export default async function HealthcarePage() {
                       Improve Operational Efficiency
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Better utilise ordinary hours to reduce unnecessary
-                      overtime and locums, and ensure higher skill coverage.
-                      Optimise your current staffing with better efficiency.
+                      Better utilize regular work hours to reduce unnecessary
+                      overtime and locum tenens coverage, and ensure higher skill coverage.
+                      Optimize your current staffing with better efficiency.
                     </p>
                   </div>
                 </div>
@@ -292,7 +292,7 @@ export default async function HealthcarePage() {
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Empower your healthcare teams with AI-driven scheduling that saves
-              time, ensures compliance, and improves staff wellbeing.
+              time, ensures compliance, and improves staff well-being.
             </p>
           </div>
 
@@ -389,7 +389,7 @@ export default async function HealthcarePage() {
                 Better Staffing Coverage
               </h3>
               <p className="text-gray-600 mb-3">
-                Optimise all the staffing intricacies for better coverage for
+                Optimize all the staffing intricacies for better coverage for
                 your hospitals.
               </p>
               <div className="flex items-center text-blue-600 font-medium">
@@ -667,7 +667,7 @@ export default async function HealthcarePage() {
                     ICU & Emergency Departments
                   </h3>
                   <p className="text-gray-600 mb-3 flex-grow">
-                    24/7 critical care coverage with skill mix optimisation and
+                    24/7 critical care coverage with skill mix optimization and
                     surge capacity planning.
                   </p>
                   <div className="flex items-center text-blue-600 font-medium">
@@ -710,7 +710,7 @@ export default async function HealthcarePage() {
                   </h3>
                   <p className="text-gray-600 mb-3 flex-grow">
                     Subspecialty coverage with equipment coordination and
-                    reading room optimisation.
+                    reading room optimization.
                   </p>
                   <div className="flex items-center text-teal-600 font-medium">
                     Learn more
@@ -1011,7 +1011,7 @@ export default async function HealthcarePage() {
                   </svg>
                 </div>
                 <h4 className="font-semibold text-gray-900">
-                  Operating Theatres
+                  Operating Rooms
                 </h4>
               </div>
               <Link

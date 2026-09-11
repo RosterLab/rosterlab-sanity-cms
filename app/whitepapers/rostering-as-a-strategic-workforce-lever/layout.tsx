@@ -1,6 +1,8 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Rostering as a Strategic Workforce Lever | Free Whitepaper",
   description:
     "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
@@ -15,9 +17,9 @@ export const metadata: Metadata = {
     url: "https://rosterlab.com/whitepapers/rostering-as-a-strategic-workforce-lever",
     images: [
       {
-        url: "/images/og-images/whitepaper-og.png",
-        width: 1200,
-        height: 630,
+        url: "/images/whitepaper thumbnail.png",
+        width: 1190,
+        height: 892,
         alt: "Rostering as a Strategic Workforce Lever Whitepaper",
       },
     ],
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     title: "Rostering as a Strategic Workforce Lever | Free Whitepaper",
     description:
       "Free whitepaper: How healthcare executives use intelligent scheduling to solve workforce challenges | RosterLab",
-    images: ["/images/og-images/whitepaper-og.png"],
+    images: ["/images/whitepaper thumbnail.png"],
   },
   keywords: [
     "healthcare scheduling software",
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
     "whitepaper",
     "executive guide",
   ],
-};
+}, `/whitepapers/rostering-as-a-strategic-workforce-lever`);
 
 export default function WhitepaperLayout({
   children,

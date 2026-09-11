@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/contact",
       images: [
         {
-          url: "/images/og images/Contact.png",
+          url: "/images/og-images/Contact.png",
           width: 1200,
           height: 630,
         },
@@ -35,7 +35,7 @@ export const metadata = withHreflang(
       title: "Contact Us - RosterLab",
       description:
         "Contact us about your staff scheduling challenges using our contact form or live chat. We will aim to get back to you within 24 hours.",
-      images: ["/images/og images/Contact.png"],
+      images: ["/images/og-images/Contact.png"],
     },
   },
   "/us/contact",
@@ -51,7 +51,7 @@ const faqItems = [
   {
     question: "Do you offer training?",
     answer:
-      "Yes! We provide comprehensive training and handovers for paid users and ongoing support to ensure success.",
+      "Yes! We provide comprehensive training and handoffs for paid users and ongoing support to ensure success.",
   },
   {
     question: "Can you handle complex, hard schedules?",

@@ -54,7 +54,7 @@ export const metadata = withHreflang(
 );
 
 const recentCaseStudiesQuery = groq`
-  *[_type == "post" && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "case-studies" in categories[]->slug.current] | order(publishedAt desc)[0...3] {
     _id,
     title,
     slug,
@@ -62,6 +62,9 @@ const recentCaseStudiesQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name
+    },
+    "authors": authors[]->{
       name
     },
     categories[]->{

@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
@@ -5,7 +7,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import RulesRobotClient from './RulesRobotClient'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: 'The Rules Robot - Your Roster Personality',
   description: 'Guardian of compliance and protocols. Leverage your systematic approach to create perfectly compliant staff schedules.',
   robots: {
@@ -32,11 +34,11 @@ export const metadata: Metadata = {
     description: 'Guardian of compliance and protocols. Leverage your systematic approach to create perfectly compliant staff schedules.',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz/rules-robot`)
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+  *[_type == "post" && (!defined(sites) || sites != "us") && !(_id in path("drafts.**")) && defined(slug.current) && 
     (slug.current in ["manage-night-shift-planning-wellbeing-effectively", 
                       "fairer-scheduling-at-work-reducing-shift-bias", 
                       "staff-rostering-to-payroll-the-right-way-to-do-it"])] {
@@ -46,7 +48,8 @@ const recommendedPostsQuery = groq`
     excerpt,
     mainImage,
     publishedAt,
-    author->{name}
+    author->{name},
+    "authors": authors[]->{name}
   }
 `
 

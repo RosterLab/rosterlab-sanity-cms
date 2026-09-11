@@ -1,5 +1,6 @@
 'use client'
 
+import { postAuthors } from "@/lib/posts/authors";
 import { useState, useMemo } from 'react'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
@@ -19,9 +20,10 @@ interface BlogPost {
 interface BlogPageContentProps {
   posts: BlogPost[]
   currentPage?: number
+  basePath?: string
 }
 
-export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageContentProps) {
+export default function BlogPageContent({ posts, currentPage = 1, basePath = "/blog" }: BlogPageContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const postsPerPage = 12
 
@@ -38,7 +40,8 @@ export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageCont
       if (post.excerpt && post.excerpt.toLowerCase().includes(query)) return true
       
       // Search in author name
-      if (post.author?.name?.toLowerCase().includes(query)) return true
+      if (postAuthors(post).some((a) => a.name?.toLowerCase().includes(query)))
+        return true
       
       // Search in categories
       if (post.categories?.some(cat => cat.title?.toLowerCase().includes(query))) return true
@@ -113,7 +116,7 @@ export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageCont
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {paginatedPosts.map((post) => (
-                <BlogCard key={post._id} post={post} />
+                <BlogCard key={post._id} post={post} basePath={basePath} />
               ))}
             </div>
             {/* Pagination - only show when not searching and there's more than 1 page */}
@@ -121,7 +124,7 @@ export default function BlogPageContent({ posts, currentPage = 1 }: BlogPageCont
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                basePath="/blog"
+                basePath={basePath}
               />
             )}
           </>

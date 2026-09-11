@@ -48,12 +48,12 @@ const faqItems = [
     question:
       "How quickly can I generate my emergency department staff schedule?",
     answer:
-      "The time it takes RosterLab’s AI to generate a schedule depends on the complexity of your departments. It scales with department size and the number of rules and requirements. For a typical ED or ICU ward, it takes about 10–20 minutes to solve.",
+      "The time it takes RosterLab’s AI to generate a schedule depends on the complexity of your departments. It scales with department size and the number of rules and requirements. For a typical ED or ICU unit, it takes about 10–20 minutes to solve.",
   },
   {
     question: "How does the platform automate my ICU schedule?",
     answer:
-      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Input your scheduling information so the AI develops a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised schedules for your staff.",
+      "With Rosterlab, you can set the AI to generate schedules for your staff the same way you would. Input your scheduling information so the AI develops a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimized schedules for your staff.",
   },
   {
     question: "Where is my schedule stored?",
@@ -73,7 +73,7 @@ export default function ICUEDPage() {
       {/* Hero Section */}
       <IndustryHero
         title="Generate your ED Staff Schedule in Minutes"
-        description="Cut schedule creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff wellbeing."
+        description="Cut schedule creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff well-being."
         analyticsLocation="US Industry Page ED & ICU Scheduling"
         primaryCta={{
           href: "/us/book-a-demo",
@@ -161,7 +161,7 @@ export default function ICUEDPage() {
               </h3>
               <p className="text-gray-600">
                 Ensure at least one team member from previous shifts continues
-                caring for each patient, minimising handover errors and
+                caring for each patient, minimizing handoff errors and
                 improving outcomes.
               </p>
             </div>

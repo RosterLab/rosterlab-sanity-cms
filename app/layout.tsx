@@ -38,9 +38,7 @@ export const metadata: Metadata = {
   },
   description:
     "RosterLab uses AI to generate fair, optimised staff rosters for complex teams in minutes. Built for healthcare, 24/7 operations, and large shift-based teams.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com",
-  ),
+  metadataBase: new URL("https://rosterlab.com"),
 };
 
 export default async function RootLayout({
@@ -66,7 +64,7 @@ export default async function RootLayout({
     pathname.startsWith("/api");
 
   return (
-    <html lang="en" className={poppins.variable} suppressHydrationWarning>
+    <html lang={isUSPage ? "en-US" : "en"} className={poppins.variable} suppressHydrationWarning>
       <head>
         {/* Applies the cached market-access decision before first paint, so a
             visitor never sees the wrong CTAs flash first. See

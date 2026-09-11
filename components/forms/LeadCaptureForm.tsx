@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
 import { runBestEffort } from "@/lib/analytics/best-effort";
 import type { LeadSource } from "@/lib/leads/sources";
@@ -52,6 +53,8 @@ export default function LeadCaptureForm({
   onSuccess,
   className = "",
 }: LeadCaptureFormProps) {
+  const pathname = usePathname();
+  const isUS = pathname === "/us" || pathname?.startsWith("/us/");
   const [values, setValues] = useState(EMPTY_VALUES);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -230,7 +233,7 @@ export default function LeadCaptureForm({
 
       {showCompany && (
         <label className="block text-sm font-medium text-gray-700">
-          Organisation
+          {isUS ? "Organization" : "Organisation"}
           <input
             autoComplete="organization"
             value={values.company}

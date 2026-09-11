@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/about",
       images: [
         {
-          url: "/images/og images/About.png",
+          url: "/images/og-images/About.png",
           width: 1200,
           height: 630,
           alt: "About RosterLab",
@@ -36,7 +36,7 @@ export const metadata = withHreflang(
       title: "About Us - RosterLab",
       description:
         "Learn about us and meet the team behind RosterLab. Our team is dedicated to building smarter, fairer scheduling solutions that put people first.",
-      images: ["/images/og images/About.png"],
+      images: ["/images/og-images/About.png"],
     },
   },
   "/us/about",
@@ -142,7 +142,7 @@ export default function AboutPage() {
               Meet the Team
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Our diverse team combines expertise in optimisation, AI,
+              Our diverse team combines expertise in optimization, AI,
               healthcare operations, and workforce management to deliver
               innovative scheduling solutions.
             </p>
@@ -183,7 +183,7 @@ export default function AboutPage() {
                   </p>
                   <p className="text-sm text-gray-600 mb-4">
                     Isaac is the brain behind our AI engine. With a PhD in
-                    scheduling optimisation, he leads the development of our
+                    scheduling optimization, he leads the development of our
                     core algorithms and technology. As the CEO, he brings vision
                     to the impact that RosterLab delivers for healthcare teams.
                   </p>
@@ -368,7 +368,7 @@ export default function AboutPage() {
                   Council member and long-time advocate for safer clinician
                   hours, Cathal serves as RosterLab’s medical advisor. His
                   frontline insights ensure our algorithms embed clinical-safety
-                  and fatigue-management principles, turning real-world ward
+                  and fatigue-management principles, turning real-world unit
                   challenges into smarter, fairer schedules.
                 </p>
               </div>
@@ -455,7 +455,7 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-gray-600 mt-2">
                     The idea began with Isaac's PhD research in schedule
-                    optimisation, where he explored how operations research
+                    optimization, where he explored how operations research
                     could dramatically improve healthcare scheduling.
                   </p>
                 </div>
@@ -594,7 +594,7 @@ export default function AboutPage() {
               </h3>
               <p className="text-gray-600">
                 We push the boundaries of what&apos;s possible with cutting-edge
-                AI and optimisation algorithms.
+                AI and optimization algorithms.
               </p>
             </div>
             <div className="text-center">
@@ -603,7 +603,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">Fairness</h3>
               <p className="text-gray-600">
-                The solution we build prioritises workplace safety, staff
+                The solution we build prioritizes workplace safety, staff
                 equity, and operational efficiency.
               </p>
             </div>

@@ -35,9 +35,9 @@ export const FEATURE_TESTIMONIAL_US: FeatureTestimonialContent = {
   tail: ", allowing me to focus more on patient care.",
   author: "Mike",
   role: "Associate Clinical Manager Radiology",
-  // No US variant of this webinar exists, so it points at the shared page.
+  // Use the US-localized webinar page.
   link: {
-    href: "/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
+    href: "/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
     label: "Watch the webinar",
   },
 };
@@ -65,7 +65,7 @@ export const BENEFIT_TABS_US: BenefitTab[] = [
     label: "Optimize Workforce",
     title: "Optimize your workforce with AI",
     description:
-      "Harness our advanced mathematical optimization engine to allocate staff efficiently. Reduce penalty costs, improve coverage, and plan ahead with confidence.",
+      "Harness our advanced mathematical optimization engine to allocate staff efficiently. Reduce premium-pay costs, improve coverage, and plan ahead with confidence.",
     cta: {
       label: "Explore optimization",
       href: "/us/solutions/ai-staff-schedule-maker",
@@ -183,7 +183,8 @@ export const TESTIMONIALS_US: Testimonial[] = [
     ],
     author: "Peter",
     role: "Senior Registrar ICU, Western Australia",
-    caseStudyLink: "/case-studies/icu-unit-western-australia",
+    roleExplanation: "Australian physician in advanced specialty training.",
+    caseStudyLink: "/us/case-studies/icu-unit-western-australia",
   },
   {
     quote: [
@@ -193,7 +194,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
     ],
     author: "Judy Harris",
     role: "Practice Manager, Dargaville Hospital",
-    caseStudyLink: "/case-studies/dargaville-medical-centre-new-zealand",
+    caseStudyLink: "/us/case-studies/dargaville-medical-centre-new-zealand",
   },
   {
     quote: [
@@ -203,6 +204,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
     ],
     author: "Rebecca",
     role: "Staff Specialist Neonatologist, RPA Newborn Care",
+    roleExplanation: "Specialist in newborn care at Royal Prince Alfred Hospital, Australia.",
   },
   {
     quote: [
@@ -212,6 +214,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
     ],
     author: "Anthea",
     role: "MIT, Hawke's Bay Hospital",
+    roleExplanation: "MIT means medical imaging technologist in New Zealand.",
   },
   {
     quote: [
@@ -223,8 +226,9 @@ export const TESTIMONIALS_US: Testimonial[] = [
     ],
     author: "Dr. Fernando",
     role: "Junior Consultant, Auckland Tertiary Hospital",
+    roleExplanation: "Early-career specialist physician, comparable to a US attending.",
     caseStudyLink:
-      "/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster",
+      "/us/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-schedule",
   },
 ];
 

@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
+  // Production builds must not replace assets used by a running local preview.
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
   eslint: {
     ignoreDuringBuilds: true,
   },

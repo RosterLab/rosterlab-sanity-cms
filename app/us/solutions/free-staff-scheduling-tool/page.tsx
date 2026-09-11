@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/solutions/free-staff-scheduling-tool",
       images: [
         {
-          url: "/images/og images/SolutionFree.png",
+          url: "/images/og-images/SolutionFree.png",
           width: 1200,
           height: 630,
           alt: "Free Digital Scheduling Platform",
@@ -46,7 +46,7 @@ export const metadata = withHreflang(
       title: "Free Staff Scheduling Tool - RosterLab",
       description:
         "Free staff scheduling tool for teams. Simple rule checking, dynamic stats, and free mobile app. Build your staff schedule for free, no credit card required.",
-      images: ["/images/og images/SolutionFree.png"],
+      images: ["/images/og-images/SolutionFree.png"],
     },
   },
   "/us/solutions/free-staff-scheduling-tool",
@@ -311,7 +311,7 @@ export default function ManualSchedulingPage() {
                       <p className="text-gray-600">
                         Track key statistics like hours worked, weekends
                         assigned, and skill mix. See everything at a glance with
-                        colour-coded shifts.
+                        color-coded shifts.
                       </p>
                     </div>
                   </div>
@@ -444,7 +444,7 @@ export default function ManualSchedulingPage() {
                     </div>
                     <div className="flex items-center justify-between py-3 border-b border-gray-200">
                       <span className="text-gray-700">
-                        Colour coding by shifts
+                        Color coding by shifts
                       </span>
                       <HiCheck className="w-5 h-5 text-green-500" />
                     </div>

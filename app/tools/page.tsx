@@ -1,8 +1,10 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import ToolsPageContent from "./ToolsPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Free Workforce Management Tools",
   description:
     "Free workforce management tools: ROI calculator, personality tests and shift preference surveys. Streamline scheduling and team management.",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
       "Free workforce management tools: ROI calculator, personality tests and shift preference surveys. Streamline scheduling and team management.",
     images: ["/images/og-images/WFM.png"],
   },
-};
+}, `/tools`);
 
 const tools = [
   // Row 1

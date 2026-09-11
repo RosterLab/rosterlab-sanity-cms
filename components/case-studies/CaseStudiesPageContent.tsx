@@ -1,78 +1,91 @@
-'use client'
+"use client";
 
-import { useState, useMemo, useEffect } from 'react'
-import BlogCard from '@/components/blog/BlogCard'
-import Container from '@/components/ui/Container'
-import Pagination from '@/components/ui/Pagination'
+import { postAuthors } from "@/lib/posts/authors";
+import { useState, useMemo, useEffect } from "react";
+import BlogCard from "@/components/blog/BlogCard";
+import Container from "@/components/ui/Container";
+import Pagination from "@/components/ui/Pagination";
 
 interface CaseStudy {
-  _id: string
-  title: string
-  slug: { current: string }
-  excerpt?: string
-  mainImage?: { asset: { _ref: string }; alt?: string }
-  publishedAt: string
-  author: { name: string; image?: { asset: { _ref: string }; alt?: string } }
-  categories?: Array<{ title: string; slug: { current: string } }>
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt?: string;
+  mainImage?: { asset: { _ref: string }; alt?: string };
+  publishedAt: string;
+  author: { name: string; image?: { asset: { _ref: string }; alt?: string } };
+  categories?: Array<{ title: string; slug: { current: string } }>;
 }
 
 interface CaseStudiesPageContentProps {
-  posts: CaseStudy[]
-  currentPage?: number
+  isUS?: boolean;
+  posts: CaseStudy[];
+  currentPage?: number;
 }
 
-export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseStudiesPageContentProps) {
-  const [searchQuery, setSearchQuery] = useState('')
-  const postsPerPage = 12
-  
+export default function CaseStudiesPageContent({
+  isUS = false,
+  posts,
+  currentPage = 1,
+}: CaseStudiesPageContentProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const postsPerPage = 12;
+
   // Load non-critical CSS asynchronously
   useEffect(() => {
     const loadAsyncCSS = () => {
       // Load any additional non-critical styles
-      const nonCriticalLink = document.createElement('link')
-      nonCriticalLink.rel = 'stylesheet'
-      nonCriticalLink.href = '/styles/non-critical.css'
-      nonCriticalLink.media = 'print'
-      nonCriticalLink.onload = function() {
-        (this as any).media = 'all'
-      }
-      document.head.appendChild(nonCriticalLink)
-    }
+      const nonCriticalLink = document.createElement("link");
+      nonCriticalLink.rel = "stylesheet";
+      nonCriticalLink.href = "/styles/non-critical.css";
+      nonCriticalLink.media = "print";
+      nonCriticalLink.onload = function () {
+        (this as any).media = "all";
+      };
+      document.head.appendChild(nonCriticalLink);
+    };
 
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(loadAsyncCSS)
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(loadAsyncCSS);
     } else {
-      setTimeout(loadAsyncCSS, 1)
+      setTimeout(loadAsyncCSS, 1);
     }
-  }, [])
+  }, []);
 
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
-    if (!searchQuery.trim()) return posts
+    if (!searchQuery.trim()) return posts;
 
-    const query = searchQuery.toLowerCase()
-    return posts.filter(post => {
+    const query = searchQuery.toLowerCase();
+    return posts.filter((post) => {
       // Search in title
-      if (post.title?.toLowerCase().includes(query)) return true
-      
+      if (post.title?.toLowerCase().includes(query)) return true;
+
       // Search in excerpt
-      if (post.excerpt && post.excerpt.toLowerCase().includes(query)) return true
-      
+      if (post.excerpt && post.excerpt.toLowerCase().includes(query))
+        return true;
+
       // Search in author name
-      if (post.author?.name?.toLowerCase().includes(query)) return true
-      
+      if (postAuthors(post).some((a) => a.name?.toLowerCase().includes(query)))
+        return true;
+
       // Search in categories
-      if (post.categories?.some(cat => cat.title?.toLowerCase().includes(query))) return true
-      
-      return false
-    })
-  }, [posts, searchQuery])
+      if (
+        post.categories?.some((cat) => cat.title?.toLowerCase().includes(query))
+      )
+        return true;
+
+      return false;
+    });
+  }, [posts, searchQuery]);
 
   // Calculate pagination
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
-  const startIndex = (currentPage - 1) * postsPerPage
-  const endIndex = startIndex + postsPerPage
-  const paginatedPosts = searchQuery ? filteredPosts : filteredPosts.slice(startIndex, endIndex)
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const paginatedPosts = searchQuery
+    ? filteredPosts
+    : filteredPosts.slice(startIndex, endIndex);
 
   return (
     <div className="py-16 bg-neutral-50 min-h-screen">
@@ -83,7 +96,8 @@ export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseS
             Case Studies
           </h1>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            See how global organizations are transforming their workforce management with RosterLab.
+            See how global organizations are transforming their workforce
+            management with RosterLab.
           </p>
         </div>
 
@@ -112,18 +126,29 @@ export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseS
             </svg>
             {searchQuery && (
               <button
-                onClick={() => setSearchQuery('')}
+                onClick={() => setSearchQuery("")}
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             )}
           </div>
           {searchQuery && (
             <p className="mt-3 text-sm text-neutral-600 text-center">
-              Found {filteredPosts.length} {filteredPosts.length === 1 ? 'case study' : 'case studies'} 
+              Found {filteredPosts.length}{" "}
+              {filteredPosts.length === 1 ? "case study" : "case studies"}
               {searchQuery && ` matching "${searchQuery}"`}
             </p>
           )}
@@ -134,7 +159,11 @@ export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseS
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {paginatedPosts.map((post) => (
-                <BlogCard key={post._id} post={post} />
+                <BlogCard
+                  basePath={isUS ? "/us/blog" : undefined}
+                  key={post._id}
+                  post={post}
+                />
               ))}
             </div>
             {/* Pagination - only show when not searching and there's more than 1 page */}
@@ -142,23 +171,23 @@ export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseS
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                basePath="/case-studies"
+                basePath={isUS ? "/us/case-studies" : "/case-studies"}
               />
             )}
           </>
         ) : (
           <div className="text-center py-12">
             <h2 className="text-2xl font-semibold text-neutral-600 mb-4">
-              {searchQuery ? 'No case studies found' : 'No case studies yet'}
+              {searchQuery ? "No case studies found" : "No case studies yet"}
             </h2>
             <p className="text-neutral-500">
-              {searchQuery 
-                ? 'Try searching with different keywords.' 
-                : 'Check back soon for real-world success stories.'}
+              {searchQuery
+                ? "Try searching with different keywords."
+                : "Check back soon for real-world success stories."}
             </p>
             {searchQuery && (
               <button
-                onClick={() => setSearchQuery('')}
+                onClick={() => setSearchQuery("")}
                 className="mt-4 px-4 py-2 text-primary-600 hover:text-primary-700 font-medium"
               >
                 Clear search
@@ -168,5 +197,5 @@ export default function CaseStudiesPageContent({ posts, currentPage = 1 }: CaseS
         )}
       </Container>
     </div>
-  )
+  );
 }

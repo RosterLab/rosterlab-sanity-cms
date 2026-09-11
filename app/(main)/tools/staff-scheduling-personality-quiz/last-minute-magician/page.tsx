@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
@@ -5,7 +7,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import LastMinuteMagicianClient from './LastMinuteMagicianClient'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: 'The Last-Minute Magician - Your Roster Personality',
   description: 'Thrives under pressure, makes magic happen at the last moment. Pull together perfect rosters when time is running out.',
   robots: {
@@ -32,11 +34,11 @@ export const metadata: Metadata = {
     description: 'Thrives under pressure, makes magic happen at the last moment. Pull together perfect rosters when time is running out.',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz/last-minute-magician`)
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+  *[_type == "post" && (!defined(sites) || sites != "us") && !(_id in path("drafts.**")) && defined(slug.current) && 
     (slug.current in ["how-to-optimise-shifts-during-a-hiring-freeze", 
                       "staff-rostering-to-payroll-the-right-way-to-do-it", 
                       "manage-night-shift-planning-wellbeing-effectively"])] {
@@ -46,7 +48,8 @@ const recommendedPostsQuery = groq`
     excerpt,
     mainImage,
     publishedAt,
-    author->{name}
+    author->{name},
+    "authors": authors[]->{name}
   }
 `
 

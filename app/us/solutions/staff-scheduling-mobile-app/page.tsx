@@ -25,7 +25,7 @@ export const metadata = withHreflang(
   {
     title: "Staff Scheduling Mobile App",
     description:
-      "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+      "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile schedule on the go. Available free on iOS and Android.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app",
@@ -33,12 +33,12 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Staff Scheduling Mobile App - RosterLab",
       description:
-        "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
+        "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile schedule on the go. Available free on iOS and Android.",
       type: "website",
       url: "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app",
       images: [
         {
-          url: "/images/og images/SolutionMobileApp.png",
+          url: "/images/og-images/SolutionMobileApp.png",
           width: 1200,
           height: 630,
           alt: "Staff Mobile App",
@@ -49,8 +49,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Staff Scheduling Mobile App - RosterLab",
       description:
-        "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile roster on the go. Available free on iOS and Android.",
-      images: ["/images/og images/SolutionMobileApp.png"],
+        "Staff scheduling mobile app. View schedules, request time off, swap shifts, and access your mobile schedule on the go. Available free on iOS and Android.",
+      images: ["/images/og-images/SolutionMobileApp.png"],
     },
   },
   "/us/solutions/staff-scheduling-mobile-app",

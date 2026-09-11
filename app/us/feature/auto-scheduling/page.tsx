@@ -12,17 +12,17 @@ export const metadata = withHreflang(
   {
     title: "Auto Scheduling Staff",
     description:
-      "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
+      "Generate fully optimized staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
     alternates: {
       canonical: "https://rosterlab.com/us/feature/auto-scheduling",
     },
     openGraph: {
       title: "Auto Scheduling Staff - RosterLab",
       description:
-        "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
+        "Generate fully optimized staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
       images: [
         {
-          url: "/images/og images/AutoRosterGeneration.png",
+          url: "/images/og-images/AutoRosterGeneration.png",
           width: 1200,
           height: 630,
         },
@@ -32,8 +32,8 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Auto Scheduling Staff - RosterLab",
       description:
-        "Generate fully optimised staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
-      images: ["/images/og images/AutoRosterGeneration.png"],
+        "Generate fully optimized staff schedules in minutes with auto scheduling. Balance staffing, skills, preferences, and compliance automatically.",
+      images: ["/images/og-images/AutoRosterGeneration.png"],
     },
   },
   "/us/feature/auto-scheduling",
@@ -58,7 +58,7 @@ const faqItems = [
   {
     question: "What factors does the AI consider when generating schedules?",
     answer:
-      "The AI considers: staffing requirements by shift and location, staff skills and qualifications, staff preferences and availability, fairness, labour laws and compliance rules. It balances all these factors simultaneously to create optimal schedules.",
+      "The AI considers: staffing requirements by shift and location, staff skills and qualifications, staff preferences and availability, fairness, labor laws and compliance rules. It balances all these factors simultaneously to create optimal schedules.",
   },
   {
     question: "Can I modify the auto-generated schedule?",
@@ -159,7 +159,7 @@ export default function AutoRosterGenerationPage() {
                   Reduce Scheduling from Days to Minutes
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
-                  Using our optimisation algorithm auto scheduling helps
+                  Using our optimization algorithm auto scheduling helps
                   generate complex schedules, based on union rules, staffing
                   requirements, skill mix, leave requests, and staff preferences
                   across multiple locations at the click of a button.
@@ -185,7 +185,7 @@ export default function AutoRosterGenerationPage() {
                   <li className="flex items-start">
                     <HiCheck className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700">
-                      Optimise your staffing, reduce unnecessary shift waste and
+                      Optimize your staffing, reduce unnecessary shift waste and
                       penalty costs
                     </span>
                   </li>
@@ -221,11 +221,11 @@ export default function AutoRosterGenerationPage() {
               </div>
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Optimise Staffing Coverage
+                  Optimize Staffing Coverage
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Automatically create schedules that balances safe staffing
-                  levels, staff wellbeing, compliance with union agreements, and
+                  levels, staff well-being, compliance with union agreements, and
                   operational efficiency.
                   <br />
                   <br />
@@ -403,7 +403,7 @@ export default function AutoRosterGenerationPage() {
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
                 Transform hours of manual scheduling into minutes of automated
-                optimisation with AI-powered schedule generation.
+                optimization with AI-powered schedule generation.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button

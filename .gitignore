@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/.next-dev/
 /out/
 
 # production
@@ -40,5 +41,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+.next-dev/*
 # Local Netlify folder
 .netlify
+
+# pnpm content-addressable store (machine-local)
+.pnpm-store/
+
+# Sanity Studio build output (pnpm sanity:build)
+dist/

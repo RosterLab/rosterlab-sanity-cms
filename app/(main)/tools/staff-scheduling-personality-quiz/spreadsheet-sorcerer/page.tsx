@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
@@ -5,7 +7,7 @@ import { validatedToken } from '@/sanity/lib/token'
 import SpreadsheetSorcererClient from './SpreadsheetSorcererClient'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: 'The Spreadsheet Sorcerer - Your Roster Personality',
   description: 'Master of formulas and pivot tables. Leverage your data-driven approach to create perfectly optimized staff schedules.',
   robots: {
@@ -32,11 +34,11 @@ export const metadata: Metadata = {
     description: 'Master of formulas and pivot tables. Leverage your data-driven approach to create perfectly optimized staff schedules.',
     images: ['/images/quiz/og/og.png']
   }
-}
+}, `/tools/staff-scheduling-personality-quiz/spreadsheet-sorcerer`)
 
 // Query for recommended blog posts
 const recommendedPostsQuery = groq`
-  *[_type == "post" && !(_id in path("drafts.**")) && defined(slug.current) && 
+  *[_type == "post" && (!defined(sites) || sites != "us") && !(_id in path("drafts.**")) && defined(slug.current) && 
     (slug.current in ["how-to-optimise-shifts-during-a-hiring-freeze", 
                       "fairer-scheduling-at-work-reducing-shift-bias", 
                       "how-to-implement-self-scheduling"])] {
@@ -46,7 +48,8 @@ const recommendedPostsQuery = groq`
     excerpt,
     mainImage,
     publishedAt,
-    author->{name}
+    author->{name},
+    "authors": authors[]->{name}
   }
 `
 

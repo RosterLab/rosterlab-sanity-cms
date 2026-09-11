@@ -311,7 +311,7 @@ export default function GroundCrewSchedulingPage() {
                     </h4>
                     <p className="text-gray-600">
                       Help ground crew achieve better work-life balance by
-                      considering preferences whilst ensuring critical flight
+                      considering preferences while ensuring critical flight
                       operations are fully supported.
                     </p>
                   </div>

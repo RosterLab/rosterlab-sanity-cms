@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-export default function FairnessAcrossYearModule() {
+export default function FairnessAcrossYearModule({ isUS = false }: { isUS?: boolean } = {}) {
   const [showAfter, setShowAfter] = useState(false);
 
   const months = [
@@ -286,7 +286,7 @@ export default function FairnessAcrossYearModule() {
                           •
                         </span>
                         <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-600">
-                          AI maintains fairness during re-rostering
+                          {isUS ? "AI maintains fairness during rescheduling" : "AI maintains fairness during re-rostering"}
                         </span>
                       </div>
                       <div className="flex items-start">
@@ -321,7 +321,7 @@ export default function FairnessAcrossYearModule() {
                           •
                         </span>
                         <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-600">
-                          Re-rostering breaks yearly balance
+                          {isUS ? "Rescheduling breaks yearly balance" : "Re-rostering breaks yearly balance"}
                         </span>
                       </div>
                     </>

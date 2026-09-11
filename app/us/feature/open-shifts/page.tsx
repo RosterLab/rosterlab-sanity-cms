@@ -23,7 +23,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/feature/open-shifts",
       images: [
         {
-          url: "/images/og images/FeatureOpenShifts.png",
+          url: "/images/og-images/FeatureOpenShifts.png",
           width: 1200,
           height: 630,
         },
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Open Shifts for Staff - RosterLab",
       description:
         "Use open shifts to help fill last-minute coverage gaps with the open shifts feature. Share available shifts with qualified staff & get shifts filled in minutes.",
-      images: ["/images/og images/FeatureOpenShifts.png"],
+      images: ["/images/og-images/FeatureOpenShifts.png"],
     },
   },
   "/us/feature/open-shifts",
@@ -257,7 +257,7 @@ export default function OpenShiftsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Prioritise More Urgent Shifts
+                  Prioritize More Urgent Shifts
                 </h2>
                 <p className="text-lg text-gray-600 mb-6">
                   Sometimes an open shift is more critical than the one an staff
@@ -297,7 +297,7 @@ export default function OpenShiftsPage() {
               <div>
                 <Image
                   src="/images/new-product-images/ png/open-shifts/3-priortise-urgent-shifts.png"
-                  alt="Prioritise urgent shifts"
+                  alt="Prioritize urgent shifts"
                   width={500}
                   height={500}
                   className="w-full h-auto max-w-lg mx-auto"

@@ -97,7 +97,7 @@ export default function SecurityPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab security platform showing AI-powered rostering"
+                  alt="RosterLab security platform showing AI-powered scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -196,7 +196,7 @@ export default function SecurityPage() {
                       Ensure proper coverage across all sites and security roles
                       - from patrol officers and CCTV operators to access
                       control and emergency response. Automatically allocate the
-                      right people with the right licences to each site.
+                      right people with the right licenses to each site.
                     </p>
                   </div>
                 </div>
@@ -254,12 +254,12 @@ export default function SecurityPage() {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                      Optimise Labour Costs & Compliance
+                      Optimize Labor Costs & Compliance
                     </h3>
                     <p className="text-gray-600 text-sm">
-                      Automatically enforce security licencing requirements and
-                      rest break requirements while optimising staffing
-                      efficiency. Better utilisation of ordinary hours reduces
+                      Automatically enforce security licensing requirements and
+                      rest break requirements while optimizing staffing
+                      efficiency. Better utilization of regular work hours reduces
                       unnecessary overtime costs.
                     </p>
                   </div>
@@ -652,7 +652,7 @@ export default function SecurityPage() {
                 Better Staffing Coverage
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
-                Optimise all the staffing intricacies for better coverage across
+                Optimize all the staffing intricacies for better coverage across
                 your sites.
               </p>
               <div className="flex items-center text-blue-600 font-medium mt-auto">

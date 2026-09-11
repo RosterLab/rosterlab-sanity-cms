@@ -19,7 +19,7 @@ export const metadata = {
     url: "https://rosterlab.com/us/meeting-confirmed",
     images: [
       {
-        url: "/images/og images/InteractiveDemo.png",
+        url: "/images/og-images/InteractiveDemo.png",
         width: 1200,
         height: 630,
         alt: "Meeting Confirmed - RosterLab",
@@ -31,7 +31,7 @@ export const metadata = {
     title: "Meeting Confirmed - RosterLab",
     description:
       "Your demo meeting with RosterLab has been confirmed. Check your inbox for the calendar invite.",
-    images: ["/images/og images/InteractiveDemo.png"],
+    images: ["/images/og-images/InteractiveDemo.png"],
   },
 };
 

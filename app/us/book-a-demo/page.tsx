@@ -19,7 +19,7 @@ export const metadata: Metadata = withHreflang(
       url: "https://rosterlab.com/us/book-a-demo",
       images: [
         {
-          url: "/images/og images/Bookademo.png",
+          url: "/images/og-images/Bookademo.png",
           width: 1200,
           height: 630,
         },
@@ -30,7 +30,7 @@ export const metadata: Metadata = withHreflang(
       title: "Schedule a Demo - RosterLab",
       description:
         "Schedule a demo with RosterLab to see how modern staff scheduling can help reduce admin time, optimize shifts, & fix your toughest scheduling challenges.",
-      images: ["/images/og images/Bookademo.png"],
+      images: ["/images/og-images/Bookademo.png"],
     },
   },
   "/us/book-a-demo",

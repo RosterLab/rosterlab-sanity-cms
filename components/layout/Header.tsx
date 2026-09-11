@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { getResourcesNavigation } from "./resources-navigation";
 
 import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
@@ -180,68 +181,7 @@ export default function Header({
       ],
     },
     { title: "Pricing", link: "/pricing" },
-    {
-      title: "Resources",
-      subItems: [
-        // Content & Learning
-        {
-          title: "Whitepapers",
-          link: "/whitepapers/rostering-as-a-strategic-workforce-lever",
-        },
-        { title: "Case Studies", link: "/case-studies" },
-        { title: "Webinars", link: "/webinars" },
-        { title: "Blogs", link: "/blog" },
-        { title: "Newsroom", link: "/newsroom" },
-
-        // Mini Tools
-        {
-          title: "ROI Calculator",
-          link: "/tools/roi-calculator",
-          description: "Estimate your savings with RosterLab",
-          group: "Mini Tools",
-        },
-        {
-          title: "FTE Calculator",
-          link: "/tools/fte-calculator",
-          description: "Convert weekly demand into required FTE",
-          group: "Mini Tools",
-        },
-        {
-          title: "Roster Analyser",
-          link: "/tools/roster-analysis",
-          description: "Get instant AI insights on your roster",
-          group: "Mini Tools",
-        },
-        {
-          title: "Preferences Optimiser",
-          link: "/tools/survey-preferences",
-          description: "Fairly distribute shifts by staff preference",
-          group: "Mini Tools",
-        },
-
-        // Games
-        {
-          title: "Schedge",
-          link: "/schedge",
-          description: "Our rostering mini game",
-          group: "Games",
-        },
-        {
-          title: "Personality Test",
-          link: "/tools/staff-scheduling-personality-quiz",
-          description: "Discover your rostering style",
-          group: "Games",
-        },
-
-        // Templates
-        {
-          title: "Free Excel Template",
-          link: "/templates/free-staff-roster-template-excel",
-          description: "Ready-to-use roster spreadsheet",
-          group: "Templates",
-        },
-      ],
-    },
+    getResourcesNavigation(),
     { title: "About", link: "/about" },
   ];
 
@@ -586,7 +526,7 @@ export default function Header({
                                   </div>
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion
-                                      ? "Optimize radiographer coverage across imaging modalities"
+                                      ? "Optimize imaging technologist coverage across modalities"
                                       : "Optimise radiographer coverage across imaging modalities"}
                                   </div>
                                 </Link>
@@ -814,7 +754,9 @@ export default function Header({
                                       </div>
                                       <div className="text-sm text-gray-600">
                                         {subItem.title === "Whitepapers"
-                                          ? "How executives use rostering as a strategic lever"
+                                          ? isUSVersion
+                                            ? "How executives use scheduling as a strategic lever"
+                                            : "How executives use rostering as a strategic lever"
                                           : subItem.title === "Case Studies"
                                             ? "Success stories from our customers"
                                             : subItem.title === "Webinars"
@@ -882,7 +824,7 @@ export default function Header({
                                       {/* See all tools — covers Mini Tools + Games */}
                                       <div className="!-mt-2 pb-3">
                                         <Link
-                                          href="/tools"
+                                          href={isUSVersion ? "/us/tools" : "/tools"}
                                           className="inline-flex items-center gap-1 text-xs font-semibold text-[#4a9288] hover:text-[#3a7268] px-3"
                                         >
                                           See all tools
@@ -907,7 +849,7 @@ export default function Header({
                                       {/* Explore all templates */}
                                       <div className="!-mt-2">
                                         <Link
-                                          href="/templates"
+                                          href={isUSVersion ? "/us/templates" : "/templates"}
                                           onClick={() =>
                                             trackSmartButtonClick(
                                               "Explore all templates",
@@ -1278,7 +1220,7 @@ export default function Header({
                                 {renderMobileGroup("Games")}
                                 <div className="mt-1 px-3">
                                   <Link
-                                    href="/tools"
+                                    href={isUSVersion ? "/us/tools" : "/tools"}
                                     className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
                                     onClick={() => setIsMenuOpen(false)}
                                   >
@@ -1288,7 +1230,7 @@ export default function Header({
                                 {renderMobileGroup("Templates")}
                                 <div className="mt-1 px-3">
                                   <Link
-                                    href="/templates"
+                                    href={isUSVersion ? "/us/templates" : "/templates"}
                                     className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
                                     onClick={() => setIsMenuOpen(false)}
                                   >

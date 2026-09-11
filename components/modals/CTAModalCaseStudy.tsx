@@ -18,6 +18,7 @@ const caseStudyFormSchema = z.object({
 type CaseStudyFormData = z.infer<typeof caseStudyFormSchema>;
 
 interface CTAModalCaseStudyProps {
+  isUS?: boolean;
   isOpen: boolean;
   onClose: () => void;
   onConversion: () => void;
@@ -32,6 +33,7 @@ interface CTAModalCaseStudyProps {
  * Can also be used as a content gate for specific case studies
  */
 export default function CTAModalCaseStudy({
+  isUS = false,
   isOpen,
   onClose,
   onConversion,
@@ -216,7 +218,9 @@ export default function CTAModalCaseStudy({
           if (!isContentGate && !testMode) {
             // Exit intent modal - redirect to the case study page using client-side navigation
             router.push(
-              "/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b",
+              isUS
+                ? "/us/case-studies/how-plastics-department-used-schedule-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b"
+                : "/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_b",
             );
           } else if (testMode) {
             console.log(
@@ -387,9 +391,21 @@ export default function CTAModalCaseStudy({
                   </h2>
 
                   <p className="text-neutral-600 mb-0 line-clamp-2 sm:line-clamp-3 text-[11px] sm:text-xs lg:text-sm">
-                    Saved thousands per week from the first roster: how a junior
-                    doctor department with complex healthcare rostering needs
-                    moved from spreadsheets to evidence-based planning.
+                    {isUS ? (
+                      <>
+                        Saved thousands per week from the first schedule: how a
+                        junior doctor department with complex healthcare
+                        scheduling needs moved from spreadsheets to
+                        evidence-based planning.
+                      </>
+                    ) : (
+                      <>
+                        Saved thousands per week from the first roster: how a
+                        junior doctor department with complex healthcare
+                        rostering needs moved from spreadsheets to
+                        evidence-based planning.
+                      </>
+                    )}
                   </p>
                 </div>
               </article>
@@ -508,8 +524,12 @@ export default function CTAModalCaseStudy({
                 {/* Subheading */}
                 <p className="text-xs sm:text-sm lg:text-base text-neutral-600 mb-3 sm:mb-4 lg:mb-5">
                   {isContentGate
-                    ? "Enter your details below to unlock this case study and see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."
-                    : "Enter your details to see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."}
+                    ? isUS
+                      ? "Enter your details below to unlock this case study and see how a Plastics Unit simulated schedule changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."
+                      : "Enter your details below to unlock this case study and see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."
+                    : isUS
+                      ? "Enter your details to see how a Plastics Unit simulated schedule changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."
+                      : "Enter your details to see how a Plastics Unit simulated roster changes, validated a 15% cost reduction, and eliminated unplanned overtime with confidence."}
                 </p>
 
                 {/* Form */}

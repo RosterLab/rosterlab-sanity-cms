@@ -49,7 +49,7 @@ export default function PublicServicesPage() {
       {/* Hero Section */}
       <IndustryHero
         title="Emergency Services Scheduling Software"
-        description="Roster faster and more efficiently whilst meeting more staff preferences and managing fatigue."
+        description="Schedule faster and more efficiently while meeting more staff preferences and managing fatigue."
         analyticsLocation="US Industry Page Emergency Services Scheduling"
         primaryCta={{
           href: "/us/book-a-demo",
@@ -98,7 +98,7 @@ export default function PublicServicesPage() {
               <div className="relative">
                 <Image
                   src="/images/generating.webp"
-                  alt="RosterLab emergency services platform showing AI-powered rostering"
+                  alt="RosterLab emergency services platform showing AI-powered scheduling"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl w-full h-auto"
@@ -829,8 +829,8 @@ export default function PublicServicesPage() {
             Reliable Coverage, Supported Teams.
           </h3>
           <p className="text-white/90 text-lg max-w-3xl mx-auto mb-8">
-            Balance 24/7 operational demands with workforce wellbeing. Spend
-            less time on roster admin, more time supporting your community.
+            Balance 24/7 operational demands with workforce well-being. Spend
+            less time on schedule admin, more time supporting your community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

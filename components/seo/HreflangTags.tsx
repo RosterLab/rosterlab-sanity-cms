@@ -1,6 +1,14 @@
+import {
+  RESOURCE_PATHS,
+  RESOURCE_US_MAPPINGS,
+} from "@/lib/localization/resource-routes";
+import { localizeUSSlug, globalizeUSSlug } from "@/lib/localization/us-slug";
+
 // URL mappings for US version
 export const US_URL_MAPPINGS: Record<string, string> = {
+  ...RESOURCE_US_MAPPINGS,
   // Main pages
+  "/blog": "/us/blog",
   "/": "/us",
   "/about": "/us/about",
   "/pricing": "/us/pricing",
@@ -83,7 +91,9 @@ export const REVERSE_US_MAPPINGS: Record<string, string> = Object.entries(
 
 // Pages that have US versions
 export const LOCALIZED_PAGES = new Set([
+  ...RESOURCE_PATHS,
   // Main pages
+  "/blog",
   "/",
   "/about",
   "/pricing",
@@ -141,6 +151,33 @@ export const LOCALIZED_PAGES = new Set([
   "/industries/airports-and-transportation-roster/ground-crew",
 ]);
 
+// US article URLs localize the published slug (rostering-basics becomes
+// scheduling-basics). Pagination keeps the same route structure in both
+// regions; unknown resource types remain global.
+const ARTICLE_PATH =
+  /^\/(blog|case-studies|newsroom)\/(?!page(?:\/|$))([^/]+)$/;
+const PAGINATION_PATH = /^\/(?:blog|case-studies|newsroom)\/page\/[1-9]\d*$/;
+
+export function getUSPath(pathname: string): string | undefined {
+  const mapped = US_URL_MAPPINGS[pathname];
+  if (mapped) return mapped;
+  if (PAGINATION_PATH.test(pathname)) return `/us${pathname}`;
+  const article = ARTICLE_PATH.exec(pathname);
+  return article
+    ? `/us/${article[1]}/${localizeUSSlug(article[2])}`
+    : undefined;
+}
+
+export function getGlobalPath(pathname: string): string | undefined {
+  const mapped = REVERSE_US_MAPPINGS[pathname];
+  if (mapped) return mapped;
+  if (!pathname.startsWith("/us/")) return undefined;
+  const rest = pathname.slice(3);
+  if (PAGINATION_PATH.test(rest)) return rest;
+  const article = ARTICLE_PATH.exec(rest);
+  return article ? `/${article[1]}/${globalizeUSSlug(article[2])}` : undefined;
+}
+
 // Helper function to generate hreflang metadata
 export function generateHreflangMetadata(pathname: string) {
   const baseUrl = "https://rosterlab.com";
@@ -160,7 +197,7 @@ export function generateHreflangMetadata(pathname: string) {
 
   if (isUSPage) {
     // For US pages, find the original path using reverse mapping
-    originalPath = REVERSE_US_MAPPINGS[normalizedPathname];
+    originalPath = getGlobalPath(normalizedPathname)!;
 
     if (!originalPath) {
       // If no reverse mapping found, this US page doesn't have a corresponding original page
@@ -174,11 +211,11 @@ export function generateHreflangMetadata(pathname: string) {
     originalPath = normalizedPathname;
 
     // Check if this page has localized versions
-    if (!LOCALIZED_PAGES.has(originalPath)) {
+    if (!getUSPath(originalPath)) {
       return {};
     }
 
-    usPath = US_URL_MAPPINGS[originalPath];
+    usPath = getUSPath(originalPath)!;
 
     if (!usPath) {
       // This shouldn't happen if LOCALIZED_PAGES and US_URL_MAPPINGS are in sync
@@ -211,11 +248,35 @@ export function generateHreflangMetadata(pathname: string) {
 }
 
 // Helper to merge hreflang metadata into existing metadata
-export function withHreflang(metadata: any, pathname: string) {
-  const hreflangData = generateHreflangMetadata(pathname);
+// `singleMarket` is for articles published to one site only: there is no twin
+// to point at, and advertising an alternate that 404s is worse than none. The
+// page keeps its self-canonical.
+export function withHreflang(
+  metadata: any,
+  pathname: string,
+  options: { singleMarket?: boolean } = {},
+) {
+  const noindex =
+    typeof metadata.robots === "string"
+      ? /\bnoindex\b/i.test(metadata.robots)
+      : metadata.robots?.index === false;
+  const hreflangData =
+    noindex || options.singleMarket
+      ? { alternates: { languages: {} } }
+      : generateHreflangMetadata(pathname);
 
   return {
     ...metadata,
+    // The root layout appends " | RosterLab". Already branded titles must be
+    // absolute to avoid a second brand suffix in the rendered title element.
+    ...(typeof metadata.title === "string" &&
+    /\brosterlab\b/i.test(metadata.title)
+      ? { title: { absolute: metadata.title } }
+      : {}),
+    ...((pathname === "/us" || pathname.startsWith("/us/")) &&
+    metadata.openGraph
+      ? { openGraph: { ...metadata.openGraph, locale: "en_US" } }
+      : {}),
     ...hreflangData,
     // Preserve any existing alternates
     alternates: {

@@ -369,6 +369,9 @@ export default async function WhyRosterLabPage() {
                   <p className="font-bold text-gray-900">
                     Auckland-based Radiology Department, MRT Lead
                   </p>
+                  <p className="mt-1 text-sm text-gray-600">
+                    MRT means medical radiation technologist, an imaging role in New Zealand.
+                  </p>
                 </div>
                 <div className="flex justify-center">
                   <svg
@@ -470,7 +473,7 @@ export default async function WhyRosterLabPage() {
               your approval and oversight.
             </p>
 
-            <AgenticAICarousel />
+            <AgenticAICarousel isUS />
 
             <div className="mt-12">
               <p className="text-xl text-gray-600 mb-8">

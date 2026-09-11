@@ -1,3 +1,5 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Container from "@/components/ui/Container";
@@ -5,7 +7,7 @@ import Accordion, { AccordionItem } from "@/components/ui/Accordion";
 import Link from "next/link";
 import { HiCalendar, HiClock, HiUserGroup } from "react-icons/hi";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = resourceMetadata({
   title: "Webinar - Building a Resilient Health Workforce",
   description:
     "Watch our webinar on how AI-powered rostering saves hundreds of hours and builds more resilient healthcare teams.",
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     canonical:
       "https://rosterlab.com/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare",
   },
-};
+}, `/webinars/building-a-resilient-workforce-with-ai-rostering-in-healthcare`);
 
 // Transcript sections with actual webinar content
 const transcriptSections: AccordionItem[] = [

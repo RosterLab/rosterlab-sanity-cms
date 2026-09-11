@@ -18,6 +18,7 @@ const testimonials = [
       "RosterLab has saved me countless hours... I have recommended this service to everyone I know who writes medical schedules!",
     author: "Peter",
     company: "Senior Registrar, ICU",
+    roleExplanation: "Australian physician in advanced specialty training.",
     logo: null,
   },
   {
@@ -32,6 +33,7 @@ const testimonials = [
       "We wanted more continuity of care built into the schedules, and RosterLab was easily able to incorporate that into the schedules they generated for us.",
     author: "Rebecca",
     company: "Staff Specialist Neonatologist, RPA Newborn Care",
+    roleExplanation: "Specialist in newborn care at Royal Prince Alfred Hospital, Australia.",
     logo: null,
   },
   {
@@ -39,6 +41,7 @@ const testimonials = [
       "Since using RosterLab, I've felt that the schedules are better for my circadian rhythm, with less up-and-down cycling.",
     author: "Anthea",
     company: "MIT, Hawke's Bay Hospital",
+    roleExplanation: "MIT means medical imaging technologist in New Zealand.",
     logo: null,
   },
   {
@@ -46,6 +49,7 @@ const testimonials = [
       "RosterLab has been a game-changer for our radiology department with significant time-savings for our on-call schedules. It has allowed us to maximize leave provisions while maintaining a safer schedule",
     author: "Dr. Fernando",
     company: "Junior Consultant, Auckland Tertiary Hospital",
+    roleExplanation: "Early-career specialist physician, comparable to a US attending.",
     logo: null,
   },
 ];
@@ -110,6 +114,11 @@ export default function USTestimonials() {
                       <p className="text-neutral-600">
                         {testimonials[currentIndex].company}
                       </p>
+                      {testimonials[currentIndex].roleExplanation && (
+                        <p className="mt-1 text-sm text-neutral-600">
+                          {testimonials[currentIndex].roleExplanation}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

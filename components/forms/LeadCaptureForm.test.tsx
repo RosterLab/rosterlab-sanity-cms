@@ -1,6 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import LeadCaptureForm from "./LeadCaptureForm";
 import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
+import { usePathname } from "next/navigation";
+import ContactFormWrapper from "./ContactFormWrapper";
+
+jest.mock("next/navigation", () => ({ usePathname: jest.fn() }));
 
 jest.mock("@/lib/analytics/events/conversion-events", () => ({
   trackFormSubmission: jest.fn(),
@@ -12,6 +16,7 @@ const fetchMock = jest.fn();
 describe("LeadCaptureForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.mocked(usePathname).mockReturnValue("/templates");
     jest.spyOn(console, "warn").mockImplementation(() => undefined);
     jest.spyOn(console, "error").mockImplementation(() => undefined);
     fetchMock.mockReset().mockResolvedValue({ ok: true });
@@ -48,6 +53,24 @@ describe("LeadCaptureForm", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Submit" }));
   }
+
+  test.each([
+    ["/templates", "Organisation"],
+    ["/us/templates", "Organization"],
+  ])("uses the company label for %s", (pathname, label) => {
+    jest.mocked(usePathname).mockReturnValue(pathname);
+    render(<LeadCaptureForm source="template-excel" />);
+    expect(screen.getByLabelText(label)).toBeTruthy();
+  });
+
+  test.each([
+    ["/contact", "Tell us about your rostering challenges"],
+    ["/us/contact", "Tell us about your scheduling challenges"],
+  ])("uses the contact message label for %s", (pathname, label) => {
+    jest.mocked(usePathname).mockReturnValue(pathname);
+    render(<ContactFormWrapper />);
+    expect(screen.getByLabelText(label)).toBeTruthy();
+  });
 
   test("shows success and runs the next action when analytics throws", async () => {
     window.rlTracker!.formSubmit = jest.fn(() => {

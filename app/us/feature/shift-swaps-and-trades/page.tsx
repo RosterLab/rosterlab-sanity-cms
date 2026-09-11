@@ -23,7 +23,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/feature/shift-swaps-and-trades",
       images: [
         {
-          url: "/images/og images/FeatureShiftSwaps.png",
+          url: "/images/og-images/FeatureShiftSwaps.png",
           width: 1200,
           height: 630,
         },
@@ -34,7 +34,7 @@ export const metadata = withHreflang(
       title: "Shift Swaps & Shift Trades - RosterLab",
       description:
         "Automate routine shift trades, ensuring optimal staffing and compliance while reducing admin. When a shift trade impacts coverage, managers get full oversight.",
-      images: ["/images/og images/FeatureShiftSwaps.png"],
+      images: ["/images/og-images/FeatureShiftSwaps.png"],
     },
   },
   "/us/feature/shift-swaps-and-trades",

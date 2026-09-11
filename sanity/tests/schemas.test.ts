@@ -1,4 +1,15 @@
 import { describe, test, expect } from "@jest/globals";
+
+// The `sanity` package publishes ESM that Jest does not transform, so importing
+// the schema files pulls in a bare `import` statement and the suite fails to
+// load. The schemas only use its define* helpers, which return their argument
+// unchanged at runtime, so standing them in keeps the assertions honest.
+jest.mock("sanity", () => ({
+  defineType: (definition: unknown) => definition,
+  defineField: (definition: unknown) => definition,
+  defineArrayMember: (definition: unknown) => definition,
+}));
+
 import { schemaTypes } from "../schemas";
 
 describe("Sanity Schema Validation", () => {

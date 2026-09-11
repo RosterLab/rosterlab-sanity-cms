@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/utils";
 
 interface BlogCardProps {
+  basePath?: string;
   post: {
     _id: string;
     title: string;
@@ -26,7 +28,7 @@ interface BlogCardProps {
   };
 }
 
-export default function BlogCard({ post }: BlogCardProps) {
+export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
 
   // Define locked case studies
@@ -43,13 +45,13 @@ export default function BlogCard({ post }: BlogCardProps) {
   // Determine the correct URL path based on categories
   const getPostUrl = () => {
     if (post.categories?.some((cat) => cat.slug.current === "case-studies")) {
-      return `/case-studies/${post.slug.current}`;
+      return `${basePath.startsWith("/us/") ? "/us" : ""}/case-studies/${post.slug.current}`;
     } else if (
       post.categories?.some((cat) => cat.slug.current === "newsroom")
     ) {
-      return `/newsroom/${post.slug.current}`;
+      return `${basePath.startsWith("/us/") ? "/us" : ""}/newsroom/${post.slug.current}`;
     }
-    return `/blog/${post.slug.current}`;
+    return `${basePath}/${post.slug.current}`;
   };
 
   const postUrl = getPostUrl();
@@ -171,7 +173,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                   />
                 </div>
               )}
-              <span>{post.author?.name || "Unknown Author"}</span>
+              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
             </Link>
           ) : (
             <div className="flex items-center space-x-2">
@@ -185,7 +187,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                   />
                 </div>
               )}
-              <span>{post.author?.name || "Unknown Author"}</span>
+              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
             </div>
           )}
           <time>{formatDate(post.publishedAt)}</time>

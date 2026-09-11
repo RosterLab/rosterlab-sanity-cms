@@ -119,7 +119,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
           <div className="mb-16 max-w-4xl mx-auto">
             <Image
               src="/images/generating.webp"
-              alt="AI-generated roster interface"
+              alt="AI-generated schedule interface"
               width={600}
               height={500}
               className="rounded-lg shadow-lg mx-auto"
@@ -174,7 +174,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 Maintain Autonomy and Freedom
               </h3>
               <p className="text-gray-600">
-                Keep the final say over your roster. Set your availability on
+                Keep the final say over your schedule. Set your availability on
                 your terms while ensuring fair coverage across the department.
               </p>
             </div>
@@ -244,7 +244,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                       Set your individual constraints within seconds for
                       non-clinical duties, research time, or multi-site
                       commitments. The system remembers your patterns and
-                      constraints so you don't re-enter them for every roster
+                      constraints so you don't re-enter them for every schedule
                       cycle.
                     </p>
                   </div>
@@ -395,7 +395,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                   </svg>
                   <p className="text-gray-700">
                     <strong>Transparent fairness</strong> across 60 emergency
-                    consultants
+                    consultant physicians (comparable to US attending physicians)
                   </p>
                 </div>
                 <div className="flex items-start">
@@ -489,7 +489,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Automatic Roster Generation
+                Automatic Schedule Generation
               </h3>
               <p className="text-gray-600 mb-3 flex-grow">
                 Automatically generate compliant schedules that enforce union

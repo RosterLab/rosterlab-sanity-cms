@@ -1,13 +1,13 @@
 export interface ArticleSchemaProps {
   title: string;
   description: string;
-  author: {
-    name: string;
-  };
+  // A single author or several co-authors; schema.org accepts either shape.
+  author: { name: string } | { name: string }[];
   publishedTime: string;
   modifiedTime?: string;
   image?: string;
   url: string;
+  inLanguage?: string;
 }
 
 export default function ArticleSchema({
@@ -18,16 +18,17 @@ export default function ArticleSchema({
   modifiedTime,
   image,
   url,
+  inLanguage = "en",
 }: ArticleSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
+    inLanguage,
     description: description,
-    author: {
-      "@type": "Person",
-      name: author.name,
-    },
+    author: (Array.isArray(author) ? author : [author])
+      .filter((person) => person?.name)
+      .map((person) => ({ "@type": "Person", name: person.name })),
     publisher: {
       "@type": "Organization",
       name: "RosterLab",

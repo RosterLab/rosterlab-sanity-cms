@@ -23,7 +23,7 @@ const downloadExcelFile = () => {
   document.body.removeChild(link);
 };
 
-export default function ExcelFormClient() {
+export default function ExcelFormClient({ isUS = false }: { isUS?: boolean }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
@@ -34,7 +34,15 @@ export default function ExcelFormClient() {
             Get Your Free Template
           </h2>
           <p className="text-gray-600 mb-6">
-            Fill out the form below to download your Excel roster template
+            {isUS ? (
+              <>
+                Fill out the form below to download your Excel schedule template
+              </>
+            ) : (
+              <>
+                Fill out the form below to download your Excel roster template
+              </>
+            )}
           </p>
 
           <LeadCaptureForm
@@ -71,10 +79,14 @@ export default function ExcelFormClient() {
 
           <div className="mt-8 pt-8 border-t border-gray-200">
             <p className="text-gray-600 mb-4">
-              Ready to automate your rostering completely?
+              {isUS ? (
+                <>Ready to automate your scheduling completely?</>
+              ) : (
+                <>Ready to automate your rostering completely?</>
+              )}
             </p>
             <Button
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               variant="outline"
               className="border-blue-600 text-blue-600 hover:bg-blue-50"
             >

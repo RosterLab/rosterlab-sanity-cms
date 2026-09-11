@@ -1,10 +1,12 @@
+
+import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
 import { validatedToken } from "@/sanity/lib/token";
 import NewsroomPageContent from "@/components/newsroom/NewsroomPageContent";
 import { draftMode } from "next/headers";
 
-export const metadata = {
+export const metadata = resourceMetadata({
   title: "Newsroom - Press Releases & Updates",
   description:
     "Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.",
@@ -32,10 +34,10 @@ export const metadata = {
       "Get the latest RosterLab news - product launches, partnerships, awards, and media coverage. Stay updated on our AI rostering innovations.",
     images: ["/images/og-images/Newsroom.png"],
   },
-};
+}, `/newsroom`);
 
 const newsroomQuery = groq`
-  *[_type == "post" && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
+  *[_type == "post" && (!defined(sites) || sites != "us") && "newsroom" in categories[]->slug.current] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -43,6 +45,11 @@ const newsroomQuery = groq`
     mainImage,
     publishedAt,
     author->{
+      name,
+      slug,
+      image
+    },
+    "authors": authors[]->{
       name,
       slug,
       image

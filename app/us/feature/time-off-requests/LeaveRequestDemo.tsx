@@ -36,7 +36,7 @@ export default function LeaveRequestDemo() {
                   <p className="text-xs font-semibold text-gray-900">
                     Emma Wilson
                   </p>
-                  <p className="text-xs text-gray-600">Annual Leave</p>
+                  <p className="text-xs text-gray-600">Vacation</p>
                 </div>
               </div>
               <span className="text-xs text-[#4a9288]">
