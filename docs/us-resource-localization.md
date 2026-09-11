@@ -15,6 +15,11 @@ localize visible copy and known page destinations, preserving APIs, storage
 keys, assets and identifiers. The resource regression tests independently
 compare calculator numbers and form/storage/CSV call arguments with the sources.
 
+The personality quiz uses shared client components with an `isUS` prop for copy
+and destinations, including downloadable reports. Its global and US route files
+retain their own metadata and recommended-post queries. Quiz files are maintained
+directly and are excluded from resource generation.
+
 CMS articles still use the same Sanity documents. Case studies and newsroom
 support the same `US resource localization` overrides, protected terms and
 `usPreserve` annotations as blogs. Official customer names, locations, dates,

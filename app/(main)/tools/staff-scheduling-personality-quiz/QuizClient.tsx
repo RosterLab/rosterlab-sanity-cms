@@ -17,118 +17,118 @@ function Star({ style }: { style: React.CSSProperties }) {
   )
 }
 
-// Quiz questions with randomized answer order
-const quizQuestions = [
-  {
-    id: 1,
-    question: "How do you feel about rostering?",
-    answers: [
-      { id: 'a', text: "Love it! Give me Excel and a glass of wine, and I'm happy.", personality: 'spreadsheet' },
-      { id: 'b', text: "Giving people what they want is what I want.", personality: 'social' },
-      { id: 'c', text: "Oh, I forgot - was it due today?", personality: 'lastminute' },
-      { id: 'd', text: "It's a serious responsibility. There are rules!", personality: 'rules' },
-      { id: 'e', text: "As long as nobody is upset, I'm good.", personality: 'peacekeeper' },
-      { id: 'f', text: "HELP ME", personality: 'nohope' }
-    ]
-  },
-  {
-    id: 2,
-    question: "Your roster is due tomorrow. What are you doing now?",
-    answers: [
-      { id: 'a', text: "Relaxing. The roster is done.", personality: 'rules' },
-      { id: 'b', text: "AHHHHGH!", personality: 'nohope' },
-      { id: 'c', text: "Reviewing my formulas one last time.", personality: 'spreadsheet' },
-      { id: 'd', text: "Making sure that Sarah and Ben aren't rostered together... again.", personality: 'peacekeeper' },
-      { id: 'e', text: "Just starting... I work best under pressure.", personality: 'lastminute' },
-      { id: 'f', text: "Checking that everyone is happy with my latest draft roster.", personality: 'social' }
-    ]
-  },
-  {
-    id: 3,
-    question: "You notice a series of shifts that break your union rules. What's your reaction?",
-    answers: [
-      { id: 'a', text: "Let me see who's affected and talk to them.", personality: 'peacekeeper' },
-      { id: 'b', text: "Didn't see that. We'll survive.", personality: 'lastminute' },
-      { id: 'c', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
-      { id: 'd', text: "Looks the other way, clicks share", personality: 'nohope' },
-      { id: 'e', text: "I already built formulas to catch that.", personality: 'spreadsheet' },
-      { id: 'f', text: "Oh no - will that upset anyone?", personality: 'social' }
-    ]
-  },
-  {
-    id: 4,
-    question: "Someone messages at 9pm asking for a change. What do you do?",
-    answers: [
-      { id: 'a', text: "Pretend I didn't see the message.", personality: 'nohope' },
-      { id: 'b', text: "Tell them it's too late, they will have to organise their own swap.", personality: 'rules' },
-      { id: 'c', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
-      { id: 'd', text: "I'm on it and shuffling things around.", personality: 'social' },
-      { id: 'e', text: "Sigh and deal with them in the morning.", personality: 'lastminute' },
-      { id: 'f', text: "My integrated webform has already sent this to the appropriate approver.", personality: 'spreadsheet' }
-    ]
-  },
-  {
-    id: 5,
-    question: "What do you care about most in a roster?",
-    answers: [
-      { id: 'a', text: "Making everyone feel considered.", personality: 'social' },
-      { id: 'b', text: "Team harmony and morale.", personality: 'peacekeeper' },
-      { id: 'c', text: "Just surviving without too many complaints", personality: 'nohope' },
-      { id: 'd', text: "Efficiency and optimization.", personality: 'spreadsheet' },
-      { id: 'e', text: "Legal compliance and structure.", personality: 'rules' },
-      { id: 'f', text: "Getting it done without losing my mind.", personality: 'lastminute' }
-    ]
-  },
-  {
-    id: 6,
-    question: "Your ideal roster looks like...",
-    answers: [
-      { id: 'a', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
-      { id: 'b', text: "A roster that would pass any audit with flying colors.", personality: 'rules' },
-      { id: 'c', text: "Everyone has the shifts they wanted.", personality: 'social' },
-      { id: 'd', text: "Someone else doing the rostering instead of me", personality: 'nohope' },
-      { id: 'e', text: "A statistically fair masterpiece.", personality: 'spreadsheet' },
-      { id: 'f', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' }
-    ]
-  },
-  {
-    id: 7,
-    question: "When things go wrong, your first move is to...",
-    answers: [
-      { id: 'a', text: "Figure out what happened, come with receipts.", personality: 'rules' },
-      { id: 'b', text: "Cry in a quiet corner for a while", personality: 'nohope' },
-      { id: 'c', text: "Calm the waters and realign the team.", personality: 'peacekeeper' },
-      { id: 'd', text: "Try to patch it on the fly.", personality: 'lastminute' },
-      { id: 'e', text: "Ask the team how they're feeling.", personality: 'social' },
-      { id: 'f', text: "Diagnose the spreadsheet, how did I not have a formula for this situation?", personality: 'spreadsheet' }
-    ]
-  },
-  {
-    id: 8,
-    question: "What tool do you prefer to use for rostering?",
-    answers: [
-      { id: 'a', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
-      { id: 'b', text: "Whatever's quickest right now. Back of a napkin if I have to.", personality: 'lastminute' },
-      { id: 'c', text: "A good old fashion pen and paper", personality: 'nohope' },
-      { id: 'd', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
-      { id: 'e', text: "Rules checking rostering software.", personality: 'rules' },
-      { id: 'f', text: "Excel or Google Sheets with lots of formulas and conditional formatting.", personality: 'spreadsheet' }
-    ]
+export default function QuizClient({ isUS = false }: { isUS?: boolean }) {
+  const quizQuestions = [
+    {
+      id: 1,
+      question: (isUS ? "How do you feel about scheduling?" : "How do you feel about rostering?"),
+      answers: [
+        { id: 'a', text: "Love it! Give me Excel and a glass of wine, and I'm happy.", personality: 'spreadsheet' },
+        { id: 'b', text: "Giving people what they want is what I want.", personality: 'social' },
+        { id: 'c', text: "Oh, I forgot - was it due today?", personality: 'lastminute' },
+        { id: 'd', text: "It's a serious responsibility. There are rules!", personality: 'rules' },
+        { id: 'e', text: "As long as nobody is upset, I'm good.", personality: 'peacekeeper' },
+        { id: 'f', text: "HELP ME", personality: 'nohope' }
+      ]
+    },
+    {
+      id: 2,
+      question: (isUS ? "Your schedule is due tomorrow. What are you doing now?" : "Your roster is due tomorrow. What are you doing now?"),
+      answers: [
+        { id: 'a', text: (isUS ? "Relaxing. The schedule is done." : "Relaxing. The roster is done."), personality: 'rules' },
+        { id: 'b', text: "AHHHHGH!", personality: 'nohope' },
+        { id: 'c', text: "Reviewing my formulas one last time.", personality: 'spreadsheet' },
+        { id: 'd', text: (isUS ? "Making sure that Sarah and Ben aren't scheduled together... again." : "Making sure that Sarah and Ben aren't rostered together... again."), personality: 'peacekeeper' },
+        { id: 'e', text: "Just starting... I work best under pressure.", personality: 'lastminute' },
+        { id: 'f', text: (isUS ? "Checking that everyone is happy with my latest draft schedule." : "Checking that everyone is happy with my latest draft roster."), personality: 'social' }
+      ]
+    },
+    {
+      id: 3,
+      question: "You notice a series of shifts that break your union rules. What's your reaction?",
+      answers: [
+        { id: 'a', text: "Let me see who's affected and talk to them.", personality: 'peacekeeper' },
+        { id: 'b', text: "Didn't see that. We'll survive.", personality: 'lastminute' },
+        { id: 'c', text: "NOT ON MY WATCH. Must fix immediately.", personality: 'rules' },
+        { id: 'd', text: "Looks the other way, clicks share", personality: 'nohope' },
+        { id: 'e', text: "I already built formulas to catch that.", personality: 'spreadsheet' },
+        { id: 'f', text: "Oh no - will that upset anyone?", personality: 'social' }
+      ]
+    },
+    {
+      id: 4,
+      question: "Someone messages at 9pm asking for a change. What do you do?",
+      answers: [
+        { id: 'a', text: "Pretend I didn't see the message.", personality: 'nohope' },
+        { id: 'b', text: (isUS ? "Tell them it's too late, they will have to organize their own swap." : "Tell them it's too late, they will have to organise their own swap."), personality: 'rules' },
+        { id: 'c', text: "Try to find a compromise that works for everyone.", personality: 'peacekeeper' },
+        { id: 'd', text: "I'm on it and shuffling things around.", personality: 'social' },
+        { id: 'e', text: "Sigh and deal with them in the morning.", personality: 'lastminute' },
+        { id: 'f', text: "My integrated webform has already sent this to the appropriate approver.", personality: 'spreadsheet' }
+      ]
+    },
+    {
+      id: 5,
+      question: (isUS ? "What do you care about most in a schedule?" : "What do you care about most in a roster?"),
+      answers: [
+        { id: 'a', text: "Making everyone feel considered.", personality: 'social' },
+        { id: 'b', text: "Team harmony and morale.", personality: 'peacekeeper' },
+        { id: 'c', text: "Just surviving without too many complaints", personality: 'nohope' },
+        { id: 'd', text: "Efficiency and optimization.", personality: 'spreadsheet' },
+        { id: 'e', text: "Legal compliance and structure.", personality: 'rules' },
+        { id: 'f', text: "Getting it done without losing my mind.", personality: 'lastminute' }
+      ]
+    },
+    {
+      id: 6,
+      question: (isUS ? "Your ideal schedule looks like..." : "Your ideal roster looks like..."),
+      answers: [
+        { id: 'a', text: "Something I whipped up in an hour that somehow works.", personality: 'lastminute' },
+        { id: 'b', text: (isUS ? "A schedule that would pass any audit with flying colors." : "A roster that would pass any audit with flying colors."), personality: 'rules' },
+        { id: 'c', text: "Everyone has the shifts they wanted.", personality: 'social' },
+        { id: 'd', text: (isUS ? "Someone else doing the scheduling instead of me" : "Someone else doing the rostering instead of me"), personality: 'nohope' },
+        { id: 'e', text: "A statistically fair masterpiece.", personality: 'spreadsheet' },
+        { id: 'f', text: "No one's crying and the group chat is chill.", personality: 'peacekeeper' }
+      ]
+    },
+    {
+      id: 7,
+      question: "When things go wrong, your first move is to...",
+      answers: [
+        { id: 'a', text: "Figure out what happened, come with receipts.", personality: 'rules' },
+        { id: 'b', text: "Cry in a quiet corner for a while", personality: 'nohope' },
+        { id: 'c', text: "Calm the waters and realign the team.", personality: 'peacekeeper' },
+        { id: 'd', text: "Try to patch it on the fly.", personality: 'lastminute' },
+        { id: 'e', text: "Ask the team how they're feeling.", personality: 'social' },
+        { id: 'f', text: "Diagnose the spreadsheet, how did I not have a formula for this situation?", personality: 'spreadsheet' }
+      ]
+    },
+    {
+      id: 8,
+      question: (isUS ? "What tool do you prefer to use for scheduling?" : "What tool do you prefer to use for rostering?"),
+      answers: [
+        { id: 'a', text: "Anything that lets me see everyone's preferences.", personality: 'peacekeeper' },
+        { id: 'b', text: "Whatever's quickest right now. Back of a napkin if I have to.", personality: 'lastminute' },
+        { id: 'c', text: "A good old fashion pen and paper", personality: 'nohope' },
+        { id: 'd', text: "A group chat, calendar, and lots of emojis.", personality: 'social' },
+        { id: 'e', text: (isUS ? "Rules checking scheduling software." : "Rules checking rostering software."), personality: 'rules' },
+        { id: 'f', text: "Excel or Google Sheets with lots of formulas and conditional formatting.", personality: 'spreadsheet' }
+      ]
+    }
+  ]
+
+  // Personality URLs mapping
+  const personalityUrls: Record<string, string> = {
+    'spreadsheet': (isUS ? "/us/tools/staff-scheduling-personality-quiz/spreadsheet-sorcerer" : '/tools/staff-scheduling-personality-quiz/spreadsheet-sorcerer'),
+    'peacekeeper': (isUS ? "/us/tools/staff-scheduling-personality-quiz/peacekeeper-panda" : '/tools/staff-scheduling-personality-quiz/peacekeeper-panda'),
+    'social': (isUS ? "/us/tools/staff-scheduling-personality-quiz/social-butterfly" : '/tools/staff-scheduling-personality-quiz/social-butterfly'),
+    'rules': (isUS ? "/us/tools/staff-scheduling-personality-quiz/rules-robot" : '/tools/staff-scheduling-personality-quiz/rules-robot'),
+    'lastminute': (isUS ? "/us/tools/staff-scheduling-personality-quiz/last-minute-magician" : '/tools/staff-scheduling-personality-quiz/last-minute-magician'),
+    'nohope': (isUS ? "/us/tools/staff-scheduling-personality-quiz/chaos-carla" : '/tools/staff-scheduling-personality-quiz/chaos-carla')
   }
-]
 
-// Personality URLs mapping
-const personalityUrls: Record<string, string> = {
-  'spreadsheet': '/tools/staff-scheduling-personality-quiz/spreadsheet-sorcerer',
-  'peacekeeper': '/tools/staff-scheduling-personality-quiz/peacekeeper-panda',
-  'social': '/tools/staff-scheduling-personality-quiz/social-butterfly',
-  'rules': '/tools/staff-scheduling-personality-quiz/rules-robot',
-  'lastminute': '/tools/staff-scheduling-personality-quiz/last-minute-magician',
-  'nohope': '/tools/staff-scheduling-personality-quiz/chaos-carla'
-}
 
-export default function QuizClient() {
-  const router = useRouter()
+    const router = useRouter()
   const [isQuizActive, setIsQuizActive] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, string>>({})
@@ -232,11 +232,11 @@ export default function QuizClient() {
         // All possible messages
         const allMessages = [
           'Analyzing your traits...',
-          'Rostering your personality...',
+          (isUS ? "Scheduling your personality..." : 'Rostering your personality...'),
           'Quizzing your shift management...',
           'Calculating compliance levels...',
           'Measuring your scheduling style...',
-          'Evaluating your roster approach...',
+          (isUS ? "Evaluating your schedule approach..." : 'Evaluating your roster approach...'),
           'Processing your answers...',
           'Decoding your management DNA...'
         ]
@@ -267,7 +267,7 @@ export default function QuizClient() {
   }
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.origin + '/tools/staff-scheduling-personality-quiz')
+    navigator.clipboard.writeText(window.location.origin + (isUS ? "/us/tools/staff-scheduling-personality-quiz" : '/tools/staff-scheduling-personality-quiz'))
       .then(() => {
         setLinkCopied(true)
         setTimeout(() => setLinkCopied(false), 2000)
@@ -298,8 +298,9 @@ export default function QuizClient() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl leading-tight">
-                Everyone has a<br />
-                rostering personality.<br />
+                Everyone has a<br />{isUS ? <>
+                scheduling personality.</> : <>
+                rostering personality.</>}<br />
                 What's yours?
               </h1>
               <div className="mt-8 flex items-center justify-center lg:justify-start space-x-6">
@@ -346,12 +347,16 @@ export default function QuizClient() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6">{isUS ? <>
+                About the scheduling quiz
+              </> : <>
                 About the rostering quiz
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              </>}</h2>
+              <p className="text-lg text-gray-600 mb-6">{isUS ? <>
+                Based on research and testing, our personality quiz aims to open up new perspectives for you – about yourself, your schedule, and your redeeming hero-like qualities to get that schedule done.
+              </> : <>
                 Based on research and testing, our personality quiz aims to open up new perspectives for you – about yourself, your roster, and your redeeming hero-like qualities to get that roster done.
-              </p>
+              </>}</p>
               <button
                 onClick={handleStartQuiz}
                 className="inline-flex items-center justify-center rounded-md bg-primary-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
@@ -365,7 +370,7 @@ export default function QuizClient() {
             <div className="relative h-96 rounded-lg overflow-hidden">
               <Image
                 src="/images/quiz/test4.png"
-                alt="Rostering quiz characters"
+                alt={(isUS ? "Scheduling quiz characters" : "Rostering quiz characters")}
                 fill
                 className="object-cover rounded-lg"
               />
@@ -445,21 +450,23 @@ export default function QuizClient() {
       {/* Rostering still a headache for you? Let's chat Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-[#0a1929] to-[#1e3a5f]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">{isUS ? <>
+            Scheduling still a headache for you? Let's chat
+          </> : <>
             Rostering still a headache for you? Let's chat
-          </h2>
+          </>}</h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
             Whether you're a Spreadsheet Sorcerer or a Last-Minute Magician, RosterLab can help streamline your scheduling process and give you back your time.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={(isUS ? "/us/book-a-demo" : "/book-a-demo")}
               className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-primary-600 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-600 transition-colors duration-200"
             >
-              <DemoCtaLabel href="/book-a-demo">Book a demo</DemoCtaLabel>
+              <DemoCtaLabel href={(isUS ? "/us/book-a-demo" : "/book-a-demo")}>Book a demo</DemoCtaLabel>
             </Link>
             <Link
-              href="/contact"
+              href={(isUS ? "/us/contact" : "/contact")}
               className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-colors duration-200"
             >
               Get in touch
@@ -534,16 +541,20 @@ export default function QuizClient() {
                   <h2 className="text-2xl font-bold text-white mb-4">
                     {analyzeText}
                   </h2>
-                  <p className="text-white/70">
+                  <p className="text-white/70">{isUS ? <>
+                    Discovering your scheduling personality...
+                  </> : <>
                     Discovering your rostering personality...
-                  </p>
+                  </>}</p>
                 </div>
               ) : (
                 <>
                   {/* Title */}
-                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-6 mt-2 md:mt-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-white text-center mb-4 md:mb-6 mt-2 md:mt-6">{isUS ? <>
+                    What's your scheduling personality type?
+                  </> : <>
                     What's your rostering personality type?
-                  </h2>
+                  </>}</h2>
 
                   {/* Question */}
                   <div className="mb-4 md:mb-8">

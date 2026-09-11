@@ -23,7 +23,6 @@ const roots = [
   "app/tools/fte-calculator",
   "app/tools/survey-preferences",
   "app/schedge",
-  "app/(main)/tools/staff-scheduling-personality-quiz",
 ];
 const shared = [
   "components/case-studies/CaseStudiesPageContent.tsx",

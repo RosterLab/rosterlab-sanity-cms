@@ -1,5 +1,3 @@
-// Generated from app/(main)/tools/staff-scheduling-personality-quiz/social-butterfly/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
@@ -7,7 +5,7 @@ import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
 import { validatedToken } from '@/sanity/lib/token'
-import SocialButterflyClient from "@/app/us/tools/staff-scheduling-personality-quiz/social-butterfly/SocialButterflyClient"
+import SocialButterflyClient from "@/app/(main)/tools/staff-scheduling-personality-quiz/social-butterfly/SocialButterflyClient"
 import { Metadata } from 'next'
 
 export const metadata: Metadata = resourceMetadata({
@@ -69,5 +67,5 @@ export default async function SocialButterflyPage() {
   // Fetch the recommended blog posts
   const recommendedPosts = await client.fetch(recommendedPostsQuery).then(localizeUSResourceResult)
   
-  return <SocialButterflyClient recommendedPosts={recommendedPosts} />
+  return <SocialButterflyClient isUS recommendedPosts={recommendedPosts} />
 }

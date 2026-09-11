@@ -31,10 +31,12 @@ interface BlogPost {
 }
 
 interface SocialButterflyClientProps {
+  isUS?: boolean;
   recommendedPosts: BlogPost[];
 }
 
 export default function SocialButterflyClient({
+  isUS = false,
   recommendedPosts,
 }: SocialButterflyClientProps) {
   const [copied, setCopied] = useState(false);
@@ -78,7 +80,9 @@ export default function SocialButterflyClient({
   useEffect(() => {
     const handlePopstate = () => {
       // If user navigates back, redirect to the quiz start page
-      window.location.href = "/tools/staff-scheduling-personality-quiz";
+      window.location.href = isUS
+        ? "/us/tools/staff-scheduling-personality-quiz"
+        : "/tools/staff-scheduling-personality-quiz";
     };
 
     // Push a new state when the component mounts
@@ -90,7 +94,7 @@ export default function SocialButterflyClient({
 
     window.addEventListener("popstate", handlePopstate);
     return () => window.removeEventListener("popstate", handlePopstate);
-  }, []);
+  }, [isUS]);
 
   // Download submission is handled by the shared lead form.
 
@@ -165,7 +169,11 @@ export default function SocialButterflyClient({
       doc.setFont("helvetica", "normal");
       doc.setFontSize(20);
       doc.setTextColor(...(textColor as [number, number, number]));
-      doc.text("Your Rostering Personality", 20, 32);
+      doc.text(
+        isUS ? "Your Scheduling Personality" : "Your Rostering Personality",
+        20,
+        32,
+      );
       doc.setFontSize(16);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text("The Social Butterfly", 20, 42);
@@ -205,7 +213,9 @@ export default function SocialButterflyClient({
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text(
-        "If your rostering style was a celebrity you'd be...",
+        isUS
+          ? "If your scheduling style was a celebrity you'd be..."
+          : "If your rostering style was a celebrity you'd be...",
         20,
         currentY,
       );
@@ -296,8 +306,9 @@ export default function SocialButterflyClient({
       currentY += 10;
       doc.setFontSize(10);
       doc.setTextColor(...(textColor as [number, number, number]));
-      const butterflyDesc =
-        "You create rosters that keep everyone happy, ensuring fairness while maintaining team morale and positive workplace vibes.";
+      const butterflyDesc = isUS
+        ? "You create schedules that keep everyone happy, ensuring fairness while maintaining team morale and positive workplace vibes."
+        : "You create rosters that keep everyone happy, ensuring fairness while maintaining team morale and positive workplace vibes.";
       const butterflyLines = doc.splitTextToSize(butterflyDesc, 170);
       doc.text(butterflyLines, 20, currentY);
       currentY += butterflyLines.length * 4 + 5;
@@ -509,7 +520,9 @@ export default function SocialButterflyClient({
       const tool1Width = doc.getTextWidth(tool1Text);
       doc.text(tool1Text, 28, currentY);
       doc.link(28, currentY - 3, tool1Width, 4, {
-        url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app"
+          : "https://rosterlab.com/solutions/staff-roster-mobile-app",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -527,7 +540,9 @@ export default function SocialButterflyClient({
       const tool2Width = doc.getTextWidth(tool2Text);
       doc.text(tool2Text, 28, currentY);
       doc.link(28, currentY - 3, tool2Width, 4, {
-        url: "https://rosterlab.com/feature/shift-swaps",
+        url: isUS
+          ? "https://rosterlab.com/us/feature/shift-swaps-and-trades"
+          : "https://rosterlab.com/feature/shift-swaps",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -541,15 +556,19 @@ export default function SocialButterflyClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const tool3Text = "AI Roster Generator";
+      const tool3Text = isUS ? "AI Schedule Generator" : "AI Roster Generator";
       const tool3Width = doc.getTextWidth(tool3Text);
       doc.text(tool3Text, 28, currentY);
       doc.link(28, currentY - 3, tool3Width, 4, {
-        url: "https://rosterlab.com/solutions/ai-roster-generator",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/ai-staff-schedule-maker"
+          : "https://rosterlab.com/solutions/ai-roster-generator",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
-        ": Create fair rosters that consider team preferences",
+        isUS
+          ? ": Create fair schedules that consider team preferences"
+          : ": Create fair rosters that consider team preferences",
         28 + tool3Width,
         currentY,
       );
@@ -596,7 +615,9 @@ export default function SocialButterflyClient({
       const blog1Width = doc.getTextWidth(blog1Text);
       doc.text(blog1Text, 28, currentY);
       doc.link(28, currentY - 3, blog1Width, 4, {
-        url: "https://rosterlab.com/blog/increase-staff-engagement-for-shift-workers",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/increase-staff-engagement-for-shift-workers"
+          : "https://rosterlab.com/blog/increase-staff-engagement-for-shift-workers",
       });
       currentY += 8;
 
@@ -608,7 +629,9 @@ export default function SocialButterflyClient({
       const blog2Width = doc.getTextWidth(blog2Text);
       doc.text(blog2Text, 28, currentY);
       doc.link(28, currentY - 3, blog2Width, 4, {
-        url: "https://rosterlab.com/blog/comprehensive-guide-shift-swaps",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/comprehensive-guide-shift-swaps"
+          : "https://rosterlab.com/blog/comprehensive-guide-shift-swaps",
       });
       currentY += 8;
 
@@ -616,11 +639,15 @@ export default function SocialButterflyClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const blog3Text = "Rotating Rosters: Best Practices";
+      const blog3Text = isUS
+        ? "Rotating Schedules: Best Practices"
+        : "Rotating Rosters: Best Practices";
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/blog/rotating-rosters",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/rotating-schedules"
+          : "https://rosterlab.com/blog/rotating-rosters",
       });
       currentY += 17;
 
@@ -628,7 +655,11 @@ export default function SocialButterflyClient({
       currentY += 10;
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
-      doc.text("Need help with your roster?", 20, currentY);
+      doc.text(
+        isUS ? "Need help with your schedule?" : "Need help with your roster?",
+        20,
+        currentY,
+      );
 
       currentY += 10;
       doc.setFontSize(10);
@@ -655,7 +686,7 @@ export default function SocialButterflyClient({
       const footerX = 105 - footerWidth / 2;
       doc.text(footerText, 105, pageHeight - 10, { align: "center" });
       doc.link(footerX, pageHeight - 13, footerWidth, 4, {
-        url: "https://rosterlab.com",
+        url: isUS ? "https://rosterlab.com/us" : "https://rosterlab.com",
       });
 
       // Save the PDF
@@ -670,7 +701,7 @@ export default function SocialButterflyClient({
         "There was an error generating your PDF. Please check the console for details.",
       );
     }
-  }, []);
+  }, [isUS]);
 
   return (
     <div className="bg-white relative">
@@ -712,7 +743,11 @@ export default function SocialButterflyClient({
                   {copied ? "Copied to clipboard!" : "Share your results"}
                 </button>
                 <Link
-                  href="/tools/staff-scheduling-personality-quiz"
+                  href={
+                    isUS
+                      ? "/us/tools/staff-scheduling-personality-quiz"
+                      : "/tools/staff-scheduling-personality-quiz"
+                  }
                   className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   Take the Quiz
@@ -744,7 +779,11 @@ export default function SocialButterflyClient({
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            If your rostering style was a celebrity you'd be…
+            {isUS ? (
+              <>If your scheduling style was a celebrity you'd be…</>
+            ) : (
+              <>If your rostering style was a celebrity you'd be…</>
+            )}
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mt-16">
@@ -783,7 +822,15 @@ export default function SocialButterflyClient({
                 Taylor Shift
               </h3>
               <p className="text-gray-600 max-w-xs mx-auto">
-                Creates perfect team harmony with every roster she writes.
+                {isUS ? (
+                  <>
+                    Creates perfect team harmony with every schedule she writes.
+                  </>
+                ) : (
+                  <>
+                    Creates perfect team harmony with every roster she writes.
+                  </>
+                )}
               </p>
             </div>
 
@@ -820,9 +867,19 @@ export default function SocialButterflyClient({
             As the Social Butterfly…
           </h2>
           <p className="text-lg text-gray-600 mb-12 text-center max-w-4xl mx-auto">
-            You create rosters that keep everyone happy, ensuring fairness while
-            maintaining team morale and positive workplace vibes. Your
-            empathetic approach makes you the heart of your scheduling team.
+            {isUS ? (
+              <>
+                You create schedules that keep everyone happy, ensuring fairness
+                while maintaining team morale and positive workplace vibes. Your
+                empathetic approach makes you the heart of your scheduling team.
+              </>
+            ) : (
+              <>
+                You create rosters that keep everyone happy, ensuring fairness
+                while maintaining team morale and positive workplace vibes. Your
+                empathetic approach makes you the heart of your scheduling team.
+              </>
+            )}
           </p>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
@@ -1244,7 +1301,14 @@ export default function SocialButterflyClient({
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mb-12">
-            <Link href="/feature/shift-swaps" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/feature/shift-swaps-and-trades"
+                  : "/feature/shift-swaps"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1287,7 +1351,14 @@ export default function SocialButterflyClient({
               </div>
             </Link>
 
-            <Link href="/solutions/staff-roster-mobile-app" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/staff-scheduling-mobile-app"
+                  : "/solutions/staff-roster-mobile-app"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1308,8 +1379,17 @@ export default function SocialButterflyClient({
                   Employee Mobile App
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Keep everyone connected and engaged on the go with real-time
-                  roster updates and team communication.
+                  {isUS ? (
+                    <>
+                      Keep everyone connected and engaged on the go with
+                      real-time schedule updates and team communication.
+                    </>
+                  ) : (
+                    <>
+                      Keep everyone connected and engaged on the go with
+                      real-time roster updates and team communication.
+                    </>
+                  )}
                 </p>
                 <span className="text-primary-600 font-medium inline-flex items-center">
                   Learn more
@@ -1330,7 +1410,14 @@ export default function SocialButterflyClient({
               </div>
             </Link>
 
-            <Link href="/solutions/ai-roster-generator" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/ai-staff-schedule-maker"
+                  : "/solutions/ai-roster-generator"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1357,8 +1444,17 @@ export default function SocialButterflyClient({
                   AI Powered Scheduling
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Create fair rosters that consider team preferences and
-                  maintain harmony automatically.
+                  {isUS ? (
+                    <>
+                      Create fair schedules that consider team preferences and
+                      maintain harmony automatically.
+                    </>
+                  ) : (
+                    <>
+                      Create fair rosters that consider team preferences and
+                      maintain harmony automatically.
+                    </>
+                  )}
                 </p>
                 <span className="text-primary-600 font-medium inline-flex items-center">
                   Learn more
@@ -1382,7 +1478,7 @@ export default function SocialButterflyClient({
 
           <div className="text-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               Try RosterLab for free
@@ -1404,7 +1500,14 @@ export default function SocialButterflyClient({
                 key={post._id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <Link href={`/blog/${post.slug.current}`} className="block">
+                <Link
+                  href={
+                    isUS
+                      ? `/us/blog/${post.slug.current}`
+                      : `/blog/${post.slug.current}`
+                  }
+                  className="block"
+                >
                   <div className="relative h-48 overflow-hidden group">
                     {post.mainImage ? (
                       <Image
@@ -1463,7 +1566,7 @@ export default function SocialButterflyClient({
           {/* View all blogs CTA */}
           <div className="mt-12 text-center">
             <Link
-              href="/blog"
+              href={isUS ? "/us/blog" : "/blog"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
             >
               View all blogs
@@ -1504,7 +1607,11 @@ export default function SocialButterflyClient({
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Need help with your roster?
+            {isUS ? (
+              <>Need help with your schedule?</>
+            ) : (
+              <>Need help with your roster?</>
+            )}
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
             As a Social Butterfly, you understand the importance of team
@@ -1514,13 +1621,13 @@ export default function SocialButterflyClient({
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-[#0a1929] shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] transition-colors duration-200"
             >
               See RosterLab in action
             </Link>
             <Link
-              href="/pricing"
+              href={isUS ? "/us/pricing" : "/pricing"}
               className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-colors duration-200"
             >
               View pricing
@@ -1537,7 +1644,15 @@ export default function SocialButterflyClient({
               Download Your Social Butterfly Results
             </h3>
             <p className="text-gray-600 mb-6">
-              Get your personalized rostering personality report as a PDF.
+              {isUS ? (
+                <>
+                  Get your personalized scheduling personality report as a PDF.
+                </>
+              ) : (
+                <>
+                  Get your personalized rostering personality report as a PDF.
+                </>
+              )}
             </p>
 
             <LeadCaptureForm

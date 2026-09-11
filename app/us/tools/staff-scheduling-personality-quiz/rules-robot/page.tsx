@@ -1,5 +1,3 @@
-// Generated from app/(main)/tools/staff-scheduling-personality-quiz/rules-robot/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
@@ -7,7 +5,7 @@ import { getClient } from '@/sanity/lib/client'
 import { groq } from 'next-sanity'
 import { draftMode } from 'next/headers'
 import { validatedToken } from '@/sanity/lib/token'
-import RulesRobotClient from "@/app/us/tools/staff-scheduling-personality-quiz/rules-robot/RulesRobotClient"
+import RulesRobotClient from "@/app/(main)/tools/staff-scheduling-personality-quiz/rules-robot/RulesRobotClient"
 import { Metadata } from 'next'
 
 export const metadata: Metadata = resourceMetadata({
@@ -69,5 +67,5 @@ export default async function RulesRobotPage() {
   // Fetch the recommended blog posts
   const recommendedPosts = await client.fetch(recommendedPostsQuery).then(localizeUSResourceResult)
   
-  return <RulesRobotClient recommendedPosts={recommendedPosts} />
+  return <RulesRobotClient isUS recommendedPosts={recommendedPosts} />
 }
