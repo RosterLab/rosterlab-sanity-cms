@@ -453,13 +453,15 @@ const nextConfig: NextConfig = {
   },
 };
 
+const postHogSourceMapApiKey =
+  process.env.SOURCE_MAP_API_KEY || process.env.POSTHOG_API_KEY;
 const postHogSourceMapsConfigured = Boolean(
-  process.env.POSTHOG_API_KEY && process.env.POSTHOG_PROJECT_ID,
+  postHogSourceMapApiKey && process.env.POSTHOG_PROJECT_ID,
 );
 
 export default postHogSourceMapsConfigured
   ? withPostHogConfig(nextConfig, {
-      personalApiKey: process.env.POSTHOG_API_KEY!,
+      personalApiKey: postHogSourceMapApiKey!,
       projectId: process.env.POSTHOG_PROJECT_ID,
       host: process.env.NEXT_PUBLIC_POSTHOG_UI_HOST || "https://us.posthog.com",
       sourcemaps: {
