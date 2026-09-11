@@ -214,7 +214,7 @@ export default async function FreeStaffTimesheetTemplatePage() {
               <div className="bg-white rounded-lg shadow-lg p-8 overflow-hidden">
                 <div className="relative overflow-hidden rounded">
                   <Image
-                    src="/images/timesheet/Timesheet-preview.png"
+                    src="/images/timesheet/timesheet-preview.png"
                     alt="Excel timesheet template preview showing daily time tracking with automatic calculations"
                     width={1200}
                     height={600}

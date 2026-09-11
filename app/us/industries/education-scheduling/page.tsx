@@ -24,7 +24,7 @@ export const metadata = withHreflang(
       url: "https://rosterlab.com/us/industries/education-scheduling",
       images: [
         {
-          url: "/images/Education.jpg",
+          url: "/images/education.jpg",
           width: 1200,
           height: 630,
           alt: "Education workforce scheduling with RosterLab",
@@ -36,7 +36,7 @@ export const metadata = withHreflang(
       title: "Education Staff Scheduling Software - RosterLab",
       description:
         "Learn how our scheduling software simplifies education staff scheduling. Improve student outcomes, ensure compliance & save time.",
-      images: ["/images/Education.jpg"],
+      images: ["/images/education.jpg"],
     },
   },
   "/us/industries/education-scheduling",

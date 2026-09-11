@@ -1,4 +1,5 @@
 /** @jest-environment node */
+import { execSync } from "node:child_process";
 import fs from "node:fs";
 import vm from "node:vm";
 import ts from "typescript";
@@ -208,4 +209,48 @@ test("every indexable US route renders a title and description within SERP range
   expect(offenders).toEqual([]);
   expect(unevaluated).toEqual([]);
   expect(checked).toBeGreaterThan(55);
+});
+
+// A reference whose case does not match the file on disk resolves fine on
+// macOS and 404s on Linux - so it passes every local check and breaks only in
+// CI or, worse, silently in production on Netlify. Local dev cannot catch this
+// class, which is the whole reason for asserting it here. Files that are
+// missing outright are deliberately not covered: those are visible to anyone
+// who loads the page.
+test("every image reference matches the file on disk exactly, including case", () => {
+  const tracked = new Set(
+    execSync("git ls-files public", { encoding: "utf8" })
+      .split("\n")
+      .filter(Boolean),
+  );
+  const byLowercase = new Map(
+    [...tracked].map((file) => [file.toLowerCase(), file]),
+  );
+  const walk = (dir: string): string[] =>
+    fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+      const name = `${dir}/${entry.name}`;
+      return entry.isDirectory()
+        ? walk(name)
+        : /\.tsx?$/.test(name)
+          ? [name]
+          : [];
+    });
+  const mismatches: Record<string, unknown>[] = [];
+  for (const file of [...walk("app"), ...walk("components")]) {
+    const source = fs.readFileSync(file, "utf8");
+    for (const match of source.matchAll(/["'`](\/images\/[^"'`)\s]+)["'`]/g)) {
+      const reference = match[1];
+      const path = "public" + decodeURIComponent(reference);
+      if (tracked.has(path)) continue;
+      const actual = byLowercase.get(path.toLowerCase());
+      // Only a case-differing twin is a mismatch; absent files are out of scope.
+      if (actual)
+        mismatches.push({
+          file,
+          reference,
+          actual: actual.replace(/^public/, ""),
+        });
+    }
+  }
+  expect(mismatches).toEqual([]);
 });
