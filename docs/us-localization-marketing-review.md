@@ -113,7 +113,7 @@ the displayed material appears to be structured editorial notes, for which
 
 - “Personalise/personalised” remains in the Excel and employee-certificate
   template copy. Add the American variants with existing quotation/name guards.
-- The [FTE report generator](../app/us/tools/fte-calculator/client.tsx) prints
+- The [FTE report generator](../app/tools/fte-calculator/client.tsx) prints
   `rosterlab.com/tools/fte-calculator` in its PDF footer. Use the US destination.
   Anchor-link audits do not catch plain-text URLs in exports.
 - Shared externally hosted lead forms, confirmation messages and follow-up

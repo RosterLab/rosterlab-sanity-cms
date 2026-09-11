@@ -1,5 +1,3 @@
-// Generated from app/tools/fte-calculator/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import FTECalculatorClient from "@/app/tools/fte-calculator/client";
 import SiteLayout from "@/components/layout/SiteLayout";

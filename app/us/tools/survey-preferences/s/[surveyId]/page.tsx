@@ -1,4 +1,3 @@
-// Generated from app/tools/survey-preferences/s/[surveyId]/page.tsx. Run npm run localize:resources; do not edit directly.
 /**
  * Staff Submission Page
  * Public page where staff submit their shift preferences

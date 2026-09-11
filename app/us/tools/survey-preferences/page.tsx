@@ -1,5 +1,3 @@
-// Generated from app/tools/survey-preferences/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 /**
  * Survey Preferences Landing Page

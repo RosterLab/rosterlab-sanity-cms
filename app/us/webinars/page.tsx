@@ -1,5 +1,3 @@
-// Generated from app/webinars/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";

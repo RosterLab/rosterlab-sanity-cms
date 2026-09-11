@@ -1,5 +1,3 @@
-// Generated from app/tools/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import ToolsPageContent from "@/app/tools/ToolsPageContent";

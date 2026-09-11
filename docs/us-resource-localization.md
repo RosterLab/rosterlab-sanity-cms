@@ -12,16 +12,16 @@ wrappers pass `isUS` to select the existing US copy, links and formatting.
 Nested shared components receive the same flag. Calculations, API payloads,
 storage keys, assets and user data remain common to both locales.
 
-`npm run localize:resources` generates the remaining US route wrappers and
-content pages. The `sharedResources` registry in the generator prevents shared
-components from being copied and passes `isUS` when a generated route renders
-them. Do not edit files with the generated banner directly. Run
-`npm run localize:resources:check` after editing a source route to detect stale
-output.
+Template landing pages, case studies and newsroom articles use shared server
+renderers in `components/resources`. Route files keep their existing metadata
+and configure the renderer for the global or US locale. The renderers preserve
+both versions' exact copy, queries, description rules and redirects.
 
-The personality quiz also uses shared client components with an `isUS` prop,
-including downloadable reports. Its global and US route files retain their own
-metadata and recommended-post queries and are maintained directly.
+US route files are maintained directly; the resource-copy generator and its
+synchronization hooks have been removed. Small route wrappers and the US webinar
+retain their existing intentional metadata and editorial differences. The quiz
+also shares its client components while retaining its separate route metadata
+and recommended-post queries.
 
 CMS articles still use the same Sanity documents. Case studies and newsroom
 support the same `US resource localization` overrides, protected terms and
@@ -53,18 +53,12 @@ preserved. Preview/testing must not submit real leads or send survey messages.
 
 ## Verification
 
-Shared template forms use `lib/localization/us-hubspot-form.ts` only on US
-pages. It localizes the Excel download button, industry label and three industry
-option labels through the legacy embed configuration and ready callback. Option
-values, selection, required markers, consent copy and success handlers remain
-unchanged. Browser QA verified all four forms and a US/global comparison without
-submitting leads. Their publicly loaded inline confirmations use neutral wording;
-externally configured follow-up emails have not been inspected.
+Shared template forms use the existing lead-capture components. Locale props
+select their displayed copy and navigation without changing form sources,
+submission endpoints, download assets or success handlers.
 
-The form integration follows [HubSpot's legacy embed documentation](https://developers.hubspot.com/docs/cms/start-building/features/forms/legacy-forms).
-
-Run `npx jest lib/localization/__tests__ --runInBand`, the regeneration check,
-and `npm run build`. Browser QA should cover the resource menu, content indexes
-and details, desktop/mobile layouts, gate cancellation and prior-unlock paths,
-template links, FTE calculations, quiz transitions/results and survey controls.
-Use mocked API responses for submission success checks to avoid real leads.
+Run `pnpm verify` and `pnpm build`. Browser QA should cover the resource menu,
+content indexes and details, desktop/mobile layouts, gate cancellation and
+prior-unlock paths, template links, FTE calculations, quiz transitions/results
+and survey controls. Use mocked responses for submission checks to avoid real
+leads or survey writes.

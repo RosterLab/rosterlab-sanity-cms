@@ -1,5 +1,3 @@
-// Generated from app/whitepapers/rostering-as-a-strategic-workforce-lever/layout.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 

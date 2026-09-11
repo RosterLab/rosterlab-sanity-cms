@@ -1,5 +1,3 @@
-// Generated from app/schedge/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";

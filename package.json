@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "localize:resources": "node --import tsx scripts/generate-us-resources.ts",
-    "localize:resources:check": "node --import tsx scripts/generate-us-resources.ts --check",
-    "verify": "pnpm localize:resources:check && pnpm test",
+    "verify": "pnpm test",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

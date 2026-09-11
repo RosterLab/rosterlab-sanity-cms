@@ -1,9 +1,6 @@
 import { getUSPath } from "@/components/seo/HreflangTags";
-import { localizeUSText, replacements, escapeForRegExp } from "./us-text";
-import {
-  terminologyForResource,
-  usMetaTitleForResource,
-} from "./us-terminology";
+import { localizeUSText, replacements, type TextRange } from "./us-text";
+import { terminologyForResource } from "./us-terminology";
 import { explainUSRegionalTerms } from "./us-regional-context";
 import { localizeUSQuotedTerms, isCaseStudy } from "./us-quoted-terms";
 import { derivedUSFields, usProtectedTermsFor } from "./us-derived";
@@ -66,7 +63,7 @@ export function localizeUSBody(
         .map((mark: any) => mark._key),
     );
     let offset = 0;
-    const extra: Range[] = [];
+    const extra: TextRange[] = [];
     for (const child of children) {
       const end = offset + (child.text || "").length;
       if (
@@ -109,7 +106,12 @@ export function localizeUSBody(
 }
 
 export function localizeUSPost<
-  T extends { title: string; excerpt?: string; [key: string]: any },
+  T extends {
+    title: string;
+    excerpt?: string;
+    categories?: { slug?: { current?: string } }[] | null;
+    [key: string]: any;
+  },
 >(
   post: T,
 ): Omit<T, "title" | "excerpt" | "body" | "seo"> & {

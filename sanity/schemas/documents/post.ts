@@ -1,8 +1,12 @@
-import { defineField, defineType } from "sanity";
+import {
+  defineField,
+  defineType,
+  type ConditionalPropertyCallbackContext,
+} from "sanity";
 
 // A global-only article never renders a US page, so its US fields are noise.
 // Left visible for "All sites" and "US site only".
-const hiddenOnGlobalOnly = ({ document }: { document?: { sites?: string } }) =>
+const hiddenOnGlobalOnly = ({ document }: ConditionalPropertyCallbackContext) =>
   document?.sites === "global";
 import {
   UsExcerptInput,

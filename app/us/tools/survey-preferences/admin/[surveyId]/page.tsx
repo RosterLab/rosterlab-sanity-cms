@@ -1,4 +1,3 @@
-// Generated from app/tools/survey-preferences/admin/[surveyId]/page.tsx. Run npm run localize:resources; do not edit directly.
 /**
  * Admin Dashboard Page
  * Protected page for viewing survey results (requires admin token)

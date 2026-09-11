@@ -1,7 +1,6 @@
 /** @jest-environment node */
 import fs from "node:fs";
 import path from "node:path";
-import ts from "typescript";
 import { formatDateShort } from "@/lib/utils";
 import { RESOURCE_PATHS } from "../resource-routes";
 import { localizeUSPathname } from "../us-slug";
@@ -110,65 +109,4 @@ test("CMS resource translation preserves case study identity and editorial prote
       title: "Visit Melbourne Convention & Exhibition Centre",
     }).title,
   ).toBe("Visit Melbourne Convention & Exhibition Centre");
-});
-
-function generatedFiles(dir: string): string[] {
-  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
-    const file = path.join(dir, entry.name);
-    return entry.isDirectory()
-      ? generatedFiles(file)
-      : /\.tsx?$/.test(file) &&
-          fs.readFileSync(file, "utf8").startsWith("// Generated from ")
-        ? [file]
-        : [];
-  });
-}
-
-// Regression guard for localization accidentally modifying the behavior of a
-// calculator, form, gate or survey. Compare the source and generated ASTs,
-// independent of the generation algorithm.
-test("generated resources preserve numeric logic, storage keys, delimiters, API and asset calls", () => {
-  function invariants(text: string) {
-    const tree = ts.createSourceFile(
-      "resource.tsx",
-      text,
-      ts.ScriptTarget.Latest,
-      true,
-      ts.ScriptKind.TSX,
-    );
-    const values: string[] = [];
-    const inspect = (node: ts.Node) => {
-      // Editorial metadata may deliberately differ (e.g. removing legacy
-      // description-length clipping); us-seo.test covers that separately.
-      if (ts.isFunctionDeclaration(node) && node.name?.text === "generateMetadata") return;
-      if (ts.isNumericLiteral(node)) values.push(`number:${node.text}`);
-      if (ts.isCallExpression(node)) {
-        const name = node.expression.getText(tree);
-        if (
-          /\.(split|join|getItem|setItem|removeItem)$/.test(name) ||
-          name === "fetch"
-        ) {
-          node.arguments.forEach((arg) => {
-            if (ts.isStringLiteral(arg)) values.push(`${name}:${arg.text}`);
-          });
-        }
-      }
-      if (ts.isTaggedTemplateExpression(node)) return; // CMS adds an override projection; SQL is checked separately.
-      ts.forEachChild(node, inspect);
-    };
-    inspect(tree);
-    return values;
-  }
-  for (const file of [
-    ...generatedFiles("app/us"),
-  ]) {
-    const output = fs.readFileSync(file, "utf8");
-    const sourcePath = /^\/\/ Generated from (.+?)\. Run /.exec(output)![1];
-    expect({ file, values: invariants(output) }).toEqual({
-      file,
-      values: invariants(fs.readFileSync(sourcePath, "utf8")),
-    });
-    expect(output).not.toContain('split("/us")');
-    expect(output).not.toContain('|| "/us"');
-  }
 });

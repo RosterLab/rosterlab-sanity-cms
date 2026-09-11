@@ -67,16 +67,33 @@ test("all 67 mapped US pages expose specific metadata and existing social images
     const expression = routeFiles(pathname)
       .map(metadataExpression)
       .find(Boolean);
-    expect({ pathname, hasMetadata: !!expression }).toEqual({ pathname, hasMetadata: true });
+    expect({ pathname, hasMetadata: !!expression }).toEqual({
+      pathname,
+      hasMetadata: true,
+    });
     const metadata = evaluateMetadata(expression!, pathname);
     expect(metadata.title).toBeTruthy();
     expect(metadata.description?.trim()).toBeTruthy();
-    expect(metadata.alternates.canonical).toBe("https://rosterlab.com" + pathname);
-    if (metadata.robots?.index === false) expect(metadata.alternates.languages).toEqual({});
-    else expect(metadata.alternates.languages["en-US"]).toBe(metadata.alternates.canonical);
-    for (const image of [...(metadata.openGraph?.images || []), ...(metadata.twitter?.images || [])]) {
+    expect(metadata.alternates.canonical).toBe(
+      "https://rosterlab.com" + pathname,
+    );
+    if (metadata.robots?.index === false)
+      expect(metadata.alternates.languages).toEqual({});
+    else
+      expect(metadata.alternates.languages["en-US"]).toBe(
+        metadata.alternates.canonical,
+      );
+    for (const image of [
+      ...(metadata.openGraph?.images || []),
+      ...(metadata.twitter?.images || []),
+    ]) {
       const url = typeof image === "string" ? image : image.url;
-      if (url.startsWith("/")) expect({pathname, url, exists: fs.existsSync("public" + url)}).toEqual({pathname, url, exists: true});
+      if (url.startsWith("/"))
+        expect({
+          pathname,
+          url,
+          exists: fs.existsSync("public" + url),
+        }).toEqual({ pathname, url, exists: true });
     }
   }
 });
@@ -140,18 +157,6 @@ test("US social metadata uses US locale and production canonical URLs", () => {
     locale: "en_US",
     url: "https://rosterlab.com/us/case-studies/example",
   });
-});
-
-test("generated article metadata retains editorial descriptions and production article URLs", () => {
-  for (const type of ["case-studies", "newsroom"]) {
-    const source = fs.readFileSync(`app/us/${type}/[slug]/page.tsx`, "utf8");
-    expect(source).toContain(
-      "post.seo?.metaDescription?.trim() || post.excerpt?.trim()",
-    );
-    expect(source).not.toContain("metaDescription.slice(");
-    expect(source).not.toContain("process.env.NEXT_PUBLIC_SITE_URL");
-    expect(source).toContain('<ArticleSchema inLanguage="en-US"');
-  }
 });
 
 // A title that renders past 60 characters truncates mid-phrase, and a

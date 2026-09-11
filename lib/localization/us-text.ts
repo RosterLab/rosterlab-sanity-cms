@@ -138,10 +138,10 @@ const terms = new RegExp(
     .join("|")})\\b`,
   "gi",
 );
-type Range = [number, number];
+export type TextRange = [number, number];
 
-function protectedRanges(text: string, protectedTerms: string[]): Range[] {
-  const ranges: Range[] = [];
+function protectedRanges(text: string, protectedTerms: string[]): TextRange[] {
+  const ranges: TextRange[] = [];
   // Preserve quotations, URLs and email addresses verbatim, including across spans.
   const patterns = [
     /“[^”]*”|"[^"]*"|‘[^\n]*?’(?!\w)|(?<!\w)'[^\n]+?'(?!\w)/g,
@@ -159,7 +159,7 @@ function protectedRanges(text: string, protectedTerms: string[]): Range[] {
 export function replacements(
   text: string,
   protectedTerms: string[],
-  extra: Range[] = [],
+  extra: TextRange[] = [],
   terminology: Record<string, string> = {},
 ) {
   const ranges = [...protectedRanges(text, protectedTerms), ...extra];

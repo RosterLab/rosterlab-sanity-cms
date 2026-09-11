@@ -23,7 +23,7 @@ Independent code review approved the final changes. All 53 localization tests pa
 
 1. **Duplicate title branding.** Already-branded titles now use an absolute title so the root `RosterLab` title template does not append the brand again. Unbranded titles still inherit the template.
 2. **Noindex hreflang conflicts.** Metadata for nonindexable pages retains its canonical but does not advertise language alternates.
-3. **Broken social images.** Corrected image paths on 18 authored US pages and replaced nonexistent timesheet/whitepaper images with existing assets and their actual dimensions. Generated US resources inherit the source corrections. US Open Graph locale is `en_US`.
+3. **Broken social images.** Corrected image paths on 18 authored US pages and replaced nonexistent timesheet/whitepaper images with existing assets and their actual dimensions. Shared US resource renderers reuse those corrected assets. US Open Graph locale is `en_US`.
 4. **Preview-origin leakage.** Metadata base and US article URL generation consistently use the production origin so preview environment variables cannot change canonical, social, or structured-data URLs.
 5. **Description clipping.** US case studies and newsroom articles now preserve complete editorial descriptions, falling back to the excerpt or a short page-specific description. Removed legacy padding and fixed-length truncation from those generated US pages.
 6. **Sitemap dates and exclusions.** Removed request-time timestamps from static URLs. CMS timestamps are emitted only when valid; missing or invalid dates no longer break XML generation. Excluded exact redirect sources and the six noindex US quiz results. The public quiz landing page remains discoverable.
