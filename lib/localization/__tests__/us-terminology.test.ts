@@ -117,29 +117,7 @@ test("editorial US overrides and blockquotes take precedence over terminology ru
   expect(rendered(result)).toBe("Consultants");
 });
 
-// "roster meaning" is the site's largest untapped US term and this article is
-// what ranks for it, so the US body must keep the word while the headline still
-// localizes. Scrubbing it removes the term the page competes on.
-test("the rostering-basics body keeps roster terminology while its title localizes", () => {
-  const result = localizeUSPost({
-    title: "Rostering 101: Understanding the Basics of Rostering",
-    slug: "rostering-basics",
-    body: body([
-      "What is a staff roster? At its core, a roster is a plan that outlines ",
-      "the shifts assigned to workers. Rostering is the process of building it.",
-    ]),
-  });
-  expect(result.title).toBe(
-    "Scheduling 101: Understanding the Basics of Scheduling",
-  );
-  const text = rendered(result);
-  expect(text).toContain("What is a staff roster?");
-  expect(text).toContain("a roster is a plan");
-  expect(text).toContain("Rostering is the process");
-  expect(text).not.toContain("schedule is a plan");
-});
-
-test("body-scoped protection does not leak into other articles", () => {
+test("roster terminology and ward wording both localize in article bodies", () => {
   const result = localizeUSPost({
     title: "Rostering basics elsewhere",
     slug: "guide-to-rostering",

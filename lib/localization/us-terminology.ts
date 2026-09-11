@@ -1,8 +1,12 @@
 // Per-slug US editorial data for CMS-backed articles, all of it applied by
-// localizeUSPost: narrative adaptations (profiles), terminology a body must
-// keep (bodyTerminologyToKeep) and US SERP titles (usMetaTitles). Keyed by the
-// published global slug, and always overridable from the usLocalization fields
-// in Sanity, so an editor never has to wait on a deploy.
+// localizeUSPost: narrative adaptations (profiles) and US SERP titles
+// (usMetaTitles). Keyed by the published global slug, and always overridable
+// from the usLocalization fields in Sanity, so an editor never has to wait on
+// a deploy.
+//
+// US bodies localize their scheduling terminology in full - there is no
+// per-article carve-out. An article that needs different wording gets a
+// reviewed phrase mapping in `profiles`, or a US body written in Sanity.
 //
 // Route metadata for authored and generated pages lives elsewhere, in
 // US_METADATA_OVERRIDES in ./us-resources.ts, keyed by US path. Rule of thumb:
@@ -158,17 +162,6 @@ const profiles: Record<string, Record<string, string>> = {
   },
 };
 
-// Articles whose subject is the vocabulary itself have to keep the word readers
-// search for, even when it is the British-leaning one. rostering-basics is the
-// site's largest untapped US term ("roster meaning", 15k/mo): US searchers use
-// the word, so swapping every instance for "schedule" removes the term the page
-// competes on. Applied to the body only - titles and metadata still localize,
-// so the US page keeps its own headline. Matching is substring and
-// case-insensitive, so "roster" also covers rosters/rostering/rostered.
-const bodyTerminologyToKeep: Record<string, readonly string[]> = {
-  "rostering-basics": ["roster"],
-};
-
 // US SERP titles for articles whose global headline survives localization
 // unchanged, because it contains no roster terminology to swap. The title is
 // the line searchers actually read, so on a US result these were reading as the
@@ -243,12 +236,6 @@ export function usMetaTitleForResource(
   return entry && entry.when === globalMetaTitle?.trim()
     ? entry.use
     : undefined;
-}
-
-export function protectedBodyTermsForResource(slug: unknown): string[] {
-  return typeof slug === "string"
-    ? [...(bodyTerminologyToKeep[slug] || [])]
-    : [];
 }
 
 export function terminologyForResource(slug: unknown): Record<string, string> {

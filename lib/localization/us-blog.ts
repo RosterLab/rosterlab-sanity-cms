@@ -1,11 +1,10 @@
 import { getUSPath } from "@/components/seo/HreflangTags";
 import {
   terminologyForResource,
-  protectedBodyTermsForResource,
   usMetaTitleForResource,
 } from "./us-terminology";
 import { explainUSRegionalTerms } from "./us-regional-context";
-import { glossUSQuotedTerms, isCaseStudy } from "./us-quote-gloss";
+import { localizeUSQuotedTerms, isCaseStudy } from "./us-quoted-terms";
 
 // Deliberately exclude contextual terms such as leave, employee, aged care,
 // holidays and professional titles. Editors can adapt these in US overrides.
@@ -331,25 +330,19 @@ export function localizeUSPost<
     value == null
       ? undefined
       : localizeUSText(value, protectedTerms, terminology);
-  // Some articles are found by the very term the localizer would replace, so
-  // their body keeps it while the headline and metadata still localize.
-  const bodyProtectedTerms = [
-    ...protectedTerms,
-    ...protectedBodyTermsForResource(slug),
-  ];
-  const gloss = (body: any[] | undefined) =>
-    isCaseStudy(post) ? glossUSQuotedTerms(body) : body;
+  const convertQuotes = (body: any[] | undefined) =>
+    isCaseStudy(post) ? localizeUSQuotedTerms(body) : body;
   return {
     ...post,
     title: overrides.title ?? convert(post.title)!,
     excerpt: overrides.excerpt ?? convert(post.excerpt),
-    // Case-study quotations keep their wording but gain an inline gloss, so a
-    // US reader sees "roster (schedule)" without the quote being rewritten.
+    // Quotations are protected from the dictionary, so case-study testimony
+    // has its roster terminology converted separately.
     body: overrides.body?.length
       ? localizeUSBodyLinks(overrides.body)
-      : gloss(
+      : convertQuotes(
           explainUSRegionalTerms(
-            localizeUSBody(post.body, bodyProtectedTerms, terminology),
+            localizeUSBody(post.body, protectedTerms, terminology),
             slug,
           ),
         ),
