@@ -366,6 +366,18 @@ for (const file of sources) {
     } else fs.writeFileSync(file, original);
   }
   let generated = transform(original, file);
+  if (file.startsWith("app/whitepapers/rostering-as-a-strategic-workforce-lever/")) {
+    // Use the separately authored US PDF for downloads and the embedded preview.
+    generated = generated
+      .replaceAll(
+        "/whitepapers/rostering-as-a-strategic-workforce-lever.pdf",
+        "/whitepapers/rostering-as-a-strategic-workforce-lever-us.pdf",
+      )
+      .replaceAll(
+        "RosterLab-Whitepaper-Rostering-as-a-Strategic-Workforce-Lever.pdf",
+        "RosterLab-Whitepaper-Scheduling-as-a-Strategic-Workforce-Lever-US.pdf",
+      );
+  }
   generated = generated.replaceAll(
     'process.env.NEXT_PUBLIC_SITE_URL || "https://rosterlab.com"',
     '"https://rosterlab.com"',

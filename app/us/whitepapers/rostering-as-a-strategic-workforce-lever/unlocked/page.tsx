@@ -69,8 +69,8 @@ export default function WhitepaperUnlockedPage() {
 
               {/* Download Button */}
               <a
-                href="/whitepapers/rostering-as-a-strategic-workforce-lever.pdf"
-                download="RosterLab-Whitepaper-Rostering-as-a-Strategic-Workforce-Lever.pdf"
+                href="/whitepapers/rostering-as-a-strategic-workforce-lever-us.pdf"
+                download="RosterLab-Whitepaper-Scheduling-as-a-Strategic-Workforce-Lever-US.pdf"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors shadow-lg hover:shadow-xl"
                 onClick={() => {
                   analytics.track("whitepaper_pdf_downloaded", {
@@ -124,7 +124,7 @@ export default function WhitepaperUnlockedPage() {
               <div className="relative">
                 <div className="w-full" style={{ height: "800px" }}>
                   <iframe
-                    src="/whitepapers/rostering-as-a-strategic-workforce-lever.pdf#toolbar=1&navpanes=0"
+                    src="/whitepapers/rostering-as-a-strategic-workforce-lever-us.pdf#toolbar=1&navpanes=0"
                     className="w-full h-full rounded-lg border border-neutral-200"
                     title="Scheduling as a Strategic Workforce Lever - Full Whitepaper"
                   />
