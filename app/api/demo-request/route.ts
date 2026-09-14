@@ -28,6 +28,7 @@ const demoRequestSchema = z.object({
   industry: z.enum(DEMO_REQUEST_INDUSTRIES),
   referralSource: optionalChoice(DEMO_REQUEST_REFERRAL_SOURCES),
   rosterSize: optionalChoice(DEMO_REQUEST_ROSTER_SIZES),
+  schedulingChallenges: z.string().trim().min(10).max(5_000),
   pageUrl: z.string().trim().max(500).optional(),
 });
 
@@ -65,6 +66,7 @@ export async function POST(request: NextRequest) {
         ? { how_did_you_hear_about_us_3: [input.referralSource] }
         : {}),
       ...(input.rosterSize ? { num_of_rostered_staff: input.rosterSize } : {}),
+      hs_membership_notes: input.schedulingChallenges,
       ...(detectedCountry ? { hubspot_country: detectedCountry } : {}),
     };
 
@@ -83,10 +85,12 @@ export async function POST(request: NextRequest) {
         industry: input.industry,
         referralSource: input.referralSource ?? "",
         rosterSize: input.rosterSize ?? "",
+        message: input.schedulingChallenges,
         metadata: {
           industry: input.industry,
           referralSource: input.referralSource ?? null,
           rosterSize: input.rosterSize ?? null,
+          schedulingChallenges: input.schedulingChallenges,
           policyVersion: decision.policyVersion,
           demoDecision: decision.demo,
           marketAccessReason: decision.reasonCode,

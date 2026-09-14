@@ -52,6 +52,84 @@ describe("lead API", () => {
     expect(response.status).toBe(503);
   });
 
+  test("forwards every required contact answer", async () => {
+    submitWebsiteLeadMock.mockResolvedValue({
+      status: "submitted",
+      delivery: "queue",
+    });
+
+    const response = await POST(
+      leadRequest({
+        source: "contact",
+        name: "Ada Lovelace",
+        company: "Analytical Health",
+        industry: "Nursing & Midwifery",
+        rosterSize: "16 - 50 staff",
+        decisionRole: ["I influence the decision", "I make the decision"],
+        message: "We need a fairer and faster scheduling process.",
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(submitWebsiteLeadMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "Ada Lovelace",
+        company: "Analytical Health",
+        industry: "Nursing & Midwifery",
+        rosterSize: "16 - 50 staff",
+        decisionRole: ["I influence the decision", "I make the decision"],
+        message: "We need a fairer and faster scheduling process.",
+      }),
+    );
+  });
+
+  test.each([
+    "name",
+    "industry",
+    "rosterSize",
+    "decisionRole",
+    "message",
+  ] as const)("rejects a contact submission without %s", async (field) => {
+    const body: Record<string, unknown> = {
+      source: "contact",
+      name: "Ada Lovelace",
+      company: "Analytical Health",
+      industry: "Nursing & Midwifery",
+      rosterSize: "16 - 50 staff",
+      decisionRole: ["I make the decision"],
+      message: "We need a fairer and faster scheduling process.",
+      [field]: "",
+    };
+
+    const response = await POST(leadRequest(body));
+
+    expect(response.status).toBe(400);
+    expect(submitWebsiteLeadMock).not.toHaveBeenCalled();
+  });
+
+  test("accepts a contact submission without the optional company", async () => {
+    submitWebsiteLeadMock.mockResolvedValue({
+      status: "submitted",
+      delivery: "queue",
+    });
+
+    const response = await POST(
+      leadRequest({
+        source: "contact",
+        name: "Ada Lovelace",
+        industry: "Nursing & Midwifery",
+        rosterSize: "16 - 50 staff",
+        decisionRole: ["I make the decision"],
+        message: "We need a fairer and faster scheduling process.",
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(submitWebsiteLeadMock).toHaveBeenCalledWith(
+      expect.objectContaining({ company: undefined }),
+    );
+  });
+
   test("keeps promised download gates fail-open", async () => {
     submitWebsiteLeadMock.mockResolvedValue({
       status: "error",

@@ -22,6 +22,10 @@ interface SelectFieldProps {
   name: string;
   value: string;
   onChange: (value: string) => void;
+  /** Keeps the list open and allows more than one option to be selected. */
+  multiple?: boolean;
+  selectedValues?: readonly string[];
+  onMultipleChange?: (values: string[]) => void;
   /** Flat option list. Pass this or `groups`, not both. */
   options?: readonly string[];
   /** Options under category headers, in the order given. */
@@ -32,6 +36,7 @@ interface SelectFieldProps {
   required?: boolean;
   error?: string;
   className?: string;
+  labelClassName?: string;
 }
 
 function matches(option: string, query: string): boolean {
@@ -53,6 +58,9 @@ export default function SelectField({
   name,
   value,
   onChange,
+  multiple = false,
+  selectedValues = [],
+  onMultipleChange,
   options,
   groups,
   searchable = false,
@@ -60,6 +68,7 @@ export default function SelectField({
   required = false,
   error,
   className,
+  labelClassName,
 }: SelectFieldProps) {
   const [open, setOpen] = useState(false);
   // Which option the keyboard is on, which is not yet the chosen one. Indexes
@@ -75,6 +84,8 @@ export default function SelectField({
   const labelId = useId();
   const errorId = useId();
   const optionId = (index: number) => `${listboxId}-option-${index}`;
+  const selections = multiple ? selectedValues : value ? [value] : [];
+  const displayValue = selections.join(", ");
 
   const allGroups = useMemo<readonly SelectGroup[]>(
     () => groups ?? [{ label: "", options: options ?? [] }],
@@ -122,12 +133,12 @@ export default function SelectField({
     if (!open) return;
     listRef.current
       ?.querySelector(`#${CSS.escape(`${listboxId}-option-${activeIndex}`)}`)
-      ?.scrollIntoView({ block: "nearest" });
+      ?.scrollIntoView?.({ block: "nearest" });
   }, [activeIndex, listboxId, open, visibleOptions]);
 
   function openList() {
     setQuery("");
-    setActiveIndex(Math.max(0, visibleOptions.indexOf(value)));
+    setActiveIndex(Math.max(0, visibleOptions.indexOf(selections[0] ?? "")));
     // Drop upward when the list would otherwise run off the bottom of the
     // viewport, which it does for the last row of fields on a phone.
     const button = buttonRef.current?.getBoundingClientRect();
@@ -154,6 +165,13 @@ export default function SelectField({
   function commit(index: number) {
     const option = visibleOptions[index];
     if (option === undefined) return;
+    if (multiple) {
+      const nextValues = selections.includes(option)
+        ? selections.filter((selection) => selection !== option)
+        : [...selections, option];
+      onMultipleChange?.(nextValues);
+      return;
+    }
     onChange(option);
     close();
     buttonRef.current?.focus();
@@ -222,7 +240,10 @@ export default function SelectField({
     >
       <span
         id={labelId}
-        className="mb-1.5 block text-sm font-semibold text-neutral-900"
+        className={cn(
+          "mb-1.5 block text-sm font-semibold text-neutral-900",
+          labelClassName,
+        )}
       >
         {label}
         {required && (
@@ -232,7 +253,13 @@ export default function SelectField({
         )}
       </span>
 
-      <input type="hidden" name={name} value={value} />
+      {multiple ? (
+        selections.map((selection) => (
+          <input key={selection} type="hidden" name={name} value={selection} />
+        ))
+      ) : (
+        <input type="hidden" name={name} value={value} />
+      )}
 
       <button
         ref={buttonRef}
@@ -246,12 +273,13 @@ export default function SelectField({
         aria-labelledby={labelId}
         aria-describedby={error ? errorId : undefined}
         aria-invalid={error ? true : undefined}
+        aria-required={required || undefined}
         onClick={() => (open ? close() : openList())}
         onKeyDown={handleKeyDown}
         className={cn(
           // `mt-auto` keeps the control on the row's baseline when a
           // neighbouring field's label wraps to a second line.
-          "mt-auto flex w-full items-center justify-between gap-2 rounded-xl border px-4 py-3 text-left transition-colors",
+          "mt-auto flex h-[42px] w-full items-center justify-between gap-2 rounded-xl border px-4 py-2 text-left transition-colors",
           "focus:outline-none focus:ring-4",
           error
             ? "border-red-300 bg-red-50/40 focus:border-red-400 focus:ring-red-100"
@@ -262,10 +290,10 @@ export default function SelectField({
         <span
           className={cn(
             "truncate text-[15px]",
-            value ? "text-neutral-900" : "text-neutral-400",
+            displayValue ? "text-neutral-900" : "text-neutral-400",
           )}
         >
-          {value || placeholder}
+          {displayValue || placeholder}
         </span>
         <HiChevronDown
           aria-hidden="true"
@@ -314,6 +342,7 @@ export default function SelectField({
             ref={listRef}
             id={listboxId}
             role="listbox"
+            aria-multiselectable={multiple || undefined}
             aria-labelledby={labelId}
             tabIndex={-1}
             className="max-h-60 overflow-y-auto overscroll-contain p-1"
@@ -329,7 +358,7 @@ export default function SelectField({
                   {group.options.map((option) => {
                     renderIndex += 1;
                     const index = renderIndex;
-                    const selected = option === value;
+                    const selected = selections.includes(option);
                     return (
                       <li
                         key={option}

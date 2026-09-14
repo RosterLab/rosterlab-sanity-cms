@@ -24,6 +24,8 @@ function demoRequest(body: Record<string, unknown>) {
       name: "Ada Lovelace",
       email: "ada@example.com",
       industry: "Nursing & Midwifery",
+      schedulingChallenges:
+        "We need to reduce the time spent building complex schedules.",
       ...body,
     }),
   });
@@ -60,6 +62,8 @@ describe("demo request API", () => {
       industry_multi_select: ["Nursing & Midwifery"],
       how_did_you_hear_about_us_3: ["Conference/Event"],
       num_of_rostered_staff: "16 - 50 staff",
+      hs_membership_notes:
+        "We need to reduce the time spent building complex schedules.",
       hubspot_country: "CN",
     });
   });
@@ -76,6 +80,13 @@ describe("demo request API", () => {
 
   test("rejects an industry Attio would drop", async () => {
     const response = await POST(demoRequest({ industry: "Astrology" }));
+
+    expect(response.status).toBe(400);
+    expect(submitAttioLeadMock).not.toHaveBeenCalled();
+  });
+
+  test("requires scheduling challenges", async () => {
+    const response = await POST(demoRequest({ schedulingChallenges: "" }));
 
     expect(response.status).toBe(400);
     expect(submitAttioLeadMock).not.toHaveBeenCalled();

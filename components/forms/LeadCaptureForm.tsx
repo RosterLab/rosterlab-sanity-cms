@@ -5,14 +5,27 @@ import { usePathname } from "next/navigation";
 import { trackFormSubmission } from "@/lib/analytics/events/conversion-events";
 import { runBestEffort } from "@/lib/analytics/best-effort";
 import type { LeadSource } from "@/lib/leads/sources";
+import SelectField from "@/components/ui/SelectField";
+import {
+  DEMO_REQUEST_INDUSTRY_GROUPS,
+  DEMO_REQUEST_ROSTER_SIZES,
+} from "@/lib/market-access/demo-request";
+import {
+  CONTACT_DECISION_ROLES_GLOBAL,
+  CONTACT_DECISION_ROLES_US,
+} from "@/lib/leads/contact";
 
 export interface LeadCaptureValues {
+  name: string;
   firstName: string;
   lastName: string;
   email: string;
   company: string;
   phone: string;
   message: string;
+  industry: string;
+  rosterSize: string;
+  decisionRole: string[];
 }
 
 interface LeadCaptureFormProps {
@@ -24,6 +37,7 @@ interface LeadCaptureFormProps {
   showCompany?: boolean;
   showPhone?: boolean;
   showMessage?: boolean;
+  contactQualification?: boolean;
   messageLabel?: string;
   metadata?: Record<string, string | number | boolean | string[] | null>;
   onSuccess?: (values: LeadCaptureValues) => void | Promise<void>;
@@ -31,12 +45,16 @@ interface LeadCaptureFormProps {
 }
 
 const EMPTY_VALUES: LeadCaptureValues = {
+  name: "",
   firstName: "",
   lastName: "",
   email: "",
   company: "",
   phone: "",
   message: "",
+  industry: "",
+  rosterSize: "",
+  decisionRole: [],
 };
 
 export default function LeadCaptureForm({
@@ -48,6 +66,7 @@ export default function LeadCaptureForm({
   showCompany = true,
   showPhone = false,
   showMessage = false,
+  contactQualification = false,
   messageLabel = "How can we help?",
   metadata,
   onSuccess,
@@ -62,8 +81,16 @@ export default function LeadCaptureForm({
   const [completionError, setCompletionError] = useState<string | null>(null);
   const [completingAction, setCompletingAction] = useState(false);
   const [started, setStarted] = useState(false);
+  const [industryError, setIndustryError] = useState<string | null>(null);
+  const [rosterSizeError, setRosterSizeError] = useState<string | null>(null);
+  const [decisionRoleError, setDecisionRoleError] = useState<string | null>(
+    null,
+  );
 
-  function update(field: keyof LeadCaptureValues, value: string) {
+  function update<K extends keyof LeadCaptureValues>(
+    field: K,
+    value: LeadCaptureValues[K],
+  ) {
     setValues((current) => ({ ...current, [field]: value }));
   }
 
@@ -86,6 +113,17 @@ export default function LeadCaptureForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (contactQualification) {
+      setIndustryError(values.industry ? null : "Please choose an industry");
+      setRosterSizeError(
+        values.rosterSize ? null : "Please choose a roster size",
+      );
+      setDecisionRoleError(
+        values.decisionRole.length ? null : "Please choose your role",
+      );
+      if (!values.industry || !values.rosterSize || !values.decisionRole.length)
+        return;
+    }
     setSubmitting(true);
     setError(null);
     setCompletionError(null);
@@ -129,9 +167,9 @@ export default function LeadCaptureForm({
         page_name: document.title,
         page_location: window.location.pathname,
         user_email: values.email,
-        user_name: [values.firstName, values.lastName]
-          .filter(Boolean)
-          .join(" "),
+        user_name:
+          values.name ||
+          [values.firstName, values.lastName].filter(Boolean).join(" "),
         company_name: values.company || undefined,
         phone_number: values.phone || undefined,
         submission_data: { ...values, ...metadata },
@@ -192,81 +230,193 @@ export default function LeadCaptureForm({
         className="absolute left-[-10000px] h-px w-px overflow-hidden"
       />
 
-      {showName && (
-        <div className={compact ? "contents" : "grid gap-4 sm:grid-cols-2"}>
+      {contactQualification ? (
+        <>
           <label className="block text-sm font-medium text-gray-700">
-            First name
+            Name{" "}
+            <span className="text-blue-600" aria-hidden="true">
+              *
+            </span>
             <input
               required
-              autoComplete="given-name"
-              value={values.firstName}
-              onChange={(event) => update("firstName", event.target.value)}
+              minLength={2}
+              autoComplete="name"
+              value={values.name}
+              onChange={(event) => update("name", event.target.value)}
               className={`${inputClass} mt-1`}
             />
           </label>
-          <label className="block text-sm font-medium text-gray-700">
-            Last name
-            <input
-              required
-              autoComplete="family-name"
-              value={values.lastName}
-              onChange={(event) => update("lastName", event.target.value)}
-              className={`${inputClass} mt-1`}
-            />
-          </label>
-        </div>
-      )}
 
-      <label
-        className={`block text-sm font-medium text-gray-700 ${compact ? "flex-1" : ""}`}
-      >
-        Work email
-        <input
-          required
-          type="email"
-          autoComplete="email"
-          value={values.email}
-          onChange={(event) => update("email", event.target.value)}
-          className={`${inputClass} mt-1`}
-        />
-      </label>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block text-sm font-medium text-gray-700">
+              Work email{" "}
+              <span className="text-blue-600" aria-hidden="true">
+                *
+              </span>
+              <input
+                required
+                type="email"
+                autoComplete="email"
+                value={values.email}
+                onChange={(event) => update("email", event.target.value)}
+                className={`${inputClass} mt-1`}
+              />
+            </label>
 
-      {showCompany && (
-        <label className="block text-sm font-medium text-gray-700">
-          {isUS ? "Organization" : "Organisation"}
-          <input
-            autoComplete="organization"
-            value={values.company}
-            onChange={(event) => update("company", event.target.value)}
-            className={`${inputClass} mt-1`}
-          />
-        </label>
-      )}
+            <label className="block text-sm font-medium text-gray-700">
+              {isUS ? "Organization Name" : "Organisation Name"}
+              <input
+                minLength={2}
+                autoComplete="organization"
+                value={values.company}
+                onChange={(event) => update("company", event.target.value)}
+                className={`${inputClass} mt-1`}
+              />
+            </label>
+          </div>
 
-      {showPhone && (
-        <label className="block text-sm font-medium text-gray-700">
-          Phone
-          <input
-            type="tel"
-            autoComplete="tel"
-            value={values.phone}
-            onChange={(event) => update("phone", event.target.value)}
-            className={`${inputClass} mt-1`}
-          />
-        </label>
-      )}
-
-      {showMessage && (
-        <label className="block text-sm font-medium text-gray-700">
-          {messageLabel}
-          <textarea
+          <SelectField
+            label={`Which industry are you ${isUS ? "scheduling" : "rostering"} for?`}
+            name="industry"
+            value={values.industry}
+            onChange={(value) => {
+              update("industry", value);
+              setIndustryError(null);
+            }}
+            groups={DEMO_REQUEST_INDUSTRY_GROUPS}
+            searchable
             required
-            rows={4}
-            value={values.message}
-            onChange={(event) => update("message", event.target.value)}
-            className={`${inputClass} mt-1`}
+            labelClassName="font-medium text-gray-700"
+            error={industryError ?? undefined}
           />
-        </label>
+
+          <SelectField
+            label={`What is the size of your ${isUS ? "schedule" : "roster"}?`}
+            name="rosterSize"
+            value={values.rosterSize}
+            onChange={(value) => {
+              update("rosterSize", value);
+              setRosterSizeError(null);
+            }}
+            options={DEMO_REQUEST_ROSTER_SIZES}
+            required
+            labelClassName="font-medium text-gray-700"
+            error={rosterSizeError ?? undefined}
+          />
+
+          <SelectField
+            label="What's your role in this decision?"
+            name="decisionRole"
+            value=""
+            onChange={() => undefined}
+            multiple
+            selectedValues={values.decisionRole}
+            onMultipleChange={(value) => {
+              update("decisionRole", value);
+              setDecisionRoleError(null);
+            }}
+            options={
+              isUS ? CONTACT_DECISION_ROLES_US : CONTACT_DECISION_ROLES_GLOBAL
+            }
+            required
+            labelClassName="font-medium text-gray-700"
+            error={decisionRoleError ?? undefined}
+          />
+
+          <label className="block text-sm font-medium text-gray-700">
+            {messageLabel}{" "}
+            <span className="text-blue-600" aria-hidden="true">
+              *
+            </span>
+            <textarea
+              required
+              minLength={10}
+              rows={4}
+              value={values.message}
+              onChange={(event) => update("message", event.target.value)}
+              className={`${inputClass} mt-1`}
+            />
+          </label>
+        </>
+      ) : (
+        <>
+          {showName && (
+            <div className={compact ? "contents" : "grid gap-4 sm:grid-cols-2"}>
+              <label className="block text-sm font-medium text-gray-700">
+                First name
+                <input
+                  required
+                  autoComplete="given-name"
+                  value={values.firstName}
+                  onChange={(event) => update("firstName", event.target.value)}
+                  className={`${inputClass} mt-1`}
+                />
+              </label>
+              <label className="block text-sm font-medium text-gray-700">
+                Last name
+                <input
+                  required
+                  autoComplete="family-name"
+                  value={values.lastName}
+                  onChange={(event) => update("lastName", event.target.value)}
+                  className={`${inputClass} mt-1`}
+                />
+              </label>
+            </div>
+          )}
+
+          <label
+            className={`block text-sm font-medium text-gray-700 ${compact ? "flex-1" : ""}`}
+          >
+            Work email
+            <input
+              required
+              type="email"
+              autoComplete="email"
+              value={values.email}
+              onChange={(event) => update("email", event.target.value)}
+              className={`${inputClass} mt-1`}
+            />
+          </label>
+
+          {showCompany && (
+            <label className="block text-sm font-medium text-gray-700">
+              {isUS ? "Organization" : "Organisation"}
+              <input
+                autoComplete="organization"
+                value={values.company}
+                onChange={(event) => update("company", event.target.value)}
+                className={`${inputClass} mt-1`}
+              />
+            </label>
+          )}
+
+          {showPhone && (
+            <label className="block text-sm font-medium text-gray-700">
+              Phone
+              <input
+                type="tel"
+                autoComplete="tel"
+                value={values.phone}
+                onChange={(event) => update("phone", event.target.value)}
+                className={`${inputClass} mt-1`}
+              />
+            </label>
+          )}
+
+          {showMessage && (
+            <label className="block text-sm font-medium text-gray-700">
+              {messageLabel}
+              <textarea
+                required
+                rows={4}
+                value={values.message}
+                onChange={(event) => update("message", event.target.value)}
+                className={`${inputClass} mt-1`}
+              />
+            </label>
+          )}
+        </>
       )}
 
       {error && (

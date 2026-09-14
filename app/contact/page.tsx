@@ -70,25 +70,14 @@ export default function ContactPage() {
         whatever the form does; below `lg` it drops underneath as a band.
       */}
       <section className="relative bg-white">
-        <Container className="lg:px-12 xl:px-20">
+        <Container className="lg:relative lg:left-[calc((100%-100vw)*0.3)] lg:px-12 xl:px-20">
           <div className="py-12 md:py-16 lg:w-1/2 lg:pr-12">
             <ContactFormPanel
               heading="Speak to a rostering expert"
               subheading="Fill out the form below and our team will be in touch to discuss how we can help you create the perfect roster for your team."
             />
 
-            <div className="mt-10 grid grid-cols-1 gap-8 border-t border-neutral-200 pt-8 sm:grid-cols-2">
-              <div>
-                <h2 className="text-xs font-semibold uppercase tracking-wider text-blue-600">
-                  Headquarters
-                </h2>
-                <p className="mt-3 text-neutral-700">
-                  314/380 Khyber Pass Road
-                  <br />
-                  Newmarket, Auckland 1023, NZ
-                </p>
-              </div>
-
+            <div className="mt-10 border-t border-neutral-200 pt-8">
               <div>
                 <h2 className="text-xs font-semibold uppercase tracking-wider text-blue-600">
                   Follow us
@@ -122,14 +111,6 @@ export default function ContactPage() {
                     <FaInstagram className="h-5 w-5" />
                   </a>
                 </div>
-                <p className="mt-4 text-neutral-700">
-                  <a
-                    href="mailto:support@rosterlab.com"
-                    className="hover:text-blue-600 transition-colors"
-                  >
-                    support@rosterlab.com
-                  </a>
-                </p>
               </div>
             </div>
           </div>

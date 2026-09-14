@@ -74,7 +74,7 @@ export default function Home() {
         />
         <TestimonialsNew testimonials={TESTIMONIALS_US} isUS />
         <FeaturesGrid features={FEATURES_US} heading={FEATURES_HEADING_US} />
-        <FinalCTA heading={FINAL_CTA_HEADING_US} />
+        <FinalCTA heading={FINAL_CTA_HEADING_US} isUS />
       </div>
     </div>
   );
