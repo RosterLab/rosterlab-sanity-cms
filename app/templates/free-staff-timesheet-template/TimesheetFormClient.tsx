@@ -23,7 +23,11 @@ const downloadTimesheetFile = () => {
   document.body.removeChild(link);
 };
 
-export default function TimesheetFormClient() {
+export default function TimesheetFormClient({
+  isUS = false,
+}: {
+  isUS?: boolean;
+}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
@@ -74,7 +78,7 @@ export default function TimesheetFormClient() {
               Ready to move your timesheets to the cloud?
             </p>
             <Button
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               variant="outline"
               className="border-blue-600 text-blue-600 hover:bg-blue-50"
             >

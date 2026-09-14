@@ -1,4 +1,3 @@
-// Generated from app/tools/survey-preferences/admin/[surveyId]/page.tsx. Run npm run localize:resources; do not edit directly.
 /**
  * Admin Dashboard Page
  * Protected page for viewing survey results (requires admin token)
@@ -6,7 +5,7 @@
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import AdminDashboardClient from "@/app/us/tools/survey-preferences/admin/[surveyId]/client";
+import AdminDashboardClient from "@/app/tools/survey-preferences/admin/[surveyId]/client";
 import { getDbClient } from "@/lib/db/client";
 import type { Survey } from "@/lib/survey/types";
 
@@ -95,5 +94,5 @@ export default async function AdminDashboardPage({
     notFound();
   }
 
-  return <AdminDashboardClient surveyId={surveyId} token={token} />;
+  return <AdminDashboardClient isUS surveyId={surveyId} token={token} />;
 }

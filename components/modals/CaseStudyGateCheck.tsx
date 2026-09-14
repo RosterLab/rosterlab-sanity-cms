@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import CTAModalCaseStudy from "./CTAModalCaseStudy";
 
 interface CaseStudyGateCheckProps {
+  isUS?: boolean;
   slug: string;
   lockedSlugs?: string[];
   children: React.ReactNode;
@@ -16,8 +17,11 @@ interface CaseStudyGateCheckProps {
  * Hides content until form is submitted
  */
 export default function CaseStudyGateCheck({
+  isUS = false,
   slug,
-  lockedSlugs = ["how-plastics-department-used-roster-simulation-to-cut-in-costs"],
+  lockedSlugs = [
+    "how-plastics-department-used-roster-simulation-to-cut-in-costs",
+  ],
   children,
 }: CaseStudyGateCheckProps) {
   const router = useRouter();
@@ -71,7 +75,7 @@ export default function CaseStudyGateCheck({
     // Ensure body scroll is restored before navigation
     document.body.style.overflow = "";
     // Redirect back to case studies page if they close without submitting
-    router.push("/case-studies");
+    router.push(isUS ? "/us/case-studies" : "/case-studies");
   };
 
   // Show loading state briefly
@@ -91,7 +95,9 @@ export default function CaseStudyGateCheck({
       {/* Show blurred content if locked and no access */}
       {isLocked && !hasAccess ? (
         <div className="relative">
-          <div className="blur-sm pointer-events-none select-none">{children}</div>
+          <div className="blur-sm pointer-events-none select-none">
+            {children}
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white" />
         </div>
       ) : (
@@ -101,6 +107,7 @@ export default function CaseStudyGateCheck({
       {/* Case Study Gate Modal */}
       {isLocked && (
         <CTAModalCaseStudy
+          isUS={isUS}
           isOpen={isModalOpen}
           onClose={handleClose}
           onConversion={handleConversion}

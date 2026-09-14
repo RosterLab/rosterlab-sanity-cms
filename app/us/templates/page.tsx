@@ -1,8 +1,6 @@
-// Generated from app/templates/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
-import TemplatesPageContent from "@/app/us/templates/TemplatesPageContent";
+import TemplatesPageContent from "@/app/templates/TemplatesPageContent";
 import SiteLayout from "@/components/layout/SiteLayout";
 
 export const metadata: Metadata = resourceMetadata({
@@ -82,7 +80,7 @@ const templates = [
 export default function TemplatesPage() {
   return (
     <SiteLayout>
-      <TemplatesPageContent templates={templates} />
+      <TemplatesPageContent isUS templates={templates} />
     </SiteLayout>
   );
 }

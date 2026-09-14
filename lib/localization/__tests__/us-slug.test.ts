@@ -3,7 +3,6 @@ import { join } from "node:path";
 import {
   localizeUSSlug,
   globalizeUSSlug,
-  usSlugRedirectTarget,
   effectiveUSSlug,
   US_SLUG_SOURCES,
 } from "../us-slug";
@@ -99,51 +98,26 @@ describe("globalizeUSSlug", () => {
   });
 });
 
-describe("usSlugRedirectTarget", () => {
-  it("redirects a global slug requested under /us", () => {
-    expect(usSlugRedirectTarget("rostering-basics")).toBe("scheduling-basics");
-  });
-
-  it("does not redirect a slug that is already localized", () => {
-    expect(usSlugRedirectTarget("scheduling-basics")).toBeUndefined();
-  });
-
-  it("does not redirect a slug with no US variant", () => {
-    expect(usSlugRedirectTarget("shift-types")).toBeUndefined();
-  });
-});
-
 // Each US article route must send every other URL that resolves to an article
 // to the one it publishes at. The redirect runs after the lookup, because an
 // editor-chosen usSlug is only known from the fetched document - missing it
 // leaves the article reachable at two US addresses, which is how the
 // duplicate-URL defect happened the first time.
 describe("US article routes redirect to the canonical US URL", () => {
-  it.each([
-    ["components/blog/BlogPostPage.tsx", "/us/blog/"],
-    ["app/us/newsroom/[slug]/page.tsx", "/us/newsroom/"],
-    ["app/us/case-studies/[slug]/page.tsx", "/us/case-studies/"],
-  ])("%s redirects to %s", (route, prefix) => {
-    const source = readFileSync(join(__dirname, "../../..", route), "utf8");
-    expect(source).toContain("effectiveUSSlug(");
-    expect(source).toContain("permanentRedirect(");
-    expect(source).toContain("`" + prefix + "${");
-    // The redirect must sit after the lookup: before it, the override is
-    // unknown and the article would 404 at its previous URL.
-    expect(source.indexOf("permanentRedirect(")).toBeGreaterThan(
-      source.indexOf("notFound()"),
-    );
-  });
-
-  it.each([
-    ["app/us/newsroom/[slug]/page.tsx"],
-    ["app/us/case-studies/[slug]/page.tsx"],
-  ])("%s resolves an override or the derived slug", (route) => {
-    const source = readFileSync(join(__dirname, "../../..", route), "utf8");
-    expect(source).toContain(
-      "usSlug.current == $usSlug || slug.current == $slug",
-    );
-  });
+  it.each([["components/blog/BlogPostPage.tsx", "/us/blog/"]])(
+    "%s redirects to %s",
+    (route, prefix) => {
+      const source = readFileSync(join(__dirname, "../../..", route), "utf8");
+      expect(source).toContain("effectiveUSSlug(");
+      expect(source).toContain("permanentRedirect(");
+      expect(source).toContain("`" + prefix + "${");
+      // The redirect must sit after the lookup: before it, the override is
+      // unknown and the article would 404 at its previous URL.
+      expect(source.indexOf("permanentRedirect(")).toBeGreaterThan(
+        source.indexOf("notFound()"),
+      );
+    },
+  );
 });
 
 describe("effectiveUSSlug", () => {

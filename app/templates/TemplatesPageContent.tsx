@@ -18,10 +18,12 @@ interface Template {
 }
 
 interface TemplatesPageContentProps {
+  isUS?: boolean;
   templates: Template[];
 }
 
 export default function TemplatesPageContent({
+  isUS = false,
   templates,
 }: TemplatesPageContentProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -177,21 +179,36 @@ export default function TemplatesPageContent({
         <div className="mt-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 md:p-12 text-center text-white">
           <h2 className="text-3xl font-bold mb-4">Need More Than Templates?</h2>
           <p className="text-xl mb-6 opacity-90 max-w-2xl mx-auto">
-            Discover how RosterLab&apos;s AI-powered rostering software can
-            automate your workforce management and save hours every week.
+            {isUS ? (
+              <>
+                Discover how RosterLab&apos;s AI-powered scheduling software can
+                automate your workforce management and save hours every week.
+              </>
+            ) : (
+              <>
+                Discover how RosterLab&apos;s AI-powered rostering software can
+                automate your workforce management and save hours every week.
+              </>
+            )}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-neutral-100 transition-colors"
             >
-              <DemoCtaLabel href="/book-a-demo">Book a Demo</DemoCtaLabel>
+              <DemoCtaLabel href={isUS ? "/us/book-a-demo" : "/book-a-demo"}>
+                Book a Demo
+              </DemoCtaLabel>
             </Link>
             <Link
-              href="/solutions/ai-roster-generator"
+              href={
+                isUS
+                  ? "/us/solutions/ai-staff-schedule-maker"
+                  : "/solutions/ai-roster-generator"
+              }
               className="inline-flex items-center justify-center px-6 py-3 bg-primary-800 text-white font-semibold rounded-lg hover:bg-primary-900 transition-colors"
             >
-              Explore AI Rostering
+              {isUS ? <>Explore AI Scheduling</> : <>Explore AI Rostering</>}
             </Link>
           </div>
         </div>

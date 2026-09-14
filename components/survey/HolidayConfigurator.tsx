@@ -17,10 +17,12 @@ import Button from "@/components/ui/Button";
 import { trackFormSubmit } from "@/components/analytics/tracking";
 
 interface HolidayConfiguratorProps {
+  isUS?: boolean;
   onSurveyCreated?: (response: CreateSurveyResponse) => void;
 }
 
 export default function HolidayConfigurator({
+  isUS = false,
   onSurveyCreated,
 }: HolidayConfiguratorProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -153,7 +155,7 @@ export default function HolidayConfigurator({
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-semibold text-neutral-900">
-                Public Holidays
+                {isUS ? <>Holidays</> : <>Public Holidays</>}
               </h2>
               <p className="text-sm text-neutral-600 mt-1">
                 List the holidays and how many staff are needed for each

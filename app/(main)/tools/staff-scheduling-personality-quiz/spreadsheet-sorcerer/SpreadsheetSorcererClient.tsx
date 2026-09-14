@@ -31,10 +31,12 @@ interface BlogPost {
 }
 
 interface SpreadsheetSorcererClientProps {
+  isUS?: boolean;
   recommendedPosts: BlogPost[];
 }
 
 export default function SpreadsheetSorcererClient({
+  isUS = false,
   recommendedPosts,
 }: SpreadsheetSorcererClientProps) {
   const [copied, setCopied] = useState(false);
@@ -74,7 +76,9 @@ export default function SpreadsheetSorcererClient({
   // Handle back button navigation
   useEffect(() => {
     const handlePopstate = () => {
-      window.location.href = "/tools/staff-scheduling-personality-quiz";
+      window.location.href = isUS
+        ? "/us/tools/staff-scheduling-personality-quiz"
+        : "/tools/staff-scheduling-personality-quiz";
     };
 
     window.history.pushState(
@@ -85,7 +89,7 @@ export default function SpreadsheetSorcererClient({
 
     window.addEventListener("popstate", handlePopstate);
     return () => window.removeEventListener("popstate", handlePopstate);
-  }, []);
+  }, [isUS]);
 
   // Download submission is handled by the shared lead form.
 
@@ -160,7 +164,11 @@ export default function SpreadsheetSorcererClient({
       doc.setFont("helvetica", "normal");
       doc.setFontSize(20);
       doc.setTextColor(...(textColor as [number, number, number]));
-      doc.text("Your Rostering Personality", 20, 32);
+      doc.text(
+        isUS ? "Your Scheduling Personality" : "Your Rostering Personality",
+        20,
+        32,
+      );
       doc.setFontSize(16);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text("The Spreadsheet Sorcerer", 20, 42);
@@ -200,7 +208,9 @@ export default function SpreadsheetSorcererClient({
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text(
-        "If your rostering style was a celebrity you'd be...",
+        isUS
+          ? "If your scheduling style was a celebrity you'd be..."
+          : "If your rostering style was a celebrity you'd be...",
         20,
         currentY,
       );
@@ -291,8 +301,9 @@ export default function SpreadsheetSorcererClient({
       currentY += 10;
       doc.setFontSize(10);
       doc.setTextColor(...(textColor as [number, number, number]));
-      const sorcererDesc =
-        "You wield formulas and functions like a wizard casts spells, creating rosters that are both efficient and elegant.";
+      const sorcererDesc = isUS
+        ? "You wield formulas and functions like a wizard casts spells, creating schedules that are both efficient and elegant."
+        : "You wield formulas and functions like a wizard casts spells, creating rosters that are both efficient and elegant.";
       const sorcererLines = doc.splitTextToSize(sorcererDesc, 170);
       doc.text(sorcererLines, 20, currentY);
       currentY += sorcererLines.length * 4 + 5;
@@ -506,11 +517,15 @@ export default function SpreadsheetSorcererClient({
       const tool1Width = doc.getTextWidth(tool1Text);
       doc.text(tool1Text, 28, currentY);
       doc.link(28, currentY - 3, tool1Width, 4, {
-        url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app"
+          : "https://rosterlab.com/solutions/staff-roster-mobile-app",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
-        ": Real-time roster access for all staff",
+        isUS
+          ? ": Real-time schedule access for all staff"
+          : ": Real-time roster access for all staff",
         28 + tool1Width,
         currentY,
       );
@@ -520,11 +535,15 @@ export default function SpreadsheetSorcererClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const tool2Text = "Automation roster generation";
+      const tool2Text = isUS
+        ? "Automation schedule generation"
+        : "Automation roster generation";
       const tool2Width = doc.getTextWidth(tool2Text);
       doc.text(tool2Text, 28, currentY);
       doc.link(28, currentY - 3, tool2Width, 4, {
-        url: "https://rosterlab.com/solutions/ai-roster-generator",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/ai-staff-schedule-maker"
+          : "https://rosterlab.com/solutions/ai-roster-generator",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -542,7 +561,9 @@ export default function SpreadsheetSorcererClient({
       const tool3Width = doc.getTextWidth(tool3Text);
       doc.text(tool3Text, 28, currentY);
       doc.link(28, currentY - 3, tool3Width, 4, {
-        url: "https://rosterlab.com/feature/shift-swaps",
+        url: isUS
+          ? "https://rosterlab.com/us/feature/shift-swaps-and-trades"
+          : "https://rosterlab.com/feature/shift-swaps",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -589,11 +610,15 @@ export default function SpreadsheetSorcererClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const blog1Text = "How to Optimise Shifts During a Hiring Freeze";
+      const blog1Text = isUS
+        ? "How to Optimize Shifts During a Hiring Freeze"
+        : "How to Optimise Shifts During a Hiring Freeze";
       const blog1Width = doc.getTextWidth(blog1Text);
       doc.text(blog1Text, 28, currentY);
       doc.link(28, currentY - 3, blog1Width, 4, {
-        url: "https://rosterlab.com/blog/how-to-optimise-shifts-during-a-hiring-freeze",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/how-to-optimise-shifts-during-a-hiring-freeze"
+          : "https://rosterlab.com/blog/how-to-optimise-shifts-during-a-hiring-freeze",
       });
       currentY += 8;
 
@@ -605,7 +630,9 @@ export default function SpreadsheetSorcererClient({
       const blog2Width = doc.getTextWidth(blog2Text);
       doc.text(blog2Text, 28, currentY);
       doc.link(28, currentY - 3, blog2Width, 4, {
-        url: "https://rosterlab.com/blog/fairer-scheduling-at-work-reducing-shift-bias",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/fairer-scheduling-at-work-reducing-shift-bias"
+          : "https://rosterlab.com/blog/fairer-scheduling-at-work-reducing-shift-bias",
       });
       currentY += 8;
 
@@ -617,7 +644,9 @@ export default function SpreadsheetSorcererClient({
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/blog/how-to-implement-self-scheduling",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/how-to-implement-self-scheduling"
+          : "https://rosterlab.com/blog/how-to-implement-self-scheduling",
       });
       currentY += 17;
 
@@ -625,7 +654,11 @@ export default function SpreadsheetSorcererClient({
       currentY += 10;
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
-      doc.text("Need help with your roster?", 20, currentY);
+      doc.text(
+        isUS ? "Need help with your schedule?" : "Need help with your roster?",
+        20,
+        currentY,
+      );
 
       currentY += 10;
       doc.setFontSize(10);
@@ -652,7 +685,7 @@ export default function SpreadsheetSorcererClient({
       const footerX = 105 - footerWidth / 2;
       doc.text(footerText, 105, pageHeight - 10, { align: "center" });
       doc.link(footerX, pageHeight - 13, footerWidth, 4, {
-        url: "https://rosterlab.com",
+        url: isUS ? "https://rosterlab.com/us" : "https://rosterlab.com",
       });
 
       // Save the PDF
@@ -667,7 +700,7 @@ export default function SpreadsheetSorcererClient({
         "There was an error generating your PDF. Please check the console for details.",
       );
     }
-  }, []);
+  }, [isUS]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -710,7 +743,11 @@ export default function SpreadsheetSorcererClient({
                   {copied ? "Copied to clipboard!" : "Share your results"}
                 </button>
                 <Link
-                  href="/tools/staff-scheduling-personality-quiz"
+                  href={
+                    isUS
+                      ? "/us/tools/staff-scheduling-personality-quiz"
+                      : "/tools/staff-scheduling-personality-quiz"
+                  }
                   className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   Take the Quiz
@@ -742,7 +779,11 @@ export default function SpreadsheetSorcererClient({
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            If your rostering style was a celebrity you'd be…
+            {isUS ? (
+              <>If your scheduling style was a celebrity you'd be…</>
+            ) : (
+              <>If your rostering style was a celebrity you'd be…</>
+            )}
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mt-16">
@@ -1246,7 +1287,14 @@ export default function SpreadsheetSorcererClient({
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3">
-            <Link href="/solutions/staff-roster-mobile-app" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/staff-scheduling-mobile-app"
+                  : "/solutions/staff-roster-mobile-app"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1267,8 +1315,18 @@ export default function SpreadsheetSorcererClient({
                   Employee Mobile App
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Take your perfectly crafted rosters mobile. Staff can view
-                  schedules, request changes, and stay connected on the go.
+                  {isUS ? (
+                    <>
+                      Take your perfectly crafted schedules mobile. Staff can
+                      view schedules, request changes, and stay connected on the
+                      go.
+                    </>
+                  ) : (
+                    <>
+                      Take your perfectly crafted rosters mobile. Staff can view
+                      schedules, request changes, and stay connected on the go.
+                    </>
+                  )}
                 </p>
                 <span className="text-primary-600 font-medium inline-flex items-center">
                   Learn more
@@ -1289,7 +1347,14 @@ export default function SpreadsheetSorcererClient({
               </div>
             </Link>
 
-            <Link href="/solutions/ai-roster-generator" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/ai-staff-schedule-maker"
+                  : "/solutions/ai-roster-generator"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1313,11 +1378,24 @@ export default function SpreadsheetSorcererClient({
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Automation Roster Generation
+                  {isUS ? (
+                    <>Automation Schedule Generation</>
+                  ) : (
+                    <>Automation Roster Generation</>
+                  )}
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Combine your spreadsheet expertise with AI power. Generate
-                  optimized rosters in seconds while maintaining control.
+                  {isUS ? (
+                    <>
+                      Combine your spreadsheet expertise with AI power. Generate
+                      optimized schedules in seconds while maintaining control.
+                    </>
+                  ) : (
+                    <>
+                      Combine your spreadsheet expertise with AI power. Generate
+                      optimized rosters in seconds while maintaining control.
+                    </>
+                  )}
                 </p>
                 <span className="text-primary-600 font-medium inline-flex items-center">
                   Learn more
@@ -1338,7 +1416,14 @@ export default function SpreadsheetSorcererClient({
               </div>
             </Link>
 
-            <Link href="/feature/shift-swaps" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/feature/shift-swaps-and-trades"
+                  : "/feature/shift-swaps"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1384,7 +1469,7 @@ export default function SpreadsheetSorcererClient({
 
           <div className="text-center mt-8">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               Try RosterLab for free
@@ -1406,7 +1491,14 @@ export default function SpreadsheetSorcererClient({
                 key={post._id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <Link href={`/blog/${post.slug.current}`} className="block">
+                <Link
+                  href={
+                    isUS
+                      ? `/us/blog/${post.slug.current}`
+                      : `/blog/${post.slug.current}`
+                  }
+                  className="block"
+                >
                   <div className="relative h-48 overflow-hidden group">
                     {post.mainImage ? (
                       <Image
@@ -1465,7 +1557,7 @@ export default function SpreadsheetSorcererClient({
           {/* View all blogs CTA */}
           <div className="mt-12 text-center">
             <Link
-              href="/blog"
+              href={isUS ? "/us/blog" : "/blog"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
             >
               View all blogs
@@ -1506,7 +1598,11 @@ export default function SpreadsheetSorcererClient({
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Need help with your roster?
+            {isUS ? (
+              <>Need help with your schedule?</>
+            ) : (
+              <>Need help with your roster?</>
+            )}
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
             As a Spreadsheet Sorcerer, you appreciate powerful tools that
@@ -1516,13 +1612,13 @@ export default function SpreadsheetSorcererClient({
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-[#0a1929] shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] transition-colors duration-200"
             >
               See RosterLab in action
             </Link>
             <Link
-              href="/pricing"
+              href={isUS ? "/us/pricing" : "/pricing"}
               className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-colors duration-200"
             >
               View pricing
@@ -1539,7 +1635,15 @@ export default function SpreadsheetSorcererClient({
               Download Your Spreadsheet Sorcerer Results
             </h3>
             <p className="text-gray-600 mb-6">
-              Get your personalized rostering personality report as a PDF.
+              {isUS ? (
+                <>
+                  Get your personalized scheduling personality report as a PDF.
+                </>
+              ) : (
+                <>
+                  Get your personalized rostering personality report as a PDF.
+                </>
+              )}
             </p>
 
             <LeadCaptureForm

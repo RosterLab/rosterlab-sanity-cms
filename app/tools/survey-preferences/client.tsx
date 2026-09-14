@@ -6,20 +6,33 @@
  * shift
  */
 
+import { localizeUSSurveyURL } from "@/lib/localization/us-resources";
 import { useState } from "react";
 import HolidayConfigurator from "@/components/survey/HolidayConfigurator";
 import type { CreateSurveyResponse } from "@/lib/survey/types";
 import Button from "@/components/ui/Button";
 import { trackButtonClick } from "@/components/analytics/tracking";
 
-export default function SurveyPreferencesClient() {
+export default function SurveyPreferencesClient({
+  isUS = false,
+}: {
+  isUS?: boolean;
+}) {
   const [surveyResult, setSurveyResult] = useState<CreateSurveyResponse | null>(
     null,
   );
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const handleSurveyCreated = (response: CreateSurveyResponse) => {
-    setSurveyResult(response);
+    setSurveyResult(
+      isUS
+        ? {
+            ...response,
+            staff_url: localizeUSSurveyURL(response.staff_url),
+            admin_url: localizeUSSurveyURL(response.admin_url),
+          }
+        : response,
+    );
   };
 
   const copyToClipboard = async (text: string, field: string) => {
@@ -164,7 +177,11 @@ export default function SurveyPreferencesClient() {
                     including skills, certifications, fatigue management, labor
                     costs, compliance rules, and historical patterns.{" "}
                     <a
-                      href="https://www.rosterlab.com"
+                      href={
+                        isUS
+                          ? "https://www.rosterlab.com/us"
+                          : "https://www.rosterlab.com"
+                      }
                       className="text-blue-700 underline hover:text-blue-900 font-medium"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -178,7 +195,10 @@ export default function SurveyPreferencesClient() {
 
             {/* Configurator Form */}
             <div className="bg-white rounded-xl shadow-lg border border-neutral-200 p-8">
-              <HolidayConfigurator onSurveyCreated={handleSurveyCreated} />
+              <HolidayConfigurator
+                isUS={isUS}
+                onSurveyCreated={handleSurveyCreated}
+              />
             </div>
 
             {/* Feedback Section */}

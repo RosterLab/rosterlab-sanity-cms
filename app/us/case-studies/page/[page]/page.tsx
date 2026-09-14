@@ -1,11 +1,9 @@
-// Generated from app/case-studies/page/[page]/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { localizeUSResourceResult } from "@/lib/localization/us-resources";
 
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { getClient } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
-import CaseStudiesPageContent from "@/components/us-resources/case-studies/CaseStudiesPageContent";
+import CaseStudiesPageContent from "@/components/case-studies/CaseStudiesPageContent";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
@@ -132,5 +130,5 @@ export default async function CaseStudiesPaginationPage({ params }: Props) {
     notFound();
   }
 
-  return <CaseStudiesPageContent posts={posts} currentPage={pageNumber} />;
+  return <CaseStudiesPageContent isUS posts={posts} currentPage={pageNumber} />;
 }

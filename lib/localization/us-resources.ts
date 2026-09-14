@@ -43,14 +43,9 @@ export function localizeUSResourceResult<T>(value: T): T {
   return value;
 }
 
-// US-only metadata overrides for authored and generated pages. Generated copy is
-// derived from the global source, so tuning a US title or description here
-// avoids editing the global page it came from. Keyed by US path; global calls
-// pass a global path and are never matched.
-//
-// Article metadata is not set here: titles and descriptions for CMS-backed
-// blog, case-study and newsroom articles come from Sanity, with per-slug
-// fallbacks in ./us-terminology.ts.
+// US-only metadata overrides for route pages. Keyed by US path; global calls
+// pass a global path and are never matched. Article metadata comes from Sanity,
+// with per-slug editorial fallbacks in ./us-terminology.ts.
 const US_METADATA_OVERRIDES: Record<
   string,
   { title?: string; description?: string }

@@ -25,7 +25,7 @@ Reviewed manually authored US healthcare pages, generated resources, and the 59 
 
 Professional titles are not global dictionary substitutions. International registrar grades do not establish US residency level or chief-resident responsibilities. Business consultants, nonclinical registrars, fellows, allied health, named employers, formal testimonial titles, and quoted testimony remain intact. Specific NZ radiography research participants retain their original role descriptions. Editorial CMS US overrides take precedence.
 
-Context-dependent CMS changes are maintained in `lib/localization/us-terminology.ts`, scoped by resource slug and using existing quotation, protected-annotation, and rich-text-span safeguards. Phrase changes should be reviewed again when the underlying CMS wording changes. Generated resource edits belong in `scripts/generate-us-resources.ts`.
+Context-dependent CMS changes are maintained in `lib/localization/us-terminology.ts`, scoped by resource slug and using existing quotation, protected-annotation, and rich-text-span safeguards. Phrase changes should be reviewed again when the underlying CMS wording changes. Shared resource copy belongs in its renderer; intentional route-specific editorial differences remain in the corresponding route file.
 
 The open-shifts and fixed-shifts articles also had Australian employment-status and compensation wording. The US adaptations remove suggestions that open shifts preserve a casual legal classification, replace award terminology, and avoid universal premium-pay or meal-break requirements. This vocabulary review is not a review of every legal or product-compliance claim across the resource library; the separate marketing audit still records those items.
 
@@ -39,7 +39,7 @@ The final sweep also inspected the localized output of all 59 cached CMS resourc
 
 Intentional remaining regional wording includes original customer quotations and formal titles, the named Australian/NZ/UK research cohorts, regional agreement names (MECA/EBA/NZNO/MERAS), historical source slugs and asset paths, and the quiz character name Dwayne "The Roster" Johnson. The downloaded PDFs and text embedded in existing images/video are not translated by the page text localization layer.
 
-Validation: 39 localization tests pass, including server-rendered shared-component checks that compare US copy with global defaults. Generated resources are checked for reproducibility. Browser screenshot verification remains incomplete because browser execution approval was unavailable in the previous run; automated rendering tests do not substitute for that visual check. This review is a terminology signoff, not an all-clear for the separate currency, legal-claim, or publication-evidence items in the marketing review.
+Validation: 39 localization tests pass, including server-rendered shared-component checks that compare US copy with global defaults. Shared resource implementations are checked against their original global and US output. Browser screenshot verification remains incomplete because browser execution approval was unavailable in the previous run; automated rendering tests do not substitute for that visual check. This review is a terminology signoff, not an all-clear for the separate currency, legal-claim, or publication-evidence items in the marketing review.
 
 ## Regional explanation follow-up
 

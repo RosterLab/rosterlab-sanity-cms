@@ -8,10 +8,12 @@ import { HiSearch, HiX, HiCalendar, HiClock } from "react-icons/hi";
 import { Webinar } from "./page";
 
 interface WebinarsPageContentProps {
+  isUS?: boolean;
   webinars: Webinar[];
 }
 
 export default function WebinarsPageContent({
+  isUS = false,
   webinars,
 }: WebinarsPageContentProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,9 +40,19 @@ export default function WebinarsPageContent({
             AI in Healthcare Webinars
           </h1>
           <p className="text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto">
-            Join our expert-led webinars to discover how AI-powered workforce
-            management can transform your healthcare operations. Learn from
-            industry leaders and get your questions answered.
+            {isUS ? (
+              <>
+                Watch on-demand conversations about AI-powered healthcare
+                scheduling. Learn from practical experiences and explore the
+                questions discussed by our guests.
+              </>
+            ) : (
+              <>
+                Join our expert-led webinars to discover how AI-powered
+                workforce management can transform your healthcare operations.
+                Learn from industry leaders and get your questions answered.
+              </>
+            )}
           </p>
         </div>
 
@@ -183,13 +195,13 @@ export default function WebinarsPageContent({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-block bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-neutral-50 transition-colors shadow-lg"
             >
               Book a Discovery Call
             </Link>
             <Link
-              href="/contact"
+              href={isUS ? "/us/contact" : "/contact"}
               className="inline-block bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors border border-white/20"
             >
               Contact Us

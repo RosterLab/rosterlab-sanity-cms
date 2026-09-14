@@ -1,8 +1,5 @@
 name: Verify
 
-# Catches stale generated US resource files on the pull request instead of at
-# deploy time. This check used to run as `prebuild`, where a failure stopped
-# `next build` and took the Netlify deploy down with it.
 on:
   pull_request:
   push:
@@ -21,9 +18,6 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-
-      - name: US resource files are up to date
-        run: pnpm localize:resources:check
 
       - name: Tests
         run: pnpm test

@@ -31,10 +31,12 @@ interface BlogPost {
 }
 
 interface PeacekeeperPandaClientProps {
+  isUS?: boolean;
   recommendedPosts: BlogPost[];
 }
 
 export default function PeacekeeperPandaClient({
+  isUS = false,
   recommendedPosts,
 }: PeacekeeperPandaClientProps) {
   const [copied, setCopied] = useState(false);
@@ -78,7 +80,9 @@ export default function PeacekeeperPandaClient({
   useEffect(() => {
     const handlePopstate = () => {
       // If user navigates back, redirect to the quiz start page
-      window.location.href = "/tools/staff-scheduling-personality-quiz";
+      window.location.href = isUS
+        ? "/us/tools/staff-scheduling-personality-quiz"
+        : "/tools/staff-scheduling-personality-quiz";
     };
 
     // Push a new state when the component mounts
@@ -90,7 +94,7 @@ export default function PeacekeeperPandaClient({
 
     window.addEventListener("popstate", handlePopstate);
     return () => window.removeEventListener("popstate", handlePopstate);
-  }, []);
+  }, [isUS]);
 
   // Download submission is handled by the shared lead form.
 
@@ -165,7 +169,11 @@ export default function PeacekeeperPandaClient({
       doc.setFont("helvetica", "normal");
       doc.setFontSize(20);
       doc.setTextColor(...(textColor as [number, number, number]));
-      doc.text("Your Rostering Personality", 20, 32);
+      doc.text(
+        isUS ? "Your Scheduling Personality" : "Your Rostering Personality",
+        20,
+        32,
+      );
       doc.setFontSize(16);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text("The Peacekeeper Panda", 20, 42);
@@ -205,7 +213,9 @@ export default function PeacekeeperPandaClient({
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text(
-        "If your rostering style was a celebrity you'd be...",
+        isUS
+          ? "If your scheduling style was a celebrity you'd be..."
+          : "If your rostering style was a celebrity you'd be...",
         20,
         currentY,
       );
@@ -219,13 +229,23 @@ export default function PeacekeeperPandaClient({
       doc.text("• Dalai Shiftma", 25, currentY);
       doc.setFont("helvetica", "normal");
       doc.setFontSize(10);
-      doc.text("  Finding inner peace in rosters", 25, currentY + 5);
+      doc.text(
+        isUS
+          ? "  Finding inner peace in schedules"
+          : "  Finding inner peace in rosters",
+        25,
+        currentY + 5,
+      );
       currentY += 12;
 
       // Celebrity 2 text
       doc.setFont("helvetica", "bold");
       doc.setFontSize(11);
-      doc.text("• Sir Roster Attenborough", 25, currentY);
+      doc.text(
+        isUS ? "• Sir Schedule Attenborough" : "• Sir Roster Attenborough",
+        25,
+        currentY,
+      );
       doc.setFont("helvetica", "normal");
       doc.setFontSize(10);
       doc.text("  Narrating workplace harmony", 25, currentY + 5);
@@ -234,7 +254,11 @@ export default function PeacekeeperPandaClient({
       // Celebrity 3 text
       doc.setFont("helvetica", "bold");
       doc.setFontSize(11);
-      doc.text("• Zendaya Zen-roster", 25, currentY);
+      doc.text(
+        isUS ? "• Zendaya Zen-schedule" : "• Zendaya Zen-roster",
+        25,
+        currentY,
+      );
       doc.setFont("helvetica", "normal");
       doc.setFontSize(10);
       doc.text("  Balancing with grace", 25, currentY + 5);
@@ -511,7 +535,9 @@ export default function PeacekeeperPandaClient({
       const tool1Width = doc.getTextWidth(tool1Text);
       doc.text(tool1Text, 28, currentY);
       doc.link(28, currentY - 3, tool1Width, 4, {
-        url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app"
+          : "https://rosterlab.com/solutions/staff-roster-mobile-app",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -529,7 +555,9 @@ export default function PeacekeeperPandaClient({
       const tool2Width = doc.getTextWidth(tool2Text);
       doc.text(tool2Text, 28, currentY);
       doc.link(28, currentY - 3, tool2Width, 4, {
-        url: "https://rosterlab.com/feature/self-scheduling",
+        url: isUS
+          ? "https://rosterlab.com/us/feature/self-scheduling"
+          : "https://rosterlab.com/feature/self-scheduling",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -543,15 +571,21 @@ export default function PeacekeeperPandaClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const tool3Text = "Automation roster generation";
+      const tool3Text = isUS
+        ? "Automation schedule generation"
+        : "Automation roster generation";
       const tool3Width = doc.getTextWidth(tool3Text);
       doc.text(tool3Text, 28, currentY);
       doc.link(28, currentY - 3, tool3Width, 4, {
-        url: "https://rosterlab.com/solutions/ai-roster-generator",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/ai-staff-schedule-maker"
+          : "https://rosterlab.com/solutions/ai-roster-generator",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
-        ": Create balanced rosters automatically",
+        isUS
+          ? ": Create balanced schedules automatically"
+          : ": Create balanced rosters automatically",
         28 + tool3Width,
         currentY,
       );
@@ -598,7 +632,9 @@ export default function PeacekeeperPandaClient({
       const blog1Width = doc.getTextWidth(blog1Text);
       doc.text(blog1Text, 28, currentY);
       doc.link(28, currentY - 3, blog1Width, 4, {
-        url: "https://rosterlab.com/blog/increase-staff-engagement-for-shift-workers",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/increase-staff-engagement-for-shift-workers"
+          : "https://rosterlab.com/blog/increase-staff-engagement-for-shift-workers",
       });
       currentY += 8;
 
@@ -610,7 +646,9 @@ export default function PeacekeeperPandaClient({
       const blog2Width = doc.getTextWidth(blog2Text);
       doc.text(blog2Text, 28, currentY);
       doc.link(28, currentY - 3, blog2Width, 4, {
-        url: "https://rosterlab.com/blog/skeleton-staffing-guide-lean-operations-management",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/skeleton-staffing-guide-lean-operations-management"
+          : "https://rosterlab.com/blog/skeleton-staffing-guide-lean-operations-management",
       });
       currentY += 8;
 
@@ -622,7 +660,9 @@ export default function PeacekeeperPandaClient({
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/blog/fairer-scheduling-at-work-reducing-shift-bias",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/fairer-scheduling-at-work-reducing-shift-bias"
+          : "https://rosterlab.com/blog/fairer-scheduling-at-work-reducing-shift-bias",
       });
       currentY += 17;
 
@@ -630,7 +670,11 @@ export default function PeacekeeperPandaClient({
       currentY += 10;
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
-      doc.text("Need help with your roster?", 20, currentY);
+      doc.text(
+        isUS ? "Need help with your schedule?" : "Need help with your roster?",
+        20,
+        currentY,
+      );
 
       currentY += 10;
       doc.setFontSize(10);
@@ -657,7 +701,7 @@ export default function PeacekeeperPandaClient({
       const footerX = 105 - footerWidth / 2;
       doc.text(footerText, 105, pageHeight - 10, { align: "center" });
       doc.link(footerX, pageHeight - 13, footerWidth, 4, {
-        url: "https://rosterlab.com",
+        url: isUS ? "https://rosterlab.com/us" : "https://rosterlab.com",
       });
 
       // Save the PDF
@@ -672,7 +716,7 @@ export default function PeacekeeperPandaClient({
         "There was an error generating your PDF. Please check the console for details.",
       );
     }
-  }, []);
+  }, [isUS]);
 
   return (
     <div className="bg-white relative">
@@ -714,7 +758,11 @@ export default function PeacekeeperPandaClient({
                   {copied ? "Copied to clipboard!" : "Share your results"}
                 </button>
                 <Link
-                  href="/tools/staff-scheduling-personality-quiz"
+                  href={
+                    isUS
+                      ? "/us/tools/staff-scheduling-personality-quiz"
+                      : "/tools/staff-scheduling-personality-quiz"
+                  }
                   className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   Take the Quiz
@@ -746,7 +794,11 @@ export default function PeacekeeperPandaClient({
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            If your rostering style was a celebrity you'd be…
+            {isUS ? (
+              <>If your scheduling style was a celebrity you'd be…</>
+            ) : (
+              <>If your rostering style was a celebrity you'd be…</>
+            )}
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mt-16">
@@ -765,7 +817,17 @@ export default function PeacekeeperPandaClient({
                 Dalai Shiftma
               </h3>
               <p className="text-gray-600 max-w-xs mx-auto">
-                Finding inner peace in roster management, one shift at a time.
+                {isUS ? (
+                  <>
+                    Finding inner peace in schedule management, one shift at a
+                    time.
+                  </>
+                ) : (
+                  <>
+                    Finding inner peace in roster management, one shift at a
+                    time.
+                  </>
+                )}
               </p>
             </div>
 
@@ -774,7 +836,11 @@ export default function PeacekeeperPandaClient({
               <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <Image
                   src="/images/quiz/panda/david.png"
-                  alt="Sir Roster Attenborough"
+                  alt={
+                    isUS
+                      ? "Sir Schedule Attenborough"
+                      : "Sir Roster Attenborough"
+                  }
                   width={192}
                   height={192}
                   className="w-full h-full object-cover"
@@ -782,7 +848,11 @@ export default function PeacekeeperPandaClient({
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Sir Roster Attenborough
+                {isUS ? (
+                  <>Sir Schedule Attenborough</>
+                ) : (
+                  <>Sir Roster Attenborough</>
+                )}
               </h3>
               <p className="text-gray-600 max-w-xs mx-auto">
                 Narrating the beautiful harmony of workplace ecosystems.
@@ -794,14 +864,14 @@ export default function PeacekeeperPandaClient({
               <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
                 <Image
                   src="/images/quiz/panda/zendaya.png"
-                  alt="Zendaya Zen-roster"
+                  alt={isUS ? "Zendaya Zen-schedule" : "Zendaya Zen-roster"}
                   width={192}
                   height={192}
                   className="w-full h-full object-cover"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Zendaya Zen-roster
+                {isUS ? <>Zendaya Zen-schedule</> : <>Zendaya Zen-roster</>}
               </h3>
               <p className="text-gray-600 max-w-xs mx-auto">
                 Balancing schedules with effortless grace and poise.
@@ -1235,7 +1305,14 @@ export default function PeacekeeperPandaClient({
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mb-12">
-            <Link href="/solutions/staff-roster-mobile-app" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/staff-scheduling-mobile-app"
+                  : "/solutions/staff-roster-mobile-app"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1278,7 +1355,14 @@ export default function PeacekeeperPandaClient({
               </div>
             </Link>
 
-            <Link href="/feature/self-scheduling" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/feature/self-scheduling"
+                  : "/feature/self-scheduling"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1321,7 +1405,14 @@ export default function PeacekeeperPandaClient({
               </div>
             </Link>
 
-            <Link href="/solutions/ai-roster-generator" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/ai-staff-schedule-maker"
+                  : "/solutions/ai-roster-generator"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1345,11 +1436,24 @@ export default function PeacekeeperPandaClient({
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Automation Roster Generation
+                  {isUS ? (
+                    <>Automation Schedule Generation</>
+                  ) : (
+                    <>Automation Roster Generation</>
+                  )}
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Create balanced rosters automatically that consider everyone's
-                  needs and preferences.
+                  {isUS ? (
+                    <>
+                      Create balanced schedules automatically that consider
+                      everyone's needs and preferences.
+                    </>
+                  ) : (
+                    <>
+                      Create balanced rosters automatically that consider
+                      everyone's needs and preferences.
+                    </>
+                  )}
                 </p>
                 <span className="text-primary-600 font-medium inline-flex items-center">
                   Learn more
@@ -1373,7 +1477,7 @@ export default function PeacekeeperPandaClient({
 
           <div className="text-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               Try RosterLab for free
@@ -1395,7 +1499,14 @@ export default function PeacekeeperPandaClient({
                 key={post._id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <Link href={`/blog/${post.slug.current}`} className="block">
+                <Link
+                  href={
+                    isUS
+                      ? `/us/blog/${post.slug.current}`
+                      : `/blog/${post.slug.current}`
+                  }
+                  className="block"
+                >
                   <div className="relative h-48 overflow-hidden group">
                     {post.mainImage ? (
                       <Image
@@ -1454,7 +1565,7 @@ export default function PeacekeeperPandaClient({
           {/* View all blogs CTA */}
           <div className="mt-12 text-center">
             <Link
-              href="/blog"
+              href={isUS ? "/us/blog" : "/blog"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
             >
               View all blogs
@@ -1495,7 +1606,11 @@ export default function PeacekeeperPandaClient({
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Need help with your roster?
+            {isUS ? (
+              <>Need help with your schedule?</>
+            ) : (
+              <>Need help with your roster?</>
+            )}
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
             As a Peacekeeper Panda, you value harmony and balance above all. Let
@@ -1505,13 +1620,13 @@ export default function PeacekeeperPandaClient({
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-[#0a1929] shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] transition-colors duration-200"
             >
               See RosterLab in action
             </Link>
             <Link
-              href="/pricing"
+              href={isUS ? "/us/pricing" : "/pricing"}
               className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-colors duration-200"
             >
               View pricing
@@ -1528,7 +1643,15 @@ export default function PeacekeeperPandaClient({
               Download Your Peacekeeper Panda Results
             </h3>
             <p className="text-gray-600 mb-6">
-              Get your personalized rostering personality report as a PDF.
+              {isUS ? (
+                <>
+                  Get your personalized scheduling personality report as a PDF.
+                </>
+              ) : (
+                <>
+                  Get your personalized rostering personality report as a PDF.
+                </>
+              )}
             </p>
 
             <LeadCaptureForm

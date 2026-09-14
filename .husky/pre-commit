@@ -1,7 +1,0 @@
-# Regenerating US resources is cheap; catching drift here means a pull request
-# never fails CI for a file the author could have regenerated in one command.
-pnpm localize:resources:check || {
-  echo ""
-  echo "US resource files are stale. Run: pnpm localize:resources"
-  exit 1
-}

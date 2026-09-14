@@ -143,8 +143,10 @@ const getEmployeeRulesBroken = (grid: string[][]): Problem[] => {
 };
 
 export default function SchedgeGame({
+  isUS = false,
   initialGrid,
 }: {
+  isUS?: boolean;
   initialGrid: string[][];
   heading?: string;
 }) {
@@ -302,7 +304,9 @@ export default function SchedgeGame({
               <h3>
                 To try it out, go to{" "}
                 <a
-                  href="https://rosterlab.com"
+                  href={
+                    isUS ? "https://rosterlab.com/us" : "https://rosterlab.com"
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -312,7 +316,13 @@ export default function SchedgeGame({
               <p>
                 <ol>
                   <li>Create 7 employees</li>
-                  <li>Create 5 shifts, labelled A-E</li>
+                  <li>
+                    {isUS ? (
+                      <>Create 5 shifts, labeled A-E</>
+                    ) : (
+                      <>Create 5 shifts, labelled A-E</>
+                    )}
+                  </li>
                   <li>
                     Create the following rules: max days in a row, forbid
                     relevant shift changes, max shifts per week for each shift

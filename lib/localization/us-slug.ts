@@ -82,15 +82,6 @@ export function localizeUSPathname(pathname: string): string {
     .join("/");
 }
 
-// True when the US route should redirect: the visitor asked for the global
-// slug under /us, and a distinct localized slug exists for it.
-export function usSlugRedirectTarget(requested: string): string | undefined {
-  const localized = localizeUSSlug(requested);
-  return localized !== requested && REVERSE.has(localized)
-    ? localized
-    : undefined;
-}
-
 // The US slug an article actually publishes at: an editor's override when set,
 // otherwise the derived one. Every consumer - routing, redirect, sitemap and
 // hreflang - resolves through here so they cannot disagree about the URL.

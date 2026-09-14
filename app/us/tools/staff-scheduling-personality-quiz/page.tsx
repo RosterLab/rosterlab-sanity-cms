@@ -1,8 +1,6 @@
-// Generated from app/(main)/tools/staff-scheduling-personality-quiz/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from 'next'
-import QuizClient from "@/app/us/tools/staff-scheduling-personality-quiz/QuizClient"
+import QuizClient from "@/app/(main)/tools/staff-scheduling-personality-quiz/QuizClient"
 
 export const metadata: Metadata = resourceMetadata({
   title: "What's Your Staff Scheduling Personality Type?",
@@ -34,5 +32,5 @@ export const metadata: Metadata = resourceMetadata({
 }, "/us/tools/staff-scheduling-personality-quiz")
 
 export default function StaffSchedulingPersonalityQuizPage() {
-  return <QuizClient />
+  return <QuizClient isUS />
 }

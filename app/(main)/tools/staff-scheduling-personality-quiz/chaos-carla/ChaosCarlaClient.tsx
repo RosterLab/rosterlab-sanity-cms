@@ -31,10 +31,12 @@ interface BlogPost {
 }
 
 interface ChaosCarlaClientProps {
+  isUS?: boolean;
   recommendedPosts: BlogPost[];
 }
 
 export default function ChaosCarlaClient({
+  isUS = false,
   recommendedPosts,
 }: ChaosCarlaClientProps) {
   const [copied, setCopied] = useState(false);
@@ -78,7 +80,9 @@ export default function ChaosCarlaClient({
   useEffect(() => {
     const handlePopstate = () => {
       // If user navigates back, redirect to the quiz start page
-      window.location.href = "/tools/staff-scheduling-personality-quiz";
+      window.location.href = isUS
+        ? "/us/tools/staff-scheduling-personality-quiz"
+        : "/tools/staff-scheduling-personality-quiz";
     };
 
     // Push a new state when the component mounts
@@ -86,7 +90,7 @@ export default function ChaosCarlaClient({
 
     window.addEventListener("popstate", handlePopstate);
     return () => window.removeEventListener("popstate", handlePopstate);
-  }, []);
+  }, [isUS]);
 
   // Generate the downloadable results PDF.
   const generatePDF = useCallback(async () => {
@@ -160,7 +164,11 @@ export default function ChaosCarlaClient({
       doc.setFont("helvetica", "normal");
       doc.setFontSize(20);
       doc.setTextColor(...(textColor as [number, number, number]));
-      doc.text("Your Rostering Personality", 20, 32);
+      doc.text(
+        isUS ? "Your Scheduling Personality" : "Your Rostering Personality",
+        20,
+        32,
+      );
       doc.setFontSize(16);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text("Chaos Carla", 20, 42);
@@ -196,7 +204,9 @@ export default function ChaosCarlaClient({
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
       doc.text(
-        "If your rostering style was a celebrity you'd be...",
+        isUS
+          ? "If your scheduling style was a celebrity you'd be..."
+          : "If your rostering style was a celebrity you'd be...",
         20,
         currentY,
       );
@@ -484,7 +494,9 @@ export default function ChaosCarlaClient({
       const tool1Width = doc.getTextWidth(tool1Text);
       doc.text(tool1Text, 28, currentY);
       doc.link(28, currentY - 3, tool1Width, 4, {
-        url: "https://rosterlab.com/solutions/staff-roster-mobile-app",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/staff-scheduling-mobile-app"
+          : "https://rosterlab.com/solutions/staff-roster-mobile-app",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -502,7 +514,9 @@ export default function ChaosCarlaClient({
       const tool2Width = doc.getTextWidth(tool2Text);
       doc.text(tool2Text, 28, currentY);
       doc.link(28, currentY - 3, tool2Width, 4, {
-        url: "https://rosterlab.com/feature/shift-swaps",
+        url: isUS
+          ? "https://rosterlab.com/us/feature/shift-swaps-and-trades"
+          : "https://rosterlab.com/feature/shift-swaps",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -516,11 +530,13 @@ export default function ChaosCarlaClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const tool3Text = "AI Roster Generator";
+      const tool3Text = isUS ? "AI Schedule Generator" : "AI Roster Generator";
       const tool3Width = doc.getTextWidth(tool3Text);
       doc.text(tool3Text, 28, currentY);
       doc.link(28, currentY - 3, tool3Width, 4, {
-        url: "https://rosterlab.com/solutions/ai-roster-generator",
+        url: isUS
+          ? "https://rosterlab.com/us/solutions/ai-staff-schedule-maker"
+          : "https://rosterlab.com/solutions/ai-roster-generator",
       });
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text(
@@ -567,11 +583,15 @@ export default function ChaosCarlaClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const blog1Text = "Manage Night Shift Planning & Wellbeing Effectively";
+      const blog1Text = isUS
+        ? "Manage Night Shift Planning & Well-being Effectively"
+        : "Manage Night Shift Planning & Wellbeing Effectively";
       const blog1Width = doc.getTextWidth(blog1Text);
       doc.text(blog1Text, 28, currentY);
       doc.link(28, currentY - 3, blog1Width, 4, {
-        url: "https://rosterlab.com/blog/manage-night-shift-planning-wellbeing-effectively",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/manage-night-shift-planning-wellbeing-effectively"
+          : "https://rosterlab.com/blog/manage-night-shift-planning-wellbeing-effectively",
       });
       currentY += 8;
 
@@ -583,7 +603,9 @@ export default function ChaosCarlaClient({
       const blog2Width = doc.getTextWidth(blog2Text);
       doc.text(blog2Text, 28, currentY);
       doc.link(28, currentY - 3, blog2Width, 4, {
-        url: "https://rosterlab.com/blog/how-to-reduce-absenteeism-for-shift-workers",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/how-to-reduce-absenteeism-for-shift-workers"
+          : "https://rosterlab.com/blog/how-to-reduce-absenteeism-for-shift-workers",
       });
       currentY += 8;
 
@@ -591,11 +613,15 @@ export default function ChaosCarlaClient({
       doc.setTextColor(...(textColor as [number, number, number]));
       doc.text("• ", 25, currentY);
       doc.setTextColor(...(linkBlue as [number, number, number]));
-      const blog3Text = "Rostering Basics: Foundation for Success";
+      const blog3Text = isUS
+        ? "Scheduling Basics: Foundation for Success"
+        : "Rostering Basics: Foundation for Success";
       const blog3Width = doc.getTextWidth(blog3Text);
       doc.text(blog3Text, 28, currentY);
       doc.link(28, currentY - 3, blog3Width, 4, {
-        url: "https://rosterlab.com/blog/rostering-basics",
+        url: isUS
+          ? "https://rosterlab.com/us/blog/scheduling-basics"
+          : "https://rosterlab.com/blog/rostering-basics",
       });
       currentY += 17;
 
@@ -603,7 +629,11 @@ export default function ChaosCarlaClient({
       currentY += 10;
       doc.setFontSize(13);
       doc.setTextColor(...(primaryColor as [number, number, number]));
-      doc.text("Need help with your roster?", 20, currentY);
+      doc.text(
+        isUS ? "Need help with your schedule?" : "Need help with your roster?",
+        20,
+        currentY,
+      );
 
       currentY += 10;
       doc.setFontSize(10);
@@ -630,7 +660,7 @@ export default function ChaosCarlaClient({
       const footerX = 105 - footerWidth / 2;
       doc.text(footerText, 105, pageHeight - 10, { align: "center" });
       doc.link(footerX, pageHeight - 13, footerWidth, 4, {
-        url: "https://rosterlab.com",
+        url: isUS ? "https://rosterlab.com/us" : "https://rosterlab.com",
       });
 
       // Save the PDF
@@ -645,7 +675,7 @@ export default function ChaosCarlaClient({
         "There was an error generating your PDF. Please check the console for details.",
       );
     }
-  }, []);
+  }, [isUS]);
 
   return (
     <div className="bg-white relative">
@@ -688,7 +718,11 @@ export default function ChaosCarlaClient({
                   {copied ? "Copied to clipboard!" : "Share your results"}
                 </button>
                 <Link
-                  href="/tools/staff-scheduling-personality-quiz"
+                  href={
+                    isUS
+                      ? "/us/tools/staff-scheduling-personality-quiz"
+                      : "/tools/staff-scheduling-personality-quiz"
+                  }
                   className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-base font-medium text-primary-600 border border-primary-600 shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 >
                   Take the Quiz
@@ -720,7 +754,11 @@ export default function ChaosCarlaClient({
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
-            If your rostering style was a celebrity you'd be…
+            {isUS ? (
+              <>If your scheduling style was a celebrity you'd be…</>
+            ) : (
+              <>If your rostering style was a celebrity you'd be…</>
+            )}
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mt-16">
@@ -1202,7 +1240,14 @@ export default function ChaosCarlaClient({
           </h2>
 
           <div className="grid gap-8 md:grid-cols-3 mb-12">
-            <Link href="/solutions/staff-roster-mobile-app" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/staff-scheduling-mobile-app"
+                  : "/solutions/staff-roster-mobile-app"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1245,7 +1290,14 @@ export default function ChaosCarlaClient({
               </div>
             </Link>
 
-            <Link href="/feature/shift-swaps" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/feature/shift-swaps-and-trades"
+                  : "/feature/shift-swaps"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1288,7 +1340,14 @@ export default function ChaosCarlaClient({
               </div>
             </Link>
 
-            <Link href="/solutions/ai-roster-generator" className="block">
+            <Link
+              href={
+                isUS
+                  ? "/us/solutions/ai-staff-schedule-maker"
+                  : "/solutions/ai-roster-generator"
+              }
+              className="block"
+            >
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full">
                 <div className="h-48 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
                   <svg
@@ -1312,7 +1371,7 @@ export default function ChaosCarlaClient({
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  AI Roster Generator
+                  {isUS ? <>AI Schedule Generator</> : <>AI Roster Generator</>}
                 </h3>
                 <p className="text-gray-600 mb-4">
                   Create multiple backup scenarios instantly for when Plan A
@@ -1340,7 +1399,7 @@ export default function ChaosCarlaClient({
 
           <div className="text-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               Try RosterLab for free
@@ -1362,7 +1421,14 @@ export default function ChaosCarlaClient({
                 key={post._id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
-                <Link href={`/blog/${post.slug.current}`} className="block">
+                <Link
+                  href={
+                    isUS
+                      ? `/us/blog/${post.slug.current}`
+                      : `/blog/${post.slug.current}`
+                  }
+                  className="block"
+                >
                   <div className="relative h-48 overflow-hidden group">
                     {post.mainImage ? (
                       <Image
@@ -1421,7 +1487,7 @@ export default function ChaosCarlaClient({
           {/* View all blogs CTA */}
           <div className="mt-12 text-center">
             <Link
-              href="/blog"
+              href={isUS ? "/us/blog" : "/blog"}
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors duration-200"
             >
               View all blogs
@@ -1462,7 +1528,11 @@ export default function ChaosCarlaClient({
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Need help with your roster?
+            {isUS ? (
+              <>Need help with your schedule?</>
+            ) : (
+              <>Need help with your roster?</>
+            )}
           </h2>
           <p className="text-xl text-white/90 mb-12 max-w-3xl mx-auto">
             As Chaos Carla, you're a master at navigating scheduling disasters
@@ -1472,13 +1542,13 @@ export default function ChaosCarlaClient({
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-[#0a1929] shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e3a5f] transition-colors duration-200"
             >
               See RosterLab in action
             </Link>
             <Link
-              href="/pricing"
+              href={isUS ? "/us/pricing" : "/pricing"}
               className="inline-flex items-center justify-center rounded-md bg-white/20 backdrop-blur-sm px-8 py-3 text-base font-medium text-white border border-white/30 hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent transition-colors duration-200"
             >
               View pricing
@@ -1495,7 +1565,15 @@ export default function ChaosCarlaClient({
               Download Your Chaos Carla Results
             </h3>
             <p className="text-gray-600 mb-6">
-              Get your personalized rostering personality report as a PDF.
+              {isUS ? (
+                <>
+                  Get your personalized scheduling personality report as a PDF.
+                </>
+              ) : (
+                <>
+                  Get your personalized rostering personality report as a PDF.
+                </>
+              )}
             </p>
 
             <LeadCaptureForm

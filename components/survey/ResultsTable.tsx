@@ -15,6 +15,7 @@ import Button from "@/components/ui/Button";
 import AddHolidayForm from "./AddHolidayForm";
 
 interface ResultsTableProps {
+  isUS?: boolean;
   results: SurveyResultsResponse;
   onExport?: (format: "csv") => void;
   onBalance?: () => void;
@@ -31,6 +32,7 @@ interface ResultsTableProps {
 }
 
 export default function ResultsTable({
+  isUS = false,
   results,
   onExport,
   onBalance,
@@ -1222,7 +1224,9 @@ export default function ResultsTable({
                           <strong>Recommendation:</strong>{" "}
                           <button
                             onClick={() => {
-                              const staffUrl = `${window.location.origin}/tools/survey-preferences/s/${results.survey.id}`;
+                              const staffUrl = isUS
+                                ? `${window.location.origin}/us/tools/survey-preferences/s/${results.survey.id}`
+                                : `${window.location.origin}/tools/survey-preferences/s/${results.survey.id}`;
                               navigator.clipboard.writeText(staffUrl);
                               setStaffLinkCopied(true);
                               setTimeout(() => setStaffLinkCopied(false), 2000);

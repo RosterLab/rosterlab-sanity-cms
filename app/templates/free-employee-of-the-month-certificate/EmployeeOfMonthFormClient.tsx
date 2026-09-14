@@ -6,7 +6,11 @@ import { HiCheck, HiExternalLink } from "react-icons/hi";
 import { trackButtonClick } from "@/components/analytics/tracking";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 
-export default function EmployeeOfMonthFormClient() {
+export default function EmployeeOfMonthFormClient({
+  isUS = false,
+}: {
+  isUS?: boolean;
+}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
@@ -69,7 +73,7 @@ export default function EmployeeOfMonthFormClient() {
               Want to automate employee recognition?
             </p>
             <Button
-              href="/book-a-demo"
+              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
               variant="outline"
               className="border-blue-600 text-blue-600 hover:bg-blue-50"
             >

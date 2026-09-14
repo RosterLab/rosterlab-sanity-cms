@@ -1,9 +1,7 @@
-// Generated from app/webinars/page.tsx. Run npm run localize:resources; do not edit directly.
-
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { Metadata } from "next";
 import SiteLayout from "@/components/layout/SiteLayout";
-import WebinarsPageContent from "@/app/us/webinars/WebinarsPageContent";
+import WebinarsPageContent from "@/app/webinars/WebinarsPageContent";
 
 export const metadata: Metadata = resourceMetadata({
   title: "AI in Healthcare Webinars",
@@ -68,7 +66,7 @@ const webinars: Webinar[] = [
 export default function WebinarsPage() {
   return (
     <SiteLayout>
-      <WebinarsPageContent webinars={webinars} />
+      <WebinarsPageContent isUS webinars={webinars} />
     </SiteLayout>
   );
 }

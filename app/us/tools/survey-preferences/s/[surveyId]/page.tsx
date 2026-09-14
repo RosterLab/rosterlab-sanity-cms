@@ -1,4 +1,3 @@
-// Generated from app/tools/survey-preferences/s/[surveyId]/page.tsx. Run npm run localize:resources; do not edit directly.
 /**
  * Staff Submission Page
  * Public page where staff submit their shift preferences
@@ -6,7 +5,7 @@
 
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import StaffSubmissionClient from "@/app/us/tools/survey-preferences/s/[surveyId]/client";
+import StaffSubmissionClient from "@/app/tools/survey-preferences/s/[surveyId]/client";
 import { getDbClient } from "@/lib/db/client";
 import type { Survey } from "@/lib/survey/types";
 
@@ -64,5 +63,5 @@ export default async function StaffSubmissionPage({ params }: PageProps) {
     notFound();
   }
 
-  return <StaffSubmissionClient survey={survey} />;
+  return <StaffSubmissionClient isUS survey={survey} />;
 }

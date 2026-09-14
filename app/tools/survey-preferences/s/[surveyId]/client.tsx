@@ -15,10 +15,12 @@ import type {
 import Button from "@/components/ui/Button";
 
 interface StaffSubmissionClientProps {
+  isUS?: boolean;
   survey: Survey;
 }
 
 export default function StaffSubmissionClient({
+  isUS = false,
   survey,
 }: StaffSubmissionClientProps) {
   const [submitted, setSubmitted] = useState(false);
@@ -250,7 +252,11 @@ export default function StaffSubmissionClient({
                 <Button
                   variant="primary"
                   size="lg"
-                  href="https://www.rosterlab.com"
+                  href={
+                    isUS
+                      ? "https://www.rosterlab.com/us"
+                      : "https://www.rosterlab.com"
+                  }
                   analyticsLabel="Visit RosterLab"
                   analyticsLocation="Staff Submission Success"
                 >
@@ -266,7 +272,11 @@ export default function StaffSubmissionClient({
           <p>
             Powered by{" "}
             <a
-              href="https://www.rosterlab.com"
+              href={
+                isUS
+                  ? "https://www.rosterlab.com/us"
+                  : "https://www.rosterlab.com"
+              }
               className="text-primary-600 hover:underline"
             >
               RosterLab
