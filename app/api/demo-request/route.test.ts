@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 import { assertAttioPerson } from "@/lib/attio/person";
 import { submitAttioLead } from "@/lib/attio/submitLead";
 import { DEMO_REQUEST_WEBHOOK_URL } from "@/lib/attio/webhooks";
-import { POST } from "./route";
+import { OPTIONS, POST } from "./route";
 
 jest.mock("@/lib/attio/submitLead", () => ({
   submitAttioLead: jest.fn(),
@@ -19,7 +19,10 @@ const assertAttioPersonMock = jest.mocked(assertAttioPerson);
 function demoRequest(body: Record<string, unknown>) {
   return new NextRequest("http://localhost/api/demo-request?test-country=CN", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      origin: "https://app.rosterlab.com",
+    },
     body: JSON.stringify({
       name: "Ada Lovelace",
       email: "ada@example.com",
@@ -47,6 +50,9 @@ describe("demo request API", () => {
     );
 
     expect(response.status).toBe(200);
+    expect(response.headers.get("access-control-allow-origin")).toBe(
+      "https://app.rosterlab.com",
+    );
     const [submission, options] = submitAttioLeadMock.mock.calls[0];
     expect(options).toEqual({ webhookUrl: DEMO_REQUEST_WEBHOOK_URL });
     expect(submission.source).toBe("demo-request");
@@ -124,5 +130,26 @@ describe("demo request API", () => {
     const response = await POST(demoRequest({}));
 
     expect(response.status).toBe(502);
+  });
+
+  test("allows configured app origins and rejects unknown preflight origins", async () => {
+    const allowed = await OPTIONS(
+      new NextRequest("http://localhost/api/demo-request", {
+        method: "OPTIONS",
+        headers: { origin: "https://app.rosterlab.com" },
+      }),
+    );
+    const rejected = await OPTIONS(
+      new NextRequest("http://localhost/api/demo-request", {
+        method: "OPTIONS",
+        headers: { origin: "https://example.com" },
+      }),
+    );
+
+    expect(allowed.status).toBe(204);
+    expect(allowed.headers.get("access-control-allow-origin")).toBe(
+      "https://app.rosterlab.com",
+    );
+    expect(rejected.status).toBe(403);
   });
 });

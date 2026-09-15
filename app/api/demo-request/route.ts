@@ -10,10 +10,23 @@ import { captureServerException } from "@/lib/monitoring/posthog-server";
 import { detectRequestCountry } from "@/lib/market-access/geo";
 import { evaluateMarketAccess } from "@/lib/market-access/policy";
 import {
+  marketAccessCorsHeaders,
+  marketAccessPreflightResponse,
+} from "@/lib/market-access/cors";
+import {
   DEMO_REQUEST_INDUSTRIES,
   DEMO_REQUEST_REFERRAL_SOURCES,
   DEMO_REQUEST_ROSTER_SIZES,
 } from "@/lib/market-access/demo-request";
+
+const METHODS = "POST, OPTIONS";
+
+function jsonResponse(request: NextRequest, body: unknown, status = 200) {
+  return NextResponse.json(body, {
+    status,
+    headers: marketAccessCorsHeaders(request, METHODS),
+  });
+}
 
 const optionalChoice = <T extends readonly [string, ...string[]]>(options: T) =>
   z
@@ -110,9 +123,10 @@ export async function POST(request: NextRequest) {
         },
       );
       console.error("Demo request was not accepted by Attio", result);
-      return NextResponse.json(
+      return jsonResponse(
+        request,
         { error: "Unable to submit the request" },
-        { status: 502 },
+        502,
       );
     }
 
@@ -132,16 +146,21 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    return NextResponse.json({ message: "Request submitted" });
+    return jsonResponse(request, { message: "Request submitted" });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
+      return jsonResponse(
+        request,
         { error: "Invalid request", details: error.issues },
-        { status: 400 },
+        400,
       );
     }
     await captureServerException(error, { route: "/api/demo-request" });
     console.error("Demo request failed", error);
-    return NextResponse.json({ error: "Unable to submit" }, { status: 500 });
+    return jsonResponse(request, { error: "Unable to submit" }, 500);
   }
+}
+
+export async function OPTIONS(request: NextRequest) {
+  return marketAccessPreflightResponse(request, METHODS);
 }
