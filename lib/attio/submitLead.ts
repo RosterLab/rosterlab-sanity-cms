@@ -38,6 +38,7 @@ export interface AttioLeadSubmission {
   industry?: string;
   referralSource?: string;
   rosterSize?: string;
+  decisionRole?: string[];
   metadata?: Record<string, string | number | boolean | string[] | null>;
   /**
    * People attributes keyed by their Attio `api_slug`, already in Attio's own

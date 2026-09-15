@@ -4,8 +4,10 @@ import { HiClock, HiTrendingUp, HiUsers } from "react-icons/hi";
 
 export default function FinalCTA({
   heading = "Having a headache making rosters for shift workers?",
+  isUS = false,
 }: {
   heading?: string;
+  isUS?: boolean;
 } = {}) {
   return (
     <section
@@ -16,13 +18,13 @@ export default function FinalCTA({
       }}
     >
       <Container className="relative z-10 lg:px-12 xl:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-center">
           {/* Left side - Content */}
           <div className="text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{heading}</h2>
             <p className="text-xl text-white/90 mb-8">
               Enter your details below to find out more about how RosterLab can
-              transform your scheduling process.
+              transform your {isUS ? "scheduling" : "rostering"} process.
             </p>
 
             {/* Stats */}
@@ -148,9 +150,7 @@ export default function FinalCTA({
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">
-                  User-friendly
-                </span>
+                <span className="text-sm text-white/90">User-friendly</span>
               </div>
             </div>
           </div>
@@ -158,11 +158,12 @@ export default function FinalCTA({
           {/* Right side - Form */}
           <div className="bg-white rounded-2xl p-8 shadow-xl">
             <h3 className="text-2xl font-bold text-neutral-900 mb-2">
-              Talk to us about your staff schedule!
+              Talk to us about your staff {isUS ? "schedule" : "roster"}!
             </h3>
             <p className="text-gray-600 mb-6">
-              Struggling with the challenges that comes with managing a complex
-              staff schedule? Our team are here to help you.
+              Struggling with the challenges that come with managing complex
+              staff {isUS ? "scheduling" : "rostering"}? Our team is here to
+              help you.
             </p>
             <ContactFormWrapper />
           </div>

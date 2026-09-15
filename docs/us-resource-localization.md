@@ -31,8 +31,13 @@ published case-study/newsroom audit identified Dargaville Medical Centre and
 Melbourne Convention & Exhibition Centre as names requiring default protection.
 Editors should add new names to protected terms when publishing future content.
 
-American terminology is applied to the website copy. The existing whitepaper
-PDF, Excel/document templates, recorded webinar audio/video and text embedded in
+The US whitepaper download and preview use the separately localized PDF at
+`public/whitepapers/rostering-as-a-strategic-workforce-lever-us.pdf`. Replace that
+file to update the US edition; the global edition keeps its original PDF. The
+generator maintains the US asset URL and download filename.
+
+American terminology is applied to the website copy. Excel/document templates,
+recorded webinar audio/video and text embedded in
 images remain the original assets. These files are not represented as newly
 written US research or US customer results. The FTE calculator's generated
 reports use US date formatting; its inputs and calculations are unchanged.

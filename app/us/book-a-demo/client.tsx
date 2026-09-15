@@ -15,12 +15,8 @@ export default function BookADemoClient() {
       meetingConfirmed: "/us/meeting-confirmed",
     },
     calendlyUrls: {
-      standard:
-        process.env.NEXT_PUBLIC_CALENDLY_STANDARD_URL ||
-        "https://calendly.com/d/cw2v-vw3-j2z",
-      usExtended:
-        process.env.NEXT_PUBLIC_CALENDLY_US_24_7_URL ||
-        "https://calendly.com/d/cw2v-vw3-j2z",
+      standard: "https://calendly.com/d/dv9p-szb-vt5",
+      usExtended: "https://calendly.com/d/dv9p-szb-vt5",
     },
   };
 

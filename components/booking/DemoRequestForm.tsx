@@ -191,6 +191,21 @@ export default function DemoRequestForm({
           />
         </div>
 
+        <label className={labelClass}>
+          Tell us about your scheduling challenges
+          <span className="ml-0.5 text-[#0A71FF]" aria-hidden="true">
+            *
+          </span>
+          <textarea
+            name="schedulingChallenges"
+            required
+            minLength={10}
+            maxLength={5000}
+            rows={4}
+            className={inputClass}
+          />
+        </label>
+
         {error && (
           <p className="text-sm text-red-600" role="alert">
             {error}

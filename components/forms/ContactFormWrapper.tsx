@@ -10,9 +10,13 @@ export default function ContactFormWrapper() {
     <LeadCaptureForm
       source="contact"
       submitLabel="Send message"
-      showPhone
       showMessage
-      messageLabel={isUS ? "Tell us about your scheduling challenges" : "Tell us about your rostering challenges"}
+      contactQualification
+      messageLabel={
+        isUS
+          ? "Tell us about your scheduling challenges"
+          : "Tell us about your rostering challenges"
+      }
       successMessage="Thanks — your message has been sent to the RosterLab team."
     />
   );

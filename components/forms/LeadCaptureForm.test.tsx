@@ -69,7 +69,83 @@ describe("LeadCaptureForm", () => {
   ])("uses the contact message label for %s", (pathname, label) => {
     jest.mocked(usePathname).mockReturnValue(pathname);
     render(<ContactFormWrapper />);
-    expect(screen.getByLabelText(label)).toBeTruthy();
+    expect(screen.getByRole("textbox", { name: label })).toBeTruthy();
+  });
+
+  test.each([
+    [
+      "/contact",
+      "Organisation Name",
+      "Which industry are you rostering for?",
+      "What is the size of your roster?",
+    ],
+    [
+      "/us/contact",
+      "Organization Name",
+      "Which industry are you scheduling for?",
+      "What is the size of your schedule?",
+    ],
+  ])(
+    "shows the required contact qualification fields for %s",
+    (pathname, organisationLabel, industryLabel, sizeLabel) => {
+      jest.mocked(usePathname).mockReturnValue(pathname);
+      render(<ContactFormWrapper />);
+
+      expect(screen.getByRole("textbox", { name: "Name" })).toHaveAttribute(
+        "required",
+      );
+      expect(
+        screen.getByRole("textbox", { name: organisationLabel }),
+      ).not.toHaveAttribute("required");
+      expect(
+        screen.getByRole("textbox", { name: "Work email" }),
+      ).toHaveAttribute("required");
+      expect(
+        screen.getByRole("combobox", {
+          name: industryLabel,
+        }),
+      ).toHaveAttribute("aria-required", "true");
+      expect(
+        screen.getByRole("combobox", {
+          name: sizeLabel,
+        }),
+      ).toBeTruthy();
+      expect(
+        screen.getByRole("combobox", {
+          name: "What's your role in this decision?",
+        }),
+      ).toHaveAttribute("aria-haspopup", "listbox");
+      expect(screen.queryAllByRole("radio")).toHaveLength(0);
+      expect(screen.queryByLabelText("Phone")).toBeNull();
+    },
+  );
+
+  test("allows more than one decision role to be selected", () => {
+    jest.mocked(usePathname).mockReturnValue("/contact");
+    render(<ContactFormWrapper />);
+
+    fireEvent.click(
+      screen.getByRole("combobox", {
+        name: "What's your role in this decision?",
+      }),
+    );
+    fireEvent.click(
+      screen.getByRole("option", {
+        name: "I influence the decision",
+      }),
+    );
+    fireEvent.click(
+      screen.getByRole("option", {
+        name: "I make the decision",
+      }),
+    );
+
+    expect(
+      screen.getByRole("option", { name: "I influence the decision" }),
+    ).toHaveAttribute("aria-selected", "true");
+    expect(
+      screen.getByRole("option", { name: "I make the decision" }),
+    ).toHaveAttribute("aria-selected", "true");
   });
 
   test("shows success and runs the next action when analytics throws", async () => {

@@ -103,6 +103,7 @@ would rather Attio own the write:
 | Which industry are you scheduling for?    | `industry_multi_select` (Industry)              |
 | Where did you hear about us?              | `how_did_you_hear_about_us_3`                   |
 | What is the size of your roster/schedule? | `num_of_rostered_staff` (Num of rostered staff) |
+| Tell us about your scheduling challenges  | `hs_membership_notes` (Additional Notes)        |
 | Detected country                          | `hubspot_country` (HubSpot country)             |
 
 The answer options live in `lib/market-access/demo-request.ts` and are the

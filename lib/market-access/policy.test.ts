@@ -5,6 +5,7 @@ describe("market access policy", () => {
     ["US", "show", "us_24_7"],
     ["NZ", "show", "nzt_business_hours"],
     ["AE", "show", "nzt_business_hours"],
+    ["MY", "show", "nzt_business_hours"],
     ["PT", "show", "request_review"],
     ["IN", "hide", "request_review"],
     // Overridden markets: free signup opens, demo stays a request form.
@@ -68,7 +69,7 @@ describe("market access policy", () => {
     });
   });
 
-  test("only the four overridden markets are added", () => {
+  test("only the five overridden markets are added", () => {
     const added = Object.values(
       marketAccessPolicy.countries as Record<string, { iso2: string }>,
     ).filter(
@@ -78,6 +79,7 @@ describe("market access policy", () => {
     );
     expect(added.map((country) => country.iso2).sort()).toEqual([
       "CN",
+      "MY",
       "TH",
       "VN",
       "ZA",

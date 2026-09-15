@@ -4,6 +4,11 @@ import { detectRequestCountry } from "@/lib/market-access/geo";
 import { submitWebsiteLead } from "@/lib/leads/submitLead";
 import { LEAD_SOURCES, mustRecordLead } from "@/lib/leads/sources";
 import { captureServerException } from "@/lib/monitoring/posthog-server";
+import {
+  DEMO_REQUEST_INDUSTRIES,
+  DEMO_REQUEST_ROSTER_SIZES,
+} from "@/lib/market-access/demo-request";
+import { CONTACT_DECISION_ROLES } from "@/lib/leads/contact";
 
 const noStoreHeaders = { "Cache-Control": "no-store" };
 
@@ -15,19 +20,58 @@ const metadataValue = z.union([
   z.null(),
 ]);
 
-const leadSchema = z.object({
-  source: z.enum(LEAD_SOURCES),
-  email: z.string().trim().email().max(254),
-  firstName: z.string().trim().max(100).optional().default(""),
-  lastName: z.string().trim().max(100).optional().default(""),
-  name: z.string().trim().max(200).optional().default(""),
-  company: z.string().trim().max(200).optional().default(""),
-  phone: z.string().trim().max(60).optional().default(""),
-  message: z.string().trim().max(5_000).optional().default(""),
-  pageUrl: z.string().url().max(2_048).optional(),
-  metadata: z.record(z.string().max(100), metadataValue).optional(),
-  website: z.string().max(200).optional().default(""),
-});
+const leadSchema = z
+  .object({
+    source: z.enum(LEAD_SOURCES),
+    email: z.string().trim().email().max(254),
+    firstName: z.string().trim().max(100).optional().default(""),
+    lastName: z.string().trim().max(100).optional().default(""),
+    name: z.string().trim().max(200).optional().default(""),
+    company: z.string().trim().max(200).optional().default(""),
+    phone: z.string().trim().max(60).optional().default(""),
+    message: z.string().trim().max(5_000).optional().default(""),
+    industry: z.enum(DEMO_REQUEST_INDUSTRIES).optional(),
+    rosterSize: z.enum(DEMO_REQUEST_ROSTER_SIZES).optional(),
+    decisionRole: z.array(z.enum(CONTACT_DECISION_ROLES)).max(3).optional(),
+    pageUrl: z.string().url().max(2_048).optional(),
+    metadata: z.record(z.string().max(100), metadataValue).optional(),
+    website: z.string().max(200).optional().default(""),
+  })
+  .superRefine((input, context) => {
+    if (input.source !== "contact" || input.website) return;
+    const requiredText = [
+      ["name", input.name, 2],
+      ["message", input.message, 10],
+    ] as const;
+    requiredText.forEach(([field, value, minimum]) => {
+      if (value.length < minimum) {
+        context.addIssue({
+          code: z.ZodIssueCode.too_small,
+          minimum,
+          type: "string",
+          inclusive: true,
+          path: [field],
+          message: `${field} is required`,
+        });
+      }
+    });
+    (["industry", "rosterSize"] as const).forEach((field) => {
+      if (!input[field]) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: [field],
+          message: `${field} is required`,
+        });
+      }
+    });
+    if (!input.decisionRole?.length) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["decisionRole"],
+        message: "decisionRole is required",
+      });
+    }
+  });
 
 export async function POST(request: NextRequest) {
   try {
@@ -54,6 +98,9 @@ export async function POST(request: NextRequest) {
       company: input.company || undefined,
       phone: input.phone || undefined,
       message: input.message || undefined,
+      industry: input.industry,
+      rosterSize: input.rosterSize,
+      decisionRole: input.decisionRole,
       pageUrl: input.pageUrl,
       metadata: input.metadata,
       detectedCountry,

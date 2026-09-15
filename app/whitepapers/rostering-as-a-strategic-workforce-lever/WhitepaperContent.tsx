@@ -121,9 +121,12 @@ export default function WhitepaperPage({ isUS = false }: { isUS?: boolean }) {
 
         // Trigger download
         const link = document.createElement("a");
-        link.href = "/whitepapers/rostering-as-a-strategic-workforce-lever.pdf";
-        link.download =
-          "RosterLab-Whitepaper-Rostering-as-a-Strategic-Workforce-Lever.pdf";
+        link.href = isUS
+          ? "/whitepapers/rostering-as-a-strategic-workforce-lever-us.pdf"
+          : "/whitepapers/rostering-as-a-strategic-workforce-lever.pdf";
+        link.download = isUS
+          ? "RosterLab-Whitepaper-Scheduling-as-a-Strategic-Workforce-Lever-US.pdf"
+          : "RosterLab-Whitepaper-Rostering-as-a-Strategic-Workforce-Lever.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

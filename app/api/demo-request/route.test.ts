@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 import { assertAttioPerson } from "@/lib/attio/person";
 import { submitAttioLead } from "@/lib/attio/submitLead";
 import { DEMO_REQUEST_WEBHOOK_URL } from "@/lib/attio/webhooks";
-import { POST } from "./route";
+import { OPTIONS, POST } from "./route";
 
 jest.mock("@/lib/attio/submitLead", () => ({
   submitAttioLead: jest.fn(),
@@ -19,11 +19,16 @@ const assertAttioPersonMock = jest.mocked(assertAttioPerson);
 function demoRequest(body: Record<string, unknown>) {
   return new NextRequest("http://localhost/api/demo-request?test-country=CN", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      origin: "https://app.rosterlab.com",
+    },
     body: JSON.stringify({
       name: "Ada Lovelace",
       email: "ada@example.com",
       industry: "Nursing & Midwifery",
+      schedulingChallenges:
+        "We need to reduce the time spent building complex schedules.",
       ...body,
     }),
   });
@@ -45,6 +50,9 @@ describe("demo request API", () => {
     );
 
     expect(response.status).toBe(200);
+    expect(response.headers.get("access-control-allow-origin")).toBe(
+      "https://app.rosterlab.com",
+    );
     const [submission, options] = submitAttioLeadMock.mock.calls[0];
     expect(options).toEqual({ webhookUrl: DEMO_REQUEST_WEBHOOK_URL });
     expect(submission.source).toBe("demo-request");
@@ -60,6 +68,8 @@ describe("demo request API", () => {
       industry_multi_select: ["Nursing & Midwifery"],
       how_did_you_hear_about_us_3: ["Conference/Event"],
       num_of_rostered_staff: "16 - 50 staff",
+      hs_membership_notes:
+        "We need to reduce the time spent building complex schedules.",
       hubspot_country: "CN",
     });
   });
@@ -76,6 +86,13 @@ describe("demo request API", () => {
 
   test("rejects an industry Attio would drop", async () => {
     const response = await POST(demoRequest({ industry: "Astrology" }));
+
+    expect(response.status).toBe(400);
+    expect(submitAttioLeadMock).not.toHaveBeenCalled();
+  });
+
+  test("requires scheduling challenges", async () => {
+    const response = await POST(demoRequest({ schedulingChallenges: "" }));
 
     expect(response.status).toBe(400);
     expect(submitAttioLeadMock).not.toHaveBeenCalled();
@@ -113,5 +130,26 @@ describe("demo request API", () => {
     const response = await POST(demoRequest({}));
 
     expect(response.status).toBe(502);
+  });
+
+  test("allows configured app origins and rejects unknown preflight origins", async () => {
+    const allowed = await OPTIONS(
+      new NextRequest("http://localhost/api/demo-request", {
+        method: "OPTIONS",
+        headers: { origin: "https://app.rosterlab.com" },
+      }),
+    );
+    const rejected = await OPTIONS(
+      new NextRequest("http://localhost/api/demo-request", {
+        method: "OPTIONS",
+        headers: { origin: "https://example.com" },
+      }),
+    );
+
+    expect(allowed.status).toBe(204);
+    expect(allowed.headers.get("access-control-allow-origin")).toBe(
+      "https://app.rosterlab.com",
+    );
+    expect(rejected.status).toBe(403);
   });
 });
