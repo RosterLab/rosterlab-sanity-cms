@@ -2,6 +2,7 @@ import LandingHero from "@/components/sections/LandingHero";
 import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
 import BenefitsNew from "@/components/sections/BenefitsNew";
 import FeaturesGrid from "@/components/sections/FeaturesGrid";
+import OttoSection from "@/components/sections/OttoSection";
 import IndustrySolutionsNew from "@/components/sections/IndustrySolutionsNew";
 import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -53,6 +54,7 @@ export default function Home() {
         <LandingHero />
         <FeatureTestimonial />
         <BenefitsNew />
+        <OttoSection />
         <IndustrySolutionsNew />
         <TestimonialsNew />
         <FeaturesGrid />
