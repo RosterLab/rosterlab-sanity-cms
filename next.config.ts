@@ -13,7 +13,9 @@ const nextConfig: NextConfig = {
   trailingSlash: false, // Explicitly set to false to avoid redirect chains
   images: {
     domains: ["cdn.sanity.io", "rosterlab.com"],
-    formats: ["image/webp"],
+    // AVIF first: the optimizer falls back to WebP, then JPEG, on
+    // whatever the browser's Accept header allows.
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days in seconds
     dangerouslyAllowSVG: true,
     contentDispositionType: "inline",
