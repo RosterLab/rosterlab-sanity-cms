@@ -6,6 +6,8 @@ import IndustrySolutionsNew from "@/components/sections/IndustrySolutionsNew";
 import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FinalCTA from "@/components/sections/FinalCTA";
 import DotFocalOverlay from "@/components/sections/DotFocalOverlay";
+import SectionDivider from "@/components/ui/SectionDivider";
+import SectionCorners, { logoColor } from "@/components/ui/SectionCorners";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HERO_CONTENT_US,
@@ -57,6 +59,27 @@ export const metadata = withHreflang(
   "/us",
 );
 
+/* Boundary treatment mirrors the AU/NZ homepage — see app/page.tsx. This page
+   has no Otto section, so it carries one rule fewer. */
+const TINT = "bg-slate-50/70";
+
+function SectionFrame({
+  index,
+  tint = false,
+  children,
+}: {
+  index: number;
+  tint?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={`relative ${tint ? TINT : ""}`}>
+      <SectionCorners color={logoColor(index)} />
+      {children}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="relative bg-white">
@@ -66,14 +89,32 @@ export default function Home() {
           content={HERO_CONTENT_US}
           trustedHeading={TRUSTED_BY_HEADING_US}
         />
-        <FeatureTestimonial content={FEATURE_TESTIMONIAL_US} />
-        <BenefitsNew tabs={BENEFIT_TABS_US} />
-        <IndustrySolutionsNew
-          industries={INDUSTRIES_US}
-          heading={INDUSTRIES_HEADING_US}
-        />
+        <SectionFrame index={0} tint>
+          <FeatureTestimonial content={FEATURE_TESTIMONIAL_US} />
+        </SectionFrame>
+        <SectionDivider />
+
+        <SectionFrame index={1}>
+          <BenefitsNew tabs={BENEFIT_TABS_US} />
+        </SectionFrame>
+        <SectionDivider />
+
+        <SectionFrame index={2}>
+          <IndustrySolutionsNew
+            industries={INDUSTRIES_US}
+            heading={INDUSTRIES_HEADING_US}
+          />
+        </SectionFrame>
+
+        {/* Own curved band, top and bottom — sits out of the ruled rhythm and
+            the corner marks, which would land on the curve. */}
         <TestimonialsNew testimonials={TESTIMONIALS_US} isUS />
-        <FeaturesGrid features={FEATURES_US} heading={FEATURES_HEADING_US} />
+
+        <SectionFrame index={3}>
+          <FeaturesGrid features={FEATURES_US} heading={FEATURES_HEADING_US} />
+        </SectionFrame>
+        <SectionDivider />
+
         <FinalCTA heading={FINAL_CTA_HEADING_US} isUS />
       </div>
     </div>

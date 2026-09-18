@@ -56,7 +56,7 @@ interface IndustryHeroProps {
    * the team photo. Below `lg` the panel is the whole section, so this has
    * no effect there.
    */
-  panelSize?: "default" | "compact";
+  panelSize?: "default" | "compact" | "mini";
   primaryCta: HeroCta;
   secondaryCta?: HeroCta;
   analyticsLocation?: string;
@@ -153,16 +153,24 @@ export default function IndustryHero({
             className={cn(
               "contents text-white",
               "lg:block lg:absolute lg:bottom-0 lg:left-0 lg:z-10",
-              panelSize === "compact"
-                ? // Held at 50% through `lg`: below ~1280 the full 46% leaves
-                  // too little room for the two CTAs and they wrap to a stack.
-                  "lg:w-[50%] xl:w-[46%]"
-                : "lg:w-[53%]",
+              panelSize === "mini"
+                ? // About only. The panel is anchored bottom-left over a group
+                  // photo, so its height is what decides how many faces it
+                  // swallows; the width comes in only as far as the two CTAs
+                  // allow before they wrap to a stack.
+                  "lg:w-[50%] xl:w-[44%]"
+                : panelSize === "compact"
+                  ? // Held at 50% through `lg`: below ~1280 the full 46% leaves
+                    // too little room for the two CTAs and they wrap to a stack.
+                    "lg:w-[50%] xl:w-[46%]"
+                  : "lg:w-[53%]",
               PANEL_FILL_LG,
               DOTS_LG,
-              panelSize === "compact"
-                ? "lg:px-10 lg:pt-10 lg:pb-14"
-                : "lg:px-12 lg:pt-12 lg:pb-20",
+              panelSize === "mini"
+                ? "lg:px-9 lg:pt-8 lg:pb-8"
+                : panelSize === "compact"
+                  ? "lg:px-10 lg:pt-10 lg:pb-14"
+                  : "lg:px-12 lg:pt-12 lg:pb-20",
               "lg:rounded-tl-2xl lg:rounded-tr-[9rem]",
             )}
           >
