@@ -104,7 +104,7 @@ export default function DemoRequestForm({
   if (submitted) {
     return (
       <div
-        className="mx-auto max-w-2xl rounded-3xl pt-[5px] shadow-xl shadow-blue-900/5"
+        className="mx-auto max-w-4xl rounded-3xl pt-[5px] shadow-xl shadow-blue-900/5"
         style={{ background: BRAND_GRADIENT }}
       >
         <div className="rounded-3xl bg-white p-8 text-center md:p-12">
@@ -139,7 +139,7 @@ export default function DemoRequestForm({
        a child element: a card that clipped its own overflow would also clip
        the dropdown lists. */
     <div
-      className="mx-auto max-w-2xl rounded-3xl pt-[5px] shadow-xl shadow-blue-900/5"
+      className="mx-auto max-w-4xl rounded-3xl pt-[5px] shadow-xl shadow-blue-900/5"
       style={{ background: BRAND_GRADIENT }}
     >
       <form
