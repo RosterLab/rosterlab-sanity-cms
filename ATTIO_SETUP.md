@@ -61,12 +61,14 @@ Payload:
   "firstName": "Person",
   "lastName": "Example",
   "name": "Person Example",
+  "company": "Example Hospital",
   "detectedCountry": "CN",
   "pageUrl": "https://rosterlab.com/book-a-demo",
   "metadata": {
     "industry": "Nursing & Midwifery",
     "referralSource": "Conference/Event",
     "rosterSize": "16 - 50 staff",
+    "decisionRole": ["I make the decision"],
     "policyVersion": "2026-fy",
     "demoDecision": "request_review",
     "marketAccessReason": "below_high_income"
@@ -78,9 +80,11 @@ Payload:
       "last_name": "Example",
       "full_name": "Person Example"
     },
+    "hubspot_company_text": "Example Hospital",
     "industry_multi_select": ["Nursing & Midwifery"],
     "how_did_you_hear_about_us_3": ["Conference/Event"],
     "num_of_rostered_staff": "16 - 50 staff",
+    "hs_buying_role": ["DECISION_MAKER"],
     "hubspot_country": "CN"
   }
 }
@@ -100,15 +104,18 @@ would rather Attio own the write:
 | ----------------------------------------- | ----------------------------------------------- |
 | Name                                      | `name` (Name)                                   |
 | Work email                                | `email_addresses` (Email addresses)             |
+| Company name                              | `hubspot_company_text` (Company)                |
 | Which industry are you scheduling for?    | `industry_multi_select` (Industry)              |
 | Where did you hear about us?              | `how_did_you_hear_about_us_3`                   |
 | What is the size of your roster/schedule? | `num_of_rostered_staff` (Num of rostered staff) |
+| What's your role in this decision?        | `hs_buying_role` (Buying role)                  |
 | Tell us about your scheduling challenges  | `hs_membership_notes` (Additional Notes)        |
 | Detected country                          | `hubspot_country` (HubSpot country)             |
 
-The answer options live in `lib/market-access/demo-request.ts` and are the
-exact Attio option titles. Attio silently drops a title it doesn't recognise,
-so a renamed option has to be changed in both places. Note that
+The industry and roster options live in `lib/market-access/demo-request.ts`.
+Decision-role answers and their exact Attio option mappings live in
+`lib/leads/contact.ts`. Attio silently drops an option title it doesn't
+recognise, so a renamed option has to be changed in both places. Note that
 `how_did_you_hear_about_us_3` also carries **Outbound Calls**, which the form
 deliberately does not offer, and `conversion_point` has no demo-request option,
 so the website leaves that attribute alone — add one in the Attio UI if the
