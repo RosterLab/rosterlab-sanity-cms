@@ -11,6 +11,7 @@ import {
   DEMO_REQUEST_REFERRAL_SOURCES,
   DEMO_REQUEST_ROSTER_SIZES,
 } from "@/lib/market-access/demo-request";
+import { CONTACT_DECISION_ROLES_GLOBAL } from "@/lib/leads/contact";
 import type { MarketAccessDecision } from "@/lib/market-access/types";
 
 interface DemoRequestFormProps {
@@ -42,16 +43,28 @@ export default function DemoRequestForm({
   const [industryError, setIndustryError] = useState<string | null>(null);
   const [referralSource, setReferralSource] = useState("");
   const [rosterSize, setRosterSize] = useState("");
+  const [rosterSizeError, setRosterSizeError] = useState<string | null>(null);
+  const [decisionRole, setDecisionRole] = useState<string[]>([]);
+  const [decisionRoleError, setDecisionRoleError] = useState<string | null>(
+    null,
+  );
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // A hidden input can't carry native validation, so the one required
-    // dropdown is checked here.
-    if (!industry) {
-      setIndustryError("Please choose an industry");
+    // Hidden inputs can't carry native validation, so required custom
+    // dropdowns are checked here.
+    const nextIndustryError = industry ? null : "Please choose an industry";
+    const nextRosterSizeError = rosterSize
+      ? null
+      : "Please choose a roster size";
+    const nextDecisionRoleError = decisionRole.length
+      ? null
+      : "Please choose your role";
+    setIndustryError(nextIndustryError);
+    setRosterSizeError(nextRosterSizeError);
+    setDecisionRoleError(nextDecisionRoleError);
+    if (nextIndustryError || nextRosterSizeError || nextDecisionRoleError)
       return;
-    }
-    setIndustryError(null);
     setSubmitting(true);
     setError(null);
     const form = event.currentTarget;
@@ -61,7 +74,11 @@ export default function DemoRequestForm({
       const response = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, pageUrl: window.location.href }),
+        body: JSON.stringify({
+          ...data,
+          decisionRole,
+          pageUrl: window.location.href,
+        }),
       });
       if (!response.ok) throw new Error(`Request failed (${response.status})`);
       setSubmitted(true);
@@ -75,6 +92,7 @@ export default function DemoRequestForm({
         industry,
         referral_source: referralSource || undefined,
         roster_size: rosterSize || undefined,
+        decision_role: decisionRole,
       });
     } catch {
       setError("We couldn't submit your request. Please try again.");
@@ -159,19 +177,36 @@ export default function DemoRequestForm({
           </label>
         </div>
 
-        <SelectField
-          label="Which industry are you scheduling for?"
-          name="industry"
-          value={industry}
-          onChange={(next) => {
-            setIndustry(next);
-            setIndustryError(null);
-          }}
-          groups={DEMO_REQUEST_INDUSTRY_GROUPS}
-          searchable
-          required
-          error={industryError ?? undefined}
-        />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className={labelClass}>
+            Company name
+            <span className="ml-0.5 text-[#0A71FF]" aria-hidden="true">
+              *
+            </span>
+            <input
+              name="company"
+              required
+              minLength={2}
+              maxLength={200}
+              autoComplete="organization"
+              placeholder="Your company"
+              className={inputClass}
+            />
+          </label>
+          <SelectField
+            label="Which industry are you scheduling for?"
+            name="industry"
+            value={industry}
+            onChange={(next) => {
+              setIndustry(next);
+              setIndustryError(null);
+            }}
+            groups={DEMO_REQUEST_INDUSTRY_GROUPS}
+            searchable
+            required
+            error={industryError ?? undefined}
+          />
+        </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
           <SelectField
@@ -186,10 +221,31 @@ export default function DemoRequestForm({
             label="What is the size of your roster/schedule?"
             name="rosterSize"
             value={rosterSize}
-            onChange={setRosterSize}
+            onChange={(next) => {
+              setRosterSize(next);
+              setRosterSizeError(null);
+            }}
             options={DEMO_REQUEST_ROSTER_SIZES}
+            required
+            error={rosterSizeError ?? undefined}
           />
         </div>
+
+        <SelectField
+          label="What's your role in this decision?"
+          name="decisionRole"
+          value=""
+          onChange={() => undefined}
+          multiple
+          selectedValues={decisionRole}
+          onMultipleChange={(next) => {
+            setDecisionRole(next);
+            setDecisionRoleError(null);
+          }}
+          options={CONTACT_DECISION_ROLES_GLOBAL}
+          required
+          error={decisionRoleError ?? undefined}
+        />
 
         <label className={labelClass}>
           Tell us about your scheduling challenges
