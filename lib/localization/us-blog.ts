@@ -5,6 +5,12 @@ import { explainUSRegionalTerms } from "./us-regional-context";
 import { localizeUSQuotedTerms, isCaseStudy } from "./us-quoted-terms";
 import { derivedUSFields, usProtectedTermsFor } from "./us-derived";
 
+// Sanity can retain an image object containing only alt text after its asset
+// is removed. Such an object cannot replace the global artwork.
+function hasImageAsset(image: any): boolean {
+  return Boolean(image?.asset?._ref || image?.asset?._id || image?.asset?.url);
+}
+
 export function localizeUSLink(href: string): string {
   if (!href || !/^(?:\/(?!\/)|https?:\/\/)/.test(href)) return href;
   try {
@@ -165,7 +171,7 @@ export function localizeUSPost<
     // A US image override replaces the artwork outright; otherwise the global
     // image is reused with its alt text localized.
     mainImage:
-      overrides.mainImage ??
+      (hasImageAsset(overrides.mainImage) ? overrides.mainImage : undefined) ??
       (post.mainImage
         ? { ...post.mainImage, alt: convert(post.mainImage.alt) }
         : post.mainImage),
@@ -180,7 +186,9 @@ export function localizeUSPost<
       metaDescription:
         overrides.metaDescription ??
         (overrides.excerpt ? overrides.excerpt : derived.metaDescription),
-      ogImage: overrides.ogImage ?? post.seo?.ogImage,
+      ogImage: hasImageAsset(overrides.ogImage)
+        ? overrides.ogImage
+        : post.seo?.ogImage,
     },
   };
 }
