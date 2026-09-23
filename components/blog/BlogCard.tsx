@@ -1,5 +1,6 @@
 "use client";
 
+import { effectiveUSSlug } from "@/lib/localization/us-slug";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { authorByline, postAuthors } from "@/lib/posts/authors";
@@ -13,6 +14,7 @@ interface BlogCardProps {
     _id: string;
     title: string;
     slug: { current: string };
+    usSlug?: { current: string };
     excerpt?: string;
     mainImage?: { asset: { _ref: string }; alt?: string };
     publishedAt: string;
@@ -51,7 +53,7 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
     ) {
       return `${basePath.startsWith("/us/") ? "/us" : ""}/newsroom/${post.slug.current}`;
     }
-    return `${basePath}/${post.slug.current}`;
+    return `${basePath}/${basePath === "/us/blog" ? effectiveUSSlug(post) : post.slug.current}`;
   };
 
   const postUrl = getPostUrl();
