@@ -102,16 +102,32 @@ const components = {
       if (!value?.asset?._ref) {
         return null
       }
+
+      // Keep the source resolution: resizing in Sanity first prevents Next.js
+      // from serving sharp images on high-density screens.
+      const dimensions = value.asset._ref.match(/-(\d+)x(\d+)-/)
+      const crop = value.crop
+      const width = dimensions
+        ? Math.max(1, Math.round(Number(dimensions[1]) * (1 - (crop?.left || 0) - (crop?.right || 0))))
+        : 800
+      const height = dimensions
+        ? Math.max(1, Math.round(Number(dimensions[2]) * (1 - (crop?.top || 0) - (crop?.bottom || 0))))
+        : 400
+      const src = urlFor(value).url()
       
       return (
         <div className="my-8">
-          <Image
-            src={urlFor(value).width(800).height(400).url()}
-            alt={value.alt || 'Blog image'}
-            width={800}
-            height={400}
-            className="rounded-lg shadow-md w-full h-auto"
-          />
+          <a href={src} target="_blank" rel="noopener noreferrer" title="Open image at full size">
+            <Image
+              src={src}
+              alt={value.alt || 'Blog image'}
+              width={width}
+              height={height}
+              sizes="(min-width: 1536px) 640px, (min-width: 1280px) 580px, (min-width: 1024px) 450px, (min-width: 768px) 720px, (min-width: 640px) 592px, calc(100vw - 32px)"
+              quality={95}
+              className="rounded-lg shadow-md w-full h-auto cursor-zoom-in"
+            />
+          </a>
         </div>
       )
     },

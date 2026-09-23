@@ -1,7 +1,7 @@
+import { fetchBlogPost } from "@/lib/posts/fetch-blog-post";
 import { localizeUSPost } from "@/lib/localization/us-blog";
 import {
   localizeUSSlug,
-  globalizeUSSlug,
   effectiveUSSlug,
 } from "@/lib/localization/us-slug";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -12,7 +12,6 @@ import AuthorLinks from "@/components/blog/AuthorLinks";
 import { authorByline, postAuthors } from "@/lib/posts/authors";
 import { getClient, client, urlFor } from "@/sanity/lib/client";
 import {
-  blogPostQuery,
   blogPostPathsQuery,
   blogPostsOnlyQuery,
 } from "@/sanity/lib/queries";
@@ -59,19 +58,12 @@ export async function getBlogPostMetadata({
 }: BlogPostPageProps) {
   const { slug } = await params;
   const requested = slug.trim();
-  // Under /us the incoming slug is the localized one; the document is stored
-  // against the published global slug.
-  const sourceSlug = isUS ? globalizeUSSlug(requested) : requested;
+  const sourceSlug = requested;
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const sourcePost = await clientToUse.fetch(blogPostQuery, {
-    slug: sourceSlug,
-    usSlug: requested,
-    // A US route must not serve a global-only article, and the reverse.
-    excludedSite: isUS ? "global" : "us",
-  });
+  const sourcePost = await fetchBlogPost(clientToUse, requested, isUS);
   const post = sourcePost && (isUS ? localizeUSPost(sourcePost) : sourcePost);
   const blogPath = isUS ? "/us/blog" : "/blog";
 
@@ -127,18 +119,13 @@ export default async function BlogPostPage({
 }: BlogPostPageProps) {
   const { slug } = await params;
   const requested = slug.trim();
-  const sourceSlug = isUS ? globalizeUSSlug(requested) : requested;
+  const sourceSlug = requested;
   const { isEnabled } = await draftMode();
   const clientToUse = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
 
-  const sourcePost = await clientToUse.fetch(blogPostQuery, {
-    slug: sourceSlug,
-    usSlug: requested,
-    // A US route must not serve a global-only article, and the reverse.
-    excludedSite: isUS ? "global" : "us",
-  });
+  const sourcePost = await fetchBlogPost(clientToUse, requested, isUS);
   const post = sourcePost && (isUS ? localizeUSPost(sourcePost) : sourcePost);
   const blogPath = isUS ? "/us/blog" : "/blog";
 

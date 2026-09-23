@@ -312,3 +312,9 @@ describe("US fields beside their global counterparts", () => {
     expect(result.seo.metaTitle).toBe("A scheduling guide");
   });
 })
+
+test("falls back to the global image when a US override has no asset", () => {
+  const mainImage = { asset: { _ref: "image-original-1774x887-png" }, alt: "Staff rostering" };
+  const result = localizeUSPost({ title: "Rostering", mainImage, usMainImage: { _type: "image", alt: "US image" } });
+  expect(result.mainImage.asset).toEqual(mainImage.asset);
+});

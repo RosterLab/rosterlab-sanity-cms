@@ -165,8 +165,9 @@ export function localizeUSPost<
     // A US image override replaces the artwork outright; otherwise the global
     // image is reused with its alt text localized.
     mainImage:
-      overrides.mainImage ??
-      (post.mainImage
+      overrides.mainImage?.asset
+        ? overrides.mainImage
+        : (post.mainImage
         ? { ...post.mainImage, alt: convert(post.mainImage.alt) }
         : post.mainImage),
     seo: {
