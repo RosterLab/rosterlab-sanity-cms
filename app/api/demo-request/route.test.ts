@@ -26,7 +26,10 @@ function demoRequest(body: Record<string, unknown>) {
     body: JSON.stringify({
       name: "Ada Lovelace",
       email: "ada@example.com",
+      company: "Analytical Health",
       industry: "Nursing & Midwifery",
+      rosterSize: "16 - 50 staff",
+      decisionRole: ["I influence the decision", "I make the decision"],
       schedulingChallenges:
         "We need to reduce the time spent building complex schedules.",
       ...body,
@@ -55,7 +58,11 @@ describe("demo request API", () => {
     );
     const [submission, options] = submitAttioLeadMock.mock.calls[0];
     expect(options).toEqual({ webhookUrl: DEMO_REQUEST_WEBHOOK_URL });
-    expect(submission.source).toBe("demo-request");
+    expect(submission).toMatchObject({
+      source: "demo-request",
+      company: "Analytical Health",
+      decisionRole: ["I influence the decision", "I make the decision"],
+    });
     expect(submission.attioPerson).toEqual({
       email_addresses: ["ada@example.com"],
       name: [
@@ -65,23 +72,47 @@ describe("demo request API", () => {
           full_name: "Ada Lovelace",
         },
       ],
+      hubspot_company_text: "Analytical Health",
       industry_multi_select: ["Nursing & Midwifery"],
       how_did_you_hear_about_us_3: ["Conference/Event"],
       num_of_rostered_staff: "16 - 50 staff",
+      hs_buying_role: ["I INFLUENCE THE DECISION", "DECISION_MAKER"],
       hs_membership_notes:
         "We need to reduce the time spent building complex schedules.",
       hubspot_country: "CN",
     });
   });
 
-  test("omits the optional answers rather than sending blanks", async () => {
-    await POST(demoRequest({ referralSource: "", rosterSize: "" }));
+  test("omits an optional referral answer rather than sending a blank", async () => {
+    await POST(demoRequest({ referralSource: "" }));
 
     const [submission] = submitAttioLeadMock.mock.calls[0];
     expect(submission.attioPerson).not.toHaveProperty(
       "how_did_you_hear_about_us_3",
     );
-    expect(submission.attioPerson).not.toHaveProperty("num_of_rostered_staff");
+    expect(submission.attioPerson).toHaveProperty(
+      "num_of_rostered_staff",
+      "16 - 50 staff",
+    );
+  });
+
+  test("requires a roster size before sending anything to Attio", async () => {
+    const response = await POST(demoRequest({ rosterSize: "" }));
+
+    expect(response.status).toBe(400);
+    expect(submitAttioLeadMock).not.toHaveBeenCalled();
+    expect(assertAttioPersonMock).not.toHaveBeenCalled();
+  });
+
+  test.each([
+    ["company", ""],
+    ["decisionRole", []],
+  ])("requires %s before sending anything to Attio", async (field, value) => {
+    const response = await POST(demoRequest({ [field]: value }));
+
+    expect(response.status).toBe(400);
+    expect(submitAttioLeadMock).not.toHaveBeenCalled();
+    expect(assertAttioPersonMock).not.toHaveBeenCalled();
   });
 
   test("rejects an industry Attio would drop", async () => {

@@ -18,6 +18,10 @@ import {
   DEMO_REQUEST_REFERRAL_SOURCES,
   DEMO_REQUEST_ROSTER_SIZES,
 } from "@/lib/market-access/demo-request";
+import {
+  CONTACT_DECISION_ROLES_GLOBAL,
+  CONTACT_DECISION_ROLE_ATTIO_VALUES,
+} from "@/lib/leads/contact";
 
 const METHODS = "POST, OPTIONS";
 
@@ -38,9 +42,14 @@ const optionalChoice = <T extends readonly [string, ...string[]]>(options: T) =>
 const demoRequestSchema = z.object({
   name: z.string().trim().min(2).max(120),
   email: z.string().trim().email().max(254),
+  company: z.string().trim().min(2).max(200),
   industry: z.enum(DEMO_REQUEST_INDUSTRIES),
   referralSource: optionalChoice(DEMO_REQUEST_REFERRAL_SOURCES),
-  rosterSize: optionalChoice(DEMO_REQUEST_ROSTER_SIZES),
+  rosterSize: z.enum(DEMO_REQUEST_ROSTER_SIZES),
+  decisionRole: z
+    .array(z.enum(CONTACT_DECISION_ROLES_GLOBAL))
+    .min(1)
+    .max(CONTACT_DECISION_ROLES_GLOBAL.length),
   schedulingChallenges: z.string().trim().min(10).max(5_000),
   pageUrl: z.string().trim().max(500).optional(),
 });
@@ -74,11 +83,15 @@ export async function POST(request: NextRequest) {
           full_name: input.name,
         },
       ],
+      hubspot_company_text: input.company,
       industry_multi_select: [input.industry],
       ...(input.referralSource
         ? { how_did_you_hear_about_us_3: [input.referralSource] }
         : {}),
-      ...(input.rosterSize ? { num_of_rostered_staff: input.rosterSize } : {}),
+      num_of_rostered_staff: input.rosterSize,
+      hs_buying_role: input.decisionRole.map(
+        (role) => CONTACT_DECISION_ROLE_ATTIO_VALUES[role],
+      ),
       hs_membership_notes: input.schedulingChallenges,
       ...(detectedCountry ? { hubspot_country: detectedCountry } : {}),
     };
@@ -90,6 +103,7 @@ export async function POST(request: NextRequest) {
         firstName,
         lastName,
         name: input.name,
+        company: input.company,
         detectedCountry,
         pageUrl: input.pageUrl,
         // Also flat at the top level: Attio workflow steps map from top-level
@@ -97,12 +111,14 @@ export async function POST(request: NextRequest) {
         // into `metadata`.
         industry: input.industry,
         referralSource: input.referralSource ?? "",
-        rosterSize: input.rosterSize ?? "",
+        rosterSize: input.rosterSize,
+        decisionRole: input.decisionRole,
         message: input.schedulingChallenges,
         metadata: {
           industry: input.industry,
           referralSource: input.referralSource ?? null,
-          rosterSize: input.rosterSize ?? null,
+          rosterSize: input.rosterSize,
+          decisionRole: input.decisionRole,
           schedulingChallenges: input.schedulingChallenges,
           policyVersion: decision.policyVersion,
           demoDecision: decision.demo,
