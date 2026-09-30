@@ -7,7 +7,6 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
-import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 
@@ -255,42 +254,27 @@ export default function OttoSection() {
   return (
     <section className="py-20 md:py-24">
       <Container className="lg:px-12 xl:px-20">
-        {/* ---- Intro: visual on the left, copy on the right ----
-            Both blocks stay in reading order in the markup and are placed by
-            `order` at lg, so the heading is still the first thing announced. */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 items-center">
-          <div className="max-w-2xl lg:order-2">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-              Make smarter roster decisions with Otto, your AI rostering
-              assistant
-            </h2>
+        {/* ---- Intro ---- */}
+        <div className="max-w-3xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+            Make smarter roster decisions with Otto, your AI rostering assistant
+          </h2>
 
-            <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-              Otto understands your roster and the context behind it, so you can
-              get answers, test changes and build reports in seconds.
-            </p>
+          <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
+            Otto understands your roster and the context behind it, so you can
+            get answers, test changes and build reports in seconds.
+          </p>
 
-            <div className="mt-8">
-              <Button
-                href="/feature/ai-staff-rostering-assistant"
-                analyticsLabel="See Otto in Action"
-                analyticsLocation={LOCATION}
-                className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-700 transition"
-              >
-                See Otto in Action
-              </Button>
-            </div>
+          <div className="mt-8">
+            <Button
+              href="/feature/ai-staff-rostering-assistant"
+              analyticsLabel="See Otto in Action"
+              analyticsLocation={LOCATION}
+              className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-700 transition"
+            >
+              See Otto in Action
+            </Button>
           </div>
-
-          {/* Otto beside a live roster solution — sets the scene for the list below. */}
-          <Image
-            src="/images/otto-mascot-laptop.webp"
-            alt="Otto, the RosterLab octopus mascot, beside a laptop generating a nurse roster in RosterLab"
-            width={1362}
-            height={930}
-            // Matches the radius on the media panel below.
-            className="lg:order-1 w-full h-auto rounded-2xl"
-          />
         </div>
 
         {/* ---- Desktop: feature list on the left, pinned media panel right ----
