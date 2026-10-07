@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { analytics } from "@/components/analytics/tracking";
 import SiteLayout from "@/components/layout/SiteLayout";
 import Container from "@/components/ui/Container";
+import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
 import Link from "next/link";
 
 export default function DemoVideoPage() {
@@ -53,7 +54,7 @@ export default function DemoVideoPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
                 <Link
-                  href="/demo"
+                  href="/book-a-demo"
                   className="flex flex-col items-center gap-3 p-6 bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   <svg
@@ -70,7 +71,11 @@ export default function DemoVideoPage() {
                     />
                   </svg>
                   <div className="text-center">
-                    <div className="font-bold text-lg mb-1">Book a personalised demo</div>
+                    <div className="font-bold text-lg mb-1">
+                      <DemoCtaLabel href="/book-a-demo">
+                        Book a personalised demo
+                      </DemoCtaLabel>
+                    </div>
                     <div className="text-sm text-teal-100">
                       See it live
                     </div>

@@ -220,6 +220,32 @@ describe("US image overrides", () => {
     asset: { _type: "reference", _ref: ref },
   });
 
+  it.each(["top-level", "legacy"])("ignores assetless %s image overrides", (source) => {
+    const incomplete = { _type: "image", alt: "US image description" };
+    const result = localizeUSPost({
+      title: "Rostering",
+      mainImage: { ...asset("image-global"), alt: "A roster on screen" },
+      seo: { ogImage: asset("og-global") },
+      ...(source === "top-level"
+        ? { usMainImage: incomplete, usSeo: { ogImage: incomplete } }
+        : { usLocalization: { mainImage: incomplete, ogImage: incomplete } }),
+    });
+    expect(result.mainImage).toEqual({
+      ...asset("image-global"), alt: "A schedule on screen",
+    });
+    expect(result.seo.ogImage).toEqual(asset("og-global"));
+  });
+
+  it("omits an assetless override when there is no global image", () => {
+    const result = localizeUSPost({
+      title: "Scheduling",
+      usMainImage: { _type: "image", alt: "Description only" },
+      usSeo: { ogImage: { _type: "image" } },
+    });
+    expect(result.mainImage).toBeUndefined();
+    expect(result.seo.ogImage).toBeUndefined();
+  });
+
   it("reuses the global image with localized alt text when no override is set", () => {
     const result = localizeUSPost({
       title: "Rostering",
