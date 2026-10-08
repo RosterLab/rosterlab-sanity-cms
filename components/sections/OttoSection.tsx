@@ -77,6 +77,18 @@ function ChatPanel({
   className?: string;
   children: ReactNode;
 }) {
+  // A full-bleed clip is the whole panel: its field, bubbles and motion are
+  // composed edge to edge in the square, so nothing is painted around it.
+  if (feature.layout === "full") {
+    return (
+      <div
+        className={`relative aspect-square overflow-hidden rounded-2xl ${className}`}
+        style={{ backgroundColor: feature.color }}
+      >
+        {children}
+      </div>
+    );
+  }
   return (
     <div
       className={`flex items-center justify-center overflow-hidden rounded-2xl p-5 sm:p-6 ${className}`}
@@ -93,12 +105,30 @@ function ChatPanel({
   );
 }
 
+/** How a feature's clip sits in its panel: zoomed so only the chat window
+    shows (the default), or filling the square as composed. */
+function clipClass(feature: OttoFeature) {
+  return feature.layout === "full"
+    ? "absolute inset-0 h-full w-full object-cover"
+    : "absolute max-w-none";
+}
+function clipStyle(feature: OttoFeature): CSSProperties | undefined {
+  return feature.layout === "full" ? undefined : CLIP_STYLE;
+}
+
 interface OttoFeature {
   /** Heading for the list item on the right. */
   title: string;
   description: string;
   /** Clip shown in the media panel while this item is active. */
   video: string;
+  /**
+   * "window" (default): the clip is a 1608×1608 frame with the white Otto
+   * window at CARD, and the panel zooms in so only the window shows.
+   * "full": the clip is composed edge to edge in the square — its own field,
+   * no window — and fills the panel as is.
+   */
+  layout?: "window" | "full";
   /** Backdrop field colour behind the chat window, and the same value at zero
       alpha for the dot-grid falloff. Doubles as the progress-bar colour, so
       each step's timer is keyed to the panel it belongs to. */
@@ -113,7 +143,7 @@ const FEATURES: OttoFeature[] = [
     title: "Answer roster questions instantly",
     description:
       "Check staffing coverage, skill mix, leave, fairness and more. Otto searches your live roster and audit trail to give you contextual answers, including who worked when and what's changed.",
-    video: "/landing/otto/chat.mp4",
+    video: "/landing/otto/chat-v2.mp4",
     color: ACCENT,
     colorClear: "rgba(55,121,221,0)",
     dot: "rgba(255,255,255,0.40)",
@@ -122,18 +152,23 @@ const FEATURES: OttoFeature[] = [
     title: "Get recommendations for better roster decisions",
     description:
       "Filling a gap, assessing a swap or reworking a roster? Otto weighs availability, skills, workload, rest requirements and roster rules to recommend the best way forward.",
-    video: "/landing/otto/cover.mp4",
-    color: "#4FA8AD",
-    colorClear: "rgba(79,168,173,0)",
+    video: "/landing/otto/cover-v2.mp4",
+    layout: "full",
+    // The clip's own field, so the panel and the frame are one colour while
+    // the clip loads and at its rounded corners.
+    color: "#0B9474",
+    colorClear: "rgba(11,148,116,0)",
     dot: "rgba(255,255,255,0.45)",
   },
   {
     title: "Analyse your roster from every angle",
     description:
       "Turn your roster data into insights you can act on. Otto breaks down any part of your roster to create charts, summaries and reports that back confident workforce decisions.",
-    video: "/landing/otto/fairness.mp4",
-    color: "#3FAE8E",
-    colorClear: "rgba(63,174,142,0)",
+    video: "/landing/otto/fairness-v2.mp4",
+    layout: "full",
+    // The clip's own field — the hero blue, as the first panel.
+    color: "#3779DE",
+    colorClear: "rgba(55,121,222,0)",
     dot: "rgba(255,255,255,0.45)",
   },
 ];
@@ -307,10 +342,10 @@ export default function OttoSection() {
                   preload={index === 0 ? "auto" : "metadata"}
                   aria-hidden="true"
                   tabIndex={-1}
-                  className={`absolute max-w-none ${
+                  className={`${clipClass(feature)} ${
                     index === activeIndex ? "block" : "hidden"
                   }`}
-                  style={CLIP_STYLE}
+                  style={clipStyle(feature)}
                 />
               ))}
             </ChatPanel>
@@ -453,8 +488,8 @@ export default function OttoSection() {
                         preload="auto"
                         aria-hidden="true"
                         tabIndex={-1}
-                        className="absolute max-w-none"
-                        style={CLIP_STYLE}
+                        className={clipClass(feature)}
+                        style={clipStyle(feature)}
                       />
                     </ChatPanel>
                   </div>

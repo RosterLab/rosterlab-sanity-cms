@@ -1,45 +1,49 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { trackButtonClick } from "@/components/analytics/tracking";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 
-const StaffingEnvelopeChartSmall = dynamic(
-  () => import("@/components/ui/StaffingEnvelopeChartSmall"),
-  { ssr: false },
-);
-const WeekendRotationModule = dynamic(
-  () => import("@/app/feature/shift-swaps/WeekendRotationModule"),
-  { ssr: false },
-);
-const MobileAppPreferencesModule = dynamic(
-  () => import("@/components/sections/animations/MobileAppPreferencesModule"),
-  { ssr: false },
-);
-const GenerateScreenEmbed = dynamic(
-  () => import("@/components/sections/animations/GenerateScreenEmbed"),
-  { ssr: false },
-);
-
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Benefits";
 
-// Before/after timings for the tab visuals. The default 3s lead-in reads as
-// "nothing is happening" when the tab has only just come into view, so the
-// flip lands early and the result is held long enough to be read before the
-// cycle restarts. START_MS is how long the "before RosterLab" state holds —
-// long enough to register the problem, short of feeling stalled.
-const START_MS = 1800;
-const HOLD_MS = 3200;
+/**
+ * The recording behind each tab, keyed by tab id so AU and US share them.
+ *
+ * All four are 4:3. `desktop` is 1440x1080 — about 2x the widest the slot
+ * gets — and `mobile` is 800x600 for phones, picked at mount. `poster` is the
+ * clip's own first frame, so nothing shifts when the video takes over.
+ */
+const CLIPS: Record<
+  string,
+  { desktop: string; mobile: string; poster: string }
+> = Object.fromEntries(
+  ["time", "turnover", "safety", "optimisation"].map((id) => [
+    id,
+    {
+      desktop: `/landing/benefits/${id}.mp4`,
+      mobile: `/landing/benefits/${id}-mobile.mp4`,
+      poster: `/landing/benefits/${id}-poster.webp`,
+    },
+  ]),
+);
 
-// How long each tab holds before the carousel advances. Comfortably longer
-// than a visual's START_MS + HOLD_MS beat, so the before/after lands and is
-// read before the tab changes under you.
-const TAB_MS = 8000;
+/** Below this width the phone cut is the one worth fetching. */
+const MOBILE_CLIP_MAX_W = 640;
+
+/**
+ * How many times a tab's clip plays before the carousel moves on. Twice gives
+ * a reader who arrived mid-clip a full run from the start.
+ */
+const PLAYS_PER_TAB = 2;
+
+/**
+ * How long a tab holds before its clip has reported a length. Once it has,
+ * the tab holds for PLAYS_PER_TAB full play-throughs.
+ */
+const FALLBACK_TAB_MS = 8000;
 
 // Longest frame delta the timer will credit. Without this, a main-thread stall
 // — an extension, a devtools pause, an HMR recompile — is added to elapsed in
@@ -171,29 +175,68 @@ function LazyVisual({
 }
 
 /**
- * Height held for each visual before it mounts.
- *
- * `LazyVisual` leaves the slot empty until it scrolls into view, so this
- * reservation is the only thing stopping the rest of the page from moving when
- * the visual finally lands. One flat 280px guess was short by 5/16/24/124px
- * across the four cards — 169px in total, and essentially the whole of the
- * homepage's 0.207 mobile CLS.
- *
- * Keyed by tab id rather than set per tab object so AU and US share it: the
- * visuals come from `renderVisual`, which switches on the same ids. Values are
- * the measured rendered heights at the widest point each breakpoint covers, so
- * the slot is never short; each visual steps at `sm` and again at `md`, so
- * the reservation does too. `time` is the one fluid visual — it tracks the
- * container width — and on phones it lands under its reservation anyway.
+ * One tab's recording: muted, inline, looping, with its first frame as a
+ * poster so the slot is never empty. Under reduced motion the poster is all
+ * that shows and the video is never fetched.
  */
-const VISUAL_RESERVE: Record<string, string> = {
-  time: "min-h-[285px] sm:min-h-[370px] md:min-h-[405px]",
-  optimisation: "min-h-[310px] sm:min-h-[328px] md:min-h-[342px]",
-  turnover: "min-h-[305px] sm:min-h-[338px] md:min-h-[398px]",
-  safety: "min-h-[404px] sm:min-h-[472px] md:min-h-[480px]",
-};
+function BenefitClip({
+  id,
+  onDuration,
+}: {
+  id: string;
+  onDuration?: (ms: number) => void;
+}) {
+  const clip = CLIPS[id];
+  const reduceMotion = usePrefersReducedMotion();
+  const [src, setSrc] = useState<string>();
 
-const DEFAULT_VISUAL_RESERVE = "min-h-[280px] sm:min-h-[320px]";
+  useEffect(() => {
+    if (!clip || reduceMotion) return;
+    setSrc(
+      window.matchMedia(`(max-width: ${MOBILE_CLIP_MAX_W}px)`).matches
+        ? clip.mobile
+        : clip.desktop,
+    );
+  }, [clip, reduceMotion]);
+
+  if (!clip) return null;
+  return (
+    <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={clip.poster}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {src && (
+        <video
+          src={src}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          tabIndex={-1}
+          onLoadedMetadata={(e) => {
+            const d = e.currentTarget.duration;
+            if (Number.isFinite(d) && d > 0) onDuration?.(d * 1000);
+          }}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+    </div>
+  );
+}
+
+/**
+ * The slot every tab's clip plays in. All four recordings are 4:3, so one
+ * aspect-ratio box reserves the exact space before anything mounts — no
+ * per-tab height guesses, and no layout shift when a tab auto-advances.
+ */
+const VISUAL_BOX = "relative aspect-[4/3] w-full";
 
 /**
  * One benefit as a plain, self-contained block — the mobile layout.
@@ -235,11 +278,7 @@ function BenefitCard({ tab, visual }: { tab: BenefitTab; visual: ReactNode }) {
         >
           {tab.cta.label}
         </Button>
-        <LazyVisual
-          className={`mt-8 relative ${VISUAL_RESERVE[tab.id] ?? DEFAULT_VISUAL_RESERVE} flex items-center justify-center [&>*]:w-full`}
-        >
-          {visual}
-        </LazyVisual>
+        <LazyVisual className={`mt-8 ${VISUAL_BOX}`}>{visual}</LazyVisual>
       </Container>
     </section>
   );
@@ -260,7 +299,7 @@ export default function BenefitsNew({
   // both broke clicking: reaching a tab puts the pointer inside the section,
   // and clicking a button focuses it, so the timer was pinned paused from the
   // moment you picked a tab — the bar sat at 0 and never moved. Clicking a tab
-  // restarts its 8s instead, which covers the same "do not change under the
+  // restarts its run instead, which covers the same "do not change under the
   // reader" ground without a state that can stick.
   const [inView, setInView] = useState(false);
   const reduceMotion = usePrefersReducedMotion();
@@ -275,6 +314,10 @@ export default function BenefitsNew({
   // Elapsed lives in a ref so pausing and resuming picks up where it left off
   // rather than restarting the tab.
   const elapsedRef = useRef(0);
+  // Each tab's hold once its clip's length is known: PLAYS_PER_TAB plays.
+  // Read by the timer every frame, so a length arriving mid-run applies at
+  // once without restarting the bar.
+  const tabMsRef = useRef<Record<string, number>>({});
 
   const advance = () => setActiveIndex((i) => (i + 1) % benefitTabs.length);
 
@@ -298,7 +341,8 @@ export default function BenefitsNew({
     const tick = (now: number) => {
       elapsedRef.current += Math.min(now - last, MAX_FRAME_MS);
       last = now;
-      const fraction = Math.min(elapsedRef.current / TAB_MS, 1);
+      const tabMs = tabMsRef.current[active.id] ?? FALLBACK_TAB_MS;
+      const fraction = Math.min(elapsedRef.current / tabMs, 1);
       bar.style.width = `${fraction * 100}%`;
       // Hand over the moment the bar lands, not on the next tick.
       if (fraction >= 1) {
@@ -345,52 +389,16 @@ export default function BenefitsNew({
       [next]?.focus();
   };
 
-  const renderVisual = (tab: BenefitTab) => {
-    // Each visual is only mounted for the tab on screen, so autoplay is safe
-    // to enable on all of them — an offscreen tab isn't in the tree.
-    switch (tab.id) {
-      case "safety":
-        return (
-          <WeekendRotationModule
-            autoplay
-            loop
-            autoplayIntervalMs={START_MS}
-            loopHoldMs={HOLD_MS}
-          />
-        );
-      case "turnover":
-        return (
-          <MobileAppPreferencesModule
-            autoplay
-            loop
-            autoplayIntervalMs={START_MS}
-            loopHoldMs={HOLD_MS}
-          />
-        );
-      case "time":
-        return <GenerateScreenEmbed />;
-      case "optimisation":
-        return (
-          <StaffingEnvelopeChartSmall
-            autoplay
-            loop
-            autoplayIntervalMs={START_MS}
-            loopHoldMs={HOLD_MS}
-          />
-        );
-      default:
-        return tab.image ? (
-          <Image
-            src={tab.image}
-            alt={tab.title}
-            width={800}
-            height={600}
-            className="w-full h-auto rounded-lg"
-            priority
-          />
-        ) : null;
-    }
-  };
+  // Each visual is only mounted for the tab on screen (desktop) or once its
+  // card scrolls into view (mobile), so autoplay never runs off screen.
+  const renderVisual = (tab: BenefitTab) => (
+    <BenefitClip
+      id={tab.id}
+      onDuration={(ms) => {
+        tabMsRef.current[tab.id] = ms * PLAYS_PER_TAB;
+      }}
+    />
+  );
 
   const selectTab = (idx: number, tab: BenefitTab) => {
     trackButtonClick(`Tab: ${tab.label}`, LOCATION, {
@@ -414,7 +422,7 @@ export default function BenefitsNew({
         ))}
       </div>
 
-      {/* Desktop: a timed tab carousel. Each tab holds for TAB_MS with the
+      {/* Desktop: a timed tab carousel. Each tab holds for PLAYS_PER_TAB plays of its clip with the
           remaining time drawn under the active tab, then hands over to the
           next one; clicking a tab takes it immediately and restarts its run. This used to be a
           500vh scroll-pinned scroller, which spent ~1,100px of wheeling per
@@ -520,7 +528,7 @@ export default function BenefitsNew({
             </div>
 
             <div className="relative">
-              <LazyVisual className="relative min-h-[280px] sm:min-h-[320px] md:min-h-[420px] flex items-center justify-center [&>*]:w-full">
+              <LazyVisual className={VISUAL_BOX}>
                 {renderVisual(active)}
               </LazyVisual>
             </div>
