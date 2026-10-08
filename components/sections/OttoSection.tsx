@@ -110,9 +110,9 @@ interface OttoFeature {
 
 const FEATURES: OttoFeature[] = [
   {
-    title: "Answer your roster questions instantly",
+    title: "Answer roster questions instantly",
     description:
-      "Check staffing coverage, skill mix, leave, fairness, and more. Otto searches your live roster and audit trail to give you contextual answers, including who worked when and what's changed.",
+      "Check staffing coverage, skill mix, leave, fairness and more. Otto searches your live roster and audit trail to give you contextual answers, including who worked when and what's changed.",
     video: "/landing/otto/chat.mp4",
     color: ACCENT,
     colorClear: "rgba(55,121,221,0)",
@@ -121,7 +121,7 @@ const FEATURES: OttoFeature[] = [
   {
     title: "Get recommendations for better roster decisions",
     description:
-      "Need to fill a gap, assess a shift swap or improve your roster? Otto weighs availability, skills, workload, rest requirements and roster rules to recommend the best way forward.",
+      "Filling a gap, assessing a swap or reworking a roster? Otto weighs availability, skills, workload, rest requirements and roster rules to recommend the best way forward.",
     video: "/landing/otto/cover.mp4",
     color: "#4FA8AD",
     colorClear: "rgba(79,168,173,0)",
@@ -130,7 +130,7 @@ const FEATURES: OttoFeature[] = [
   {
     title: "Analyse your roster from every angle",
     description:
-      "Turn your roster data into insights you can act on. Otto can analyse any part of your roster to create charts, summaries and reports that support confident workforce decisions.",
+      "Turn your roster data into insights you can act on. Otto breaks down any part of your roster to create charts, summaries and reports that back confident workforce decisions.",
     video: "/landing/otto/fairness.mp4",
     color: "#3FAE8E",
     colorClear: "rgba(63,174,142,0)",
@@ -261,8 +261,9 @@ export default function OttoSection() {
           </h2>
 
           <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-            Otto understands your roster and the context behind it, so you can
-            get answers, test changes and build reports in seconds.
+            Otto understands your roster and the context behind it. Get answers,
+            test changes, and build reports in seconds, all through
+            conversation.
           </p>
 
           <div className="mt-8">

@@ -64,70 +64,64 @@ export const BENEFIT_TABS_AU: BenefitTab[] = [
   {
     id: "time",
     label: "Save Time",
-    title: "Generate rosters in minutes",
+    title: "Roster your entire clinical team in minutes",
     description:
-      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with re-rostering, open shifts, and automatic shift-swaps based on predefined rules.",
+      "Take the manual work out of complex rostering. Spend less time planning and reworking schedules, and give clinical teams more time back for patient care.",
     cta: {
-      label: "Explore AI generation",
-      href: "/feature/ai-staff-rostering-assistant",
+      label: "Explore AI rostering",
+      href: "/solutions/ai-roster-generator",
     },
     highlights: [
-      "Generate Rosters Automatically",
-      "Handle Complex Rules and Staffing Requirements",
-      "Reduce Admin for Last-minute Changes",
-      "Dynamically re-roster staff",
+      "Up to 90% less roster admin",
+      "More headspace for patient care",
+      "Less time spent juggling roster changes",
+    ],
+  },
+  {
+    id: "turnover",
+    label: "Retain Staff",
+    title: "Retain the clinicians your service depends on",
+    description:
+      "Give staff fairer rosters that protect their personal time. Promote a healthier work-life balance to help reduce burnout, absenteeism, and turnover.",
+    cta: {
+      label: "Explore fair rostering",
+      href: "/feature/self-scheduling",
+    },
+    highlights: [
+      "Fairer workloads",
+      "Greater staff input and engagement",
+      "Fewer avoidable last-minute absences",
+    ],
+  },
+  {
+    id: "safety",
+    label: "Stay Compliant",
+    title: "Ensure clinical safety and compliance",
+    description:
+      "Assign the best-fit people to each shift based on skills, qualifications, and demand. Keep coverage, fatigue limits and compliance requirements accounted for throughout the roster.",
+    cta: { label: "Explore smarter coverage", href: "/feature/rules-engine" },
+    highlights: [
+      "Safer staffing",
+      "Reliable clinical coverage by skills",
+      "Confidence in roster compliance",
     ],
   },
   {
     id: "optimisation",
     label: "Optimise Workforce",
-    title: "Optimise your workforce with AI",
+    title: "Unlock hidden capacity in your workforce",
     description:
-      "Harness our advanced mathematical optimisation engine to allocate staff efficiently. Reduce penalty costs, improve coverage, and plan ahead with confidence.",
+      "Allocate staff more effectively to make better use of available capacity, reducing costly overtime and reliance on locum and agency cover.",
     cta: {
-      label: "Explore optimisation",
+      label: "Explore workforce optimisation",
       href: "/solutions/ai-roster-generator",
     },
     highlights: [
-      "Optimise Skill Mix",
-      "Allocate Staff Efficiently",
-      "Minimise Costs",
-      "Dynamic Scenario Planning",
+      "Minimised overtime and penalty costs",
+      "Reduced locum needs",
+      "More provider capacity",
     ],
     image: "/images/illustration/optimise_workforce.svg",
-  },
-  {
-    id: "turnover",
-    label: "Reduce Turnover",
-    title: "Improve staff retention",
-    description:
-      "Empower your team to plan ahead and manage their rosters with confidence, while staying aligned with business needs. Fewer shift swaps, reduced absenteeism, and better-matched preferences drive engagement.",
-    cta: {
-      label: "Explore retention",
-      href: "/feature/self-scheduling",
-    },
-    highlights: [
-      "Improve Work-Life Balance and Staff Satisfaction",
-      "Meet a High Percentage of Preferences",
-      "Reduce Unnecessary Sick Leave",
-      "Reduce Staff Turnover",
-    ],
-  },
-  {
-    id: "safety",
-    label: "Safety & Fairness",
-    title: "Ensure compliance & equity",
-    description:
-      "Ensure clinical safety and fairness with every roster. By embedding equity and fatigue-management rules into our AI, you eliminate favouritism, reduce staff fatigue, and create safer, more inclusive rosters.",
-    cta: { label: "Explore safety", href: "/feature/rules-engine" },
-    // Longest of the four titles — one step down at lg so it holds 2 lines.
-    titleClassName: "lg:text-[2.5rem]",
-    highlights: [
-      "Eliminate Favouritism",
-      "Distribute Shifts Fairly",
-      "Reduce Clinical Risks",
-      "Reduce Fatigue",
-    ],
   },
 ];
 
@@ -495,7 +489,7 @@ export default function BenefitsNew({
           >
             <div className="max-w-md">
               <h2
-                className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3 md:mb-4 ${active.titleClassName ?? ""}`}
+                className={`text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-3 md:mb-4 ${active.titleClassName ?? ""}`}
               >
                 {active.title}
               </h2>

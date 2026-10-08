@@ -2,29 +2,53 @@ import ContactFormWrapper from "@/components/forms/ContactFormWrapper";
 import Container from "@/components/ui/Container";
 import { HiClock, HiTrendingUp, HiUsers } from "react-icons/hi";
 
+/** The site's hero field colour (LandingHero's HERO_BLUE), and the same value
+ * at zero alpha for the dot falloff — an explicit rgba, because some engines
+ * interpolate `transparent` through grey. */
+const FIELD_BLUE = "#3779DD";
+const FIELD_BLUE_CLEAR = "rgba(55,121,221,0)";
+
 export default function FinalCTA({
   heading = "Having a headache making rosters for shift workers?",
+  description,
   isUS = false,
+  progressiveForm = false,
 }: {
   heading?: string;
+  /** Copy under the heading. Defaults to the find-out-more line below. */
+  description?: string;
   isUS?: boolean;
+  /** Open the form with just name and email; the rest appears on first input. */
+  progressiveForm?: boolean;
 } = {}) {
   return (
     <section
       className="py-20 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-      }}
+      style={{ backgroundColor: FIELD_BLUE }}
     >
+      {/* The same dotted blue field as the hero and the Otto panel, so the
+          page closes on the surface it opened with. Dots sit in a 22px grid
+          and dissolve toward the edges; the falloff is painted over them in
+          the field colour rather than masked, which keeps it cheap. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          backgroundImage: [
+            `radial-gradient(ellipse 60% 70% at 50% 45%, ${FIELD_BLUE_CLEAR} 0%, ${FIELD_BLUE_CLEAR} 30%, ${FIELD_BLUE} 85%)`,
+            "radial-gradient(circle, rgba(255,255,255,0.28) 1px, transparent 1px)",
+          ].join(", "),
+          backgroundSize: "100% 100%, 22px 22px",
+        }}
+      />
       <Container className="relative z-10 lg:px-12 xl:px-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-center">
           {/* Left side - Content */}
           <div className="text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{heading}</h2>
             <p className="text-xl text-white/90 mb-8">
-              Enter your details below to find out more about how RosterLab can
-              transform your {isUS ? "scheduling" : "rostering"} process.
+              {description ??
+                `Enter your details below to find out more about how RosterLab can transform your ${isUS ? "scheduling" : "rostering"} process.`}
             </p>
 
             {/* Stats */}
@@ -99,8 +123,8 @@ export default function FinalCTA({
             </div>
 
             {/* Feature Points */}
-            <div className="mt-6 flex flex-wrap lg:flex-nowrap gap-x-4 gap-y-2 lg:whitespace-nowrap">
-              <div className="flex items-center gap-2">
+            <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+              <div className="flex flex-col items-center gap-1.5">
                 <svg
                   className="w-4 h-4 text-green-400 flex-shrink-0"
                   fill="none"
@@ -114,11 +138,11 @@ export default function FinalCTA({
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">
+                <span className="text-xs sm:text-sm leading-snug text-white/90">
                   Award-Winning AI algorithm
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col items-center gap-1.5">
                 <svg
                   className="w-4 h-4 text-green-400 flex-shrink-0"
                   fill="none"
@@ -132,11 +156,11 @@ export default function FinalCTA({
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">
+                <span className="text-xs sm:text-sm leading-snug text-white/90">
                   Handles complexities
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col items-center gap-1.5">
                 <svg
                   className="w-4 h-4 text-green-400 flex-shrink-0"
                   fill="none"
@@ -150,7 +174,9 @@ export default function FinalCTA({
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">User-friendly</span>
+                <span className="text-xs sm:text-sm leading-snug text-white/90">
+                  User-friendly
+                </span>
               </div>
             </div>
           </div>
@@ -165,7 +191,7 @@ export default function FinalCTA({
               staff {isUS ? "scheduling" : "rostering"}? Our team is here to
               help you.
             </p>
-            <ContactFormWrapper />
+            <ContactFormWrapper progressive={progressiveForm} />
           </div>
         </div>
       </Container>
