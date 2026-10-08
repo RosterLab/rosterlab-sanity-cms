@@ -14,6 +14,7 @@ import DemoRequestForm from "./DemoRequestForm";
 import { useMarketAccess } from "@/components/market-access/MarketAccessProvider";
 import { markDemoBooked } from "@/lib/analytics/user-behavior-tracker";
 import { BRAND_GRADIENT_TEXT } from "@/lib/brand";
+import { getRoutingAnswers } from "@/lib/calendly/routing-prefill";
 
 // Embed size. Driven by CSS variables in app/globals.css so the height can be
 // tuned (and made responsive) in one place.
@@ -108,6 +109,7 @@ export default function DemoBookingBase({
         queryParams: {
           utm_content: analytics.getDeviceId() || "no_anon_id",
         },
+        routingAnswers: getRoutingAnswers(),
         region,
         redirectPath: regionalContent.links.meetingConfirmed,
         styles: embedStyles,
@@ -277,6 +279,7 @@ export default function DemoBookingBase({
             <>
               <div
                 ref={widgetContainerRef}
+                data-posthog-no-capture
                 className="relative pb-8 lg:pb-0"
                 style={{ minHeight: embedHeight }}
               >
