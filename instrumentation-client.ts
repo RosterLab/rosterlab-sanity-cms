@@ -1,4 +1,12 @@
 import posthog from "posthog-js";
+import {
+  installRoutingPrefillCapture,
+  ROUTING_ANSWER_PARAMS,
+  redactRoutingPrefillUrl,
+} from "@/lib/calendly/routing-prefill";
+
+// Also protects early client instrumentation if it runs before the head script.
+installRoutingPrefillCapture(ROUTING_ANSWER_PARAMS);
 
 const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
 
@@ -78,6 +86,17 @@ if (projectToken) {
         event.properties.$current_url = redactUrl(
           String(event.properties.$current_url),
         );
+      }
+      for (const key of [
+        "$referrer",
+        "$initial_referrer",
+        "$initial_current_url",
+      ]) {
+        if (event?.properties?.[key]) {
+          event.properties[key] = redactRoutingPrefillUrl(
+            String(event.properties[key]),
+          );
+        }
       }
       return event;
     },

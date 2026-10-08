@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { metaTrackViewContent } from "@/lib/analytics/meta-pixel";
+import { redactRoutingPrefillUrl } from "@/lib/calendly/routing-prefill";
 
 // Storage key for UTM campaign context
 const CAMPAIGN_STORAGE_KEY = "rl_campaign_context";
@@ -50,7 +51,10 @@ function getCampaignContext(): {
     };
 
     // Store in sessionStorage for persistence across pages
-    sessionStorage.setItem(CAMPAIGN_STORAGE_KEY, JSON.stringify(campaignContext));
+    sessionStorage.setItem(
+      CAMPAIGN_STORAGE_KEY,
+      JSON.stringify(campaignContext),
+    );
     return campaignContext;
   }
 
@@ -88,7 +92,7 @@ export default function RlTracker() {
         page: {
           url: window.location.href,
           path: pathname,
-          referrer: document.referrer || null,
+          referrer: redactRoutingPrefillUrl(document.referrer) || null,
         },
         ip: undefined, // Server will populate this
       };
@@ -129,11 +133,11 @@ export default function RlTracker() {
       src="https://ops.rosterlab.com/tracker.js"
       strategy="afterInteractive"
       onLoad={() => {
-        console.log('✅ [RlTracker] Script loaded successfully');
+        console.log("✅ [RlTracker] Script loaded successfully");
       }}
       onError={(e) => {
-        console.error('❌ [RlTracker] Script failed to load:', e);
-        console.warn('[RlTracker] Will use fallback API calls for tracking');
+        console.error("❌ [RlTracker] Script failed to load:", e);
+        console.warn("[RlTracker] Will use fallback API calls for tracking");
       }}
     />
   );

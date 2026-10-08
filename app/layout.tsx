@@ -21,6 +21,7 @@ import CTAModalManager from "@/components/modals/CTAModalManager";
 import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
 import { MarketAccessProvider } from "@/components/market-access/MarketAccessProvider";
 import { MARKET_ACCESS_HINT_SCRIPT } from "@/lib/market-access/client-gate";
+import { ROUTING_PREFILL_CAPTURE_SCRIPT } from "@/lib/calendly/routing-prefill";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -64,8 +65,16 @@ export default async function RootLayout({
     pathname.startsWith("/api");
 
   return (
-    <html lang={isUSPage ? "en-US" : "en"} className={poppins.variable} suppressHydrationWarning>
+    <html
+      lang={isUSPage ? "en-US" : "en"}
+      className={poppins.variable}
+      suppressHydrationWarning
+    >
       <head>
+        {/* Strip personal routing answers before any analytics initialization. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: ROUTING_PREFILL_CAPTURE_SCRIPT }}
+        />
         {/* Applies the cached market-access decision before first paint, so a
             visitor never sees the wrong CTAs flash first. See
             lib/market-access/client-gate.ts. */}
