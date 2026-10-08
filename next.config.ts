@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { ARTICLE_REDIRECTS } from "./lib/posts/article-redirects";
 import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
@@ -136,6 +137,29 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Search Console URLs from retired pages and malformed links.
+      {
+        source: "/careers/marketing-content-specialist",
+        destination: "/careers",
+        permanent: true,
+      },
+      {
+        source: "/blog/author/press-news",
+        destination: "/newsroom",
+        permanent: true,
+      },
+      {
+        source: "/&",
+        destination: "/",
+        permanent: true,
+      },
+      // Only normalize numbered variants of logos that actually exist.
+      {
+        source:
+          "/images/logos/new-logos/:logo(central_island|ver_services_hawkes_bay|peticare|hospice_west_auckland|legalaid|singhealth|st_george).svg-:suffix(\\d+)",
+        destination: "/images/logos/new-logos/:logo.svg",
+        permanent: true,
+      },
       // Whitepaper redirect
       {
         source: "/whitepaper",
@@ -185,6 +209,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // Blog redirects
+      ...ARTICLE_REDIRECTS,
       {
         source: "/blog/wdhbradiographyimplementation",
         destination:
@@ -258,7 +283,7 @@ const nextConfig: NextConfig = {
         source:
           "/blog/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters",
         destination:
-          "/newsroom/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters",
+          "/newsroom/hospital-in-perth-partners-with-rosterlab-for-smarter-rosters",
         permanent: true,
       },
       {

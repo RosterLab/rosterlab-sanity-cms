@@ -1,4 +1,5 @@
 import { getUSPath } from "@/components/seo/HreflangTags";
+import { canonicalArticleHref } from "@/lib/posts/article-redirects";
 import { localizeUSText, replacements, type TextRange } from "./us-text";
 import { terminologyForResource } from "./us-terminology";
 import { explainUSRegionalTerms } from "./us-regional-context";
@@ -12,6 +13,7 @@ function hasImageAsset(image: any): boolean {
 }
 
 export function localizeUSLink(href: string): string {
+  href = canonicalArticleHref(href) ?? href;
   if (!href || !/^(?:\/(?!\/)|https?:\/\/)/.test(href)) return href;
   try {
     const url = new URL(href, "https://rosterlab.com");

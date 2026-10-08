@@ -2,6 +2,7 @@ import React from 'react'
 import { PortableText as BasePortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
+import { canonicalArticleHref } from '@/lib/posts/article-redirects'
 
 const components = {
   block: {
@@ -87,7 +88,7 @@ const components = {
       const target = value?.blank ? '_blank' : undefined
       return (
         <a
-          href={value?.href}
+          href={canonicalArticleHref(value?.href)}
           target={target}
           rel={target === '_blank' ? 'noopener noreferrer' : undefined}
           className="text-primary-600 hover:text-primary-800 underline"

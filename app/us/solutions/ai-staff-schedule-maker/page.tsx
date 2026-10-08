@@ -61,7 +61,7 @@ const faqItems = [
   {
     question: "How does AI-powered scheduling actually work?",
     answer:
-      'AI has revolutionized staff scheduling by analyzing scheduling requirements and optimizing schedules in ways that would take humans hours or days to accomplish. RosterLab\'s AI considers multiple factors simultaneously - staff availability, skills, preferences, compliance requirements, and coverage needs - to generate optimal schedules in minutes. <a href="https://rosterlab.com/blog/should-your-next-staff-schedule-be-built-with-ai" class="text-blue-600 hover:text-blue-700 underline">Read more about how AI works</a>.',
+      'AI has revolutionized staff scheduling by analyzing scheduling requirements and optimizing schedules in ways that would take humans hours or days to accomplish. RosterLab\'s AI considers multiple factors simultaneously - staff availability, skills, preferences, compliance requirements, and coverage needs - to generate optimal schedules in minutes. <a href="/us/blog/should-your-next-staff-schedule-be-built-with-ai" class="text-blue-600 hover:text-blue-700 underline">Read more about how AI works</a>.',
   },
   {
     question: "How long does it take to implement RosterLab's AI scheduling?",
