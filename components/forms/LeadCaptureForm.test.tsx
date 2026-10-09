@@ -120,6 +120,46 @@ describe("LeadCaptureForm", () => {
     },
   );
 
+  test("progressive contact form reveals the rest once someone types", () => {
+    jest.mocked(usePathname).mockReturnValue("/");
+    render(<ContactFormWrapper progressive />);
+
+    expect(screen.getByLabelText(/^Name/)).toBeInTheDocument();
+    expect(
+      screen.queryByRole("combobox", {
+        name: "Which industry are you rostering for?",
+      }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Continue" })).toHaveAttribute(
+      "type",
+      "button",
+    );
+
+    fireEvent.change(screen.getByLabelText(/^Name/), {
+      target: { value: "Sam" },
+    });
+
+    expect(
+      screen.getByRole("combobox", {
+        name: "Which industry are you rostering for?",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Send message" }),
+    ).toHaveAttribute("type", "submit");
+  });
+
+  test("progressive contact form also opens from the Continue button", () => {
+    jest.mocked(usePathname).mockReturnValue("/");
+    render(<ContactFormWrapper progressive />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Continue" }));
+
+    expect(
+      screen.getByLabelText(/Tell us about your rostering challenges/),
+    ).toBeInTheDocument();
+  });
+
   test("allows more than one decision role to be selected", () => {
     jest.mocked(usePathname).mockReturnValue("/contact");
     render(<ContactFormWrapper />);

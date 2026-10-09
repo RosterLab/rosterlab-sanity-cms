@@ -173,7 +173,7 @@ interface TrustedByDualRowProps {
 }
 
 export default function TrustedByDualRow({
-  heading = "Join hundreds of teams already optimising their rosters",
+  heading = "Join hundreds of healthcare teams already optimising their rosters",
   onDark = false,
 }: TrustedByDualRowProps = {}) {
   return (

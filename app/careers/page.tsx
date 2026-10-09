@@ -1,5 +1,6 @@
 import Container from "@/components/ui/Container";
 import SiteLayout from "@/components/layout/SiteLayout";
+import IndustryHero from "@/components/sections/IndustryHero";
 import {
   HiMail,
   HiLocationMarker,
@@ -46,55 +47,39 @@ export const metadata = {
 export default function CareersPage() {
   return (
     <SiteLayout>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
-        <Container>
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Join Us in Revolutionising <br />
-              <span
-                className="text-transparent bg-clip-text"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-                }}
-              >
-                Workforce Scheduling
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Be part of a team that's making a real difference in healthcare by
-              solving one of the industry's most complex challenges.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/about"
-                className="inline-flex items-center justify-center bg-blue-600 text-white hover:bg-blue-700 px-6 py-3 rounded-md font-medium transition-colors"
-              >
-                Learn more about us
-              </a>
-              <a
-                href="https://www.linkedin.com/company/rosterlab/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50 px-6 py-3 rounded-md font-medium transition-colors"
-              >
-                Follow for updates
-              </a>
-            </div>
-            {/* Team Illustration */}
-            <div className="mt-12 max-w-3xl mx-auto">
-              <Image
-                src="/images/illustration/Team-pana.svg"
-                alt="Join our team"
-                width={768}
-                height={576}
-                className="w-full rounded-lg"
-              />
-            </div>
-          </div>
-        </Container>
-      </section>
+      {/* Hero — the same treatment as the About page: copy panel over a
+          photo, rather than the centred stack that was here. */}
+      <IndustryHero
+        title="Join Us in Revolutionising Workforce Scheduling"
+        panelSize="mini"
+        description="Be part of a team that's making a real difference in healthcare by solving one of the industry's most complex challenges."
+        analyticsLocation="Careers Hero"
+        primaryCta={{
+          href: "/about",
+          label: "Learn more about us",
+          analyticsProperties: {
+            cta_type: "about",
+            page_name: "Careers",
+            section: "hero",
+          },
+        }}
+        secondaryCta={{
+          href: "https://www.linkedin.com/company/rosterlab/",
+          label: "Follow for updates",
+          analyticsProperties: {
+            cta_type: "linkedin",
+            page_name: "Careers",
+            section: "hero",
+          },
+        }}
+        image={{
+          src: "/images/careers/team-meeting.webp",
+          alt: "The RosterLab team in a group discussion in the office",
+          // 1.78:1 into a 1.94:1 slot, so only a little off the top and
+          // bottom. Biased above centre to hold the far side of the circle.
+          objectPosition: "center 35%",
+        }}
+      />
 
       {/* Why RosterLab */}
       <section className="py-20 bg-white">

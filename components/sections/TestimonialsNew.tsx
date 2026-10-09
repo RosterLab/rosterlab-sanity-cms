@@ -91,14 +91,85 @@ export const TESTIMONIALS_AU: Testimonial[] = [
   },
 ];
 
+export interface FeaturedCaseStudy {
+  /** The headline number, e.g. "179+". */
+  stat: string;
+  statLabel: string;
+  title: string;
+  summary: string;
+  href: string;
+}
+
+export const FEATURED_CASE_STUDY_AU: FeaturedCaseStudy = {
+  stat: "179+",
+  statLabel: "hours saved a year",
+  title: "179 hours back for clinical work",
+  summary:
+    "Whanganui Radiography saved more than 179 hours a year with RosterLab, redirecting valuable clinician time back to clinical work.",
+  href: "/case-studies/whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab",
+};
+
+function CaseStudyCard({ study }: { study: FeaturedCaseStudy }) {
+  return (
+    <div className="mb-16 md:mb-20 grid grid-cols-1 md:grid-cols-[auto_minmax(0,1fr)] gap-8 md:gap-12 items-center rounded-2xl bg-white border border-gray-200 p-8 md:p-10">
+      <div className="md:pr-12 md:border-r md:border-gray-200">
+        <p className="text-5xl md:text-6xl font-bold text-blue-600 leading-none tracking-tight">
+          {study.stat}
+        </p>
+        <p className="mt-2 text-sm font-semibold text-gray-600">
+          {study.statLabel}
+        </p>
+      </div>
+      <div>
+        <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
+          Featured case study
+        </span>
+        <h3 className="mt-4 text-2xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
+          {study.title}
+        </h3>
+        <p className="mt-3 max-w-2xl text-base text-gray-600 leading-relaxed">
+          {study.summary}
+        </p>
+        <Link
+          href={study.href}
+          onClick={() =>
+            trackSmartButtonClick("See case study", study.href, LOCATION, {
+              case_study: study.title,
+            })
+          }
+          className="group mt-5 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
+        >
+          See case study
+          <svg
+            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="M13 6l6 6-6 6" />
+          </svg>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 const AUTOPLAY_MS = 7000;
 
 export default function TestimonialsNew({
   testimonials = TESTIMONIALS_AU,
   isUS = false,
+  featuredCaseStudy,
 }: {
   testimonials?: Testimonial[];
   isUS?: boolean;
+  /** Optional card under the quotes. Left out unless a page passes one. */
+  featuredCaseStudy?: FeaturedCaseStudy;
 } = {}) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<number | null>(null);
@@ -152,6 +223,10 @@ export default function TestimonialsNew({
         />
       </svg>
       <Container className="lg:px-12 xl:px-20">
+        {/* Case study leads, quotes follow: a hard number first, then the
+            voices behind it. */}
+        {featuredCaseStudy && <CaseStudyCard study={featuredCaseStudy} />}
+
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
           {/* Left: heading + description + arrow controls */}
           <div>
@@ -169,8 +244,8 @@ export default function TestimonialsNew({
               <span className="block text-gray-900">community.</span>
             </h2>
             <p className="mt-8 text-base md:text-lg text-gray-600 max-w-sm leading-relaxed">
-              Here&rsquo;s what other {isUS ? "scheduling" : "rostering"} leads had to say about
-              RosterLab.
+              Here&rsquo;s what other {isUS ? "scheduling" : "rostering"} leads
+              had to say about RosterLab.
             </p>
 
             <div className="hidden lg:flex mt-10 items-center gap-3">
@@ -270,7 +345,9 @@ export default function TestimonialsNew({
               <p className="font-semibold text-gray-900">{current.author}</p>
               <p className="text-sm text-gray-600">{current.role}</p>
               {current.roleExplanation && (
-                <p className="mt-1 text-sm text-gray-600">{current.roleExplanation}</p>
+                <p className="mt-1 text-sm text-gray-600">
+                  {current.roleExplanation}
+                </p>
               )}
               {current.link && (
                 <Link
