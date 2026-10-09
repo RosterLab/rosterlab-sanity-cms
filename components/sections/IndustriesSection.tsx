@@ -1,20 +1,15 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useId, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { IconType } from "react-icons";
 import {
   LuArrowRight,
-  LuBriefcase,
-  LuBriefcaseMedical,
   LuGraduationCap,
-  LuHandHeart,
   LuHeadset,
-  LuIdCard,
   LuLandmark,
   LuPlane,
-  LuStethoscope,
   LuStore,
   LuUtensils,
 } from "react-icons/lu";
@@ -32,22 +27,19 @@ const LOCATION = "Landing Industries";
 const FADE_UP =
   "motion-safe:animate-[rl-fade-up_500ms_cubic-bezier(0.22,1,0.36,1)_both]";
 
-// How long a tab click takes to scroll the page to its group.
-const JUMP_MS = 800;
-
 interface WorkforceGroup {
   name: string;
-  icon: IconType;
+  /**
+   * Tile illustration: a transparent webp of blue line art, about 400px
+   * tall, trimmed to the figures. Shown with `contain`, so shapes can vary.
+   */
+  illustration: string;
   description: string;
   /** The group's roster-type landing page. */
   href: string;
   /** Link text for `href`; "Explore {name} rostering" where that reads well. */
   linkLabel: string;
-  /**
-   * The few features that matter most to this group. Each is stepped through
-   * beside the copy: its title and description show in the text column while
-   * its product mockup fills the slide.
-   */
+  /** The few features that matter most to this group, listed beside its copy. */
   features: WorkforceFeature[];
 }
 
@@ -56,9 +48,9 @@ interface WorkforceFeature {
   /** One or two sentences on what the feature does for this group. */
   description: string;
   /**
-   * Product mockup for the slide — a 1:1 export (1100×1100 or larger) with
-   * its background baked in; it fills the slide edge to edge. Optional until
-   * the asset exists; the slide shows a neutral placeholder in the meantime.
+   * Product mockup, 1:1 (1100×1100 or larger). Not shown by the current
+   * tiles-and-list layout; kept so the supplied mockups stay wired up for
+   * reuse.
    */
   image?: { src: string; alt: string };
 }
@@ -66,7 +58,7 @@ interface WorkforceFeature {
 const WORKFORCE_GROUPS: WorkforceGroup[] = [
   {
     name: "Nursing",
-    icon: LuBriefcaseMedical,
+    illustration: "/landing/workforce/illustrations/nursing.webp",
     href: "/industries/healthcare/nurse-rostering",
     linkLabel: "Explore nurse rostering",
     description:
@@ -90,7 +82,7 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
   },
   {
     name: "Junior doctors",
-    icon: LuStethoscope,
+    illustration: "/landing/workforce/illustrations/junior-doctors.webp",
     href: "/industries/healthcare/junior-medical-officer-rostering",
     linkLabel: "Explore junior doctor rostering",
     description:
@@ -110,7 +102,7 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
   },
   {
     name: "Senior doctors & consultants",
-    icon: LuIdCard,
+    illustration: "/landing/workforce/illustrations/senior-doctors.webp",
     href: "/industries/healthcare/senior-medical-officer-rostering",
     linkLabel: "Explore senior doctor rostering",
     description:
@@ -130,7 +122,7 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
   },
   {
     name: "Allied health",
-    icon: LuHandHeart,
+    illustration: "/landing/workforce/illustrations/allied-health.webp",
     href: "/industries/healthcare",
     linkLabel: "Explore allied health rostering",
     description:
@@ -145,7 +137,7 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
   },
   {
     name: "Management",
-    icon: LuBriefcase,
+    illustration: "/landing/workforce/illustrations/management.webp",
     // No management landing page yet, so this points at the healthcare hub.
     href: "/industries/healthcare",
     linkLabel: "Explore rostering for managers",
@@ -218,288 +210,21 @@ const OTHER_INDUSTRIES: OtherIndustry[] = [
   },
 ];
 
-function ArrowButton({
-  dir,
-  disabled,
-  onClick,
-  label,
-}: {
-  dir: "prev" | "next";
-  disabled: boolean;
-  onClick: () => void;
-  label: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={label}
-      className="w-11 h-11 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-700 transition enabled:hover:border-blue-600 enabled:hover:text-blue-600 disabled:opacity-40 disabled:cursor-not-allowed"
-    >
-      <LuArrowRight
-        aria-hidden="true"
-        className={`w-4 h-4 ${dir === "prev" ? "rotate-180" : ""}`}
-      />
-    </button>
-  );
-}
-
 /**
- * One group's copy and its features. The features sit in a horizontal
- * scroll-snap track, so they can be swiped or trackpad-scrolled as well as
- * stepped through with the arrows under the copy; the arrows and counter
- * follow the track whichever way it moves.
- *
- * Renders the panel's two grid cells. Keyed by group, so a new group starts
- * on its first feature.
- */
-function GroupPanel({ group }: { group: WorkforceGroup }) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [feature, setFeature] = useState(0);
-  const count = group.features.length;
-  const Icon = group.icon;
-
-  const onScroll = () => {
-    const track = trackRef.current;
-    if (!track) return;
-    setFeature(Math.round(track.scrollLeft / track.clientWidth));
-  };
-
-  const go = (i: number) => {
-    const track = trackRef.current;
-    if (!track) return;
-    trackButtonClick(
-      `Workforce feature: ${group.features[i].title}`,
-      LOCATION,
-      {
-        workforce_group: group.name,
-      },
-    );
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    track.scrollTo({
-      left: i * track.clientWidth,
-      behavior: reduce ? "auto" : "smooth",
-    });
-  };
-
-  return (
-    <>
-      <div className={FADE_UP}>
-        <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-          {group.name}
-        </h3>
-        <p className="mt-5 max-w-xl text-base md:text-lg text-gray-600 leading-relaxed">
-          {group.description}
-        </p>
-
-        {/* The active feature's copy. It follows the slide track, so it
-            updates whether the reader used the arrows or swiped. */}
-        <div
-          aria-live="polite"
-          className="mt-8 border-l-2 border-blue-600 pl-5"
-        >
-          {count > 1 && (
-            <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
-              Feature {feature + 1} of {count}
-            </p>
-          )}
-          <p className="mt-1 text-lg md:text-xl font-semibold text-gray-900">
-            {group.features[feature].title}
-          </p>
-          <p className="mt-2 max-w-md text-sm md:text-base text-gray-600 leading-relaxed">
-            {group.features[feature].description}
-          </p>
-        </div>
-
-        {count > 1 && (
-          <div className="mt-6 flex gap-2">
-            <ArrowButton
-              dir="prev"
-              label="Previous feature"
-              disabled={feature === 0}
-              onClick={() => go(feature - 1)}
-            />
-            <ArrowButton
-              dir="next"
-              label="Next feature"
-              disabled={feature === count - 1}
-              onClick={() => go(feature + 1)}
-            />
-          </div>
-        )}
-
-        <Link
-          href={group.href}
-          onClick={() =>
-            trackSmartButtonClick(group.linkLabel, group.href, LOCATION, {
-              workforce_group: group.name,
-            })
-          }
-          className="group mt-8 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
-        >
-          {group.linkLabel}
-          <LuArrowRight
-            aria-hidden="true"
-            className="w-4 h-4 transition-transform group-hover:translate-x-1"
-          />
-        </Link>
-      </div>
-
-      {/* Capped by viewport height on desktop so the pinned block always
-          fits. */}
-      <div className="w-full lg:max-w-[min(100%,calc(100vh-20rem))] lg:ml-auto">
-        <div
-          ref={trackRef}
-          onScroll={onScroll}
-          aria-label={`${group.name} features`}
-          className="flex overflow-x-auto snap-x snap-mandatory rounded-3xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {group.features.map((f, i) => (
-            // One slide per feature. Mockups are exported square with their
-            // own background, so they fill the slide edge to edge.
-            <div
-              key={f.title}
-              aria-label={`${i + 1} of ${count}: ${f.title}`}
-              className="relative shrink-0 w-full snap-center aspect-square overflow-hidden bg-blue-50"
-            >
-              {f.image ? (
-                <Image
-                  src={f.image.src}
-                  alt={f.image.alt}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                />
-              ) : (
-                // Placeholder until the feature's mockup is supplied.
-                <div className="flex h-full flex-col items-center justify-center gap-5 px-8 text-center">
-                  <Icon
-                    aria-hidden="true"
-                    className="w-20 h-20 md:w-24 md:h-24 text-blue-600"
-                  />
-                  <p className="text-lg md:text-xl font-semibold text-gray-900">
-                    {f.title}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
-}
-
-const DESKTOP_QUERY = "(min-width: 1024px)";
-
-/**
- * Tabs above a single panel. On desktop the tabs and panel pin in place while
- * the page scrolls through a tall track: scroll position picks the active
- * group, and a progress bar under the tabs fills as you go. On smaller
- * screens the pinned block would not fit, so it is plain tabs.
+ * A card with a row of group tiles over the active group's detail: its copy
+ * and link on the left, its key features as a divided list on the right.
+ * Clicking a tile (or arrowing to it) switches the group in place.
  */
 function WorkforceGroups() {
   const id = useId();
-  const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const barRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  // A tab-click scroll in progress. While it runs, the clicked group stays
-  // active — the scroll would otherwise pass through, and flash up, every
-  // group in between.
-  const jumpRef = useRef<{ frame: number; stop: () => void } | null>(null);
-  const group = WORKFORCE_GROUPS[active];
   const count = WORKFORCE_GROUPS.length;
-
-  // Scroll → progress. The bar is written straight to the DOM each frame so
-  // scrolling doesn't re-render the section; state only changes when the
-  // active group does.
-  useEffect(() => {
-    const desktop = window.matchMedia(DESKTOP_QUERY);
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const track = trackRef.current;
-      if (!track || !desktop.matches) return;
-      const { top, height } = track.getBoundingClientRect();
-      const range = height - window.innerHeight;
-      const progress = range > 0 ? Math.min(1, Math.max(0, -top / range)) : 0;
-      barRefs.current.forEach((bar, i) => {
-        if (bar)
-          bar.style.transform = `scaleX(${Math.min(1, Math.max(0, progress * count - i))})`;
-      });
-      if (!jumpRef.current)
-        setActive(Math.min(count - 1, Math.floor(progress * count)));
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(frame);
-      jumpRef.current?.stop();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [count]);
-
-  // Scrolls the page to `top` with an ease in-out, so the progress bar fills
-  // smoothly on the way. Any input from the reader hands the scroll straight
-  // back to them.
-  const jumpScroll = (top: number) => {
-    jumpRef.current?.stop();
-    const from = window.scrollY;
-    const start = performance.now();
-    const stop = () => {
-      if (!jumpRef.current) return;
-      cancelAnimationFrame(jumpRef.current.frame);
-      jumpRef.current = null;
-      window.removeEventListener("wheel", stop);
-      window.removeEventListener("touchstart", stop);
-      window.removeEventListener("keydown", stop);
-    };
-    const step = (now: number) => {
-      const t = Math.min(1, (now - start) / JUMP_MS);
-      // Ease in-out cubic.
-      const eased = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
-      window.scrollTo({
-        top: from + (top - from) * eased,
-        behavior: "instant",
-      });
-      if (t < 1 && jumpRef.current)
-        jumpRef.current.frame = requestAnimationFrame(step);
-      else stop();
-    };
-    jumpRef.current = { frame: requestAnimationFrame(step), stop };
-    window.addEventListener("wheel", stop, { passive: true });
-    window.addEventListener("touchstart", stop, { passive: true });
-    window.addEventListener("keydown", stop);
-  };
+  const [active, setActive] = useState(0);
+  const group = WORKFORCE_GROUPS[active];
 
   const select = (i: number) => {
     trackButtonClick(`Workforce group: ${WORKFORCE_GROUPS[i].name}`, LOCATION);
-    const track = trackRef.current;
-    if (!track || !window.matchMedia(DESKTOP_QUERY).matches) {
-      setActive(i);
-      return;
-    }
-    // On desktop the scroll position owns the active group, so a tab click
-    // scrolls to the start of that group's stretch of the track. The group
-    // goes active straight away rather than once the scroll arrives.
-    const range = track.offsetHeight - window.innerHeight;
-    const trackTop = track.getBoundingClientRect().top + window.scrollY;
-    const top = trackTop + (range * (i + 0.02)) / count;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      window.scrollTo({ top, behavior: "instant" });
-      return;
-    }
     setActive(i);
-    jumpScroll(top);
   };
 
   // Arrow keys move between tabs, as the tabs pattern expects.
@@ -527,7 +252,7 @@ function WorkforceGroups() {
 
   return (
     <div>
-      <div className="max-w-3xl">
+      <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
           Rostering tailored to every healthcare workforce group
         </h2>
@@ -537,81 +262,113 @@ function WorkforceGroups() {
         </p>
       </div>
 
-      {/* Desktop: one screen of pinned content plus 60vh of scroll per group.
-          The multiplier is WORKFORCE_GROUPS.length, written out because
-          Tailwind needs the class to be a literal. */}
-      <div ref={trackRef} className="relative lg:h-[calc(100vh+5*60vh)]">
-        {/* pt clears the sticky site header. */}
-        <div className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-center lg:pt-[60px]">
-          <div
-            role="tablist"
-            aria-label="Healthcare workforce groups"
-            className="mt-10 lg:mt-0 flex flex-wrap gap-3"
-          >
-            {WORKFORCE_GROUPS.map((g, i) => {
-              const Icon = g.icon;
-              const selected = i === active;
-              return (
-                <button
-                  key={g.name}
-                  ref={(el) => {
-                    tabRefs.current[i] = el;
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`${id}-tab-${i}`}
-                  aria-selected={selected}
-                  aria-controls={`${id}-panel`}
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => select(i)}
-                  onKeyDown={onKeyDown}
-                  className={`inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-sm md:text-base font-semibold transition ${
-                    selected
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "bg-white text-gray-900 border border-gray-200 hover:border-blue-300 hover:text-blue-700"
-                  }`}
-                >
-                  <Icon
-                    aria-hidden="true"
-                    className={`w-5 h-5 ${selected ? "text-white" : "text-blue-600"}`}
-                  />
-                  {g.name}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Scroll progress, one segment per group. Desktop only — it tracks
-              the pinned scroll, which smaller screens don't have. */}
-          <div
-            aria-hidden="true"
-            className="hidden lg:grid grid-cols-5 gap-2 mt-6"
-          >
-            {WORKFORCE_GROUPS.map((g, i) => (
-              <span
+      <div className="mt-10 md:mt-12 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm">
+        {/* Group tiles. A swipeable row on phones, five across from md. */}
+        <div
+          role="tablist"
+          aria-label="Healthcare workforce groups"
+          className="flex gap-3 overflow-x-auto snap-x pt-1 md:pt-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-5 md:overflow-visible"
+        >
+          {WORKFORCE_GROUPS.map((g, i) => {
+            const selected = i === active;
+            return (
+              <button
                 key={g.name}
-                className="h-1 rounded-full bg-gray-200 overflow-hidden"
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`${id}-tab-${i}`}
+                aria-selected={selected}
+                aria-controls={`${id}-panel`}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => select(i)}
+                onKeyDown={onKeyDown}
+                className={`group relative flex h-44 w-36 shrink-0 snap-start flex-col items-center overflow-hidden rounded-xl border px-3 pb-3 pt-4 transition duration-300 ease-out active:scale-[0.97] md:h-56 md:w-auto ${
+                  selected
+                    ? "border-blue-200 bg-white shadow-md"
+                    : "border-gray-200 bg-slate-50 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-md"
+                }`}
               >
                 <span
-                  ref={(el) => {
-                    barRefs.current[i] = el;
-                  }}
-                  className="block h-full bg-blue-600 origin-left"
-                  style={{ transform: "scaleX(0)" }}
-                />
-              </span>
-            ))}
-          </div>
+                  className={`text-center text-sm md:text-base font-medium leading-tight transition-colors ${
+                    selected
+                      ? "text-gray-900"
+                      : "text-gray-500 group-hover:text-gray-700"
+                  }`}
+                >
+                  {g.name}
+                </span>
+                {/* Faded to grey off-tab, so the active group is the one
+                    in colour. Hovering brings a tile's colour up, and picking
+                    one lets its colour wash in slowly. */}
+                <span className="relative z-10 mt-2 w-full flex-1">
+                  <Image
+                    src={g.illustration}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 220px, 144px"
+                    className={`object-contain object-bottom transition duration-500 ease-out ${
+                      selected
+                        ? ""
+                        : "opacity-40 grayscale group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
+                    }`}
+                  />
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
+        <div className="mx-1 mt-3 border-t border-gray-200" />
+
+        <div
+          role="tabpanel"
+          id={`${id}-panel`}
+          aria-labelledby={`${id}-tab-${active}`}
+        >
+          {/* Keyed by group so the detail replays its entrance. */}
           <div
-            role="tabpanel"
-            id={`${id}-panel`}
-            aria-labelledby={`${id}-tab-${active}`}
-            className="mt-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center"
+            key={group.name}
+            className={`grid grid-cols-1 gap-10 px-4 py-8 md:px-10 md:py-12 lg:grid-cols-2 lg:gap-16 ${FADE_UP}`}
           >
-            {/* Keyed by tab so the panel remounts: the copy replays its
-                entrance and the features start from the first. */}
-            <GroupPanel key={group.name} group={group} />
+            <div>
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
+                {group.name}
+              </h3>
+              <p className="mt-4 max-w-md text-base md:text-lg text-gray-600 leading-relaxed">
+                {group.description}
+              </p>
+              <Link
+                href={group.href}
+                onClick={() =>
+                  trackSmartButtonClick(group.linkLabel, group.href, LOCATION, {
+                    workforce_group: group.name,
+                  })
+                }
+                className="group mt-8 inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm md:text-base font-semibold text-gray-900 transition hover:border-blue-600 hover:text-blue-700"
+              >
+                {group.linkLabel}
+                <LuArrowRight
+                  aria-hidden="true"
+                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                />
+              </Link>
+            </div>
+
+            <ul className="divide-y divide-gray-200">
+              {group.features.map((f) => (
+                <li key={f.title} className="py-5 first:pt-0 last:pb-0">
+                  <h4 className="text-lg md:text-xl font-semibold text-gray-900">
+                    {f.title}
+                  </h4>
+                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                    {f.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
