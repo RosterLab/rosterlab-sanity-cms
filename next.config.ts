@@ -137,22 +137,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Search Console URLs from retired pages and malformed links.
-      {
-        source: "/careers/marketing-content-specialist",
-        destination: "/careers",
-        permanent: true,
-      },
-      {
-        source: "/blog/author/press-news",
-        destination: "/newsroom",
-        permanent: true,
-      },
-      {
-        source: "/&",
-        destination: "/",
-        permanent: true,
-      },
       // Only normalize numbered variants of logos that actually exist.
       {
         source:
