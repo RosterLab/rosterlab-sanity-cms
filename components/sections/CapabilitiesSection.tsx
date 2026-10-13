@@ -28,11 +28,15 @@ export interface Capability {
   description: string;
   cta: { label: string; href: string };
   /**
-   * Product image, exported 3:2 (2000×1333). The desktop showcase shows it
-   * 16:10 with the crop set a little above centre, which trims about 2% off
-   * the top and 4% off the bottom; keep the subject clear of those edges.
+   * Product image in two cuts. `src` is 3:2 (2000×1333) for the stacked
+   * mobile cards. `wide` is 21:9 (2520×1080) for the desktop showcase, sized so
+   * the full-width image and the row of three fit on one laptop screen; on
+   * short screens that frame is capped by height and trims a little top and
+   * bottom, so keep the subject in the middle 85%.
    */
-  image: { src: string; alt: string };
+  image: { src: string; wide: string; alt: string };
+  /** The images' background colour, for the active tab's square and bar. */
+  color: string;
 }
 
 export const CAPABILITIES_AU: Capability[] = [
@@ -47,8 +51,10 @@ export const CAPABILITIES_AU: Capability[] = [
     },
     image: {
       src: "/landing/capabilities/build-rules.webp",
+      wide: "/landing/capabilities/build-rules-wide.webp",
       alt: "The RosterLab Rule Builder listing hours, night-shift and days-off rules, in front of a roster being generated from them",
     },
+    color: "#3779DE",
   },
   {
     tag: "Adapt",
@@ -58,8 +64,10 @@ export const CAPABILITIES_AU: Capability[] = [
     cta: { label: "Explore re-rostering", href: "/feature/re-rostering" },
     image: {
       src: "/landing/capabilities/adapt-open-shifts.webp",
+      wide: "/landing/capabilities/adapt-open-shifts-wide.webp",
       alt: "An open night shift on the roster, with a staff member accepting it from the RosterLab app",
     },
+    color: "#66E3B9",
   },
   {
     tag: "Engage",
@@ -69,8 +77,10 @@ export const CAPABILITIES_AU: Capability[] = [
     cta: { label: "Explore self-scheduling", href: "/feature/self-scheduling" },
     image: {
       src: "/landing/capabilities/engage-preferences.webp",
+      wide: "/landing/capabilities/engage-preferences-wide.webp",
       alt: "A staff member picks a Short Day preference in the RosterLab app and it appears on the manager's Preferences view",
     },
+    color: "#61C8C7",
   },
 ];
 
@@ -195,19 +205,21 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
     >
       {/* Every image is stacked here so a hand-over cross-fades between
           frames that are already loaded. */}
+      {/* Capped by the viewport so the image and the row below it are on
+          screen together, even on a short laptop. */}
       <div
         id="capability-showcase-media"
-        className="relative aspect-[16/10] w-full bg-slate-100"
+        className="relative aspect-[21/9] max-h-[max(20rem,calc(100svh-22rem))] w-full bg-slate-100"
       >
         {capabilities.map((c, i) => (
           <Image
             key={c.tag}
-            src={c.image.src}
+            src={c.image.wide}
             alt={i === active ? c.image.alt : ""}
             aria-hidden={i !== active}
             fill
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            className={`object-cover object-[center_30%] transition-opacity duration-500 ${
+            sizes="(min-width: 1024px) 1280px, 100vw"
+            className={`object-cover transition-opacity duration-500 ${
               i === active ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -220,7 +232,7 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
           return (
             <div
               key={c.tag}
-              className={`relative flex flex-col px-7 pb-7 pt-6 transition-colors duration-300 ${
+              className={`relative flex flex-col px-6 pb-6 pt-5 transition-colors duration-300 ${
                 isActive ? "bg-white" : ""
               } ${i > 0 ? "border-l border-gray-200" : ""}`}
             >
@@ -232,8 +244,11 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
                 >
                   <span
                     ref={barRef}
-                    className="block h-full w-full origin-left bg-blue-600"
-                    style={{ transform: "scaleX(0)" }}
+                    className="block h-full w-full origin-left"
+                    style={{
+                      transform: "scaleX(0)",
+                      backgroundColor: c.color,
+                    }}
                   />
                 </span>
               )}
@@ -248,22 +263,23 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
                   <span
                     aria-hidden="true"
                     className={`h-2 w-2 shrink-0 transition-colors ${
-                      isActive ? "bg-blue-600" : "bg-gray-300"
+                      isActive ? "" : "bg-gray-300"
                     }`}
+                    style={isActive ? { backgroundColor: c.color } : undefined}
                   />
                   <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
                     {c.tag}
                   </span>
                 </span>
                 <span
-                  className={`mt-2 block text-xl xl:text-2xl font-bold leading-snug transition-colors ${
+                  className={`mt-2 block text-xl font-bold leading-snug transition-colors ${
                     isActive ? "text-gray-900" : "text-gray-500"
                   }`}
                 >
                   {c.title}
                 </span>
                 <span
-                  className={`mt-3 block text-sm xl:text-base leading-relaxed transition-colors ${
+                  className={`mt-2 block text-sm leading-relaxed transition-colors ${
                     isActive ? "text-gray-600" : "text-gray-400"
                   }`}
                 >
@@ -288,9 +304,7 @@ export default function CapabilitiesSection({
 } = {}) {
   return (
     <section className="py-16 md:py-20 lg:py-24">
-      {/* Narrower than the page container so the image and the row of three
-          fit on one desktop screen together. */}
-      <Container className="lg:max-w-5xl">
+      <Container className="lg:px-12 xl:px-20">
         <h2 className="max-w-3xl text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
           {heading}
         </h2>
@@ -303,7 +317,7 @@ export default function CapabilitiesSection({
         </div>
 
         {/* Desktop: one image over a row of three. */}
-        <div className="mt-12 hidden lg:block">
+        <div className="mt-10 hidden lg:block">
           <CapabilityShowcase capabilities={capabilities} />
         </div>
       </Container>

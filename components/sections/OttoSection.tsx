@@ -13,9 +13,6 @@ import Button from "@/components/ui/Button";
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Otto";
 
-/** Section accent: the brand blue the heroes use, and the first panel's field. */
-const ACCENT = "#3779DD";
-
 /** Fallback hold, used only until a clip reports its real length. */
 const FALLBACK_DURATION_MS = 12000;
 
@@ -143,32 +140,34 @@ const FEATURES: OttoFeature[] = [
     title: "Answer roster questions instantly",
     description:
       "Check staffing coverage, skill mix, leave, fairness and more. Otto searches your live roster and audit trail to give you contextual answers, including who worked when and what's changed.",
-    video: "/landing/otto/chat-v2.mp4",
-    color: ACCENT,
-    colorClear: "rgba(55,121,221,0)",
-    dot: "rgba(255,255,255,0.40)",
+    video: "/landing/otto/chat-v3.mp4",
+    layout: "full",
+    // The clip's own field, so the panel and the frame are one colour while
+    // the clip loads and at its rounded corners.
+    color: "#2E6BD6",
+    colorClear: "rgba(46,107,214,0)",
+    dot: "rgba(255,255,255,0.45)",
   },
   {
     title: "Get recommendations for better roster decisions",
     description:
       "Filling a gap, assessing a swap or reworking a roster? Otto weighs availability, skills, workload, rest requirements and roster rules to recommend the best way forward.",
-    video: "/landing/otto/cover-v2.mp4",
+    video: "/landing/otto/cover-v3.mp4",
     layout: "full",
-    // The clip's own field, so the panel and the frame are one colour while
-    // the clip loads and at its rounded corners.
-    color: "#0B9474",
-    colorClear: "rgba(11,148,116,0)",
+    // The clip's own field, as the first panel.
+    color: "#0B8666",
+    colorClear: "rgba(11,134,102,0)",
     dot: "rgba(255,255,255,0.45)",
   },
   {
     title: "Analyse your roster from every angle",
     description:
       "Turn your roster data into insights you can act on. Otto breaks down any part of your roster to create charts, summaries and reports that back confident workforce decisions.",
-    video: "/landing/otto/fairness-v2.mp4",
+    video: "/landing/otto/fairness-v3.mp4",
     layout: "full",
-    // The clip's own field — the hero blue, as the first panel.
-    color: "#3779DE",
-    colorClear: "rgba(55,121,222,0)",
+    // The clip's own field, as the first panel.
+    color: "#2E6BD6",
+    colorClear: "rgba(46,107,214,0)",
     dot: "rgba(255,255,255,0.45)",
   },
 ];
@@ -178,6 +177,9 @@ export default function OttoSection() {
   // The timer only runs while the list is on screen and nobody is reading it.
   const [isHovered, setIsHovered] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  // Clips are only fetched once the section is close to the viewport, so
+  // they never compete with the hero for bandwidth on the first load.
+  const [isNear, setIsNear] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   // The mobile accordion can be shut entirely; the desktop column always has a
   // panel on show, so this only gates the small-screen layout.
@@ -187,6 +189,7 @@ export default function OttoSection() {
   const [durations, setDurations] = useState<number[]>(() =>
     FEATURES.map(() => FALLBACK_DURATION_MS),
   );
+  const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -209,6 +212,24 @@ export default function OttoSection() {
     const observer = new IntersectionObserver(
       ([entry]) => setIsInView(entry.isIntersecting),
       { threshold: 0.3 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Latches on: once the clips have started loading there is no reason to drop
+  // them again.
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setIsNear(true);
+        observer.disconnect();
+      },
+      { rootMargin: "800px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -240,7 +261,7 @@ export default function OttoSection() {
     });
 
     return () => cleanups.forEach((off) => off?.());
-  }, []);
+  }, [isNear]);
 
   // A step begins with its clip at frame 0 — otherwise switching back to a
   // panel picks the conversation up halfway through. The others hold still so
@@ -276,7 +297,7 @@ export default function OttoSection() {
     const onResize = () => sync(false);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, [activeIndex, mobileCollapsed]);
+  }, [activeIndex, mobileCollapsed, isNear]);
 
   const isPaused = isHovered || !isInView;
   const showTimer = !prefersReducedMotion;
@@ -287,7 +308,7 @@ export default function OttoSection() {
   const active = FEATURES[activeIndex];
 
   return (
-    <section className="py-20 md:py-24">
+    <section ref={sectionRef} className="py-20 md:py-24">
       <Container className="lg:px-12 xl:px-20">
         {/* ---- Intro ---- */}
         <div className="max-w-3xl">
@@ -331,12 +352,13 @@ export default function OttoSection() {
                   ref={(node) => {
                     videoRefs.current[index] = node;
                   }}
-                  src={feature.video}
-                  autoPlay={index === 0}
+                  // No source until the section is near; the effect above
+                  // starts the active clip once it has one.
+                  src={isNear ? feature.video : undefined}
                   loop
                   muted
                   playsInline
-                  // Metadata only, for every clip: the step timing is read
+                  // Metadata only for the others: the step timing is read
                   // from `duration`, so it has to be known before the panel
                   // is reached, but the frames themselves can wait.
                   preload={index === 0 ? "auto" : "metadata"}
@@ -363,12 +385,29 @@ export default function OttoSection() {
             {FEATURES.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
-                <li key={feature.title} className="relative">
-                  {/* Highlight panel, extended past the container to the viewport edge. */}
-                  {isActive && (
+                <li key={feature.title} className="group relative">
+                  {/* Highlight panel: a wash of the step's panel colour with a
+                      solid bar down its left edge, so the open step reads at a
+                      glance and is tied to the clip beside it. */}
+                  {isActive ? (
+                    <>
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0"
+                        style={{
+                          backgroundColor: `color-mix(in srgb, ${feature.color} 7%, white)`,
+                        }}
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-y-0 left-0 w-1"
+                        style={{ backgroundColor: feature.color }}
+                      />
+                    </>
+                  ) : (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-0 bg-gray-50"
+                      className="absolute inset-0 bg-gray-50 opacity-0 transition-opacity group-hover:opacity-100"
                     />
                   )}
 
@@ -402,12 +441,18 @@ export default function OttoSection() {
                     aria-current={isActive}
                     className="relative w-full px-5 py-7 text-left sm:px-6 lg:py-10"
                   >
-                    <h3 className="text-base md:text-lg font-semibold text-gray-900">
+                    <h3
+                      className={`text-base md:text-lg font-semibold transition-colors ${
+                        isActive
+                          ? "text-gray-900"
+                          : "text-gray-400 group-hover:text-gray-700"
+                      }`}
+                    >
                       {feature.title}
                     </h3>
                     <p
                       className={`mt-2 text-sm leading-relaxed transition-colors ${
-                        isActive ? "text-gray-600" : "text-gray-400"
+                        isActive ? "text-gray-700" : "text-gray-400"
                       }`}
                     >
                       {feature.description}
@@ -475,22 +520,24 @@ export default function OttoSection() {
                 {isOpen && (
                   <div className="px-5 pb-6">
                     <ChatPanel feature={feature}>
-                      <video
-                        // Mounted with the open item, so it always starts at
-                        // frame 0 and nothing runs while the item is shut.
-                        key={feature.video}
-                        ref={mobileVideoRef}
-                        src={feature.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        aria-hidden="true"
-                        tabIndex={-1}
-                        className={clipClass(feature)}
-                        style={clipStyle(feature)}
-                      />
+                      {isNear && (
+                        <video
+                          // Mounted with the open item, so it always starts at
+                          // frame 0 and nothing runs while the item is shut.
+                          key={feature.video}
+                          ref={mobileVideoRef}
+                          src={feature.video}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          aria-hidden="true"
+                          tabIndex={-1}
+                          className={clipClass(feature)}
+                          style={clipStyle(feature)}
+                        />
+                      )}
                     </ChatPanel>
                   </div>
                 )}

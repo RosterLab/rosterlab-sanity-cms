@@ -135,27 +135,6 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
       },
     ],
   },
-  {
-    name: "Management",
-    illustration: "/landing/workforce/illustrations/management.webp",
-    // No management landing page yet, so this points at the healthcare hub.
-    href: "/industries/healthcare",
-    linkLabel: "Explore rostering for managers",
-    description:
-      "Give managers one view of coverage, cost and compliance across every team, with the detail to act on gaps before they reach the floor.",
-    features: [
-      {
-        title: "Coverage & cost at a glance",
-        description:
-          "Coverage, overtime and agency spend for every team on one screen, so gaps and cost blow-outs are visible before the roster goes live.",
-      },
-      {
-        title: "Compliance across every team",
-        description:
-          "Award, agreement and fatigue rules are checked on every roster across the organisation, with a clear audit trail when questions come up.",
-      },
-    ],
-  },
 ];
 
 interface OtherIndustry {
@@ -263,11 +242,11 @@ function WorkforceGroups() {
       </div>
 
       <div className="mt-10 md:mt-12 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm">
-        {/* Group tiles. A swipeable row on phones, five across from md. */}
+        {/* Group tiles. A swipeable row on phones, four across from md. */}
         <div
           role="tablist"
           aria-label="Healthcare workforce groups"
-          className="flex gap-3 overflow-x-auto snap-x pt-1 md:pt-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-5 md:overflow-visible"
+          className="flex gap-3 overflow-x-auto snap-x pt-1 md:pt-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-4 md:overflow-visible"
         >
           {WORKFORCE_GROUPS.map((g, i) => {
             const selected = i === active;

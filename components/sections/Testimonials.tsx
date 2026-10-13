@@ -50,7 +50,7 @@ const testimonials = [
     quote:
       "RosterLab has been a game-changer for our radiology department with significant time-savings for our on-call rosters. It has allowed us to maximise leave provisions while maintaining a safer roster",
     author: "Dr. Fernando",
-    company: "Junior Consultant, Auckland Tertiary Hospital",
+    company: "Consultant, Auckland Tertiary Hospital",
     logo: null,
     caseStudyLink:
       "/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster",

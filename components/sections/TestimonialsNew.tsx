@@ -85,7 +85,7 @@ export const TESTIMONIALS_AU: Testimonial[] = [
       " while maintaining a safer roster.",
     ],
     author: "Dr. Fernando",
-    role: "Junior Consultant, Auckland Tertiary Hospital",
+    role: "Consultant, Auckland Tertiary Hospital",
     caseStudyLink:
       "/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster",
   },

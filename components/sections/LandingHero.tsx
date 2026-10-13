@@ -502,8 +502,10 @@ export default function LandingHero({
         {/* Text stack — centred, on the reference's 864px column. */}
         <Container className="pt-24 text-center">
           {/* Two balanced lines. The reference holds one, but Poppins is far
-              wider than its display face and this headline is longer. */}
-          <h1 className="mx-auto max-w-[864px] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[0.95] tracking-[-0.024em] text-white">
+              wider than its display face and this headline is longer. On
+              phones it wraps to three, where the reference's 0.95 leading
+              lets descenders run into the line below, so it opens up there. */}
+          <h1 className="mx-auto max-w-[864px] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] lg:leading-[0.95] tracking-[-0.024em] text-white">
             {content.headline}
           </h1>
 

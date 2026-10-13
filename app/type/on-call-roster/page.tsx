@@ -513,7 +513,7 @@ export default function OnCallRosterPage() {
                   Dr. Fernando
                 </p>
                 <p className="text-gray-600 mb-4">
-                  Junior Consultant, Auckland Tertiary Hospital
+                  Consultant, Auckland Tertiary Hospital
                 </p>
                 <Link
                   href="/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster"

@@ -225,7 +225,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " while maintaining a safer schedule.",
     ],
     author: "Dr. Fernando",
-    role: "Junior Consultant, Auckland Tertiary Hospital",
+    role: "Consultant, Auckland Tertiary Hospital",
     roleExplanation: "Early-career specialist physician, comparable to a US attending.",
     caseStudyLink:
       "/us/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-schedule",

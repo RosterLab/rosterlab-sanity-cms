@@ -40,6 +40,14 @@ const MOBILE_CLIP_MAX_W = 640;
  */
 const COPY_HOLD = 0.5;
 
+/**
+ * Auto-advance dwell when a tab's clip hasn't reported its length yet, and the
+ * least a tab is held for: if the clip is closer than this to the end of its
+ * loop when the reader stops scrolling, it plays one more loop first.
+ */
+const FALLBACK_DWELL_MS = 8000;
+const MIN_DWELL_MS = 4000;
+
 export interface BenefitTab {
   id: string;
   label: string;
@@ -312,12 +320,27 @@ export default function BenefitsNew({
     });
   };
 
+  // Auto-advance hands over as the active clip finishes a loop, so the reader
+  // sees each recording through before the page glides on.
+  const visualRef = useRef<HTMLDivElement>(null);
+  const dwellFor = (index: number) => {
+    const video = visualRef.current?.querySelector<HTMLVideoElement>(
+      `[data-clip="${index}"] video`,
+    );
+    if (!video || !Number.isFinite(video.duration) || video.duration <= 0)
+      return FALLBACK_DWELL_MS;
+    const loop = video.duration * 1000;
+    const remaining = loop - video.currentTime * 1000;
+    return remaining >= MIN_DWELL_MS ? remaining : remaining + loop;
+  };
+
   const {
     active: activeIndex,
     trackRef,
     barRef,
     select,
-  } = usePinnedTabs(count, moveCopy);
+    pauseProps,
+  } = usePinnedTabs(count, moveCopy, { autoAdvanceMs: dwellFor });
   const active = benefitTabs[activeIndex] ?? benefitTabs[0];
 
   const selectTab = (idx: number) => {
@@ -369,7 +392,10 @@ export default function BenefitsNew({
                 each tab's scroll progress drawn along the box's bottom edge.
                 Both rows are grid-cols-4 inside the same border, so a segment
                 lines up with its tab without measuring anything. */}
-            <div className="mx-auto mb-8 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+            <div
+              {...pauseProps}
+              className="mx-auto mb-8 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm"
+            >
               <div
                 role="tablist"
                 aria-label="Benefits"
@@ -404,7 +430,8 @@ export default function BenefitsNew({
               </div>
 
               {/* Square ends, flush to the box's bottom edge. Each segment
-                  fills as the page scrolls through its tab. */}
+                  fills as the page scrolls through its tab, and the rest of
+                  it fills with the clip while auto-advance runs. */}
               <div aria-hidden="true" className="grid grid-cols-4">
                 {benefitTabs.map((tab, i) => (
                   <span key={tab.id} className="h-[3px] overflow-hidden">
@@ -430,7 +457,10 @@ export default function BenefitsNew({
                   exactly one window. Blocks start one window apart; the
                   scroll handler takes over from the first frame. Off-tab
                   copy is inert so its CTA can't be tabbed to unseen. */}
-              <div className="relative overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)]">
+              <div
+                {...pauseProps}
+                className="relative overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)]"
+              >
                 {benefitTabs.map((tab, i) => (
                   <div
                     key={tab.id}
@@ -485,11 +515,15 @@ export default function BenefitsNew({
                   poster is stacked here so a tab change cross-fades between
                   frames that are already loaded; only the active tab
                   fetches and plays its video. */}
-              <div className="w-full max-w-[calc((100vh-15rem)*4/3)] ml-auto">
+              <div
+                ref={visualRef}
+                className="w-full max-w-[calc((100vh-15rem)*4/3)] ml-auto"
+              >
                 <LazyVisual className={VISUAL_BOX}>
                   {benefitTabs.map((tab, i) => (
                     <div
                       key={tab.id}
+                      data-clip={i}
                       aria-hidden={i !== activeIndex}
                       className={`absolute inset-0 transition-opacity duration-300 ${
                         i === activeIndex ? "opacity-100" : "opacity-0"
