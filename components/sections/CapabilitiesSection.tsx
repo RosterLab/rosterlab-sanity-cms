@@ -14,8 +14,11 @@ import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Capabilities";
 
-/** How long each capability holds on desktop before the next takes over. */
-const HOLD_MS = 7000;
+/**
+ * How long each capability holds on desktop before the next takes over: long
+ * enough to read the title and description without feeling rushed.
+ */
+const HOLD_MS = 12000;
 
 // Longest frame delta the timer will credit, so a main-thread stall pauses
 // the bar instead of jumping it forward when frames resume.
@@ -138,7 +141,8 @@ function CapabilityLink({ cta }: { cta: Capability["cta"] }) {
  * over a row of the three capabilities. The row works as tabs — the active
  * one is lifted onto white with a bar along its top edge that fills over
  * HOLD_MS, then hands over to the next. Clicking one takes it and restarts
- * its run. Runs only while on screen, and not at all under reduced motion.
+ * its run. Runs only while on screen, holds while the pointer or keyboard
+ * focus is on it, and doesn't run at all under reduced motion.
  */
 function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   const [active, setActive] = useState(0);
@@ -147,6 +151,10 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
   const elapsedRef = useRef(0);
+  // Pointer over the showcase, or focus inside it: the reader is engaged, so
+  // the timer holds.
+  const hoveredRef = useRef(false);
+  const focusedRef = useRef(false);
   const count = capabilities.length;
 
   useEffect(() => {
@@ -174,7 +182,8 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
     let raf = 0;
     let last = performance.now();
     const tick = (now: number) => {
-      elapsedRef.current += Math.min(now - last, MAX_FRAME_MS);
+      if (!hoveredRef.current && !focusedRef.current)
+        elapsedRef.current += Math.min(now - last, MAX_FRAME_MS);
       last = now;
       const fraction = Math.min(elapsedRef.current / HOLD_MS, 1);
       bar.style.transform = `scaleX(${fraction})`;
@@ -201,6 +210,21 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   return (
     <div
       ref={rootRef}
+      onMouseEnter={() => {
+        hoveredRef.current = true;
+      }}
+      onMouseLeave={() => {
+        hoveredRef.current = false;
+      }}
+      onFocus={(e) => {
+        // Keyboard focus only: a click also focuses the tab, and that
+        // shouldn't hold the showcase once the pointer has left.
+        focusedRef.current = e.target.matches(":focus-visible");
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null))
+          focusedRef.current = false;
+      }}
       className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
     >
       {/* Every image is stacked here so a hand-over cross-fades between
