@@ -56,10 +56,15 @@ export const metadata = withHreflang(
   Section boundaries live here rather than inside each section, so a rule is
   owned by the page and can never be drawn twice where two sections meet.
 
+  Backgrounds strictly alternate, white and tinted, so no two neighbouring
+  sections share a colour: hero (blue), white, tint, white, tint, white,
+  testimonials (its own tinted band), white, final CTA (blue).
+
   The tint is translucent: DotFocalOverlay sits behind this stack, and a solid
   fill would blank its dots out for the tinted section's whole height.
 */
-const TINT = "bg-slate-50/70";
+// A light wash of the brand blue, a shade under the testimonials band's 7%.
+const TINT = "bg-[rgba(55,121,221,0.06)]";
 
 /** Wraps a section so it can carry the alternating tint. */
 function SectionFrame({
@@ -81,24 +86,22 @@ export default function Home() {
             cut across the curve, so the run of boundaries starts below it. */}
         <LandingHero />
 
-        <SectionFrame tint>
+        <SectionFrame>
           <FeatureTestimonial />
         </SectionFrame>
         <SectionDivider />
 
-        <SectionFrame>
+        <SectionFrame tint>
           <BenefitsNew />
         </SectionFrame>
         <SectionDivider />
 
-        {/* Tinted so it reads as its own band after the benefits tabs; Otto
-            below drops its tint so two tinted bands never sit back to back. */}
-        <SectionFrame tint>
+        <SectionFrame>
           <CapabilitiesSection />
         </SectionFrame>
         <SectionDivider />
 
-        <SectionFrame>
+        <SectionFrame tint>
           <OttoSection />
         </SectionFrame>
         <SectionDivider />

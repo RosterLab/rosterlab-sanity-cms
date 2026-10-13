@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Container from "@/components/ui/Container";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import Button from "@/components/ui/Button";
+import { HEADER_OVERLAY_ATTR } from "@/components/layout/Header";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 import {
   HERO_CONTENT_AU,
@@ -112,7 +113,7 @@ const MOBILE_VIDEO_MAX_W = 640;
  */
 type Locale = "au" | "us";
 /**
- * The still that stands in for the video, in two sizes.
+ * The still that stands in for the video, in four widths.
  *
  * It is frame 0 of the recording, so nothing moves when the video takes over,
  * and it is the hero's LCP element — which is why it is an <img srcset> rather
@@ -131,8 +132,20 @@ const POSTER = {
     desktop: "/landing/mockup/hero-browser-us-poster.webp",
   },
 };
-const posterSrcSet = (l: Locale) =>
-  `${POSTER[l].mobile} 960w, ${POSTER[l].desktop} 1920w`;
+/**
+ * 720w and 1440w sit between the original two so the common cases land close:
+ * a ~720px-wide phone frame at 1.75x and a ~1000px laptop frame at 1x were
+ * otherwise rounding up to 960w and 1920w. Each is the 1920w file resized.
+ */
+const posterSrcSet = (l: Locale) => {
+  const base = POSTER[l].desktop.replace(/\.webp$/, "");
+  return [
+    `${base}-720.webp 720w`,
+    `${POSTER[l].mobile} 960w`,
+    `${base}-1440.webp 1440w`,
+    `${POSTER[l].desktop} 1920w`,
+  ].join(", ");
+};
 
 /**
  * How wide the frame is at each breakpoint, so the browser can pick a
@@ -441,7 +454,15 @@ export default function LandingHero({
     // stick against. `clip` crops without creating one, so the pin below works.
     // The rounding moved onto the background layer, which is the only thing
     // that needed clipping to the radius.
-    <section ref={sectionRef} className="relative overflow-x-clip bg-white">
+    // Pulled up under the 80px header, which is painted this blue until this
+    // section has scrolled past it (see Header's `blueOverHero`), so the two
+    // read as one field.
+    // The text stack's top padding grows by the same 80px to hold its place.
+    <section
+      ref={sectionRef}
+      {...{ [HEADER_OVERLAY_ATTR]: "" }}
+      className="relative -mt-20 overflow-x-clip bg-white"
+    >
       {/*
         The poster is the hero's LCP candidate, and it is only discoverable
         inside the <video> tag's `poster` attribute — which the preload scanner
@@ -500,7 +521,7 @@ export default function LandingHero({
 
       <div className="relative">
         {/* Text stack — centred, on the reference's 864px column. */}
-        <Container className="pt-24 text-center">
+        <Container className="pt-44 text-center">
           {/* Two balanced lines. The reference holds one, but Poppins is far
               wider than its display face and this headline is longer. On
               phones it wraps to three, where the reference's 0.95 leading

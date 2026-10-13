@@ -3,16 +3,7 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { IconType } from "react-icons";
-import {
-  LuArrowRight,
-  LuGraduationCap,
-  LuHeadset,
-  LuLandmark,
-  LuPlane,
-  LuStore,
-  LuUtensils,
-} from "react-icons/lu";
+import { LuArrowRight, LuChevronRight } from "react-icons/lu";
 import Container from "@/components/ui/Container";
 import {
   trackButtonClick,
@@ -21,6 +12,9 @@ import {
 
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Industries";
+
+// The brand-blue wash the testimonials band uses.
+const CARD_TINT = "rgba(55, 121, 221, 0.07)";
 
 // Fades a tab's text up into place. `both` holds the start frame through each
 // element's delay, so the stagger doesn't flash the text in first.
@@ -139,54 +133,19 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
 
 interface OtherIndustry {
   name: string;
-  icon: IconType;
-  description: string;
   href: string;
 }
 
 const OTHER_INDUSTRIES: OtherIndustry[] = [
-  {
-    name: "Hospitality",
-    icon: LuUtensils,
-    description:
-      "Match staff to bookings and peak service times across venues, without blowing out wage costs.",
-    href: "/industries/hospitality-roster",
-  },
-  {
-    name: "24/7 support teams",
-    icon: LuHeadset,
-    description:
-      "Keep round-the-clock queues covered with fair shift patterns and fewer last-minute gaps.",
-    href: "/industries/call-centre-rostering",
-  },
-  {
-    name: "Retail",
-    icon: LuStore,
-    description:
-      "Balance staff coverage with sales demand to keep customers happy and labour costs down.",
-    href: "/industries/retail-roster",
-  },
-  {
-    name: "Education",
-    icon: LuGraduationCap,
-    description:
-      "Schedule teaching and support staff across timetables, campuses and term dates.",
-    href: "/industries/education-roster",
-  },
+  { name: "Hospitality", href: "/industries/hospitality-roster" },
+  { name: "24/7 support teams", href: "/industries/call-centre-rostering" },
+  { name: "Retail", href: "/industries/retail-roster" },
+  { name: "Education", href: "/industries/education-roster" },
   {
     name: "Airport & transportation",
-    icon: LuPlane,
-    description:
-      "Roster ground crew and operations staff around schedules, certifications and fatigue rules.",
     href: "/industries/airports-and-transportation-roster",
   },
-  {
-    name: "Public services",
-    icon: LuLandmark,
-    description:
-      "Meet award conditions and service levels across departments, sites and shifts.",
-    href: "/industries/public-services-roster",
-  },
+  { name: "Public services", href: "/industries/public-services-roster" },
 ];
 
 /**
@@ -408,19 +367,24 @@ function WorkforceGroups() {
   );
 }
 
+/**
+ * A tinted card: heading and copy on the left, the industries as a two-column
+ * list of links on the right, each ruled off underneath.
+ */
 function OtherIndustries() {
-  const [active, setActive] = useState(0);
-  const industry = OTHER_INDUSTRIES[active];
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-10 lg:gap-16 items-start">
+    <div
+      className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,2fr)] gap-10 lg:gap-14 items-center rounded-2xl px-6 py-10 md:px-12 md:py-14"
+      style={{ backgroundColor: CARD_TINT }}
+    >
       <div>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
-          Workforce management for shift-based industries
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-[1.2] tracking-tight text-balance">
+          {/* Non-breaking hyphens keep "shift-based" on one line. */}
+          Workforce management for shift&#8209;based industries
         </h2>
-        <p className="mt-4 text-base text-gray-600 leading-relaxed">
+        <p className="mt-6 max-w-sm text-base md:text-lg text-gray-600 leading-relaxed">
           RosterLab brings intelligent rostering and workforce optimisation to
-          shift-based teams across a range of industries.
+          shift&#8209;based teams across a range of industries.
         </p>
         <Link
           href="/industries"
@@ -431,82 +395,39 @@ function OtherIndustries() {
               LOCATION,
             )
           }
-          className="group mt-6 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
+          className="group mt-8 inline-flex items-center gap-2 text-base md:text-lg font-semibold text-blue-600 hover:text-blue-700"
         >
           View all industries
-          <LuArrowRight
+          <LuChevronRight
             aria-hidden="true"
-            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+            className="w-5 h-5 transition-transform group-hover:translate-x-1"
           />
         </Link>
       </div>
 
-      <div>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-          {OTHER_INDUSTRIES.map((ind, i) => {
-            const Icon = ind.icon;
-            const selected = i === active;
-            return (
-              <button
-                key={ind.name}
-                type="button"
-                aria-pressed={selected}
-                onClick={() => {
-                  setActive(i);
-                  trackButtonClick(`Industry: ${ind.name}`, LOCATION);
-                }}
-                className={`flex items-center gap-3 rounded-xl px-3 sm:px-4 py-4 text-left text-sm md:text-base font-semibold leading-snug transition ${
-                  selected
-                    ? "bg-blue-600 text-white shadow-sm"
-                    : "bg-white text-gray-900 border border-gray-200 hover:border-blue-300"
-                }`}
-              >
-                <span
-                  aria-hidden="true"
-                  className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                    selected ? "bg-white/15" : "bg-blue-50"
-                  }`}
-                >
-                  <Icon
-                    className={`w-5 h-5 ${selected ? "text-white" : "text-blue-600"}`}
-                  />
-                </span>
-                {ind.name}
-              </button>
-            );
-          })}
-        </div>
-
-        <div
-          aria-live="polite"
-          className="mt-3 flex flex-col sm:flex-row sm:items-center gap-4 rounded-xl bg-white border border-gray-200 border-l-4 border-l-blue-600 px-6 py-5"
-        >
-          <p className="flex-1 text-sm md:text-base text-gray-600 leading-relaxed">
-            <span className="font-semibold text-gray-900">
-              {industry.name}.
-            </span>{" "}
-            {industry.description}
-          </p>
-          <Link
-            href={industry.href}
-            onClick={() =>
-              trackSmartButtonClick(
-                `Learn more: ${industry.name}`,
-                industry.href,
-                LOCATION,
-              )
-            }
-            aria-label={`Learn more about ${industry.name} rostering`}
-            className="group shrink-0 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
-          >
-            Learn more
-            <LuArrowRight
-              aria-hidden="true"
-              className="w-4 h-4 transition-transform group-hover:translate-x-1"
-            />
-          </Link>
-        </div>
-      </div>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
+        {OTHER_INDUSTRIES.map((ind) => (
+          <li key={ind.name}>
+            <Link
+              href={ind.href}
+              onClick={() =>
+                trackSmartButtonClick(
+                  `Industry: ${ind.name}`,
+                  ind.href,
+                  LOCATION,
+                )
+              }
+              className="group flex sm:min-h-[5.5rem] items-center justify-between gap-4 border-b border-gray-200 py-5 text-base md:text-lg font-semibold text-gray-900 transition-colors hover:border-blue-600 hover:text-blue-600"
+            >
+              {ind.name}
+              <LuChevronRight
+                aria-hidden="true"
+                className="w-5 h-5 shrink-0 text-blue-600 transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

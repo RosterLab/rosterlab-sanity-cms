@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import {
@@ -15,6 +16,9 @@ const LOCATION = "Landing Testimonials";
 // through. The curved edges below are filled with the same value so the band
 // reads as one shape.
 const BAND_TINT = "rgba(55, 121, 221, 0.07)";
+
+// The hero field blue (LandingHero's HERO_BLUE), for the case study card.
+const FIELD_BLUE = "#3779DD";
 
 /**
  * A quote is a list of fragments. Plain strings render as normal text;
@@ -94,40 +98,54 @@ export const TESTIMONIALS_AU: Testimonial[] = [
 export interface FeaturedCaseStudy {
   /** The headline number, e.g. "179+". */
   stat: string;
+  /** Small word set beside the number, e.g. "hours". */
+  statUnit: string;
+  /** Line under the number, e.g. "back for clinical work". */
   statLabel: string;
+  /** Used for analytics and the image's fallback label. */
   title: string;
   summary: string;
   href: string;
+  /** Photo on the right. A placeholder block shows until one is supplied. */
+  image?: { src: string; alt: string };
 }
 
 export const FEATURED_CASE_STUDY_AU: FeaturedCaseStudy = {
   stat: "179+",
-  statLabel: "hours saved a year",
+  statUnit: "hours",
+  statLabel: "back for clinical work",
   title: "179 hours back for clinical work",
   summary:
-    "Whanganui Radiography saved more than 179 hours a year with RosterLab, redirecting valuable clinician time back to clinical work.",
+    "Whanganui Radiography saved more than 179 hours a year with RosterLab, returning clinician time to clinical work.",
   href: "/case-studies/whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab",
+  image: {
+    src: "/landing/case-studies/whanganui-radiography-mri.webp",
+    alt: "An MRI scanner in a hospital imaging room",
+  },
 };
 
 function CaseStudyCard({ study }: { study: FeaturedCaseStudy }) {
   return (
-    <div className="mb-16 md:mb-20 grid grid-cols-1 md:grid-cols-[auto_minmax(0,1fr)] gap-8 md:gap-12 items-center rounded-2xl bg-white border border-gray-200 p-8 md:p-10">
-      <div className="md:pr-12 md:border-r md:border-gray-200">
-        <p className="text-5xl md:text-6xl font-bold text-blue-600 leading-none tracking-tight">
-          {study.stat}
+    <div
+      className="mb-16 md:mb-20 grid grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 md:gap-12 items-center overflow-hidden rounded-2xl p-6 md:p-10 text-white shadow-sm"
+      style={{ backgroundColor: FIELD_BLUE }}
+    >
+      <div className="md:py-2">
+        <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-white/80">
+          Customer story
         </p>
-        <p className="mt-2 text-sm font-semibold text-gray-600">
+        <p className="mt-4 flex items-baseline gap-3 leading-none">
+          <span className="text-6xl md:text-7xl font-semibold tracking-tight">
+            {study.stat}
+          </span>
+          <span className="text-2xl md:text-3xl font-medium">
+            {study.statUnit}
+          </span>
+        </p>
+        <p className="mt-3 text-xl md:text-2xl font-medium">
           {study.statLabel}
         </p>
-      </div>
-      <div>
-        <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700">
-          Featured case study
-        </span>
-        <h3 className="mt-4 text-2xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
-          {study.title}
-        </h3>
-        <p className="mt-3 max-w-2xl text-base text-gray-600 leading-relaxed">
+        <p className="mt-6 max-w-lg text-base md:text-lg text-white/90 leading-relaxed">
           {study.summary}
         </p>
         <Link
@@ -137,23 +155,40 @@ function CaseStudyCard({ study }: { study: FeaturedCaseStudy }) {
               case_study: study.title,
             })
           }
-          className="group mt-5 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
+          className="group mt-8 inline-flex items-center gap-4 text-base md:text-lg font-semibold text-white hover:text-white/80"
         >
           See case study
           <svg
-            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+            className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}
+            strokeWidth={1.5}
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
           >
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
+            <path d="M7 17L17 7" />
+            <path d="M8 7h9v9" />
           </svg>
         </Link>
+      </div>
+
+      <div className="relative aspect-[4/3] md:aspect-auto md:h-full md:min-h-[320px] overflow-hidden rounded-xl bg-white/10 ring-1 ring-white/20">
+        {study.image ? (
+          <Image
+            src={study.image.src}
+            alt={study.image.alt}
+            fill
+            sizes="(min-width: 768px) 40vw, 100vw"
+            className="object-cover"
+          />
+        ) : (
+          // Placeholder until the real photo is supplied.
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-300 text-sm font-medium text-slate-500">
+            Image coming soon
+          </div>
+        )}
       </div>
     </div>
   );

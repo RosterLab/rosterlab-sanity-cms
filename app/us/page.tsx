@@ -61,7 +61,8 @@ export const metadata = withHreflang(
 
 /* Boundary treatment mirrors the AU/NZ homepage — see app/page.tsx. This page
    has no Otto section, so it carries one rule fewer. */
-const TINT = "bg-slate-50/70";
+// A light wash of the brand blue, a shade under the testimonials band's 7%.
+const TINT = "bg-[rgba(55,121,221,0.06)]";
 
 function SectionFrame({
   index,
@@ -89,12 +90,14 @@ export default function Home() {
           content={HERO_CONTENT_US}
           trustedHeading={TRUSTED_BY_HEADING_US}
         />
-        <SectionFrame index={0} tint>
+        {/* Backgrounds strictly alternate so no two neighbours match:
+            hero (blue), white, tint, white, testimonials band, white, CTA. */}
+        <SectionFrame index={0}>
           <FeatureTestimonial content={FEATURE_TESTIMONIAL_US} />
         </SectionFrame>
         <SectionDivider />
 
-        <SectionFrame index={1}>
+        <SectionFrame index={1} tint>
           <BenefitsNew tabs={BENEFIT_TABS_US} />
         </SectionFrame>
         <SectionDivider />

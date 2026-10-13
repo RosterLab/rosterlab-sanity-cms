@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AppStoreButtons from "./AppStoreButtons";
 import Image from "next/image";
 import { FaLinkedin, FaInstagram, FaYoutube, FaFacebook } from "react-icons/fa";
 import CountrySelector from "./CountrySelector";
@@ -324,36 +325,7 @@ export default function Footer() {
 
         {/* App Store Links */}
         <div className="border-t border-gray-200 pt-8 mb-8">
-          <div className="flex flex-wrap gap-4 justify-center items-center">
-            <a
-              href="https://apps.apple.com/nz/app/rosterlab/id6448819917"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center"
-            >
-              <Image
-                src="/images/app-store-badge.svg"
-                alt="Download on the App Store"
-                width={135}
-                height={40}
-                className="h-[45px] w-auto"
-              />
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.rosterlab.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center"
-            >
-              <Image
-                src="/images/google-play-badge.png"
-                alt="Get it on Google Play"
-                width={238}
-                height={70}
-                className="h-[70px] w-auto"
-              />
-            </a>
-          </div>
+          <AppStoreButtons />
         </div>
 
         {/* Copyright */}
