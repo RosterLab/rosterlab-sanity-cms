@@ -1,25 +1,30 @@
 import LandingHero from "@/components/sections/LandingHero";
 import FeatureTestimonial from "@/components/sections/FeatureTestimonial";
 import BenefitsNew from "@/components/sections/BenefitsNew";
-import FeaturesGrid from "@/components/sections/FeaturesGrid";
-import IndustrySolutionsNew from "@/components/sections/IndustrySolutionsNew";
+import CapabilitiesSection from "@/components/sections/CapabilitiesSection";
+import OttoSection from "@/components/sections/OttoSection";
+import {
+  HealthcareWorkforceSection,
+  OtherIndustriesSection,
+} from "@/components/sections/IndustriesSection";
 import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FinalCTA from "@/components/sections/FinalCTA";
 import DotFocalOverlay from "@/components/sections/DotFocalOverlay";
 import SectionDivider from "@/components/ui/SectionDivider";
-import SectionCorners, { logoColor } from "@/components/ui/SectionCorners";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import {
   HERO_CONTENT_US,
   TRUSTED_BY_HEADING_US,
   FEATURE_TESTIMONIAL_US,
   BENEFIT_TABS_US,
-  INDUSTRIES_US,
-  INDUSTRIES_HEADING_US,
+  CAPABILITIES_US,
+  CAPABILITIES_HEADING_US,
+  OTTO_COPY_US,
+  WORKFORCE_CONTENT_US,
   TESTIMONIALS_US,
-  FEATURES_US,
-  FEATURES_HEADING_US,
-  FINAL_CTA_HEADING_US,
+  FEATURED_CASE_STUDY_US,
+  OTHER_INDUSTRIES_CONTENT_US,
+  FINAL_CTA_US,
 } from "@/app/us/landing-content";
 
 // ISR: Revalidate every 1 hour (mirrors the AU landing page)
@@ -59,26 +64,20 @@ export const metadata = withHreflang(
   "/us",
 );
 
-/* Boundary treatment mirrors the AU/NZ homepage — see app/page.tsx. This page
-   has no Otto section, so it carries one rule fewer. */
+/* Mirrors the AU/NZ homepage section for section — see app/page.tsx — with
+   US copy from landing-content.ts. */
 // A light wash of the brand blue, a shade under the testimonials band's 7%.
 const TINT = "bg-[rgba(55,121,221,0.06)]";
 
+/** Wraps a section so it can carry the alternating tint. */
 function SectionFrame({
-  index,
   tint = false,
   children,
 }: {
-  index: number;
   tint?: boolean;
   children: React.ReactNode;
 }) {
-  return (
-    <div className={`relative ${tint ? TINT : ""}`}>
-      <SectionCorners color={logoColor(index)} />
-      {children}
-    </div>
-  );
+  return <div className={`relative ${tint ? TINT : ""}`}>{children}</div>;
 }
 
 export default function Home() {
@@ -90,35 +89,54 @@ export default function Home() {
           content={HERO_CONTENT_US}
           trustedHeading={TRUSTED_BY_HEADING_US}
         />
-        {/* Backgrounds strictly alternate so no two neighbours match:
-            hero (blue), white, tint, white, testimonials band, white, CTA. */}
-        <SectionFrame index={0}>
+
+        {/* Backgrounds strictly alternate so no two neighbours match, as on
+            the AU page. */}
+        <SectionFrame>
           <FeatureTestimonial content={FEATURE_TESTIMONIAL_US} />
         </SectionFrame>
         <SectionDivider />
 
-        <SectionFrame index={1} tint>
+        <SectionFrame tint>
           <BenefitsNew tabs={BENEFIT_TABS_US} />
         </SectionFrame>
         <SectionDivider />
 
-        <SectionFrame index={2}>
-          <IndustrySolutionsNew
-            industries={INDUSTRIES_US}
-            heading={INDUSTRIES_HEADING_US}
+        <SectionFrame>
+          <CapabilitiesSection
+            capabilities={CAPABILITIES_US}
+            heading={CAPABILITIES_HEADING_US}
           />
-        </SectionFrame>
-
-        {/* Own curved band, top and bottom — sits out of the ruled rhythm and
-            the corner marks, which would land on the curve. */}
-        <TestimonialsNew testimonials={TESTIMONIALS_US} isUS />
-
-        <SectionFrame index={3}>
-          <FeaturesGrid features={FEATURES_US} heading={FEATURES_HEADING_US} />
         </SectionFrame>
         <SectionDivider />
 
-        <FinalCTA heading={FINAL_CTA_HEADING_US} isUS />
+        <SectionFrame tint>
+          <OttoSection copy={OTTO_COPY_US} />
+        </SectionFrame>
+        <SectionDivider />
+
+        <SectionFrame>
+          <HealthcareWorkforceSection content={WORKFORCE_CONTENT_US} />
+        </SectionFrame>
+
+        {/* Own curved band, top and bottom — sits out of the ruled rhythm. */}
+        <TestimonialsNew
+          testimonials={TESTIMONIALS_US}
+          isUS
+          featuredCaseStudy={FEATURED_CASE_STUDY_US}
+        />
+
+        <SectionFrame>
+          <OtherIndustriesSection content={OTHER_INDUSTRIES_CONTENT_US} />
+        </SectionFrame>
+        <SectionDivider />
+
+        <FinalCTA
+          heading={FINAL_CTA_US.heading}
+          description={FINAL_CTA_US.description}
+          isUS
+          progressiveForm
+        />
       </div>
     </div>
   );

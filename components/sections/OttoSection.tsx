@@ -135,11 +135,46 @@ interface OttoFeature {
   dot: string;
 }
 
-const FEATURES: OttoFeature[] = [
+/** The section's words and link — everything a locale changes. */
+export interface OttoCopy {
+  heading: string;
+  description: string;
+  cta: { label: string; href: string };
+  /** One per clip, in clip order. */
+  features: { title: string; description: string }[];
+}
+
+export const OTTO_COPY_AU: OttoCopy = {
+  heading:
+    "Make smarter roster decisions with Otto, your AI rostering assistant",
+  description:
+    "Otto understands your roster and the context behind it. Get answers, test changes, and build reports in seconds, all through conversation.",
+  cta: {
+    label: "See Otto in Action",
+    href: "/feature/ai-staff-rostering-assistant",
+  },
+  features: [
+    {
+      title: "Answer roster questions instantly",
+      description:
+        "Check staffing coverage, skill mix, leave, fairness and more. Otto searches your live roster and audit trail to give you contextual answers, including who worked when and what's changed.",
+    },
+    {
+      title: "Get recommendations for better roster decisions",
+      description:
+        "Filling a gap, assessing a swap or reworking a roster? Otto weighs availability, skills, workload, rest requirements and roster rules to recommend the best way forward.",
+    },
+    {
+      title: "Analyse your roster from every angle",
+      description:
+        "Turn your roster data into insights you can act on. Otto breaks down any part of your roster to create charts, summaries and reports that back confident workforce decisions.",
+    },
+  ],
+};
+
+/** Each clip's look. The words come from `OttoCopy.features`, by index. */
+const CLIPS: Omit<OttoFeature, "title" | "description">[] = [
   {
-    title: "Answer roster questions instantly",
-    description:
-      "Check staffing coverage, skill mix, leave, fairness and more. Otto searches your live roster and audit trail to give you contextual answers, including who worked when and what's changed.",
     video: "/landing/otto/chat-v3.mp4",
     layout: "full",
     // The clip's own field, so the panel and the frame are one colour while
@@ -149,9 +184,6 @@ const FEATURES: OttoFeature[] = [
     dot: "rgba(255,255,255,0.45)",
   },
   {
-    title: "Get recommendations for better roster decisions",
-    description:
-      "Filling a gap, assessing a swap or reworking a roster? Otto weighs availability, skills, workload, rest requirements and roster rules to recommend the best way forward.",
     video: "/landing/otto/cover-v3.mp4",
     layout: "full",
     // The clip's own field, as the first panel.
@@ -160,9 +192,6 @@ const FEATURES: OttoFeature[] = [
     dot: "rgba(255,255,255,0.45)",
   },
   {
-    title: "Analyse your roster from every angle",
-    description:
-      "Turn your roster data into insights you can act on. Otto breaks down any part of your roster to create charts, summaries and reports that back confident workforce decisions.",
     video: "/landing/otto/fairness-v3.mp4",
     layout: "full",
     // The clip's own field, as the first panel.
@@ -172,7 +201,15 @@ const FEATURES: OttoFeature[] = [
   },
 ];
 
-export default function OttoSection() {
+export default function OttoSection({
+  copy = OTTO_COPY_AU,
+}: {
+  copy?: OttoCopy;
+} = {}) {
+  const features: OttoFeature[] = CLIPS.map((clip, i) => ({
+    ...clip,
+    ...copy.features[i],
+  }));
   const [activeIndex, setActiveIndex] = useState(0);
   // The timer only runs while the list is on screen and nobody is reading it.
   const [isHovered, setIsHovered] = useState(false);
@@ -187,7 +224,7 @@ export default function OttoSection() {
   // Each step lasts exactly as long as its clip, so a panel is never cut off
   // mid-answer. Real lengths arrive with the video metadata.
   const [durations, setDurations] = useState<number[]>(() =>
-    FEATURES.map(() => FALLBACK_DURATION_MS),
+    features.map(() => FALLBACK_DURATION_MS),
   );
   const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
@@ -303,9 +340,9 @@ export default function OttoSection() {
   const showTimer = !prefersReducedMotion;
 
   const advance = () =>
-    setActiveIndex((current) => (current + 1) % FEATURES.length);
+    setActiveIndex((current) => (current + 1) % features.length);
 
-  const active = FEATURES[activeIndex];
+  const active = features[activeIndex];
 
   return (
     <section ref={sectionRef} className="py-20 md:py-24">
@@ -313,23 +350,21 @@ export default function OttoSection() {
         {/* ---- Intro ---- */}
         <div className="max-w-3xl">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-            Make smarter roster decisions with Otto, your AI rostering assistant
+            {copy.heading}
           </h2>
 
           <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-            Otto understands your roster and the context behind it. Get answers,
-            test changes, and build reports in seconds, all through
-            conversation.
+            {copy.description}
           </p>
 
           <div className="mt-8">
             <Button
-              href="/feature/ai-staff-rostering-assistant"
-              analyticsLabel="See Otto in Action"
+              href={copy.cta.href}
+              analyticsLabel={copy.cta.label}
               analyticsLocation={LOCATION}
               className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-700 transition"
             >
-              See Otto in Action
+              {copy.cta.label}
             </Button>
           </div>
         </div>
@@ -344,7 +379,7 @@ export default function OttoSection() {
               feature={active}
               className="lg:aspect-square lg:px-8 lg:py-10"
             >
-              {FEATURES.map((feature, index) => (
+              {features.map((feature, index) => (
                 <video
                   // Each clip keeps its own element so switching back to one
                   // does not restart the download, only the playhead.
@@ -382,7 +417,7 @@ export default function OttoSection() {
             onFocus={() => setIsHovered(true)}
             onBlur={() => setIsHovered(false)}
           >
-            {FEATURES.map((feature, index) => {
+            {features.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
                 <li key={feature.title} className="group relative">
@@ -470,7 +505,7 @@ export default function OttoSection() {
             heading and its description stay readable whether the item is open
             or shut, and opening one drops the clip in beneath its own copy. */}
         <ul className="mt-12 border-t border-gray-200 lg:hidden">
-          {FEATURES.map((feature, index) => {
+          {features.map((feature, index) => {
             const isOpen = index === activeIndex && !mobileCollapsed;
             return (
               <li

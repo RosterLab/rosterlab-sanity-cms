@@ -21,7 +21,7 @@ const CARD_TINT = "rgba(55, 121, 221, 0.07)";
 const FADE_UP =
   "motion-safe:animate-[rl-fade-up_500ms_cubic-bezier(0.22,1,0.36,1)_both]";
 
-interface WorkforceGroup {
+export interface WorkforceGroup {
   name: string;
   /**
    * Tile illustration: a transparent webp of blue line art, about 400px
@@ -37,7 +37,7 @@ interface WorkforceGroup {
   features: WorkforceFeature[];
 }
 
-interface WorkforceFeature {
+export interface WorkforceFeature {
   title: string;
   /** One or two sentences on what the feature does for this group. */
   description: string;
@@ -49,7 +49,7 @@ interface WorkforceFeature {
   image?: { src: string; alt: string };
 }
 
-const WORKFORCE_GROUPS: WorkforceGroup[] = [
+const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
   {
     name: "Nursing",
     illustration: "/landing/workforce/illustrations/nursing.webp",
@@ -131,12 +131,12 @@ const WORKFORCE_GROUPS: WorkforceGroup[] = [
   },
 ];
 
-interface OtherIndustry {
+export interface OtherIndustry {
   name: string;
   href: string;
 }
 
-const OTHER_INDUSTRIES: OtherIndustry[] = [
+const OTHER_INDUSTRIES_AU: OtherIndustry[] = [
   { name: "Hospitality", href: "/industries/hospitality-roster" },
   { name: "24/7 support teams", href: "/industries/call-centre-rostering" },
   { name: "Retail", href: "/industries/retail-roster" },
@@ -148,20 +148,65 @@ const OTHER_INDUSTRIES: OtherIndustry[] = [
   { name: "Public services", href: "/industries/public-services-roster" },
 ];
 
+/** Everything the healthcare workforce section says or links to. */
+export interface WorkforceContent {
+  heading: string;
+  description: string;
+  groups: WorkforceGroup[];
+  /** The two follow-on prompts under the card. */
+  enterprise: { lead: string; label: string; href: string };
+  specialties: { lead: string; body: string; label: string; href: string };
+}
+
+export const WORKFORCE_CONTENT_AU: WorkforceContent = {
+  heading: "Rostering tailored to every healthcare workforce group",
+  description:
+    "RosterLab adapts to the rules, working patterns, and staffing requirements unique to each workforce group.",
+  groups: WORKFORCE_GROUPS_AU,
+  enterprise: {
+    lead: "Scale rostering across departments and workforce groups.",
+    label: "Explore enterprise rostering",
+    href: "/pricing",
+  },
+  specialties: {
+    lead: "Looking for your specialty?",
+    body: "Explore rostering for Emergency & Critical Care, Radiology, Surgery & Perioperative, and more.",
+    label: "View all healthcare specialties",
+    href: "/industries/healthcare",
+  },
+};
+
+/** Everything the other-industries card says or links to. */
+export interface OtherIndustriesContent {
+  heading: string;
+  description: string;
+  viewAll: { label: string; href: string };
+  industries: OtherIndustry[];
+}
+
+export const OTHER_INDUSTRIES_CONTENT_AU: OtherIndustriesContent = {
+  heading: "Workforce management for shift-based industries",
+  description:
+    "RosterLab brings intelligent rostering and workforce optimisation to shift-based teams across a range of industries.",
+  viewAll: { label: "View all industries", href: "/industries" },
+  industries: OTHER_INDUSTRIES_AU,
+};
+
 /**
  * A card with a row of group tiles over the active group's detail: its copy
  * and link on the left, its key features as a divided list on the right.
  * Clicking a tile (or arrowing to it) switches the group in place.
  */
-function WorkforceGroups() {
+function WorkforceGroups({ content }: { content: WorkforceContent }) {
+  const groups = content.groups;
   const id = useId();
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const count = WORKFORCE_GROUPS.length;
+  const count = groups.length;
   const [active, setActive] = useState(0);
-  const group = WORKFORCE_GROUPS[active];
+  const group = groups[active];
 
   const select = (i: number) => {
-    trackButtonClick(`Workforce group: ${WORKFORCE_GROUPS[i].name}`, LOCATION);
+    trackButtonClick(`Workforce group: ${groups[i].name}`, LOCATION);
     setActive(i);
   };
 
@@ -192,11 +237,10 @@ function WorkforceGroups() {
     <div>
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-          Rostering tailored to every healthcare workforce group
+          {content.heading}
         </h2>
         <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
-          RosterLab adapts to the rules, working patterns, and staffing
-          requirements unique to each workforce group.
+          {content.description}
         </p>
       </div>
 
@@ -207,7 +251,7 @@ function WorkforceGroups() {
           aria-label="Healthcare workforce groups"
           className="flex gap-3 overflow-x-auto snap-x pt-1 md:pt-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-4 md:overflow-visible"
         >
-          {WORKFORCE_GROUPS.map((g, i) => {
+          {groups.map((g, i) => {
             const selected = i === active;
             return (
               <button
@@ -315,21 +359,21 @@ function WorkforceGroups() {
         <div>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             <span className="font-semibold text-gray-900">
-              Scale rostering across departments and workforce groups.
+              {content.enterprise.lead}
             </span>
           </p>
           <Link
-            href="/pricing"
+            href={content.enterprise.href}
             onClick={() =>
               trackSmartButtonClick(
-                "Explore enterprise rostering",
-                "/pricing",
+                content.enterprise.label,
+                content.enterprise.href,
                 LOCATION,
               )
             }
             className="group mt-2 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
           >
-            Explore enterprise rostering
+            {content.enterprise.label}
             <LuArrowRight
               aria-hidden="true"
               className="w-4 h-4 transition-transform group-hover:translate-x-1"
@@ -339,23 +383,22 @@ function WorkforceGroups() {
         <div>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             <span className="font-semibold text-gray-900">
-              Looking for your specialty?
+              {content.specialties.lead}
             </span>{" "}
-            Explore rostering for Emergency &amp; Critical Care, Radiology,
-            Surgery &amp; Perioperative, and more.
+            {content.specialties.body}
           </p>
           <Link
-            href="/industries/healthcare"
+            href={content.specialties.href}
             onClick={() =>
               trackSmartButtonClick(
-                "View all healthcare specialties",
-                "/industries/healthcare",
+                content.specialties.label,
+                content.specialties.href,
                 LOCATION,
               )
             }
             className="group mt-2 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
           >
-            View all healthcare specialties
+            {content.specialties.label}
             <LuArrowRight
               aria-hidden="true"
               className="w-4 h-4 transition-transform group-hover:translate-x-1"
@@ -367,11 +410,15 @@ function WorkforceGroups() {
   );
 }
 
+/** Keeps words like "shift-based" on one line by swapping in U+2011. */
+const noBreakHyphens = (text: string) =>
+  text.replace(/(\w)-(\w)/g, "$1\u2011$2");
+
 /**
  * A tinted card: heading and copy on the left, the industries as a two-column
  * list of links on the right, each ruled off underneath.
  */
-function OtherIndustries() {
+function OtherIndustries({ content }: { content: OtherIndustriesContent }) {
   return (
     <div
       className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,2fr)] gap-10 lg:gap-14 items-center rounded-2xl px-6 py-10 md:px-12 md:py-14"
@@ -379,25 +426,23 @@ function OtherIndustries() {
     >
       <div>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-[1.2] tracking-tight text-balance">
-          {/* Non-breaking hyphens keep "shift-based" on one line. */}
-          Workforce management for shift&#8209;based industries
+          {noBreakHyphens(content.heading)}
         </h2>
         <p className="mt-6 max-w-sm text-base md:text-lg text-gray-600 leading-relaxed">
-          RosterLab brings intelligent rostering and workforce optimisation to
-          shift&#8209;based teams across a range of industries.
+          {noBreakHyphens(content.description)}
         </p>
         <Link
-          href="/industries"
+          href={content.viewAll.href}
           onClick={() =>
             trackSmartButtonClick(
-              "View all industries",
-              "/industries",
+              content.viewAll.label,
+              content.viewAll.href,
               LOCATION,
             )
           }
           className="group mt-8 inline-flex items-center gap-2 text-base md:text-lg font-semibold text-blue-600 hover:text-blue-700"
         >
-          View all industries
+          {content.viewAll.label}
           <LuChevronRight
             aria-hidden="true"
             className="w-5 h-5 transition-transform group-hover:translate-x-1"
@@ -406,7 +451,7 @@ function OtherIndustries() {
       </div>
 
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
-        {OTHER_INDUSTRIES.map((ind) => (
+        {content.industries.map((ind) => (
           <li key={ind.name}>
             <Link
               href={ind.href}
@@ -436,21 +481,29 @@ function OtherIndustries() {
   Two sections rather than one, so the page can set other content — the
   testimonials — between the healthcare groups and the other industries.
 */
-export function HealthcareWorkforceSection() {
+export function HealthcareWorkforceSection({
+  content = WORKFORCE_CONTENT_AU,
+}: {
+  content?: WorkforceContent;
+} = {}) {
   return (
     <section className="py-20 md:py-24">
       <Container className="lg:px-12 xl:px-20">
-        <WorkforceGroups />
+        <WorkforceGroups content={content} />
       </Container>
     </section>
   );
 }
 
-export function OtherIndustriesSection() {
+export function OtherIndustriesSection({
+  content = OTHER_INDUSTRIES_CONTENT_AU,
+}: {
+  content?: OtherIndustriesContent;
+} = {}) {
   return (
     <section className="py-20 md:py-24">
       <Container className="lg:px-12 xl:px-20">
-        <OtherIndustries />
+        <OtherIndustries content={content} />
       </Container>
     </section>
   );
