@@ -1496,7 +1496,11 @@ export default function LastMinuteMagicianClient({
 
           <div className="text-center">
             <Link
-              href={isUS ? "/us/book-a-demo" : "/book-a-demo"}
+              href={
+                isUS
+                  ? "https://rosterlab.com/us/solutions/free-staff-scheduling-tool"
+                  : "https://rosterlab.com/solutions/free-staff-rostering-software"
+              }
               className="inline-flex items-center justify-center rounded-md bg-primary-600 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
               Try RosterLab for free
