@@ -211,8 +211,7 @@ export default function OttoSection({
     ...copy.features[i],
   }));
   const [activeIndex, setActiveIndex] = useState(0);
-  // The timer only runs while the list is on screen and nobody is reading it.
-  const [isHovered, setIsHovered] = useState(false);
+  // The timer only runs while the list is on screen.
   const [isInView, setIsInView] = useState(false);
   // Clips are only fetched once the section is close to the viewport, so
   // they never compete with the hero for bandwidth on the first load.
@@ -336,7 +335,7 @@ export default function OttoSection({
     return () => window.removeEventListener("resize", onResize);
   }, [activeIndex, mobileCollapsed, isNear]);
 
-  const isPaused = isHovered || !isInView;
+  const isPaused = !isInView;
   const showTimer = !prefersReducedMotion;
 
   const advance = () =>
@@ -347,17 +346,20 @@ export default function OttoSection({
   return (
     <section ref={sectionRef} className="py-20 md:py-24">
       <Container className="lg:px-12 xl:px-20">
-        {/* ---- Intro ---- */}
-        <div className="max-w-3xl">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+        {/* ---- Intro ----
+            From lg up the intro, list and panel are sized to fit one laptop
+            screen together. */}
+        <div>
+          {/* Wide enough to hold the heading to two balanced lines. */}
+          <h2 className="max-w-5xl text-balance text-3xl md:text-4xl lg:text-[min(2.5rem,3vw)] font-bold text-gray-900 leading-tight tracking-tight">
             {copy.heading}
           </h2>
 
-          <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
+          <p className="mt-5 lg:mt-3 max-w-3xl text-base md:text-lg text-gray-600 leading-relaxed">
             {copy.description}
           </p>
 
-          <div className="mt-8">
+          <div className="mt-8 lg:mt-5">
             <Button
               href={copy.cta.href}
               analyticsLabel={copy.cta.label}
@@ -372,9 +374,11 @@ export default function OttoSection({
         {/* ---- Desktop: feature list on the left, pinned media panel right ----
             Below lg this whole block is replaced by the accordion underneath,
             which shows each clip inside the item that describes it. */}
-        <div className="mt-14 md:mt-20 hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          {/* Media panel — sticks while the list scrolls past it. */}
-          <div className="lg:order-2 lg:sticky lg:top-24">
+        <div className="mt-8 hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          {/* Media panel — sticks while the list scrolls past it. Capped by
+              the viewport height as well as the column width, so the square
+              never pushes the section past one screen. */}
+          <div className="lg:order-2 lg:sticky lg:top-24 lg:ml-auto lg:w-full lg:max-w-[calc(100svh-21rem)]">
             <ChatPanel
               feature={active}
               className="lg:aspect-square lg:px-8 lg:py-10"
@@ -409,14 +413,7 @@ export default function OttoSection({
           </div>
 
           {/* Feature list — the active item sits on a panel that bleeds right. */}
-          <ul
-            ref={listRef}
-            className="flex flex-col lg:order-1"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onFocus={() => setIsHovered(true)}
-            onBlur={() => setIsHovered(false)}
-          >
+          <ul ref={listRef} className="flex flex-col lg:order-1">
             {features.map((feature, index) => {
               const isActive = index === activeIndex;
               return (
@@ -474,7 +471,7 @@ export default function OttoSection({
                     type="button"
                     onClick={() => setActiveIndex(index)}
                     aria-current={isActive}
-                    className="relative w-full px-5 py-7 text-left sm:px-6 lg:py-10"
+                    className="relative w-full px-5 py-7 text-left sm:px-6 lg:py-6"
                   >
                     <h3
                       className={`text-base md:text-lg font-semibold transition-colors ${

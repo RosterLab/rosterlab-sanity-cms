@@ -141,8 +141,8 @@ function CapabilityLink({ cta }: { cta: Capability["cta"] }) {
  * over a row of the three capabilities. The row works as tabs — the active
  * one is lifted onto white with a bar along its top edge that fills over
  * HOLD_MS, then hands over to the next. Clicking one takes it and restarts
- * its run. Runs only while on screen, holds while the pointer or keyboard
- * focus is on it, and doesn't run at all under reduced motion.
+ * its run. Runs only while on screen, and doesn't run at all under reduced
+ * motion.
  */
 function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   const [active, setActive] = useState(0);
@@ -151,10 +151,6 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLSpanElement>(null);
   const elapsedRef = useRef(0);
-  // Pointer over the showcase, or focus inside it: the reader is engaged, so
-  // the timer holds.
-  const hoveredRef = useRef(false);
-  const focusedRef = useRef(false);
   const count = capabilities.length;
 
   useEffect(() => {
@@ -182,8 +178,7 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
     let raf = 0;
     let last = performance.now();
     const tick = (now: number) => {
-      if (!hoveredRef.current && !focusedRef.current)
-        elapsedRef.current += Math.min(now - last, MAX_FRAME_MS);
+      elapsedRef.current += Math.min(now - last, MAX_FRAME_MS);
       last = now;
       const fraction = Math.min(elapsedRef.current / HOLD_MS, 1);
       bar.style.transform = `scaleX(${fraction})`;
@@ -210,21 +205,6 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   return (
     <div
       ref={rootRef}
-      onMouseEnter={() => {
-        hoveredRef.current = true;
-      }}
-      onMouseLeave={() => {
-        hoveredRef.current = false;
-      }}
-      onFocus={(e) => {
-        // Keyboard focus only: a click also focuses the tab, and that
-        // shouldn't hold the showcase once the pointer has left.
-        focusedRef.current = e.target.matches(":focus-visible");
-      }}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node | null))
-          focusedRef.current = false;
-      }}
       className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
     >
       {/* Every image is stacked here so a hand-over cross-fades between
@@ -233,7 +213,7 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
           screen together, even on a short laptop. */}
       <div
         id="capability-showcase-media"
-        className="relative aspect-[21/9] max-h-[max(20rem,calc(100svh-22rem))] w-full bg-slate-100"
+        className="relative aspect-[21/9] max-h-[max(18rem,calc(100svh-27rem))] w-full bg-slate-100"
       >
         {capabilities.map((c, i) => (
           <Image
@@ -256,7 +236,7 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
           return (
             <div
               key={c.tag}
-              className={`relative flex flex-col px-6 pb-6 pt-5 transition-colors duration-300 ${
+              className={`relative flex flex-col px-6 pb-5 pt-4 transition-colors duration-300 ${
                 isActive ? "bg-white" : ""
               } ${i > 0 ? "border-l border-gray-200" : ""}`}
             >
@@ -296,14 +276,14 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
                   </span>
                 </span>
                 <span
-                  className={`mt-2 block text-xl font-bold leading-snug transition-colors ${
+                  className={`mt-1.5 block text-lg font-bold leading-snug transition-colors ${
                     isActive ? "text-gray-900" : "text-gray-500"
                   }`}
                 >
                   {c.title}
                 </span>
                 <span
-                  className={`mt-2 block text-sm leading-relaxed transition-colors ${
+                  className={`mt-1.5 block text-sm leading-relaxed transition-colors ${
                     isActive ? "text-gray-600" : "text-gray-400"
                   }`}
                 >
@@ -327,9 +307,11 @@ export default function CapabilitiesSection({
   heading?: string;
 } = {}) {
   return (
-    <section className="py-16 md:py-20 lg:py-24">
+    <section className="py-16 md:py-20">
       <Container className="lg:px-12 xl:px-20">
-        <h2 className="max-w-3xl text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+        {/* One line from lg up, sized so the heading, image and row of three
+            fit on one laptop screen together. */}
+        <h2 className="text-3xl md:text-4xl lg:text-[min(2.5rem,3vw)] font-bold text-gray-900 leading-tight tracking-tight">
           {heading}
         </h2>
 
@@ -341,7 +323,7 @@ export default function CapabilitiesSection({
         </div>
 
         {/* Desktop: one image over a row of three. */}
-        <div className="mt-10 hidden lg:block">
+        <div className="mt-8 hidden lg:block">
           <CapabilityShowcase capabilities={capabilities} />
         </div>
       </Container>

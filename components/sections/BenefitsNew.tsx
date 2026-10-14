@@ -5,7 +5,6 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { trackButtonClick } from "@/components/analytics/tracking";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
-import { usePinnedTabs } from "@/lib/hooks/usePinnedTabs";
 
 // Analytics `location` for every click originating in this section.
 const LOCATION = "Landing Benefits";
@@ -35,18 +34,27 @@ const CLIPS: Record<
 const MOBILE_CLIP_MAX_W = 640;
 
 /**
- * Share of each tab's stretch of the scroll track (desktop) where its copy
- * holds still; the rest is the glide to the next tab.
- */
-const COPY_HOLD = 0.5;
-
-/**
- * Auto-advance dwell when a tab's clip hasn't reported its length yet, and the
- * least a tab is held for: if the clip is closer than this to the end of its
- * loop when the reader stops scrolling, it plays one more loop first.
+ * How long a tab holds when its clip can't report its own length (it hasn't
+ * loaded, or failed to): the bar fills over this instead.
  */
 const FALLBACK_DWELL_MS = 8000;
-const MIN_DWELL_MS = 4000;
+
+// Longest frame delta the fallback timer will credit, so a main-thread stall
+// pauses the bar instead of jumping it forward.
+const MAX_FRAME_MS = 50;
+
+// The breakpoint the pinned layout runs at; below it the benefits stack.
+const DESKTOP_QUERY = "(min-width: 1024px)";
+
+// How long the page takes to glide to a tab's stretch of the track, on a tab
+// click or when a clip finishes and hands over to the next tab.
+const GLIDE_MS = 1400;
+
+// The condensed site header's height, which the pinned block must clear.
+const HEADER_PX = 60;
+
+// Scroll each tab owns while the block is pinned, in vh.
+const TAB_SCROLL_VH = 80;
 
 export interface BenefitTab {
   id: string;
@@ -179,9 +187,14 @@ function LazyVisual({
 function BenefitClip({
   id,
   playing = true,
+  loop = true,
+  onEnded,
 }: {
   id: string;
   playing?: boolean;
+  /** Off for the desktop tabs, where the clip ending moves to the next tab. */
+  loop?: boolean;
+  onEnded?: () => void;
 }) {
   const clip = CLIPS[id];
   const reduceMotion = usePrefersReducedMotion();
@@ -214,7 +227,8 @@ function BenefitClip({
         <video
           src={src}
           autoPlay
-          loop
+          loop={loop}
+          onEnded={onEnded}
           muted
           playsInline
           preload="auto"
@@ -286,62 +300,215 @@ export default function BenefitsNew({
   tabs?: BenefitTab[];
 } = {}) {
   const benefitTabs = tabs;
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const count = benefitTabs.length;
-  const copyRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // The copy column scrolls with the page, Connecteam-style: every tab's copy
-  // sits in one stack, and scroll position slides the stack through a fixed
-  // window. Written straight to the DOM each frame, like the progress bars.
-  //
-  // `position` is 0 for the first tab's copy dead centre and count - 1 for
-  // the last. Each tab's copy rests, still and centred, through the middle
-  // COPY_HOLD of its stretch of the track (where a tab click also lands),
-  // and eases across to the next tab in the scroll between. Without the rest
-  // the copy was only ever centred at one exact scroll point, so it felt
-  // like it was always sliding away from the reader.
-  const moveCopy = (progress: number) => {
-    const g = progress * count - 0.5;
-    const base = Math.floor(g);
-    const t = Math.min(
-      1,
-      Math.max(0, (g - base - COPY_HOLD / 2) / (1 - COPY_HOLD)),
-    );
-    // Ease in-out cubic, so the copy leaves and settles gently.
-    const eased = t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
-    let position = Math.min(count - 1, Math.max(0, base + eased));
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      position = Math.round(position);
-    copyRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const offset = i - position;
-      el.style.transform = `translateY(${offset * 100}%)`;
-      el.style.opacity = String(Math.max(0, 1 - Math.abs(offset) * 1.4));
-    });
-  };
-
-  // Auto-advance hands over as the active clip finishes a loop, so the reader
-  // sees each recording through before the page glides on.
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const barRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  // The pinned block at its natural height, and where it sticks: centred in
+  // the space under the header. Pinning a full-viewport box instead left a
+  // band of empty space above and below the content on tall screens.
+  const [pin, setPin] = useState({ top: HEADER_PX, height: 0 });
+  const pinMetrics = useRef(pin);
+  pinMetrics.current = pin;
   const visualRef = useRef<HTMLDivElement>(null);
-  const dwellFor = (index: number) => {
-    const video = visualRef.current?.querySelector<HTMLVideoElement>(
-      `[data-clip="${index}"] video`,
+  const reduceMotion = usePrefersReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeRef = useRef(0);
+  activeRef.current = activeIndex;
+  const [inView, setInView] = useState(false);
+  const active = benefitTabs[activeIndex] ?? benefitTabs[0];
+  // A glide in progress. While it runs the target tab stays active — the
+  // scroll would otherwise pass through, and flash up, every tab in between.
+  const glideRef = useRef<{ frame: number; stop: () => void } | null>(null);
+
+  // The clip and its timer only run while the track is on screen.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) =>
+      setInView(entry.isIntersecting),
     );
-    if (!video || !Number.isFinite(video.duration) || video.duration <= 0)
-      return FALLBACK_DWELL_MS;
-    const loop = video.duration * 1000;
-    const remaining = loop - video.currentTime * 1000;
-    return remaining >= MIN_DWELL_MS ? remaining : remaining + loop;
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = pinRef.current;
+    if (!el) return;
+    const measure = () => {
+      const height = el.offsetHeight;
+      const top = Math.max(
+        HEADER_PX,
+        HEADER_PX + (window.innerHeight - HEADER_PX - height) / 2,
+      );
+      setPin((p) =>
+        p.top === top && p.height === height ? p : { top, height },
+      );
+    };
+    measure();
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(measure);
+    observer?.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  /** Where the track is, and how far the page scrolls while it is pinned. */
+  const geometry = () => {
+    const track = trackRef.current;
+    if (!track) return null;
+    const rect = track.getBoundingClientRect();
+    const { top, height } = pinMetrics.current;
+    return { rect, top, height, range: track.offsetHeight - height };
   };
 
-  const {
-    active: activeIndex,
-    trackRef,
-    barRef,
-    select,
-    pauseProps,
-  } = usePinnedTabs(count, moveCopy, { autoAdvanceMs: dwellFor });
-  const active = benefitTabs[activeIndex] ?? benefitTabs[0];
+  // Pinned scroll: the block holds while the page scrolls through a tall
+  // track, and the scroll position picks the tab — each tab owns an equal
+  // stretch of it.
+  useEffect(() => {
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const g = geometry();
+      if (!g || !desktop.matches || glideRef.current) return;
+      const progress =
+        g.range > 0
+          ? Math.min(1, Math.max(0, (g.top - g.rect.top) / g.range))
+          : 0;
+      setActiveIndex(Math.min(count - 1, Math.floor(progress * count)));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      glideRef.current?.stop();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+    // Re-run when the pin is re-measured, so the active tab is re-read.
+  }, [count, pin]);
+
+  const isPinned = () => {
+    const g = geometry();
+    if (!g) return false;
+    return g.rect.top <= g.top + 1 && g.rect.bottom >= g.top + g.height - 1;
+  };
+
+  // Glides the page to the middle of tab i's stretch of the track, easing in
+  // and out. Any wheel, touch or key input hands the scroll straight back.
+  const glideTo = (i: number) => {
+    const g = geometry();
+    setActiveIndex(i);
+    if (!g || !window.matchMedia(DESKTOP_QUERY).matches) return;
+    // The scroll at which the block is pinned and halfway through tab i.
+    const top =
+      g.rect.top + window.scrollY - g.top + (g.range * (i + 0.5)) / count;
+    glideRef.current?.stop();
+    if (reduceMotion) {
+      window.scrollTo({ top, behavior: "instant" });
+      return;
+    }
+    const from = window.scrollY;
+    const start = performance.now();
+    const stop = () => {
+      if (!glideRef.current) return;
+      cancelAnimationFrame(glideRef.current.frame);
+      glideRef.current = null;
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchstart", stop);
+      window.removeEventListener("keydown", stop);
+    };
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / GLIDE_MS);
+      // Ease in-out sine.
+      const eased = -(Math.cos(Math.PI * t) - 1) / 2;
+      window.scrollTo({
+        top: from + (top - from) * eased,
+        behavior: "instant",
+      });
+      if (t < 1 && glideRef.current)
+        glideRef.current.frame = requestAnimationFrame(step);
+      else stop();
+    };
+    glideRef.current = { frame: requestAnimationFrame(step), stop };
+    window.addEventListener("wheel", stop, { passive: true });
+    window.addEventListener("touchstart", stop, { passive: true });
+    window.addEventListener("keydown", stop);
+  };
+
+  // A clip has played through. While pinned, the page glides on to the next
+  // tab; on the last tab, or before the section has pinned, the clip replays.
+  const onClipEnded = (i: number) => {
+    if (i !== activeRef.current) return;
+    if (i < count - 1 && isPinned() && !glideRef.current) {
+      glideTo(i + 1);
+      return;
+    }
+    const video = visualRef.current?.querySelector<HTMLVideoElement>(
+      `[data-clip="${i}"] video`,
+    );
+    if (video) {
+      video.currentTime = 0;
+      void video.play().catch(() => {});
+    }
+  };
+
+  // Progress bars follow the active clip's playback: tabs before it are full,
+  // tabs after it empty, and its own segment tracks currentTime / duration.
+  // When a clip can't report a length, the segment fills over
+  // FALLBACK_DWELL_MS and counts as ended. Written straight to the DOM each
+  // frame, so playback doesn't re-render the section.
+  useEffect(() => {
+    const paint = (fraction: number) =>
+      barRefs.current.forEach((bar, i) => {
+        if (!bar) return;
+        const fill = i < activeIndex ? 1 : i === activeIndex ? fraction : 0;
+        bar.style.transform = `scaleX(${fill})`;
+      });
+    if (reduceMotion) {
+      paint(1);
+      return;
+    }
+    paint(0);
+    if (!inView) return;
+
+    let raf = 0;
+    let last = performance.now();
+    let fallback = 0;
+    const tick = (now: number) => {
+      const dt = Math.min(now - last, MAX_FRAME_MS);
+      last = now;
+      const video = visualRef.current?.querySelector<HTMLVideoElement>(
+        `[data-clip="${activeIndex}"] video`,
+      );
+      if (video && Number.isFinite(video.duration) && video.duration > 0) {
+        paint(Math.min(1, video.currentTime / video.duration));
+      } else {
+        fallback += dt;
+        paint(Math.min(1, fallback / FALLBACK_DWELL_MS));
+        if (fallback >= FALLBACK_DWELL_MS) {
+          fallback = 0;
+          onClipEnded(activeIndex);
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // onClipEnded only reads refs.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, inView, reduceMotion]);
 
   const selectTab = (idx: number) => {
     const tab = benefitTabs[idx];
@@ -349,7 +516,7 @@ export default function BenefitsNew({
       tab_id: tab.id,
       tab_index: idx,
     });
-    select(idx);
+    glideTo(idx);
   };
 
   // Roving tabindex: arrows move between tabs, as the tabs pattern expects.
@@ -364,7 +531,7 @@ export default function BenefitsNew({
 
   return (
     <>
-      {/* Mobile: one benefit per swipe, no pinning. */}
+      {/* Mobile: one benefit per swipe. */}
       <div className="lg:hidden">
         {benefitTabs.map((tab) => (
           <BenefitCard
@@ -375,27 +542,25 @@ export default function BenefitsNew({
         ))}
       </div>
 
-      {/* Desktop: the same pinned scroller as the healthcare workforce
-          section. The tabs and panel hold in place while the page scrolls
-          through the track; scroll position picks the tab and fills its
-          segment of the bar, and a tab click glides to that tab. One screen
-          of pinned content plus 80vh of scroll per tab — the multiplier is
-          the tab count, written out because Tailwind needs a literal. */}
+      {/* Desktop: a pinned scroller. The tabs and panel hold in place while
+          the page scrolls through the track, and scroll position picks the
+          tab. Each tab's bar fills with its clip's playback; when the clip
+          ends the page glides on to the next tab. The track is the block's
+          own height plus TAB_SCROLL_VH of scroll per tab. */}
       <div
         ref={trackRef}
-        className="hidden lg:block relative h-[calc(100vh+4*80vh)]"
+        className="hidden lg:block relative"
+        style={{
+          height: `calc(${pin.height ? `${pin.height}px` : "100vh"} + ${count * TAB_SCROLL_VH}vh)`,
+        }}
       >
-        {/* pt clears the sticky site header. */}
-        <div className="sticky top-0 h-screen flex flex-col justify-center pt-[60px]">
+        <div ref={pinRef} className="sticky py-16" style={{ top: pin.top }}>
           <Container className="w-full lg:px-12 xl:px-20">
             {/* Tab bar: four connected cells under one hairline border, with
-                each tab's scroll progress drawn along the box's bottom edge.
-                Both rows are grid-cols-4 inside the same border, so a segment
-                lines up with its tab without measuring anything. */}
-            <div
-              {...pauseProps}
-              className="mx-auto mb-8 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm"
-            >
+              each tab's progress drawn along the box's bottom edge. Both rows
+              are grid-cols-4 inside the same border, so a segment lines up
+              with its tab without measuring anything. */}
+            <div className="mx-auto mb-14 w-full max-w-4xl overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
               <div
                 role="tablist"
                 aria-label="Benefits"
@@ -429,14 +594,14 @@ export default function BenefitsNew({
                 })}
               </div>
 
-              {/* Square ends, flush to the box's bottom edge. Each segment
-                  fills as the page scrolls through its tab, and the rest of
-                  it fills with the clip while auto-advance runs. */}
+              {/* Square ends, flush to the box's bottom edge. */}
               <div aria-hidden="true" className="grid grid-cols-4">
                 {benefitTabs.map((tab, i) => (
                   <span key={tab.id} className="h-[3px] overflow-hidden">
                     <span
-                      ref={barRef(i)}
+                      ref={(el) => {
+                        barRefs.current[i] = el;
+                      }}
                       className="block h-full bg-blue-600 origin-left"
                       style={{ transform: "scaleX(0)" }}
                     />
@@ -449,33 +614,25 @@ export default function BenefitsNew({
               id={`benefit-panel-${active.id}`}
               role="tabpanel"
               aria-labelledby={`benefit-tab-${active.id}`}
-              className="grid grid-cols-[minmax(0,1fr),minmax(0,1.4fr)] gap-16"
+              className="grid grid-cols-[minmax(0,1fr),minmax(0,1.4fr)] items-center gap-16"
             >
-              {/* Copy window: every tab's copy is stacked here and slides
-                  through as the page scrolls, fading out toward the edges.
-                  Each block fills the window, so a 100% translate moves it
-                  exactly one window. Blocks start one window apart; the
-                  scroll handler takes over from the first frame. Off-tab
-                  copy is inert so its CTA can't be tabbed to unseen. */}
-              <div
-                {...pauseProps}
-                className="relative overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_12%,black_88%,transparent)]"
-              >
-                {benefitTabs.map((tab, i) => (
-                  <div
-                    key={tab.id}
-                    ref={(el) => {
-                      copyRefs.current[i] = el;
-                    }}
-                    inert={i !== activeIndex}
-                    aria-hidden={i !== activeIndex}
-                    className="absolute inset-0 flex items-center will-change-transform"
-                    style={{
-                      transform: `translateY(${i * 100}%)`,
-                      opacity: i === 0 ? 1 : 0,
-                    }}
-                  >
-                    <div className="max-w-md">
+              {/* Copy: every tab's copy shares one grid cell, so the column is
+                as tall as the longest and nothing below moves on a change.
+                Only the active one shows; the rest are faded out and inert. */}
+              <div className="grid">
+                {benefitTabs.map((tab, i) => {
+                  const isActive = i === activeIndex;
+                  return (
+                    <div
+                      key={tab.id}
+                      inert={!isActive}
+                      aria-hidden={!isActive}
+                      className={`[grid-area:1/1] self-center max-w-md transition duration-500 ease-out ${
+                        isActive
+                          ? "opacity-100 translate-y-0"
+                          : "pointer-events-none opacity-0 translate-y-2"
+                      }`}
+                    >
                       <h2
                         className={`text-4xl font-bold text-gray-900 leading-tight mb-4 ${tab.titleClassName ?? ""}`}
                       >
@@ -506,18 +663,17 @@ export default function BenefitsNew({
                         {tab.cta.label}
                       </Button>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
-              {/* Capped by viewport height (as a 4:3 width) so the pinned
-                  block always fits under the header and tab bar. Every tab's
-                  poster is stacked here so a tab change cross-fades between
-                  frames that are already loaded; only the active tab
-                  fetches and plays its video. */}
+              {/* Capped by viewport height (as a 4:3 width) so the tabs, copy
+                and clip fit on one screen. Every tab's poster is stacked here
+                so a change cross-fades between frames that are already
+                loaded; only the active tab fetches and plays its video. */}
               <div
                 ref={visualRef}
-                className="w-full max-w-[calc((100vh-15rem)*4/3)] ml-auto"
+                className="w-full max-w-[calc((100vh-16.5rem)*4/3)] ml-auto"
               >
                 <LazyVisual className={VISUAL_BOX}>
                   {benefitTabs.map((tab, i) => (
@@ -525,11 +681,16 @@ export default function BenefitsNew({
                       key={tab.id}
                       data-clip={i}
                       aria-hidden={i !== activeIndex}
-                      className={`absolute inset-0 transition-opacity duration-300 ${
+                      className={`absolute inset-0 transition-opacity duration-500 ${
                         i === activeIndex ? "opacity-100" : "opacity-0"
                       }`}
                     >
-                      <BenefitClip id={tab.id} playing={i === activeIndex} />
+                      <BenefitClip
+                        id={tab.id}
+                        playing={i === activeIndex && inView}
+                        loop={false}
+                        onEnded={() => onClipEnded(i)}
+                      />
                     </div>
                   ))}
                 </LazyVisual>

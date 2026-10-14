@@ -235,16 +235,18 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
 
   return (
     <div>
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+      {/* Sized so the heading, tiles, detail and follow-on links fit on one
+          laptop screen together. */}
+      <div className="mx-auto max-w-5xl text-center">
+        <h2 className="text-balance text-3xl md:text-4xl lg:text-[min(2.25rem,2.8vw)] font-bold text-gray-900 leading-tight tracking-tight">
           {content.heading}
         </h2>
-        <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
+        <p className="mx-auto mt-3 max-w-3xl text-base md:text-lg text-gray-600 leading-relaxed">
           {content.description}
         </p>
       </div>
 
-      <div className="mt-10 md:mt-12 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm">
+      <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm">
         {/* Group tiles. A swipeable row on phones, four across from md. */}
         <div
           role="tablist"
@@ -267,7 +269,7 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => select(i)}
                 onKeyDown={onKeyDown}
-                className={`group relative flex h-44 w-36 shrink-0 snap-start flex-col items-center overflow-hidden rounded-xl border px-3 pb-3 pt-4 transition duration-300 ease-out active:scale-[0.97] md:h-56 md:w-auto ${
+                className={`group relative flex h-44 w-36 shrink-0 snap-start flex-col items-center overflow-hidden rounded-xl border px-3 pb-3 pt-4 transition duration-300 ease-out active:scale-[0.97] md:h-36 md:w-auto ${
                   selected
                     ? "border-blue-200 bg-white shadow-md"
                     : "border-gray-200 bg-slate-50 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-md"
@@ -313,13 +315,13 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
           {/* Keyed by group so the detail replays its entrance. */}
           <div
             key={group.name}
-            className={`grid grid-cols-1 gap-10 px-4 py-8 md:px-10 md:py-12 lg:grid-cols-2 lg:gap-16 ${FADE_UP}`}
+            className={`grid grid-cols-1 gap-8 px-4 py-6 md:px-8 lg:grid-cols-2 lg:gap-16 ${FADE_UP}`}
           >
             <div>
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
                 {group.name}
               </h3>
-              <p className="mt-4 max-w-md text-base md:text-lg text-gray-600 leading-relaxed">
+              <p className="mt-3 max-w-md text-base text-gray-600 leading-relaxed">
                 {group.description}
               </p>
               <Link
@@ -329,7 +331,7 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
                     workforce_group: group.name,
                   })
                 }
-                className="group mt-8 inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm md:text-base font-semibold text-gray-900 transition hover:border-blue-600 hover:text-blue-700"
+                className="group mt-6 inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm md:text-base font-semibold text-gray-900 transition hover:border-blue-600 hover:text-blue-700"
               >
                 {group.linkLabel}
                 <LuArrowRight
@@ -341,11 +343,11 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
 
             <ul className="divide-y divide-gray-200">
               {group.features.map((f) => (
-                <li key={f.title} className="py-5 first:pt-0 last:pb-0">
-                  <h4 className="text-lg md:text-xl font-semibold text-gray-900">
+                <li key={f.title} className="py-3 first:pt-0 last:pb-0">
+                  <h4 className="text-base md:text-lg font-semibold text-gray-900">
                     {f.title}
                   </h4>
-                  <p className="mt-2 text-sm md:text-base text-gray-600 leading-relaxed">
+                  <p className="mt-1 text-sm text-gray-600 leading-relaxed">
                     {f.description}
                   </p>
                 </li>
@@ -355,7 +357,7 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
         </div>
       </div>
 
-      <div className="mt-12 md:mt-14 pt-8 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="mt-6 pt-5 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             <span className="font-semibold text-gray-900">
@@ -487,7 +489,7 @@ export function HealthcareWorkforceSection({
   content?: WorkforceContent;
 } = {}) {
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-16 md:py-20">
       <Container className="lg:px-12 xl:px-20">
         <WorkforceGroups content={content} />
       </Container>
@@ -501,7 +503,9 @@ export function OtherIndustriesSection({
   content?: OtherIndustriesContent;
 } = {}) {
   return (
-    <section className="py-20 md:py-24">
+    // Extra top padding: this follows the testimonials band, whose curved
+    // bottom edge hangs 40px (80px from md) into the top of this section.
+    <section className="pt-32 pb-20 md:pt-44 md:pb-24">
       <Container className="lg:px-12 xl:px-20">
         <OtherIndustries content={content} />
       </Container>
