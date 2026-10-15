@@ -1,3 +1,4 @@
+import { redactRoutingPrefillUrl } from "@/lib/calendly/routing-prefill";
 import { getCurrentTouchData } from "@/lib/analytics/utm-tracker";
 import {
   metaTrackInitiateCheckout,
@@ -122,9 +123,9 @@ export const analytics = {
     // Build context object
     const context: Record<string, any> = {
       page: {
-        url: window.location.href,
+        url: redactRoutingPrefillUrl(window.location.href),
         path: window.location.pathname,
-        referrer: document.referrer || null,
+        referrer: redactRoutingPrefillUrl(document.referrer) || null,
       },
       ip: undefined, // Server will populate this
     };
@@ -140,7 +141,7 @@ export const analytics = {
       ...getUTMData(),
       ...eventProperties,
       current_page_path: window.location.pathname,
-      current_page_url: window.location.href,
+      current_page_url: redactRoutingPrefillUrl(window.location.href),
       context, // Add context object
     };
 
@@ -191,9 +192,9 @@ export const analytics = {
         timestamp: new Date().toISOString(),
         context: {
           page: {
-            url: window.location.href,
+            url: redactRoutingPrefillUrl(window.location.href),
             path: window.location.pathname,
-            referrer: document.referrer || null,
+            referrer: redactRoutingPrefillUrl(document.referrer) || null,
           },
         },
       };
@@ -427,7 +428,9 @@ export const trackSmartButtonClick = (
 
   if (typeof window !== "undefined") {
     eventProperties.current_page_path = window.location.pathname;
-    eventProperties.current_page_url = window.location.href;
+    eventProperties.current_page_url = redactRoutingPrefillUrl(
+      window.location.href,
+    );
     eventProperties.page = window.location.pathname;
   }
 

@@ -1,4 +1,5 @@
 import type { PostHog } from "posthog-js";
+import { redactRoutingPrefillUrl } from "@/lib/calendly/routing-prefill";
 
 const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
 
@@ -73,6 +74,17 @@ export function loadPostHog(): Promise<PostHog | null> {
             event.properties.$current_url = redactUrl(
               String(event.properties.$current_url),
             );
+          }
+          for (const key of [
+            "$referrer",
+            "$initial_referrer",
+            "$initial_current_url",
+          ]) {
+            if (event?.properties?.[key]) {
+              event.properties[key] = redactRoutingPrefillUrl(
+                String(event.properties[key]),
+              );
+            }
           }
           return event;
         },

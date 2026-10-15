@@ -1,3 +1,5 @@
+import { redactRoutingPrefillUrl } from "@/lib/calendly/routing-prefill";
+
 /**
  * UTM Tracking Utilities
  * Handles first-touch attribution, intelligent fallbacks, and cross-domain tracking
@@ -319,7 +321,7 @@ export function setFirstTouchData(
 
   const firstTouchData: FirstTouchData = {
     ...attribution,
-    first_referrer: referrer || null,
+    first_referrer: redactRoutingPrefillUrl(referrer) || null,
     first_landing_page: new URL(url).pathname,
     first_touch_ts: Date.now(),
     is_first_visit: true,
@@ -345,7 +347,7 @@ export function getCurrentTouchData(
 
   return {
     ...attribution,
-    referrer: referrer || null,
+    referrer: redactRoutingPrefillUrl(referrer) || null,
     landing_page: new URL(url).pathname,
     session_id: getSessionId(),
   };

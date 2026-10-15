@@ -33,6 +33,7 @@ export const blogPostsOnlyQuery = groq`
     title,
     slug,
     excerpt,
+    usSlug,
     usLocalization {title, excerpt, protectedTerms, mainImage},
     usTitle,
     usExcerpt,
@@ -91,12 +92,7 @@ export const postQuery = groq`
 `;
 
 // Query specifically for blog posts - excludes case studies and newsroom
-export const blogPostQuery = groq`
-  *[_type == "post" && (!defined(sites) || sites != $excludedSite) && (usSlug.current == $usSlug || slug.current == $slug) && (
-    !defined(categories) || 
-    count(categories) == 0 || 
-    (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
-  )][0] {
+const blogPostFields = groq`{
     _id,
     _updatedAt,
     sites,
@@ -139,7 +135,25 @@ export const blogPostQuery = groq`
       metaDescription,
       ogImage
     }
-  }
+  }`;
+
+export const blogPostQuery = groq`
+  *[_type == "post" && (!defined(sites) || sites != $excludedSite) && (usSlug.current == $usSlug || slug.current == $slug) && (
+    !defined(categories) ||
+    count(categories) == 0 ||
+    (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
+  )][0] ${blogPostFields}
+`;
+
+export const blogPostByIdQuery = groq`
+  *[_type == "post" && _id == $id][0] ${blogPostFields}
+`;
+
+export const usBlogSlugIndexQuery = groq`
+  *[_type == "post" && (!defined(sites) || sites != "global") && defined(slug.current) && (
+    !defined(categories) || count(categories) == 0 ||
+    (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
+  )] { _id, slug, usSlug }
 `;
 
 export const postPathsQuery = groq`
@@ -149,8 +163,8 @@ export const postPathsQuery = groq`
 // Query for blog post paths only - excludes case studies and newsroom
 export const blogPostPathsQuery = groq`
   *[_type == "post" && (!defined(sites) || sites != $excludedSite) && defined(slug.current) && (
-    !defined(categories) || 
-    count(categories) == 0 || 
+    !defined(categories) ||
+    count(categories) == 0 ||
     (!("case-studies" in categories[]->slug.current) && !("newsroom" in categories[]->slug.current))
   )][].slug.current
 `;

@@ -48,6 +48,7 @@ export const US_SLUG_SOURCES: readonly string[] = [
   "ai-rostering-in-healthcare-trust-fairness",
   "ai-self-rostering-study-benefits",
   "auckland-tertiary-hospital-improves-fairness-for-on-call-roster",
+  "automated-staff-rostering",
   "guide-to-rostering",
   "healthnz-and-rosterlab-partner-on-initial-rollout-of-ai-powered-healthcare-rostering-across-nz",
   "hospital-in-perth-partners-with-rosterlab-for-smarter-rosters",

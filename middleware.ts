@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { redactRoutingPrefillUrl } from "@/lib/calendly/routing-prefill";
 
 // Middleware for handling localized routes
 // No automatic redirects - users choose their preferred version
@@ -117,7 +118,17 @@ export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-pathname", pathname);
 
-  const response = NextResponse.next({ request: { headers: requestHeaders } });
+  // The browser captures answers before cleaning its address bar. Render the
+  // same page with a clean query too, so Next's Flight payload and persisted
+  // navigation tree never contain personal prefill answers. A rewrite keeps
+  // the incoming browser URL available to the synchronous capture script.
+  const renderUrl = redactRoutingPrefillUrl(request.url);
+  const response =
+    renderUrl === request.url
+      ? NextResponse.next({ request: { headers: requestHeaders } })
+      : NextResponse.rewrite(new URL(renderUrl), {
+          request: { headers: requestHeaders },
+        });
   setGeoHeaders(response);
   return response;
 }

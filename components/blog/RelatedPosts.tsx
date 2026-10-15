@@ -1,3 +1,4 @@
+import { effectiveUSSlug } from "@/lib/localization/us-slug";
 import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,6 +11,7 @@ interface Post {
   slug: {
     current: string
   }
+  usSlug?: { current: string }
   excerpt?: string
   mainImage?: any
   publishedAt: string
@@ -39,7 +41,7 @@ export default function RelatedPosts({ posts, currentPostId, currentPostDate, ba
     } else if (post.categories?.some(cat => cat.slug.current === 'newsroom')) {
       return `${basePath.startsWith("/us/") ? "/us" : ""}/newsroom/${post.slug.current}`
     }
-    return `${basePath}/${post.slug.current}`
+    return `${basePath}/${basePath === "/us/blog" ? effectiveUSSlug(post) : post.slug.current}`
   }
 
   // Find next and previous posts based on date

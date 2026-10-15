@@ -1,4 +1,11 @@
 import { loadPostHog } from "@/lib/monitoring/posthog-loader";
+import {
+  installRoutingPrefillCapture,
+  ROUTING_ANSWER_PARAMS,
+} from "@/lib/calendly/routing-prefill";
+
+// Also protects early client instrumentation if it runs before the head script.
+installRoutingPrefillCapture(ROUTING_ANSWER_PARAMS);
 
 // PostHog stays off the critical rendering path: it is fetched and started in
 // the first idle period after the window load event, matching our previous

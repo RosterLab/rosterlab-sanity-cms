@@ -5,6 +5,11 @@ import {
   getFirstTouchData,
 } from "@/lib/analytics/utm-tracker";
 import { analytics } from "@/components/analytics/tracking";
+import {
+  buildCalendlyUrl,
+  redactRoutingPrefillUrl,
+  type RoutingAnswers,
+} from "@/lib/calendly/routing-prefill";
 
 interface CalendlyEventData {
   event?: {
@@ -32,6 +37,7 @@ interface CalendlyEventHandlers {
 interface CalendlyConfig {
   baseUrl: string;
   queryParams?: Record<string, string>;
+  routingAnswers?: RoutingAnswers;
   region: "us" | "global";
   redirectPath?: string;
   styles?: {
@@ -104,12 +110,20 @@ export function useCalendlyWidget({
       // Custom params - available in Calendly data but not automatically sent to GA4
       ...(currentTouch.session_id && { session_id: currentTouch.session_id }),
       ...(previousPage && { last_page: previousPage }),
-      ...(currentTouch.referrer && { referrer: currentTouch.referrer }),
+      ...(currentTouch.referrer && {
+        referrer: redactRoutingPrefillUrl(currentTouch.referrer),
+      }),
       ...config.queryParams,
     });
 
-    setCalendlyUrl(`${config.baseUrl}?${params.toString()}`);
-  }, [config.baseUrl, config.queryParams]);
+    setCalendlyUrl(
+      buildCalendlyUrl(
+        config.baseUrl,
+        Object.fromEntries(params),
+        config.routingAnswers,
+      ),
+    );
+  }, [config.baseUrl, config.queryParams, config.routingAnswers]);
 
   // Performance optimizations
   useEffect(() => {
@@ -154,9 +168,12 @@ export function useCalendlyWidget({
 
     // Prefetch the Calendly iframe page if URL is ready
     if (calendlyUrl) {
+      const prefetchUrl = new URL(calendlyUrl);
+      prefetchUrl.searchParams.set("embed_domain", window.location.hostname);
+      prefetchUrl.searchParams.set("embed_type", "Inline");
       const prefetchIframe = document.createElement("link");
       prefetchIframe.rel = "prefetch";
-      prefetchIframe.href = `${calendlyUrl}&embed_domain=${window.location.hostname}&embed_type=Inline`;
+      prefetchIframe.href = prefetchUrl.toString();
       document.head.appendChild(prefetchIframe);
       links.push(prefetchIframe);
     }

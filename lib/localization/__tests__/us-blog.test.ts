@@ -26,6 +26,30 @@ const block = (children: any[], extra = {}) => ({
 const text = (body: any[]) =>
   body.map((b) => b.children?.map((c: any) => c.text).join("")).join("\n");
 
+test("automated staff article language alternates use the published global URL", () => {
+  const globalPath = "/blog/automated-staff-rostering";
+  const usPath = "/us/blog/automated-staff-scheduling";
+  expect(getGlobalPath(usPath)).toBe(globalPath);
+  expect(getUSPath(globalPath)).toBe(usPath);
+  expect(generateHreflangMetadata(usPath).alternates?.languages).toEqual({
+    en: `https://rosterlab.com${globalPath}`,
+    "en-AU": `https://rosterlab.com${globalPath}`,
+    "en-NZ": `https://rosterlab.com${globalPath}`,
+    "en-US": `https://rosterlab.com${usPath}`,
+    "x-default": `https://rosterlab.com${globalPath}`,
+  });
+});
+
+test("the old Perth CMS link resolves to the current US article", () => {
+  expect(
+    localizeUSLink(
+      "https://rosterlab.com/newsroom/royal-perth-hospital-partners-with-rosterlab-for-smarter-rosters?source=article#partnership",
+    ),
+  ).toBe(
+    "/us/newsroom/hospital-in-perth-partners-with-rosterlab-for-smarter-schedules?source=article#partnership",
+  );
+});
+
 test("converts whole words and capitalization without corrupting product names or contextual terms", () => {
   expect(
     localizeUSText(
@@ -338,3 +362,9 @@ describe("US fields beside their global counterparts", () => {
     expect(result.seo.metaTitle).toBe("A scheduling guide");
   });
 })
+
+test("falls back to the global image when a US override has no asset", () => {
+  const mainImage = { asset: { _ref: "image-original-1774x887-png" }, alt: "Staff rostering" };
+  const result = localizeUSPost({ title: "Rostering", mainImage, usMainImage: { _type: "image", alt: "US image" } });
+  expect(result.mainImage.asset).toEqual(mainImage.asset);
+});
