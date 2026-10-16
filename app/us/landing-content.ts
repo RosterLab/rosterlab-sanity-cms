@@ -50,7 +50,7 @@ export const FEATURE_TESTIMONIAL_US: FeatureTestimonialContent = {
   after: "2-3 hours",
   tail: ", allowing me to focus more on patient care.",
   author: "Mike",
-  role: "Associate Clinical Manager Radiology",
+  role: "Associate Clinical Manager, Radiology",
   // Use the US-localized webinar page.
   link: {
     href: "/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
@@ -78,7 +78,7 @@ export const BENEFIT_TABS_US: BenefitTab[] = [
   {
     id: "turnover",
     label: "Retain Staff",
-    title: "Retain the clinicians your service depends on",
+    title: "Retain the physicians your service depends on",
     description:
       "Give staff fairer schedules that protect their personal time. Promote a healthier work-life balance to help reduce burnout, absenteeism, and turnover.",
     cta: {
@@ -283,7 +283,7 @@ export const WORKFORCE_CONTENT_US: WorkforceContent = {
     {
       name: "Allied health",
       illustration: "/landing/workforce/illustrations/allied-health.webp",
-      href: "/us/industries/healthcare-scheduling",
+      href: "/us/industries/healthcare/radiography-scheduling",
       linkLabel: "Explore allied health scheduling",
       description:
         "Schedule allied health teams across clinics, units and sites by skill and availability, so every service has the right people on hand.",
@@ -315,7 +315,7 @@ export const FEATURED_CASE_STUDY_US: FeaturedCaseStudy = {
   statLabel: "back for clinical work",
   title: "179 hours back for clinical work",
   summary:
-    "Whanganui Radiography saved more than 179 hours a year with RosterLab, returning clinician time to clinical work.",
+    "Whanganui Radiography saved more than 179 hours a year with RosterLab, returning physician time to clinical work.",
   // The slug has no roster terms, so the US path is the global one under /us.
   href: "/us/case-studies/whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab",
   image: {
@@ -335,8 +335,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " who writes medical schedules.",
     ],
     author: "Peter",
-    role: "Senior Registrar ICU, Western Australia",
-    roleExplanation: "Australian physician in advanced specialty training.",
+    role: "ICU Physician, Western Australia",
     caseStudyLink: "/us/case-studies/icu-unit-western-australia",
   },
   {
@@ -356,9 +355,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " built into the schedules, and RosterLab was easily able to incorporate that into every schedule they generated for us.",
     ],
     author: "Rebecca",
-    role: "Staff Specialist Neonatologist, RPA Newborn Care",
-    roleExplanation:
-      "Specialist in newborn care at Royal Prince Alfred Hospital, Australia.",
+    role: "Attending Neonatologist, RPA Newborn Care",
   },
   {
     quote: [
@@ -367,8 +364,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       ", with less up-and-down cycling.",
     ],
     author: "Anthea",
-    role: "MIT, Hawke's Bay Hospital",
-    roleExplanation: "MIT means medical imaging technologist in New Zealand.",
+    role: "Radiologic Technologist, Hawke's Bay Hospital",
   },
   {
     quote: [
@@ -379,9 +375,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " while maintaining a safer schedule.",
     ],
     author: "Dr. Fernando",
-    role: "Consultant, Auckland Tertiary Hospital",
-    roleExplanation:
-      "Early-career specialist physician, comparable to a US attending.",
+    role: "Attending Physician, Auckland Tertiary Hospital",
     caseStudyLink:
       "/us/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-schedule",
   },

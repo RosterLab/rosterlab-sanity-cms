@@ -16,11 +16,6 @@ const LOCATION = "Landing Industries";
 // The brand-blue wash the testimonials band uses.
 const CARD_TINT = "rgba(55, 121, 221, 0.07)";
 
-// Fades a tab's text up into place. `both` holds the start frame through each
-// element's delay, so the stagger doesn't flash the text in first.
-const FADE_UP =
-  "motion-safe:animate-[rl-fade-up_500ms_cubic-bezier(0.22,1,0.36,1)_both]";
-
 export interface WorkforceGroup {
   name: string;
   /**
@@ -56,7 +51,7 @@ const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
     href: "/industries/healthcare/nurse-rostering",
     linkLabel: "Explore nurse rostering",
     description:
-      "Balance skill mix, ratios and a fair spread of nights and weekends across every ward, while honouring agreements and staff preferences.",
+      "Build fairer nursing rosters that balance staffing requirements, skill mix and staff preferences while respecting employment agreements.",
     features: [
       {
         title: "Shift preferences, straight from staff",
@@ -80,7 +75,7 @@ const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
     href: "/industries/healthcare/junior-medical-officer-rostering",
     linkLabel: "Explore junior doctor rostering",
     description:
-      "Cover every shift with compliant rosters that respect fatigue rules, protect training time and share nights and weekends fairly.",
+      "Plan rosters around changing rotations, clinical coverage, training and supervision while accounting for working-hour and rest requirements.",
     features: [
       {
         title: "Fatigue & safe-hours checks",
@@ -100,7 +95,7 @@ const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
     href: "/industries/healthcare/senior-medical-officer-rostering",
     linkLabel: "Explore senior doctor rostering",
     description:
-      "Plan sessions, on-call and leave across every service, with a fair share of after-hours work and clear visibility for the whole team.",
+      "Balance specialist coverage with individual preferences, fairer on-call allocations and protected time for non-clinical duties.",
     features: [
       {
         title: "On-call & session planning",
@@ -117,10 +112,10 @@ const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
   {
     name: "Allied health",
     illustration: "/landing/workforce/illustrations/allied-health.webp",
-    href: "/industries/healthcare",
+    href: "/industries/healthcare/radiography",
     linkLabel: "Explore allied health rostering",
     description:
-      "Roster allied health teams across clinics, wards and sites by skill and availability, so every service has the right people on hand.",
+      "Match the right skills to each service and location while balancing varied working patterns, staff preferences and changing coverage needs.",
     features: [
       {
         title: "Skill-based allocation across sites",
@@ -187,14 +182,13 @@ export interface OtherIndustriesContent {
 export const OTHER_INDUSTRIES_CONTENT_AU: OtherIndustriesContent = {
   heading: "Workforce management for shift-based industries",
   description:
-    "RosterLab brings intelligent rostering and workforce optimisation to shift-based teams across a range of industries.",
+    "RosterLab brings intelligent rostering and workforce optimisation to complex shift-based teams across a range of industries.",
   viewAll: { label: "View all industries", href: "/industries" },
   industries: OTHER_INDUSTRIES_AU,
 };
 
 /**
- * A card with a row of group tiles over the active group's detail: its copy
- * and link on the left, its key features as a divided list on the right.
+ * A card with group tiles above a short description and exploration button.
  * Clicking a tile (or arrowing to it) switches the group in place.
  */
 function WorkforceGroups({ content }: { content: WorkforceContent }) {
@@ -203,7 +197,6 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const count = groups.length;
   const [active, setActive] = useState(0);
-  const group = groups[active];
 
   const select = (i: number) => {
     trackButtonClick(`Workforce group: ${groups[i].name}`, LOCATION);
@@ -247,11 +240,11 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
       </div>
 
       <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm">
-        {/* Group tiles. A swipeable row on phones, four across from md. */}
+        {/* Keep every group visible on phones so the selection never slides away. */}
         <div
           role="tablist"
           aria-label="Healthcare workforce groups"
-          className="flex gap-3 overflow-x-auto snap-x pt-1 md:pt-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-4 md:overflow-visible"
+          className="grid grid-cols-2 gap-3 md:grid-cols-4"
         >
           {groups.map((g, i) => {
             const selected = i === active;
@@ -269,16 +262,16 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => select(i)}
                 onKeyDown={onKeyDown}
-                className={`group relative flex h-44 w-36 shrink-0 snap-start flex-col items-center overflow-hidden rounded-xl border px-3 pb-3 pt-4 transition duration-300 ease-out active:scale-[0.97] md:h-36 md:w-auto ${
+                className={`group relative flex h-40 min-w-0 flex-col items-center overflow-hidden rounded-xl border px-3 pb-3 pt-4 transition duration-300 ease-out active:scale-[0.97] md:h-36 md:w-auto ${
                   selected
-                    ? "border-blue-200 bg-white shadow-md"
+                    ? "border-blue-500 bg-blue-50 shadow-md md:border-blue-200 md:bg-white"
                     : "border-gray-200 bg-slate-50 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-md"
                 }`}
               >
                 <span
                   className={`text-center text-sm md:text-base font-medium leading-tight transition-colors ${
                     selected
-                      ? "text-gray-900"
+                      ? "text-blue-700 md:text-gray-900"
                       : "text-gray-500 group-hover:text-gray-700"
                   }`}
                 >
@@ -295,7 +288,7 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
                     sizes="(min-width: 768px) 220px, 144px"
                     className={`object-contain object-bottom transition duration-500 ease-out ${
                       selected
-                        ? ""
+                        ? "opacity-100 grayscale-0"
                         : "opacity-40 grayscale group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
                     }`}
                   />
@@ -312,76 +305,55 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
           id={`${id}-panel`}
           aria-labelledby={`${id}-tab-${active}`}
         >
-          {/* Keyed by group so the detail replays its entrance. */}
-          <div
-            key={group.name}
-            className={`grid grid-cols-1 gap-8 px-4 py-6 md:px-8 lg:grid-cols-2 lg:gap-16 ${FADE_UP}`}
-          >
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
-                {group.name}
-              </h3>
-              <p className="mt-3 max-w-md text-base text-gray-600 leading-relaxed">
-                {group.description}
-              </p>
-              <Link
-                href={group.href}
-                onClick={() =>
-                  trackSmartButtonClick(group.linkLabel, group.href, LOCATION, {
-                    workforce_group: group.name,
-                  })
-                }
-                className="group mt-6 inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-2.5 text-sm md:text-base font-semibold text-gray-900 transition hover:border-blue-600 hover:text-blue-700"
+          {/* Shared grid cell keeps the detail height stable between groups. */}
+          <div className="grid [overflow-anchor:none]">
+            {groups.map((group, i) => (
+              <div
+                key={group.name}
+                inert={i !== active}
+                aria-hidden={i !== active}
+                className={`[grid-area:1/1] flex flex-col gap-6 px-4 py-6 md:flex-row md:items-center md:justify-between md:gap-10 md:px-8 transition-opacity duration-300 motion-reduce:transition-none ${
+                  i === active
+                    ? "visible opacity-100"
+                    : "invisible pointer-events-none opacity-0"
+                }`}
               >
-                {group.linkLabel}
-                <LuArrowRight
-                  aria-hidden="true"
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
-
-            <ul className="divide-y divide-gray-200">
-              {group.features.map((f) => (
-                <li key={f.title} className="py-3 first:pt-0 last:pb-0">
-                  <h4 className="text-base md:text-lg font-semibold text-gray-900">
-                    {f.title}
-                  </h4>
-                  <p className="mt-1 text-sm text-gray-600 leading-relaxed">
-                    {f.description}
+                <div className="max-w-2xl">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
+                    {group.name}
+                  </h3>
+                  <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                    {group.description}
                   </p>
-                </li>
-              ))}
-            </ul>
+                </div>
+                <Link
+                  href={group.href}
+                  prefetch={true}
+                  onClick={() =>
+                    trackSmartButtonClick(
+                      group.linkLabel,
+                      group.href,
+                      LOCATION,
+                      {
+                        workforce_group: group.name,
+                      },
+                    )
+                  }
+                  className="group inline-flex shrink-0 self-start items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm md:text-base font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 md:self-center"
+                >
+                  {group.linkLabel}
+                  <LuArrowRight
+                    aria-hidden="true"
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  />
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="mt-6 pt-5 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <p className="text-sm md:text-base text-gray-600 leading-relaxed">
-            <span className="font-semibold text-gray-900">
-              {content.enterprise.lead}
-            </span>
-          </p>
-          <Link
-            href={content.enterprise.href}
-            onClick={() =>
-              trackSmartButtonClick(
-                content.enterprise.label,
-                content.enterprise.href,
-                LOCATION,
-              )
-            }
-            className="group mt-2 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
-          >
-            {content.enterprise.label}
-            <LuArrowRight
-              aria-hidden="true"
-              className="w-4 h-4 transition-transform group-hover:translate-x-1"
-            />
-          </Link>
-        </div>
+      <div className="mt-6 pt-5 border-t border-gray-200">
         <div>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             <span className="font-semibold text-gray-900">
@@ -389,7 +361,8 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
             </span>{" "}
             {content.specialties.body}
           </p>
-          <Link
+          {/* Native navigation remains usable independently of client routing. */}
+          <a
             href={content.specialties.href}
             onClick={() =>
               trackSmartButtonClick(
@@ -398,14 +371,14 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
                 LOCATION,
               )
             }
-            className="group mt-2 inline-flex items-center gap-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
+            className="group mt-2 inline-flex min-h-11 items-center gap-2 py-2 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
           >
             {content.specialties.label}
             <LuArrowRight
               aria-hidden="true"
               className="w-4 h-4 transition-transform group-hover:translate-x-1"
             />
-          </Link>
+          </a>
         </div>
       </div>
     </div>
@@ -435,6 +408,7 @@ function OtherIndustries({ content }: { content: OtherIndustriesContent }) {
         </p>
         <Link
           href={content.viewAll.href}
+          prefetch={true}
           onClick={() =>
             trackSmartButtonClick(
               content.viewAll.label,
@@ -457,6 +431,7 @@ function OtherIndustries({ content }: { content: OtherIndustriesContent }) {
           <li key={ind.name}>
             <Link
               href={ind.href}
+              prefetch={true}
               onClick={() =>
                 trackSmartButtonClick(
                   `Industry: ${ind.name}`,
@@ -489,7 +464,7 @@ export function HealthcareWorkforceSection({
   content?: WorkforceContent;
 } = {}) {
   return (
-    <section className="py-16 md:py-20">
+    <section className="pt-16 pb-24 md:pt-20 md:pb-28">
       <Container className="lg:px-12 xl:px-20">
         <WorkforceGroups content={content} />
       </Container>

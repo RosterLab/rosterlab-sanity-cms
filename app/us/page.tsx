@@ -136,6 +136,7 @@ export default function Home() {
           description={FINAL_CTA_US.description}
           isUS
           progressiveForm
+          showReviews={false}
         />
       </div>
     </div>

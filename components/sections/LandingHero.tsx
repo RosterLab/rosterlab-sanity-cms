@@ -539,6 +539,7 @@ export default function LandingHero({
           <div className="mt-8 flex flex-row items-center justify-center gap-3">
             <Button
               href={content.primaryCta.href}
+              prefetch={true}
               className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-950 sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={content.primaryCta.label}
               analyticsLocation="Hero"
@@ -547,6 +548,7 @@ export default function LandingHero({
             </Button>
             <Button
               href={content.secondaryCta.href}
+              prefetch={true}
               className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={content.secondaryCta.label}
               analyticsLocation="Hero"

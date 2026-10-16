@@ -2,6 +2,7 @@
 import { createCaseStudyPage } from "./CaseStudyPage";
 import { createNewsroomArticlePage } from "./NewsroomArticlePage";
 import { notFound, permanentRedirect } from "next/navigation";
+import { draftMode } from "next/headers";
 
 const mockFetch = jest.fn();
 jest.mock("@/sanity/lib/client", () => ({
@@ -9,10 +10,12 @@ jest.mock("@/sanity/lib/client", () => ({
   getClient: () => ({ fetch: (...args: unknown[]) => mockFetch(...args) }),
   urlFor: () => ({ url: () => "https://example.com/image.png" }),
 }));
-jest.mock("next-sanity", () => ({ groq: (strings: TemplateStringsArray) => strings[0] }));
+jest.mock("next-sanity", () => ({
+  groq: (strings: TemplateStringsArray) => strings[0],
+}));
 jest.mock("@/sanity/lib/token", () => ({ validatedToken: undefined }));
 jest.mock("next/headers", () => ({
-  draftMode: async () => ({ isEnabled: false }),
+  draftMode: jest.fn(async () => ({ isEnabled: false })),
 }));
 jest.mock("next/navigation", () => ({
   notFound: jest.fn(() => {
@@ -40,7 +43,30 @@ const post = {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  jest.mocked(draftMode).mockResolvedValue({
+    isEnabled: false,
+  } as Awaited<ReturnType<typeof draftMode>>);
 });
+
+test.each([false, true])(
+  "case-study caching respects draft mode (preview=%s)",
+  async (preview) => {
+    jest.mocked(draftMode).mockResolvedValue({
+      isEnabled: preview,
+    } as Awaited<ReturnType<typeof draftMode>>);
+    mockFetch.mockImplementation(async (query: string) =>
+      query.includes("[0]") ? post : [],
+    );
+    const page = createCaseStudyPage(false);
+    await page.generateMetadata({ params });
+    await page.Page({ params });
+    for (const call of mockFetch.mock.calls) {
+      expect(call[2]).toEqual(
+        preview ? { cache: "no-store" } : { next: { revalidate: 3600 } },
+      );
+    }
+  },
+);
 
 describe.each([
   ["case-studies", createCaseStudyPage],

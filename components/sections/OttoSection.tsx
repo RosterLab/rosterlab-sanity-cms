@@ -362,6 +362,7 @@ export default function OttoSection({
           <div className="mt-8 lg:mt-5">
             <Button
               href={copy.cta.href}
+              prefetch={true}
               analyticsLabel={copy.cta.label}
               analyticsLocation={LOCATION}
               className="inline-flex items-center bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-700 transition"
@@ -374,7 +375,7 @@ export default function OttoSection({
         {/* ---- Desktop: feature list on the left, pinned media panel right ----
             Below lg this whole block is replaced by the accordion underneath,
             which shows each clip inside the item that describes it. */}
-        <div className="mt-8 hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+        <div className="mt-8 hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start [overflow-anchor:none]">
           {/* Media panel — sticks while the list scrolls past it. Capped by
               the viewport height as well as the column width, so the square
               never pushes the section past one screen. */}

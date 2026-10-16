@@ -4,7 +4,16 @@ import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
   // Production builds must not replace assets used by a running local preview.
-  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev-turbo" : ".next",
+  // Match the browser-only exclusions below when using the faster dev compiler.
+  turbopack: {
+    resolveAlias: {
+      "core-js": { browser: "./lib/browser-empty.js" },
+      "core-js-pure": { browser: "./lib/browser-empty.js" },
+      jsdom: { browser: "./lib/browser-empty.js" },
+      "isomorphic-dompurify": { browser: "./lib/browser-empty.js" },
+    },
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

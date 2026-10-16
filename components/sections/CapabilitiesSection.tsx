@@ -124,6 +124,7 @@ function CapabilityLink({ cta }: { cta: Capability["cta"] }) {
   return (
     <Link
       href={cta.href}
+      prefetch={true}
       onClick={() => trackSmartButtonClick(cta.label, cta.href, LOCATION)}
       className="group mt-5 inline-flex items-center gap-2 self-start text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
     >
@@ -205,7 +206,7 @@ function CapabilityShowcase({ capabilities }: { capabilities: Capability[] }) {
   return (
     <div
       ref={rootRef}
-      className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
+      className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm [overflow-anchor:none]"
     >
       {/* Every image is stacked here so a hand-over cross-fades between
           frames that are already loaded. */}

@@ -32,6 +32,7 @@ function gateTextChildren(children: ReactNode): ReactNode {
 interface ButtonProps {
   children: React.ReactNode;
   href?: string;
+  prefetch?: boolean;
   onClick?: () => void;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
@@ -48,6 +49,7 @@ interface ButtonProps {
 export default function Button({
   children,
   href,
+  prefetch,
   onClick,
   variant = "primary",
   size = "md",
@@ -142,6 +144,7 @@ export default function Button({
     return (
       <Link
         href={href}
+        prefetch={prefetch}
         className={classes}
         onClick={clickHandler}
         role="button"

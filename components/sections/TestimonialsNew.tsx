@@ -150,6 +150,7 @@ function CaseStudyCard({ study }: { study: FeaturedCaseStudy }) {
         </p>
         <Link
           href={study.href}
+          prefetch={true}
           onClick={() =>
             trackSmartButtonClick("See case study", study.href, LOCATION, {
               case_study: study.title,
@@ -208,7 +209,6 @@ export default function TestimonialsNew({
 } = {}) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<number | null>(null);
-  const current = testimonials[index];
 
   const prev = () =>
     setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
@@ -239,7 +239,7 @@ export default function TestimonialsNew({
         aria-hidden="true"
         viewBox="0 0 1440 64"
         preserveAspectRatio="none"
-        className="absolute inset-x-0 top-0 -translate-y-full w-full h-10 md:h-20"
+        className="pointer-events-none absolute inset-x-0 top-0 -translate-y-full w-full h-10 md:h-20"
       >
         <path
           d="M0,32 C240,8 480,8 720,32 C960,56 1200,56 1440,32 L1440,64 L0,64 Z"
@@ -250,7 +250,7 @@ export default function TestimonialsNew({
         aria-hidden="true"
         viewBox="0 0 1440 64"
         preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 translate-y-full w-full h-10 md:h-20"
+        className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full w-full h-10 md:h-20"
       >
         <path
           d="M0,32 C240,56 480,56 720,32 C960,8 1200,8 1440,32 L1440,0 L0,0 Z"
@@ -336,8 +336,7 @@ export default function TestimonialsNew({
           {/* Right: big quote with quote glyph, then attribution. Touch
               swipe (left/right) advances the testimonial on mobile. */}
           <div
-            key={index}
-            className="animate-fade-in touch-pan-y"
+            className="touch-pan-y [overflow-anchor:none]"
             onTouchStart={(e) => {
               (e.currentTarget as HTMLDivElement).dataset.startX = String(
                 e.touches[0].clientX,
@@ -356,66 +355,87 @@ export default function TestimonialsNew({
               else prev();
             }}
           >
-            <div
-              aria-hidden="true"
-              className="text-6xl md:text-7xl font-bold text-blue-600 leading-none mb-6"
-            >
-              &ldquo;
-            </div>
-            <blockquote className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-[1.25] tracking-tight">
-              {current.quote.map((frag, i) =>
-                typeof frag === "string" ? (
-                  <span key={i}>{frag}</span>
-                ) : (
-                  <span key={i} className="text-blue-600">
-                    {frag.highlight}
-                  </span>
-                ),
-              )}
-              {/* Matches the opening glyph above — the pair reads as one mark. */}
-              <span className="text-blue-600">&rdquo;</span>
-            </blockquote>
+            {/* Shared grid cell reserves the tallest quote at every width, so
+                automatic rotation cannot resize the section or shift the page. */}
+            <div className="grid">
+              {testimonials.map((current, quoteIndex) => (
+                <div
+                  key={quoteIndex}
+                  inert={quoteIndex !== index}
+                  aria-hidden={quoteIndex !== index}
+                  className={`[grid-area:1/1] transition-opacity duration-500 motion-reduce:transition-none ${
+                    quoteIndex === index
+                      ? "visible opacity-100"
+                      : "invisible pointer-events-none opacity-0"
+                  }`}
+                >
+                  <div
+                    aria-hidden="true"
+                    className="text-6xl md:text-7xl font-bold text-blue-600 leading-none mb-6"
+                  >
+                    &ldquo;
+                  </div>
+                  <blockquote className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-[1.25] tracking-tight">
+                    {current.quote.map((frag, i) =>
+                      typeof frag === "string" ? (
+                        <span key={i}>{frag}</span>
+                      ) : (
+                        <span key={i} className="text-blue-600">
+                          {frag.highlight}
+                        </span>
+                      ),
+                    )}
+                    {/* Matches the opening glyph above — the pair reads as one mark. */}
+                    <span className="text-blue-600">&rdquo;</span>
+                  </blockquote>
 
-            <div className="mt-10">
-              <p className="font-semibold text-gray-900">{current.author}</p>
-              <p className="text-sm text-gray-600">{current.role}</p>
-              {current.roleExplanation && (
-                <p className="mt-1 text-sm text-gray-600">
-                  {current.roleExplanation}
-                </p>
-              )}
-              {current.link && (
-                <Link
-                  href={current.link.href}
-                  onClick={() =>
-                    trackSmartButtonClick(
-                      current.link!.label,
-                      current.link!.href,
-                      LOCATION,
-                      { testimonial_author: current.author },
-                    )
-                  }
-                  className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                >
-                  {current.link.label}
-                </Link>
-              )}
-              {!current.link && current.caseStudyLink && (
-                <Link
-                  href={current.caseStudyLink}
-                  onClick={() =>
-                    trackSmartButtonClick(
-                      "Read case study",
-                      current.caseStudyLink!,
-                      LOCATION,
-                      { testimonial_author: current.author },
-                    )
-                  }
-                  className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                >
-                  Read case study →
-                </Link>
-              )}
+                  <div className="mt-10">
+                    <p className="font-semibold text-gray-900">
+                      {current.author}
+                    </p>
+                    <p className="text-sm text-gray-600">{current.role}</p>
+                    {current.roleExplanation && (
+                      <p className="mt-1 text-sm text-gray-600">
+                        {current.roleExplanation}
+                      </p>
+                    )}
+                    {current.link && (
+                      <Link
+                        href={current.link.href}
+                        prefetch={true}
+                        onClick={() =>
+                          trackSmartButtonClick(
+                            current.link!.label,
+                            current.link!.href,
+                            LOCATION,
+                            { testimonial_author: current.author },
+                          )
+                        }
+                        className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        {current.link.label}
+                      </Link>
+                    )}
+                    {!current.link && current.caseStudyLink && (
+                      <Link
+                        href={current.caseStudyLink}
+                        prefetch={true}
+                        onClick={() =>
+                          trackSmartButtonClick(
+                            "Read case study",
+                            current.caseStudyLink!,
+                            LOCATION,
+                            { testimonial_author: current.author },
+                          )
+                        }
+                        className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        Read case study →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Mobile-only dots. Click to jump; visible on all screens
