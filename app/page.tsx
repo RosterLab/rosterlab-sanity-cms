@@ -126,6 +126,7 @@ export default function Home() {
           heading="Still rostering the hard way?"
           description="See how RosterLab turns your complex staffing requirements into an optimised roster in minutes."
           progressiveForm
+          showReviews={false}
         />
       </div>
     </div>
