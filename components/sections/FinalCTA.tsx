@@ -54,34 +54,36 @@ export default function FinalCTA({
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex items-center gap-3 md:flex-col md:text-center">
-                <div className="w-12 h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
+            <div className="grid grid-cols-3 gap-2 sm:gap-6">
+              <div className="flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mb-2">
                   <HiClock className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-2xl font-bold">90%</div>
-                  <div className="text-sm text-white/80">time saving</div>
+                  <div className="text-xs sm:text-sm text-white/80">
+                    time saving
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 md:flex-col md:text-center">
-                <div className="w-12 h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
+              <div className="flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mb-2">
                   <HiTrendingUp className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-2xl font-bold">100%</div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-xs sm:text-sm text-white/80">
                     guaranteed compliance
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 md:flex-col md:text-center">
-                <div className="w-12 h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
+              <div className="flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mb-2">
                   <HiUsers className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold">Better</div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-lg font-bold leading-8">Better</div>
+                  <div className="text-xs sm:text-sm text-white/80">
                     staff satisfaction
                   </div>
                 </div>

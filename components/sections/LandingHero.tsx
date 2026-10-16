@@ -212,18 +212,6 @@ function useDeferredSrc(enabled: boolean, locale: Locale) {
  * dwell time on the mockup — and the landing scale pushes its sides past the
  * section's horizontal clip. Both are switched off below `lg`.
  */
-function useIsDesktopHero() {
-  const [isDesktop, setIsDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setIsDesktop(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-  return isDesktop;
-}
-
 export default function LandingHero({
   content = HERO_CONTENT_AU,
   trustedHeading,
@@ -239,39 +227,22 @@ export default function LandingHero({
   /** Untransformed wrapper, used for measurement — see targetScale() below. */
   const trackRef = useRef<HTMLDivElement>(null);
   const reduceMotion = usePrefersReducedMotion();
-  const isDesktop = useIsDesktopHero();
-  /** The logo wall in the blue field below the mockup, and whether it is in. */
-  const trustedRef = useRef<HTMLDivElement>(null);
-  const [trustedIn, setTrustedIn] = useState(false);
-  /**
-   * The reveal is applied only after mount, so the wall is plain visible in
-   * the server HTML: hiding it there would leave it invisible to anyone whose
-   * JS never arrives. It sits well below the fold, so the hide-then-fade on
-   * hydration is not something a reader can see.
-   */
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   // Under reduced motion the poster is the whole story — never fetch the video.
   // The content object already carries the region; the recording follows it.
   const locale: Locale = content.locale === "us" ? "us" : "au";
   const videoSrc = useDeferredSrc(!reduceMotion, locale);
+  const [readyVideoSrc, setReadyVideoSrc] = useState<string>();
 
   useEffect(() => {
     const element = windowRef.current;
     const track = trackRef.current;
     if (!element || !track) return;
 
-    // Someone who has asked for less motion — and everyone below `lg`, where
-    // there is no pin to scale into — gets the window at its own size.
-    if (
-      !isDesktop ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      element.style.transform = "scale(1)";
-      return;
-    }
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const targetScale = () => {
+      if (!desktop.matches || reducedMotion.matches) return 1;
       // Measured off the wrapper and the window's *layout* height, both of
       // which ignore the transform. Reading the scaled rect instead would feed
       // each frame's scale back into the next frame's progress.
@@ -292,7 +263,9 @@ export default function LandingHero({
       return LANDING_SCALE - (LANDING_SCALE - 1) * smoothstep(progress);
     };
 
-    let current = targetScale();
+    // Match the server-rendered CSS before easing toward the scroll position.
+    // Starting with a mobile-only React state briefly reset desktop to scale(1).
+    let current = desktop.matches && !reducedMotion.matches ? LANDING_SCALE : 1;
     let frame = 0;
     let lastTime = 0;
 
@@ -323,42 +296,26 @@ export default function LandingHero({
       lastTime = 0;
       frame = requestAnimationFrame(tick);
     };
+    const onResize = () => {
+      if (!desktop.matches || reducedMotion.matches) {
+        current = 1;
+        element.style.transform = "scale(1)";
+      }
+      start();
+    };
 
     element.style.transform = `scale(${current})`;
     start();
     window.addEventListener("scroll", start, { passive: true });
-    window.addEventListener("resize", start, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+    reducedMotion.addEventListener("change", onResize);
     return () => {
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", start);
-      window.removeEventListener("resize", start);
+      window.removeEventListener("resize", onResize);
+      reducedMotion.removeEventListener("change", onResize);
     };
-  }, [isDesktop]);
-
-  // The logo wall fades up as the pin rail brings it into the blue.
-  //
-  // One-shot: it stays put once it has arrived, so scrolling back up does not
-  // replay it. `threshold` is low because on desktop only the top band of the
-  // wall clears the pinned mockup before it should be on.
-  useEffect(() => {
-    const element = trustedRef.current;
-    if (!element) return;
-    if (reduceMotion) {
-      setTrustedIn(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTrustedIn(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [reduceMotion]);
+  }, []);
 
   // The dots' focal point drifts toward the cursor.
   //
@@ -622,6 +579,7 @@ export default function LandingHero({
                 */}
                 {videoSrc && (
                   <video
+                    key={videoSrc}
                     src={videoSrc}
                     autoPlay
                     loop
@@ -634,7 +592,8 @@ export default function LandingHero({
                     preload="none"
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="absolute inset-0 block h-full w-full object-cover"
+                    onLoadedData={() => setReadyVideoSrc(videoSrc)}
+                    className={`absolute inset-0 block h-full w-full object-cover transition-opacity duration-300 ${readyVideoSrc === videoSrc ? "opacity-100" : "opacity-0"}`}
                   />
                 )}
               </div>
@@ -650,21 +609,10 @@ export default function LandingHero({
                 fill.
               */}
               <div
-                ref={trustedRef}
                 // Gap kept tight: the sticky group is the mockup plus this,
                 // and it has to clear the 80px header and still fit a laptop
                 // viewport while the pin holds.
                 className="mt-8 w-full lg:mt-10"
-                style={
-                  mounted
-                    ? {
-                        opacity: trustedIn ? 1 : 0,
-                        transform: trustedIn ? "none" : "translateY(24px)",
-                        transition:
-                          "opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1)",
-                      }
-                    : undefined
-                }
               >
                 <TrustedByDualRow onDark heading={trustedHeading} />
               </div>
