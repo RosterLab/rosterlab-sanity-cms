@@ -8,6 +8,8 @@ interface TrustedLogo {
   alt: string;
   /** Desktop draw height in px — see the note on trustedLogos below. */
   opticalHeight: number;
+  /** Native SVG viewBox ratio, reserved before the image downloads. */
+  aspectRatio: number;
 }
 
 /**
@@ -30,71 +32,85 @@ const trustedLogos: TrustedLogo[] = [
     src: "/images/logos/new-logos/aus_gov.svg",
     alt: "Australian Government",
     opticalHeight: 40,
+    aspectRatio: 460 / 124.59,
   },
   {
     src: "/images/logos/new-logos/hospice_west_auckland.svg",
     alt: "Hospice West Auckland",
     opticalHeight: 56,
+    aspectRatio: 194.202 / 170.627,
   },
   {
     src: "/images/logos/new-logos/legalaid.svg",
     alt: "Legal Aid",
     opticalHeight: 30,
+    aspectRatio: 563.52 / 114.43,
   },
   {
     src: "/images/logos/new-logos/monash.svg",
     alt: "Monash Health",
     opticalHeight: 32,
+    aspectRatio: 391.68 / 114.46,
   },
   {
     src: "/images/logos/new-logos/nsw.svg",
     alt: "NSW Health",
     opticalHeight: 40,
+    aspectRatio: 443.52 / 114.25,
   },
   {
     src: "/images/logos/new-logos/peticare.svg",
     alt: "Peticare",
     opticalHeight: 38,
+    aspectRatio: 335.54 / 116.04,
   },
   {
     src: "/images/logos/new-logos/royal_prince.svg",
     alt: "Royal Prince Alfred",
     opticalHeight: 50,
+    aspectRatio: 336.71 / 114.51,
   },
   {
     src: "/images/logos/new-logos/singhealth.svg",
     alt: "SingHealth",
     opticalHeight: 40,
+    aspectRatio: 457.34 / 134.21,
   },
   {
     src: "/images/logos/new-logos/st_george.svg",
     alt: "St George",
     opticalHeight: 48,
+    aspectRatio: 520.02 / 114.34,
   },
   {
     src: "/images/logos/new-logos/syd_kids.svg",
     alt: "Sydney Children's Hospital",
     opticalHeight: 52,
+    aspectRatio: 363.43 / 128.32,
   },
   {
     src: "/images/logos/new-logos/ver_services_hawkes_bay.svg",
     alt: "Veterinary Services Hawke's Bay",
     opticalHeight: 30,
+    aspectRatio: 500.952 / 99.6,
   },
   {
     src: "/images/logos/new-logos/legal_aid_wa.svg",
     alt: "Legal Aid WA",
     opticalHeight: 32,
+    aspectRatio: 439.155 / 71.947,
   },
   {
     src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg",
     alt: "Women's and Children's Hospital Adelaide",
     opticalHeight: 48,
+    aspectRatio: 491.334 / 145.761,
   },
   {
     src: "/images/logos/new-logos/central_island.svg",
     alt: "Central Island",
     opticalHeight: 56,
+    aspectRatio: 385.939 / 148.446,
   },
 ];
 
@@ -102,8 +118,6 @@ const trustedLogos: TrustedLogo[] = [
 const halfway = Math.ceil(trustedLogos.length / 2);
 const topRow = trustedLogos.slice(0, halfway);
 const bottomRow = trustedLogos.slice(halfway);
-
-const ROW_DURATION_S = 45;
 
 function Row({
   logos,
@@ -114,47 +128,61 @@ function Row({
   reverse?: boolean;
   onDark?: boolean;
 }) {
-  // Duplicate the logos so translateX(-50%) produces a seamless loop.
-  const loop = [...logos, ...logos];
+  // Each copy includes its trailing gap, so -50% is exactly one complete row.
+  // A gap between every image left half a gap missing at the loop boundary.
   return (
     <div
-      className="flex w-max items-center gap-10 md:gap-14"
-      style={{
-        animation: `${reverse ? "rl-marquee-reverse" : "rl-marquee"} ${ROW_DURATION_S}s linear infinite`,
-      }}
+      className={cn(
+        "flex w-max items-center",
+        reverse
+          ? "motion-safe:animate-[rl-marquee-reverse_45s_linear_infinite]"
+          : "motion-safe:animate-[rl-marquee_45s_linear_infinite]",
+      )}
     >
-      {loop.map((logo, i) => (
+      {[0, 1].map((copy) => (
         <div
-          key={`${logo.src}-${i}`}
-          className="flex items-center justify-center shrink-0"
-          aria-hidden={i >= logos.length ? "true" : undefined}
+          key={copy}
+          className="flex shrink-0 items-center gap-10 pr-10 md:gap-14 md:pr-14"
+          aria-hidden={copy === 1 ? "true" : undefined}
         >
-          <Image
-            src={logo.src}
-            alt={logo.alt}
-            width={240}
-            height={logo.opticalHeight}
-            style={{ "--logo-h": `${logo.opticalHeight}px` } as CSSProperties}
-            className={cn(
-              "w-auto object-contain md:h-[var(--logo-h)] md:max-w-[220px]",
-              onDark
-                ? // The hero gives the wall the full width of the phone with
-                  // nothing beside it, so the marks are drawn *above* their
-                  // desktop height there rather than the 0.72 the boxed
-                  // light version uses — at 0.72 a 30px wordmark is a smudge
-                  // on a 390px screen. Desktop is unchanged.
-                  "h-[calc(var(--logo-h)*1.35)] max-w-[280px]"
-                : "h-[calc(var(--logo-h)*0.72)] max-w-[220px]",
-              onDark
-                ? // brightness(0) flattens each mark to black whatever its own
-                  // colours are, and invert(1) then takes that to white — the
-                  // only way to get one consistent silhouette out of a wall
-                  // this mixed. Held under full opacity so the logos stay
-                  // second to the headline above them.
-                  "opacity-80 brightness-0 invert"
-                : "opacity-70 grayscale",
-            )}
-          />
+          {logos.map((logo) => (
+            <div
+              key={logo.src}
+              className="flex shrink-0 items-center justify-center"
+            >
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={Math.round(logo.opticalHeight * logo.aspectRatio)}
+                height={logo.opticalHeight}
+                style={
+                  {
+                    "--logo-h": `${logo.opticalHeight}px`,
+                    "--logo-ratio": logo.aspectRatio,
+                  } as CSSProperties
+                }
+                className={cn(
+                  "object-contain md:h-[var(--logo-h)] md:w-[calc(var(--logo-h)*var(--logo-ratio))] md:max-w-[220px]",
+                  onDark
+                    ? // The hero gives the wall the full width of the phone with
+                      // nothing beside it, so the marks are drawn *above* their
+                      // desktop height there rather than the 0.72 the boxed
+                      // light version uses — at 0.72 a 30px wordmark is a smudge
+                      // on a 390px screen. Desktop is unchanged.
+                      "h-[calc(var(--logo-h)*1.35)] w-[calc(var(--logo-h)*var(--logo-ratio)*1.35)] max-w-[280px]"
+                    : "h-[calc(var(--logo-h)*0.72)] w-[calc(var(--logo-h)*var(--logo-ratio)*0.72)] max-w-[220px]",
+                  onDark
+                    ? // brightness(0) flattens each mark to black whatever its own
+                      // colours are, and invert(1) then takes that to white — the
+                      // only way to get one consistent silhouette out of a wall
+                      // this mixed. Held under full opacity so the logos stay
+                      // second to the headline above them.
+                      "opacity-80 brightness-0 invert"
+                    : "opacity-70 grayscale",
+                )}
+              />
+            </div>
+          ))}
         </div>
       ))}
     </div>

@@ -18,6 +18,8 @@ const CARD_TINT = "rgba(55, 121, 221, 0.07)";
 
 export interface WorkforceGroup {
   name: string;
+  /** Expanded heading below the tiles, when different from the tab label. */
+  heading?: string;
   /**
    * Tile illustration: a transparent webp of blue line art, about 400px
    * tall, trimmed to the figures. Shown with `contain`, so shapes can vary.
@@ -90,7 +92,8 @@ const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
     ],
   },
   {
-    name: "Senior doctors & consultants",
+    name: "Senior doctors",
+    heading: "Senior doctors & Consultants",
     illustration: "/landing/workforce/illustrations/senior-doctors.webp",
     href: "/industries/healthcare/senior-medical-officer-rostering",
     linkLabel: "Explore senior doctor rostering",
@@ -262,14 +265,14 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
                 tabIndex={selected ? 0 : -1}
                 onClick={() => select(i)}
                 onKeyDown={onKeyDown}
-                className={`group relative flex h-40 min-w-0 flex-col items-center overflow-hidden rounded-xl border px-3 pb-3 pt-4 transition duration-300 ease-out active:scale-[0.97] md:h-36 md:w-auto ${
+                className={`group relative flex h-44 min-w-0 flex-col items-center overflow-hidden rounded-xl border px-3 pb-4 pt-4 transition duration-300 ease-out active:scale-[0.97] md:w-auto ${
                   selected
                     ? "border-blue-500 bg-blue-50 shadow-md md:border-blue-200 md:bg-white"
                     : "border-gray-200 bg-slate-50 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-md"
                 }`}
               >
                 <span
-                  className={`text-center text-sm md:text-base font-medium leading-tight transition-colors ${
+                  className={`text-center text-base md:text-lg font-medium leading-tight transition-colors ${
                     selected
                       ? "text-blue-700 md:text-gray-900"
                       : "text-gray-500 group-hover:text-gray-700"
@@ -320,7 +323,7 @@ function WorkforceGroups({ content }: { content: WorkforceContent }) {
               >
                 <div className="max-w-2xl">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
-                    {group.name}
+                    {group.heading ?? group.name}
                   </h3>
                   <p className="mt-3 text-base text-gray-600 leading-relaxed">
                     {group.description}
