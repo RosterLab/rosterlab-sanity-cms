@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { HiGlobeAlt, HiChevronDown } from "react-icons/hi";
-import {
-  getUSPath,
-  getGlobalPath,
-} from "@/components/seo/HreflangTags";
+import { HiCheck, HiChevronDown, HiGlobeAlt } from "react-icons/hi";
+import { getUSPath, getGlobalPath } from "@/components/seo/HreflangTags";
 import { cn } from "@/lib/utils";
 
 // Function to check if a page exists
@@ -24,175 +21,152 @@ async function checkIfPageExists(url: string): Promise<boolean> {
   }
 }
 
+/**
+ * Region dropdown for the footer. It opens upwards, centred on its button,
+ * because it sits at the foot of the page: opening down put the menu below
+ * the fold.
+ *
+ * Each option links to this page's equivalent in the other region. Not
+ * every page has one, so the link is checked when picked (not on every page
+ * load) and falls back to that region's home page.
+ */
 export default function CountrySelector() {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
+  const [pending, setPending] = useState<"global" | "us" | null>(null);
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuId = useId();
 
   // Determine current locale - check both /us and /us/
   const isUSVersion = pathname === "/us" || pathname.startsWith("/us/");
-  const currentLocale = isUSVersion ? "US" : "AU/NZ/Global";
 
-  // Get URLs for both versions
+  // This page's Global equivalent.
   const getAUNZUrl = useCallback(() => {
-    // If we're on a US page, convert back to AU/NZ
-    if (isUSVersion) {
-      // First check if we have a specific reverse mapping
-      if (getGlobalPath(pathname)) {
-        return getGlobalPath(pathname)!;
-      }
-
-      // Handle the /us homepage
-      if (pathname === "/us" || pathname === "/us/") {
-        return "/";
-      }
-
-      // Otherwise, remove the /us prefix
-      return pathname.replace(/^\/us\/?/, "/");
-    }
-
-    // Already on AU/NZ version
-    return pathname;
+    if (!isUSVersion) return pathname;
+    const mapped = getGlobalPath(pathname);
+    if (mapped) return mapped;
+    if (pathname === "/us" || pathname === "/us/") return "/";
+    return pathname.replace(/^\/us\/?/, "/");
   }, [isUSVersion, pathname]);
 
+  // This page's US equivalent.
   const getUSUrl = useCallback(() => {
-    // If we're on an AU/NZ page, convert to US
-    if (!isUSVersion) {
-      // First check if we have a specific mapping
-      if (getUSPath(pathname)) {
-        return getUSPath(pathname)!;
-      }
-
-      // Handle the homepage
-      if (pathname === "/") {
-        return "/us/";
-      }
-
-      // Otherwise, add the /us prefix
-      return `/us${pathname}`;
-    }
-
-    // Already on US version
-    return pathname;
+    if (isUSVersion) return pathname;
+    const mapped = getUSPath(pathname);
+    if (mapped) return mapped;
+    if (pathname === "/") return "/us";
+    return `/us${pathname}`;
   }, [isUSVersion, pathname]);
 
-  // State for validated URLs
-  const [auNzUrl, setAuNzUrl] = useState<string>("");
-  const [usUrl, setUsUrl] = useState<string>("");
-  const [urlsLoaded, setUrlsLoaded] = useState(false);
+  const options = [
+    {
+      id: "global" as const,
+      label: "Global",
+      href: getAUNZUrl(),
+      home: "/",
+      current: !isUSVersion,
+    },
+    {
+      id: "us" as const,
+      label: "United States",
+      href: getUSUrl(),
+      home: "/us",
+      current: isUSVersion,
+    },
+  ];
 
-  // Validate and set URLs
-  const validateAndSetUrls = useCallback(async () => {
-    const potentialAuNzUrl = getAUNZUrl();
-    const potentialUsUrl = getUSUrl();
+  const go = async (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    option: (typeof options)[number],
+  ) => {
+    // Let new-tab / new-window clicks through untouched.
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    if (option.current) {
+      setOpen(false);
+      return;
+    }
+    if (pending) return;
+    setPending(option.id);
+    const exists = await checkIfPageExists(option.href);
+    router.push(exists ? option.href : option.home);
+  };
 
-    // Check if the AU/NZ URL exists, otherwise use homepage
-    const auNzExists = await checkIfPageExists(potentialAuNzUrl);
-    setAuNzUrl(auNzExists ? potentialAuNzUrl : "/");
-
-    // Check if the US URL exists, otherwise use US homepage
-    const usExists = await checkIfPageExists(potentialUsUrl);
-    setUsUrl(usExists ? potentialUsUrl : "/us");
-
-    setUrlsLoaded(true);
-  }, [pathname, isUSVersion, getAUNZUrl, getUSUrl]);
-
-  // Validate URLs when component mounts or pathname changes
+  // Close on a click outside, or Escape (which hands focus back).
   useEffect(() => {
-    validateAndSetUrls();
-  }, [validateAndSetUrls]);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
+    if (!open) return;
+    const onPointer = (e: PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
     };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      buttonRef.current?.focus();
+    };
+    document.addEventListener("pointerdown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const current = options.find((o) => o.current) ?? options[0];
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div ref={rootRef} className="relative inline-block text-sm">
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-1 text-neutral-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
-        aria-label="Select country/region"
+        ref={buttonRef}
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-controls={menuId}
+        aria-label={`Region: ${current.label}. Change region`}
+        className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 font-medium text-gray-700 shadow-sm transition-colors hover:border-blue-300 hover:text-blue-700"
       >
-        <HiGlobeAlt className="w-5 h-5" />
-        <span>{currentLocale}</span>
+        <HiGlobeAlt aria-hidden="true" className="h-4 w-4 text-gray-500" />
+        {current.label}
         <HiChevronDown
+          aria-hidden="true"
           className={cn(
-            "w-4 h-4 transition-transform duration-200",
-            isOpen && "rotate-180",
+            "h-4 w-4 transition-transform duration-200",
+            open && "rotate-180",
           )}
         />
       </button>
 
-      {isOpen && urlsLoaded && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
-          <div className="py-2">
-            <Link
-              href={auNzUrl}
-              className={cn(
-                "block px-4 py-2 text-sm hover:bg-gray-100 transition-colors",
-                !isUSVersion
-                  ? "bg-blue-50 text-blue-600 font-medium"
-                  : "text-gray-700 hover:text-blue-600",
-              )}
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="flex items-center justify-between">
-                <span>AU/NZ/Global</span>
-                {!isUSVersion && (
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+      {open && (
+        <ul
+          id={menuId}
+          aria-label="Region"
+          className="absolute bottom-full left-1/2 z-50 mb-2 w-48 -translate-x-1/2 overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-xl"
+        >
+          {options.map((option) => (
+            <li key={option.id}>
+              <Link
+                href={option.href}
+                prefetch={false}
+                onClick={(e) => go(e, option)}
+                aria-current={option.current ? "page" : undefined}
+                aria-busy={pending === option.id || undefined}
+                className={cn(
+                  "flex items-center justify-between px-4 py-2.5 transition-colors",
+                  option.current
+                    ? "bg-blue-50 font-medium text-blue-700"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-blue-700",
+                  pending === option.id && "opacity-60",
                 )}
-              </div>
-            </Link>
-            <Link
-              href={usUrl}
-              className={cn(
-                "block px-4 py-2 text-sm hover:bg-gray-100 transition-colors",
-                isUSVersion
-                  ? "bg-blue-50 text-blue-600 font-medium"
-                  : "text-gray-700 hover:text-blue-600",
-              )}
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="flex items-center justify-between">
-                <span>United States</span>
-                {isUSVersion && (
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+              >
+                {option.label}
+                {option.current && (
+                  <HiCheck aria-hidden="true" className="h-4 w-4" />
                 )}
-              </div>
-            </Link>
-          </div>
-        </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );

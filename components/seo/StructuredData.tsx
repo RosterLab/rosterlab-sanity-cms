@@ -18,8 +18,7 @@ export default function StructuredData({
           name: "RosterLab",
           legalName: "ROSTERLAB LIMITED",
           url: "https://rosterlab.com",
-          logo: "https://rosterlab.com/images/favicon.png",
-          ...(isUSPage && { inLanguage: "en-US" }),
+          logo: "https://rosterlab.com/images/rosterlab-logo.png",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Level 1, 22 The Strand",

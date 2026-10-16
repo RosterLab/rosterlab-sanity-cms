@@ -633,7 +633,7 @@ export default function LongTermSchedulePlanningPage() {
                   Dr. Fernando
                 </p>
                 <p className="text-gray-600">
-                  Junior Consultant, Auckland Tertiary Hospital
+                  Consultant, Auckland Tertiary Hospital
                 </p>
                 <p className="mt-1 text-sm text-gray-600">
                   Early-career specialist physician, comparable to a US attending.

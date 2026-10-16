@@ -104,8 +104,8 @@ const components = {
         return null
       }
 
-      // Keep the source resolution: resizing in Sanity first prevents Next.js
-      // from serving sharp images on high-density screens.
+      // Article images render at up to 720 CSS pixels, so a 1440px source
+      // covers 2x displays. Keep the original available through the zoom link.
       const dimensions = value.asset._ref.match(/-(\d+)x(\d+)-/)
       const crop = value.crop
       const width = dimensions
@@ -115,17 +115,22 @@ const components = {
         ? Math.max(1, Math.round(Number(dimensions[2]) * (1 - (crop?.top || 0) - (crop?.bottom || 0))))
         : 400
       const src = urlFor(value).url()
+      const displaySrc = urlFor(value)
+        .width(Math.min(width, 1440))
+        .fit('max')
+        .auto('format')
+        .url()
       
       return (
         <div className="my-8">
           <a href={src} target="_blank" rel="noopener noreferrer" title="Open image at full size">
             <Image
-              src={src}
+              src={displaySrc}
               alt={value.alt || 'Blog image'}
               width={width}
               height={height}
               sizes="(min-width: 1536px) 640px, (min-width: 1280px) 580px, (min-width: 1024px) 450px, (min-width: 768px) 720px, (min-width: 640px) 592px, calc(100vw - 32px)"
-              quality={95}
+              quality={80}
               className="rounded-lg shadow-md w-full h-auto cursor-zoom-in"
             />
           </a>

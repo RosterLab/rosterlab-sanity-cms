@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import {
@@ -15,6 +16,9 @@ const LOCATION = "Landing Testimonials";
 // through. The curved edges below are filled with the same value so the band
 // reads as one shape.
 const BAND_TINT = "rgba(55, 121, 221, 0.07)";
+
+// The hero field blue (LandingHero's HERO_BLUE), for the case study card.
+const FIELD_BLUE = "#3779DD";
 
 /**
  * A quote is a list of fragments. Plain strings render as normal text;
@@ -85,24 +89,126 @@ export const TESTIMONIALS_AU: Testimonial[] = [
       " while maintaining a safer roster.",
     ],
     author: "Dr. Fernando",
-    role: "Junior Consultant, Auckland Tertiary Hospital",
+    role: "Consultant, Auckland Tertiary Hospital",
     caseStudyLink:
       "/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-roster",
   },
 ];
+
+export interface FeaturedCaseStudy {
+  /** The headline number, e.g. "179+". */
+  stat: string;
+  /** Small word set beside the number, e.g. "hours". */
+  statUnit: string;
+  /** Line under the number, e.g. "back for clinical work". */
+  statLabel: string;
+  /** Used for analytics and the image's fallback label. */
+  title: string;
+  summary: string;
+  href: string;
+  /** Photo on the right. A placeholder block shows until one is supplied. */
+  image?: { src: string; alt: string };
+}
+
+export const FEATURED_CASE_STUDY_AU: FeaturedCaseStudy = {
+  stat: "179+",
+  statUnit: "hours",
+  statLabel: "back for clinical work",
+  title: "179 hours back for clinical work",
+  summary:
+    "Whanganui Radiography saved more than 179 hours a year with RosterLab, returning clinician time to clinical work.",
+  href: "/case-studies/whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab",
+  image: {
+    src: "/landing/case-studies/whanganui-radiography-mri.webp",
+    alt: "An MRI scanner in a hospital imaging room",
+  },
+};
+
+function CaseStudyCard({ study }: { study: FeaturedCaseStudy }) {
+  return (
+    <div
+      className="mb-16 md:mb-20 grid grid-cols-1 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 md:gap-12 items-center overflow-hidden rounded-2xl p-6 md:p-10 text-white shadow-sm"
+      style={{ backgroundColor: FIELD_BLUE }}
+    >
+      <div className="md:py-2">
+        <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-white/80">
+          Customer story
+        </p>
+        <p className="mt-4 flex items-baseline gap-3 leading-none">
+          <span className="text-6xl md:text-7xl font-semibold tracking-tight">
+            {study.stat}
+          </span>
+          <span className="text-2xl md:text-3xl font-medium">
+            {study.statUnit}
+          </span>
+        </p>
+        <p className="mt-3 text-xl md:text-2xl font-medium">
+          {study.statLabel}
+        </p>
+        <p className="mt-6 max-w-lg text-base md:text-lg text-white/90 leading-relaxed">
+          {study.summary}
+        </p>
+        <Link
+          href={study.href}
+          prefetch={true}
+          onClick={() =>
+            trackSmartButtonClick("See case study", study.href, LOCATION, {
+              case_study: study.title,
+            })
+          }
+          className="group mt-8 inline-flex items-center gap-4 text-base md:text-lg font-semibold text-white hover:text-white/80"
+        >
+          See case study
+          <svg
+            className="w-5 h-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M7 17L17 7" />
+            <path d="M8 7h9v9" />
+          </svg>
+        </Link>
+      </div>
+
+      <div className="relative aspect-[4/3] md:aspect-auto md:h-full md:min-h-[320px] overflow-hidden rounded-xl bg-white/10 ring-1 ring-white/20">
+        {study.image ? (
+          <Image
+            src={study.image.src}
+            alt={study.image.alt}
+            fill
+            sizes="(min-width: 768px) 40vw, 100vw"
+            className="object-cover"
+          />
+        ) : (
+          // Placeholder until the real photo is supplied.
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-300 text-sm font-medium text-slate-500">
+            Image coming soon
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 const AUTOPLAY_MS = 7000;
 
 export default function TestimonialsNew({
   testimonials = TESTIMONIALS_AU,
   isUS = false,
+  featuredCaseStudy,
 }: {
   testimonials?: Testimonial[];
   isUS?: boolean;
+  /** Optional card under the quotes. Left out unless a page passes one. */
+  featuredCaseStudy?: FeaturedCaseStudy;
 } = {}) {
   const [index, setIndex] = useState(0);
   const timerRef = useRef<number | null>(null);
-  const current = testimonials[index];
 
   const prev = () =>
     setIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
@@ -133,7 +239,7 @@ export default function TestimonialsNew({
         aria-hidden="true"
         viewBox="0 0 1440 64"
         preserveAspectRatio="none"
-        className="absolute inset-x-0 top-0 -translate-y-full w-full h-10 md:h-20"
+        className="pointer-events-none absolute inset-x-0 top-0 -translate-y-full w-full h-10 md:h-20"
       >
         <path
           d="M0,32 C240,8 480,8 720,32 C960,56 1200,56 1440,32 L1440,64 L0,64 Z"
@@ -144,7 +250,7 @@ export default function TestimonialsNew({
         aria-hidden="true"
         viewBox="0 0 1440 64"
         preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 translate-y-full w-full h-10 md:h-20"
+        className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full w-full h-10 md:h-20"
       >
         <path
           d="M0,32 C240,56 480,56 720,32 C960,8 1200,8 1440,32 L1440,0 L0,0 Z"
@@ -152,6 +258,10 @@ export default function TestimonialsNew({
         />
       </svg>
       <Container className="lg:px-12 xl:px-20">
+        {/* Case study leads, quotes follow: a hard number first, then the
+            voices behind it. */}
+        {featuredCaseStudy && <CaseStudyCard study={featuredCaseStudy} />}
+
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
           {/* Left: heading + description + arrow controls */}
           <div>
@@ -169,8 +279,8 @@ export default function TestimonialsNew({
               <span className="block text-gray-900">community.</span>
             </h2>
             <p className="mt-8 text-base md:text-lg text-gray-600 max-w-sm leading-relaxed">
-              Here&rsquo;s what other {isUS ? "scheduling" : "rostering"} leads had to say about
-              RosterLab.
+              Here&rsquo;s what other {isUS ? "scheduling" : "rostering"} leads
+              had to say about RosterLab.
             </p>
 
             <div className="hidden lg:flex mt-10 items-center gap-3">
@@ -226,8 +336,7 @@ export default function TestimonialsNew({
           {/* Right: big quote with quote glyph, then attribution. Touch
               swipe (left/right) advances the testimonial on mobile. */}
           <div
-            key={index}
-            className="animate-fade-in touch-pan-y"
+            className="touch-pan-y [overflow-anchor:none]"
             onTouchStart={(e) => {
               (e.currentTarget as HTMLDivElement).dataset.startX = String(
                 e.touches[0].clientX,
@@ -246,64 +355,87 @@ export default function TestimonialsNew({
               else prev();
             }}
           >
-            <div
-              aria-hidden="true"
-              className="text-6xl md:text-7xl font-bold text-blue-600 leading-none mb-6"
-            >
-              &ldquo;
-            </div>
-            <blockquote className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-[1.25] tracking-tight">
-              {current.quote.map((frag, i) =>
-                typeof frag === "string" ? (
-                  <span key={i}>{frag}</span>
-                ) : (
-                  <span key={i} className="text-blue-600">
-                    {frag.highlight}
-                  </span>
-                ),
-              )}
-              {/* Matches the opening glyph above — the pair reads as one mark. */}
-              <span className="text-blue-600">&rdquo;</span>
-            </blockquote>
+            {/* Shared grid cell reserves the tallest quote at every width, so
+                automatic rotation cannot resize the section or shift the page. */}
+            <div className="grid">
+              {testimonials.map((current, quoteIndex) => (
+                <div
+                  key={quoteIndex}
+                  inert={quoteIndex !== index}
+                  aria-hidden={quoteIndex !== index}
+                  className={`[grid-area:1/1] transition-opacity duration-500 motion-reduce:transition-none ${
+                    quoteIndex === index
+                      ? "visible opacity-100"
+                      : "invisible pointer-events-none opacity-0"
+                  }`}
+                >
+                  <div
+                    aria-hidden="true"
+                    className="text-6xl md:text-7xl font-bold text-blue-600 leading-none mb-6"
+                  >
+                    &ldquo;
+                  </div>
+                  <blockquote className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-[1.25] tracking-tight">
+                    {current.quote.map((frag, i) =>
+                      typeof frag === "string" ? (
+                        <span key={i}>{frag}</span>
+                      ) : (
+                        <span key={i} className="text-blue-600">
+                          {frag.highlight}
+                        </span>
+                      ),
+                    )}
+                    {/* Matches the opening glyph above — the pair reads as one mark. */}
+                    <span className="text-blue-600">&rdquo;</span>
+                  </blockquote>
 
-            <div className="mt-10">
-              <p className="font-semibold text-gray-900">{current.author}</p>
-              <p className="text-sm text-gray-600">{current.role}</p>
-              {current.roleExplanation && (
-                <p className="mt-1 text-sm text-gray-600">{current.roleExplanation}</p>
-              )}
-              {current.link && (
-                <Link
-                  href={current.link.href}
-                  onClick={() =>
-                    trackSmartButtonClick(
-                      current.link!.label,
-                      current.link!.href,
-                      LOCATION,
-                      { testimonial_author: current.author },
-                    )
-                  }
-                  className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                >
-                  {current.link.label}
-                </Link>
-              )}
-              {!current.link && current.caseStudyLink && (
-                <Link
-                  href={current.caseStudyLink}
-                  onClick={() =>
-                    trackSmartButtonClick(
-                      "Read case study",
-                      current.caseStudyLink!,
-                      LOCATION,
-                      { testimonial_author: current.author },
-                    )
-                  }
-                  className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
-                >
-                  Read case study →
-                </Link>
-              )}
+                  <div className="mt-10">
+                    <p className="font-semibold text-gray-900">
+                      {current.author}
+                    </p>
+                    <p className="text-sm text-gray-600">{current.role}</p>
+                    {current.roleExplanation && (
+                      <p className="mt-1 text-sm text-gray-600">
+                        {current.roleExplanation}
+                      </p>
+                    )}
+                    {current.link && (
+                      <Link
+                        href={current.link.href}
+                        prefetch={true}
+                        onClick={() =>
+                          trackSmartButtonClick(
+                            current.link!.label,
+                            current.link!.href,
+                            LOCATION,
+                            { testimonial_author: current.author },
+                          )
+                        }
+                        className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        {current.link.label}
+                      </Link>
+                    )}
+                    {!current.link && current.caseStudyLink && (
+                      <Link
+                        href={current.caseStudyLink}
+                        prefetch={true}
+                        onClick={() =>
+                          trackSmartButtonClick(
+                            "Read case study",
+                            current.caseStudyLink!,
+                            LOCATION,
+                            { testimonial_author: current.author },
+                          )
+                        }
+                        className="inline-block mt-1 text-sm text-blue-600 hover:text-blue-700 hover:underline"
+                      >
+                        Read case study →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Mobile-only dots. Click to jump; visible on all screens

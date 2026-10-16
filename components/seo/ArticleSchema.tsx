@@ -34,7 +34,7 @@ export default function ArticleSchema({
       name: "RosterLab",
       logo: {
         "@type": "ImageObject",
-        url: "https://rosterlab.com/images/rosterlab_icon.svg",
+        url: "https://rosterlab.com/images/rosterlab-logo.png",
       },
     },
     datePublished: publishedTime,

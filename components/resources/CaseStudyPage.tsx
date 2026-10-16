@@ -1,3 +1,4 @@
+import { cache, Suspense } from "react";
 import { resourceMetadata } from "@/lib/localization/us-resources";
 import { notFound } from "next/navigation";
 import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
@@ -175,17 +176,28 @@ export function createCaseStudyPage(isUS = false) {
         : (slug: string) => ({ slug }),
     );
   }
+  // Share the article lookup between metadata and content within a request.
+  // Published content uses the same one-hour cache as the route; previews
+  // always read fresh data and never populate the public cache.
+  const getPost = cache(async (slug: string, preview: boolean) => {
+    const clientToUse = getClient(
+      preview && validatedToken ? { token: validatedToken } : undefined,
+    );
+    const options = preview
+      ? { cache: "no-store" as const }
+      : { next: { revalidate: 3600 } };
+    const post = await clientToUse.fetch(
+      caseStudyQuery,
+      isUS ? { slug: globalizeUSSlug(slug), usSlug: slug } : { slug },
+      options,
+    );
+    return isUS ? localizeUSResourceResult(post) : post;
+  });
+
   async function generateMetadata({ params }: CaseStudyPageProps) {
     const { slug } = await params;
     const { isEnabled } = await draftMode();
-    const clientToUse = getClient(
-      isEnabled && validatedToken ? { token: validatedToken } : undefined,
-    );
-    const post = await (isUS
-      ? clientToUse
-          .fetch(caseStudyQuery, { slug: globalizeUSSlug(slug), usSlug: slug })
-          .then(localizeUSResourceResult)
-      : clientToUse.fetch(caseStudyQuery, { slug }));
+    const post = await getPost(slug, isEnabled);
     if (!post) {
       return resourceMetadata(
         {
@@ -205,6 +217,12 @@ export function createCaseStudyPage(isUS = false) {
       if (slug === "icu-unit-western-australia") {
         metaDescription =
           "Western Australian ICU transforms staff rostering with RosterLab, achieving significant time savings and improved staff satisfaction.";
+      } else if (
+        slug ===
+        "whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab"
+      ) {
+        metaDescription =
+          "Discover AI rostering for allied health and radiography teams. See how one service saved 179+ admin hours a year, freeing time for patient care.";
       } else if (metaDescription.length < 120) {
         // If description is too short, enhance it
         metaDescription =
@@ -247,25 +265,37 @@ export function createCaseStudyPage(isUS = false) {
       },
     );
   }
+  // Recommendations are below the article and should not delay its first paint.
+  async function RelatedCaseStudies({
+    post,
+    preview,
+  }: {
+    post: { _id: string; publishedAt: string };
+    preview: boolean;
+  }) {
+    const clientToUse = getClient(
+      preview && validatedToken ? { token: validatedToken } : undefined,
+    );
+    const options = preview
+      ? { cache: "no-store" as const }
+      : { next: { revalidate: 3600 } };
+    const result = await clientToUse.fetch(allCaseStudiesQuery, {}, options);
+    const posts = isUS ? localizeUSResourceResult(result) : result;
+    if (!posts?.length) return null;
+    return (
+      <RelatedPosts
+        basePath={isUS ? "/us/blog" : undefined}
+        posts={posts}
+        currentPostId={post._id}
+        currentPostDate={post.publishedAt}
+      />
+    );
+  }
+
   async function CaseStudyPage({ params }: CaseStudyPageProps) {
     const { slug } = await params;
     const { isEnabled } = await draftMode();
-    const clientToUse = getClient(
-      isEnabled && validatedToken ? { token: validatedToken } : undefined,
-    );
-    const [post, allCaseStudies] = await Promise.all([
-      isUS
-        ? clientToUse
-            .fetch(caseStudyQuery, {
-              slug: globalizeUSSlug(slug),
-              usSlug: slug,
-            })
-            .then(localizeUSResourceResult)
-        : clientToUse.fetch(caseStudyQuery, { slug }),
-      isUS
-        ? clientToUse.fetch(allCaseStudiesQuery).then(localizeUSResourceResult)
-        : clientToUse.fetch(allCaseStudiesQuery),
-    ]);
+    const post = await getPost(slug, isEnabled);
     if (!post) {
       notFound();
     }
@@ -431,14 +461,9 @@ export function createCaseStudyPage(isUS = false) {
                   </div>
 
                   {/* Related Posts */}
-                  {allCaseStudies.length > 0 && (
-                    <RelatedPosts
-                      basePath={isUS ? "/us/blog" : undefined}
-                      posts={allCaseStudies}
-                      currentPostId={post._id}
-                      currentPostDate={post.publishedAt}
-                    />
-                  )}
+                  <Suspense fallback={null}>
+                    <RelatedCaseStudies post={post} preview={isEnabled} />
+                  </Suspense>
 
                   {/* Bottom CTA */}
                   <div

@@ -67,7 +67,7 @@ export default function FeatureTestimonial({
   }, []);
 
   return (
-    <section className="pt-12 md:pt-16 pb-4 md:pb-6">
+    <section className="py-12 md:py-16">
       <Container className="lg:px-12 xl:px-20">
         <div
           ref={ref}
@@ -140,6 +140,7 @@ export default function FeatureTestimonial({
                 )
               }
               href={content.link.href}
+              prefetch={true}
               className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 hover:underline"
             >
               {content.link.label}

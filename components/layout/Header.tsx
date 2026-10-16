@@ -47,6 +47,66 @@ const useCondenseOnScroll = () => {
   return condensed;
 };
 
+/**
+ * Timing for the bar condensing on scroll (height, width and logo together),
+ * slow and eased at both ends so the bar settles rather than snaps.
+ */
+const CONDENSE_MOTION =
+  "motion-safe:duration-700 motion-safe:ease-[cubic-bezier(0.65,0,0.35,1)]";
+
+/**
+ * Marks the hero a header with `blueOverHero` sits over. The hero
+ * carries it as a data attribute; the header looks it up rather than taking a
+ * ref, because the hero renders inside the page and the header in the layout.
+ */
+export const HEADER_OVERLAY_ATTR = "data-header-overlay";
+
+/**
+ * The bar's full (uncondensed) height. The hero hand-off is measured against
+ * this rather than the bar's live height: the bar only condenses once it has
+ * turned white, and measuring the 60px bar would put the hero edge back
+ * "below" it, flipping it straight back to blue in a loop.
+ */
+const HEADER_FULL_HEIGHT = 80;
+
+/**
+ * True while the marked hero's bottom edge is still below the full-height
+ * bar — that is, while the bar is over the hero's blue rather than the page
+ * beneath it. Starts true when enabled, so the first paint is already blue.
+ */
+const useOverHero = (enabled: boolean) => {
+  const [over, setOver] = useState(enabled);
+
+  useEffect(() => {
+    if (!enabled) {
+      setOver(false);
+      return;
+    }
+    let frame = 0;
+    const read = () => {
+      frame = 0;
+      const hero = document.querySelector(`[${HEADER_OVERLAY_ATTR}]`);
+      setOver(
+        !!hero && hero.getBoundingClientRect().bottom > HEADER_FULL_HEIGHT,
+      );
+    };
+    const onChange = () => {
+      if (!frame) frame = window.requestAnimationFrame(read);
+    };
+
+    read();
+    window.addEventListener("scroll", onChange, { passive: true });
+    window.addEventListener("resize", onChange);
+    return () => {
+      window.removeEventListener("scroll", onChange);
+      window.removeEventListener("resize", onChange);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [enabled]);
+
+  return over;
+};
+
 interface SubMenuItem {
   title: string;
   link: string;
@@ -70,10 +130,17 @@ interface HeaderProps {
    * ordinary white content and has to go back to being opaque white.
    */
   onHeroBackground?: boolean;
+  /**
+   * Set on the home pages, whose `LandingHero` tucks up under the bar. The bar
+   * is the hero blue with white text and logo, at full size, until the hero
+   * has scrolled past it; then it turns white and condenses.
+   */
+  blueOverHero?: boolean;
 }
 
 /**
- * Kept in step with `PANEL_FILL` in `IndustryHero` by hand — the hero is a
+ * Kept in step with `PANEL_FILL` in `IndustryHero` and `HERO_BLUE` in
+ * `LandingHero` by hand — the hero is a
  * server component, so importing the value would drag it into this client
  * bundle. If one changes, change the other.
  */
@@ -95,6 +162,7 @@ const HERO_DOTS =
 export default function Header({
   navItems = [],
   onHeroBackground = false,
+  blueOverHero = false,
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -186,7 +254,11 @@ export default function Header({
   ];
 
   const navigation = navItems.length > 0 ? navItems : defaultNavItems;
-  const condensed = useCondenseOnScroll();
+  // An open mobile menu drops down as a white sheet, so the bar above it goes
+  // back to white with it.
+  const overHero = useOverHero(blueOverHero) && !isMenuOpen;
+  // Over the hero the bar holds its full size; it condenses once white.
+  const condensed = useCondenseOnScroll() && !overHero;
 
   /*
     `lg` rather than the `xl` the nav itself switches at: the industry hero
@@ -195,23 +267,35 @@ export default function Header({
   */
   const seamless = onHeroBackground && !condensed;
 
+  const navText = overHero
+    ? "text-white hover:text-white/75"
+    : "text-neutral-700 hover:text-blue-600";
+
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 motion-safe:transition-shadow motion-safe:duration-300 motion-safe:ease-out",
-        seamless
-          ? cn(HERO_BLUE, HERO_DOTS, "lg:bg-white lg:bg-none")
-          : "bg-white",
-        seamless
-          ? "shadow-none lg:shadow-sm"
-          : condensed
-            ? "shadow-md"
-            : "shadow-sm",
+        "sticky top-0 z-50 motion-safe:transition-[background-color,box-shadow]",
+        CONDENSE_MOTION,
+        overHero
+          ? cn(HERO_BLUE, "shadow-none")
+          : cn(
+              seamless
+                ? cn(HERO_BLUE, HERO_DOTS, "lg:bg-white lg:bg-none")
+                : "bg-white",
+              seamless
+                ? "shadow-none lg:shadow-sm"
+                : condensed
+                  ? "shadow-md"
+                  : "shadow-sm",
+            ),
       )}
       role="banner"
     >
       <nav
-        className="container mx-auto px-4 sm:px-6 lg:px-8 motion-safe:transition-[max-width] motion-safe:duration-300 motion-safe:ease-out"
+        className={cn(
+          "container mx-auto px-4 sm:px-6 lg:px-8 motion-safe:transition-[max-width]",
+          CONDENSE_MOTION,
+        )}
         // No inline style at the top, so `.container` governs and the bar keeps
         // its per-breakpoint width. Once condensed we override to 100%, and the
         // computed max-width animates between the two.
@@ -221,7 +305,8 @@ export default function Header({
       >
         <div
           className={cn(
-            "flex items-center justify-between motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
+            "flex items-center justify-between motion-safe:transition-[height]",
+            CONDENSE_MOTION,
             condensed ? "h-[60px]" : "h-20",
           )}
         >
@@ -238,11 +323,13 @@ export default function Header({
                 width={180}
                 height={48}
                 className={cn(
-                  "w-auto motion-safe:transition-[height] motion-safe:duration-300 motion-safe:ease-out",
+                  "w-auto motion-safe:transition-[height]",
+                  CONDENSE_MOTION,
                   condensed ? "h-8" : "h-10",
                   // The logo is a PNG, so it is knocked out to flat white
                   // rather than swapped for a second asset.
                   seamless && "brightness-0 invert lg:filter-none",
+                  overHero && "brightness-0 invert",
                 )}
                 priority
               />
@@ -270,13 +357,19 @@ export default function Header({
                   {item.link ? (
                     <Link
                       href={item.link}
-                      className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center"
+                      className={cn(
+                        navText,
+                        "xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center",
+                      )}
                     >
                       {item.title}
                     </Link>
                   ) : (
                     <button
-                      className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+                      className={cn(
+                        navText,
+                        "xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded",
+                      )}
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveDropdown(
@@ -930,7 +1023,10 @@ export default function Header({
               <>
                 <Link
                   href={contactLink}
-                  className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors"
+                  className={cn(
+                    navText,
+                    "xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors",
+                  )}
                   onClick={() =>
                     trackSmartButtonClick(
                       "Contact",
@@ -941,12 +1037,20 @@ export default function Header({
                 >
                   Contact
                 </Link>
-                <div className="w-px h-6 bg-gray-300 xl:mx-1 2xl:mx-2" />
+                <div
+                  className={cn(
+                    "w-px h-6 xl:mx-1 2xl:mx-2",
+                    overHero ? "bg-white/40" : "bg-gray-300",
+                  )}
+                />
               </>
             )}
             <Link
               href="https://app.rosterlab.com"
-              className="text-neutral-700 hover:text-blue-600 xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors flex items-center"
+              className={cn(
+                navText,
+                "xl:px-2 2xl:px-3 py-2 xl:text-xs 2xl:text-sm font-medium transition-colors flex items-center",
+              )}
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(
@@ -964,7 +1068,15 @@ export default function Header({
             </Link>
             <Link
               href={demoLink}
-              className="bg-blue-600 text-white hover:bg-blue-700 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors"
+              className={cn(
+                "xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors",
+                // Brand blue would vanish into the hero, so over it the button
+                // is a white outline. The border is there in both states so
+                // the button keeps its size through the switch.
+                overHero
+                  ? "border border-white text-white hover:bg-white/15"
+                  : "border border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700",
+              )}
               onClick={() =>
                 trackSmartButtonClick("Book a Demo", demoLink, "Header Desktop")
               }
@@ -996,9 +1108,11 @@ export default function Header({
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset",
-                seamless
-                  ? "text-white hover:bg-white/15 focus:ring-white lg:text-neutral-700 lg:hover:text-blue-600 lg:hover:bg-neutral-100 lg:focus:ring-blue-500"
-                  : "text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:ring-blue-500",
+                overHero
+                  ? "text-white hover:bg-white/15 focus:ring-white"
+                  : seamless
+                    ? "text-white hover:bg-white/15 focus:ring-white lg:text-neutral-700 lg:hover:text-blue-600 lg:hover:bg-neutral-100 lg:focus:ring-blue-500"
+                    : "text-neutral-700 hover:text-blue-600 hover:bg-neutral-100 focus:ring-blue-500",
               )}
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
@@ -1026,7 +1140,8 @@ export default function Header({
             // Sits directly under the bar, which shrinks from 80px to 60px
             // once the page is scrolled — a fixed offset left a strip of page
             // showing through between the two.
-            "xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 motion-safe:transition-[top] motion-safe:duration-300",
+            "xl:hidden fixed inset-0 bg-black bg-opacity-50 z-30 motion-safe:transition-[top]",
+            CONDENSE_MOTION,
             condensed ? "top-[60px]" : "top-20",
           )}
           onClick={() => setIsMenuOpen(false)}
