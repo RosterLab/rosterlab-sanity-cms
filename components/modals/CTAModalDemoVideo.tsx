@@ -69,6 +69,7 @@ export default function CTAModalDemoVideo({
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [industryDropdownOpen, setIndustryDropdownOpen] = useState(false);
   const industryDropdownRef = useRef<HTMLDivElement>(null);
   const hasTrackedView = useRef(false);
@@ -144,6 +145,7 @@ export default function CTAModalDemoVideo({
       document.body.style.overflow = "";
       // Reset form when modal closes
       setIsSubmitted(false);
+      setSubmitError(null);
       reset();
       // Reset tracking flag when modal closes for next session
       hasTrackedView.current = false;
@@ -155,6 +157,7 @@ export default function CTAModalDemoVideo({
   }, [isOpen, reset]);
 
   const onSubmit = async (data: DemoVideoFormData) => {
+    setSubmitError(null);
     setIsSubmitting(true);
 
     // CRITICAL: Identify user FIRST before any other tracking
@@ -220,6 +223,9 @@ export default function CTAModalDemoVideo({
         throw new Error("Failed to submit form");
       }
     } catch (error) {
+      setSubmitError(
+        "We couldn’t submit your details. Please try again. Your entries have been kept.",
+      );
       console.error("Form submission error:", error);
       analytics.track("cta_modal_form_error", {
         variant: "D",
@@ -623,6 +629,15 @@ export default function CTAModalDemoVideo({
                       </p>
                     )}
                   </div>
+
+                  {submitError && (
+                    <p
+                      role="alert"
+                      className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+                    >
+                      {submitError}
+                    </p>
+                  )}
 
                   {/* Submit Button */}
                   <button

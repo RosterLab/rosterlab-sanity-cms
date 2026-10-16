@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import CTAModalDemoBooking from "@/components/modals/CTAModalDemoBooking";
-import CTAModalCaseStudy from "@/components/modals/CTAModalCaseStudy";
-import CTAModalWebinarRecording from "@/components/modals/CTAModalWebinarRecording";
 import CTAModalDemoVideo from "@/components/modals/CTAModalDemoVideo";
 
-type Variant = "A" | "B" | "C" | "D" | null;
+type Variant = "A" | "D" | null;
 
 const VARIANTS: Array<{
   id: Exclude<Variant, null>;
@@ -17,16 +15,6 @@ const VARIANTS: Array<{
     id: "A",
     label: "Demo Booking",
     description: "Live demo showcase with illustration + trusted-by strip.",
-  },
-  {
-    id: "B",
-    label: "Case Study (gated)",
-    description: "Gated case study download. No trusted-by strip.",
-  },
-  {
-    id: "C",
-    label: "Webinar Recording",
-    description: "Whanganui case study webinar + trusted-by strip.",
   },
   {
     id: "D",
@@ -48,7 +36,7 @@ export default function TestModalsClient() {
           Modal preview
         </h1>
         <p className="text-neutral-600 mb-8">
-          Internal-only page for previewing the 4 CTA modal variants. Click a
+          Internal-only page for previewing the 2 active CTA modal variants. Click a
           card to open the modal in test mode (no analytics or state
           side-effects).
         </p>
@@ -78,21 +66,6 @@ export default function TestModalsClient() {
           onClose={close}
           onConversion={noop}
           testMode
-        />
-      )}
-      {active === "B" && (
-        <CTAModalCaseStudy
-          isOpen
-          onClose={close}
-          onConversion={noop}
-          testMode
-        />
-      )}
-      {active === "C" && (
-        <CTAModalWebinarRecording
-          isOpen
-          onClose={close}
-          onConversion={noop}
         />
       )}
       {active === "D" && (
