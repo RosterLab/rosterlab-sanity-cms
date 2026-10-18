@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Container from "@/components/ui/Container";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import Button from "@/components/ui/Button";
+import { HEADER_OVERLAY_ATTR } from "@/components/layout/Header";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 import {
   HERO_CONTENT_AU,
@@ -112,7 +113,7 @@ const MOBILE_VIDEO_MAX_W = 640;
  */
 type Locale = "au" | "us";
 /**
- * The still that stands in for the video, in two sizes.
+ * The still that stands in for the video, in four widths.
  *
  * It is frame 0 of the recording, so nothing moves when the video takes over,
  * and it is the hero's LCP element — which is why it is an <img srcset> rather
@@ -131,8 +132,20 @@ const POSTER = {
     desktop: "/landing/mockup/hero-browser-us-poster.webp",
   },
 };
-const posterSrcSet = (l: Locale) =>
-  `${POSTER[l].mobile} 960w, ${POSTER[l].desktop} 1920w`;
+/**
+ * 720w and 1440w sit between the original two so the common cases land close:
+ * a ~720px-wide phone frame at 1.75x and a ~1000px laptop frame at 1x were
+ * otherwise rounding up to 960w and 1920w. Each is the 1920w file resized.
+ */
+const posterSrcSet = (l: Locale) => {
+  const base = POSTER[l].desktop.replace(/\.webp$/, "");
+  return [
+    `${base}-720.webp 720w`,
+    `${POSTER[l].mobile} 960w`,
+    `${base}-1440.webp 1440w`,
+    `${POSTER[l].desktop} 1920w`,
+  ].join(", ");
+};
 
 /**
  * How wide the frame is at each breakpoint, so the browser can pick a
@@ -199,18 +212,6 @@ function useDeferredSrc(enabled: boolean, locale: Locale) {
  * dwell time on the mockup — and the landing scale pushes its sides past the
  * section's horizontal clip. Both are switched off below `lg`.
  */
-function useIsDesktopHero() {
-  const [isDesktop, setIsDesktop] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setIsDesktop(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-  return isDesktop;
-}
-
 export default function LandingHero({
   content = HERO_CONTENT_AU,
   trustedHeading,
@@ -226,39 +227,22 @@ export default function LandingHero({
   /** Untransformed wrapper, used for measurement — see targetScale() below. */
   const trackRef = useRef<HTMLDivElement>(null);
   const reduceMotion = usePrefersReducedMotion();
-  const isDesktop = useIsDesktopHero();
-  /** The logo wall in the blue field below the mockup, and whether it is in. */
-  const trustedRef = useRef<HTMLDivElement>(null);
-  const [trustedIn, setTrustedIn] = useState(false);
-  /**
-   * The reveal is applied only after mount, so the wall is plain visible in
-   * the server HTML: hiding it there would leave it invisible to anyone whose
-   * JS never arrives. It sits well below the fold, so the hide-then-fade on
-   * hydration is not something a reader can see.
-   */
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   // Under reduced motion the poster is the whole story — never fetch the video.
   // The content object already carries the region; the recording follows it.
   const locale: Locale = content.locale === "us" ? "us" : "au";
   const videoSrc = useDeferredSrc(!reduceMotion, locale);
+  const [readyVideoSrc, setReadyVideoSrc] = useState<string>();
 
   useEffect(() => {
     const element = windowRef.current;
     const track = trackRef.current;
     if (!element || !track) return;
 
-    // Someone who has asked for less motion — and everyone below `lg`, where
-    // there is no pin to scale into — gets the window at its own size.
-    if (
-      !isDesktop ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      element.style.transform = "scale(1)";
-      return;
-    }
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const targetScale = () => {
+      if (!desktop.matches || reducedMotion.matches) return 1;
       // Measured off the wrapper and the window's *layout* height, both of
       // which ignore the transform. Reading the scaled rect instead would feed
       // each frame's scale back into the next frame's progress.
@@ -279,7 +263,9 @@ export default function LandingHero({
       return LANDING_SCALE - (LANDING_SCALE - 1) * smoothstep(progress);
     };
 
-    let current = targetScale();
+    // Match the server-rendered CSS before easing toward the scroll position.
+    // Starting with a mobile-only React state briefly reset desktop to scale(1).
+    let current = desktop.matches && !reducedMotion.matches ? LANDING_SCALE : 1;
     let frame = 0;
     let lastTime = 0;
 
@@ -310,42 +296,26 @@ export default function LandingHero({
       lastTime = 0;
       frame = requestAnimationFrame(tick);
     };
+    const onResize = () => {
+      if (!desktop.matches || reducedMotion.matches) {
+        current = 1;
+        element.style.transform = "scale(1)";
+      }
+      start();
+    };
 
     element.style.transform = `scale(${current})`;
     start();
     window.addEventListener("scroll", start, { passive: true });
-    window.addEventListener("resize", start, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+    reducedMotion.addEventListener("change", onResize);
     return () => {
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", start);
-      window.removeEventListener("resize", start);
+      window.removeEventListener("resize", onResize);
+      reducedMotion.removeEventListener("change", onResize);
     };
-  }, [isDesktop]);
-
-  // The logo wall fades up as the pin rail brings it into the blue.
-  //
-  // One-shot: it stays put once it has arrived, so scrolling back up does not
-  // replay it. `threshold` is low because on desktop only the top band of the
-  // wall clears the pinned mockup before it should be on.
-  useEffect(() => {
-    const element = trustedRef.current;
-    if (!element) return;
-    if (reduceMotion) {
-      setTrustedIn(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTrustedIn(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [reduceMotion]);
+  }, []);
 
   // The dots' focal point drifts toward the cursor.
   //
@@ -441,7 +411,15 @@ export default function LandingHero({
     // stick against. `clip` crops without creating one, so the pin below works.
     // The rounding moved onto the background layer, which is the only thing
     // that needed clipping to the radius.
-    <section ref={sectionRef} className="relative overflow-x-clip bg-white">
+    // Pulled up under the 80px header, which is painted this blue until this
+    // section has scrolled past it (see Header's `blueOverHero`), so the two
+    // read as one field.
+    // The text stack's top padding grows by the same 80px to hold its place.
+    <section
+      ref={sectionRef}
+      {...{ [HEADER_OVERLAY_ATTR]: "" }}
+      className="relative -mt-20 overflow-x-clip bg-white"
+    >
       {/*
         The poster is the hero's LCP candidate, and it is only discoverable
         inside the <video> tag's `poster` attribute — which the preload scanner
@@ -500,10 +478,12 @@ export default function LandingHero({
 
       <div className="relative">
         {/* Text stack — centred, on the reference's 864px column. */}
-        <Container className="pt-24 text-center">
+        <Container className="pt-44 text-center">
           {/* Two balanced lines. The reference holds one, but Poppins is far
-              wider than its display face and this headline is longer. */}
-          <h1 className="mx-auto max-w-[864px] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[0.95] tracking-[-0.024em] text-white">
+              wider than its display face and this headline is longer. On
+              phones it wraps to three, where the reference's 0.95 leading
+              lets descenders run into the line below, so it opens up there. */}
+          <h1 className="mx-auto max-w-[864px] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] lg:leading-[0.95] tracking-[-0.024em] text-white">
             {content.headline}
           </h1>
 
@@ -516,6 +496,7 @@ export default function LandingHero({
           <div className="mt-8 flex flex-row items-center justify-center gap-3">
             <Button
               href={content.primaryCta.href}
+              prefetch={true}
               className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-blue-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-950 sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={content.primaryCta.label}
               analyticsLocation="Hero"
@@ -524,6 +505,7 @@ export default function LandingHero({
             </Button>
             <Button
               href={content.secondaryCta.href}
+              prefetch={true}
               className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-50 sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={content.secondaryCta.label}
               analyticsLocation="Hero"
@@ -597,6 +579,7 @@ export default function LandingHero({
                 */}
                 {videoSrc && (
                   <video
+                    key={videoSrc}
                     src={videoSrc}
                     autoPlay
                     loop
@@ -609,7 +592,8 @@ export default function LandingHero({
                     preload="none"
                     aria-hidden="true"
                     tabIndex={-1}
-                    className="absolute inset-0 block h-full w-full object-cover"
+                    onLoadedData={() => setReadyVideoSrc(videoSrc)}
+                    className={`absolute inset-0 block h-full w-full object-cover transition-opacity duration-300 ${readyVideoSrc === videoSrc ? "opacity-100" : "opacity-0"}`}
                   />
                 )}
               </div>
@@ -625,21 +609,10 @@ export default function LandingHero({
                 fill.
               */}
               <div
-                ref={trustedRef}
                 // Gap kept tight: the sticky group is the mockup plus this,
                 // and it has to clear the 80px header and still fit a laptop
                 // viewport while the pin holds.
                 className="mt-8 w-full lg:mt-10"
-                style={
-                  mounted
-                    ? {
-                        opacity: trustedIn ? 1 : 0,
-                        transform: trustedIn ? "none" : "translateY(24px)",
-                        transition:
-                          "opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1)",
-                      }
-                    : undefined
-                }
               >
                 <TrustedByDualRow onDark heading={trustedHeading} />
               </div>

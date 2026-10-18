@@ -38,7 +38,7 @@ export default function USFinalCTA() {
             <div className="flex flex-wrap lg:flex-nowrap gap-x-4 gap-y-2 lg:whitespace-nowrap justify-center">
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-4 h-4 text-green-400 flex-shrink-0"
+                  className="w-6 h-6 text-green-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ export default function USFinalCTA() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
@@ -56,7 +56,7 @@ export default function USFinalCTA() {
               </div>
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-4 h-4 text-green-400 flex-shrink-0"
+                  className="w-6 h-6 text-green-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -64,7 +64,7 @@ export default function USFinalCTA() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
@@ -74,7 +74,7 @@ export default function USFinalCTA() {
               </div>
               <div className="flex items-center gap-2">
                 <svg
-                  className="w-4 h-4 text-green-400 flex-shrink-0"
+                  className="w-6 h-6 text-green-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ export default function USFinalCTA() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>

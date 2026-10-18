@@ -2,7 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import CTAModalCaseStudy from "./CTAModalCaseStudy";
+import dynamic from "next/dynamic";
+
+const CTAModalCaseStudy = dynamic(() => import("./CTAModalCaseStudy"), {
+  ssr: false,
+});
+
+const LOCKED_SLUGS = [
+  "how-plastics-department-used-roster-simulation-to-cut-in-costs",
+];
 
 interface CaseStudyGateCheckProps {
   isUS?: boolean;
@@ -19,27 +27,30 @@ interface CaseStudyGateCheckProps {
 export default function CaseStudyGateCheck({
   isUS = false,
   slug,
-  lockedSlugs = [
-    "how-plastics-department-used-roster-simulation-to-cut-in-costs",
-  ],
+  lockedSlugs = LOCKED_SLUGS,
   children,
 }: CaseStudyGateCheckProps) {
+  // Public articles must be visible in server HTML, without waiting for
+  // hydration or loading the form used by the few gated case studies.
+  if (!lockedSlugs.includes(slug)) return <>{children}</>;
+  return (
+    <LockedCaseStudyGate key={slug} isUS={isUS} slug={slug}>
+      {children}
+    </LockedCaseStudyGate>
+  );
+}
+
+function LockedCaseStudyGate({
+  isUS,
+  slug,
+  children,
+}: Omit<CaseStudyGateCheckProps, "lockedSlugs">) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Check if this case study is locked
-  const isLocked = lockedSlugs.includes(slug);
-
   useEffect(() => {
-    if (!isLocked) {
-      // If not locked, grant access immediately
-      setHasAccess(true);
-      setIsLoading(false);
-      return;
-    }
-
     // Check if user has previously unlocked case studies
     const hasUnlocked = localStorage.getItem("case_study_unlocked");
     if (hasUnlocked === "true") {
@@ -52,15 +63,16 @@ export default function CaseStudyGateCheck({
     setHasAccess(false);
     setIsLoading(false);
     // Show modal after a brief delay for better UX
-    setTimeout(() => {
+    const timer = window.setTimeout(() => {
       setIsModalOpen(true);
     }, 500);
 
     // Cleanup: Ensure scroll is restored when component unmounts
     return () => {
+      window.clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, [slug, isLocked]);
+  }, [slug]);
 
   const handleConversion = () => {
     // Ensure body scroll is restored
@@ -93,7 +105,7 @@ export default function CaseStudyGateCheck({
   return (
     <>
       {/* Show blurred content if locked and no access */}
-      {isLocked && !hasAccess ? (
+      {!hasAccess ? (
         <div className="relative">
           <div className="blur-sm pointer-events-none select-none">
             {children}
@@ -105,7 +117,7 @@ export default function CaseStudyGateCheck({
       )}
 
       {/* Case Study Gate Modal */}
-      {isLocked && (
+      {isModalOpen && (
         <CTAModalCaseStudy
           isUS={isUS}
           isOpen={isModalOpen}

@@ -118,7 +118,11 @@ export default async function HealthcarePage() {
   const client = getClient(
     isEnabled && validatedToken ? { token: validatedToken } : undefined,
   );
-  const caseStudies = await client.fetch(recentCaseStudiesQuery);
+  const caseStudies = await client.fetch(
+    recentCaseStudiesQuery,
+    {},
+    isEnabled ? { cache: "no-store" } : { next: { revalidate: 3600 } },
+  );
   return (
     <SiteLayout>
       {/* Hero Section */}
