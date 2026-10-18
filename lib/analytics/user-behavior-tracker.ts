@@ -17,6 +17,9 @@ const MIN_TIME_ON_HIGH_INTENT_PAGES = 60; // Seconds required on high-intent pag
 const MIN_TIME_ON_SITE_RETURNING = 45; // Seconds required for returning visitors
 const COOLDOWN_DAYS = 3; // Days to wait after dismissal before showing another modal
 
+const ACTIVE_MODAL_VARIANTS = ["A", "D"] as const;
+export type ActiveModalVariant = (typeof ACTIVE_MODAL_VARIANTS)[number];
+
 export interface UserBehavior {
   totalPageViews: number;
   sessionPageViews: number;
@@ -409,16 +412,15 @@ export function shouldShowModal(): boolean {
 }
 
 /**
- * Assign A/B/C/D test variant with cycling for returning visitors
- * First visit: Random 25% split (A/B/C/D)
- * Returning visits: Show a variant they haven't seen yet, cycling through all options
+ * Assign an active A/D variant with cycling for returning visitors.
+ * First visit: Random 50% split. Preserve B/C in stored history only.
  */
-export function assignVariant(): "A" | "B" | "C" | "D" {
+export function assignVariant(): ActiveModalVariant {
   // Check for URL parameter override (for testing)
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search);
-    const forceVariant = params.get("modal_variant") as "A" | "B" | "C" | "D" | null;
-    if (forceVariant && ["A", "B", "C", "D"].includes(forceVariant)) {
+    const forceVariant = params.get("modal_variant");
+    if (forceVariant === "A" || forceVariant === "D") {
       console.log(`🧪 [Modal] Forcing variant ${forceVariant} via URL parameter`);
       return forceVariant;
     }
@@ -427,11 +429,14 @@ export function assignVariant(): "A" | "B" | "C" | "D" {
   const modalState = getModalState();
   const behavior = getUserBehavior();
 
-  let variant: "A" | "B" | "C" | "D";
+  let variant: ActiveModalVariant;
+  const activeHistory = modalState.variantsShown.filter(
+    (v): v is ActiveModalVariant => v === "A" || v === "D",
+  );
 
-  if (behavior.isReturningVisitor && modalState.variantsShown.length > 0) {
+  if (behavior.isReturningVisitor && activeHistory.length > 0) {
     // Returning visitor - cycle through variants they haven't seen
-    const allVariants: Array<"A" | "B" | "C" | "D"> = ["A", "B", "C", "D"];
+    const allVariants = ACTIVE_MODAL_VARIANTS;
     const unseenVariants = allVariants.filter(
       (v) => !modalState.variantsShown.includes(v),
     );
@@ -440,26 +445,15 @@ export function assignVariant(): "A" | "B" | "C" | "D" {
       // Show a random unseen variant
       variant = unseenVariants[Math.floor(Math.random() * unseenVariants.length)];
     } else {
-      // All variants seen, cycle through in order based on which was shown least recently
-      // Find variant that hasn't been shown in longest time
-      const lastShown =
-        modalState.variantsShown[modalState.variantsShown.length - 1];
+      // Alternate active variants, ignoring retired B/C entries in stored history.
+      const lastShown = activeHistory[activeHistory.length - 1];
       const currentIndex = allVariants.indexOf(lastShown);
       const nextIndex = (currentIndex + 1) % allVariants.length;
       variant = allVariants[nextIndex];
     }
   } else {
-    // First time visitor or first modal shown - random 25% split
-    const random = Math.random();
-    if (random < 0.25) {
-      variant = "A";
-    } else if (random < 0.5) {
-      variant = "B";
-    } else if (random < 0.75) {
-      variant = "C";
-    } else {
-      variant = "D";
-    }
+    // First active modal shown - random 50% split.
+    variant = Math.random() < 0.5 ? "A" : "D";
   }
 
   // Update modal state with new variant and increment total shown
