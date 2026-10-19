@@ -1,35 +1,42 @@
 import Container from "@/components/ui/Container";
-import SolutionHero from "@/components/sections/SolutionHero";
+import EnterpriseHero from "./EnterpriseHero";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
-import FAQAccordion from "@/components/ui/FAQAccordion";
-import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import EnterpriseFAQ from "./EnterpriseFAQ";
 import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { withHreflang } from "@/components/seo/HreflangTags";
+// Phosphor icons, weighted so every line icon renders at roughly 2px:
+// Regular at 24–32px, Light at 40px, Bold at 16–24px.
 import {
-  HiAcademicCap,
-  HiArrowRight,
-  HiSupport,
-  HiUserGroup,
-} from "react-icons/hi";
-import {
-  LuChartColumn,
-  LuCloud,
-  LuFingerprint,
-  LuKeyRound,
-  LuMinus,
-  LuUsers,
-  LuCircleDollarSign,
-  LuHeartPulse,
-  LuShieldCheck,
-} from "react-icons/lu";
+  PiArrowRightBold,
+  PiChartBar,
+  PiClipboardTextLight,
+  PiCurrencyCircleDollar,
+  PiDeviceMobileLight,
+  PiChalkboardTeacherBold,
+  PiHeartbeat,
+  PiHourglass,
+  PiKeyLight,
+  PiHandshakeBold,
+  PiHeadsetBold,
+  PiShieldCheck,
+  PiSmiley,
+  PiTimer,
+  PiUserGearLight,
+} from "react-icons/pi";
+import { FaAws } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 // ISR: Revalidate every 1 hour (marketing page, rarely changes)
 export const revalidate = 3600;
+
+// Each section fills at least one desktop screen, content centred within it.
+// Phones keep natural heights: a short section stretched to a tall screen is
+// mostly empty space there.
+const FULL_SCREEN = "lg:flex lg:min-h-svh lg:flex-col lg:justify-center";
 
 // Analytics `location` for every click originating on this page.
 const LOCATION = "Enterprise Page";
@@ -72,43 +79,26 @@ export const metadata = withHreflang(
 
 /* ---------------------------------------------------------------- content */
 
+// Each chip's text takes a brand accent, deepened enough to read on grey.
 const ORG_TYPES = [
   "Public health systems",
   "Private hospital groups",
   "Multi-site healthcare providers",
 ];
 
-// Each label is split so its key phrase can be highlighted on the card.
-const OUTCOMES: {
-  stat: string;
-  highlight: string;
-  rest: string;
-  art: "bars" | "clock" | "coins" | "trend";
-}[] = [
-  {
-    stat: "90%",
-    highlight: "less time",
-    rest: " spent on rostering",
-    art: "bars",
-  },
+const OUTCOMES: { stat: string; label: string; icon: IconType }[] = [
+  { stat: "90%", label: "less time spent on rostering", icon: PiTimer },
   {
     stat: "320+",
-    highlight: "hours saved annually",
-    rest: " by a tertiary hospital",
-    art: "clock",
+    label: "hours saved annually by a tertiary hospital",
+    icon: PiHourglass,
   },
   {
     stat: "15%",
-    highlight: "lower labour costs",
-    rest: " achieved through roster optimisation",
-    art: "coins",
+    label: "lower labour costs achieved through roster optimisation",
+    icon: PiCurrencyCircleDollar,
   },
-  {
-    stat: "10%",
-    highlight: "improvement",
-    rest: " in staff satisfaction",
-    art: "trend",
-  },
+  { stat: "10%", label: "improvement in staff satisfaction", icon: PiSmiley },
 ];
 
 const NEWSROOM = {
@@ -127,25 +117,25 @@ interface Benefit {
 
 const BENEFITS: Benefit[] = [
   {
-    icon: LuCircleDollarSign,
+    icon: PiCurrencyCircleDollar,
     title: "Reduce labour and administration costs",
     description:
       "Make better use of existing staffing capacity. Reduce unnecessary overtime, penalty costs, locum and agency cover, while freeing clinical managers from days of manual rostering.",
   },
   {
-    icon: LuHeartPulse,
+    icon: PiHeartbeat,
     title: "Support staff wellbeing and retention",
     description:
       "Create fairer, more sustainable rosters that balance workloads, accommodate preferences and manage fatigue, helping clinicians achieve a healthier work-life balance.",
   },
   {
-    icon: LuChartColumn,
+    icon: PiChartBar,
     title: "Make better workforce decisions",
     description:
       "Gain greater visibility into staffing patterns, workforce utilisation and roster performance to identify inefficiencies and make informed resourcing decisions.",
   },
   {
-    icon: LuShieldCheck,
+    icon: PiShieldCheck,
     title: "Strengthen compliance and clinical safety",
     description:
       "Apply organisational policies, union agreements, staffing requirements and fatigue rules consistently across different departments and clinical workforce groups.",
@@ -153,8 +143,9 @@ const BENEFITS: Benefit[] = [
 ];
 
 interface Feature {
-  tag: string;
   title: string;
+  /** Leading words of the title drawn in brand blue. */
+  highlight: string;
   description: string;
   // Stand-in product images until dedicated enterprise screenshots exist.
   image: {
@@ -164,13 +155,15 @@ interface Feature {
     height: number;
     /** Size override, e.g. for the wide Otto wordmark. */
     className?: string;
+    /** A finished 4:3 artwork that fills the frame edge to edge. */
+    fill?: boolean;
   };
 }
 
 const FEATURES: Feature[] = [
   {
-    tag: "Workforce allocation",
     title: "AI-powered roster optimisation",
+    highlight: "AI-powered",
     description:
       "RosterLab generates rosters that assign the right people at the right time automatically, keeping services running smoothly with fewer disruptions and higher productivity.",
     image: {
@@ -181,20 +174,22 @@ const FEATURES: Feature[] = [
     },
   },
   {
-    tag: "Department view",
     title: "Organisation-wide visibility, department-level control",
+    highlight: "Organisation-wide visibility,",
     description:
       "Give each department the flexibility to roster according to its own rules and working practices, while maintaining a unified view across the organisation.",
     image: {
-      src: "/images/rules-builder/rules-compliance-roster.webp",
-      alt: "Fixed and flexible rostering rules configured for a department",
-      width: 1967,
-      height: 1153,
+      // Placeholder artwork until the final enterprise image is supplied.
+      src: "/images/enterprise/organisation-wide-visibility.webp",
+      alt: "A department roster in RosterLab with an overview of its ICU sub-rosters",
+      width: 1600,
+      height: 1200,
+      fill: true,
     },
   },
   {
-    tag: "Reporting & analytics",
     title: "Enterprise reporting and analytics",
+    highlight: "Enterprise reporting",
     description:
       "Create data reports on fairness, compliance, staffing patterns and roster performance across your organisation to uncover trends and support better operational decisions.",
     image: {
@@ -205,8 +200,8 @@ const FEATURES: Feature[] = [
     },
   },
   {
-    tag: "Workforce insights",
     title: "Intelligent workforce insights",
+    highlight: "Intelligent",
     description:
       "Turn roster data into actionable workforce insights. Our AI rostering assistant Otto spots coverage gaps and workload imbalances, then recommends what to do next.",
     image: {
@@ -219,84 +214,61 @@ const FEATURES: Feature[] = [
   },
 ];
 
-// Titles are short labels drawn from each point's own wording.
 const SECURITY_POINTS = [
-  {
-    title: "Secure cloud infrastructure",
-    description:
-      "Cloud-based infrastructure (AWS) with robust encryption and security.",
-  },
-  {
-    title: "Strong authentication",
-    description:
-      "Single sign-on (SSO), multi-factor authentication (MFA), and role-based access control.",
-  },
-  {
-    title: "Enterprise governance",
-    description: "Monitoring, oversight, and documented security processes.",
-  },
-  {
-    title: "SOC 2 compliance",
-    description: "RosterLab is SOC 2 compliant.",
-  },
+  "Cloud-based infrastructure (AWS) with robust encryption and security",
+  "Single sign-on (SSO), multi-factor authentication (MFA), and role-based access control",
+  "Enterprise governance: monitoring, oversight, and documented security processes",
+  "SOC 2 compliance",
 ];
 
-// Line-art tiles for what the section claims. SOC 2 is the only
-// certification; the rest are capabilities listed above.
-const SECURITY_BADGES: { label: string; icon?: IconType }[] = [
-  { label: "SOC 2" },
-  { label: "AWS", icon: LuCloud },
-  { label: "SSO", icon: LuKeyRound },
-  { label: "MFA", icon: LuFingerprint },
-  { label: "Role-based access", icon: LuUsers },
+// One tile per security point, with the access-control point split into its
+// three parts. Brand logo where there is one (AWS), line icons otherwise. SOC 2 (icon: null) draws its own shield badge.
+const SECURITY_BADGES: { label: string; icon: IconType | null }[] = [
+  { label: "SOC 2 compliance", icon: null },
+  { label: "Cloud infrastructure (AWS)", icon: FaAws },
+  { label: "Single sign-on (SSO)", icon: PiKeyLight },
+  { label: "Multi-factor authentication (MFA)", icon: PiDeviceMobileLight },
+  { label: "Role-based access control", icon: PiUserGearLight },
+  { label: "Enterprise governance", icon: PiClipboardTextLight },
 ];
 
 const IMPLEMENTATION: Benefit[] = [
   {
-    icon: HiUserGroup,
+    icon: PiHandshakeBold,
     title: "Hands-on implementation",
     description:
       "Our rostering specialists take the time to understand your clinical rostering practices, tailoring RosterLab to how your teams operate.",
   },
   {
-    icon: HiAcademicCap,
+    icon: PiChalkboardTeacherBold,
     title: "Training and enablement",
     description:
       "We equip roster managers and department leaders with the knowledge they need to use RosterLab with confidence.",
   },
   {
-    icon: HiSupport,
+    icon: PiHeadsetBold,
     title: "Dedicated customer success",
     description:
       "Receive priority enterprise support and expert guidance with a dedicated customer success manager by your side.",
   },
 ];
 
-// Titles, summaries and images are each story's own published metadata.
+// Titles and images are each story's own published metadata.
 const STORIES = [
   {
-    tag: "Case study",
     title: "Sydney Hospital Saves 300+ Hours With AI",
-    description:
-      "See how a Sydney Tertiary Hospital Emergency Department reduced manual rostering by 300 hours with RosterLab’s AI rostering software.",
     href: "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
     image:
       "https://cdn.sanity.io/images/el2jjtjd/production/207aa931d8495f1f6fb7ce76a40a218937ec146a-640x424.jpg",
   },
   {
-    tag: "Newsroom",
     title: "Royal Perth Hospital Partners on AI Rosters",
-    description:
-      "Royal Perth Hospital partners with RosterLab to deliver AI rostering for AMU & ICU, improving shift fairness, compliance, & continuity of patient care.",
     href: "/newsroom/hospital-in-perth-partners-with-rosterlab-for-smarter-rosters",
     image:
       "https://cdn.sanity.io/images/el2jjtjd/production/aca53d542d2c5b2599f66b41712322f6acec45bd-640x427.jpg",
   },
   {
-    tag: "Case study",
     title: "Auckland Radiology Boosts Staff Retention",
-    description:
-      "An Auckland radiology department reduces roster time from 120 hours to just 8 using RosterLab, achieving full staffing for the first time in 28 years.",
     href: "/case-studies/radiology-department-auckland",
     image:
       "https://cdn.sanity.io/images/el2jjtjd/production/0fad2d02c97c42ec12755f8e9390c7fc6f4726c3-640x427.jpg",
@@ -340,101 +312,80 @@ const FAQ_ITEMS = [
 
 /* ------------------------------------------------------------- building blocks */
 
-/** Small spot illustrations for the outcome cards. */
-function OutcomeArt({ kind }: { kind: (typeof OUTCOMES)[number]["art"] }) {
-  const common = {
-    "aria-hidden": true,
-    className: "h-24 w-32",
-    viewBox: "0 0 128 96",
-    fill: "none",
-  } as const;
-  if (kind === "bars")
-    return (
-      <svg {...common}>
-        {[20, 40, 60, 80].map((y) => (
-          <line
-            key={y}
-            x1="16"
-            x2="112"
-            y1={y}
-            y2={y}
-            stroke="#CBD5E1"
-            strokeDasharray="3 3"
-          />
-        ))}
-        <rect x="34" y="12" width="24" height="76" rx="3" fill="#CBD5E1" />
-        <rect x="70" y="76" width="24" height="12" rx="3" fill="#2563EB" />
-      </svg>
-    );
-  if (kind === "clock")
-    return (
-      <svg {...common}>
-        <circle cx="64" cy="48" r="36" fill="#DBEAFE" />
-        <circle
-          cx="64"
-          cy="48"
-          r="28"
-          fill="#fff"
-          stroke="#2563EB"
-          strokeWidth="4"
-        />
-        <path
-          d="M64 32v16l11 8"
-          stroke="#2563EB"
-          strokeWidth="4"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
-  if (kind === "coins")
-    return (
-      <svg {...common}>
-        {[66, 52, 38, 24].map((y, i) => (
-          <g key={y}>
-            <rect
-              x="34"
-              y={y}
-              width="60"
-              height="12"
-              fill={i === 0 ? "#fff" : "#2563EB"}
-              stroke={i === 0 ? "#94A3B8" : "#1D4ED8"}
-            />
-            <ellipse
-              cx="64"
-              cy={y}
-              rx="30"
-              ry="8"
-              fill={i === 0 ? "#fff" : "#60A5FA"}
-              stroke={i === 0 ? "#94A3B8" : "#1D4ED8"}
-            />
-          </g>
-        ))}
-      </svg>
-    );
-  return (
-    <svg {...common}>
-      {[24, 48, 72].map((y) => (
-        <line
-          key={y}
-          x1="16"
-          x2="112"
-          y1={y}
-          y2={y}
-          stroke="#CBD5E1"
-          strokeDasharray="3 3"
-        />
-      ))}
+/**
+ * Decorative accents for the feature images, in the brand teal, cyan and
+ * blue. One per image, cycling, pinned to a corner of its frame.
+ */
+const ACCENTS = [
+  // Waves
+  <svg
+    key="waves"
+    aria-hidden="true"
+    viewBox="0 0 96 36"
+    className="h-9 w-24"
+    fill="none"
+  >
+    {[6, 18, 30].map((y) => (
       <path
-        d="M18 70 L46 58 L70 62 L108 26"
-        stroke="#2563EB"
-        strokeWidth="4"
+        key={y}
+        d={`M2 ${y} q 7.5 -6 15 0 t 15 0 t 15 0 t 15 0 t 15 0 t 15 0`}
+        stroke="#03F9BE"
+        strokeWidth="2.5"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <circle cx="108" cy="26" r="5" fill="#2563EB" />
-    </svg>
-  );
-}
+    ))}
+  </svg>,
+  // Squiggle
+  <svg
+    key="squiggle"
+    aria-hidden="true"
+    viewBox="0 0 64 40"
+    className="h-10 w-16"
+    fill="none"
+  >
+    <path
+      d="M4 30 c 8 -24 16 -24 14 -4 s 10 18 16 -2 s 12 -20 14 0 s 8 10 12 -6"
+      stroke="#24D9DC"
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
+  </svg>,
+  // Dot arc
+  <svg key="dots" aria-hidden="true" viewBox="0 0 72 72" className="h-16 w-16">
+    {Array.from({ length: 5 }).flatMap((_, r) =>
+      Array.from({ length: 5 }).map((_, c) =>
+        r + c < 6 ? (
+          <circle
+            key={`${r}-${c}`}
+            cx={6 + c * 14}
+            cy={6 + r * 14}
+            r="3"
+            fill="#2563EB"
+            opacity="0.5"
+          />
+        ) : null,
+      ),
+    )}
+  </svg>,
+  // Hatching
+  <svg
+    key="hatch"
+    aria-hidden="true"
+    viewBox="0 0 96 24"
+    className="h-6 w-24"
+    fill="none"
+  >
+    {Array.from({ length: 14 }).map((_, i) => (
+      <path
+        key={i}
+        d={`M${4 + i * 6.5} 22 L${12 + i * 6.5} 2`}
+        stroke="#03F9BE"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    ))}
+  </svg>,
+];
 
 function SectionHeading({
   title,
@@ -459,31 +410,14 @@ function SectionHeading({
   );
 }
 
-function IconCard({ item }: { item: Benefit }) {
-  const Icon = item.icon;
-  return (
-    <div className="h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-      <span
-        aria-hidden="true"
-        className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50"
-      >
-        <Icon className="h-6 w-6 text-blue-600" />
-      </span>
-      <h3 className="mt-5 text-lg font-semibold text-gray-900">{item.title}</h3>
-      <p className="mt-2 text-gray-600 leading-relaxed">{item.description}</p>
-    </div>
-  );
-}
-
 /* ------------------------------------------------------------------ page */
 
 export default function EnterprisePage() {
   return (
     <SiteLayout>
-      <SolutionHero
-        title="Enterprise healthcare rostering software, powered by AI"
+      <EnterpriseHero
+        title="Enterprise healthcare rostering software powered by AI"
         description="Roster your entire clinical workforce on one secure platform. Control labour and staffing costs, strengthen compliance, and deploy your clinicians where they’re needed most."
-        bullets={[]}
         analyticsLocation={LOCATION}
         primaryCta={{
           href: "/book-a-demo",
@@ -503,16 +437,11 @@ export default function EnterprisePage() {
             section: "hero",
           },
         }}
-        image={{
-          src: "/images/updated-hero/auto-scheduling.webp",
-          alt: "A clinician generating a compliant roster in RosterLab",
-        }}
+        trustedHeading="Trusted by leading hospitals and health systems"
       />
 
-      <TrustedByDualRow heading="Trusted by leading hospitals and health systems" />
-
       {/* 1 — Strategic advantage */}
-      <section className="py-20">
+      <section className={`py-20 ${FULL_SCREEN}`}>
         <Container>
           <SectionHeading
             title="Turn rostering into a strategic advantage"
@@ -526,7 +455,7 @@ export default function EnterprisePage() {
               {ORG_TYPES.map((type) => (
                 <li
                   key={type}
-                  className="rounded-xl bg-slate-200/60 px-5 py-2.5 font-medium text-gray-800"
+                  className="rounded-xl bg-slate-200/60 px-5 py-2.5 font-semibold text-blue-700"
                 >
                   {type}
                 </li>
@@ -537,65 +466,54 @@ export default function EnterprisePage() {
       </section>
 
       {/* 2 — ROI */}
-      <section className="py-20 md:py-24">
+      <section className={`bg-slate-50 py-20 md:py-24 ${FULL_SCREEN}`}>
         <Container>
-          <h2 className="text-4xl md:text-5xl font-semibold leading-[1.1] tracking-tight">
-            <span className="block text-blue-600">Proven outcomes</span>
-            <span className="block text-gray-900">
-              for clinical environments
-            </span>
-          </h2>
-          <p className="mt-5 max-w-xl text-base md:text-lg text-gray-600 leading-relaxed">
-            See what enterprise healthcare organisations are achieving with
-            RosterLab.
-          </p>
+          <SectionHeading
+            title="Proven outcomes for clinical environments"
+            description="See what enterprise healthcare organisations are achieving with RosterLab."
+          />
 
-          {/* Quote card on the left, the four outcomes as a 2x2 beside it. */}
-          <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            <figure className="flex flex-col justify-between col-span-2 rounded-2xl border border-blue-200 bg-blue-100 p-8 lg:row-span-2 md:p-10">
-              <blockquote className="text-2xl md:text-3xl font-medium text-gray-900 leading-snug">
+          <dl className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {OUTCOMES.map((o) => {
+              const Icon = o.icon;
+              return (
+                <div
+                  key={o.stat}
+                  className="flex flex-col rounded-2xl bg-white p-7"
+                >
+                  <Icon aria-hidden="true" className="h-8 w-8 text-gray-900" />
+                  <dt className="order-last mt-1 text-sm text-gray-600 leading-snug">
+                    {o.label}
+                  </dt>
+                  <dd className="mt-8 text-4xl font-medium tracking-tight text-gray-900">
+                    {o.stat}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+
+          <figure className="mt-4 grid grid-cols-1 gap-6 rounded-2xl bg-blue-100 p-8 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:items-end md:p-10">
+            <div>
+              <blockquote className="text-xl md:text-2xl font-medium text-gray-900 leading-snug">
                 &ldquo;Rostering would take 7-8 days, now it takes 2-3 hours,
                 allowing me to focus more on patient care.&rdquo;
               </blockquote>
-              <figcaption className="mt-10 flex items-end justify-between gap-6">
-                <span className="text-sm">
-                  <span className="block font-semibold text-gray-900">
-                    Mike
-                  </span>
-                  <span className="block text-gray-600">
-                    Associate Clinical Manager Radiology
-                  </span>
+              <figcaption className="mt-6 text-sm">
+                <span className="block font-semibold text-gray-900">Mike</span>
+                <span className="block text-gray-600">
+                  Associate Clinical Manager Radiology
                 </span>
-                <Image
-                  src="/images/logos/whanganui-mark.webp"
-                  alt="Te Whatu Ora Whanganui"
-                  width={186}
-                  height={72}
-                  className="h-12 w-auto shrink-0"
-                />
               </figcaption>
-            </figure>
-
-            {OUTCOMES.map((o) => (
-              <div
-                key={o.stat}
-                className="flex flex-col items-center justify-between rounded-2xl border border-gray-200 bg-slate-50 p-4 text-center sm:p-6"
-              >
-                <p className="text-sm text-gray-700 leading-snug">
-                  <span className="font-semibold text-blue-600">
-                    {o.highlight}
-                  </span>
-                  {o.rest}
-                </p>
-                <div className="my-4">
-                  <OutcomeArt kind={o.art} />
-                </div>
-                <p className="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-blue-600">
-                  {o.stat}
-                </p>
-              </div>
-            ))}
-          </div>
+            </div>
+            <Image
+              src="/images/logos/whanganui-mark.webp"
+              alt="Te Whatu Ora Whanganui"
+              width={186}
+              height={72}
+              className="h-12 w-auto md:justify-self-end"
+            />
+          </figure>
 
           <div className="mt-10 flex justify-center">
             <Button
@@ -613,30 +531,44 @@ export default function EnterprisePage() {
             </Button>
           </div>
 
-          {/* Newsroom callout */}
+          {/* Newsroom callout: image with a logo badge on the left, a soft
+              panel on the right, opposite corners rounded. */}
           <Link
             href={NEWSROOM.href}
-            className="group mx-auto mt-12 flex max-w-4xl flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md sm:flex-row"
+            className="group mx-auto mt-14 grid max-w-5xl grid-cols-1 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
           >
-            <div className="relative aspect-[2/1] w-full shrink-0 bg-slate-100 sm:aspect-auto sm:w-64">
-              <Image
-                src={NEWSROOM.image}
-                alt=""
-                fill
-                sizes="(min-width: 640px) 256px, 100vw"
-                className="object-cover"
-              />
+            {/* The badge straddles the image's bottom-left corner, outside
+                the clipped image so it stays clear of the artwork's text. */}
+            <div className="relative">
+              <div className="relative aspect-[16/10] h-full overflow-hidden rounded-t-[2.5rem] bg-slate-200 sm:aspect-auto sm:min-h-64 sm:rounded-none sm:rounded-bl-[3rem]">
+                <Image
+                  src={NEWSROOM.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 400px, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <span className="absolute -bottom-6 -left-3 z-10 flex h-24 w-24 items-center justify-center rounded-full bg-white px-3 shadow-lg sm:-left-6 sm:h-28 sm:w-28">
+                <Image
+                  src="/images/logos/te-whatu-ora.webp"
+                  alt="Health New Zealand Te Whatu Ora"
+                  width={516}
+                  height={114}
+                  className="block h-auto w-[4.5rem] sm:w-20"
+                />
+              </span>
             </div>
-            <div className="flex flex-col justify-center p-6">
+            <div className="flex flex-col justify-center rounded-b-[2.5rem] bg-blue-50 p-8 sm:rounded-none sm:rounded-tr-[3rem] md:p-12">
               <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
                 Newsroom
               </span>
-              <span className="mt-2 text-lg font-semibold text-gray-900 leading-snug">
+              <span className="mt-3 text-xl md:text-2xl font-semibold italic text-blue-950 leading-snug">
                 {NEWSROOM.title}
               </span>
-              <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 group-hover:text-blue-700">
+              <span className="mt-6 inline-flex items-center gap-1 self-start border-b-2 border-blue-600 pb-0.5 font-semibold text-blue-700 group-hover:text-blue-800">
                 Read the announcement
-                <HiArrowRight
+                <PiArrowRightBold
                   aria-hidden="true"
                   className="h-4 w-4 transition-transform group-hover:translate-x-1"
                 />
@@ -647,7 +579,7 @@ export default function EnterprisePage() {
       </section>
 
       {/* 3 — Benefits */}
-      <section className="bg-slate-100 py-20 md:py-24">
+      <section className={`bg-slate-100 py-20 md:py-24 ${FULL_SCREEN}`}>
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl md:text-5xl font-semibold text-gray-900 leading-tight tracking-tight">
@@ -674,38 +606,62 @@ export default function EnterprisePage() {
       </section>
 
       {/* 4 — Key enterprise features */}
-      <section className="py-20 md:py-24">
+      <section className={`py-20 md:py-24 ${FULL_SCREEN}`}>
         <Container>
-          <SectionHeading title="One rostering platform for every clinical team" />
+          <h2 className="max-w-3xl text-4xl md:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight">
+            One rostering platform for every clinical team
+          </h2>
           <div className="mt-16 space-y-20 lg:space-y-28">
-            {FEATURES.map((f, i) => (
-              <div
-                key={f.title}
-                className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
-              >
-                <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                  <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
-                    {f.tag}
-                  </p>
-                  <h3 className="mt-3 text-3xl md:text-4xl font-medium text-gray-900 leading-tight tracking-tight">
-                    {f.title}
-                  </h3>
-                  <p className="mt-5 text-lg text-gray-600 leading-relaxed">
-                    {f.description}
-                  </p>
+            {FEATURES.map((f, i) => {
+              const flip = i % 2 === 1;
+              return (
+                <div
+                  key={f.title}
+                  className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
+                >
+                  <div className={`lg:max-w-md ${flip ? "lg:order-2" : ""}`}>
+                    <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight tracking-tight">
+                      <span className="text-blue-600">{f.highlight}</span>
+                      {f.title.slice(f.highlight.length)}
+                    </h3>
+                    <p className="mt-4 text-gray-600 leading-relaxed">
+                      {f.description}
+                    </p>
+                  </div>
+                  {/* Frame with opposite corners rounded, mirrored on
+                      alternate rows, and a brand accent off one corner. */}
+                  <div className={`relative ${flip ? "lg:order-1" : ""}`}>
+                    <div
+                      className={`flex aspect-[4/3] items-center justify-center overflow-hidden bg-blue-50 ${f.image.fill ? "" : "p-6 md:p-10"} ${
+                        flip
+                          ? "rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-lg rounded-br-lg"
+                          : "rounded-tl-[3.5rem] rounded-br-[3.5rem] rounded-tr-lg rounded-bl-lg"
+                      }`}
+                    >
+                      <Image
+                        src={f.image.src}
+                        alt={f.image.alt}
+                        width={f.image.width}
+                        height={f.image.height}
+                        sizes="(min-width: 1024px) 700px, 100vw"
+                        className={
+                          f.image.fill
+                            ? "h-full w-full object-cover"
+                            : `h-auto max-h-full w-auto rounded-lg ${f.image.className ?? "shadow-lg"}`
+                        }
+                      />
+                    </div>
+                    <div
+                      className={`absolute ${
+                        flip ? "-top-5 -right-3" : "-bottom-4 left-8"
+                      }`}
+                    >
+                      {ACCENTS[i % ACCENTS.length]}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex justify-center">
-                  <Image
-                    src={f.image.src}
-                    alt={f.image.alt}
-                    width={f.image.width}
-                    height={f.image.height}
-                    sizes="(min-width: 1024px) 560px, 100vw"
-                    className={`h-auto w-auto rounded-xl ${f.image.className ?? "max-h-80 drop-shadow-xl"}`}
-                  />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="mt-16 text-center">
             <p className="text-lg font-semibold text-gray-900">
@@ -723,7 +679,7 @@ export default function EnterprisePage() {
               }}
             >
               Book a demo
-              <HiArrowRight aria-hidden="true" className="h-4 w-4" />
+              <PiArrowRightBold aria-hidden="true" className="h-4 w-4" />
             </Button>
           </div>
         </Container>
@@ -732,7 +688,7 @@ export default function EnterprisePage() {
       {/* 5 — Testimonials (swipeable on mobile, arrows on desktop). The
           carousel's band is translucent, so the faint dot grid behind it
           shows through, as on the home page. */}
-      <div className="relative">
+      <div className={`relative ${FULL_SCREEN}`}>
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle,rgba(55,121,221,0.18)_1px,transparent_1px)] bg-[length:22px_22px]"
@@ -743,7 +699,7 @@ export default function EnterprisePage() {
       </div>
 
       {/* 6 — Security & privacy */}
-      <section className="py-20 md:py-24">
+      <section className={`py-20 md:py-24 ${FULL_SCREEN}`}>
         <Container>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
@@ -760,50 +716,47 @@ export default function EnterprisePage() {
 
             <ul className="divide-y divide-gray-200">
               {SECURITY_POINTS.map((point) => (
-                <li key={point.title} className="py-5 first:pt-0 last:pb-0">
-                  <div className="flex items-start justify-between gap-6">
-                    <h3 className="text-xl md:text-2xl font-medium text-gray-900">
-                      {point.title}
-                    </h3>
-                    <LuMinus
-                      aria-hidden="true"
-                      className="mt-2 h-4 w-4 shrink-0 text-gray-400"
-                    />
-                  </div>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    {point.description}
-                  </p>
+                <li
+                  key={point}
+                  className="py-6 first:pt-0 last:pb-0 text-lg md:text-xl font-medium text-gray-900 leading-snug"
+                >
+                  {point}
                 </li>
               ))}
             </ul>
           </div>
 
-          <ul className="mt-16 grid grid-cols-3 gap-3 sm:gap-4 lg:grid-cols-5">
-            {SECURITY_BADGES.map((badge) => {
-              const Icon = badge.icon;
-              return (
-                <li key={badge.label} className="text-center">
-                  <div className="flex aspect-square items-center justify-center rounded-xl bg-slate-100">
+          {/* Badge row, centred between two rules on desktop. The rules sit at
+              the tiles' midline (half of the 6rem tile). */}
+          <div className="mt-16 flex items-start gap-6">
+            <span
+              aria-hidden="true"
+              className="mt-12 hidden h-px flex-1 bg-gray-300 lg:block"
+            />
+            <ul className="grid w-full grid-cols-3 gap-x-4 gap-y-6 md:grid-cols-6 lg:w-auto lg:grid-cols-[repeat(6,7rem)] lg:gap-x-4">
+              {SECURITY_BADGES.map(({ label, icon: Icon }) => (
+                <li key={label} className="flex flex-col items-center">
+                  <div className="flex aspect-square w-full max-w-24 items-center justify-center rounded-xl bg-slate-100">
                     {Icon ? (
-                      <span className="flex h-14 w-14 items-center justify-center rounded-xl border-[1.5px] border-gray-500 sm:h-24 sm:w-24 sm:rounded-2xl lg:h-28 lg:w-28">
-                        <Icon
-                          aria-hidden="true"
-                          className="h-7 w-7 text-gray-600 sm:h-10 sm:w-10 lg:h-12 lg:w-12"
-                          strokeWidth={1.25}
-                        />
-                      </span>
+                      // Light weight at 40px gives a ~2px line, matching the
+                      // SOC 2 shield below. (AWS is a filled mark.)
+                      <Icon
+                        aria-hidden="true"
+                        className="h-10 w-10 text-gray-500"
+                      />
                     ) : (
-                      // SOC 2: a line-drawn shield with the mark inside.
+                      // SOC 2 badge: line-drawn stand-in until the official
+                      // artwork is supplied.
                       <svg
                         aria-hidden="true"
                         viewBox="0 0 100 116"
-                        className="h-16 w-14 sm:h-28 sm:w-24 lg:h-32 lg:w-28"
+                        className="h-12 w-10 text-gray-500"
                         fill="none"
                       >
                         <path
                           d="M50 4 L94 20 V56 C94 84 74 102 50 112 C26 102 6 84 6 56 V20 Z"
-                          stroke="#6B7280"
-                          strokeWidth="2"
+                          stroke="currentColor"
+                          strokeWidth="4.8"
                           strokeLinejoin="round"
                         />
                         <text
@@ -811,7 +764,8 @@ export default function EnterprisePage() {
                           y="52"
                           textAnchor="middle"
                           fontSize="20"
-                          fill="#374151"
+                          fontWeight="500"
+                          fill="currentColor"
                         >
                           SOC
                         </text>
@@ -820,43 +774,66 @@ export default function EnterprisePage() {
                           y="76"
                           textAnchor="middle"
                           fontSize="20"
-                          fill="#374151"
+                          fontWeight="500"
+                          fill="currentColor"
                         >
                           2
                         </text>
                       </svg>
                     )}
                   </div>
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.15em] text-gray-500 sm:text-xs">
-                    {badge.label}
-                  </p>
+                  <span className="mt-3 max-w-28 text-center text-[11px] uppercase tracking-wider text-gray-500 leading-snug">
+                    {label}
+                  </span>
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
+            <span
+              aria-hidden="true"
+              className="mt-12 hidden h-px flex-1 bg-gray-300 lg:block"
+            />
+          </div>
         </Container>
       </section>
 
       {/* 7 — Implementation & support */}
-      <section className="bg-gray-50 py-20">
+      <section className={`bg-gray-50 py-20 md:py-24 ${FULL_SCREEN}`}>
         <Container>
-          <SectionHeading
-            title="Implementation backed by healthcare rostering expertise"
-            description="From initial setup to ongoing optimisation, we help your organisation get up and running smoothly, so you can start seeing improvements from the very first roster."
-          />
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {IMPLEMENTATION.map((item) => (
-              <IconCard key={item.title} item={item} />
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-16">
+            <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight">
+              Implementation backed by healthcare rostering expertise
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed lg:pt-2">
+              From initial setup to ongoing optimisation, we help your
+              organisation get up and running smoothly, so you can start seeing
+              improvements from the very first roster.
+            </p>
+          </div>
+          <div className="mt-14 md:mt-20 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
+            {IMPLEMENTATION.map(({ icon: Icon, title, description }) => (
+              <div key={title}>
+                <span
+                  aria-hidden="true"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600"
+                >
+                  <Icon className="h-6 w-6 text-white" />
+                </span>
+                <h3 className="mt-5 text-lg md:text-xl font-semibold text-gray-900">
+                  {title}
+                </h3>
+                <p className="mt-2 text-gray-600 leading-relaxed">
+                  {description}
+                </p>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
       {/* 8 — Customer stories */}
-      <section className="py-20">
+      <section className={`py-20 ${FULL_SCREEN}`}>
         <Container>
-          <SectionHeading title="Customer stories" />
-          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {STORIES.map((story) => (
               <Link
                 key={story.href}
@@ -873,22 +850,9 @@ export default function EnterprisePage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">
-                    {story.tag}
-                  </span>
-                  <h3 className="mt-2 text-lg font-semibold text-gray-900 leading-snug">
+                  <h3 className="text-lg font-semibold text-gray-900 leading-snug group-hover:text-blue-700">
                     {story.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm text-gray-600 leading-relaxed">
-                    {story.description}
-                  </p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 group-hover:text-blue-700">
-                    Read more
-                    <HiArrowRight
-                      aria-hidden="true"
-                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
                 </div>
               </Link>
             ))}
@@ -897,21 +861,26 @@ export default function EnterprisePage() {
       </section>
 
       {/* 9 — FAQ */}
-      <section className="bg-gray-50 py-20">
+      <section className={`bg-slate-50 py-20 md:py-24 ${FULL_SCREEN}`}>
         <Container>
-          <div className="mx-auto max-w-4xl">
-            <SectionHeading
-              title="Frequently asked questions"
-              description="Everything you need to know about RosterLab for enterprise."
-              className="mb-12"
-            />
-            <FAQAccordion items={FAQ_ITEMS} />
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 leading-tight tracking-tight">
+                Frequently asked questions
+              </h2>
+              <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">
+                Everything you need to know about RosterLab for enterprise.
+              </p>
+            </div>
+            <EnterpriseFAQ items={FAQ_ITEMS} />
           </div>
         </Container>
       </section>
 
       {/* 10 — Ending CTA */}
-      <section className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-20">
+      <section
+        className={`bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 py-20 ${FULL_SCREEN}`}
+      >
         <Container>
           <div className="mx-auto max-w-3xl text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold leading-tight">
