@@ -209,9 +209,26 @@ function build(root: HTMLDivElement) {
 export default function EnterpriseFlow({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
+  // Built the first time it scrolls into view, so the reader sees the
+  // diagram draw from the start rather than arriving mid-loop. The box keeps
+  // its aspect ratio until then, so nothing shifts when it fills in.
   useEffect(() => {
-    if (!ref.current) return;
-    return build(ref.current);
+    const root = ref.current;
+    if (!root) return;
+    let cleanup: (() => void) | undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        cleanup = build(root);
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(root);
+    return () => {
+      observer.disconnect();
+      cleanup?.();
+    };
   }, []);
 
   return (

@@ -6,11 +6,10 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { HEADER_OVERLAY_ATTR } from "@/components/layout/Header";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
-import EnterpriseFlow from "./EnterpriseFlow";
 
 /**
- * The enterprise hero: copy on the left and the flow animation on the right,
- * over the same dotted blue field as the home page's LandingHero.
+ * The enterprise hero: a centred stack (eyebrow, headline, copy, CTAs) over
+ * the same dotted blue field as the home page's LandingHero.
  *
  * It behaves like the home hero: it tucks up under the header, which stays
  * painted blue until this section scrolls past it (ClientHeader turns on
@@ -21,8 +20,8 @@ import EnterpriseFlow from "./EnterpriseFlow";
 const HERO_BLUE = "#3779DD";
 const HERO_BLUE_CLEAR = "rgba(55,121,221,0)";
 
-/** Resting focal point, in % of the section — over the animation. */
-const SPOT_HOME = { x: 65, y: 50 };
+/** Resting focal point, in % of the section — behind the headline. */
+const SPOT_HOME = { x: 50, y: 42 };
 /** How far the focal point may travel from home, in percentage points. */
 const SPOT_TRAVEL = 15;
 /** Damping for the focal point; ambient, so it lags the cursor. */
@@ -135,7 +134,7 @@ export default function EnterpriseHero({
     <section
       ref={sectionRef}
       {...{ [HEADER_OVERLAY_ATTR]: "" }}
-      className="relative -mt-20 overflow-x-clip bg-white"
+      className="rl-section relative -mt-20 flex min-h-svh flex-col overflow-x-clip bg-white"
     >
       <div
         aria-hidden="true"
@@ -162,15 +161,18 @@ export default function EnterpriseHero({
         />
       </div>
 
-      <Container className="relative grid grid-cols-1 items-center gap-12 min-h-svh content-center pt-36 pb-16 lg:grid-cols-[minmax(0,6fr)_minmax(0,7fr)] lg:gap-12 lg:pt-40 lg:pb-16">
-        <div>
-          <h1 className="text-balance text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.1] lg:leading-[1.02] tracking-[-0.024em] text-white">
+      {/* The section is one screen tall: the copy takes the free space and
+          centres in it, and the logo wall sits along the bottom. */}
+      <Container className="relative flex flex-1 flex-col items-center justify-center pt-32 pb-12 text-center lg:pt-28">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-base font-semibold text-white/90">Enterprise</p>
+          <h1 className="mt-5 text-balance text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.024em] text-white">
             {title}
           </h1>
-          <p className="mt-6 max-w-[34em] text-[18px] font-medium leading-[1.55] text-white/85">
+          <p className="mx-auto mt-6 max-w-[36em] text-balance text-[18px] font-medium leading-[1.55] text-white/85 md:text-xl">
             {description}
           </p>
-          <div className="mt-8 flex flex-row flex-wrap items-center gap-3">
+          <div className="mt-9 flex flex-row flex-wrap items-center justify-center gap-3">
             <Button
               href={primaryCta.href}
               prefetch={true}
@@ -193,15 +195,10 @@ export default function EnterpriseHero({
             </Button>
           </div>
         </div>
-
-        {/* The diagram's team labels run to the right edge of its 720px
-            grid, so it is capped there rather than stretched past it. */}
-        <EnterpriseFlow className="mx-auto max-w-[820px]" />
       </Container>
 
-      {/* The logo wall rides in the blue, as it does on the home hero, but
-          below the fold: the grid above is at least a full screen tall. */}
-      <div className="relative pb-14 lg:pb-20">
+      {/* The logo wall rides in the blue, as it does on the home hero. */}
+      <div className="relative pb-12 lg:pb-14">
         <TrustedByDualRow onDark heading={trustedHeading} />
       </div>
     </section>

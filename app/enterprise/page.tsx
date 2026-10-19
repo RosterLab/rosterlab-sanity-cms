@@ -5,6 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import EnterpriseFAQ from "./EnterpriseFAQ";
+import EnterpriseFlow from "./EnterpriseFlow";
+import Reveal from "./Reveal";
+import SectionPager from "./SectionPager";
+import EnterpriseFeatures, { type Feature } from "./EnterpriseFeatures";
 import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import { withHreflang } from "@/components/seo/HreflangTags";
@@ -18,7 +22,6 @@ import {
   PiDeviceMobileLight,
   PiChalkboardTeacherBold,
   PiHeartbeat,
-  PiHourglass,
   PiKeyLight,
   PiHandshakeBold,
   PiHeadsetBold,
@@ -36,7 +39,9 @@ export const revalidate = 3600;
 // Each section fills at least one desktop screen, content centred within it.
 // Phones keep natural heights: a short section stretched to a tall screen is
 // mostly empty space there.
-const FULL_SCREEN = "lg:flex lg:min-h-svh lg:flex-col lg:justify-center";
+// Each one is also a stop for SectionPager (the `rl-section` class).
+const FULL_SCREEN =
+  "rl-section lg:flex lg:min-h-svh lg:flex-col lg:justify-center";
 
 // Analytics `location` for every click originating on this page.
 const LOCATION = "Enterprise Page";
@@ -89,11 +94,6 @@ const ORG_TYPES = [
 const OUTCOMES: { stat: string; label: string; icon: IconType }[] = [
   { stat: "90%", label: "less time spent on rostering", icon: PiTimer },
   {
-    stat: "320+",
-    label: "hours saved annually by a tertiary hospital",
-    icon: PiHourglass,
-  },
-  {
     stat: "15%",
     label: "lower labour costs achieved through roster optimisation",
     icon: PiCurrencyCircleDollar,
@@ -141,24 +141,6 @@ const BENEFITS: Benefit[] = [
       "Apply organisational policies, union agreements, staffing requirements and fatigue rules consistently across different departments and clinical workforce groups.",
   },
 ];
-
-interface Feature {
-  title: string;
-  /** Leading words of the title drawn in brand blue. */
-  highlight: string;
-  description: string;
-  // Stand-in product images until dedicated enterprise screenshots exist.
-  image: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-    /** Size override, e.g. for the wide Otto wordmark. */
-    className?: string;
-    /** A finished 4:3 artwork that fills the frame edge to edge. */
-    fill?: boolean;
-  };
-}
 
 const FEATURES: Feature[] = [
   {
@@ -312,81 +294,6 @@ const FAQ_ITEMS = [
 
 /* ------------------------------------------------------------- building blocks */
 
-/**
- * Decorative accents for the feature images, in the brand teal, cyan and
- * blue. One per image, cycling, pinned to a corner of its frame.
- */
-const ACCENTS = [
-  // Waves
-  <svg
-    key="waves"
-    aria-hidden="true"
-    viewBox="0 0 96 36"
-    className="h-9 w-24"
-    fill="none"
-  >
-    {[6, 18, 30].map((y) => (
-      <path
-        key={y}
-        d={`M2 ${y} q 7.5 -6 15 0 t 15 0 t 15 0 t 15 0 t 15 0 t 15 0`}
-        stroke="#03F9BE"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-    ))}
-  </svg>,
-  // Squiggle
-  <svg
-    key="squiggle"
-    aria-hidden="true"
-    viewBox="0 0 64 40"
-    className="h-10 w-16"
-    fill="none"
-  >
-    <path
-      d="M4 30 c 8 -24 16 -24 14 -4 s 10 18 16 -2 s 12 -20 14 0 s 8 10 12 -6"
-      stroke="#24D9DC"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-  </svg>,
-  // Dot arc
-  <svg key="dots" aria-hidden="true" viewBox="0 0 72 72" className="h-16 w-16">
-    {Array.from({ length: 5 }).flatMap((_, r) =>
-      Array.from({ length: 5 }).map((_, c) =>
-        r + c < 6 ? (
-          <circle
-            key={`${r}-${c}`}
-            cx={6 + c * 14}
-            cy={6 + r * 14}
-            r="3"
-            fill="#2563EB"
-            opacity="0.5"
-          />
-        ) : null,
-      ),
-    )}
-  </svg>,
-  // Hatching
-  <svg
-    key="hatch"
-    aria-hidden="true"
-    viewBox="0 0 96 24"
-    className="h-6 w-24"
-    fill="none"
-  >
-    {Array.from({ length: 14 }).map((_, i) => (
-      <path
-        key={i}
-        d={`M${4 + i * 6.5} 22 L${12 + i * 6.5} 2`}
-        stroke="#03F9BE"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    ))}
-  </svg>,
-];
-
 function SectionHeading({
   title,
   description,
@@ -415,6 +322,7 @@ function SectionHeading({
 export default function EnterprisePage() {
   return (
     <SiteLayout>
+      <SectionPager />
       <EnterpriseHero
         title="Enterprise healthcare rostering software powered by AI"
         description="Roster your entire clinical workforce on one secure platform. Control labour and staffing costs, strengthen compliance, and deploy your clinicians where they’re needed most."
@@ -443,24 +351,54 @@ export default function EnterprisePage() {
       {/* 1 — Strategic advantage */}
       <section className={`py-20 ${FULL_SCREEN}`}>
         <Container>
-          <SectionHeading
-            title="Turn rostering into a strategic advantage"
-            description="RosterLab brings hospital teams, departments and services together on one intelligent AI rostering platform, helping large healthcare organisations lift workforce productivity, coordinate staffing at scale, and operate with greater resilience."
-          />
-          <div className="mx-auto mt-10 max-w-4xl rounded-2xl bg-slate-50 px-6 py-6 text-center">
-            <p className="font-semibold text-gray-900">
-              Built for complex healthcare organisations:
-            </p>
-            <ul className="mt-4 flex flex-wrap justify-center gap-3">
-              {ORG_TYPES.map((type) => (
-                <li
-                  key={type}
-                  className="rounded-xl bg-slate-200/60 px-5 py-2.5 font-semibold text-blue-700"
-                >
-                  {type}
-                </li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-12">
+            {/* Enters piece by piece: heading, copy, then each organisation
+                type in turn. */}
+            <div>
+              <Reveal
+                as="h2"
+                className="text-4xl md:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight"
+              >
+                Turn rostering into a strategic advantage
+              </Reveal>
+              <Reveal
+                as="p"
+                delay={0.12}
+                className="mt-6 text-lg text-gray-600 leading-relaxed"
+              >
+                RosterLab brings hospital teams, departments and services
+                together on one intelligent AI rostering platform, helping large
+                healthcare organisations lift workforce productivity, coordinate
+                staffing at scale, and operate with greater resilience.
+              </Reveal>
+              <Reveal delay={0.24} className="mt-8">
+                <p className="font-semibold text-gray-900">
+                  Built for complex healthcare organisations:
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-2 xl:flex-nowrap">
+                  {ORG_TYPES.map((type, i) => (
+                    <Reveal
+                      as="li"
+                      key={type}
+                      delay={0.4 + i * 0.1}
+                      y={12}
+                      className="whitespace-nowrap rounded-lg bg-slate-100 px-2.5 py-1.5 text-[13px] font-semibold text-blue-700"
+                    >
+                      {type}
+                    </Reveal>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+
+            {/* The flow diagram is drawn in white for the hero blue, so it
+                keeps a panel of that blue and its dot grid here. */}
+            <Reveal
+              delay={0.2}
+              className="rounded-3xl bg-[#3779DD] bg-[radial-gradient(circle,rgba(255,255,255,0.22)_1px,transparent_1px)] bg-[length:22px_22px] px-6 py-10 sm:px-10 lg:py-14"
+            >
+              <EnterpriseFlow className="mx-auto max-w-[720px]" />
+            </Reveal>
           </div>
         </Container>
       </section>
@@ -473,47 +411,51 @@ export default function EnterprisePage() {
             description="See what enterprise healthcare organisations are achieving with RosterLab."
           />
 
-          <dl className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Three metrics and the quote as a 2 x 2, the quote taking the
+              bottom-right corner. */}
+          <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2">
             {OUTCOMES.map((o) => {
               const Icon = o.icon;
               return (
-                <div
+                <dl
                   key={o.stat}
-                  className="flex flex-col rounded-2xl bg-white p-7"
+                  className="flex flex-col rounded-2xl bg-white p-8"
                 >
                   <Icon aria-hidden="true" className="h-8 w-8 text-gray-900" />
-                  <dt className="order-last mt-1 text-sm text-gray-600 leading-snug">
+                  <dt className="order-last mt-2 text-gray-600 leading-snug">
                     {o.label}
                   </dt>
-                  <dd className="mt-8 text-4xl font-medium tracking-tight text-gray-900">
+                  <dd className="mt-10 text-5xl md:text-6xl font-medium tracking-tight text-gray-900">
                     {o.stat}
                   </dd>
-                </div>
+                </dl>
               );
             })}
-          </dl>
 
-          <figure className="mt-4 grid grid-cols-1 gap-6 rounded-2xl bg-blue-100 p-8 md:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] md:items-end md:p-10">
-            <div>
+            <figure className="flex flex-col justify-between gap-8 rounded-2xl bg-blue-100 p-8">
               <blockquote className="text-xl md:text-2xl font-medium text-gray-900 leading-snug">
                 &ldquo;Rostering would take 7-8 days, now it takes 2-3 hours,
                 allowing me to focus more on patient care.&rdquo;
               </blockquote>
-              <figcaption className="mt-6 text-sm">
-                <span className="block font-semibold text-gray-900">Mike</span>
-                <span className="block text-gray-600">
-                  Associate Clinical Manager Radiology
-                </span>
-              </figcaption>
-            </div>
-            <Image
-              src="/images/logos/whanganui-mark.webp"
-              alt="Te Whatu Ora Whanganui"
-              width={186}
-              height={72}
-              className="h-12 w-auto md:justify-self-end"
-            />
-          </figure>
+              <div className="flex items-end justify-between gap-6">
+                <figcaption className="text-sm">
+                  <span className="block font-semibold text-gray-900">
+                    Mike
+                  </span>
+                  <span className="block text-gray-600">
+                    Associate Clinical Manager Radiology
+                  </span>
+                </figcaption>
+                <Image
+                  src="/images/logos/whanganui-mark.webp"
+                  alt="Te Whatu Ora Whanganui"
+                  width={186}
+                  height={72}
+                  className="h-10 w-auto shrink-0"
+                />
+              </div>
+            </figure>
+          </div>
 
           <div className="mt-10 flex justify-center">
             <Button
@@ -590,12 +532,20 @@ export default function EnterprisePage() {
             {BENEFITS.map((b) => {
               const Icon = b.icon;
               return (
-                <div key={b.title} className="rounded-xl bg-white p-6">
-                  <Icon aria-hidden="true" className="h-6 w-6 text-gray-700" />
-                  <h3 className="mt-8 text-lg md:text-xl font-medium text-gray-900 leading-snug">
+                <div key={b.title} className="rounded-2xl bg-white p-7 md:p-8">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50"
+                  >
+                    <Icon className="h-7 w-7 text-blue-600" />
+                  </span>
+                  {/* Titles held to two lines so the rule below them lines
+                      up across the row. */}
+                  <h3 className="mt-6 text-lg md:text-xl font-semibold text-gray-900 leading-snug sm:min-h-[2lh]">
                     {b.title}
                   </h3>
-                  <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                  <hr className="my-6 border-gray-200" />
+                  <p className="text-[15px] text-gray-600 leading-relaxed">
                     {b.description}
                   </p>
                 </div>
@@ -611,76 +561,21 @@ export default function EnterprisePage() {
           <h2 className="max-w-3xl text-4xl md:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight">
             One rostering platform for every clinical team
           </h2>
-          <div className="mt-16 space-y-20 lg:space-y-28">
-            {FEATURES.map((f, i) => {
-              const flip = i % 2 === 1;
-              return (
-                <div
-                  key={f.title}
-                  className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
-                >
-                  <div className={`lg:max-w-md ${flip ? "lg:order-2" : ""}`}>
-                    <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 leading-tight tracking-tight">
-                      <span className="text-blue-600">{f.highlight}</span>
-                      {f.title.slice(f.highlight.length)}
-                    </h3>
-                    <p className="mt-4 text-gray-600 leading-relaxed">
-                      {f.description}
-                    </p>
-                  </div>
-                  {/* Frame with opposite corners rounded, mirrored on
-                      alternate rows, and a brand accent off one corner. */}
-                  <div className={`relative ${flip ? "lg:order-1" : ""}`}>
-                    <div
-                      className={`flex aspect-[4/3] items-center justify-center overflow-hidden bg-blue-50 ${f.image.fill ? "" : "p-6 md:p-10"} ${
-                        flip
-                          ? "rounded-tr-[3.5rem] rounded-bl-[3.5rem] rounded-tl-lg rounded-br-lg"
-                          : "rounded-tl-[3.5rem] rounded-br-[3.5rem] rounded-tr-lg rounded-bl-lg"
-                      }`}
-                    >
-                      <Image
-                        src={f.image.src}
-                        alt={f.image.alt}
-                        width={f.image.width}
-                        height={f.image.height}
-                        sizes="(min-width: 1024px) 700px, 100vw"
-                        className={
-                          f.image.fill
-                            ? "h-full w-full object-cover"
-                            : `h-auto max-h-full w-auto rounded-lg ${f.image.className ?? "shadow-lg"}`
-                        }
-                      />
-                    </div>
-                    <div
-                      className={`absolute ${
-                        flip ? "-top-5 -right-3" : "-bottom-4 left-8"
-                      }`}
-                    >
-                      {ACCENTS[i % ACCENTS.length]}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-16 text-center">
-            <p className="text-lg font-semibold text-gray-900">
-              See RosterLab in action.
-            </p>
-            <Button
-              href="/book-a-demo"
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700"
-              analyticsLabel="Book a demo"
-              analyticsLocation={LOCATION}
-              analyticsProperties={{
-                cta_type: "demo",
-                page_name: "Enterprise",
-                section: "features",
+          <div className="mt-12 lg:mt-16">
+            <EnterpriseFeatures
+              features={FEATURES}
+              cta={{
+                heading: "See RosterLab in action.",
+                label: "Book a demo",
+                href: "/book-a-demo",
+                analyticsLocation: LOCATION,
+                analyticsProperties: {
+                  cta_type: "demo",
+                  page_name: "Enterprise",
+                  section: "features",
+                },
               }}
-            >
-              Book a demo
-              <PiArrowRightBold aria-hidden="true" className="h-4 w-4" />
-            </Button>
+            />
           </div>
         </Container>
       </section>
