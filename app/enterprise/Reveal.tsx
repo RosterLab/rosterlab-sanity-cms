@@ -15,6 +15,7 @@ const tags = {
   p: motion.p,
   ul: motion.ul,
   li: motion.li,
+  figure: motion.figure,
 } as const;
 
 export default function Reveal({

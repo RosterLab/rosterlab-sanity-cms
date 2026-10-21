@@ -25,7 +25,7 @@ export default function EnterpriseFAQ({ items }: { items: FAQItem[] }) {
               key={item.question}
               className={cn(
                 "rounded-2xl transition-colors",
-                isOpen ? "bg-white shadow-sm" : "hover:bg-slate-200/50",
+                isOpen ? "bg-white shadow-sm" : "hover:bg-white/70",
               )}
             >
               <button
@@ -35,15 +35,15 @@ export default function EnterpriseFAQ({ items }: { items: FAQItem[] }) {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
               >
-                <span className="text-lg md:text-xl font-medium text-gray-900 leading-snug">
+                <span className="text-lg md:text-xl font-medium text-[#1F2A5C] leading-snug">
                   {item.question}
                 </span>
                 <span
                   className={cn(
                     "flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors",
                     isOpen
-                      ? "bg-blue-600 text-white"
-                      : "bg-blue-100 text-blue-700",
+                      ? "bg-[#3B7FE8] text-white"
+                      : "bg-[#C7D2FF]/60 text-[#2A3F8F]",
                   )}
                 >
                   {isOpen ? (
