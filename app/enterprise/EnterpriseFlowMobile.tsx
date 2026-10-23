@@ -16,7 +16,7 @@ import { useEffect, useRef } from "react";
  */
 
 // ----- data: [roster, colour, [[team, extra people beyond the 3 shown], ...]] -----
-// Roster counts and the card total are summed from the teams (3 + extra).
+// Roster counts are summed from the teams (3 + extra).
 type Team = [name: string, more: number];
 const R: [roster: string, colour: string, teams: Team[]][] = [
   [
@@ -57,7 +57,6 @@ const R: [roster: string, colour: string, teams: Team[]][] = [
   ],
 ];
 /** Word on the RosterLab card. */
-const UNIT = "staff";
 const INI = [
   "AK",
   "TM",
@@ -167,7 +166,6 @@ function build(root: HTMLDivElement) {
 
   const CW = (W - 2 * M) / R.length;
   let q = 0;
-  let total = 0;
   let namesDone = 0;
   const ends: [x: number, y: number, ink: string][] = [];
   R.forEach(([t, ink, tm], i) => {
@@ -200,7 +198,6 @@ function build(root: HTMLDivElement) {
       q++;
     });
     lab.innerHTML = `${t}<em style="color:${ink}">${PEOPLE}${n}</em>`;
-    total += n;
     ends.push([sx, TY0 + (tm.length - 1) * ROW + 34, ink]);
   });
   const top = Math.max(...ends.map((e) => e[1])) + 54;
@@ -213,7 +210,7 @@ function build(root: HTMLDivElement) {
   el(
     "rl-n rl-hub",
     `left:${HX}px;top:${top + 44}px;--tx:-50%;--d:${(la + 1.1).toFixed(2)}s`,
-    `<img src="${LOGO}" alt="RosterLab"><small>${total} ${UNIT}, one platform</small>`,
+    `<img src="${LOGO}" alt="RosterLab"><small>All your staff on one platform</small>`,
   );
   root.appendChild(stage);
 

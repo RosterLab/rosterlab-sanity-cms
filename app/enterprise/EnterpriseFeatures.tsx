@@ -51,7 +51,6 @@ export default function EnterpriseFeatures({
    * React's list-key check in development.
    */
   cta?: {
-    heading: string;
     label: string;
     href: string;
     analyticsLocation: string;
@@ -172,10 +171,9 @@ export default function EnterpriseFeatures({
         </ul>
         {cta && (
           <div className="mt-8">
-            <p className="text-lg font-semibold text-gray-900">{cta.heading}</p>
             <Button
               href={cta.href}
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1F2A5C] px-8 py-3 text-base font-semibold text-white hover:bg-[#2A3F8F]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#1F2A5C] px-8 py-3 text-base font-semibold text-white hover:bg-[#2A3F8F]"
               analyticsLabel={cta.label}
               analyticsLocation={cta.analyticsLocation}
               analyticsProperties={cta.analyticsProperties}

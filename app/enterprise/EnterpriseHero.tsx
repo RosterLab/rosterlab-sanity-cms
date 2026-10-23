@@ -39,13 +39,11 @@ export default function EnterpriseHero({
   title,
   description,
   primaryCta,
-  secondaryCta,
   analyticsLocation,
 }: {
   title: string;
   description: string;
   primaryCta: Cta;
-  secondaryCta: Cta;
   analyticsLocation: string;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -146,11 +144,10 @@ export default function EnterpriseHero({
         }
       />
 
-      {/* Copy and diagram sized to share one laptop screen (about 820px under
-          the header). */}
+      {/* Heading uses the home page's responsive type scale. */}
       <Container className="relative pt-6 pb-10 text-center md:pt-12 md:pb-10">
-        <div className="mx-auto max-w-4xl">
-          <h1 className="text-balance text-[clamp(1.625rem,3vw,2.75rem)] font-semibold leading-[1.12] tracking-[-0.024em] text-[#1F2A5C]">
+        <div className="mx-auto max-w-6xl">
+          <h1 className="text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em] text-[#1F2A5C]">
             {title}
           </h1>
           <p className="mx-auto mt-3 max-w-[46em] text-balance text-[15px] leading-[1.55] text-gray-600 md:mt-4 md:text-[17px] md:leading-[1.6]">
@@ -160,23 +157,12 @@ export default function EnterpriseHero({
             <Button
               href={primaryCta.href}
               prefetch={true}
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-[#1F2A5C] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2A3F8F] sm:px-8 sm:py-3.5 sm:text-base"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-full bg-[#3B7FE8] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2A3F8F] focus:ring-[#3B7FE8] sm:px-8 sm:py-3.5 sm:text-base"
               analyticsLabel={primaryCta.label}
               analyticsLocation={analyticsLocation}
               analyticsProperties={primaryCta.analyticsProperties}
             >
               {primaryCta.label}
-            </Button>
-            <Button
-              href={secondaryCta.href}
-              prefetch={true}
-              variant="outline"
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-full border-2 border-[#1F2A5C] px-5 py-2.5 text-sm font-semibold text-[#1F2A5C] transition hover:bg-[#1F2A5C] hover:text-white sm:px-8 sm:py-3.5 sm:text-base"
-              analyticsLabel={secondaryCta.label}
-              analyticsLocation={analyticsLocation}
-              analyticsProperties={secondaryCta.analyticsProperties}
-            >
-              {secondaryCta.label}
             </Button>
           </div>
         </div>

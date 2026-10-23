@@ -13,18 +13,6 @@ import { cn } from "@/lib/utils";
 /** How long each quote stays up before the next fades in. */
 const AUTOPLAY_MS = 7000;
 
-/** Avatar fills, cycled by testimonial: palette tints with navy initials. */
-const AVATAR_TINTS = ["#9CE4FF", "#FFD08A", "#C7D2FF", "#03F9BE", "#F4F6FB"];
-
-const initials = (name: string) =>
-  name
-    .replace(/^Dr\.?\s+/i, "")
-    .split(/\s+/)
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
 /**
  * The enterprise page's testimonials: one navy card, centred, with the quote
  * set large and the author beneath it — after a single-quote reference
@@ -60,7 +48,7 @@ export default function EnterpriseTestimonials({
   }, [index, paused, testimonials.length]);
 
   return (
-    <section className="bg-[#F4F6FB] py-16 md:py-20">
+    <section className="bg-[#F4F6FB] py-16 md:py-24">
       <Container>
         <div className="mx-auto mb-10 max-w-3xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1F2A5C] leading-tight tracking-tight">
@@ -104,35 +92,24 @@ export default function EnterpriseTestimonials({
                     )}
                     &rdquo;
                   </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-4 text-left">
-                    <span
-                      aria-hidden="true"
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-base font-semibold text-[#1F2A5C]"
-                      style={{
-                        backgroundColor: AVATAR_TINTS[i % AVATAR_TINTS.length],
-                      }}
-                    >
-                      {initials(t.author)}
+                  <figcaption className="mt-6 w-full text-center text-sm leading-relaxed">
+                    <span className="block font-semibold text-white">
+                      {t.author}
                     </span>
-                    <span className="text-sm">
-                      <span className="block font-semibold text-white">
-                        {t.author}
-                      </span>
-                      <span className="block text-white/75">{t.role}</span>
-                      {t.caseStudyLink && (
-                        <Link
-                          href={t.caseStudyLink}
-                          tabIndex={current ? undefined : -1}
-                          className="mt-1 inline-flex items-center gap-1 font-medium text-[#03F9BE] hover:text-white"
-                        >
-                          Read case study
-                          <PiArrowRightBold
-                            aria-hidden="true"
-                            className="h-3.5 w-3.5"
-                          />
-                        </Link>
-                      )}
-                    </span>
+                    <span className="block text-white/75">{t.role}</span>
+                    {t.caseStudyLink && (
+                      <Link
+                        href={t.caseStudyLink}
+                        tabIndex={current ? undefined : -1}
+                        className="mt-1 inline-flex items-center gap-1 font-medium text-[#03F9BE] hover:text-white"
+                      >
+                        Read case study
+                        <PiArrowRightBold
+                          aria-hidden="true"
+                          className="h-3.5 w-3.5"
+                        />
+                      </Link>
+                    )}
                   </figcaption>
                 </figure>
               );

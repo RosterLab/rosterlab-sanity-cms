@@ -11,7 +11,7 @@ import {
 } from "framer-motion";
 import {
   PiArrowRightBold,
-  PiCurrencyCircleDollar,
+  PiUsersThree,
   PiSmiley,
   PiTimer,
 } from "react-icons/pi";
@@ -33,9 +33,9 @@ const OUTCOMES: {
     tint: "bg-[#9CE4FF]",
   },
   {
-    stat: "15%",
-    label: "lower labour costs achieved through roster optimisation",
-    icon: PiCurrencyCircleDollar,
+    stat: "5%",
+    label: "improvement in staffing efficiency",
+    icon: PiUsersThree,
     tint: "bg-[#FFD08A]",
   },
   {
@@ -109,7 +109,7 @@ export default function EnterpriseOutcomes({
           The quote, metrics and newsroom strip read as one block: only its
           top-right and bottom-left corners are rounded, and every other
           corner is square. */}
-      <div className="mx-auto mt-7 grid max-w-5xl grid-cols-1 gap-3 md:grid-cols-2">
+      <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-3 md:grid-cols-2">
         <dl className="grid gap-3">
           {OUTCOMES.map((o, i) => {
             const Icon = o.icon;
@@ -133,10 +133,10 @@ export default function EnterpriseOutcomes({
                 </motion.span>
                 {/* <dt> first, as a <dl> group needs; the number is drawn
                     first with `order`. */}
-                <dt className="order-2 text-gray-600 leading-snug">
+                <dt className="order-2 min-w-0 flex-1 text-gray-600 leading-snug">
                   {o.label}
                 </dt>
-                <dd className="order-1 shrink-0 text-4xl md:text-5xl font-medium tracking-tight text-[#1F2A5C]">
+                <dd className="order-1 w-[2.25em] shrink-0 text-4xl md:text-5xl font-medium tabular-nums tracking-tight text-[#1F2A5C]">
                   <CountUp
                     value={o.stat}
                     play={inView}
@@ -165,13 +165,6 @@ export default function EnterpriseOutcomes({
                 Deputy Director of Medical Services, Western Australia Health
               </span>
             </figcaption>
-            <Image
-              src="/images/logos/department-of-health-western-australia.png"
-              alt="Government of Western Australia Department of Health"
-              width={1034}
-              height={187}
-              className="h-8 w-auto shrink-0 brightness-0 invert"
-            />
           </div>
         </motion.figure>
       </div>
@@ -188,20 +181,20 @@ export default function EnterpriseOutcomes({
           href={newsroom.href}
           className="group grid grid-cols-1 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
         >
-          <div className="relative aspect-[16/10] h-full overflow-hidden bg-slate-200 sm:aspect-auto sm:min-h-40 sm:rounded-bl-3xl">
+          <div className="relative aspect-[16/7] h-full overflow-hidden bg-white sm:aspect-auto sm:min-h-40 sm:rounded-bl-3xl sm:bg-slate-200">
             <Image
               src={newsroom.image}
               alt=""
               fill
               sizes="(min-width: 640px) 400px, 100vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04] sm:object-cover"
             />
           </div>
           <div className="flex flex-col justify-center rounded-b-3xl bg-white p-6 sm:rounded-none md:px-10 md:py-7">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#3B7FE8]">
               Newsroom
             </span>
-            <span className="mt-2 text-lg md:text-xl font-semibold italic text-[#1F2A5C] leading-snug">
+            <span className="mt-2 text-base md:text-[17px] font-semibold italic text-[#1F2A5C] leading-relaxed">
               {newsroom.title}
             </span>
             <span className="mt-4 inline-flex items-center gap-1 self-start border-b-2 border-[#3B7FE8] pb-0.5 font-semibold text-[#2A3F8F] group-hover:text-[#1F2A5C]">
@@ -219,7 +212,7 @@ export default function EnterpriseOutcomes({
         initial="hidden"
         animate={state}
         variants={rise(T.cta, 12)}
-        className="mt-6 flex justify-center"
+        className="mt-10 flex justify-center md:mt-12"
       >
         <Link
           href="/tools/roi-calculator"

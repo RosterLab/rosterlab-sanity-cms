@@ -7,7 +7,6 @@ import EnterpriseFAQ from "./EnterpriseFAQ";
 import EnterpriseCaseStudies, { type CaseStudy } from "./EnterpriseCaseStudies";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
 import Reveal from "./Reveal";
-import SecurityAutoplay from "./SecurityAutoplay";
 import EnterpriseOutcomes from "./EnterpriseOutcomes";
 import EnterpriseFeatures, { type Feature } from "./EnterpriseFeatures";
 import EnterpriseTestimonials from "./EnterpriseTestimonials";
@@ -17,16 +16,15 @@ import { withHreflang } from "@/components/seo/HreflangTags";
 // Regular at 24–32px, Light at 40px, Bold at 16–24px.
 import {
   PiChartBar,
-  PiClipboardTextLight,
+  PiClipboardText,
   PiCurrencyCircleDollar,
-  PiDeviceMobileLight,
+  PiDatabase,
   PiChalkboardTeacher,
   PiHeartbeat,
-  PiKeyLight,
+  PiLockKey,
   PiHandshake,
   PiHeadset,
   PiShieldCheck,
-  PiUserGearLight,
 } from "react-icons/pi";
 import { FaAws } from "react-icons/fa";
 import type { IconType } from "react-icons";
@@ -144,10 +142,10 @@ const FEATURES: Feature[] = [
     },
   },
   {
-    title: "Organisation-wide visibility, department-level control",
-    highlight: "Organisation-wide visibility,",
+    title: "Organisation-wide oversight, department-level control",
+    highlight: "Organisation-wide oversight,",
     description:
-      "Give each department the flexibility to roster according to its own rules and working practices, while maintaining a unified view across the organisation.",
+      "Set consistent rostering standards across your organisation, while giving each department the flexibility to roster according to its own rules and working practices.",
     image: {
       // Placeholder artwork until the final enterprise image is supplied.
       src: "/images/enterprise/organisation-wide-visibility.webp",
@@ -185,96 +183,41 @@ const FEATURES: Feature[] = [
   },
 ];
 
-const SECURITY_POINTS = [
-  "Cloud-based infrastructure (AWS) with robust encryption and security",
-  "Single sign-on (SSO), multi-factor authentication (MFA), and role-based access control",
-  "Enterprise governance: monitoring, oversight, and documented security processes",
-  "SOC 2 compliance",
-];
-
-// One tile per security point, with the access-control point split into its
-// three parts. Brand logo where there is one (AWS), line icons otherwise.
-// SOC 2 (icon: null) draws its own shield badge.
-// `tint` is each tile's fill: the palette's soft tints, with the brighter
-// accents (teal, site blue, orange) knocked back to a wash. `point` is the
-// index in SECURITY_POINTS the tile belongs to; hovering one highlights the
-// other (see SECURITY_HOVER_CSS), and the point is tinted in `tint`.
-const SECURITY_BADGES: {
-  label: string;
-  icon: IconType | null;
+const SECURITY_FEATURES: {
+  title: string;
+  description: string;
+  icon: IconType;
   tint: string;
-  point: number;
 }[] = [
-  { label: "SOC 2 compliance", icon: null, tint: "#C7D2FF", point: 3 },
   {
-    label: "Cloud infrastructure (AWS)",
+    title: "Cloud-based infrastructure",
+    description:
+      "Hosted on AWS with encryption to protect data in transit and at rest.",
     icon: FaAws,
-    tint: "#FFD08A",
-    point: 0,
+    tint: "bg-[#FFD08A]",
   },
   {
-    label: "Single sign-on (SSO)",
-    icon: PiKeyLight,
-    tint: "#9CE4FF",
-    point: 1,
+    title: "Access & authentication",
+    description:
+      "Single sign-on (SSO), multi-factor authentication (MFA) and role-based access control.",
+    icon: PiLockKey,
+    tint: "bg-[#C7D2FF]",
   },
   {
-    label: "Multi-factor authentication (MFA)",
-    icon: PiDeviceMobileLight,
-    tint: "rgba(3,249,190,0.4)",
-    point: 1,
+    title: "Audit trails & accountability",
+    description:
+      "Track roster changes and user activity with full audit trails that support transparency and oversight.",
+    icon: PiClipboardText,
+    tint: "bg-[#9CE4FF]",
   },
   {
-    label: "Role-based access control",
-    icon: PiUserGearLight,
-    tint: "rgba(59,127,232,0.2)",
-    point: 1,
-  },
-  {
-    label: "Enterprise governance",
-    icon: PiClipboardTextLight,
-    tint: "rgba(246,125,0,0.2)",
-    point: 2,
+    title: "Data backup & recovery",
+    description:
+      "Protect rostering data with regular automated backups and reliable recovery processes.",
+    icon: PiDatabase,
+    tint: "bg-[#03F9BE]/30",
   },
 ];
-
-/**
- * The list and the badges point at each other on hover, in pure CSS on
- * `:has()` so the page stays a server component:
- *  - hovering a point singles out its badges: they lift and every other
- *    badge greys out (SSO, MFA and role-based access share one point, so
- *    that point lifts all three);
- *  - hovering a badge tints its point in the badge's own colour, and greys
- *    out the other badges.
- */
-/** How long each badge holds the highlight when the section plays through. */
-const SECURITY_DWELL = 3200;
-
-const SECURITY_HOVER_CSS = [
-  ...SECURITY_POINTS.map(
-    (_, i) =>
-      `.rl-security:has([data-point="${i}"]:hover) [data-badge]:not([data-badge-point="${i}"]) .rl-badge-tile{filter:grayscale(1);opacity:.45}` +
-      `.rl-security:has([data-point="${i}"]:hover) [data-badge-point="${i}"] .rl-badge-tile{transform:translateY(-4px)}`,
-  ),
-  ...SECURITY_BADGES.map(
-    (b, k) =>
-      `.rl-security:has([data-badge="${k}"]:hover) [data-point="${b.point}"]{background-color:${b.tint}}`,
-  ),
-  `.rl-security:has([data-badge]:hover) [data-badge]:not(:hover) .rl-badge-tile{filter:grayscale(1);opacity:.45}`,
-  `.rl-security [data-badge]:hover .rl-badge-tile{transform:translateY(-4px)}`,
-  // Autoplay (SecurityAutoplay): the same highlight for whichever badge is
-  // playing, plus a bar under it filling over its turn. A hover anywhere in
-  // the section takes over.
-  ...SECURITY_BADGES.map(
-    (b, k) =>
-      `.rl-security[data-active="${k}"]:not(:hover) [data-point="${b.point}"]{background-color:${b.tint}}` +
-      `.rl-security[data-active="${k}"]:not(:hover) [data-badge]:not([data-badge="${k}"]) .rl-badge-tile{filter:grayscale(1);opacity:.45}` +
-      `.rl-security[data-active="${k}"]:not(:hover) [data-badge="${k}"] .rl-badge-tile{transform:translateY(-4px)}` +
-      `.rl-security[data-active="${k}"]:not(:hover) [data-badge="${k}"] .rl-badge-bar>span{animation:rl-sec-progress ${SECURITY_DWELL}ms linear forwards}`,
-  ),
-  `@keyframes rl-sec-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}`,
-  `@media (prefers-reduced-motion: reduce){.rl-security .rl-badge-bar{display:none}}`,
-].join("");
 
 const IMPLEMENTATION: Benefit[] = [
   {
@@ -374,7 +317,7 @@ const FAQ_ITEMS = [
   {
     question: "How long does implementation take?",
     answer:
-      "Implementation timelines depend on the size of your organisation, the complexity of your rostering requirements and the scope of your rollout. Your dedicated customer success manager will build a tailored implementation plan and guide your teams through roster configuration setup and onboarding.",
+      "Implementation timelines depend on the size of your organisation, the complexity of your rostering requirements and the scope of your rollout. Your dedicated implementation consultant will build a tailored implementation plan and guide your teams through roster configuration, setup and onboarding.",
   },
 ];
 
@@ -390,8 +333,8 @@ function SectionHeading({
   className?: string;
 }) {
   return (
-    <div className={`mx-auto max-w-3xl text-center ${className}`}>
-      <h2 className="text-3xl md:text-4xl font-bold text-[#1F2A5C] leading-tight tracking-tight">
+    <div className={`mx-auto max-w-5xl text-center ${className}`}>
+      <h2 className="text-balance text-3xl md:text-[2.75rem] font-semibold text-[#1F2A5C] leading-tight tracking-tight">
         {title}
       </h2>
       {description && (
@@ -417,15 +360,6 @@ export default function EnterprisePage() {
           label: "Talk to our team",
           analyticsProperties: {
             cta_type: "demo",
-            page_name: "Enterprise",
-            section: "hero",
-          },
-        }}
-        secondaryCta={{
-          href: "/tools/roi-calculator",
-          label: "See the ROI",
-          analyticsProperties: {
-            cta_type: "roi_calculator",
             page_name: "Enterprise",
             section: "hero",
           },
@@ -462,14 +396,14 @@ export default function EnterprisePage() {
                   <p className="text-lg font-medium text-white">
                     Built for complex healthcare organisations:
                   </p>
-                  <ul className="mt-4 flex flex-wrap gap-3">
+                  <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {ORG_TYPES.map((type, i) => (
                       <Reveal
                         as="li"
                         key={type}
                         delay={0.4 + i * 0.1}
                         y={12}
-                        className="rounded-xl bg-white px-5 py-2.5 font-semibold text-[#1F2A5C]"
+                        className={`flex items-center justify-center rounded-xl bg-white px-5 py-2.5 text-center font-semibold text-[#1F2A5C] ${i === 2 ? "sm:col-span-2" : ""}`}
                       >
                         {type}
                       </Reveal>
@@ -504,10 +438,9 @@ export default function EnterprisePage() {
         heading="Trusted by leading hospitals and health systems"
       />
 
-      {/* 2 — ROI. Sized to fit one laptop screen (about 820px under the
-          header): tight padding, a compact quote and metrics, a short
-          newsroom strip. */}
-      <section className="bg-[#F4F6FB] py-10">
+      {/* Main headings share 64px top padding, increasing to 96px at md. */}
+      {/* 2 — ROI. */}
+      <section className="bg-[#F4F6FB] pt-16 pb-12 md:pt-24 md:pb-16">
         <Container>
           <SectionHeading
             title="Proven outcomes for clinical environments"
@@ -522,9 +455,8 @@ export default function EnterprisePage() {
       </section>
 
       {/* 3 — Benefits: four light-grey cards in a 2 x 2 on white, each with
-          the same blue icon tile. Sized to fit one laptop screen (about 820px
-          under the header). */}
-      <section className="bg-white py-12">
+          the same blue icon tile. */}
+      <section className="bg-white pt-16 pb-12 md:pt-24 md:pb-16">
         <Container>
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="text-balance text-3xl md:text-[2.75rem] font-semibold text-[#1F2A5C] leading-tight tracking-tight">
@@ -563,7 +495,7 @@ export default function EnterprisePage() {
 
       {/* 4 — Key enterprise features: heading and the feature card on one
           tint. */}
-      <section className="bg-[#F4F6FB] py-20 md:py-24">
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
         <Container>
           <h2 className="max-w-3xl text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.1] tracking-tight">
             One rostering platform for every clinical team
@@ -574,8 +506,7 @@ export default function EnterprisePage() {
             <EnterpriseFeatures
               features={FEATURES}
               cta={{
-                heading: "See RosterLab in action.",
-                label: "Book a demo",
+                label: "See RosterLab in action",
                 href: "/book-a-demo",
                 analyticsLocation: LOCATION,
                 analyticsProperties: {
@@ -590,122 +521,54 @@ export default function EnterprisePage() {
       </section>
 
       {/* 5 — Security & privacy */}
-      <section className="rl-security py-20 md:py-24">
-        <style>{SECURITY_HOVER_CSS}</style>
-        <SecurityAutoplay
-          count={SECURITY_BADGES.length}
-          dwell={SECURITY_DWELL}
-        />
+      <section
+        className="py-16 md:py-24"
+        aria-labelledby="enterprise-security-heading"
+      >
         <Container>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1fr)] lg:gap-16 xl:gap-20">
             <div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.1] tracking-tight">
+              <h2
+                id="enterprise-security-heading"
+                className="max-w-3xl text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.1] tracking-tight"
+              >
                 Enterprise-grade security and privacy by design
               </h2>
               <p className="mt-6 max-w-lg text-base md:text-lg text-gray-600 leading-relaxed">
-                RosterLab protects sensitive workforce information through
-                secure cloud infrastructure, strong authentication and
-                role-based access controls, supporting the security and
-                governance requirements of large healthcare organisations.
+                RosterLab protects sensitive workforce information with secure
+                cloud infrastructure, robust access controls and transparent
+                data practices to support enterprise security and governance
+                requirements.
               </p>
             </div>
 
-            <ul className="divide-y divide-gray-200">
-              {SECURITY_POINTS.map((point, i) => (
-                // Padded out past the column edge so the hover tint has room
-                // around the text; the rules extend with it.
-                <li
-                  key={point}
-                  data-point={i}
-                  className="-mx-4 rounded-xl px-4 py-3.5 text-base md:py-6 md:text-xl font-medium text-gray-900 leading-snug transition-colors duration-200 hover:bg-[#F4F6FB]"
-                >
-                  {point}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Badge row, centred between two rules on desktop. The rules sit at
-              the tiles' midline (half of the 6rem tile). */}
-          <div className="mt-8 flex items-start gap-6 md:mt-16">
-            <span
-              aria-hidden="true"
-              className="mt-12 hidden h-px flex-1 bg-gray-300 lg:block"
-            />
-            <ul className="grid w-full grid-cols-6 gap-x-2 gap-y-4 md:gap-x-4 md:gap-y-6 lg:w-auto lg:grid-cols-[repeat(6,7rem)] lg:gap-x-4">
-              {SECURITY_BADGES.map(({ label, icon: Icon, tint, point }, k) => (
-                <li
-                  key={label}
-                  data-badge={k}
-                  data-badge-point={point}
-                  className="flex flex-col items-center"
-                >
-                  <div
-                    className="rl-badge-tile flex aspect-square w-full max-w-24 items-center justify-center rounded-lg md:rounded-xl transition-[transform,filter,opacity] duration-200"
-                    style={{ backgroundColor: tint }}
+            <ul className="min-w-0 divide-y divide-gray-200">
+              {SECURITY_FEATURES.map(
+                ({ title, description, icon: Icon, tint }) => (
+                  <li
+                    key={title}
+                    className="flex items-start gap-4 py-6 first:pt-0 last:pb-0 sm:gap-5"
                   >
-                    {Icon ? (
-                      // Light weight at 40px gives a ~2px line, matching the
-                      // SOC 2 shield below. (AWS is a filled mark.)
+                    <span
+                      aria-hidden="true"
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-[#1F2A5C] ${tint}`}
+                    >
                       <Icon
-                        aria-hidden="true"
-                        className="h-6 w-6 text-[#1F2A5C] md:h-10 md:w-10"
+                        className={Icon === FaAws ? "h-8 w-8" : "h-6 w-6"}
                       />
-                    ) : (
-                      // SOC 2 badge: line-drawn stand-in until the official
-                      // artwork is supplied.
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 100 116"
-                        className="h-8 w-7 text-[#1F2A5C] md:h-12 md:w-10"
-                        fill="none"
-                      >
-                        <path
-                          d="M50 4 L94 20 V56 C94 84 74 102 50 112 C26 102 6 84 6 56 V20 Z"
-                          stroke="currentColor"
-                          strokeWidth="4.8"
-                          strokeLinejoin="round"
-                        />
-                        <text
-                          x="50"
-                          y="52"
-                          textAnchor="middle"
-                          fontSize="20"
-                          fontWeight="500"
-                          fill="currentColor"
-                        >
-                          SOC
-                        </text>
-                        <text
-                          x="50"
-                          y="76"
-                          textAnchor="middle"
-                          fontSize="20"
-                          fontWeight="500"
-                          fill="currentColor"
-                        >
-                          2
-                        </text>
-                      </svg>
-                    )}
-                  </div>
-                  {/* Fills while this badge is playing (see SECURITY_HOVER_CSS). */}
-                  <span
-                    aria-hidden="true"
-                    className="rl-badge-bar mt-1.5 block h-0.5 w-8 md:mt-2 md:w-12 overflow-hidden rounded-full bg-transparent"
-                  >
-                    <span className="block h-full w-full origin-left scale-x-0 bg-[#1F2A5C]" />
-                  </span>
-                  <span className="sr-only mt-2 max-w-28 text-center md:not-sr-only text-[11px] uppercase tracking-wider text-gray-500 leading-snug">
-                    {label}
-                  </span>
-                </li>
-              ))}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-lg md:text-xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
+                        {title}
+                      </h3>
+                      <p className="mt-2 text-base text-gray-600 leading-relaxed">
+                        {description}
+                      </p>
+                    </div>
+                  </li>
+                ),
+              )}
             </ul>
-            <span
-              aria-hidden="true"
-              className="mt-12 hidden h-px flex-1 bg-gray-300 lg:block"
-            />
           </div>
         </Container>
       </section>
@@ -716,7 +579,7 @@ export default function EnterprisePage() {
       {/* 7 — Implementation & support: a dark band, the heading and copy
           stacked on the left, then three columns, each a cyan line icon on a
           dark tile over a large title and muted copy. */}
-      <section className="relative overflow-hidden bg-[#141B3F] py-20 md:py-24">
+      <section className="relative overflow-hidden bg-[#141B3F] py-16 md:py-24">
         {/* Texture: a white dot grid that fades out toward the left, where
             the copy sits, and soft blue and teal glows filling the empty
             right-hand side. */}
@@ -772,14 +635,14 @@ export default function EnterprisePage() {
       </section>
 
       {/* 8 — Customer stories: one story at a time, photo and navy panel. */}
-      <section className="py-20">
+      <section className="py-16 md:py-24">
         <Container>
           <EnterpriseCaseStudies stories={STORIES} />
         </Container>
       </section>
 
       {/* 9 — FAQ */}
-      <section className="bg-[#F4F6FB] py-20 md:py-24">
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
