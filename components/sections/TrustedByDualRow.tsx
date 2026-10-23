@@ -123,10 +123,12 @@ function Row({
   logos,
   reverse,
   onDark,
+  logoColor,
 }: {
   logos: TrustedLogo[];
   reverse?: boolean;
   onDark?: boolean;
+  logoColor?: string;
 }) {
   // Each copy includes its trailing gap, so -50% is exactly one complete row.
   // A gap between every image left half a gap missing at the loop boundary.
@@ -150,37 +152,64 @@ function Row({
               key={logo.src}
               className="flex shrink-0 items-center justify-center"
             >
-              <Image
-                src={logo.src}
-                alt={logo.alt}
-                width={Math.round(logo.opticalHeight * logo.aspectRatio)}
-                height={logo.opticalHeight}
-                style={
-                  {
-                    "--logo-h": `${logo.opticalHeight}px`,
-                    "--logo-ratio": logo.aspectRatio,
-                  } as CSSProperties
-                }
-                className={cn(
-                  "object-contain md:h-[var(--logo-h)] md:w-[calc(var(--logo-h)*var(--logo-ratio))] md:max-w-[220px]",
-                  onDark
-                    ? // The hero gives the wall the full width of the phone with
-                      // nothing beside it, so the marks are drawn *above* their
-                      // desktop height there rather than the 0.72 the boxed
-                      // light version uses — at 0.72 a 30px wordmark is a smudge
-                      // on a 390px screen. Desktop is unchanged.
-                      "h-[calc(var(--logo-h)*1.35)] w-[calc(var(--logo-h)*var(--logo-ratio)*1.35)] max-w-[280px]"
-                    : "h-[calc(var(--logo-h)*0.72)] w-[calc(var(--logo-h)*var(--logo-ratio)*0.72)] max-w-[220px]",
-                  onDark
-                    ? // brightness(0) flattens each mark to black whatever its own
-                      // colours are, and invert(1) then takes that to white — the
-                      // only way to get one consistent silhouette out of a wall
-                      // this mixed. Held under full opacity so the logos stay
-                      // second to the headline above them.
-                      "opacity-80 brightness-0 invert"
-                    : "opacity-70 grayscale",
-                )}
-              />
+              {logoColor ? (
+                // One flat colour for every mark. A filter chain can only
+                // approximate a target colour, so the logo is used as a mask
+                // over a solid fill instead: exact, whatever the file's own
+                // colours are.
+                <span
+                  role="img"
+                  aria-label={logo.alt}
+                  style={
+                    {
+                      "--logo-h": `${logo.opticalHeight}px`,
+                      "--logo-ratio": logo.aspectRatio,
+                      backgroundColor: logoColor,
+                      maskImage: `url(${logo.src})`,
+                      WebkitMaskImage: `url(${logo.src})`,
+                      maskSize: "contain",
+                      WebkitMaskSize: "contain",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskPosition: "center",
+                      WebkitMaskPosition: "center",
+                    } as CSSProperties
+                  }
+                  className="block h-[calc(var(--logo-h)*0.72)] w-[calc(var(--logo-h)*var(--logo-ratio)*0.72)] max-w-[220px] opacity-85 md:h-[var(--logo-h)] md:w-[calc(var(--logo-h)*var(--logo-ratio))]"
+                />
+              ) : (
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={Math.round(logo.opticalHeight * logo.aspectRatio)}
+                  height={logo.opticalHeight}
+                  style={
+                    {
+                      "--logo-h": `${logo.opticalHeight}px`,
+                      "--logo-ratio": logo.aspectRatio,
+                    } as CSSProperties
+                  }
+                  className={cn(
+                    "object-contain md:h-[var(--logo-h)] md:w-[calc(var(--logo-h)*var(--logo-ratio))] md:max-w-[220px]",
+                    onDark
+                      ? // The hero gives the wall the full width of the phone with
+                        // nothing beside it, so the marks are drawn *above* their
+                        // desktop height there rather than the 0.72 the boxed
+                        // light version uses — at 0.72 a 30px wordmark is a smudge
+                        // on a 390px screen. Desktop is unchanged.
+                        "h-[calc(var(--logo-h)*1.35)] w-[calc(var(--logo-h)*var(--logo-ratio)*1.35)] max-w-[280px]"
+                      : "h-[calc(var(--logo-h)*0.72)] w-[calc(var(--logo-h)*var(--logo-ratio)*0.72)] max-w-[220px]",
+                    onDark
+                      ? // brightness(0) flattens each mark to black whatever its own
+                        // colours are, and invert(1) then takes that to white — the
+                        // only way to get one consistent silhouette out of a wall
+                        // this mixed. Held under full opacity so the logos stay
+                        // second to the headline above them.
+                        "opacity-80 brightness-0 invert"
+                      : "opacity-70 grayscale",
+                  )}
+                />
+              )}
             </div>
           ))}
         </div>
@@ -198,11 +227,20 @@ interface TrustedByDualRowProps {
    * the blue field.
    */
   onDark?: boolean;
+  /** Every logo in one marquee row instead of two (the enterprise page). */
+  singleRow?: boolean;
+  /** Replaces the heading's default size and colour classes. */
+  headingClassName?: string;
+  /** Paints every logo in this one colour instead of greyscale. */
+  logoColor?: string;
 }
 
 export default function TrustedByDualRow({
   heading = "Join hundreds of healthcare teams already optimising their rosters",
   onDark = false,
+  singleRow = false,
+  headingClassName,
+  logoColor,
 }: TrustedByDualRowProps = {}) {
   return (
     <section className={onDark ? "" : "py-6 md:py-16"}>
@@ -212,8 +250,12 @@ export default function TrustedByDualRow({
           <div className="max-w-md">
             <h2
               className={cn(
-                "text-balance text-2xl font-semibold leading-snug md:text-3xl",
-                onDark ? "text-white" : "text-neutral-900",
+                "text-balance font-semibold leading-snug",
+                headingClassName ??
+                  cn(
+                    "text-2xl md:text-3xl",
+                    onDark ? "text-white" : "text-neutral-900",
+                  ),
               )}
             >
               {heading}
@@ -244,10 +286,21 @@ export default function TrustedByDualRow({
                   }
             }
           >
-            {/* Top row: right → left */}
-            <Row logos={topRow} onDark={onDark} />
-            {/* Bottom row: left → right */}
-            <Row logos={bottomRow} reverse onDark={onDark} />
+            {singleRow ? (
+              <Row logos={trustedLogos} onDark={onDark} logoColor={logoColor} />
+            ) : (
+              <>
+                {/* Top row: right → left */}
+                <Row logos={topRow} onDark={onDark} logoColor={logoColor} />
+                {/* Bottom row: left → right */}
+                <Row
+                  logos={bottomRow}
+                  reverse
+                  onDark={onDark}
+                  logoColor={logoColor}
+                />
+              </>
+            )}
           </div>
         </div>
       </Container>
