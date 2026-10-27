@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { US_ENTERPRISE_TEAMS } from "./enterprise-copy";
 
 /**
  * The enterprise hero's flow animation (variant 18H): roster labels across
@@ -126,6 +127,7 @@ const CSS = `
 .rl-18h .rl-av{display:flex}
 .rl-18h .rl-av i{width:16px;height:16px;border-radius:50%;border:2px solid #fff;margin-right:-5px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:6.5px;font-weight:700;font-style:normal}
 .rl-18h .rl-more{font-style:normal;font-size:9.5px;font-weight:700;margin-left:10px}
+.rl-18h .rl-specialties{padding:7px 12px;border:1px dashed rgba(31,42,92,.25);border-radius:999px;background:#fff;font-size:11.5px;font-weight:600;line-height:1.35;color:#1F2A5C}
 .rl-18h .rl-hub{width:220px;background:#1F2A5C;border-radius:16px;padding:16px 20px;box-shadow:0 16px 40px rgba(31,42,92,.3);display:flex;flex-direction:column;align-items:center;gap:6px}
 .rl-18h .rl-hub img{height:26px;width:auto;display:block;filter:brightness(0) invert(1)}
 .rl-18h .rl-hub small{font-size:10.5px;font-weight:500;color:rgba(255,255,255,.8)}
@@ -146,7 +148,9 @@ const CSS = `
 `;
 
 /** Builds the stage into `root`. Returns a cleanup that stops the loop. */
-function build(root: HTMLDivElement) {
+function build(root: HTMLDivElement, isUS: boolean) {
+  const label = (text: string) =>
+    isUS ? (US_ENTERPRISE_TEAMS[text] ?? text) : text;
   const stage = document.createElement("div");
   stage.className = "rl-stage";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -202,13 +206,19 @@ function build(root: HTMLDivElement) {
       el(
         "rl-n rl-team",
         `left:${sx + 16}px;top:${ty + 4}px;--d:${ta.toFixed(2)}s`,
-        `<span>${name}</span><span class="rl-row"><span class="rl-av">${av}</span><em class="rl-more" style="color:${ink};--d:${(ta + 0.6).toFixed(2)}s">+${more}</em></span>`,
+        `<span>${label(name)}</span><span class="rl-row"><span class="rl-av">${av}</span><em class="rl-more" style="color:${ink};--d:${(ta + 0.6).toFixed(2)}s">+${more}</em></span>`,
       );
       q++;
     });
-    chip.innerHTML = `${t}<em style="color:${ink}">${PEOPLE}${n}</em>`;
+    chip.innerHTML = `${label(t)}<em style="color:${ink}">${PEOPLE}${n}</em>`;
     ends.push([sx, TY0 + (tm.length - 1) * ROW + 24, ink]);
   });
+  // A separate note applies to the whole diagram, rather than one roster.
+  el(
+    "rl-n rl-specialties",
+    `right:20px;top:${HTOP - 54}px;--d:${(namesDone + 0.2).toFixed(2)}s`,
+    "+ more specialties",
+  );
   const dl3 = namesDone + 0.4;
   ends.forEach(([sx, yb, ink]) => {
     const m = (yb + HTOP) / 2;
@@ -252,7 +262,13 @@ function build(root: HTMLDivElement) {
   };
 }
 
-export default function EnterpriseFlow({ className }: { className?: string }) {
+export default function EnterpriseFlow({
+  className,
+  isUS = false,
+}: {
+  className?: string;
+  isUS?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   // Built the first time it scrolls into view, so the reader sees the
@@ -266,7 +282,7 @@ export default function EnterpriseFlow({ className }: { className?: string }) {
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        cleanup = build(root);
+        cleanup = build(root, isUS);
       },
       { threshold: 0.2 },
     );
@@ -275,7 +291,7 @@ export default function EnterpriseFlow({ className }: { className?: string }) {
       observer.disconnect();
       cleanup?.();
     };
-  }, []);
+  }, [isUS]);
 
   return (
     <>

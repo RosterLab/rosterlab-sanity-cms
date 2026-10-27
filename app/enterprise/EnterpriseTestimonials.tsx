@@ -9,6 +9,8 @@ import {
   type Testimonial,
 } from "@/components/sections/TestimonialsNew";
 import { cn } from "@/lib/utils";
+import { TESTIMONIALS_US } from "@/app/us/landing-content";
+import { enterpriseText } from "./enterprise-copy";
 
 /** How long each quote stays up before the next fades in. */
 const AUTOPLAY_MS = 7000;
@@ -24,10 +26,14 @@ const AUTOPLAY_MS = 7000;
  * the card holds the current one.
  */
 export default function EnterpriseTestimonials({
-  testimonials = TESTIMONIALS_AU,
+  testimonials: providedTestimonials,
+  isUS = false,
 }: {
   testimonials?: Testimonial[];
+  isUS?: boolean;
 }) {
+  const testimonials =
+    providedTestimonials ?? (isUS ? TESTIMONIALS_US : TESTIMONIALS_AU);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const next = () => setIndex((i) => (i + 1) % testimonials.length);
@@ -55,7 +61,10 @@ export default function EnterpriseTestimonials({
             From our community.
           </h2>
           <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-            Here&rsquo;s what other rostering leads had to say about RosterLab.
+            {enterpriseText(
+              "Here’s what other rostering leads had to say about RosterLab.",
+              isUS,
+            )}
           </p>
         </div>
         {/* Navy card with a faint dot grid. The back and next arrows sit in
@@ -83,10 +92,10 @@ export default function EnterpriseTestimonials({
                     &ldquo;
                     {t.quote.map((frag, k) =>
                       typeof frag === "string" ? (
-                        <span key={k}>{frag}</span>
+                        <span key={k}>{enterpriseText(frag, isUS)}</span>
                       ) : (
                         <span key={k} className="text-[#03F9BE]">
-                          {frag.highlight}
+                          {enterpriseText(frag.highlight, isUS)}
                         </span>
                       ),
                     )}

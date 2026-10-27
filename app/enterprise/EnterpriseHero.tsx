@@ -40,11 +40,13 @@ export default function EnterpriseHero({
   description,
   primaryCta,
   analyticsLocation,
+  isUS = false,
 }: {
   title: string;
   description: string;
   primaryCta: Cta;
   analyticsLocation: string;
+  isUS?: boolean;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);
@@ -172,10 +174,10 @@ export default function EnterpriseHero({
         {/* The 900px desktop diagram shrinks past reading on a phone, so
             phones get the four-roster mobile cut instead. */}
         <div className="mx-auto mt-10 hidden max-w-[820px] text-left sm:block">
-          <EnterpriseFlow />
+          <EnterpriseFlow isUS={isUS} />
         </div>
         <div className="mt-5 text-left sm:hidden">
-          <EnterpriseFlowMobile fitToScreen />
+          <EnterpriseFlowMobile fitToScreen isUS={isUS} />
         </div>
       </Container>
     </section>

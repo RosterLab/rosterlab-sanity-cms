@@ -1,7 +1,6 @@
 "use client";
 
 import { effectiveUSSlug } from "@/lib/localization/us-slug";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { authorByline, postAuthors } from "@/lib/posts/authors";
 import Image from "next/image";
@@ -31,19 +30,6 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
-  const [isUnlocked, setIsUnlocked] = useState(false);
-
-  // Define locked case studies
-  const LOCKED_CASE_STUDIES = [
-    "how-plastics-department-used-roster-simulation-to-cut-in-costs",
-  ];
-
-  // Check if user has unlocked case studies on mount
-  useEffect(() => {
-    const unlocked = localStorage.getItem("case_study_unlocked") === "true";
-    setIsUnlocked(unlocked);
-  }, []);
-
   // Determine the correct URL path based on categories
   const getPostUrl = () => {
     if (post.categories?.some((cat) => cat.slug.current === "case-studies")) {
@@ -57,12 +43,9 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
   };
 
   const postUrl = getPostUrl();
-  const isLockedCaseStudy = LOCKED_CASE_STUDIES.includes(post.slug.current);
-  const isCaseStudy = post.categories?.some((cat) => cat.slug.current === "case-studies");
-
-  const showPopularTag = isLockedCaseStudy; // Show "Popular" tag for locked case studies
-  const showLockIcon = isLockedCaseStudy && !isUnlocked;
-  const showUnlockedIcon = isLockedCaseStudy && isUnlocked;
+  const showPopularTag =
+    post.slug.current ===
+    "how-plastics-department-used-roster-simulation-to-cut-in-costs";
 
   return (
     <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -75,46 +58,6 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
               fill
               className="object-cover hover:scale-105 transition-transform duration-300"
             />
-            {/* Lock Icon Overlay */}
-            {showLockIcon && (
-              <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-                <div className="bg-white/95 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                  <svg
-                    className="w-6 h-6 text-emerald-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            )}
-            {/* Unlocked Icon Overlay */}
-            {showUnlockedIcon && (
-              <div className="absolute top-3 right-3">
-                <div className="bg-emerald-500 backdrop-blur-sm rounded-full p-2 shadow-lg">
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            )}
           </div>
         </Link>
       )}

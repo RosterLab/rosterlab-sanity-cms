@@ -13,8 +13,8 @@ export interface CaseStudy {
   title: string;
   href: string;
   image: string;
-  quote: string;
-  attribution: string;
+  quote?: string;
+  attribution?: string;
   stats: { value: string; label: string }[];
 }
 
@@ -31,7 +31,7 @@ type Phase = "in" | "out" | "waiting";
 
 /**
  * One case study at a time: a photo on the left, a navy panel on the right
- * with the title, a quote and the headline figures. A round notch cut into
+ * with the title, an optional quote and the headline figures. A round notch cut into
  * the panel's right edge holds the arrow to the next story.
  *
  * Every story is laid into the same grid cell, so the card takes the height
@@ -41,8 +41,10 @@ type Phase = "in" | "out" | "waiting";
  */
 export default function EnterpriseCaseStudies({
   stories,
+  isUS = false,
 }: {
   stories: CaseStudy[];
+  isUS?: boolean;
 }) {
   const [index, setIndex] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
@@ -121,6 +123,43 @@ export default function EnterpriseCaseStudies({
       {stories.map((s, i) => {
         const current = i === index;
         const phase = phaseOf(i);
+        const hasQuote = Boolean(s.quote?.trim());
+        const stats = (
+          <dl
+            className={cn(
+              "flex flex-row gap-6",
+              hasQuote
+                ? "border-t border-white/10 pt-4 sm:gap-10 md:self-end md:border-0 md:pt-0 xl:flex-col xl:gap-6"
+                : "my-auto py-6 md:py-8",
+            )}
+          >
+            {s.stats.map((stat, k) => (
+              <motion.div
+                key={stat.label}
+                variants={item}
+                custom={k}
+                className="flex min-w-0 flex-col"
+              >
+                <dt
+                  className={cn(
+                    "order-2 mt-1 max-w-[14rem] text-white/80",
+                    hasQuote ? "text-xs md:text-sm" : "text-sm md:text-base",
+                  )}
+                >
+                  {stat.label}
+                </dt>
+                <dd
+                  className={cn(
+                    "order-1 font-medium tracking-tight text-[#03F9BE]",
+                    hasQuote ? "text-xl md:text-2xl" : "text-4xl md:text-5xl",
+                  )}
+                >
+                  {stat.value}
+                </dd>
+              </motion.div>
+            ))}
+          </dl>
+        );
         return (
           <article
             key={s.href}
@@ -137,12 +176,14 @@ export default function EnterpriseCaseStudies({
               initial={i === 0 ? "in" : "waiting"}
               animate={phase}
               variants={photo}
-              className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:aspect-auto md:rounded-[1.75rem]"
+              className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] min-[480px]:aspect-[4/1] md:aspect-auto md:rounded-[1.75rem]"
             >
               <Image
                 src={s.image}
                 alt=""
                 fill
+                loading={current ? "eager" : "lazy"}
+                unoptimized={s.image.endsWith(".webp")}
                 sizes="(min-width: 768px) 320px, 100vw"
                 className="object-cover"
               />
@@ -152,7 +193,11 @@ export default function EnterpriseCaseStudies({
               initial={i === 0 ? "in" : "waiting"}
               animate={phase}
               variants={panel}
-              className="grid grid-cols-1 gap-5 rounded-[1.25rem] bg-[#1F2A5C] p-5 text-white sm:p-9 md:gap-8 md:rounded-[1.75rem] lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12 lg:pr-16"
+              className={cn(
+                "grid min-w-0 grid-cols-1 gap-5 rounded-[1.25rem] bg-[#1F2A5C] p-5 text-white sm:p-9 md:gap-8 md:rounded-[1.75rem]",
+                hasQuote &&
+                  "xl:grid-cols-[minmax(0,1fr)_auto] xl:gap-12 xl:pr-16",
+              )}
             >
               <div className="flex flex-col">
                 <motion.p
@@ -175,24 +220,32 @@ export default function EnterpriseCaseStudies({
                     {s.title}
                   </Link>
                 </motion.h3>
-                <motion.blockquote
-                  variants={item}
-                  custom={4}
-                  className="mt-3 text-sm text-white/85 leading-relaxed md:mt-8 md:text-[15px] lg:mt-auto lg:pt-10"
-                >
-                  &ldquo;{s.quote}&rdquo;
-                </motion.blockquote>
-                <motion.p
-                  variants={item}
-                  custom={5}
-                  className="mt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white md:mt-4 md:text-xs"
-                >
-                  {s.attribution}
-                </motion.p>
+                {hasQuote && (
+                  <motion.blockquote
+                    variants={item}
+                    custom={4}
+                    className="mt-3 text-sm text-white/85 leading-relaxed md:mt-8 md:text-[15px] xl:mt-auto xl:pt-10"
+                  >
+                    &ldquo;{s.quote}&rdquo;
+                  </motion.blockquote>
+                )}
+                {hasQuote && s.attribution && (
+                  <motion.p
+                    variants={item}
+                    custom={5}
+                    className="mt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white md:mt-4 md:text-xs"
+                  >
+                    {s.attribution}
+                  </motion.p>
+                )}
+                {!hasQuote && stats}
                 <motion.div
                   variants={item}
                   custom={6}
-                  className="mt-4 self-start md:mt-7"
+                  className={cn(
+                    "self-start",
+                    hasQuote ? "mt-4 md:mt-7" : "pt-1",
+                  )}
                 >
                   <Link
                     href={s.href}
@@ -210,23 +263,7 @@ export default function EnterpriseCaseStudies({
                 </motion.div>
               </div>
 
-              <dl className="flex flex-row gap-6 border-t border-white/10 pt-4 sm:gap-10 md:self-end md:border-0 md:pt-0 lg:flex-col lg:gap-6">
-                {s.stats.map((stat, k) => (
-                  <motion.div
-                    key={stat.label}
-                    variants={item}
-                    custom={k}
-                    className="flex flex-col"
-                  >
-                    <dt className="order-2 mt-1 max-w-[14rem] text-xs md:text-sm text-white/80">
-                      {stat.label}
-                    </dt>
-                    <dd className="order-1 text-xl md:text-2xl font-medium tracking-tight text-[#03F9BE]">
-                      {stat.value}
-                    </dd>
-                  </motion.div>
-                ))}
-              </dl>
+              {hasQuote && stats}
             </motion.div>
           </article>
         );
@@ -238,7 +275,7 @@ export default function EnterpriseCaseStudies({
         type="button"
         onClick={next}
         aria-label="Next case study"
-        className="group absolute right-0 top-1/2 z-20 hidden h-16 w-16 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-white text-[#1F2A5C] transition hover:text-[#3B7FE8] md:flex"
+        className="group absolute right-0 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-white text-[#1F2A5C] transition hover:text-[#3B7FE8] md:flex lg:h-16 lg:w-16"
       >
         <PiArrowRightBold
           aria-hidden="true"
@@ -270,7 +307,7 @@ export default function EnterpriseCaseStudies({
           </span>
         </div>
         <Link
-          href="/case-studies"
+          href={isUS ? "/us/case-studies" : "/case-studies"}
           className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F2A5C] hover:text-[#3B7FE8]"
         >
           View all case studies

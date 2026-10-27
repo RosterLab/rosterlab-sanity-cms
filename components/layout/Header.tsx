@@ -530,7 +530,16 @@ export default function Header({
                         </div>
                       ) : item.title === "Industries" ? (
                         // Enhanced Industries Dropdown Layout
-                        <div className="p-6">
+                        <div className="max-h-[calc(100dvh-6rem)] overflow-y-auto p-6">
+                          <Link
+                            href={
+                              isUSVersion ? "/us/enterprise" : "/enterprise"
+                            }
+                            className="mb-4 block rounded-lg bg-blue-50 p-3 font-medium text-blue-600 transition-colors hover:bg-blue-100 hover:text-blue-700"
+                            onClick={() => setActiveDropdown(null)}
+                          >
+                            For Enterprise
+                          </Link>
                           <div className="grid grid-cols-2 gap-6">
                             {/* Healthcare Sectors Column */}
                             <div>
@@ -540,27 +549,6 @@ export default function Header({
                                   : "Specialty Healthcare Rosters"}
                               </h3>
                               <div className="space-y-1">
-                                {/* Healthcare Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare-scheduling"
-                                      : "/industries/healthcare"
-                                  }
-                                  className="group block p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors"
-                                >
-                                  <div className="font-medium text-blue-600 group-hover:text-blue-700 mb-1 flex items-center gap-2">
-                                    {isUSVersion
-                                      ? "Healthcare Scheduling"
-                                      : "Healthcare Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Complete scheduling solution for healthcare teams"
-                                      : "Complete rostering solution for healthcare teams"}
-                                  </div>
-                                </Link>
-
                                 {/* ICU/ED Roster */}
                                 <Link
                                   href={
@@ -664,6 +652,16 @@ export default function Header({
                                       ? "Veterinary clinic scheduling that handles complex shift patterns"
                                       : "Veterinary clinic rostering that handles complex shift patterns"}
                                   </div>
+                                </Link>
+                                <Link
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare-scheduling"
+                                      : "/industries/healthcare"
+                                  }
+                                  className="block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-700"
+                                >
+                                  View all healthcare specialties
                                 </Link>
                               </div>
                             </div>
@@ -917,7 +915,9 @@ export default function Header({
                                       {/* See all tools — covers Mini Tools + Games */}
                                       <div className="!-mt-2 pb-3">
                                         <Link
-                                          href={isUSVersion ? "/us/tools" : "/tools"}
+                                          href={
+                                            isUSVersion ? "/us/tools" : "/tools"
+                                          }
                                           className="inline-flex items-center gap-1 text-xs font-semibold text-[#4a9288] hover:text-[#3a7268] px-3"
                                         >
                                           See all tools
@@ -942,7 +942,11 @@ export default function Header({
                                       {/* Explore all templates */}
                                       <div className="!-mt-2">
                                         <Link
-                                          href={isUSVersion ? "/us/templates" : "/templates"}
+                                          href={
+                                            isUSVersion
+                                              ? "/us/templates"
+                                              : "/templates"
+                                          }
                                           onClick={() =>
                                             trackSmartButtonClick(
                                               "Explore all templates",
@@ -1234,13 +1238,22 @@ export default function Header({
                         </>
                       ) : item.title === "Industries" ? (
                         <>
+                          <Link
+                            href={
+                              isUSVersion ? "/us/enterprise" : "/enterprise"
+                            }
+                            className="mb-3 block rounded-md bg-blue-50 px-3 py-2 text-sm font-medium text-blue-600 hover:bg-blue-100 hover:text-blue-700"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            For Enterprise
+                          </Link>
                           <div>
                             <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
                               {isUSVersion
                                 ? "SPECIALTY HEALTHCARE SCHEDULES"
                                 : "SPECIALTY HEALTHCARE ROSTERS"}
                             </div>
-                            {item.subItems.slice(0, 6).map((subItem) => (
+                            {item.subItems.slice(1, 6).map((subItem) => (
                               <Link
                                 key={subItem.link}
                                 href={subItem.link}
@@ -1250,6 +1263,17 @@ export default function Header({
                                 {subItem.title}
                               </Link>
                             ))}
+                            <Link
+                              href={
+                                isUSVersion
+                                  ? "/us/industries/healthcare-scheduling"
+                                  : "/industries/healthcare"
+                              }
+                              className="mt-2 block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              View all healthcare specialties
+                            </Link>
                           </div>
                           <div className="mt-1 px-3">
                             <Link
@@ -1345,7 +1369,11 @@ export default function Header({
                                 {renderMobileGroup("Templates")}
                                 <div className="mt-1 px-3">
                                   <Link
-                                    href={isUSVersion ? "/us/templates" : "/templates"}
+                                    href={
+                                      isUSVersion
+                                        ? "/us/templates"
+                                        : "/templates"
+                                    }
                                     className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
                                     onClick={() => setIsMenuOpen(false)}
                                   >

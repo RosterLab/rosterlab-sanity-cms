@@ -18,6 +18,7 @@ import {
 import type { IconType } from "react-icons";
 import { trackButtonClick } from "@/components/analytics/tracking";
 import CountUp from "./CountUp";
+import { enterpriseText } from "./enterprise-copy";
 
 // `tint` is one of the palette's data-chip tints, behind the metric's icon.
 const OUTCOMES: {
@@ -27,19 +28,19 @@ const OUTCOMES: {
   tint: string;
 }[] = [
   {
-    stat: "90%",
+    stat: "~90%",
     label: "less time spent on rostering",
     icon: PiTimer,
     tint: "bg-[#9CE4FF]",
   },
   {
-    stat: "5%",
+    stat: "~5%",
     label: "improvement in staffing efficiency",
     icon: PiUsersThree,
     tint: "bg-[#FFD08A]",
   },
   {
-    stat: "10%",
+    stat: "~10%",
     label: "improvement in staff satisfaction",
     icon: PiSmiley,
     tint: "bg-[#C7D2FF]",
@@ -47,7 +48,7 @@ const OUTCOMES: {
 ];
 
 const QUOTE =
-  "“The introduction of Rosterlab is an important step forward in how we support our junior doctors. By improving transparency, enabling preferences, and simplifying processes such as shift swaps, we are supporting both wellbeing and a more positive training experience.”";
+  "“The introduction of Rosterlab is an important step forward in how we support our junior doctors. By improving transparency, enabling preferences, and simplifying processes, we are supporting both junior doctors' wellbeing and a more positive training experience.”";
 
 /**
  * The running order, in seconds from the moment the block is a third on
@@ -71,9 +72,11 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export default function EnterpriseOutcomes({
   newsroom,
   analyticsLocation,
+  isUS = false,
 }: {
   newsroom: { title: string; href: string; image: string };
   analyticsLocation: string;
+  isUS?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
@@ -134,9 +137,9 @@ export default function EnterpriseOutcomes({
                 {/* <dt> first, as a <dl> group needs; the number is drawn
                     first with `order`. */}
                 <dt className="order-2 min-w-0 flex-1 text-gray-600 leading-snug">
-                  {o.label}
+                  {enterpriseText(o.label, isUS)}
                 </dt>
-                <dd className="order-1 w-[2.25em] shrink-0 text-4xl md:text-5xl font-medium tabular-nums tracking-tight text-[#1F2A5C]">
+                <dd className="order-1 w-[2.9em] shrink-0 text-4xl md:text-5xl font-medium tabular-nums tracking-tight text-[#1F2A5C]">
                   <CountUp
                     value={o.stat}
                     play={inView}
@@ -156,7 +159,7 @@ export default function EnterpriseOutcomes({
           className="flex flex-col justify-between gap-6 bg-[#1F2A5C] p-7 md:rounded-tr-3xl"
         >
           <blockquote className="text-base md:text-[17px] font-medium text-white leading-relaxed">
-            {QUOTE}
+            {isUS ? `“${enterpriseText(QUOTE.slice(1, -1), true)}”` : QUOTE}
           </blockquote>
           <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
             <figcaption className="text-sm">
@@ -215,7 +218,7 @@ export default function EnterpriseOutcomes({
         className="mt-10 flex justify-center md:mt-12"
       >
         <Link
-          href="/tools/roi-calculator"
+          href={isUS ? "/us/tools/savings-calculator" : "/tools/roi-calculator"}
           onClick={() =>
             trackButtonClick("Calculate your ROI", analyticsLocation, {
               cta_type: "roi_calculator",

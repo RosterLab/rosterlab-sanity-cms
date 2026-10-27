@@ -75,9 +75,10 @@ export default function EnterpriseFeatures({
         <Image
           src={f.image.src}
           alt={f.image.alt}
-          fill
+          width={f.image.width}
+          height={f.image.height}
           sizes="(min-width: 1024px) 640px, 100vw"
-          className="object-cover"
+          className="block h-auto w-full"
         />
       ) : f.image.className ? (
         <div className="absolute inset-0 flex items-center justify-center p-10">
@@ -148,7 +149,7 @@ export default function EnterpriseFeatures({
                   <p className="-mt-1 pb-6 max-w-lg text-base text-gray-600 leading-relaxed">
                     {f.description}
                   </p>
-                  {panel(f, "mb-6 lg:hidden")}
+                  {isOpen && panel(f, "mb-6 lg:hidden")}
                 </div>
                 {/* The progress bar, laid along the open item's top rule. */}
                 {isOpen && (
