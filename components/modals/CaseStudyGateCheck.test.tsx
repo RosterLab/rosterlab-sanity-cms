@@ -7,18 +7,29 @@ jest.mock("next/navigation", () => ({
 }));
 jest.mock("next/dynamic", () => () => () => null);
 
-test.each([false, true])(
-  "public case studies render article HTML before hydration (US=%s)",
-  (isUS) => {
+test.each([
+  { slug: "whanganui-radiography", isUS: false },
+  { slug: "whanganui-radiography", isUS: true },
+  {
+    slug: "how-plastics-department-used-roster-simulation-to-cut-in-costs",
+    isUS: false,
+  },
+  {
+    slug: "how-plastics-department-used-schedule-simulation-to-cut-in-costs",
+    isUS: true,
+  },
+])(
+  "public case studies render article HTML before hydration ($slug, US=$isUS)",
+  ({ slug, isUS }) => {
     const html = renderToString(
-      <CaseStudyGateCheck slug="whanganui-radiography" isUS={isUS}>
+      <CaseStudyGateCheck slug={slug} isUS={isUS}>
         <article>
-          <h1>Whanganui case study</h1>
+          <h1>Public case study</h1>
           <p>Article content</p>
         </article>
       </CaseStudyGateCheck>,
     );
-    expect(html).toContain("<h1>Whanganui case study</h1>");
+    expect(html).toContain("<h1>Public case study</h1>");
     expect(html).toContain("Article content");
     expect(html).not.toContain("Loading...");
   },
@@ -26,7 +37,10 @@ test.each([false, true])(
 
 test("gated articles remain hidden in server HTML until access is checked", () => {
   const html = renderToString(
-    <CaseStudyGateCheck slug="how-plastics-department-used-roster-simulation-to-cut-in-costs">
+    <CaseStudyGateCheck
+      slug="private-case-study"
+      lockedSlugs={["private-case-study"]}
+    >
       <article>
         <h1>Gated case study</h1>
         <p>Protected content</p>

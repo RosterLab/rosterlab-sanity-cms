@@ -8,10 +8,6 @@ const CTAModalCaseStudy = dynamic(() => import("./CTAModalCaseStudy"), {
   ssr: false,
 });
 
-const LOCKED_SLUGS = [
-  "how-plastics-department-used-roster-simulation-to-cut-in-costs",
-];
-
 interface CaseStudyGateCheckProps {
   isUS?: boolean;
   slug: string;
@@ -27,11 +23,11 @@ interface CaseStudyGateCheckProps {
 export default function CaseStudyGateCheck({
   isUS = false,
   slug,
-  lockedSlugs = LOCKED_SLUGS,
+  lockedSlugs = [],
   children,
 }: CaseStudyGateCheckProps) {
   // Public articles must be visible in server HTML, without waiting for
-  // hydration or loading the form used by the few gated case studies.
+  // hydration or loading an access form.
   if (!lockedSlugs.includes(slug)) return <>{children}</>;
   return (
     <LockedCaseStudyGate key={slug} isUS={isUS} slug={slug}>
