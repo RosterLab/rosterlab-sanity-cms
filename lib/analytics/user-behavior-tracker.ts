@@ -9,15 +9,17 @@ const SESSION_KEY = "rl_session_pages";
 const MODAL_STATE_KEY = "rl_modal_state";
 const PAGE_ENTRY_KEY = "rl_page_entry";
 const SESSION_START_KEY = "rl_session_start";
+const SESSION_MODAL_KEY = "rl_session_modal_shown";
 
 // Frequency cap and timing constants
 const FREQUENCY_CAP_DAYS = 30; // Reset modal counter after 30 days
-const MAX_MODALS_PER_PERIOD = 4; // Maximum modals to show per 30-day period
+const MAX_MODALS_PER_PERIOD = 2; // Shared limit across both popup variants
+const MAX_MODALS_LIFETIME = 2;
 const MIN_TIME_ON_HIGH_INTENT_PAGES = 60; // Seconds required on high-intent pages
 const MIN_TIME_ON_SITE_RETURNING = 45; // Seconds required for returning visitors
 const COOLDOWN_DAYS = 3; // Days to wait after dismissal before showing another modal
 
-const ACTIVE_MODAL_VARIANTS = ["A", "D"] as const;
+const ACTIVE_MODAL_VARIANTS = ["A", "B"] as const;
 export type ActiveModalVariant = (typeof ACTIVE_MODAL_VARIANTS)[number];
 
 export interface UserBehavior {
@@ -42,6 +44,8 @@ export interface ModalState {
   convertedAt: string | null;
   variantsShown: Array<"A" | "B" | "C" | "D">; // Track which variants user has seen across sessions
   totalShown: number; // Total number of modals shown in current 30-day period
+  lifetimeTotalShown: number; // Never reset with the 30-day period
+  caseStudyViewed: boolean;
   periodStartDate: string | null; // ISO date when current 30-day period started
 }
 
@@ -89,6 +93,9 @@ export function trackPageView(pathname: string): UserBehavior {
   }
 
   const behavior = getUserBehavior();
+  if (isFeaturedCaseStudy(pathname)) {
+    updateModalState({ caseStudyViewed: true });
+  }
   const now = Date.now();
   const nowISO = new Date().toISOString();
 
@@ -134,7 +141,8 @@ export function trackPageView(pathname: string): UserBehavior {
   const hasVisitedHighIntent = behavior.hasVisitedHighIntent || isHighIntent;
 
   // Determine if this is a returning visitor
-  const isReturningVisitor = !!behavior.firstVisitedAt && behavior.firstVisitedAt !== nowISO;
+  const isReturningVisitor =
+    !!behavior.firstVisitedAt && behavior.firstVisitedAt !== nowISO;
 
   // Get or set session start time
   let sessionStartTime = behavior.sessionStartTime;
@@ -230,6 +238,12 @@ export function getModalState(): ModalState {
     }
 
     const modalState = JSON.parse(stored);
+    // Preserve known historical impressions when introducing the lifetime cap.
+    const lifetimeTotalShown = Math.max(
+      modalState.lifetimeTotalShown || 0,
+      modalState.totalShown || 0,
+      (modalState.variantsShown || []).length,
+    );
 
     // Check if period has expired and reset if needed
     const periodStartDate = modalState.periodStartDate;
@@ -237,7 +251,9 @@ export function getModalState(): ModalState {
     let resetPeriodStartDate = periodStartDate;
 
     if (periodStartDate) {
-      const daysSinceStart = (Date.now() - new Date(periodStartDate).getTime()) / (1000 * 60 * 60 * 24);
+      const daysSinceStart =
+        (Date.now() - new Date(periodStartDate).getTime()) /
+        (1000 * 60 * 60 * 24);
 
       if (daysSinceStart >= FREQUENCY_CAP_DAYS) {
         // Period has passed - reset the counter
@@ -247,6 +263,7 @@ export function getModalState(): ModalState {
         // Persist the reset immediately
         const resetState = {
           ...modalState,
+          lifetimeTotalShown,
           totalShown: 0,
           periodStartDate: null,
         };
@@ -260,6 +277,7 @@ export function getModalState(): ModalState {
       ...modalState,
       variantsShown: modalState.variantsShown || [],
       totalShown,
+      lifetimeTotalShown,
       periodStartDate: resetPeriodStartDate,
     };
   } catch {
@@ -340,7 +358,9 @@ function shouldShowReturningVisitorModal(): boolean {
     return false;
   }
 
-  const timeOnSite = Math.floor((Date.now() - behavior.sessionStartTime) / 1000);
+  const timeOnSite = Math.floor(
+    (Date.now() - behavior.sessionStartTime) / 1000,
+  );
   return timeOnSite >= MIN_TIME_ON_SITE_RETURNING;
 }
 
@@ -354,7 +374,8 @@ function shouldShowHighIntentModal(): boolean {
   const hasVisitedHighIntent = behavior.hasVisitedHighIntent;
   const currentPageTime = getCurrentPageTimeSpent();
   const totalHighIntentTime = behavior.highIntentTimeSpent + currentPageTime;
-  const hasSpentEnoughTime = totalHighIntentTime >= MIN_TIME_ON_HIGH_INTENT_PAGES;
+  const hasSpentEnoughTime =
+    totalHighIntentTime >= MIN_TIME_ON_HIGH_INTENT_PAGES;
 
   return hasVisitedHighIntent && hasSpentEnoughTime;
 }
@@ -362,17 +383,27 @@ function shouldShowHighIntentModal(): boolean {
 /**
  * Check if user should see the modal
  * Combines both trigger conditions:
- * 1. High-intent page trigger: Visited high-intent page + 30s spent
+ * 1. High-intent page trigger: Visited high-intent page + 60s spent
  * 2. Returning visitor trigger: Is returning visitor + 45s on site
  */
 export function shouldShowModal(): boolean {
   const behavior = getUserBehavior();
   const modalState = getModalState();
 
+  if (typeof window !== "undefined") {
+    try {
+      if (sessionStorage.getItem(SESSION_MODAL_KEY) === "true") return false;
+    } catch {
+      // The manager still prevents repeats during client navigation.
+    }
+  }
+  if (modalState.lifetimeTotalShown >= MAX_MODALS_LIFETIME) return false;
+
   // Don't show if dismissed within the cooldown period
   if (modalState.dismissedAt) {
     const daysSinceDismissal =
-      (Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24);
+      (Date.now() - new Date(modalState.dismissedAt).getTime()) /
+      (1000 * 60 * 60 * 24);
     if (daysSinceDismissal < COOLDOWN_DAYS) {
       return false;
     }
@@ -399,7 +430,7 @@ export function shouldShowModal(): boolean {
   // Don't show on book-a-demo pages (user is already converting)
   if (typeof window !== "undefined") {
     const pathname = window.location.pathname;
-    if (pathname === "/book-a-demo" || pathname === "/us/book-a-demo") {
+    if (/^\/(?:us\/)?book-a-demo\/?$/.test(pathname)) {
       return false;
     }
   }
@@ -411,68 +442,79 @@ export function shouldShowModal(): boolean {
   return highIntentTrigger || returningVisitorTrigger;
 }
 
+function isFeaturedCaseStudy(pathname: string): boolean {
+  return /^\/(?:us\/)?case-studies\/how-plastics-department-used-(?:roster|schedule)-simulation-to-cut-in-costs\/?$/.test(
+    pathname,
+  );
+}
+
 /**
- * Assign an active A/D variant with cycling for returning visitors.
- * First visit: Random 50% split. Preserve B/C in stored history only.
+ * Assign an active A/B variant with cycling for returning visitors.
+ * First visit: Random 50% split. Preserve C/D in stored history only.
  */
 export function assignVariant(): ActiveModalVariant {
-  // Check for URL parameter override (for testing)
-  if (typeof window !== "undefined") {
-    const params = new URLSearchParams(window.location.search);
-    const forceVariant = params.get("modal_variant");
-    if (forceVariant === "A" || forceVariant === "D") {
-      console.log(`🧪 [Modal] Forcing variant ${forceVariant} via URL parameter`);
-      return forceVariant;
-    }
-  }
-
   const modalState = getModalState();
   const behavior = getUserBehavior();
-
-  let variant: ActiveModalVariant;
-  const activeHistory = modalState.variantsShown.filter(
-    (v): v is ActiveModalVariant => v === "A" || v === "D",
+  const pathname =
+    typeof window !== "undefined" ? window.location.pathname : "";
+  const hasReadCaseStudy =
+    modalState.caseStudyViewed ||
+    behavior.visitedPages.some(isFeaturedCaseStudy);
+  // Do not promote a case study during an article visit or after it was read.
+  const eligibleVariants = ACTIVE_MODAL_VARIANTS.filter(
+    (variant) =>
+      variant !== "B" ||
+      (!hasReadCaseStudy && !/^\/(?:us\/)?case-studies\/[^/]+/.test(pathname)),
   );
-
-  if (behavior.isReturningVisitor && activeHistory.length > 0) {
-    // Returning visitor - cycle through variants they haven't seen
-    const allVariants = ACTIVE_MODAL_VARIANTS;
-    const unseenVariants = allVariants.filter(
-      (v) => !modalState.variantsShown.includes(v),
+  const activeHistory = modalState.variantsShown.filter(
+    (variant): variant is ActiveModalVariant =>
+      eligibleVariants.includes(variant as ActiveModalVariant),
+  );
+  const forceVariant =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("modal_variant")
+      : null;
+  let variant: ActiveModalVariant;
+  if (
+    (forceVariant === "A" || forceVariant === "B") &&
+    eligibleVariants.includes(forceVariant)
+  ) {
+    variant = forceVariant;
+  } else if (behavior.isReturningVisitor && activeHistory.length > 0) {
+    const unseenVariants = eligibleVariants.filter(
+      (v) => !activeHistory.includes(v),
     );
-
     if (unseenVariants.length > 0) {
-      // Show a random unseen variant
-      variant = unseenVariants[Math.floor(Math.random() * unseenVariants.length)];
+      variant =
+        unseenVariants[Math.floor(Math.random() * unseenVariants.length)];
     } else {
-      // Alternate active variants, ignoring retired B/C entries in stored history.
       const lastShown = activeHistory[activeHistory.length - 1];
-      const currentIndex = allVariants.indexOf(lastShown);
-      const nextIndex = (currentIndex + 1) % allVariants.length;
-      variant = allVariants[nextIndex];
+      variant =
+        eligibleVariants[
+          (eligibleVariants.indexOf(lastShown) + 1) % eligibleVariants.length
+        ];
     }
   } else {
-    // First active modal shown - random 50% split.
-    variant = Math.random() < 0.5 ? "A" : "D";
+    variant =
+      eligibleVariants[Math.floor(Math.random() * eligibleVariants.length)];
   }
-
-  // Update modal state with new variant and increment total shown
-  const updatedVariantsShown = [...modalState.variantsShown, variant];
-  const totalShown = (modalState.totalShown || 0) + 1;
-
-  // Set period start date if this is the first modal in a new period
-  const periodStartDate = modalState.periodStartDate || new Date().toISOString();
 
   updateModalState({
     variant,
-    variantsShown: updatedVariantsShown,
-    totalShown,
-    periodStartDate,
+    variantsShown: [...modalState.variantsShown, variant],
+    totalShown: modalState.totalShown + 1,
+    lifetimeTotalShown: modalState.lifetimeTotalShown + 1,
+    periodStartDate: modalState.periodStartDate || new Date().toISOString(),
   });
-
+  if (typeof window !== "undefined") {
+    try {
+      sessionStorage.setItem(SESSION_MODAL_KEY, "true");
+    } catch {
+      // Continue if browser storage is unavailable.
+    }
+  }
   return variant;
 }
-
 
 /**
  * Get the trigger type that caused modal to show
@@ -498,6 +540,7 @@ export function resetModalState(): void {
 
   try {
     localStorage.removeItem(MODAL_STATE_KEY);
+    sessionStorage.removeItem(SESSION_MODAL_KEY);
   } catch {
     // Storage failed
   }
@@ -532,7 +575,9 @@ export function getTrackingStatus() {
   const modalState = getModalState();
   const currentPageTime = getCurrentPageTimeSpent();
   const totalTime = behavior.highIntentTimeSpent + currentPageTime;
-  const timeOnSite = Math.floor((Date.now() - behavior.sessionStartTime) / 1000);
+  const timeOnSite = Math.floor(
+    (Date.now() - behavior.sessionStartTime) / 1000,
+  );
 
   return {
     behavior: {
@@ -555,6 +600,8 @@ export function getTrackingStatus() {
       converted: modalState.converted,
       variantsShown: modalState.variantsShown,
       totalShown: modalState.totalShown,
+      lifetimeTotalShown: modalState.lifetimeTotalShown,
+      caseStudyViewed: modalState.caseStudyViewed,
       periodStartDate: modalState.periodStartDate,
     },
     shouldShow: shouldShowModal(),
@@ -577,19 +624,33 @@ export function getTrackingStatus() {
     },
     requirements: {
       noDemoBooked: !behavior.hasDemoBooked,
-      cooldownExpired: !modalState.dismissedAt ||
-        (Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24) >= COOLDOWN_DAYS,
+      cooldownExpired:
+        !modalState.dismissedAt ||
+        (Date.now() - new Date(modalState.dismissedAt).getTime()) /
+          (1000 * 60 * 60 * 24) >=
+          COOLDOWN_DAYS,
       notAuthenticated: !isUserAuthenticated(),
     },
     cooldown: {
       dismissedAt: modalState.dismissedAt,
       cooldownDays: COOLDOWN_DAYS,
       daysSinceDismissal: modalState.dismissedAt
-        ? Math.round((Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24) * 10) / 10
+        ? Math.round(
+            ((Date.now() - new Date(modalState.dismissedAt).getTime()) /
+              (1000 * 60 * 60 * 24)) *
+              10,
+          ) / 10
         : null,
       isInCooldown: modalState.dismissedAt
-        ? (Date.now() - new Date(modalState.dismissedAt).getTime()) / (1000 * 60 * 60 * 24) < COOLDOWN_DAYS
+        ? (Date.now() - new Date(modalState.dismissedAt).getTime()) /
+            (1000 * 60 * 60 * 24) <
+          COOLDOWN_DAYS
         : false,
+    },
+    lifetimeCap: {
+      totalShown: modalState.lifetimeTotalShown,
+      limit: MAX_MODALS_LIFETIME,
+      isAtLimit: modalState.lifetimeTotalShown >= MAX_MODALS_LIFETIME,
     },
     frequencyCap: {
       totalShown: modalState.totalShown || 0,
@@ -597,10 +658,20 @@ export function getTrackingStatus() {
       periodDays: FREQUENCY_CAP_DAYS,
       periodStartDate: modalState.periodStartDate,
       daysInCurrentPeriod: modalState.periodStartDate
-        ? Math.floor((Date.now() - new Date(modalState.periodStartDate).getTime()) / (1000 * 60 * 60 * 24))
+        ? Math.floor(
+            (Date.now() - new Date(modalState.periodStartDate).getTime()) /
+              (1000 * 60 * 60 * 24),
+          )
         : 0,
       daysUntilReset: modalState.periodStartDate
-        ? Math.max(0, FREQUENCY_CAP_DAYS - Math.floor((Date.now() - new Date(modalState.periodStartDate).getTime()) / (1000 * 60 * 60 * 24)))
+        ? Math.max(
+            0,
+            FREQUENCY_CAP_DAYS -
+              Math.floor(
+                (Date.now() - new Date(modalState.periodStartDate).getTime()) /
+                  (1000 * 60 * 60 * 24),
+              ),
+          )
         : 0,
       isAtLimit: (modalState.totalShown || 0) >= MAX_MODALS_PER_PERIOD,
     },
@@ -639,6 +710,8 @@ function getDefaultModalState(): ModalState {
     convertedAt: null,
     variantsShown: [],
     totalShown: 0,
+    lifetimeTotalShown: 0,
+    caseStudyViewed: false,
     periodStartDate: null,
   };
 }

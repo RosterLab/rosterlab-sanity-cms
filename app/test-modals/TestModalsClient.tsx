@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import CTAModalDemoBooking from "@/components/modals/CTAModalDemoBooking";
-import CTAModalDemoVideo from "@/components/modals/CTAModalDemoVideo";
+import CTAModalCaseStudy from "@/components/modals/CTAModalCaseStudy";
 
-type Variant = "A" | "D" | null;
+type Variant = "A" | "B" | null;
 
 const VARIANTS: Array<{
   id: Exclude<Variant, null>;
@@ -17,9 +17,9 @@ const VARIANTS: Array<{
     description: "Live demo showcase with illustration + trusted-by strip.",
   },
   {
-    id: "D",
-    label: "Demo Video (gated)",
-    description: "Gated demo video walkthrough + trusted-by strip.",
+    id: "B",
+    label: "Case Study",
+    description: "Read the full case study directly, with no form required.",
   },
 ];
 
@@ -36,8 +36,8 @@ export default function TestModalsClient() {
           Modal preview
         </h1>
         <p className="text-neutral-600 mb-8">
-          Internal-only page for previewing the 2 active CTA modal variants. Click a
-          card to open the modal in test mode (no analytics or state
+          Internal-only page for previewing the 2 active CTA modal variants.
+          Click a card to open the modal in test mode (no analytics or state
           side-effects).
         </p>
 
@@ -68,8 +68,8 @@ export default function TestModalsClient() {
           testMode
         />
       )}
-      {active === "D" && (
-        <CTAModalDemoVideo
+      {active === "B" && (
+        <CTAModalCaseStudy
           isOpen
           onClose={close}
           onConversion={noop}
