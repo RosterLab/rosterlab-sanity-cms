@@ -107,7 +107,7 @@ const CSS = `
 .rl-21a .rl-stage{position:absolute;left:0;top:0;width:390px;height:480px;transform-origin:0 0;opacity:1;transition:opacity .2s}
 .rl-21a.rl-out .rl-stage{opacity:0;transition:opacity .8s ease-in}
 .rl-21a svg.rl-lines{position:absolute;left:0;top:0;width:390px;height:480px;overflow:visible}
-.rl-21a .rl-lines path{fill:none;stroke-opacity:.65;stroke-width:2;stroke-linecap:round;stroke-dasharray:1000;stroke-dashoffset:0}
+.rl-21a .rl-lines path{fill:none;stroke-opacity:.65;stroke-width:2;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:0}
 .rl-21a .rl-n{position:absolute;transform:translate(var(--tx,0),-50%);box-sizing:border-box}
 .rl-21a .rl-lab{width:88px;height:52px;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:0 8px 0 10px;border-radius:6px;background:#fff;border:1px solid;border-left-width:3px;font-size:12.5px;font-weight:600;line-height:1.15;color:#1F2A5C}
 .rl-21a .rl-lab em{font-style:normal;display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700}
@@ -126,7 +126,7 @@ const CSS = `
 .rl-21a.rl-play .rl-more{opacity:0;animation:rl-pop .35s ease-out both;animation-delay:var(--d)}
 .rl-21a.rl-play .rl-lines path{animation:rl-draw var(--draw) ease-in-out both;animation-delay:var(--d)}
 .rl-21a.rl-play .rl-dotp{animation:rl-run var(--run) ease-in-out both;animation-delay:var(--d)}
-@keyframes rl-draw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+@keyframes rl-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes rl-in{from{opacity:0;transform:translate(var(--tx,0),-50%) translateY(-6px)}to{opacity:1;transform:translate(var(--tx,0),-50%) translateY(0)}}
 @keyframes rl-roll{from{opacity:0;transform:translateX(-12px) rotate(-120deg)}to{opacity:1;transform:translateX(0) rotate(0)}}
 @keyframes rl-pop{from{opacity:0;transform:scale(.2)}60%{transform:scale(1.12)}to{opacity:1;transform:scale(1)}}
@@ -159,6 +159,10 @@ function build(root: HTMLDivElement, isUS: boolean) {
   const line = (d: string, ink: string, delay: number, dur: number) => {
     const p = document.createElementNS(NS, "path");
     p.setAttribute("d", d);
+    // Measure every line as length 1, so the dash that hides it before
+    // it draws always covers the whole line, however long it is. A
+    // fixed dash left the tail of the longer lines showing from the start.
+    p.setAttribute("pathLength", "1");
     p.style.cssText = `stroke:${ink};--d:${delay.toFixed(2)}s;--draw:${dur}s`;
     svg.appendChild(p);
     el(
@@ -183,8 +187,11 @@ function build(root: HTMLDivElement, isUS: boolean) {
     );
     tm.forEach(([name, more], j) => {
       const ty = TY0 + j * ROW;
-      const dd = 1.2 + j * 0.4;
-      const ta = dd + 0.7;
+      // One team at a time: a team's line only starts once the team above
+      // it has fully appeared (its 0.6s fade-in), so no line ever runs
+      // past an empty row.
+      const dd = 1.2 + j * (0.65 + 0.6);
+      const ta = dd + 0.65;
       n += 3 + more;
       namesDone = Math.max(namesDone, ta + 0.9);
       line(`M${sx} ${RY + 26} V${ty} H${sx + 8}`, ink, dd, 1.0);

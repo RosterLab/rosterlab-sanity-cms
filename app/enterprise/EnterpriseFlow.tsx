@@ -118,7 +118,7 @@ const CSS = `
 .rl-18h .rl-stage{position:absolute;left:0;top:0;width:900px;height:440px;transform-origin:0 0;opacity:1;transition:opacity .2s}
 .rl-18h.rl-out .rl-stage{opacity:0;transition:opacity .8s ease-in}
 .rl-18h svg.rl-lines{position:absolute;left:0;top:0;width:900px;height:440px;overflow:visible}
-.rl-18h .rl-lines path{fill:none;stroke-opacity:.6;stroke-width:1.5;stroke-dasharray:600;stroke-dashoffset:0}
+.rl-18h .rl-lines path{fill:none;stroke-opacity:.6;stroke-width:1.5;stroke-dasharray:1 1;stroke-dashoffset:0}
 .rl-18h .rl-n{position:absolute;transform:translate(var(--tx,0),-50%);white-space:nowrap;box-sizing:border-box}
 .rl-18h .rl-ros{width:160px;display:flex;align-items:center;gap:8px;border-radius:6px;padding:8px 10px;font-size:12px;font-weight:600;color:#1F2A5C;background:#fff;border:1px solid;border-left-width:3px}
 .rl-18h .rl-ros em{font-style:normal;margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700}
@@ -137,7 +137,7 @@ const CSS = `
 .rl-18h.rl-play .rl-av i,.rl-18h.rl-play .rl-more{opacity:0;animation:rl-pop .35s ease-out both;animation-delay:var(--d)}
 .rl-18h.rl-play .rl-lines path{animation:rl-draw var(--draw) ease-in-out both;animation-delay:var(--d)}
 .rl-18h.rl-play .rl-dotp{animation:rl-run var(--run) ease-in-out both;animation-delay:var(--d)}
-@keyframes rl-draw{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}
+@keyframes rl-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes rl-in{from{opacity:0;transform:translate(var(--tx,0),-50%) translateY(-6px)}to{opacity:1;transform:translate(var(--tx,0),-50%) translateY(0)}}
 @keyframes rl-run{0%{offset-distance:0%;opacity:0}6%{opacity:1}86%{offset-distance:100%;opacity:1}100%{offset-distance:100%;opacity:0}}
 @keyframes rl-pop{from{opacity:0;transform:scale(.2)}60%{transform:scale(1.15)}to{opacity:1;transform:scale(1)}}
@@ -169,6 +169,10 @@ function build(root: HTMLDivElement, isUS: boolean) {
   const line = (d: string, ink: string, delay: number) => {
     const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
     p.setAttribute("d", d);
+    // Measure every line as length 1, so the dash that hides it before
+    // it draws always covers the whole line, however long it is. A
+    // fixed dash left the tail of the longer lines showing from the start.
+    p.setAttribute("pathLength", "1");
     p.style.cssText = `stroke:${ink};--d:${delay.toFixed(2)}s;--draw:${DRAW}s`;
     svg.appendChild(p);
     el(
@@ -192,8 +196,11 @@ function build(root: HTMLDivElement, isUS: boolean) {
     );
     tm.forEach(([name, more], j) => {
       const ty = TY0 + j * ROW;
-      const dd = 1.4 + j * 0.45;
-      const ta = dd + 0.8;
+      // One team at a time: a team's line only starts once the team above
+      // it has fully appeared (its 0.6s fade-in), so no line ever runs
+      // past an empty row.
+      const dd = 1.4 + j * (0.75 + 0.6);
+      const ta = dd + 0.75;
       n += 3 + more;
       namesDone = Math.max(namesDone, ta + 0.6);
       line(`M${sx} ${RY + 16} V${ty} H${sx + 10}`, ink, dd);

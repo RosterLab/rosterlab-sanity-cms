@@ -229,7 +229,7 @@ export default function Header({
           link: "/industries/healthcare/veterinary-rostering",
         },
         {
-          title: "Nurse Roster",
+          title: "Nursing & Midwifery",
           link: "/industries/healthcare/nurse-rostering",
         },
         {
@@ -686,7 +686,7 @@ export default function Header({
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600">
                                     {isUSVersion
                                       ? "Nurse Scheduling"
-                                      : "Nurse Roster"}
+                                      : "Nursing & Midwifery"}
                                   </div>
                                 </Link>
 
