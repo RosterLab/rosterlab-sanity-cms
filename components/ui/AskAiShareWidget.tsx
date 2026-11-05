@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import AskAiShareBar from './AskAiShareBar'
 
 interface AskAiShareWidgetProps {
@@ -37,6 +38,20 @@ export default function AskAiShareWidget({
   const [interacted, setInteracted] = useState(false)
   const [entered, setEntered] = useState(false)
   const [nudge, setNudge] = useState(false)
+  const [checklistInView, setChecklistInView] = useState(false)
+  const pathname = usePathname()
+
+  // Leave mobile checklist controls unobstructed while readers work through them.
+  useEffect(() => {
+    const checklist = document.querySelector('[data-interactive-checklist]')
+    setChecklistInView(false)
+    if (!checklist) return
+    const observer = new IntersectionObserver(([entry]) => {
+      setChecklistInView(entry.isIntersecting)
+    })
+    observer.observe(checklist)
+    return () => observer.disconnect()
+  }, [pathname])
 
   // Entrance: slide/fade in after a short delay so users notice it.
   useEffect(() => {
@@ -109,7 +124,7 @@ export default function AskAiShareWidget({
   if (open) {
     return (
       <div
-        className="fixed inset-x-0 bottom-0 z-40 print:hidden animate-slide-up"
+        className={`fixed inset-x-0 bottom-0 z-40 print:hidden animate-slide-up ${checklistInView ? 'max-sm:hidden' : ''}`}
         role="region"
         aria-label="Ask AI about RosterLab"
       >
@@ -155,7 +170,7 @@ export default function AskAiShareWidget({
     <div
       // Centred on phones — hugging the left edge left it looking off-balance
       // and crowded the chat launcher. Back to the left corner from sm up.
-      className={`fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 z-40 print:hidden transition-all duration-500 ${
+      className={`fixed bottom-4 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 z-40 print:hidden transition-all duration-500 ${checklistInView ? 'max-sm:hidden' : ''} ${
         entered
           ? 'opacity-100 translate-y-0'
           : 'opacity-0 translate-y-4 pointer-events-none'

@@ -1,6 +1,6 @@
 'use client'
 
-import { postAuthors } from "@/lib/posts/authors";
+import { postAuthors, type PostAuthor } from "@/lib/posts/authors";
 import { useState, useMemo } from 'react'
 import BlogCard from '@/components/blog/BlogCard'
 import Container from '@/components/ui/Container'
@@ -13,7 +13,8 @@ interface BlogPost {
   excerpt?: string
   mainImage?: { asset: { _ref: string }; alt?: string }
   publishedAt: string
-  author: { name: string; image?: { asset: { _ref: string }; alt?: string } }
+  author?: PostAuthor | null
+  authors?: PostAuthor[] | null
   categories?: Array<{ title: string; slug: { current: string } }>
 }
 
