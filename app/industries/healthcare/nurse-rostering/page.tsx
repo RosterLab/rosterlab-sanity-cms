@@ -71,12 +71,11 @@ const SPECIALTIES = [
   "Aged care",
 ];
 
-// Each card takes its own pastel, with a deeper tile of the same hue.
+// Open on the intro's grey, each benefit marked by its own coloured tile.
 const BENEFITS: {
   icon: IconType;
   title: string;
   description: string;
-  card: string;
   tile: string;
 }[] = [
   {
@@ -84,7 +83,6 @@ const BENEFITS: {
     title: "Less juggling. More time for your team.",
     description:
       "Balancing everyone’s needs takes time and care. RosterLab builds the roster around your rules and staff requests, so you spend less time piecing shifts together and more time supporting your team.",
-    card: "bg-[#EAF1FD]",
     tile: "bg-[#3B7FE8]",
   },
   {
@@ -92,24 +90,21 @@ const BENEFITS: {
     title: "Fairer shifts, with room to recover",
     description:
       "A fair roster helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and preferences, while applying your team’s rest rules.",
-    card: "bg-[#EEF0FF]",
     tile: "bg-[#5B67D8]",
-  },
-  {
-    icon: PiMagnifyingGlass,
-    title: "See where your team needs more support",
-    description:
-      "You shouldn’t have to hold every staffing detail in your head. See gaps in headcount, senior cover and clinical skills before publishing, so you know where extra support is needed.",
-    card: "bg-[#E5FAF4]",
-    tile: "bg-[#0E9F7E]",
   },
   {
     icon: PiHandshake,
     title: "Honour the agreements your team relies on",
     description:
       "Your team should be able to rely on the arrangements agreed with them. RosterLab applies your employment agreement rules, contracted hours and rest requirements during generation, and flags violations when you make changes.",
-    card: "bg-[#FFF3E2]",
     tile: "bg-[#E57200]",
+  },
+  {
+    icon: PiMagnifyingGlass,
+    title: "See where your team needs more support",
+    description:
+      "You shouldn’t have to hold every staffing detail in your head. See gaps in headcount, senior cover and clinical skills before publishing, so you know where extra support is needed.",
+    tile: "bg-[#0E9F7E]",
   },
 ];
 
@@ -299,95 +294,88 @@ export default function NurseRosteringPage() {
               ))}
             </ul>
           </Reveal>
-        </Container>
-      </section>
 
-      {/* 2b — Core benefits: four pastel cards in a 2 x 2, on white. */}
-      <section className="bg-white py-16 md:py-20">
-        <Container>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2">
-            {BENEFITS.map(({ icon: Icon, title, description, card, tile }) => (
-              <div
-                key={title}
-                className={`flex flex-col rounded-xl p-6 md:p-7 ${card}`}
-              >
+          {/* Core benefits: open on the same grey, no cards, each marked by
+              its coloured tile. */}
+          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:mt-24 md:grid-cols-2 md:gap-y-14">
+            {BENEFITS.map(({ icon: Icon, title, description, tile }, i) => (
+              <Reveal key={title} delay={(i % 2) * 0.12}>
                 <span
                   aria-hidden="true"
-                  className={`flex h-12 w-12 items-center justify-center rounded-lg ${tile}`}
+                  className={`flex h-12 w-12 items-center justify-center rounded-xl ${tile}`}
                 >
                   <Icon className="h-7 w-7 text-white" />
                 </span>
-                <h3 className="mt-4 text-xl md:text-[22px] font-medium text-[#1F2A5C] leading-snug">
+                <h3 className="mt-5 text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
                   {title}
                 </h3>
-                <div className="mt-auto pt-7">
-                  <hr className="mb-4 border-[#1F2A5C]/10" />
-                  <p className="text-[15px] text-gray-600 leading-relaxed">
-                    {description}
-                  </p>
-                </div>
-              </div>
+                <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                  {description}
+                </p>
+              </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* 3 — Core capabilities: two white cards, product imagery on top. */}
-      <section className="bg-[#F4F6FB] py-16 md:py-12">
+      {/* 3 — Core capabilities: alternating rows, large product imagery
+          (first image right, second left). */}
+      <section className="bg-white py-16 md:py-28">
         <Container>
-          {/* One line on a wide screen, so the cards sit higher and the
-              whole section fits a desktop screen. */}
-          <Reveal
-            as="h2"
-            className="mx-auto max-w-6xl text-balance text-center text-3xl md:text-4xl font-semibold text-[#1F2A5C] leading-tight tracking-tight"
-          >
+          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
             Built for the complexity of nursing and midwifery rostering
           </Reveal>
 
-          <div className="mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-5 md:mt-8 md:grid-cols-2 md:gap-6">
+          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
             {CAPABILITIES.map((c, i) => (
-              <Reveal
+              <div
                 key={c.title}
-                delay={i * 0.12}
-                className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm"
+                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
+                  i % 2 === 0
+                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
+                }`}
               >
-                <div className="relative aspect-[4/3] bg-[#EAF1FD] md:aspect-[3/2]">
+                <Reveal>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                    {c.description}
+                  </p>
+                  <Button
+                    href={c.link.href}
+                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
+                    analyticsLabel={c.link.label}
+                    analyticsLocation={LOCATION}
+                    analyticsProperties={{
+                      cta_type: "learn_more",
+                      page_name: PAGE_NAME,
+                      section: "capabilities",
+                    }}
+                  >
+                    {c.link.label}
+                    <PiArrowRightBold
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Button>
+                </Reveal>
+                <Reveal
+                  delay={0.12}
+                  className={`relative aspect-[3/2] overflow-hidden rounded-2xl bg-[#EAF1FD] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
+                    i % 2 === 1 ? "md:order-first" : ""
+                  }`}
+                >
                   <Image
                     src={c.image.src}
                     alt={c.image.alt}
                     fill
-                    sizes="(min-width: 768px) 560px, 100vw"
+                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
                     className={c.image.className}
                   />
-                </div>
-                <div className="flex flex-1 flex-col p-6 md:px-7">
-                  <h3 className="text-xl md:text-[22px] font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-                    {c.title}
-                  </h3>
-                  <p className="mt-2.5 text-[15px] text-gray-600 leading-relaxed">
-                    {c.description}
-                  </p>
-                  <div className="mt-auto pt-4">
-                    <Button
-                      href={c.link.href}
-                      className="group gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
-                      analyticsLabel={c.link.label}
-                      analyticsLocation={LOCATION}
-                      analyticsProperties={{
-                        cta_type: "learn_more",
-                        page_name: PAGE_NAME,
-                        section: "capabilities",
-                      }}
-                    >
-                      {c.link.label}
-                      <PiArrowRightBold
-                        aria-hidden="true"
-                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                      />
-                    </Button>
-                  </div>
-                </div>
-              </Reveal>
+                </Reveal>
+              </div>
             ))}
           </div>
         </Container>
@@ -448,16 +436,19 @@ export default function NurseRosteringPage() {
               </svg>
               <div className="relative lg:pr-16">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/80 md:text-xs">
-                  {/* Each half kept whole, so a narrow panel breaks the
-                      line at the divider rather than mid-name. */}
-                  <span className="whitespace-nowrap">
+                  {/* Stacked on a phone; from sm up each half is kept whole,
+                      so the line breaks at the divider, not mid-name. */}
+                  <span className="block sm:inline sm:whitespace-nowrap">
                     Primary care nursing
                   </span>
-                  <span aria-hidden="true" className="mx-3 text-white/50">
+                  <span
+                    aria-hidden="true"
+                    className="mx-3 hidden text-white/50 sm:inline"
+                  >
                     |
                   </span>
                   <span className="sr-only"> | </span>
-                  <span className="whitespace-nowrap">
+                  <span className="mt-1 block sm:mt-0 sm:inline sm:whitespace-nowrap">
                     Dargaville Medical Centre, New Zealand
                   </span>
                 </p>
@@ -534,10 +525,11 @@ export default function NurseRosteringPage() {
         </Container>
       </section>
 
-      {/* 6 — Onboarding & support: heading left, copy right. */}
+      {/* 6 — Onboarding & support: heading left, copy right, on the FAQ's
+          columns so the two sections line up. */}
       <section className="bg-white py-16 md:py-24">
         <Container>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-6 md:grid-cols-2 md:gap-16">
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.1] tracking-tight">
               Saving time from your first roster
             </h2>
@@ -568,17 +560,16 @@ export default function NurseRosteringPage() {
         </Container>
       </section>
 
-      {/* 8 — Final CTA: the enterprise banner in workforce teal, with text
-          in a deep teal from the same hue. White on this teal reads at only
-          ~2:1; the deep teal reads at ~6:1 and sits with the colour rather
-          than against it. */}
+      {/* 8 — Final CTA: the enterprise banner in a light workforce teal,
+          with text in a deep teal from the same hue. Lightened from #06C8CC
+          so the text stands out more. */}
       <section className="py-16 md:py-20">
         <Container>
-          <div className="relative overflow-hidden rounded-2xl bg-[#06C8CC] px-6 py-16 text-center text-[#053B3D] sm:px-12 md:py-24">
+          <div className="relative overflow-hidden rounded-2xl bg-[#7ADFE1] px-6 py-16 text-center text-[#053B3D] sm:px-12 md:py-24">
             <svg
               aria-hidden="true"
               viewBox="0 0 300 420"
-              className="pointer-events-none absolute -left-24 top-1/2 h-[130%] -translate-y-1/2 text-[#04A9AD]/70 md:-left-16"
+              className="pointer-events-none absolute -left-24 top-1/2 h-[130%] -translate-y-1/2 text-[#5CD2D5]/70 md:-left-16"
               fill="none"
               stroke="currentColor"
               strokeWidth="22"
