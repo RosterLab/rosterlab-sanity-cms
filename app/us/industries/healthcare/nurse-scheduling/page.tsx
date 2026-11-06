@@ -130,9 +130,9 @@ const CAPABILITIES = [
       href: "/us/solutions/ai-staff-schedule-maker",
     },
     image: {
-      src: "/images/industries/nursing/us-ai-schedule-generating.webp",
-      alt: "RosterLab generating a unit schedule in front of the Rule Builder, balancing rules, staffing demand and staff preferences",
-      className: "object-cover object-[center_40%]",
+      src: "/images/industries/nursing/us-ai-schedule-generating-v2.webp",
+      alt: "Ward rules and demands for in-charge cover, skill mix and rest days, over RosterLab generating the schedule",
+      className: "object-cover",
     },
   },
   {
@@ -144,9 +144,9 @@ const CAPABILITIES = [
       href: "/us/feature/self-scheduling",
     },
     image: {
-      src: "/images/industries/nursing/us-staff-preferences.webp",
+      src: "/images/industries/nursing/us-staff-preferences-v2.webp",
       alt: "Staff preferences in RosterLab on desktop, with a nurse requesting a shift and accepting an open shift in the mobile app",
-      className: "object-cover object-[center_40%]",
+      className: "object-cover",
     },
   },
 ];
@@ -375,7 +375,7 @@ export default function USNurseSchedulingPage() {
                 </Reveal>
                 <Reveal
                   delay={0.12}
-                  className={`relative aspect-[3/2] overflow-hidden rounded-2xl bg-[#EAF1FD] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
+                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#3B7FE8] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
                     i % 2 === 1 ? "md:order-first" : ""
                   }`}
                 >

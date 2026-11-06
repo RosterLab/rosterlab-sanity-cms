@@ -20,8 +20,8 @@ const LABELS = {
 };
 export type ComparisonLabels = typeof LABELS;
 
-/** Each side's colour: RosterLab in brand blue, Excel in grey. */
-const RL_BLUE = "#2563C9";
+/** Excel's grey; RosterLab's blue (#1D4ED8, white text ~6.7:1) is set
+ *  in the band classes below. */
 const EXCEL_GREY = "#6B7280";
 
 /**
@@ -114,15 +114,21 @@ function ExcelLockup({
 }
 
 /**
- * The RosterLab logo in flat brand blue. The PNG is used as a mask over a
+ * The RosterLab logo in one flat colour (white on the blue column). The PNG is used as a mask over a
  * solid fill, the same way the logo wall recolours its marks.
  */
-function RosterLabLogo({ className }: { className?: string }) {
+function RosterLabLogo({
+  className,
+  color = "#fff",
+}: {
+  className?: string;
+  color?: string;
+}) {
   return (
     <span
       aria-hidden="true"
       style={{
-        backgroundColor: RL_BLUE,
+        backgroundColor: color,
         maskImage: "url(/images/rosterlab-logo.png)",
         WebkitMaskImage: "url(/images/rosterlab-logo.png)",
         maskSize: "contain",
@@ -143,23 +149,23 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 /** When each row starts, in seconds after the table comes into view. */
 const rowDelay = (i: number) => 0.45 + i * 0.18;
 
-/** RosterLab's column runs as one continuous tinted band. */
-const RL_BAND = "lg:bg-[#EAF1FD]";
+/** Desktop bands: Excel in light grey, RosterLab in solid blue. */
+const EXCEL_BAND = "lg:bg-[#F3F4F8]";
+const RL_BAND = "lg:bg-[#1D4ED8]";
 
 /**
  * Manual planning in Excel against RosterLab, as a side-by-side table.
  *
- * One white panel with a divider between rows. RosterLab's column is tinted
- * from header to last row so the eye lands there first; the Excel column is
- * left plain and muted. On phones and tablets each row becomes its own card, with the
- * RosterLab answer in a tinted block and a small visible label on each
- * answer, hidden from screen readers since the table headers already give
- * that association.
+ * One white panel: the task column plain, Excel on a muted grey band, then
+ * RosterLab as a solid blue column in white type, so the eye lands there
+ * last and stays. On phones and tablets each row becomes its own card: the
+ * Excel answer in a grey block, then the RosterLab answer in a blue one,
+ * each with a small visible label hidden from screen readers since the
+ * table headers already give that association.
  *
- * It plays once on entering the view: the blue bar draws across the top of
- * RosterLab's column, the headings fade in, the rows rise in turn and each
- * tick pops in once its row has landed. Under reduced motion it starts in
- * its finished state.
+ * It plays once on entering the view: the headings fade in, the rows rise
+ * in turn and each tick pops in once its row has landed. Under reduced
+ * motion it starts in its finished state.
  */
 export default function RosterComparison({
   rows,
@@ -184,108 +190,127 @@ export default function RosterComparison({
   return (
     <div
       ref={ref}
-      className="lg:overflow-hidden lg:rounded-3xl lg:bg-white lg:shadow-[0_10px_40px_rgba(31,42,92,0.08)] lg:ring-1 lg:ring-[#1F2A5C]/10"
+      className="lg:overflow-hidden lg:rounded-3xl lg:bg-white lg:shadow-[0_10px_40px_rgba(31,42,92,0.08)] lg:ring-1 lg:ring-[#1F2A5C]/5"
     >
       <table className="block w-full lg:table lg:table-fixed lg:border-collapse">
         <colgroup className="hidden lg:table-column-group">
-          <col className="lg:w-[28%]" />
+          <col className="lg:w-[29%]" />
+          <col className="lg:w-[33%]" />
           <col className="lg:w-[38%]" />
-          <col className="lg:w-[34%]" />
         </colgroup>
         <thead className="sr-only lg:not-sr-only lg:table-header-group">
-          <tr className="border-b border-[#1F2A5C]/10">
-            <th scope="col" className="px-8 py-7 text-left align-top">
+          <tr>
+            <th
+              scope="col"
+              className="border-b border-[#1F2A5C]/10 px-10 py-8 text-left align-middle"
+            >
               {/* No visible label over the task column; screen readers
                   still get one for the column. */}
               <span className="sr-only">{labels.task}</span>
             </th>
             <th
               scope="col"
-              className={cn(RL_BAND, "relative px-8 py-7 text-left align-top")}
+              className={cn(
+                EXCEL_BAND,
+                "border-b border-[#1F2A5C]/10 px-10 py-8 text-left align-middle font-normal",
+              )}
             >
-              <motion.span
-                aria-hidden="true"
-                initial={reduce ? false : { scaleX: 0 }}
-                animate={{ scaleX: on ? 1 : 0 }}
-                transition={instant ?? { duration: 0.7, ease: EASE }}
-                className="absolute inset-x-0 top-0 h-1 origin-left bg-[#2563C9]"
-              />
-              <span className="sr-only">{RL_HEADING}</span>
               <motion.span className="block" {...rise(0.15)}>
-                <RosterLabLogo className="h-9" />
+                <ExcelLockup size="lg" manualNote={labels.manualNote} />
               </motion.span>
             </th>
             <th
               scope="col"
-              className="px-8 py-7 text-left align-top font-normal"
+              className={cn(
+                RL_BAND,
+                "border-b border-white/25 px-10 py-8 text-left align-middle",
+              )}
             >
+              <span className="sr-only">{RL_HEADING}</span>
               <motion.span className="block" {...rise(0.25)}>
-                <ExcelLockup size="lg" manualNote={labels.manualNote} />
+                <RosterLabLogo className="h-10" />
               </motion.span>
             </th>
           </tr>
         </thead>
         <tbody className="block space-y-4 lg:table-row-group lg:space-y-0">
-          {rows.map((row, i) => (
-            <tr
-              key={row.task}
-              className="block overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#1F2A5C]/10 lg:table-row lg:overflow-visible lg:rounded-none lg:bg-transparent lg:shadow-none lg:ring-0 lg:[&:not(:last-child)]:border-b lg:border-[#1F2A5C]/10"
-            >
-              <th
-                scope="row"
-                className="block px-6 pb-4 pt-6 text-left text-xl font-semibold leading-snug text-[#1F2A5C] lg:table-cell lg:px-8 lg:py-8 lg:align-top lg:text-[1.375rem]"
+          {rows.map((row, i) => {
+            const last = i === rows.length - 1;
+            return (
+              <tr
+                key={row.task}
+                className="block overflow-hidden rounded-2xl bg-white pb-4 shadow-sm ring-1 ring-[#1F2A5C]/10 lg:table-row lg:overflow-visible lg:rounded-none lg:bg-transparent lg:pb-0 lg:shadow-none lg:ring-0"
               >
-                <motion.span className="block" {...rise(rowDelay(i))}>
-                  {row.task}
-                </motion.span>
-              </th>
-              <td
-                className={cn(
-                  RL_BAND,
-                  "mx-4 block rounded-xl bg-[#EAF1FD] p-4 lg:mx-0 lg:table-cell lg:rounded-none lg:px-8 lg:py-8 lg:align-top",
-                )}
-              >
-                <motion.span className="block" {...rise(rowDelay(i) + 0.06)}>
-                  <span aria-hidden="true" className="mb-3 block lg:hidden">
-                    <RosterLabLogo className="h-6" />
-                  </span>
-                  <span className="flex gap-3">
-                    <motion.span
-                      aria-hidden="true"
-                      className="mt-0.5 shrink-0"
-                      initial={reduce ? false : { scale: 0, opacity: 0 }}
-                      animate={
-                        on ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
-                      }
-                      transition={
-                        instant ?? {
-                          type: "spring",
-                          stiffness: 420,
-                          damping: 16,
-                          delay: rowDelay(i) + 0.4,
-                        }
-                      }
-                    >
-                      <PiCheckCircleFill className="h-6 w-6 text-[#2563C9]" />
-                    </motion.span>
-                    <span className="text-base font-semibold leading-relaxed text-[#1E4FB0] lg:text-lg">
-                      {row.rosterlab}
+                <th
+                  scope="row"
+                  className={cn(
+                    "block px-6 pb-4 pt-6 text-left text-xl font-semibold leading-snug text-[#1F2A5C] lg:table-cell lg:px-10 lg:py-9 lg:align-middle lg:text-2xl",
+                    !last && "lg:border-b lg:border-[#1F2A5C]/10",
+                  )}
+                >
+                  <motion.span className="block" {...rise(rowDelay(i))}>
+                    {row.task}
+                  </motion.span>
+                </th>
+                <td
+                  className={cn(
+                    EXCEL_BAND,
+                    "mx-4 block rounded-xl bg-[#F3F4F8] p-4 lg:mx-0 lg:table-cell lg:rounded-none lg:px-10 lg:py-9 lg:align-middle",
+                    !last && "lg:border-b lg:border-[#1F2A5C]/10",
+                  )}
+                >
+                  <motion.span className="block" {...rise(rowDelay(i) + 0.06)}>
+                    <span aria-hidden="true" className="mb-3 block lg:hidden">
+                      <ExcelLockup size="sm" manualNote={labels.manualNote} />
                     </span>
-                  </span>
-                </motion.span>
-              </td>
-              <td className="block px-6 pb-6 pt-5 lg:table-cell lg:px-8 lg:py-8 lg:align-top">
-                <motion.span className="block" {...rise(rowDelay(i) + 0.12)}>
-                  <span aria-hidden="true" className="mb-3 block lg:hidden">
-                    <ExcelLockup size="sm" manualNote={labels.manualNote} />
-                  </span>
-                  <span className="text-base leading-relaxed text-gray-500 lg:text-lg">
-                    {row.manual}
-                  </span>
-                </motion.span>
-              </td>
-            </tr>
-          ))}
+                    <span className="text-base leading-relaxed text-gray-600 lg:text-lg">
+                      {row.manual}
+                    </span>
+                  </motion.span>
+                </td>
+                <td
+                  className={cn(
+                    RL_BAND,
+                    "mx-4 mt-3 block rounded-xl bg-[#1D4ED8] p-4 lg:mx-0 lg:mt-0 lg:table-cell lg:rounded-none lg:px-10 lg:py-9 lg:align-middle",
+                    !last && "lg:border-b lg:border-white/25",
+                  )}
+                >
+                  <motion.span className="block" {...rise(rowDelay(i) + 0.12)}>
+                    <span aria-hidden="true" className="mb-3 block lg:hidden">
+                      <RosterLabLogo className="h-6" />
+                    </span>
+                    <span className="flex items-center gap-4">
+                      <motion.span
+                        aria-hidden="true"
+                        className="shrink-0"
+                        initial={reduce ? false : { scale: 0, opacity: 0 }}
+                        animate={
+                          on
+                            ? { scale: 1, opacity: 1 }
+                            : { scale: 0, opacity: 0 }
+                        }
+                        transition={
+                          instant ?? {
+                            type: "spring",
+                            stiffness: 420,
+                            damping: 16,
+                            delay: rowDelay(i) + 0.4,
+                          }
+                        }
+                      >
+                        {/* White disc; the tick is cut out, so the blue
+                            shows through it. */}
+                        <PiCheckCircleFill className="h-8 w-8 text-white lg:h-10 lg:w-10" />
+                      </motion.span>
+                      <span className="text-base leading-relaxed text-white lg:text-lg">
+                        {row.rosterlab}
+                      </span>
+                    </span>
+                  </motion.span>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

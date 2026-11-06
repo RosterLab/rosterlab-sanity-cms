@@ -118,9 +118,9 @@ const CAPABILITIES = [
       href: "/solutions/ai-roster-generator",
     },
     image: {
-      src: "/images/industries/nursing/ai-roster-generating.webp",
-      alt: "RosterLab generating a ward roster in front of the Rule Builder, balancing rules, staffing demand and staff preferences",
-      className: "object-cover object-[center_40%]",
+      src: "/images/industries/nursing/ai-roster-generating-v2.webp",
+      alt: "Ward rules and demands for in-charge cover, RN/EN mix and rest days, over RosterLab generating the roster",
+      className: "object-cover",
     },
   },
   {
@@ -132,9 +132,9 @@ const CAPABILITIES = [
       href: "/feature/self-scheduling",
     },
     image: {
-      src: "/images/industries/nursing/staff-preferences.webp",
+      src: "/images/industries/nursing/staff-preferences-v2.webp",
       alt: "Staff preferences in RosterLab on desktop, with a nurse requesting a shift and accepting an open shift in the mobile app",
-      className: "object-cover object-[center_40%]",
+      className: "object-cover",
     },
   },
 ];
@@ -363,7 +363,7 @@ export default function NurseRosteringPage() {
                 </Reveal>
                 <Reveal
                   delay={0.12}
-                  className={`relative aspect-[3/2] overflow-hidden rounded-2xl bg-[#EAF1FD] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
+                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#3B7FE8] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
                     i % 2 === 1 ? "md:order-first" : ""
                   }`}
                 >
@@ -394,13 +394,13 @@ export default function NurseRosteringPage() {
           <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
             <div className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:aspect-auto">
               {/* Landscape photo in a tall slot on desktop: the crop is held on
-                  the nurse, who stands right of centre. */}
+                  the nurse, who sits just left of centre. */}
               <Image
-                src="/images/industries/nursing/nurse-case-study.webp"
-                alt="A smiling nurse in scrubs holding a coffee and a folder"
+                src="/images/industries/nursing/nurse-case-study-desk.webp"
+                alt="A smiling nurse in scrubs with a stethoscope, seated at a desk"
                 fill
                 sizes="(min-width: 1024px) 340px, 100vw"
-                className="object-cover object-[60%_30%] saturate-[0.85] contrast-[1.08]"
+                className="object-cover object-[45%_25%] saturate-[0.85] contrast-[1.08]"
               />
               {/* Grade the warm photo towards the navy panel beside it: a
                   cool tint over everything, then a navy fade from the
