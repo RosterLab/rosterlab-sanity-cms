@@ -233,8 +233,9 @@ export default function CriticalCareRosteringPage() {
           },
         }}
         image={{
-          src: "/images/industries/icu-ed.webp",
-          alt: "A clinician in scrubs and a white coat checking her phone in a hospital corridor",
+          src: "/images/industries/nursing/critical-care-hero-bedside.webp",
+          alt: "A nurse adjusting a patient's oxygen mask while a doctor reviews notes on a clipboard at the bedside",
+          objectPosition: "center 8%",
         }}
       />
 
@@ -380,14 +381,14 @@ export default function CriticalCareRosteringPage() {
         <Container>
           <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
             <div className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:aspect-auto">
-              {/* Landscape photo in a tall slot on desktop: the crop is held on
-                  the group of clinicians at the centre. */}
+              {/* Portrait photo: the crop is held on the patient monitor
+                  above the bed. */}
               <Image
-                src="/images/industries/junior-doctor.webp"
-                alt="A team of clinicians in white coats and scrubs talking as they walk through a hospital"
+                src="/images/industries/nursing/critical-care-case-study-monitor.webp"
+                alt="A patient monitor showing heart rate and breathing above an empty hospital bed"
                 fill
                 sizes="(min-width: 1024px) 340px, 100vw"
-                className="object-cover object-[50%_35%] saturate-[0.85] contrast-[1.08]"
+                className="object-cover object-[45%_28%] saturate-[0.85] contrast-[1.08]"
               />
               {/* Grade the warm photo towards the navy panel beside it: a
                   cool tint over everything, then a navy fade from the
