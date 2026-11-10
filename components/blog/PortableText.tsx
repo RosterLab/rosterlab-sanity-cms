@@ -3,6 +3,9 @@ import { PortableText as BasePortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
 import { canonicalArticleHref } from '@/lib/posts/article-redirects'
+import RosteringSoftwareTable, { rosteringSoftwareTableImages } from './RosteringSoftwareTable'
+import BuyersChecklist from './BuyersChecklist'
+import { withInteractiveChecklist } from '@/lib/posts/interactive-checklist'
 
 const components = {
   block: {
@@ -46,8 +49,10 @@ const components = {
         <h4 id={id} className="text-xl font-bold mb-2 mt-4 text-neutral-900 scroll-mt-24">{children}</h4>
       )
     },
-    normal: ({ children }: any) => (
-      <p className="mb-4 text-neutral-700 leading-relaxed">{children}</p>
+    normal: ({ children, value }: any) => (
+      <p className={['8a6bf4d70fdc', '25f9ced36753'].includes(value?._key)
+        ? '-mt-4 mb-8 text-center text-sm text-neutral-500 leading-relaxed'
+        : 'mb-4 text-neutral-700 leading-relaxed'}>{children}</p>
     ),
     blockquote: ({ children }: any) => (
       <blockquote className="border-l-4 border-primary-500 pl-6 py-2 mb-4 italic text-neutral-600 bg-neutral-50 rounded-r-lg">
@@ -163,8 +168,18 @@ const components = {
 
 interface PortableTextProps {
   value: any
+  isUS?: boolean
 }
 
-export default function PortableText({ value }: PortableTextProps) {
-  return <BasePortableText value={value} components={components} />
+export default function PortableText({ value, isUS = false }: PortableTextProps) {
+  return <BasePortableText value={withInteractiveChecklist(value)} components={{
+    ...components,
+    types: {
+      ...components.types,
+      buyersChecklist: ({ value }: any) => <BuyersChecklist intro={value.intro} groups={value.groups} />,
+      image: (props: any) => rosteringSoftwareTableImages.has(props.value?.asset?._ref)
+        ? <RosteringSoftwareTable isUS={isUS} />
+        : components.types.image(props),
+    },
+  }} />
 }

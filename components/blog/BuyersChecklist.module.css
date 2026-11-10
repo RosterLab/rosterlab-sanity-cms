@@ -1,0 +1,117 @@
+.checklist {
+  margin-block: 1.5rem 2.5rem;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid #e9edf5;
+  border-radius: 16px;
+  background: #f4f6fb;
+  color: #374151;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: normal;
+}
+
+.intro p {
+  margin: 0 0 0.75rem;
+}
+
+.intro {
+  margin-bottom: 0.5rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.controls strong {
+  color: #17233b;
+  font-weight: 700;
+}
+
+.reset {
+  min-height: 44px;
+  padding: 0.5rem 0.25rem;
+  color: #2855d9;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: 4px;
+}
+
+.reset:disabled {
+  color: #667085;
+  text-decoration: none;
+  cursor: default;
+}
+
+.groups {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.group {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.group legend {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0.75rem;
+  color: #17233b;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.items {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem;
+  border: 1px solid #e3e8f1;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.item:has(input:checked) {
+  border-color: #8da9ef;
+}
+
+.item input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 0.1875rem 0 0;
+  accent-color: #2855d9;
+  cursor: pointer;
+}
+
+.item:has(input:focus-visible),
+.reset:focus-visible {
+  outline: 2px solid #2855d9;
+  outline-offset: 3px;
+}
+
+.storageNote {
+  margin: 1.25rem 0 0;
+  color: #536078;
+  font-size: 0.8125rem;
+}
+
+@media (hover: hover) {
+  .item:hover {
+    border-color: #8da9ef;
+  }
+}
