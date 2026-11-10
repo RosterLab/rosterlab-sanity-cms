@@ -12,15 +12,7 @@ import Reveal from "@/app/enterprise/Reveal";
 import RosterComparison, {
   type ComparisonRow,
 } from "@/app/industries/healthcare/nurse-rostering/RosterComparison";
-import {
-  PiArrowRightBold,
-  PiHandshake,
-  PiMagnifyingGlass,
-  PiMoonStars,
-  PiQuotesFill,
-  PiUsersThree,
-} from "react-icons/pi";
-import type { IconType } from "react-icons";
+import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 
 // Palette follows the enterprise page: navy #1F2A5C for headings and dark
 // surfaces, site blue #3B7FE8 for actions, mint #03F9BE for proof points on
@@ -66,6 +58,7 @@ export const metadata = withHreflang(
 const LOCATION = "US Industry Page Nurse Scheduling";
 const PAGE_NAME = "Nurse Scheduling";
 const HOW_IT_WORKS = "how-it-works";
+const INTERACTIVE_DEMO = "/us/product-tour";
 const CASE_STUDY =
   getUSPath("/case-studies/dargaville-medical-centre-new-zealand") ??
   "/us/case-studies";
@@ -83,40 +76,30 @@ const SPECIALTIES = [
   "Long-term care",
 ];
 
-// Open on the intro's grey, each benefit marked by its own coloured tile.
+// Benefits share the intro’s grey background.
 const BENEFITS: {
-  icon: IconType;
   title: string;
   description: string;
-  tile: string;
 }[] = [
   {
-    icon: PiUsersThree,
     title: "Less juggling. More time for your team.",
     description:
       "Balancing everyone’s needs takes time and care. RosterLab builds the schedule around your rules and staff requests, so you spend less time piecing shifts together and more time supporting your team.",
-    tile: "bg-[#3B7FE8]",
   },
   {
-    icon: PiMoonStars,
     title: "Fairer shifts, with room to recover",
     description:
       "A fair schedule helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and preferences, while applying your team’s rest rules.",
-    tile: "bg-[#5B67D8]",
   },
   {
-    icon: PiHandshake,
     title: "Honor the agreements your team relies on",
     description:
       "Your team should be able to rely on the arrangements agreed with them. RosterLab applies your compliance rules, contracted hours and rest requirements during generation, and flags violations when you make changes.",
-    tile: "bg-[#E57200]",
   },
   {
-    icon: PiMagnifyingGlass,
     title: "See where your team needs more support",
     description:
       "You shouldn’t have to hold every staffing detail in your head. See gaps in headcount, senior cover and clinical skills before publishing, so you know where extra support is needed.",
-    tile: "bg-[#0E9F7E]",
   },
 ];
 
@@ -248,7 +231,7 @@ export default function USNurseSchedulingPage() {
           },
         }}
         secondaryCta={{
-          href: `#${HOW_IT_WORKS}`,
+          href: INTERACTIVE_DEMO,
           label: "See how it works",
           analyticsProperties: {
             cta_type: "how_it_works",
@@ -262,6 +245,14 @@ export default function USNurseSchedulingPage() {
         }}
       />
 
+      {/* Customer logos. */}
+      <TrustedByDualRow
+        singleRow
+        headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
+        logoColor="#1F2A5C"
+        heading="Trusted by healthcare teams"
+      />
+
       {/* 2 — Intro: centred heading and copy, the specialties in one white
           bubble on the grey. */}
       <section className="bg-[#F4F6FB] py-16 md:py-24">
@@ -271,20 +262,14 @@ export default function USNurseSchedulingPage() {
               The schedule shouldn&apos;t make a demanding job harder
             </Reveal>
             <Reveal
+              as="p"
               delay={0.12}
-              className="mt-6 space-y-4 text-lg text-gray-600 leading-relaxed"
+              className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              <p>
-                Nurses and midwives deserve schedules that give them enough time
-                to recover between shifts, plan ahead and balance work with life
-                outside it.
-              </p>
-              <p>
-                For nursing and midwifery leads, every schedule means balancing
-                time off, working arrangements and the right clinical cover.
-                RosterLab brings those needs together, so less of that balancing
-                falls on you.
-              </p>
+              RosterLab builds nursing and midwifery schedules around clinical
+              coverage, skill mix and staff preferences, helping your team
+              recover between shifts and plan life outside work while reducing
+              scheduling admin.
             </Reveal>
           </div>
 
@@ -306,113 +291,22 @@ export default function USNurseSchedulingPage() {
               ))}
             </ul>
           </Reveal>
-
-          {/* Core benefits: open on the same grey, no cards, each marked by
-              its coloured tile. */}
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:mt-24 md:grid-cols-2 md:gap-y-14">
-            {BENEFITS.map(({ icon: Icon, title, description, tile }, i) => (
-              <Reveal key={title} delay={(i % 2) * 0.12}>
-                <span
-                  aria-hidden="true"
-                  className={`flex h-12 w-12 items-center justify-center rounded-xl ${tile}`}
-                >
-                  <Icon className="h-7 w-7 text-white" />
-                </span>
-                <h3 className="mt-5 text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
-                  {title}
-                </h3>
-                <p className="mt-3 text-base text-gray-600 leading-relaxed">
-                  {description}
-                </p>
-              </Reveal>
-            ))}
-          </div>
         </Container>
       </section>
 
-      {/* 3 — Core capabilities: alternating rows, large product imagery
-          (first image right, second left). */}
-      <section className="bg-white py-16 md:py-28">
-        <Container>
-          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
-            Built for the complexity of nursing and midwifery scheduling
-          </Reveal>
-
-          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
-            {CAPABILITIES.map((c, i) => (
-              <div
-                key={c.title}
-                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
-                  i % 2 === 0
-                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
-                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
-                }`}
-              >
-                <Reveal>
-                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-                    {c.title}
-                  </h3>
-                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                    {c.description}
-                  </p>
-                  <Button
-                    href={c.link.href}
-                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
-                    analyticsLabel={c.link.label}
-                    analyticsLocation={LOCATION}
-                    analyticsProperties={{
-                      cta_type: "learn_more",
-                      page_name: PAGE_NAME,
-                      section: "capabilities",
-                    }}
-                  >
-                    {c.link.label}
-                    <PiArrowRightBold
-                      aria-hidden="true"
-                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    />
-                  </Button>
-                </Reveal>
-                <Reveal
-                  delay={0.12}
-                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#3B7FE8] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
-                    i % 2 === 1 ? "md:order-first" : ""
-                  }`}
-                >
-                  <Image
-                    src={c.image.src}
-                    alt={c.image.alt}
-                    fill
-                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
-                    className={c.image.className}
-                  />
-                </Reveal>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* 4 — Customer logos (the enterprise row) and the case study callout:
-          a photo beside a navy panel, proof points in mint. */}
-      <TrustedByDualRow
-        singleRow
-        headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
-        logoColor="#1F2A5C"
-        heading="Trusted by healthcare teams"
-      />
-      <section className="pb-16 md:pb-24">
+      {/* 3 — Case study: a photo beside a navy panel, proof points in mint. */}
+      <section className="py-16 md:py-24">
         <Container>
           <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:aspect-auto">
+            <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:block">
               {/* Landscape photo in a tall slot on desktop: the crop is held on
-                  the nurse, who stands right of centre. */}
+                  the nurse, who sits just left of centre. */}
               <Image
-                src="/images/industries/nursing/nurse-case-study.webp"
-                alt="A smiling nurse in scrubs holding a coffee and a folder"
+                src="/images/industries/nursing/nurse-case-study-desk.webp"
+                alt="A smiling nurse in scrubs with a stethoscope, seated at a desk"
                 fill
-                sizes="(min-width: 1024px) 340px, 100vw"
-                className="object-cover object-[60%_30%] saturate-[0.85] contrast-[1.08]"
+                sizes="340px"
+                className="object-cover object-[45%_25%] saturate-[0.85] contrast-[1.08]"
               />
               {/* Grade the warm photo towards the navy panel beside it: a
                   cool tint over everything, then a navy fade from the
@@ -505,11 +399,91 @@ export default function USNurseSchedulingPage() {
         </Container>
       </section>
 
-      {/* 5 — How it works: the comparison, played out. Target of every
-          "See how it works". */}
+      {/* Core benefits. */}
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
+        <Container>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 md:gap-y-14">
+            {BENEFITS.map(({ title, description }, i) => (
+              <Reveal key={title} delay={(i % 2) * 0.12}>
+                <h3 className="text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
+                  {title}
+                </h3>
+                <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                  {description}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* 4 — Core capabilities: alternating rows, large product imagery
+          (first image right, second left). */}
+      <section className="bg-white py-16 md:py-28">
+        <Container>
+          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
+            Built for the complexity of nursing and midwifery scheduling
+          </Reveal>
+
+          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
+            {CAPABILITIES.map((c, i) => (
+              <div
+                key={c.title}
+                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
+                  i % 2 === 0
+                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
+                }`}
+              >
+                <Reveal>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                    {c.description}
+                  </p>
+                  <Button
+                    href={c.link.href}
+                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
+                    analyticsLabel={c.link.label}
+                    analyticsLocation={LOCATION}
+                    analyticsProperties={{
+                      cta_type: "learn_more",
+                      page_name: PAGE_NAME,
+                      section: "capabilities",
+                    }}
+                  >
+                    {c.link.label}
+                    <PiArrowRightBold
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Button>
+                </Reveal>
+                <Reveal
+                  delay={0.12}
+                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#3B7FE8] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
+                    i % 2 === 1 ? "md:order-first" : ""
+                  }`}
+                >
+                  <Image
+                    src={c.image.src}
+                    alt={c.image.alt}
+                    fill
+                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
+                    className={c.image.className}
+                  />
+                </Reveal>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* 5 — Manual planning and automated scheduling compared. */}
       <section
         id={HOW_IT_WORKS}
-        className="scroll-mt-24 bg-[#F4F6FB] py-16 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] py-16 md:py-24"
       >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -541,6 +515,16 @@ export default function USNurseSchedulingPage() {
             />
           </div>
         </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-white md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C360 96 960-32 1440 32V80H0Z" />
+        </svg>
       </section>
 
       {/* 6 — Onboarding & support: heading left, copy right, on the FAQ's
@@ -621,7 +605,7 @@ export default function USNurseSchedulingPage() {
                   Book a demo
                 </Button>
                 <Button
-                  href={`#${HOW_IT_WORKS}`}
+                  href={INTERACTIVE_DEMO}
                   variant="outline"
                   className="rounded-md border-2 border-[#053B3D] px-7 py-3.5 text-base font-semibold text-[#053B3D] hover:bg-[#053B3D] hover:text-white"
                   analyticsLabel="See how it works"
