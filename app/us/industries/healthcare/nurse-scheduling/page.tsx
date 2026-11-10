@@ -529,10 +529,10 @@ export default function USNurseSchedulingPage() {
 
       {/* 6 — Onboarding & support: heading left, copy right, on the FAQ's
           columns so the two sections line up. */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
         <Container>
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
               Saving time from your first schedule
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -543,10 +543,20 @@ export default function USNurseSchedulingPage() {
             </p>
           </div>
         </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-[#F4F6FB] md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C480-32 1080 96 1440 32V80H0Z" />
+        </svg>
       </section>
 
       {/* 7 — FAQ: the enterprise layout. */}
-      <section className="bg-[#F4F6FB] py-16 md:py-24">
+      <section className="bg-[#F4F6FB] pt-28 pb-16 md:pt-36 md:pb-24">
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
