@@ -1,0 +1,132 @@
+.comparison {
+  container-type: inline-size;
+  margin-block: 2rem;
+}
+
+.table {
+  display: block;
+  width: 100%;
+  border: 1px solid #d9dde4;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  color: #262626;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+  overflow-wrap: normal;
+}
+
+.table thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.table tbody,
+.table tr,
+.table th,
+.table td {
+  display: block;
+}
+
+.table th,
+.table td {
+  padding: 1rem 1.25rem;
+}
+
+.table tbody th {
+  background: #f7f8fa;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  border-bottom: 1px solid #d9dde4;
+}
+
+.table tbody tr + tr {
+  border-top: 1px solid #d9dde4;
+}
+
+.table td + td {
+  padding-top: 0;
+}
+
+.highlight {
+  color: #2855f5;
+}
+
+.mobileLabel {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+@container (min-width: 560px) {
+  .table {
+    display: table;
+    table-layout: fixed;
+  }
+
+  .table thead {
+    display: table-header-group;
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    background: #f7f8fa;
+  }
+
+  .table tbody {
+    display: table-row-group;
+  }
+
+  .table tr {
+    display: table-row;
+  }
+
+  .table th,
+  .table td {
+    display: table-cell;
+    padding: 1.25rem;
+    vertical-align: middle;
+  }
+
+  .table th + th,
+  .table td {
+    border-left: 1px solid #d9dde4;
+  }
+
+  .table tbody th,
+  .table tbody td {
+    border-top: 1px solid #d9dde4;
+    border-bottom: 0;
+  }
+
+  .table tbody th {
+    background: white;
+  }
+
+  .table thead th:first-child {
+    width: 26%;
+  }
+
+  .table thead th:nth-child(2) {
+    width: 40%;
+  }
+
+  .table td + td {
+    padding-top: 1.25rem;
+  }
+
+  .mobileLabel {
+    display: none;
+  }
+}

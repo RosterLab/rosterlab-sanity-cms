@@ -277,7 +277,7 @@ export default async function BlogPostPage({
             <main className="min-w-0 lg:col-span-6">
               {/* Article Body */}
               <div className="prose prose-lg max-w-none [overflow-wrap:anywhere] prose-headings:scroll-mt-24">
-                <PortableText value={post.body} />
+                <PortableText value={post.body} isUS={isUS} />
               </div>
 
               {/* Related Posts */}

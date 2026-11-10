@@ -2,10 +2,18 @@
 
 import { effectiveUSSlug } from "@/lib/localization/us-slug";
 import Link from "next/link";
-import { authorByline, postAuthors } from "@/lib/posts/authors";
+import { authorByline, postAuthors, type PostAuthor } from "@/lib/posts/authors";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/utils";
+
+// These artwork variants include safe margins for the standard card crop.
+const guidePreviewImages: Record<string, string> = {
+  'image-e8ca32296098d6261ac59b6e3b92a867e0a70343-1670x941-png':
+    '/images/blog/healthcare-rostering-buyers-guide-preview-v2.webp',
+  'image-8afed9a82fe7f23bf16aa1dec74ce9f6c096b8fb-1671x941-png':
+    '/images/blog/healthcare-scheduling-buyers-guide-preview-v2.webp',
+};
 
 interface BlogCardProps {
   basePath?: string;
@@ -17,11 +25,8 @@ interface BlogCardProps {
     excerpt?: string;
     mainImage?: { asset: { _ref: string }; alt?: string };
     publishedAt: string;
-    author: {
-      name: string;
-      slug?: { current: string };
-      image?: { asset: { _ref: string }; alt?: string };
-    };
+    author?: PostAuthor | null;
+    authors?: PostAuthor[] | null;
     categories?: Array<{
       title: string;
       slug: { current: string };
@@ -30,6 +35,17 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
+  const authors = postAuthors(post);
+  const primaryAuthor = authors[0];
+  const byline = authorByline(authors) || "Unknown Author";
+  const authorImage = primaryAuthor?.image as { asset?: { _ref?: string } } | undefined;
+  const authorImageSrc = authorImage
+    ? authorImage.asset?._ref === 'image-9af26c62683d190949edc8918237304656b86269-1667x2500-jpg'
+      // Include headroom and shoulders from the original portrait, then fit
+      // that wider view into the avatar without stretching or editing the face.
+      ? urlFor(authorImage).rect(0, 0, 1667, 2000).width(48).height(48).fit('fill').bg('f4f6fb').url()
+      : urlFor(authorImage).width(48).height(48).url()
+    : undefined;
   // Determine the correct URL path based on categories
   const getPostUrl = () => {
     if (post.categories?.some((cat) => cat.slug.current === "case-studies")) {
@@ -53,9 +69,10 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
         <Link href={postUrl}>
           <div className="relative h-48 w-full">
             <Image
-              src={urlFor(post.mainImage).width(400).height(200).url()}
+              src={guidePreviewImages[post.mainImage.asset._ref] || urlFor(post.mainImage).width(400).height(200).url()}
               alt={post.mainImage.alt || post.title}
               fill
+              sizes="(min-width: 1400px) 424px, (min-width: 1280px) 384px, (min-width: 1024px) 299px, (min-width: 768px) 344px, (min-width: 640px) 592px, calc(100vw - 32px)"
               className="object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
@@ -102,37 +119,39 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
         )}
 
         <div className="flex items-center justify-between text-sm text-neutral-500">
-          {post.author?.slug ? (
+          {primaryAuthor?.slug?.current ? (
             <Link
-              href={`/authors/${post.author.slug.current}`}
+              href={`/authors/${primaryAuthor.slug.current}`}
               className="flex items-center space-x-2 hover:text-blue-600 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
-              {post.author?.image && (
-                <div className="relative w-6 h-6">
+              {authorImageSrc ? (
+                <div className="relative w-6 h-6 shrink-0">
                   <Image
-                    src={urlFor(post.author.image).width(24).height(24).url()}
-                    alt={post.author.name}
+                    src={authorImageSrc}
+                    alt={primaryAuthor.name || "Author"}
                     fill
+                    sizes="24px"
                     className="rounded-full object-cover"
                   />
                 </div>
-              )}
-              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
+              ) : null}
+              <span>{byline}</span>
             </Link>
           ) : (
             <div className="flex items-center space-x-2">
-              {post.author?.image && (
-                <div className="relative w-6 h-6">
+              {authorImageSrc ? (
+                <div className="relative w-6 h-6 shrink-0">
                   <Image
-                    src={urlFor(post.author.image).width(24).height(24).url()}
-                    alt={post.author.name}
+                    src={authorImageSrc}
+                    alt={primaryAuthor?.name || "Author"}
                     fill
+                    sizes="24px"
                     className="rounded-full object-cover"
                   />
                 </div>
-              )}
-              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
+              ) : null}
+              <span>{byline}</span>
             </div>
           )}
           <time>{formatDate(post.publishedAt)}</time>
