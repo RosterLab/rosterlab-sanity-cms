@@ -12,15 +12,7 @@ import Reveal from "@/app/enterprise/Reveal";
 import RosterComparison, {
   type ComparisonRow,
 } from "@/app/industries/healthcare/nurse-rostering/RosterComparison";
-import {
-  PiArrowRightBold,
-  PiArrowsLeftRight,
-  PiClockCountdown,
-  PiMoonStars,
-  PiQuotesFill,
-  PiStethoscope,
-} from "react-icons/pi";
-import type { IconType } from "react-icons";
+import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 
 // Palette follows the enterprise page: navy #1F2A5C for headings and dark
 // surfaces, site blue #3B7FE8 for actions, mint #03F9BE for proof points on
@@ -58,6 +50,7 @@ export const metadata = withHreflang(
 const LOCATION = "Industry Page Critical Care Rostering";
 const PAGE_NAME = "Critical Care Rostering";
 const HOW_IT_WORKS = "how-it-works";
+const INTERACTIVE_DEMO = "/staff-rostering-interactive-demo";
 const CASE_STUDY = "/case-studies/icu-unit-western-australia";
 
 /* ---------------------------------------------------------------- content */
@@ -68,40 +61,30 @@ const SPECIALTIES = [
   "Acute Medical Units",
 ];
 
-// Open on the intro's grey, each benefit marked by its own coloured tile.
+// Benefits share the intro’s grey background.
 const BENEFITS: {
-  icon: IconType;
   title: string;
   description: string;
-  tile: string;
 }[] = [
   {
-    icon: PiClockCountdown,
     title: "Less roster admin, more time for care",
     description:
       "Take days of manual roster preparation off your workload. RosterLab’s AI works through your unit's staffing requirements, shift patterns and constraints to generate a complete ICU roster in minutes, ready for your review.",
-    tile: "bg-[#3B7FE8]",
   },
   {
-    icon: PiMoonStars,
     title: "Fairer rosters, with more room for recovery",
     description:
       "Distribute nights, weekends, and on-call duties fairly across the team. RosterLab enforces your rest rules automatically, giving staff adequate recovery between long intensive shifts.",
-    tile: "bg-[#5B67D8]",
   },
   {
-    icon: PiArrowsLeftRight,
     title: "Support continuity of care",
     description:
       "Keep at least one team member from the previous shift rostered on to maintain continuity of care, supporting smoother handovers and improved patient outcomes.",
-    tile: "bg-[#E57200]",
   },
   {
-    icon: PiStethoscope,
     title: "Plan for specialist cover and supervision",
     description:
       "No more cross-checking spreadsheets to see who can cover which shift or task. RosterLab assigns clinicians based on their competencies and supervision requirements, highlighting any gaps that need your attention.",
-    tile: "bg-[#0E9F7E]",
   },
 ];
 
@@ -224,7 +207,7 @@ export default function CriticalCareRosteringPage() {
           },
         }}
         secondaryCta={{
-          href: `#${HOW_IT_WORKS}`,
+          href: INTERACTIVE_DEMO,
           label: "See how it works",
           analyticsProperties: {
             cta_type: "how_it_works",
@@ -239,6 +222,14 @@ export default function CriticalCareRosteringPage() {
         }}
       />
 
+      {/* Customer logos. */}
+      <TrustedByDualRow
+        singleRow
+        headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
+        logoColor="#1F2A5C"
+        heading="Trusted by healthcare teams"
+      />
+
       {/* 2 — Intro: centred heading and copy, the specialties in one white
           bubble on the grey. */}
       <section className="bg-[#F4F6FB] py-16 md:py-24">
@@ -248,19 +239,13 @@ export default function CriticalCareRosteringPage() {
               Every critical hour, safely staffed
             </Reveal>
             <Reveal
+              as="p"
               delay={0.12}
-              className="mt-6 space-y-4 text-lg text-gray-600 leading-relaxed"
+              className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              <p>
-                Behind every ICU roster are dozens of staffing decisions to get
-                right, from skill mix and overnight cover to fatigue limits and
-                individual working arrangements.
-              </p>
-              <p>
-                RosterLab balances these requirements across the entire roster,
-                keeping your unit safely covered around the clock and your team
-                well supported.
-              </p>
+              RosterLab balances ICU skill mix, overnight cover, fatigue limits
+              and working arrangements across your roster, helping you plan
+              around-the-clock clinical coverage while reducing roster admin.
             </Reveal>
           </div>
 
@@ -282,112 +267,21 @@ export default function CriticalCareRosteringPage() {
               ))}
             </ul>
           </Reveal>
-
-          {/* Core benefits: open on the same grey, no cards, each marked by
-              its coloured tile. */}
-          <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:mt-24 md:grid-cols-2 md:gap-y-14">
-            {BENEFITS.map(({ icon: Icon, title, description, tile }, i) => (
-              <Reveal key={title} delay={(i % 2) * 0.12}>
-                <span
-                  aria-hidden="true"
-                  className={`flex h-12 w-12 items-center justify-center rounded-xl ${tile}`}
-                >
-                  <Icon className="h-7 w-7 text-white" />
-                </span>
-                <h3 className="mt-5 text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
-                  {title}
-                </h3>
-                <p className="mt-3 text-base text-gray-600 leading-relaxed">
-                  {description}
-                </p>
-              </Reveal>
-            ))}
-          </div>
         </Container>
       </section>
 
-      {/* 3 — Core capabilities: alternating rows, large product imagery
-          (first image right, second left). */}
-      <section className="bg-white py-16 md:py-28">
-        <Container>
-          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
-            Keeping intensive care teams running smoothly
-          </Reveal>
-
-          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
-            {CAPABILITIES.map((c, i) => (
-              <div
-                key={c.title}
-                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
-                  i % 2 === 0
-                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
-                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
-                }`}
-              >
-                <Reveal>
-                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-                    {c.title}
-                  </h3>
-                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                    {c.description}
-                  </p>
-                  <Button
-                    href={c.link.href}
-                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
-                    analyticsLabel={c.link.label}
-                    analyticsLocation={LOCATION}
-                    analyticsProperties={{
-                      cta_type: "learn_more",
-                      page_name: PAGE_NAME,
-                      section: "capabilities",
-                    }}
-                  >
-                    {c.link.label}
-                    <PiArrowRightBold
-                      aria-hidden="true"
-                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    />
-                  </Button>
-                </Reveal>
-                <Reveal
-                  delay={0.12}
-                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm ring-1 ring-[#1F2A5C]/5 ${c.frame} ${
-                    i % 2 === 1 ? "md:order-first" : ""
-                  }`}
-                >
-                  <Image
-                    src={c.image.src}
-                    alt={c.image.alt}
-                    fill
-                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
-                    className={c.image.className}
-                  />
-                </Reveal>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* 4 — Customer logos (the enterprise row) and the case study callout:
-          a photo beside a navy panel, proof points in mint. */}
-      <TrustedByDualRow
-        singleRow
-        headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
-        logoColor="#1F2A5C"
-        heading="Trusted by healthcare teams"
-      />
-      <section className="pb-16 md:pb-24">
+      {/* 3 — Case study: a photo beside a navy panel, proof points in mint. */}
+      <section className="py-16 md:py-24">
         <Container>
           <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:aspect-auto">
+            <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:block">
               {/* Portrait photo: the crop is held on the patient monitor
                   above the bed. */}
               <Image
                 src="/images/industries/nursing/critical-care-case-study-monitor.webp"
                 alt="A patient monitor showing heart rate and breathing above an empty hospital bed"
                 fill
-                sizes="(min-width: 1024px) 340px, 100vw"
+                sizes="340px"
                 className="object-cover object-[45%_28%] saturate-[0.85] contrast-[1.08]"
               />
               {/* Grade the warm photo towards the navy panel beside it: a
@@ -480,11 +374,91 @@ export default function CriticalCareRosteringPage() {
         </Container>
       </section>
 
-      {/* 5 — How it works: the comparison, played out. Target of every
-          "See how it works". */}
+      {/* Core benefits. */}
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
+        <Container>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 md:gap-y-14">
+            {BENEFITS.map(({ title, description }, i) => (
+              <Reveal key={title} delay={(i % 2) * 0.12}>
+                <h3 className="text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
+                  {title}
+                </h3>
+                <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                  {description}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* 4 — Core capabilities: alternating rows, large product imagery
+          (first image right, second left). */}
+      <section className="bg-white py-16 md:py-28">
+        <Container>
+          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
+            Keeping intensive care teams running smoothly
+          </Reveal>
+
+          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
+            {CAPABILITIES.map((c, i) => (
+              <div
+                key={c.title}
+                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
+                  i % 2 === 0
+                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
+                }`}
+              >
+                <Reveal>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                    {c.description}
+                  </p>
+                  <Button
+                    href={c.link.href}
+                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
+                    analyticsLabel={c.link.label}
+                    analyticsLocation={LOCATION}
+                    analyticsProperties={{
+                      cta_type: "learn_more",
+                      page_name: PAGE_NAME,
+                      section: "capabilities",
+                    }}
+                  >
+                    {c.link.label}
+                    <PiArrowRightBold
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Button>
+                </Reveal>
+                <Reveal
+                  delay={0.12}
+                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl shadow-sm ring-1 ring-[#1F2A5C]/5 ${c.frame} ${
+                    i % 2 === 1 ? "md:order-first" : ""
+                  }`}
+                >
+                  <Image
+                    src={c.image.src}
+                    alt={c.image.alt}
+                    fill
+                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
+                    className={c.image.className}
+                  />
+                </Reveal>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* 5 — Manual planning and automated rostering compared. */}
       <section
         id={HOW_IT_WORKS}
-        className="scroll-mt-24 bg-[#F4F6FB] py-16 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] py-16 md:py-24"
       >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -510,14 +484,24 @@ export default function CriticalCareRosteringPage() {
             <RosterComparison rows={COMPARISON} />
           </div>
         </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-white md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C360 96 960-32 1440 32V80H0Z" />
+        </svg>
       </section>
 
       {/* 6 — Onboarding & support: heading left, copy right, on the FAQ's
           columns so the two sections line up. */}
-      <section className="bg-white py-16 md:py-24">
+      <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
         <Container>
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
               Saving time from your first roster
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -528,10 +512,20 @@ export default function CriticalCareRosteringPage() {
             </p>
           </div>
         </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-[#F4F6FB] md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C480-32 1080 96 1440 32V80H0Z" />
+        </svg>
       </section>
 
       {/* 7 — FAQ: the enterprise layout. */}
-      <section className="bg-[#F4F6FB] py-16 md:py-24">
+      <section className="bg-[#F4F6FB] pt-28 pb-16 md:pt-36 md:pb-24">
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
@@ -539,7 +533,7 @@ export default function CriticalCareRosteringPage() {
                 Frequently Asked Questions
               </h2>
               <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">
-                Common questions about critical care scheduling
+                Common questions about critical care rostering
               </p>
             </div>
             <EnterpriseFAQ items={FAQ_ITEMS} />
@@ -590,7 +584,7 @@ export default function CriticalCareRosteringPage() {
                   Book a demo
                 </Button>
                 <Button
-                  href={`#${HOW_IT_WORKS}`}
+                  href={INTERACTIVE_DEMO}
                   variant="outline"
                   className="rounded-md border-2 border-[#053B3D] px-7 py-3.5 text-base font-semibold text-[#053B3D] hover:bg-[#053B3D] hover:text-white"
                   analyticsLabel="See how it works"

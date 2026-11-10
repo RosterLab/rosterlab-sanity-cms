@@ -698,17 +698,19 @@ export default function Header({
                                   </div>
                                 </Link>
 
-                                {/* Critical Care Roster (AU only for now) */}
-                                {!isUSVersion && (
-                                  <Link
-                                    href="/industries/healthcare/critical-care-rostering"
-                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                  >
-                                    <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                      Critical Care
-                                    </div>
-                                  </Link>
-                                )}
+                                {/* Critical Care */}
+                                <Link
+                                  href={
+                                    isUSVersion
+                                      ? "/us/industries/healthcare/critical-care-scheduling"
+                                      : "/industries/healthcare/critical-care-rostering"
+                                  }
+                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
+                                >
+                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
+                                    Critical Care
+                                  </div>
+                                </Link>
 
                                 {/* Emergency Department Roster (AU only, placeholder) */}
                                 {!isUSVersion && (
