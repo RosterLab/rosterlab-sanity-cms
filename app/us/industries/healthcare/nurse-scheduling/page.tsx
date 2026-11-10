@@ -25,7 +25,7 @@ export const metadata = withHreflang(
   {
     title: "Nursing & Midwifery AI Scheduling Software",
     description:
-      "Generate nursing and midwifery schedules around skill mix, labor laws and staff preferences. Less scheduling admin, with managers in control. Explore RosterLab.",
+      "Generate nursing and midwifery schedules around skill mix, labor agreements and staff preferences. Spend less time on scheduling with RosterLab.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "Nursing & Midwifery AI Scheduling Software | RosterLab",
       description:
-        "Generate nursing and midwifery schedules around skill mix, labor laws and staff preferences. Less scheduling admin, with managers in control. Explore RosterLab.",
+        "Generate nursing and midwifery schedules around skill mix, labor agreements and staff preferences. Spend less time on scheduling with RosterLab.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
       images: [
@@ -48,7 +48,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "Nursing & Midwifery AI Scheduling Software | RosterLab",
       description:
-        "Generate nursing and midwifery schedules around skill mix, labor laws and staff preferences. Less scheduling admin, with managers in control. Explore RosterLab.",
+        "Generate nursing and midwifery schedules around skill mix, labor agreements and staff preferences. Spend less time on scheduling with RosterLab.",
       images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
@@ -89,12 +89,12 @@ const BENEFITS: {
   {
     title: "Fairer shifts, with room to recover",
     description:
-      "A fair schedule helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and preferences, while applying your team’s rest rules.",
+      "A fair schedule helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and individual preferences.",
   },
   {
     title: "Honor the agreements your team relies on",
     description:
-      "Your team should be able to rely on the arrangements agreed with them. RosterLab applies your compliance rules, contracted hours and rest requirements during generation, and flags violations when you make changes.",
+      "RosterLab applies your labor agreement rules and rest requirements during schedule generation, flagging potential violations for you to review.",
   },
   {
     title: "See where your team needs more support",
@@ -107,14 +107,14 @@ const CAPABILITIES = [
   {
     title: "Generate the whole schedule around your rules",
     description:
-      "For example, a unit needs a charge nurse each night. One nurse has approved time off; another has a fixed working pattern. RosterLab considers these commitments alongside RN/LPN mix, preferences and rest rules. Midwifery teams can define competencies needed across antenatal, birthing and postnatal services.",
+      "Whether it's scheduling a charge nurse each night, maintaining the right RN/LPN mix or meeting patient-to-nurse ratios, RosterLab builds these requirements into every schedule. Midwifery teams can define the competencies needed for prenatal care, labor and delivery, and postpartum care.",
     link: {
       label: "Explore AI scheduling",
       href: "/us/solutions/ai-staff-schedule-maker",
     },
     image: {
       src: "/images/industries/nursing/us-ai-schedule-generating-v2.webp",
-      alt: "Ward rules and demands for in-charge cover, skill mix and rest days, over RosterLab generating the schedule",
+      alt: "Unit staffing rules for charge nurse coverage, skill mix and rest days over a schedule being generated in RosterLab",
       className: "object-cover",
     },
   },
@@ -136,21 +136,23 @@ const CAPABILITIES = [
 
 const COMPARISON: ComparisonRow[] = [
   {
-    task: "Creating allocations",
-    manual: "The scheduler assigns shifts and checks requirements.",
+    task: "Assigning shifts",
+    manual: "Shifts filled one by one, every rule checked manually.",
     rosterlab:
-      "AI generates allocations around staffing requirements, agreements and staff requests.",
+      "AI assigns shifts around staffing needs, rules and staff requests.",
   },
   {
     task: "Balancing connected needs",
-    manual: "The scheduler checks the effects of each allocation.",
+    manual: "Competing requirements weighed one decision at a time.",
     rosterlab:
-      "Optimization considers connected requirements across the schedule.",
+      "Coverage, fairness and preferences balanced across the entire schedule.",
   },
   {
     task: "Handling absences",
-    manual: "The scheduler rearranges shifts and checks the consequences.",
-    rosterlab: "Re-scheduling helps adjust affected shifts for manager review.",
+    manual:
+      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
+    rosterlab:
+      "Affected shifts rescheduled automatically, ready for manager review.",
   },
 ];
 
@@ -159,7 +161,7 @@ const FAQ_ITEMS = [
     question:
       "How is automated nurse scheduling different from digital schedule management?",
     answer:
-      "A schedule can be digital and still be built by hand. RosterLab’s AI generates allocations around staffing requirements, agreement rules and staff requests. Your team reviews and approves the result, then manages preferences, swaps and later changes in the same platform.",
+      "A schedule can be digital and still be built by hand. RosterLab’s AI assigns shifts around staffing requirements, agreement rules and staff requests. Your team reviews and approves the result, then manages preferences, swaps and later changes in the same platform.",
   },
   {
     question:
@@ -177,22 +179,12 @@ const FAQ_ITEMS = [
     question:
       "What happens when a nurse or midwife calls in sick at the last minute?",
     answer:
-      "Review staff whose recorded skills and availability match the gap, along with their scheduled hours and rest requirements. Re-scheduling helps adjust affected shifts; managers review the changes and address any remaining shortfall.",
+      "Review staff whose recorded skills and availability match the gap, along with their scheduled hours and rest requirements. RosterLab helps reschedule affected shifts for managers to review and address any remaining shortfalls.",
   },
   {
     question: "How does RosterLab help distribute nights and weekends fairly?",
     answer:
       "Set allocation rules for nights and weekends around contracted hours and agreed working arrangements. RosterLab applies them consistently during generation, while considering preferences. Review workloads and unmet requests before approving the schedule.",
-  },
-  {
-    question: "Can we keep our existing payroll and workforce systems?",
-    answer:
-      "We’ll confirm the exports or integrations available for your systems and identify any manual steps before rollout. This includes how schedule changes would be kept in sync, so you can assess the full workflow.",
-  },
-  {
-    question: "What information do we need to get started?",
-    answer:
-      "We start by reviewing your current schedule, staff list, contracted hours, shift types, clinical skill requirements and compliance rules. We’ll help separate fixed commitments from preferences and confirm the rules, data and system requirements for your team.",
   },
   {
     question: "Can we keep fixed working arrangements and approved time off?",
@@ -218,8 +210,9 @@ export default function USNurseSchedulingPage() {
     <SiteLayout>
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
+        imageBelowCtasOnMobile
         title="Less scheduling admin. More time for care."
-        description="RosterLab automatically generates nursing and midwifery schedules around staff preferences, skill mix, coverage and labor laws. Less juggling, more time for your team and patients."
+        description="RosterLab automatically generates nursing and midwifery schedules around staff preferences, skill mix, coverage and labor agreements."
         analyticsLocation={LOCATION}
         primaryCta={{
           href: "/us/book-a-demo",
@@ -248,6 +241,7 @@ export default function USNurseSchedulingPage() {
       {/* Customer logos. */}
       <TrustedByDualRow
         singleRow
+        centerHeadingOnMobile
         headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
         logoColor="#1F2A5C"
         heading="Trusted by healthcare teams"
@@ -266,25 +260,25 @@ export default function USNurseSchedulingPage() {
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              RosterLab builds nursing and midwifery schedules around clinical
-              coverage, skill mix and staff preferences, helping your team
-              recover between shifts and plan life outside work while reducing
-              scheduling admin.
+              RosterLab builds nursing and midwifery schedules that balance
+              clinical coverage with time off and individual work arrangements,
+              reducing scheduling admin while helping your team recover
+              between shifts and plan life outside work.
             </Reveal>
           </div>
 
           <Reveal
             delay={0.24}
-            className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white px-5 py-6 text-center sm:px-8"
+            className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white px-3 py-6 text-center sm:px-8"
           >
             <p className="font-medium text-[#1F2A5C]">
               Designed for nursing and midwifery scheduling across:
             </p>
-            <ul className="mt-4 flex flex-wrap justify-center gap-2">
+            <ul className="mt-4 grid grid-cols-12 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-2">
               {SPECIALTIES.map((s) => (
                 <li
                   key={s}
-                  className="rounded-lg bg-[#F4F6FB] px-3.5 py-2 text-[15px] text-[#1F2A5C]"
+                  className="rounded-lg bg-[#F4F6FB] px-1 py-1.5 text-[13px] text-[#1F2A5C] max-sm:col-span-4 max-sm:grid max-sm:place-items-center max-sm:first:col-span-7 max-sm:[&:nth-child(2)]:col-span-5 max-sm:[&:nth-child(3)]:col-span-3 max-sm:[&:nth-child(4)]:col-span-5 sm:px-3.5 sm:py-2 sm:text-[15px]"
                 >
                   {s}
                 </li>
@@ -483,7 +477,7 @@ export default function USNurseSchedulingPage() {
       {/* 5 — Manual planning and automated scheduling compared. */}
       <section
         id={HOW_IT_WORKS}
-        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] py-16 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] pt-16 pb-20 md:pt-24 md:pb-28"
       >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -504,13 +498,14 @@ export default function USNurseSchedulingPage() {
 
           <div className="mx-auto mt-14 max-w-6xl">
             <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-              Manual planning in Excel and RosterLab compared
+              Manual scheduling and RosterLab compared
             </h3>
             <RosterComparison
               rows={COMPARISON}
               labels={{
                 task: "Scheduling task",
-                manualNote: "(Manual scheduling)",
+                manualHeading: "Manual scheduling",
+                manualNote: "in Excel or traditional software",
               }}
             />
           </div>
@@ -595,10 +590,8 @@ export default function USNurseSchedulingPage() {
                 See how RosterLab could work for your team
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
-                Bring your shift patterns, skill requirements and biggest
-                scheduling challenge. See how RosterLab handles your
-                requirements, with time to discuss setup, existing systems and
-                next steps.
+                Bring your shift patterns, staffing requirements and biggest
+                scheduling challenges. We&apos;ll show you how RosterLab can help.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button
