@@ -21,7 +21,7 @@ import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 
 const TITLE = "ICU and Critical Care Rostering Software";
 const DESCRIPTION =
-  "ICU rostering software that meets the demands of high-acuity care. Balance skill mix, staffing ratios, supervision all at once. Explore RosterLab.";
+  "ICU rostering software that meets the demands of high-acuity care. Balance skill mix, staffing ratios and supervision all at once. Explore RosterLab.";
 const PATH = "/industries/healthcare/critical-care-rostering";
 const OG_IMAGE = "/images/og-images/IndustryICUED.png";
 
@@ -57,6 +57,7 @@ const CASE_STUDY = "/case-studies/icu-unit-western-australia";
 
 const SPECIALTIES = [
   "Intensive Care Units",
+  "NICU",
   "High Dependency Units",
   "Acute Medical Units",
 ];
@@ -74,40 +75,40 @@ const BENEFITS: {
   {
     title: "Fairer rosters, with more room for recovery",
     description:
-      "Distribute nights, weekends, and on-call duties fairly across the team. RosterLab enforces your rest rules automatically, giving staff adequate recovery between long intensive shifts.",
+      "Distribute nights, weekends and on-call duties fairly across eligible clinicians, accounting for contracted hours and your unit’s rest rules.",
   },
   {
     title: "Support continuity of care",
     description:
-      "Keep at least one team member from the previous shift rostered on to maintain continuity of care, supporting smoother handovers and improved patient outcomes.",
+      "Keep clinicians in the same role across consecutive days, supporting familiarity with patients’ progress and more informed care decisions and handovers.",
   },
   {
     title: "Plan for specialist cover and supervision",
     description:
-      "No more cross-checking spreadsheets to see who can cover which shift or task. RosterLab assigns clinicians based on their competencies and supervision requirements, highlighting any gaps that need your attention.",
+      "RosterLab assigns clinicians based on their competencies and supervision requirements, highlighting any gaps that need your attention.",
   },
 ];
 
 const CAPABILITIES = [
   {
-    title: "Give your clinicians a say in the roster",
+    title: "Protect teaching time and plan ICU cover",
     description:
-      "Staff can submit preferences, request swaps and apply for open shifts through the app. RosterLab weighs requests across the team alongside coverage and the agreement rules your roster needs to meet.",
+      "Block out agreed teaching sessions, study days and airway training for registrars, alongside consultants’ non-clinical commitments. RosterLab plans shifts around that time and flags gaps in ICU cover for review before you publish.",
     link: {
-      label: "Explore self-scheduling",
-      href: "/feature/self-scheduling",
+      label: "Explore rostering rules",
+      href: "/feature/rules-engine",
     },
     image: {
-      src: "/images/industries/nursing/staff-preferences-v2.webp",
-      alt: "Staff preferences in RosterLab on desktop, with a clinician requesting a shift and accepting an open shift in the mobile app",
-      className: "object-cover",
+      src: "/images/new-product-images/skill-based-rules.webp",
+      alt: "Role-based rules in RosterLab showing skill levels and full-time and part-time settings",
+      className: "object-contain p-4 sm:p-6",
     },
     frame: "bg-[#3B7FE8]",
   },
   {
-    title: "Handle absences without rebuilding the roster",
+    title: "Adjust cover when plans change",
     description:
-      "When someone calls in sick, RosterLab helps find suitable replacement cover and adjust affected shifts around skills, availability, working hours and roster rules. The rest of your roster stays intact, and you remain in control of every change.",
+      "When a shift needs last-minute cover, RosterLab helps find a suitable replacement based on skills, availability and rest rules. Review changes to the affected shifts while keeping the rest of the roster in place.",
     link: {
       label: "Explore re-rostering",
       href: "/feature/re-rostering",
@@ -152,7 +153,7 @@ const FAQ_ITEMS = [
     question:
       "How does RosterLab help us meet staffing and skill requirements?",
     answer:
-      "Set the staffing levels and competencies each shift needs. RosterLab uses these during generation and highlights shortfalls, so managers can see where additional cover or a staffing decision is needed.",
+      "Set the staffing levels, competencies and rest rules your roster needs to meet. RosterLab uses these as requirements while balancing staff preferences where possible. It highlights staffing shortfalls, so managers can see where additional cover or a staffing decision is needed.",
   },
   {
     question: "Can we roster on-call duties alongside regular clinical shifts?",
@@ -175,6 +176,11 @@ const FAQ_ITEMS = [
     answer:
       "Yes. Approved leave, training commitments, and fixed working arrangements are set separately from preferences, so the generated roster accounts for commitments already agreed with staff.",
   },
+  {
+    question: "How do staff receive their published roster?",
+    answer:
+      "When you publish a roster, staff can view their shifts in the RosterLab app and sync them with their personal calendar. Staff can opt in to email notifications for published rosters and updates. Publishing changes also updates the live roster link.",
+  },
 ];
 
 /* ------------------------------------------------------------- building blocks */
@@ -194,6 +200,7 @@ export default function CriticalCareRosteringPage() {
     <SiteLayout>
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
+        imageBelowCtasOnMobile
         title="Build ICU rosters around the care you deliver"
         description="RosterLab simplifies intensive care rostering, helping your team plan for 24/7 clinical cover, maintain continuity of care, and manage complex staffing needs without tracking every detail by hand."
         analyticsLocation={LOCATION}
@@ -505,10 +512,10 @@ export default function CriticalCareRosteringPage() {
               Saving time from your first roster
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Our implementation specialists help turn your existing rules and
-              working arrangements into a roster setup for your team. We train
-              your roster writers, review the first generated roster with you
-              and discuss how RosterLab fits your current systems.
+              Our specialists set up your unit’s rules, train your roster
+              writers and review your first roster with you. We discuss how
+              RosterLab fits your existing systems. Your rules stay documented,
+              so a change of roster writer doesn’t mean starting again.
             </p>
           </div>
         </Container>

@@ -66,6 +66,7 @@ const CASE_STUDY =
 
 const SPECIALTIES = [
   "Intensive Care Units",
+  "NICU",
   "Progressive Care Units",
   "Acute Care Units",
 ];
@@ -83,40 +84,40 @@ const BENEFITS: {
   {
     title: "Fairer schedules, with more room for recovery",
     description:
-      "Distribute nights, weekends, and on-call duties fairly across the team. RosterLab enforces your rest rules automatically, giving staff adequate recovery between long intensive shifts.",
+      "Distribute nights, weekends and on-call duties fairly across eligible clinicians, accounting for contracted hours and your unit’s rest rules.",
   },
   {
     title: "Support continuity of care",
     description:
-      "Keep at least one team member from the previous shift scheduled on to maintain continuity of care, supporting smoother handoffs and improved patient outcomes.",
+      "Keep clinicians in the same role across consecutive days, supporting familiarity with patients’ progress and more informed care decisions and handoffs.",
   },
   {
     title: "Plan for specialist coverage and supervision",
     description:
-      "No more cross-checking spreadsheets to see who can cover which shift or task. RosterLab assigns clinicians based on their competencies and supervision requirements, highlighting any gaps that need your attention.",
+      "RosterLab assigns clinicians based on their competencies and supervision requirements, highlighting any gaps that need your attention.",
   },
 ];
 
 const CAPABILITIES = [
   {
-    title: "Give your clinicians a say in the schedule",
+    title: "Protect teaching time and plan ICU coverage",
     description:
-      "Staff can submit preferences, request swaps and apply for open shifts through the app. RosterLab weighs requests across the team alongside coverage and the agreement rules your schedule needs to meet.",
+      "Block out agreed teaching sessions, study time, and airway training for residents, alongside attending physicians’ nonclinical commitments. RosterLab plans shifts around that time and flags gaps in ICU coverage for review before you publish.",
     link: {
-      label: "Explore self-scheduling",
-      href: "/us/feature/self-scheduling",
+      label: "Explore scheduling rules",
+      href: "/us/feature/rules-engine",
     },
     image: {
-      src: "/images/industries/nursing/us-staff-preferences-v2.webp",
-      alt: "Staff preferences in RosterLab on desktop, with a clinician requesting a shift and accepting an open shift in the mobile app",
-      className: "object-cover",
+      src: "/images/new-product-images/skill-based-rules.webp",
+      alt: "Role-based rules in RosterLab showing skill levels and full-time and part-time settings",
+      className: "object-contain p-4 sm:p-6",
     },
     frame: "bg-[#3B7FE8]",
   },
   {
-    title: "Handle absences without rebuilding the schedule",
+    title: "Adjust coverage when plans change",
     description:
-      "When someone calls in sick, RosterLab helps find suitable replacement coverage and adjust affected shifts around skills, availability, working hours and schedule rules. The rest of your schedule stays intact, and you remain in control of every change.",
+      "When a shift needs last-minute coverage, RosterLab helps find a suitable replacement based on skills, availability, and rest rules. Review changes to the affected shifts while keeping the rest of the schedule in place.",
     link: {
       label: "Explore rescheduling",
       href: "/us/feature/staff-rescheduling",
@@ -161,7 +162,7 @@ const FAQ_ITEMS = [
     question:
       "How does RosterLab help us meet staffing and skill requirements?",
     answer:
-      "Set the staffing levels and competencies each shift needs. RosterLab uses these during generation and highlights shortfalls, so managers can see where additional cover or a staffing decision is needed.",
+      "Set the staffing levels, competencies and rest rules your schedule needs to meet. RosterLab uses these as requirements while balancing staff preferences where possible. It highlights staffing shortfalls, so managers can see where additional coverage or a staffing decision is needed.",
   },
   {
     question:
@@ -185,6 +186,11 @@ const FAQ_ITEMS = [
     answer:
       "Yes. Approved time off, training commitments, and fixed working arrangements are set separately from preferences, so the generated schedule accounts for commitments already agreed with staff.",
   },
+  {
+    question: "How do staff receive their published schedule?",
+    answer:
+      "When you publish a schedule, staff can view their shifts in the RosterLab app and sync them with their personal calendar. Staff can opt in to email notifications for published schedules and updates. Publishing changes also updates the live schedule link.",
+  },
 ];
 
 /* ------------------------------------------------------------- building blocks */
@@ -204,6 +210,7 @@ export default function USCriticalCareSchedulingPage() {
     <SiteLayout>
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
+        imageBelowCtasOnMobile
         title="Build ICU schedules around the care you deliver"
         description="RosterLab simplifies intensive care scheduling, helping your team plan for 24/7 clinical coverage, maintain continuity of care, and manage complex staffing needs without tracking every detail by hand."
         analyticsLocation={LOCATION}
@@ -522,10 +529,10 @@ export default function USCriticalCareSchedulingPage() {
               Saving time from your first schedule
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Our implementation specialists help turn your existing rules and
-              working arrangements into a schedule setup for your team. We train
-              your schedulers, review the first generated schedule with you and
-              discuss how RosterLab fits your current systems.
+              Our specialists set up your unit’s rules, train your schedulers
+              and review your first schedule with you. We discuss how RosterLab
+              fits your existing systems. Your rules stay documented, so a
+              change of scheduler doesn’t mean starting again.
             </p>
           </div>
         </Container>
