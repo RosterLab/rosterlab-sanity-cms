@@ -77,12 +77,12 @@ const BENEFITS: {
   {
     title: "Fairer shifts, with room to recover",
     description:
-      "A fair roster helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and preferences, while applying your team’s rest rules.",
+      "A fair roster helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and individual preferences.",
   },
   {
     title: "Honour the agreements your team relies on",
     description:
-      "Your team should be able to rely on the arrangements agreed with them. RosterLab applies your employment agreement rules, contracted hours and rest requirements during generation, and flags violations when you make changes.",
+      "RosterLab applies your employment agreement rules and rest requirements during roster generation, flagging potential violations for you to review.",
   },
   {
     title: "See where your team needs more support",
@@ -95,7 +95,7 @@ const CAPABILITIES = [
   {
     title: "Generate the whole roster around your rules",
     description:
-      "For example, a ward needs an in-charge nurse each night. One nurse has approved leave; another has a fixed working pattern. RosterLab considers these commitments alongside RN/EN mix, preferences and rest rules. Midwifery teams can define competencies needed across antenatal, birthing and postnatal services.",
+      "Whether it's ensuring an in-charge nurse is rostered each night, maintaining the right RN/EN mix or meeting patient-to-nurse ratios, RosterLab builds these requirements into every roster. Midwifery teams can define the competencies needed across antenatal, birthing and postnatal services.",
     link: {
       label: "Explore AI-rostering",
       href: "/solutions/ai-roster-generator",
@@ -125,20 +125,22 @@ const CAPABILITIES = [
 const COMPARISON: ComparisonRow[] = [
   {
     task: "Creating allocations",
-    manual: "The roster writer assigns shifts and checks requirements.",
+    manual: "Shifts filled one by one, every rule checked manually.",
     rosterlab:
-      "AI generates allocations around staffing requirements, agreements and staff requests.",
+      "AI allocates shifts around staffing needs, rules and staff requests.",
   },
   {
     task: "Balancing connected needs",
-    manual: "The roster writer checks the effects of each allocation.",
+    manual: "Competing requirements weighed up one decision at a time.",
     rosterlab:
-      "Optimisation considers connected requirements across the roster.",
+      "Coverage, fairness and preferences balanced across the entire roster.",
   },
   {
     task: "Handling absences",
-    manual: "The roster writer rearranges shifts and checks the consequences.",
-    rosterlab: "Re-rostering helps adjust affected shifts for manager review.",
+    manual:
+      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
+    rosterlab:
+      "Affected shifts re-rostered automatically, ready for manager review.",
   },
 ];
 
@@ -173,16 +175,6 @@ const FAQ_ITEMS = [
       "Set allocation rules for nights and weekends around contracted hours and agreed working arrangements. RosterLab applies them consistently during generation, while considering preferences. Review workloads and unmet requests before approving the roster.",
   },
   {
-    question: "Can we keep our existing payroll and workforce systems?",
-    answer:
-      "We’ll confirm the exports or integrations available for your systems and identify any manual steps before rollout. This includes how roster changes would be kept in sync, so you can assess the full workflow.",
-  },
-  {
-    question: "What information do we need to get started?",
-    answer:
-      "We start by reviewing your current roster, staff list, contracted hours, shift types, clinical skill requirements and employment agreements. We’ll help separate fixed commitments from preferences and confirm the rules, data and system requirements for your team.",
-  },
-  {
     question: "Can we keep fixed working arrangements and approved leave?",
     answer:
       "Yes. Approved leave and fixed working arrangements are set separately from preferences, so the generated roster accounts for commitments already agreed with staff.",
@@ -206,8 +198,9 @@ export default function NurseRosteringPage() {
     <SiteLayout>
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
+        imageBelowCtasOnMobile
         title="Less roster admin. More time for care."
-        description="RosterLab automatically generates nursing and midwifery rosters around staff preferences, skill mix, coverage and union agreements. Less juggling, more time for your team and patients."
+        description="RosterLab automatically generates nursing and midwifery rosters around staff preferences, skill mix, coverage and union agreements."
         analyticsLocation={LOCATION}
         primaryCta={{
           href: "/book-a-demo",
@@ -236,6 +229,7 @@ export default function NurseRosteringPage() {
       {/* Customer logos. */}
       <TrustedByDualRow
         singleRow
+        centerHeadingOnMobile
         headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
         logoColor="#1F2A5C"
         heading="Trusted by healthcare teams"
@@ -254,25 +248,25 @@ export default function NurseRosteringPage() {
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              RosterLab builds nursing and midwifery rosters around clinical
-              coverage, skill mix and staff preferences, helping your team
-              recover between shifts and plan life outside work while reducing
-              roster admin.
+              RosterLab builds nursing and midwifery rosters that balance
+              clinical coverage with time off and individual working
+              arrangements, reducing roster admin while helping your team
+              recover between shifts and plan life outside work.
             </Reveal>
           </div>
 
           <Reveal
             delay={0.24}
-            className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white px-5 py-6 text-center sm:px-8"
+            className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white px-3 py-6 text-center sm:px-8"
           >
             <p className="font-medium text-[#1F2A5C]">
               Designed for nursing and midwifery rostering across:
             </p>
-            <ul className="mt-4 flex flex-wrap justify-center gap-2">
+            <ul className="mt-4 grid grid-cols-12 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-2">
               {SPECIALTIES.map((s) => (
                 <li
                   key={s}
-                  className="rounded-lg bg-[#F4F6FB] px-3.5 py-2 text-[15px] text-[#1F2A5C]"
+                  className="rounded-lg bg-[#F4F6FB] px-1 py-1.5 text-[13px] text-[#1F2A5C] max-sm:col-span-4 max-sm:grid max-sm:place-items-center max-sm:first:col-span-7 max-sm:[&:nth-child(2)]:col-span-5 max-sm:[&:nth-child(3)]:col-span-3 max-sm:[&:nth-child(4)]:col-span-5 sm:px-3.5 sm:py-2 sm:text-[15px]"
                 >
                   {s}
                 </li>
@@ -471,7 +465,7 @@ export default function NurseRosteringPage() {
       {/* 5 — Manual planning and automated rostering compared. */}
       <section
         id={HOW_IT_WORKS}
-        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] py-16 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] pt-16 pb-20 md:pt-24 md:pb-28"
       >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -492,9 +486,16 @@ export default function NurseRosteringPage() {
 
           <div className="mx-auto mt-14 max-w-6xl">
             <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-              Manual planning in Excel and RosterLab compared
+              Manual rostering and RosterLab compared
             </h3>
-            <RosterComparison rows={COMPARISON} />
+            <RosterComparison
+              rows={COMPARISON}
+              labels={{
+                task: "Rostering task",
+                manualHeading: "Manual rostering",
+                manualNote: "in Excel or traditional software",
+              }}
+            />
           </div>
         </Container>
         <svg
@@ -577,10 +578,8 @@ export default function NurseRosteringPage() {
                 See how RosterLab could work for your team
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
-                Bring your shift patterns, skill requirements and biggest
-                rostering challenge. See how RosterLab handles your
-                requirements, with time to discuss setup, existing systems and
-                next steps.
+                Bring your shift patterns, staffing requirements and biggest
+                rostering challenges. We&apos;ll show you how RosterLab can help.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button

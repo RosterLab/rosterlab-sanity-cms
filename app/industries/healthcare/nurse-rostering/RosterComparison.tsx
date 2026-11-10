@@ -18,7 +18,7 @@ const LABELS = {
   task: "Rostering task",
   manualNote: "(Manual rostering)",
 };
-export type ComparisonLabels = typeof LABELS;
+export type ComparisonLabels = typeof LABELS & { manualHeading?: string };
 
 /** Excel's grey; RosterLab's blue (#1D4ED8, white text ~6.7:1) is set
  *  in the band classes below. */
@@ -108,6 +108,37 @@ function ExcelLockup({
         )}
       >
         {manualNote}
+      </span>
+    </span>
+  );
+}
+
+function ManualColumnHeading({
+  size,
+  labels,
+}: {
+  size: "sm" | "lg";
+  labels: ComparisonLabels;
+}) {
+  if (!labels.manualHeading) {
+    return <ExcelLockup size={size} manualNote={labels.manualNote} />;
+  }
+
+  if (size === "sm") {
+    return (
+      <span className="block whitespace-nowrap text-[clamp(0.5625rem,2.9vw,0.875rem)] font-semibold leading-snug text-[#1F2A5C]">
+        {labels.manualHeading} {labels.manualNote}
+      </span>
+    );
+  }
+
+  return (
+    <span className="block leading-snug">
+      <span className="block text-base font-semibold text-[#1F2A5C] lg:text-xl">
+        {labels.manualHeading}
+      </span>{" "}
+      <span className="mt-1 block text-sm font-medium text-gray-600">
+        {labels.manualNote}
       </span>
     </span>
   );
@@ -216,7 +247,7 @@ export default function RosterComparison({
               )}
             >
               <motion.span className="block" {...rise(0.15)}>
-                <ExcelLockup size="lg" manualNote={labels.manualNote} />
+                <ManualColumnHeading size="lg" labels={labels} />
               </motion.span>
             </th>
             <th
@@ -261,7 +292,7 @@ export default function RosterComparison({
                 >
                   <motion.span className="block" {...rise(rowDelay(i) + 0.06)}>
                     <span aria-hidden="true" className="mb-3 block lg:hidden">
-                      <ExcelLockup size="sm" manualNote={labels.manualNote} />
+                      <ManualColumnHeading size="sm" labels={labels} />
                     </span>
                     <span className="text-base leading-relaxed text-gray-600 lg:text-lg">
                       {row.manual}
