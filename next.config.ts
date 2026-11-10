@@ -3,6 +3,10 @@ import { ARTICLE_REDIRECTS } from "./lib/posts/article-redirects";
 import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
+  // Canonical and hreflang links must be in the initial <head>, not streamed
+  // into <body>. Use the same metadata delivery for every user agent because
+  // Netlify's shared HTML cache does not vary by User-Agent.
+  htmlLimitedBots: /.*/,
   // Production builds must not replace assets used by a running local preview.
   distDir: process.env.NODE_ENV === "development" ? ".next-dev-turbo" : ".next",
   // Match the browser-only exclusions below when using the faster dev compiler.
