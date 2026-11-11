@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { analytics } from "@/components/analytics/tracking";
 import Image from "next/image";
 
@@ -23,6 +23,9 @@ export default function CTAModalDemoBooking({
   testMode = false,
 }: CTAModalDemoBookingProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const isUS = pathname === "/us" || pathname.startsWith("/us/");
+  const bookingUrl = `${isUS ? "/us" : ""}/book-a-demo?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_a`;
   const hasTrackedView = useRef(false);
 
   useEffect(() => {
@@ -62,10 +65,10 @@ export default function CTAModalDemoBooking({
     // Only redirect in production (not test mode)
     if (!testMode) {
       setTimeout(() => {
-        router.push("/book-a-demo?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_a");
+        router.push(bookingUrl);
       }, 300);
     } else {
-      console.log("🎯 TEST MODE: Would redirect to /book-a-demo?utm_source=modal&utm_medium=popup&utm_campaign=site_offering&utm_content=var_a");
+      console.log(`🎯 TEST MODE: Would redirect to ${bookingUrl}`);
     }
   };
 
