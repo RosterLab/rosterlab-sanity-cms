@@ -217,7 +217,7 @@ export default function Header({
       title: "Industries",
       subItems: [
         { title: "Healthcare Roster", link: "/industries/healthcare" },
-        { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
+        { title: "Emergency Care", link: "/industries/healthcare/ed-icu" },
         { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
         {
           title: "Radiography Roster",
@@ -549,7 +549,7 @@ export default function Header({
                                   : "Specialty Healthcare Rosters"}
                               </h3>
                               <div className="space-y-1">
-                                {/* ICU/ED Roster */}
+                                {/* Emergency Care */}
                                 <Link
                                   href={
                                     isUSVersion
@@ -559,9 +559,7 @@ export default function Header({
                                   className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
                                 >
                                   <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "ICU/ED Scheduling"
-                                      : "ICU/ED Roster"}
+                                    Emergency Care
                                   </div>
                                   <div className="text-xs text-gray-600">
                                     {isUSVersion

@@ -229,6 +229,8 @@ interface TrustedByDualRowProps {
   onDark?: boolean;
   /** Every logo in one marquee row instead of two (the enterprise page). */
   singleRow?: boolean;
+  /** Centres the heading above the logo rows below the desktop breakpoint. */
+  centerHeadingOnMobile?: boolean;
   /** Replaces the heading's default size and colour classes. */
   headingClassName?: string;
   /** Paints every logo in this one colour instead of greyscale. */
@@ -239,15 +241,26 @@ export default function TrustedByDualRow({
   heading = "Join hundreds of healthcare teams already optimising their rosters",
   onDark = false,
   singleRow = false,
+  centerHeadingOnMobile = false,
   headingClassName,
   logoColor,
 }: TrustedByDualRowProps = {}) {
   return (
     <section className={onDark ? "" : "py-6 md:py-16"}>
       <Container className="lg:px-12 xl:px-20">
-        <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] gap-8 lg:gap-12 items-center">
-          {/* Left: heading */}
-          <div className="max-w-md">
+        <div
+          className={cn(
+            "grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] gap-8 lg:gap-12 items-center",
+            centerHeadingOnMobile && "grid-cols-1",
+          )}
+        >
+          <div
+            className={
+              centerHeadingOnMobile
+                ? "text-center lg:max-w-md lg:text-left"
+                : "max-w-md"
+            }
+          >
             <h2
               className={cn(
                 "text-balance font-semibold leading-snug",
@@ -262,7 +275,7 @@ export default function TrustedByDualRow({
             </h2>
           </div>
 
-          {/* Right: two marquee rows, opposite directions */}
+          {/* On desktop the logo rows sit to the right of the heading. */}
           <div
             className={cn(
               "relative overflow-hidden md:space-y-6",

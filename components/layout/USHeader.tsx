@@ -46,7 +46,10 @@ export const usNavItems = [
     title: "Industries",
     subItems: [
       { title: "Healthcare", link: "/us/industries/healthcare-scheduling" },
-      { title: "ICU/ED", link: "/us/industries/healthcare/ed-icu-scheduling" },
+      {
+        title: "Emergency Care",
+        link: "/us/industries/healthcare/ed-icu-scheduling",
+      },
       {
         title: "Radiology",
         link: "/us/industries/healthcare/radiology-scheduling",

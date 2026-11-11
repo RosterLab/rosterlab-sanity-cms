@@ -1,26 +1,29 @@
 import Container from "@/components/ui/Container";
 import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
-import Image from "next/image";
-import Link from "next/link";
 import SiteLayout from "@/components/layout/SiteLayout";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
-import FAQAccordion from "@/components/ui/FAQAccordion";
 import { withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import EnterpriseFAQ from "@/app/enterprise/EnterpriseFAQ";
+import Reveal from "@/app/enterprise/Reveal";
+import Image from "next/image";
+import Link from "next/link";
+import RosterComparison, { type ComparisonRow } from "./RosterComparison";
+import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 
 export const metadata = withHreflang(
   {
-    title: "ED and ICU Staff Rostering Software",
+    title: "Emergency Department Rostering Software",
     description:
-      "Handle complex shift requirements across ED and ICU with RosterLab. Manage staff fatigue, ensure safe staffing levels and let clinicians focus on patient care.",
+      "RosterLab automates complex ED rostering, ensuring the right skill mix on every shift, fair workloads for staff and reliable coverage around the clock.",
     alternates: {
       canonical: "https://rosterlab.com/industries/healthcare/ed-icu",
     },
     openGraph: {
-      title: "ED and ICU Staff Rostering Software - RosterLab",
+      title: "Emergency Department Rostering Software - RosterLab",
       description:
-        "Handle complex shift requirements across ED and ICU with RosterLab. Manage staff fatigue, ensure safe staffing levels and let clinicians focus on patient care.",
+        "RosterLab automates complex ED rostering, ensuring the right skill mix on every shift, fair workloads for staff and reliable coverage around the clock.",
       type: "website",
       url: "https://rosterlab.com/industries/healthcare/ed-icu",
       images: [
@@ -33,9 +36,9 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "ED and ICU Staff Rostering Software - RosterLab",
+      title: "Emergency Department Rostering Software - RosterLab",
       description:
-        "Handle complex shift requirements across ED and ICU with RosterLab. Manage staff fatigue, ensure safe staffing levels and let clinicians focus on patient care.",
+        "RosterLab automates complex ED rostering, ensuring the right skill mix on every shift, fair workloads for staff and reliable coverage around the clock.",
       images: ["/images/og-images/IndustryICUED.png"],
     },
   },
@@ -44,39 +47,140 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
+    question: "How does RosterLab automate ED rostering?",
+    answer:
+      "RosterLab replaces manual planning and outdated systems with AI that generates fair, compliant ED rosters in a fraction of the time. It balances your shift patterns, clinical skill mix, coverage needs and rostering rules to find the best-fit solution. As requirements change, you can easily adapt the roster without starting from scratch.",
+  },
+  {
+    question: "What if we don’t have enough doctors to cover a shift?",
+    answer:
+      "RosterLab uses the coverage demands you set and flags unfilled shifts or unmet skill requirements. Review the gaps and decide where you need extra staffing before publishing.",
+  },
+  {
+    question: "How can we cover a last-minute absence?",
+    answer:
+      "When a doctor calls in sick, RosterLab quickly identifies available, suitably qualified staff to safely cover the shift, enabling you to re-roster affected shifts promptly with minimal service disruption.",
+  },
+  {
     question:
-      "How quickly can I generate my emergency department staff roster?",
+      "Can we roster doctors who work part-time or at another hospital?",
     answer:
-      "The time it takes RosterLab’s AI to generate a roster depends on the complexity of your departments. It scales with department size and the number of rules and requirements. For a typical ED or ICU ward, it takes about 10–20 minutes to solve.",
+      "Yes. RosterLab accommodates doctors with part-time hours or commitments across multiple hospitals. Add each doctor’s contracted hours, availability and known commitments at other sites, and RosterLab will take these into account when generating the roster.",
   },
   {
-    question: "How does the platform automate my ICU roster?",
+    question: "Can I edit an AI-generated roster?",
     answer:
-      "With Rosterlab, you can set the AI to generate rosters for your staff the same way you would. Set up to have a deep understanding of all the requirements that need to be met, the skill sets and training level of each staff member and the soft and hard constraints that apply to how shifts can be assigned. The Rosterlab team will take you through the onboarding process to capture all the nuances in creating optimised rosters for your staff.",
+      "Absolutely. You can review and adjust AI-generated rosters before publishing. The AI does the heavy lifting, while you stay in control of all scheduling decisions",
   },
   {
-    question: "Where is my roster stored?",
+    question: "How do I share rosters with my team?",
     answer:
-      "RosterLab is a cloud-based platform that keeps all your roster information stored securely. It is available to your department wherever you have internet access.",
-  },
-  {
-    question: "How do I share my roster?",
-    answer:
-      "Staff leave requests and preferences are collated via the RosterLab iOS/Android app, ready for the AI to interpret. When you publish your roster, it is automatically pushed to everyone who needs to see it. You could also share a controlled version with different departments or various groups of people in the best format for them:\n\n• Shift-based rosters for switchboard and managers.\n• Individually personalised rosters for each person are integrated into their personal calendars.",
+      'Once you\'ve published your roster, clinicians can view their schedules directly in the <a href="/solutions/staff-roster-mobile-app" class="underline">RosterLab mobile app</a>. They can also sync shifts to their personal calendars and receive notifications about any roster changes.',
   },
 ];
+
+const LOCATION = "Industry Page ED & ICU Rostering";
+const PAGE_NAME = "ED & ICU Rostering";
+const INTERACTIVE_DEMO = "/staff-rostering-interactive-demo";
+const CASE_STUDY =
+  "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering";
+
+const BENEFITS = [
+  {
+    title: "The right clinical cover, day and night",
+    description:
+      "From senior cover and junior doctor supervision to ED-specific capabilities, RosterLab builds your staffing and skill mix requirements directly into the roster, keeping every area covered.",
+  },
+  {
+    title: "A fairer share of challenging shifts",
+    description:
+      "Distribute nights, weekends, public holidays and on-call duties equitably across the team, taking into account each clinician's FTE, leave and individual work patterns.",
+  },
+  {
+    title: "Protecting time for rest and recovery",
+    description:
+      "Long shifts and nights make adequate rest essential. RosterLab applies your working-hour limits, minimum rest and post-night recovery rules to manage fatigue and support clinician wellbeing.",
+  },
+  {
+    title: "Less disruption when plans change",
+    description:
+      "A last-minute absence shouldn't mean reworking the entire roster. Regenerate affected shifts while keeping existing allocations intact. Managers stay in firm control before publishing.",
+  },
+];
+
+const CAPABILITIES = [
+  {
+    title: "Coordinate every aspect of ED staffing",
+    description:
+      "Acute care, resus and short stay each have distinct staffing needs. An ED roster must also account for the educational, supervisory and non-clinical commitments of different groups of doctors. RosterLab’s AI brings all these considerations together to build a roster that reflects your exact requirements.",
+    link: {
+      label: "Explore AI-rostering",
+      href: "/solutions/ai-roster-generator",
+    },
+    image: {
+      src: "/images/generating.webp",
+      alt: "RosterLab generating a staff roster",
+      className: "object-contain",
+    },
+  },
+  {
+    title: "Let clinicians shape their schedules",
+    description:
+      "Give clinicians more flexibility over when they work, with the ability to submit shift preferences, request swaps and pick up open shifts directly through the mobile app. RosterLab factors in these requests while maintaining fairness and the coverage your department needs.",
+    link: {
+      label: "Explore self-scheduling",
+      href: "/feature/self-scheduling",
+    },
+    image: {
+      src: "/images/industries/nursing/staff-preferences-v2.webp",
+      alt: "Staff preferences in RosterLab on desktop and shift requests in the mobile app",
+      className: "object-cover",
+    },
+  },
+];
+
+const COMPARISON: ComparisonRow[] = [
+  {
+    task: "Creating allocations",
+    manual: "Shifts filled one by one, every rule checked manually.",
+    rosterlab:
+      "AI allocates shifts around staffing needs, rules and staff requests.",
+  },
+  {
+    task: "Balancing connected needs",
+    manual: "Competing requirements weighed up one decision at a time.",
+    rosterlab:
+      "Coverage, fairness and preferences balanced across the entire roster.",
+  },
+  {
+    task: "Handling absences",
+    manual:
+      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
+    rosterlab:
+      "Affected shifts re-rostered automatically, ready for manager review.",
+  },
+];
+
+const H2 =
+  "text-balance text-3xl md:text-[2.75rem] font-semibold text-[#1F2A5C] leading-tight tracking-tight";
+
+/** Proof points in the case study headline. */
+function Mint({ children }: { children: React.ReactNode }) {
+  return <span className="text-[#03F9BE]">{children}</span>;
+}
 
 export default function ICUEDPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
-        title="Generate ED & ICU Staff Rosters in Minutes"
-        description="Cut roster creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff wellbeing."
+        imageBelowCtasOnMobile
+        title="Take the pressure off emergency care rostering"
+        description="Generate ED schedules that balance workloads, protect recovery time, and maintain round-the-clock coverage — without the usual complexity."
         analyticsLocation="Industry Page ED & ICU Rostering"
         primaryCta={{
           href: "/book-a-demo",
-          label: "Book a Demo",
+          label: "Book a demo",
           analyticsProperties: {
             cta_type: "demo",
             page_name: "ED & ICU Rostering",
@@ -84,10 +188,10 @@ export default function ICUEDPage() {
           },
         }}
         secondaryCta={{
-          href: "/start-free",
-          label: "Get Started",
+          href: INTERACTIVE_DEMO,
+          label: "Explore the product tour",
           analyticsProperties: {
-            cta_type: "signup",
+            cta_type: "how_it_works",
             page_name: "ED & ICU Rostering",
             section: "hero",
           },
@@ -98,457 +202,356 @@ export default function ICUEDPage() {
         }}
       />
 
-      {/* Key Benefits */}
-      <section className="py-20 bg-white">
+      <TrustedByDualRow
+        singleRow
+        centerHeadingOnMobile
+        headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
+        logoColor="#1F2A5C"
+        heading="Trusted by healthcare teams"
+      />
+
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Critical Care Rostering Solved
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Emergency departments and ICUs require precise skill mix, 24/7
-              coverage, and rapid response capabilities. Our AI ensures you
-              always have the right team in place.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Long Hours Shift Management
-              </h3>
-              <p className="text-gray-600">
-                Intelligently roster long intensive shifts while preventing
-                burnout. Let AI balances workload distribution and mandatory
-                rest periods.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Enhanced Continuity of Care
-              </h3>
-              <p className="text-gray-600">
-                Ensure at least one team member from previous shifts continues
-                caring for each patient, minimising handover errors and
-                improving outcomes.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Optimal Staff-to-Patient Ratios
-              </h3>
-              <p className="text-gray-600">
-                Automatically maintain critical staff-to-patient ratios required
-                for intensive care, enforcing safe and effective patient
-                monitoring.
-              </p>
-            </div>
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal as="h2" className={H2}>
+              The roster shouldn&apos;t be another thing competing for your
+              attention
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={0.12}
+              className="mt-6 text-lg text-gray-600 leading-relaxed"
+            >
+              There&apos;s already enough to juggle in a busy emergency
+              department. RosterLab takes the complexity and admin work out of
+              building and managing rosters, giving you more time to focus on
+              your team, your patients, and the demands of the floor.
+            </Reveal>
           </div>
         </Container>
       </section>
 
-      {/* Specific Features */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 md:py-24">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Built for ICU & ED Roster Complexity
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-cyan-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Fair Distribution of Challenging Shifts
-                    </h3>
-                    <p className="text-gray-600">
-                      Automatically distribute nights, weekends, and holidays
-                      equitably. Prevent excessive consecutive shifts and ensure
-                      balanced workloads.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI That Understands ED & ICU Needs
-                    </h3>
-                    <p className="text-gray-600">
-                      Our AI takes your department’s unique requirements into
-                      account: skill sets, training levels, and both soft and
-                      hard constraints for shift assignments.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      From Spreadsheets to Smart Rostering
-                    </h3>
-                    <p className="text-gray-600">
-                      Replace error-prone manual processes with a cloud-based
-                      solution that creates optimal rosters in minutes. Keep
-                      your rostering knowledge stored digitally to ensure
-                      consistent, high-quality rosters over time.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
+          <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
+            <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:block">
               <Image
-                src="/images/generating.webp"
-                alt="ED & ICU rostering benefits"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl w-full h-auto"
+                src="/images/industries/senior-doctor.webp"
+                alt="Two doctors reviewing an X-ray together in a hospital corridor"
+                fill
+                sizes="340px"
+                className="object-cover object-[57%_40%] saturate-[0.85] contrast-[1.08]"
+              />
+
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[#3B7FE8] opacity-20 mix-blend-multiply"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-[#1F2A5C]/80 via-[#1F2A5C]/15 to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-[#1F2A5C]/10"
               />
             </div>
+
+            <div className="relative overflow-hidden rounded-[1.25rem] bg-[#1F2A5C] p-6 text-white sm:p-9 md:rounded-[1.75rem] md:p-12">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 420"
+                className="pointer-events-none absolute -right-[17rem] top-1/2 hidden h-[115%] -translate-y-1/2 text-[#2A3F8F]/70 lg:block"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="22"
+              >
+                <rect x="11" y="11" width="278" height="98" rx="49" />
+                <rect x="11" y="161" width="178" height="98" rx="49" />
+                <circle cx="60" cy="360" r="49" />
+              </svg>
+              <div className="relative lg:pr-16">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/80 md:text-xs">
+                  <span className="block sm:inline sm:whitespace-nowrap">
+                    Emergency Department
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="mx-3 hidden text-white/50 sm:inline"
+                  >
+                    |
+                  </span>
+                  <span className="sr-only"> | </span>
+                  <span className="mt-1 block sm:mt-0 sm:inline sm:whitespace-nowrap">
+                    Sydney Tertiary Hospital
+                  </span>
+                </p>
+                <h2 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+                  <Mint>120 hours</Mint> down to <Mint>40</Mint> on the very
+                  first roster
+                </h2>
+                <p className="mt-5 max-w-2xl text-white/85 leading-relaxed md:text-lg">
+                  RosterLab helped a Sydney tertiary hospital ED cut rostering
+                  time by 70%, making it easier to manage complex working
+                  arrangements for more than 60 senior medical officers.
+                </p>
+                <figure className="mt-7 flex gap-4">
+                  <PiQuotesFill
+                    aria-hidden="true"
+                    className="mt-0.5 h-9 w-9 shrink-0 rotate-180 text-[#03F9BE]"
+                  />
+                  <div className="border-l border-white/25 pl-5">
+                    <blockquote className="text-lg italic text-white/90 leading-relaxed">
+                      “It&apos;s about confidence in the roster, about fairness,
+                      and about giving senior clinicians time back for patient
+                      care - not spreadsheets.”
+                    </blockquote>
+                    <figcaption className="mt-3 text-[11px] font-medium uppercase tracking-[0.16em] text-white/60 md:text-xs">
+                      Emergency physician, Sydney tertiary hospital ED
+                    </figcaption>
+                  </div>
+                </figure>
+                <Link
+                  href={CASE_STUDY}
+                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1F2A5C] transition hover:bg-[#03F9BE] md:text-base"
+                >
+                  Read the case study
+                  <PiArrowRightBold
+                    aria-hidden="true"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  />
+                </Link>
+              </div>
+            </div>
+          </article>
+        </Container>
+      </section>
+
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
+        <Container>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 md:gap-y-14">
+            {BENEFITS.map(({ title, description }, i) => (
+              <Reveal key={title} delay={(i % 2) * 0.12}>
+                <h3 className="text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
+                  {title}
+                </h3>
+                <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                  {description}
+                </p>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* Cloud Features */}
-      <section className="py-20 bg-gray-50">
+      <section className="bg-white py-16 md:py-28">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              ICU & ED Rostering for Hospital Staff
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Secure, accessible, and integrated with your existing systems.
-            </p>
-          </div>
+          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
+            Built for the complexity of emergency care rostering
+          </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href="/feature/shift-swaps" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-teal-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
+            {CAPABILITIES.map((c, i) => (
+              <div
+                key={c.title}
+                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
+                  i % 2 === 0
+                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
+                }`}
+              >
+                <Reveal>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                    {c.description}
+                  </p>
+                  <Button
+                    href={c.link.href}
+                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
+                    analyticsLabel={c.link.label}
+                    analyticsLocation={LOCATION}
+                    analyticsProperties={{
+                      cta_type: "learn_more",
+                      page_name: PAGE_NAME,
+                      section: "capabilities",
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                    {c.link.label}
+                    <PiArrowRightBold
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                     />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Smart Shift Swaps
-                </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Enable staff to easily swap shifts with automated approval
-                  workflows.
-                </p>
-                <span className="text-teal-600 font-medium inline-flex items-center">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
+                  </Button>
+                </Reveal>
+                <Reveal
+                  delay={0.12}
+                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#3B7FE8] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
+                    i % 2 === 1 ? "md:order-first" : ""
+                  }`}
+                >
+                  <Image
+                    src={c.image.src}
+                    alt={c.image.alt}
+                    fill
+                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
+                    className={c.image.className}
+                  />
+                </Reveal>
               </div>
-            </Link>
-
-            <Link href="/solutions/staff-roster-mobile-app" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-cyan-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Staff Mobile Access
-                </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Staff can view rosters, open shifts, and swap shifts from any
-                  device.
-                </p>
-                <span className="text-cyan-600 font-medium inline-flex items-center">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </Link>
-
-            <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Fatigue Management
-                </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Build fatigue management rules to prevent staff burnout with
-                  ease.
-                </p>
-                <span className="text-blue-600 font-medium inline-flex items-center">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </Link>
-
-            <Link href="/feature/automated-rostering" className="block">
-              <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-indigo-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Fair shift allocation
-                </h3>
-                <p className="text-base text-gray-600 mb-3">
-                  Equitably distribute night shifts, weekends, and on-call
-                  duties automatically.
-                </p>
-                <span className="text-indigo-600 font-medium inline-flex items-center">
-                  Learn More
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </div>
-            </Link>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* Trusted By */}
-      <section className="bg-white pb-20">
-        <TrustedByDualRow heading="Trusted by leading healthcare organisations" />
+      <section
+        id="how-it-works"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] pt-16 pb-20 md:pt-24 md:pb-28"
+      >
         <Container>
-          <div className="text-center mt-0">
-            <Button
-              href="/case-studies"
-              className="bg-teal-600 text-white hover:bg-teal-700"
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal as="h2" className={H2}>
+              The whole roster, considered together
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={0.12}
+              className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              View Case Studies
-            </Button>
+              One shift change can affect someone’s rest, contracted hours or
+              availability tomorrow. RosterLab’s optimisation works through
+              these connected requirements across the roster, helping you find a
+              workable balance without checking every combination by hand.
+            </Reveal>
+          </div>
+
+          <div className="mx-auto mt-14 max-w-6xl">
+            <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+              Manual rostering and RosterLab compared
+            </h3>
+            <RosterComparison
+              rows={COMPARISON}
+              labels={{
+                task: "Rostering task",
+                manualHeading: "Manual rostering",
+                manualNote: "in Excel or traditional software",
+              }}
+            />
+          </div>
+        </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-white md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C360 96 960-32 1440 32V80H0Z" />
+        </svg>
+      </section>
+
+      <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
+        <Container>
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
+              Saving time from your first roster
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Our implementation specialists help turn your existing rules and
+              working arrangements into a roster setup for your team. We train
+              your roster writers, review the first generated roster with you
+              and discuss how RosterLab fits your current systems.
+            </p>
+          </div>
+        </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-[#F4F6FB] md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C480-32 1080 96 1440 32V80H0Z" />
+        </svg>
+      </section>
+
+      <section className="bg-[#F4F6FB] pt-28 pb-16 md:pt-36 md:pb-24">
+        <Container>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                Frequently Asked Questions
+              </h2>
+              <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">
+                Questions about rostering for emergency care.
+              </p>
+            </div>
+            <EnterpriseFAQ items={faqItems} />
           </div>
         </Container>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 md:py-20">
         <Container>
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">
-              Common questions about ED & ICU scheduling
-            </p>
-            <FAQAccordion items={faqItems} />
-          </div>
-        </Container>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
-        <Container>
-          <div className="text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Critical Care Rostering?
-            </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join leading hospitals using RosterLab to ensure optimal ICU and
-              ED staffing 24/7.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                href="/book-a-demo"
-                className="bg-white text-teal-600 hover:bg-gray-100"
-              >
-                Book a Demo
-              </Button>
-              <Button
-                href="/contact"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
-              >
-                Contact Sales
-              </Button>
+          <div className="relative overflow-hidden rounded-2xl bg-[#7ADFE1] px-6 py-16 text-center text-[#053B3D] sm:px-12 md:py-24">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 300 420"
+              className="pointer-events-none absolute -left-24 top-1/2 h-[130%] -translate-y-1/2 text-[#5CD2D5]/70 md:-left-16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="22"
+            >
+              <rect x="11" y="11" width="278" height="98" rx="49" />
+              <rect x="11" y="161" width="178" height="98" rx="49" />
+              <circle cx="60" cy="360" r="49" />
+            </svg>
+            <div className="relative mx-auto max-w-3xl">
+              <h2 className="text-balance text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight">
+                See how RosterLab could work for your team
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
+                Bring your shift patterns, staffing requirements and biggest
+                rostering challenges. We&apos;ll show you how RosterLab can
+                help.
+              </p>
+              <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+                <Button
+                  href="/book-a-demo"
+                  className="rounded-md bg-[#053B3D] px-7 py-3.5 text-base font-semibold text-white hover:bg-[#032A2C]"
+                  analyticsLabel="Book a demo"
+                  analyticsLocation={LOCATION}
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: PAGE_NAME,
+                    section: "final_cta",
+                  }}
+                >
+                  Book a demo
+                </Button>
+                <Button
+                  href={INTERACTIVE_DEMO}
+                  variant="outline"
+                  className="rounded-md border-2 border-[#053B3D] px-7 py-3.5 text-base font-semibold text-[#053B3D] hover:bg-[#053B3D] hover:text-white"
+                  analyticsLabel="See how it works"
+                  analyticsLocation={LOCATION}
+                  analyticsProperties={{
+                    cta_type: "how_it_works",
+                    page_name: PAGE_NAME,
+                    section: "final_cta",
+                  }}
+                >
+                  See how it works
+                </Button>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
