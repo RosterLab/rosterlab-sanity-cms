@@ -57,6 +57,8 @@ interface IndustryHeroProps {
    * no effect there.
    */
   panelSize?: "default" | "compact" | "mini";
+  /** Places the photo after the buttons in the stacked hero layout. */
+  imageBelowCtasOnMobile?: boolean;
   primaryCta: HeroCta;
   secondaryCta?: HeroCta;
   analyticsLocation?: string;
@@ -78,7 +80,8 @@ interface IndustryHeroProps {
  *   site header (which paints itself the same blue on these routes, see
  *   `Header`). Content stacks title → photo → body copy → buttons, which the
  *   photo achieves by being ordered between the text panel's own children —
- *   see the `display: contents` note on that panel.
+ *   see the `display: contents` note on that panel. The
+ *   `imageBelowCtasOnMobile` option moves the photo after the buttons.
  * - At `lg` and up, the panel detaches and is absolutely positioned over
  *   the lower-left of the photo, which is inset from the left instead.
  *
@@ -89,6 +92,7 @@ export default function IndustryHero({
   title,
   description,
   panelSize = "default",
+  imageBelowCtasOnMobile = false,
   primaryCta,
   secondaryCta,
   analyticsLocation,
@@ -178,7 +182,12 @@ export default function IndustryHero({
               {title}
             </h1>
 
-            <p className="order-3 mt-7 lg:mt-5 text-base sm:text-lg lg:text-[1.0625rem] leading-relaxed max-w-md">
+            <p
+              className={cn(
+                "order-3 mt-7 lg:mt-5 text-base sm:text-lg lg:text-[1.0625rem] leading-relaxed",
+                imageBelowCtasOnMobile ? "lg:max-w-md" : "max-w-md",
+              )}
+            >
               {description}
             </p>
 
@@ -220,7 +229,8 @@ export default function IndustryHero({
           */}
           <div
             className={cn(
-              "order-2 relative mt-7 aspect-[7/5] sm:aspect-[16/9] overflow-hidden",
+              imageBelowCtasOnMobile ? "order-5 lg:order-2" : "order-2",
+              "relative mt-7 aspect-[7/5] sm:aspect-[16/9] overflow-hidden",
               "rounded-tl-[50%_60%] rounded-tr-[50%_60%]",
               "border-t-[3px] border-l-[3px]",
               ARCH_STROKE,
