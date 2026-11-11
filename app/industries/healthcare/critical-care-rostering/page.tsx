@@ -99,9 +99,9 @@ const CAPABILITIES = [
       href: "/feature/rules-engine",
     },
     image: {
-      src: "/images/new-product-images/skill-based-rules.webp",
-      alt: "Role-based rules in RosterLab showing skill levels and full-time and part-time settings",
-      className: "object-contain p-4 sm:p-6",
+      src: "/images/industries/nursing/critical-care-teaching-time-v2.webp",
+      alt: "ICU roster in RosterLab with protected teaching shifts highlighted, and a rule requiring at least one teaching shift per two weeks for each skill level",
+      className: "object-cover",
     },
     frame: "bg-[#3B7FE8]",
   },
@@ -114,8 +114,8 @@ const CAPABILITIES = [
       href: "/feature/re-rostering",
     },
     image: {
-      src: "/images/industries/nursing/re-rostering-absences.webp",
-      alt: "Re-generating selected shifts in RosterLab after staff call in sick, choosing the dates, area, skills, shifts and staff to re-roster",
+      src: "/images/industries/nursing/critical-care-adjust-cover.webp",
+      alt: "Re-generating selected ICU shifts in RosterLab, choosing the dates, area, skills, shifts and staff to re-roster",
       className: "object-cover",
     },
     frame: "bg-[#3B7FE8]",
