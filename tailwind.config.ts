@@ -69,6 +69,7 @@ export default {
         'scroll': 'scroll 20s linear infinite',
         'float': 'float 3s ease-in-out infinite',
         'float-delayed': 'float 3s ease-in-out infinite 1.5s',
+        'otto-progress': 'ottoProgress var(--otto-progress-duration, 6s) linear forwards',
       },
       keyframes: {
         fadeIn: {
@@ -95,6 +96,10 @@ export default {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-8px)' },
+        },
+        ottoProgress: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
         },
       },
     },

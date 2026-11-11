@@ -1,41 +1,23 @@
-import posthog from "posthog-js";
+import { loadPostHog } from "@/lib/monitoring/posthog-loader";
 import {
   installRoutingPrefillCapture,
   ROUTING_ANSWER_PARAMS,
-  redactRoutingPrefillUrl,
 } from "@/lib/calendly/routing-prefill";
 
 // Also protects early client instrumentation if it runs before the head script.
 installRoutingPrefillCapture(ROUTING_ANSWER_PARAMS);
 
-const projectToken = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
-
-function redactUrl(value: string): string {
-  try {
-    const url = new URL(value, window.location.origin);
-    url.search = "";
-    url.hash = "";
-    return url.toString();
-  } catch {
-    return value.split(/[?#]/, 1)[0];
-  }
-}
-
-function isMarketingPage(pathname: string): boolean {
-  return !["/api", "/azure-ad", "/draft", "/studio"].some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
-  );
-}
-
-function startReplayAfterLoad(): void {
+// PostHog stays off the critical rendering path: it is fetched and started in
+// the first idle period after the window load event, matching our previous
+// Clarity performance behaviour. An error report before then loads it early
+// (see lib/monitoring/posthog-client.ts).
+function loadWhenIdle(): void {
   const start = () => {
     if (typeof window.requestIdleCallback === "function") {
-      window.requestIdleCallback(() => posthog.startSessionRecording(), {
-        timeout: 2_000,
-      });
+      window.requestIdleCallback(() => void loadPostHog(), { timeout: 2_000 });
       return;
     }
-    window.setTimeout(() => posthog.startSessionRecording(), 1_000);
+    window.setTimeout(() => void loadPostHog(), 1_000);
   };
 
   if (document.readyState === "complete") {
@@ -45,64 +27,4 @@ function startReplayAfterLoad(): void {
   }
 }
 
-if (projectToken) {
-  posthog.init(projectToken, {
-    api_host:
-      process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
-    ui_host:
-      process.env.NEXT_PUBLIC_POSTHOG_UI_HOST || "https://us.posthog.com",
-    defaults: "2026-05-30",
-
-    // Neon remains RosterLab's durable CDP. PostHog provides the marketer-facing
-    // behavioural view alongside exception reporting and session replay.
-    autocapture: true,
-    capture_pageview: true,
-    capture_pageleave: false,
-    capture_heatmaps: true,
-    capture_dead_clicks: false,
-    capture_performance: true,
-    capture_exceptions: true,
-    disable_surveys: true,
-    person_profiles: "always",
-
-    // Keep replay off the critical rendering path. It is started after the
-    // window load event in the next idle period, matching our previous Clarity
-    // performance behaviour.
-    disable_session_recording: true,
-    session_recording: {
-      maskAllInputs: true,
-      maskTextSelector: "[data-sensitive], .ph-mask",
-      blockSelector:
-        'input[type="hidden"], input[type="file"], [data-posthog-no-capture]',
-      recordHeaders: false,
-      recordBody: false,
-      maskCapturedNetworkRequestFn: (request) => ({
-        ...request,
-        name: request.name ? redactUrl(request.name) : request.name,
-      }),
-    },
-    before_send: (event) => {
-      if (event?.properties?.$current_url) {
-        event.properties.$current_url = redactUrl(
-          String(event.properties.$current_url),
-        );
-      }
-      for (const key of [
-        "$referrer",
-        "$initial_referrer",
-        "$initial_current_url",
-      ]) {
-        if (event?.properties?.[key]) {
-          event.properties[key] = redactRoutingPrefillUrl(
-            String(event.properties[key]),
-          );
-        }
-      }
-      return event;
-    },
-  });
-
-  if (isMarketingPage(window.location.pathname)) {
-    startReplayAfterLoad();
-  }
-}
+loadWhenIdle();

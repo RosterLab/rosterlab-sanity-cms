@@ -10,6 +10,7 @@ import {
   withHreflang,
 } from "@/components/seo/HreflangTags";
 import { resourceMetadata } from "../us-resources";
+import { enterpriseMetadata } from "@/app/enterprise/enterprise-metadata";
 
 // Reading a route's metadata means evaluating the object literal it exports,
 // because most of them are wrapped in resourceMetadata()/withHreflang() and the
@@ -42,6 +43,7 @@ function evaluateMetadata(expression: string, pathname: string) {
     pathname,
     withHreflang,
     resourceMetadata,
+    enterpriseMetadata,
     URL,
   };
   vm.runInNewContext(
@@ -62,7 +64,7 @@ const routeFiles = (pathname: string) => [
   `app${pathname}/layout.tsx`,
 ];
 
-test("all 67 mapped US pages expose specific metadata and existing social images", () => {
+test("all mapped US pages expose specific metadata and existing social images", () => {
   for (const pathname of Object.values(US_URL_MAPPINGS)) {
     const expression = routeFiles(pathname)
       .map(metadataExpression)

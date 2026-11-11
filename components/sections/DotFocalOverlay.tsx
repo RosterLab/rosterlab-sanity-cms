@@ -42,21 +42,30 @@ export default function DotFocalOverlay() {
         <div
           key={top}
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 z-0"
-          style={{
-            top: `calc(${top} - ${height / 2}px)`,
-            height,
-            backgroundImage: [
-              // Topmost layer: clear over the focal point, page-coloured by
-              // 70% out — the same falloff the mask used to describe.
-              // rgba(255,255,255,0) rather than `transparent`, which some
-              // engines interpolate through grey.
-              `radial-gradient(ellipse ${spread} 50% at 50% 50%, rgba(255,255,255,0) 0%, ${PAGE_BG} 70%)`,
-              "radial-gradient(circle, #d4d8de 1px, transparent 1px)",
-            ].join(", "),
-            backgroundSize: "100% 100%, 22px 22px",
-          }}
-        />
+          className="pointer-events-none absolute inset-0 z-0"
+          // Position the decoration with transforms. Percentage `top` moved
+          // the bands in layout whenever streamed content or responsive
+          // sections changed the page height, producing a large CLS even
+          // though the foreground content stayed in place.
+          style={{ transform: `translateY(${top})` }}
+        >
+          <div
+            className="absolute inset-x-0 top-0"
+            style={{
+              height,
+              transform: "translateY(-50%)",
+              backgroundImage: [
+                // Topmost layer: clear over the focal point, page-coloured by
+                // 70% out — the same falloff the mask used to describe.
+                // rgba(255,255,255,0) rather than `transparent`, which some
+                // engines interpolate through grey.
+                `radial-gradient(ellipse ${spread} 50% at 50% 50%, rgba(255,255,255,0) 0%, ${PAGE_BG} 70%)`,
+                "radial-gradient(circle, #d4d8de 1px, transparent 1px)",
+              ].join(", "),
+              backgroundSize: "100% 100%, 22px 22px",
+            }}
+          />
+        </div>
       ))}
     </div>
   );

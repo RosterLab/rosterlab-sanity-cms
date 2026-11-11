@@ -54,12 +54,12 @@ export interface HeroNewContent {
 }
 
 export const HERO_CONTENT_AU: HeroNewContent = {
-  headline: "AI rostering software built for complex teams.",
+  headline: "AI rostering software built for healthcare.",
   description:
-    "Generate and optimise staff rosters in minutes, not days. Built for healthcare, 24/7 operations, and teams with rules too complex for spreadsheets.",
+    "Generate fair, compliant staff rosters in minutes with AI that balances your rules, skills, and preferences at once.",
   primaryCta: { label: "Book a demo", href: "/book-a-demo" },
   secondaryCta: {
-    label: "See an example",
+    label: "Take a tour",
     href: "/staff-rostering-interactive-demo",
   },
   locale: "au",

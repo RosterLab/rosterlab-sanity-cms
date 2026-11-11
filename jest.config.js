@@ -12,6 +12,9 @@ const config = {
   testEnvironment: 'jsdom',
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  // Keep the custom development output out of Jest's module crawl and watch.
+  modulePathIgnorePatterns: ['<rootDir>/.next-dev/', '<rootDir>/.next-dev-turbo/'],
+  watchPathIgnorePatterns: ['<rootDir>/.next-dev/', '<rootDir>/.next-dev-turbo/'],
   testMatch: [
     '**/__tests__/**/*.(js|jsx|ts|tsx)',
     '**/*.(test|spec).(js|jsx|ts|tsx)'

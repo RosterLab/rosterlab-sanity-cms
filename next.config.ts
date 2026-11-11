@@ -3,8 +3,21 @@ import { ARTICLE_REDIRECTS } from "./lib/posts/article-redirects";
 import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
+  // Canonical and hreflang links must be in the initial <head>, not streamed
+  // into <body>. Use the same metadata delivery for every user agent because
+  // Netlify's shared HTML cache does not vary by User-Agent.
+  htmlLimitedBots: /.*/,
   // Production builds must not replace assets used by a running local preview.
-  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev-turbo" : ".next",
+  // Match the browser-only exclusions below when using the faster dev compiler.
+  turbopack: {
+    resolveAlias: {
+      "core-js": { browser: "./lib/browser-empty.js" },
+      "core-js-pure": { browser: "./lib/browser-empty.js" },
+      jsdom: { browser: "./lib/browser-empty.js" },
+      "isomorphic-dompurify": { browser: "./lib/browser-empty.js" },
+    },
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -14,7 +27,9 @@ const nextConfig: NextConfig = {
   trailingSlash: false, // Explicitly set to false to avoid redirect chains
   images: {
     domains: ["cdn.sanity.io", "rosterlab.com"],
-    formats: ["image/webp"],
+    // AVIF first: the optimizer falls back to WebP, then JPEG, on
+    // whatever the browser's Accept header allows.
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7 days in seconds
     dangerouslyAllowSVG: true,
     contentDispositionType: "inline",

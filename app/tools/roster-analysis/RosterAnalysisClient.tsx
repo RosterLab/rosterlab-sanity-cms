@@ -49,7 +49,7 @@ const MORE_RESOURCES = [
   {
     title: "Rostering as a strategic workforce lever",
     link: "/whitepapers/rostering-as-a-strategic-workforce-lever",
-    image: "/images/og-images/whitepaper start.png",
+    image: "/images/og-images/whitepaper-start.webp",
     eyebrow: "Whitepaper",
     description:
       "How executives use rostering to control cost, retain staff and protect care quality.",

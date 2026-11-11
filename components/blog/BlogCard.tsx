@@ -1,12 +1,19 @@
 "use client";
 
 import { effectiveUSSlug } from "@/lib/localization/us-slug";
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { authorByline, postAuthors } from "@/lib/posts/authors";
+import { authorByline, postAuthors, type PostAuthor } from "@/lib/posts/authors";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import { formatDate } from "@/lib/utils";
+
+// These artwork variants include safe margins for the standard card crop.
+const guidePreviewImages: Record<string, string> = {
+  'image-e8ca32296098d6261ac59b6e3b92a867e0a70343-1670x941-png':
+    '/images/blog/healthcare-rostering-buyers-guide-preview-v2.webp',
+  'image-8afed9a82fe7f23bf16aa1dec74ce9f6c096b8fb-1671x941-png':
+    '/images/blog/healthcare-scheduling-buyers-guide-preview-v2.webp',
+};
 
 interface BlogCardProps {
   basePath?: string;
@@ -18,11 +25,8 @@ interface BlogCardProps {
     excerpt?: string;
     mainImage?: { asset: { _ref: string }; alt?: string };
     publishedAt: string;
-    author: {
-      name: string;
-      slug?: { current: string };
-      image?: { asset: { _ref: string }; alt?: string };
-    };
+    author?: PostAuthor | null;
+    authors?: PostAuthor[] | null;
     categories?: Array<{
       title: string;
       slug: { current: string };
@@ -31,19 +35,17 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
-  const [isUnlocked, setIsUnlocked] = useState(false);
-
-  // Define locked case studies
-  const LOCKED_CASE_STUDIES = [
-    "how-plastics-department-used-roster-simulation-to-cut-in-costs",
-  ];
-
-  // Check if user has unlocked case studies on mount
-  useEffect(() => {
-    const unlocked = localStorage.getItem("case_study_unlocked") === "true";
-    setIsUnlocked(unlocked);
-  }, []);
-
+  const authors = postAuthors(post);
+  const primaryAuthor = authors[0];
+  const byline = authorByline(authors) || "Unknown Author";
+  const authorImage = primaryAuthor?.image as { asset?: { _ref?: string } } | undefined;
+  const authorImageSrc = authorImage
+    ? authorImage.asset?._ref === 'image-9af26c62683d190949edc8918237304656b86269-1667x2500-jpg'
+      // Include headroom and shoulders from the original portrait, then fit
+      // that wider view into the avatar without stretching or editing the face.
+      ? urlFor(authorImage).rect(0, 0, 1667, 2000).width(48).height(48).fit('fill').bg('f4f6fb').url()
+      : urlFor(authorImage).width(48).height(48).url()
+    : undefined;
   // Determine the correct URL path based on categories
   const getPostUrl = () => {
     if (post.categories?.some((cat) => cat.slug.current === "case-studies")) {
@@ -57,12 +59,9 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
   };
 
   const postUrl = getPostUrl();
-  const isLockedCaseStudy = LOCKED_CASE_STUDIES.includes(post.slug.current);
-  const isCaseStudy = post.categories?.some((cat) => cat.slug.current === "case-studies");
-
-  const showPopularTag = isLockedCaseStudy; // Show "Popular" tag for locked case studies
-  const showLockIcon = isLockedCaseStudy && !isUnlocked;
-  const showUnlockedIcon = isLockedCaseStudy && isUnlocked;
+  const showPopularTag =
+    post.slug.current ===
+    "how-plastics-department-used-roster-simulation-to-cut-in-costs";
 
   return (
     <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
@@ -70,51 +69,12 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
         <Link href={postUrl}>
           <div className="relative h-48 w-full">
             <Image
-              src={urlFor(post.mainImage).width(400).height(200).url()}
+              src={guidePreviewImages[post.mainImage.asset._ref] || urlFor(post.mainImage).width(400).height(200).url()}
               alt={post.mainImage.alt || post.title}
               fill
+              sizes="(min-width: 1400px) 424px, (min-width: 1280px) 384px, (min-width: 1024px) 299px, (min-width: 768px) 344px, (min-width: 640px) 592px, calc(100vw - 32px)"
               className="object-cover hover:scale-105 transition-transform duration-300"
             />
-            {/* Lock Icon Overlay */}
-            {showLockIcon && (
-              <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-                <div className="bg-white/95 backdrop-blur-sm rounded-full p-3 shadow-lg">
-                  <svg
-                    className="w-6 h-6 text-emerald-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            )}
-            {/* Unlocked Icon Overlay */}
-            {showUnlockedIcon && (
-              <div className="absolute top-3 right-3">
-                <div className="bg-emerald-500 backdrop-blur-sm rounded-full p-2 shadow-lg">
-                  <svg
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            )}
           </div>
         </Link>
       )}
@@ -159,37 +119,39 @@ export default function BlogCard({ post, basePath = "/blog" }: BlogCardProps) {
         )}
 
         <div className="flex items-center justify-between text-sm text-neutral-500">
-          {post.author?.slug ? (
+          {primaryAuthor?.slug?.current ? (
             <Link
-              href={`/authors/${post.author.slug.current}`}
+              href={`/authors/${primaryAuthor.slug.current}`}
               className="flex items-center space-x-2 hover:text-blue-600 transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
-              {post.author?.image && (
-                <div className="relative w-6 h-6">
+              {authorImageSrc ? (
+                <div className="relative w-6 h-6 shrink-0">
                   <Image
-                    src={urlFor(post.author.image).width(24).height(24).url()}
-                    alt={post.author.name}
+                    src={authorImageSrc}
+                    alt={primaryAuthor.name || "Author"}
                     fill
+                    sizes="24px"
                     className="rounded-full object-cover"
                   />
                 </div>
-              )}
-              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
+              ) : null}
+              <span>{byline}</span>
             </Link>
           ) : (
             <div className="flex items-center space-x-2">
-              {post.author?.image && (
-                <div className="relative w-6 h-6">
+              {authorImageSrc ? (
+                <div className="relative w-6 h-6 shrink-0">
                   <Image
-                    src={urlFor(post.author.image).width(24).height(24).url()}
-                    alt={post.author.name}
+                    src={authorImageSrc}
+                    alt={primaryAuthor?.name || "Author"}
                     fill
+                    sizes="24px"
                     className="rounded-full object-cover"
                   />
                 </div>
-              )}
-              <span>{authorByline(postAuthors(post)) || "Unknown Author"}</span>
+              ) : null}
+              <span>{byline}</span>
             </div>
           )}
           <time>{formatDate(post.publishedAt)}</time>

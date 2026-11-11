@@ -12,21 +12,37 @@
 import type { HeroNewContent } from "@/components/sections/HeroNew";
 import type { FeatureTestimonialContent } from "@/components/sections/FeatureTestimonial";
 import type { BenefitTab } from "@/components/sections/BenefitsNew";
-import type { Industry } from "@/components/sections/IndustrySolutionsNew";
-import type { Testimonial } from "@/components/sections/TestimonialsNew";
-import type { Feature } from "@/components/sections/FeaturesGrid";
+import type { Capability } from "@/components/sections/CapabilitiesSection";
+import type { OttoCopy } from "@/components/sections/OttoSection";
+import type {
+  OtherIndustriesContent,
+  WorkforceContent,
+} from "@/components/sections/IndustriesSection";
+import type {
+  FeaturedCaseStudy,
+  Testimonial,
+} from "@/components/sections/TestimonialsNew";
+
+/*
+  Each block mirrors the AU section of the same name (the component's `_AU`
+  default). When the AU copy changes, change it here too, converted.
+
+  The blocks are written out in full, images included, rather than derived
+  from the AU constants: those live in "use client" modules, and a server
+  page importing them gets an opaque client reference, not the data.
+*/
 
 export const HERO_CONTENT_US: HeroNewContent = {
-  headline: "AI scheduling software built for complex teams.",
+  headline: "AI scheduling software built for healthcare.",
   description:
-    "Generate and optimize staff schedules in minutes, not days. Built for healthcare, 24/7 operations, and teams with rules too complex for spreadsheets.",
+    "Generate fair, compliant staff schedules in minutes with AI that balances your rules, skills, and preferences at once.",
   primaryCta: { label: "Book a demo", href: "/us/book-a-demo" },
-  secondaryCta: { label: "See an example", href: "/us/product-tour" },
+  secondaryCta: { label: "Take a tour", href: "/us/product-tour" },
   locale: "us",
 };
 
 export const TRUSTED_BY_HEADING_US =
-  "Join hundreds of teams already optimizing their schedules";
+  "Join hundreds of healthcare teams already optimizing their schedules";
 
 export const FEATURE_TESTIMONIAL_US: FeatureTestimonialContent = {
   lead: "Scheduling would take ",
@@ -34,7 +50,7 @@ export const FEATURE_TESTIMONIAL_US: FeatureTestimonialContent = {
   after: "2-3 hours",
   tail: ", allowing me to focus more on patient care.",
   author: "Mike",
-  role: "Associate Clinical Manager Radiology",
+  role: "Associate Clinical Manager, Radiology",
   // Use the US-localized webinar page.
   link: {
     href: "/us/webinars/building-a-resilient-workforce-with-ai-scheduling-in-healthcare",
@@ -46,129 +62,266 @@ export const BENEFIT_TABS_US: BenefitTab[] = [
   {
     id: "time",
     label: "Save Time",
-    title: "Generate schedules in minutes",
+    title: "Schedule your entire clinical team in minutes",
     description:
-      "Let the AI handle complex contractual and operational constraints while you focus on what matters most. Manage last-minute changes with rescheduling, open shifts, and automatic shift swaps based on predefined rules.",
+      "Take the manual work out of complex scheduling. Spend less time planning and reworking schedules, and give clinical teams more time back for patient care.",
     cta: {
-      label: "Explore AI generation",
-      href: "/us/feature/ai-staff-scheduling-assistant",
+      label: "Explore AI scheduling",
+      href: "/us/solutions/ai-staff-schedule-maker",
     },
     highlights: [
-      "Generate Schedules Automatically",
-      "Handle Complex Rules and Staffing Requirements",
-      "Reduce Admin for Last-minute Changes",
-      "Dynamically reschedule staff",
+      "Up to 90% less scheduling admin",
+      "More headspace for patient care",
+      "Less time spent juggling schedule changes",
+    ],
+  },
+  {
+    id: "turnover",
+    label: "Retain Staff",
+    title: "Retain the physicians your service depends on",
+    description:
+      "Give staff fairer schedules that protect their personal time. Promote a healthier work-life balance to help reduce burnout, absenteeism, and turnover.",
+    cta: {
+      label: "Explore fair scheduling",
+      href: "/us/feature/self-scheduling",
+    },
+    highlights: [
+      "Fairer workloads",
+      "Greater staff input and engagement",
+      "Fewer avoidable last-minute absences",
+    ],
+  },
+  {
+    id: "safety",
+    label: "Stay Compliant",
+    title: "Ensure clinical safety and compliance",
+    description:
+      "Assign the best-fit people to each shift based on skills, qualifications, and demand. Keep coverage, fatigue limits and compliance requirements accounted for throughout the schedule.",
+    cta: {
+      label: "Explore smarter coverage",
+      href: "/us/feature/rules-engine",
+    },
+    highlights: [
+      "Safer staffing",
+      "Reliable clinical coverage by skills",
+      "Confidence in schedule compliance",
     ],
   },
   {
     id: "optimisation",
     label: "Optimize Workforce",
-    title: "Optimize your workforce with AI",
+    title: "Unlock hidden capacity in your workforce",
     description:
-      "Harness our advanced mathematical optimization engine to allocate staff efficiently. Reduce premium-pay costs, improve coverage, and plan ahead with confidence.",
+      "Allocate staff more effectively to make better use of available capacity, reducing costly overtime and reliance on locum tenens and agency staff.",
     cta: {
-      label: "Explore optimization",
+      label: "Explore workforce optimization",
       href: "/us/solutions/ai-staff-schedule-maker",
     },
     highlights: [
-      "Optimize Skill Mix",
-      "Allocate Staff Efficiently",
-      "Minimize Costs",
-      "Dynamic Scenario Planning",
+      "Minimized overtime and premium-pay costs",
+      "Less reliance on agency staff",
+      "More provider capacity",
     ],
     image: "/images/illustration/optimise_workforce.svg",
   },
+];
+
+export const CAPABILITIES_HEADING_US =
+  "Keep schedules running smoothly with RosterLab";
+
+// Images and colours match CAPABILITIES_AU; only the words and links change.
+export const CAPABILITIES_US: Capability[] = [
   {
-    id: "turnover",
-    label: "Reduce Turnover",
-    title: "Improve staff retention",
+    tag: "Build",
+    title: "Build the schedules spreadsheets can't",
     description:
-      "Empower your team to plan ahead and manage their schedules with confidence, while staying aligned with business needs. Fewer shift swaps, reduced absenteeism, and better-matched preferences drive engagement.",
+      "RosterLab generates fully optimized schedules using an automated rules-based engine to balance staffing demand, skill mix, fatigue limits, labor laws, and other constraints.",
     cta: {
-      label: "Explore retention",
+      label: "Explore auto-scheduling",
+      href: "/us/feature/auto-scheduling",
+    },
+    image: {
+      src: "/landing/capabilities/build-rules.webp",
+      wide: "/landing/capabilities/build-rules-wide.webp",
+      alt: "The RosterLab Rule Builder listing hours, night-shift and days-off rules, in front of a schedule being generated from them",
+    },
+    color: "#3779DE",
+  },
+  {
+    tag: "Adapt",
+    title: "Adapt the schedule as plans change",
+    description:
+      "Handle absences and last-minute changes without rebuilding the schedule from scratch. Automate shift swaps and fill gaps instantly while keeping coverage and compliance intact.",
+    cta: {
+      label: "Explore rescheduling",
+      href: "/us/feature/staff-rescheduling",
+    },
+    image: {
+      src: "/landing/capabilities/adapt-open-shifts.webp",
+      wide: "/landing/capabilities/adapt-open-shifts-wide.webp",
+      alt: "An open night shift on the schedule, with a staff member accepting it from the RosterLab app",
+    },
+    color: "#66E3B9",
+  },
+  {
+    tag: "Engage",
+    title: "Let staff shape their schedules",
+    description:
+      "Give staff greater flexibility around when they work with self-service tools to submit preferences, request time off, and see their latest shifts in one app.",
+    cta: {
+      label: "Explore self-scheduling",
       href: "/us/feature/self-scheduling",
     },
-    highlights: [
-      "Improve Work-Life Balance and Staff Satisfaction",
-      "Meet a High Percentage of Preferences",
-      "Reduce Unnecessary Sick Leave",
-      "Reduce Staff Turnover",
-    ],
-  },
-  {
-    id: "safety",
-    label: "Safety & Fairness",
-    title: "Ensure compliance & equity",
-    description:
-      "Ensure clinical safety and fairness with every schedule. By embedding equity and fatigue-management rules into our AI, you eliminate favoritism, reduce staff fatigue, and create safer, more inclusive schedules.",
-    cta: { label: "Explore safety", href: "/us/feature/rules-engine" },
-    // Longest of the four titles — one step down at lg so it holds 2 lines.
-    titleClassName: "lg:text-[2.5rem]",
-    highlights: [
-      "Eliminate Favoritism",
-      "Distribute Shifts Fairly",
-      "Reduce Clinical Risks",
-      "Reduce Fatigue",
-    ],
+    image: {
+      src: "/landing/capabilities/engage-preferences.webp",
+      wide: "/landing/capabilities/engage-preferences-wide.webp",
+      alt: "A staff member picks a Short Day preference in the RosterLab app and it appears on the manager's Preferences view",
+    },
+    color: "#61C8C7",
   },
 ];
 
-export const INDUSTRIES_US: Industry[] = [
-  {
-    name: "ICU/ED",
-    category: "Healthcare",
-    description: "Critical care scheduling with complex skill-mix.",
-    href: "/us/industries/healthcare/ed-icu-scheduling",
-    image: "/landing/industries/icu.webp",
+export const OTTO_COPY_US: OttoCopy = {
+  heading:
+    "Make smarter scheduling decisions with Otto, your AI scheduling assistant",
+  description:
+    "Otto understands your schedule and the context behind it. Get answers, test changes, and build reports in seconds, all through conversation.",
+  cta: {
+    label: "See Otto in Action",
+    href: "/us/feature/ai-staff-scheduling-assistant",
   },
-  {
-    name: "Radiology",
-    category: "Healthcare",
-    description: "Plan your schedules by sessions.",
-    href: "/us/industries/healthcare/radiology-scheduling",
-    image: "/landing/industries/radi.webp",
-  },
-  {
-    name: "Senior Care",
-    category: "Healthcare",
-    description: "Allocate your staff more effectively for continuity of care.",
-    href: "/us/industries/healthcare/senior-care-scheduling",
-    image: "/landing/industries/aged.webp",
-  },
-  {
-    name: "Vets",
-    category: "Healthcare",
-    description: "Scheduling for veterinary clinics with mixed skill mixes.",
-    href: "/us/industries/healthcare/veterinary-scheduling",
-    image: "/landing/industries/vet.webp",
-  },
-  {
-    name: "Hospitality",
-    category: "Other Industries",
-    description: "Restaurant and hotel staff scheduling.",
-    href: "/us/industries/hospitality-scheduling",
-    image: "/landing/industries/service.webp",
-  },
-  {
-    name: "24/7 Support Teams",
-    category: "Other Industries",
-    description: "Round-the-clock customer service scheduling.",
-    href: "/us/industries/call-center-scheduling",
-    image: "/landing/industries/247.webp",
-  },
-  {
-    name: "Manufacturing",
-    category: "Other Industries",
-    description: "Shift work optimization for production lines.",
-    href: "/us/industries/manufacturing-scheduling",
-    image: "/landing/industries/manu.webp",
-  },
-];
+  features: [
+    {
+      title: "Answer schedule questions instantly",
+      description:
+        "Check staffing coverage, skill mix, time off, fairness and more. Otto searches your live schedule and audit trail to give you contextual answers, including who worked when and what's changed.",
+    },
+    {
+      title: "Get recommendations for better scheduling decisions",
+      description:
+        "Filling a gap, assessing a swap or reworking a schedule? Otto weighs availability, skills, workload, rest requirements and scheduling rules to recommend the best way forward.",
+    },
+    {
+      title: "Analyze your schedule from every angle",
+      description:
+        "Turn your schedule data into insights you can act on. Otto breaks down any part of your schedule to create charts, summaries and reports that back confident workforce decisions.",
+    },
+  ],
+};
 
-export const INDUSTRIES_HEADING_US = {
-  title: "Workforce management built around how your industry works.",
-  subtitle:
-    "Designed for the real operational demands of each industry, from shift-heavy healthcare and hospitality to 24/7 operations and highly regulated public services. Explore how we tailor scheduling, forecasting, and compliance to your team.",
+// Illustrations and the mockup match WORKFORCE_CONTENT_AU; groups, words
+// and links are US.
+export const WORKFORCE_CONTENT_US: WorkforceContent = {
+  heading: "Scheduling tailored to every healthcare workforce group",
+  description:
+    "RosterLab adapts to the rules, working patterns, and staffing requirements unique to each workforce group.",
+  groups: [
+    {
+      name: "Nursing",
+      illustration: "/landing/workforce/illustrations/nursing.webp",
+      href: "/us/industries/healthcare/nurse-scheduling",
+      linkLabel: "Explore nurse scheduling",
+      description:
+        "Balance skill mix, ratios and a fair spread of nights and weekends across every unit, while honoring labor rules and staff preferences.",
+      features: [
+        {
+          title: "Shift preferences, straight from staff",
+          description:
+            "Nurses send shift preferences and special requests from the app, and they land on the manager's schedule the moment they are sent. The AI then fits as many as it can while keeping the unit covered.",
+          image: {
+            src: "/landing/workforce/nursing-preferences.webp",
+            alt: "A nurse picks a Short Day preference in the RosterLab app and it appears on the manager's Preferences view for the schedule period",
+          },
+        },
+        {
+          title: "Fair nights & weekends",
+          description:
+            "Nights, weekends and holidays are shared out evenly over the schedule period, with the count visible to the whole team.",
+        },
+      ],
+    },
+    {
+      illustration: "/landing/workforce/illustrations/junior-doctors.webp",
+      name: "Residents",
+      href: "/us/industries/healthcare/physician-scheduling",
+      linkLabel: "Explore resident scheduling",
+      description:
+        "Cover every shift with compliant schedules that respect duty-hour limits, protect training time and share nights and weekends fairly.",
+      features: [
+        {
+          title: "Fatigue & duty-hour checks",
+          description:
+            "Maximum hours, minimum time off and limits on consecutive nights are built into the schedule, so duty-hour violations are caught before they are scheduled.",
+        },
+        {
+          title: "Protected training time",
+          description:
+            "Didactics, clinics and exam leave are blocked out first, and the schedule is built around them rather than over them.",
+        },
+      ],
+    },
+    {
+      illustration: "/landing/workforce/illustrations/senior-doctors.webp",
+      name: "Attending physicians",
+      href: "/us/industries/healthcare/attending-physician-scheduling",
+      linkLabel: "Explore attending physician scheduling",
+      description:
+        "Plan clinics, call and time off across every service, with a fair share of after-hours work and clear visibility for the whole team.",
+      features: [
+        {
+          title: "Call & clinic planning",
+          description:
+            "Plan clinics, call and after-hours coverage together, with a fair share of unsociable work across every attending in the service.",
+        },
+        {
+          title: "Time off across the service",
+          description:
+            "See every time-off request against the service's coverage in one place, and approve with confidence that clinics and lists stay staffed.",
+        },
+      ],
+    },
+    {
+      name: "Allied health",
+      illustration: "/landing/workforce/illustrations/allied-health.webp",
+      href: "/us/industries/healthcare/radiography-scheduling",
+      linkLabel: "Explore allied health scheduling",
+      description:
+        "Schedule allied health teams across clinics, units and sites by skill and availability, so every service has the right people on hand.",
+      features: [
+        {
+          title: "Skill-based allocation across sites",
+          description:
+            "Match each clinician's skills and credentials to the clinics, units and sites that need them, and keep travel between sites to a minimum.",
+        },
+      ],
+    },
+  ],
+  enterprise: {
+    lead: "Scale scheduling across departments and workforce groups.",
+    label: "Explore enterprise scheduling",
+    href: "/us/pricing",
+  },
+  specialties: {
+    lead: "Looking for your specialty?",
+    body: "Explore scheduling for Emergency & Critical Care, Radiology, Surgery & Perioperative, and more.",
+    label: "View all healthcare specialties",
+    href: "/us/industries/healthcare-scheduling",
+  },
+};
+
+export const FEATURED_CASE_STUDY_US: FeaturedCaseStudy = {
+  stat: "179+",
+  statUnit: "hours",
+  statLabel: "back for clinical work",
+  title: "179 hours back for clinical work",
+  summary:
+    "Whanganui Radiography saved more than 179 hours a year with RosterLab, returning physician time to clinical work.",
+  // The slug has no roster terms, so the US path is the global one under /us.
+  href: "/us/case-studies/whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab",
+  image: {
+    src: "/landing/case-studies/whanganui-radiography-mri.webp",
+    alt: "An MRI scanner in a hospital imaging room",
+  },
 };
 
 // Mike is deliberately absent — he is the featured quote higher up the page.
@@ -182,8 +335,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " who writes medical schedules.",
     ],
     author: "Peter",
-    role: "Senior Registrar ICU, Western Australia",
-    roleExplanation: "Australian physician in advanced specialty training.",
+    role: "ICU Physician, Western Australia",
     caseStudyLink: "/us/case-studies/icu-unit-western-australia",
   },
   {
@@ -203,8 +355,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " built into the schedules, and RosterLab was easily able to incorporate that into every schedule they generated for us.",
     ],
     author: "Rebecca",
-    role: "Staff Specialist Neonatologist, RPA Newborn Care",
-    roleExplanation: "Specialist in newborn care at Royal Prince Alfred Hospital, Australia.",
+    role: "Attending Neonatologist, RPA Newborn Care",
   },
   {
     quote: [
@@ -213,8 +364,7 @@ export const TESTIMONIALS_US: Testimonial[] = [
       ", with less up-and-down cycling.",
     ],
     author: "Anthea",
-    role: "MIT, Hawke's Bay Hospital",
-    roleExplanation: "MIT means medical imaging technologist in New Zealand.",
+    role: "Radiologic Technologist, Hawke's Bay Hospital",
   },
   {
     quote: [
@@ -225,77 +375,38 @@ export const TESTIMONIALS_US: Testimonial[] = [
       " while maintaining a safer schedule.",
     ],
     author: "Dr. Fernando",
-    role: "Junior Consultant, Auckland Tertiary Hospital",
-    roleExplanation: "Early-career specialist physician, comparable to a US attending.",
+    role: "Attending Physician, Auckland Tertiary Hospital",
     caseStudyLink:
       "/us/case-studies/auckland-tertiary-hospital-improves-fairness-for-on-call-schedule",
   },
 ];
 
-export const FEATURES_US: Feature[] = [
-  {
-    title: "Auto Scheduling",
-    description:
-      "Generate optimal, safe, fair, and flexible complex schedules at the click of a button.",
-    href: "/us/feature/auto-scheduling",
-    image: "01-automated-rostering.svg",
-  },
-  {
-    title: "AI Scheduling Assistant",
-    description:
-      "Ask AI to build or update schedules, investigate issues, and run the reports you need.",
-    href: "/us/feature/ai-staff-scheduling-assistant",
-    image: "02-ai-rostering-assistant.svg",
-  },
-  {
-    title: "Open Shifts",
-    description:
-      "Fill unfulfilled shifts instantly with the right people and the right skills.",
-    href: "/us/feature/open-shifts",
-    image: "03-open-shifts.svg",
-  },
-  {
-    title: "Shift Swaps",
-    description:
-      "Automatically approve routine trades while flagging critical changes.",
-    href: "/us/feature/shift-swaps-and-trades",
-    image: "04-shift-swaps.svg",
-  },
-  {
-    title: "Time-Off Requests",
-    description:
-      "Approve time off with confidence by seeing how every request affects shift coverage.",
-    href: "/us/feature/time-off-requests",
-    image: "05-leave-requests.svg",
-  },
-  {
-    title: "Staff Preferences",
-    description:
-      "AI self-scheduling for better work-life balance, without compromising coverage or rules.",
-    href: "/us/feature/self-scheduling",
-    image: "06-staff-preferences.svg",
-  },
-  {
-    title: "Rescheduling",
-    description:
-      "Handle last-minute changes without rebuilding the schedule from scratch.",
-    href: "/us/feature/staff-rescheduling",
-    image: "07-re-rostering.svg",
-  },
-  {
-    title: "Rules Engine",
-    description:
-      "Labor laws, clinical safety, fatigue rules, skill mix. Configured once, enforced always.",
-    href: "/us/feature/rules-engine",
-    image: "08-rules-engine.svg",
-  },
-];
-
-export const FEATURES_HEADING_US = {
-  title: "Everything you need to run a perfect schedule.",
-  subtitle:
-    "A connected toolkit for planning, publishing, and adjusting your schedules.",
+export const OTHER_INDUSTRIES_CONTENT_US: OtherIndustriesContent = {
+  heading: "Workforce management for shift-based industries",
+  description:
+    "RosterLab brings intelligent scheduling and workforce optimization to shift-based teams across a range of industries.",
+  viewAll: { label: "View all industries", href: "/us/industries" },
+  industries: [
+    { name: "Hospitality", href: "/us/industries/hospitality-scheduling" },
+    {
+      name: "24/7 support teams",
+      href: "/us/industries/call-center-scheduling",
+    },
+    { name: "Retail", href: "/us/industries/retail-scheduling" },
+    { name: "Education", href: "/us/industries/education-scheduling" },
+    {
+      name: "Airport & transportation",
+      href: "/us/industries/airport-transportation-scheduling",
+    },
+    {
+      name: "Emergency services",
+      href: "/us/industries/emergency-services-scheduling",
+    },
+  ],
 };
 
-export const FINAL_CTA_HEADING_US =
-  "Having a headache making schedules for shift workers?";
+export const FINAL_CTA_US = {
+  heading: "Still scheduling the hard way?",
+  description:
+    "See how RosterLab turns your complex staffing requirements into an optimized schedule in minutes.",
+};

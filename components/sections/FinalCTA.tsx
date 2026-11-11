@@ -2,60 +2,88 @@ import ContactFormWrapper from "@/components/forms/ContactFormWrapper";
 import Container from "@/components/ui/Container";
 import { HiClock, HiTrendingUp, HiUsers } from "react-icons/hi";
 
+/** The site's hero field colour (LandingHero's HERO_BLUE), and the same value
+ * at zero alpha for the dot falloff — an explicit rgba, because some engines
+ * interpolate `transparent` through grey. */
+const FIELD_BLUE = "#3779DD";
+const FIELD_BLUE_CLEAR = "rgba(55,121,221,0)";
+
 export default function FinalCTA({
   heading = "Having a headache making rosters for shift workers?",
+  description,
   isUS = false,
+  progressiveForm = false,
+  showReviews = true,
 }: {
   heading?: string;
+  /** Copy under the heading. Defaults to the find-out-more line below. */
+  description?: string;
   isUS?: boolean;
+  /** Open the form with just name and email; the rest appears on first input. */
+  progressiveForm?: boolean;
+  showReviews?: boolean;
 } = {}) {
   return (
     <section
       className="py-20 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(90deg, #2055FF 0%, #0A71FF 35%, #00A3FF 65%, #00E5E0 100%)",
-      }}
+      style={{ backgroundColor: FIELD_BLUE }}
     >
+      {/* The same dotted blue field as the hero and the Otto panel, so the
+          page closes on the surface it opened with. Dots sit in a 22px grid
+          and dissolve toward the edges; the falloff is painted over them in
+          the field colour rather than masked, which keeps it cheap. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          backgroundImage: [
+            `radial-gradient(ellipse 60% 70% at 50% 45%, ${FIELD_BLUE_CLEAR} 0%, ${FIELD_BLUE_CLEAR} 30%, ${FIELD_BLUE} 85%)`,
+            "radial-gradient(circle, rgba(255,255,255,0.28) 1px, transparent 1px)",
+          ].join(", "),
+          backgroundSize: "100% 100%, 22px 22px",
+        }}
+      />
       <Container className="relative z-10 lg:px-12 xl:px-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-center">
           {/* Left side - Content */}
           <div className="text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{heading}</h2>
             <p className="text-xl text-white/90 mb-8">
-              Enter your details below to find out more about how RosterLab can
-              transform your {isUS ? "scheduling" : "rostering"} process.
+              {description ??
+                `Enter your details below to find out more about how RosterLab can transform your ${isUS ? "scheduling" : "rostering"} process.`}
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex items-center gap-3 md:flex-col md:text-center">
-                <div className="w-12 h-12 bg-green-400 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
+            <div className="grid grid-cols-3 gap-2 sm:gap-6">
+              <div className="flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mb-2">
                   <HiClock className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-2xl font-bold">90%</div>
-                  <div className="text-sm text-white/80">time saving</div>
+                  <div className="text-xs sm:text-sm text-white/80">
+                    time saving
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 md:flex-col md:text-center">
-                <div className="w-12 h-12 bg-blue-400 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
+              <div className="flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mb-2">
                   <HiTrendingUp className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <div className="text-2xl font-bold">100%</div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-xs sm:text-sm text-white/80">
                     guaranteed compliance
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 md:flex-col md:text-center">
-                <div className="w-12 h-12 bg-purple-400 rounded-lg flex items-center justify-center flex-shrink-0 md:mx-auto md:mb-2">
+              <div className="flex flex-col items-center gap-3 text-center">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/15 ring-1 ring-white/30 rounded-lg flex items-center justify-center flex-shrink-0 md:mb-2">
                   <HiUsers className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <div className="text-lg font-bold">Better</div>
-                  <div className="text-sm text-white/80">
+                  <div className="text-lg font-bold leading-8">Better</div>
+                  <div className="text-xs sm:text-sm text-white/80">
                     staff satisfaction
                   </div>
                 </div>
@@ -63,46 +91,48 @@ export default function FinalCTA({
             </div>
 
             {/* Google Reviews */}
-            <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mt-8 border border-white/20">
-              <div className="flex items-center justify-center mb-3">
-                <div className="flex items-center">
-                  <svg
-                    className="w-5 h-5 text-white/90 mr-2"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                  </svg>
-                  <span className="text-sm font-semibold text-white">
-                    Google Reviews
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center justify-center mb-1">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
+            {showReviews && (
+              <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mt-8 border border-white/20">
+                <div className="flex items-center justify-center mb-3">
+                  <div className="flex items-center">
                     <svg
-                      key={i}
-                      className="w-5 h-5 text-yellow-400"
+                      className="w-5 h-5 text-white/90 mr-2"
+                      viewBox="0 0 24 24"
                       fill="currentColor"
-                      viewBox="0 0 20 20"
                     >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                     </svg>
-                  ))}
+                    <span className="text-sm font-semibold text-white">
+                      Google Reviews
+                    </span>
+                  </div>
                 </div>
-                <span className="ml-2 text-sm font-bold text-white">5.0</span>
+                <div className="flex items-center justify-center mb-1">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 text-yellow-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="ml-2 text-sm font-bold text-white">5.0</span>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Feature Points */}
-            <div className="mt-6 flex flex-wrap lg:flex-nowrap gap-x-4 gap-y-2 lg:whitespace-nowrap">
-              <div className="flex items-center gap-2">
+            <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+              <div className="flex flex-col items-center gap-1.5">
                 <svg
-                  className="w-4 h-4 text-green-400 flex-shrink-0"
+                  className="w-6 h-6 text-green-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -110,17 +140,17 @@ export default function FinalCTA({
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">
+                <span className="text-xs sm:text-sm leading-snug text-white/90">
                   Award-Winning AI algorithm
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col items-center gap-1.5">
                 <svg
-                  className="w-4 h-4 text-green-400 flex-shrink-0"
+                  className="w-6 h-6 text-green-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -128,17 +158,17 @@ export default function FinalCTA({
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">
+                <span className="text-xs sm:text-sm leading-snug text-white/90">
                   Handles complexities
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col items-center gap-1.5">
                 <svg
-                  className="w-4 h-4 text-green-400 flex-shrink-0"
+                  className="w-6 h-6 text-green-400 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -146,11 +176,13 @@ export default function FinalCTA({
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
-                <span className="text-sm text-white/90">User-friendly</span>
+                <span className="text-xs sm:text-sm leading-snug text-white/90">
+                  User-friendly
+                </span>
               </div>
             </div>
           </div>
@@ -165,7 +197,7 @@ export default function FinalCTA({
               staff {isUS ? "scheduling" : "rostering"}? Our team is here to
               help you.
             </p>
-            <ContactFormWrapper />
+            <ContactFormWrapper progressive={progressiveForm} />
           </div>
         </div>
       </Container>

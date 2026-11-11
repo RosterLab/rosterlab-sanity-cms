@@ -1334,13 +1334,14 @@ export default function FTECalculatorClient({
             >
               <div className="relative h-40 bg-gradient-to-br from-[#E6FDF8] to-[#F7F9FB]">
                 <Image
-                  src="/images/og-images/whitepaper start.png"
+                  src="/images/og-images/whitepaper-start.webp"
                   alt={
                     isUS
                       ? "Scheduling as a Strategic Workforce Lever whitepaper"
                       : "Rostering as a Strategic Workforce Lever whitepaper"
                   }
                   fill
+                  sizes="(min-width: 768px) 384px, 100vw"
                   className="object-cover"
                 />
               </div>

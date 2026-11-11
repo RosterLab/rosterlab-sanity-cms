@@ -110,6 +110,18 @@ h3 {
   }
 }
 
+/* Content swapping in — e.g. the home page workforce-group tabs. */
+@keyframes rl-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Market-access gates. The HTML is CDN-shared across visitors, so it can't know
    the country: both versions of each country-dependent CTA are rendered and
    chosen here, from attributes set on <html> before first paint.

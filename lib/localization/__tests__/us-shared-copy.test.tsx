@@ -6,17 +6,12 @@ import TestimonialsNew from "@/components/sections/TestimonialsNew";
 import FairnessAcrossYearModule from "@/components/sections/animations/FairnessAcrossYearModule";
 import { TESTIMONIALS_US } from "@/app/us/landing-content";
 
-test("US testimonials explain original clinical titles outside the customer quotation", () => {
-  for (const testimonial of TESTIMONIALS_US.filter(
-    (item) => item.roleExplanation,
-  )) {
+test("US testimonials show localized healthcare titles without extra explainers", () => {
+  for (const testimonial of TESTIMONIALS_US) {
     const html = renderToStaticMarkup(
       <TestimonialsNew isUS testimonials={[testimonial]} />,
     );
-    expect(html).toContain(testimonial.roleExplanation);
-    expect(html.indexOf(testimonial.roleExplanation!)).toBeGreaterThan(
-      html.indexOf("</blockquote>"),
-    );
+    expect(testimonial.roleExplanation).toBeUndefined();
     expect(html).toContain(testimonial.role.replaceAll("'", "&#x27;"));
   }
 });

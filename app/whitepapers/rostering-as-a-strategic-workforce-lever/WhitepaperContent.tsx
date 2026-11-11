@@ -195,7 +195,7 @@ export default function WhitepaperPage({ isUS = false }: { isUS?: boolean }) {
                       <div className="absolute left-[5%] top-8 sm:top-10 lg:top-12 w-[42%] sm:w-[45%] z-10 transform -rotate-[12deg] sm:-rotate-[15deg] hover:scale-105 transition-transform duration-300">
                         <div className="rounded-lg overflow-hidden shadow-xl">
                           <img
-                            src="/images/og-images/whitepaper start.png"
+                            src="/images/og-images/whitepaper-start.webp"
                             alt={
                               isUS
                                 ? "Whitepaper Cover - Scheduling as a Strategic Workforce Lever"
@@ -210,7 +210,7 @@ export default function WhitepaperPage({ isUS = false }: { isUS?: boolean }) {
                       <div className="absolute left-1/2 top-0 w-[55%] sm:w-[58%] z-20 transform -translate-x-1/2 hover:scale-105 transition-transform duration-300">
                         <div className="rounded-lg overflow-hidden shadow-xl">
                           <img
-                            src="/images/og-images/rosterlab change.png"
+                            src="/images/og-images/rosterlab-change.webp"
                             alt="Whitepaper Preview - The Decision to Change and What Changed with RosterLab"
                             className="w-full h-auto"
                           />

@@ -3,6 +3,9 @@ import { PortableText as BasePortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/client'
 import { canonicalArticleHref } from '@/lib/posts/article-redirects'
+import RosteringSoftwareTable, { rosteringSoftwareTableImages } from './RosteringSoftwareTable'
+import BuyersChecklist from './BuyersChecklist'
+import { withInteractiveChecklist } from '@/lib/posts/interactive-checklist'
 
 const components = {
   block: {
@@ -46,8 +49,10 @@ const components = {
         <h4 id={id} className="text-xl font-bold mb-2 mt-4 text-neutral-900 scroll-mt-24">{children}</h4>
       )
     },
-    normal: ({ children }: any) => (
-      <p className="mb-4 text-neutral-700 leading-relaxed">{children}</p>
+    normal: ({ children, value }: any) => (
+      <p className={['8a6bf4d70fdc', '25f9ced36753'].includes(value?._key)
+        ? '-mt-4 mb-8 text-center text-sm text-neutral-500 leading-relaxed'
+        : 'mb-4 text-neutral-700 leading-relaxed'}>{children}</p>
     ),
     blockquote: ({ children }: any) => (
       <blockquote className="border-l-4 border-primary-500 pl-6 py-2 mb-4 italic text-neutral-600 bg-neutral-50 rounded-r-lg">
@@ -104,8 +109,8 @@ const components = {
         return null
       }
 
-      // Keep the source resolution: resizing in Sanity first prevents Next.js
-      // from serving sharp images on high-density screens.
+      // Article images render at up to 720 CSS pixels, so a 1440px source
+      // covers 2x displays. Keep the original available through the zoom link.
       const dimensions = value.asset._ref.match(/-(\d+)x(\d+)-/)
       const crop = value.crop
       const width = dimensions
@@ -115,17 +120,22 @@ const components = {
         ? Math.max(1, Math.round(Number(dimensions[2]) * (1 - (crop?.top || 0) - (crop?.bottom || 0))))
         : 400
       const src = urlFor(value).url()
+      const displaySrc = urlFor(value)
+        .width(Math.min(width, 1440))
+        .fit('max')
+        .auto('format')
+        .url()
       
       return (
         <div className="my-8">
           <a href={src} target="_blank" rel="noopener noreferrer" title="Open image at full size">
             <Image
-              src={src}
+              src={displaySrc}
               alt={value.alt || 'Blog image'}
               width={width}
               height={height}
               sizes="(min-width: 1536px) 640px, (min-width: 1280px) 580px, (min-width: 1024px) 450px, (min-width: 768px) 720px, (min-width: 640px) 592px, calc(100vw - 32px)"
-              quality={95}
+              quality={80}
               className="rounded-lg shadow-md w-full h-auto cursor-zoom-in"
             />
           </a>
@@ -158,8 +168,18 @@ const components = {
 
 interface PortableTextProps {
   value: any
+  isUS?: boolean
 }
 
-export default function PortableText({ value }: PortableTextProps) {
-  return <BasePortableText value={value} components={components} />
+export default function PortableText({ value, isUS = false }: PortableTextProps) {
+  return <BasePortableText value={withInteractiveChecklist(value)} components={{
+    ...components,
+    types: {
+      ...components.types,
+      buyersChecklist: ({ value }: any) => <BuyersChecklist intro={value.intro} groups={value.groups} />,
+      image: (props: any) => rosteringSoftwareTableImages.has(props.value?.asset?._ref)
+        ? <RosteringSoftwareTable isUS={isUS} />
+        : components.types.image(props),
+    },
+  }} />
 }

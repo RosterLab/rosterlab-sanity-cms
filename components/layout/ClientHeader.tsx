@@ -38,11 +38,15 @@ export default function ClientHeader() {
     pathname.startsWith("/us/industries/") ||
     TYPE_PAGES_WITH_BLUE_HERO.includes(pathname);
 
+  // The home pages open with `LandingHero`, which tucks up under the bar.
+  const isHome = pathname === "/" || pathname === "/us";
+
   // Use US navigation items for US pages, default for others
   return (
     <Header
       navItems={isUSVersion ? usNavItems : []}
       onHeroBackground={hasBlueHero}
+      blueOverHero={isHome}
     />
   );
 }

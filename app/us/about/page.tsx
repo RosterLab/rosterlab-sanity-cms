@@ -48,6 +48,7 @@ export default function AboutPage() {
       {/* Hero Section */}
       <IndustryHero
         title="The RosterLab Story"
+        panelSize="mini"
         description="We transform the way scheduling works, making it faster, safer, and more efficient."
         analyticsLocation="About Hero"
         primaryCta={{
@@ -69,9 +70,20 @@ export default function AboutPage() {
           },
         }}
         image={{
-          src: "/images/team/rosterlab-team-photo.webp",
-          alt: "The three RosterLab founders seated together in the office",
-          objectPosition: "center 22%",
+          src: "/images/about/team-group.webp",
+          alt: "The RosterLab team together in the office",
+          /*
+            The hero crops to 1.94:1 and the photo is 1.5:1, so roughly a
+            quarter of its height goes — and because the photo is the narrower
+            ratio, the full width always shows. That leaves no horizontal
+            freedom: the copy panel sits over the lower left whatever we do,
+            and this is only a choice of which vertical band shows.
+
+            38% put the panel's corner across one person's eyes. 55% is as far
+            down as the back row's heads allow and lifts him clear to the nose.
+            Going further starts cropping heads off the top.
+          */
+          objectPosition: "center 55%",
         }}
       />
 

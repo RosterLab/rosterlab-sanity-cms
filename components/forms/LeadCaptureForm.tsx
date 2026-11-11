@@ -38,6 +38,13 @@ interface LeadCaptureFormProps {
   showPhone?: boolean;
   showMessage?: boolean;
   contactQualification?: boolean;
+  /**
+   * Qualification form only: open with just name and email, and reveal the
+   * rest once the reader starts typing (or asks to continue). For placements
+   * where the full form reads as a wall of fields before anyone has decided
+   * to get in touch.
+   */
+  progressive?: boolean;
   messageLabel?: string;
   metadata?: Record<string, string | number | boolean | string[] | null>;
   onSuccess?: (values: LeadCaptureValues) => void | Promise<void>;
@@ -57,6 +64,48 @@ const EMPTY_VALUES: LeadCaptureValues = {
   decisionRole: [],
 };
 
+/**
+ * Wraps the fields a progressive form reveals.
+ *
+ * The fields stay in the DOM the whole time, held at zero height inside a
+ * grid row that eases open to its content height. Mounting them on open
+ * instead made the card jump to full size and then fade the fields in, which
+ * read as a jolt. A hidden required field would block submission, so while
+ * closed the group is `inert` (unfocusable, untabbable, hidden from assistive
+ * tech) and the form has no submit button — see the Continue button below —
+ * so nothing can submit past it.
+ */
+function QualificationFields({
+  open,
+  children,
+}: {
+  open: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div
+      inert={!open}
+      aria-hidden={!open}
+      className={`grid !mt-0 motion-safe:transition-[grid-template-rows] motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+      }`}
+    >
+      <div className="min-h-0 overflow-hidden">
+        {/* pt-4 restores the form's field rhythm once open; closed, it is
+            clipped along with everything else. The fade trails the height
+            slightly so the fields arrive into space that already exists. */}
+        <div
+          className={`space-y-4 pt-4 motion-safe:transition-opacity motion-safe:duration-300 ${
+            open ? "opacity-100 motion-safe:delay-150" : "opacity-0"
+          }`}
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LeadCaptureForm({
   source,
   submitLabel = "Submit",
@@ -67,6 +116,7 @@ export default function LeadCaptureForm({
   showPhone = false,
   showMessage = false,
   contactQualification = false,
+  progressive = false,
   messageLabel = "How can we help?",
   metadata,
   onSuccess,
@@ -81,6 +131,10 @@ export default function LeadCaptureForm({
   const [completionError, setCompletionError] = useState<string | null>(null);
   const [completingAction, setCompletingAction] = useState(false);
   const [started, setStarted] = useState(false);
+  // Whether the progressive form has opened up. Always open when not
+  // progressive, so the rest of the component never has to check both.
+  const [opened, setOpened] = useState(!progressive);
+  const expanded = !progressive || opened;
   const [industryError, setIndustryError] = useState<string | null>(null);
   const [rosterSizeError, setRosterSizeError] = useState<string | null>(null);
   const [decisionRoleError, setDecisionRoleError] = useState<string | null>(
@@ -242,7 +296,10 @@ export default function LeadCaptureForm({
               minLength={2}
               autoComplete="name"
               value={values.name}
-              onChange={(event) => update("name", event.target.value)}
+              onChange={(event) => {
+                update("name", event.target.value);
+                if (event.target.value) setOpened(true);
+              }}
               className={`${inputClass} mt-1`}
             />
           </label>
@@ -258,7 +315,10 @@ export default function LeadCaptureForm({
                 type="email"
                 autoComplete="email"
                 value={values.email}
-                onChange={(event) => update("email", event.target.value)}
+                onChange={(event) => {
+                  update("email", event.target.value);
+                  if (event.target.value) setOpened(true);
+                }}
                 className={`${inputClass} mt-1`}
               />
             </label>
@@ -275,68 +335,72 @@ export default function LeadCaptureForm({
             </label>
           </div>
 
-          <SelectField
-            label={`Which industry are you ${isUS ? "scheduling" : "rostering"} for?`}
-            name="industry"
-            value={values.industry}
-            onChange={(value) => {
-              update("industry", value);
-              setIndustryError(null);
-            }}
-            groups={DEMO_REQUEST_INDUSTRY_GROUPS}
-            searchable
-            required
-            labelClassName="font-medium text-gray-700"
-            error={industryError ?? undefined}
-          />
-
-          <SelectField
-            label={`What is the size of your ${isUS ? "schedule" : "roster"}?`}
-            name="rosterSize"
-            value={values.rosterSize}
-            onChange={(value) => {
-              update("rosterSize", value);
-              setRosterSizeError(null);
-            }}
-            options={DEMO_REQUEST_ROSTER_SIZES}
-            required
-            labelClassName="font-medium text-gray-700"
-            error={rosterSizeError ?? undefined}
-          />
-
-          <SelectField
-            label="What's your role in this decision?"
-            name="decisionRole"
-            value=""
-            onChange={() => undefined}
-            multiple
-            selectedValues={values.decisionRole}
-            onMultipleChange={(value) => {
-              update("decisionRole", value);
-              setDecisionRoleError(null);
-            }}
-            options={
-              isUS ? CONTACT_DECISION_ROLES_US : CONTACT_DECISION_ROLES_GLOBAL
-            }
-            required
-            labelClassName="font-medium text-gray-700"
-            error={decisionRoleError ?? undefined}
-          />
-
-          <label className="block text-sm font-medium text-gray-700">
-            {messageLabel}{" "}
-            <span className="text-blue-600" aria-hidden="true">
-              *
-            </span>
-            <textarea
+          {/* The rest of the qualification form; in progressive mode it eases
+              open on first input (see QualificationFields). */}
+          <QualificationFields open={expanded}>
+            <SelectField
+              label={`Which industry are you ${isUS ? "scheduling" : "rostering"} for?`}
+              name="industry"
+              value={values.industry}
+              onChange={(value) => {
+                update("industry", value);
+                setIndustryError(null);
+              }}
+              groups={DEMO_REQUEST_INDUSTRY_GROUPS}
+              searchable
               required
-              minLength={10}
-              rows={4}
-              value={values.message}
-              onChange={(event) => update("message", event.target.value)}
-              className={`${inputClass} mt-1`}
+              labelClassName="font-medium text-gray-700"
+              error={industryError ?? undefined}
             />
-          </label>
+
+            <SelectField
+              label={`What is the size of your ${isUS ? "schedule" : "roster"}?`}
+              name="rosterSize"
+              value={values.rosterSize}
+              onChange={(value) => {
+                update("rosterSize", value);
+                setRosterSizeError(null);
+              }}
+              options={DEMO_REQUEST_ROSTER_SIZES}
+              required
+              labelClassName="font-medium text-gray-700"
+              error={rosterSizeError ?? undefined}
+            />
+
+            <SelectField
+              label="What's your role in this decision?"
+              name="decisionRole"
+              value=""
+              onChange={() => undefined}
+              multiple
+              selectedValues={values.decisionRole}
+              onMultipleChange={(value) => {
+                update("decisionRole", value);
+                setDecisionRoleError(null);
+              }}
+              options={
+                isUS ? CONTACT_DECISION_ROLES_US : CONTACT_DECISION_ROLES_GLOBAL
+              }
+              required
+              labelClassName="font-medium text-gray-700"
+              error={decisionRoleError ?? undefined}
+            />
+
+            <label className="block text-sm font-medium text-gray-700">
+              {messageLabel}{" "}
+              <span className="text-blue-600" aria-hidden="true">
+                *
+              </span>
+              <textarea
+                required
+                minLength={10}
+                rows={4}
+                value={values.message}
+                onChange={(event) => update("message", event.target.value)}
+                className={`${inputClass} mt-1`}
+              />
+            </label>
+          </QualificationFields>
         </>
       ) : (
         <>
@@ -424,13 +488,25 @@ export default function LeadCaptureForm({
           {error}
         </p>
       )}
-      <button
-        type="submit"
-        disabled={submitting}
-        className={`${compact ? "self-end" : "w-full"} rounded-md bg-blue-600 px-5 py-2.5 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60`}
-      >
-        {submitting ? "Submitting…" : submitLabel}
-      </button>
+      {expanded ? (
+        <button
+          type="submit"
+          disabled={submitting}
+          className={`${compact ? "self-end" : "w-full"} rounded-md bg-blue-600 px-5 py-2.5 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60`}
+        >
+          {submitting ? "Submitting…" : submitLabel}
+        </button>
+      ) : (
+        // Not a submit: the fields it leads to aren't mounted yet, so
+        // submitting here would skip the qualification questions entirely.
+        <button
+          type="button"
+          onClick={() => setOpened(true)}
+          className="w-full rounded-md bg-blue-600 px-5 py-2.5 font-semibold text-white hover:bg-blue-700"
+        >
+          Continue
+        </button>
+      )}
     </form>
   );
 }
