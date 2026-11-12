@@ -237,10 +237,6 @@ export default function Header({
           link: "/industries/healthcare/critical-care-rostering",
         },
         {
-          title: "Emergency Department",
-          link: "/industries/healthcare/emergency-department-rostering",
-        },
-        {
           title: "Junior Doctor Roster",
           link: "/industries/healthcare/junior-medical-officer-rostering",
         },
@@ -711,18 +707,6 @@ export default function Header({
                                     Critical Care
                                   </div>
                                 </Link>
-
-                                {/* Emergency Department Roster (AU only, placeholder) */}
-                                {!isUSVersion && (
-                                  <Link
-                                    href="/industries/healthcare/emergency-department-rostering"
-                                    className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                  >
-                                    <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                      Emergency Department
-                                    </div>
-                                  </Link>
-                                )}
 
                                 {/* JMO Roster */}
                                 <Link

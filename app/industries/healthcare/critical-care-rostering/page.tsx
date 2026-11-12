@@ -99,7 +99,7 @@ const CAPABILITIES = [
       href: "/feature/rules-engine",
     },
     image: {
-      src: "/images/industries/nursing/critical-care-teaching-time-v2.webp",
+      src: "/images/industries/nursing/critical-care-teaching-time-v3.webp",
       alt: "ICU roster in RosterLab with protected teaching shifts highlighted, and a rule requiring at least one teaching shift per two weeks for each skill level",
       className: "object-cover",
     },
