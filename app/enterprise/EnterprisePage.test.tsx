@@ -47,7 +47,7 @@ test("the global enterprise page retains its original regional wording", () => {
 });
 
 test.each([false, true])(
-  "plastics card keeps its new title and has no quote (US: %s)",
+  "plastics card shows its title, savings and case study excerpt (US: %s)",
   (isUS) => {
     const html = renderToStaticMarkup(<EnterprisePage isUS={isUS} />);
     const cards = html.match(/<article\b[\s\S]*?<\/article>/g)!;
@@ -59,7 +59,9 @@ test.each([false, true])(
     );
     expect(plastics).toContain("~15%");
     expect(plastics).toContain("projected cost savings");
-    expect(plastics).not.toContain("<blockquote");
+    expect(plastics).toContain("<blockquote");
+    expect(plastics).toContain("The simulation gave leadership something");
+    expect(plastics).toContain("From the case study");
   },
 );
 

@@ -231,6 +231,9 @@ interface TrustedByDualRowProps {
   singleRow?: boolean;
   /** Replaces the heading's default size and colour classes. */
   headingClassName?: string;
+  headingContainerClassName?: string;
+  sectionClassName?: string;
+  containerClassName?: string;
   /** Paints every logo in this one colour instead of greyscale. */
   logoColor?: string;
 }
@@ -240,14 +243,17 @@ export default function TrustedByDualRow({
   onDark = false,
   singleRow = false,
   headingClassName,
+  headingContainerClassName,
+  sectionClassName,
+  containerClassName = "lg:px-12 xl:px-20",
   logoColor,
 }: TrustedByDualRowProps = {}) {
   return (
-    <section className={onDark ? "" : "py-6 md:py-16"}>
-      <Container className="lg:px-12 xl:px-20">
+    <section className={cn(onDark ? "" : "py-6 md:py-16", sectionClassName)}>
+      <Container className={containerClassName}>
         <div className="grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] gap-8 lg:gap-12 items-center">
           {/* Left: heading */}
-          <div className="max-w-md">
+          <div className={cn("max-w-md", headingContainerClassName)}>
             <h2
               className={cn(
                 "text-balance font-semibold leading-snug",
