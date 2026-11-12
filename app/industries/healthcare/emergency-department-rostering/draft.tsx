@@ -144,6 +144,7 @@ export default function EmergencyDepartmentRosteringPage() {
     <SiteLayout>
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
+        stackedContentFirst
         title="Emergency department rostering software that gives clinicians time back"
         description="Generate medical rosters that balance senior cover, supervision, recovery after nights and individual working arrangements. RosterLab’s AI generates the allocations; you review, adjust and publish."
         analyticsLocation={LOCATION}

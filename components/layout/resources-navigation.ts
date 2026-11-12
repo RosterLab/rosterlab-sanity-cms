@@ -43,7 +43,7 @@ export function getResourcesNavigation(isUS = false): {
           ? []
           : [
               {
-                title: "Roster Analyser",
+                title: "Schedule Analyser",
                 link: "/tools/roster-analysis",
                 description: "Get instant AI insights on your roster",
                 group: "Mini Tools" as const,

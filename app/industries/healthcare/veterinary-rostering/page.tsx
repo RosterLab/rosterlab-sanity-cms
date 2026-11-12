@@ -81,6 +81,7 @@ export default function VeterinaryRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Optimised, Flexible Veterinary Rosters"
         description="Create efficient AI rosters that respect your vet preferences, maintain the right skill mix, and ensure work-life balance."
         analyticsLocation="Industry Page Veterinary Rostering"

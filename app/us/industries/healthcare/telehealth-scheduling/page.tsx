@@ -79,6 +79,7 @@ export default function TelehealthRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Optimized Telehealth Schedules"
         description="Create optimized AI schedules that balance consultation demands, fair shift distribution, and telehealth staff well-being."
         analyticsLocation="US Industry Page Telehealth Scheduling"

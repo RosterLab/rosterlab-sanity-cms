@@ -73,6 +73,7 @@ export default function CardiologyRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Compliant Cardiology Rosters"
         description="Create compliant AI rosters that balance procedure demands, fair night shift distribution, and cardiology staff wellbeing."
         analyticsLocation="Industry Page Cardiology Rostering"

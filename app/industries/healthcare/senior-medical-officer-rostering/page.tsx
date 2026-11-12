@@ -75,6 +75,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Personalised SMO Rosters"
         description="Balance work commitments, personal preferences, and department coverage with ease."
         analyticsLocation="Industry Page SMO Rostering"

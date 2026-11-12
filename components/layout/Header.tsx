@@ -180,33 +180,33 @@ export default function Header({
 
   const defaultNavItems: NavItem[] = [
     {
-      title: "Solutions",
+      title: "Product",
       subItems: [
         {
-          title: "AI Staff Roster Generator",
+          title: "AI Staff Scheduling",
           link: "/solutions/ai-roster-generator",
         },
         {
-          title: "Free Staff Roster Software",
+          title: "Free Staff Scheduling Tool",
           link: "/solutions/free-staff-rostering-software",
         },
         {
-          title: "Staff Roster Mobile App",
+          title: "Staff Mobile App",
           link: "/solutions/staff-roster-mobile-app",
         },
         {
-          title: "Automated Rostering",
+          title: "Automated Scheduling",
           link: "/feature/automated-rostering",
         },
         {
-          title: "AI Rostering Assistant",
+          title: "AI Scheduling Assistant",
           link: "/feature/ai-staff-rostering-assistant",
         },
         { title: "Open Shifts", link: "/feature/open-shifts" },
         { title: "Shift Swaps", link: "/feature/shift-swaps" },
         { title: "Leave Requests", link: "/feature/leave-requests" },
         { title: "Staff Preferences", link: "/feature/self-scheduling" },
-        { title: "Re-Rostering", link: "/feature/re-rostering" },
+        { title: "Rescheduling", link: "/feature/re-rostering" },
         {
           title: "Rules Engine",
           link: "/feature/rules-engine",
@@ -214,18 +214,22 @@ export default function Header({
       ],
     },
     {
-      title: "Industries",
+      title: "Solutions",
       subItems: [
-        { title: "Healthcare Roster", link: "/industries/healthcare" },
-        { title: "ICU/ED Roster", link: "/industries/healthcare/ed-icu" },
-        { title: "Radiology Roster", link: "/industries/healthcare/radiology" },
+        { title: "Healthcare", link: "/industries/healthcare" },
         {
-          title: "Radiography Roster",
+          title: "Critical Care",
+          link: "/industries/healthcare/critical-care-rostering",
+        },
+        { title: "ED", link: "/industries/healthcare/ed-icu" },
+        { title: "Radiology", link: "/industries/healthcare/radiology" },
+        {
+          title: "Radiography",
           link: "/industries/healthcare/radiography",
         },
-        { title: "Aged Care Roster", link: "/industries/healthcare/aged-care" },
+        { title: "Aged Care", link: "/industries/healthcare/aged-care" },
         {
-          title: "Veterinary Roster",
+          title: "Veterinary",
           link: "/industries/healthcare/veterinary-rostering",
         },
         {
@@ -233,21 +237,17 @@ export default function Header({
           link: "/industries/healthcare/nurse-rostering",
         },
         {
-          title: "Critical Care",
-          link: "/industries/healthcare/critical-care-rostering",
-        },
-        {
-          title: "Junior Doctor Roster",
+          title: "Junior Doctors",
           link: "/industries/healthcare/junior-medical-officer-rostering",
         },
         {
-          title: "Senior Doctor Roster",
+          title: "Senior Doctors",
           link: "/industries/healthcare/senior-medical-officer-rostering",
         },
-        { title: "On-Call Roster", link: "/type/on-call-roster" },
-        { title: "Long Roster", link: "/type/long-roster" },
+        { title: "On-Call", link: "/type/on-call-roster" },
+        { title: "Long-Term Planning", link: "/type/long-roster" },
         {
-          title: "Telehealth Roster",
+          title: "Telehealth",
           link: "/industries/healthcare/telehealth-rostering",
         },
       ],
@@ -415,16 +415,16 @@ export default function Header({
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === "Resources"
                           ? "left-0 w-[720px]"
-                          : item.title === "Solutions" ||
-                              item.title === "Industries"
+                          : item.title === "Product" ||
+                              item.title === "Solutions"
                             ? "left-0 w-[600px]"
                             : "left-0 w-64",
                       )}
                       onMouseEnter={() => setActiveDropdown(item.title)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
-                      {item.title === "Solutions" ? (
-                        // Enhanced Solutions Dropdown Layout
+                      {item.title === "Product" ? (
+                        // Product dropdown layout
                         <div className="p-6">
                           <div className="grid grid-cols-2 gap-6">
                             {/* Core Solutions Column */}
@@ -444,11 +444,10 @@ export default function Header({
                                     </div>
                                     <div className="text-xs text-gray-600">
                                       {(subItem as any).description ||
-                                        (subItem.title ===
-                                        "AI Staff Roster Generator"
+                                        (subItem.title === "AI Staff Scheduling"
                                           ? "Automated schedules optimized for your team"
                                           : subItem.title ===
-                                              "Free Staff Roster Software"
+                                              "Free Staff Scheduling Tool"
                                             ? "Free digital scheduling tool"
                                             : subItem.title.includes(
                                                   "Mobile App",
@@ -532,131 +531,31 @@ export default function Header({
                             </div>
                           </div>
                         </div>
-                      ) : item.title === "Industries" ? (
-                        // Enhanced Industries Dropdown Layout
+                      ) : item.title === "Solutions" ? (
+                        // Solutions dropdown layout
                         <div className="max-h-[calc(100dvh-6rem)] overflow-y-auto p-6">
                           <Link
                             href={
                               isUSVersion ? "/us/enterprise" : "/enterprise"
                             }
-                            className="mb-4 block rounded-lg bg-blue-50 p-3 font-medium text-blue-600 transition-colors hover:bg-blue-100 hover:text-blue-700"
+                            className="mb-4 block rounded-lg bg-[#C7D2FF]/40 p-3 font-medium text-[#1F2A5C] transition-colors hover:bg-[#C7D2FF]/70"
                             onClick={() => setActiveDropdown(null)}
                           >
                             For Enterprise
                           </Link>
-                          <div className="grid grid-cols-2 gap-6">
-                            {/* Healthcare Sectors Column */}
+                          <div className="grid grid-cols-2 gap-6 border-t border-gray-200 pt-2">
+                            {/* Specialties column */}
                             <div>
-                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                {isUSVersion
-                                  ? "Specialty Healthcare Schedules"
-                                  : "Specialty Healthcare Rosters"}
-                              </h3>
                               <div className="space-y-1">
-                                {/* ICU/ED Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/ed-icu-scheduling"
-                                      : "/industries/healthcare/ed-icu"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "ICU/ED Scheduling"
-                                      : "ICU/ED Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Build ICU/ED schedules that support better continuity of care"
-                                      : "Build ICU/ED rosters that support better continuity of care"}
-                                  </div>
-                                </Link>
-
-                                {/* Radiology Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/radiology-scheduling"
-                                      : "/industries/healthcare/radiology"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "Radiology Scheduling"
-                                      : "Radiology Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Build radiology schedules with the right skill mix and compliance"
-                                      : "Build fair and compliant rosters across radiology subspecialties"}
-                                  </div>
-                                </Link>
-
-                                {/* Radiography Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/radiography-scheduling"
-                                      : "/industries/healthcare/radiography"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "Radiography Scheduling"
-                                      : "Radiography Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Optimize imaging technologist coverage across modalities"
-                                      : "Optimise radiographer coverage across imaging modalities"}
-                                  </div>
-                                </Link>
-
-                                {/* Aged Care Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/senior-care-scheduling"
-                                      : "/industries/healthcare/aged-care"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "Senior Care Scheduling"
-                                      : "Aged Care Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Efficient scheduling for nursing homes & assisted living"
-                                      : "Make better use of staffing hours with rosters for aged care facilities"}
-                                  </div>
-                                </Link>
-
-                                {/* Veterinary Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/veterinary-scheduling"
-                                      : "/industries/healthcare/veterinary-rostering"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600 mb-1">
-                                    {isUSVersion
-                                      ? "Veterinary Scheduling"
-                                      : "Veterinary Roster"}
-                                  </div>
-                                  <div className="text-xs text-gray-600">
-                                    {isUSVersion
-                                      ? "Veterinary clinic scheduling that handles complex shift patterns"
-                                      : "Veterinary clinic rostering that handles complex shift patterns"}
-                                  </div>
-                                </Link>
+                                {item.subItems.slice(1, 7).map((subItem) => (
+                                  <Link
+                                    key={subItem.link}
+                                    href={subItem.link}
+                                    className="block rounded-lg p-3 font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-700"
+                                  >
+                                    {subItem.title}
+                                  </Link>
+                                ))}
                                 <Link
                                   href={
                                     isUSVersion
@@ -670,123 +569,18 @@ export default function Header({
                               </div>
                             </div>
 
-                            {/* Roster By Type Column */}
+                            {/* Workforce column */}
                             <div>
-                              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                                {isUSVersion
-                                  ? "Schedule By Type"
-                                  : "Roster By Type"}
-                              </h3>
                               <div className="space-y-1">
-                                {/* Nurse Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/nurse-scheduling"
-                                      : "/industries/healthcare/nurse-rostering"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    {isUSVersion
-                                      ? "Nurse Scheduling"
-                                      : "Nursing & Midwifery"}
-                                  </div>
-                                </Link>
-
-                                {/* Critical Care */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/critical-care-scheduling"
-                                      : "/industries/healthcare/critical-care-rostering"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    Critical Care
-                                  </div>
-                                </Link>
-
-                                {/* JMO Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/physician-scheduling"
-                                      : "/industries/healthcare/junior-medical-officer-rostering"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    {isUSVersion
-                                      ? "Physician Scheduling"
-                                      : "Junior Doctor Roster"}
-                                  </div>
-                                </Link>
-
-                                {/* SMO Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/attending-physician-scheduling"
-                                      : "/industries/healthcare/senior-medical-officer-rostering"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    {isUSVersion
-                                      ? "Attending Physician"
-                                      : "Senior Doctor Roster"}
-                                  </div>
-                                </Link>
-
-                                {/* On Call Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/type/on-call-scheduling"
-                                      : "/type/on-call-roster"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    {isUSVersion
-                                      ? "On-Call Scheduling"
-                                      : "On-Call Roster"}
-                                  </div>
-                                </Link>
-
-                                {/* Long Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/type/long-term-schedule-planning"
-                                      : "/type/long-roster"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    {isUSVersion
-                                      ? "Long Term Planning"
-                                      : "Long Roster"}
-                                  </div>
-                                </Link>
-
-                                {/* Telehealth Roster */}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare/telehealth-scheduling"
-                                      : "/industries/healthcare/telehealth-rostering"
-                                  }
-                                  className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
-                                >
-                                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                                    {isUSVersion
-                                      ? "Telehealth Scheduling"
-                                      : "Telehealth Roster"}
-                                  </div>
-                                </Link>
+                                {item.subItems.slice(7).map((subItem) => (
+                                  <Link
+                                    key={subItem.link}
+                                    href={subItem.link}
+                                    className="block rounded-lg p-3 font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-700"
+                                  >
+                                    {subItem.title}
+                                  </Link>
+                                ))}
                               </div>
                             </div>
                           </div>
@@ -1215,7 +1009,7 @@ export default function Header({
                   </button>
                   {item.subItems && mobileDropdown === item.title && (
                     <div className="pl-6 space-y-1 mt-1">
-                      {item.title === "Solutions" ? (
+                      {item.title === "Product" ? (
                         <>
                           {/* Core Solutions */}
                           <div className="mb-4">
@@ -1254,28 +1048,23 @@ export default function Header({
                             </div>
                           </div>
                         </>
-                      ) : item.title === "Industries" ? (
+                      ) : item.title === "Solutions" ? (
                         <>
                           <Link
                             href={
                               isUSVersion ? "/us/enterprise" : "/enterprise"
                             }
-                            className="mb-3 block rounded-md bg-blue-50 px-3 py-2 text-sm font-medium text-blue-600 hover:bg-blue-100 hover:text-blue-700"
+                            className="mb-3 block rounded-md bg-[#C7D2FF]/40 px-3 py-2 text-sm font-medium text-[#1F2A5C] transition-colors hover:bg-[#C7D2FF]/70"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             For Enterprise
                           </Link>
-                          <div>
-                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
-                              {isUSVersion
-                                ? "SPECIALTY HEALTHCARE SCHEDULES"
-                                : "SPECIALTY HEALTHCARE ROSTERS"}
-                            </div>
-                            {item.subItems.slice(1, 6).map((subItem) => (
+                          <div className="border-t border-gray-200 pt-2">
+                            {item.subItems.slice(1, 7).map((subItem) => (
                               <Link
                                 key={subItem.link}
                                 href={subItem.link}
-                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 block px-3 py-2 rounded-md text-sm"
                                 onClick={() => setIsMenuOpen(false)}
                               >
                                 {subItem.title}
@@ -1307,16 +1096,11 @@ export default function Header({
                             </Link>
                           </div>
                           <div className="mt-3 pt-3 border-t border-gray-200">
-                            <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-1 mb-1">
-                              {isUSVersion
-                                ? "SCHEDULE BY TYPE"
-                                : "ROSTER BY TYPE"}
-                            </div>
-                            {item.subItems.slice(6).map((subItem) => (
+                            {item.subItems.slice(7).map((subItem) => (
                               <Link
                                 key={subItem.link}
                                 href={subItem.link}
-                                className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
+                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 block px-3 py-2 rounded-md text-sm"
                                 onClick={() => setIsMenuOpen(false)}
                               >
                                 {subItem.title}

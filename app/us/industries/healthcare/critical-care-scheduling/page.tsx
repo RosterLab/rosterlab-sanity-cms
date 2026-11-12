@@ -25,7 +25,7 @@ export const metadata = withHreflang(
   {
     title: "ICU and Critical Care Scheduling Software",
     description:
-      "ICU scheduling software for high-acuity care. Balance skill mix, staffing ratios, supervision and staff preferences with RosterLab.",
+      "ICU scheduling software for high-acuity care. Balance skill mix, staffing ratios, supervision, and staff preferences while planning 24/7 coverage.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/critical-care-scheduling",
@@ -33,7 +33,7 @@ export const metadata = withHreflang(
     openGraph: {
       title: "ICU and Critical Care Scheduling Software | RosterLab",
       description:
-        "ICU scheduling software for high-acuity care. Balance skill mix, staffing ratios, supervision and staff preferences with RosterLab.",
+        "ICU scheduling software for high-acuity care. Balance skill mix, staffing ratios, supervision, and staff preferences while planning 24/7 coverage.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/critical-care-scheduling",
       images: [
@@ -48,7 +48,7 @@ export const metadata = withHreflang(
       card: "summary_large_image",
       title: "ICU and Critical Care Scheduling Software | RosterLab",
       description:
-        "ICU scheduling software for high-acuity care. Balance skill mix, staffing ratios, supervision and staff preferences with RosterLab.",
+        "ICU scheduling software for high-acuity care. Balance skill mix, staffing ratios, supervision, and staff preferences while planning 24/7 coverage.",
       images: ["/images/og-images/IndustryICUED.png"],
     },
   },
