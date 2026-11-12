@@ -47,8 +47,10 @@ interface HeroCta {
 }
 
 interface IndustryHeroProps {
-  title: string;
+  title: React.ReactNode;
   description: string;
+  /** Keep the description and CTAs above the photo below `lg`. */
+  stackedContentFirst?: boolean;
   /**
    * Size of the blue text panel at `lg` and up, where it overlays the photo.
    * "compact" pulls it in a little on every side — About uses it because its
@@ -57,6 +59,8 @@ interface IndustryHeroProps {
    * no effect there.
    */
   panelSize?: "default" | "compact" | "mini";
+  /** Places the photo after the buttons below the desktop breakpoint. */
+  imageBelowCtasOnMobile?: boolean;
   primaryCta: HeroCta;
   secondaryCta?: HeroCta;
   analyticsLocation?: string;
@@ -76,9 +80,9 @@ interface IndustryHeroProps {
  *
  * - Below `lg` the whole section is a flat blue field that runs up under the
  *   site header (which paints itself the same blue on these routes, see
- *   `Header`). Content stacks title → photo → body copy → buttons, which the
- *   photo achieves by being ordered between the text panel's own children —
- *   see the `display: contents` note on that panel.
+ *   `Header`). By default, content stacks title → photo → body copy → buttons.
+ *   Either mobile ordering option moves the photo after the buttons.
+ *   See the `display: contents` note on the text panel.
  * - At `lg` and up, the panel detaches and is absolutely positioned over
  *   the lower-left of the photo, which is inset from the left instead.
  *
@@ -88,7 +92,9 @@ interface IndustryHeroProps {
 export default function IndustryHero({
   title,
   description,
+  stackedContentFirst = false,
   panelSize = "default",
+  imageBelowCtasOnMobile = false,
   primaryCta,
   secondaryCta,
   analyticsLocation,
@@ -122,7 +128,7 @@ export default function IndustryHero({
       <div className="relative z-10 w-full lg:container lg:mx-auto lg:px-8">
         {/*
           Mobile: this wrapper *is* the blue panel, and the flex column that
-          orders the photo between the heading and the body copy.
+          orders the photo and the text panel's children.
           Desktop: it goes transparent and only positions its children. The
           bottom padding is what lets the absolutely-positioned panel hang
           below the photo the way it does in the design.
@@ -140,8 +146,8 @@ export default function IndustryHero({
 
             Below `lg` this is `display: contents`: it stops generating a box
             of its own so the heading, body copy and buttons become direct
-            flex children of the panel above, which is what lets the photo be
-            ordered *between* them without a second copy of it in the DOM.
+            flex children of the panel above, which lets the photo be ordered
+            between or after them without a second copy of it in the DOM.
             Inherited styling (the white text) still passes through.
 
             At `lg` it becomes a real box again — the translucent panel
@@ -178,11 +184,22 @@ export default function IndustryHero({
               {title}
             </h1>
 
-            <p className="order-3 mt-7 lg:mt-5 text-base sm:text-lg lg:text-[1.0625rem] leading-relaxed max-w-md">
+            <p
+              className={cn(
+                stackedContentFirst ? "order-2" : "order-3",
+                "mt-7 lg:mt-5 text-base sm:text-lg lg:text-[1.0625rem] leading-relaxed",
+                imageBelowCtasOnMobile ? "lg:max-w-md" : "max-w-md",
+              )}
+            >
               {description}
             </p>
 
-            <div className="order-4 mt-8 flex flex-row flex-wrap gap-3">
+            <div
+              className={cn(
+                stackedContentFirst ? "order-3" : "order-4",
+                "mt-8 flex flex-row flex-wrap gap-3",
+              )}
+            >
               <Button
                 href={primaryCta.href}
                 className="inline-flex items-center justify-center bg-white text-blue-700 px-7 py-3 rounded-full text-base font-semibold hover:bg-blue-50 transition"
@@ -220,7 +237,10 @@ export default function IndustryHero({
           */}
           <div
             className={cn(
-              "order-2 relative mt-7 aspect-[7/5] sm:aspect-[16/9] overflow-hidden",
+              imageBelowCtasOnMobile || stackedContentFirst
+                ? "order-5"
+                : "order-2",
+              "relative mt-7 aspect-[7/5] sm:aspect-[16/9] overflow-hidden",
               "rounded-tl-[50%_60%] rounded-tr-[50%_60%]",
               "border-t-[3px] border-l-[3px]",
               ARCH_STROKE,

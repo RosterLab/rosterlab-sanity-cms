@@ -71,6 +71,7 @@ export default function ICUEDPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Generate ED & ICU Staff Rosters in Minutes"
         description="Cut roster creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff wellbeing."
         analyticsLocation="Industry Page ED & ICU Rostering"

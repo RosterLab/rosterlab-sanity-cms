@@ -1,31 +1,44 @@
+import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
+import IndustryHero from "@/components/sections/IndustryHero";
 import Button from "@/components/ui/Button";
 import SiteLayout from "@/components/layout/SiteLayout";
-import IndustryHero from "@/components/sections/IndustryHero";
-import USTrustedBy from "@/app/us/components/TrustedBy";
-import FAQAccordion from "@/components/ui/FAQAccordion";
-import { withHreflang } from "@/components/seo/HreflangTags";
+import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import { getUSPath, withHreflang } from "@/components/seo/HreflangTags";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
-import MobileAppPreferencesModule from "@/components/sections/animations/MobileAppPreferencesModule";
+import EnterpriseFAQ from "@/app/enterprise/EnterpriseFAQ";
+import Reveal from "@/app/enterprise/Reveal";
+import RosterComparison, {
+  type ComparisonRow,
+} from "@/app/industries/healthcare/nurse-rostering/RosterComparison";
+import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 
+// Palette follows the enterprise page: navy #1F2A5C for headings and dark
+// surfaces, site blue #3B7FE8 for actions, mint #03F9BE for proof points on
+// navy, tint #F4F6FB for alternate sections. Workforce pages close on a teal
+// banner where specialty pages (enterprise) close on blue.
+
+// Written out in full rather than through constants: the US SEO test reads
+// this expression on its own (lib/localization/__tests__/us-seo.test.ts).
 export const metadata = withHreflang(
   {
-    title: "Nurse Scheduling Software",
+    title: "Nursing & Midwifery AI Scheduling Software",
     description:
-      "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
+      "Generate nursing and midwifery schedules around skill mix, labor agreements and staff preferences. Spend less time on scheduling with RosterLab.",
     alternates: {
       canonical:
         "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
     },
     openGraph: {
-      title: "Nurse Scheduling Software - RosterLab",
+      title: "Nursing & Midwifery AI Scheduling Software | RosterLab",
       description:
-        "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
+        "Generate nursing and midwifery schedules around skill mix, labor agreements and staff preferences. Spend less time on scheduling with RosterLab.",
       type: "website",
       url: "https://rosterlab.com/us/industries/healthcare/nurse-scheduling",
       images: [
         {
-          url: "/images/us-images/pexels-karolina-grabowska-4021769.jpg",
+          url: "/images/us-images/iStock-2232242180.jpg",
           width: 1200,
           height: 630,
         },
@@ -33,813 +46,593 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Nurse Scheduling Software - RosterLab",
+      title: "Nursing & Midwifery AI Scheduling Software | RosterLab",
       description:
-        "End unsafe schedules and overwork. Build fair, compliant nurse schedules that maintain safe staffing ratios and respect labor laws.",
-      images: ["/images/us-images/pexels-karolina-grabowska-4021769.jpg"],
+        "Generate nursing and midwifery schedules around skill mix, labor agreements and staff preferences. Spend less time on scheduling with RosterLab.",
+      images: ["/images/us-images/iStock-2232242180.jpg"],
     },
   },
   "/us/industries/healthcare/nurse-scheduling",
 );
 
-const faqItems = [
+const LOCATION = "US Industry Page Nurse Scheduling";
+const PAGE_NAME = "Nurse Scheduling";
+const HOW_IT_WORKS = "how-it-works";
+const INTERACTIVE_DEMO = "/us/product-tour";
+const CASE_STUDY =
+  getUSPath("/case-studies/dargaville-medical-centre-new-zealand") ??
+  "/us/case-studies";
+
+/* ---------------------------------------------------------------- content */
+
+const SPECIALTIES = [
+  "Medical & surgical units",
+  "Emergency",
+  "Critical care",
+  "Perioperative",
+  "Maternity & midwifery",
+  "Palliative care",
+  "Mental health",
+  "Long-term care",
+];
+
+// Benefits share the intro’s grey background.
+const BENEFITS: {
+  title: string;
+  description: string;
+}[] = [
   {
-    question: "How does RosterLab maintain safe nurse-to-patient ratios?",
-    answer:
-      "RosterLab enforces minimum staffing requirements and skill mix rules for every shift. The AI will red flag schedules that violate your configured patient-to-nurse ratios, ensuring clinical safety is never compromised. You can set different ratios by unit and shift type.",
+    title: "Less juggling. More time for your team.",
+    description:
+      "Balancing everyone’s needs takes time and care. RosterLab builds the schedule around your rules and staff requests, so you spend less time piecing shifts together and more time supporting your team.",
   },
   {
-    question: "Can nurses submit their own preferences?",
-    answer:
-      "Yes. Nurses can submit shift preferences, time-off requests, and availability through our mobile app. RosterLab's <a href='/us/feature/self-scheduling' class='text-teal-600 hover:text-teal-700 underline'>self-scheduling feature</a> lets nurses bid for available shifts while the system maintains compliance with labor laws, fatigue management, and skill mix requirements.",
+    title: "Fairer shifts, with room to recover",
+    description:
+      "A fair schedule helps staff plan their lives and recover between shifts. RosterLab balances nights and weekends around contracted hours, agreed arrangements and individual preferences.",
   },
   {
-    question: "What happens when a nurse calls in sick at the last minute?",
-    answer:
-      "RosterLab identifies replacement nurses who meet the skill requirements and are available. You can see who's qualified, check their recent hours to avoid fatigue, and fill the gap quickly. The system prevents unsafe ratios by alerting you if a shift can't be safely covered.",
+    title: "Honor the agreements your team relies on",
+    description:
+      "RosterLab applies your labor agreement rules and rest requirements during schedule generation, flagging potential violations for you to review.",
   },
   {
-    question:
-      "How does RosterLab prevent schedule-based favoritism or bullying?",
-    answer:
-      "RosterLab uses algorithm-based shift allocation that eliminates subjective bias. Every shift assignment is based on objective criteria: skills, availability, workload balance, and compliance rules. The system creates an audit trail showing exactly why each nurse was assigned to each shift, making favoritism impossible and providing accountability if disputes arise.",
-  },
-  {
-    question: "Can RosterLab help identify knowledge silos and training gaps?",
-    answer:
-      "Yes. RosterLab's gives you complete visibility of all team competencies across your nursing staff. You can instantly see which critical skills are held by only one or two people, identify risks, and plan accordingly. The system alerts you when key skills are missing from a shift.",
+    title: "See where your team needs more support",
+    description:
+      "You shouldn’t have to hold every staffing detail in your head. See gaps in headcount, senior cover and clinical skills before publishing, so you know where extra support is needed.",
   },
 ];
 
-export default function NurseRosteringV2Page() {
+const CAPABILITIES = [
+  {
+    title: "Generate the whole schedule around your rules",
+    description:
+      "Whether it's scheduling a charge nurse each night, maintaining the right RN/LPN mix or meeting patient-to-nurse ratios, RosterLab builds these requirements into every schedule. Midwifery teams can define the competencies needed for prenatal care, labor and delivery, and postpartum care.",
+    link: {
+      label: "Explore AI scheduling",
+      href: "/us/solutions/ai-staff-schedule-maker",
+    },
+    image: {
+      src: "/images/industries/nursing/us-ai-schedule-generating-v2.webp",
+      alt: "Unit staffing rules for charge nurse coverage, skill mix and rest days over a schedule being generated in RosterLab",
+      className: "object-cover",
+    },
+  },
+  {
+    title: "Meet more staff preferences",
+    description:
+      "Nurses and midwives submit preferences, request swaps and apply for open shifts through the app. RosterLab weighs requests across the team alongside coverage and agreement rules, helping you find a fairer balance.",
+    link: {
+      label: "Explore self-scheduling",
+      href: "/us/feature/self-scheduling",
+    },
+    image: {
+      src: "/images/industries/nursing/us-staff-preferences-v2.webp",
+      alt: "Staff preferences in RosterLab on desktop, with a nurse requesting a shift and accepting an open shift in the mobile app",
+      className: "object-cover",
+    },
+  },
+];
+
+const COMPARISON: ComparisonRow[] = [
+  {
+    task: "Assigning shifts",
+    manual: "Shifts filled one by one, every rule checked manually.",
+    rosterlab:
+      "AI assigns shifts around staffing needs, rules and staff requests.",
+  },
+  {
+    task: "Balancing connected needs",
+    manual: "Competing requirements weighed one decision at a time.",
+    rosterlab:
+      "Coverage, fairness and preferences balanced across the entire schedule.",
+  },
+  {
+    task: "Handling absences",
+    manual:
+      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
+    rosterlab:
+      "Affected shifts rescheduled automatically, ready for manager review.",
+  },
+];
+
+const FAQ_ITEMS = [
+  {
+    question:
+      "How is automated nurse scheduling different from digital schedule management?",
+    answer:
+      "A schedule can be digital and still be built by hand. RosterLab’s AI assigns shifts around staffing requirements, agreement rules and staff requests. Your team reviews and approves the result, then manages preferences, swaps and later changes in the same platform.",
+  },
+  {
+    question:
+      "How does RosterLab help us meet staffing and skill requirements?",
+    answer:
+      "Set the staffing levels and competencies each shift needs. RosterLab uses these during generation and highlights shortfalls, so managers can see where additional cover or a staffing decision is needed.",
+  },
+  {
+    question:
+      "Can nurses and midwives request their preferred shifts and time off?",
+    answer:
+      "Yes. Staff submit shift preferences, time-off requests and availability through the app. RosterLab balances requests across the team against coverage and agreement rules. Managers can review unmet requests before publishing.",
+  },
+  {
+    question:
+      "What happens when a nurse or midwife calls in sick at the last minute?",
+    answer:
+      "Review staff whose recorded skills and availability match the gap, along with their scheduled hours and rest requirements. RosterLab helps reschedule affected shifts for managers to review and address any remaining shortfalls.",
+  },
+  {
+    question: "How does RosterLab help distribute nights and weekends fairly?",
+    answer:
+      "Set allocation rules for nights and weekends around contracted hours and agreed working arrangements. RosterLab applies them consistently during generation, while considering preferences. Review workloads and unmet requests before approving the schedule.",
+  },
+  {
+    question: "Can we keep fixed working arrangements and approved time off?",
+    answer:
+      "Yes. Approved time off and fixed working arrangements are set separately from preferences, so the generated schedule accounts for commitments already agreed with staff.",
+  },
+];
+
+/* ------------------------------------------------------------- building blocks */
+
+const H2 =
+  "text-balance text-3xl md:text-[2.75rem] font-semibold text-[#1F2A5C] leading-tight tracking-tight";
+
+/** Proof points in the case study headline. */
+function Mint({ children }: { children: React.ReactNode }) {
+  return <span className="text-[#03F9BE]">{children}</span>;
+}
+
+/* ------------------------------------------------------------------ page */
+
+export default function USNurseSchedulingPage() {
   return (
     <SiteLayout>
-      {/* Hero Section */}
+      {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
-        title="Build Safe, Fair Nurse Schedules"
-        description="Create compliant AI-powered schedules that respect your nurse preferences, maintain safe ratios, and honour labor agreements."
-        analyticsLocation="US Industry Page Nurse Scheduling"
+        imageBelowCtasOnMobile
+        title="Less scheduling admin. More time for care."
+        description="RosterLab automatically generates nursing and midwifery schedules around staff preferences, skill mix, coverage and labor agreements."
+        analyticsLocation={LOCATION}
         primaryCta={{
           href: "/us/book-a-demo",
-          label: "Book a Demo",
+          label: "Book a demo",
           analyticsProperties: {
             cta_type: "demo",
-            page_name: "Nurse Scheduling",
+            page_name: PAGE_NAME,
             section: "hero",
           },
         }}
         secondaryCta={{
-          href: "/us/pricing",
-          label: "View Pricing",
+          href: INTERACTIVE_DEMO,
+          label: "See how it works",
           analyticsProperties: {
-            cta_type: "pricing",
-            page_name: "Nurse Scheduling",
+            cta_type: "how_it_works",
+            page_name: PAGE_NAME,
             section: "hero",
           },
         }}
         image={{
           src: "/images/industries/nurses.webp",
-          alt: "Nurses on a hospital ward",
+          alt: "Nurses on a hospital unit",
         }}
       />
 
-      {/* Pain Points Section */}
-      <section className="py-20 bg-white">
+      {/* Customer logos. */}
+      <TrustedByDualRow
+        singleRow
+        centerHeadingOnMobile
+        headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
+        logoColor="#1F2A5C"
+        heading="Trusted by healthcare teams"
+      />
+
+      {/* 2 — Intro: centred heading and copy, the specialties in one white
+          bubble on the grey. */}
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Safer Staffing Starts with Smart Scheduling
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Build compliant and safe nurse schedules in minutes, not days.
-              Discover how:
-            </p>
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal as="h2" className={H2}>
+              The schedule shouldn&apos;t make a demanding job harder
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={0.12}
+              className="mt-6 text-lg text-gray-600 leading-relaxed"
+            >
+              RosterLab builds nursing and midwifery schedules that balance
+              clinical coverage with time off and individual work arrangements,
+              reducing scheduling admin while helping your team recover
+              between shifts and plan life outside work.
+            </Reveal>
           </div>
 
-          {/* Interactive Demo Widget */}
-          <div className="mb-16 max-w-4xl mx-auto">
-            <div className="relative w-full rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-teal-50 to-cyan-50 p-4">
+          <Reveal
+            delay={0.24}
+            className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white px-3 py-6 text-center sm:px-8"
+          >
+            <p className="font-medium text-[#1F2A5C]">
+              Designed for nursing and midwifery scheduling across:
+            </p>
+            <ul className="mt-4 grid grid-cols-12 gap-1.5 sm:flex sm:flex-wrap sm:justify-center sm:gap-2">
+              {SPECIALTIES.map((s) => (
+                <li
+                  key={s}
+                  className="rounded-lg bg-[#F4F6FB] px-1 py-1.5 text-[13px] text-[#1F2A5C] max-sm:col-span-4 max-sm:grid max-sm:place-items-center max-sm:first:col-span-7 max-sm:[&:nth-child(2)]:col-span-5 max-sm:[&:nth-child(3)]:col-span-3 max-sm:[&:nth-child(4)]:col-span-5 sm:px-3.5 sm:py-2 sm:text-[15px]"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* 3 — Case study: a photo beside a navy panel, proof points in mint. */}
+      <section className="py-16 md:py-24">
+        <Container>
+          <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
+            <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:block">
+              {/* Landscape photo in a tall slot on desktop: the crop is held on
+                  the nurse, who sits just left of centre. */}
+              <Image
+                src="/images/industries/nursing/nurse-case-study-desk.webp"
+                alt="A smiling nurse in scrubs with a stethoscope, seated at a desk"
+                fill
+                sizes="340px"
+                className="object-cover object-[45%_25%] saturate-[0.85] contrast-[1.08]"
+              />
+              {/* Grade the warm photo towards the navy panel beside it: a
+                  cool tint over everything, then a navy fade from the
+                  bottom so the two pieces read as one block. */}
               <div
-                className="relative w-full"
-                style={{ paddingBottom: "calc(56.67989417989418% + 41px)" }}
+                aria-hidden="true"
+                className="absolute inset-0 bg-[#3B7FE8] opacity-20 mix-blend-multiply"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-gradient-to-t from-[#1F2A5C]/80 via-[#1F2A5C]/15 to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-[#1F2A5C]/10"
+              />
+            </div>
+
+            {/* Navy panel with the RosterLab mark (capsule, bar, dot) drawn
+                in tone-on-tone outline off the right edge. */}
+            <div className="relative overflow-hidden rounded-[1.25rem] bg-[#1F2A5C] p-6 text-white sm:p-9 md:rounded-[1.75rem] md:p-12">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 300 420"
+                className="pointer-events-none absolute -right-[17rem] top-1/2 hidden h-[115%] -translate-y-1/2 text-[#2A3F8F]/70 lg:block"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="22"
               >
-                <iframe
-                  src="https://demo.arcade.software/qKV5GmMinypq2yXM19Xi?embed"
-                  title="RosterLab Interactive Demo"
-                  frameBorder="0"
-                  loading="lazy"
-                  allowFullScreen
-                  allow="clipboard-write"
-                  className="absolute top-0 left-0 w-full h-full"
-                ></iframe>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Pain Point 1: Automatic Schedule Generation */}
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                <rect x="11" y="11" width="278" height="98" rx="49" />
+                <rect x="11" y="161" width="178" height="98" rx="49" />
+                <circle cx="60" cy="360" r="49" />
+              </svg>
+              <div className="relative lg:pr-16">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/80 md:text-xs">
+                  {/* Stacked on a phone; from sm up each half is kept whole,
+                      so the line breaks at the divider, not mid-name. */}
+                  <span className="block sm:inline sm:whitespace-nowrap">
+                    Primary care nursing
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="mx-3 hidden text-white/50 sm:inline"
+                  >
+                    |
+                  </span>
+                  <span className="sr-only"> | </span>
+                  <span className="mt-1 block sm:mt-0 sm:inline sm:whitespace-nowrap">
+                    Dargaville Medical Centre, New Zealand
+                  </span>
+                </p>
+                <h3 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+                  From <Mint>2–3 days</Mint> to around <Mint>three hours</Mint>
+                </h3>
+                <p className="mt-5 max-w-2xl text-white/85 leading-relaxed md:text-lg">
+                  Dargaville Medical Centre reduced preparation of its four-week
+                  schedule from 2–3 days to around three hours, including review
+                  and adjustments, while accommodating nurses’ working
+                  arrangements and preferences.
+                </p>
+                <figure className="mt-7 flex gap-4">
+                  <PiQuotesFill
+                    aria-hidden="true"
+                    className="mt-0.5 h-9 w-9 shrink-0 rotate-180 text-[#03F9BE]"
                   />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Automatic schedule generation
-              </h3>
-              <p className="text-gray-600">
-                Eliminate the need for manual scheduling with our AI schedule
-                generation giving you time back to focus on what's important.
-              </p>
-            </div>
-
-            {/* Pain Point 2: Stay compliant with rules */}
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  <div className="border-l border-white/25 pl-5">
+                    <blockquote className="text-lg italic text-white/90 leading-relaxed">
+                      “With RosterLab, the rostering process has been
+                      dramatically reduced, and we believe it will only get
+                      quicker.”
+                    </blockquote>
+                    <figcaption className="mt-3 text-[11px] font-medium uppercase tracking-[0.16em] text-white/60 md:text-xs">
+                      Judy Harris, Practice Manager, Dargaville Medical Centre
+                    </figcaption>
+                  </div>
+                </figure>
+                <Link
+                  href={CASE_STUDY}
+                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1F2A5C] transition hover:bg-[#03F9BE] md:text-base"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  Read the case study
+                  <PiArrowRightBold
+                    aria-hidden="true"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   />
-                </svg>
+                </Link>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stay compliant with labor laws
-              </h3>
-              <p className="text-gray-600">
-                Never break compliance on contractual requirements, critical
-                staff rules or labor requirements.
-              </p>
             </div>
+          </article>
+        </Container>
+      </section>
 
-            {/* Pain Point 3: Improve flexibility through self-scheduling*/}
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Improve flexibility through self-scheduling
-              </h3>
-              <p className="text-gray-600">
-                Empower nurses with flexibility while maintaining fairness and
-                compliance with core rules and requirements.
-              </p>
-            </div>
-
-            {/* Pain Point 4: Ensure safe staffing levels */}
-            <div className="text-center p-6">
-              <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Ensure safe staffing levels for nurses
-              </h3>
-              <p className="text-gray-600">
-                Identify understaffing and skill gaps before they become issues,
-                maintaining safe patient-to-nurse ratios.
-              </p>
-            </div>
+      {/* Core benefits. */}
+      <section className="bg-[#F4F6FB] py-16 md:py-24">
+        <Container>
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 md:gap-y-14">
+            {BENEFITS.map(({ title, description }, i) => (
+              <Reveal key={title} delay={(i % 2) * 0.12}>
+                <h3 className="text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
+                  {title}
+                </h3>
+                <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                  {description}
+                </p>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* Solution Section */}
-      <section className="py-20 bg-gray-50">
+      {/* 4 — Core capabilities: alternating rows, large product imagery
+          (first image right, second left). */}
+      <section className="bg-white py-16 md:py-28">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="order-2 lg:order-1">
-              <MobileAppPreferencesModule />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h3 className="text-3xl font-bold text-gray-900 mb-16">
-                Perfect For Nurse Scheduling Challenges
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Eliminate Favoritism
-                    </h4>
-                    <p className="text-gray-600">
-                      Ensure fairness, reduce the perception of favoritism, and
-                      create a more inclusive work environment for nurses.
-                    </p>
-                  </div>
-                </div>
+          <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
+            Built for the complexity of nursing and midwifery scheduling
+          </Reveal>
 
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-cyan-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Ensure Clinical Safety
-                    </h4>
-                    <p className="text-gray-600">
-                      Ensure nurses are working safely, enhancing overall
-                      patient outcomes and trust in patient care.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-blue-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Reduce Nurse Fatigue
-                    </h4>
-                    <p className="text-gray-600">
-                      Enhance overall work-life balance and minimize fatigue for
-                      your staff.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-purple-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Improve Staffing Level Accuracy
-                    </h4>
-                    <p className="text-gray-600">
-                      Understand your staffing levels better and how many people
-                      are required for each role.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
-                    <svg
-                      className="w-6 h-6 text-teal-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
-                      Meet More Staff Preferences
-                    </h4>
-                    <p className="text-gray-600">
-                      Help nurses achieve better work-life balance by
-                      considering a high percentage of staff preferences while
-                      ensuring critical business needs are met.
-                    </p>
-                  </div>
-                </div>
+          <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
+            {CAPABILITIES.map((c, i) => (
+              <div
+                key={c.title}
+                className={`grid grid-cols-1 items-center gap-8 md:gap-12 lg:gap-16 ${
+                  i % 2 === 0
+                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]"
+                }`}
+              >
+                <Reveal>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                    {c.title}
+                  </h3>
+                  <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                    {c.description}
+                  </p>
+                  <Button
+                    href={c.link.href}
+                    className="group mt-6 gap-2 bg-transparent px-0 py-0 text-base font-semibold text-[#1F2A5C] hover:bg-transparent hover:text-[#3B7FE8]"
+                    analyticsLabel={c.link.label}
+                    analyticsLocation={LOCATION}
+                    analyticsProperties={{
+                      cta_type: "learn_more",
+                      page_name: PAGE_NAME,
+                      section: "capabilities",
+                    }}
+                  >
+                    {c.link.label}
+                    <PiArrowRightBold
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Button>
+                </Reveal>
+                <Reveal
+                  delay={0.12}
+                  className={`relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#3B7FE8] shadow-sm ring-1 ring-[#1F2A5C]/5 ${
+                    i % 2 === 1 ? "md:order-first" : ""
+                  }`}
+                >
+                  <Image
+                    src={c.image.src}
+                    alt={c.image.alt}
+                    fill
+                    sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
+                    className={c.image.className}
+                  />
+                </Reveal>
               </div>
-            </div>
+            ))}
           </div>
+        </Container>
+      </section>
 
-          {/* CTA Button */}
-          <div className="max-w-md mx-auto text-center mt-12">
-            <Button
-              href="/us/solutions/ai-staff-schedule-maker"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+      {/* 5 — Manual planning and automated scheduling compared. */}
+      <section
+        id={HOW_IT_WORKS}
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] pt-16 pb-20 md:pt-24 md:pb-28"
+      >
+        <Container>
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal as="h2" className={H2}>
+              The whole schedule, considered together
+            </Reveal>
+            <Reveal
+              as="p"
+              delay={0.12}
+              className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              Learn about AI Scheduling
-            </Button>
+              One shift change can affect someone’s rest, contracted hours or
+              availability tomorrow. RosterLab’s optimization works through
+              these connected requirements across the schedule, helping you find
+              a workable balance without checking every combination by hand.
+            </Reveal>
+          </div>
+
+          <div className="mx-auto mt-14 max-w-6xl">
+            <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+              Manual scheduling and RosterLab compared
+            </h3>
+            <RosterComparison
+              rows={COMPARISON}
+              labels={{
+                task: "Scheduling task",
+                manualHeading: "Manual scheduling",
+                manualNote: "in Excel or traditional software",
+              }}
+            />
+          </div>
+        </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-white md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C360 96 960-32 1440 32V80H0Z" />
+        </svg>
+      </section>
+
+      {/* 6 — Onboarding & support: heading left, copy right, on the FAQ's
+          columns so the two sections line up. */}
+      <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
+        <Container>
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
+              Saving time from your first schedule
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Our implementation specialists help turn your existing rules and
+              working arrangements into a schedule setup for your team. We train
+              your schedulers, review the first generated schedule with you and
+              discuss how RosterLab fits your current systems.
+            </p>
+          </div>
+        </Container>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 -bottom-px h-12 w-full text-[#F4F6FB] md:h-20"
+          fill="currentColor"
+        >
+          <path d="M0 32C480-32 1080 96 1440 32V80H0Z" />
+        </svg>
+      </section>
+
+      {/* 7 — FAQ: the enterprise layout. */}
+      <section className="bg-[#F4F6FB] pt-28 pb-16 md:pt-36 md:pb-24">
+        <Container>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+                Frequently Asked Questions
+              </h2>
+              <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">
+                Questions we hear from nursing and midwifery managers
+              </p>
+            </div>
+            <EnterpriseFAQ items={FAQ_ITEMS} />
           </div>
         </Container>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      {/* 8 — Final CTA: the enterprise banner in a light workforce teal,
+          with text in a deep teal from the same hue. Lightened from #06C8CC
+          so the text stands out more. */}
+      <section className="py-16 md:py-20">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Modern Nurse Scheduling Software for Teams
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real outcomes that improve nurse well-being and patient care
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-teal-50 rounded-xl p-8 border border-teal-100">
-              <div className="text-4xl font-bold text-teal-600 mb-2">90%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Reduction in Scheduling Time
-              </h3>
-              <p className="text-gray-600">
-                Nurse managers spend days less per month on scheduling,
-                redirecting time to patient care and team support.
-              </p>
-            </div>
-
-            <div className="bg-cyan-50 rounded-xl p-8 border border-cyan-100">
-              <div className="text-4xl font-bold text-cyan-600 mb-2">100%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Stable Staffing
-              </h3>
-              <p className="text-gray-600">
-                Safe nurse-to-patient ratios maintained across every shift, with
-                instant alerts and compliant replacement suggestions when
-                changes occur.
-              </p>
-            </div>
-
-            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-              <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
-                Transparent Schedule Assignment
-              </h3>
-              <p className="text-gray-600">
-                Fair, automated scheduling eliminates favoritism and bullying
-                through transparent, bias-free shift allocation.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Self-Scheduling Workflow Section */}
-      <section className="py-20 bg-gray-50">
-        <Container>
-          <div className="text-center mb-12">
-            <span className="text-sm font-semibold text-teal-600 uppercase tracking-wide">
-              NURSE-FIRST WORKFLOW
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-              How Nurses Engage with Their Schedules
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Built around self-scheduling and nurse autonomy, not just top-down
-              scheduling
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Step 1 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">1</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Set Staffing Requirements
-                    </h3>
-                    <p className="text-gray-600">
-                      Define minimum ratios, skill mix needs (ICU-trained,
-                      pediatrics, etc.), and unit coverage requirements.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">2</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Submit Preferences
-                    </h3>
-                    <p className="text-gray-600">
-                      Via mobile app, nurses indicate shift preferences, time
-                      off requests, and availability. No emails or paper forms.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">3</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      AI Generates Safe Schedule
-                    </h3>
-                    <p className="text-gray-600">
-                      RosterLab balances preferences, skills, and compliance
-                      rules to create fair schedules with safe staffing levels.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 4 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">4</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Publish to Mobile
-                    </h3>
-                    <p className="text-gray-600">
-                      Schedules sync instantly to nurses' phones. They see their
-                      shifts, can request swaps, and get real-time updates.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">5</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Nurses Self-Schedule Open Shifts
-                    </h3>
-                    <p className="text-gray-600">
-                      Unfilled shifts are posted as "open shifts" - nurses can
-                      pick them up directly if qualified and within hour limits.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 6 */}
-              <div className="bg-white rounded-xl p-6 shadow-md">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-teal-600 font-bold">6</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Handle Last-Minute Changes
-                    </h3>
-                    <p className="text-gray-600">
-                      If someone calls in sick, RosterLab shows who can safely
-                      fill the gap without breaking ratios or fatigue rules.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="text-center mt-12">
-              <p className="text-gray-600 mb-6">
-                Ready to streamline your nurse scheduling?
-              </p>
-              <Button
-                href="/us/book-a-demo"
-                className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
-              >
-                See How It Works
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Essential Features for Nurse Scheduling
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Purpose-built tools that address the unique complexity of nursing
-              schedules
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Feature 1 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Safe Staffing Enforcement
-              </h3>
-              <p className="text-gray-600">
-                Configurable patient-to-nurse ratios by unit and shift. The
-                system will flag unsafe and understaffed schedules.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Skill Mix Management
-              </h3>
-              <p className="text-gray-600">
-                Ensure every shift has the right skills present by creating
-                rules to ensure a balanced mix of skills is present on your
-                schedule.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Labor Law Automation
-              </h3>
-              <p className="text-gray-600">
-                Enforce rules, minimum rest periods, maximum consecutive shifts,
-                and contractual obligations.
-              </p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-teal-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Mobile Self-Scheduling
-              </h3>
-              <p className="text-gray-600">
-                Nurses submit preferences, apply for open shifts, and manage
-                time-off requests directly from their phones.
-              </p>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-cyan-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Instant Schedule Changes
-              </h3>
-              <p className="text-gray-600">
-                When nurses call in sick, see who's qualified and available to
-                fill the gap without breaking safety rules.
-              </p>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <svg
-                  className="w-6 h-6 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Fatigue Prevention
-              </h3>
-              <p className="text-gray-600">
-                Track hours worked, enforce rest periods, and prevent dangerous
-                consecutive shift patterns that lead to burnout.
-              </p>
-            </div>
-          </div>
-
-          {/* CTA for Mobile App */}
-          <div className="text-center mt-12">
-            <Button
-              href="/us/solutions/staff-scheduling-mobile-app"
-              className="bg-teal-600 text-white hover:bg-teal-700 px-8 py-3"
+          <div className="relative overflow-hidden rounded-2xl bg-[#7ADFE1] px-6 py-16 text-center text-[#053B3D] sm:px-12 md:py-24">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 300 420"
+              className="pointer-events-none absolute -left-24 top-1/2 h-[130%] -translate-y-1/2 text-[#5CD2D5]/70 md:-left-16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="22"
             >
-              Learn about mobile app
-            </Button>
-          </div>
-        </Container>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-center text-gray-600 mb-12 text-lg">
-              Questions we hear from nursing managers
-            </p>
-            <FAQAccordion items={faqItems} />
-          </div>
-        </Container>
-      </section>
-
-      {/* Trusted By */}
-      <section className="py-10 bg-white">
-        <USTrustedBy />
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-teal-600 to-cyan-500">
-        <Container>
-          <div className="text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Build Safer, Fairer Nurse Schedules
-            </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Join hospitals that have eliminated unsafe schedules and reduced
-              nurse burnout
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                href="/us/book-a-demo"
-                className="bg-white text-teal-600 hover:bg-gray-100"
-              >
-                Book a Demo
-              </Button>
-              <Button
-                href="/us/tools/savings-calculator"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-teal-600"
-              >
-                See Savings Calculator
-              </Button>
+              <rect x="11" y="11" width="278" height="98" rx="49" />
+              <rect x="11" y="161" width="178" height="98" rx="49" />
+              <circle cx="60" cy="360" r="49" />
+            </svg>
+            <div className="relative mx-auto max-w-3xl">
+              <h2 className="text-balance text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight">
+                See how RosterLab could work for your team
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
+                Bring your shift patterns, staffing requirements and biggest
+                scheduling challenges. We&apos;ll show you how RosterLab can help.
+              </p>
+              <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+                <Button
+                  href="/us/book-a-demo"
+                  className="rounded-md bg-[#053B3D] px-7 py-3.5 text-base font-semibold text-white hover:bg-[#032A2C]"
+                  analyticsLabel="Book a demo"
+                  analyticsLocation={LOCATION}
+                  analyticsProperties={{
+                    cta_type: "demo",
+                    page_name: PAGE_NAME,
+                    section: "final_cta",
+                  }}
+                >
+                  Book a demo
+                </Button>
+                <Button
+                  href={INTERACTIVE_DEMO}
+                  variant="outline"
+                  className="rounded-md border-2 border-[#053B3D] px-7 py-3.5 text-base font-semibold text-[#053B3D] hover:bg-[#053B3D] hover:text-white"
+                  analyticsLabel="See how it works"
+                  analyticsLocation={LOCATION}
+                  analyticsProperties={{
+                    cta_type: "how_it_works",
+                    page_name: PAGE_NAME,
+                    section: "final_cta",
+                  }}
+                >
+                  See how it works
+                </Button>
+              </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Hidden Breadcrumb Schema for SEO */}
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/us" },
           { name: "Industries", url: "/us/industries" },
           { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
-          { name: "Nurse Scheduling" },
+          { name: "Nursing & Midwifery" },
         ]}
       />
     </SiteLayout>

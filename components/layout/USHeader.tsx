@@ -3,7 +3,7 @@ import { getResourcesNavigation } from "./resources-navigation";
 // US-specific navigation configuration
 export const usNavItems = [
   {
-    title: "Solutions",
+    title: "Product",
     subItems: [
       {
         title: "AI Staff Scheduling",
@@ -43,10 +43,14 @@ export const usNavItems = [
     ],
   },
   {
-    title: "Industries",
+    title: "Solutions",
     subItems: [
       { title: "Healthcare", link: "/us/industries/healthcare-scheduling" },
-      { title: "ICU/ED", link: "/us/industries/healthcare/ed-icu-scheduling" },
+      {
+        title: "Critical Care",
+        link: "/us/industries/healthcare/critical-care-scheduling",
+      },
+      { title: "ED", link: "/us/industries/healthcare/ed-icu-scheduling" },
       {
         title: "Radiology",
         link: "/us/industries/healthcare/radiology-scheduling",
@@ -58,7 +62,6 @@ export const usNavItems = [
       {
         title: "Senior Care Scheduling",
         link: "/us/industries/healthcare/senior-care-scheduling",
-        description: "Efficient scheduling for nursing homes & assisted living",
       },
       {
         title: "Veterinary Scheduling",

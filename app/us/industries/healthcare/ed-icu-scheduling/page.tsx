@@ -72,6 +72,7 @@ export default function ICUEDPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Generate your ED Staff Schedule in Minutes"
         description="Cut schedule creation time by 90% with AI automation. Build compliant schedules that balance critical care demands with staff well-being."
         analyticsLocation="US Industry Page ED & ICU Scheduling"

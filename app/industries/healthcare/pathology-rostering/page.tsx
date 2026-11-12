@@ -73,6 +73,7 @@ export default function PathologyRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Compliant Pathology Rosters"
         description="Create compliant AI rosters that balance specimen processing demands, fair night shift distribution, and pathology staff wellbeing."
         analyticsLocation="Industry Page Pathology Rostering"
