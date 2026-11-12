@@ -4,8 +4,11 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import SiteLayout from "@/components/layout/SiteLayout";
 import EnterpriseFAQ from "./EnterpriseFAQ";
-import EnterpriseCaseStudies, { type CaseStudy } from "./EnterpriseCaseStudies";
+import EnterpriseCaseStudies from "./EnterpriseCaseStudies";
+import { enterpriseStories } from "./enterprise-stories";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
+import ImplementationBenefits from "@/components/sections/ImplementationBenefits";
+import ClosingCta from "@/components/sections/ClosingCta";
 import Reveal from "./Reveal";
 import EnterpriseOutcomes from "./EnterpriseOutcomes";
 import EnterpriseFeatures, { type Feature } from "./EnterpriseFeatures";
@@ -202,50 +205,6 @@ const IMPLEMENTATION: Benefit[] = [
   },
 ];
 
-// Card headings summarise the linked stories.
-// Quotes and headline figures are drawn from the linked stories.
-const STORIES: CaseStudy[] = [
-  {
-    kind: "Case study",
-    title: "Radiology Boosts Staff Retention",
-    href: "/case-studies/radiology-department-auckland",
-    image: "/images/enterprise/case-study-radiology-v2.webp",
-    quote:
-      "We are now fully staffed... I've been here for 28 years, and we've never managed to achieve this level of staffing consistently for more than 2 months until RosterLab",
-    attribution: "Alison, MRT team leader",
-    stats: [
-      { value: "$80,000+", label: "per year in savings" },
-      // Rounded from the reduction in monthly rostering time: 120 hours to 8.
-      { value: "~93%", label: "less time spent rostering" },
-    ],
-  },
-  {
-    kind: "Case study",
-    title: "Sydney Hospital Saves 300+ Hours With AI",
-    href: "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
-    image: "/images/enterprise/case-study-er-v2.webp",
-    quote:
-      "It’s not just about saving hours. It's about confidence in the roster, about fairness, and about giving senior clinicians time back for patient care - not spreadsheets.",
-    attribution: "Emergency Physician",
-    stats: [
-      { value: "70%", label: "time saved from the first roster" },
-      { value: "$40,000", label: "saved annually" },
-    ],
-  },
-  {
-    kind: "Case study",
-    title: "Plastics Unit in Western Australia Saves on Overtime Costs",
-    href: "/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs",
-    image: "/images/enterprise/case-study-plastics.webp",
-    stats: [
-      {
-        value: "~15%",
-        label: "projected cost savings from roster simulation",
-      },
-    ],
-  },
-];
-
 const FAQ_ITEMS = [
   {
     question:
@@ -334,7 +293,7 @@ export default function EnterprisePage({ isUS = false }: { isUS?: boolean }) {
     title: t(item.title),
     description: t(item.description),
   }));
-  const stories = STORIES.map((item) => ({
+  const stories = enterpriseStories.map((item) => ({
     ...item,
     title: t(item.title),
     href: href(item.href),
@@ -583,60 +542,13 @@ export default function EnterprisePage({ isUS = false }: { isUS?: boolean }) {
       {/* 6 — Testimonials: one navy quote card, cycling. */}
       <EnterpriseTestimonials isUS={isUS} />
 
-      {/* 7 — Implementation & support: a dark band, the heading and copy
-          stacked on the left, then three columns, each a cyan line icon on a
-          dark tile over a large title and muted copy. */}
-      <section className="relative overflow-hidden bg-[#141B3F] py-16 md:py-24">
-        {/* Texture: a white dot grid that fades out toward the left, where
-            the copy sits, and soft blue and teal glows filling the empty
-            right-hand side. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.14)_1px,transparent_1px)] bg-[length:22px_22px] [mask-image:linear-gradient(to_left,black_20%,transparent_85%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-40 -top-40 h-[36rem] w-[36rem] rounded-full bg-[#3B7FE8]/25 blur-[120px]"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-48 right-1/4 h-[28rem] w-[28rem] rounded-full bg-[#03F9BE]/10 blur-[120px]"
-        />
-        <Container className="relative">
-          <div className="max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-semibold text-white leading-[1.1] tracking-tight">
-              {t("Implementation backed by healthcare rostering expertise")}
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg text-white/75 leading-relaxed">
-              {t(
-                "Enterprise rollouts bring different departments, rostering rules and stakeholders together.",
-              )}
-            </p>
-          </div>
-          {/* Headings share a minimum height so the descriptions align. */}
-          <div className="mt-14 grid max-w-6xl grid-cols-1 gap-4 md:mt-16 md:grid-cols-3 md:gap-4">
-            {implementation.map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-6 md:p-7"
-              >
-                <span
-                  aria-hidden="true"
-                  className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 bg-[#1F2A5C]"
-                >
-                  <Icon className="h-7 w-7 text-[#03F9BE]" />
-                </span>
-                <h3 className="mt-7 text-2xl md:text-3xl font-medium text-white leading-tight tracking-tight md:min-h-[2lh]">
-                  {title}
-                </h3>
-                <p className="mt-4 text-[#8A97B8] leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <ImplementationBenefits
+        heading={t("Implementation backed by healthcare rostering expertise")}
+        description={t(
+          "Enterprise rollouts bring different departments, rostering rules and stakeholders together.",
+        )}
+        cards={implementation}
+      />
 
       {/* 8 — Customer stories: one story at a time, photo and navy panel. */}
       <section className="py-16 md:py-24">
@@ -662,66 +574,40 @@ export default function EnterprisePage({ isUS = false }: { isUS?: boolean }) {
         </Container>
       </section>
 
-      {/* 10 — Ending CTA: a site-blue card set into the page, copy centred,
-          with an oversized RosterLab mark (its capsule, bar and dot) drawn in
-          tone-on-tone outline off the left edge. */}
-      <section className="py-16 md:py-20">
-        <Container>
-          <div className="relative overflow-hidden rounded-2xl bg-[#3B7FE8] px-6 py-16 text-center text-white sm:px-12 md:py-24">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 300 420"
-              className="pointer-events-none absolute -left-24 top-1/2 h-[130%] -translate-y-1/2 text-[#2A3F8F]/45 md:-left-16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="22"
-            >
-              <rect x="11" y="11" width="278" height="98" rx="49" />
-              <rect x="11" y="161" width="178" height="98" rx="49" />
-              <circle cx="60" cy="360" r="49" />
-            </svg>
-            <div className="relative mx-auto max-w-3xl">
-              <h2 className="text-balance text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight">
-                A better way forward for your workforce
-              </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-white/90">
-                {t(
-                  "See how RosterLab can deliver better rostering outcomes across your organisation.",
-                )}
-              </p>
-              <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-                <Button
-                  href={href("/book-a-demo")}
-                  className="rounded-md bg-white px-7 py-3.5 text-base font-semibold text-[#1F2A5C] hover:bg-[#F4F6FB]"
-                  analyticsLabel="Talk to our team"
-                  analyticsLocation={location}
-                  analyticsProperties={{
-                    cta_type: "demo",
-                    page_name: "Enterprise",
-                    section: "final_cta",
-                  }}
-                >
-                  Talk to our team
-                </Button>
-                <Button
-                  href={href("/solutions/ai-roster-generator")}
-                  variant="outline"
-                  className="rounded-md border-2 border-white px-7 py-3.5 text-base font-semibold text-white hover:bg-white hover:text-[#1F2A5C]"
-                  analyticsLabel="Learn more about RosterLab"
-                  analyticsLocation={location}
-                  analyticsProperties={{
-                    cta_type: "learn_more",
-                    page_name: "Enterprise",
-                    section: "final_cta",
-                  }}
-                >
-                  Learn more about RosterLab
-                </Button>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <ClosingCta
+        heading="A better way forward for your workforce"
+        description={t(
+          "See how RosterLab can deliver better rostering outcomes across your organisation.",
+        )}
+      >
+        <Button
+          href={href("/book-a-demo")}
+          className="rounded-md bg-white px-7 py-3.5 text-base font-semibold text-[#1F2A5C] hover:bg-[#F4F6FB]"
+          analyticsLabel="Talk to our team"
+          analyticsLocation={location}
+          analyticsProperties={{
+            cta_type: "demo",
+            page_name: "Enterprise",
+            section: "final_cta",
+          }}
+        >
+          Talk to our team
+        </Button>
+        <Button
+          href={href("/solutions/ai-roster-generator")}
+          variant="outline"
+          className="rounded-md border-2 border-white px-7 py-3.5 text-base font-semibold text-white hover:bg-white hover:text-[#1F2A5C]"
+          analyticsLabel="Learn more about RosterLab"
+          analyticsLocation={location}
+          analyticsProperties={{
+            cta_type: "learn_more",
+            page_name: "Enterprise",
+            section: "final_cta",
+          }}
+        >
+          Learn more about RosterLab
+        </Button>
+      </ClosingCta>
 
       <BreadcrumbSchema
         items={[{ name: "Home", url: href("/") }, { name: "Enterprise" }]}
