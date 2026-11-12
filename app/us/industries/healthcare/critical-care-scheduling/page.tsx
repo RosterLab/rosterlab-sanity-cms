@@ -79,7 +79,7 @@ const BENEFITS: {
   {
     title: "Less scheduling admin, more time for care",
     description:
-      "Take days of manual schedule preparation off your workload. RosterLab’s AI works through your unit's staffing requirements, shift patterns and constraints to generate a complete ICU schedule in minutes, ready for your review.",
+      "Take days of manual planning off your workload. RosterLab’s AI works through your unit's staffing requirements, shift patterns and constraints to generate a complete ICU shift plan in minutes.",
   },
   {
     title: "Fairer schedules, with more room for recovery",
@@ -134,20 +134,22 @@ const CAPABILITIES = [
 const COMPARISON: ComparisonRow[] = [
   {
     task: "Creating allocations",
-    manual: "The scheduler assigns shifts and checks requirements.",
+    manual: "Shifts filled one by one, every rule checked manually.",
     rosterlab:
-      "AI generates allocations around staffing requirements, agreements and staff requests.",
+      "AI allocates shifts around staffing needs, rules and staff requests.",
   },
   {
     task: "Balancing connected needs",
-    manual: "The scheduler checks the effects of each allocation.",
+    manual: "Competing requirements weighed up one decision at a time.",
     rosterlab:
-      "Optimization considers connected requirements across the schedule.",
+      "Coverage, fairness and preferences balanced across the entire schedule.",
   },
   {
     task: "Handling absences",
-    manual: "The scheduler rearranges shifts and checks the consequences.",
-    rosterlab: "Rescheduling helps adjust affected shifts for manager review.",
+    manual:
+      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
+    rosterlab:
+      "Affected shifts rescheduled automatically, ready for manager review.",
   },
 ];
 
@@ -211,7 +213,13 @@ export default function USCriticalCareSchedulingPage() {
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
         imageBelowCtasOnMobile
-        title="Build ICU schedules around the care you deliver"
+        title={
+          <>
+            Build ICU schedules{" "}
+            <br className="hidden xl:block" />
+            around the care you deliver
+          </>
+        }
         description="RosterLab simplifies intensive care scheduling, helping your team plan for 24/7 clinical coverage, maintain continuity of care, and manage complex staffing needs without tracking every detail by hand."
         analyticsLocation={LOCATION}
         primaryCta={{
@@ -242,6 +250,7 @@ export default function USCriticalCareSchedulingPage() {
       {/* Customer logos. */}
       <TrustedByDualRow
         singleRow
+        centerHeadingOnMobile
         headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
         logoColor="#1F2A5C"
         heading="Trusted by healthcare teams"
@@ -476,7 +485,7 @@ export default function USCriticalCareSchedulingPage() {
       {/* 5 — Manual planning and automated scheduling compared. */}
       <section
         id={HOW_IT_WORKS}
-        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] py-16 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] pt-16 pb-20 md:pt-24 md:pb-28"
       >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -497,13 +506,14 @@ export default function USCriticalCareSchedulingPage() {
 
           <div className="mx-auto mt-14 max-w-6xl">
             <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-              Manual planning in Excel and RosterLab compared
+              Manual scheduling and RosterLab compared
             </h3>
             <RosterComparison
               rows={COMPARISON}
               labels={{
                 task: "Scheduling task",
-                manualNote: "(Manual scheduling)",
+                manualHeading: "Manual scheduling",
+                manualNote: "in Excel or traditional software",
               }}
             />
           </div>
@@ -588,10 +598,9 @@ export default function USCriticalCareSchedulingPage() {
                 See how RosterLab could work for your team
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
-                Bring your shift patterns, skill requirements and biggest
-                scheduling challenge. See how RosterLab handles your
-                requirements, with time to discuss setup, existing systems and
-                next steps.
+                Bring your shift patterns, staffing requirements and biggest
+                scheduling challenges. We&apos;ll show you how RosterLab can
+                help.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button

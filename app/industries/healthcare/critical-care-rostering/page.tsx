@@ -70,7 +70,7 @@ const BENEFITS: {
   {
     title: "Less roster admin, more time for care",
     description:
-      "Take days of manual roster preparation off your workload. RosterLab’s AI works through your unit's staffing requirements, shift patterns and constraints to generate a complete ICU roster in minutes, ready for your review.",
+      "Take days of manual planning off your workload. RosterLab’s AI works through your unit's staffing requirements, shift patterns and constraints to generate a complete ICU shift plan in minutes.",
   },
   {
     title: "Fairer rosters, with more room for recovery",
@@ -125,20 +125,22 @@ const CAPABILITIES = [
 const COMPARISON: ComparisonRow[] = [
   {
     task: "Creating allocations",
-    manual: "The roster writer assigns shifts and checks requirements.",
+    manual: "Shifts filled one by one, every rule checked manually.",
     rosterlab:
-      "AI generates allocations around staffing requirements, agreements and staff requests.",
+      "AI allocates shifts around staffing needs, rules and staff requests.",
   },
   {
     task: "Balancing connected needs",
-    manual: "The roster writer checks the effects of each allocation.",
+    manual: "Competing requirements weighed up one decision at a time.",
     rosterlab:
-      "Optimisation considers connected requirements across the roster.",
+      "Coverage, fairness and preferences balanced across the entire roster.",
   },
   {
     task: "Handling absences",
-    manual: "The roster writer rearranges shifts and checks the consequences.",
-    rosterlab: "Re-rostering helps adjust affected shifts for manager review.",
+    manual:
+      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
+    rosterlab:
+      "Affected shifts re-rostered automatically, ready for manager review.",
   },
 ];
 
@@ -201,7 +203,13 @@ export default function CriticalCareRosteringPage() {
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
         imageBelowCtasOnMobile
-        title="Build ICU rosters around the care you deliver"
+        title={
+          <>
+            Build ICU rosters{" "}
+            <br className="hidden xl:block" />
+            around the care you deliver
+          </>
+        }
         description="RosterLab simplifies intensive care rostering, helping your team plan for 24/7 clinical cover, maintain continuity of care, and manage complex staffing needs without tracking every detail by hand."
         analyticsLocation={LOCATION}
         primaryCta={{
@@ -232,6 +240,7 @@ export default function CriticalCareRosteringPage() {
       {/* Customer logos. */}
       <TrustedByDualRow
         singleRow
+        centerHeadingOnMobile
         headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
         logoColor="#1F2A5C"
         heading="Trusted by healthcare teams"
@@ -465,7 +474,7 @@ export default function CriticalCareRosteringPage() {
       {/* 5 — Manual planning and automated rostering compared. */}
       <section
         id={HOW_IT_WORKS}
-        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] py-16 md:py-24"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F4F6FB] pt-16 pb-20 md:pt-24 md:pb-28"
       >
         <Container>
           <div className="mx-auto max-w-4xl text-center">
@@ -486,9 +495,16 @@ export default function CriticalCareRosteringPage() {
 
           <div className="mx-auto mt-14 max-w-6xl">
             <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-              Manual planning in Excel and RosterLab compared
+              Manual rostering and RosterLab compared
             </h3>
-            <RosterComparison rows={COMPARISON} />
+            <RosterComparison
+              rows={COMPARISON}
+              labels={{
+                task: "Rostering task",
+                manualHeading: "Manual rostering",
+                manualNote: "in Excel or traditional software",
+              }}
+            />
           </div>
         </Container>
         <svg
@@ -571,10 +587,9 @@ export default function CriticalCareRosteringPage() {
                 See how RosterLab could work for your team
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
-                Bring your shift patterns, skill requirements and biggest
-                rostering challenge. See how RosterLab handles your
-                requirements, with time to discuss setup, existing systems and
-                next steps.
+                Bring your shift patterns, staffing requirements and biggest
+                rostering challenges. We&apos;ll show you how RosterLab can
+                help.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button

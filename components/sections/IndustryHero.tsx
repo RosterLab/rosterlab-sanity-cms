@@ -47,7 +47,7 @@ interface HeroCta {
 }
 
 interface IndustryHeroProps {
-  title: string;
+  title: React.ReactNode;
   description: string;
   /**
    * Size of the blue text panel at `lg` and up, where it overlays the photo.
