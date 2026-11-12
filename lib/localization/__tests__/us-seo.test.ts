@@ -11,6 +11,7 @@ import {
 } from "@/components/seo/HreflangTags";
 import { resourceMetadata } from "../us-resources";
 import { enterpriseMetadata } from "@/app/enterprise/enterprise-metadata";
+import { whyRosterLabMetadata } from "@/app/why-rosterlab/why-rosterlab-metadata";
 
 // Reading a route's metadata means evaluating the object literal it exports,
 // because most of them are wrapped in resourceMetadata()/withHreflang() and the
@@ -44,6 +45,7 @@ function evaluateMetadata(expression: string, pathname: string) {
     withHreflang,
     resourceMetadata,
     enterpriseMetadata,
+    whyRosterLabMetadata,
     URL,
   };
   vm.runInNewContext(

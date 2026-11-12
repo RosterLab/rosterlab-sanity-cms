@@ -23,7 +23,11 @@ const testimonials = [
 const arrowClass =
   "inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#2B68C4] text-[#2B68C4] transition-colors hover:bg-[#2B68C4] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B68C4]";
 
-export default function RoiTestimonials() {
+export default function RoiTestimonials({
+  analyticsLocation,
+}: {
+  analyticsLocation: string;
+}) {
   const [index, setIndex] = useState(0);
 
   function move(direction: -1 | 1) {
@@ -33,7 +37,7 @@ export default function RoiTestimonials() {
     );
     trackButtonClick(
       direction === -1 ? "Testimonials: Previous" : "Testimonials: Next",
-      "Why RosterLab ROI",
+      analyticsLocation,
     );
   }
 
