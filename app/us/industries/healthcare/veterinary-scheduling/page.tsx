@@ -81,6 +81,7 @@ export default function VeterinarySchedulingPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Optimized, Flexible Vet Staff Schedules"
         description="Create efficient AI schedules that respect your vet preferences, maintain the right skill mix, and ensure work-life balance."
         analyticsLocation="US Industry Page Veterinary Scheduling"

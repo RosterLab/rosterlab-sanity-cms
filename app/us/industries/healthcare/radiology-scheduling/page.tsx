@@ -66,6 +66,7 @@ export default function RadiologyPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Build Complex Radiology Schedules"
         description="Match radiologists to reporting, procedural, and teaching sessions based on their subspecialty expertise with AI scheduling."
         analyticsLocation="US Industry Page Radiology Scheduling"

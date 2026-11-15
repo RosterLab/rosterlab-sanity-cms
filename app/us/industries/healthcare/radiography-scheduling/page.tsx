@@ -66,6 +66,7 @@ export default function RadiographyPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Build Complex Radiography Schedules"
         description="Automatically balance skill requirements, shift patterns, and on-call needs across multiple modalities while ensuring fairness."
         analyticsLocation="US Industry Page Radiography Scheduling"

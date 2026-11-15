@@ -6,22 +6,19 @@ import { usePathname } from "next/navigation";
 // Lazy load modal components - they'll be preloaded at 15s
 const CTAModalDemoBooking = lazy(() => import("./CTAModalDemoBooking"));
 const CTAModalCaseStudy = lazy(() => import("./CTAModalCaseStudy"));
-const CTAModalWebinarRecording = lazy(
-  () => import("./CTAModalWebinarRecording"),
-);
-const CTAModalDemoVideo = lazy(() => import("./CTAModalDemoVideo"));
 import {
   trackPageView,
   shouldShowModal,
   assignVariant,
   updateModalState,
   getModalTriggerType,
+  type ActiveModalVariant,
 } from "@/lib/analytics/user-behavior-tracker";
 import { analytics } from "@/components/analytics/tracking";
 
 /**
  * CTA Modal Manager
- * Manages A/B/C/D test for CTA modals with two trigger conditions
+ * Manages the A/B test for CTA modals with two trigger conditions
  *
  * Trigger 1 (High-Intent):
  * - Visited at least 1 high-intent page (excluding home)
@@ -33,12 +30,10 @@ import { analytics } from "@/components/analytics/tracking";
  *
  * Variants:
  * - A: Demo Booking (Live Demo showcase with illustration)
- * - B: Case Study (Gated case study with results)
- * - C: Webinar Recording (Whanganui case study)
- * - D: Demo Video (Gated demo video walkthrough)
+ * - B: Case Study (Ungated case study)
  *
  * Variant Assignment:
- * - First-time visitors: Random 25% split (A/B/C/D)
+ * - First-time visitors: Random 50% split (A/B)
  * - Returning visitors: Cycles through variants (shows one they haven't seen)
  *
  * Constraints:
@@ -47,14 +42,30 @@ import { analytics } from "@/components/analytics/tracking";
  */
 export default function CTAModalManager() {
   const pathname = usePathname();
+  const isWhitepaperPage = ["/whitepapers", "/us/whitepapers"].some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+  const isBookingPage = /^\/(?:us\/)?book-a-demo\/?$/.test(pathname);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [variant, setVariant] = useState<"A" | "B" | "C" | "D" | null>(null);
+  const [variant, setVariant] = useState<ActiveModalVariant | null>(null);
   const [isReady, setIsReady] = useState(false);
 
   // Track page views whenever pathname changes
   useEffect(() => {
     trackPageView(pathname);
   }, [pathname]);
+
+  // Close a popup when navigating into an excluded flow.
+  useEffect(() => {
+    const isReadingCaseStudy = /^\/(?:us\/)?case-studies\/[^/]+/.test(pathname);
+    if (
+      isWhitepaperPage ||
+      isBookingPage ||
+      (variant === "B" && isReadingCaseStudy)
+    ) {
+      setIsModalOpen(false);
+    }
+  }, [isWhitepaperPage, isBookingPage, pathname, variant]);
 
   // Wait for page to fully load before starting modal checks
   useEffect(() => {
@@ -66,16 +77,13 @@ export default function CTAModalManager() {
     return () => clearTimeout(readyTimer);
   }, []);
 
-  // Predictive preload: Download modal components at 15s (before 20s trigger)
+  // Preload the active modal components after initial page load.
   useEffect(() => {
     const preloadTimer = setTimeout(() => {
       // Preload all modal variants in background (doesn't show them)
-      // This ensures instant appearance when trigger conditions are met at 20s+
       import("./CTAModalDemoBooking");
       import("./CTAModalCaseStudy");
-      import("./CTAModalWebinarRecording");
-      import("./CTAModalDemoVideo");
-    }, 15000); // 15 seconds = 5s before earliest possible trigger
+    }, 15000);
 
     return () => clearTimeout(preloadTimer);
   }, []);
@@ -86,7 +94,7 @@ export default function CTAModalManager() {
     if (!isReady || isModalOpen || variant) return;
 
     // Don't show modals on whitepaper pages
-    if (pathname.startsWith("/whitepapers")) return;
+    if (isWhitepaperPage || isBookingPage) return;
 
     // Don't show modals on the mini tools pages (ROI/FTE/other calculators, quizzes, etc.)
     if (pathname.startsWith("/tools") || pathname.startsWith("/us/tools"))
@@ -127,7 +135,14 @@ export default function CTAModalManager() {
     }, 1000); // Check every 1 second for better responsiveness
 
     return () => clearInterval(checkInterval);
-  }, [isReady, isModalOpen, variant, pathname]);
+  }, [
+    isReady,
+    isModalOpen,
+    variant,
+    pathname,
+    isWhitepaperPage,
+    isBookingPage,
+  ]);
 
   const handleClose = () => {
     const triggerType = getModalTriggerType();
@@ -155,6 +170,7 @@ export default function CTAModalManager() {
     updateModalState({
       converted: true,
       convertedAt: new Date().toISOString(),
+      ...(variant === "B" ? { caseStudyViewed: true } : {}),
     });
 
     // Track conversion
@@ -166,7 +182,7 @@ export default function CTAModalManager() {
   };
 
   // Don't render if no variant assigned
-  if (!variant) return null;
+  if (!variant || isWhitepaperPage || isBookingPage) return null;
 
   return (
     <Suspense fallback={null}>
@@ -179,20 +195,7 @@ export default function CTAModalManager() {
       )}
       {variant === "B" && (
         <CTAModalCaseStudy
-          isOpen={isModalOpen}
-          onClose={handleClose}
-          onConversion={handleConversion}
-        />
-      )}
-      {variant === "C" && (
-        <CTAModalWebinarRecording
-          isOpen={isModalOpen}
-          onClose={handleClose}
-          onConversion={handleConversion}
-        />
-      )}
-      {variant === "D" && (
-        <CTAModalDemoVideo
+          isUS={pathname === "/us" || pathname.startsWith("/us/")}
           isOpen={isModalOpen}
           onClose={handleClose}
           onConversion={handleConversion}

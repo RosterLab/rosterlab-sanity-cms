@@ -109,8 +109,7 @@ const FEATURES: Feature[] = [
     description:
       "Set consistent rostering standards across your organisation, while giving each department the flexibility to roster according to its own rules and working practices.",
     image: {
-      // Placeholder artwork until the final enterprise image is supplied.
-      src: "/images/enterprise/organisation-wide-visibility.webp",
+      src: "/images/enterprise/organisation-wide-oversight-v2.webp",
       alt: "A department roster in RosterLab with an overview of its ICU sub-rosters",
       width: 1600,
       height: 1200,
@@ -123,8 +122,8 @@ const FEATURES: Feature[] = [
     description:
       "Create data reports on fairness, compliance, staffing patterns and roster performance across your organisation to uncover trends and support better operational decisions.",
     image: {
-      src: "/images/enterprise/enterprise-reporting-v2.webp",
-      alt: "RosterLab enterprise reporting with an exported overtime and undertime report",
+      src: "/images/enterprise/enterprise-reporting-v3.webp",
+      alt: "RosterLab report exports for leave requests, overtime and undertime, and shift preference accommodation",
       width: 1600,
       height: 1200,
       fill: true,
@@ -136,7 +135,7 @@ const FEATURES: Feature[] = [
     description:
       "Turn roster data into actionable workforce insights. Our AI rostering assistant Otto spots coverage gaps and workload imbalances, then recommends what to do next.",
     image: {
-      src: "/images/enterprise/otto-chat-v2.webp",
+      src: "/images/enterprise/workforce-insights-otto-v3.webp",
       alt: "Otto, RosterLab's AI rostering assistant, flagging a coverage gap and a workload imbalance",
       width: 1600,
       height: 1200,
@@ -144,6 +143,18 @@ const FEATURES: Feature[] = [
     },
   },
 ];
+
+/**
+ * US versions of feature artwork, keyed by feature title. These show the
+ * product's US wording ("schedules", "scheduling assistant"); any feature
+ * not listed uses the same image in both regions.
+ */
+const US_FEATURE_IMAGES: Record<string, string> = {
+  "AI-powered roster optimisation":
+    "/images/enterprise/us-ai-schedule-generator.webp",
+  "Intelligent workforce insights":
+    "/images/enterprise/us-workforce-insights-otto.webp",
+};
 
 const SECURITY_FEATURES: {
   title: string;
@@ -209,7 +220,8 @@ const STORIES: CaseStudy[] = [
     kind: "Case study",
     title: "Radiology Boosts Staff Retention",
     href: "/case-studies/radiology-department-auckland",
-    image: "/images/enterprise/case-study-radiology-v2.webp",
+    image: "/images/enterprise/case-study-radiology-photo.webp",
+    label: { text: "Radiology", color: "#FFD08A" },
     quote:
       "We are now fully staffed... I've been here for 28 years, and we've never managed to achieve this level of staffing consistently for more than 2 months until RosterLab",
     attribution: "Alison, MRT team leader",
@@ -223,7 +235,8 @@ const STORIES: CaseStudy[] = [
     kind: "Case study",
     title: "Sydney Hospital Saves 300+ Hours With AI",
     href: "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering",
-    image: "/images/enterprise/case-study-er-v2.webp",
+    image: "/images/enterprise/case-study-er-photo.webp",
+    label: { text: "ER", color: "#03F9BE" },
     quote:
       "It’s not just about saving hours. It's about confidence in the roster, about fairness, and about giving senior clinicians time back for patient care - not spreadsheets.",
     attribution: "Emergency Physician",
@@ -236,7 +249,13 @@ const STORIES: CaseStudy[] = [
     kind: "Case study",
     title: "Plastics Unit in Western Australia Saves on Overtime Costs",
     href: "/case-studies/how-plastics-department-used-roster-simulation-to-cut-in-costs",
-    image: "/images/enterprise/case-study-plastics.webp",
+    image: "/images/enterprise/case-study-plastics-photo.webp",
+    label: { text: "Plastics", color: "#C7D2FF" },
+    // The story has no customer quote (its only quote is RosterLab's own),
+    // so this is a line from the story itself, credited as such.
+    quote:
+      "The simulation gave leadership something they hadn't had before: evidence.",
+    attribution: "From the case study",
     stats: [
       {
         value: "~15%",
@@ -322,7 +341,11 @@ export default function EnterprisePage({ isUS = false }: { isUS?: boolean }) {
     title: t(item.title),
     highlight: t(item.highlight),
     description: t(item.description),
-    image: { ...item.image, alt: t(item.image.alt) },
+    image: {
+      ...item.image,
+      src: (isUS && US_FEATURE_IMAGES[item.title]) || item.image.src,
+      alt: t(item.image.alt),
+    },
   }));
   const securityFeatures = SECURITY_FEATURES.map((item) => ({
     ...item,
@@ -415,7 +438,7 @@ export default function EnterprisePage({ isUS = false }: { isUS?: boolean }) {
                   </ul>
                 </Reveal>
               </div>
-              {/* Product shot: RosterLab generating rosters on a laptop.
+              {/* Product shot: ICU rosters with the department overview.
                   Stretches to the copy column's height on desktop, cropped
                   from the centre. */}
               <Reveal
@@ -423,8 +446,10 @@ export default function EnterprisePage({ isUS = false }: { isUS?: boolean }) {
                 className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:aspect-auto lg:h-full"
               >
                 <Image
-                  src="/images/enterprise/laptop-roster-generation.webp"
-                  alt={t("RosterLab generating rosters on a laptop")}
+                  src="/images/enterprise/strategic-advantage-v2.webp"
+                  alt={t(
+                    "ICU rosters in RosterLab with a department overview of its sub-rosters",
+                  )}
                   fill
                   sizes="(min-width: 1024px) 560px, 100vw"
                   className="object-cover"

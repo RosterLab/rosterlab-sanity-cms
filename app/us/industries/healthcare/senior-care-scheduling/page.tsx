@@ -67,6 +67,7 @@ export default function AgedCarePage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Senior Care Staff Scheduling"
         description="Deliver better care with smart scheduling. Achieve 5% efficiency gains while reducing scheduling errors and ensuring full compliance."
         analyticsLocation="US Industry Page Senior Care Scheduling"

@@ -75,6 +75,7 @@ export default function SeniorMedicalOfficerRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Personalized Attending Physician Schedules"
         description="Balance work commitments, personal preferences, and department coverage with ease."
         analyticsLocation="US Industry Page Attending Physician Scheduling"

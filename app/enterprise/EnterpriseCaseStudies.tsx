@@ -13,9 +13,63 @@ export interface CaseStudy {
   title: string;
   href: string;
   image: string;
+  /**
+   * "RosterLab / <text>" drawn over the photo. Drawn in the page rather than
+   * baked into the image, so it stays whole however the photo is cropped.
+   */
+  label?: { text: string; color: string };
   quote?: string;
   attribution?: string;
   stats: { value: string; label: string }[];
+}
+
+/**
+ * The "RosterLab / Department" lockup over a case-study photo.
+ *
+ * Proportions follow the labels that used to be baked into the images: the
+ * logo takes 40% of the photo's width, the department's capitals match the
+ * wordmark's, and both sit on one baseline. Sizes are in container units, so
+ * the lockup scales with the photo rather than the screen and always fits;
+ * each is capped so it does not swell on a wide, short banner.
+ */
+function PhotoLabel({ text, color }: { text: string; color: string }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 flex items-center justify-center"
+    >
+      <div className="flex items-baseline whitespace-nowrap">
+        <Image
+          src="/images/rosterlab-logo.png"
+          alt=""
+          width={501}
+          height={125}
+          className="h-auto brightness-0 invert"
+          style={{ width: "min(40cqw, 170px)" }}
+        />
+        <span
+          className="font-light text-white"
+          style={{
+            fontSize: "min(7.6cqw, 32px)",
+            marginLeft: "min(4cqw, 17px)",
+            marginRight: "min(4.7cqw, 20px)",
+          }}
+        >
+          /
+        </span>
+        <span
+          style={{
+            color,
+            fontFamily:
+              '"American Typewriter", "Courier Prime", "Courier New", serif',
+            fontSize: "min(7cqw, 30px)",
+          }}
+        >
+          {text}
+        </span>
+      </div>
+    </div>
+  );
 }
 
 /** Expo-out: quick to arrive, long soft settle. */
@@ -176,6 +230,8 @@ export default function EnterpriseCaseStudies({
               initial={i === 0 ? "in" : "waiting"}
               animate={phase}
               variants={photo}
+              // The photo label sizes itself in container units against this.
+              style={{ containerType: "inline-size" }}
               className="relative aspect-[16/9] overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] min-[480px]:aspect-[4/1] md:aspect-auto md:rounded-[1.75rem]"
             >
               <Image
@@ -187,6 +243,7 @@ export default function EnterpriseCaseStudies({
                 sizes="(min-width: 768px) 320px, 100vw"
                 className="object-cover"
               />
+              {s.label && <PhotoLabel {...s.label} />}
             </motion.div>
 
             <motion.div
@@ -194,7 +251,7 @@ export default function EnterpriseCaseStudies({
               animate={phase}
               variants={panel}
               className={cn(
-                "grid min-w-0 grid-cols-1 gap-5 rounded-[1.25rem] bg-[#1F2A5C] p-5 text-white sm:p-9 md:gap-8 md:rounded-[1.75rem]",
+                "grid min-w-0 grid-cols-1 gap-5 rounded-[1.25rem] bg-[#1F2A5C] p-5 text-white sm:p-9 md:gap-8 md:rounded-[1.75rem] md:pl-20",
                 hasQuote &&
                   "xl:grid-cols-[minmax(0,1fr)_auto] xl:gap-12 xl:pr-16",
               )}
@@ -280,6 +337,22 @@ export default function EnterpriseCaseStudies({
         <PiArrowRightBold
           aria-hidden="true"
           className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+        />
+      </button>
+      {/* The back arrow: the next arrow's notch mirrored onto the navy
+          panel's left edge. Its centre sits on that edge (after the photo's
+          2/7 of the width and the 1rem gap), exactly as the next arrow's
+          sits on the right edge, so it also nips the photo's edge across the
+          gap. md:pl-20 keeps the panel's text clear of it. */}
+      <button
+        type="button"
+        onClick={back}
+        aria-label="Previous case study"
+        className="group absolute left-[calc((100%-1rem)*2/7+1rem)] top-1/2 z-20 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#1F2A5C] transition hover:text-[#3B7FE8] md:flex lg:h-16 lg:w-16"
+      >
+        <PiArrowLeftBold
+          aria-hidden="true"
+          className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1"
         />
       </button>
       {/* Under the card: round back/next arrows and a counter on phones

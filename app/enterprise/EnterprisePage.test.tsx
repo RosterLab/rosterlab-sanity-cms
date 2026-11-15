@@ -30,7 +30,12 @@ test("US enterprise copy uses scheduling and American spelling throughout", () =
   expect(html).toContain(
     'href="/us/case-studies/how-plastics-department-used-schedule-simulation-to-cut-in-costs"',
   );
-  expect(html).toContain('alt="RosterLab generating schedules on a laptop"');
+  expect(html).toContain(
+    'alt="ICU schedules in RosterLab with a department overview of its sub-schedules"',
+  );
+  expect(html).toContain("us-ai-schedule-generator.webp");
+  expect(html).toContain("us-workforce-insights-otto.webp");
+  expect(html).not.toContain("enterprise%2Fai-roster-generator.webp");
 });
 
 test("the global enterprise page retains its original regional wording", () => {
@@ -44,10 +49,14 @@ test("the global enterprise page retains its original regional wording", () => {
   expect(copy).toContain("Alison, MRT team leader");
   expect(html).toContain('href="/tools/roi-calculator"');
   expect(html).toContain('href="/case-studies"');
+  expect(html).toContain("enterprise%2Fai-roster-generator.webp");
+  expect(html).not.toContain(
+    "us-ai-schedule-generator.webp",
+  );
 });
 
 test.each([false, true])(
-  "plastics card keeps its new title and has no quote (US: %s)",
+  "plastics card keeps its new title and quotes the story (US: %s)",
   (isUS) => {
     const html = renderToStaticMarkup(<EnterprisePage isUS={isUS} />);
     const cards = html.match(/<article\b[\s\S]*?<\/article>/g)!;
@@ -59,7 +68,10 @@ test.each([false, true])(
     );
     expect(plastics).toContain("~15%");
     expect(plastics).toContain("projected cost savings");
-    expect(plastics).not.toContain("<blockquote");
+    expect(plastics).toContain("<blockquote");
+    expect(plastics).toContain("something they hadn");
+    expect(plastics).toContain("before: evidence.");
+    expect(plastics).toContain("From the case study");
   },
 );
 

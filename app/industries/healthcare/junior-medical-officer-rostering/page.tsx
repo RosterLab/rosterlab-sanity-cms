@@ -71,6 +71,7 @@ export default function JuniorMedicalOfficerRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Compliant JMO Rosters"
         description="Create compliant AI rosters that balance training requirements, fair night shift distribution, and junior doctor wellbeing."
         analyticsLocation="Industry Page JMO Rostering"

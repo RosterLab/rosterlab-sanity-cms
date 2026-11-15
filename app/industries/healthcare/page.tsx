@@ -127,6 +127,7 @@ export default async function HealthcarePage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Healthcare Rostering Software for Teams"
         description="Less time rostering, more time caring for patients. We specialise in all types of healthcare rosters, no matter how complex."
         analyticsLocation="Industry Page Healthcare Rostering"

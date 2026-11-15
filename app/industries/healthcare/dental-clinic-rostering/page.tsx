@@ -65,6 +65,7 @@ export default function DentalClinicRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Optimised, Flexible Dental Clinic Rosters"
         description="Create efficient AI rosters that balance hygienists, dentists, and specialist staff across chairs and procedures."
         analyticsLocation="Industry Page Dental Clinic Rostering"

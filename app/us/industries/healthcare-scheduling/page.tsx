@@ -79,6 +79,7 @@ export default async function HealthcarePage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Staff Scheduling for Healthcare"
         description="Less time scheduling, more time caring for patients. We specialize in all types of healthcare schedules, no matter how complex."
         analyticsLocation="US Industry Page Healthcare Scheduling"
