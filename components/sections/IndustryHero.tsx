@@ -49,6 +49,7 @@ interface HeroCta {
 interface IndustryHeroProps {
   title: React.ReactNode;
   description: string;
+  descriptionClassName?: string;
   /** Keep the description and CTAs above the photo below `lg`. */
   stackedContentFirst?: boolean;
   /**
@@ -92,6 +93,7 @@ interface IndustryHeroProps {
 export default function IndustryHero({
   title,
   description,
+  descriptionClassName,
   stackedContentFirst = false,
   panelSize = "default",
   imageBelowCtasOnMobile = false,
@@ -189,6 +191,7 @@ export default function IndustryHero({
                 stackedContentFirst ? "order-2" : "order-3",
                 "mt-7 lg:mt-5 text-base sm:text-lg lg:text-[1.0625rem] leading-relaxed",
                 imageBelowCtasOnMobile ? "lg:max-w-md" : "max-w-md",
+                descriptionClassName,
               )}
             >
               {description}

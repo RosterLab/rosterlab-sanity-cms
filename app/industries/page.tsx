@@ -182,7 +182,7 @@ export default function IndustriesPage() {
               <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg p-8 shadow-xl">
                 <div className="grid grid-cols-2 gap-4">
                   <Link
-                    href="/industries/healthcare/ed-icu"
+                    href="/industries/healthcare/emergency-department-rostering"
                     className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow relative group"
                   >
                     <div className="absolute top-2 right-2">

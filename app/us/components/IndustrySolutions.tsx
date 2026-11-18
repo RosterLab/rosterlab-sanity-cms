@@ -57,7 +57,7 @@ export default function USIndustrySolutions() {
 
             <div className="space-y-4 mb-8">
               <Link
-                href="/us/industries/healthcare/ed-icu-scheduling"
+                href="/us/industries/healthcare/emergency-department-scheduling"
                 className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
               >
                 <div className="flex items-center justify-between">

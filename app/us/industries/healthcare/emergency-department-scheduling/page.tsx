@@ -9,26 +9,30 @@ import EnterpriseFAQ from "@/app/enterprise/EnterpriseFAQ";
 import Reveal from "@/app/enterprise/Reveal";
 import Image from "next/image";
 import Link from "next/link";
-import RosterComparison, { type ComparisonRow } from "./RosterComparison";
+import RosterComparison, {
+  type ComparisonRow,
+} from "@/app/industries/healthcare/emergency-department-rostering/RosterComparison";
 import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 
 export const metadata = withHreflang(
   {
-    title: "Emergency Department Rostering Software",
+    title: "Emergency Department Scheduling Software",
     description:
-      "RosterLab automates complex ED rostering, ensuring the right skill mix on every shift, fair workloads for staff and reliable coverage around the clock.",
+      "RosterLab automates complex ED scheduling, ensuring the right skill mix on every shift, fair workloads for staff, and reliable coverage around the clock.",
     alternates: {
-      canonical: "https://rosterlab.com/industries/healthcare/ed-icu",
+      canonical:
+        "https://rosterlab.com/us/industries/healthcare/emergency-department-scheduling",
     },
     openGraph: {
-      title: "Emergency Department Rostering Software - RosterLab",
+      title: "Emergency Department Scheduling Software - RosterLab",
       description:
-        "RosterLab automates complex ED rostering, ensuring the right skill mix on every shift, fair workloads for staff and reliable coverage around the clock.",
+        "RosterLab automates complex ED scheduling, ensuring the right skill mix on every shift, fair workloads for staff, and reliable coverage around the clock.",
       type: "website",
-      url: "https://rosterlab.com/industries/healthcare/ed-icu",
+      url: "https://rosterlab.com/us/industries/healthcare/emergency-department-scheduling",
       images: [
         {
-          url: "/images/og-images/IndustryICUED.png",
+          url: "/images/og-images/emergency-department.webp",
+          alt: "Healthcare worker in blue scrubs in a hospital corridor",
           width: 1200,
           height: 630,
         },
@@ -36,100 +40,89 @@ export const metadata = withHreflang(
     },
     twitter: {
       card: "summary_large_image",
-      title: "Emergency Department Rostering Software - RosterLab",
+      title: "Emergency Department Scheduling Software - RosterLab",
       description:
-        "RosterLab automates complex ED rostering, ensuring the right skill mix on every shift, fair workloads for staff and reliable coverage around the clock.",
-      images: ["/images/og-images/IndustryICUED.png"],
+        "RosterLab automates complex ED scheduling, ensuring the right skill mix on every shift, fair workloads for staff, and reliable coverage around the clock.",
+      images: ["/images/og-images/emergency-department.webp"],
     },
   },
-  "/industries/healthcare/ed-icu",
+  "/us/industries/healthcare/emergency-department-scheduling",
 );
 
 const faqItems = [
   {
-    question: "How does RosterLab automate ED rostering?",
+    question: "Can I edit an AI-generated schedule?",
     answer:
-      "RosterLab replaces manual planning and outdated systems with AI that generates fair, compliant ED rosters in a fraction of the time. It balances your shift patterns, clinical skill mix, coverage needs and rostering rules to find the best-fit solution. As requirements change, you can easily adapt the roster without starting from scratch.",
+      "Absolutely. You can review and adjust AI-generated schedules before publishing. The AI does the heavy lifting, while your team stays in control of the final schedule.",
   },
   {
-    question: "What if we don’t have enough doctors to cover a shift?",
+    question: "Can doctors submit shift preferences and request time off?",
     answer:
-      "RosterLab uses the coverage demands you set and flags unfilled shifts or unmet skill requirements. Review the gaps and decide where you need extra staffing before publishing.",
+      'Yes. Doctors can submit their availability and preferred shifts directly through the <a href="/us/solutions/staff-scheduling-mobile-app" class="underline">RosterLab mobile app</a>. These requests are factored in when generating the schedule.',
   },
   {
-    question: "How can we cover a last-minute absence?",
+    question: "What happens when a doctor calls in sick?",
     answer:
-      "When a doctor calls in sick, RosterLab quickly identifies available, suitably qualified staff to safely cover the shift, enabling you to re-roster affected shifts promptly with minimal service disruption.",
+      "When a doctor calls in sick, RosterLab helps find suitable cover based on skills, availability, and rest requirements. Affected shifts can then be rescheduled automatically, minimizing service disruption.",
   },
   {
-    question:
-      "Can we roster doctors who work part-time or at another hospital?",
+    question: "What if we don't have enough staff to cover a shift?",
     answer:
-      "Yes. RosterLab accommodates doctors with part-time hours or commitments across multiple hospitals. Add each doctor’s contracted hours, availability and known commitments at other sites, and RosterLab will take these into account when generating the roster.",
-  },
-  {
-    question: "Can I edit an AI-generated roster?",
-    answer:
-      "Absolutely. You can review and adjust AI-generated rosters before publishing. The AI does the heavy lifting, while you stay in control of all scheduling decisions",
-  },
-  {
-    question: "How do I share rosters with my team?",
-    answer:
-      'Once you\'ve published your roster, clinicians can view their schedules directly in the <a href="/solutions/staff-roster-mobile-app" class="underline">RosterLab mobile app</a>. They can also sync shifts to their personal calendars and receive notifications about any roster changes.',
+      "RosterLab flags unfilled shifts and unmet skill requirements, so you can see where additional cover is needed and plan accordingly.",
   },
 ];
 
-const LOCATION = "Industry Page ED & ICU Rostering";
-const PAGE_NAME = "ED & ICU Rostering";
-const INTERACTIVE_DEMO = "/staff-rostering-interactive-demo";
+const LOCATION = "US Industry Page Emergency Department Scheduling";
+const PAGE_NAME = "Emergency Department Scheduling";
+const INTERACTIVE_DEMO = "/us/product-tour";
 const CASE_STUDY =
-  "/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering";
+  "/us/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-scheduling";
 
 const BENEFITS = [
   {
-    title: "The right clinical cover, day and night",
+    title: "The right skills. Every shift.",
     description:
-      "From senior cover and junior doctor supervision to ED-specific capabilities, RosterLab builds your staffing and skill mix requirements directly into the roster, keeping every area covered.",
+      "Set staffing and skill requirements for each area. Spot gaps before publishing.",
   },
   {
-    title: "A fairer share of challenging shifts",
+    title: "A fair share of tough shifts",
     description:
-      "Distribute nights, weekends, public holidays and on-call duties equitably across the team, taking into account each clinician's FTE, leave and individual work patterns.",
+      "Share nights, weekends, and holidays using your department’s fairness rules.",
   },
   {
-    title: "Protecting time for rest and recovery",
+    title: "Protect recovery after nights",
     description:
-      "Long shifts and nights make adequate rest essential. RosterLab applies your working-hour limits, minimum rest and post-night recovery rules to manage fatigue and support clinician wellbeing.",
+      "Build in working-hour limits, rest between shifts, and post-night recovery.",
   },
   {
-    title: "Less disruption when plans change",
+    title: "Handle last-minute absences",
     description:
-      "A last-minute absence shouldn't mean reworking the entire roster. Regenerate affected shifts while keeping existing allocations intact. Managers stay in firm control before publishing.",
+      "Find suitable cover and adjust affected shifts with minimal disruption.",
   },
 ];
 
 const CAPABILITIES = [
   {
-    title: "Coordinate every aspect of ED staffing",
+    title: "Teaching stays on. Floor stays covered.",
     description:
-      "Acute care, resus and short stay each have distinct staffing needs. An ED roster must also account for the educational, supervisory and non-clinical commitments of different groups of doctors. RosterLab’s AI brings all these considerations together to build a roster that reflects your exact requirements.",
+      "Coordinate attending and resident physician coverage, teaching sessions, and supervision requirements around the demands of the emergency department.",
     link: {
-      label: "Explore AI-rostering",
-      href: "/solutions/ai-roster-generator",
+      label: "Explore AI scheduling",
+      href: "/us/solutions/ai-staff-schedule-maker",
     },
     image: {
       src: "/images/generating.webp",
-      alt: "RosterLab generating a staff roster",
+      alt: "RosterLab generating a staff schedule",
       className: "object-contain",
     },
   },
   {
-    title: "Let clinicians shape their schedules",
+    title: "Complex arrangements, all accounted for",
     description:
-      "Give clinicians more flexibility over when they work, with the ability to submit shift preferences, request swaps and pick up open shifts directly through the mobile app. RosterLab factors in these requests while maintaining fairness and the coverage your department needs.",
+      "Work around each doctor’s hours, availability, rotations, and commitments across hospitals – without the manual juggling.",
     link: {
       label: "Explore self-scheduling",
-      href: "/feature/self-scheduling",
+      href: "/us/feature/self-scheduling",
     },
     image: {
       src: "/images/industries/nursing/staff-preferences-v2.webp",
@@ -141,23 +134,19 @@ const CAPABILITIES = [
 
 const COMPARISON: ComparisonRow[] = [
   {
-    task: "Creating allocations",
-    manual: "Shifts filled one by one, every rule checked manually.",
-    rosterlab:
-      "AI allocates shifts around staffing needs, rules and staff requests.",
+    task: "Finding cover",
+    manual: "Hours spent contacting staff and checking availability",
+    rosterlab: "Suitable, available cover identified instantly",
   },
   {
-    task: "Balancing connected needs",
-    manual: "Competing requirements weighed up one decision at a time.",
-    rosterlab:
-      "Coverage, fairness and preferences balanced across the entire roster.",
+    task: "Maintaining coverage",
+    manual: "Filling one gap can leave another shift short-staffed",
+    rosterlab: "Affected shifts are rescheduled to maintain adequate coverage",
   },
   {
-    task: "Handling absences",
-    manual:
-      "Last-minute changes can mean hours of reshuffling and rechecking shifts.",
-    rosterlab:
-      "Affected shifts re-rostered automatically, ready for manager review.",
+    task: "Clinical safety and rest checks",
+    manual: "Essential skills and rest requirements can be overlooked",
+    rosterlab: "Clinical safety and rest requirements never compromised",
   },
 ];
 
@@ -169,21 +158,21 @@ function Mint({ children }: { children: React.ReactNode }) {
   return <span className="text-[#03F9BE]">{children}</span>;
 }
 
-export default function ICUEDPage() {
+export default function EmergencyDepartmentPage() {
   return (
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
         imageBelowCtasOnMobile
-        title="Take the pressure off emergency care rostering"
-        description="Generate ED schedules that balance workloads, protect recovery time, and maintain round-the-clock coverage — without the usual complexity."
-        analyticsLocation="Industry Page ED & ICU Rostering"
+        title="Take the pressure off ED scheduling"
+        description="AI scheduling software for emergency departments. Balance clinical coverage, teaching, availability, and workloads fairly."
+        analyticsLocation={LOCATION}
         primaryCta={{
-          href: "/book-a-demo",
+          href: "/us/book-a-demo",
           label: "Book a demo",
           analyticsProperties: {
             cta_type: "demo",
-            page_name: "ED & ICU Rostering",
+            page_name: PAGE_NAME,
             section: "hero",
           },
         }}
@@ -191,14 +180,14 @@ export default function ICUEDPage() {
           href: INTERACTIVE_DEMO,
           label: "Explore the product tour",
           analyticsProperties: {
-            cta_type: "how_it_works",
-            page_name: "ED & ICU Rostering",
+            cta_type: "product_tour",
+            page_name: PAGE_NAME,
             section: "hero",
           },
         }}
         image={{
           src: "/images/industries/icu-ed.webp",
-          alt: "Emergency and intensive care staff on shift",
+          alt: "Emergency department staff on shift",
         }}
       />
 
@@ -214,20 +203,41 @@ export default function ICUEDPage() {
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <Reveal as="h2" className={H2}>
-              The roster shouldn&apos;t be another thing competing for your
-              attention
+              ED is demanding.
+              <br className="hidden lg:block" /> Scheduling shouldn’t be.
             </Reveal>
             <Reveal
               as="p"
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              There&apos;s already enough to juggle in a busy emergency
-              department. RosterLab takes the complexity and admin work out of
-              building and managing rosters, giving you more time to focus on
-              your team, your patients, and the demands of the floor.
+              There&apos;s enough competing for your attention in a busy
+              emergency department. Spend less time sorting out schedules and
+              more time where you&apos;re needed on the floor.
             </Reveal>
           </div>
+          <Reveal
+            delay={0.24}
+            className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white px-5 py-6 text-center sm:px-8"
+          >
+            <p className="font-medium text-[#1F2A5C]">
+              Designed for scheduling across:
+            </p>
+            <ul className="mt-4 flex flex-wrap justify-center gap-2">
+              {[
+                "Adult Emergency Departments",
+                "Pediatric Emergency Departments",
+                "Emergency Observation Units",
+              ].map((specialty) => (
+                <li
+                  key={specialty}
+                  className="rounded-lg bg-[#F4F6FB] px-3.5 py-2 text-[15px] text-[#1F2A5C]"
+                >
+                  {specialty}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </section>
 
@@ -236,11 +246,11 @@ export default function ICUEDPage() {
           <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
             <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:block">
               <Image
-                src="/images/industries/senior-doctor.webp"
-                alt="Two doctors reviewing an X-ray together in a hospital corridor"
+                src="/images/industries/emergency-care-case-study.webp"
+                alt="Healthcare worker in blue scrubs pushing a stretcher through a hospital corridor"
                 fill
                 sizes="340px"
-                className="object-cover object-[57%_40%] saturate-[0.85] contrast-[1.08]"
+                className="object-cover object-[65%_35%] saturate-[0.85] contrast-[1.08]"
               />
 
               <div
@@ -286,14 +296,12 @@ export default function ICUEDPage() {
                     Sydney Tertiary Hospital
                   </span>
                 </p>
-                <h2 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
-                  <Mint>120 hours</Mint> down to <Mint>40</Mint> on the very
-                  first roster
-                </h2>
+                <h3 className="mt-4 text-3xl md:text-4xl font-semibold leading-tight tracking-tight">
+                  <Mint>70% time saved</Mint> on the first schedule
+                </h3>
                 <p className="mt-5 max-w-2xl text-white/85 leading-relaxed md:text-lg">
-                  RosterLab helped a Sydney tertiary hospital ED cut rostering
-                  time by 70%, making it easier to manage complex working
-                  arrangements for more than 60 senior medical officers.
+                  At a Sydney tertiary hospital ED scheduling 60+ senior medical
+                  officers every quarter.
                 </p>
                 <figure className="mt-7 flex gap-4">
                   <PiQuotesFill
@@ -302,12 +310,12 @@ export default function ICUEDPage() {
                   />
                   <div className="border-l border-white/25 pl-5">
                     <blockquote className="text-lg italic text-white/90 leading-relaxed">
-                      “It&apos;s about confidence in the roster, about fairness,
-                      and about giving senior clinicians time back for patient
-                      care - not spreadsheets.”
+                      “It’s not just about saving hours. It&apos;s about
+                      confidence in the roster, about fairness, and about giving
+                      senior clinicians time back for patient care.”
                     </blockquote>
                     <figcaption className="mt-3 text-[11px] font-medium uppercase tracking-[0.16em] text-white/60 md:text-xs">
-                      Emergency physician, Sydney tertiary hospital ED
+                      — Emergency physician
                     </figcaption>
                   </div>
                 </figure>
@@ -329,13 +337,13 @@ export default function ICUEDPage() {
 
       <section className="bg-[#F4F6FB] py-16 md:py-24">
         <Container>
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2 md:gap-y-14">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-10 md:gap-y-14 lg:gap-x-12">
             {BENEFITS.map(({ title, description }, i) => (
               <Reveal key={title} delay={(i % 2) * 0.12}>
                 <h3 className="text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-snug tracking-tight">
                   {title}
                 </h3>
-                <p className="mt-3 text-base text-gray-600 leading-relaxed">
+                <p className="mt-3 text-lg text-gray-600 leading-relaxed">
                   {description}
                 </p>
               </Reveal>
@@ -347,7 +355,7 @@ export default function ICUEDPage() {
       <section className="bg-white py-16 md:py-28">
         <Container>
           <Reveal as="h2" className={`mx-auto max-w-4xl text-center ${H2}`}>
-            Built for the complexity of emergency care rostering
+            Built for the complexity of ED scheduling
           </Reveal>
 
           <div className="mx-auto mt-12 max-w-6xl space-y-16 md:mt-20 md:space-y-28">
@@ -412,29 +420,27 @@ export default function ICUEDPage() {
         <Container>
           <div className="mx-auto max-w-4xl text-center">
             <Reveal as="h2" className={H2}>
-              The whole roster, considered together
+              The whole schedule, considered together
             </Reveal>
             <Reveal
               as="p"
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              One shift change can affect someone’s rest, contracted hours or
-              availability tomorrow. RosterLab’s optimisation works through
-              these connected requirements across the roster, helping you find a
-              workable balance without checking every combination by hand.
+              One unexpected absence can throw an entire schedule off balance.
+              RosterLab finds suitable cover while keeping everything in check.
             </Reveal>
           </div>
 
           <div className="mx-auto mt-14 max-w-6xl">
             <h3 className="mb-6 text-center text-xl md:text-2xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-              Manual rostering and RosterLab compared
+              See how manual scheduling and RosterLab compare
             </h3>
             <RosterComparison
               rows={COMPARISON}
               labels={{
-                task: "Rostering task",
-                manualHeading: "Manual rostering",
+                task: "Scheduling task",
+                manualHeading: "Manual scheduling",
                 manualNote: "in Excel or traditional software",
               }}
             />
@@ -455,14 +461,12 @@ export default function ICUEDPage() {
       <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
         <Container>
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
-              Saving time from your first roster
-            </h2>
+            <h2 className={H2}>Easy transition, backed by expert support</h2>
             <p className="text-lg text-gray-600 leading-relaxed">
               Our implementation specialists help turn your existing rules and
-              working arrangements into a roster setup for your team. We train
-              your roster writers, review the first generated roster with you
-              and discuss how RosterLab fits your current systems.
+              working arrangements into a schedule setup for your team. We train
+              your schedulers, review the first generated schedule with you and
+              discuss how RosterLab fits your current systems.
             </p>
           </div>
         </Container>
@@ -482,11 +486,9 @@ export default function ICUEDPage() {
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
-                Frequently Asked Questions
-              </h2>
+              <h2 className={H2}>Frequently Asked Questions</h2>
               <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">
-                Questions about rostering for emergency care.
+                Questions about scheduling for emergency care.
               </p>
             </div>
             <EnterpriseFAQ items={faqItems} />
@@ -515,12 +517,12 @@ export default function ICUEDPage() {
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
                 Bring your shift patterns, staffing requirements and biggest
-                rostering challenges. We&apos;ll show you how RosterLab can
+                scheduling challenges. We&apos;ll show you how RosterLab can
                 help.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button
-                  href="/book-a-demo"
+                  href="/us/book-a-demo"
                   className="rounded-md bg-[#053B3D] px-7 py-3.5 text-base font-semibold text-white hover:bg-[#032A2C]"
                   analyticsLabel="Book a demo"
                   analyticsLocation={LOCATION}
@@ -539,7 +541,7 @@ export default function ICUEDPage() {
                   analyticsLabel="See how it works"
                   analyticsLocation={LOCATION}
                   analyticsProperties={{
-                    cta_type: "how_it_works",
+                    cta_type: "product_tour",
                     page_name: PAGE_NAME,
                     section: "final_cta",
                   }}
@@ -554,10 +556,13 @@ export default function ICUEDPage() {
 
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: "Healthcare", url: "/industries/healthcare" },
-          { name: "ED/ICU", url: "/industries/healthcare/ed-icu" },
+          { name: "Home", url: "/us" },
+          { name: "Industries", url: "/us/industries" },
+          { name: "Healthcare", url: "/us/industries/healthcare-scheduling" },
+          {
+            name: "Emergency Department",
+            url: "/us/industries/healthcare/emergency-department-scheduling",
+          },
         ]}
       />
     </SiteLayout>

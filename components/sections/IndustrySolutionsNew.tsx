@@ -27,7 +27,7 @@ export const INDUSTRIES_AU: Industry[] = [
     name: "ICU/ED",
     category: "Healthcare",
     description: "Critical care rostering with complex skill-mix.",
-    href: "/industries/healthcare/ed-icu",
+    href: "/industries/healthcare/emergency-department-rostering",
     image: "/landing/industries/icu.webp",
   },
   {

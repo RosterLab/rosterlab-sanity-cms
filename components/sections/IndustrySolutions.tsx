@@ -57,7 +57,7 @@ export default function IndustrySolutions() {
 
             <div className="space-y-4 mb-8">
               <Link
-                href="/industries/healthcare/ed-icu"
+                href="/industries/healthcare/emergency-department-rostering"
                 className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
               >
                 <div className="flex items-center justify-between">

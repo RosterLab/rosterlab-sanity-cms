@@ -248,10 +248,9 @@ export default function NurseRosteringPage() {
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              RosterLab builds nursing and midwifery rosters that balance
-              clinical coverage with time off and individual working
-              arrangements, reducing roster admin while helping your team
-              recover between shifts and plan life outside work.
+              RosterLab builds nursing and midwifery rosters that reduce roster
+              admin while helping your team recover between shifts and plan
+              life outside work.
             </Reveal>
           </div>
 
@@ -515,7 +514,7 @@ export default function NurseRosteringPage() {
       <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
         <Container>
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
+            <h2 className={H2}>
               Saving time from your first roster
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -543,7 +542,7 @@ export default function NurseRosteringPage() {
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+              <h2 className={H2}>
                 Frequently Asked Questions
               </h2>
               <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">

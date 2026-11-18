@@ -607,7 +607,7 @@ export default async function HealthcarePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* ICU/ED Card */}
-            <Link href="/industries/healthcare/ed-icu" className="group">
+            <Link href="/industries/healthcare/emergency-department-rostering" className="group">
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
                 <div className="h-48 relative overflow-hidden">
                   <Image

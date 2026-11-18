@@ -52,7 +52,7 @@ export const usNavItems = [
       },
       {
         title: "Emergency Care",
-        link: "/us/industries/healthcare/ed-icu-scheduling",
+        link: "/us/industries/healthcare/emergency-department-scheduling",
       },
       {
         title: "Radiology",

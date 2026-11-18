@@ -202,8 +202,8 @@ const URL_MAPPINGS: Record<string, string> = {
   "/industries/healthcare": "/us/industries/healthcare-scheduling",
   "/industries/healthcare/aged-care":
     "/us/industries/healthcare/senior-care-scheduling",
-  "/industries/healthcare/ed-icu":
-    "/us/industries/healthcare/ed-icu-scheduling",
+  "/industries/healthcare/emergency-department-rostering":
+    "/us/industries/healthcare/emergency-department-scheduling",
   "/industries/healthcare/radiology":
     "/us/industries/healthcare/radiology-scheduling",
 };
@@ -510,8 +510,8 @@ async function main(
       target: "industries/healthcare/senior-care-scheduling/page.tsx",
     },
     {
-      source: "industries/healthcare/ed-icu/page.tsx",
-      target: "industries/healthcare/ed-icu-scheduling/page.tsx",
+      source: "industries/healthcare/emergency-department-rostering/page.tsx",
+      target: "industries/healthcare/emergency-department-scheduling/page.tsx",
     },
     {
       source: "industries/healthcare/radiology/page.tsx",
