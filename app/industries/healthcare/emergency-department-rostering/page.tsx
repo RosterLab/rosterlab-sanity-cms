@@ -49,6 +49,11 @@ export const metadata = withHreflang(
 
 const faqItems = [
   {
+    question: "What happens when a doctor calls in sick?",
+    answer:
+      "When a doctor calls in sick, RosterLab helps find suitable cover based on skills, availability and rest requirements. Affected shifts can then be re-rostered automatically, minimising service disruption.",
+  },
+  {
     question: "Can I edit an AI-generated roster?",
     answer:
       "Absolutely. You can review and adjust AI-generated rosters before publishing. The AI does the heavy lifting, while your team stays in control of the final roster.",
@@ -56,17 +61,22 @@ const faqItems = [
   {
     question: "Can doctors submit shift preferences and request time off?",
     answer:
-      'Yes. Doctors can submit their availability and preferred shifts directly through the <a href="/solutions/staff-roster-mobile-app" class="underline">RosterLab mobile app</a>. These requests are factored in when generating the roster.',
-  },
-  {
-    question: "What happens when a doctor calls in sick?",
-    answer:
-      "When a doctor calls in sick, RosterLab helps find suitable cover based on skills, availability and rest requirements. Affected shifts can then be re-rostered automatically, minimising service disruption.",
+      'Yes. Doctors can submit availability, shift preferences and leave requests through the <a href="/solutions/staff-roster-mobile-app" class="underline">RosterLab mobile app</a>. Availability sets when doctors can work; preferences indicate when they’d like to. Your department’s rules define how challenging shifts are shared. Managers review leave requests, and approved leave is included when generating the roster.',
   },
   {
     question: "What if we don't have enough staff to cover a shift?",
     answer:
       "RosterLab flags unfilled shifts and unmet skill requirements, so you can see where additional cover is needed and plan accordingly.",
+  },
+  {
+    question: "What do we need to set up our first ED roster?",
+    answer:
+      "Bring your current roster, shift patterns, staffing and skill requirements, contracted hours, availability and department rules. Our implementation specialists help configure these requirements, train your team and review the first generated roster with you.",
+  },
+  {
+    question: "Can RosterLab work with our existing systems?",
+    answer:
+      'RosterLab offers enterprise integrations and API access. We review your payroll, HR and reporting workflows with you to confirm the supported connections, export options and setup your team needs. <a href="/book-a-demo" class="underline">Discuss your systems with our team</a>.',
   },
 ];
 
@@ -101,26 +111,26 @@ const BENEFITS = [
 
 const CAPABILITIES = [
   {
-    title: "Teaching stays on. Floor stays covered.",
+    title: "Coordinate clinical cover, teaching and supervision",
     description:
-      "Coordinate senior and junior doctor coverage, teaching sessions and supervision requirements around the demands of the emergency department.",
+      "Coordinate senior and junior doctor cover across ED areas, while accounting for teaching sessions, supervision and non-clinical commitments.",
     link: {
       label: "Explore AI-rostering",
       href: "/solutions/ai-roster-generator",
     },
     image: {
-      src: "/images/generating.webp",
-      alt: "RosterLab generating a staff roster",
-      className: "object-contain",
+      src: "/images/industries/emergency-department-teaching-time.webp",
+      alt: "RosterLab roster with highlighted teaching shifts and teaching allocation rules by skill level",
+      className: "object-cover",
     },
   },
   {
-    title: "Complex arrangements, all accounted for",
+    title: "Build fair rosters around individual availability",
     description:
-      "Work around each doctor’s hours, availability, rotations and commitments across hospitals – without the manual juggling.",
+      "Fit part-time hours, rotations and known commitments at other hospitals into one roster. RosterLab applies your department’s fairness targets when allocating nights and weekends.",
     link: {
-      label: "Explore self-scheduling",
-      href: "/feature/self-scheduling",
+      label: "Explore rostering rules",
+      href: "/feature/rules-engine",
     },
     image: {
       src: "/images/industries/nursing/staff-preferences-v2.webp",
@@ -134,7 +144,7 @@ const COMPARISON: ComparisonRow[] = [
   {
     task: "Finding cover",
     manual: "Hours spent contacting staff and checking availability",
-    rosterlab: "Suitable, available cover identified instantly",
+    rosterlab: "Suitable cover suggested without the chasing",
   },
   {
     task: "Maintaining coverage",
@@ -144,7 +154,7 @@ const COMPARISON: ComparisonRow[] = [
   {
     task: "Clinical safety and rest checks",
     manual: "Essential skills and rest requirements can be overlooked",
-    rosterlab: "Clinical safety and rest requirements never compromised",
+    rosterlab: "Skill mix and rest requirements checked automatically",
   },
 ];
 
@@ -425,8 +435,7 @@ export default function EmergencyDepartmentPage() {
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              One unexpected absence can throw an entire roster off balance.
-              RosterLab finds suitable cover while keeping everything in check.
+              RosterLab balances cover and rules. You review and publish.
             </Reveal>
           </div>
 
@@ -460,12 +469,31 @@ export default function EmergencyDepartmentPage() {
         <Container>
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <h2 className={H2}>Easy transition, backed by expert support</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Our implementation specialists help turn your existing rules and
-              working arrangements into a roster setup for your team. We train
-              your roster writers, review the first generated roster with you
-              and discuss how RosterLab fits your current systems.
-            </p>
+            <div>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Bring your existing roster, shift patterns, staffing needs and
+                working arrangements. Our implementation specialists help
+                configure your department’s rules, train your roster writers and
+                review the first generated roster with you.
+              </p>
+              <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                We also review your current systems and confirm the integration
+                or export options your team needs before agreeing the setup.
+              </p>
+              <Button
+                href="/book-a-demo"
+                className="mt-5 bg-[#1F2A5C] hover:bg-[#2A3F8F]"
+                analyticsLabel="Discuss your ED setup"
+                analyticsLocation={LOCATION}
+                analyticsProperties={{
+                  cta_type: "demo",
+                  page_name: PAGE_NAME,
+                  section: "onboarding",
+                }}
+              >
+                Discuss your ED setup
+              </Button>
+            </div>
           </div>
         </Container>
         <svg
@@ -514,9 +542,8 @@ export default function EmergencyDepartmentPage() {
                 See how RosterLab could work for your team
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-lg md:text-xl text-[#053B3D]/90">
-                Bring your shift patterns, staffing requirements and biggest
-                rostering challenges. We&apos;ll show you how RosterLab can
-                help.
+                See how RosterLab could handle your ED’s requirements in a
+                tailored demo.
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button

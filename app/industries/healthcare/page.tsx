@@ -605,25 +605,72 @@ export default async function HealthcarePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* ICU/ED Card */}
-            <Link href="/industries/healthcare/emergency-department-rostering" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+            {/* Emergency Department Card */}
+            <Link
+              href="/industries/healthcare/emergency-department-rostering"
+              className="group"
+            >
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col">
                 <div className="h-48 relative overflow-hidden">
                   <Image
-                    src="/images/icu/pexels-shvetsa-4483340.jpg"
-                    alt="ICU and Emergency Department"
+                    src="/images/industries/icu-ed.webp"
+                    alt="Emergency department staff on shift"
                     fill
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-1 flex-col">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                    ICU & Emergency Departments
+                    Emergency Departments
                   </h3>
-                  <p className="text-gray-600 mb-3">
-                    24/7 critical care coverage with skill mix optimisation and
-                    surge capacity planning.
+                  <p className="text-gray-600 mb-3 flex-grow">
+                    Coordinate clinical cover, teaching and individual
+                    availability across your emergency department.
+                  </p>
+                  <div className="flex items-center text-blue-600 font-medium">
+                    Learn more
+                    <svg
+                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Intensive Care Card */}
+            <Link
+              href="/industries/healthcare/critical-care-rostering"
+              className="group"
+            >
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col">
+                <div className="h-48 relative overflow-hidden">
+                  <Image
+                    src="/images/industries/nursing/critical-care-hero-bedside.webp"
+                    alt="Intensive care team caring for a patient"
+                    fill
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6 flex flex-1 flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    Intensive Care Units
+                  </h3>
+                  <p className="text-gray-600 mb-3 flex-grow">
+                    Plan ICU skill mix, continuity of care and recovery time
+                    around your unit’s staffing needs.
                   </p>
                   <div className="flex items-center text-blue-600 font-medium">
                     Learn more
@@ -647,20 +694,21 @@ export default async function HealthcarePage() {
 
             {/* Radiology Card */}
             <Link href="/industries/healthcare/radiology" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col">
                 <div className="h-48 relative overflow-hidden">
                   <Image
                     src="/images/radiology/accuray-5VkNa1LrS8A-unsplash.jpg"
                     alt="Radiology Department"
                     fill
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-1 flex-col">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">
                     Radiology Departments
                   </h3>
-                  <p className="text-gray-600 mb-3">
+                  <p className="text-gray-600 mb-3 flex-grow">
                     Subspecialty coverage with equipment coordination and
                     reading room optimisation.
                   </p>
@@ -686,20 +734,21 @@ export default async function HealthcarePage() {
 
             {/* Aged Care Card */}
             <Link href="/industries/healthcare/aged-care" className="group">
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col">
                 <div className="h-48 relative overflow-hidden">
                   <Image
                     src="/images/aged care/pexels-matthiaszomer-339620.jpg"
                     alt="Aged Care Facilities"
                     fill
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-1 flex-col">
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
                     Aged Care Facilities
                   </h3>
-                  <p className="text-gray-600 mb-3">
+                  <p className="text-gray-600 mb-3 flex-grow">
                     Resident-focused scheduling with care level matching and
                     compliance assurance.
                   </p>

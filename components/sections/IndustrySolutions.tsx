@@ -63,10 +63,26 @@ export default function IndustrySolutions() {
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
-                      ICU/ED
+                      Emergency Departments
                     </h4>
                     <p className="text-sm text-blue-700">
-                      Critical care rostering with complex skill-mix
+                      Clinical cover, teaching and individual availability
+                    </p>
+                  </div>
+                  <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+              <Link
+                href="/industries/healthcare/critical-care-rostering"
+                className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
+                      Intensive Care Units
+                    </h4>
+                    <p className="text-sm text-blue-700">
+                      ICU skill mix, continuity of care and recovery time
                     </p>
                   </div>
                   <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />

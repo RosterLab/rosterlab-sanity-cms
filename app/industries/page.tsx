@@ -180,7 +180,7 @@ export default function IndustriesPage() {
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg p-8 shadow-xl">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Link
                     href="/industries/healthcare/emergency-department-rostering"
                     className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow relative group"
@@ -201,10 +201,36 @@ export default function IndustriesPage() {
                       </svg>
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-1">
-                      ICU & ED
+                      Emergency Departments
                     </h3>
                     <p className="text-sm text-gray-600">
-                      Critical care coverage
+                      Clinical cover and teaching
+                    </p>
+                  </Link>
+                  <Link
+                    href="/industries/healthcare/critical-care-rostering"
+                    className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow relative group"
+                  >
+                    <div className="absolute top-2 right-2">
+                      <svg
+                        className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1">
+                      Intensive Care Units
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      ICU cover and continuity
                     </p>
                   </Link>
                   <Link
@@ -313,7 +339,7 @@ export default function IndustriesPage() {
                   </Link>
                   <Link
                     href="/industries/healthcare"
-                    className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow block relative group"
+                    className="bg-white rounded-lg p-4 hover:shadow-lg transition-shadow block relative group sm:col-span-2"
                   >
                     <div className="absolute top-2 right-2">
                       <svg

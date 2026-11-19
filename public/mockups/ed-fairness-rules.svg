@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1080" viewBox="0 0 1440 1080" fill="none">
+  <title>ED rules tailored to working hours</title>
+  <desc>Illustrative ED rules panel. Maximum night and weekend shifts vary by full-time equivalent hours, with a separate ten-hour minimum rest requirement. Example values come from the sales demo and vary by department and role.</desc>
+  <defs>
+    <linearGradient id="back" x1="0" y1="0" x2="1440" y2="1080" gradientUnits="userSpaceOnUse"><stop stop-color="#86ACF3"/><stop offset=".52" stop-color="#347BE6"/><stop offset="1" stop-color="#2754AC"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#58D7D1" stop-opacity=".7"/><stop offset="1" stop-color="#58D7D1" stop-opacity="0"/></radialGradient>
+    <linearGradient id="header" x1="100" y1="90" x2="1340" y2="90" gradientUnits="userSpaceOnUse"><stop stop-color="#229CC1"/><stop offset="1" stop-color="#14CBB9"/></linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="170%"><feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#15356F" flood-opacity=".24"/></filter>
+    <clipPath id="panel"><rect x="100" y="90" width="1240" height="784" rx="26"/></clipPath>
+  </defs>
+  <rect width="1440" height="1080" fill="url(#back)"/>
+  <ellipse cx="1280" cy="1030" rx="740" ry="520" fill="url(#glow)"/>
+  <g filter="url(#shadow)"><rect x="100" y="90" width="1240" height="784" rx="26" fill="white"/></g>
+  <g clip-path="url(#panel)">
+    <rect x="100" y="90" width="1240" height="76" fill="url(#header)"/>
+    <rect x="119" y="104" width="255" height="48" rx="8" fill="white" fill-opacity=".12"/>
+    <g font-family="Arial, Helvetica, sans-serif" fill="white" font-size="25"><text x="139" y="137">ED Registrars</text><text x="410" y="137" fill-opacity=".75">Schedules</text><text x="585" y="137" font-weight="700">Rules</text><text x="1090" y="137" font-weight="700">ROSTERLAB</text></g>
+    <path d="m340 124 7 7 7-7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="576" y="160" width="79" height="6" rx="3" fill="white"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="154" y="240" font-size="42" font-weight="700" fill="#1F2A5C">Fairness rules</text>
+    <text x="154" y="284" font-size="25" fill="#647187">Tailor challenging shifts to each doctor’s working hours</text>
+    <rect x="1105" y="207" width="178" height="45" rx="22.5" fill="#E2F9F4"/>
+    <text x="1194" y="237" text-anchor="middle" font-size="23" font-weight="700" fill="#167F74">By FTE</text>
+    <rect x="154" y="321" width="1132" height="447" rx="15" fill="white" stroke="#DAE4ED" stroke-width="2"/>
+    <path d="M169 321H1271Q1286 321 1286 336V416H154V336Q154 321 169 321Z" fill="#F2F7FB"/>
+    <g fill="#4C5E74" font-size="25" font-weight="700">
+      <text x="190" y="361">Working hours</text>
+      <text x="708" y="361" text-anchor="middle">Maximum nights</text>
+      <text x="1081" y="361" text-anchor="middle">Maximum weekend shifts</text>
+    </g>
+    <g fill="#7A8798" font-size="22"><text x="190" y="394">Full-time equivalent</text><text x="708" y="394" text-anchor="middle">per roster</text><text x="1081" y="394" text-anchor="middle">per roster</text></g>
+    <path d="M154 416H1286M154 504H1286M154 592H1286M154 680H1286" stroke="#E3EAF1" stroke-width="2"/>
+    <rect x="155" y="505" width="1130" height="86" fill="#F0FBFA"/>
+    <path d="M511 321V768M895 321V768" stroke="#E3EAF1" stroke-width="2"/>
+    <g fill="#334760" font-size="30"><text x="190" y="472">0.25 FTE</text><text x="190" y="560">0.5 FTE</text><text x="190" y="648">0.75 FTE</text><text x="190" y="736">1.0 FTE</text></g>
+    <g fill="#1F2A5C" font-size="38" font-weight="700" text-anchor="middle"><text x="708" y="474">3</text><text x="1081" y="474">5</text><text x="708" y="562">5</text><text x="1081" y="562">8</text><text x="708" y="650">8</text><text x="1081" y="650">10</text><text x="708" y="738">10</text><text x="1081" y="738">13</text></g>
+    <circle cx="175" cy="815" r="15" fill="#E4F5FC"/><text x="175" y="823" font-size="22" text-anchor="middle" font-weight="700" fill="#2998BF">i</text>
+    <text x="204" y="823" font-size="23" fill="#6A778B">Example configuration</text>
+  </g>
+  <g filter="url(#shadow)"><rect x="630" y="814" width="710" height="190" rx="24" fill="white"/></g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="663" y="848" width="76" height="76" rx="22" fill="#E0F8F3"/>
+    <circle cx="701" cy="886" r="21" stroke="#13988C" stroke-width="3.5"/><path d="M701 872V887L711 893" stroke="#13988C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="765" y="867" font-size="25" font-weight="700" fill="#1F2A5C">Minimum rest between shifts</text>
+    <text x="765" y="928" font-size="47" font-weight="700" fill="#1F2A5C">10 hours</text>
+    <rect x="1140" y="904" width="160" height="43" rx="21.5" fill="#EDF3FF"/><text x="1220" y="933" text-anchor="middle" font-size="22" font-weight="700" fill="#2B64B7">Required</text>
+    <text x="765" y="974" font-size="23" fill="#6A778B">Considered alongside shift allocation</text>
+    <text x="100" y="969" font-size="24" font-weight="700" fill="white">Your department. Your rules.</text>
+    <text x="100" y="1007" font-size="22" fill="white" fill-opacity=".85">Targets vary by department and role.</text>
+  </g>
+</svg>
