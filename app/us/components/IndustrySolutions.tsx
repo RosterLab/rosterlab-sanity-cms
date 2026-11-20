@@ -57,7 +57,7 @@ export default function USIndustrySolutions() {
 
             <div className="space-y-4 mb-8">
               <Link
-                href="/us/industries/healthcare/ed-icu-scheduling"
+                href="/us/industries/healthcare/emergency-department-scheduling"
                 className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
               >
                 <div className="flex items-center justify-between">
@@ -65,10 +65,29 @@ export default function USIndustrySolutions() {
                     <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                     <div>
                       <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
-                        ICU/ED
+                        Emergency Departments
                       </h4>
                       <p className="text-sm text-blue-700">
-                        Critical care scheduling with complex skill-mix
+                        Clinical coverage, teaching and individual availability
+                      </p>
+                    </div>
+                  </div>
+                  <HiArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+              <Link
+                href="/us/industries/healthcare/critical-care-scheduling"
+                className="block bg-white rounded-lg p-4 hover:bg-blue-100 transition-colors group"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-start">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <div>
+                      <h4 className="font-semibold text-blue-900 mb-1 group-hover:text-blue-700">
+                        Intensive Care Units
+                      </h4>
+                      <p className="text-sm text-blue-700">
+                        ICU skill mix, continuity of care and recovery time
                       </p>
                     </div>
                   </div>

@@ -46,7 +46,7 @@ const faqItems = [
   {
     question: "What is an on-call schedule?",
     answer:
-      "An on-call schedule assigns team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles (typically 12 weeks) promoting fairness, predictability, and easy re-scheduling. Used across all specialties, especially in <a href='/us/industries/healthcare/ed-icu-scheduling' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, schedules are tailored to your team size and service needs.",
+      "An on-call schedule assigns team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles (typically 12 weeks) promoting fairness, predictability, and easy re-scheduling. Used across all specialties, especially in <a href='/us/industries/healthcare/emergency-department-scheduling' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, schedules are tailored to your team size and service needs.",
   },
   {
     question: "Can on-call schedules be customized for different departments?",

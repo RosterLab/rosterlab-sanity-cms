@@ -70,7 +70,7 @@ const BENEFITS: {
   {
     title: "Less roster admin, more time for care",
     description:
-      "Take days of manual planning off your workload. RosterLab’s AI works through your unit's staffing requirements, shift patterns and constraints to generate a complete ICU shift plan in minutes.",
+      "Turn days of planning into minutes. RosterLab’s AI generates a complete ICU roster around your unit's staffing requirements, shift patterns and constraints.",
   },
   {
     title: "Fairer rosters, with more room for recovery",
@@ -203,6 +203,7 @@ export default function CriticalCareRosteringPage() {
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
         imageBelowCtasOnMobile
+        descriptionClassName="lg:max-w-[30rem]"
         title={
           <>
             Build ICU rosters{" "}
@@ -210,7 +211,7 @@ export default function CriticalCareRosteringPage() {
             around the care you deliver
           </>
         }
-        description="RosterLab simplifies intensive care rostering, helping your team plan for 24/7 clinical cover, maintain continuity of care, and manage complex staffing needs without tracking every detail by hand."
+        description="RosterLab simplifies intensive care scheduling, helping your team coordinate 24/7 clinical coverage, maintain continuity of care, and reduce roster admin."
         analyticsLocation={LOCATION}
         primaryCta={{
           href: "/book-a-demo",
@@ -259,9 +260,9 @@ export default function CriticalCareRosteringPage() {
               delay={0.12}
               className="mt-6 text-lg text-gray-600 leading-relaxed"
             >
-              RosterLab balances ICU skill mix, overnight cover, fatigue limits
-              and working arrangements across your roster, helping you plan
-              around-the-clock clinical coverage while reducing roster admin.
+              Keeping an ICU running around the clock takes careful planning.
+              Your roster shouldn&apos;t demand the same attention as the
+              patients you&apos;re caring for.
             </Reveal>
           </div>
 
@@ -524,7 +525,7 @@ export default function CriticalCareRosteringPage() {
       <section className="relative overflow-hidden bg-white pt-16 pb-32 md:pt-24 md:pb-40">
         <Container>
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
-            <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-[1.25] md:leading-[1.25] tracking-tight">
+            <h2 className={H2}>
               Saving time from your first roster
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
@@ -552,7 +553,7 @@ export default function CriticalCareRosteringPage() {
         <Container>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-semibold text-[#1F2A5C] leading-tight tracking-tight">
+              <h2 className={H2}>
                 Frequently Asked Questions
               </h2>
               <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">

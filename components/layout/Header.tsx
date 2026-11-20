@@ -221,7 +221,10 @@ export default function Header({
           title: "Critical Care",
           link: "/industries/healthcare/critical-care-rostering",
         },
-        { title: "ED", link: "/industries/healthcare/ed-icu" },
+        {
+          title: "Emergency Care",
+          link: "/industries/healthcare/emergency-department-rostering",
+        },
         { title: "Radiology", link: "/industries/healthcare/radiology" },
         {
           title: "Radiography",
