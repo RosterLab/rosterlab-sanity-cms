@@ -135,8 +135,8 @@ const CAPABILITIES = [
       href: "/us/feature/rules-engine",
     },
     image: {
-      src: "/images/industries/nursing/staff-preferences-v2.webp",
-      alt: "Staff preferences in RosterLab on desktop and shift requests in the mobile app",
+      src: "/images/industries/emergency-department-fairness-rules.webp",
+      alt: "ED schedule highlighting night shifts, recovery days and weekends off, with rules for night allocation and time off",
       className: "object-cover",
     },
   },
