@@ -48,8 +48,8 @@ export const US_URL_MAPPINGS: Record<string, string> = {
   "/industries/healthcare": "/us/industries/healthcare-scheduling",
   "/industries/healthcare/aged-care":
     "/us/industries/healthcare/senior-care-scheduling",
-  "/industries/healthcare/ed-icu":
-    "/us/industries/healthcare/ed-icu-scheduling",
+  "/industries/healthcare/emergency-department-rostering":
+    "/us/industries/healthcare/emergency-department-scheduling",
   "/industries/healthcare/radiology":
     "/us/industries/healthcare/radiology-scheduling",
   "/industries/healthcare/radiography":
@@ -132,7 +132,7 @@ export const LOCALIZED_PAGES = new Set([
   "/industries",
   "/industries/healthcare",
   "/industries/healthcare/aged-care",
-  "/industries/healthcare/ed-icu",
+  "/industries/healthcare/emergency-department-rostering",
   "/industries/healthcare/radiology",
   "/industries/healthcare/radiography",
   "/industries/healthcare/junior-medical-officer-rostering",

@@ -21,7 +21,9 @@ export function generateBreadcrumbItems(pathname: string): BreadcrumbItem[] {
 
     // Special cases for better names
     const nameMap: Record<string, string> = {
-      "ed-icu": "ED/ICU",
+      "ed-icu": "Emergency Department",
+      "emergency-department-rostering": "Emergency Department",
+      "emergency-department-scheduling": "Emergency Department",
       "ai-roster-generator": "AI Roster Generator",
       "ai-staff-schedule-maker": "AI Staff Schedule Maker",
       "roi-calculator": "ROI Calculator",

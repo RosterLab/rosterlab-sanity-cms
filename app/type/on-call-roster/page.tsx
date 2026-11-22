@@ -46,7 +46,7 @@ const faqItems = [
   {
     question: "What is an on-call roster?",
     answer:
-      "An on-call roster schedules team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles (typically 12 weeks) promoting fairness, predictability, and easy re-rostering. Used across all specialties, especially in <a href='/industries/healthcare/ed-icu' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, rosters are tailored to your team size and service needs.",
+      "An on-call roster schedules team members to handle urgent issues outside regular hours. RosterLab supports flexible cycles (typically 12 weeks) promoting fairness, predictability, and easy re-rostering. Used across all specialties, especially in <a href='/industries/healthcare/emergency-department-rostering' class='text-teal-600 hover:text-teal-700 underline'>emergency-focused departments</a>, rosters are tailored to your team size and service needs.",
   },
   {
     question: "Can on-call rosters be customised for different departments?",

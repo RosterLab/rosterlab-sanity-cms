@@ -50,7 +50,10 @@ export const usNavItems = [
         title: "Critical Care",
         link: "/us/industries/healthcare/critical-care-scheduling",
       },
-      { title: "ED", link: "/us/industries/healthcare/ed-icu-scheduling" },
+      {
+        title: "Emergency Care",
+        link: "/us/industries/healthcare/emergency-department-scheduling",
+      },
       {
         title: "Radiology",
         link: "/us/industries/healthcare/radiology-scheduling",

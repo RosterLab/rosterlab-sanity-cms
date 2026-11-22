@@ -4,10 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { HiX } from "react-icons/hi";
-import {
-  getUSPath,
-  getGlobalPath,
-} from "@/components/seo/HreflangTags";
+import { getUSPath, getGlobalPath } from "@/components/seo/HreflangTags";
 
 // Function to check if a page exists
 async function checkIfPageExists(url: string): Promise<boolean> {
@@ -197,7 +194,7 @@ export default function GeolocationBanner() {
           <Link
             href={suggestedPath}
             onClick={() => handleChoice(false)}
-            className="flex-1 bg-primary-600 text-white px-4 py-3 rounded-md font-semibold hover:bg-primary-700 transition-colors text-center"
+            className="flex-1 bg-primary-700 text-white px-4 py-3 rounded-md font-semibold hover:bg-primary-800 transition-colors text-center"
           >
             Yes, take me there
           </Link>

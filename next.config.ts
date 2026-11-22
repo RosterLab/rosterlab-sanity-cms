@@ -399,8 +399,19 @@ const nextConfig: NextConfig = {
       },
       // Healthcare industry redirects
       {
+        source: "/industries/healthcare/ed-icu",
+        destination: "/industries/healthcare/emergency-department-rostering",
+        permanent: true,
+      },
+      {
+        source: "/us/industries/healthcare/ed-icu-scheduling",
+        destination:
+          "/us/industries/healthcare/emergency-department-scheduling",
+        permanent: true,
+      },
+      {
         source: "/industries/healthcare/edicu",
-        destination: "/industries/healthcare/ed-icu",
+        destination: "/industries/healthcare/emergency-department-rostering",
         permanent: true,
       },
       {

@@ -24,11 +24,19 @@ export interface Industry {
 
 export const INDUSTRIES_AU: Industry[] = [
   {
-    name: "ICU/ED",
+    name: "Emergency Departments",
     category: "Healthcare",
-    description: "Critical care rostering with complex skill-mix.",
-    href: "/industries/healthcare/ed-icu",
-    image: "/landing/industries/icu.webp",
+    description:
+      "Coordinate clinical cover, teaching and individual availability.",
+    href: "/industries/healthcare/emergency-department-rostering",
+    image: "/images/industries/icu-ed.webp",
+  },
+  {
+    name: "Intensive Care Units",
+    category: "Healthcare",
+    description: "Plan ICU skill mix, continuity of care and recovery time.",
+    href: "/industries/healthcare/critical-care-rostering",
+    image: "/images/industries/nursing/critical-care-hero-bedside.webp",
   },
   {
     name: "Radiology",
