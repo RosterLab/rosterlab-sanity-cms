@@ -206,7 +206,9 @@ export default function RosterComparison({
   labels?: ComparisonLabels;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.35 });
+  // On short screens the full table can be taller than the viewport, so a
+  // percentage threshold can leave every comparison row permanently hidden.
+  const inView = useInView(ref, { once: true, amount: "some" });
   const reduce = !!useReducedMotion();
   const on = inView || reduce;
   const instant = reduce ? { duration: 0 } : undefined;

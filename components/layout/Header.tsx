@@ -327,8 +327,9 @@ export default function Header({
               <Image
                 src="/images/rosterlab-logo.png"
                 alt="RosterLab"
-                width={180}
-                height={48}
+                width={501}
+                height={125}
+                sizes="180px"
                 className={cn(
                   "w-auto motion-safe:transition-[height]",
                   CONDENSE_MOTION,
@@ -904,7 +905,7 @@ export default function Header({
             </Link>
             <Link
               href="/start-free"
-              className={`bg-green-500 text-white hover:bg-green-600 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors ${FREE_SIGNUP_GATE_CLASS}`}
+              className={`bg-green-700 text-white hover:bg-green-800 xl:px-3 2xl:px-4 py-2 rounded-md xl:text-xs 2xl:text-sm font-medium transition-colors ${FREE_SIGNUP_GATE_CLASS}`}
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(
@@ -1254,7 +1255,7 @@ export default function Header({
             </Link>
             <Link
               href="/start-free"
-              className={`bg-green-500 text-white hover:bg-green-600 block px-3 py-2 rounded-md text-base font-medium ${FREE_SIGNUP_GATE_CLASS}`}
+              className={`bg-green-700 text-white hover:bg-green-800 block px-3 py-2 rounded-md text-base font-medium ${FREE_SIGNUP_GATE_CLASS}`}
               onClick={(e) => {
                 e.preventDefault();
                 trackSmartButtonClick(
