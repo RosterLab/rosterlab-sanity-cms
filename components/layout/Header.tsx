@@ -240,6 +240,10 @@ export default function Header({
           link: "/industries/healthcare/nurse-rostering",
         },
         {
+          title: "Allied Health",
+          link: "/industries/healthcare/allied-health-rostering",
+        },
+        {
           title: "Junior Doctors",
           link: "/industries/healthcare/junior-medical-officer-rostering",
         },

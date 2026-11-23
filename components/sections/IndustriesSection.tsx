@@ -115,7 +115,7 @@ const WORKFORCE_GROUPS_AU: WorkforceGroup[] = [
   {
     name: "Allied health",
     illustration: "/landing/workforce/illustrations/allied-health.webp",
-    href: "/industries/healthcare/radiography",
+    href: "/industries/healthcare/allied-health-rostering",
     linkLabel: "Explore allied health rostering",
     description:
       "Match the right skills to each service and location while balancing varied working patterns, staff preferences and changing coverage needs.",
