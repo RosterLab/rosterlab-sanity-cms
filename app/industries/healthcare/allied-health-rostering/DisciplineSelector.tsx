@@ -181,7 +181,7 @@ export default function DisciplineSelector({
   }
 
   return (
-    <div className="mx-auto mt-8 max-w-6xl md:mt-10">
+    <div className="mx-auto mt-12 max-w-6xl md:mt-16">
       <h2 className="mx-auto max-w-3xl text-balance text-center text-lg font-medium leading-snug tracking-tight text-[#1F2A5C] md:text-xl">
         {copy("Allied health rostering tailored to your discipline")}
       </h2>
