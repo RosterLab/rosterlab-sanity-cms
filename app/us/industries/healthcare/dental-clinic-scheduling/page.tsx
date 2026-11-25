@@ -66,6 +66,7 @@ export default function DentalClinicSchedulingPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Optimized, Flexible Dental Clinic Schedules"
         description="Create efficient AI schedules that balance hygienists, dentists, and specialist staff across chairs and procedures."
         analyticsLocation="US Industry Page Dental Clinic Scheduling"

@@ -66,6 +66,7 @@ export default function AgedCarePage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Optimise Aged Care Staff Rosters"
         description="Deliver better care with smart rostering. Achieve 5% efficiency gains while reducing scheduling errors and ensuring full compliance."
         analyticsLocation="Industry Page Aged Care Rostering"

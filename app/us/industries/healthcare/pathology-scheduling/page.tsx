@@ -73,6 +73,7 @@ export default function PathologyRosteringPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Compliant Pathology Schedules"
         description="Create compliant AI-powered schedules that balance specimen processing demands, fair night shift distribution, and pathology staff well-being."
         analyticsLocation="US Industry Page Pathology Scheduling"

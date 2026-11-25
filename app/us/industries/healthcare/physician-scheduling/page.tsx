@@ -73,6 +73,7 @@ export default function ResidentPhysicianSchedulingPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Flexible, Compliant Physician Schedules"
         description="Create compliant AI-powered schedules that balance training requirements, fair night shift distribution, and physician well-being."
         analyticsLocation="US Industry Page Physician Scheduling"

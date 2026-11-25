@@ -65,6 +65,7 @@ export default function RadiologyPage() {
     <SiteLayout>
       {/* Hero Section */}
       <IndustryHero
+        stackedContentFirst
         title="Build Complex Radiology Rosters"
         description="Match radiologists to reporting, procedural, and teaching sessions based on their subspecialty expertise with AI rostering."
         analyticsLocation="Industry Page Radiology Rostering"

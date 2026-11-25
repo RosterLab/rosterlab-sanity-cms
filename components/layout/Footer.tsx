@@ -29,8 +29,9 @@ export default function Footer() {
                 <Image
                   src="/images/rosterlab-logo.png"
                   alt="RosterLab"
-                  width={150}
-                  height={40}
+                  width={501}
+                  height={125}
+                  sizes="160px"
                   className="h-10 w-auto mx-auto lg:mx-0"
                 />
               </Link>
@@ -112,9 +113,9 @@ export default function Footer() {
 
           {/* Section 2: Product */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+            <h2 className="text-lg font-semibold mb-4 text-gray-900">
               Product
-            </h4>
+            </h2>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -161,9 +162,9 @@ export default function Footer() {
 
           {/* Section 3: Company */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+            <h2 className="text-lg font-semibold mb-4 text-gray-900">
               Company
-            </h4>
+            </h2>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -218,9 +219,9 @@ export default function Footer() {
 
           {/* Section 4: Customer Success */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+            <h2 className="text-lg font-semibold mb-4 text-gray-900">
               Customer Success
-            </h4>
+            </h2>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -267,9 +268,9 @@ export default function Footer() {
 
           {/* Section 5: Resources */}
           <div className="hidden lg:block">
-            <h4 className="text-lg font-semibold mb-4 text-gray-900">
+            <h2 className="text-lg font-semibold mb-4 text-gray-900">
               Resources
-            </h4>
+            </h2>
             <ul className="space-y-3">
               <li>
                 <Link
