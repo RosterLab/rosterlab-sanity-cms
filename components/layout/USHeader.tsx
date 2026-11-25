@@ -75,6 +75,10 @@ export const usNavItems = [
         link: "/us/industries/healthcare/nurse-scheduling",
       },
       {
+        title: "Allied Health",
+        link: "/us/industries/healthcare/allied-health-scheduling",
+      },
+      {
         title: "Physician Scheduling",
         link: "/us/industries/healthcare/physician-scheduling",
       },

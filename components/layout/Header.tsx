@@ -122,6 +122,8 @@ interface NavItem {
 
 interface HeaderProps {
   navItems?: NavItem[];
+  /** Optional destination for pages with a specific demo booking flow. */
+  demoHref?: string;
   /**
    * Set on routes whose hero is the flat blue field below `lg` (the industry
    * pages, see `IndustryHero`). The bar paints itself that same blue and
@@ -161,6 +163,7 @@ const HERO_DOTS =
 
 export default function Header({
   navItems = [],
+  demoHref,
   onHeroBackground = false,
   blueOverHero = false,
 }: HeaderProps) {
@@ -176,7 +179,8 @@ export default function Header({
   );
   const logoLink = isUSVersion ? "/us" : "/";
   const contactLink = isUSVersion ? "/us/contact" : "/contact";
-  const demoLink = isUSVersion ? "/us/book-a-demo" : "/book-a-demo";
+  const demoLink =
+    demoHref ?? (isUSVersion ? "/us/book-a-demo" : "/book-a-demo");
 
   const defaultNavItems: NavItem[] = [
     {

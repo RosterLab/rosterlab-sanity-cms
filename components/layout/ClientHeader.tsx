@@ -41,10 +41,17 @@ export default function ClientHeader() {
   // The home pages open with `LandingHero`, which tucks up under the bar.
   const isHome = pathname === "/" || pathname === "/us";
 
+  const isAlliedHealthPage =
+    pathname === "/industries/healthcare/allied-health-rostering" ||
+    pathname === "/us/industries/healthcare/allied-health-scheduling";
+
   // Use US navigation items for US pages, default for others
   return (
     <Header
       navItems={isUSVersion ? usNavItems : []}
+      demoHref={
+        isAlliedHealthPage ? "https://rosterlab.com/book-a-demo" : undefined
+      }
       onHeroBackground={hasBlueHero}
       blueOverHero={isHome}
     />
