@@ -2,14 +2,18 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import InlineCtaLink from "@/components/ui/InlineCtaLink";
 import SiteLayout from "@/components/layout/SiteLayout";
-import { HiCheck } from "react-icons/hi";
-import { PiChartLineUp, PiCheckCircle, PiLightning } from "react-icons/pi";
+import Image from "next/image";
+import {
+  PiChartLineUp,
+  PiHandshake,
+  PiPlugsConnected,
+  PiSlidersHorizontal,
+} from "react-icons/pi";
 import { getUSPath } from "@/components/seo/HreflangTags";
 import { localizeUSText } from "@/lib/localization/us-text";
 import { enterpriseText } from "@/app/enterprise/enterprise-copy";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import TrustedByDualRow from "@/components/sections/TrustedByDualRow";
-import ImplementationBenefits from "@/components/sections/ImplementationBenefits";
 import ClosingCta from "@/components/sections/ClosingCta";
 import EnterpriseFAQ from "@/app/enterprise/EnterpriseFAQ";
 import EnterpriseCaseStudies from "@/app/enterprise/EnterpriseCaseStudies";
@@ -27,22 +31,22 @@ const blueInlineCtaClass =
 
 const rosteringChallenges = [
   {
-    title: "Managers are buried",
-    titleContinuation: "in roster admin",
+    title: "Clinical leads carry",
+    titleContinuation: "the admin burden",
     description:
-      "Managers spend hours juggling spreadsheets, fixing schedules and chasing updates instead of leading their teams.",
+      "Hours are lost to manual planning, resolving conflicts and constant roster adjustments.",
   },
   {
     title: "Staff are stretched",
     titleContinuation: "too thin",
     description:
-      "Uneven workloads, back-to-back shifts and overlooked fatigue push skilled staff to their limits.",
+      "Uneven workloads, back-to-back shifts and insufficient recovery time push clinicians to their limits.",
   },
   {
-    title: "Coverage is",
-    titleContinuation: "never guaranteed",
+    title: "Patients face",
+    titleContinuation: "delays in care",
     description:
-      "Last-minute absences and critical skills gaps impact productivity and disrupt service delivery.",
+      "Unexpected absences and gaps in clinical cover can delay patient treatment and disrupt planned care.",
   },
 ];
 
@@ -50,34 +54,67 @@ const healthcareRosteringBenefits = [
   {
     title: "Days back for the work that matters",
     description:
-      "Cut days of roster admin down to minutes, freeing managers and clinical leaders to focus on their teams and patients.",
+      "Turn days of manual planning into minutes with AI that works through the complexities of rostering for you.",
   },
   {
-    title: "Teams feel valued and supported",
+    title: "Clinicians feel valued and supported",
     description:
-      "Fairer shifts, flexible schedules, and time to recover help your people feel heard, valued and supported. RosterLab makes that possible.",
+      "Give clinicians a fairer share of shifts, time to recover and schedules that accommodate their individual working arrangements.",
   },
   {
-    title: "The right skills and coverage met",
+    title: "Fewer gaps in clinical cover",
     description:
-      "Match staffing and skills to service needs, reduce avoidable gaps and put available capacity where it makes the biggest difference.",
+      "Align staffing levels and clinical skill mix across shifts, maintaining the coverage needed to deliver care with fewer disruptions.",
   },
   {
-    title: "Fewer staffing gaps. Stronger coverage.",
+    title: "More from your existing workforce",
     description:
-      "Know where teams are stretched, where skills are short, and where extra support is needed, so you can act before service delivery is hit.",
+      "Make better use of contracted hours and available staff, reducing avoidable overtime and reliance on costly temporary staffing.",
+  },
+];
+
+const implementationBenefits = [
+  {
+    icon: PiSlidersHorizontal,
+    title: "Smarter rostering, your way",
+    description:
+      "Configure shift patterns, clinical requirements and working arrangements around how your team actually operates.",
+  },
+  {
+    icon: PiHandshake,
+    title: "Easy transition with expert support",
+    description:
+      "Work with a team that understands healthcare rostering inside out, guiding you from initial setup to your first optimised roster.",
+  },
+  {
+    icon: PiPlugsConnected,
+    title: "Works alongside your existing systems",
+    description:
+      "Add AI rostering capabilities without having to replace the workforce systems you already have in place.",
+  },
+  {
+    icon: PiChartLineUp,
+    title: "One platform, every department",
+    description:
+      "Scale across workforce groups, departments and locations while accommodating the distinct needs of each team.",
+    href: "/enterprise",
+    linkLabel: "Explore RosterLab for Enterprise",
   },
 ];
 
 const featurePlaceholderClass =
   "aspect-video w-full rounded-3xl bg-[#F4F6FB] lg:aspect-[3/2]";
 
-const usTerminology = { "roster admin": "scheduling admin" };
+const usTerminology = {
+  "roster admin": "scheduling admin",
+  "clinical cover": "clinical coverage",
+};
 
 export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
   const t = (text: string, usCopy?: string) =>
     isUS ? (usCopy ?? localizeUSText(text, [], usTerminology)) : text;
   const href = (path: string) => (isUS ? (getUSPath(path) ?? path) : path);
+  const demoHref = `https://rosterlab.com${href("/book-a-demo")}`;
   const analyticsLocation = isUS ? "US Why RosterLab" : "Why RosterLab";
   const stories = isUS
     ? enterpriseStories.map((story) => ({
@@ -94,25 +131,24 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="bg-white pt-12 sm:pt-16 lg:pt-24">
-        <Container className="max-w-7xl">
-          <div className="grid items-center gap-8 border-b border-slate-200 pb-6 md:pb-8 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+      <section className="bg-white pt-10 sm:pt-16 lg:pt-24">
+        <Container className="max-w-[85rem]">
+          <div className="grid items-center gap-8 border-b border-slate-200 pb-6 md:pb-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-12 xl:gap-16">
             <div>
-              <h1 className="max-w-[20ch] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em] text-[#1F2A5C]">
-                {t("The proven AI rostering platform for healthcare")}
+              <h1 className="max-w-[20ch] text-balance text-[clamp(1.875rem,8vw,2.25rem)] font-semibold leading-[1.15] tracking-[-0.024em] text-[#1F2A5C] sm:text-[clamp(2.25rem,4.2vw,3.75rem)] sm:leading-[1.1] lg:max-w-none lg:text-[clamp(2.75rem,4.1vw,3.25rem)]">
+                {t("Why choose RosterLab for healthcare rostering?")}
               </h1>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-600 sm:text-lg">
+              <p className="mt-4 max-w-[36ch] text-pretty text-base leading-relaxed text-gray-600 sm:mt-5 sm:max-w-xl sm:text-lg">
                 {t(
-                  "RosterLab combines advanced AI with real-world healthcare expertise to make rostering faster, fairer, and effortless. So your clinical workforce can work at its best.",
-                  "RosterLab combines advanced AI with real-world healthcare expertise to make staff scheduling faster, fairer, and easier to manage, so your clinical teams can do their best work.",
+                  "The only rostering platform with advanced AI at the core and deep healthcare expertise behind it.",
                 )}
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button href={href("/book-a-demo")} className={primaryDemoButtonClass}>
+              <div className="mt-6 flex flex-wrap gap-3 sm:mt-7">
+                <Button href={demoHref} className={primaryDemoButtonClass}>
                   Book a demo
                 </Button>
                 <Button
-                  href="/us/solutions/ai-staff-schedule-maker"
+                  href={href("/solutions/ai-roster-generator")}
                   variant="outline"
                   className="whitespace-nowrap rounded-full border border-[#3779DD] bg-white px-5 py-2.5 text-sm font-semibold text-[#1F2A5C] hover:bg-[#F4F6FB] focus:ring-[#3779DD] sm:px-8 sm:py-3.5 sm:text-base"
                 >
@@ -137,32 +173,27 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
         headingContainerClassName="max-w-none lg:max-w-md"
         sectionClassName="pt-4 md:pt-8"
         logoColor="#1F2A5C"
-        containerClassName="max-w-7xl"
+        containerClassName="max-w-[85rem]"
       />
 
       <section
         aria-labelledby="rostering-challenges-heading"
         className="bg-[#F4F6FB] py-16 md:py-24"
       >
-        <Container className="max-w-7xl text-center">
+        <Container className="max-w-[85rem] text-center">
           <h2
             id="rostering-challenges-heading"
             className={`mx-auto max-w-4xl text-[#1F2A5C] ${sectionHeadingClass}`}
           >
-            {t("The real cost of poor rostering")}
+            {t("When healthcare rosters fall short, everyone feels it")}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-            {t(
-              "When rosters fall apart, the consequences are immediate – and felt most personally by your people on the front line.",
-            )}
-          </p>
 
           <div className="mx-auto mt-10 grid max-w-xl divide-y divide-dashed divide-slate-300 md:max-w-none md:grid-cols-3 md:divide-x md:divide-y-0">
             {rosteringChallenges.map(
               ({ title, titleContinuation, description }) => (
                 <div
                   key={title}
-                  className="py-7 sm:px-4 sm:py-8 md:row-span-3 md:grid md:grid-rows-subgrid md:px-3 md:py-0 xl:px-6"
+                  className="py-7 sm:px-4 sm:py-8 md:row-span-3 md:grid md:grid-rows-subgrid md:px-3 md:py-0 xl:px-5"
                 >
                   <div
                     aria-hidden="true"
@@ -172,7 +203,7 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
                     {t(title)} <br className="hidden min-[1100px]:block" />
                     {t(titleContinuation)}
                   </h3>
-                  <p className="mx-auto mt-3 max-w-sm text-pretty text-base leading-relaxed text-gray-600 md:text-[15px] min-[1100px]:tracking-tight xl:text-base xl:tracking-normal">
+                  <p className="mx-auto mt-3 max-w-[25rem] text-pretty text-base leading-relaxed text-gray-600 md:text-[15px] min-[1100px]:tracking-tight xl:max-w-[21.5rem] xl:text-balance xl:text-base xl:tracking-normal">
                     {t(description)}
                   </p>
                 </div>
@@ -183,113 +214,23 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
       </section>
 
       <section
-        aria-labelledby="rosterlab-difference-heading"
-        className="bg-[#141B3F] py-16 text-center text-white md:py-24"
-      >
-        <Container>
-          <h2
-            id="rosterlab-difference-heading"
-            className={`mx-auto max-w-3xl ${sectionHeadingClass}`}
-          >
-            <span className="lg:whitespace-nowrap">
-              {t("Your rostering tools can’t keep up.")}
-            </span>{" "}
-            <span className="text-[#03FABF] lg:block">RosterLab can.</span>
-          </h2>
-          <div className="mx-auto mt-6 max-w-5xl space-y-6 text-pretty text-lg leading-relaxed text-white/90 lg:max-w-[52rem] lg:space-y-4 lg:text-balance">
-            <p>
-              {t(
-                "Spreadsheets and legacy rostering systems can only take you so far when you're managing complex staffing needs, changing demands and the expectations of your team.",
-              )}
-            </p>
-            <p>
-              {t(
-                "That's where RosterLab makes the difference. Roster with confidence, knowing your coverage is met, people are supported, and labour costs are kept in check.",
-                "That's where RosterLab makes the difference. Build schedules with confidence, knowing you can meet coverage needs, support your staff, and keep labor costs in check.",
-              )}
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      <section
-        aria-labelledby="rostering-roi-heading"
-        className="bg-[#F4F6FB] py-12 text-[#1F2A5C] md:py-16"
-      >
-        <Container className="max-w-7xl">
-          <div className="grid gap-8 text-left lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-x-10 lg:gap-y-3 xl:gap-x-14">
-            <div className="min-w-0 text-center lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:text-left">
-              <h2
-                id="rostering-roi-heading"
-                className={`scroll-mt-24 ${sectionHeadingClass}`}
-              >
-                Real impact. Backed by results.
-              </h2>
-              <div>
-                <p className="mx-auto mt-3 max-w-2xl text-pretty text-base leading-relaxed text-gray-600 md:text-lg lg:mx-0 lg:mt-0">
-                  {t(
-                    "The proof is in the results. Here's what organisations have achieved with RosterLab",
-                  )}
-                </p>
-
-                <ul className="mt-6 grid divide-y divide-[#D8E1F0] sm:grid-cols-3 sm:divide-y-0 md:mt-8">
-                  {[
-                    { value: "~90%", label: "less time spent on rostering" },
-                    { value: "~5%", label: "improvement in staffing efficiency" },
-                    { value: "~10%", label: "increase in employee satisfaction" },
-                  ].map(({ value, label }) => (
-                    <li
-                      key={label}
-                      className="py-7 sm:px-3 sm:py-5 md:py-6 lg:first:pl-0 lg:last:pr-0"
-                    >
-                      <span className="block text-[2.5rem] font-medium leading-none tracking-tight text-[#3779DD] md:text-5xl lg:text-[2.5rem] xl:text-5xl">
-                        {value}
-                      </span>
-                      <span className="mx-auto mt-3 block text-pretty text-base leading-relaxed text-gray-600 sm:mt-2 sm:max-w-[11rem] sm:text-balance sm:leading-normal lg:mx-0 lg:text-sm">
-                        {t(label)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-4 md:mt-6">
-                  <InlineCtaLink
-                    href={href("/tools/roi-calculator")}
-                    label="Calculate your ROI"
-                    className={blueInlineCtaClass}
-                    analyticsLocation={analyticsLocation}
-                    analyticsProperties={{
-                      cta_type: "roi_calculator",
-                      page_name: analyticsLocation,
-                      section: "roi",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-            <RoiTestimonials analyticsLocation={`${analyticsLocation} ROI`} />
-          </div>
-        </Container>
-      </section>
-
-      <section
         aria-labelledby="healthcare-rostering-benefits-heading"
         className="bg-white py-16 md:py-24"
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[85rem]">
           <div className="mx-auto max-w-3xl text-center">
             <p className="mb-3 text-sm font-semibold text-[#2A3F8F]">
-              What Sets RosterLab Apart
+              Why RosterLab
             </p>
             <h2
               id="healthcare-rostering-benefits-heading"
               className={`text-[#1F2A5C] ${sectionHeadingClass}`}
             >
-              {t("Better rostering changes everything")}
+              {t("A better roster changes the way you run")}
             </h2>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-[70rem] grid-cols-1 gap-y-9 md:mt-16 md:grid-cols-2 md:gap-x-12 md:gap-y-7 md:before:col-span-2 md:before:row-start-2 md:before:border-t md:before:border-[#1F2A5C]/10">
+          <div className="mx-auto mt-12 grid grid-cols-1 gap-y-9 md:mt-14 md:grid-cols-2 md:gap-x-16 md:gap-y-8 md:before:col-span-2 md:before:row-start-2 md:before:border-t md:before:border-[#1F2A5C]/10">
             {healthcareRosteringBenefits.map(({ title, description }) => (
               <div key={title} className="text-center md:text-left">
                 <h3
@@ -297,16 +238,16 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
                 >
                   {t(title)}
                 </h3>
-                <p className="mx-auto mt-3 max-w-md text-pretty text-base leading-relaxed text-gray-600 md:mx-0">
+                <p className="mx-auto mt-3 max-w-[34rem] text-pretty text-base leading-relaxed text-gray-600 md:mx-0 md:text-balance">
                   {t(description)}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center md:mt-16">
+          <div className="mt-10 text-center md:mt-12">
             <Button
-              href={href("/book-a-demo")}
+              href={demoHref}
               className={primaryDemoButtonClass}
               analyticsLabel="Book a Demo"
               analyticsLocation={analyticsLocation}
@@ -326,46 +267,23 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
         aria-labelledby="ai-optimisation-heading"
         className="bg-[#F4F6FB] py-16 md:py-24"
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[85rem]">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             <div>
               <p className="mb-3 text-sm font-semibold text-[#2A3F8F]">
-                {t("Purpose-Built AI Optimisation")}
+                {t("AI Roster Optimisation")}
               </p>
-              <h3
+              <h2
                 id="ai-optimisation-heading"
                 className={`text-[#1F2A5C] ${sectionHeadingClass}`}
               >
                 {t("AI rostering that goes beyond simple automation")}
-              </h3>
-              <div className="mt-5 space-y-4 text-base leading-relaxed text-gray-600">
-                <p>
-                  {t(
-                    "Every roster generated in RosterLab is powered by the industry’s most advanced AI roster optimisation engine.",
-                  )}
-                </p>
-                <p>
-                  {t(
-                    "Where traditional rostering software fills shifts and checks rules, RosterLab goes much further – evaluating thousands of possible staffing combinations to find the best fit, not just one that works.",
-                    "Traditional scheduling software fills shifts and checks rules. RosterLab evaluates thousands of staffing combinations to find the best fit for your requirements.",
-                  )}
-                </p>
-                <ul role="list" className="space-y-2">
-                  {[
-                    "Reliable clinical staffing coverage",
-                    "More balanced workloads across teams",
-                    "Better utilisation of staff and skills",
-                  ].map((outcome) => (
-                    <li key={outcome} className="flex items-start gap-2.5">
-                      <HiCheck
-                        aria-hidden="true"
-                        className="mt-0.5 size-5 shrink-0 text-blue-700"
-                      />
-                      {t(outcome)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-gray-600">
+                {t(
+                  "There's a difference between pre-filling individual shifts and solving the roster itself. RosterLab's AI optimisation engine considers the whole roster together, evaluating every possible staffing combination against your rules, preferences and constraints to find the best fit, not just one that works.",
+                )}
+              </p>
               <InlineCtaLink
                 href={href("/solutions/ai-roster-generator")}
                 label={t("Explore AI rostering")}
@@ -387,43 +305,46 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
       </section>
 
       <section
-        aria-labelledby="otto-heading"
+        aria-labelledby="healthcare-design-heading"
         className="bg-white py-16 md:py-24"
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[85rem]">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             <div className="lg:col-start-2 lg:row-start-1">
               <p className="mb-3 text-sm font-semibold text-[#2A3F8F]">
-                {t("Otto - AI Rostering Assistant")}
+                Healthcare by Design
               </p>
-              <h3
-                id="otto-heading"
+              <h2
+                id="healthcare-design-heading"
                 className={`text-[#1F2A5C] ${sectionHeadingClass}`}
               >
-                {t("The future of rostering is almost here")}
-              </h3>
+                Built around the realities of clinical work
+              </h2>
               <div className="mt-5 space-y-4 text-base leading-relaxed text-gray-600">
                 <p>
                   {t(
-                    "Imagine an AI assistant that doesn't just understand your roster, but can act on it – building schedules, managing shift changes and optimising rostering decisions through simple conversation.",
-                    "Imagine an AI assistant that can build schedules, manage shift changes, and help you make better staffing decisions through a conversation.",
+                    "No two clinical teams roster the same way. RosterLab is designed to handle the intricacies of different clinical specialities and workforce groups, accounting for:",
                   )}
                 </p>
-                <p>
-                  {t(
-                    "That's the future we're building with Otto. RosterLab's AI rostering assistant is evolving to take on increasingly complex scheduling tasks on your behalf, always with your approval and oversight.",
-                  )}
-                </p>
+                <ul className="list-disc space-y-2 pl-5">
+                  {[
+                    "Clinical skill mix, staffing ratios and supervision",
+                    "Employment agreements and fatigue management",
+                    "Clinical rotations and protected non-clinical time",
+                  ].map((requirement) => (
+                    <li key={requirement}>{t(requirement)}</li>
+                  ))}
+                </ul>
               </div>
               <InlineCtaLink
-                href={href("/feature/ai-staff-rostering-assistant")}
-                label="Explore Otto"
+                href={href("/feature/rules-engine")}
+                label="Explore the rules engine"
                 className={`mt-6 ${blueInlineCtaClass}`}
                 analyticsLocation={analyticsLocation}
                 analyticsProperties={{
                   cta_type: "learn_more",
                   page_name: analyticsLocation,
-                  section: "otto",
+                  section: "healthcare_design",
                 }}
               />
             </div>
@@ -435,67 +356,189 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
         </Container>
       </section>
 
-      <ImplementationBenefits
-        heading={
-          <>
-            Making the move easy, <br />
-            right from the start.
-          </>
-        }
-        headingId="implementation-benefits-heading"
-        containerClassName="max-w-7xl"
-        cardHeadingAs="h4"
-        cardDescriptionClassName="text-blue-50"
-        tone="blue"
-        cards={[
-          {
-            icon: PiLightning,
-            title: "Results from day one",
-            description: t(
-              "From building your first roster with RosterLab, you'll experience time saved and fewer errors from day one.",
-              "Save time and reduce errors from the first schedule you build with RosterLab.",
-            ),
-          },
-          {
-            icon: PiCheckCircle,
-            title: "Easy transition",
-            description: t(
-              "Maintain your rostering approach while reducing admin for an easy, seamless transition.",
-              "Keep your existing scheduling approach while reducing administrative work.",
-            ),
-          },
-          {
-            icon: PiChartLineUp,
-            title: "Grows as you scale",
-            description: (
-              <>
-                {t(
-                  "Personalised rules for roles and skills make RosterLab easy to scale across your organisation and workforce groups.",
-                )}
-                <InlineCtaLink
-                  href={href("/enterprise")}
-                  label="See RosterLab for Enterprise"
-                  className="mt-3 flex w-fit"
-                  onDark
-                  analyticsLocation={analyticsLocation}
-                  analyticsProperties={{
-                    cta_type: "learn_more",
-                    page_name: analyticsLocation,
-                    section: "implementation_benefits",
-                  }}
-                />
-              </>
-            ),
-          },
-        ]}
-      />
+      <section
+        aria-labelledby="otto-roster-assistant-heading"
+        className="bg-[#F4F6FB] py-16 md:py-24"
+      >
+        <Container className="max-w-[85rem]">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <p className="mb-3 text-sm font-semibold text-[#2A3F8F]">
+                {t("Otto - AI Rostering Assistant")}
+              </p>
+              <h2
+                id="otto-roster-assistant-heading"
+                className={`text-[#1F2A5C] ${sectionHeadingClass}`}
+              >
+                {t("Rostering intelligence at your fingertips")}
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-relaxed text-gray-600">
+                <p>
+                  {t(
+                    "Discover the smartest way to manage your rosters with Otto, RosterLab's built-in AI rostering assistant.",
+                  )}
+                </p>
+                <p>Otto helps you to:</p>
+                <ul className="list-disc space-y-2 pl-5">
+                  {[
+                    "Get instant answers about your rosters without digging through data",
+                    "Find the best way to fill gaps, assess swaps and adjust shifts",
+                    "Make roster changes simply by asking, while staying in control",
+                    "Spot workforce trends and uncover opportunities to improve planning",
+                  ].map((benefit) => (
+                    <li key={benefit}>{t(benefit)}</li>
+                  ))}
+                </ul>
+              </div>
+              <InlineCtaLink
+                href={href("/feature/ai-staff-rostering-assistant")}
+                label="Explore Otto"
+                className={`mt-6 ${blueInlineCtaClass}`}
+                analyticsLocation={analyticsLocation}
+                analyticsProperties={{
+                  cta_type: "learn_more",
+                  page_name: analyticsLocation,
+                  section: "otto_roster_assistant",
+                }}
+              />
+            </div>
+            <div
+              aria-hidden="true"
+              className={`${featurePlaceholderClass} border border-slate-200`}
+            />
+          </div>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="rostering-roi-heading"
+        className="bg-[#141B3F] py-12 text-white md:py-16"
+      >
+        <Container className="max-w-[85rem]">
+          <div className="grid gap-8 text-left lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-x-10 lg:gap-y-4 xl:gap-x-14">
+            <div className="min-w-0 text-center lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:text-left">
+              <h2
+                id="rostering-roi-heading"
+                className={`scroll-mt-24 ${sectionHeadingClass}`}
+              >
+                Real impact.{" "}<br />
+                Backed by results.
+              </h2>
+              <div>
+                <p className="mx-auto mt-4 max-w-xl text-balance text-base leading-relaxed text-white/90 md:text-lg lg:mx-0 lg:mt-0">
+                  {t(
+                    "The proof is in the results. Here's what organisations have achieved with RosterLab.",
+                  )}
+                </p>
+
+                <ul className="mt-6 grid divide-y divide-white/20 sm:grid-cols-3 sm:divide-y-0 md:mt-8">
+                  {[
+                    { value: "~90%", label: "less time spent on rostering" },
+                    { value: "~5%", label: "improvement in staffing efficiency" },
+                    { value: "~10%", label: "increase in employee satisfaction" },
+                  ].map(({ value, label }) => (
+                    <li
+                      key={label}
+                      className="py-7 sm:px-3 sm:py-5 md:py-6 lg:first:pl-0 lg:last:pr-0"
+                    >
+                      <span className="block text-[2.5rem] font-medium leading-none tracking-tight text-[#03FABF] md:text-5xl lg:text-[2.5rem] xl:text-5xl">
+                        {value}
+                      </span>
+                      <span className="mx-auto mt-3 block text-pretty text-base leading-relaxed text-white/90 sm:mt-2 sm:max-w-[11rem] sm:text-balance sm:leading-normal lg:mx-0 lg:text-sm">
+                        {t(label)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-4 md:mt-6">
+                  <InlineCtaLink
+                    href={href("/tools/roi-calculator")}
+                    label="Calculate your ROI"
+                    onDark
+                    className="text-[#03FABF] hover:text-white focus-visible:text-white"
+                    analyticsLocation={analyticsLocation}
+                    analyticsProperties={{
+                      cta_type: "roi_calculator",
+                      page_name: analyticsLocation,
+                      section: "roi",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <RoiTestimonials analyticsLocation={`${analyticsLocation} ROI`} />
+          </div>
+        </Container>
+      </section>
 
       <section
         aria-label="Customer case studies"
         className="bg-white py-16 md:py-24"
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[85rem]">
           <EnterpriseCaseStudies stories={stories} isUS={isUS} />
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="implementation-benefits-heading"
+        className="relative isolate overflow-hidden bg-[#3779DD] bg-[linear-gradient(115deg,#2F68BF_0%,#3779DD_55%,#578BDA_100%)] py-16 text-white md:py-24"
+      >
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-y-0 right-0 w-2/3 overflow-hidden opacity-25 mix-blend-luminosity [mask-image:radial-gradient(ellipse_95%_80%_at_100%_20%,black_10%,transparent_85%)] md:w-[52%] md:opacity-45">
+            <Image
+              src="/images/industries/healthcare-hero.webp"
+              alt=""
+              fill
+              sizes="(min-width: 768px) 52vw, 67vw"
+              className="origin-[70%_40%] scale-[1.85] object-cover object-[67%_40%]"
+            />
+          </div>
+        </div>
+        <Container className="relative max-w-[85rem]">
+          <div>
+            <h2
+              id="implementation-benefits-heading"
+              className={`max-w-3xl text-balance ${sectionHeadingClass}`}
+            >
+              {t("However your team rosters, RosterLab fits in")}
+            </h2>
+            <div className="mt-10 grid grid-cols-1 gap-x-4 gap-y-6 md:mt-12 md:grid-cols-2 xl:grid-cols-4">
+              {implementationBenefits.map(({ icon: Icon, title, description, href: path, linkLabel }) => (
+                <div
+                  key={title}
+                  className="row-span-3 grid min-w-0 grid-rows-subgrid rounded-2xl border border-white/25 bg-white/[0.07] p-6 backdrop-blur-md"
+                >
+                  <span className="flex size-12 items-center justify-center rounded-lg border border-white/25 bg-white/10">
+                    <Icon aria-hidden="true" className="size-7 text-white" />
+                  </span>
+                  <h3 className="text-pretty text-2xl font-medium leading-tight tracking-tight">
+                    {t(title)}
+                  </h3>
+                  <div className="min-w-0">
+                    <p className="text-pretty text-base leading-relaxed text-blue-50">
+                      {t(description)}
+                    </p>
+                    {path && linkLabel && (
+                      <InlineCtaLink
+                        href={href(path)}
+                        label={linkLabel}
+                        className="mt-4"
+                        onDark
+                        analyticsLocation={analyticsLocation}
+                        analyticsProperties={{
+                          cta_type: "learn_more",
+                          page_name: analyticsLocation,
+                          section: "implementation_benefits",
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -504,7 +547,7 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
         aria-labelledby="why-rosterlab-faq-heading"
         className="bg-[#F4F6FB] py-16 md:py-24"
       >
-        <Container className="max-w-7xl">
+        <Container className="max-w-[85rem]">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             <div>
               <h2
@@ -514,35 +557,52 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
                 Frequently asked questions
               </h2>
               <p className="mt-4 max-w-sm text-lg text-gray-600 leading-relaxed">
-                {t("Common questions about our AI-powered rostering with RosterLab")}
+                {t("Common questions about AI-powered rostering with RosterLab")}
               </p>
             </div>
             <EnterpriseFAQ
               items={[
                 {
                   question:
-                    "How is RosterLab different from an ordinary rostering tool or spreadsheet?",
-                  answer: `<p>${t(
-                    "Spreadsheets and traditional rostering tools help you organise shifts and check for conflicts, but much of the harder decisions like meeting cover, fairness, compliance, and staff preferences still falls on you.",
-                    "Spreadsheets and traditional scheduling tools help you organize shifts and check for conflicts. You still have to make the harder decisions about staffing coverage, fairness, compliance, and staff preferences.",
-                  )}</p>
-                    <p class="mt-4">Rather than simply digitising the rostering process, RosterLab takes on the complex work itself. Our AI works through your intricate constraints, rules, and preferences together to generate complete, optimised rosters in minutes.</p>`,
+                    "How is RosterLab different from other rostering software?",
+                  answer:
+                    "The biggest difference is how much of the rostering process RosterLab can take on. While many platforms offer digital roster building, templates and automated rule checks, RosterLab can generate entire rosters around complex and often competing workforce requirements. Our specialisation in healthcare also means we're equipped to solve clinical rostering challenges that standard scheduling tools simply weren't designed for.",
                 },
                 {
-                  question: "What kind of AI is RosterLab?",
+                  question: "Why is RosterLab particularly suited to healthcare?",
                   answer:
-                    "RosterLab uses mathematical optimisation (operations research) to build and solve rosters. The AI applies mathematical, statistical, and computational methods to help make smarter rostering decisions, especially for complex ones involving limited resources, risks, and trade-offs.",
+                    "Healthcare rostering is where our technology began. Years of working alongside clinical teams have shaped both the sophistication of our technology and our understanding of what makes a good clinical roster. It's this combination of technical and healthcare expertise that underpins RosterLab today.",
                 },
                 {
                   question:
-                    "How quickly can we start seeing results with RosterLab?",
-                  answer: `You don't need to overhaul your rostering process to start seeing results. RosterLab works with your existing shift patterns, staffing rules and requirements, helping teams see measurable improvements in their first rostering cycle - one Sydney hospital emergency department cut roster admin time from <a class="font-medium text-blue-700 underline underline-offset-4" href="${href("/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering")}">120 hours to 40 hours</a> on their very first roster built with RosterLab.`,
+                    "Can RosterLab accommodate our existing rostering rules?",
+                  answer:
+                    "Absolutely. One of RosterLab's strengths is the depth of its configurable rules engine. Rules can be set at the team, skill or individual staff level, with different priorities assigned to each requirement. Your team can determine what's non-negotiable and where there's flexibility to accommodate preferences.",
                 },
                 {
                   question:
-                    "Can RosterLab work with our existing workforce management (WFM) system?",
+                    "Can RosterLab support multiple departments across a hospital?",
+                  answer: `Yes, and those departments don't need to roster in the same way. A nursing ward, an emergency department and a radiology service can each have their own staffing models, rules and rostering workflows within RosterLab. <a class="font-medium text-blue-700 underline underline-offset-4" href="${href("/industries/healthcare")}">See all the healthcare specialities we support</a>.`,
+                },
+                {
+                  question: "Can I review and adjust AI-generated rosters?",
                   answer:
-                    "Yes. RosterLab can work alongside your existing workforce management system, adding advanced AI rostering capabilities without requiring you to replace the tools you already use. This means you can keep your current WFM system while using RosterLab to manage more complex clinical rostering requirements, from skill mix and staffing coverage to fairness and compliance.",
+                    "Absolutely. You can review and adjust every AI-generated roster in RosterLab before it's published. The AI does the heavy lifting, while your team stays in control of the final roster.",
+                },
+                {
+                  question: "How quickly can we see results with RosterLab?",
+                  answer: `<p>Teams can expect to see measurable results from their very first roster. At one tertiary hospital emergency department in Sydney, RosterLab <a class="font-medium text-blue-700 underline underline-offset-4" href="${href("/case-studies/sydney-tertiary-hospital-saves-300-hours-with-ai-rostering")}">reduced the time spent rostering by 70%</a> on the first roster alone.</p>
+                    <p class="mt-4">The extent of the savings will depend on the complexity of your rosters and how much manual work goes into creating and maintaining them today.</p>`,
+                },
+                {
+                  question:
+                    "Can RosterLab work with our existing payroll and workforce systems?",
+                  answer: `RosterLab offers enterprise integrations and API access. We review your payroll, HR and reporting workflows with you to confirm the supported connections, export options and setup your team needs. <a class="font-medium text-blue-700 underline underline-offset-4" href="${href("/book-a-demo")}">Discuss your systems with our team</a>.`,
+                },
+                {
+                  question: "What does getting started with RosterLab involve?",
+                  answer: `<p>We start by understanding how your team currently rosters, including the rules, working arrangements and unwritten considerations that experienced roster managers account for.</p>
+                    <p class="mt-4">Our implementation specialists work with you to translate these into RosterLab, test the generated rosters and refine the setup until it reflects the needs of your team.</p>`,
                 },
               ].map(({ question, answer }) => ({
                 question: t(question),
@@ -554,6 +614,7 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
       </section>
 
       <ClosingCta
+        containerClassName="max-w-[85rem]"
         heading={t("Your next roster could be a whole lot easier")}
         headingId="why-rosterlab-cta-heading"
         description={t(
@@ -561,7 +622,7 @@ export default function WhyRosterLabPage({ isUS = false }: { isUS?: boolean }) {
         )}
       >
         <Button
-          href={href("/book-a-demo")}
+          href={demoHref}
           className="rounded-md bg-white px-7 py-3.5 text-base font-semibold text-[#1F2A5C] hover:bg-[#F4F6FB]"
         >
           Book a demo

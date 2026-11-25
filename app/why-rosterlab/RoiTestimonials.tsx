@@ -21,7 +21,7 @@ const testimonials = [
 ];
 
 const arrowClass =
-  "inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#2B68C4] text-[#2B68C4] transition-colors hover:bg-[#2B68C4] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2B68C4]";
+  "inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#03FABF]/60 text-[#03FABF] transition-colors hover:bg-[#03FABF] hover:text-[#141B3F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#03FABF]";
 
 export default function RoiTestimonials({
   analyticsLocation,
@@ -45,11 +45,11 @@ export default function RoiTestimonials({
     <div
       role="group"
       aria-label="Customer testimonials"
-      className="min-w-0 rounded-2xl border border-[#D8E1F0] bg-white p-5 sm:p-6 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0"
+      className="min-w-0 rounded-2xl border border-white/20 bg-white/5 p-5 sm:p-6 lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0"
     >
       <span
         aria-hidden="true"
-        className="block h-8 select-none font-serif text-5xl leading-none text-[#3779DD]/70 lg:self-end"
+        className="block h-8 select-none font-serif text-5xl leading-none text-[#03FABF]/70 lg:self-end"
       >
         &ldquo;
       </span>
@@ -59,7 +59,7 @@ export default function RoiTestimonials({
             <figure
               key={attribution}
               aria-hidden={quoteIndex !== index}
-              className={`col-start-1 row-start-1 text-pretty text-[17px] leading-relaxed text-[#1F2A5C] sm:text-[19px] ${quoteIndex === index ? "" : "invisible"}`}
+              className={`col-start-1 row-start-1 text-pretty text-[17px] leading-relaxed text-white sm:text-[19px] ${quoteIndex === index ? "" : "invisible"}`}
             >
               <blockquote>
                 {quote.map((fragment, fragmentIndex) =>
@@ -68,7 +68,7 @@ export default function RoiTestimonials({
                   ) : (
                     <strong
                       key={fragmentIndex}
-                      className="font-semibold text-[#2B68C4]"
+                      className="font-semibold text-[#03FABF]"
                     >
                       {fragment.highlight}
                     </strong>
@@ -80,7 +80,7 @@ export default function RoiTestimonials({
           ))}
         </div>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p aria-hidden="true" className="text-sm font-semibold text-gray-600">
+          <p aria-hidden="true" className="text-sm font-semibold text-white/80">
             {testimonials[index].attribution}
           </p>
           <div className="flex shrink-0 gap-3 self-end sm:self-auto">

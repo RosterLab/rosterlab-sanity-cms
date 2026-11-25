@@ -5,6 +5,7 @@ interface ClosingCtaProps {
   heading: string;
   headingId?: string;
   description?: string;
+  containerClassName?: string;
   children: ReactNode;
 }
 
@@ -12,11 +13,12 @@ export default function ClosingCta({
   heading,
   headingId,
   description,
+  containerClassName,
   children,
 }: ClosingCtaProps) {
   return (
     <section aria-labelledby={headingId} className="py-16 md:py-20">
-      <Container>
+      <Container className={containerClassName}>
         <div className="relative overflow-hidden rounded-2xl bg-[#3B7FE8] px-6 py-16 text-center text-white sm:px-12 md:py-24">
           <svg
             aria-hidden="true"
