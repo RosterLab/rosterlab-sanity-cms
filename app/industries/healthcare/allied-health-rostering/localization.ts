@@ -34,6 +34,7 @@ export function alliedHealthCopy(text: string, isUS: boolean): string {
     [/\bWard\b/g, "Unit"],
     [/\bAcute ward cover\b/g, "Acute unit coverage"],
     [/\bleave requests\b/g, "time-off requests"],
+    [/\brequest leave\b/g, "request time off"],
   ];
   return terms.reduce(
     (copy, [pattern, replacement]) => copy.replace(pattern, replacement),

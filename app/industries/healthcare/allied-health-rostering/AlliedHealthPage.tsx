@@ -59,9 +59,9 @@ const BENEFITS: { title: string; description: string }[] = [
 
 const CAPABILITIES = [
   {
-    title: "Match the right skill mix to every shift",
+    title: "Match the right skills to every shift",
     description:
-      "Whether a shift needs a radiographer qualified in a specific modality or a physiotherapist with respiratory expertise, RosterLab matches staff to assignments they're trained and credentialed for.\n\nIt also flags gaps early, giving you time to arrange specialist cover before they lead to service cancellations or delays.",
+      "Whether you need a radiographer qualified in a specific modality or a physiotherapist with respiratory expertise, RosterLab matches staff to shifts based on their skills, qualifications and credentials.\n\nIt also identifies coverage gaps early, giving you time to arrange specialist cover before they result in service delays or cancellations.",
     link: {
       label: "Explore AI rostering",
       href: "/feature/automated-rostering",
@@ -75,7 +75,7 @@ const CAPABILITIES = [
   {
     title: "Give staff a say in their roster",
     description:
-      "Give staff a dedicated app to submit their preferences, availability and leave requests, initiate shift swaps, and apply for open shifts.\n\nBalance their inputs with service needs, fair allocation rules and agreed rest requirements — all in one place. No lost emails. No perceived favouritism.",
+      "Staff can submit their preferences, availability and leave requests through a dedicated app. Balance staff inputs with service needs, fair allocation rules and agreed rest requirements — all in one place.\n\nNo lost emails. No perceived favouritism.",
     link: {
       label: "Explore self-scheduling",
       href: "/feature/self-scheduling",
@@ -167,7 +167,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
         imageBelowCtasOnMobile
-        title={copy("Allied health rostering that brings everything together")}
+        title={copy("Allied health rostering that brings it all together")}
         description={copy(
           "Build AI-powered schedules for allied health teams. Match specialist skills, balance workloads fairly, and accommodate individual working arrangements.",
         )}
@@ -438,7 +438,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
             <Reveal
               as="p"
               delay={0.12}
-              className="mt-6 text-lg text-gray-600 leading-relaxed"
+              className="mt-6 text-lg text-gray-600 leading-relaxed lg:mx-auto lg:max-w-2xl"
             >
               {copy(
                 "RosterLab's optimisation engine considers how every shift fits together, helping you find the best workable schedule. You review, adjust and publish.",

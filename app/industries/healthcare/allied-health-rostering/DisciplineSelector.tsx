@@ -57,13 +57,13 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     ],
   },
   {
-    name: "Anaesthetic technology",
+    name: "Audiology",
     description:
-      "Assign anaesthetic technicians to planned theatre lists and make sure emergency work has technician cover after hours.",
+      "Match audiologists to paediatric clinics and specialist hearing or balance tests, including when clinicians work across multiple sites.",
     details: [
-      "Theatre list allocations",
-      "Emergency theatre cover",
-      "On-call rotations",
+      "Paediatric clinic cover",
+      "Diagnostic test skills",
+      "Multi-site clinic staffing",
     ],
   },
   {
@@ -77,16 +77,6 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     ],
   },
   {
-    name: "Pharmacy",
-    description:
-      "Allocate pharmacists across wards and dispensary shifts, with specialist expertise where services need it and cover for weekends and on-call duties.",
-    details: [
-      "Ward & dispensary cover",
-      "Specialist pharmacy skills",
-      "Weekend & on-call duties",
-    ],
-  },
-  {
     name: "Occupational therapy",
     description:
       "Make time for discharge assessments alongside rehabilitation sessions and community visits, with therapists assigned where they’re needed.",
@@ -97,26 +87,6 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     ],
   },
   {
-    name: "Mental health",
-    description:
-      "Build acute and community crisis rosters with the mix of clinicians needed on each shift, including overnight and on-call cover.",
-    details: [
-      "Crisis response cover",
-      "Multidisciplinary skill mix",
-      "Overnight & on-call",
-    ],
-  },
-  {
-    name: "Audiology",
-    description:
-      "Match audiologists to paediatric clinics and specialist hearing or balance tests, including when clinicians work across multiple sites.",
-    details: [
-      "Paediatric clinic cover",
-      "Diagnostic test skills",
-      "Multi-site clinic staffing",
-    ],
-  },
-  {
     name: "Podiatry",
     description:
       "Roster clinicians with high-risk foot expertise and plan clinic staffing around demand, including capacity for urgent referrals.",
@@ -124,6 +94,36 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       "High-risk foot cover",
       "Ward referral cover",
       "Clinic & outreach staffing",
+    ],
+  },
+  {
+    name: "Pharmacy",
+    description:
+      "Allocate pharmacists across wards and dispensary shifts, with specialist expertise where services need it and cover for weekends and on-call duties.",
+    details: [
+      "Ward & dispensary cover",
+      "Specialist pharmacy skills",
+      "Weekend & on-call duties",
+    ],
+  },
+  {
+    name: "Anaesthetic technology",
+    description:
+      "Assign anaesthetic technicians to planned theatre lists and make sure emergency work has technician cover after hours.",
+    details: [
+      "Theatre list allocations",
+      "Emergency theatre cover",
+      "On-call rotations",
+    ],
+  },
+  {
+    name: "Mental health",
+    description:
+      "Build acute and community crisis rosters with the mix of clinicians needed on each shift, including overnight and on-call cover.",
+    details: [
+      "Crisis response cover",
+      "Multidisciplinary skill mix",
+      "Overnight & on-call",
     ],
   },
 ];
@@ -189,7 +189,7 @@ export default function DisciplineSelector({
       <div
         role="tablist"
         aria-label="Allied health disciplines"
-        className="mt-8 flex flex-wrap justify-center gap-x-1 gap-y-2 border-b border-[#1F2A5C]/15 pb-6 md:mt-10 md:gap-x-2 md:gap-y-3 md:pb-8"
+        className="mt-8 flex flex-wrap justify-center gap-x-1 gap-y-2 border-b border-[#1F2A5C]/15 pb-5 md:mt-10 md:gap-x-2 md:gap-y-3 md:pb-8"
       >
         {DISCIPLINES.map((discipline, index) => (
           <button
@@ -216,11 +216,14 @@ export default function DisciplineSelector({
         ))}
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-2xl bg-[#2563EB] md:mt-8 md:grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:rounded-3xl">
+      <div className="mt-5 overflow-hidden rounded-2xl bg-[#2563EB] md:mt-8 md:rounded-3xl lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         {/* Reserved for discipline photography in a later update. */}
-        <div aria-hidden="true" className="h-40 bg-[#DFE7F5] md:h-auto" />
-        {/* Shared grid cell keeps the card height stable when changing tabs. */}
-        <div className="grid">
+        <div
+          aria-hidden="true"
+          className="aspect-[16/10] bg-[#DFE7F5] sm:aspect-video lg:aspect-auto"
+        />
+        {/* Desktop panels share a height; mobile content uses only the space it needs. */}
+        <div className="lg:grid">
           {DISCIPLINES.map((discipline, index) => (
             <div
               key={discipline.name}
@@ -230,17 +233,19 @@ export default function DisciplineSelector({
               aria-hidden={active !== index}
               inert={active !== index}
               tabIndex={active === index ? 0 : -1}
-              className={`min-w-0 p-6 text-white [grid-area:1/1] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#03F9BE] sm:p-8 lg:p-10 ${
-                active === index ? "visible" : "invisible pointer-events-none"
+              className={`min-w-0 p-6 text-white lg:[grid-area:1/1] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#03F9BE] sm:p-8 lg:p-10 ${
+                active === index
+                  ? "block"
+                  : "hidden lg:invisible lg:pointer-events-none lg:block"
               }`}
             >
-              <h3 className="text-balance text-2xl font-semibold leading-tight tracking-tight lg:text-3xl">
+              <h3 className="text-balance text-[22px] font-semibold leading-snug tracking-tight sm:text-2xl lg:text-3xl">
                 {discipline.name}
               </h3>
               <p className="mt-4 text-base leading-relaxed text-white lg:text-lg">
                 {discipline.description}
               </p>
-              <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm leading-relaxed text-white lg:text-base">
+              <ul className="mt-5 grid gap-y-2.5 text-sm leading-relaxed text-white sm:flex sm:flex-wrap sm:gap-x-5 lg:mt-6 lg:text-base">
                 {discipline.details.map((detail) => (
                   <li key={detail} className="flex items-start gap-2">
                     <span
@@ -262,7 +267,7 @@ export default function DisciplineSelector({
                       { discipline: discipline.name },
                     )
                   }
-                  className="group mt-6 inline-flex min-h-11 items-center gap-2 rounded-sm py-2 font-medium text-white underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#03F9BE]"
+                  className="group mt-5 inline-flex min-h-11 max-w-full items-center gap-2 rounded-sm py-2 text-sm font-medium leading-relaxed text-white sm:text-base lg:mt-6 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#03F9BE]"
                 >
                   {discipline.link.label}
                   <PiArrowRightBold
