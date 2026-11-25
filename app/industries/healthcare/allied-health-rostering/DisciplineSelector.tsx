@@ -2,7 +2,7 @@
 
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
-import { PiArrowRightBold } from "react-icons/pi";
+import { PiArrowLeftBold, PiArrowRightBold } from "react-icons/pi";
 import {
   trackButtonClick,
   trackSmartButtonClick,
@@ -216,12 +216,36 @@ export default function DisciplineSelector({
         ))}
       </div>
 
-      <div className="mt-5 overflow-hidden rounded-2xl bg-[#2563EB] md:mt-8 md:rounded-3xl lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div className="mt-6 overflow-hidden rounded-2xl bg-[#2563EB] md:mt-8 md:rounded-3xl lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         {/* Reserved for discipline photography in a later update. */}
-        <div
-          aria-hidden="true"
-          className="aspect-[16/10] bg-[#DFE7F5] sm:aspect-video lg:aspect-auto"
-        />
+        <div className="relative aspect-[16/10] bg-[#DFE7F5] sm:aspect-video lg:aspect-auto">
+          <button
+            type="button"
+            onClick={() =>
+              select((active + DISCIPLINES.length - 1) % DISCIPLINES.length)
+            }
+            aria-label={`Previous discipline: ${DISCIPLINES[(active + DISCIPLINES.length - 1) % DISCIPLINES.length].name}`}
+            aria-controls={`${id}-panel-${(active + DISCIPLINES.length - 1) % DISCIPLINES.length}`}
+            className="group absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/65 text-[#2563EB] ring-1 ring-[#1F2A5C]/[0.06] transition-colors hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB] left-4"
+          >
+            <PiArrowLeftBold
+              aria-hidden="true"
+              className="h-4 w-4 transition-transform group-hover:-translate-x-0.5"
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => select((active + 1) % DISCIPLINES.length)}
+            aria-label={`Next discipline: ${DISCIPLINES[(active + 1) % DISCIPLINES.length].name}`}
+            aria-controls={`${id}-panel-${(active + 1) % DISCIPLINES.length}`}
+            className="group absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/65 text-[#2563EB] ring-1 ring-[#1F2A5C]/[0.06] transition-colors hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB] right-4"
+          >
+            <PiArrowRightBold
+              aria-hidden="true"
+              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+            />
+          </button>
+        </div>
         {/* Desktop panels share a height; mobile content uses only the space it needs. */}
         <div className="lg:grid">
           {DISCIPLINES.map((discipline, index) => (

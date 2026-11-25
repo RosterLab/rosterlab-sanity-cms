@@ -59,7 +59,7 @@ const BENEFITS: { title: string; description: string }[] = [
 
 const CAPABILITIES = [
   {
-    title: "Match the right skills to every shift",
+    title: "Plan specialist cover and anticipate staffing gaps",
     description:
       "Whether you need a radiographer qualified in a specific modality or a physiotherapist with respiratory expertise, RosterLab matches staff to shifts based on their skills, qualifications and credentials.\n\nIt also identifies coverage gaps early, giving you time to arrange specialist cover before they result in service delays or cancellations.",
     link: {
@@ -167,7 +167,14 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
       {/* 1 — Hero: the shared industry layout. */}
       <IndustryHero
         imageBelowCtasOnMobile
-        title={copy("Allied health rostering that brings it all together")}
+        title={
+          <>
+            <span className="lg:block">{copy("Allied health rostering")}</span>{" "}
+            <span className="lg:block">
+              {copy("that brings it all together")}
+            </span>
+          </>
+        }
         description={copy(
           "Build AI-powered schedules for allied health teams. Match specialist skills, balance workloads fairly, and accommodate individual working arrangements.",
         )}
@@ -213,7 +220,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
           <div className="mx-auto max-w-4xl text-center">
             <Reveal as="h2" className={H2}>
               {copy(
-                "Roster all the moving parts, without the endless planning.",
+                "Roster all the moving parts, without the endless planning",
               )}
             </Reveal>
             <Reveal
@@ -438,7 +445,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
             <Reveal
               as="p"
               delay={0.12}
-              className="mt-6 text-lg text-gray-600 leading-relaxed lg:mx-auto lg:max-w-2xl"
+              className="mt-6 text-lg text-gray-600 leading-relaxed lg:mx-auto lg:max-w-3xl"
             >
               {copy(
                 "RosterLab's optimisation engine considers how every shift fits together, helping you find the best workable schedule. You review, adjust and publish.",
