@@ -90,10 +90,10 @@ const CAPABILITIES = [
 
 const COMPARISON: ComparisonRow[] = [
   {
-    task: "Coordinating shifts",
-    manual: "Double-bookings and conflicting assignments can go unnoticed",
-    rosterlab:
-      "Allocations coordinated across the roster to avoid scheduling conflicts",
+    task: "Applying rostering rules",
+    manual:
+      "Rest requirements and employment agreement rules can be overlooked",
+    rosterlab: "Rostering rules applied automatically during roster generation",
   },
   {
     task: "Balancing staffing requirements",
