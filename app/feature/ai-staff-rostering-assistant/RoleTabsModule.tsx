@@ -1,313 +1,153 @@
 "use client";
 
-import { useState } from "react";
+import { ottoText } from "./otto-copy";
 import Image from "next/image";
+import { useId, useState } from "react";
 
-export default function RoleTabsModule() {
-  const [activeTab, setActiveTab] = useState<string>("managers");
+const roles = [
+  {
+    id: "managers",
+    questions: [
+      "Which departments are short-staffed next month?",
+      "Show me how staff hours are distributed across departments.",
+      "Which shifts are missing the required skill mix?",
+    ],
+    label: "For Managers",
+    title: "Make smarter decisions, backed by roster data",
+    description:
+      "Get a clear picture of staffing, skill mix, workload distribution and compliance across departments, with the insights to make better use of your workforce.",
+  },
+  {
+    id: "team-leads",
+    questions: [
+      "Who can cover Saturday night without overtime?",
+      "Would this shift swap breach any fatigue or EBA rules?",
+      "Show me what’s changed since the roster was published.",
+    ],
+    label: "For Team Leads / Roster Coordinators",
+    title: "Expert rostering guidance, whenever you need it",
+    description:
+      "Otto helps roster coordinators build safe and fair rosters faster, without needing to remember every rule. Even when rostering responsibilities change hands, the knowledge isn't lost.",
+  },
+  {
+    id: "staff",
+    photo: "/landing/otto/role-staff-wide.webp",
+    photoWidth: 1440,
+    photoHeight: 960,
+    questions: [
+      "When is my next night shift?",
+      "How much annual leave have I taken this year?",
+      "Update my preference to work mornings on Fridays.",
+    ],
+    label: "For Staff",
+    title: "An easier way to manage your work schedule",
+    description:
+      "Staff can use Otto to find out when they’re working, check leave and update shift preferences anytime, from anywhere.",
+  },
+] as const;
+
+const staffPromptOffsets = [
+  "ml-2 max-w-full sm:ml-4",
+  "max-w-[90%] translate-x-2 justify-self-end sm:translate-x-4 lg:translate-x-6",
+  "mt-1.5 max-w-[94%] justify-self-start",
+] as const;
+
+const managerPromptOffsets = [
+  "max-w-[88%] justify-self-start",
+  "max-w-[91%] justify-self-end",
+  "ml-2 mt-1 max-w-[87%] justify-self-start sm:ml-5",
+] as const;
+
+const coordinatorPromptOffsets = [
+  "max-w-[84%] justify-self-end",
+  "max-w-[88%] justify-self-start",
+  "mr-2 mt-1 max-w-[90%] justify-self-end sm:mr-6",
+] as const;
+
+export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
+  const [activeRole, setActiveRole] = useState<(typeof roles)[number]>(roles[0]);
+  const panelId = useId();
+  const isStaff = activeRole.id === "staff";
+  const isCoordinator = activeRole.id === "team-leads";
+  const promptOffsets = isStaff ? staffPromptOffsets : isCoordinator ? coordinatorPromptOffsets : managerPromptOffsets;
 
   return (
-    <div className="max-w-3xl mx-auto">
-      {/* Tab Navigation */}
-      <div className="flex flex-wrap gap-3 mb-8 justify-center">
-        <button
-          onClick={() => setActiveTab("managers")}
-          className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
-            activeTab === "managers"
-              ? "bg-[#1c82fd] text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
-          }`}
-        >
-          For Managers
-        </button>
-        <button
-          onClick={() => setActiveTab("team-leads")}
-          className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
-            activeTab === "team-leads"
-              ? "bg-[#1c82fd] text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
-          }`}
-        >
-          For Team Leads / Roster Co-Ordinators
-        </button>
-        <button
-          onClick={() => setActiveTab("staff")}
-          className={`px-6 py-3 rounded-full font-semibold transition-all whitespace-nowrap ${
-            activeTab === "staff"
-              ? "bg-[#1c82fd] text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
-          }`}
-        >
-          For Staff
-        </button>
+    <>
+      <div
+        role="group"
+        aria-label={ottoText("Choose a rostering role", isUS)}
+        className="mx-auto mt-6 grid w-fit max-w-full gap-1 rounded-2xl border border-[#D6E2F2] bg-[#E8EFF9] p-1 md:flex md:rounded-full"
+      >
+        {roles.map((role) => (
+          <button
+            key={role.id}
+            type="button"
+            aria-pressed={activeRole.id === role.id}
+            aria-controls={panelId}
+            onClick={() => setActiveRole(role)}
+            className={`min-h-11 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 md:rounded-full md:px-6 ${
+              activeRole.id === role.id
+                ? "bg-[#1F2A5C] text-white"
+                : "text-[#1F2A5C] hover:bg-white/75"
+            }`}
+          >
+            {ottoText(role.label, isUS)}
+          </button>
+        ))}
       </div>
 
-      {/* Tab Content */}
-      <div className="bg-white rounded-lg shadow-lg p-8 min-h-[200px]">
-        {activeTab === "managers" && (
-          <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full md:w-[280px]">
-              <Image
-                src="/images/tab-module/module3.jpg"
-                alt="For Managers"
-                width={280}
-                height={350}
-                className="rounded-lg object-cover w-full h-auto"
-              />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Make Smarter Decisions, Informed By Rostering Data
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Ask Otto for the data you need to make smart, informed decisions
-                quickly.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Look up stats, coverage gaps, shift allocations and leave
-                    information across departments
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Check skill-mix requirements and identify potential
-                    shortages before they become critical
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Review workload distribution and ask about staff utilisation
-                    across different shift types
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Get clear explanations about roster changes, fairness and
-                    compliance across your team
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-        {activeTab === "team-leads" && (
-          <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full md:w-[280px]">
-              <Image
-                src="/images/tab-module/module1.jpg"
-                alt="For Team Leads / Roster Admins"
-                width={280}
-                height={350}
-                className="rounded-lg object-cover w-full h-auto"
-              />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Build Better Rosters With AI Guidance
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Otto helps roster co-ordinators build safe and fair rosters
-                faster, without needing to remember every rule.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Ask questions about team availability e.g. "Who can fill
-                    Saturday night without overtime?"
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Automatically add fairness, fatigue and EBA rules as you
-                    build
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Get instant answers to complex scenarios, such as, on-call,
-                    sick leave, shift swaps
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Make changes with natural language instead of manually
-                    searching
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-        {activeTab === "staff" && (
-          <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="flex-shrink-0 w-full md:w-[280px]">
-              <Image
-                src="/images/tab-module/module2.jpg"
-                alt="For Staff"
-                width={280}
-                height={350}
-                className="rounded-lg object-cover w-full h-auto"
-              />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Quick Shift Management - Anywhere, Anytime
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Staff can use Otto to make instant changes to their shifts
-                without navigating the app.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Make changes to staff preferences
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Quickly get information related to their shift e.g. "How
-                    much annual leave have I had?"
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-[#4a9288] mr-3 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-gray-700">
-                    Ask questions about their shifts e.g. "When am I working
-                    night shifts next?"
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
+      <div
+        id={panelId}
+        className="mt-6 grid items-center gap-6 rounded-3xl border border-[#D6E2F2] bg-white p-6 sm:p-8 md:mt-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10 lg:px-12 lg:py-8"
+      >
+        <div aria-live="polite">
+          <h3 className="max-w-md text-balance text-2xl font-semibold leading-tight tracking-tight text-[#1F2A5C] md:text-3xl">
+            {ottoText(activeRole.title, isUS)}
+          </h3>
+          <p className="mt-4 max-w-[38ch] text-base leading-relaxed text-gray-600 md:text-lg">
+            {ottoText(activeRole.description, isUS)}
+          </p>
+        </div>
+        <div
+          className={`relative isolate grid min-h-56 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
+            isStaff ? "items-center bg-[#E7EFF9]" : "bg-[#EDF3FB] sm:aspect-[3/2]"
+          }`}
+        >
+          {isStaff && (
+            <Image
+              src={activeRole.photo}
+              alt=""
+              width={activeRole.photoWidth}
+              height={activeRole.photoHeight}
+              sizes="(min-width: 1400px) 715px, (min-width: 768px) 55vw, 90vw"
+              className="col-start-1 row-start-1 block h-auto w-full self-stretch object-cover object-[60%_center]"
+            />
+          )}
+          <ul
+            aria-label={`Example questions ${ottoText(activeRole.label, isUS).toLowerCase()}`}
+            className={`relative col-start-1 row-start-1 grid py-4 ${
+              isStaff
+                ? "w-[58%] translate-y-2 self-center gap-2.5 px-2.5 sm:w-[54%] sm:gap-3 sm:px-4 lg:translate-y-4 xl:px-6"
+                : isCoordinator
+                  ? "w-full max-w-[26rem] translate-y-2 self-center justify-self-end gap-3 px-4 sm:w-[83%] sm:px-6"
+                  : "w-full max-w-[26rem] self-end gap-2.5 px-4 sm:w-[82%] sm:px-6 sm:pb-7"
+            }`}
+          >
+            {activeRole.questions.map((question, index) => (
+              <li
+                key={ottoText(question, isUS)}
+                className={`w-fit rounded-xl rounded-br-sm border py-2 font-medium leading-snug shadow-sm ${
+                  isStaff
+                    ? "border-white/80 bg-[#DDF6EF] px-2.5 text-xs text-[#123832] shadow-[#123832]/20 sm:px-3.5 sm:text-sm lg:px-4 lg:py-2.5 lg:text-base"
+                    : "border-[#C9DCEF] bg-[#F8FBFF] px-3.5 text-sm text-[#192F4A] shadow-[#192F4A]/15 lg:px-4 lg:py-2.5 lg:text-base"
+                } ${promptOffsets[index]}`}
+              >
+                {question}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-
-      {/* Disclaimer */}
-      <p className="text-xs text-gray-500 mt-4 text-center">
-        *Otto's information is restricted based on user permissions by default.
-      </p>
-    </div>
+    </>
   );
 }

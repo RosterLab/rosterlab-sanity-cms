@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { getResourcesNavigation } from "./resources-navigation";
 
 import { HiMenu, HiX, HiChevronDown, HiUser } from "react-icons/hi";
+import { PiSparkleFill } from "react-icons/pi";
 import { trackSmartButtonClick } from "@/components/analytics/tracking";
 import { FREE_SIGNUP_GATE_CLASS } from "@/lib/market-access/client-gate";
 import DemoCtaLabel from "@/components/market-access/DemoCtaLabel";
@@ -111,7 +112,19 @@ interface SubMenuItem {
   title: string;
   link: string;
   description?: string;
+  showAiIcon?: boolean;
   group?: "Mini Tools" | "Templates" | "Games";
+}
+
+function ProductFeatureLabel({ item }: { item: SubMenuItem }) {
+  return item.showAiIcon ? (
+    <span className="inline-flex items-center gap-1.5">
+      {item.title}
+      <PiSparkleFill aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-[#69A5EF]" />
+    </span>
+  ) : (
+    item.title
+  );
 }
 
 interface NavItem {
@@ -199,7 +212,8 @@ export default function Header({
           link: "/feature/automated-rostering",
         },
         {
-          title: "AI Scheduling Assistant",
+          title: "Otto - AI Assistant",
+          showAiIcon: true,
           link: "/feature/ai-staff-rostering-assistant",
         },
         { title: "Open Shifts", link: "/feature/open-shifts" },
@@ -480,7 +494,7 @@ export default function Header({
                                     className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
                                   >
                                     <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
-                                      {subItem.title}
+                                      <ProductFeatureLabel item={subItem} />
                                     </div>
                                   </Link>
                                 ))}
@@ -1046,7 +1060,7 @@ export default function Header({
                                   className="text-neutral-600 hover:text-blue-600 hover:bg-neutral-50 block px-3 py-2 rounded-md text-sm"
                                   onClick={() => setIsMenuOpen(false)}
                                 >
-                                  {subItem.title}
+                                  <ProductFeatureLabel item={subItem} />
                                 </Link>
                               ))}
                             </div>

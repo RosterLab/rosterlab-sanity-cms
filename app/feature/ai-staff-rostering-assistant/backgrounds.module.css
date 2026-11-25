@@ -1,0 +1,118 @@
+.role {
+  background-color: #e7effc;
+  background-image:
+    radial-gradient(ellipse at 12% 85%, #8fb7ee 0%, transparent 52%),
+    radial-gradient(ellipse at 88% 20%, #b4d5f6 0%, transparent 58%),
+    linear-gradient(155deg, #c6d9f4 0%, #eef4fc 48%, #d4e3fa 100%);
+}
+
+.hero {
+  background-color: #08162f;
+  background-image:
+    radial-gradient(ellipse at 92% 76%, #214b89 0%, transparent 62%),
+    radial-gradient(ellipse at 70% 2%, #213765 0%, transparent 56%),
+    linear-gradient(155deg, #08162f 0%, #101d3c 52%, #172f56 100%);
+}
+
+.evaluate {
+  background-color: #8fbcaf;
+  background-image:
+    radial-gradient(ellipse at 89% 5%, #d6ede2 0%, transparent 63%),
+    radial-gradient(ellipse at 15% 78%, #5a998b 0%, transparent 68%),
+    linear-gradient(122deg, #91bdb0 0%, #bfded1 45%, #78aa9f 100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .typingDot {
+    animation: typingLift 1.5s ease-in-out infinite;
+  }
+
+  .typingDot:nth-child(2) {
+    animation-delay: 150ms;
+  }
+
+  .typingDot:nth-child(3) {
+    animation-delay: 300ms;
+  }
+}
+
+@keyframes typingLift {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  20% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+.analyse {
+  background-color: #dce3fa;
+  background-image:
+    radial-gradient(ellipse at 80% 15%, #f0e9fb 0%, transparent 60%),
+    radial-gradient(ellipse at 12% 90%, #a4b5e7 0%, transparent 68%),
+    linear-gradient(145deg, #c6d4f3, #e7e5fa);
+}
+
+.act {
+  background-color: #d1e2f9;
+  background-image:
+    radial-gradient(ellipse at 5% 0%, #edf5fe 0%, transparent 58%),
+    linear-gradient(150deg, #dbeafa 10%, #bfd6f5 55%, #8bb1e6 100%);
+}
+
+/* Neutralise the selected row while preserving its original raster text. */
+.employeeSelection,
+.employeeSelection::before,
+.employeeSelection::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/landing/otto/act-employees.webp") left top / 100% auto no-repeat;
+}
+
+.employeeSelection {
+  clip-path: inset(34.36% 0 61.78% 8.77%);
+  isolation: isolate;
+  filter: grayscale(1) brightness(1.2);
+}
+
+.employeeSelection::before,
+.employeeSelection::after {
+  content: "";
+  background-position: left -2.71cqw;
+}
+
+.employeeSelection::before {
+  clip-path: inset(34.36% 84.8% 61.78% 12.2%);
+}
+
+.employeeSelection::after {
+  clip-path: inset(34.36% 30.3% 61.78% 49.25%);
+}
+
+.userMessage {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375;
+}
+
+@media (min-width: 1024px) {
+  .userMessage {
+    font-size: 1rem;
+  }
+}
+
+.userBubble {
+  width: fit-content;
+  max-width: 92%;
+  margin-left: auto;
+  padding: 0.625rem 1rem;
+  border-radius: 1rem 1rem 0.125rem 1rem;
+  background-color: #2563d9;
+  color: #fff;
+}
