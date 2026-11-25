@@ -27,7 +27,7 @@ import { PiArrowRightBold, PiQuotesFill } from "react-icons/pi";
 const LOCATION = "Industry Page Allied Health Rostering";
 const PAGE_NAME = "Allied Health Rostering";
 const HOW_IT_WORKS = "how-it-works";
-const INTERACTIVE_DEMO = "/staff-rostering-interactive-demo";
+const FEATURED_CASE_STUDY = "/case-studies/radiology-department-auckland";
 const CASE_STUDY =
   "/case-studies/whanganui-radiography-redirects-179-hours-of-admin-back-to-clinical-work-through-rosterlab";
 
@@ -189,10 +189,10 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
           },
         }}
         secondaryCta={{
-          href: href(INTERACTIVE_DEMO),
-          label: "See how it works",
+          href: href(FEATURED_CASE_STUDY),
+          label: "See case study",
           analyticsProperties: {
-            cta_type: "how_it_works",
+            cta_type: "case_study",
             page_name: pageName,
             section: "hero",
           },
@@ -221,15 +221,6 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
             <Reveal as="h2" className={H2}>
               {copy(
                 "Roster all the moving parts, without the endless planning",
-              )}
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={0.12}
-              className="mt-6 text-lg text-gray-600 leading-relaxed"
-            >
-              {copy(
-                "RosterLab keeps your allied health services covered and running smoothly, with staffing needs coordinated across teams, disciplines, and sites.",
               )}
             </Reveal>
           </div>
@@ -263,8 +254,8 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
       {/* 3 — Case study: a photo beside a navy panel, proof points in mint. */}
       <section className="bg-[#F4F6FB] py-16 md:py-24">
         <Container>
-          <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]">
-            <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:block">
+          <article className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,2fr)]">
+            <div className="relative hidden overflow-hidden rounded-[1.25rem] bg-[#F4F6FB] md:rounded-[1.75rem] lg:order-last lg:block">
               {/* Allied health customer story, using the existing case study image. */}
               <Image
                 src="/landing/case-studies/whanganui-radiography-mri.webp"
@@ -570,18 +561,18 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
                   {copy("Book a demo")}
                 </Button>
                 <Button
-                  href={href(INTERACTIVE_DEMO)}
+                  href={href(FEATURED_CASE_STUDY)}
                   variant="outline"
                   className="rounded-md border-2 border-[#053B3D] px-7 py-3.5 text-base font-semibold text-[#053B3D] hover:bg-[#053B3D] hover:text-white"
-                  analyticsLabel={copy("See how it works")}
+                  analyticsLabel={copy("See case study")}
                   analyticsLocation={location}
                   analyticsProperties={{
-                    cta_type: "how_it_works",
+                    cta_type: "case_study",
                     page_name: pageName,
                     section: "final_cta",
                   }}
                 >
-                  {copy("See how it works")}
+                  {copy("See case study")}
                 </Button>
               </div>
             </div>

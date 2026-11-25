@@ -18,6 +18,7 @@ export function alliedHealthCopy(text: string, isUS: boolean): string {
     [/\bradiographers\b/g, "radiologic technologists"],
     [/\bradiographer\b/g, "radiologic technologist"],
     [/\bAnaesthetic technology\b/g, "Anesthesia technology"],
+    [/\bAnaesthetic tech\b/g, "Anesthesia tech"],
     [/\banaesthetic technicians\b/g, "anesthesia technicians"],
     [/\bplanned theatre lists\b/g, "planned operating room schedules"],
     [/\bTheatre list allocations\b/g, "Operating room assignments"],

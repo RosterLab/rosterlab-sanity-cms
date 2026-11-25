@@ -1,8 +1,8 @@
 "use client";
 
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
-import { PiArrowLeftBold, PiArrowRightBold } from "react-icons/pi";
+import { PiArrowRightBold } from "react-icons/pi";
 import {
   trackButtonClick,
   trackSmartButtonClick,
@@ -11,14 +11,17 @@ import {
 import { alliedHealthCopy, alliedHealthHref } from "./localization";
 
 interface Discipline {
+  label?: string;
   name: string;
   description: string;
+  practitioners?: string;
   details: string[];
   link?: { label: string; href: string };
 }
 
 const GLOBAL_DISCIPLINES: Discipline[] = [
   {
+    label: "Medical imaging",
     name: "Medical imaging & radiography",
     description:
       "Assign radiographers to CT, MRI and X-ray based on their modality skills, while keeping imaging services covered across sites and after hours.",
@@ -33,6 +36,7 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     },
   },
   {
+    label: "Pathology & lab",
     name: "Pathology & laboratory services",
     description:
       "Match staff to haematology, biochemistry and transfusion benches, with independent overnight cover and time for supervised training.",
@@ -47,66 +51,7 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     },
   },
   {
-    name: "Clinical physiology",
-    description:
-      "Build rosters around specialist test lists, from echocardiography to lung function testing, and coordinate staff who work across clinics.",
-    details: [
-      "Test-specific competencies",
-      "Specialist clinic lists",
-      "Shared staff across clinics",
-    ],
-  },
-  {
-    name: "Audiology",
-    description:
-      "Match audiologists to paediatric clinics and specialist hearing or balance tests, including when clinicians work across multiple sites.",
-    details: [
-      "Paediatric clinic cover",
-      "Diagnostic test skills",
-      "Multi-site clinic staffing",
-    ],
-  },
-  {
-    name: "Physiotherapy",
-    description:
-      "Cover priority wards and specialist services, such as respiratory care or ED, while sharing weekend duties across eligible staff.",
-    details: [
-      "Acute ward cover",
-      "Specialist service skills",
-      "Weekend rotations",
-    ],
-  },
-  {
-    name: "Occupational therapy",
-    description:
-      "Make time for discharge assessments alongside rehabilitation sessions and community visits, with therapists assigned where they’re needed.",
-    details: [
-      "Discharge assessment cover",
-      "Acute & rehab allocations",
-      "Community visit time",
-    ],
-  },
-  {
-    name: "Podiatry",
-    description:
-      "Roster clinicians with high-risk foot expertise and plan clinic staffing around demand, including capacity for urgent referrals.",
-    details: [
-      "High-risk foot cover",
-      "Ward referral cover",
-      "Clinic & outreach staffing",
-    ],
-  },
-  {
-    name: "Pharmacy",
-    description:
-      "Allocate pharmacists across wards and dispensary shifts, with specialist expertise where services need it and cover for weekends and on-call duties.",
-    details: [
-      "Ward & dispensary cover",
-      "Specialist pharmacy skills",
-      "Weekend & on-call duties",
-    ],
-  },
-  {
+    label: "Anaesthetic tech",
     name: "Anaesthetic technology",
     description:
       "Assign anaesthetic technicians to planned theatre lists and make sure emergency work has technician cover after hours.",
@@ -117,14 +62,46 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     ],
   },
   {
+    label: "Pharmacy",
+    name: "Pharmacy",
+    description:
+      "Allocate pharmacists across wards and dispensary shifts, with specialist expertise where services need it and cover for weekends and on-call duties.",
+    details: [
+      "Ward & dispensary cover",
+      "Specialist pharmacy skills",
+      "Weekend & on-call duties",
+    ],
+  },
+  {
+    label: "Audiology",
+    name: "Audiology",
+    description:
+      "Match audiologists to paediatric clinics and specialist hearing or balance tests, including when clinicians work across multiple sites.",
+    details: [
+      "Paediatric clinic cover",
+      "Diagnostic test skills",
+      "Multi-site clinic staffing",
+    ],
+  },
+  {
+    label: "Mental health",
     name: "Mental health",
     description:
-      "Build acute and community crisis rosters with the mix of clinicians needed on each shift, including overnight and on-call cover.",
+      "Coordinate staff across inpatient units, assessment and therapy sessions, while planning for community crisis response and after-hours duties.",
     details: [
-      "Crisis response cover",
       "Multidisciplinary skill mix",
-      "Overnight & on-call",
+      "Clinical supervision",
+      "Crisis & on-call cover",
     ],
+  },
+  {
+    name: "Other",
+    label: "Other",
+    description:
+      "Plan cover for ward referrals, specialist clinics, rehabilitation sessions and community visits, allocating practitioners according to the clinical expertise each service needs.",
+    practitioners:
+      "Physiotherapy · Occupational therapy · Clinical physiology · Podiatry",
+    details: [],
   },
 ];
 
@@ -139,7 +116,11 @@ export default function DisciplineSelector({
   const DISCIPLINES = GLOBAL_DISCIPLINES.map((discipline) => ({
     ...discipline,
     name: copy(discipline.name),
+    label: copy(discipline.label ?? discipline.name),
     description: copy(discipline.description),
+    practitioners: discipline.practitioners
+      ? copy(discipline.practitioners)
+      : undefined,
     details: discipline.details.map(copy),
     link: discipline.link
       ? {
@@ -151,8 +132,57 @@ export default function DisciplineSelector({
   const [active, setActive] = useState(0);
   const id = useId();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const card = useRef<HTMLDivElement>(null);
+  const elapsed = useRef(0);
+  const [progress, setProgress] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [isDocumentVisible, setIsDocumentVisible] = useState(true);
+
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motion.matches) setIsPlaying(false);
+    const onMotion = () => {
+      if (motion.matches) setIsPlaying(false);
+    };
+    const onVisibility = () => setIsDocumentVisible(!document.hidden);
+    motion.addEventListener("change", onMotion);
+    document.addEventListener("visibilitychange", onVisibility);
+    onVisibility();
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    if (card.current) observer.observe(card.current);
+    return () => {
+      observer.disconnect();
+      motion.removeEventListener("change", onMotion);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isPlaying || isHovered || hasFocus || !isInView || !isDocumentVisible)
+      return;
+    let previous = performance.now();
+    const timer = window.setInterval(() => {
+      const now = performance.now();
+      elapsed.current += now - previous;
+      previous = now;
+      if (elapsed.current >= 10000) {
+        elapsed.current = 0;
+        setActive((index) => (index + 1) % GLOBAL_DISCIPLINES.length);
+      }
+      setProgress(elapsed.current / 10000);
+    }, 100);
+    return () => window.clearInterval(timer);
+  }, [isPlaying, isHovered, hasFocus, isInView, isDocumentVisible]);
 
   function select(index: number) {
+    elapsed.current = 0;
+    setProgress(0);
     setActive(index);
     trackButtonClick(`Discipline: ${DISCIPLINES[index].name}`, LOCATION);
   }
@@ -205,46 +235,57 @@ export default function DisciplineSelector({
             tabIndex={active === index ? 0 : -1}
             onClick={() => select(index)}
             onKeyDown={(event) => onKeyDown(event, index)}
-            className={`max-w-full rounded-full px-3 py-2.5 text-left text-sm font-medium leading-snug transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3B7FE8] sm:px-4 sm:text-base ${
+            className={`max-w-full rounded-full border px-3 py-2.5 text-left text-sm font-medium leading-snug transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3B7FE8] sm:px-4 sm:text-base ${
               active === index
-                ? "bg-[#2563EB] text-white"
-                : "text-[#1F2A5C] hover:bg-white"
+                ? "border-[#2563EB] bg-[#2563EB] text-white"
+                : "border-[#1F2A5C]/10 bg-white text-[#1F2A5C] hover:border-[#2563EB]/40 hover:bg-blue-50"
             }`}
           >
-            {discipline.name}
+            {discipline.label}
           </button>
         ))}
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-2xl bg-[#2563EB] md:mt-8 md:rounded-3xl lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <div
+        ref={card}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocusCapture={() => setHasFocus(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget))
+            setHasFocus(false);
+        }}
+        className="mt-6 rounded-2xl border border-[#1F2A5C]/10 bg-white p-3 md:mt-8 md:rounded-3xl md:p-4 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-4"
+      >
         {/* Reserved for discipline photography in a later update. */}
-        <div className="relative aspect-[16/10] bg-[#DFE7F5] sm:aspect-video lg:aspect-auto">
-          <button
-            type="button"
-            onClick={() =>
-              select((active + DISCIPLINES.length - 1) % DISCIPLINES.length)
-            }
-            aria-label={`Previous discipline: ${DISCIPLINES[(active + DISCIPLINES.length - 1) % DISCIPLINES.length].name}`}
-            aria-controls={`${id}-panel-${(active + DISCIPLINES.length - 1) % DISCIPLINES.length}`}
-            className="group absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/65 text-[#2563EB] ring-1 ring-[#1F2A5C]/[0.06] transition-colors hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB] left-4"
+        <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-[#EDF3FB] sm:aspect-video lg:aspect-auto lg:rounded-2xl">
+          <div
+            className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-0.5"
+            aria-label="Discipline slideshow controls"
           >
-            <PiArrowLeftBold
-              aria-hidden="true"
-              className="h-4 w-4 transition-transform group-hover:-translate-x-0.5"
-            />
-          </button>
-          <button
-            type="button"
-            onClick={() => select((active + 1) % DISCIPLINES.length)}
-            aria-label={`Next discipline: ${DISCIPLINES[(active + 1) % DISCIPLINES.length].name}`}
-            aria-controls={`${id}-panel-${(active + 1) % DISCIPLINES.length}`}
-            className="group absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/65 text-[#2563EB] ring-1 ring-[#1F2A5C]/[0.06] transition-colors hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB] right-4"
-          >
-            <PiArrowRightBold
-              aria-hidden="true"
-              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-            />
-          </button>
+            {DISCIPLINES.map((discipline, index) => (
+              <button
+                key={discipline.name}
+                type="button"
+                aria-label={`Show ${discipline.name}`}
+                aria-current={active === index ? "true" : undefined}
+                onClick={() => select(index)}
+                className="flex h-8 min-w-6 items-center justify-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2563EB]"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`relative block h-2 overflow-hidden rounded-full bg-white ring-1 ring-[#1F2A5C]/10 ${active === index ? "w-10" : "w-2"}`}
+                >
+                  {active === index && (
+                    <span
+                      className="absolute inset-0 origin-left rounded-full bg-[#2563EB]"
+                      style={{ transform: `scaleX(${progress})` }}
+                    />
+                  )}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
         {/* Desktop panels share a height; mobile content uses only the space it needs. */}
         <div className="lg:grid">
@@ -257,7 +298,7 @@ export default function DisciplineSelector({
               aria-hidden={active !== index}
               inert={active !== index}
               tabIndex={active === index ? 0 : -1}
-              className={`min-w-0 p-6 text-white lg:[grid-area:1/1] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#03F9BE] sm:p-8 lg:p-10 ${
+              className={`min-w-0 px-3 py-6 text-[#1F2A5C] lg:[grid-area:1/1] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#03F9BE] sm:p-8 lg:p-10 ${
                 active === index
                   ? "block"
                   : "hidden lg:invisible lg:pointer-events-none lg:block"
@@ -266,20 +307,29 @@ export default function DisciplineSelector({
               <h3 className="text-balance text-[22px] font-semibold leading-snug tracking-tight sm:text-2xl lg:text-3xl">
                 {discipline.name}
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-white lg:text-lg">
+              <p className="mt-4 text-base leading-relaxed text-gray-600 lg:text-lg">
                 {discipline.description}
               </p>
-              <ul className="mt-5 grid gap-y-2.5 text-sm leading-relaxed text-white sm:flex sm:flex-wrap sm:gap-x-5 lg:mt-6 lg:text-base">
-                {discipline.details.map((detail) => (
-                  <li key={detail} className="flex items-start gap-2">
-                    <span
-                      aria-hidden="true"
-                      className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#03F9BE]"
-                    />
-                    {detail}
-                  </li>
-                ))}
-              </ul>
+              {discipline.practitioners && (
+                <ul className="mt-6 grid gap-x-6 gap-y-3 border-t border-[#1F2A5C]/10 pt-5 text-sm font-medium leading-relaxed text-[#1F2A5C] sm:grid-cols-2 lg:text-base">
+                  {discipline.practitioners.split(" · ").map((name) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
+              )}
+              {discipline.details.length > 0 && (
+                <ul className="mt-5 grid gap-y-2.5 text-sm leading-relaxed text-gray-600 sm:flex sm:flex-wrap sm:gap-x-5 lg:mt-6 lg:text-base">
+                  {discipline.details.map((detail) => (
+                    <li key={detail} className="flex items-start gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#2563EB]"
+                      />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              )}
               {discipline.link && (
                 <Link
                   href={discipline.link.href}
@@ -291,7 +341,7 @@ export default function DisciplineSelector({
                       { discipline: discipline.name },
                     )
                   }
-                  className="group mt-5 inline-flex min-h-11 max-w-full items-center gap-2 rounded-sm py-2 text-sm font-medium leading-relaxed text-white sm:text-base lg:mt-6 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#03F9BE]"
+                  className="group mt-5 inline-flex min-h-11 max-w-full items-center gap-2 rounded-sm py-2 text-sm font-medium leading-relaxed text-[#2563EB] sm:text-base lg:mt-6 underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#03F9BE]"
                 >
                   {discipline.link.label}
                   <PiArrowRightBold
@@ -303,6 +353,25 @@ export default function DisciplineSelector({
             </div>
           ))}
         </div>
+      </div>
+      <div className="mt-6 text-center">
+        <Link
+          href={alliedHealthHref("/enterprise", isUS)}
+          onClick={() =>
+            trackSmartButtonClick(
+              "See RosterLab for Enterprise",
+              alliedHealthHref("/enterprise", isUS),
+              LOCATION,
+            )
+          }
+          className="group inline-flex min-h-11 items-center gap-2 rounded-sm py-2 text-sm font-semibold text-[#2563EB] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2563EB] md:text-base"
+        >
+          See RosterLab for Enterprise
+          <PiArrowRightBold
+            aria-hidden="true"
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+          />
+        </Link>
       </div>
     </div>
   );
