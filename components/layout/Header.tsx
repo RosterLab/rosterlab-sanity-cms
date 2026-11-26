@@ -230,15 +230,12 @@ export default function Header({
           link: "/industries/healthcare/emergency-department-rostering",
         },
         { title: "Radiology", link: "/industries/healthcare/radiology" },
-        {
-          title: "Radiography",
-          link: "/industries/healthcare/radiography",
-        },
         { title: "Aged Care", link: "/industries/healthcare/aged-care" },
         {
           title: "Veterinary",
           link: "/industries/healthcare/veterinary-rostering",
         },
+        { title: "Long-Term Planning", link: "/type/long-roster" },
         {
           title: "Nursing & Midwifery",
           link: "/industries/healthcare/nurse-rostering",
@@ -256,7 +253,6 @@ export default function Header({
           link: "/industries/healthcare/senior-medical-officer-rostering",
         },
         { title: "On-Call", link: "/type/on-call-roster" },
-        { title: "Long-Term Planning", link: "/type/long-roster" },
         {
           title: "Telehealth",
           link: "/industries/healthcare/telehealth-rostering",
@@ -556,7 +552,7 @@ export default function Header({
                             For Enterprise
                           </Link>
                           <div className="grid grid-cols-2 gap-6 border-t border-gray-200 pt-2">
-                            {/* Specialties column */}
+                            {/* Left column */}
                             <div>
                               <div className="space-y-1">
                                 {item.subItems.slice(1, 7).map((subItem) => (
@@ -568,20 +564,10 @@ export default function Header({
                                     {subItem.title}
                                   </Link>
                                 ))}
-                                <Link
-                                  href={
-                                    isUSVersion
-                                      ? "/us/industries/healthcare-scheduling"
-                                      : "/industries/healthcare"
-                                  }
-                                  className="block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-700"
-                                >
-                                  View all healthcare specialties
-                                </Link>
                               </div>
                             </div>
 
-                            {/* Workforce column */}
+                            {/* Right column */}
                             <div>
                               <div className="space-y-1">
                                 {item.subItems.slice(7).map((subItem) => (
@@ -599,12 +585,22 @@ export default function Header({
 
                           {/* Call to Action */}
                           <div className="mt-6 pt-6 border-t border-gray-200">
+                            <Link
+                              href={
+                                isUSVersion
+                                  ? "/us/industries/healthcare-scheduling"
+                                  : "/industries/healthcare"
+                              }
+                              className="block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-700"
+                            >
+                              View all healthcare specialties
+                            </Link>
                             <div className="flex items-center justify-between">
                               <Link
                                 href={
                                   isUSVersion ? "/us/industries" : "/industries"
                                 }
-                                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
+                                className="text-sm font-medium text-[#4a9288] hover:text-[#3a7268] hover:bg-blue-50 flex items-center px-3 py-2 rounded-lg transition-colors"
                               >
                                 View all industries
                                 <svg
@@ -1072,52 +1068,45 @@ export default function Header({
                             For Enterprise
                           </Link>
                           <div className="border-t border-gray-200 pt-2">
-                            {item.subItems.slice(1, 7).map((subItem) => (
+                            {item.subItems.slice(1, 7).flatMap((subItem, index) => [
+                              subItem,
+                              ...item.subItems.slice(index + 7, index + 8),
+                            ]).concat(item.subItems.slice(13)).map((subItem) => (
                               <Link
                                 key={subItem.link}
                                 href={subItem.link}
                                 className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 block px-3 py-2 rounded-md text-sm"
                                 onClick={() => setIsMenuOpen(false)}
                               >
-                                {subItem.title}
+                                {subItem.title.replace(/ (Rostering|Scheduling)$/, "")}
                               </Link>
                             ))}
+                          </div>
+                          <div className="mt-3 border-t border-gray-200 pt-2">
                             <Link
                               href={
                                 isUSVersion
                                   ? "/us/industries/healthcare-scheduling"
                                   : "/industries/healthcare"
                               }
-                              className="mt-2 block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 hover:text-blue-700"
+                              className="block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 hover:text-blue-700"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               View all healthcare specialties
                             </Link>
-                          </div>
-                          <div className="mt-1 px-3">
-                            <Link
-                              href={
-                                isUSVersion
-                                  ? "https://rosterlab.com/us/industries"
-                                  : "https://rosterlab.com/industries"
-                              }
-                              className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              View all industries →
-                            </Link>
-                          </div>
-                          <div className="mt-3 pt-3 border-t border-gray-200">
-                            {item.subItems.slice(7).map((subItem) => (
+                            <div className="mt-1 px-3">
                               <Link
-                                key={subItem.link}
-                                href={subItem.link}
-                                className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 block px-3 py-2 rounded-md text-sm"
+                                href={
+                                  isUSVersion
+                                    ? "/us/industries"
+                                    : "/industries"
+                                }
+                                className="text-[#4a9288] hover:text-[#3a7268] text-xs font-semibold"
                                 onClick={() => setIsMenuOpen(false)}
                               >
-                                {subItem.title}
+                                View all industries →
                               </Link>
-                            ))}
+                            </div>
                           </div>
                         </>
                       ) : item.title === "Resources" ? (

@@ -56,15 +56,17 @@ test("US clinical copy and spelling are localized without rewriting the brand", 
   expect(alliedHealthCopy("Haematology", false)).toBe("Haematology");
 });
 
-test("US navigation includes allied health and retains the separate radiography specialty", () => {
+test("US navigation links to allied health without a separate radiography entry", () => {
   const solutions = usNavItems.find((item) => item.title === "Solutions")!;
   expect(solutions.subItems).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ title: "Allied Health", link: usPath }),
-      expect.objectContaining({
-        link: "/us/industries/healthcare/radiography-scheduling",
-      }),
     ]),
+  );
+  expect(solutions.subItems).not.toContainEqual(
+    expect.objectContaining({
+      link: "/us/industries/healthcare/radiography-scheduling",
+    }),
   );
 });
 
