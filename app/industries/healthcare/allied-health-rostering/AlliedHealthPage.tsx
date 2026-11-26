@@ -190,7 +190,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
         )}
         analyticsLocation={location}
         primaryCta={{
-          href: "https://rosterlab.com/book-a-demo",
+          href: href("/book-a-demo"),
           label: "Book a demo",
           analyticsProperties: {
             cta_type: "demo",
@@ -559,7 +559,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
               </p>
               <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button
-                  href="https://rosterlab.com/book-a-demo"
+                  href={href("/book-a-demo")}
                   className="rounded-md bg-[#053B3D] px-7 py-3.5 text-base font-semibold text-white hover:bg-[#032A2C]"
                   analyticsLabel={copy("Book a demo")}
                   analyticsLocation={location}

@@ -116,6 +116,7 @@ export default function DisciplineSelector({
   const id = useId();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const card = useRef<HTMLDivElement>(null);
+  const playbackButton = useRef<HTMLButtonElement>(null);
   const elapsed = useRef(0);
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -230,7 +231,9 @@ export default function DisciplineSelector({
 
       <div
         ref={card}
-        onFocusCapture={() => setHasFocus(true)}
+        onFocusCapture={(event) =>
+          setHasFocus(event.target !== playbackButton.current)
+        }
         onBlurCapture={(event) => {
           if (!event.currentTarget.contains(event.relatedTarget))
             setHasFocus(false);
@@ -265,6 +268,15 @@ export default function DisciplineSelector({
                 </span>
               </button>
             ))}
+            <button
+              ref={playbackButton}
+              type="button"
+              aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+              onClick={() => setIsPlaying((playing) => !playing)}
+              className="ml-2 min-h-8 shrink-0 rounded-full bg-white px-3 text-sm font-semibold text-[#1F2A5C] ring-1 ring-[#1F2A5C]/10 hover:bg-blue-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB]"
+            >
+              {isPlaying ? "Pause" : "Play"}
+            </button>
           </div>
         </div>
         {/* Desktop panels share a height; mobile content uses only the space it needs. */}
