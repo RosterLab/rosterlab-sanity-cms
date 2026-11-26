@@ -90,7 +90,7 @@ const CAPABILITIES = [
 
 const COMPARISON: ComparisonRow[] = [
   {
-    task: "Applying rostering rules",
+    task: "Roster compliance",
     manual:
       "Rest requirements and employment agreement rules can be overlooked",
     rosterlab: "Rostering rules applied automatically during roster generation",
@@ -110,6 +110,21 @@ const COMPARISON: ComparisonRow[] = [
 ];
 
 const FAQ_ITEMS = [
+  {
+    question: "What is allied health rostering software?",
+    answer:
+      "Allied health rostering software helps healthcare organisations allocate specialist staff across clinical services, locations and working patterns. RosterLab uses mathematical optimisation to generate rosters that balance staffing requirements, competencies, employment rules and staff preferences.",
+  },
+  {
+    question: "Why is allied health rostering complex?",
+    answer:
+      "Allied health professionals often work across multiple services, locations and specialist areas. Rosters must account for clinical competencies, service demand, training requirements, contracted hours and individual working arrangements simultaneously.",
+  },
+  {
+    question: "Can RosterLab help maintain staff competencies?",
+    answer:
+      "Yes. RosterLab can incorporate training and rotation requirements when generating rosters, helping staff maintain experience across relevant modalities, laboratory sections or clinical services.",
+  },
   {
     question:
       "How is RosterLab different from managing an allied health roster in Excel?",
@@ -140,11 +155,6 @@ const FAQ_ITEMS = [
     question: "Can we roster staff who work across multiple sites or services?",
     answer:
       "Yes. RosterLab considers where allied health staff are needed and when they're available, so someone working across different locations isn't assigned to overlapping shifts. You can plan staffing across services together rather than managing separate rosters in isolation.",
-  },
-  {
-    question: "Can RosterLab work with our existing systems?",
-    answer:
-      "RosterLab offers enterprise integrations and API access. We'll review your existing HR, payroll and reporting workflows to confirm the supported connections, export options and setup your team needs. <a href='/book-a-demo' class='text-blue-600 underline hover:text-blue-700'>Discuss your systems with our team</a>",
   },
 ];
 
@@ -191,6 +201,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
         secondaryCta={{
           href: href(FEATURED_CASE_STUDY),
           label: "See case study",
+          prefetch: true,
           analyticsProperties: {
             cta_type: "case_study",
             page_name: pageName,
@@ -562,6 +573,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
                 </Button>
                 <Button
                   href={href(FEATURED_CASE_STUDY)}
+                  prefetch
                   variant="outline"
                   className="rounded-md border-2 border-[#053B3D] px-7 py-3.5 text-base font-semibold text-[#053B3D] hover:bg-[#053B3D] hover:text-white"
                   analyticsLabel={copy("See case study")}

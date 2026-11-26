@@ -21,14 +21,13 @@ interface Discipline {
 
 const GLOBAL_DISCIPLINES: Discipline[] = [
   {
-    label: "Medical imaging",
-    name: "Medical imaging & radiography",
+    name: "Medical imaging",
     description:
-      "Assign radiographers to CT, MRI and X-ray based on their modality skills, while keeping imaging services covered across sites and after hours.",
+      "Balance complex skill mixes, equipment availability and staffing needs across imaging modalities while meeting fatigue and union requirements.",
     details: [
-      "Modality cover",
-      "Multi-site allocations",
-      "After-hours & on-call",
+      "Modality & skill mix",
+      "Rest & sleep rules",
+      "Fair on-call allocation",
     ],
     link: {
       label: "Explore radiography rostering",
@@ -54,53 +53,37 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     label: "Anaesthetic tech",
     name: "Anaesthetic technology",
     description:
-      "Assign anaesthetic technicians to planned theatre lists and make sure emergency work has technician cover after hours.",
+      "Coordinate technician allocations around surgical lists, specialist competencies and clinical team requirements.",
     details: [
-      "Theatre list allocations",
-      "Emergency theatre cover",
-      "On-call rotations",
+      "Theatre & list allocations",
+      "Clinical team coordination",
+      "Skill mix & supervision",
     ],
   },
   {
     label: "Pharmacy",
     name: "Pharmacy",
     description:
-      "Allocate pharmacists across wards and dispensary shifts, with specialist expertise where services need it and cover for weekends and on-call duties.",
-    details: [
-      "Ward & dispensary cover",
-      "Specialist pharmacy skills",
-      "Weekend & on-call duties",
-    ],
-  },
-  {
-    label: "Audiology",
-    name: "Audiology",
-    description:
-      "Match audiologists to paediatric clinics and specialist hearing or balance tests, including when clinicians work across multiple sites.",
-    details: [
-      "Paediatric clinic cover",
-      "Diagnostic test skills",
-      "Multi-site clinic staffing",
-    ],
+      "Balance staffing across wards, dispensaries and specialist pharmacy services.",
+    details: ["Service coverage", "Specialist skills", "Weekend & on-call"],
   },
   {
     label: "Mental health",
     name: "Mental health",
     description:
-      "Coordinate staff across inpatient units, assessment and therapy sessions, while planning for community crisis response and after-hours duties.",
+      "Balance multidisciplinary teams, specialist competencies and staffing requirements across inpatient, community and crisis services.",
     details: [
       "Multidisciplinary skill mix",
-      "Clinical supervision",
-      "Crisis & on-call cover",
+      "Cross-service allocations",
+      "Specialist & senior cover",
     ],
   },
   {
-    name: "Other",
-    label: "Other",
+    name: "Other Services",
     description:
       "Plan cover for ward referrals, specialist clinics, rehabilitation sessions and community visits, allocating practitioners according to the clinical expertise each service needs.",
     practitioners:
-      "Physiotherapy · Occupational therapy · Clinical physiology · Podiatry",
+      "Physiotherapy · Occupational therapy · Clinical physiology · Podiatry · Audiology",
     details: [],
   },
 ];
@@ -136,7 +119,6 @@ export default function DisciplineSelector({
   const elapsed = useRef(0);
   const [progress, setProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
   const [hasFocus, setHasFocus] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [isDocumentVisible, setIsDocumentVisible] = useState(true);
@@ -164,7 +146,7 @@ export default function DisciplineSelector({
   }, []);
 
   useEffect(() => {
-    if (!isPlaying || isHovered || hasFocus || !isInView || !isDocumentVisible)
+    if (!isPlaying || hasFocus || !isInView || !isDocumentVisible)
       return;
     let previous = performance.now();
     const timer = window.setInterval(() => {
@@ -178,7 +160,7 @@ export default function DisciplineSelector({
       setProgress(elapsed.current / 10000);
     }, 100);
     return () => window.clearInterval(timer);
-  }, [isPlaying, isHovered, hasFocus, isInView, isDocumentVisible]);
+  }, [isPlaying, hasFocus, isInView, isDocumentVisible]);
 
   function select(index: number) {
     elapsed.current = 0;
@@ -248,8 +230,6 @@ export default function DisciplineSelector({
 
       <div
         ref={card}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         onFocusCapture={() => setHasFocus(true)}
         onBlurCapture={(event) => {
           if (!event.currentTarget.contains(event.relatedTarget))
