@@ -22,7 +22,7 @@ export default function OttoAnalyseDemo() {
 
       <figure className="min-w-0 rounded-2xl border border-[#D9DDF0] bg-white p-3 shadow-md shadow-[#1F2A5C]/10 sm:p-4 xl:p-5">
         <figcaption>
-          <p className="font-semibold leading-snug text-[#1F2A5C] lg:text-lg">Fair-share shift targets</p>
+          <p className="font-semibold leading-snug text-[#1F2A5C] lg:text-lg">Night and Weekend shift targets</p>
           <p className="mt-1 text-xs leading-relaxed text-slate-600 sm:text-sm">Adjusted for each person’s contracted hours</p>
         </figcaption>
 

@@ -164,8 +164,8 @@
 
 .staffPhotoImage {
   object-position: center top;
-  transform: scale(1.06);
-  transform-origin: 65% 20%;
+  transform: scale(1.14);
+  transform-origin: 85% 20%;
 }
 
 .coordinatorPhoto {
