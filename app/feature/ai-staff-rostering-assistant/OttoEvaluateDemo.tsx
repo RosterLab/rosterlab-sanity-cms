@@ -13,14 +13,20 @@ export default function OttoEvaluateDemo({ isUS = false }: { isUS?: boolean }) {
 
   return (
     <div className={`${backgrounds.evaluate} grid isolate overflow-hidden rounded-2xl p-3 lg:aspect-[4/3] xl:p-5`}>
-      <Image
-        src="/landing/otto/evaluate-roster.webp"
-        alt={ottoText("Weekly roster showing AM, PM and Night allocations by day.", isUS)}
-        width={946}
-        height={669}
-        unoptimized
-        className="col-start-1 row-start-1 h-auto w-full self-start rounded-xl border border-[#315B53]/60 shadow-md shadow-[#163F37]/25 sm:w-[92%]"
-      />
+      <picture className="col-start-1 row-start-1 block w-full self-start overflow-hidden rounded-xl border border-[#315B53]/60 shadow-md shadow-[#163F37]/25 sm:w-[92%]">
+        <source
+          srcSet="/landing/otto/evaluate-roster-768.webp 768w, /landing/otto/evaluate-roster-1440.webp 1440w"
+          sizes="(min-width: 1400px) 650px, (min-width: 768px) 51vw, 90vw"
+        />
+        <Image
+          src="/landing/otto/evaluate-roster-768.webp"
+          alt={ottoText("Weekly roster showing AM, PM and Night allocations by day.", isUS)}
+          width={768}
+          height={543}
+          unoptimized
+          className="block h-auto w-full"
+        />
+      </picture>
 
       <div className="z-10 col-start-1 row-start-1 mt-[20%] w-[96%] self-end justify-self-end overflow-hidden rounded-xl border border-[#B8CEC7] bg-white shadow-lg shadow-[#163F37]/20 sm:mt-[16%] sm:w-[87%] xl:w-[84%]">
         <div className="grid gap-3.5 px-3 pb-4 pt-6 sm:px-4 lg:gap-5 lg:pb-5 lg:pt-9">
