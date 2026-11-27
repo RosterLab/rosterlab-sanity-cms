@@ -74,7 +74,7 @@ export default function OttoAnswerDemo({ isUS = false }: { isUS?: boolean }) {
           ? { topic: (current.topic + 1) % examples.length, replies: 0 }
           : { ...current, replies: current.replies + 1 },
       );
-    }, isComplete ? 10000 : replies === 0 ? 650 : 850);
+    }, isComplete ? 8000 : replies === 0 ? 650 : 850);
 
     return () => window.clearTimeout(timer);
   }, [hasFocus, isComplete, isVisible, reduceMotion, replies, topic]);
