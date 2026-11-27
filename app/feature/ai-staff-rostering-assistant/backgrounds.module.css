@@ -139,12 +139,40 @@
   container: role-photo / inline-size;
 }
 
+.rolePhotoImage {
+  aspect-ratio: 1.4;
+  height: auto;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.rolePhotoPrompts {
+  align-self: center;
+}
+
 .managerPhoto {
-  --role-prompt-width: 42%;
+  --role-prompt-width: 55%;
 }
 
 .staffPhoto {
   --role-prompt-width: 52%;
+}
+
+.staffPhoto .rolePhotoImage {
+  object-position: center top;
+}
+
+.coordinatorPhoto {
+  grid-template-rows: 1fr;
+}
+
+.coordinatorSizer {
+  grid-area: 1 / 1;
+  padding-top: calc(100% / 1.4 + 14rem);
+}
+
+.coordinatorPhoto ul {
+  grid-area: 1 / 1;
 }
 
 @container role-photo (min-width: 470px) {
@@ -154,8 +182,35 @@
   }
 
   .rolePhotoPrompts {
-    align-self: center;
     width: var(--role-prompt-width);
     padding-inline: clamp(0.75rem, 3cqw, 1.25rem);
+  }
+
+  .managerPhoto .rolePhotoPrompts {
+    padding-right: 0;
+  }
+
+  .managerPhoto .rolePhotoPrompts li {
+    font-size: clamp(0.75rem, 2.15cqw, 0.9375rem);
+  }
+}
+
+@container role-photo (width < 470px) {
+  .rolePhotoImage + .rolePhotoPrompts {
+    min-height: 14rem;
+    align-content: center;
+  }
+}
+
+@container role-photo (min-width: 470px) {
+  .coordinatorSizer {
+    padding-top: calc(100% / 1.4);
+  }
+}
+
+@container role-photo (width < 290px) {
+  .managerPhoto .rolePhotoPrompts li {
+    margin-left: 0;
+    padding-inline: 0.375rem;
   }
 }

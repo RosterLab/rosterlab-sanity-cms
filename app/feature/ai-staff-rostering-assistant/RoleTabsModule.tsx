@@ -55,9 +55,15 @@ const staffPromptOffsets = [
 ] as const;
 
 const managerPromptOffsets = [
-  "max-w-[88%] justify-self-start",
-  "max-w-[91%] justify-self-end",
-  "ml-2 mt-1 max-w-[87%] justify-self-start sm:ml-5",
+  "justify-self-start",
+  "ml-3 justify-self-start",
+  "ml-1 justify-self-start",
+] as const;
+
+const managerPromptLines = [
+  ["Which departments are", "short-staffed next month?"],
+  ["Show me how staff hours are", "distributed across departments."],
+  ["Which shifts are missing", "the required skill mix?"],
 ] as const;
 
 const coordinatorPromptOffsets = [
@@ -103,19 +109,28 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
         id={panelId}
         className="mt-6 grid min-w-0 items-center gap-5 rounded-3xl border border-[#D6E2F2] bg-white p-4 sm:gap-6 sm:p-6 md:mt-8 lg:grid-cols-[minmax(0,9fr)_minmax(0,11fr)] lg:gap-8 lg:p-8 xl:gap-12 xl:px-12"
       >
-        <div aria-live="polite">
-          <h3 className="max-w-[28ch] text-pretty text-2xl font-semibold leading-tight tracking-tight text-[#1F2A5C] xl:text-3xl">
-            {ottoText(activeRole.title, isUS)}
-          </h3>
-          <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-gray-600 xl:mt-4 xl:text-lg">
-            {ottoText(activeRole.description, isUS)}
-          </p>
+        <div aria-live="polite" className="grid">
+          {roles.map((role) => (
+            <div
+              key={role.id}
+              aria-hidden={role.id !== activeRole.id || undefined}
+              className={`col-start-1 row-start-1 self-center ${role.id !== activeRole.id ? "invisible" : ""}`}
+            >
+              <h3 className="max-w-[28ch] text-pretty text-2xl font-semibold leading-tight tracking-tight text-[#1F2A5C] xl:text-3xl">
+                {ottoText(role.title, isUS)}
+              </h3>
+              <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-gray-600 xl:mt-4 xl:text-lg">
+                {ottoText(role.description, isUS)}
+              </p>
+            </div>
+          ))}
         </div>
         <div
-          className={`relative isolate grid min-w-0 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
-            hasPhoto ? `${backgrounds.rolePhoto} ${isStaff ? backgrounds.staffPhoto : backgrounds.managerPhoto} bg-[#E7EFF9]` : "min-h-56 bg-[#EDF3FB] sm:min-h-64 xl:min-h-72"
-          }`}
+          className={`${backgrounds.rolePhoto} relative isolate grid min-w-0 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
+            isStaff ? backgrounds.staffPhoto : isCoordinator ? backgrounds.coordinatorPhoto : backgrounds.managerPhoto
+          } ${hasPhoto ? "bg-[#E7EFF9]" : "bg-[#EDF3FB]"}`}
         >
+          {isCoordinator && <div aria-hidden="true" className={backgrounds.coordinatorSizer} />}
           {hasPhoto && (
             <Image
               src={activeRole.photo}
@@ -123,7 +138,7 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
               width={1280}
               height={activeRole.photoHeight}
               sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
-              className={`${backgrounds.rolePhotoImage} block h-auto w-full`}
+              className={`${backgrounds.rolePhotoImage} block w-full`}
             />
           )}
           <ul
@@ -137,15 +152,14 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
             {activeRole.questions.map((question, index) => (
               <li
                 key={ottoText(question, isUS)}
-                className={`w-fit rounded-xl rounded-br-sm border py-2 font-medium leading-snug shadow-sm ${
-                  isStaff
-                    ? "border-white/80 bg-[#DDF6EF] px-2.5 text-xs text-[#123832] shadow-[#123832]/20 sm:px-3.5 sm:text-sm"
-                    : hasPhoto
-                      ? "border-[#D4E2F3] bg-[#F4F8FE] px-2.5 text-xs text-[#192F4A] shadow-[#192F4A]/20 sm:text-sm"
-                      : "border-[#C9DCEF] bg-[#F8FBFF] px-3.5 text-sm text-[#192F4A] shadow-[#192F4A]/15 xl:px-4 xl:py-2.5 xl:text-base"
-                } ${promptOffsets[index]}`}
+                className={`w-fit rounded-xl rounded-br-sm border border-white/80 bg-[#DDF6EF] px-2.5 py-2 text-xs font-medium leading-snug text-[#123832] shadow-sm shadow-[#123832]/20 sm:px-3.5 sm:text-sm ${promptOffsets[index]}`}
               >
-                {question}
+                {activeRole.id === "managers" ? (
+                  <>
+                    {managerPromptLines[index][0]}{" "}<br />
+                    {managerPromptLines[index][1]}
+                  </>
+                ) : question}
               </li>
             ))}
           </ul>
