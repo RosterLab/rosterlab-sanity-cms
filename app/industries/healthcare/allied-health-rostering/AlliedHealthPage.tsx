@@ -67,9 +67,9 @@ const CAPABILITIES = [
       href: "/feature/automated-rostering",
     },
     image: {
-      src: "/images/updated-hero/ai-rostering.webp",
-      alt: "RosterLab automated rostering interface",
-      className: "object-contain",
+      src: "/images/industries/allied-health/specialist-cover.webp",
+      alt: "Medical imaging rules and demands for CT and MRI cover while RosterLab generates a roster",
+      className: "object-cover",
     },
   },
   {
