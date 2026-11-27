@@ -152,7 +152,7 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
             {activeRole.questions.map((question, index) => (
               <li
                 key={ottoText(question, isUS)}
-                className={`w-fit rounded-xl rounded-br-sm border border-white/80 bg-[#DDF6EF] px-2.5 py-2 text-xs font-medium leading-snug text-[#123832] shadow-sm shadow-[#123832]/20 sm:px-3.5 sm:text-sm ${promptOffsets[index]}`}
+                className={`w-fit rounded-xl rounded-br-sm border border-white/80 bg-[#DDF6EF] px-3 py-2.5 text-sm font-medium leading-snug text-[#123832] shadow-sm shadow-[#123832]/20 sm:px-4 sm:py-3 sm:text-base ${promptOffsets[index]}`}
               >
                 {activeRole.id === "managers" ? (
                   <>
