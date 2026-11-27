@@ -208,7 +208,7 @@
   }
 
   .rolePhotoFrame {
-    aspect-ratio: 1;
+    aspect-ratio: 4 / 3;
   }
 
   .rolePhotoImage {
@@ -239,6 +239,12 @@
   .managerPhoto .rolePhotoPrompts li:nth-child(2) {
     margin-left: 0.5rem;
     max-width: calc(100% - 0.5rem);
+  }
+}
+
+@container role-photo (width < 285px) {
+  .rolePhotoFrame {
+    aspect-ratio: 6 / 5;
   }
 }
 
