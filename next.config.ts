@@ -94,11 +94,8 @@ const nextConfig: NextConfig = {
       },
       // HTML documents: let the CDN serve them.
       //
-      // These routes are still `ƒ` dynamic (the root layout reads headers() for
-      // the pathname and draftMode() for Sanity preview), but the rendered HTML
-      // is now a pure function of the pathname — the per-visitor Statsig
-      // bootstrap that used to be inlined moved into the browser. So the
-      // response is safe to cache and share.
+      // Public pages can be shared across visitors. The per-visitor Statsig
+      // bootstrap runs in the browser.
       //
       // Split browser vs CDN deliberately:
       //   Cache-Control            -> the browser revalidates every navigation,
@@ -119,6 +116,8 @@ const nextConfig: NextConfig = {
       // authenticated/preview surfaces, which must never be shared-cached.
       {
         source: "/:path((?!_next/|api/|studio|draft|azure-ad).*)",
+        // Let Next and the Netlify adapter handle private Draft Mode responses.
+        missing: [{ type: "cookie", key: "__prerender_bypass" }],
         headers: [
           {
             key: "Cache-Control",

@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 import { getResourcesNavigation } from "./resources-navigation";
 
@@ -159,6 +161,34 @@ const HERO_BLUE = "bg-[#3779DD]";
 const HERO_DOTS =
   "bg-[radial-gradient(circle,rgba(255,255,255,0.10)_1.2px,transparent_1.2px)] bg-[length:18px_18px] bg-[position:0_8px]";
 
+const DROPDOWN_CLOSE_DELAY_MS = 250;
+const NAVIGATION_PROGRESS_DELAY_MS = 120;
+
+type DesktopNavigationLinkProps = Omit<
+  ComponentProps<typeof Link>,
+  "href" | "onNavigate" | "replace" | "scroll"
+> & {
+  href: string;
+  navigate: (href: string) => void;
+};
+
+function DesktopNavigationLink({
+  href,
+  navigate,
+  ...props
+}: DesktopNavigationLinkProps) {
+  return (
+    <Link
+      {...props}
+      href={href}
+      onNavigate={(event) => {
+        event.preventDefault();
+        navigate(href);
+      }}
+    />
+  );
+}
+
 export default function Header({
   navItems = [],
   onHeroBackground = false,
@@ -167,6 +197,73 @@ export default function Header({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [showNavigationProgress, setShowNavigationProgress] = useState(false);
+  const [isNavigating, startNavigation] = useTransition();
+  const router = useRouter();
+  const desktopNav = useRef<HTMLDivElement>(null);
+  const pinnedDropdown = useRef<string | null>(null);
+  const dropdownCloseTimer = useRef<number | undefined>(undefined);
+
+  const cancelDropdownClose = useCallback(() => {
+    window.clearTimeout(dropdownCloseTimer.current);
+  }, []);
+
+  const closeDropdown = useCallback(() => {
+    cancelDropdownClose();
+    pinnedDropdown.current = null;
+    setActiveDropdown(null);
+  }, [cancelDropdownClose]);
+
+  useEffect(() => cancelDropdownClose, [cancelDropdownClose]);
+
+  useEffect(() => {
+    if (!activeDropdown) return;
+
+    const closeOnOutsidePress = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        !desktopNav.current?.contains(event.target)
+      ) {
+        closeDropdown();
+      }
+    };
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || event.defaultPrevented) return;
+      const nav = desktopNav.current;
+      if (nav?.contains(document.activeElement)) {
+        nav
+          .querySelector<HTMLButtonElement>('button[aria-expanded="true"]')
+          ?.focus();
+      }
+      event.preventDefault();
+      closeDropdown();
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsidePress);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePress);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [activeDropdown, closeDropdown]);
+
+  useEffect(() => {
+    if (!isNavigating) {
+      setShowNavigationProgress(false);
+      return;
+    }
+    const timer = window.setTimeout(
+      () => setShowNavigationProgress(true),
+      NAVIGATION_PROGRESS_DELAY_MS,
+    );
+    return () => window.clearTimeout(timer);
+  }, [isNavigating]);
+
+  const navigateFromDesktop = (href: string) => {
+    closeDropdown();
+    startNavigation(() => router.push(href));
+  };
 
   // Determine if this is a US page by checking if navItems contain US-specific links
   const isUSVersion = navItems.some(
@@ -345,25 +442,49 @@ export default function Header({
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:block">
+          <div ref={desktopNav} className="hidden xl:block">
             <div className="ml-10 flex items-center xl:space-x-4 2xl:space-x-8">
               {navigation.map((item) => (
                 <div
                   key={item.title}
                   className="relative group"
-                  onMouseEnter={() =>
-                    item.subItems && setActiveDropdown(item.title)
-                  }
-                  onMouseLeave={() => setActiveDropdown(null)}
-                  onClick={() =>
-                    item.subItems &&
-                    setActiveDropdown(
-                      activeDropdown === item.title ? null : item.title,
+                  onPointerEnter={(event) => {
+                    if (event.pointerType !== "mouse" || !item.subItems) return;
+                    if (pinnedDropdown.current) return;
+                    cancelDropdownClose();
+                    setActiveDropdown(item.title);
+                  }}
+                  onPointerLeave={(event) => {
+                    if (
+                      event.pointerType !== "mouse" ||
+                      activeDropdown !== item.title
                     )
-                  }
+                      return;
+                    if (pinnedDropdown.current === item.title) return;
+
+                    // A diagonal path into the wider panel can briefly leave the trigger.
+                    const itemElement = event.currentTarget;
+                    cancelDropdownClose();
+                    dropdownCloseTimer.current = window.setTimeout(() => {
+                      if (!itemElement.contains(document.activeElement)) {
+                        setActiveDropdown((current) =>
+                          current === item.title ? null : current,
+                        );
+                      }
+                    }, DROPDOWN_CLOSE_DELAY_MS);
+                  }}
+                  onBlur={(event) => {
+                    if (
+                      activeDropdown === item.title &&
+                      !event.currentTarget.contains(event.relatedTarget)
+                    ) {
+                      closeDropdown();
+                    }
+                  }}
                 >
                   {item.link ? (
-                    <Link
+                    <DesktopNavigationLink
+                      navigate={navigateFromDesktop}
                       href={item.link}
                       className={cn(
                         navText,
@@ -371,26 +492,23 @@ export default function Header({
                       )}
                     >
                       {item.title}
-                    </Link>
+                    </DesktopNavigationLink>
                   ) : (
                     <button
                       className={cn(
                         navText,
                         "xl:px-2 2xl:px-3 py-2 text-sm font-medium transition-colors flex items-center cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded",
                       )}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveDropdown(
-                          activeDropdown === item.title ? null : item.title,
-                        );
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Escape" && activeDropdown) {
-                          e.preventDefault();
-                          setActiveDropdown(null);
+                      type="button"
+                      onClick={() => {
+                        if (pinnedDropdown.current === item.title) {
+                          closeDropdown();
+                          return;
                         }
+                        cancelDropdownClose();
+                        pinnedDropdown.current = item.title;
+                        setActiveDropdown(item.title);
                       }}
-                      aria-haspopup="true"
                       aria-expanded={activeDropdown === item.title}
                       aria-controls={`${item.title.toLowerCase().replace(/\s+/g, "-")}-menu`}
                     >
@@ -404,17 +522,10 @@ export default function Header({
                     </button>
                   )}
 
-                  {/* Invisible bridge to maintain hover */}
-                  {item.subItems && activeDropdown === item.title && (
-                    <div className="absolute top-full left-0 right-0 h-4" />
-                  )}
-
                   {/* Dropdown Menu */}
                   {item.subItems && activeDropdown === item.title && (
                     <div
                       id={`${item.title.toLowerCase().replace(/\s+/g, "-")}-menu`}
-                      role="menu"
-                      aria-orientation="vertical"
                       className={cn(
                         "absolute top-full mt-0 bg-white rounded-lg shadow-xl border border-gray-200 z-[100] pointer-events-auto",
                         item.title === "Resources"
@@ -424,8 +535,6 @@ export default function Header({
                             ? "left-0 w-[600px]"
                             : "left-0 w-64",
                       )}
-                      onMouseEnter={() => setActiveDropdown(item.title)}
-                      onMouseLeave={() => setActiveDropdown(null)}
                     >
                       {item.title === "Product" ? (
                         // Product dropdown layout
@@ -438,7 +547,8 @@ export default function Header({
                               </h3>
                               <div className="space-y-1">
                                 {item.subItems?.slice(0, 3).map((subItem) => (
-                                  <Link
+                                  <DesktopNavigationLink
+                                    navigate={navigateFromDesktop}
                                     key={subItem.link}
                                     href={subItem.link}
                                     className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
@@ -462,7 +572,7 @@ export default function Header({
                                                 ? "Get instant rostering help with AI chat support"
                                                 : "")}
                                     </div>
-                                  </Link>
+                                  </DesktopNavigationLink>
                                 ))}
                               </div>
                             </div>
@@ -474,7 +584,8 @@ export default function Header({
                               </h3>
                               <div className="space-y-1 max-h-80 overflow-y-auto">
                                 {item.subItems?.slice(3).map((subItem) => (
-                                  <Link
+                                  <DesktopNavigationLink
+                                    navigate={navigateFromDesktop}
                                     key={subItem.link}
                                     href={subItem.link}
                                     className="group block p-2 rounded-lg hover:bg-teal-50 transition-colors"
@@ -482,7 +593,7 @@ export default function Header({
                                     <div className="font-medium text-[#4a9288] group-hover:text-[#3a7268] text-sm">
                                       {subItem.title}
                                     </div>
-                                  </Link>
+                                  </DesktopNavigationLink>
                                 ))}
                               </div>
                             </div>
@@ -491,7 +602,8 @@ export default function Header({
                           {/* Call to Action */}
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
-                              <Link
+                              <DesktopNavigationLink
+                                navigate={navigateFromDesktop}
                                 href={contactLink}
                                 className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                                 onClick={() =>
@@ -516,8 +628,9 @@ export default function Header({
                                     d="M9 5l7 7-7 7"
                                   />
                                 </svg>
-                              </Link>
-                              <Link
+                              </DesktopNavigationLink>
+                              <DesktopNavigationLink
+                                navigate={navigateFromDesktop}
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                                 onClick={() =>
@@ -531,36 +644,38 @@ export default function Header({
                                 <DemoCtaLabel href={demoLink}>
                                   Book a demo
                                 </DemoCtaLabel>
-                              </Link>
+                              </DesktopNavigationLink>
                             </div>
                           </div>
                         </div>
                       ) : item.title === "Solutions" ? (
                         // Solutions dropdown layout
                         <div className="max-h-[calc(100dvh-6rem)] overflow-y-auto p-6">
-                          <Link
+                          <DesktopNavigationLink
+                            navigate={navigateFromDesktop}
                             href={
                               isUSVersion ? "/us/enterprise" : "/enterprise"
                             }
                             className="mb-4 block rounded-lg bg-[#C7D2FF]/40 p-3 font-medium text-[#1F2A5C] transition-colors hover:bg-[#C7D2FF]/70"
-                            onClick={() => setActiveDropdown(null)}
                           >
                             For Enterprise
-                          </Link>
+                          </DesktopNavigationLink>
                           <div className="grid grid-cols-2 gap-6 border-t border-gray-200 pt-2">
                             {/* Specialties column */}
                             <div>
                               <div className="space-y-1">
                                 {item.subItems.slice(1, 7).map((subItem) => (
-                                  <Link
+                                  <DesktopNavigationLink
+                                    navigate={navigateFromDesktop}
                                     key={subItem.link}
                                     href={subItem.link}
                                     className="block rounded-lg p-3 font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-700"
                                   >
                                     {subItem.title}
-                                  </Link>
+                                  </DesktopNavigationLink>
                                 ))}
-                                <Link
+                                <DesktopNavigationLink
+                                  navigate={navigateFromDesktop}
                                   href={
                                     isUSVersion
                                       ? "/us/industries/healthcare-scheduling"
@@ -569,7 +684,7 @@ export default function Header({
                                   className="block px-3 py-2 text-sm font-medium italic text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-700"
                                 >
                                   View all healthcare specialties
-                                </Link>
+                                </DesktopNavigationLink>
                               </div>
                             </div>
 
@@ -577,13 +692,14 @@ export default function Header({
                             <div>
                               <div className="space-y-1">
                                 {item.subItems.slice(7).map((subItem) => (
-                                  <Link
+                                  <DesktopNavigationLink
+                                    navigate={navigateFromDesktop}
                                     key={subItem.link}
                                     href={subItem.link}
                                     className="block rounded-lg p-3 font-medium text-blue-600 transition-colors hover:bg-blue-50 hover:text-blue-700"
                                   >
                                     {subItem.title}
-                                  </Link>
+                                  </DesktopNavigationLink>
                                 ))}
                               </div>
                             </div>
@@ -592,7 +708,8 @@ export default function Header({
                           {/* Call to Action */}
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-between">
-                              <Link
+                              <DesktopNavigationLink
+                                navigate={navigateFromDesktop}
                                 href={
                                   isUSVersion ? "/us/industries" : "/industries"
                                 }
@@ -612,8 +729,9 @@ export default function Header({
                                     d="M9 5l7 7-7 7"
                                   />
                                 </svg>
-                              </Link>
-                              <Link
+                              </DesktopNavigationLink>
+                              <DesktopNavigationLink
+                                navigate={navigateFromDesktop}
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                                 onClick={() =>
@@ -627,7 +745,7 @@ export default function Header({
                                 <DemoCtaLabel href={demoLink}>
                                   Book a demo
                                 </DemoCtaLabel>
-                              </Link>
+                              </DesktopNavigationLink>
                             </div>
                           </div>
                         </div>
@@ -651,7 +769,8 @@ export default function Header({
                                       sub.title === "Newsroom",
                                   )
                                   .map((subItem) => (
-                                    <Link
+                                    <DesktopNavigationLink
+                                      navigate={navigateFromDesktop}
                                       key={subItem.link}
                                       href={subItem.link}
                                       className="group block p-3 rounded-lg hover:bg-blue-50 transition-colors"
@@ -674,7 +793,7 @@ export default function Header({
                                                   ? "Latest news and updates from RosterLab"
                                                   : ""}
                                       </div>
-                                    </Link>
+                                    </DesktopNavigationLink>
                                   ))}
                               </div>
                             </div>
@@ -704,7 +823,8 @@ export default function Header({
                                         </div>
                                         <div className="space-y-0.5">
                                           {groupItems.map((subItem) => (
-                                            <Link
+                                            <DesktopNavigationLink
+                                              navigate={navigateFromDesktop}
                                               key={subItem.link}
                                               href={subItem.link}
                                               className="group block px-3 py-2 rounded-lg hover:bg-teal-50 transition-colors"
@@ -717,7 +837,7 @@ export default function Header({
                                                   {subItem.description}
                                                 </div>
                                               )}
-                                            </Link>
+                                            </DesktopNavigationLink>
                                           ))}
                                         </div>
                                       </div>
@@ -730,7 +850,8 @@ export default function Header({
 
                                       {/* See all tools — covers Mini Tools + Games */}
                                       <div className="!-mt-2 pb-3">
-                                        <Link
+                                        <DesktopNavigationLink
+                                          navigate={navigateFromDesktop}
                                           href={
                                             isUSVersion ? "/us/tools" : "/tools"
                                           }
@@ -750,14 +871,15 @@ export default function Header({
                                               d="M9 5l7 7-7 7"
                                             />
                                           </svg>
-                                        </Link>
+                                        </DesktopNavigationLink>
                                       </div>
 
                                       {renderGroup("Templates")}
 
                                       {/* Explore all templates */}
                                       <div className="!-mt-2">
-                                        <Link
+                                        <DesktopNavigationLink
+                                          navigate={navigateFromDesktop}
                                           href={
                                             isUSVersion
                                               ? "/us/templates"
@@ -786,7 +908,7 @@ export default function Header({
                                               d="M9 5l7 7-7 7"
                                             />
                                           </svg>
-                                        </Link>
+                                        </DesktopNavigationLink>
                                       </div>
                                     </>
                                   );
@@ -798,7 +920,8 @@ export default function Header({
                           {/* Call to Action */}
                           <div className="mt-6 pt-6 border-t border-gray-200">
                             <div className="flex items-center justify-end">
-                              <Link
+                              <DesktopNavigationLink
+                                navigate={navigateFromDesktop}
                                 href={demoLink}
                                 className="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
                                 onClick={() =>
@@ -812,7 +935,7 @@ export default function Header({
                                 <DemoCtaLabel href={demoLink}>
                                   Book a demo
                                 </DemoCtaLabel>
-                              </Link>
+                              </DesktopNavigationLink>
                             </div>
                           </div>
                         </div>
@@ -820,13 +943,14 @@ export default function Header({
                         // Standard dropdown for other menu items
                         <div className="py-2">
                           {item.subItems.map((subItem) => (
-                            <Link
+                            <DesktopNavigationLink
+                              navigate={navigateFromDesktop}
                               key={subItem.link}
                               href={subItem.link}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
                             >
                               {subItem.title}
-                            </Link>
+                            </DesktopNavigationLink>
                           ))}
                         </div>
                       )}
@@ -952,6 +1076,23 @@ export default function Header({
           </div>
         </div>
       </nav>
+
+      <div
+        role="status"
+        className="pointer-events-none absolute inset-x-0 top-full"
+      >
+        {isNavigating && showNavigationProgress && (
+          <div className="container mx-auto flex justify-end px-4 pt-3 sm:px-6 lg:px-8">
+            <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-3 py-2 text-sm font-semibold text-blue-900 shadow-md">
+              <span
+                aria-hidden="true"
+                className="size-4 shrink-0 rounded-full border-2 border-blue-200 border-t-blue-700 motion-safe:animate-spin"
+              />
+              Loading page…
+            </span>
+          </div>
+        )}
+      </div>
 
       {/* Mobile menu backdrop */}
       {isMenuOpen && (

@@ -13,12 +13,11 @@ import { Poppins } from "next/font/google";
 import { LazyStyles } from "@/components/layout/LazyStyles";
 import ClientProviders from "@/components/layout/ClientProviders";
 import GeolocationProvider from "@/components/layout/GeolocationProvider";
-import { headers } from "next/headers";
 import SkipLink from "@/components/accessibility/SkipLink";
 import StatsigProvider from "@/components/analytics/StatsigProvider";
 import StatsigExposureLogger from "@/components/analytics/StatsigExposureLogger";
 import CTAModalManager from "@/components/modals/CTAModalManager";
-import AskAiShareWidget from "@/components/ui/AskAiShareWidget";
+import SiteDocument, { SiteShareWidget } from "@/components/layout/SiteDocument";
 import { MarketAccessProvider } from "@/components/market-access/MarketAccessProvider";
 import { MARKET_ACCESS_HINT_SCRIPT } from "@/lib/market-access/client-gate";
 import { ROUTING_PREFILL_CAPTURE_SCRIPT } from "@/lib/calendly/routing-prefill";
@@ -49,27 +48,8 @@ export default async function RootLayout({
 }>) {
   const { isEnabled } = await draftMode();
 
-  // Check if current page is a US page
-  const headersList = await headers();
-  const pathname =
-    headersList.get("x-pathname") || headersList.get("x-url") || "";
-  const isUSPage = pathname === "/us" || pathname.startsWith("/us/");
-  // Internal / admin surfaces should NOT show the marketing widget.
-  // Routes excluded from middleware (studio, static, etc.) arrive with an
-  // empty pathname — treat those as internal too.
-  const isInternalRoute =
-    !pathname ||
-    pathname.startsWith("/studio") ||
-    pathname.startsWith("/draft") ||
-    pathname.startsWith("/azure-ad") ||
-    pathname.startsWith("/api");
-
   return (
-    <html
-      lang={isUSPage ? "en-US" : "en"}
-      className={poppins.variable}
-      suppressHydrationWarning
-    >
+    <SiteDocument className={poppins.variable}>
       <head>
         {/* Strip personal routing answers before any analytics initialization. */}
         <script
@@ -92,7 +72,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="dns-prefetch" href="https://featuregates.org" />
         <link rel="dns-prefetch" href="https://us.i.posthog.com" />
-        <StructuredData type="organization" isUSPage={isUSPage} />
+        <StructuredData type="organization" />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics
             measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
@@ -124,19 +104,11 @@ export default async function RootLayout({
               {isEnabled && <VisualEditing />}
               <LazyStyles />
               <CTAModalManager />
-              {!isInternalRoute && (
-                <AskAiShareWidget
-                  learnFromUrl={
-                    isUSPage
-                      ? "https://rosterlab.com/us"
-                      : "https://rosterlab.com"
-                  }
-                />
-              )}
+              <SiteShareWidget />
             </ClientProviders>
           </MarketAccessProvider>
         </StatsigProvider>
       </body>
-    </html>
+    </SiteDocument>
   );
 }
