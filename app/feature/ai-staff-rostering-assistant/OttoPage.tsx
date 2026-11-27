@@ -119,12 +119,12 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
               <p className="mb-5 text-sm font-semibold text-[#1F2A5C]">
                 {t("Otto AI Rostering Assistant")}
               </p>
-              <h1 className="mx-auto max-w-[44rem] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em]">
-                {t("AI that knows your roster,")}{" "}
-                <br className="hidden lg:block" />
-                {t("and gets it right")}
+              <h1 className="mx-auto max-w-[44rem] text-[clamp(1.125rem,6vw,2.5rem)] md:text-[clamp(2.5rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em]">
+                <span className="whitespace-nowrap">{t("AI that knows your roster,")}</span>
+                <br />
+                <span className="whitespace-nowrap">{t("and gets it right")}</span>
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-balance text-[15px] leading-[1.55] text-slate-600 md:text-[17px] md:leading-[1.6] sm:mt-7">
+              <p className="mx-auto mt-6 max-w-[48rem] text-balance text-[15px] leading-[1.55] text-slate-600 md:text-[17px] md:leading-[1.6] sm:mt-7">
                 {t("Meet Otto, the AI rostering assistant built into RosterLab. Just ask Otto to build or refine rosters, analyse workforce data and put decisions into action.")}
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
