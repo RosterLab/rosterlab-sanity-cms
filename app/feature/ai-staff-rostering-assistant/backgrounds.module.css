@@ -6,14 +6,6 @@
     linear-gradient(155deg, #c6d9f4 0%, #eef4fc 48%, #d4e3fa 100%);
 }
 
-.hero {
-  background-color: #08162f;
-  background-image:
-    radial-gradient(ellipse at 92% 76%, #214b89 0%, transparent 62%),
-    radial-gradient(ellipse at 70% 2%, #213765 0%, transparent 56%),
-    linear-gradient(155deg, #08162f 0%, #101d3c 52%, #172f56 100%);
-}
-
 .evaluate {
   background-color: #8fbcaf;
   background-image:

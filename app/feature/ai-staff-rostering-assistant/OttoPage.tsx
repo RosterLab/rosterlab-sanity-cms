@@ -113,22 +113,22 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
   return (
     <SiteLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-        <section className={`${backgrounds.hero} overflow-hidden text-white`}>
+        <section className="bg-white text-center text-[#1F2A5C]">
           <Container className="py-14 sm:py-16 lg:py-20">
             <div>
-              <p className="mb-5 text-sm font-semibold text-slate-300">
+              <p className="mb-5 text-sm font-semibold text-[#1F2A5C]">
                 {t("Otto AI Rostering Assistant")}
               </p>
-              <h1 className="max-w-[38rem] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em]">
+              <h1 className="mx-auto max-w-[44rem] text-balance text-[clamp(2.25rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em]">
                 {t("AI that knows your roster, and gets it right.")}
               </h1>
-              <p className="mt-6 max-w-xl text-balance text-[15px] leading-[1.55] text-slate-200 md:text-[17px] md:leading-[1.6] sm:mt-7">
+              <p className="mx-auto mt-6 max-w-2xl text-balance text-[15px] leading-[1.55] text-slate-600 md:text-[17px] md:leading-[1.6] sm:mt-7">
                 {t("Meet Otto, your intelligent rostering assistant inside RosterLab. Build and refine rosters, make sense of your workforce data and put decisions into action, simply by asking Otto.")}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Button
                   href={demoPath}
-                  className="whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-[#08162f] hover:bg-slate-100 focus:ring-sky-300 focus:ring-offset-[#08162f]"
+                  className="whitespace-nowrap rounded-full bg-[#1F2A5C] px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-white hover:bg-[#162047] focus:ring-sky-400 focus:ring-offset-white"
                   analyticsLabel="Book a demo"
                   analyticsLocation="Feature Page AI Chat Assistant"
                   analyticsProperties={{
@@ -142,7 +142,7 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
                 <Button
                   href={signupUrl}
                   variant="outline"
-                  className="whitespace-nowrap rounded-full border border-white/40 px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-white hover:bg-white/10 focus:ring-sky-300 focus:ring-offset-[#08162f]"
+                  className="whitespace-nowrap rounded-full border border-[#1F2A5C] px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-[#1F2A5C] hover:bg-slate-50 focus:ring-sky-400 focus:ring-offset-white"
                   analyticsLabel="Try Otto for free"
                   analyticsLocation="Feature Page AI Chat Assistant"
                   analyticsProperties={{
