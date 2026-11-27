@@ -243,49 +243,54 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .actAttachment {
-    animation: actAttachmentDrop 8s ease-in-out 1s infinite both;
+    animation: actAttachmentDrop 9s ease-out infinite;
   }
 
-  .actCursor {
-    animation: actCursorDrag 8s ease-in-out 1s infinite both;
+  .actDragPreview {
+    display: flex;
+    animation: actFileDrag 9s ease-in-out infinite;
+  }
+
+  .actComposer::after {
+    position: absolute;
+    inset: 0;
+    border: 1px dashed #5788d7;
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+    animation: actDropTarget 9s ease-out infinite;
   }
 }
 
 @keyframes actAttachmentDrop {
+  0%, 19% { opacity: 0; }
+  21%, 97% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes actFileDrag {
   0% {
     opacity: 0;
-    transform: translate(12px, -28px);
+    transform: translate(0.75rem, -3rem);
   }
 
-  7% {
+  5%, 8% {
     opacity: 1;
-    transform: translate(12px, -28px);
+    transform: translate(0.75rem, -3rem);
   }
 
-  20%, 96% {
+  17%, 19% {
     opacity: 1;
     transform: translate(0, 0);
   }
 
-  100% {
+  21%, 100% {
     opacity: 0;
     transform: translate(0, 0);
   }
 }
 
-@keyframes actCursorDrag {
-  0% {
-    opacity: 0;
-    transform: translate(8px, 5px);
-  }
-
-  7%, 21% {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-
-  29%, 100% {
-    opacity: 0;
-    transform: translate(9px, 7px);
-  }
+@keyframes actDropTarget {
+  0%, 12%, 24%, 100% { opacity: 0; }
+  16%, 20% { opacity: 1; }
 }

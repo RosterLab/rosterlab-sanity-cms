@@ -1,10 +1,10 @@
 import { ottoText } from "./otto-copy";
 import Image from "next/image";
 import {
-  PiCursorFill,
   PiFileXls,
   PiPaperPlaneTiltBold,
 } from "react-icons/pi";
+import { LuMousePointer2 } from "react-icons/lu";
 import backgrounds from "./backgrounds.module.css";
 
 export default function OttoActDemo({ isUS = false }: { isUS?: boolean }) {
@@ -28,11 +28,17 @@ export default function OttoActDemo({ isUS = false }: { isUS?: boolean }) {
           <p className="mt-1 text-sm text-[#48515B]">{ottoText("Your AI rostering assistant", isUS)}</p>
         </div>
 
-        <div className="mx-3 mb-3 rounded-xl border border-[#96B8F4] bg-white p-3 ring-2 ring-[#E1EBFE] sm:mx-4 sm:mb-4 lg:p-4">
-          <div className={`${backgrounds.actAttachment} relative inline-flex max-w-full items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-800`}>
-            <PiFileXls aria-hidden="true" className="size-4 shrink-0 text-[#176447]" />
-            <span className="min-w-0 break-words">{ottoText("New starters - Nov.xlsx", isUS)}</span>
-            <PiCursorFill aria-hidden="true" className={`${backgrounds.actCursor} pointer-events-none absolute -bottom-2 -right-1 size-4 text-slate-800 opacity-0 drop-shadow-sm`} />
+        <div className={`${backgrounds.actComposer} relative mx-3 mb-3 rounded-xl border border-[#96B8F4] bg-white p-3 ring-2 ring-[#E1EBFE] sm:mx-4 sm:mb-4 lg:p-4`}>
+          <div className="relative inline-block max-w-full align-top">
+            <div className={`${backgrounds.actAttachment} inline-flex max-w-full items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-semibold text-slate-800`}>
+              <PiFileXls aria-hidden="true" className="size-4 shrink-0 text-[#176447]" />
+              <span className="min-w-0 break-words">{ottoText("New starters - Nov.xlsx", isUS)}</span>
+            </div>
+            <div aria-hidden="true" className={`${backgrounds.actDragPreview} pointer-events-none absolute inset-0 z-10 hidden items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800 opacity-0 shadow-md`}>
+              <PiFileXls className="size-4 shrink-0 text-[#176447]" />
+              <span className="min-w-0 break-words">{ottoText("New starters - Nov.xlsx", isUS)}</span>
+              <LuMousePointer2 className="absolute -bottom-2 left-5 size-5 fill-slate-900 stroke-white drop-shadow-sm" />
+            </div>
           </div>
           <p className={`${backgrounds.userMessage} mt-3 text-[#242B30]`}>
             {ottoText("Can you add the new starters from this spreadsheet?", isUS)}
