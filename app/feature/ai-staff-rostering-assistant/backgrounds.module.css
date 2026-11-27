@@ -204,8 +204,12 @@
 
 @container role-photo (width < 290px) {
   .managerPhoto .rolePhotoPrompts li {
-    margin-left: 0;
     padding-inline: 0.5rem;
     font-size: 0.8125rem;
+  }
+
+  .managerPhoto .rolePhotoPrompts li:nth-child(2) {
+    margin-left: 0.5rem;
+    max-width: calc(100% - 0.5rem);
   }
 }

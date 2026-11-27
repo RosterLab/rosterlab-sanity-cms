@@ -52,13 +52,13 @@ const roles = [
 
 const staffPromptOffsets = [
   "max-w-[94%] justify-self-start",
-  "ml-5 max-w-[calc(100%_-_1.25rem)] justify-self-start",
+  "ml-8 max-w-[calc(100%_-_2rem)] justify-self-start",
   "ml-2 max-w-[calc(100%_-_0.5rem)] justify-self-start",
 ] as const;
 
 const managerPromptOffsets = [
   "justify-self-start",
-  "ml-3 justify-self-start",
+  "ml-6 max-w-[calc(100%_-_1.5rem)] justify-self-start",
   "ml-1 justify-self-start",
 ] as const;
 
@@ -69,9 +69,9 @@ const managerPromptLines = [
 ] as const;
 
 const coordinatorPromptOffsets = [
-  "mr-4 max-w-[calc(100%_-_1rem)] justify-self-end",
-  "max-w-full justify-self-end",
-  "mr-2 max-w-[calc(100%_-_0.5rem)] justify-self-end",
+  "ml-4 max-w-[calc(100%_-_1rem)] justify-self-start",
+  "max-w-[calc(100%_-_1rem)] justify-self-start",
+  "ml-3 max-w-[calc(100%_-_0.75rem)] justify-self-start",
 ] as const;
 
 export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
