@@ -240,6 +240,9 @@ interface TrustedByDualRowProps {
   centerHeadingOnMobile?: boolean;
   /** Replaces the heading's default size and colour classes. */
   headingClassName?: string;
+  headingContainerClassName?: string;
+  sectionClassName?: string;
+  containerClassName?: string;
   /** Paints every logo in this one colour instead of greyscale. */
   logoColor?: string;
 }
@@ -251,6 +254,9 @@ export default function TrustedByDualRow({
   singleRow = false,
   centerHeadingOnMobile = false,
   headingClassName,
+  headingContainerClassName,
+  sectionClassName,
+  containerClassName = "lg:px-12 xl:px-20",
   logoColor,
 }: TrustedByDualRowProps = {}) {
   const logos = healthcareOnly
@@ -261,8 +267,8 @@ export default function TrustedByDualRow({
   const topRow = logos.slice(0, halfway);
   const bottomRow = logos.slice(halfway);
   return (
-    <section className={onDark ? "" : "py-6 md:py-16"}>
-      <Container className="lg:px-12 xl:px-20">
+    <section className={cn(onDark ? "" : "py-6 md:py-16", sectionClassName)}>
+      <Container className={containerClassName}>
         <div
           className={cn(
             "grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] gap-8 lg:gap-12 items-center",
@@ -270,11 +276,12 @@ export default function TrustedByDualRow({
           )}
         >
           <div
-            className={
+            className={cn(
               centerHeadingOnMobile
                 ? "text-center lg:max-w-md lg:text-left"
-                : "max-w-md"
-            }
+                : "max-w-md",
+              headingContainerClassName,
+            )}
           >
             <h2
               className={cn(

@@ -16,7 +16,7 @@ import {
   PiTimer,
 } from "react-icons/pi";
 import type { IconType } from "react-icons";
-import { trackButtonClick } from "@/components/analytics/tracking";
+import InlineCtaLink from "@/components/ui/InlineCtaLink";
 import CountUp from "./CountUp";
 import { enterpriseText } from "./enterprise-copy";
 
@@ -217,23 +217,16 @@ export default function EnterpriseOutcomes({
         variants={rise(T.cta, 12)}
         className="mt-10 flex justify-center md:mt-12"
       >
-        <Link
+        <InlineCtaLink
           href={isUS ? "/us/tools/savings-calculator" : "/tools/roi-calculator"}
-          onClick={() =>
-            trackButtonClick("Calculate your ROI", analyticsLocation, {
-              cta_type: "roi_calculator",
-              page_name: "Enterprise",
-              section: "roi",
-            })
-          }
-          className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[#1F2A5C] hover:text-[#3B7FE8]"
-        >
-          Calculate your ROI
-          <PiArrowRightBold
-            aria-hidden="true"
-            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-          />
-        </Link>
+          label="Calculate your ROI"
+          analyticsLocation={analyticsLocation}
+          analyticsProperties={{
+            cta_type: "roi_calculator",
+            page_name: "Enterprise",
+            section: "roi",
+          }}
+        />
       </motion.div>
     </div>
   );
