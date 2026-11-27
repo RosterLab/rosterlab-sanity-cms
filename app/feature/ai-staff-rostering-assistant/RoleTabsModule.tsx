@@ -9,7 +9,6 @@ const roles = [
   {
     id: "managers",
     photo: "/landing/otto/role-manager-tablet.webp",
-    photoHeight: 799,
     questions: [
       "Which departments are short-staffed next month?",
       "Show me how staff hours are distributed across departments.",
@@ -23,7 +22,6 @@ const roles = [
   {
     id: "team-leads",
     photo: "/landing/otto/role-team-lead.webp",
-    photoHeight: 793,
     questions: [
       "Who can cover Saturday night without overtime?",
       "Would this shift swap break any union rules or safety guidelines?",
@@ -37,7 +35,6 @@ const roles = [
   {
     id: "staff",
     photo: "/landing/otto/role-staff-wide.webp",
-    photoHeight: 853,
     questions: [
       "When is my next night shift?",
       "How much annual leave have I taken this year?",
@@ -131,14 +128,20 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
             isStaff ? backgrounds.staffPhoto : isCoordinator ? backgrounds.coordinatorPhoto : backgrounds.managerPhoto
           } bg-[#E7EFF9]`}
         >
-          <Image
-            src={activeRole.photo}
-            alt=""
-            width={1280}
-            height={activeRole.photoHeight}
-            sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
-            className={`${backgrounds.rolePhotoImage} block w-full`}
-          />
+          <div className={backgrounds.rolePhotoFrame}>
+            {roles.map((role) => (
+              <Image
+                key={role.id}
+                src={role.photo}
+                alt=""
+                fill
+                sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
+                className={`${backgrounds.rolePhotoImage} ${
+                  role.id === "staff" ? backgrounds.staffPhotoImage : role.id === "team-leads" ? backgrounds.coordinatorPhotoImage : ""
+                } ${role.id !== activeRole.id ? "invisible" : ""}`}
+              />
+            ))}
+          </div>
           <ul
             aria-label={`Example questions ${ottoText(activeRole.label, isUS).toLowerCase()}`}
             className={`${backgrounds.rolePhotoPrompts} relative grid min-w-0 gap-3.5 px-3 py-4`}
