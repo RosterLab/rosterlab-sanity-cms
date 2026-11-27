@@ -11,7 +11,7 @@ const roles = [
     photo: "/landing/otto/role-manager-tablet.webp",
     questions: [
       "Which departments are short-staffed next month?",
-      "Show me how staff hours are distributed across departments.",
+      "Show me how staff hours are distributed across departments",
       "Which shifts are missing the required skill mix?",
     ],
     label: "For Managers",
@@ -25,7 +25,7 @@ const roles = [
     questions: [
       "Who can cover Saturday night without overtime?",
       "Would this shift swap break any union rules or safety guidelines?",
-      "Show me what’s changed since the roster was published.",
+      "Show me what’s changed since the roster was published",
     ],
     label: "For Team Leads / Roster Coordinators",
     title: "Expert rostering guidance, whenever you need it",
@@ -38,7 +38,7 @@ const roles = [
     questions: [
       "When is my next night shift?",
       "How much annual leave have I taken this year?",
-      "Update my preference to work mornings on Fridays.",
+      "Update my preference to work mornings on Fridays",
     ],
     label: "For Staff",
     title: "An easier way to manage your work schedule",
@@ -61,7 +61,7 @@ const managerPromptOffsets = [
 
 const managerPromptLines = [
   ["Which departments are", "short-staffed next month?"],
-  ["Show me how staff hours are", "distributed across departments."],
+  ["Show me how staff hours are", "distributed across departments"],
   ["Which shifts are missing", "the required skill mix?"],
 ] as const;
 
