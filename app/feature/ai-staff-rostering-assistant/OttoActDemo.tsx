@@ -23,12 +23,7 @@ export default function OttoActDemo({ isUS = false }: { isUS?: boolean }) {
 
       <div className="z-10 col-start-1 row-start-1 mt-[34%] w-[94%] self-end justify-self-end overflow-hidden rounded-2xl border border-[#D6DDE5] bg-[#F6F8FA] shadow-xl shadow-slate-900/15 sm:mt-[16%] sm:w-[64%]">
         <div className="px-4 py-3 sm:px-5 sm:py-4">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-semibold leading-tight text-[#242B30]">Otto</span>
-            <span className="rounded bg-[#E5EEFF] px-1.5 py-0.5 text-[10px] font-bold tracking-wider text-blue-700">
-              BETA
-            </span>
-          </div>
+          <p className="text-xl font-semibold leading-tight text-[#242B30]">Otto</p>
           <p className="mt-1 text-sm text-[#48515B]">{ottoText("Your AI rostering assistant", isUS)}</p>
         </div>
 

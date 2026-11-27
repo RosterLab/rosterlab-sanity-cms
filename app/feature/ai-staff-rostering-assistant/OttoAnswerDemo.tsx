@@ -63,12 +63,7 @@ export default function OttoAnswerDemo({ isUS = false }: { isUS?: boolean }) {
 
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-[#1F2A5C]/10">
         <div className="border-b border-[#ECEEF0] px-4 py-3 sm:px-5 sm:py-4">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-semibold leading-tight text-[#242B30]">Otto</span>
-            <span className="rounded bg-[#E5EEFF] px-1.5 py-0.5 text-[10px] font-bold tracking-wider text-blue-700">
-              BETA
-            </span>
-          </div>
+          <p className="text-xl font-semibold leading-tight text-[#242B30]">Otto</p>
           <p className="mt-1 text-sm text-[#48515B]">{ottoText("Your AI rostering assistant", isUS)}</p>
         </div>
         <div id={responseId} aria-live="polite" aria-atomic="true" className="grid min-h-[17rem] content-start gap-3 p-4 sm:gap-4 sm:p-5">
