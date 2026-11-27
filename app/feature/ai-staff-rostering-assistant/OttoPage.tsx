@@ -74,7 +74,7 @@ const faqItems = (freePath: string) => [
   {
     question: "Is Otto free to use in RosterLab?",
     answer:
-      `Otto is available to both free and paid RosterLab users. You can try Otto using RosterLab’s <a class="font-medium text-blue-700 underline underline-offset-2" href="${freePath}?utm_source=chatgpt.com">free digital rostering tool</a>.`,
+      `Otto is available to both free and paid RosterLab users. You can try Otto using RosterLab’s <a class="font-medium text-blue-700 underline underline-offset-2" href="${freePath}">free digital rostering tool</a>.`,
   },
 ];
 
