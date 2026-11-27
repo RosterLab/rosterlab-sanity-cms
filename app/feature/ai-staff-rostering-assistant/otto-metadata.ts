@@ -8,7 +8,7 @@ export function ottoMetadata(isUS = false) {
   const pathname = isUS ? (getUSPath(globalPath) ?? globalPath) : globalPath;
   const canonical = `https://rosterlab.com${pathname}`;
   const imageAlt = "The RosterLab logo and Otto’s octopus mark on a blue background";
-  const title = ottoText("Personal AI Staff Rostering Assistant", isUS);
+  const title = ottoText("Otto, Your AI Staff Rostering Assistant", isUS);
   const description = ottoText(
     "Roster smarter with Otto, RosterLab’s AI rostering assistant. Get instant answers, find solutions to staffing challenges and tackle complex tasks simply by asking.",
     isUS,
