@@ -34,10 +34,12 @@ export default function OttoActDemo({ isUS = false }: { isUS?: boolean }) {
               <PiFileXls aria-hidden="true" className="size-4 shrink-0 text-[#176447]" />
               <span className="min-w-0 break-words">{ottoText("New starters - Nov.xlsx", isUS)}</span>
             </div>
-            <div aria-hidden="true" className={`${backgrounds.actDragPreview} pointer-events-none absolute inset-0 z-10 hidden items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800 opacity-0 shadow-md`}>
-              <PiFileXls className="size-4 shrink-0 text-[#176447]" />
-              <span className="min-w-0 break-words">{ottoText("New starters - Nov.xlsx", isUS)}</span>
-              <LuMousePointer2 className="absolute -bottom-2 left-5 size-5 fill-slate-900 stroke-white drop-shadow-sm" />
+            <div aria-hidden="true" className={`${backgrounds.actDragPreview} pointer-events-none absolute inset-0 z-10 hidden`}>
+              <div className={`${backgrounds.actDraggedFile} flex h-full items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-800 shadow-md`}>
+                <PiFileXls className="size-4 shrink-0 text-[#176447]" />
+                <span className="min-w-0 break-words">{ottoText("New starters - Nov.xlsx", isUS)}</span>
+              </div>
+              <LuMousePointer2 className={`${backgrounds.actDragPointer} absolute -bottom-2 left-5 size-5 fill-slate-900 stroke-white drop-shadow-sm`} />
             </div>
           </div>
           <p className={`${backgrounds.userMessage} mt-3 text-[#242B30]`}>
