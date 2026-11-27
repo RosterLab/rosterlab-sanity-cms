@@ -279,7 +279,7 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
 
         <section
           aria-labelledby="otto-roles-heading"
-          className={`${backgrounds.role} flex flex-col justify-center py-12 md:py-14 lg:min-h-svh lg:py-[clamp(2rem,6svh,5rem)]`}
+          className={`${backgrounds.role} py-12 sm:py-14 lg:py-[clamp(3rem,6svh,5rem)]`}
         >
           <Container>
             <div className="mx-auto max-w-3xl text-center">

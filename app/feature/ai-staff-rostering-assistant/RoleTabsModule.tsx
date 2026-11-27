@@ -48,7 +48,7 @@ const roles = [
 
 const staffPromptOffsets = [
   "ml-2 max-w-full sm:ml-4",
-  "max-w-[90%] translate-x-2 justify-self-end sm:translate-x-4 lg:translate-x-6",
+  "max-w-[90%] justify-self-end sm:translate-x-3 xl:translate-x-5",
   "mt-1.5 max-w-[94%] justify-self-start",
 ] as const;
 
@@ -76,7 +76,7 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
       <div
         role="group"
         aria-label={ottoText("Choose a rostering role", isUS)}
-        className="mx-auto mt-6 grid w-fit max-w-full gap-1 rounded-2xl border border-[#D6E2F2] bg-[#E8EFF9] p-1 md:flex md:rounded-full"
+        className="mx-auto mt-6 grid w-full max-w-sm gap-1 rounded-2xl border border-[#D6E2F2] bg-[#E8EFF9] p-1 md:flex md:w-fit md:max-w-full md:rounded-full"
       >
         {roles.map((role) => (
           <button
@@ -98,19 +98,19 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
 
       <div
         id={panelId}
-        className="mt-6 grid items-center gap-6 rounded-3xl border border-[#D6E2F2] bg-white p-6 sm:p-8 md:mt-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-10 lg:px-12 lg:py-8"
+        className="mt-6 grid min-w-0 items-center gap-5 rounded-3xl border border-[#D6E2F2] bg-white p-4 sm:gap-6 sm:p-6 md:mt-8 lg:grid-cols-[minmax(0,9fr)_minmax(0,11fr)] lg:gap-8 lg:p-8 xl:gap-12 xl:px-12"
       >
         <div aria-live="polite">
-          <h3 className="max-w-md text-balance text-2xl font-semibold leading-tight tracking-tight text-[#1F2A5C] md:text-3xl">
+          <h3 className="max-w-[28ch] text-pretty text-2xl font-semibold leading-tight tracking-tight text-[#1F2A5C] xl:text-3xl">
             {ottoText(activeRole.title, isUS)}
           </h3>
-          <p className="mt-4 max-w-[38ch] text-base leading-relaxed text-gray-600 md:text-lg">
+          <p className="mt-3 max-w-[60ch] text-base leading-relaxed text-gray-600 xl:mt-4 xl:text-lg">
             {ottoText(activeRole.description, isUS)}
           </p>
         </div>
         <div
-          className={`relative isolate grid min-h-56 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
-            isStaff ? "items-center bg-[#E7EFF9]" : "bg-[#EDF3FB] sm:aspect-[3/2]"
+          className={`relative isolate grid min-w-0 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
+            isStaff ? "items-center bg-[#E7EFF9]" : "min-h-56 bg-[#EDF3FB] sm:min-h-64 xl:min-h-72"
           }`}
         >
           {isStaff && (
@@ -119,18 +119,18 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
               alt=""
               width={activeRole.photoWidth}
               height={activeRole.photoHeight}
-              sizes="(min-width: 1400px) 715px, (min-width: 768px) 55vw, 90vw"
-              className="col-start-1 row-start-1 block h-auto w-full self-stretch object-cover object-[60%_center]"
+              sizes="(min-width: 1400px) 660px, (min-width: 1024px) 49vw, (min-width: 768px) 710px, 90vw"
+              className="block h-auto w-full sm:col-start-1 sm:row-start-1 sm:self-stretch sm:object-cover sm:object-[60%_center]"
             />
           )}
           <ul
             aria-label={`Example questions ${ottoText(activeRole.label, isUS).toLowerCase()}`}
-            className={`relative col-start-1 row-start-1 grid py-4 ${
+            className={`relative grid min-w-0 py-4 sm:col-start-1 sm:row-start-1 ${
               isStaff
-                ? "w-[58%] translate-y-2 self-center gap-2.5 px-2.5 sm:w-[54%] sm:gap-3 sm:px-4 lg:translate-y-4 xl:px-6"
+                ? "w-full self-center gap-2.5 px-3 sm:w-[58%] sm:translate-y-2 sm:gap-3 sm:px-4 xl:translate-y-4 xl:px-6"
                 : isCoordinator
-                  ? "w-full max-w-[26rem] translate-y-2 self-center justify-self-end gap-3 px-4 sm:w-[83%] sm:px-6"
-                  : "w-full max-w-[26rem] self-end gap-2.5 px-4 sm:w-[82%] sm:px-6 sm:pb-7"
+                  ? "w-full max-w-[29rem] self-center justify-self-end gap-3 px-3 sm:w-[90%] sm:px-5"
+                  : "w-full max-w-[29rem] self-end gap-2.5 px-3 sm:w-[90%] sm:px-5 sm:pb-6"
             }`}
           >
             {activeRole.questions.map((question, index) => (
@@ -138,8 +138,8 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
                 key={ottoText(question, isUS)}
                 className={`w-fit rounded-xl rounded-br-sm border py-2 font-medium leading-snug shadow-sm ${
                   isStaff
-                    ? "border-white/80 bg-[#DDF6EF] px-2.5 text-xs text-[#123832] shadow-[#123832]/20 sm:px-3.5 sm:text-sm lg:px-4 lg:py-2.5 lg:text-base"
-                    : "border-[#C9DCEF] bg-[#F8FBFF] px-3.5 text-sm text-[#192F4A] shadow-[#192F4A]/15 lg:px-4 lg:py-2.5 lg:text-base"
+                    ? "border-white/80 bg-[#DDF6EF] px-2.5 text-xs text-[#123832] shadow-[#123832]/20 sm:px-3.5 sm:text-sm xl:px-4 xl:py-2.5 xl:text-base"
+                    : "border-[#C9DCEF] bg-[#F8FBFF] px-3.5 text-sm text-[#192F4A] shadow-[#192F4A]/15 xl:px-4 xl:py-2.5 xl:text-base"
                 } ${promptOffsets[index]}`}
               >
                 {question}
