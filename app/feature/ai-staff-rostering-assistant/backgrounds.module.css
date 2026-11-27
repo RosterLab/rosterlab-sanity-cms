@@ -255,7 +255,10 @@
 
   .actDragPreview {
     display: flex;
-    animation: actFileDrag 9s ease-in-out infinite;
+    offset-path: path("M 12 -48 C 32 -43, 32 -14, 0 0");
+    offset-anchor: left top;
+    offset-rotate: 0deg;
+    animation: actFileDrag 9s linear infinite;
   }
 
   .actComposer::after {
@@ -270,34 +273,40 @@
 }
 
 @keyframes actAttachmentDrop {
-  0%, 19% { opacity: 0; }
-  21%, 97% { opacity: 1; }
+  0%, 14% { opacity: 0; }
+  16%, 97% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 @keyframes actFileDrag {
   0% {
     opacity: 0;
-    transform: translate(0.75rem, -3rem);
+    offset-distance: 0%;
   }
 
-  5%, 8% {
+  4% {
     opacity: 1;
-    transform: translate(0.75rem, -3rem);
+    offset-distance: 0%;
   }
 
-  17%, 19% {
+  8% {
     opacity: 1;
-    transform: translate(0, 0);
+    offset-distance: 0%;
+    animation-timing-function: cubic-bezier(0.35, 0, 0.3, 1);
   }
 
-  21%, 100% {
+  14% {
+    opacity: 1;
+    offset-distance: 100%;
+  }
+
+  16%, 100% {
     opacity: 0;
-    transform: translate(0, 0);
+    offset-distance: 100%;
   }
 }
 
 @keyframes actDropTarget {
-  0%, 12%, 24%, 100% { opacity: 0; }
-  16%, 20% { opacity: 1; }
+  0%, 9%, 20%, 100% { opacity: 0; }
+  12%, 15% { opacity: 1; }
 }
