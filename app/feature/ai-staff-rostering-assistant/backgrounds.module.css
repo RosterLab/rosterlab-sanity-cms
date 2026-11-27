@@ -1,3 +1,24 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(to bottom, transparent 66%, white),
+    radial-gradient(ellipse at 0% 28%, #e6effc, transparent 58%),
+    radial-gradient(ellipse at 100% 12%, #e6f5f2, transparent 56%),
+    #fbfdff;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: radial-gradient(circle, rgb(31 42 92 / 13%) 0.7px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, #000 0%, rgb(0 0 0 / 35%) 58%, transparent 87%);
+  pointer-events: none;
+  content: "";
+}
+
 .role {
   background-color: #e7effc;
   background-image:

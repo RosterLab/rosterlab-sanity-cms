@@ -113,57 +113,57 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
   return (
     <SiteLayout>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-        <section className="bg-white text-center text-[#1F2A5C]">
-          <Container className="py-14 sm:py-16 lg:py-20">
-            <div>
-              <p className="mb-5 text-sm font-semibold text-[#1F2A5C]">
-                {t("Otto AI Rostering Assistant")}
-              </p>
-              <h1 className="mx-auto max-w-[44rem] text-[clamp(1.125rem,6vw,2.5rem)] md:text-[clamp(2.5rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em]">
-                <span className="whitespace-nowrap">{t("AI that knows your roster,")}</span>
-                <br />
-                <span className="whitespace-nowrap">{t("and gets it right")}</span>
-              </h1>
-              <p className="mx-auto mt-6 max-w-[48rem] text-balance text-[15px] leading-[1.55] text-slate-600 md:text-[17px] md:leading-[1.6] sm:mt-7">
-                {t("Meet Otto, the AI rostering assistant built into RosterLab. Just ask Otto to build or refine rosters, analyse workforce data and put decisions into action.")}
-              </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Button
-                  href={demoPath}
-                  className="whitespace-nowrap rounded-full bg-[#1F2A5C] px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-white hover:bg-[#162047] focus:ring-sky-400 focus:ring-offset-white"
-                  analyticsLabel="Book a demo"
-                  analyticsLocation="Feature Page AI Chat Assistant"
-                  analyticsProperties={{
-                    cta_type: "demo",
-                    page_name: "AI Chat Assistant",
-                    section: "hero",
-                  }}
-                >
-                  Book a demo
-                </Button>
-                <Button
-                  href={signupUrl}
-                  variant="outline"
-                  className="whitespace-nowrap rounded-full border border-[#1F2A5C] px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-[#1F2A5C] hover:bg-slate-50 focus:ring-sky-400 focus:ring-offset-white"
-                  analyticsLabel="Try Otto for free"
-                  analyticsLocation="Feature Page AI Chat Assistant"
-                  analyticsProperties={{
-                    cta_type: "free_signup",
-                    page_name: "AI Chat Assistant",
-                    section: "hero",
-                  }}
-                >
-                  Try Otto for free
-                </Button>
+        <div className={backgrounds.hero}>
+          <section className="text-center text-[#1F2A5C]">
+            <Container className="pb-7 pt-12 sm:pb-9 sm:pt-14 lg:pb-12 lg:pt-16">
+              <div>
+                <p className="mb-5 text-sm font-semibold text-[#1F2A5C]">
+                  {t("Otto AI Rostering Assistant")}
+                </p>
+                <h1 className="mx-auto max-w-[46rem] text-balance text-[clamp(2.1rem,4.2vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.024em]">
+                  {t("AI that knows your")}{" "}
+                  <br className="hidden md:block" />
+                  {t("roster, and gets it right")}
+                </h1>
+                <p className="mx-auto mt-6 max-w-[36rem] text-balance text-[15px] leading-[1.55] text-slate-600 md:text-[17px] md:leading-[1.6] sm:mt-7">
+                  {t("Meet Otto, your intelligent rostering assistant inside RosterLab. Build and refine rosters, make sense of your workforce data and put decisions into action, simply by asking Otto.")}
+                </p>
+                <div className="mt-8 flex flex-wrap justify-center gap-3">
+                  <Button
+                    href={demoPath}
+                    className="whitespace-nowrap rounded-full bg-[#1F2A5C] px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-white hover:bg-[#162047] focus:ring-sky-400 focus:ring-offset-white"
+                    analyticsLabel="Book a demo"
+                    analyticsLocation="Feature Page AI Chat Assistant"
+                    analyticsProperties={{
+                      cta_type: "demo",
+                      page_name: "AI Chat Assistant",
+                      section: "hero",
+                    }}
+                  >
+                    Book a demo
+                  </Button>
+                  <Button
+                    href={signupUrl}
+                    variant="outline"
+                    className="whitespace-nowrap rounded-full border border-[#1F2A5C] px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-[#1F2A5C] hover:bg-slate-50 focus:ring-sky-400 focus:ring-offset-white"
+                    analyticsLabel="Try Otto for free"
+                    analyticsLocation="Feature Page AI Chat Assistant"
+                    analyticsProperties={{
+                      cta_type: "free_signup",
+                      page_name: "AI Chat Assistant",
+                      section: "hero",
+                    }}
+                  >
+                    Try Otto for free
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Container>
-        </section>
+            </Container>
+          </section>
 
-        <div className="bg-white">
           <TrustedByDualRow
             singleRow
-            sectionClassName="pb-4 pt-8 md:pb-6 md:pt-12"
+            sectionClassName="bg-transparent pb-7 pt-4 md:pb-9 md:pt-5"
             containerClassName=""
             headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
             logoColor="#1F2A5C"
