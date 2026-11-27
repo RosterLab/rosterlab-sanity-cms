@@ -122,28 +122,21 @@ type Locale = "au" | "us";
  * 2560px retina laptop; the phone was downloading four times the pixels it
  * could show.
  */
-const POSTER = {
-  au: {
-    mobile: "/landing/mockup/hero-browser-poster-960.webp",
-    desktop: "/landing/mockup/hero-browser-poster.webp",
-  },
-  us: {
-    mobile: "/landing/mockup/hero-browser-us-poster-960.webp",
-    desktop: "/landing/mockup/hero-browser-us-poster.webp",
-  },
+const POSTER_BASE = {
+  au: "/landing/mockup/hero-browser-poster",
+  us: "/landing/mockup/hero-browser-us-poster",
 };
 /**
  * 720w and 1440w sit between the original two so the common cases land close:
  * a ~720px-wide phone frame at 1.75x and a ~1000px laptop frame at 1x were
  * otherwise rounding up to 960w and 1920w. Each is the 1920w file resized.
  */
-const posterSrcSet = (l: Locale) => {
-  const base = POSTER[l].desktop.replace(/\.webp$/, "");
+const posterSrcSet = (base: string, format: "avif" | "webp") => {
   return [
-    `${base}-720.webp 720w`,
-    `${POSTER[l].mobile} 960w`,
-    `${base}-1440.webp 1440w`,
-    `${POSTER[l].desktop} 1920w`,
+    `${base}-720.${format} 720w`,
+    `${base}-960.${format} 960w`,
+    `${base}-1440.${format} 1440w`,
+    `${base}.${format} 1920w`,
   ].join(", ");
 };
 
@@ -230,6 +223,9 @@ export default function LandingHero({
   // Under reduced motion the poster is the whole story — never fetch the video.
   // The content object already carries the region; the recording follows it.
   const locale: Locale = content.locale === "us" ? "us" : "au";
+  const posterBase = POSTER_BASE[locale];
+  const webpSrcSet = posterSrcSet(posterBase, "webp");
+  const avifSrcSet = locale === "au" ? posterSrcSet(posterBase, "avif") : null;
   const videoSrc = useDeferredSrc(!reduceMotion, locale);
   const [readyVideoSrc, setReadyVideoSrc] = useState<string>();
 
@@ -420,20 +416,12 @@ export default function LandingHero({
       {...{ [HEADER_OVERLAY_ATTR]: "" }}
       className="relative -mt-20 overflow-x-clip bg-white"
     >
-      {/*
-        The poster is the hero's LCP candidate, and it is only discoverable
-        inside the <video> tag's `poster` attribute — which the preload scanner
-        does not follow. This hoists it to <head> (React 19) so the fetch starts
-        with the document rather than after the video element is parsed, and
-        marks it high priority so it outranks the below-the-fold images the
-        scanner finds first. Same URL as `poster` below, or the browser fetches
-        the image twice.
-      */}
+      {/* Preload the preferred format only. The picture handles WebP fallback. */}
       <link
         rel="preload"
         as="image"
-        href={POSTER[locale].desktop}
-        imageSrcSet={posterSrcSet(locale)}
+        type={avifSrcSet ? "image/avif" : undefined}
+        imageSrcSet={avifSrcSet ?? webpSrcSet}
         imageSizes={POSTER_SIZES}
         fetchPriority="high"
       />
@@ -551,26 +539,23 @@ export default function LandingHero({
                 // transform over.
                 style={{ aspectRatio: `${SCREEN.w} / ${SCREEN.h}` }}
               >
-                {/*
-                  The still, and the hero's LCP element. Sized per screen by
-                  the browser off POSTER_SIZES, and preloaded above with the
-                  same srcset so the fetch starts with the document.
-
-                  A plain <img> on purpose: both files are already WebP at the
-                  exact widths served, so next/image would only add an
-                  optimizer hop in front of the one fetch on the critical path.
-                */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={POSTER[locale].desktop}
-                  srcSet={posterSrcSet(locale)}
-                  sizes={POSTER_SIZES}
-                  alt=""
-                  aria-hidden="true"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="absolute inset-0 block h-full w-full object-cover"
-                />
+                {/* Serve the pre-encoded poster directly at the selected width. */}
+                <picture>
+                  {avifSrcSet && (
+                    <source type="image/avif" srcSet={avifSrcSet} sizes={POSTER_SIZES} />
+                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`${posterBase}.webp`}
+                    srcSet={webpSrcSet}
+                    sizes={POSTER_SIZES}
+                    alt=""
+                    aria-hidden="true"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="absolute inset-0 block h-full w-full object-cover"
+                  />
+                </picture>
 
                 {/*
                   Mounted only once its src is ready, so there is never an
