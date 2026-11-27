@@ -3,10 +3,13 @@
 import { ottoText } from "./otto-copy";
 import Image from "next/image";
 import { useId, useState } from "react";
+import backgrounds from "./backgrounds.module.css";
 
 const roles = [
   {
     id: "managers",
+    photo: "/landing/otto/role-manager-tablet.webp",
+    photoHeight: 799,
     questions: [
       "Which departments are short-staffed next month?",
       "Show me how staff hours are distributed across departments.",
@@ -32,8 +35,7 @@ const roles = [
   {
     id: "staff",
     photo: "/landing/otto/role-staff-wide.webp",
-    photoWidth: 1440,
-    photoHeight: 960,
+    photoHeight: 853,
     questions: [
       "When is my next night shift?",
       "How much annual leave have I taken this year?",
@@ -48,7 +50,7 @@ const roles = [
 
 const staffPromptOffsets = [
   "ml-2 max-w-full sm:ml-4",
-  "max-w-[90%] justify-self-end sm:translate-x-3 xl:translate-x-5",
+  "max-w-[90%] justify-self-end",
   "mt-1.5 max-w-[94%] justify-self-start",
 ] as const;
 
@@ -69,6 +71,7 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
   const panelId = useId();
   const isStaff = activeRole.id === "staff";
   const isCoordinator = activeRole.id === "team-leads";
+  const hasPhoto = "photo" in activeRole;
   const promptOffsets = isStaff ? staffPromptOffsets : isCoordinator ? coordinatorPromptOffsets : managerPromptOffsets;
 
   return (
@@ -110,27 +113,25 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
         </div>
         <div
           className={`relative isolate grid min-w-0 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
-            isStaff ? "items-center bg-[#E7EFF9]" : "min-h-56 bg-[#EDF3FB] sm:min-h-64 xl:min-h-72"
+            hasPhoto ? `${backgrounds.rolePhoto} ${isStaff ? backgrounds.staffPhoto : backgrounds.managerPhoto} bg-[#E7EFF9]` : "min-h-56 bg-[#EDF3FB] sm:min-h-64 xl:min-h-72"
           }`}
         >
-          {isStaff && (
+          {hasPhoto && (
             <Image
               src={activeRole.photo}
               alt=""
-              width={activeRole.photoWidth}
+              width={1280}
               height={activeRole.photoHeight}
-              sizes="(min-width: 1400px) 660px, (min-width: 1024px) 49vw, (min-width: 768px) 710px, 90vw"
-              className="block h-auto w-full sm:col-start-1 sm:row-start-1 sm:self-stretch sm:object-cover sm:object-[60%_center]"
+              sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
+              className={`${backgrounds.rolePhotoImage} block h-auto w-full`}
             />
           )}
           <ul
             aria-label={`Example questions ${ottoText(activeRole.label, isUS).toLowerCase()}`}
-            className={`relative grid min-w-0 py-4 sm:col-start-1 sm:row-start-1 ${
-              isStaff
-                ? "w-full self-center gap-2.5 px-3 sm:w-[58%] sm:translate-y-2 sm:gap-3 sm:px-4 xl:translate-y-4 xl:px-6"
-                : isCoordinator
-                  ? "w-full max-w-[29rem] self-center justify-self-end gap-3 px-3 sm:w-[90%] sm:px-5"
-                  : "w-full max-w-[29rem] self-end gap-2.5 px-3 sm:w-[90%] sm:px-5 sm:pb-6"
+            className={`relative grid min-w-0 gap-2.5 px-3 py-4 ${
+              hasPhoto
+                ? backgrounds.rolePhotoPrompts
+                : "w-full max-w-[29rem] self-center justify-self-end sm:w-[90%] sm:px-5"
             }`}
           >
             {activeRole.questions.map((question, index) => (
@@ -138,8 +139,10 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
                 key={ottoText(question, isUS)}
                 className={`w-fit rounded-xl rounded-br-sm border py-2 font-medium leading-snug shadow-sm ${
                   isStaff
-                    ? "border-white/80 bg-[#DDF6EF] px-2.5 text-xs text-[#123832] shadow-[#123832]/20 sm:px-3.5 sm:text-sm xl:px-4 xl:py-2.5 xl:text-base"
-                    : "border-[#C9DCEF] bg-[#F8FBFF] px-3.5 text-sm text-[#192F4A] shadow-[#192F4A]/15 xl:px-4 xl:py-2.5 xl:text-base"
+                    ? "border-white/80 bg-[#DDF6EF] px-2.5 text-xs text-[#123832] shadow-[#123832]/20 sm:px-3.5 sm:text-sm"
+                    : hasPhoto
+                      ? "border-[#D4E2F3] bg-[#F4F8FE] px-2.5 text-xs text-[#192F4A] shadow-[#192F4A]/20 sm:text-sm"
+                      : "border-[#C9DCEF] bg-[#F8FBFF] px-3.5 text-sm text-[#192F4A] shadow-[#192F4A]/15 xl:px-4 xl:py-2.5 xl:text-base"
                 } ${promptOffsets[index]}`}
               >
                 {question}

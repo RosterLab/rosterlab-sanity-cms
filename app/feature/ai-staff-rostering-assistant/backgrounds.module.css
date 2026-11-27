@@ -134,3 +134,28 @@
     transform: translateY(0);
   }
 }
+
+.rolePhoto {
+  container: role-photo / inline-size;
+}
+
+.managerPhoto {
+  --role-prompt-width: 42%;
+}
+
+.staffPhoto {
+  --role-prompt-width: 52%;
+}
+
+@container role-photo (min-width: 470px) {
+  .rolePhotoImage,
+  .rolePhotoPrompts {
+    grid-area: 1 / 1;
+  }
+
+  .rolePhotoPrompts {
+    align-self: center;
+    width: var(--role-prompt-width);
+    padding-inline: clamp(0.75rem, 3cqw, 1.25rem);
+  }
+}
