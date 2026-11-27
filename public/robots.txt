@@ -16,9 +16,9 @@ Disallow: /favicon.ico
 # (e.g., Open Graph images, featured images)
 Allow: /images/og-images/
 Allow: /images/updated-hero/
+Allow: /_next/image/
 
 # Disallow only internal/system images and assets
-Disallow: /_next/image/
 Disallow: /assets/
 
 # Sitemap

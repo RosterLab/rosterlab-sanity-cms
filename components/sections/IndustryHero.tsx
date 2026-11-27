@@ -42,6 +42,7 @@ const ARCH_STROKE = "border-[#03FABF]";
 interface HeroCta {
   href: string;
   label: string;
+  prefetch?: boolean;
   analyticsLabel?: string;
   analyticsProperties?: Record<string, any>;
 }
@@ -215,6 +216,7 @@ export default function IndustryHero({
               {secondaryCta && (
                 <Button
                   href={secondaryCta.href}
+                  prefetch={secondaryCta.prefetch}
                   className="inline-flex items-center justify-center bg-transparent border border-white text-white px-7 py-3 rounded-full text-base font-semibold hover:bg-white/10 transition"
                   analyticsLabel={
                     secondaryCta.analyticsLabel ?? secondaryCta.label

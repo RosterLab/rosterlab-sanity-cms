@@ -283,7 +283,7 @@ export const WORKFORCE_CONTENT_US: WorkforceContent = {
     {
       name: "Allied health",
       illustration: "/landing/workforce/illustrations/allied-health.webp",
-      href: "/us/industries/healthcare/radiography-scheduling",
+      href: "/us/industries/healthcare/allied-health-scheduling",
       linkLabel: "Explore allied health scheduling",
       description:
         "Schedule allied health teams across clinics, units and sites by skill and availability, so every service has the right people on hand.",

@@ -59,10 +59,6 @@ export const usNavItems = [
         link: "/us/industries/healthcare/radiology-scheduling",
       },
       {
-        title: "Radiography Scheduling",
-        link: "/us/industries/healthcare/radiography-scheduling",
-      },
-      {
         title: "Senior Care Scheduling",
         link: "/us/industries/healthcare/senior-care-scheduling",
       },
@@ -71,8 +67,16 @@ export const usNavItems = [
         link: "/us/industries/healthcare/veterinary-scheduling",
       },
       {
-        title: "Nurse Scheduling",
+        title: "Long Term Planning",
+        link: "/us/type/long-term-schedule-planning",
+      },
+      {
+        title: "Nursing & Midwifery",
         link: "/us/industries/healthcare/nurse-scheduling",
+      },
+      {
+        title: "Allied Health",
+        link: "/us/industries/healthcare/allied-health-scheduling",
       },
       {
         title: "Physician Scheduling",
@@ -83,10 +87,6 @@ export const usNavItems = [
         link: "/us/industries/healthcare/attending-physician-scheduling",
       },
       { title: "On-Call Scheduling", link: "/us/type/on-call-scheduling" },
-      {
-        title: "Long Term Planning",
-        link: "/us/type/long-term-schedule-planning",
-      },
       {
         title: "Telehealth Scheduling",
         link: "/us/industries/healthcare/telehealth-scheduling",

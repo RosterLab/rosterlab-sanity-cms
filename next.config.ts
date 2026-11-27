@@ -77,6 +77,17 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // Keep local and non-production deployments out of search indexes.
+      // Production keeps each page's intended metadata indexing directives.
+      ...(process.env.NODE_ENV === "development" ||
+      ["deploy-preview", "branch-deploy"].includes(process.env.CONTEXT ?? "")
+        ? [
+            {
+              source: "/:path*",
+              headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+            },
+          ]
+        : []),
       // Security headers for all pages
       {
         source: "/:path*",
@@ -174,6 +185,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/us/industries/healthcare/allied-health-rostering",
+        destination: "/us/industries/healthcare/allied-health-scheduling",
+        permanent: true,
+      },
       // Only normalize numbered variants of logos that actually exist.
       {
         source:

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 interface TrustedLogo {
   src: string;
   alt: string;
+  healthcare?: boolean;
   /** Desktop draw height in px — see the note on trustedLogos below. */
   opticalHeight: number;
   /** Native SVG viewBox ratio, reserved before the image downloads. */
@@ -31,12 +32,14 @@ const trustedLogos: TrustedLogo[] = [
   {
     src: "/images/logos/new-logos/aus_gov.svg",
     alt: "Australian Government",
+    healthcare: true,
     opticalHeight: 40,
     aspectRatio: 460 / 124.59,
   },
   {
     src: "/images/logos/new-logos/hospice_west_auckland.svg",
     alt: "Hospice West Auckland",
+    healthcare: true,
     opticalHeight: 56,
     aspectRatio: 194.202 / 170.627,
   },
@@ -49,12 +52,14 @@ const trustedLogos: TrustedLogo[] = [
   {
     src: "/images/logos/new-logos/monash.svg",
     alt: "Monash Health",
+    healthcare: true,
     opticalHeight: 32,
     aspectRatio: 391.68 / 114.46,
   },
   {
     src: "/images/logos/new-logos/nsw.svg",
     alt: "NSW Health",
+    healthcare: true,
     opticalHeight: 40,
     aspectRatio: 443.52 / 114.25,
   },
@@ -67,24 +72,28 @@ const trustedLogos: TrustedLogo[] = [
   {
     src: "/images/logos/new-logos/royal_prince.svg",
     alt: "Royal Prince Alfred",
+    healthcare: true,
     opticalHeight: 50,
     aspectRatio: 336.71 / 114.51,
   },
   {
     src: "/images/logos/new-logos/singhealth.svg",
     alt: "SingHealth",
+    healthcare: true,
     opticalHeight: 40,
     aspectRatio: 457.34 / 134.21,
   },
   {
     src: "/images/logos/new-logos/st_george.svg",
     alt: "St George",
+    healthcare: true,
     opticalHeight: 48,
     aspectRatio: 520.02 / 114.34,
   },
   {
     src: "/images/logos/new-logos/syd_kids.svg",
     alt: "Sydney Children's Hospital",
+    healthcare: true,
     opticalHeight: 52,
     aspectRatio: 363.43 / 128.32,
   },
@@ -103,6 +112,7 @@ const trustedLogos: TrustedLogo[] = [
   {
     src: "/images/logos/new-logos/womens_and_childrens_adelaide.svg",
     alt: "Women's and Children's Hospital Adelaide",
+    healthcare: true,
     opticalHeight: 48,
     aspectRatio: 491.334 / 145.761,
   },
@@ -113,11 +123,6 @@ const trustedLogos: TrustedLogo[] = [
     aspectRatio: 385.939 / 148.446,
   },
 ];
-
-// Split roughly in half so the two rows don't share the same logos.
-const halfway = Math.ceil(trustedLogos.length / 2);
-const topRow = trustedLogos.slice(0, halfway);
-const bottomRow = trustedLogos.slice(halfway);
 
 function Row({
   logos,
@@ -220,6 +225,8 @@ function Row({
 
 interface TrustedByDualRowProps {
   heading?: string;
+  /** Limit the wall to human healthcare organisations. */
+  healthcareOnly?: boolean;
   /**
    * Renders the wall for a dark background: white heading, logos inverted to
    * white silhouettes, and no vertical padding of its own — whatever it is
@@ -239,12 +246,20 @@ interface TrustedByDualRowProps {
 
 export default function TrustedByDualRow({
   heading = "Join hundreds of healthcare teams already optimising their rosters",
+  healthcareOnly = false,
   onDark = false,
   singleRow = false,
   centerHeadingOnMobile = false,
   headingClassName,
   logoColor,
 }: TrustedByDualRowProps = {}) {
+  const logos = healthcareOnly
+    ? trustedLogos.filter((logo) => logo.healthcare)
+    : trustedLogos;
+  // Split roughly in half so the two rows don't share the same logos.
+  const halfway = Math.ceil(logos.length / 2);
+  const topRow = logos.slice(0, halfway);
+  const bottomRow = logos.slice(halfway);
   return (
     <section className={onDark ? "" : "py-6 md:py-16"}>
       <Container className="lg:px-12 xl:px-20">
@@ -300,7 +315,7 @@ export default function TrustedByDualRow({
             }
           >
             {singleRow ? (
-              <Row logos={trustedLogos} onDark={onDark} logoColor={logoColor} />
+              <Row logos={logos} onDark={onDark} logoColor={logoColor} />
             ) : (
               <>
                 {/* Top row: right → left */}
