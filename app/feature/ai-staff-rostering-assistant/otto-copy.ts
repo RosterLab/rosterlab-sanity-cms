@@ -5,7 +5,6 @@ const usTerminology = {
   "overnight cover": "overnight coverage",
   "annual leave": "paid time off",
   "check leave": "check time off",
-  "fatigue or eba rules": "fatigue rules or union agreements",
   "roster writer": "scheduler",
   authorised: "authorized",
   "new starters": "new hires",

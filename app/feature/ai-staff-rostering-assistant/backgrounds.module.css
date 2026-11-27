@@ -116,3 +116,21 @@
   background-color: #2563d9;
   color: #fff;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .messageArrival {
+    animation: messageArrival 240ms ease-out both;
+  }
+}
+
+@keyframes messageArrival {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -21,7 +21,7 @@ const roles = [
     id: "team-leads",
     questions: [
       "Who can cover Saturday night without overtime?",
-      "Would this shift swap breach any fatigue or EBA rules?",
+      "Would this shift swap break any union rules or safety guidelines?",
       "Show me what’s changed since the roster was published.",
     ],
     label: "For Team Leads / Roster Coordinators",
