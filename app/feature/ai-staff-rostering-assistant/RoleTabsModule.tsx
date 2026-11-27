@@ -22,6 +22,8 @@ const roles = [
   },
   {
     id: "team-leads",
+    photo: "/landing/otto/role-team-lead.webp",
+    photoHeight: 793,
     questions: [
       "Who can cover Saturday night without overtime?",
       "Would this shift swap break any union rules or safety guidelines?",
@@ -49,9 +51,9 @@ const roles = [
 ] as const;
 
 const staffPromptOffsets = [
-  "ml-2 max-w-full sm:ml-4",
-  "max-w-[90%] justify-self-end",
-  "mt-1.5 max-w-[94%] justify-self-start",
+  "max-w-[94%] justify-self-start",
+  "ml-5 max-w-[calc(100%_-_1.25rem)] justify-self-start",
+  "ml-2 max-w-[calc(100%_-_0.5rem)] justify-self-start",
 ] as const;
 
 const managerPromptOffsets = [
@@ -67,9 +69,9 @@ const managerPromptLines = [
 ] as const;
 
 const coordinatorPromptOffsets = [
-  "max-w-[84%] justify-self-end",
-  "max-w-[88%] justify-self-start",
-  "mr-2 mt-1 max-w-[90%] justify-self-end sm:mr-6",
+  "mr-4 max-w-[calc(100%_-_1rem)] justify-self-end",
+  "max-w-full justify-self-end",
+  "mr-2 max-w-[calc(100%_-_0.5rem)] justify-self-end",
 ] as const;
 
 export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
@@ -77,7 +79,6 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
   const panelId = useId();
   const isStaff = activeRole.id === "staff";
   const isCoordinator = activeRole.id === "team-leads";
-  const hasPhoto = "photo" in activeRole;
   const promptOffsets = isStaff ? staffPromptOffsets : isCoordinator ? coordinatorPromptOffsets : managerPromptOffsets;
 
   return (
@@ -128,26 +129,19 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
         <div
           className={`${backgrounds.rolePhoto} relative isolate grid min-w-0 overflow-hidden rounded-2xl border border-[#C9D9ED] ${
             isStaff ? backgrounds.staffPhoto : isCoordinator ? backgrounds.coordinatorPhoto : backgrounds.managerPhoto
-          } ${hasPhoto ? "bg-[#E7EFF9]" : "bg-[#EDF3FB]"}`}
+          } bg-[#E7EFF9]`}
         >
-          {isCoordinator && <div aria-hidden="true" className={backgrounds.coordinatorSizer} />}
-          {hasPhoto && (
-            <Image
-              src={activeRole.photo}
-              alt=""
-              width={1280}
-              height={activeRole.photoHeight}
-              sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
-              className={`${backgrounds.rolePhotoImage} block w-full`}
-            />
-          )}
+          <Image
+            src={activeRole.photo}
+            alt=""
+            width={1280}
+            height={activeRole.photoHeight}
+            sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
+            className={`${backgrounds.rolePhotoImage} block w-full`}
+          />
           <ul
             aria-label={`Example questions ${ottoText(activeRole.label, isUS).toLowerCase()}`}
-            className={`relative grid min-w-0 gap-2.5 px-3 py-4 ${
-              hasPhoto
-                ? backgrounds.rolePhotoPrompts
-                : "w-full max-w-[29rem] self-center justify-self-end sm:w-[90%] sm:px-5"
-            }`}
+            className={`${backgrounds.rolePhotoPrompts} relative grid min-w-0 gap-3.5 px-3 py-4`}
           >
             {activeRole.questions.map((question, index) => (
               <li
