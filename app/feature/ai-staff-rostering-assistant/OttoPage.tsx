@@ -13,6 +13,7 @@ import OttoActDemo from "./OttoActDemo";
 import backgrounds from "./backgrounds.module.css";
 import { ottoText } from "./otto-copy";
 
+const signupUrl = "https://app.rosterlab.com/signup";
 const globalDemoPath = "/book-a-demo";
 const globalFreePath = "/solutions/free-staff-rostering-software";
 
@@ -139,7 +140,7 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
                   Book a demo
                 </Button>
                 <Button
-                  href={freePath}
+                  href={signupUrl}
                   variant="outline"
                   className="whitespace-nowrap rounded-full border border-white/40 px-5 py-2.5 text-sm font-semibold sm:px-8 sm:py-3.5 sm:text-base text-white hover:bg-white/10 focus:ring-sky-300 focus:ring-offset-[#08162f]"
                   analyticsLabel="Try Otto for free"
@@ -344,7 +345,7 @@ export default function OttoPage({ isUS = false }: { isUS?: boolean }) {
                     Book a demo
                   </Button>
                   <Button
-                    href={freePath}
+                    href={signupUrl}
                     variant="outline"
                     className="rounded-md border-2 border-white px-7 py-3.5 text-base font-semibold text-white hover:bg-white hover:text-[#1F2A5C]"
                     analyticsLabel="Try Otto for free"
