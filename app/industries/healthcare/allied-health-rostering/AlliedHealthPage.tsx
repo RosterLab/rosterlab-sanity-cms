@@ -81,9 +81,9 @@ const CAPABILITIES = [
       href: "/feature/self-scheduling",
     },
     image: {
-      src: "/images/updated-hero/self-scheduling.webp",
-      alt: "RosterLab self-scheduling interface for staff preferences",
-      className: "object-contain",
+      src: "/images/industries/nursing/staff-preferences-v2.webp",
+      alt: "Staff preferences in RosterLab on desktop, with staff requesting a shift and accepting an open shift in the mobile app",
+      className: "object-cover",
     },
   },
 ];
@@ -209,9 +209,11 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
           },
         }}
         image={{
-          src: "/images/industries/allied-health/physiotherapy-hero.webp",
-          alt: "Clinician assisting a patient with resistance-band exercises",
-          objectPosition: "65% 40%",
+          src: "/images/industries/allied-health/medical-imaging-hero.webp",
+          alt: copy(
+            "Radiographers reviewing a scan while a patient lies in a CT scanner",
+          ),
+          objectPosition: "50% 8%",
         }}
       />
 

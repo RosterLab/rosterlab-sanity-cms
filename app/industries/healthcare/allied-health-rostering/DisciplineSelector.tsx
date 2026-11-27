@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { PiArrowRightBold } from "react-icons/pi";
 import {
@@ -17,6 +18,7 @@ interface Discipline {
   practitioners?: string;
   details: string[];
   link?: { label: string; href: string };
+  image?: { src: string; alt: string };
 }
 
 const GLOBAL_DISCIPLINES: Discipline[] = [
@@ -33,6 +35,10 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       label: "Explore radiography rostering",
       href: "/industries/healthcare/radiography",
     },
+    image: {
+      src: "/images/industries/allied-health/discipline-medical-imaging-v13.webp",
+      alt: "Radiographer with a patient beside a scanner, next to a RosterLab roster of multi-skilled imaging staff covering CT, MRI, ultrasound and X-ray every day",
+    },
   },
   {
     label: "Pathology & lab",
@@ -48,6 +54,10 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       label: "Explore pathology rostering",
       href: "/industries/healthcare/pathology-rostering",
     },
+    image: {
+      src: "/images/industries/allied-health/discipline-pathology-v12.webp",
+      alt: "Laboratory scientist at a microscope, next to a RosterLab demand for haematology, biochemistry and senior cover on night shifts, with at most one trainee",
+    },
   },
   {
     label: "Anaesthetic tech",
@@ -59,6 +69,10 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       "Clinical team coordination",
       "Skill mix & supervision",
     ],
+    image: {
+      src: "/images/industries/allied-health/discipline-anaesthetic-technology-v13.webp",
+      alt: "Anaesthetic technician in theatre, next to the RosterLab shift view split by cardiac theatre, paediatric theatre and on-call, with technicians allocated each day",
+    },
   },
   {
     label: "Pharmacy",
@@ -66,6 +80,10 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     description:
       "Balance staffing across wards, dispensaries and specialist pharmacy services.",
     details: ["Service coverage", "Specialist skills", "Weekend & on-call"],
+    image: {
+      src: "/images/industries/allied-health/discipline-pharmacy-v12.webp",
+      alt: "Pharmacist checking stock in a dispensary, next to a RosterLab open shift card for a Saturday pharmacy day shift with on-call overnight",
+    },
   },
   {
     label: "Mental health",
@@ -77,6 +95,10 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       "Cross-service allocations",
       "Specialist & senior cover",
     ],
+    image: {
+      src: "/images/industries/allied-health/discipline-mental-health-v12.webp",
+      alt: "Clinician in a one-on-one session, next to a RosterLab roster of a psychologist, occupational therapist, social worker and senior psychologist across inpatient, community and crisis services",
+    },
   },
   {
     name: "Other Services",
@@ -85,6 +107,10 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     practitioners:
       "Physiotherapy · Occupational therapy · Clinical physiology · Podiatry · Audiology",
     details: [],
+    image: {
+      src: "/images/industries/allied-health/discipline-other-services-v12.webp",
+      alt: "Physiotherapist guiding a patient through a rehab exercise, next to RosterLab notifications for physiotherapy, audiology and podiatry staff",
+    },
   },
 ];
 
@@ -105,6 +131,9 @@ export default function DisciplineSelector({
       ? copy(discipline.practitioners)
       : undefined,
     details: discipline.details.map(copy),
+    image: discipline.image
+      ? { ...discipline.image, alt: copy(discipline.image.alt) }
+      : undefined,
     link: discipline.link
       ? {
           label: copy(discipline.link.label),
@@ -237,8 +266,24 @@ export default function DisciplineSelector({
         }}
         className="mt-6 rounded-2xl border border-[#1F2A5C]/10 bg-white p-3 md:mt-8 md:rounded-3xl md:p-4 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-4"
       >
-        {/* Reserved for discipline photography in a later update. */}
-        <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-[#EDF3FB] sm:aspect-video lg:aspect-auto lg:rounded-2xl">
+        {/* 4:3 artwork keeps the in-image product card clear of the slideshow dots. */}
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#EDF3FB] lg:aspect-auto lg:rounded-2xl">
+          {DISCIPLINES.map(
+            (discipline, index) =>
+              discipline.image && (
+                <Image
+                  key={discipline.image.src}
+                  src={discipline.image.src}
+                  alt={active === index ? discipline.image.alt : ""}
+                  aria-hidden={active !== index}
+                  fill
+                  sizes="(min-width: 1152px) 530px, (min-width: 1024px) 45vw, 100vw"
+                  className={`object-cover transition-opacity duration-500 ${
+                    active === index ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ),
+          )}
           <div
             className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-0.5"
             aria-label="Discipline slideshow controls"
