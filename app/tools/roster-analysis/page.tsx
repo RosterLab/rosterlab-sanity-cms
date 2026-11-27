@@ -1,3 +1,7 @@
+import { Suspense } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import Container from "@/components/ui/Container";
 import RosterAnalysisClient from "./RosterAnalysisClient";
 import SiteLayout from "@/components/layout/SiteLayout";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
@@ -54,9 +58,14 @@ type RawCaseStudy = {
   mainImage?: { asset: { _ref: string }; alt?: string };
 };
 
-export default async function RosterAnalysisPage() {
+async function CaseStudies() {
   const client = getClient();
-  const raw = await client.fetch<RawCaseStudy[]>(caseStudiesQuery);
+  const raw = await client
+    .fetch<RawCaseStudy[]>(caseStudiesQuery, {}, { next: { revalidate } })
+    .catch((error: unknown) => {
+      console.error("Could not load roster analysis case studies", error);
+      return [];
+    });
   const caseStudies = (raw || []).map((p) => ({
     title: p.title,
     slug: p.slug,
@@ -67,9 +76,73 @@ export default async function RosterAnalysisPage() {
     imageAlt: p.mainImage?.alt || p.title,
   }));
 
+  if (caseStudies.length === 0) return null;
+
+  return (
+    <div className="bg-white border-t border-gray-100 py-16 lg:py-[120px]">
+      <Container>
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-3xl sm:text-[40px] font-bold text-gray-900 mb-4 leading-[1.15]">
+            Case Studies
+          </h2>
+          <p className="text-base sm:text-[20px] text-gray-600 leading-[1.5]">
+            See how global organizations are transforming their
+            workforce management with RosterLab.
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mb-12">
+          {caseStudies.map((cs) => (
+            <Link
+              key={cs.slug}
+              href={`/case-studies/${cs.slug}`}
+              className="group bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all flex flex-col"
+            >
+              <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
+                {cs.imageUrl && (
+                  <Image
+                    src={cs.imageUrl}
+                    alt={cs.imageAlt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                )}
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">
+                  Case study
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-[1.25]">
+                  {cs.title}
+                </h3>
+                {cs.excerpt && (
+                  <p className="text-base text-gray-600 mb-4 leading-[1.5] line-clamp-3">
+                    {cs.excerpt}
+                  </p>
+                )}
+                <span className="text-base font-semibold text-primary-600 group-hover:underline mt-auto">
+                  Read story →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+export default function RosterAnalysisPage() {
   return (
     <SiteLayout>
-      <RosterAnalysisClient caseStudies={caseStudies} />
+      <RosterAnalysisClient
+        caseStudies={
+          <Suspense fallback={null}>
+            <CaseStudies />
+          </Suspense>
+        }
+      />
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },

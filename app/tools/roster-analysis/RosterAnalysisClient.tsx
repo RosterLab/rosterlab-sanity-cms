@@ -87,21 +87,11 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-type CaseStudy = {
-  title: string;
-  slug: string;
-  excerpt: string;
-  imageUrl: string | null;
-  imageAlt: string;
-};
-
-interface RosterAnalysisClientProps {
-  caseStudies?: CaseStudy[];
-}
-
 export default function RosterAnalysisClient({
-  caseStudies = [],
-}: RosterAnalysisClientProps) {
+  caseStudies,
+}: {
+  caseStudies?: React.ReactNode;
+}) {
   const [pageState, setPageState] = useState<PageState>("upload");
   const [heroImageHover, setHeroImageHover] = useState(false);
   const [email, setEmail] = useState("");
@@ -1160,60 +1150,7 @@ export default function RosterAnalysisClient({
           {/* Trusted by carousel */}
           <LogoMarquee />
 
-          {/* Case studies / success stories */}
-          {caseStudies.length > 0 && (
-            <div className="bg-white border-t border-gray-100 py-16 lg:py-[120px]">
-              <Container>
-                <div className="max-w-3xl mx-auto text-center mb-12">
-                  <h2 className="text-3xl sm:text-[40px] font-bold text-gray-900 mb-4 leading-[1.15]">
-                    Case Studies
-                  </h2>
-                  <p className="text-base sm:text-[20px] text-gray-600 leading-[1.5]">
-                    See how global organizations are transforming their
-                    workforce management with RosterLab.
-                  </p>
-                </div>
-
-                <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 mb-12">
-                  {caseStudies.map((cs) => (
-                    <Link
-                      key={cs.slug}
-                      href={`/case-studies/${cs.slug}`}
-                      className="group bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all flex flex-col"
-                    >
-                      <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
-                        {cs.imageUrl && (
-                          <Image
-                            src={cs.imageUrl}
-                            alt={cs.imageAlt}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        )}
-                      </div>
-                      <div className="p-6 flex flex-col flex-1">
-                        <div className="text-sm font-semibold text-primary-600 uppercase tracking-wide mb-2">
-                          Case study
-                        </div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-[1.25]">
-                          {cs.title}
-                        </h3>
-                        {cs.excerpt && (
-                          <p className="text-base text-gray-600 mb-4 leading-[1.5] line-clamp-3">
-                            {cs.excerpt}
-                          </p>
-                        )}
-                        <span className="text-base font-semibold text-primary-600 group-hover:underline mt-auto">
-                          Read story →
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </Container>
-            </div>
-          )}
+          {caseStudies}
 
           {/* More useful pieces */}
           <div className="bg-gray-50 border-t border-gray-100 py-16 lg:py-[120px]">

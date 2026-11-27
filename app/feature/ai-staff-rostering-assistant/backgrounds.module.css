@@ -1,0 +1,348 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(to bottom, transparent 66%, white),
+    radial-gradient(ellipse at 0% 28%, #e6effc, transparent 58%),
+    radial-gradient(ellipse at 100% 12%, #e6f5f2, transparent 56%),
+    #fbfdff;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: radial-gradient(circle, rgb(31 42 92 / 13%) 0.7px, transparent 1.2px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, #000 0%, rgb(0 0 0 / 35%) 58%, transparent 87%);
+  pointer-events: none;
+  content: "";
+}
+
+.role {
+  background-color: #e7effc;
+  background-image:
+    radial-gradient(ellipse at 12% 85%, #8fb7ee 0%, transparent 52%),
+    radial-gradient(ellipse at 88% 20%, #b4d5f6 0%, transparent 58%),
+    linear-gradient(155deg, #c6d9f4 0%, #eef4fc 48%, #d4e3fa 100%);
+}
+
+.evaluate {
+  background-color: #8fbcaf;
+  background-image:
+    radial-gradient(ellipse at 89% 5%, #d6ede2 0%, transparent 63%),
+    radial-gradient(ellipse at 15% 78%, #5a998b 0%, transparent 68%),
+    linear-gradient(122deg, #91bdb0 0%, #bfded1 45%, #78aa9f 100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .typingDot {
+    animation: typingLift 1.5s ease-in-out infinite;
+  }
+
+  .typingDot:nth-child(2) {
+    animation-delay: 150ms;
+  }
+
+  .typingDot:nth-child(3) {
+    animation-delay: 300ms;
+  }
+}
+
+@keyframes typingLift {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  20% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+}
+
+.analyse {
+  background-color: #dce3fa;
+  background-image:
+    radial-gradient(ellipse at 80% 15%, #f0e9fb 0%, transparent 60%),
+    radial-gradient(ellipse at 12% 90%, #a4b5e7 0%, transparent 68%),
+    linear-gradient(145deg, #c6d4f3, #e7e5fa);
+}
+
+.act {
+  background-color: #d1e2f9;
+  background-image:
+    radial-gradient(ellipse at 5% 0%, #edf5fe 0%, transparent 58%),
+    linear-gradient(150deg, #dbeafa 10%, #bfd6f5 55%, #8bb1e6 100%);
+}
+
+/* Neutralise the selected row while preserving its original raster text. */
+.employeeSelection,
+.employeeSelection::before,
+.employeeSelection::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/landing/otto/act-employees.webp") left top / 100% auto no-repeat;
+}
+
+.employeeSelection {
+  clip-path: inset(34.36% 0 61.78% 8.77%);
+  isolation: isolate;
+  filter: grayscale(1) brightness(1.2);
+}
+
+.employeeSelection::before,
+.employeeSelection::after {
+  content: "";
+  background-position: left -2.71cqw;
+}
+
+.employeeSelection::before {
+  clip-path: inset(34.36% 84.8% 61.78% 12.2%);
+}
+
+.employeeSelection::after {
+  clip-path: inset(34.36% 30.3% 61.78% 49.25%);
+}
+
+.userMessage {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375;
+}
+
+@media (min-width: 1024px) {
+  .userMessage {
+    font-size: 1rem;
+  }
+}
+
+.userBubble {
+  width: fit-content;
+  max-width: 92%;
+  margin-left: auto;
+  padding: 0.625rem 1rem;
+  border-radius: 1rem 1rem 0.125rem 1rem;
+  background-color: #2563d9;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .messageArrival {
+    animation: messageArrival 240ms ease-out both;
+  }
+}
+
+@keyframes messageArrival {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rolePhoto {
+  container: role-photo / inline-size;
+}
+
+.rolePhotoFrame {
+  position: relative;
+  aspect-ratio: 1.4;
+  overflow: hidden;
+}
+
+.rolePhotoImage {
+  object-fit: cover;
+  object-position: left top;
+}
+
+.rolePhotoPrompts {
+  align-self: center;
+}
+
+.managerPhoto {
+  --role-prompt-width: 55%;
+}
+
+.staffPhoto {
+  --role-prompt-width: 52%;
+}
+
+.staffPhotoImage {
+  object-position: center top;
+  transform: scale(1.14);
+  transform-origin: 85% 20%;
+}
+
+.coordinatorPhoto {
+  --role-prompt-width: 55%;
+}
+
+.coordinatorPhotoImage {
+  object-position: right top;
+}
+
+@container role-photo (min-width: 470px) {
+  .rolePhotoFrame,
+  .rolePhotoPrompts {
+    grid-area: 1 / 1;
+  }
+
+  .rolePhotoPrompts {
+    width: var(--role-prompt-width);
+    padding-inline: clamp(0.75rem, 3cqw, 1.25rem);
+  }
+
+  .coordinatorPhoto .rolePhotoPrompts {
+    justify-self: end;
+  }
+
+  .managerPhoto .rolePhotoPrompts {
+    padding-right: 0;
+  }
+
+  .managerPhoto .rolePhotoPrompts li {
+    font-size: clamp(0.8125rem, 2.45cqw, 1.0625rem);
+    padding-inline: clamp(0.625rem, 2.3cqw, 1rem);
+  }
+}
+
+@container role-photo (width < 470px) {
+  .rolePhotoFrame,
+  .rolePhotoPrompts {
+    grid-area: 1 / 1;
+  }
+
+  .rolePhotoFrame {
+    aspect-ratio: 16 / 9;
+  }
+
+  .rolePhotoImage {
+    object-position: center top;
+  }
+
+  .managerPhotoImage {
+    object-position: left top;
+    transform: scale(1.12);
+    transform-origin: left top;
+  }
+
+  .coordinatorPhotoImage {
+    object-position: right top;
+    transform: scale(1.12);
+    transform-origin: right top;
+  }
+
+  .staffPhotoImage {
+    object-position: right 30%;
+    transform-origin: 85% 33%;
+  }
+
+  .rolePhotoPrompts {
+    align-self: end;
+    margin-bottom: clamp(0.5rem, 3cqw, 0.875rem);
+    width: 82%;
+    gap: 0.375rem;
+    padding: 0.625rem 0.75rem;
+  }
+
+  .coordinatorPhoto .rolePhotoPrompts {
+    justify-self: end;
+  }
+
+  .rolePhotoPrompts li {
+    padding: 0.375rem 0.625rem;
+    font-size: clamp(0.6875rem, 3.4cqw, 0.875rem);
+  }
+
+  .managerPhoto .rolePhotoPrompts li:nth-child(2) {
+    margin-left: 0.5rem;
+    max-width: calc(100% - 0.5rem);
+  }
+}
+
+@container role-photo (width < 285px) {
+  .rolePhotoFrame {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .actComposer {
+    --act-drag-cycle: 12s;
+  }
+
+  .actAttachment {
+    animation: actAttachmentDrop var(--act-drag-cycle) ease-out infinite;
+  }
+
+  .actDragPreview {
+    display: block;
+    animation: actFileDrag var(--act-drag-cycle) linear infinite;
+  }
+
+  .actDraggedFile {
+    animation: actDraggedFileVisibility var(--act-drag-cycle) linear infinite;
+  }
+
+  .actDragPointer {
+    animation: actDragPointerRelease var(--act-drag-cycle) ease-out infinite;
+  }
+
+  .actComposer::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid #5788d7;
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+    animation: actDropTarget var(--act-drag-cycle) ease-out infinite;
+  }
+}
+
+@keyframes actAttachmentDrop {
+  0%, 9% { opacity: 0; }
+  10%, 98% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes actFileDrag {
+  0%, 6% {
+    transform: translate(5px, -22px);
+    animation-timing-function: cubic-bezier(0.25, 0, 0.35, 1);
+  }
+
+  9% { transform: translate(0, -1px); }
+  10%, 100% { transform: translate(0, 0); }
+}
+
+@keyframes actDraggedFileVisibility {
+  0% { opacity: 0; }
+  3%, 9% { opacity: 1; }
+  10%, 100% { opacity: 0; }
+}
+
+@keyframes actDragPointerRelease {
+  0% { opacity: 0; }
+  3%, 10% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  13%, 100% {
+    opacity: 0;
+    transform: translate(4px, 3px);
+  }
+}
+
+@keyframes actDropTarget {
+  0%, 7%, 13%, 100% { opacity: 0; }
+  8%, 10% { opacity: 0.3; }
+}

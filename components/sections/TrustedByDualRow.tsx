@@ -240,6 +240,9 @@ interface TrustedByDualRowProps {
   centerHeadingOnMobile?: boolean;
   /** Replaces the heading's default size and colour classes. */
   headingClassName?: string;
+  containerClassName?: string;
+  headingAboveLogos?: boolean;
+  sectionClassName?: string;
   /** Paints every logo in this one colour instead of greyscale. */
   logoColor?: string;
 }
@@ -251,6 +254,9 @@ export default function TrustedByDualRow({
   singleRow = false,
   centerHeadingOnMobile = false,
   headingClassName,
+  containerClassName,
+  headingAboveLogos = false,
+  sectionClassName,
   logoColor,
 }: TrustedByDualRowProps = {}) {
   const logos = healthcareOnly
@@ -261,19 +267,24 @@ export default function TrustedByDualRow({
   const topRow = logos.slice(0, halfway);
   const bottomRow = logos.slice(halfway);
   return (
-    <section className={onDark ? "" : "py-6 md:py-16"}>
-      <Container className="lg:px-12 xl:px-20">
+    <section className={cn(!onDark && "py-6 md:py-16", sectionClassName)}>
+      <Container className={containerClassName ?? "lg:px-12 xl:px-20"}>
         <div
           className={cn(
-            "grid lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] gap-8 lg:gap-12 items-center",
+            "grid items-center",
+            headingAboveLogos
+              ? "grid-cols-1 gap-5 md:gap-7"
+              : "gap-8 lg:grid-cols-[minmax(0,0.9fr),minmax(0,1.6fr)] lg:gap-12",
             centerHeadingOnMobile && "grid-cols-1",
           )}
         >
           <div
             className={
-              centerHeadingOnMobile
-                ? "text-center lg:max-w-md lg:text-left"
-                : "max-w-md"
+              headingAboveLogos
+                ? "text-center"
+                : centerHeadingOnMobile
+                  ? "text-center lg:max-w-md lg:text-left"
+                  : "max-w-md"
             }
           >
             <h2
@@ -290,7 +301,6 @@ export default function TrustedByDualRow({
             </h2>
           </div>
 
-          {/* On desktop the logo rows sit to the right of the heading. */}
           <div
             className={cn(
               "relative overflow-hidden md:space-y-6",
