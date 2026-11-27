@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 import { ARTICLE_REDIRECTS } from "./lib/posts/article-redirects";
 import { withPostHogConfig } from "@posthog/nextjs-config";
 
-const publicCdnCacheControl = "public, s-maxage=300, stale-while-revalidate=3600";
+const publicCdnCacheControl =
+  "public, s-maxage=300, stale-while-revalidate=3600";
+// Match the homepage's revalidation interval in app/page.tsx so the CDN does
+// not expire HTML that the Next.js cache will keep returning with the same age.
+const homepageCdnCacheControl =
+  "public, s-maxage=3600, stale-while-revalidate=3600";
 
 const nextConfig: NextConfig = {
   // Canonical and hreflang links must be in the initial <head>, not streamed
@@ -139,7 +144,11 @@ const nextConfig: NextConfig = {
             // For prerendered responses the Netlify adapter rebuilds its CDN
             // policy from this header, falling back to browser Cache-Control.
             key: "CDN-Cache-Control",
-            value: publicCdnCacheControl,
+            value: homepageCdnCacheControl,
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: `${homepageCdnCacheControl}, durable`,
           },
         ],
       },
