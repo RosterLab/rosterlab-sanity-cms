@@ -13,6 +13,7 @@ import {
   alliedHealthCopy,
   alliedHealthHref,
   alliedHealthAnswer,
+  alliedHealthImage,
 } from "./localization";
 import RosterComparison, {
   type ComparisonRow,
@@ -59,9 +60,9 @@ const BENEFITS: { title: string; description: string }[] = [
 
 const CAPABILITIES = [
   {
-    title: "Plan specialist cover and anticipate staffing gaps",
+    title: "Generate rosters around skills and service needs",
     description:
-      "Whether you need a radiographer qualified in a specific modality or a physiotherapist with respiratory expertise, RosterLab matches staff to shifts based on their skills, qualifications and credentials.\n\nIt also identifies coverage gaps early, giving you time to arrange specialist cover before they result in service delays or cancellations.",
+      "RosterLab considers the skills, qualifications, locations, contracted hours and staffing rules recorded for your team together when generating rosters.\n\nReview the proposed allocations and identify remaining coverage gaps before publishing.",
     link: {
       label: "Explore AI rostering",
       href: "/feature/automated-rostering",
@@ -75,7 +76,7 @@ const CAPABILITIES = [
   {
     title: "Give staff a say in their roster",
     description:
-      "Staff can submit their preferences, availability and leave requests through a dedicated app. Balance staff inputs with service needs, fair allocation rules and agreed rest requirements — all in one place.\n\nNo lost emails. No perceived favouritism.",
+      "Staff can submit their preferences, availability and leave requests through a dedicated app. Balance staff inputs with service needs, fair allocation rules and agreed rest requirements — all in one place.\n\nNo lost emails. Clear rules and greater visibility over staff requests.",
     link: {
       label: "Explore self-scheduling",
       href: "/feature/self-scheduling",
@@ -134,17 +135,12 @@ const FAQ_ITEMS = [
   {
     question: "Can RosterLab support different allied health working patterns?",
     answer:
-      "RosterLab is configured around your team’s staffing requirements, skills, contracted hours and working patterns. During setup, we review how you currently roster and confirm how your requirements can be represented.",
+      "RosterLab is configured around your team’s staffing requirements, skills, contracted hours and working patterns, including part-time hours, fixed working days and agreed availability. During setup, we review how you currently roster and confirm how your requirements can be represented.",
   },
   {
     question: "What happens when someone calls in sick?",
     answer:
       "RosterLab helps you find suitable cover based on who's available, qualified and eligible to work. You can offer open shifts, re-roster affected allocations or ask <a href='/feature/ai-staff-rostering-assistant' class='text-blue-600 underline hover:text-blue-700'>Otto</a>, RosterLab's AI assistant, to help identify suitable replacements.",
-  },
-  {
-    question: "Can we accommodate part-time hours and fixed working patterns?",
-    answer:
-      "Yes. RosterLab records each practitioner's contracted hours, availability and agreed working patterns, then takes these into account when generating rosters. There's no need to manually work around the same arrangements each roster cycle.",
   },
   {
     question: "Can I edit an AI-generated roster?",
@@ -219,6 +215,7 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
 
       {/* Customer logos. */}
       <TrustedByDualRow
+        healthcareOnly
         singleRow
         centerHeadingOnMobile
         headingClassName="text-xl md:text-2xl text-[#1F2A5C]"
@@ -423,8 +420,8 @@ export default function AlliedHealthPage({ isUS = false }: { isUS?: boolean }) {
                   }`}
                 >
                   <Image
-                    src={c.image.src}
-                    alt={c.image.alt}
+                    src={alliedHealthImage(c.image.src, isUS)}
+                    alt={copy(c.image.alt)}
                     fill
                     sizes="(min-width: 1152px) 690px, (min-width: 768px) 60vw, 100vw"
                     className={c.image.className}

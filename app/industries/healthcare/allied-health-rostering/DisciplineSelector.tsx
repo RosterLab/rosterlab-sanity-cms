@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useId, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PiArrowRightBold } from "react-icons/pi";
@@ -9,7 +9,11 @@ import {
   trackSmartButtonClick,
 } from "@/components/analytics/tracking";
 
-import { alliedHealthCopy, alliedHealthHref } from "./localization";
+import {
+  alliedHealthCopy,
+  alliedHealthHref,
+  alliedHealthImage,
+} from "./localization";
 
 interface Discipline {
   label?: string;
@@ -25,7 +29,7 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
   {
     name: "Medical imaging",
     description:
-      "Balance complex skill mixes, equipment availability and staffing needs across imaging modalities while meeting fatigue and union requirements.",
+      "Match staff with the right skills to cover imaging equipment and service needs, while accounting for fatigue and employment requirements.",
     details: [
       "Modality & skill mix",
       "Rest & sleep rules",
@@ -36,7 +40,7 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       href: "/industries/healthcare/radiography",
     },
     image: {
-      src: "/images/industries/allied-health/discipline-medical-imaging-v13.webp",
+      src: "/images/industries/allied-health/discipline-medical-imaging-v14.webp",
       alt: "Radiographer with a patient beside a scanner, next to a RosterLab roster of multi-skilled imaging staff covering CT, MRI, ultrasound and X-ray every day",
     },
   },
@@ -70,7 +74,7 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
       "Skill mix & supervision",
     ],
     image: {
-      src: "/images/industries/allied-health/discipline-anaesthetic-technology-v13.webp",
+      src: "/images/industries/allied-health/discipline-anaesthetic-technology-v14.webp",
       alt: "Anaesthetic technician in theatre, next to the RosterLab shift view split by cardiac theatre, paediatric theatre and on-call, with technicians allocated each day",
     },
   },
@@ -101,14 +105,14 @@ const GLOBAL_DISCIPLINES: Discipline[] = [
     },
   },
   {
-    name: "Other Services",
+    name: "Therapy & other services",
     description:
       "Plan cover for ward referrals, specialist clinics, rehabilitation sessions and community visits, allocating practitioners according to the clinical expertise each service needs.",
     practitioners:
       "Physiotherapy · Occupational therapy · Clinical physiology · Podiatry · Audiology",
     details: [],
     image: {
-      src: "/images/industries/allied-health/discipline-other-services-v12.webp",
+      src: "/images/industries/allied-health/discipline-other-services-v14.webp",
       alt: "Physiotherapist guiding a patient through a rehab exercise, next to RosterLab notifications for physiotherapy, audiology and podiatry staff",
     },
   },
@@ -122,7 +126,7 @@ export default function DisciplineSelector({
   isUS?: boolean;
 }) {
   const copy = (text: string) => alliedHealthCopy(text, isUS);
-  const DISCIPLINES = GLOBAL_DISCIPLINES.map((discipline) => ({
+  const disciplines = GLOBAL_DISCIPLINES.map((discipline) => ({
     ...discipline,
     name: copy(discipline.name),
     label: copy(discipline.label ?? discipline.name),
@@ -132,7 +136,11 @@ export default function DisciplineSelector({
       : undefined,
     details: discipline.details.map(copy),
     image: discipline.image
-      ? { ...discipline.image, alt: copy(discipline.image.alt) }
+      ? {
+          ...discipline.image,
+          src: alliedHealthImage(discipline.image.src, isUS),
+          alt: copy(discipline.image.alt),
+        }
       : undefined,
     link: discipline.link
       ? {
@@ -144,74 +152,27 @@ export default function DisciplineSelector({
   const [active, setActive] = useState(0);
   const id = useId();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-  const card = useRef<HTMLDivElement>(null);
-  const elapsed = useRef(0);
-  const [progress, setProgress] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [hasFocus, setHasFocus] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  const [isDocumentVisible, setIsDocumentVisible] = useState(true);
-
-  useEffect(() => {
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motion.matches) setIsPlaying(false);
-    const onMotion = () => {
-      if (motion.matches) setIsPlaying(false);
-    };
-    const onVisibility = () => setIsDocumentVisible(!document.hidden);
-    motion.addEventListener("change", onMotion);
-    document.addEventListener("visibilitychange", onVisibility);
-    onVisibility();
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold: 0.25 },
-    );
-    if (card.current) observer.observe(card.current);
-    return () => {
-      observer.disconnect();
-      motion.removeEventListener("change", onMotion);
-      document.removeEventListener("visibilitychange", onVisibility);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isPlaying || hasFocus || !isInView || !isDocumentVisible)
-      return;
-    let previous = performance.now();
-    const timer = window.setInterval(() => {
-      const now = performance.now();
-      elapsed.current += now - previous;
-      previous = now;
-      if (elapsed.current >= 10000) {
-        elapsed.current = 0;
-        setActive((index) => (index + 1) % GLOBAL_DISCIPLINES.length);
-      }
-      setProgress(elapsed.current / 10000);
-    }, 100);
-    return () => window.clearInterval(timer);
-  }, [isPlaying, hasFocus, isInView, isDocumentVisible]);
+  const activeImage = disciplines[active].image;
 
   function select(index: number) {
-    elapsed.current = 0;
-    setProgress(0);
     setActive(index);
-    trackButtonClick(`Discipline: ${DISCIPLINES[index].name}`, LOCATION);
+    trackButtonClick(`Discipline: ${disciplines[index].name}`, LOCATION);
   }
 
   function onKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next: number;
     switch (event.key) {
       case "ArrowRight":
-        next = (index + 1) % DISCIPLINES.length;
+        next = (index + 1) % disciplines.length;
         break;
       case "ArrowLeft":
-        next = (index + DISCIPLINES.length - 1) % DISCIPLINES.length;
+        next = (index + disciplines.length - 1) % disciplines.length;
         break;
       case "Home":
         next = 0;
         break;
       case "End":
-        next = DISCIPLINES.length - 1;
+        next = disciplines.length - 1;
         break;
       default:
         return;
@@ -232,7 +193,7 @@ export default function DisciplineSelector({
         aria-label="Allied health disciplines"
         className="mt-8 flex flex-wrap justify-center gap-x-1 gap-y-2 border-b border-[#1F2A5C]/15 pb-5 md:mt-10 md:gap-x-2 md:gap-y-3 md:pb-8"
       >
-        {DISCIPLINES.map((discipline, index) => (
+        {disciplines.map((discipline, index) => (
           <button
             key={discipline.name}
             ref={(element) => {
@@ -257,38 +218,26 @@ export default function DisciplineSelector({
         ))}
       </div>
 
-      <div
-        ref={card}
-        onFocusCapture={() => setHasFocus(true)}
-        onBlurCapture={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget))
-            setHasFocus(false);
-        }}
-        className="mt-6 rounded-2xl border border-[#1F2A5C]/10 bg-white p-3 md:mt-8 md:rounded-3xl md:p-4 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-4"
-      >
-        {/* 4:3 artwork keeps the in-image product card clear of the slideshow dots. */}
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#EDF3FB] lg:aspect-auto lg:rounded-2xl">
-          {DISCIPLINES.map(
-            (discipline, index) =>
-              discipline.image && (
-                <Image
-                  key={discipline.image.src}
-                  src={discipline.image.src}
-                  alt={active === index ? discipline.image.alt : ""}
-                  aria-hidden={active !== index}
-                  fill
-                  sizes="(min-width: 1152px) 530px, (min-width: 1024px) 45vw, 100vw"
-                  className={`object-cover transition-opacity duration-500 ${
-                    active === index ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ),
-          )}
+      <div className="mt-6 rounded-2xl border border-[#1F2A5C]/10 bg-white p-3 md:mt-8 md:rounded-3xl md:p-4 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-4">
+        {/* Preserve the full artwork; the controls have their own blue strip. */}
+        <div className="self-center overflow-hidden rounded-xl bg-[#3779DD] lg:rounded-2xl">
+          <div className="relative aspect-[4/3]">
+            {activeImage && (
+              <Image
+                key={activeImage.src}
+                src={activeImage.src}
+                alt={activeImage.alt}
+                fill
+                unoptimized
+                className="object-contain"
+              />
+            )}
+          </div>
           <div
-            className="absolute inset-x-3 bottom-3 flex items-center justify-center gap-0.5"
-            aria-label="Discipline slideshow controls"
+            className="flex items-center justify-center gap-0.5 px-3 pb-2 pt-1"
+            aria-label="Discipline selection controls"
           >
-            {DISCIPLINES.map((discipline, index) => (
+            {disciplines.map((discipline, index) => (
               <button
                 key={discipline.name}
                 type="button"
@@ -299,22 +248,15 @@ export default function DisciplineSelector({
               >
                 <span
                   aria-hidden="true"
-                  className={`relative block h-2 overflow-hidden rounded-full bg-white ring-1 ring-[#1F2A5C]/10 ${active === index ? "w-10" : "w-2"}`}
-                >
-                  {active === index && (
-                    <span
-                      className="absolute inset-0 origin-left rounded-full bg-[#2563EB]"
-                      style={{ transform: `scaleX(${progress})` }}
-                    />
-                  )}
-                </span>
+                  className={`block h-2 rounded-full bg-white ring-1 ring-[#1F2A5C]/10 ${active === index ? "w-10" : "w-2"}`}
+                />
               </button>
             ))}
           </div>
         </div>
         {/* Desktop panels share a height; mobile content uses only the space it needs. */}
         <div className="lg:grid">
-          {DISCIPLINES.map((discipline, index) => (
+          {disciplines.map((discipline, index) => (
             <div
               key={discipline.name}
               role="tabpanel"

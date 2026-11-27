@@ -54,10 +54,29 @@ test("US clinical copy and spelling are localized without rewriting the brand", 
     ),
   ).toBe("RosterLab scheduling for physical therapists across units");
   expect(alliedHealthCopy("Haematology", false)).toBe("Haematology");
+  expect(
+    alliedHealthCopy(
+      "Radiographers and a Physiotherapist join an Anaesthetic technician in theatre",
+      true,
+    ),
+  ).toBe(
+    "Radiologic technologists and a Physical therapist join an Anesthesia technician in operating room",
+  );
+  expect(
+    alliedHealthCopy(
+      "Our roster writers plan surgical lists and re-roster affected shifts",
+      true,
+    ),
+  ).toBe(
+    "Our schedulers plan operating room schedules and reschedule affected shifts",
+  );
 });
 
 test("US navigation links to allied health without a separate radiography entry", () => {
-  const solutions = usNavItems.find((item) => item.title === "Solutions")!;
+  const solutions = usNavItems.find((item) => item.title === "Solutions");
+  if (!solutions || !("subItems" in solutions)) {
+    throw new Error("Expected the Solutions menu to contain navigation items");
+  }
   expect(solutions.subItems).toEqual(
     expect.arrayContaining([
       expect.objectContaining({ title: "Allied Health", link: usPath }),
