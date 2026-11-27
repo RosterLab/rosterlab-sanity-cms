@@ -219,3 +219,52 @@
     max-width: calc(100% - 0.5rem);
   }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  .actAttachment {
+    animation: actAttachmentDrop 8s ease-in-out 1s infinite both;
+  }
+
+  .actCursor {
+    animation: actCursorDrag 8s ease-in-out 1s infinite both;
+  }
+}
+
+@keyframes actAttachmentDrop {
+  0% {
+    opacity: 0;
+    transform: translate(12px, -28px);
+  }
+
+  7% {
+    opacity: 1;
+    transform: translate(12px, -28px);
+  }
+
+  20%, 96% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes actCursorDrag {
+  0% {
+    opacity: 0;
+    transform: translate(8px, 5px);
+  }
+
+  7%, 21% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  29%, 100% {
+    opacity: 0;
+    transform: translate(9px, 7px);
+  }
+}
