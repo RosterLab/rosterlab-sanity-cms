@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 import { ARTICLE_REDIRECTS } from "./lib/posts/article-redirects";
 import { withPostHogConfig } from "@posthog/nextjs-config";
 
+const publicCdnCacheControl =
+  "public, s-maxage=300, stale-while-revalidate=3600";
+// Match the homepage's revalidation interval in app/page.tsx so the CDN does
+// not expire HTML that the Next.js cache will keep returning with the same age.
+const homepageCdnCacheControl =
+  "public, s-maxage=3600, stale-while-revalidate=3600";
+
 const nextConfig: NextConfig = {
   // Canonical and hreflang links must be in the initial <head>, not streamed
   // into <body>. Use the same metadata delivery for every user agent because
@@ -105,11 +112,8 @@ const nextConfig: NextConfig = {
       },
       // HTML documents: let the CDN serve them.
       //
-      // These routes are still `ƒ` dynamic (the root layout reads headers() for
-      // the pathname and draftMode() for Sanity preview), but the rendered HTML
-      // is now a pure function of the pathname — the per-visitor Statsig
-      // bootstrap that used to be inlined moved into the browser. So the
-      // response is safe to cache and share.
+      // Public pages can be shared across visitors. The per-visitor Statsig
+      // bootstrap runs in the browser.
       //
       // Split browser vs CDN deliberately:
       //   Cache-Control            -> the browser revalidates every navigation,
@@ -130,6 +134,8 @@ const nextConfig: NextConfig = {
       // authenticated/preview surfaces, which must never be shared-cached.
       {
         source: "/:path((?!_next/|api/|studio|draft|azure-ad).*)",
+        // Let Next and the Netlify adapter handle private Draft Mode responses.
+        missing: [{ type: "cookie", key: "__prerender_bypass" }],
         headers: [
           {
             key: "Cache-Control",
@@ -137,7 +143,23 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Netlify-CDN-Cache-Control",
-            value: "public, s-maxage=300, stale-while-revalidate=3600, durable",
+            value: `${publicCdnCacheControl}, durable`,
+          },
+        ],
+      },
+      {
+        source: "/",
+        missing: [{ type: "cookie", key: "__prerender_bypass" }],
+        headers: [
+          {
+            // For prerendered responses the Netlify adapter rebuilds its CDN
+            // policy from this header, falling back to browser Cache-Control.
+            key: "CDN-Cache-Control",
+            value: homepageCdnCacheControl,
+          },
+          {
+            key: "Netlify-CDN-Cache-Control",
+            value: `${homepageCdnCacheControl}, durable`,
           },
         ],
       },
