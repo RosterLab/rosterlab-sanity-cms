@@ -207,8 +207,21 @@
     object-position: center top;
   }
 
-  .staffPhotoImage {
+  .managerPhotoImage {
+    object-position: left top;
+    transform: scale(1.12);
+    transform-origin: left top;
+  }
+
+  .coordinatorPhotoImage {
     object-position: right top;
+    transform: scale(1.12);
+    transform-origin: right top;
+  }
+
+  .staffPhotoImage {
+    object-position: right 30%;
+    transform-origin: 85% 33%;
   }
 
   .rolePhotoPrompts {

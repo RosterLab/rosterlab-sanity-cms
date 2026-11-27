@@ -139,7 +139,7 @@ export default function RoleTabsModule({ isUS = false }: { isUS?: boolean }) {
                 fetchPriority="low"
                 sizes="(min-width: 1400px) 650px, (min-width: 1280px) 580px, (min-width: 1024px) 480px, (min-width: 768px) 700px, (min-width: 640px) 550px, calc(100vw - 70px)"
                 className={`${backgrounds.rolePhotoImage} ${
-                  role.id === "staff" ? backgrounds.staffPhotoImage : role.id === "team-leads" ? backgrounds.coordinatorPhotoImage : ""
+                  role.id === "staff" ? backgrounds.staffPhotoImage : role.id === "team-leads" ? backgrounds.coordinatorPhotoImage : backgrounds.managerPhotoImage
                 } ${role.id !== activeRole.id ? "invisible" : ""}`}
               />
             ))}
